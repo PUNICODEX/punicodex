@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Role-Based Access Control (RBAC) for enterprise tenants.
+ * PUNICODEX — Role-Based Access Control (RBAC) for enterprise tenants.
  */
 
 const VALID_ROLES = new Set(['superadmin', 'tenant_admin', 'analyst', 'viewer', 'api']);

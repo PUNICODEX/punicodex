@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — CJK script risk module tests
+ * PuniCodex — CJK script risk module tests
  */
 
 const assert = require('node:assert');

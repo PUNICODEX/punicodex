@@ -65,7 +65,7 @@ class UnicodeCrawler {
   constructor(db) {
     this.db = db;
     this.headers = {
-      'User-Agent': 'PUNYCODEX-Bot/1.0 (https://punycodex.com/bot) Unicode Domain Crawler',
+      'User-Agent': 'PUNICODEX-Bot/1.0 (https://punicodex.com/bot) Unicode Domain Crawler',
     };
   }
 

@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Sync Scholars Portal
+ * PuniCodex — Sync Scholars Portal
  *
  * Copies the static Scholars portal pages from platform/public/scholars/
  * to scholars/ at the project root so they are served at /scholars/* in

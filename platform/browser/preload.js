@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX Browser — Electron preload script.
+ * PUNICODEX Browser — Electron preload script.
  */
 const { contextBridge } = require('electron');
 

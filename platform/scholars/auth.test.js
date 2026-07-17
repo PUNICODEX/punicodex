@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Scholarly Edition Authentication Tests
+ * PuniCodex — Scholarly Edition Authentication Tests
  */
 
 const assert = require('node:assert');

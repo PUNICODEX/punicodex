@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX Collections — predefined pantheon/theme completion tracking.
+ * PUNICODEX Collections — predefined pantheon/theme completion tracking.
  */
 (function (global) {
   'use strict';

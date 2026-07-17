@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Observability Service (Phase 8)
+ * PuniCodex — Observability Service (Phase 8)
  *
  * Read-only operational metrics drawn from the api_request_log, search_queries,
  * and indexed_sites tables. Designed to power the admin dashboard and health

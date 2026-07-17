@@ -1,4 +1,4 @@
-package com.punycodex.authenticity
+package com.punicodex.authenticity
 
 import android.app.Activity
 import android.content.Intent
@@ -10,7 +10,7 @@ import android.widget.Toast
  *
  * Register this activity with an intent filter for ACTION_SEND / text/plain
  * so users can share any link from Safari, Mail, Messages, or other apps into
- * the PÚNYCODEX Authenticity Checker.
+ * the PuniCodex Authenticity Checker.
  */
 class ShareExtensionActivity : Activity() {
 

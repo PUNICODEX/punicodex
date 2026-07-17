@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Oracle page interactions
+ * PuniCodex — Oracle page interactions
  * Mobile menu, scroll reveals, animated counters, and interactive demo.
  */
 
@@ -157,7 +157,7 @@
       script: 'Ζεύς',
       scriptLabel: 'Ancient Greek',
       meaning: 'Sky father; king of the Olympian gods.',
-      extra: 'Status: canonical PÚNYCODEX restoration. No mixed-script deception detected.',
+      extra: 'Status: canonical PuniCodex restoration. No mixed-script deception detected.',
     },
     pronounce: {
       query: 'How is Hádēs pronounced?',

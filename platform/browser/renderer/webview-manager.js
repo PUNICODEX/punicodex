@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — WebView Lifecycle Manager
+ * PUNICODEX — WebView Lifecycle Manager
  * Each votive tablet has its own webview. Switching reveals. Never reloads.
  */
 
@@ -191,7 +191,7 @@ const _WebviewManager = (function () {
   function onTitleUpdate(tabId, title) {
     Tabs.updateTab(tabId, { title });
     if (tabId === activeTabId) {
-      document.title = title ? `${title} — PUNYCODEX` : 'PUNYCODEX';
+      document.title = title ? `${title} — PUNICODEX` : 'PUNICODEX';
     }
   }
 
@@ -226,7 +226,7 @@ const _WebviewManager = (function () {
 
     // Strategy 1: Exact punycode match via sites API
     try {
-      const siteRes = await window.punycodex.apiGet(`/api/sites/${encodeURIComponent(domain)}`);
+      const siteRes = await window.punicodex.apiGet(`/api/sites/${encodeURIComponent(domain)}`);
       if (siteRes.ok && siteRes.data) {
         const site = siteRes.data;
         if (site.lexicon_entry_id) {
@@ -241,7 +241,7 @@ const _WebviewManager = (function () {
     // Strategy 2: Search by unicode domain name (strip TLD)
     try {
       const nameWithoutTld = domain.replace(/\.[^.]+$/, '');
-      const searchRes = await window.punycodex.apiGet(
+      const searchRes = await window.punicodex.apiGet(
         `/api/search/?q=${encodeURIComponent(nameWithoutTld)}&limit=5`
       );
       if (searchRes.ok && searchRes.data.entries && searchRes.data.entries.length > 0) {
@@ -262,7 +262,7 @@ const _WebviewManager = (function () {
     if (!isUnicode) {
       try {
         const asciiCore = domain.replace(/\.[^.]+$/, '');
-        const asciiRes = await window.punycodex.apiGet(
+        const asciiRes = await window.punicodex.apiGet(
           `/api/search/?q=${encodeURIComponent(asciiCore)}&limit=1`
         );
         if (asciiRes.ok && asciiRes.data.entries && asciiRes.data.entries.length > 0) {
@@ -289,10 +289,10 @@ const _WebviewManager = (function () {
 
   async function loadEntry(entryId, url, siteData) {
     // Load from local Canon first (always works)
-    let entry = await window.punycodex.lexiconEntry(entryId);
+    let entry = await window.punicodex.lexiconEntry(entryId);
     if (!entry) {
       // Fallback to API
-      const res = await window.punycodex.apiGet(`/api/entry/${encodeURIComponent(entryId)}`);
+      const res = await window.punicodex.apiGet(`/api/entry/${encodeURIComponent(entryId)}`);
       if (!res.ok) return;
       entry = res.data;
     }
@@ -311,7 +311,7 @@ const _WebviewManager = (function () {
 
     // Try to enrich with server data
     try {
-      const apiRes = await window.punycodex.apiGet(`/api/entry/${encodeURIComponent(entryId)}`);
+      const apiRes = await window.punicodex.apiGet(`/api/entry/${encodeURIComponent(entryId)}`);
       if (apiRes.ok && apiRes.data) {
         entry.site = apiRes.data.site || entry.site;
         entry.availability = apiRes.data.availability || entry.availability;
@@ -325,7 +325,7 @@ const _WebviewManager = (function () {
 
     // Load variants from local Canon
     try {
-      const variants = await window.punycodex.lexiconVariants(entryId);
+      const variants = await window.punicodex.lexiconVariants(entryId);
       if (variants.length > 0) {
         VariantBanner.show(entry, variants);
       } else {

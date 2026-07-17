@@ -1,5 +1,5 @@
 /**
- * Skaldic Norse importer for PÚNYCODEX
+ * Skaldic Norse importer for PuniCodex
  *
  * Stub: no online source configured yet.
  */

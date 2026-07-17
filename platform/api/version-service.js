@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Version service
+ * PuniCodex — Version service
  * Exposes data-version.json through the API.
  */
 

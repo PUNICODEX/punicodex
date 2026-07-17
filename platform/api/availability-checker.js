@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Domain Availability Checker
+ * PUNICODEX — Domain Availability Checker
  * Fast, honest DNS + HTTP probes, with optional Verisign RDAP verification.
  */
 
@@ -122,7 +122,7 @@ async function checkDnsHttp(domain) {
         signal: controller.signal,
         redirect: 'follow',
         headers: {
-          'User-Agent': 'PUNYCODEX-AvailabilityChecker/1.0',
+          'User-Agent': 'PUNICODEX-AvailabilityChecker/1.0',
           Accept: 'text/html',
         },
       });
@@ -181,7 +181,7 @@ async function checkWhoisRdap(domain) {
         signal: controller.signal,
         redirect: 'follow',
         headers: {
-          'User-Agent': 'PUNYCODEX-RDAP-Probe/1.0 (https://punycodex.com)',
+          'User-Agent': 'PUNICODEX-RDAP-Probe/1.0 (https://punicodex.com)',
           Accept: 'application/json',
         },
       }

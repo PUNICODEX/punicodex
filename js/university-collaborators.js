@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Academic Collaborators Strip
+ * PuniCodex — Academic Collaborators Strip
  *
  * Renders the universal pre-footer university sponsors section.
  * Edit the UNIVERSITY_COLLABORATORS array below to add real sponsors.
@@ -137,8 +137,8 @@
   }
 
   // Expose for dynamic updates and external configuration.
-  window.PUNYCODEX = window.PUNYCODEX || {};
-  window.PUNYCODEX.UniversityCollaborators = {
+  window.PUNICODEX = window.PUNICODEX || {};
+  window.PUNICODEX.UniversityCollaborators = {
     data: UNIVERSITY_COLLABORATORS,
     render: init,
     addSponsor(sponsor) {

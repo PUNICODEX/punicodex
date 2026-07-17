@@ -1,26 +1,26 @@
-# PUNYCODEX — Automated Evolution Plan
+# PUNICODEX — Automated Evolution Plan
 
 **Version:** 1.0  
 **Date:** 2026-06-21  
-**Status:** Active (replaces `PUNYCODEX-21ST-CENTURY-ROADMAP.md` and `SEARCH-ENGINE-EVOLUTION.md`)  
+**Status:** Active (replaces `PUNICODEX-21ST-CENTURY-ROADMAP.md` and `SEARCH-ENGINE-EVOLUTION.md`)  
 **Source of truth:** This file. Supporting specs remain in `ACCURACY.md`, `AGENTS.md`, `PANTHEON-ADVERTISING-ROLLOUT.md`, and `AUDIT.md`.
 
 ---
 
 ## 1. Honest Assessment
 
-PUNYCODEX is not a gimmick. It is a rare intersection of:
+PUNICODEX is not a gimmick. It is a rare intersection of:
 
 - **Philology** — a scholarly Unicode restoration of 860 mythological names across 21 pantheons.
 - **Real estate** — owned, registrable Unicode domains for the flagship names.
 - **Identity** — a proposal that meaningful names matter more than stylish noise on the Unicode web.
 - **Culture** — a way to surface mythology, original scripts, etymology, and symbolism in a world that is forgetting them.
 
-That combination is genuinely defensible. The largest corporations would not be obsessed with it because it is "cool"; they would be obsessed because **owning the canonical name layer for a new category of the internet is a strategic position**. The closest historical analogues are not other domain portfolios — they are the OED, IANA, Crunchbase, and the early search engines. PUNYCODEX can become the authority that browsers, registrars, AI systems, and localizers consult when they encounter a Unicode name.
+That combination is genuinely defensible. The largest corporations would not be obsessed with it because it is "cool"; they would be obsessed because **owning the canonical name layer for a new category of the internet is a strategic position**. The closest historical analogues are not other domain portfolios — they are the OED, IANA, Crunchbase, and the early search engines. PUNICODEX can become the authority that browsers, registrars, AI systems, and localizers consult when they encounter a Unicode name.
 
 **Where it is now:** The foundation exists but the house is unfinished. The data core is strong, the generation flywheel is real, and the vision is clear. The execution is currently a sophisticated prototype: many surfaces look polished but have functional holes, the deployed site cannot take money, the search index is mostly synthetic, and several security controls are missing. This is normal for a project at this stage, but it is not yet enterprise-grade.
 
-**What "enterprise grade" means for PUNYCODEX:**
+**What "enterprise grade" means for PUNICODEX:**
 
 1. **Accuracy is machine-enforced.** Every entry, tier, original script, breakdown, and variant is validated against documented rules; the tests fail if the rules are violated.
 2. **The flywheel is automated.** Canonical changes automatically regenerate all consumers, run the full test matrix, and report divergence.
@@ -41,8 +41,8 @@ This plan is designed to get there without degrading anything that already works
 4. **Vercel-first deployment.** The live site deploys from Git → Vercel. Local `platform/server.js` remains the development server and must expose the same surface as the Vercel functions.
 5. **Accuracy is the brand.** Every inconsistency (stale count, wrong tier, missing script, vague breakdown) is treated as a bug.
 6. **Security by default.** No unauthenticated mutation endpoints, no tracked secrets, no plaintext tokens, no demo keys in production.
-7. **Open where it helps, closed where it earns.** The dataset should carry a clear license; the API and marketplace can have paid tiers; the protocol can be open while the canonical registry remains PUNYCODEX.
-8. **Verticals compound the core.** Advertising, art marketplace, and card game all increase the value of owning a PUNYCODEX name — they are not distractions from it.
+7. **Open where it helps, closed where it earns.** The dataset should carry a clear license; the API and marketplace can have paid tiers; the protocol can be open while the canonical registry remains PUNICODEX.
+8. **Verticals compound the core.** Advertising, art marketplace, and card game all increase the value of owning a PUNICODEX name — they are not distractions from it.
 
 ---
 
@@ -107,13 +107,13 @@ All cron endpoints require a `CRON_SECRET` env var.
 **Deliverables:**
 - [ ] Run `npm run generate` and commit all regenerated files so `npm test` is fully green.
 - [ ] Remove `.env` from Git history and rotate every secret it contains.
-- [ ] Remove the hardcoded `pk_punycodex_demo` key from the migration and any production database.
+- [ ] Remove the hardcoded `pk_punicodex_demo` key from the migration and any production database.
 - [ ] Add admin/API-key guards to `api/sites/[punycode]/spam` and `POST /api/availability/:entryId`.
 - [ ] Add `CRON_SECRET` checks to all `api/cron/*` endpoints.
 - [ ] Add rate limiting to admin login and public submission/partner endpoints.
 - [ ] Hash admin session tokens before storage and before logging.
 - [ ] Refresh all hard-coded counts to 860 entries / 21 pantheons / 83 flagships / 587 tier-2.
-- [ ] Delete or retire obsolete roadmaps (`PUNYCODEX-21ST-CENTURY-ROADMAP.md`, `SEARCH-ENGINE-EVOLUTION.md` already removed).
+- [ ] Delete or retire obsolete roadmaps (`PUNICODEX-21ST-CENTURY-ROADMAP.md`, `SEARCH-ENGINE-EVOLUTION.md` already removed).
 
 **Automation:** `scripts/evolve.js` and `.github/workflows/evolve.yml` are created and run on every push.
 
@@ -196,7 +196,7 @@ All cron endpoints require a `CRON_SECRET` env var.
 
 ### Phase 5 — Art Marketplace (Weeks 25–32)
 
-**Goal:** Users can upload, watermark, price, and sell art tied to PUNYCODEX entries.
+**Goal:** Users can upload, watermark, price, and sell art tied to PUNICODEX entries.
 
 **Deliverables:**
 - [ ] Design schema: `artworks` (id, entry_id, artist_id, title, description, price_cents, watermark_path, original_path, status, created_at).
@@ -212,7 +212,7 @@ All cron endpoints require a `CRON_SECRET` env var.
 
 ### Phase 6 — Card Game Prototype (Weeks 33–40)
 
-**Goal:** A playable, mythology-based digital card game where each card is a PUNYCODEX entry.
+**Goal:** A playable, mythology-based digital card game where each card is a PUNICODEX entry.
 
 **Deliverables:**
 - [ ] Card data model derived from the lexicon: name, pantheon, tier, domain/symbols, attack/defense/ability based on archetype.
@@ -244,7 +244,7 @@ All cron endpoints require a `CRON_SECRET` env var.
 
 ## 5. Definition of "Production Ready"
 
-PUNYCODEX will be considered production-ready when:
+PUNICODEX will be considered production-ready when:
 
 1. `npm test` passes on `main` with zero failures, including flywheel and generated-artifacts suites.
 2. `npm run generate` followed by `git diff --exit-code` exits zero.
@@ -272,12 +272,12 @@ That single sprint turns the repo from an unstable prototype into a clean, testa
 
 ---
 
-## 7. Why This Plan Is in PUNYCODEX's Best Interest
+## 7. Why This Plan Is in PUNICODEX's Best Interest
 
 This plan does not chase novelty. It does not ask you to rebuild from scratch. It takes what is already genius — the lexicon, the domains, the type engine, the scholarly voice — and wraps it in the discipline required for the world to take it seriously.
 
-The art marketplace and card game are not distractions. They are the reason people will spend time on PUNYCODEX. But they only work if the canonical layer is trusted. A card game built on inaccurate tiers or broken domains is a novelty. A marketplace selling art for names that do not resolve is a scam. The foundation must be flawless first.
+The art marketplace and card game are not distractions. They are the reason people will spend time on PUNICODEX. But they only work if the canonical layer is trusted. A card game built on inaccurate tiers or broken domains is a novelty. A marketplace selling art for names that do not resolve is a scam. The foundation must be flawless first.
 
-The automation matters because PUNYCODEX is too large for manual maintenance. 860 entries, 83 flagships, 21 pantheons, dozens of generated consumers, nightly crawls, availability checks, and curator suggestions — this is a machine-scale problem. The plan treats it as one.
+The automation matters because PUNICODEX is too large for manual maintenance. 860 entries, 83 flagships, 21 pantheons, dozens of generated consumers, nightly crawls, availability checks, and curator suggestions — this is a machine-scale problem. The plan treats it as one.
 
-If we execute this, PUNYCODEX stops being a cool project and becomes infrastructure. That is what the largest corporations would obsess over: not the website, but the **canonical name graph** underneath it.
+If we execute this, PUNICODEX stops being a cool project and becomes infrastructure. That is what the largest corporations would obsess over: not the website, but the **canonical name graph** underneath it.

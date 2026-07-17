@@ -17,8 +17,8 @@ const { generateBlankManifest, validateManifest, getTaxonomyVersion } = require(
 const OUT_DIR = path.join(__dirname, '..', 'platform', 'scholars', 'manifests');
 const CONTENT_DIR = path.join(__dirname, '..', 'platform', 'scholars', 'content');
 
-const ADMIN_NAME = 'PÚNYCODEX Team';
-const ADMIN_NOTE = 'Synthesized from canonical sources by PÚNYCODEX Team.';
+const ADMIN_NAME = 'PuniCodex Team';
+const ADMIN_NOTE = 'Synthesized from canonical sources by PuniCodex Team.';
 
 function loadContent(entryId) {
   const file = path.join(CONTENT_DIR, `${entryId}.json`);

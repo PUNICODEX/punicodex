@@ -1,5 +1,5 @@
 (function () {
-  const API_BASE = window.PUNYCODEX_API_BASE || '';
+  const API_BASE = window.PUNICODEX_API_BASE || '';
   const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || '';
 
   const els = {
@@ -109,7 +109,7 @@
 
   function setPageTitle() {
     if (!templeId) return;
-    if (els.eyebrow) els.eyebrow.textContent = `PUNYCODEX Patronage — /sites/${templeId}`;
+    if (els.eyebrow) els.eyebrow.textContent = `PUNICODEX Patronage — /sites/${templeId}`;
     if (els.title) els.title.textContent = `Honor This Temple`;
   }
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Deploy all 43 PUNYCODEX flagship temples to Cloudflare Pages
+ * Deploy all 43 PUNICODEX flagship temples to Cloudflare Pages
  * and bind their primary custom domains.
  *
  * Usage:
@@ -81,7 +81,7 @@ async function createProject(accountId, token, { id, branch }) {
     source: {
       type: 'github',
       config: {
-        owner: 'PUNYCODEX',
+        owner: 'PUNICODEX',
         repo_name: id,
         production_branch: branch,
         pr_comments_enabled: true,

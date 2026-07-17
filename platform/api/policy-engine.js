@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Name Authenticity Shield V2 Policy Engine
+ * PuniCodex — Name Authenticity Shield V2 Policy Engine
  *
  * Evaluates an authenticity verdict against an enterprise policy.
  */

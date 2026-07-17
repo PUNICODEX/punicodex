@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Bulk domain availability audit
+ * PUNICODEX — Bulk domain availability audit
  *
  * Checks the .com status for every lexicon entry and writes a JSON snapshot.
  * Uses punycode for non-ASCII Unicode names.

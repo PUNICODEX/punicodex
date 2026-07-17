@@ -24,7 +24,7 @@ Service degradation, legitimate users blocked, and potential cost overruns.
 2. **Enable emergency rate limiting.**
    - Lower global free-tier rate limit to 10 requests/minute:
      ```bash
-     curl -X POST https://punycodex.com/api/v2/admin/rate-limits \
+     curl -X POST https://punicodex.com/api/v2/admin/rate-limits \
        -H "x-admin-token: $ADMIN_TOKEN" \
        -d '{"tier": "free", "requestsPerMinute": 10}'
      ```

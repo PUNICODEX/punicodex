@@ -1,13 +1,13 @@
 /**
- * PÚNYCODEX — Scholars Concurrency Tests
+ * PuniCodex — Scholars Concurrency Tests
  *
  * Exercises race conditions and edge cases in the Scholars API:
  * duplicate student creation, password reset during login, simultaneous
  * approve/reject, and expired sponsorship.
  */
 
-process.env.PUNYCODEX_SCHOLARS_DISABLE_RATE_LIMIT = '1';
-process.env.PUNYCODEX_BCRYPT_ROUNDS = '4';
+process.env.PUNICODEX_SCHOLARS_DISABLE_RATE_LIMIT = '1';
+process.env.PUNICODEX_BCRYPT_ROUNDS = '4';
 
 const { setupTestDb, startScholarsServer } = require('./test-helpers');
 const { verifyPassword } = require('./auth');

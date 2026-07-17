@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — AI Corpus Phases Regression Tests (Phases 3-9)
+ * PuniCodex — AI Corpus Phases Regression Tests (Phases 3-9)
  *
  * Guards the dialogue, tool-use, multimodal, preference, reasoning, benchmark,
  * and data-card artifacts produced by `npm run generate`.
@@ -409,7 +409,7 @@ test('oracle examples include the canonical persona preamble', () => {
   const sample = examples.find((e) => e.task === 'oracle_greeting') || examples[0];
   const system = sample.messages.find((m) => m.role === 'system');
   assert.ok(system, 'oracle example has system message');
-  assert.ok(/PÚNYCODEX Oracle/i.test(system.content), 'system message names the Oracle');
+  assert.ok(/PuniCodex Oracle/i.test(system.content), 'system message names the Oracle');
   assert.ok(
     /canonical sources|spoofing|impersonation/i.test(system.content),
     'system message states principles'
@@ -482,7 +482,7 @@ test('unified corpus starts every record with a system message', () => {
   for (const ex of train.slice(0, 50).concat(evalSet.slice(0, 50))) {
     assert.ok(Array.isArray(ex.messages), `${ex.id} has messages array`);
     assert.strictEqual(ex.messages[0].role, 'system', `${ex.id} first message is system`);
-    assert.ok(/PÚNYCODEX Oracle/i.test(ex.messages[0].content), `${ex.id} system names the Oracle`);
+    assert.ok(/PuniCodex Oracle/i.test(ex.messages[0].content), `${ex.id} system names the Oracle`);
   }
 });
 

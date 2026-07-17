@@ -4,7 +4,7 @@ const { spawnSync } = require('child_process');
 const ffmpeg = require('ffmpeg-static');
 
 const ROOT = path.join(__dirname, '..');
-const srcRoot = path.join(ROOT, 'extended flagship materials', 'punycodex');
+const srcRoot = path.join(ROOT, 'extended flagship materials', 'punicodex');
 
 const jobs = [
   { id: 'aither', folder: 'Aither', video: 'aither_hero_video.mp4' },

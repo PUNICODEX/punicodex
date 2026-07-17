@@ -1,5 +1,5 @@
 import urllib.request
-url = 'https://punycodex.com/sites/nike'
+url = 'https://punicodex.com/sites/nike'
 req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
 with urllib.request.urlopen(req) as resp:
     data = resp.read()

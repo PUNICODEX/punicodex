@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Deterministic random number generator for corpus generators.
+ * PuniCodex — Deterministic random number generator for corpus generators.
  *
  * Provides a seeded PRNG so that `npm run generate` produces byte-identical
  * output across runs and passes the divergence gate idempotency test.

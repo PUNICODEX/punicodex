@@ -21,7 +21,7 @@
       <div class="art-preview-bg" style="background: radial-gradient(circle at 30% 30%, ${artwork.color}, transparent 70%);"></div>
       <div class="art-preview-icon">${icon}</div>
       <div class="art-watermark"></div>
-      <div class="art-watermark-text">PUNYCODEX</div>
+      <div class="art-watermark-text">PUNICODEX</div>
     `;
   }
 

@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Glyph Renderer (font-metric backend)
+ * PuniCodex — Glyph Renderer (font-metric backend)
  *
  * Provides perceptual, rendered-style similarity between two strings without
  * requiring a native canvas library. It uses a curated table of glyph geometry

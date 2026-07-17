@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — False Negative Budget Test
+ * PuniCodex — False Negative Budget Test
  *
  * Runs a small deceptive input set through the Authenticity Shield and asserts
  * that the true-positive rate is within the SLA budget (≥ 99.99%).

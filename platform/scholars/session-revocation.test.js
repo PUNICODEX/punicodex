@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Scholars session revocation & credential policy tests
+ * PuniCodex — Scholars session revocation & credential policy tests
  *
  * Guards the immediate-revocation contract and the password policy:
  *   - disabling an account kills its sessions instantly (student AND curator)
@@ -16,7 +16,7 @@
 
 const assert = require('node:assert');
 
-process.env.PUNYCODEX_BCRYPT_ROUNDS = process.env.PUNYCODEX_BCRYPT_ROUNDS || '4';
+process.env.PUNICODEX_BCRYPT_ROUNDS = process.env.PUNICODEX_BCRYPT_ROUNDS || '4';
 
 const {
   setupTestDb,
@@ -42,7 +42,7 @@ async function run() {
   const { institutionId, adminSessionId } = ctx.ctx;
 
   const curator = dbLayer.createUserWithPassword({
-    email: 'curator@punycodex.com',
+    email: 'curator@punicodex.com',
     institutionId: null,
     role: 'curator',
     displayName: 'Curator',
@@ -132,7 +132,7 @@ async function run() {
 
       // A second curator disables the first.
       const curator2 = dbLayer.createUserWithPassword({
-        email: 'curator2@punycodex.com',
+        email: 'curator2@punicodex.com',
         institutionId: null,
         role: 'curator',
         displayName: 'Curator Two',

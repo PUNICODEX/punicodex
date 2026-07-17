@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX API v1 — API key authentication and authorization
+ * PuniCodex API v1 — API key authentication and authorization
  *
  * Read endpoints accept an optional key. No key = free-tier, IP-based rate limit.
  * Write endpoints require a valid key with the appropriate scope.

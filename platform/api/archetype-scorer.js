@@ -1,6 +1,6 @@
 /**
  * Archetype Scorer — measures how well a tenant's content aligns with the
- * mythological archetype of its PUNYCODEX domain name.
+ * mythological archetype of its PUNICODEX domain name.
  *
  * Signals:
  *   - Semantic overlap between site corpus and entry meaning/etymology.

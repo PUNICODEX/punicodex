@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Authenticity Verdict Taxonomy
+ * PuniCodex — Authenticity Verdict Taxonomy
  *
  * A name or domain pasted into the Authenticity Checker receives exactly one
  * of these verdicts. The taxonomy is intentionally conservative: any visual
@@ -64,7 +64,7 @@ const VERDICT_LABEL = Object.freeze({
 
 const VERDICT_EXPLANATION = Object.freeze({
   [VERDICTS.CANONICAL]:
-    'This input exactly matches a PUNYCODEX canonical Unicode transliteration. It preserves stress, length, and other philological features that the plain ASCII form cannot represent.',
+    'This input exactly matches a PUNICODEX canonical Unicode transliteration. It preserves stress, length, and other philological features that the plain ASCII form cannot represent.',
   [VERDICTS.RECOGNIZED_VARIANT]:
     'This is a scholarly variant recorded in the lexicon (e.g., macron-only, alternate stress, or ideal stacked form). It is a legitimate restoration.',
   [VERDICTS.ASCII_FALLBACK]:
@@ -82,7 +82,7 @@ const VERDICT_EXPLANATION = Object.freeze({
   [VERDICTS.UNSAFE]:
     'This matches a known threat pattern, blocklist entry, or has been confirmed by reviewers as a deceptive name.',
   [VERDICTS.UNKNOWN]:
-    'This input is not in the PUNYCODEX corpus and shows no clear signs of impersonation.',
+    'This input is not in the PUNICODEX corpus and shows no clear signs of impersonation.',
 });
 
 const VERDICT_RECOMMENDATIONS = Object.freeze({
@@ -120,7 +120,7 @@ const VERDICT_RECOMMENDATIONS = Object.freeze({
   ],
   [VERDICTS.UNSAFE]: [
     'This input is blocked. Do not visit, register, or share it.',
-    'If you believe this is a mistake, contact the PUNYCODEX operators.',
+    'If you believe this is a mistake, contact the PUNICODEX operators.',
   ],
   [VERDICTS.UNKNOWN]: [
     'No canonical match was found.',

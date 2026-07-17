@@ -1,5 +1,5 @@
 /**
- * ETCSL Sumerian importer for PÚNYCODEX
+ * ETCSL Sumerian importer for PuniCodex
  *
  * Stub: no online source configured yet.
  */

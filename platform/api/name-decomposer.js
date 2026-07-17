@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Name Decomposer
+ * PuniCodex — Name Decomposer
  *
  * Breaks any Unicode string into a per-character attestation: script,
  * confusable mapping, invisible-character flags, and deviation from a

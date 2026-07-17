@@ -1290,7 +1290,7 @@ function getKnowledgePanelData(q) {
   const tenantSite = sites.find((s) => s.tenant_name || s.is_flagship) || null;
   const tenant = tenantSite
     ? {
-        name: tenantSite.tenant_name || 'PUNYCODEX Flagship',
+        name: tenantSite.tenant_name || 'PUNICODEX Flagship',
         category: tenantSite.tenant_category,
         frontUrl: tenantSite.tenant_front_url,
         punycode: tenantSite.punycode,
@@ -1594,7 +1594,7 @@ function generatePeopleAlsoAsk(q, limit = 4) {
         const siteList = sites.map((s) => s.domain || s.punycode).join(', ');
         add(
           `What is the flagship domain for ${name}?`,
-          `The PUNYCODEX flagship is ${siteList}.`,
+          `The PUNICODEX flagship is ${siteList}.`,
           'tenants'
         );
         for (const s of sites) {
@@ -1654,7 +1654,7 @@ function generatePeopleAlsoAsk(q, limit = 4) {
       .slice(0, 3)
       .map((s) => s.tenant_name || s.title || s.domain)
       .join(', ');
-    add(`Who offers ${raw} on PUNYCODEX?`, `Indexed tenants include ${names}.`, 'tenants');
+    add(`Who offers ${raw} on PUNICODEX?`, `Indexed tenants include ${names}.`, 'tenants');
     const first = tenantSites[0];
     if (first.tenant_category) {
       add(
@@ -1673,7 +1673,7 @@ function generatePeopleAlsoAsk(q, limit = 4) {
   } else if (!entry) {
     add(
       `What is ${raw}?`,
-      `We don’t have a PUNYCODEX entry for “${raw}” yet, but you can search for Unicode-restored names or browse the lexicon.`,
+      `We don’t have a PUNICODEX entry for “${raw}” yet, but you can search for Unicode-restored names or browse the lexicon.`,
       'lexicon'
     );
   }

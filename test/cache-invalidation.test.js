@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Result cache tests
+ * PuniCodex — Result cache tests
  *
  * Verifies the in-memory result cache (and Redis-backed path when available).
  */
@@ -66,7 +66,7 @@ test('TTL depends on verdict stability', () => {
 });
 
 test('withResultCache returns cached result on second call', async () => {
-  process.env.PUNYCODEX_CACHE = '1';
+  process.env.PUNICODEX_CACHE = '1';
   await invalidateCache();
   let calls = 0;
   const compute = async () => {
@@ -92,12 +92,12 @@ test('withResultCache returns cached result on second call', async () => {
   assert.ok(stats.hits >= 1, 'expected at least one hit');
   assert.ok(stats.misses >= 1, 'expected at least one miss');
 
-  delete process.env.PUNYCODEX_CACHE;
+  delete process.env.PUNICODEX_CACHE;
   await invalidateCache();
 });
 
 test('invalidateCache clears memory cache', async () => {
-  process.env.PUNYCODEX_CACHE = '1';
+  process.env.PUNICODEX_CACHE = '1';
   await setCachedResult('test-key', { verdict: 'safe' }, 60);
   const cached = await getCachedResult('test-key');
   assert.ok(cached, 'value should be cached');
@@ -105,22 +105,22 @@ test('invalidateCache clears memory cache', async () => {
   await invalidateCache();
   const after = await getCachedResult('test-key');
   assert.strictEqual(after, undefined, 'value should be cleared after invalidation');
-  delete process.env.PUNYCODEX_CACHE;
+  delete process.env.PUNICODEX_CACHE;
 });
 
 test('cache is disabled by default in test environment', () => {
-  const previous = process.env.PUNYCODEX_CACHE;
-  delete process.env.PUNYCODEX_CACHE;
+  const previous = process.env.PUNICODEX_CACHE;
+  delete process.env.PUNICODEX_CACHE;
   process.env.NODE_ENV = 'test';
   assert.strictEqual(
     isCacheEnabled(),
     false,
     'cache should be disabled in test env without override'
   );
-  process.env.PUNYCODEX_CACHE = '1';
+  process.env.PUNICODEX_CACHE = '1';
   assert.strictEqual(isCacheEnabled(), true, 'override should enable cache');
-  if (previous !== undefined) process.env.PUNYCODEX_CACHE = previous;
-  else delete process.env.PUNYCODEX_CACHE;
+  if (previous !== undefined) process.env.PUNICODEX_CACHE = previous;
+  else delete process.env.PUNICODEX_CACHE;
 });
 
 run();

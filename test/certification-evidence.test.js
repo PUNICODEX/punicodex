@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Certification & Standards Evidence Tests (Phase 18)
+ * PuniCodex — Certification & Standards Evidence Tests (Phase 18)
  */
 
 const assert = require('node:assert');
@@ -42,7 +42,7 @@ test('IDN homograph mitigation memo exists', () => {
   const p = fileMustExist('docs/standards/idn-homograph-mitigation-memo.md');
   const content = fs.readFileSync(p, 'utf8');
   assert.ok(content.includes('homograph'));
-  assert.ok(content.includes('PUNYCODEX'));
+  assert.ok(content.includes('PUNICODEX'));
 });
 
 test('Unicode ICU proposal exists', () => {

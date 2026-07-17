@@ -1,12 +1,12 @@
 /**
- * PÚNYCODEX — Scholars Load Tests
+ * PuniCodex — Scholars Load Tests
  *
  * Exercises the Scholars API under synthetic bursts to prove the system
  * remains consistent and responsive with many concurrent students.
  */
 
-process.env.PUNYCODEX_SCHOLARS_DISABLE_RATE_LIMIT = '1';
-process.env.PUNYCODEX_BCRYPT_ROUNDS = '4';
+process.env.PUNICODEX_SCHOLARS_DISABLE_RATE_LIMIT = '1';
+process.env.PUNICODEX_BCRYPT_ROUNDS = '4';
 
 const {
   setupTestDb,

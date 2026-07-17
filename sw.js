@@ -1,11 +1,11 @@
 /**
- * PUNYCODEX — Service Worker
+ * PUNICODEX — Service Worker
  * Lightweight: precache shell pages, stale-while-revalidate for assets.
  * Cache-bust revision: v2-2026-07-15
  */
 
-const SHELL_CACHE = 'punycodex-shell-v2';
-const ASSET_CACHE = 'punycodex-assets-v2';
+const SHELL_CACHE = 'punicodex-shell-v2';
+const ASSET_CACHE = 'punicodex-assets-v2';
 
 // Precache critical shell HTML pages only.
 // Versioned JS/CSS are fetched on demand and will update when their query

@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX API v1 — Vercel/Express handler wrapper
+ * PuniCodex API v1 — Vercel/Express handler wrapper
  *
  * Centralizes CORS, request ID, authentication, rate limiting, and error handling.
  */

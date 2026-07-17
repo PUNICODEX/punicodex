@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Model Corpus Regression Tests
+ * PuniCodex — Model Corpus Regression Tests
  *
  * Guards the AI-training corpus artifacts so that `npm run generate`
  * always emits a complete, schema-valid, lexicon-consistent dataset.

@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Student Creative Marketplace automated moderation
+ * PuniCodex — Student Creative Marketplace automated moderation
  *
  * Scans asset metadata for trademark keywords, high-risk association language,
  * and content-policy violations. This is a first-pass filter; human reviewers

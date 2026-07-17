@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Blog page generator
+ * PuniCodex — Blog page generator
  *
  * Reads platform/blog/content/{id}.json and templates/flagship/blog/index.html,
  * then writes sites/{id}/blog/index.html for every built flagship.
@@ -285,7 +285,7 @@ function buildFooter(id, entry, domainsText, tierLabel) {
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="https://punycodex.com/" class="footer-logo">PUNYCODEX</a>
+                    <a href="https://punicodex.com/" class="footer-logo">PUNICODEX</a>
                     <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
                 </div>
                 <div class="footer-info">

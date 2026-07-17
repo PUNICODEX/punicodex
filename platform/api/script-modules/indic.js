@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Indic script risk module
+ * PuniCodex — Indic script risk module
  *
  * Detects ZWJ/ZWNJ conjunct manipulation, vowel-sign stacking, and
  * mixed-script anomalies in Devanagari, Bengali, Tamil, and related Indic

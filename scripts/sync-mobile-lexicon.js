@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Sync mobile lexicon subset from the canonical lexicon
+ * PUNICODEX — Sync mobile lexicon subset from the canonical lexicon
  *
  * type/js/lexicon.js is the single source of truth.
  * This script generates mobile/shared/lexicon.js, preserving the mobile subset

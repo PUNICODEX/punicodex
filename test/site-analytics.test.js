@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Site analytics engine test suite
+ * PuniCodex — Site analytics engine test suite
  *
  * Covers the first-party site analytics pipeline:
  *
@@ -24,8 +24,8 @@ const { execSync } = require('node:child_process');
 const { test, after } = require('node:test');
 const assert = require('node:assert');
 
-const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'punycodex-site-analytics-'));
-process.env.PUNYCODEX_TEST_DB_PATH = path.join(tmpDir, 'test.db');
+const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'punicodex-site-analytics-'));
+process.env.PUNICODEX_TEST_DB_PATH = path.join(tmpDir, 'test.db');
 
 const ROOT = path.join(__dirname, '..');
 const { isBotBasic, classifyUserAgent } = require(
@@ -53,7 +53,7 @@ const HEADLESS_CHROME =
 const PUPPETEER = 'puppeteer/22.11.0';
 const CURL = 'curl/8.5.0';
 const PYTHON_REQUESTS = 'python-requests/2.31.0';
-const PUNYCODEX_BOT = 'PUNYCODEX-Bot/1.0 (+https://punycodex.com/crawler)';
+const PUNICODEX_BOT = 'PUNICODEX-Bot/1.0 (+https://punicodex.com/crawler)';
 
 const TODAY = new Date().toISOString().slice(0, 10);
 
@@ -78,7 +78,7 @@ test('classifyUserAgent buckets known user agents', () => {
   assert.strictEqual(classifyUserAgent(PUPPETEER).category, 'headless');
   assert.strictEqual(classifyUserAgent(CURL).category, 'tool');
   assert.strictEqual(classifyUserAgent(PYTHON_REQUESTS).category, 'tool');
-  assert.strictEqual(classifyUserAgent(PUNYCODEX_BOT).category, 'tool');
+  assert.strictEqual(classifyUserAgent(PUNICODEX_BOT).category, 'tool');
   assert.deepStrictEqual(classifyUserAgent(''), {
     isBot: true,
     category: 'tool',
@@ -144,7 +144,7 @@ test('isBotBasic is byte-identical to the legacy bookings patterns', () => {
     AHREFS,
     HEADLESS_CHROME,
     CURL,
-    PUNYCODEX_BOT,
+    PUNICODEX_BOT,
     'Mozilla/5.0 (compatible; YandexBot/3.0)',
     'WhatsApp/2.23',
     'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; ClaudeBot/1.0)',
@@ -516,7 +516,7 @@ test('inject-analytics.js is idempotent and injects the beacon exactly once', ()
     const html = fs.readFileSync(file, 'utf8');
     const beaconTags = html.split('/js/analytics-beacon.js').length - 1;
     assert.ok(beaconTags <= 1, `${path.relative(ROOT, file)} has ${beaconTags} beacon tags`);
-    const markers = html.split('<!-- PUNYCODEX-ANALYTICS-START -->').length - 1;
+    const markers = html.split('<!-- PUNICODEX-ANALYTICS-START -->').length - 1;
     assert.ok(markers <= 1, `${path.relative(ROOT, file)} has ${markers} marker blocks`);
     if (beaconTags === 1) injectedCount++;
   }

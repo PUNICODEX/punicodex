@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX Keyboard Shortcuts — global shortcut registry.
+ * PUNICODEX Keyboard Shortcuts — global shortcut registry.
  */
 (function (global) {
   'use strict';

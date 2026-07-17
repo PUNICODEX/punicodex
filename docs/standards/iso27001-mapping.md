@@ -5,11 +5,11 @@
 
 ## Summary
 
-This document maps PUNYCODEX controls to ISO/IEC 27001:2022 Annex A controls.
+This document maps PUNICODEX controls to ISO/IEC 27001:2022 Annex A controls.
 
 ## Control Mapping
 
-| ISO 27001 Control | Title | PUNYCODEX Implementation |
+| ISO 27001 Control | Title | PUNICODEX Implementation |
 |---|---|---|
 | A.5.1 | Policies for information security | `docs/standards/`, security policy memos |
 | A.5.7 | Threat intelligence | STIX export, threat feed, SIEM connectors |

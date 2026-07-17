@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Reproducible Build Tests (Phase 18)
+ * PuniCodex — Reproducible Build Tests (Phase 18)
  */
 
 const assert = require('node:assert');

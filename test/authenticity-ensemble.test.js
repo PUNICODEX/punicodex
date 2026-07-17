@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Authenticity Ensemble Classifier Tests
+ * PuniCodex — Authenticity Ensemble Classifier Tests
  */
 
 const assert = require('node:assert');

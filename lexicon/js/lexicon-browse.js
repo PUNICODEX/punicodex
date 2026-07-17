@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Lexicon Browse Page
+ * PUNICODEX — Lexicon Browse Page
  * Filterable, searchable, sortable grid of all 873 entries.
  */
 

@@ -1,8 +1,8 @@
-# PÚNYCODEX Oracle — Model Card
+# PuniCodex Oracle — Model Card
 
-**Model family:** PÚNYCODEX Oracle (specialized language model)  
-**Data version:** 2.0.63  
-**Generated:** 2026-07-15T12:25:50.299Z  
+**Model family:** PuniCodex Oracle (specialized language model)  
+**Data version:** 2.0.64  
+**Generated:** 2026-07-17T06:33:35.116Z  
 **License:** CC BY 4.0 for dataset; ISC for software (see root LICENSE).
 
 ## Intended Use
@@ -11,7 +11,7 @@
 - Convert between Unicode domain names and punycode (xn--) representations.
 - Detect and explain homograph attacks, mixed-script deception, normalization tricks, and brand-impersonation risks.
 - Engage in comparative mythology, symbolic correspondence, scientific analogy, and contemplative reflection.
-- Support the PÚNYCODEX search engine, browser extension, mobile app, and API v1.
+- Support the PuniCodex search engine, browser extension, mobile app, and API v1.
 
 ## Training Data
 
@@ -65,7 +65,7 @@ Source corpora:
 
 ## Ethical Use
 
-Do not use this model to generate deceptive domains, impersonate brands, or evade security controls. The PÚNYCODEX Oracle is designed to illuminate names, not to weaponize them.
+Do not use this model to generate deceptive domains, impersonate brands, or evade security controls. The PuniCodex Oracle is designed to illuminate names, not to weaponize them.
 
 ## Continual Pretraining (Phase 15)
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Model Corpus Exporter
+ * PuniCodex — Model Corpus Exporter
  *
  * Builds a unified, model-training-ready dataset from every canonical source
  * in the flywheel. Outputs are written to data/corpus/:

@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — The Inscription Field
+ * PUNICODEX — The Inscription Field
  * The crown of the vessel. Where mortals inscribe the names of temples.
  * Only the Index is consulted. No foreign oracles.
  */
@@ -99,7 +99,7 @@ const _Omnibox = (function () {
     results = [];
 
     // Check if it's a direct URL/punycode/unicode-domain
-    const normalized = await window.punycodex.normalizeUrl(query);
+    const normalized = await window.punicodex.normalizeUrl(query);
     if (
       normalized.type === 'url' ||
       normalized.type === 'punycode' ||
@@ -116,7 +116,7 @@ const _Omnibox = (function () {
 
     // Query the sacred Index (indexed sites only)
     try {
-      const apiRes = await window.punycodex.apiGet(
+      const apiRes = await window.punicodex.apiGet(
         `/api/sites/search/?q=${encodeURIComponent(query)}&limit=6`
       );
       if (apiRes.ok && Array.isArray(apiRes.data)) {
@@ -135,7 +135,7 @@ const _Omnibox = (function () {
     if (!value) return;
     hideDropdown();
 
-    const normalized = await window.punycodex.normalizeUrl(value);
+    const normalized = await window.punicodex.normalizeUrl(value);
     if (
       normalized.type === 'url' ||
       normalized.type === 'punycode' ||

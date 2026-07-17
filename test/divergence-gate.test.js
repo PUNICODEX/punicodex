@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Divergence Gate Test
+ * PuniCodex — Divergence Gate Test
  *
  * Reproduces the CI "Ensure generated files are in sync" step locally so
  * non-idempotent generators are caught before pushing.

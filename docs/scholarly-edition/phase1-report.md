@@ -7,7 +7,7 @@
 - `docs/scholarly-edition/scholarly-section-taxonomy-v0.1.json`
 
 ## Executive Summary
-The 123 PUNYCODEX flagship temples share a highly consistent underlying scholarly structure in `scripts/lore-catalog.json`, but the rendered lore pages expose only a thin subset of that content. The Scholarly Edition will surface every canonical section as a first-class, editable, attributable scholarly block, beginning blank for all 123 temples.
+The 123 PUNICODEX flagship temples share a highly consistent underlying scholarly structure in `scripts/lore-catalog.json`, but the rendered lore pages expose only a thin subset of that content. The Scholarly Edition will surface every canonical section as a first-class, editable, attributable scholarly block, beginning blank for all 123 temples.
 
 ## Empirical Findings
 

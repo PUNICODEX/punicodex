@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Gamification tests
+ * PuniCodex — Gamification tests
  */
 
 const assert = require('node:assert');

@@ -1,13 +1,13 @@
-# PUNYCODEX Technical Memo — IDN Homograph Mitigation
+# PUNICODEX Technical Memo — IDN Homograph Mitigation
 
 **To:** W3C WebAppSec, Unicode ICU, ICANN SSAC, browser vendors, registrar operators
-**From:** PUNYCODEX Name Authenticity Team
+**From:** PUNICODEX Name Authenticity Team
 **Date:** 2026-06-22
 **Version:** 1.0
 
 ## 1. Executive Summary
 
-Internationalized Domain Names (IDNs) enable the global web to use native scripts, but the same mechanism is exploited to register visually deceptive domains. This memo documents PUNYCODEX's defense-in-depth strategy and proposes a set of best practices for mitigating homograph, mixed-script, and lookalike attacks.
+Internationalized Domain Names (IDNs) enable the global web to use native scripts, but the same mechanism is exploited to register visually deceptive domains. This memo documents PUNICODEX's defense-in-depth strategy and proposes a set of best practices for mitigating homograph, mixed-script, and lookalike attacks.
 
 ## 2. Threat Model
 
@@ -28,9 +28,9 @@ Internationalized Domain Names (IDNs) enable the global web to use native script
 4. **Conservative escalation.** When confidence is below a calibrated threshold, surface an explicit warning rather than silently trusting.
 5. **Evidence-first reporting.** Every block or warning must include explainable evidence: code points, script families, confusable mappings, and rendered diff.
 
-## 4. PUNYCODEX Reference Implementation
+## 4. PUNICODEX Reference Implementation
 
-The open-source PUNYCODEX classifier implements the above as a pipeline:
+The open-source PUNICODEX classifier implements the above as a pipeline:
 
 ```
 Normalize (NFKC, UTS #46, IDNA2008) → Decompose → Identity Kernel

@@ -99,7 +99,7 @@ test('injector serves cache-busted asset URLs and stays idempotent', () => {
     'expected ?v=2 cache-bust on the script URL'
   );
   assert.ok(
-    src.includes('PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START'),
+    src.includes('PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START'),
     'expected head marker for idempotent injection'
   );
 });
@@ -131,8 +131,8 @@ test('empty sponsor array renders a single invitation row', () => {
 
 test('addSponsor renders a real card with monogram and tier', () => {
   const { context, mount } = loadStripModule();
-  const api = context.window.PUNYCODEX.UniversityCollaborators;
-  assert.ok(api, 'expected window.PUNYCODEX.UniversityCollaborators to be exposed');
+  const api = context.window.PUNICODEX.UniversityCollaborators;
+  assert.ok(api, 'expected window.PUNICODEX.UniversityCollaborators to be exposed');
   assert.ok(Array.isArray(api.data), 'expected exposed data array');
   assert.strictEqual(typeof api.addSponsor, 'function', 'expected addSponsor()');
   assert.strictEqual(typeof api.render, 'function', 'expected render()');
@@ -159,7 +159,7 @@ test('addSponsor renders a real card with monogram and tier', () => {
 
 test('addSponsor ignores invalid sponsors without breaking the strip', () => {
   const { context, mount } = loadStripModule();
-  const api = context.window.PUNYCODEX.UniversityCollaborators;
+  const api = context.window.PUNICODEX.UniversityCollaborators;
   api.addSponsor(null);
   api.addSponsor({ id: 'missing-name' });
   assert.ok(

@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Shared helpers for the authoritative import framework.
+ * PuniCodex — Shared helpers for the authoritative import framework.
  *
  * These utilities know how to read and safely edit canonical source files
  * without destroying their existing formatting or line endings.

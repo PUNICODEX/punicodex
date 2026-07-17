@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX Daily Oracle Challenge — hidden name puzzle UI.
+ * PUNICODEX Daily Oracle Challenge — hidden name puzzle UI.
  */
 (function (global) {
   'use strict';

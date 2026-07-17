@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Reasoning / Chain-of-Thought Corpus Generator (Phase 7)
+ * PuniCodex — Reasoning / Chain-of-Thought Corpus Generator (Phase 7)
  *
  * Emits step-by-step reasoning traces for breakdowns, tier classification,
  * etymology, and safety verdicts. The model learns to show its work.
@@ -58,7 +58,7 @@ function buildTierReasoning(entry, index) {
     task: 'reasoning_tier',
     instruction: `Classify the tier of ${entry.unicode} and explain the reasoning.`,
     input: entry.unicode,
-    output: `${entry.unicode} is ${entry.tierLabel}. Reasoning: ${rules[entry.tier] || 'It follows the standard tier rules of the PÚNYCODEX system.'} Tier ${entry.tier} is therefore the correct classification.`,
+    output: `${entry.unicode} is ${entry.tierLabel}. Reasoning: ${rules[entry.tier] || 'It follows the standard tier rules of the PuniCodex system.'} Tier ${entry.tier} is therefore the correct classification.`,
     metadata: { pantheon: entry.pantheon, tier: entry.tier },
   };
 }
@@ -100,7 +100,7 @@ function buildOriginalScriptReasoning(entry, index) {
     task: 'reasoning_original_script',
     instruction: `How do we know the original script of ${entry.unicode}?`,
     input: entry.unicode,
-    output: `1. The corpus identifies the original script as ${os.scriptName} (${os.family}). 2. The specimen is ${os.specimen}. 3. The transliteration is ${os.transliteration}. 4. Provenance: ${os.provenanceSteps?.join(' ') || 'recorded in the PÚNYCODEX original-script atlas.'} 5. Therefore, the original writing system is ${os.scriptName}.`,
+    output: `1. The corpus identifies the original script as ${os.scriptName} (${os.family}). 2. The specimen is ${os.specimen}. 3. The transliteration is ${os.transliteration}. 4. Provenance: ${os.provenanceSteps?.join(' ') || 'recorded in the PuniCodex original-script atlas.'} 5. Therefore, the original writing system is ${os.scriptName}.`,
     metadata: { scriptName: os.scriptName, family: os.family },
   };
 }

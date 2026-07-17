@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Forensics PDF Generator
+ * PuniCodex — Forensics PDF Generator
  *
  * Generates a minimal, valid PDF evidence package suitable for UDRP, trademark,
  * or law-enforcement submission. The output is an ASCII-safe PDF buffer; Unicode
@@ -41,7 +41,7 @@ function buildContentStream(lines) {
 
 function buildLines(input, result, evidence, reportId) {
   const lines = [];
-  lines.push('PUNYCODEX - Name Authenticity Forensics Report');
+  lines.push('PUNICODEX - Name Authenticity Forensics Report');
   lines.push(`Report ID: ${reportId}`);
   lines.push(`Generated: ${new Date().toISOString()}`);
   lines.push(`Model version: ${result.modelVersion || 'unknown'}`);
@@ -91,7 +91,7 @@ function buildLines(input, result, evidence, reportId) {
   lines.push('CHAIN OF CUSTODY');
   const hash = crypto.createHash('sha256').update(input).update(reportId).digest('hex');
   lines.push(`SHA-256(input+reportId): ${hash}`);
-  lines.push('This report was generated automatically by the PÚNYCODEX Name Authenticity Shield.');
+  lines.push('This report was generated automatically by the PuniCodex Name Authenticity Shield.');
   lines.push('It may be reproduced for legal or operational review.');
 
   return lines;

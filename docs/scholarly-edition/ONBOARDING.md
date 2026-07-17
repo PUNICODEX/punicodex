@@ -1,8 +1,8 @@
-# PÚNYCODEX Scholarly Edition — Onboarding Guide
+# PuniCodex Scholarly Edition — Onboarding Guide
 
 ## Authentication
 
-All users sign in with their email and password at `/scholars/login/index.html`. Passwords must be at least 8 characters. If you forget your password, contact your institution admin (students and reviewers) or a PÚNYCODEX curator (institution admins and curators).
+All users sign in with their email and password at `/scholars/login/index.html`. Passwords must be at least 8 characters. If you forget your password, contact your institution admin (students and reviewers) or a PuniCodex curator (institution admins and curators).
 
 ## For Students
 
@@ -41,7 +41,7 @@ All users sign in with their email and password at `/scholars/login/index.html`.
    ```
 5. Reset passwords, disable accounts, and monitor contributions from the institution dashboard.
 
-## For PÚNYCODEX Curators
+## For PuniCodex Curators
 
 1. Sign in at `/scholars/login/index.html`.
 2. Visit `/scholars/admin/index.html`.
@@ -83,4 +83,4 @@ All users sign in with their email and password at `/scholars/login/index.html`.
 
 ## Support
 
-Contact the PÚNYCODEX curator team for disputes, partnership inquiries, or technical issues.
+Contact the PuniCodex curator team for disputes, partnership inquiries, or technical issues.

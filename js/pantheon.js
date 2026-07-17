@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Pantheon Page JavaScript (Performance Optimized)
+ * PuniCodex — Pantheon Page JavaScript (Performance Optimized)
  * Filter, search, grid rendering, stats
  */
 

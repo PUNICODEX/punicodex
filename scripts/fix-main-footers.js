@@ -56,7 +56,7 @@ const FOOTER = `    <footer class="site-footer">
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2026 PÚNYCODEX. All rites reserved.</p>
+                <p>© 2026 PuniCodex. All rites reserved.</p>
             </div>
         </div>
     </footer>`;

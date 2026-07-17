@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Evidence Object v2 Tests
+ * PuniCodex — Evidence Object v2 Tests
  *
  * Verifies that every authenticity API response includes a defensible
  * evidence object with the required fields.

@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-root = Path("C:/projects/punycodex")
+root = Path("C:/projects/punicodex")
 effects_dir = root / "templates/flagship/effects"
 effects_json = effects_dir / "effects.json"
 

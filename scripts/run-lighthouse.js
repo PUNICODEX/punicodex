@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Lighthouse sample runner.
+ * PuniCodex — Lighthouse sample runner.
  *
  * Starts a local static server, audits a representative sample of pages with
  * Lighthouse (desktop preset), and writes JSON + HTML reports to

@@ -113,7 +113,7 @@ const DOMAINS = [
   'helheimr.com',
   'muspellheimr.com',
   'trengtreng.com',
-  'punycodex.com',
+  'punicodex.com',
   'punicodex.com'
 ];
 

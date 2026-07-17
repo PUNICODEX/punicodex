@@ -1,6 +1,6 @@
-package com.punycodex.authenticity.wear
+package com.punicodex.authenticity.wear
 
-import com.punycodex.authenticity.AuthenticitySDK
+import com.punicodex.authenticity.AuthenticitySDK
 
 /**
  * Lightweight Wear OS service that classifies notification text before it is

@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Brand & Trademark Shield Tests
+ * PuniCodex — Brand & Trademark Shield Tests
  *
  * Covers lookupBrand, checkDomainAgainstBrands, classifyBrandSpoof,
  * listBrandIdentities, and Hermès brand/courier disambiguation.

@@ -2,7 +2,7 @@
 
 This directory is the staging ground for pulling in **publicly available
 authoritative datasets** and turning them into human-reviewed suggestions for
-the PÚNYCODEX canonical sources.
+the PuniCodex canonical sources.
 
 It is part of the **Monolithic Flywheel Evolution** plan. Canonical sources
 still live at:
@@ -183,7 +183,7 @@ Planned future importers:
 
 ## License notes
 
-Every importer must record the license of the upstream data. The PÚNYCODEX
+Every importer must record the license of the upstream data. The PuniCodex
 dataset is released under **CC BY 4.0** (see `LICENSE`). Upstream data that is
 more restrictive than CC BY 4.0 must be flagged in the suggestion batch and
 reviewed before inclusion.

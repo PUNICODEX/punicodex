@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
- * PUNYCODEX — Promote all entries with extended flagship materials
+ * PUNICODEX — Promote all entries with extended flagship materials
  *
- * Copies assets from 'extended flagship materials/punycodex/{Folder}/'
+ * Copies assets from 'extended flagship materials/punicodex/{Folder}/'
  * to sites/{id}/assets/ and runs promote-to-flagship.js for each.
  */
 const fs = require('node:fs');
@@ -10,7 +10,7 @@ const path = require('node:path');
 const { execSync } = require('node:child_process');
 
 const ROOT = path.join(__dirname, '..');
-const MATERIALS_DIR = path.join(ROOT, 'extended flagship materials', 'punycodex');
+const MATERIALS_DIR = path.join(ROOT, 'extended flagship materials', 'punicodex');
 const SITES_DIR = path.join(ROOT, 'sites');
 
 const JOBS = [

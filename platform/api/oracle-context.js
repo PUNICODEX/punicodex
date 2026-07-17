@@ -1,7 +1,7 @@
 /**
  * Oracle Context Assembler
  *
- * Gathers the full PUNYCODEX knowledge graph around a single entry:
+ * Gathers the full PUNICODEX knowledge graph around a single entry:
  * - entry core fields
  * - lore from lore-catalog.json
  * - character breakdowns

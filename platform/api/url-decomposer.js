@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — URL Decomposer
+ * PuniCodex — URL Decomposer
  *
  * Parses a URL into a typed, evidence-rich tree. Each part carries a risk
  * rating and a set of obfuscation flags so downstream classifiers can reason

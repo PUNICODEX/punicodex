@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PÚNYCODEX — WebP image conversion helper.
+PuniCodex — WebP image conversion helper.
 
 Converts raster images to WebP (quality 85) while preserving originals as
 fallbacks. Also renders the OG default SVG to PNG/WebP.
@@ -103,7 +103,7 @@ def render_og_default():
     font_meta = load_font(16)
 
     draw_letter_spaced_text(
-        draw, (600, 260), "PÚNYCODEX", font_title, "#D4AF37", 8
+        draw, (600, 260), "PuniCodex", font_title, "#D4AF37", 8
     )
     draw_letter_spaced_text(
         draw, (600, 340), "THE UNICODE PANTHEON", font_subtitle, "#A0A0A0", 12

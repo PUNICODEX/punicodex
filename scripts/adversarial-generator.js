@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Adversarial Attack Generator
+ * PuniCodex — Adversarial Attack Generator
  *
  * Generates deceptive Unicode name/domain/URL variants for red-team testing of
  * the Name Authenticity Shield. All outputs carry an `expectedVerdict` label so

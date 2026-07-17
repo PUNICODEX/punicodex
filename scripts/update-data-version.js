@@ -93,8 +93,8 @@ if (hashesChanged) {
 const major = existing.schema?.major || 1;
 const minor = existing.schema?.minor || 0;
 
-const licenseSpdx = process.env.PUNYCODEX_LICENSE || existing.license?.spdx || 'TBD';
-const licenseUrl = process.env.PUNYCODEX_LICENSE_URL || existing.license?.url || '';
+const licenseSpdx = process.env.PUNICODEX_LICENSE || existing.license?.spdx || 'TBD';
+const licenseUrl = process.env.PUNICODEX_LICENSE_URL || existing.license?.url || '';
 const licenseChanged =
   licenseSpdx !== (existing.license?.spdx || 'TBD') || licenseUrl !== (existing.license?.url || '');
 
@@ -126,7 +126,7 @@ if (!hashesChanged && !countsChanged && !licenseChanged && existing.version === 
 const versionDoc = {
   version,
   releasedAt: new Date().toISOString(),
-  dataSet: existing.dataSet || 'PÚNYCODEX Lexicon, Original Scripts, and Source Catalog',
+  dataSet: existing.dataSet || 'PuniCodex Lexicon, Original Scripts, and Source Catalog',
   canonicalSources: CANONICAL_FILES,
   canonicalHashes: hashes,
   counts,

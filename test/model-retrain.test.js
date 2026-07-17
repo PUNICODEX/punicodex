@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Model Retrain Tests (Phase 14)
+ * PuniCodex — Model Retrain Tests (Phase 14)
  */
 
 const assert = require('node:assert');
@@ -13,7 +13,7 @@ const { migrateMLOps } = require('../platform/db/migrate-mlops.js');
 const db = new Database(testDbPath);
 migrateMLOps({ db });
 
-process.env.PUNYCODEX_TEST_DB_PATH = testDbPath;
+process.env.PUNICODEX_TEST_DB_PATH = testDbPath;
 
 const retrain = require('../scripts/retrain-authenticity-model.js');
 const { run, all, get, insert, closeDb } = require('../platform/db/operational.js');

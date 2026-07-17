@@ -3,7 +3,7 @@ const path = require('path');
 const { execSync } = require('child_process');
 
 const ROOT = path.join(__dirname, '..');
-const MATERIALS = path.join(ROOT, 'extended flagship materials', '15-07-26', 'punycodex');
+const MATERIALS = path.join(ROOT, 'extended flagship materials', '15-07-26', 'punicodex');
 
 const mapping = {
   Acheron: 'acheron',

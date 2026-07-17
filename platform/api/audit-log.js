@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Append-only, hash-chained audit log for enterprise tenants.
+ * PUNICODEX — Append-only, hash-chained audit log for enterprise tenants.
  */
 
 const crypto = require('node:crypto');
@@ -196,7 +196,7 @@ async function exportAuditLogs(db, tenantId, format = 'json') {
     return logs
       .map((log) => {
         const meta = JSON.stringify(log.metadata || {});
-        return `CEF:0|PUNYCODEX|AuditLog|1.0|${log.action}|${
+        return `CEF:0|PUNICODEX|AuditLog|1.0|${log.action}|${
           log.resource_type || 'unknown'
         }|0|tenant=${log.tenant_id} actor=${log.actor_id} meta=${meta}`;
       })

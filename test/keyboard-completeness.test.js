@@ -1,7 +1,7 @@
 /**
  * Keyboard Completeness Tests
  *
- * Verifies that every character needed to type the PUNYCODEX lexicon is
+ * Verifies that every character needed to type the PUNICODEX lexicon is
  * reachable from the Android keyboard: either in the symbol palette or via a
  * long-press accent map.
  */
@@ -41,7 +41,7 @@ const paletteChars = new Set(palette.map((e) => e.char));
 const javaSource = fs.readFileSync(
   path.join(
     __dirname,
-    '../android/app/src/main/java/com/punycodex/keyboard/PunyKeyboardService.java'
+    '../android/app/src/main/java/com/punicodex/keyboard/PunyKeyboardService.java'
   ),
   'utf8'
 );

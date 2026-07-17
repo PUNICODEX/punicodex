@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Audit Log Tests
+ * PuniCodex — Audit Log Tests
  */
 
 const assert = require('node:assert');
@@ -11,7 +11,7 @@ const { migrateEnterpriseGovernance } = require('../platform/db/migrate-enterpri
 const db = new Database(testDbPath);
 migrateEnterpriseGovernance({ db });
 
-process.env.PUNYCODEX_TEST_DB_PATH = testDbPath;
+process.env.PUNICODEX_TEST_DB_PATH = testDbPath;
 
 const auditLog = require('../platform/api/audit-log.js');
 const { run, all, get, insert, closeDb } = require('../platform/db/operational.js');

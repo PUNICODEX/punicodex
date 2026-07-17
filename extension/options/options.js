@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX Type — Options Page
+ * PuniCodex Type — Options Page
  */
 
 (function() {

@@ -1,6 +1,6 @@
-# PUNYCODEX Browser
+# PUNICODEX Browser
 
-A minimal Electron shell that uses PUNYCODEX as its default search engine.
+A minimal Electron shell that uses PUNICODEX as its default search engine.
 
 ## Run
 

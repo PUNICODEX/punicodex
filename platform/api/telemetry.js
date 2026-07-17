@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Privacy-Preserving Telemetry Pipeline (Phase 14)
+ * PuniCodex — Privacy-Preserving Telemetry Pipeline (Phase 14)
  *
  * Records classification events without retaining raw inputs, raw IPs, or
  * other personally identifiable information. Supports differential-privacy

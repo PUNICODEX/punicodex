@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX API v1 — Names service layer
+ * PuniCodex API v1 — Names service layer
  *
  * Exposes the canonical lexicon as an enterprise-grade REST resource.
  * All data is read from the existing validated sources:
@@ -22,7 +22,7 @@ const {
   getNoScriptNote,
 } = require('../../type/js/original-scripts.js');
 const { SOURCE_CATALOG } = require('../../type/js/source-catalog.js');
-const PUNYCODEX_ENGINE = require('../../type/js/engine.js');
+const PUNICODEX_ENGINE = require('../../type/js/engine.js');
 const searchApi = require('./search.js');
 const crawlerDb = require('./crawler-db.js');
 const bookings = require('./bookings.js');
@@ -38,7 +38,7 @@ try {
 }
 
 // Build trie once per process
-const trie = PUNYCODEX_ENGINE.buildTrie(LEXICON);
+const trie = PUNICODEX_ENGINE.buildTrie(LEXICON);
 const entriesById = new Map(LEXICON.map((e) => [e.id, e]));
 
 function computePunycode(unicode) {
@@ -128,7 +128,7 @@ function transformEntry(row) {
     punycode: computePunycode(row.unicode),
     pantheon: row.pantheon,
     pantheonLabel: pantheonLabel(row.pantheon),
-    pantheonEmoji: PUNYCODEX_ENGINE.getPantheonEmoji(row.pantheon),
+    pantheonEmoji: PUNICODEX_ENGINE.getPantheonEmoji(row.pantheon),
     tier: row.tier,
     tierLabel: row.tier_label,
     domain: row.domain || null,
@@ -185,7 +185,7 @@ function transformEntryDetail(row) {
     punycode: computePunycode(row.unicode),
     pantheon: row.pantheon,
     pantheonLabel: pantheonLabel(row.pantheon),
-    pantheonEmoji: PUNYCODEX_ENGINE.getPantheonEmoji(row.pantheon),
+    pantheonEmoji: PUNICODEX_ENGINE.getPantheonEmoji(row.pantheon),
     tier: row.tier,
     tierLabel: row.tier_label,
     tierExplanation: computeTierExplanation(row, row.breakdown),
@@ -423,7 +423,7 @@ function listPantheons() {
     items: rawPantheons.map((id) => ({
       id,
       label: pantheonLabel(id),
-      emoji: PUNYCODEX_ENGINE.getPantheonEmoji(id),
+      emoji: PUNICODEX_ENGINE.getPantheonEmoji(id),
       entryCount: counts[id]?.total || 0,
       flagshipCount: counts[id]?.flagships || 0,
       links: {
@@ -438,7 +438,7 @@ function getPantheon(name) {
   return {
     id: name,
     label: pantheonLabel(name),
-    emoji: PUNYCODEX_ENGINE.getPantheonEmoji(name),
+    emoji: PUNICODEX_ENGINE.getPantheonEmoji(name),
     total: rows.length,
     items: rows.map(transformEntry),
   };
@@ -478,7 +478,7 @@ function listTiers() {
 }
 
 function autocompleteNames(params) {
-  const completions = PUNYCODEX_ENGINE.getCompletions(trie, params.q, {
+  const completions = PUNICODEX_ENGINE.getCompletions(trie, params.q, {
     limit: params.limit,
     pantheonFilter: params.pantheon,
   });
@@ -524,7 +524,7 @@ function convert(query) {
   }
 
   // 1. Try exact ASCII match
-  const matches = PUNYCODEX_ENGINE.findExactMatches(trie, normalized);
+  const matches = PUNICODEX_ENGINE.findExactMatches(trie, normalized);
   if (matches.length > 0) {
     return {
       query: raw,
@@ -595,7 +595,7 @@ function convert(query) {
       input: raw,
       punycode: generatedPunycode,
       note: generatedPunycode
-        ? 'Input is not in the PUNYCODEX lexicon; punycode generated mechanically.'
+        ? 'Input is not in the PUNICODEX lexicon; punycode generated mechanically.'
         : 'Input could not be converted to punycode.',
     },
   };

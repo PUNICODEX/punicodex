@@ -27,11 +27,11 @@ async function checkHttp(url, id) {
     setTimeout(() => ctrl.abort(), 10000);
     const resp = await fetch(url, { signal: ctrl.signal, redirect: 'manual' });
     const body = await resp.text();
-    const hasPunycodex = body.includes('PUNYCODEX');
+    const hasPunicodex = body.includes('PUNICODEX');
     const hasLander = body.includes('/lander') || body.includes('GoDaddy') || body.includes('parked');
     const hasError = body.includes('404') || body.includes('Not Found') || body.includes('Bad Request');
     const len = body.length;
-    if (hasPunycodex && len > 5000) return { ok: true, status: resp.status, len, detail: 'temple page' };
+    if (hasPunicodex && len > 5000) return { ok: true, status: resp.status, len, detail: 'temple page' };
     if (hasLander) return { ok: false, status: resp.status, len, detail: 'PARKED /lander' };
     if (hasError || resp.status >= 400) return { ok: false, status: resp.status, len, detail: 'HTTP ' + resp.status };
     return { ok: false, status: resp.status, len, detail: 'unknown (' + len + 'b)' };

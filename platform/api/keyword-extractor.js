@@ -149,8 +149,8 @@ const STOP_WORDS = new Set([
   'regarding',
   'concerning',
   'including',
-  // PUNYCODEX template noise
-  'punycodex',
+  // PUNICODEX template noise
+  'punicodex',
   'temple',
   // Domain / protocol noise
   'com',
@@ -276,7 +276,7 @@ async function fetchText(url, timeoutMs = 8000) {
   const timeout = setTimeout(() => controller.abort(), timeoutMs);
   try {
     const resp = await fetch(url, {
-      headers: { 'User-Agent': 'PUNYCODEX-Bot/1.0 (https://punycodex.com/bot)' },
+      headers: { 'User-Agent': 'PUNICODEX-Bot/1.0 (https://punicodex.com/bot)' },
       signal: controller.signal,
       redirect: 'follow',
     });

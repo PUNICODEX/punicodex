@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Name Authenticity Service
+ * PuniCodex — Name Authenticity Service
  *
  * The canonical engine behind the Authenticity Checker. Given any string,
  * domain, or URL, it returns a structured verdict describing whether the

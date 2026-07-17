@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Lighthouse threshold test.
+ * PuniCodex — Lighthouse threshold test.
  *
  * Reads the most recent summary JSON in docs/lighthouse/ and asserts every
  * sample page meets the minimum thresholds:

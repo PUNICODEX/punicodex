@@ -15,7 +15,7 @@ const Database = require('better-sqlite3');
 const { domainToASCII } = require('node:url');
 
 const ROOT = path.join(__dirname, '..');
-const DB_PATH = path.join(ROOT, 'platform', 'db', 'punycodex.db');
+const DB_PATH = path.join(ROOT, 'platform', 'db', 'punicodex.db');
 
 function loadArchetypes() {
   const src = fs.readFileSync(path.join(ROOT, 'js', 'archetypes-v2.js'), 'utf8');
@@ -133,7 +133,7 @@ function main() {
           description,
           meta.ogTitle || title,
           meta.ogDescription || description,
-          meta.canonical || `https://punycodex.com/sites/${id}/`,
+          meta.canonical || `https://punicodex.com/sites/${id}/`,
           snippet,
           contentLength,
           wordCount,
@@ -151,7 +151,7 @@ function main() {
           description,
           meta.ogTitle || title,
           meta.ogDescription || description,
-          meta.canonical || `https://punycodex.com/sites/${id}/`,
+          meta.canonical || `https://punicodex.com/sites/${id}/`,
           snippet,
           contentLength,
           wordCount,

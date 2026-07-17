@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Authenticity Case Matrix
+ * PuniCodex — Authenticity Case Matrix
  *
  * Bulk assertions over the canonical lexicon and a wide range of spoof inputs.
  */

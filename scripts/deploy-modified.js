@@ -20,7 +20,7 @@ const CF_PROJECTS = [
   'persephone', 'hekate', 'hades', 'hestia', 'hephaistos',
 ];
 
-// Vercel projects (project name = punycodex-{id})
+// Vercel projects (project name = punicodex-{id})
 const VERCEL_PROJECTS = [
   'zeus', 'athena', 'poseidon', 'apollon', 'ares',
   'artemis', 'aphrodite', 'demeter', 'hermes', 'hera',

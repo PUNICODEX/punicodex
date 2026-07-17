@@ -14,7 +14,7 @@ if (!id || !sourceFolder) {
 }
 
 const ROOT = path.join(__dirname, '..');
-const srcRoot = path.join(ROOT, 'extended flagship materials', 'punycodex', sourceFolder);
+const srcRoot = path.join(ROOT, 'extended flagship materials', 'punicodex', sourceFolder);
 const outDir = path.join(ROOT, 'sites', id, 'assets');
 
 if (!fs.existsSync(srcRoot)) {

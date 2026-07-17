@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — WordPress Plugin Smoke Tests (Phase 19)
+ * PuniCodex — WordPress Plugin Smoke Tests (Phase 19)
  */
 
 const assert = require('node:assert');
@@ -8,7 +8,7 @@ const path = require('node:path');
 
 const ROOT = path.join(__dirname, '..');
 const PLUGIN_DIR = path.join(ROOT, 'sdk', 'wordpress');
-const MAIN_FILE = path.join(PLUGIN_DIR, 'punycodex-authenticity.php');
+const MAIN_FILE = path.join(PLUGIN_DIR, 'punicodex-authenticity.php');
 
 const tests = [];
 function test(name, fn) {
@@ -40,16 +40,16 @@ test('plugin main file exists', () => {
 
 test('plugin header contains required metadata', () => {
   const content = fs.readFileSync(MAIN_FILE, 'utf8');
-  assert.ok(content.includes('Plugin Name: PUNYCODEX Authenticity Shield'));
+  assert.ok(content.includes('Plugin Name: PUNICODEX Authenticity Shield'));
   assert.ok(content.includes('Version: 1.0.0'));
   assert.ok(content.includes('License: ISC'));
-  assert.ok(content.includes('Text Domain: punycodex-authenticity'));
+  assert.ok(content.includes('Text Domain: punicodex-authenticity'));
 });
 
 test('plugin defines version constant', () => {
   const content = fs.readFileSync(MAIN_FILE, 'utf8');
-  assert.ok(content.includes("define('PUNYCODEX_AUTH_VERSION'"));
-  assert.ok(content.includes("define('PUNYCODEX_AUTH_API_URL'"));
+  assert.ok(content.includes("define('PUNICODEX_AUTH_VERSION'"));
+  assert.ok(content.includes("define('PUNICODEX_AUTH_API_URL'"));
 });
 
 test('plugin registers hooks', () => {
@@ -66,7 +66,7 @@ test('readme files exist', () => {
 
 test('readme.txt contains WordPress.org headers', () => {
   const content = fs.readFileSync(path.join(PLUGIN_DIR, 'readme.txt'), 'utf8');
-  assert.ok(content.includes('=== PUNYCODEX Authenticity Shield ==='));
+  assert.ok(content.includes('=== PUNICODEX Authenticity Shield ==='));
   assert.ok(content.includes('Stable tag:'));
   assert.ok(content.includes('Requires PHP:'));
 });

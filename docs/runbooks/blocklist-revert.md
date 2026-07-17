@@ -19,7 +19,7 @@
    ```
    Or remove the row if it should never have been blocked.
 3. Add the input to the tenant or global allowlist via `platform/api/policy-engine.js`.
-4. Clear the Redis cache key pattern `punycodex:auth:*`.
+4. Clear the Redis cache key pattern `punicodex:auth:*`.
 
 ## 3. Communication
 

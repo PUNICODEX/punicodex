@@ -71,7 +71,7 @@ if (newDomainUnicode) {
   const newDomain = newDomainUnicode.toLowerCase();
   replacements.push([oldDomain, newDomain]);
   replacements.push([`https://${oldDomain}`, `https://${newDomain}`]);
-  replacements.push([`https://punycodex.com/${oldId}`, `https://punycodex.com/${newId}`]);
+  replacements.push([`https://punicodex.com/${oldId}`, `https://punicodex.com/${newId}`]);
 }
 
 // Walk new directory and apply replacements

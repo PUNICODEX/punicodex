@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   PÚNYCODEX Mythic Duel — Battle Engine (pure logic, no DOM / fetch / storage)
+   PuniCodex Mythic Duel — Battle Engine (pure logic, no DOM / fetch / storage)
 
    UMD module: exposes `CardEngine` in the browser and module.exports in Node.
 

@@ -13,7 +13,7 @@ const offenders = [];
 dirs.forEach(dir => {
     const html = fs.readFileSync(path.join(sitesDir, dir, 'index.html'), 'utf8');
     const navMatch = html.match(/class="nav-links"[\s\S]*?<\/div>/);
-    if (navMatch && navMatch[0].includes('punycodex.com')) {
+    if (navMatch && navMatch[0].includes('punicodex.com')) {
         offenders.push(dir);
     }
 });
@@ -97,7 +97,7 @@ offenders.forEach(dir => {
     }
     
     const oldBlock = html.substring(navStart, navEnd + 6);
-    if (!oldBlock.includes('punycodex.com')) {
+    if (!oldBlock.includes('punicodex.com')) {
         skipped.push(dir + ' (no external links in nav)');
         return;
     }

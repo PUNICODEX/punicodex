@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Admin Portal Service
+ * PuniCodex — Admin Portal Service
  *
  * Composition layer behind the /api/admin/portal/* serverless handlers.
  * Aggregates leasing, scholars, patrons, and observability data into the
@@ -8,7 +8,7 @@
  * instead of duplicating their SQL.
  *
  * Scholarly and university approvals executed here act through the canonical
- * "PÚNYCODEX Team" curator identity (the same machine identity the Scholars
+ * "PuniCodex Team" curator identity (the same machine identity the Scholars
  * seed publishes under), because scholars_reviews.reviewer_id must reference
  * a scholars user. The acting portal user is always recorded in the
  * admin_actions audit trail.
@@ -392,7 +392,7 @@ function getScholarsPending({ limit = 100 } = {}) {
 }
 
 function getTeamCurator() {
-  // The canonical "PÚNYCODEX Team" curator identity used for machine-side
+  // The canonical "PuniCodex Team" curator identity used for machine-side
   // scholarly actions; the acting portal user is recorded in admin_actions.
   return ensureAdminIdentity(getDb()).user;
 }

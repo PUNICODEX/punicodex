@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Mobile Classifier
+ * PuniCodex — Mobile Classifier
  *
  * Lightweight, zero-dependency name authenticity classifier for mobile,
  * wearable, and embedded integrations. Runs offline, has no database
@@ -435,10 +435,10 @@ const mobileClassifier = {
 if (typeof module === 'object' && module.exports) {
   module.exports = mobileClassifier;
 } else if (typeof globalThis !== 'undefined') {
-  globalThis.PUNYCODEX_MOBILE_CLASSIFIER = mobileClassifier;
+  globalThis.PUNICODEX_MOBILE_CLASSIFIER = mobileClassifier;
 } else if (typeof self !== 'undefined') {
-  self.PUNYCODEX_MOBILE_CLASSIFIER = mobileClassifier;
+  self.PUNICODEX_MOBILE_CLASSIFIER = mobileClassifier;
 } else {
   // eslint-disable-next-line no-invalid-this
-  this.PUNYCODEX_MOBILE_CLASSIFIER = mobileClassifier;
+  this.PUNICODEX_MOBILE_CLASSIFIER = mobileClassifier;
 }

@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Domain Parser
+ * PuniCodex — Domain Parser
  *
  * Splits a hostname into its public-suffix, registrable domain, and subdomain
  * parts using a local copy of the Mozilla Public Suffix List. It also decodes

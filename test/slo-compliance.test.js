@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — SLO compliance tests (Phase 20).
+ * PuniCodex — SLO compliance tests (Phase 20).
  */
 
 const { prepareTestDb } = require('./helpers/test-db.js');

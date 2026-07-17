@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * PÚNYCODEX — Blog tab tests
+ * PuniCodex — Blog tab tests
  *
  * Validates that every built flagship has a generated blog page with the
  * required SEO, schema, content, and cross-link integrity.
@@ -73,12 +73,12 @@ for (const id of BUILT_IDS) {
     assert.match(html, /<meta property="og:description"[^>]*>/, 'missing og:description');
     assert.match(html, /<meta property="og:url"[^>]*>/, 'missing og:url');
     assert.match(html, /<meta property="og:type" content="article"/, 'missing og:type article');
-    assert.match(html, /<meta property="og:site_name" content="PUNYCODEX"/, 'missing og:site_name');
+    assert.match(html, /<meta property="og:site_name" content="PUNICODEX"/, 'missing og:site_name');
     assert.match(html, /<meta name="twitter:card"/, 'missing twitter:card');
 
     // Analytics markers and beacon
-    assert.match(html, /<!-- PUNYCODEX-ANALYTICS-START -->/, 'missing analytics start marker');
-    assert.match(html, /<!-- PUNYCODEX-ANALYTICS-END -->/, 'missing analytics end marker');
+    assert.match(html, /<!-- PUNICODEX-ANALYTICS-START -->/, 'missing analytics start marker');
+    assert.match(html, /<!-- PUNICODEX-ANALYTICS-END -->/, 'missing analytics end marker');
     assert.match(
       html,
       /<script src="\/js\/analytics-beacon\.js" defer><\/script>/,
@@ -151,7 +151,7 @@ for (const id of BUILT_IDS) {
       Array.isArray(post.tags) && post.tags.length >= 3 && post.tags.length <= 5,
       `expected 3–5 tags, got ${post.tags?.length}`
     );
-    assert.equal(post.author, 'PÚNYCODEX Team', 'unexpected author');
+    assert.equal(post.author, 'PuniCodex Team', 'unexpected author');
     assert.ok(post.readingTime, 'missing readingTime');
   });
 }

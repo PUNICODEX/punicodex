@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Hebrew script risk module
+ * PuniCodex — Hebrew script risk module
  *
  * Detects final-form substitutions, Yiddish digraphs, and mixed-form anomalies
  * in Hebrew text.

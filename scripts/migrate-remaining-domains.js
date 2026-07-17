@@ -1,12 +1,12 @@
-// Migrate the remaining stale domains to punycodex-main
+// Migrate the remaining stale domains to punicodex-main
 const { execSync } = require('child_process');
 
 const remaining = [
-  { domain: 'xn--gaa-wma.com', project: 'punycodex-gaia' },
-  { domain: 'xn--dinysos-m0a.com', project: 'punycodex-dionysos' },
-  { domain: 'xn--seln-dvab.com', project: 'punycodex-selene' },
-  { domain: 'xn--dmtr-bvabb.com', project: 'punycodex-demeter' },
-  { domain: 'xn--aphrodt-dza75a.com', project: 'punycodex-aphrodite' },
+  { domain: 'xn--gaa-wma.com', project: 'punicodex-gaia' },
+  { domain: 'xn--dinysos-m0a.com', project: 'punicodex-dionysos' },
+  { domain: 'xn--seln-dvab.com', project: 'punicodex-selene' },
+  { domain: 'xn--dmtr-bvabb.com', project: 'punicodex-demeter' },
+  { domain: 'xn--aphrodt-dza75a.com', project: 'punicodex-aphrodite' },
   { domain: 'xn--iva-bza.com', project: 'shiva' },
 ];
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Safety & Adversarial Corpus Generator (Phase 2)
+ * PuniCodex — Safety & Adversarial Corpus Generator (Phase 2)
  *
  * Turns the red-team adversarial generator into high-quality instruction-tuning
  * examples for homograph defense, mixed-script detection, normalization attacks,
@@ -307,10 +307,10 @@ const BRAND_DISAMBIGUATION_EXAMPLES = [
     entryId: 'hermes',
     task: 'safety_brand_disambiguate',
     instruction:
-      'The string "Hermès" could refer to the Greek deity Hermês or the French fashion house Hermès. How should PÚNYCODEX classify it?',
+      'The string "Hermès" could refer to the Greek deity Hermês or the French fashion house Hermès. How should PuniCodex classify it?',
     input: 'Hermès',
     output:
-      'Context is required. In the PÚNYCODEX mythological lexicon, "Hermès" maps to the Greek deity Hermês. If the domain context is hermes.com or a mythology page, it is canonical. If the context is luxury fashion, it is a protected brand identity. The Unicode restoration distinguishes the scholarly deity form from the brand.',
+      'Context is required. In the PuniCodex mythological lexicon, "Hermès" maps to the Greek deity Hermês. If the domain context is hermes.com or a mythology page, it is canonical. If the context is luxury fashion, it is a protected brand identity. The Unicode restoration distinguishes the scholarly deity form from the brand.',
     sources: ['brand-shield', 'lexicon'],
     confidence: 'canonical',
     metadata: { family: 'brand-disambiguation', type: 'term', target: 'hermes' },
@@ -320,10 +320,10 @@ const BRAND_DISAMBIGUATION_EXAMPLES = [
     entryId: 'nike',
     task: 'safety_brand_disambiguate',
     instruction:
-      'The string "Nike" could refer to the Greek goddess Níkē or the sportswear brand Nike. How should PÚNYCODEX classify it?',
+      'The string "Nike" could refer to the Greek goddess Níkē or the sportswear brand Nike. How should PuniCodex classify it?',
     input: 'Nike',
     output:
-      'In PÚNYCODEX, "Níkē" (with acute and macron) is the scholarly Greek goddess. The plain ASCII "Nike" is the modern English homograph shared with the brand. Without a deity-specific Unicode restoration, plain "Nike" is treated as ASCII fallback for the goddess, while brand contexts are handled by the brand shield.',
+      'In PuniCodex, "Níkē" (with acute and macron) is the scholarly Greek goddess. The plain ASCII "Nike" is the modern English homograph shared with the brand. Without a deity-specific Unicode restoration, plain "Nike" is treated as ASCII fallback for the goddess, while brand contexts are handled by the brand shield.',
     sources: ['brand-shield', 'lexicon'],
     confidence: 'canonical',
     metadata: { family: 'brand-disambiguation', type: 'term', target: 'nike' },
@@ -336,7 +336,7 @@ const BRAND_DISAMBIGUATION_EXAMPLES = [
       'The domain "ares.com" could refer to the Greek god Árēs or Ares Management (finance). How should it be handled?',
     input: 'ares.com',
     output:
-      'Domain context disambiguates. If ares.com resolves to a mythology site or is listed as an allowed domain for the deity, it is canonical. If it serves financial content, it is a brand presence. PÚNYCODEX records allowed domains per identity and classifies accordingly.',
+      'Domain context disambiguates. If ares.com resolves to a mythology site or is listed as an allowed domain for the deity, it is canonical. If it serves financial content, it is a brand presence. PuniCodex records allowed domains per identity and classifies accordingly.',
     sources: ['brand-shield', 'lexicon'],
     confidence: 'canonical',
     metadata: { family: 'brand-disambiguation', type: 'domain', target: 'ares' },
@@ -346,10 +346,10 @@ const BRAND_DISAMBIGUATION_EXAMPLES = [
     entryId: 'apollon',
     task: 'safety_brand_disambiguate',
     instruction:
-      '"Apollo" is a Greek god, but also a space program, a theater chain, and many companies. How does PÚNYCODEX treat it?',
+      '"Apollo" is a Greek god, but also a space program, a theater chain, and many companies. How does PuniCodex treat it?',
     input: 'Apollo',
     output:
-      'PÚNYCODEX treats "Apóllōn" / "Apollōn" as the scholarly deity. The plain ASCII "Apollo" is an ASCII fallback. Space-program, automotive, or entertainment contexts are brand/external identities and are handled by the brand shield; only mythology contexts are canonical here.',
+      'PuniCodex treats "Apóllōn" / "Apollōn" as the scholarly deity. The plain ASCII "Apollo" is an ASCII fallback. Space-program, automotive, or entertainment contexts are brand/external identities and are handled by the brand shield; only mythology contexts are canonical here.',
     sources: ['brand-shield', 'lexicon'],
     confidence: 'canonical',
     metadata: { family: 'brand-disambiguation', type: 'term', target: 'apollon' },
@@ -362,7 +362,7 @@ const BRAND_DISAMBIGUATION_EXAMPLES = [
       '"Athena" is a Greek goddess but also used by healthcare systems, financial services, and tech products. How is it classified?',
     input: 'Athena',
     output:
-      '"Athénā" / "Athēnā" is the scholarly goddess form in PÚNYCODEX. Plain "Athena" is ASCII fallback. Corporate or product uses are brand identities; the Unicode restoration signals the deity.',
+      '"Athénā" / "Athēnā" is the scholarly goddess form in PuniCodex. Plain "Athena" is ASCII fallback. Corporate or product uses are brand identities; the Unicode restoration signals the deity.',
     sources: ['brand-shield', 'lexicon'],
     confidence: 'canonical',
     metadata: { family: 'brand-disambiguation', type: 'term', target: 'athena' },
@@ -372,10 +372,10 @@ const BRAND_DISAMBIGUATION_EXAMPLES = [
     entryId: 'atlas',
     task: 'safety_brand_disambiguate',
     instruction:
-      '"Atlas" is a Titan in Greek mythology, but also a software company, a rocket, and a book publisher. How does PÚNYCODEX handle this collision?',
+      '"Atlas" is a Titan in Greek mythology, but also a software company, a rocket, and a book publisher. How does PuniCodex handle this collision?',
     input: 'Atlas',
     output:
-      'PÚNYCODEX canonizes the Titan as "Átlas" with stress. Plain "Atlas" is ASCII fallback. Software, aerospace, or publishing contexts are treated as brand/external identities unless they explicitly serve the mythology page.',
+      'PuniCodex canonizes the Titan as "Átlas" with stress. Plain "Atlas" is ASCII fallback. Software, aerospace, or publishing contexts are treated as brand/external identities unless they explicitly serve the mythology page.',
     sources: ['brand-shield', 'lexicon'],
     confidence: 'canonical',
     metadata: { family: 'brand-disambiguation', type: 'term', target: 'atlas' },
@@ -388,7 +388,7 @@ const BRAND_DISAMBIGUATION_EXAMPLES = [
       '"Dionysus" is the Greek god of wine, but the name appears on wine labels and entertainment brands. Is it safe?',
     input: 'Dionysus',
     output:
-      '"Diónysos" is the scholarly deity. Plain "Dionysus" is ASCII fallback. Wine or entertainment labels using the name are brand/styled uses; they are not canonical deity references unless on the PÚNYCODEX temple or related scholarly context.',
+      '"Diónysos" is the scholarly deity. Plain "Dionysus" is ASCII fallback. Wine or entertainment labels using the name are brand/styled uses; they are not canonical deity references unless on the PuniCodex temple or related scholarly context.',
     sources: ['brand-shield', 'lexicon'],
     confidence: 'canonical',
     metadata: { family: 'brand-disambiguation', type: 'term', target: 'dionysos' },
@@ -401,7 +401,7 @@ const BRAND_DISAMBIGUATION_EXAMPLES = [
       '"Freya" is a Norse goddess, but also a popular product and given name. How should it be disambiguated?',
     input: 'Freya',
     output:
-      '"Freyja" is the Norse goddess in PÚNYCODEX. The plain ASCII "Freya" is a common transliteration and may also be a product or personal name. The Unicode restoration "Freyja" signals the deity; other contexts are styled or brand uses.',
+      '"Freyja" is the Norse goddess in PuniCodex. The plain ASCII "Freya" is a common transliteration and may also be a product or personal name. The Unicode restoration "Freyja" signals the deity; other contexts are styled or brand uses.',
     sources: ['brand-shield', 'lexicon'],
     confidence: 'canonical',
     metadata: { family: 'brand-disambiguation', type: 'term', target: 'freyja' },
@@ -411,10 +411,10 @@ const BRAND_DISAMBIGUATION_EXAMPLES = [
     entryId: 'thor',
     task: 'safety_brand_disambiguate',
     instruction:
-      '"Thor" is a Norse god and a Marvel superhero. How does PÚNYCODEX separate them?',
+      '"Thor" is a Norse god and a Marvel superhero. How does PuniCodex separate them?',
     input: 'Thor',
     output:
-      '"Þórr" is the scholarly Norse deity in PÚNYCODEX. Plain "Thor" is ASCII fallback. Comic, film, or merchandise contexts are brand/entertainment identities and are not canonical deity references.',
+      '"Þórr" is the scholarly Norse deity in PuniCodex. Plain "Thor" is ASCII fallback. Comic, film, or merchandise contexts are brand/entertainment identities and are not canonical deity references.',
     sources: ['brand-shield', 'lexicon'],
     confidence: 'canonical',
     metadata: { family: 'brand-disambiguation', type: 'term', target: 'thor' },
@@ -427,7 +427,7 @@ const BRAND_DISAMBIGUATION_EXAMPLES = [
       '"Odin" is the Allfather in Norse mythology, but also used by software, investment, and gaming brands. How is it treated?',
     input: 'Odin',
     output:
-      '"Óðinn" is the scholarly deity. Plain "Odin" is ASCII fallback. Software, investment, or gaming brands are external identities; only the mythology context is canonical in PÚNYCODEX.',
+      '"Óðinn" is the scholarly deity. Plain "Odin" is ASCII fallback. Software, investment, or gaming brands are external identities; only the mythology context is canonical in PuniCodex.',
     sources: ['brand-shield', 'lexicon'],
     confidence: 'canonical',
     metadata: { family: 'brand-disambiguation', type: 'term', target: 'odinn' },
@@ -437,10 +437,10 @@ const BRAND_DISAMBIGUATION_EXAMPLES = [
     entryId: 'amaterasu',
     task: 'safety_brand_disambiguate',
     instruction:
-      '"Amaterasu" is a Japanese sun goddess and also appears in video games and products. How does PÚNYCODEX classify it?',
+      '"Amaterasu" is a Japanese sun goddess and also appears in video games and products. How does PuniCodex classify it?',
     input: 'Amaterasu',
     output:
-      '"Amaterasu" is the Japanese sun goddess in PÚNYCODEX. Game or product uses are styled/brand identities; the canonical entry is the Shinto deity unless the context explicitly belongs to another owner.',
+      '"Amaterasu" is the Japanese sun goddess in PuniCodex. Game or product uses are styled/brand identities; the canonical entry is the Shinto deity unless the context explicitly belongs to another owner.',
     sources: ['brand-shield', 'lexicon'],
     confidence: 'canonical',
     metadata: { family: 'brand-disambiguation', type: 'term', target: 'amaterasu' },
@@ -453,7 +453,7 @@ const BRAND_DISAMBIGUATION_EXAMPLES = [
       '"Gaia" is the Greek primordial Earth goddess, but also a streaming service, a hypothesis, and various brands. How is it handled?',
     input: 'Gaia',
     output:
-      '"Gaîa" / "Gaia" is the primordial goddess in PÚNYCODEX. Streaming, wellness, or scientific contexts are external identities. The plain ASCII form is the same as the goddess, so domain and page context disambiguate.',
+      '"Gaîa" / "Gaia" is the primordial goddess in PuniCodex. Streaming, wellness, or scientific contexts are external identities. The plain ASCII form is the same as the goddess, so domain and page context disambiguate.',
     sources: ['brand-shield', 'lexicon'],
     confidence: 'canonical',
     metadata: { family: 'brand-disambiguation', type: 'term', target: 'gaia' },
@@ -463,7 +463,7 @@ const BRAND_DISAMBIGUATION_EXAMPLES = [
     entryId: 'eros',
     task: 'safety_brand_disambiguate',
     instruction:
-      '"Eros" is the Greek god of love, but also a dating app and an asteroid. How does PÚNYCODEX classify it?',
+      '"Eros" is the Greek god of love, but also a dating app and an asteroid. How does PuniCodex classify it?',
     input: 'Eros',
     output:
       '"Érōs" is the scholarly deity. Plain "Eros" is ASCII fallback. Dating-app or astronomy contexts are brand/external uses; the deity context is canonical.',
@@ -479,7 +479,7 @@ const BRAND_DISAMBIGUATION_EXAMPLES = [
       '"Heimdall" is a Norse god and appears in comics and security products. How is it treated?',
     input: 'Heimdall',
     output:
-      '"Heimdallr" is the Norse guardian deity in PÚNYCODEX. Security software or entertainment uses are external brand identities; the mythology context is canonical.',
+      '"Heimdallr" is the Norse guardian deity in PuniCodex. Security software or entertainment uses are external brand identities; the mythology context is canonical.',
     sources: ['brand-shield', 'lexicon'],
     confidence: 'canonical',
     metadata: { family: 'brand-disambiguation', type: 'term', target: 'heimdallr' },
@@ -489,10 +489,10 @@ const BRAND_DISAMBIGUATION_EXAMPLES = [
     entryId: 'horus',
     task: 'safety_brand_disambiguate',
     instruction:
-      '"Horus" is an Egyptian god and also used by security, aviation, and gaming brands. How does PÚNYCODEX disambiguate?',
+      '"Horus" is an Egyptian god and also used by security, aviation, and gaming brands. How does PuniCodex disambiguate?',
     input: 'Horus',
     output:
-      '"Horus" is the Egyptian falcon deity in PÚNYCODEX. Aviation, security, or gaming brands are external identities; the mythology context is canonical unless the domain is explicitly allowed for another owner.',
+      '"Horus" is the Egyptian falcon deity in PuniCodex. Aviation, security, or gaming brands are external identities; the mythology context is canonical unless the domain is explicitly allowed for another owner.',
     sources: ['brand-shield', 'lexicon'],
     confidence: 'canonical',
     metadata: { family: 'brand-disambiguation', type: 'term', target: 'horus' },

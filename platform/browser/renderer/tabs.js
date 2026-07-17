@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Votive Tablet Manager
+ * PUNICODEX — Votive Tablet Manager
  * Multi-tab support with per-tab webviews.
  * Each tablet is a sacred record. Switching reveals, never reloads.
  */
@@ -163,8 +163,8 @@ const _Tabs = (function () {
 
   function saveSession() {
     const urls = tabs.map((t) => t.url);
-    if (window.punycodex?.saveSession) {
-      window.punycodex.saveSession(urls).catch(() => {});
+    if (window.punicodex?.saveSession) {
+      window.punicodex.saveSession(urls).catch(() => {});
     }
   }
 

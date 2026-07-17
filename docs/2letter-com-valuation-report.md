@@ -1,6 +1,6 @@
 # 2-Letter `.com` Historical Valuation Report
 
-> Research input for the PÚNYCODEX appraisal engine. Prices below are publicly reported or widely cited wholesale/retail estimates; exact transaction data for domain-only sales is often private.
+> Research input for the PuniCodex appraisal engine. Prices below are publicly reported or widely cited wholesale/retail estimates; exact transaction data for domain-only sales is often private.
 
 ## Executive Summary
 
@@ -38,7 +38,7 @@ Two-letter `.com` domains are the scarcest broadly liquid asset class in the dom
 - **3-letter `.com` (3L):** floor ~$15K – $50K; premium ~$100K – $500K.
 - **4-letter `.com` (4L):** random ~$100 – $500; premium dictionary/word ~$10K – $100K.
 
-## Implications for the PÚNYCODEX Algorithm
+## Implications for the PuniCodex Algorithm
 
 ### Current issue
 The engine currently applies an `intrinsicAsciiFloor` of **$250,000** for 2L `.com`, but **only when the name is already in the lexicon**. Unknown clean 2L names like `qx.com` fall back to the formula and appraise near the $50,000 `BASE_REFERENCE_VALUE`. Both cases understate true market value.
@@ -124,7 +124,7 @@ The initial floor-only fix correctly raised the wholesale minimums, but user fee
 
 1. **Short-name scarcity multiplier** applied to the formula-driven ASCII value for 1–3 character `.com` names, before the floor is enforced.
 2. **Premium bigram set** for common acronyms and culturally significant short forms (`ra`, `re`, `ai`, `om`, `it`, `go`, etc.).
-3. **Meaning boost** when the short name exists in the PÚNYCODEX lexicon (dictionary word, deity, place, etc.).
+3. **Meaning boost** when the short name exists in the PuniCodex lexicon (dictionary word, deity, place, etc.).
 4. **Caps** to prevent runaway values: max 4× for 2L names, 5× for 1L names.
 
 ### New constants / functions
@@ -202,4 +202,4 @@ All changes have been applied to `platform/api/appraise.js` and covered by new t
 
 ---
 
-*Report prepared for PÚNYCODEX appraisal engine v1.0.0.*
+*Report prepared for PuniCodex appraisal engine v1.0.0.*

@@ -1,4 +1,4 @@
-# PÚNYCODEX Scholarly Edition — Governance Charter
+# PuniCodex Scholarly Edition — Governance Charter
 
 > Version 1.0.0 — Structure-first, content-blank, university-credited.
 
@@ -6,12 +6,12 @@
 
 ## 1. Mission
 
-The PÚNYCODEX Scholarly Edition is a living, university-edited scholarly layer for the 123 flagship mythological names in the PÚNYCODEX canon. Its purpose is to transform each flagship temple from a curated product page into a credible, transparent, continuously improving scholarly resource — authored by students and faculty, credited to their institutions, and reviewed before publication.
+The PuniCodex Scholarly Edition is a living, university-edited scholarly layer for the 123 flagship mythological names in the PuniCodex canon. Its purpose is to transform each flagship temple from a curated product page into a credible, transparent, continuously improving scholarly resource — authored by students and faculty, credited to their institutions, and reviewed before publication.
 
 It must be:
 - **Authoritative:** Every claim is sourced.
 - **Attributable:** Every section credits its contributors and institutions.
-- **Additive:** It never damages existing PÚNYCODEX infrastructure or canonical sources.
+- **Additive:** It never damages existing PuniCodex infrastructure or canonical sources.
 - **Scalable:** It supports millions of student editors across thousands of institutions.
 - **Safe:** It is resistant to vandalism, original research, and abuse.
 
@@ -19,7 +19,7 @@ It must be:
 
 ## 2. Scope
 
-The Scholarly Edition applies **only** to the 123 PÚNYCODEX flagship temples. Base temples (the remaining 777 lexicon entries) are not editable through this system.
+The Scholarly Edition applies **only** to the 123 PuniCodex flagship temples. Base temples (the remaining 777 lexicon entries) are not editable through this system.
 
 Each flagship receives a blank Scholarly Edition page at `/sites/{id}/scholars/` containing 13 universal sections plus pantheon-kit sections. Content begins blank and is populated through the edit-and-review workflow described below.
 
@@ -27,12 +27,12 @@ Each flagship receives a blank Scholarly Edition page at `/sites/{id}/scholars/`
 
 ## 3. Editorial Hierarchy
 
-The canonical sources of PÚNYCODEX remain the ultimate authority. The Scholarly Edition is a curated overlay, not a replacement.
+The canonical sources of PuniCodex remain the ultimate authority. The Scholarly Edition is a curated overlay, not a replacement.
 
 | Layer | Authority | Examples |
 |---|---|---|
 | Canonical sources | Highest | `type/js/lexicon.js`, `type/js/original-scripts.js`, `scripts/lore-catalog.json`, `ACCURACY.md` |
-| PÚNYCODEX curators | Override | Final say on disputes, vandalism, tier rules |
+| PuniCodex curators | Override | Final say on disputes, vandalism, tier rules |
 | Approved institutional edits | Credited | Student/faculty contributions that pass review |
 | Pending edits | Not public | Awaiting review |
 
@@ -68,7 +68,7 @@ Any Scholarly Edition content that contradicts a canonical source must be flagge
 - Can invite users, revoke memberships, and view institution analytics.
 - Cannot override curator decisions.
 
-### 4.6 PÚNYCODEX Curator
+### 4.6 PuniCodex Curator
 - Has final editorial authority.
 - Can freeze temples, revert sections, suspend users, and resolve disputes.
 - Can approve high-risk edits regardless of institutional origin.
@@ -78,7 +78,7 @@ Any Scholarly Edition content that contradicts a canonical source must be flagge
 
 ## 5. Content License
 
-By submitting content to the Scholarly Edition, the contributor grants PÚNYCODEX a perpetual, worldwide, royalty-free, sublicensable license to publish, display, modify, and distribute the contribution under the project’s chosen open-data license (currently CC BY 4.0 for data). The contributor retains the right to be credited.
+By submitting content to the Scholarly Edition, the contributor grants PuniCodex a perpetual, worldwide, royalty-free, sublicensable license to publish, display, modify, and distribute the contribution under the project’s chosen open-data license (currently CC BY 4.0 for data). The contributor retains the right to be credited.
 
 Contributors must not submit content they do not have the right to license.
 
@@ -180,7 +180,7 @@ All contributors agree to:
 
 ## 14. Amendments
 
-This charter is versioned. Changes require approval from PÚNYCODEX curators and are announced to all institutions 30 days before taking effect.
+This charter is versioned. Changes require approval from PuniCodex curators and are announced to all institutions 30 days before taking effect.
 
 ---
 
@@ -189,8 +189,8 @@ This charter is versioned. Changes require approval from PÚNYCODEX curators and
 Institutions that participate in the Scholarly Edition agree to:
 - Verify the academic affiliation of their students and faculty.
 - Encourage adherence to this charter.
-- Accept that PÚNYCODEX curators retain final editorial authority.
-- Allow PÚNYCODEX to display institutional attribution on published content.
+- Accept that PuniCodex curators retain final editorial authority.
+- Allow PuniCodex to display institutional attribution on published content.
 - Receive quarterly impact reports on their contributions.
 
 A full partnership agreement template is available separately.

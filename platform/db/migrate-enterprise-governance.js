@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Enterprise Governance & Compliance Migration Runner
+ * PUNICODEX — Enterprise Governance & Compliance Migration Runner
  *
  * Idempotently applies platform/db/migrations/002_enterprise_governance.sql.
  */

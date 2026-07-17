@@ -14,7 +14,7 @@
 const Database = require('better-sqlite3');
 const path = require('node:path');
 
-const DB_PATH = process.env.PUNYCODEX_TEST_DB_PATH || path.join(__dirname, 'punycodex.db');
+const DB_PATH = process.env.PUNICODEX_TEST_DB_PATH || path.join(__dirname, 'punicodex.db');
 
 const ADMIN_USERS_SCHEMA = `
   -- Named admin accounts for the unified admin portal

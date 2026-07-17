@@ -9,7 +9,7 @@ const dns = require('node:dns');
 const { promisify } = require('node:util');
 const path = require('node:path');
 
-const DB_PATH = path.join(__dirname, '..', 'db', 'punycodex.db');
+const DB_PATH = path.join(__dirname, '..', 'db', 'punicodex.db');
 const dnsLookup = promisify(dns.lookup);
 
 const CONCURRENCY = 10;

@@ -1,13 +1,13 @@
-# PÚNYCODEX — Website Design System
+# PuniCodex — Website Design System
 ## Enterprise-Grade Digital Experience Specification
 
 ---
 
 ## 1. OVERVIEW
 
-This document defines the complete visual system for the PÚNYCODEX website — a $50M-grade enterprise digital experience built around the Unicode Pantheon of 26 domains across 23 classical deities.
+This document defines the complete visual system for the PuniCodex website — a $50M-grade enterprise digital experience built around the Unicode Pantheon of 26 domains across 23 classical deities.
 
-**Core principle:** The website is a dark, gold-accented gallery where the deity mascots are the art and PÚNYCODEX is the frame. Every element exists to elevate the collection, not compete with it.
+**Core principle:** The website is a dark, gold-accented gallery where the deity mascots are the art and PuniCodex is the frame. Every element exists to elevate the collection, not compete with it.
 
 ---
 
@@ -127,7 +127,7 @@ Each deity page inherits its primary color from the identity system. These color
 - Height: 100vh
 - Background: #0A0A0A with subtle constellation SVG
 - Psi icon: 120px, centered, gold with blue glow
-- PÚNYCODEX: display-xl, gold, centered
+- PuniCodex: display-xl, gold, centered
 - Tagline: heading-lg, gold, below name
 - CTA: Gold outlined button, below tagline
 - Animation: Psi pulses, particles float, letters appear sequentially
@@ -206,7 +206,7 @@ Each deity page inherits its primary color from the identity system. These color
 
 - Background: #0A0A0A
 - Psi icon: Centered, pulsing gold glow
-- PÚNYCODEX: Letters appear sequentially (stagger 100ms)
+- PuniCodex: Letters appear sequentially (stagger 100ms)
 - Accent on U: Appears last with a flash
 - Progress: Thin gold line extends from center
 - Constellation: Forms in background during load
@@ -286,7 +286,7 @@ Each deity page inherits its primary color from the identity system. These color
 
 **Structure:**
 1. Nav (dark, fixed)
-2. Psi icon + PÚNYCODEX centered
+2. Psi icon + PuniCodex centered
 3. Gold horizontal rule
 4. Two-column: Form (left) | Contact info (right)
 5. Footer
@@ -418,5 +418,5 @@ Each deity page inherits its primary color from the identity system. These color
 
 ---
 
-*PÚNYCODEX Website Design System v1.0*
+*PuniCodex Website Design System v1.0*
 *Last updated: 2026-05-27*

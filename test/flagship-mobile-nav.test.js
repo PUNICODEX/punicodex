@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Flagship mobile navigation regression tests
+ * PuniCodex — Flagship mobile navigation regression tests
  * Ensures every flagship temple page has a visible, accessible hamburger
  * button wired to a dedicated mobile menu overlay. This prevents the
  * recurring issue where the mobile menu toggle becomes unreachable or

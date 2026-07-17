@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Autonomous Agents tests
+ * PuniCodex — Autonomous Agents tests
  */
 
 const assert = require('node:assert');

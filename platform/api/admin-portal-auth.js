@@ -1,11 +1,11 @@
 /**
- * PÚNYCODEX — Admin Portal Authentication & RBAC
+ * PuniCodex — Admin Portal Authentication & RBAC
  *
  * Per-user admin identity for the unified admin portal, alongside (not
  * replacing) the legacy shared-password admin auth in platform/api/admin.js.
  *
  * - Bootstrap: when admin_users is empty and ADMIN_PASSWORD is configured,
- *   one superadmin is seeded (email from ADMIN_EMAIL or admin@punycodex.com).
+ *   one superadmin is seeded (email from ADMIN_EMAIL or admin@punicodex.com).
  *   When ADMIN_PASSWORD is unset the portal stays unconfigured (login → 503);
  *   no default/known password is ever seeded.
  * - Sessions reuse the admin_sessions table (8h TTL, sha256-hashed tokens)
@@ -32,7 +32,7 @@ const { hashToken } = require('./admin');
 const { logAction } = require('./admin-actions');
 
 const SESSION_TTL_MS = 8 * 60 * 60 * 1000; // 8 hours (matches legacy admin sessions)
-const BCRYPT_ROUNDS = Number(process.env.PUNYCODEX_BCRYPT_ROUNDS) || 12;
+const BCRYPT_ROUNDS = Number(process.env.PUNICODEX_BCRYPT_ROUNDS) || 12;
 const MAX_LOGIN_ATTEMPTS = 5;
 const LOCKOUT_MINUTES = 15;
 const MIN_PASSWORD_LENGTH = 8;
@@ -107,7 +107,7 @@ async function bootstrap() {
     return { seeded: false, reason: 'admin_password_not_configured' };
   }
 
-  const email = (process.env.ADMIN_EMAIL || 'admin@punycodex.com').toLowerCase().trim();
+  const email = (process.env.ADMIN_EMAIL || 'admin@punicodex.com').toLowerCase().trim();
   const passwordHash = bcrypt.hashSync(adminPassword, BCRYPT_ROUNDS);
   await run(
     `INSERT INTO admin_users (email, password_hash, display_name, role, status, temp_password)

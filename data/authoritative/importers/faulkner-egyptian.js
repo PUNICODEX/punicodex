@@ -1,5 +1,5 @@
 /**
- * Faulkner Egyptian importer for PÚNYCODEX
+ * Faulkner Egyptian importer for PuniCodex
  *
  * Stub: no online source configured yet.
  */

@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Threat Feed API Route Handlers (Phase 8)
+ * PUNICODEX — Threat Feed API Route Handlers (Phase 8)
  *
  * Shared handlers used by both Express (v1) and the Vercel v2 router.
  */

@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — IDNA2008 / UTS #46 / Punycode Validator
+ * PuniCodex — IDNA2008 / UTS #46 / Punycode Validator
  *
  * Validates domain labels against the core IDNA rules used by browsers:
  * punycode decoding, length limits, hyphen placement, empty labels, and

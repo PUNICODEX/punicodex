@@ -1,6 +1,6 @@
-# PUNYCODEX — Owned Domain Inventory
+# PUNICODEX — Owned Domain Inventory
 
-> Canonical record of all domains owned by PUNYCODEX.
+> Canonical record of all domains owned by PUNICODEX.
 > Last updated: 2026-06-11
 > Tier system: The Definitive Tier System (CANONICAL) — see AGENTS.md
 
@@ -155,7 +155,7 @@ A name is single-tier Tier-2 if the original contains ONLY ONE feature (stress O
 
 | Domain | Purpose |
 |--------|---------|
-| punycodex.com | Main platform |
+| punicodex.com | Main platform |
 | punicodex.com | Alias / redirect |
 
 ---

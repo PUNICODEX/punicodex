@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Connections graph helpers
+ * PuniCodex — Connections graph helpers
  * Pure functions for filtering edges, resolving neighbours, building concept branches,
  * sunburst trees, and finding paths. Works in the browser (global) and Node (CommonJS).
  */

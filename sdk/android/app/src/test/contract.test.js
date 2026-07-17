@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Android SDK contract validation
+ * PuniCodex — Android SDK contract validation
  *
  * The Android SDK is written in Kotlin and is normally tested with JUnit inside
  * Android Studio. In this repository we validate the public API contract from
@@ -46,7 +46,7 @@ const sdkSource = fs.readFileSync(
     'main',
     'kotlin',
     'com',
-    'punycodex',
+    'punicodex',
     'authenticity',
     'AuthenticitySDK.kt'
   ),
@@ -64,7 +64,7 @@ const shareSource = fs.readFileSync(
     'main',
     'kotlin',
     'com',
-    'punycodex',
+    'punicodex',
     'authenticity',
     'ShareExtensionActivity.kt'
   ),

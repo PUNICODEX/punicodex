@@ -1,12 +1,12 @@
 import 'package:flutter/services.dart';
 
-/// PÚNYCODEX — Flutter wrapper for the Name Authenticity Shield.
+/// PuniCodex — Flutter wrapper for the Name Authenticity Shield.
 ///
 /// The core classifier runs through a platform channel into the native iOS or
 /// Android SDK. Pure-Dart fallback methods are provided for testing.
-class PunycodexAuthenticity {
+class PunicodexAuthenticity {
   static const MethodChannel _channel =
-      MethodChannel('com.punycodex.authenticity');
+      MethodChannel('com.punicodex.authenticity');
 
   /// Classify a term (name, domain label, or pasted text).
   static Future<Map<String, dynamic>> classify(String input) async {

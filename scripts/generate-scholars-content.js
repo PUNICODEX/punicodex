@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Scholarly Edition content generator
+ * PuniCodex — Scholarly Edition content generator
  *
  * Synthesizes the canonical per-temple scholarly content files
  * (`platform/scholars/content/{id}.json`) for every built flagship temple from
@@ -179,7 +179,7 @@ function citationFor(rawName, url) {
     raw = raw.name || raw.citation || raw.title || '';
   }
   const name = oneLine(htmlToMarkdown(String(raw))).replace(/\*/g, '').trim();
-  if (!name) return { citation: 'PÚNYCODEX original-script provenance record.' };
+  if (!name) return { citation: 'PuniCodex original-script provenance record.' };
   const catalog = SOURCE_CATALOG[name];
   if (catalog) {
     let citation = catalog.full;
@@ -316,7 +316,7 @@ function tierSentence(tier) {
 
 function templeUrl(archetype) {
   if (archetype.domainPunycode) return `https://${archetype.domainPunycode}`;
-  return `https://punycodex.com/sites/${archetype.id}/`;
+  return `https://punicodex.com/sites/${archetype.id}/`;
 }
 
 function buildContext(archetype) {
@@ -362,7 +362,7 @@ function buildOverview(ctx) {
     ? `[${archetype.domainUnicode}](${templeUrl(archetype)})`
     : `[its temple](${templeUrl(archetype)})`;
   paragraphs.push(
-    `PÚNYCODEX restores the name as **${entry.unicode}** and serves its temple at ${domainLink}. ${tierSentence(archetype.tier)} The plain ASCII form *${entry.ascii}* survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete${cite(pickSource(pool, 2))}.`
+    `PuniCodex restores the name as **${entry.unicode}** and serves its temple at ${domainLink}. ${tierSentence(archetype.tier)} The plain ASCII form *${entry.ascii}* survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete${cite(pickSource(pool, 2))}.`
   );
 
   return {
@@ -564,7 +564,7 @@ function buildOriginalScript(ctx) {
             ? 'its vowel quantity'
             : 'its full diacritic detail';
     parts.push(
-      `The name is written in ${ctx.scriptName} as **${ctx.originalScript}**. This ${ctx.scriptLabel.toLowerCase()} is the form against which the ASCII fallback *${entry.ascii}* and the PÚNYCODEX restoration **${entry.unicode}** are measured: the restoration preserves ${preserved} of the written form, so that a reader typing the modern address still speaks the ancient name.`
+      `The name is written in ${ctx.scriptName} as **${ctx.originalScript}**. This ${ctx.scriptLabel.toLowerCase()} is the form against which the ASCII fallback *${entry.ascii}* and the PuniCodex restoration **${entry.unicode}** are measured: the restoration preserves ${preserved} of the written form, so that a reader typing the modern address still speaks the ancient name.`
     );
   } else {
     generatedFrom.push('original-scripts:no-script-note');
@@ -683,7 +683,7 @@ function buildSyncretism(ctx) {
           `[[${t.id}|${unicodeName(t.id)}]]` +
           (relationships.size > 1 && t.relationship ? ` (${lowerFirst(t.relationship)})` : '')
       );
-      sentence = `Kindred figures in the PÚNYCODEX cross-tradition index include ${joinList(items)}`;
+      sentence = `Kindred figures in the PuniCodex cross-tradition index include ${joinList(items)}`;
       if (relationships.size === 1) {
         sentence += `, each linked through ${lowerFirst([...relationships][0])}.`;
       } else {
@@ -748,7 +748,7 @@ function buildArchaeology(ctx) {
       symbolNames.length > 0 ? ` and iconography matching its traditional attributes (${joinList(symbolNames)})` : '';
     const keyword = (entry.domain || '').split(',')[0].trim().toLowerCase();
     body = [
-      `No monument, inscription, or artifact in the current PÚNYCODEX corpus is yet assigned to ${entry.unicode} with certainty. That absence should be read honestly: for a ${tradition} name of this type the material record is expected to be thin, and the primary evidence remains the textual testimony gathered in the Scholarly Sources section${cite(pickSource(pool, 0))}.`,
+      `No monument, inscription, or artifact in the current PuniCodex corpus is yet assigned to ${entry.unicode} with certainty. That absence should be read honestly: for a ${tradition} name of this type the material record is expected to be thin, and the primary evidence remains the textual testimony gathered in the Scholarly Sources section${cite(pickSource(pool, 0))}.`,
       `Were such evidence to surface, it would take recognizable forms: votive or dedicatory inscriptions naming ${specimen}, sanctuary or cult remains tied to ${keyword}${attributes}. Each candidate would be weighed against the reconstructed form of the name before entering the scholarly record.`,
     ].join('\n\n');
   }

@@ -85,7 +85,7 @@ viṣṇu.com
 zeús.com
 muspellheimr.com
 helheimr.com
-punycodex.com
+punicodex.com
 punicodex.com
 `;
 
@@ -124,7 +124,7 @@ function findSiteIdForDomain(domainBase) {
   // Special mappings for domains that don't match lexicon entries directly
   // These take precedence over all other matching to resolve ambiguities
   const specialMappings = {
-    'punycodex': 'main',
+    'punicodex': 'main',
     'punicodex': 'main',
     'mꜣ': 'maat',
     'bꜣ': null, // no site yet

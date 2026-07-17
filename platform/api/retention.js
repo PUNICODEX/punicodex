@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Data retention and cold-storage helpers.
+ * PUNICODEX — Data retention and cold-storage helpers.
  */
 
 async function purgeExpiredRawInputs(db, retentionDays = 90) {

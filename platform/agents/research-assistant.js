@@ -60,8 +60,8 @@ function generateFindings(topic) {
   });
 
   const sources = [
-    'PUNYCODEX canonical lexicon',
-    'PUNYCODEX lore catalog',
+    'PUNICODEX canonical lexicon',
+    'PUNICODEX lore catalog',
     'Liddell-Scott-Jones (LSJ) where cited',
   ];
 

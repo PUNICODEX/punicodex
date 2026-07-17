@@ -1,29 +1,29 @@
-// Migrate domains from individual projects to punycodex-main
-// Run from project root (linked to punycodex-main)
+// Migrate domains from individual projects to punicodex-main
+// Run from project root (linked to punicodex-main)
 
 const { execSync } = require('child_process');
 
 // Domains confirmed to be on individual projects (from audit)
 const migrations = [
-  // punycodex-* individual projects
-  { domain: 'xn--eurp-eva0406b.com', project: 'punycodex-europe' },
-  { domain: 'xn--agyptos-7ya.com', project: 'punycodex-aigyptos' },
-  { domain: 'xn--liby-eva.com', project: 'punycodex-libye' },
-  { domain: 'xn--athn-dpa9l.com', project: 'punycodex-athena' },
-  { domain: 'xn--herms-lza.com', project: 'punycodex-hermes' },
-  { domain: 'xn--aphrodt-27a8s.com', project: 'punycodex-aphrodite' },
-  { domain: 'xn--apolln-fgb.com', project: 'punycodex-apollon' },
-  { domain: 'xn--athnai-r3a.com', project: 'punycodex-athenai' },
-  { domain: 'xn--kbe-qxa.com', project: 'punycodex-kobe' },
-  { domain: 'xn--saka-k3a.com', project: 'punycodex-osaka' },
-  { domain: 'xn--kyto-m3a.com', project: 'punycodex-kyoto' },
-  { domain: 'xn--r-2w3e.com', project: 'punycodex-ra' },
-  { domain: 'xn--rr-4ja7b.com', project: 'punycodex-thor' },
-  { domain: 'xn--lympos-9wa.com', project: 'punycodex-olympos' },
-  { domain: 'xn--delpho-8va.com', project: 'punycodex-delphoi' },
-  { domain: 'xn--pntos-0ta.com', project: 'punycodex-pontos' },
-  { domain: 'xn--trtaros-hwa.com', project: 'punycodex-tartaros' },
-  { domain: 'xn--hra-3qa.com', project: 'punycodex-hera' },
+  // punicodex-* individual projects
+  { domain: 'xn--eurp-eva0406b.com', project: 'punicodex-europe' },
+  { domain: 'xn--agyptos-7ya.com', project: 'punicodex-aigyptos' },
+  { domain: 'xn--liby-eva.com', project: 'punicodex-libye' },
+  { domain: 'xn--athn-dpa9l.com', project: 'punicodex-athena' },
+  { domain: 'xn--herms-lza.com', project: 'punicodex-hermes' },
+  { domain: 'xn--aphrodt-27a8s.com', project: 'punicodex-aphrodite' },
+  { domain: 'xn--apolln-fgb.com', project: 'punicodex-apollon' },
+  { domain: 'xn--athnai-r3a.com', project: 'punicodex-athenai' },
+  { domain: 'xn--kbe-qxa.com', project: 'punicodex-kobe' },
+  { domain: 'xn--saka-k3a.com', project: 'punicodex-osaka' },
+  { domain: 'xn--kyto-m3a.com', project: 'punicodex-kyoto' },
+  { domain: 'xn--r-2w3e.com', project: 'punicodex-ra' },
+  { domain: 'xn--rr-4ja7b.com', project: 'punicodex-thor' },
+  { domain: 'xn--lympos-9wa.com', project: 'punicodex-olympos' },
+  { domain: 'xn--delpho-8va.com', project: 'punicodex-delphoi' },
+  { domain: 'xn--pntos-0ta.com', project: 'punicodex-pontos' },
+  { domain: 'xn--trtaros-hwa.com', project: 'punicodex-tartaros' },
+  { domain: 'xn--hra-3qa.com', project: 'punicodex-hera' },
   // standalone projects
   { domain: 'xn--hesta-2sa.com', project: 'hestia' },
   { domain: 'xn--s-2w3e.com', project: 'sia' },
@@ -32,19 +32,19 @@ const migrations = [
   { domain: 'xn--9gg9559c.com', project: 'akh' },
   { domain: 'xn--w-4ma.com', project: 'shu' },
   // domains that got errors in audit — verify and migrate
-  { domain: 'xn--inn-2mao.com', project: 'punycodex-odinn' },
-  { domain: 'xn--ragnark-fnc.com', project: 'punycodex-ragnarok' },
-  { domain: 'xn--migarr-qwad.com', project: 'punycodex-midgardr' },
-  { domain: 'xn--jtunheimr-07a.com', project: 'punycodex-jotunheimr' },
-  { domain: 'xn--lfheimr-gwa.com', project: 'punycodex-alfheimr' },
-  { domain: 'xn--hlios-iza.com', project: 'punycodex-helios' },
-  { domain: 'xn--sprt-6na61a.com', project: 'punycodex-sparte' },
-  { domain: 'xn--chos-6na.com', project: 'punycodex-chaos' },
-  { domain: 'xn--gaa-wma.com', project: 'punycodex-gaia' },
-  { domain: 'xn--dinysos-m0a.com', project: 'punycodex-dionysos' },
-  { domain: 'xn--seln-dvab.com', project: 'punycodex-selene' },
-  { domain: 'xn--dmtr-bvabb.com', project: 'punycodex-demeter' },
-  { domain: 'xn--aphrodt-dza75a.com', project: 'punycodex-aphrodite' },
+  { domain: 'xn--inn-2mao.com', project: 'punicodex-odinn' },
+  { domain: 'xn--ragnark-fnc.com', project: 'punicodex-ragnarok' },
+  { domain: 'xn--migarr-qwad.com', project: 'punicodex-midgardr' },
+  { domain: 'xn--jtunheimr-07a.com', project: 'punicodex-jotunheimr' },
+  { domain: 'xn--lfheimr-gwa.com', project: 'punicodex-alfheimr' },
+  { domain: 'xn--hlios-iza.com', project: 'punicodex-helios' },
+  { domain: 'xn--sprt-6na61a.com', project: 'punicodex-sparte' },
+  { domain: 'xn--chos-6na.com', project: 'punicodex-chaos' },
+  { domain: 'xn--gaa-wma.com', project: 'punicodex-gaia' },
+  { domain: 'xn--dinysos-m0a.com', project: 'punicodex-dionysos' },
+  { domain: 'xn--seln-dvab.com', project: 'punicodex-selene' },
+  { domain: 'xn--dmtr-bvabb.com', project: 'punicodex-demeter' },
+  { domain: 'xn--aphrodt-dza75a.com', project: 'punicodex-aphrodite' },
 ];
 
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));
@@ -73,12 +73,12 @@ async function migrate() {
         continue;
       }
 
-      if (inspectOut.includes('punycodex-main')) {
+      if (inspectOut.includes('punicodex-main')) {
         // Check if bare domain is on main or just www
         const lines = inspectOut.split('\n');
         let onMain = false;
         for (const line of lines) {
-          if (line.includes('punycodex-main') && line.includes(domain)) {
+          if (line.includes('punicodex-main') && line.includes(domain)) {
             onMain = true;
             break;
           }

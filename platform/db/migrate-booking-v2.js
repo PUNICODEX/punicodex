@@ -1,7 +1,7 @@
 const Database = require('better-sqlite3');
 const path = require('node:path');
 
-const DB_PATH = path.join(__dirname, 'punycodex.db');
+const DB_PATH = path.join(__dirname, 'punicodex.db');
 const db = new Database(DB_PATH);
 
 // ─── Add site_slug to ad_slots (idempotent) ───

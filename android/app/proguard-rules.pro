@@ -1,4 +1,4 @@
-# PÚNYCODEX — Production ProGuard/R8 Rules
+# PuniCodex — Production ProGuard/R8 Rules
 
 # Keep Capacitor bridge and plugins
 -keep class com.getcapacitor.** { *; }
@@ -13,7 +13,7 @@
 -keep @com.getcapacitor.annotation.CapacitorPlugin class * { *; }
 
 # Keep our custom plugin
--keep class com.punycodex.keyboard.PunyKeyboardPlugin { *; }
+-keep class com.punicodex.keyboard.PunyKeyboardPlugin { *; }
 
 # Keep InputMethodService
 -keep class android.inputmethodservice.InputMethodService { *; }

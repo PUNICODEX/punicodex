@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Enterprise governance API routes.
+ * PUNICODEX — Enterprise governance API routes.
  *
  * Mounts under /api/v1/tenants/:tenantId/...
  * Also usable from the API v2 catch-all router via exported handlers.

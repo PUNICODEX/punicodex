@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Spelling Variants Batch
+ * PUNICODEX — Spelling Variants Batch
  * Same ASCII base, different Unicode = different punycode = different domain
  */
 

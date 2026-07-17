@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Admin portal page tests
+ * PuniCodex — Admin portal page tests
  * Verifies the unified enterprise admin portal frontend: canonical pages in
  * platform/public/admin-portal/ and their synced copies at admin-portal/
  * exist and are byte-identical, every page is noindex, the login screen
@@ -187,7 +187,7 @@ test('login page has the required form fields, ids, and error surfaces', () => {
   assert.strictEqual($('#login-setup').length, 1, 'expected #login-setup (503 setup message)');
 
   const src = readCanonical('login/index.html');
-  assert.ok(src.includes("TOKEN_KEY = 'punycodex_portal_token'"), 'expected portal token key');
+  assert.ok(src.includes("TOKEN_KEY = 'punicodex_portal_token'"), 'expected portal token key');
   assert.ok(src.includes('localStorage.setItem(TOKEN_KEY'), 'expected token storage on success');
   assert.ok(src.includes('requirePasswordChange'), 'expected forced password-change flow');
   assert.ok(src.includes('portal_unconfigured'), 'expected 503 portal_unconfigured handling');

@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Flagship Canvas Effects Library
+ * PUNICODEX — Flagship Canvas Effects Library
  * Shared ambient canvas effects for flagship temple pages.
  * Auto-initializes on DOMContentLoaded for every <canvas data-effect>.
  * Exposes window.FlagshipCanvas.effects for manual use.

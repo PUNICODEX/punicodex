@@ -1,4 +1,4 @@
-# PÚNYCODEX Scholarly Edition — 33-Phase Master Plan
+# PuniCodex Scholarly Edition — 33-Phase Master Plan
 
 > Structure-first. Content-blank. University-credited. Additive to existing temples.
 > Scope: 123 flagship temples. Audience: students, faculty, researchers, institutions.
@@ -34,8 +34,8 @@
 2.1. Draft the Scholarly Edition editorial mission statement.  
 2.2. Define university eligibility criteria (accreditation, department, advisor).  
 3.3. Define student editor roles: contributor, reviewer, department admin, institution admin.  
-2.4. Define PUNYCODEX curator role and veto/override powers.  
-2.5. Establish content license: student submission grants PUNYCODEX a CC BY-compatible perpetual license.  
+2.4. Define PUNICODEX curator role and veto/override powers.  
+2.5. Establish content license: student submission grants PUNICODEX a CC BY-compatible perpetual license.  
 2.6. Define attribution model: per-section credit, co-author lists, institutional badges.  
 2.7. Establish dispute resolution workflow for contested edits.  
 2.8. Define acceptable sources hierarchy (peer-reviewed > museum > primary text > tertiary).  
@@ -491,7 +491,7 @@
 
 ## Phase 23 — Admin Oversight Tools ✅
 
-**Objective:** Give PUNYCODEX curators full visibility and control.
+**Objective:** Give PUNICODEX curators full visibility and control.
 
 23.1. Build the curator admin dashboard.  
 23.2. List all temples, institutions, users, and pending edits.  
@@ -517,7 +517,7 @@
 
 24.1. Map lore-catalog sections to taxonomy keys.  
 24.2. Build `scripts/migrate-lore-to-scholars.js`.  
-24.3. Preserve original attribution to PUNYCODEX.  
+24.3. Preserve original attribution to PUNICODEX.  
 24.4. Convert existing prose into the section body format.  
 24.5. Convert existing sources into citation records.  
 24.6. Generate migration previews before applying.  
@@ -612,7 +612,7 @@
 28.7. Measure time-to-approval distributions.  
 28.8. Add A/B testing hooks for UI experiments.  
 28.9. Ensure analytics are privacy-respecting.  
-28.10. Integrate with existing PUNYCODEX analytics.  
+28.10. Integrate with existing PUNICODEX analytics.  
 28.11. Write analytics tests.  
 28.12. Document metrics definitions.  
 28.13. Set up automated weekly reports.
@@ -737,4 +737,4 @@
 - Phases 17 (citation engine/export formats), 18 (S3/WebP media pipeline), 19 (facets, autocomplete, feeds), and 20 (webhooks) are partially implemented — core flows exist; the remaining checklist items are tracked as future work.
 - Phases 30–33 depend on real university pilots and launch decisions; they remain open.
 - Each phase gates the next: no backend code until architecture is signed off; no launch until beta is successful.
-- The plan is additive to existing PUNYCODEX infrastructure and does not modify canonical sources except through the existing governance workflow.
+- The plan is additive to existing PUNICODEX infrastructure and does not modify canonical sources except through the existing governance workflow.

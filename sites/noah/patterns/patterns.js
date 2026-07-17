@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Patterns page engine
+ * PuniCodex — Patterns page engine
  *
  * Renders the per-temple industry donut from window.TEMPLE_PATTERNS:
  *   - arcs sized by affinity weight, colored by sector

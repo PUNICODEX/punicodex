@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Student Creative Marketplace watermark and upload pipeline
+ * PuniCodex — Student Creative Marketplace watermark and upload pipeline
  *
  * Handles validation, EXIF stripping, thumbnail/preview generation, and
  * diagonal watermarking for student creative uploads.
@@ -89,7 +89,7 @@ function applyDiagonalWatermark(canvas) {
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
 
-  const text = 'PÚNYCODEX STUDENT WORK — PREVIEW';
+  const text = 'PuniCodex STUDENT WORK — PREVIEW';
   const metrics = ctx.measureText(text);
   const textWidth = metrics.width;
   const lineHeight = fontSize * 1.4;

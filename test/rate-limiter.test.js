@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — API Rate Limiter Tests
+ * PuniCodex — API Rate Limiter Tests
  */
 
 const assert = require('node:assert');

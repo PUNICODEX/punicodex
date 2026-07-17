@@ -1,11 +1,11 @@
-# Native integration samples — PÚNYCODEX Authenticity Shield V2
+# Native integration samples — PuniCodex Authenticity Shield V2
 
 These pseudocode samples show how to call the Authenticity API from native app shells. They are intended as starting points for platform-specific integrations.
 
 ## Shared API contract
 
 ```http
-GET https://punycodex.com/api/v2/authenticity/check?input={input}&type={type}
+GET https://punicodex.com/api/v2/authenticity/check?input={input}&type={type}
 Authorization: Bearer {apiKey}
 ```
 
@@ -31,7 +31,7 @@ Response shape:
 ```swift
 class AuthenticityWebViewController: UIViewController, WKNavigationDelegate {
     var webView: WKWebView!
-    let apiBase = "https://punycodex.com/api/v2"
+    let apiBase = "https://punicodex.com/api/v2"
     let apiKey = "..."
 
     func webView(
@@ -51,7 +51,7 @@ class AuthenticityWebViewController: UIViewController, WKNavigationDelegate {
             }
 
             if verdict.severity == "critical" {
-                let interstitial = URL(string: "https://punycodex.com/interstitial.html")!
+                let interstitial = URL(string: "https://punicodex.com/interstitial.html")!
                     .appending(queryItems: [
                         URLQueryItem(name: "url", value: url.absoluteString),
                         URLQueryItem(name: "verdict", value: verdict.verdict),
@@ -86,12 +86,12 @@ class AuthenticityWebViewController: UIViewController, WKNavigationDelegate {
 
 ```kotlin
 class AuthenticityTabsHelper(private val activity: Activity) {
-    private val apiBase = "https://punycodex.com/api/v2"
+    private val apiBase = "https://punicodex.com/api/v2"
 
     suspend fun launchIfSafe(url: String) {
         val verdict = checkAuthenticity(url)
         if (verdict.severity == "critical" || verdict.severity == "high") {
-            val interstitial = Uri.parse("https://punycodex.com/interstitial.html").buildUpon()
+            val interstitial = Uri.parse("https://punicodex.com/interstitial.html").buildUpon()
                 .appendQueryParameter("url", url)
                 .appendQueryParameter("verdict", verdict.verdict)
                 .appendQueryParameter("severity", verdict.severity)
@@ -120,7 +120,7 @@ For per-app or system-wide filtering, implement an `NEPacketTunnelProvider` or `
 
 ```swift
 class AuthenticityFilterProvider: NEFilterDataProvider {
-    let apiBase = "https://punycodex.com/api/v2"
+    let apiBase = "https://punicodex.com/api/v2"
 
     override func handleNewFlow(_ flow: NEFilterFlow) -> NEFilterNewFlowVerdict {
         guard let hostname = flow.url?.host else { return .allow() }
@@ -150,7 +150,7 @@ class AuthenticityFilterProvider: NEFilterDataProvider {
 public partial class AuthenticityWebWindow : Window
 {
     private readonly WebView2 _webView = new();
-    private const string ApiBase = "https://punycodex.com/api/v2";
+    private const string ApiBase = "https://punicodex.com/api/v2";
 
     public AuthenticityWebWindow()
     {
@@ -163,7 +163,7 @@ public partial class AuthenticityWebWindow : Window
                 if (verdict.Severity is "critical" or "high")
                 {
                     args.Cancel = true;
-                    var interstitial = $"https://punycodex.com/interstitial.html?" +
+                    var interstitial = $"https://punicodex.com/interstitial.html?" +
                         $"url={Uri.EscapeDataString(args.Uri)}" +
                         $"&verdict={Uri.EscapeDataString(verdict.Verdict)}" +
                         $"&severity={Uri.EscapeDataString(verdict.Severity)}" +
@@ -189,6 +189,6 @@ public partial class AuthenticityWebWindow : Window
 ## Notes
 
 - Cache verdicts for at least 5 minutes per URL to reduce API load and improve responsiveness.
-- For offline operation, embed the `@punycodex/authenticity-sdk` offline classifier in the app’s JavaScript bridge or port the pure-JS logic to the native language.
+- For offline operation, embed the `@punicodex/authenticity-sdk` offline classifier in the app’s JavaScript bridge or port the pure-JS logic to the native language.
 - Always show the user the original target URL and the reason for the block.
 - Provide a clear “Proceed at your own risk” path unless enterprise policy forbids it.

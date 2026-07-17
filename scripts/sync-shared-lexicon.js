@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Sync canonical lexicon to shared copies
+ * PUNICODEX — Sync canonical lexicon to shared copies
  *
  * type/js/lexicon.js is the single source of truth.
  * This script generates:

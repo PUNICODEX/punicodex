@@ -1,6 +1,6 @@
-# PUNYCODEX Platform
+# PUNICODEX Platform
 
-The search engine and crawler backend for PUNYCODEX.
+The search engine and crawler backend for PUNICODEX.
 
 ## Quick Start
 
@@ -19,7 +19,7 @@ Server runs on `http://localhost:3456`.
 
 ## Database
 
-SQLite at `db/punycodex.db`.
+SQLite at `db/punicodex.db`.
 
 | Table | Purpose |
 |-------|---------|

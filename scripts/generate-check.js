@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Local divergence gate
+ * PuniCodex — Local divergence gate
  *
  * Mirrors the CI check that runs after `npm run generate`: it regenerates all
  * derived artifacts and fails if any tracked file is still dirty. Run this

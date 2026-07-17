@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Cron single-flight lock tests
+ * PuniCodex — Cron single-flight lock tests
  */
 
 const assert = require('node:assert');

@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Brand Identity Import Script
+ * PuniCodex — Brand Identity Import Script
  *
  * Reads platform/db/seeds/brand-identities.json and upserts every brand/trademark
  * identity into the canonical identity kernel via registerIdentity().

@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- PUNYCODEX-ANALYTICS-START -->
+<!-- PUNICODEX-ANALYTICS-START -->
 <script src="/js/analytics-beacon.js" defer></script>
-<!-- PUNYCODEX-ANALYTICS-END -->
+<!-- PUNICODEX-ANALYTICS-END -->
 
-<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
 <link rel="stylesheet" href="/css/university-collaborators.css?v=2">
 <script src="/js/university-collaborators.js?v=2" defer></script>
-<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PUNYCODEX — Entry</title>
+  <title>PUNICODEX — Entry</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -442,7 +442,7 @@
 </head>
 <body>
   <header>
-    <a href="search.html" class="logo">PÚNYCODEX</a>
+    <a href="search.html" class="logo">PuniCodex</a>
     <nav class="top-nav">
       <a href="search.html">Search</a>
       <a href="/lexicon/index.html">Lexicon</a>
@@ -648,7 +648,7 @@
       html += renderAvailability(entry.availability, entry);
 
       document.getElementById('main').innerHTML = html;
-      document.title = `${entry.unicode} — PÚNYCODEX`;
+      document.title = `${entry.unicode} — PuniCodex`;
     }
 
     function renderSiteCard(site) {
@@ -700,7 +700,7 @@
               </div>
             ` : entry.sites && entry.sites.length > 0 ? `
               <div class="available-badge" style="background:rgba(96,165,250,0.08);color:var(--live)">Currently Leased / Reserved</div>
-              <div class="section-text">This name is part of the PÚNYCODEX collection. Check the <strong>Sites</strong> tab for the live destination, or search for related names.</div>
+              <div class="section-text">This name is part of the PuniCodex collection. Check the <strong>Sites</strong> tab for the live destination, or search for related names.</div>
             ` : `
               <div class="available-badge" style="background:rgba(212,175,55,0.08);color:var(--accent)">Availability Not Tracked</div>
               <div class="site-domain">${escapeHtml(puny || unicode)} <span style="color:var(--text-dim)">(${escapeHtml(unicode)})</span></div>
@@ -726,8 +726,8 @@
     loadEntry();
   </script>
 
-<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
 <div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
-<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
 </body>
 </html>

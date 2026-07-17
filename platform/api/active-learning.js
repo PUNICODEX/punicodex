@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Active Learning Queue (Phase 14)
+ * PuniCodex — Active Learning Queue (Phase 14)
  *
  * Samples uncertain predictions for human review, prioritizes under-represented
  * scripts and new attack patterns, and records reviewer feedback as training

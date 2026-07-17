@@ -1,11 +1,11 @@
 /**
- * Upgrade existing punycodex.db to add indexed_sites FTS5 support + rich metadata columns.
+ * Upgrade existing punicodex.db to add indexed_sites FTS5 support + rich metadata columns.
  * Safe to run multiple times (idempotent).
  */
 const Database = require('better-sqlite3');
 const path = require('node:path');
 
-const DB_PATH = path.join(__dirname, 'punycodex.db');
+const DB_PATH = path.join(__dirname, 'punicodex.db');
 const db = new Database(DB_PATH);
 
 console.log('Upgrading database at', DB_PATH);

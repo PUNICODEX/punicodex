@@ -1,7 +1,7 @@
 const { chromium } = require('playwright-core');
 const fs = require('fs');
 const path = require('path');
-const BASE = process.env.BASE || 'https://punycodex-main-5xkio15ko-hekaverse.vercel.app';
+const BASE = process.env.BASE || 'https://punicodex-main-5xkio15ko-hekaverse.vercel.app';
 const effects = JSON.parse(fs.readFileSync(path.join(__dirname, '../templates/flagship/effects/effects.json'), 'utf8'));
 
 (async () => {

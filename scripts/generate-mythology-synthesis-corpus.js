@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Mythology Synthesis Corpus Generator
+ * PuniCodex — Mythology Synthesis Corpus Generator
  *
  * Builds a training corpus that teaches the AI to think comparatively,
  * esoterically, and synthetically about mythological figures across

@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Pronunciation Atlas
+ * PuniCodex — Pronunciation Atlas
  *
  * Canonical pronunciation data for every lexicon entry, including IPA,
  * phoneme breakdowns, approximations, and confidence levels.
@@ -1413,7 +1413,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "This entry is the Egyptian goddess ꜣst (Aset/Iset), not the later Greek name Isis. Hieroglyphs record only ꜣ-s-t; the vowel evolution is reconstructed as Rūsat > Rūsaʾ > ʾŪsaʾ > ʾĒsə, whence Coptic ⲎⲤⲈ and Greek Ἶσις. The ꜣ is a glottal stop, and the final -t is a feminine marker often silent in speech. PUNYCODEX uses the registrable alef ꜣ (U+A723) to signal the historic consonant; this is a Tier 2 restoration. Sources: Allen, Middle Egyptian (2014); Faulkner, A Concise Dictionary of Middle Egyptian, s.v. ꜣst; Wörterbuch der ägyptischen Sprache I, s.v. ꜣst; Hoch, Semitic Words in Egyptian Texts (1994), on the representation of Egyptian alef in Semitic transcriptions."
+    "note": "This entry is the Egyptian goddess ꜣst (Aset/Iset), not the later Greek name Isis. Hieroglyphs record only ꜣ-s-t; the vowel evolution is reconstructed as Rūsat > Rūsaʾ > ʾŪsaʾ > ʾĒsə, whence Coptic ⲎⲤⲈ and Greek Ἶσις. The ꜣ is a glottal stop, and the final -t is a feminine marker often silent in speech. PUNICODEX uses the registrable alef ꜣ (U+A723) to signal the historic consonant; this is a Tier 2 restoration. Sources: Allen, Middle Egyptian (2014); Faulkner, A Concise Dictionary of Middle Egyptian, s.v. ꜣst; Wörterbuch der ägyptischen Sprache I, s.v. ꜣst; Hoch, Semitic Words in Egyptian Texts (1994), on the representation of Egyptian alef in Semitic transcriptions."
   },
   "thoth": {
     "ipa": "/dhwty/",
@@ -1478,7 +1478,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "The name is the feminine form of the root sḫm, 'to be powerful'. Hieroglyphs record S-ḫ-m-t; the vowels are reconstructed from Coptic Ⲥⲁⲭⲙⲓ and from Egyptian feminine-participle patterns. The ḫ is a voiceless velar fricative, not English 'k'. In PUNYCODEX the Sḫmt spelling preserves the historic ḫ (U+1E2B) as a Tier 2 restoration; the ASCII fallback is 'sekhm(t)'. Sources: Allen, Middle Egyptian (2014); Faulkner, A Concise Dictionary of Middle Egyptian, s.v. sḫm; Wörterbuch der ägyptischen Sprache IV, s.v. sḫm; Hoch, Semitic Words in Egyptian Texts (1994), on Egyptian ḫ in Semitic orthography."
+    "note": "The name is the feminine form of the root sḫm, 'to be powerful'. Hieroglyphs record S-ḫ-m-t; the vowels are reconstructed from Coptic Ⲥⲁⲭⲙⲓ and from Egyptian feminine-participle patterns. The ḫ is a voiceless velar fricative, not English 'k'. In PUNICODEX the Sḫmt spelling preserves the historic ḫ (U+1E2B) as a Tier 2 restoration; the ASCII fallback is 'sekhm(t)'. Sources: Allen, Middle Egyptian (2014); Faulkner, A Concise Dictionary of Middle Egyptian, s.v. sḫm; Wörterbuch der ägyptischen Sprache IV, s.v. sḫm; Hoch, Semitic Words in Egyptian Texts (1994), on Egyptian ḫ in Semitic orthography."
   },
   "bastet": {
     "ipa": "/buˈʔistit/",
@@ -1513,7 +1513,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Allen (The Ancient Egyptian Language: A Historical Study, 2013, p. 74) reconstructs the earliest form as buʔístit or buʔístiat; by the first millennium the name had become *Ubaste and then Coptic ⲟⲩⲃⲁⲥⲧⲉ (Oubaste) /ʔuˈβastə/. The meaning of the name remains uncertain; the lexicon glosses it 'She of the ointment jar'. The final -t is a feminine marker often silent in speech, and the ꜣ represents a glottal stop. PUNYCODEX uses the registrable alef ꜣ (U+A723); the double -tt- is orthographic. This is a Tier 2 restoration. Sources: Allen 2013, p. 74; Faulkner, A Concise Dictionary of Middle Egyptian, s.v. bꜣstt; Wörterbuch der ägyptischen Sprache III, s.v. bꜣstt; Hoch, Semitic Words in Egyptian Texts (1994), for the phonological background of Egyptian alef and feminine -t."
+    "note": "Allen (The Ancient Egyptian Language: A Historical Study, 2013, p. 74) reconstructs the earliest form as buʔístit or buʔístiat; by the first millennium the name had become *Ubaste and then Coptic ⲟⲩⲃⲁⲥⲧⲉ (Oubaste) /ʔuˈβastə/. The meaning of the name remains uncertain; the lexicon glosses it 'She of the ointment jar'. The final -t is a feminine marker often silent in speech, and the ꜣ represents a glottal stop. PUNICODEX uses the registrable alef ꜣ (U+A723); the double -tt- is orthographic. This is a Tier 2 restoration. Sources: Allen 2013, p. 74; Faulkner, A Concise Dictionary of Middle Egyptian, s.v. bꜣstt; Wörterbuch der ägyptischen Sprache III, s.v. bꜣstt; Hoch, Semitic Words in Egyptian Texts (1994), for the phonological background of Egyptian alef and feminine -t."
   },
   "hathor": {
     "ipa": "/hwthr/",
@@ -1871,7 +1871,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "The god's name is identical with the city and land of Assyria; from the Middle Assyrian period it is usually spelled Aš-šur. The doubled š indicates a geminate consonant, and the final vowel is commonly reconstructed long in Neo-Assyrian (Aššūr). Older or dialectal forms may have a short /u/. The PUNYCODEX form Aššur marks the geminate sibilant without committing to vowel length. Sources: Chicago Assyrian Dictionary (CAD), George House Most High, Black & Green Gods, Demons and Symbols of Ancient Mesopotamia."
+    "note": "The god's name is identical with the city and land of Assyria; from the Middle Assyrian period it is usually spelled Aš-šur. The doubled š indicates a geminate consonant, and the final vowel is commonly reconstructed long in Neo-Assyrian (Aššūr). Older or dialectal forms may have a short /u/. The PUNICODEX form Aššur marks the geminate sibilant without committing to vowel length. Sources: Chicago Assyrian Dictionary (CAD), George House Most High, Black & Green Gods, Demons and Symbols of Ancient Mesopotamia."
   },
   "shamash": {
     "ipa": "/ˈʃa.maʃ/",
@@ -1890,7 +1890,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Akkadian Šamaš continues the common Semitic root *šamš- 'sun.' The cuneiform writing 𒀭𒌓 joins the divine determinative (dingir) to the sun-sign, and syllabic spellings give ša-am-šu-um. The PUNYCODEX form preserves the Akkadian sibilant š and the two short a-vowels. Tier 2: the caron on š marks a distinctive Akkadian phoneme, but the name has no Greek-style stress or reliably contrastive long vowel in the standard scholarly form. Sources: Chicago Assyrian Dictionary (CAD), George House Most High, Black & Green Gods, Demons and Symbols of Ancient Mesopotamia."
+    "note": "Akkadian Šamaš continues the common Semitic root *šamš- 'sun.' The cuneiform writing 𒀭𒌓 joins the divine determinative (dingir) to the sun-sign, and syllabic spellings give ša-am-šu-um. The PUNICODEX form preserves the Akkadian sibilant š and the two short a-vowels. Tier 2: the caron on š marks a distinctive Akkadian phoneme, but the name has no Greek-style stress or reliably contrastive long vowel in the standard scholarly form. Sources: Chicago Assyrian Dictionary (CAD), George House Most High, Black & Green Gods, Demons and Symbols of Ancient Mesopotamia."
   },
   "marduk": {
     "ipa": "/marduk/",
@@ -1919,7 +1919,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Enlīl is Tier 2 in the PUNYCODEX system because the Sumerian conventional transcription records length (the long /iː/ in líl) but not a Greek-style stress accent. The macron on the second i preserves the scholarly reading of the name as containing a long vowel, a single distinctive prosodic feature that distinguishes the cosmic wind from the ordinary word for 'wind.'"
+    "note": "Enlīl is Tier 2 in the PUNICODEX system because the Sumerian conventional transcription records length (the long /iː/ in líl) but not a Greek-style stress accent. The macron on the second i preserves the scholarly reading of the name as containing a long vowel, a single distinctive prosodic feature that distinguishes the cosmic wind from the ordinary word for 'wind.'"
   },
   "ea": {
     "ipa": "/ˈen.ki/",
@@ -2206,7 +2206,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Classical Nahuatl had no /u/; qu before e/i is /k/ and cu is /kw/. The long vowels ō and ā are preserved in the PUNYCODEX restoration, and the final -tl is a lateral affricate [t͡ɬ], not English 'tuhl.' The [w] glide between ō and ā is common in natural speech but optional. Tier 1: the two macrons preserve reconstructed vowel length. Sources: Andrews Introduction to Classical Nahuatl, Karttunen An Analytical Dictionary of Nahuatl, Wiktionary Nahuatl."
+    "note": "Classical Nahuatl had no /u/; qu before e/i is /k/ and cu is /kw/. The long vowels ō and ā are preserved in the PUNICODEX restoration, and the final -tl is a lateral affricate [t͡ɬ], not English 'tuhl.' The [w] glide between ō and ā is common in natural speech but optional. Tier 1: the two macrons preserve reconstructed vowel length. Sources: Andrews Introduction to Classical Nahuatl, Karttunen An Analytical Dictionary of Nahuatl, Wiktionary Nahuatl."
   },
   "tezcatlipoca": {
     "ipa": "/tezkatlipˈoːka/",
@@ -7464,7 +7464,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "The name Wꜣḏyt derives from the Egyptian word for 'green/blue' (wꜣḏ), recorded in Wörterbuch der ägyptischen Sprache I, 263–268. Hieroglyphs write only the consonants w-ꜣ-ḏ-y-t; the vowels are uncertain. The ꜣ functions as a vowel carrier or glottal onset, and the ḏ (palatal/ejective in earlier Egyptian, later merging toward /t/) is represented in PUNYCODEX by the registrable d-with-line-below (U+1E0F). Because DNS registries vary in their acceptance of combining marks, the practical fallback is 'wadjet'. This is a Tier 2 restoration. Sources: Allen, Middle Egyptian (2014); Faulkner, A Concise Dictionary of Middle Egyptian, s.v. wꜣḏ; Wörterbuch der ägyptischen Sprache I, s.v. wꜣḏ; Hoch, Semitic Words in Egyptian Texts (1994), on Egyptian ḏ in Semitic transcriptions."
+    "note": "The name Wꜣḏyt derives from the Egyptian word for 'green/blue' (wꜣḏ), recorded in Wörterbuch der ägyptischen Sprache I, 263–268. Hieroglyphs write only the consonants w-ꜣ-ḏ-y-t; the vowels are uncertain. The ꜣ functions as a vowel carrier or glottal onset, and the ḏ (palatal/ejective in earlier Egyptian, later merging toward /t/) is represented in PUNICODEX by the registrable d-with-line-below (U+1E0F). Because DNS registries vary in their acceptance of combining marks, the practical fallback is 'wadjet'. This is a Tier 2 restoration. Sources: Allen, Middle Egyptian (2014); Faulkner, A Concise Dictionary of Middle Egyptian, s.v. wꜣḏ; Wörterbuch der ägyptischen Sprache I, s.v. wꜣḏ; Hoch, Semitic Words in Egyptian Texts (1994), on Egyptian ḏ in Semitic transcriptions."
   },
   "nekhbet": {
     "ipa": "/nhbt/",
@@ -8478,7 +8478,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Reconstruction follows the Phoenician/Ugaritic nominative form ʾAšeratu. The initial consonant is a glottal stop (aleph), not a pharyngeal, so the PUNYCODEX form uses plain A rather than Egyptological Ain. The medial š marks the Canaanite/Phoenician reflex of Proto-Semitic *ṯ, while Ugaritic retains the older ṯ (probably [θ]); the final -u is the case vowel, dropped in Hebrew Asherah. Tier 2: the caron on š preserves a distinctive Semitic phoneme, but there is no long-vowel or Greek-style stress feature. Sources: KTU, CIS/KAI, Smith The Ugaritic Baal Cycle, Day Yahweh and the Gods and Goddesses of Canaan."
+    "note": "Reconstruction follows the Phoenician/Ugaritic nominative form ʾAšeratu. The initial consonant is a glottal stop (aleph), not a pharyngeal, so the PUNICODEX form uses plain A rather than Egyptological Ain. The medial š marks the Canaanite/Phoenician reflex of Proto-Semitic *ṯ, while Ugaritic retains the older ṯ (probably [θ]); the final -u is the case vowel, dropped in Hebrew Asherah. Tier 2: the caron on š preserves a distinctive Semitic phoneme, but there is no long-vowel or Greek-style stress feature. Sources: KTU, CIS/KAI, Smith The Ugaritic Baal Cycle, Day Yahweh and the Gods and Goddesses of Canaan."
   },
   "mot": {
     "ipa": "/moːt/",
@@ -8501,7 +8501,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "The name is the Canaanite word for 'death.' The macron on the registrable Mōt signals vowel length, not a fixed quality: Phoenician has mūt, Hebrew māwet, and Ugaritic mt gives no vowels. We follow the PUNYCODEX macron convention with /moːt/; hear a long low/back vowel rather than the short English 'o.' Tier 1: the macron preserves a reconstructed long vowel. Sources: KTU, CIS/KAI, Smith The Ugaritic Baal Cycle, Day Yahweh and the Gods and Goddesses of Canaan."
+    "note": "The name is the Canaanite word for 'death.' The macron on the registrable Mōt signals vowel length, not a fixed quality: Phoenician has mūt, Hebrew māwet, and Ugaritic mt gives no vowels. We follow the PUNICODEX macron convention with /moːt/; hear a long low/back vowel rather than the short English 'o.' Tier 1: the macron preserves a reconstructed long vowel. Sources: KTU, CIS/KAI, Smith The Ugaritic Baal Cycle, Day Yahweh and the Gods and Goddesses of Canaan."
   },
   "yammu": {
     "ipa": "/yammu/",
@@ -9576,7 +9576,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Egyptian is written without vowels. The transliteration Bꜣ uses Gardiner's ꜣ (reversed glottal stop / alef) for the final guttural. The dot under ḥ in other entries marks a voiceless pharyngeal fricative; here the ꜣ marks a voiced counterpart or a glottal catch. The ba is Tier 2 in the PUNYCODEX system because the restoration preserves one primary prosodic feature — the long vowel conventionally marked by the macron-less but historically long final syllable."
+    "note": "Egyptian is written without vowels. The transliteration Bꜣ uses Gardiner's ꜣ (reversed glottal stop / alef) for the final guttural. The dot under ḥ in other entries marks a voiceless pharyngeal fricative; here the ꜣ marks a voiced counterpart or a glottal catch. The ba is Tier 2 in the PUNICODEX system because the restoration preserves one primary prosodic feature — the long vowel conventionally marked by the macron-less but historically long final syllable."
   },
   "ka": {
     "ipa": "/kaːʔ/",
@@ -9828,7 +9828,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Hieroglyphic writing records only the consonants Ꜥ-n-ḫ; the vowels are reconstructed from Coptic ⲱⲛϩ and from comparative Semitic evidence. The Ꜥ is a voiced pharyngeal fricative and the ḫ is a voiceless velar fricative, neither of which English possesses. In the PUNYCODEX system the Egyptological Ain ꜥ (U+A724) serves as the only registrable DNS stand-in for the pharyngeal; this is a Tier 2 restoration that preserves a distinctive consonant but cannot encode vowel length or stress. Sources: Allen, Middle Egyptian (2014), pp. 18–19, 30; Faulkner, A Concise Dictionary of Middle Egyptian, s.v. ꜥnḫ; Wörterbuch der ägyptischen Sprache I, 170–171; Hoch, Semitic Words in Egyptian Texts (1994), on Egyptian–Semitic velar and pharyngeal correspondences."
+    "note": "Hieroglyphic writing records only the consonants Ꜥ-n-ḫ; the vowels are reconstructed from Coptic ⲱⲛϩ and from comparative Semitic evidence. The Ꜥ is a voiced pharyngeal fricative and the ḫ is a voiceless velar fricative, neither of which English possesses. In the PUNICODEX system the Egyptological Ain ꜥ (U+A724) serves as the only registrable DNS stand-in for the pharyngeal; this is a Tier 2 restoration that preserves a distinctive consonant but cannot encode vowel length or stress. Sources: Allen, Middle Egyptian (2014), pp. 18–19, 30; Faulkner, A Concise Dictionary of Middle Egyptian, s.v. ꜥnḫ; Wörterbuch der ägyptischen Sprache I, 170–171; Hoch, Semitic Words in Egyptian Texts (1994), on Egyptian–Semitic velar and pharyngeal correspondences."
   },
   "nht": {
     "ipa": "/ˈnaxt/",
@@ -9855,7 +9855,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "The Egyptian root nḫt means 'strong, mighty, victorious'. Hieroglyphs record only N-ḫ-t; the vowel is reconstructed from Coptic ⲛⲟϭ and from the pattern of Egyptian triliteral nouns. The ḫ is a voiceless velar fricative. In PUNYCODEX the Nḫt spelling uses the registrable h-breve (U+1E2B) as a Tier 2 restoration; the ASCII fallback is 'nakht'. Sources: Allen, Middle Egyptian (2014); Faulkner, A Concise Dictionary of Middle Egyptian, s.v. nḫt; Wörterbuch der ägyptischen Sprache II, s.v. nḫt; Hoch, Semitic Words in Egyptian Texts (1994), on Egyptian ḫ in Semitic orthography."
+    "note": "The Egyptian root nḫt means 'strong, mighty, victorious'. Hieroglyphs record only N-ḫ-t; the vowel is reconstructed from Coptic ⲛⲟϭ and from the pattern of Egyptian triliteral nouns. The ḫ is a voiceless velar fricative. In PUNICODEX the Nḫt spelling uses the registrable h-breve (U+1E2B) as a Tier 2 restoration; the ASCII fallback is 'nakht'. Sources: Allen, Middle Egyptian (2014); Faulkner, A Concise Dictionary of Middle Egyptian, s.v. nḫt; Wörterbuch der ägyptischen Sprache II, s.v. nḫt; Hoch, Semitic Words in Egyptian Texts (1994), on Egyptian ḫ in Semitic orthography."
   },
   "moses": {
     "ipa": "/moːˈʃɛh/",
@@ -9958,7 +9958,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "BHS points the name קַיִן (Genesis 4:1). The first vowel is a short patah [a] in the Masoretic pointing, although the qāṭīl-pattern form historically had a long *ā (reflected in the PUNYCODEX macron convention Qāyīn); the second vowel is a long hireq-yod [iː]. The qof is a uvular [q], distinct from kaf. HALOT s.v. קַיִן; TDOT s.v. Cain."
+    "note": "BHS points the name קַיִן (Genesis 4:1). The first vowel is a short patah [a] in the Masoretic pointing, although the qāṭīl-pattern form historically had a long *ā (reflected in the PUNICODEX macron convention Qāyīn); the second vowel is a long hireq-yod [iː]. The qof is a uvular [q], distinct from kaf. HALOT s.v. קַיִן; TDOT s.v. Cain."
   },
   "abel": {
     "ipa": "/ˈhɛvɛl/",
@@ -9977,7 +9977,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "BHS points the name הֶבֶל (Genesis 4:2). The Tiberian/Masoretic pronunciation is Hevel [ˈhɛvɛl], with two short segol vowels and a fricative bet (vet). The PUNYCODEX display form Hāḇel follows the Greek/Latin conventional spelling (Ἅβελ / Abel) rather than the Masoretic vocalization; the macron on ā is not supported by the Tiberian pointing. HALOT s.v. הֶבֶל; TDOT s.v. Abel."
+    "note": "BHS points the name הֶבֶל (Genesis 4:2). The Tiberian/Masoretic pronunciation is Hevel [ˈhɛvɛl], with two short segol vowels and a fricative bet (vet). The PUNICODEX display form Hāḇel follows the Greek/Latin conventional spelling (Ἅβελ / Abel) rather than the Masoretic vocalization; the macron on ā is not supported by the Tiberian pointing. HALOT s.v. הֶבֶל; TDOT s.v. Abel."
   },
   "long": {
     "ipa": "/lʊŋ˧˥/",

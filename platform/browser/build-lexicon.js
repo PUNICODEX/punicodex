@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Lexicon Exporter
+ * PUNICODEX — Lexicon Exporter
  * Exports the sacred Canon from SQLite to a portable JSON relic.
  * Run: node build-lexicon.js
  */
@@ -11,7 +11,7 @@ const path = require('node:path');
 const rootNodeModules = path.join(__dirname, '..', '..', 'node_modules');
 const Database = require(path.join(rootNodeModules, 'better-sqlite3'));
 
-const DB_PATH = path.join(__dirname, '..', 'db', 'punycodex.db');
+const DB_PATH = path.join(__dirname, '..', 'db', 'punicodex.db');
 const OUTPUT_PATH = path.join(__dirname, 'renderer', 'lexicon.json');
 
 function parseSources(sources) {

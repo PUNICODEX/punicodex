@@ -1,8 +1,8 @@
 /**
- * PUNYCODEX — Fix stale canonical/OG URLs on flagship home pages
+ * PUNICODEX — Fix stale canonical/OG URLs on flagship home pages
  *
  * Many flagships were generated with canonical URLs like
- * https://punycodex.com/{id}/ instead of https://punycodex.com/sites/{id}/
+ * https://punicodex.com/{id}/ instead of https://punicodex.com/sites/{id}/
  * This script updates those self-references in all built flagships.
  */
 
@@ -35,8 +35,8 @@ for (const id of builtIds) {
   }
 
   let content = fs.readFileSync(filePath, 'utf8');
-  const oldUrl = `https://punycodex.com/${id}/`;
-  const newUrl = `https://punycodex.com/sites/${id}/`;
+  const oldUrl = `https://punicodex.com/${id}/`;
+  const newUrl = `https://punicodex.com/sites/${id}/`;
 
   if (!content.includes(oldUrl)) {
     unchanged++;

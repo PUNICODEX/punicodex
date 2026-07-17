@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Remove Duplicate Variant Entries
+ * PUNICODEX — Remove Duplicate Variant Entries
  * Merges v1/v2/v3 entries into parent variants, removes duplicates.
  *
  * Usage: node scripts/migrate-remove-variants.js
@@ -151,7 +151,7 @@ function main() {
     }
 
     // ─── Write lexicon file ───
-    const header = `/*\n * PUNYCODEX Lexicon\n * ${newLexicon.length} validated entries across multiple pantheons\n */\n\nconst LEXICON = [`;
+    const header = `/*\n * PUNICODEX Lexicon\n * ${newLexicon.length} validated entries across multiple pantheons\n */\n\nconst LEXICON = [`;
     const entries = newLexicon.map(e => '  ' + formatEntry(e, 2)).join(',\n');
     const footer = `];\n\n// Node.js export for build scripts\nif (typeof module !== 'undefined' && module.exports) {\n    module.exports = { LEXICON };\n}`;
     const lexiconPath = path.join(rootDir, 'type', 'js', 'lexicon.js');

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Synthetic Instruction-Tuning Data Generator
+ * PuniCodex — Synthetic Instruction-Tuning Data Generator
  *
  * Reads data/corpus/entries.jsonl and emits high-quality, fully-grounded
  * question/answer pairs for every entry. Every answer is derived directly
@@ -160,8 +160,8 @@ const TEMPLATES = {
       instruction: `Is the domain "${domain}" a safe canonical domain for "${e.unicode}"?`,
       input: domain,
       output: isSafe
-        ? `Yes, ${domain} is a canonical or owned domain for ${e.unicode} (${e.ascii}). It is listed in the PÚNYCODEX collection.`
-        : `${domain} resolves to the Unicode form ${e.unicode}, but always verify the registrant. It is not flagged as a spoof in the PÚNYCODEX corpus.`,
+        ? `Yes, ${domain} is a canonical or owned domain for ${e.unicode} (${e.ascii}). It is listed in the PuniCodex collection.`
+        : `${domain} resolves to the Unicode form ${e.unicode}, but always verify the registrant. It is not flagged as a spoof in the PuniCodex corpus.`,
     };
   },
 };

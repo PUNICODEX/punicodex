@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX API v1 — API key management (admin only)
+ * PuniCodex API v1 — API key management (admin only)
  */
 
 const crypto = require('node:crypto');
@@ -37,7 +37,7 @@ function validateTier(tier) {
 }
 
 function generateKey() {
-  return `pk_punycodex_${crypto.randomBytes(24).toString('hex')}`;
+  return `pk_punicodex_${crypto.randomBytes(24).toString('hex')}`;
 }
 
 function serializeScopes(scopes) {

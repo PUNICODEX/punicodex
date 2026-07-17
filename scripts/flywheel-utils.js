@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Flywheel editing utilities
+ * PuniCodex — Flywheel editing utilities
  *
  * Shared helpers for safe-edit scripts that mutate canonical sources.
  */

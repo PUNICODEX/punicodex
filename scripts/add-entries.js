@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Lexicon Entry Addition Helper
+ * PUNICODEX — Lexicon Entry Addition Helper
  * Validates and appends new entries to the lexicon.
  * Usage: node scripts/add-entries.js
  */

@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — False Positive Budget Test
+ * PuniCodex — False Positive Budget Test
  *
  * Runs a small legitimate input set through the Authenticity Shield and asserts
  * that the false-positive rate is within the SLA budget (≤ 0.001%).
@@ -142,7 +142,7 @@ test('FPR budget holds when sample is repeated', () => {
 });
 
 test('full legitimate benchmark FPR is within 0.001% budget', () => {
-  const sampleSize = parseInt(process.env.PUNYCODEX_FPR_SAMPLE_SIZE || '20000', 10);
+  const sampleSize = parseInt(process.env.PUNICODEX_FPR_SAMPLE_SIZE || '20000', 10);
   const rows = buildLegitimateSet(sampleSize).map((row) => ({ input: row.input, type: row.type }));
   assert.ok(
     rows.length >= sampleSize,

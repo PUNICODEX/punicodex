@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Build Android keyboard assets from the mobile lexicon/directory.
+ * PUNICODEX — Build Android keyboard assets from the mobile lexicon/directory.
  *
  * Source of truth: mobile/shared/lexicon.js, mobile/shared/unicode-dir.js
  * Generated outputs: android/app/src/main/assets/shared/lexicon.json

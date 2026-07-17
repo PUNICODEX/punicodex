@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Verdict Mapper Tests
+ * PuniCodex — Verdict Mapper Tests
  */
 
 const assert = require('node:assert');

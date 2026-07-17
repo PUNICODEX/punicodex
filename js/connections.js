@@ -436,7 +436,7 @@
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = 'punycodex-similarities.json';
+      a.download = 'punicodex-similarities.json';
       document.body.appendChild(a);
       a.click();
       a.remove();

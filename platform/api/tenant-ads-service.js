@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Tenant Search Advertising Service
+ * PUNICODEX — Tenant Search Advertising Service
  *
  * Manages advertiser tenants who want their ASCII domains and offerings to
  * appear in search results and on temple pages for specific lexicon entries.

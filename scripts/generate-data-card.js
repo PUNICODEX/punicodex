@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Data Card & Training Manifest Generator (Phase 9)
+ * PuniCodex — Data Card & Training Manifest Generator (Phase 9)
  *
  * Produces a human-readable DATA_CARD.md summarizing every corpus file,
  * intended use, schema, and provenance. This is the final artifact of the
@@ -75,7 +75,7 @@ function main() {
     return `| ${f.name} | ${countLines(p).toLocaleString()} | ${fileSize(p)} | ${f.desc} |`;
   });
 
-  const md = `# PÚNYCODEX AI Training Corpus — Data Card
+  const md = `# PuniCodex AI Training Corpus — Data Card
 
 **Data version:** ${version}  
 **Generated:** ${generatedAt}  
@@ -83,7 +83,7 @@ function main() {
 
 ## Purpose
 
-This corpus is the foundational training and evaluation data for a specialized AI that understands mythological names, Unicode restorations, original scripts, pronunciation, etymology, punycode, and homograph safety. Every example is grounded in the PÚNYCODEX canonical sources.
+This corpus is the foundational training and evaluation data for a specialized AI that understands mythological names, Unicode restorations, original scripts, pronunciation, etymology, punycode, and homograph safety. Every example is grounded in the PuniCodex canonical sources.
 
 ## Files
 
@@ -103,7 +103,7 @@ ${rows.join('\n')}
 - **Phase 8 — Benchmark:** Held-out evaluation questions with exact-match and contains-match answers for reproducible model scoring.
 - **Phase 9 — Data Card:** This document and the machine-readable manifest.
 - **Phase 10 — Mythology Synthesis:** Comparative mythology, archetype mapping, esoteric synthesis, modern scientific/philosophical parallels, and biblical-to-ancient bridges. Teaches the model to recognize universal patterns across traditions and to converse with symbolic depth.
-- **Phase 11 — Oracle Conversations:** Multi-turn system/user/assistant examples that train the PÚNYCODEX Oracle persona for restoration, pronunciation, mythology, pattern-weaving, modern bridges, contemplative reflection, translation, safety refusal, domain advice, and scholarly citation.
+- **Phase 11 — Oracle Conversations:** Multi-turn system/user/assistant examples that train the PuniCodex Oracle persona for restoration, pronunciation, mythology, pattern-weaving, modern bridges, contemplative reflection, translation, safety refusal, domain advice, and scholarly citation.
 - **Phase 12 — Symbolic Correspondences:** Planetary, elemental, alchemical, tarot, chakra, sefirot, runic, wuxing, directional, metal, gemstone, color, and animal mappings for entries, with explicit confidence levels and cultural provenance.
 - **Phase 13 — Scientific & Philosophical Analogies:** Dense mappings of mythological figures to modern concepts in physics, biology, neuroscience, systems science, philosophy, and technology, emphasizing analogy over equivalence.
 - **Phase 14 — Unified Training Corpus:** Every Phase 1-13 example converted into a single OpenAI-compatible chat format with a consistent Oracle system persona, deterministic 80/20 train/eval split, and a model card with training recipe and hardware guidance.

@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX Availability Verification Cron
+ * PUNICODEX Availability Verification Cron
  *
  * Idempotent cron endpoint for Vercel.
  * Re-checks a batch of availability rows against live DNS.

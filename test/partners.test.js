@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Partner program tests
+ * PuniCodex — Partner program tests
  */
 
 const assert = require('node:assert');

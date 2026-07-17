@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX Authenticity SDK — JavaScript tests
+ * PuniCodex Authenticity SDK — JavaScript tests
  */
 
 const assert = require('node:assert');
@@ -152,7 +152,7 @@ test('check uses offline classifier when offlineFirst is true', async () => {
 
 test('check calls API when offlineFirst is false', async () => {
   const sdk = new AuthenticitySDK({
-    apiBaseUrl: 'https://punycodex.com/api/v2',
+    apiBaseUrl: 'https://punicodex.com/api/v2',
     apiKey: 'key-123',
   });
   let requestUrl = null;
@@ -171,7 +171,7 @@ test('check calls API when offlineFirst is false', async () => {
 });
 
 test('checkUrl calls URL endpoint', async () => {
-  const sdk = new AuthenticitySDK({ apiBaseUrl: 'https://punycodex.com/api/v2' });
+  const sdk = new AuthenticitySDK({ apiBaseUrl: 'https://punicodex.com/api/v2' });
   let requestUrl = null;
   mockFetch((url) => {
     requestUrl = url;
@@ -185,7 +185,7 @@ test('checkUrl calls URL endpoint', async () => {
 
 test('report sends POST with body', async () => {
   const sdk = new AuthenticitySDK({
-    apiBaseUrl: 'https://punycodex.com/api/v2',
+    apiBaseUrl: 'https://punicodex.com/api/v2',
     apiKey: 'key-123',
   });
   let requestInit = null;

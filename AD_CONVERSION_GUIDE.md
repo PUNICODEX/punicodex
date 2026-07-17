@@ -1,4 +1,4 @@
-# PUNYCODEX — Temple to Ad Homepage Conversion
+# PUNICODEX — Temple to Ad Homepage Conversion
 
 > **Version 5.0 — Automated**
 >

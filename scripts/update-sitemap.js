@@ -10,15 +10,15 @@ const BUILT_TEMPLES = new Set([
 let xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
 
 const mainPages = [
-    { loc: 'https://punycodex.com/', priority: '1.0', changefreq: 'weekly' },
-    { loc: 'https://punycodex.com/pantheon/', priority: '0.9', changefreq: 'weekly' },
-    { loc: 'https://punycodex.com/type/', priority: '0.9', changefreq: 'weekly' },
-    { loc: 'https://punycodex.com/tiers/', priority: '0.8', changefreq: 'monthly' },
-    { loc: 'https://punycodex.com/codex/', priority: '0.7', changefreq: 'weekly' },
-    { loc: 'https://punycodex.com/lexicon/', priority: '0.8', changefreq: 'weekly' },
-    { loc: 'https://punycodex.com/store/', priority: '0.6', changefreq: 'monthly' },
-    { loc: 'https://punycodex.com/about/', priority: '0.7', changefreq: 'monthly' },
-    { loc: 'https://punycodex.com/contact/', priority: '0.5', changefreq: 'monthly' },
+    { loc: 'https://punicodex.com/', priority: '1.0', changefreq: 'weekly' },
+    { loc: 'https://punicodex.com/pantheon/', priority: '0.9', changefreq: 'weekly' },
+    { loc: 'https://punicodex.com/type/', priority: '0.9', changefreq: 'weekly' },
+    { loc: 'https://punicodex.com/tiers/', priority: '0.8', changefreq: 'monthly' },
+    { loc: 'https://punicodex.com/codex/', priority: '0.7', changefreq: 'weekly' },
+    { loc: 'https://punicodex.com/lexicon/', priority: '0.8', changefreq: 'weekly' },
+    { loc: 'https://punicodex.com/store/', priority: '0.6', changefreq: 'monthly' },
+    { loc: 'https://punicodex.com/about/', priority: '0.7', changefreq: 'monthly' },
+    { loc: 'https://punicodex.com/contact/', priority: '0.5', changefreq: 'monthly' },
 ];
 
 mainPages.forEach(p => {
@@ -31,13 +31,13 @@ mainPages.forEach(p => {
 
 xml += '  <!-- Flagship Temples -->\n';
 BUILT_TEMPLES.forEach(id => {
-    xml += `  <url><loc>https://punycodex.com/sites/${id}/</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>\n`;
+    xml += `  <url><loc>https://punicodex.com/sites/${id}/</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>\n`;
 });
 
 xml += '  <!-- Base Temples -->\n';
 LEXICON.forEach(entry => {
     if (!BUILT_TEMPLES.has(entry.id)) {
-        xml += `  <url><loc>https://punycodex.com/sites/${entry.id}/</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>\n`;
+        xml += `  <url><loc>https://punicodex.com/sites/${entry.id}/</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>\n`;
     }
 });
 

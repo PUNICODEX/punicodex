@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Main JavaScript
+ * PuniCodex — Main JavaScript
  * Enterprise-grade: IntersectionObserver reveals, throttled nav, utilities
  */
 

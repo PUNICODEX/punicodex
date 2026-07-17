@@ -1,9 +1,9 @@
 /**
- * PÚNYCODEX Type Mobile — Service Worker
+ * PuniCodex Type Mobile — Service Worker
  * Cache-first strategy for offline-first experience.
  */
 
-const CACHE_NAME = 'punycodex-mobile-v4';
+const CACHE_NAME = 'punicodex-mobile-v4';
 const ASSETS = [
     './',
     './index.html',

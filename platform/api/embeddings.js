@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX Embeddings — semantic vector layer for search and archetype scoring.
+ * PUNICODEX Embeddings — semantic vector layer for search and archetype scoring.
  *
  * Loads the Xenova/all-MiniLM-L6-v2 model once at startup, caches site embeddings
  * in memory, and provides fast cosine-similarity search over the indexed corpus.

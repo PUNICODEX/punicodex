@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Arabic / Persian / Urdu script risk module
+ * PuniCodex — Arabic / Persian / Urdu script risk module
  *
  * Detects dotless/dotted substitution, Kashida elongation, contextual-form
  * anomalies, joiner manipulation, and mixed-script attacks in the Arabic

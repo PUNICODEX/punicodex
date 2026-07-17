@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Scholarly Edition Database Layer
+ * PuniCodex — Scholarly Edition Database Layer
  *
  * CRUD and query helpers for the Scholars tables.
  * Uses the shared better-sqlite3 connection from platform/db/connection.js.

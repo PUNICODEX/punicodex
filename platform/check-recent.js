@@ -1,4 +1,4 @@
-const db = require('better-sqlite3')('db/punycodex.db');
+const db = require('better-sqlite3')('db/punicodex.db');
 const rows = db
   .prepare(`
   SELECT domain, punycode, title, quality_score, spam_score, word_count, status

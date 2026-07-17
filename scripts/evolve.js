@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PUNYCODEX Evolution Orchestrator
+ * PUNICODEX Evolution Orchestrator
  *
  * Runs the full canonical-source → generate → test → divergence cycle,
  * and optionally executes live operational tasks (crawls, availability checks,
@@ -34,7 +34,7 @@ function run(label, cmd, opts = {}) {
 
 async function main() {
   const start = Date.now();
-  console.log('🌐 PUNYCODEX Evolution Orchestrator');
+  console.log('🌐 PUNICODEX Evolution Orchestrator');
   console.log(`   Operational tasks: ${operational ? 'yes' : 'no'}`);
   console.log(`   Skip divergence gate: ${skipDivergence ? 'yes' : 'no'}`);
 

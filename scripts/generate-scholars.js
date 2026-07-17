@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Scholarly Edition Page Generator
+ * PuniCodex — Scholarly Edition Page Generator
  *
  * Generates `/sites/{id}/scholars/index.html` pages for all 123 flagships
  * using the canonical section taxonomy. When a merged manifest exists at
@@ -222,7 +222,7 @@ function buildSectionBodyHtml(section) {
         </div>`;
   }
   return `<div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
+            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNICODEX Scholarly Edition workflow.</p>
             <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to ${section.label} →</a>
         </div>`;
 }
@@ -238,7 +238,7 @@ function buildSectionsHtml(manifest) {
         typeof section.body === 'string' &&
         section.body.trim() !== '';
       const statusHtml = published
-        ? `<span class="scholars-section-status">Contributed by ${section.lastModifiedBy || 'PÚNYCODEX Team'}</span>`
+        ? `<span class="scholars-section-status">Contributed by ${section.lastModifiedBy || 'PuniCodex Team'}</span>`
         : META_SECTION_KEYS.has(section.key)
           ? '<span class="scholars-section-status meta">Live Record</span>'
           : '<span class="scholars-section-status empty">Open for Contribution</span>';
@@ -282,8 +282,8 @@ function buildFooter(templeId, unicode, entry) {
             </div>
         </div>
         <div class="footer-bottom">
-            <p class="footer-credit">Part of the <a href="https://punycodex.com/">PUNYCODEX</a> temple network.</p>
-            <p class="footer-legal">Scholarly Edition content is contributed under CC BY 4.0 and reviewed by PUNYCODEX curators.</p>
+            <p class="footer-credit">Part of the <a href="https://punicodex.com/">PUNICODEX</a> temple network.</p>
+            <p class="footer-legal">Scholarly Edition content is contributed under CC BY 4.0 and reviewed by PUNICODEX curators.</p>
         </div>
     </div>
 </footer>`;
@@ -344,7 +344,7 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-async function safeWriteFile(targetPath, data, retries = 5) {
+async function safeWriteFile(targetPath, data, retries = 8) {
   let lastError;
   for (let attempt = 0; attempt < retries; attempt++) {
     try {
@@ -353,7 +353,7 @@ async function safeWriteFile(targetPath, data, retries = 5) {
     } catch (err) {
       lastError = err;
       if (err.code === 'EPERM' || err.code === 'EBUSY' || err.code === 'UNKNOWN') {
-        await sleep(50 * (attempt + 1));
+        await sleep(200 * (attempt + 1));
         continue;
       }
       break;

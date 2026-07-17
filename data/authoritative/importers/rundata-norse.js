@@ -1,5 +1,5 @@
 /**
- * Rundata Norse importer for PÚNYCODEX
+ * Rundata Norse importer for PuniCodex
  *
  * Stub: no online source configured yet.
  */

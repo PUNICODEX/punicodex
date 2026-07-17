@@ -30,7 +30,7 @@ function loadExistingLexicon() {
 }
 
 function main() {
-  console.log('=== PUNYCODEX Lexicon Expansion ===\n');
+  console.log('=== PUNICODEX Lexicon Expansion ===\n');
   
   // 1. Load existing
   const existing = loadExistingLexicon();

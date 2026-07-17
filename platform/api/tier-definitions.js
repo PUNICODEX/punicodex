@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Name Authenticity Shield V2 Tier Definitions
+ * PuniCodex — Name Authenticity Shield V2 Tier Definitions
  *
  * Maps V2 numeric severity tiers to UI payloads.
  */

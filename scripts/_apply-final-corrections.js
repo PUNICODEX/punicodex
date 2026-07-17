@@ -8,7 +8,7 @@ const filePath = path.join(__dirname, 'batch-update-galleries.js');
 function fetchInfo(filename) {
   return new Promise((resolve, reject) => {
     const url = `https://commons.wikimedia.org/w/api.php?action=query&titles=File:${encodeURIComponent(filename)}&prop=imageinfo&iiprop=url|size|mime|thumbmime&iiurlwidth=960&format=json&origin=*`;
-    https.get(url, { headers: { 'User-Agent': 'PUNYCODEX-correction/1.0' } }, res => {
+    https.get(url, { headers: { 'User-Agent': 'PUNICODEX-correction/1.0' } }, res => {
       let d = '';
       res.on('data', c => d += c);
       res.on('end', () => {

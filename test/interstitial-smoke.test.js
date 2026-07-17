@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Interstitial Page Smoke Tests
+ * PuniCodex — Interstitial Page Smoke Tests
  */
 
 const assert = require('node:assert');

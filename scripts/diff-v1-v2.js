@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Differential Testing V1 vs V2
+ * PuniCodex — Differential Testing V1 vs V2
  *
  * Compares the current V2 classifier outputs against a saved baseline report
  * (the "V1" expected outputs). If no baseline exists, compares the current run
@@ -149,7 +149,7 @@ function main() {
   const disagreementRate = totalInputs.length > 0 ? disagreements.length / totalInputs.length : 0;
 
   console.log('╔════════════════════════════════════════════════════════════╗');
-  console.log('║     PÚNYCODEX — V1 vs V2 Differential Report               ║');
+  console.log('║     PuniCodex — V1 vs V2 Differential Report               ║');
   console.log('╚════════════════════════════════════════════════════════════╝');
   console.log(`  Baseline: ${baselinePath}`);
   console.log(`  Inputs compared: ${totalInputs.length}`);

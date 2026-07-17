@@ -1,5 +1,5 @@
 /**
- * Ask the Oracle — conversational RAG-style Q&A over the PUNYCODEX knowledge base.
+ * Ask the Oracle — conversational RAG-style Q&A over the PUNICODEX knowledge base.
  *
  * Phase 2.5: Deep, citation-rich answers using the full lore catalog,
  * etymology, variants, original scripts, live sites, and scholarly sources.
@@ -960,7 +960,7 @@ function synthesizeAnswer(q, entries, sites, related, intent, _history = []) {
         .map((s) => `<li><strong>${escapeHtml(s.tenant_name || s.title || s.domain)}</strong></li>`)
         .join('')}</ul>`;
     } else {
-      answer = `<p>The PUNYCODEX knowledge base does not yet cover “${safeQ}” with confidence. Try a deity, realm, myth, or Unicode domain name.</p>`;
+      answer = `<p>The PUNICODEX knowledge base does not yet cover “${safeQ}” with confidence. Try a deity, realm, myth, or Unicode domain name.</p>`;
     }
 
     return {
@@ -1111,7 +1111,7 @@ async function callLlmIfConfigured(prompt) {
           {
             role: 'system',
             content:
-              'You are the PUNYCODEX Oracle. Synthesize the provided context into a scholarly, dense, citation-aware paragraph. Do not add facts absent from the context. Use HTML: <strong> for emphasis, <p> for paragraphs. Keep under 250 words.',
+              'You are the PUNICODEX Oracle. Synthesize the provided context into a scholarly, dense, citation-aware paragraph. Do not add facts absent from the context. Use HTML: <strong> for emphasis, <p> for paragraphs. Keep under 250 words.',
           },
           { role: 'user', content: prompt },
         ],
@@ -1210,7 +1210,7 @@ function synthesizeQuickAnswer(entry, intent) {
 async function askOracle(q, history = [], { quick = false } = {}) {
   if (!q?.trim()) {
     return {
-      answer: '<p>Ask me about a deity, realm, symbol, or business on PUNYCODEX.</p>',
+      answer: '<p>Ask me about a deity, realm, symbol, or business on PUNICODEX.</p>',
       citations: [],
       context: {},
       followUps: generateFollowUps('general', null),

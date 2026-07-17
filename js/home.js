@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Homepage JavaScript
+ * PuniCodex — Homepage JavaScript
  * Lightweight, declarative interactions only. No canvas animation loops.
  */
 

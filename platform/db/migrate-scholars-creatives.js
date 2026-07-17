@@ -1,14 +1,14 @@
 /**
  * Migration: Student Creative Marketplace tables
  *
- * Adds tables for the PÚNYCODEX Student Creative Marketplace.
+ * Adds tables for the PuniCodex Student Creative Marketplace.
  * Depends on the core Scholarly Edition schema from migrate-scholars.js.
  */
 
 const Database = require('better-sqlite3');
 const path = require('node:path');
 
-const DB_PATH = process.env.PUNYCODEX_TEST_DB_PATH || path.join(__dirname, 'punycodex.db');
+const DB_PATH = process.env.PUNICODEX_TEST_DB_PATH || path.join(__dirname, 'punicodex.db');
 
 const CREATIVE_SCHEMA = `
   -- Student creative assets (myth-inspired artwork, design studies, etc.)

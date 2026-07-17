@@ -18,7 +18,7 @@ const crypto = require('node:crypto');
 const Database = require('better-sqlite3');
 
 process.env.STRIPE_SECRET_KEY = 'sk_test_dummy';
-process.env.PLATFORM_URL = 'https://punycodex.com';
+process.env.PLATFORM_URL = 'https://punicodex.com';
 process.env.ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'test-admin-password-for-ci';
 
 const { prepareTestDb, getTestDbPath } = require('./helpers/test-db.js');
@@ -282,8 +282,8 @@ test('scholars login limiter blocks the 11th attempt for one IP+email', async ()
   assert.strictEqual(nextCalls, 10);
 });
 
-test('scholars login limiter honors the PUNYCODEX_SCHOLARS_DISABLE_RATE_LIMIT escape hatch', async () => {
-  process.env.PUNYCODEX_SCHOLARS_DISABLE_RATE_LIMIT = '1';
+test('scholars login limiter honors the PUNICODEX_SCHOLARS_DISABLE_RATE_LIMIT escape hatch', async () => {
+  process.env.PUNICODEX_SCHOLARS_DISABLE_RATE_LIMIT = '1';
   try {
     const middleware = createLoginRateLimit();
     let nextCalls = 0;
@@ -294,7 +294,7 @@ test('scholars login limiter honors the PUNYCODEX_SCHOLARS_DISABLE_RATE_LIMIT es
     assert.strictEqual(nextCalls, 1);
     assert.strictEqual(res.headers['X-RateLimit-Limit'], undefined);
   } finally {
-    delete process.env.PUNYCODEX_SCHOLARS_DISABLE_RATE_LIMIT;
+    delete process.env.PUNICODEX_SCHOLARS_DISABLE_RATE_LIMIT;
   }
 });
 
@@ -314,7 +314,7 @@ test('handleError returns a generic 500 body when NODE_ENV=production', async ()
   try {
     await withSilencedConsole(() => {
       const res = mockRes();
-      handleError(res, new Error('sensitive db path /var/lib/punycodex.db'));
+      handleError(res, new Error('sensitive db path /var/lib/punicodex.db'));
       assert.strictEqual(res.statusCode, 500);
       assert.strictEqual(res.body.error, 'Internal server error');
     });

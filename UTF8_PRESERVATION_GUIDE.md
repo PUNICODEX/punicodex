@@ -1,4 +1,4 @@
-# UTF-8 Preservation Guide — PUNYCODEX
+# UTF-8 Preservation Guide — PUNICODEX
 
 > **TL;DR**: Every HTML, CSS, and JS file in this repo MUST be saved as **UTF-8 without BOM**. If you save as Windows-1252, cp1252, or any other encoding, multi-byte Unicode characters (Greek, Egyptian, Sanskrit, Japanese, IPA, etc.) will be destroyed.
 
@@ -7,7 +7,7 @@
 ## What Happened (The Corruption)
 
 ### The Bug
-PUNYCODEX is a Unicode pantheon website. Every temple page contains characters from:
+PUNICODEX is a Unicode pantheon website. Every temple page contains characters from:
 - Greek (Ἀπόλλων, Ζεύς, Μέδουσα)
 - Egyptian (Ꜣḫ, Rꜥ, Ꜣst)
 - Sanskrit (Śiva, ṇḍava)
@@ -269,4 +269,4 @@ All must pass before deployment.
 > **Never assume the editor or agent will do the right thing.**
 > **Always verify after saving.**
 
-The 850 gods of PUNYCODEX deserve their names intact.
+The 850 gods of PUNICODEX deserve their names intact.

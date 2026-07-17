@@ -1,5 +1,5 @@
 /**
- * Wikidata importer for PÚNYCODEX
+ * Wikidata importer for PuniCodex
  *
  * Uses Wikidata's public API (CC0 data) to:
  *   - link entries to Wikidata entities (Q IDs)
@@ -81,7 +81,7 @@ async function wikidataRequest(url, fetchFn, retries = 3) {
   for (let attempt = 0; attempt <= retries; attempt++) {
     const res = await fetchFn(url, {
       headers: {
-        'User-Agent': 'PUNYCODEX importer (github.com/PUNYCODEX/punycodex)',
+        'User-Agent': 'PUNICODEX importer (github.com/PUNICODEX/punicodex)',
         Accept: 'application/json',
       },
     });

@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Domain Parser Tests
+ * PuniCodex — Domain Parser Tests
  */
 
 const assert = require('node:assert');

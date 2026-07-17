@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Temple Record
+ * PUNICODEX — Temple Record
  * The illuminated manuscript panel. Reveals philology from the Canon.
  */
 
@@ -63,7 +63,7 @@ const _Sidebar = (function () {
     let fullEntry = entry;
     if (!entry.breakdown || entry.breakdown.length === 0) {
       try {
-        const local = await window.punycodex.lexiconEntry(entry.id);
+        const local = await window.punicodex.lexiconEntry(entry.id);
         if (local) fullEntry = { ...entry, ...local };
       } catch (_e) {
         /* use passed entry */
@@ -72,7 +72,7 @@ const _Sidebar = (function () {
 
     // Try to enrich with server data (site info, availability)
     try {
-      const apiRes = await window.punycodex.apiGet(
+      const apiRes = await window.punicodex.apiGet(
         `/api/entry/${encodeURIComponent(fullEntry.id)}`
       );
       if (apiRes.ok && apiRes.data) {
@@ -192,10 +192,10 @@ const _Sidebar = (function () {
             <div class="sb-cta-label">Rite of Registration</div>
             <div class="sb-cta-text">This name is unclaimed. Inscribe it through a keeper of the register.</div>
             <div class="sb-cta-links">
-              ${links.godaddy ? `<a href="${escapeHtml(links.godaddy)}" target="_blank" rel="noopener" class="sb-cta-link" onclick="window.punycodex.openExternal(this.href);return false;">GoDaddy</a>` : ''}
-              ${links.namecheap ? `<a href="${escapeHtml(links.namecheap)}" target="_blank" rel="noopener" class="sb-cta-link" onclick="window.punycodex.openExternal(this.href);return false;">Namecheap</a>` : ''}
-              ${links.porkbun ? `<a href="${escapeHtml(links.porkbun)}" target="_blank" rel="noopener" class="sb-cta-link" onclick="window.punycodex.openExternal(this.href);return false;">Porkbun</a>` : ''}
-              ${links.dynadot ? `<a href="${escapeHtml(links.dynadot)}" target="_blank" rel="noopener" class="sb-cta-link" onclick="window.punycodex.openExternal(this.href);return false;">Dynadot</a>` : ''}
+              ${links.godaddy ? `<a href="${escapeHtml(links.godaddy)}" target="_blank" rel="noopener" class="sb-cta-link" onclick="window.punicodex.openExternal(this.href);return false;">GoDaddy</a>` : ''}
+              ${links.namecheap ? `<a href="${escapeHtml(links.namecheap)}" target="_blank" rel="noopener" class="sb-cta-link" onclick="window.punicodex.openExternal(this.href);return false;">Namecheap</a>` : ''}
+              ${links.porkbun ? `<a href="${escapeHtml(links.porkbun)}" target="_blank" rel="noopener" class="sb-cta-link" onclick="window.punicodex.openExternal(this.href);return false;">Porkbun</a>` : ''}
+              ${links.dynadot ? `<a href="${escapeHtml(links.dynadot)}" target="_blank" rel="noopener" class="sb-cta-link" onclick="window.punicodex.openExternal(this.href);return false;">Dynadot</a>` : ''}
             </div>
           </div>
         </div>

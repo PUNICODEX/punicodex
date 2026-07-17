@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Cross-cultural similarity service
+ * PuniCodex — Cross-cultural similarity service
  *
  * Loads the generated similarity graph and exposes fast adjacency lookups
  * for API v1/v2 endpoints.

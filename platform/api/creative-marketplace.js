@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Student Creative Marketplace API
+ * PuniCodex — Student Creative Marketplace API
  *
  * Express router for /api/v1/creatives/*
  */

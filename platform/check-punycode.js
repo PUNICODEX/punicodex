@@ -1,5 +1,5 @@
 const Database = require('better-sqlite3');
-const db = new Database('db/punycodex.db');
+const db = new Database('db/punicodex.db');
 
 const punycode = db
   .prepare(

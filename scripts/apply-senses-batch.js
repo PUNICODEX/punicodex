@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Apply authoritative meaning batch as senses
+ * PUNICODEX — Apply authoritative meaning batch as senses
  *
  * Reads a merged batch of meaning suggestions and patches type/js/lexicon.js
  * so that:

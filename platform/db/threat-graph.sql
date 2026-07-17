@@ -1,4 +1,4 @@
--- PUNYCODEX — Threat Intelligence Graph Schema (Phase 8)
+-- PUNICODEX — Threat Intelligence Graph Schema (Phase 8)
 -- Idempotent schema for threat clusters, campaigns, spoof relationships,
 -- and blocklists. Safe to run multiple times.
 

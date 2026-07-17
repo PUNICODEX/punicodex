@@ -1,6 +1,6 @@
-# PÚNYCODEX Android App
+# PuniCodex Android App
 
-Play Store-ready Android app bundling the PÚNYCODEX companion app + system keyboard IME.
+Play Store-ready Android app bundling the PuniCodex companion app + system keyboard IME.
 
 ## Architecture
 
@@ -16,7 +16,7 @@ Play Store-ready Android app bundling the PÚNYCODEX companion app + system keyb
 ```
 android/
 ├── app/src/main/
-│   ├── java/com/punycodex/
+│   ├── java/com/punicodex/
 │   │   ├── app/MainActivity.java          # Capacitor entry
 │   │   └── keyboard/
 │   │       ├── PunyKeyboardService.java   # IME service
@@ -78,8 +78,8 @@ npm run android:open
 After installing the app:
 
 1. Open the app → go to History tab → tap "Open Keyboard Settings"
-2. Enable **PÚNYCODEX Keyboard**
-3. While typing in any app, tap the keyboard switcher (🌐) to select PÚNYCODEX
+2. Enable **PuniCodex Keyboard**
+3. While typing in any app, tap the keyboard switcher (🌐) to select PuniCodex
 4. Type "zeus" → suggestion row shows `Zéus` → tap to insert
 5. Tap **123** to browse 584 curated Unicode characters by category
 

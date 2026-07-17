@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX Shield — Mobile PWA v2
+ * PuniCodex Shield — Mobile PWA v2
  *
  * New "Shield" tab for the mobile app. Checks names, domains, and URLs for
  * homograph and mixed-script attacks, scans the clipboard on open, and keeps
@@ -9,11 +9,11 @@
 (function () {
   'use strict';
 
-  const STORAGE_KEY = 'punycodex_shield_history';
+  const STORAGE_KEY = 'punicodex_shield_history';
   const MAX_HISTORY = 50;
 
   const classifier =
-    typeof PUNYCODEX_MOBILE_CLASSIFIER !== 'undefined' ? PUNYCODEX_MOBILE_CLASSIFIER : null;
+    typeof PUNICODEX_MOBILE_CLASSIFIER !== 'undefined' ? PUNICODEX_MOBILE_CLASSIFIER : null;
 
   const inputEl = document.getElementById('shield-input');
   const checkBtn = document.getElementById('shield-check-btn');

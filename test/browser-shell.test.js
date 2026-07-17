@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Browser Shell module tests
+ * PuniCodex — Browser Shell module tests
  */
 
 const assert = require('node:assert');
@@ -20,7 +20,7 @@ function runInBrowser(...files) {
         delete store[k];
       },
     },
-    location: { href: 'https://punycodex.com/browser.html' },
+    location: { href: 'https://punicodex.com/browser.html' },
     URL: URL,
   };
   context.window = context;

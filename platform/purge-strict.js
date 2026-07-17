@@ -1,4 +1,4 @@
-const db = require('better-sqlite3')('db/punycodex.db');
+const db = require('better-sqlite3')('db/punicodex.db');
 
 const parked = db
   .prepare(`

@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Brand Dispute Migration
+ * PuniCodex — Brand Dispute Migration
  *
  * Creates the brand_disputes table used by the Brand & Trademark Shield
  * dispute-resolution workflow.

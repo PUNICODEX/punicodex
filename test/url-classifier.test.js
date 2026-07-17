@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — URL Classifier Tests
+ * PuniCodex — URL Classifier Tests
  */
 
 const assert = require('node:assert');

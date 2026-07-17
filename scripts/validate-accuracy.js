@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Philological Accuracy Validator
+ * PUNICODEX — Philological Accuracy Validator
  * Checks that Unicode restorations, Greek originals, and breakdowns
  * are scholarly accurate.
  */

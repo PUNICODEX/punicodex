@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Spam Classifier
+ * PUNICODEX — Spam Classifier
  *
  * Explainable heuristic classifier for indexed sites. Computes a spam score
  * (0–1) and a list of signals, then writes them back to indexed_sites.

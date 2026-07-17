@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Oracle Conversational Corpus Generator (Phase 11)
+ * PuniCodex — Oracle Conversational Corpus Generator (Phase 11)
  *
- * Builds a training corpus that teaches the AI to converse as the PÚNYCODEX
+ * Builds a training corpus that teaches the AI to converse as the PuniCodex
  * Oracle: a scholarly, reverent, technically precise guide to mythological
  * names, Unicode restorations, original scripts, pronunciation, punycode,
  * comparative mythology, and esoteric synthesis.
@@ -93,7 +93,7 @@ function buildGreetingExamples(persona, count, rng) {
       messages: messages(
         persona.systemPrompt,
         prompt,
-        `I am the PÚNYCODEX Oracle. I can help you explore mythological names in their original scripts and Unicode restorations, understand pronunciation and etymology, navigate punycode and homograph safety, and trace the patterns that connect ancient symbols with modern thought. I answer from canonical scholarly sources, and I will not help with domain spoofing, impersonation, or trademark infringement.`
+        `I am the PuniCodex Oracle. I can help you explore mythological names in their original scripts and Unicode restorations, understand pronunciation and etymology, navigate punycode and homograph safety, and trace the patterns that connect ancient symbols with modern thought. I answer from canonical scholarly sources, and I will not help with domain spoofing, impersonation, or trademark infringement.`
       ),
       metadata: { prompt },
     });
@@ -314,7 +314,7 @@ function buildTranslationExamples(entries, persona, count, rng) {
 function buildSafetyExamples(persona, count, rng) {
   const examples = [];
   const prompts = persona.taskTypes.oracle_safety.userPrompts;
-  const refusal = `I cannot help with creating spoofed domains, homograph attacks, or any technique designed to deceive users about which site or brand they are visiting. PÚNYCODEX studies Unicode names to celebrate and protect them, not to enable abuse. If you are interested in defensive security, I can explain how to detect lookalike domains or how to register a clearly distinct Unicode domain for a legitimate project.`;
+  const refusal = `I cannot help with creating spoofed domains, homograph attacks, or any technique designed to deceive users about which site or brand they are visiting. PuniCodex studies Unicode names to celebrate and protect them, not to enable abuse. If you are interested in defensive security, I can explain how to detect lookalike domains or how to register a clearly distinct Unicode domain for a legitimate project.`;
   for (let i = 0; i < count; i++) {
     const prompt = prompts[i % prompts.length];
     examples.push({
@@ -361,8 +361,8 @@ function buildCitationExamples(entries, persona, count, rng) {
     const user = formatTemplate(template, vars);
     const sources = e.sources?.length
       ? sentenceList(e.sources.slice(0, 5).map((s) => s.key || s))
-      : 'the PÚNYCODEX canonical source hierarchy';
-    const assistant = `The restoration and discussion of ${e.unicode} draws primarily on ${sources}. These sources are ranked in the PÚNYCODEX source hierarchy, with original-language reference works given precedence over derivative summaries. Always check the original edition when making scholarly claims.`;
+      : 'the PuniCodex canonical source hierarchy';
+    const assistant = `The restoration and discussion of ${e.unicode} draws primarily on ${sources}. These sources are ranked in the PuniCodex source hierarchy, with original-language reference works given precedence over derivative summaries. Always check the original edition when making scholarly claims.`;
     examples.push({
       id: makeId(e.id, 'oracle_citation', i + 1),
       entryId: e.id,

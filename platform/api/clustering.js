@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Threat Clustering Engine (Phase 8)
+ * PUNICODEX — Threat Clustering Engine (Phase 8)
  *
  * Groups spoof relationships into clusters by pattern, target identity,
  * ASN/nameserver, and time window.

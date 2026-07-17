@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Auto-Backfill Etymology from Meaning Fields
+ * PUNICODEX — Auto-Backfill Etymology from Meaning Fields
  * Scans entry.meaning for etymology patterns and generates etymology objects.
  *
  * Usage: node scripts/backfill-etymology.js
@@ -155,7 +155,7 @@ function main() {
     }
 
     // Write updated lexicon
-    const header = `/*\n * PUNYCODEX Lexicon\n * ${LEXICON.length} validated entries across multiple pantheons\n */\n\nconst LEXICON = [`;
+    const header = `/*\n * PUNICODEX Lexicon\n * ${LEXICON.length} validated entries across multiple pantheons\n */\n\nconst LEXICON = [`;
     const entries = LEXICON.map(e => '  ' + formatEntry(e, 2)).join(',\n');
     const footer = `];\n\n// Node.js export for build scripts\nif (typeof module !== 'undefined' && module.exports) {\n    module.exports = { LEXICON };\n}`;
 

@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Brand & Trademark Shield
+ * PuniCodex — Brand & Trademark Shield
  *
  * High-level brand protection layer built on top of the identity kernel.
  * Decides whether an input name or domain impersonates, legitimately represents,

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Continual Pretraining Corpus (Phase 15)
+ * PuniCodex — Continual Pretraining Corpus (Phase 15)
  *
  * Builds a raw-text scholarly corpus for domain-adapting a base model before
  * supervised fine-tuning. Sources include structured entry records, flagship

@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- PUNYCODEX-ANALYTICS-START -->
+<!-- PUNICODEX-ANALYTICS-START -->
 <script src="/js/analytics-beacon.js" defer></script>
-<!-- PUNYCODEX-ANALYTICS-END -->
+<!-- PUNICODEX-ANALYTICS-END -->
 
-<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
 <link rel="stylesheet" href="/css/university-collaborators.css?v=2">
 <script src="/js/university-collaborators.js?v=2" defer></script>
-<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PUNYCODEX — Tenant Storefront</title>
-  <meta name="description" content="Lease or acquire a Unicode domain on PUNYCODEX.">
-  <link rel="canonical" href="https://punycodex.com/tenant.html">
+  <title>PUNICODEX — Tenant Storefront</title>
+  <meta name="description" content="Lease or acquire a Unicode domain on PUNICODEX.">
+  <link rel="canonical" href="https://punicodex.com/tenant.html">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -55,7 +55,7 @@
 <body>
   <header>
     <div class="header-inner">
-      <a href="/" class="logo">PUNYCODEX</a>
+      <a href="/" class="logo">PUNICODEX</a>
       <span style="color:var(--text-muted);font-size:0.8rem">Unicode Domain Marketplace</span>
     </div>
   </header>
@@ -100,7 +100,7 @@
   <script>
     const params = new URLSearchParams(location.search);
     const entryId = params.get('id');
-    let sessionToken = localStorage.getItem('punycodex_search_session') || null;
+    let sessionToken = localStorage.getItem('punicodex_search_session') || null;
     let entry = null;
     let site = null;
 
@@ -123,7 +123,7 @@
       const data = await res.json();
       if (data.sessionToken) {
         sessionToken = data.sessionToken;
-        localStorage.setItem('punycodex_search_session', sessionToken);
+        localStorage.setItem('punicodex_search_session', sessionToken);
       }
     }
 
@@ -244,8 +244,8 @@
     init();
   </script>
 
-<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
 <div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
-<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
 </body>
 </html>

@@ -55,8 +55,8 @@ function run() {
   test('prepareTestDb creates an isolated temp DB', () => {
     const dbPath = prepareTestDb(suiteName);
     assert.ok(fs.existsSync(dbPath));
-    assert.strictEqual(process.env.PUNYCODEX_TEST_DB_PATH, dbPath);
-    assert.notStrictEqual(dbPath, path.join(__dirname, '..', 'platform', 'db', 'punycodex.db'));
+    assert.strictEqual(process.env.PUNICODEX_TEST_DB_PATH, dbPath);
+    assert.notStrictEqual(dbPath, path.join(__dirname, '..', 'platform', 'db', 'punicodex.db'));
   });
 
   test('temp DB is writable without touching golden DB', () => {
@@ -145,7 +145,7 @@ function run() {
   testAsync('makeApiKey creates a usable API key', async () => {
     const key = await makeApiKey({ name: 'Foundation Key', scopes: ['names:read'] });
     assert.ok(key.id);
-    assert.ok(key.plaintext.startsWith('pk_punycodex_'));
+    assert.ok(key.plaintext.startsWith('pk_punicodex_'));
     const Database = require('better-sqlite3');
     const db = new Database(getTestDbPath(suiteName));
     const row = db.prepare('SELECT tier, scopes FROM api_keys WHERE id = ?').get(key.id);
@@ -175,7 +175,7 @@ function run() {
     const { ARCHETYPES: archetypes } = require('../js/archetypes-v2.js');
     const expectedIds = new Set(archetypes.filter((a) => a.built).map((a) => a.id));
     const Database = require('better-sqlite3');
-    const db = new Database(path.join(__dirname, '..', 'platform', 'db', 'punycodex.db'));
+    const db = new Database(path.join(__dirname, '..', 'platform', 'db', 'punicodex.db'));
     const rows = db.prepare('SELECT id FROM entries WHERE has_flagship = 1').all();
     const actualIds = new Set(rows.map((r) => r.id));
     db.close();

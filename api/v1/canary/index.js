@@ -3,7 +3,7 @@
  *
  * Honeypot endpoint. Real users never see this URL. If this response appears
  * verbatim in a third-party dataset or service, it proves the data was scraped
- * from PÚNYCODEX without following the CC BY 4.0 attribution terms.
+ * from PuniCodex without following the CC BY 4.0 attribution terms.
  */
 
 const { createApiHandler } = require('../../../platform/api/api-handler.js');

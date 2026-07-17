@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — k6 load test for the Authenticity Shield.
+ * PuniCodex — k6 load test for the Authenticity Shield.
  *
  * Run with:
  *   k6 run test/load/k6-authenticity.js
@@ -14,7 +14,7 @@
 import http from 'k6/http';
 import { check } from 'k6';
 
-const BASE_URL = __ENV.BASE_URL || 'https://punycodex.com';
+const BASE_URL = __ENV.BASE_URL || 'https://punicodex.com';
 
 export const options = {
   stages: [

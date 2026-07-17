@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Unicode Web Index Protocol (Phase 10)
+ * PuniCodex — Unicode Web Index Protocol (Phase 10)
  *
  * A public, versioned specification for exchanging Unicode-domain metadata
  * between crawlers, browsers, registrars, and scholarly catalogs.
@@ -12,7 +12,7 @@ function getProtocolSpec() {
   return {
     name: 'Unicode Web Index Protocol (UWIP)',
     version: '1.0.0',
-    governedBy: 'PÚNYCODEX',
+    governedBy: 'PuniCodex',
     description:
       'A minimal, open protocol for describing Unicode domain names, their scholarly attestations, trust status, and availability.',
     dataset: {
@@ -64,12 +64,12 @@ function getProtocolSpec() {
       },
       {
         id: 'type-tool',
-        name: 'PÚNYCODEX Type Tool',
+        name: 'PuniCodex Type Tool',
         url: '/type/',
         description: 'Interactive Unicode restoration keyboard.',
       },
     ],
-    contact: 'https://punycodex.com/contact/',
+    contact: 'https://punicodex.com/contact/',
   };
 }
 

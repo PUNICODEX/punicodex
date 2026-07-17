@@ -32,7 +32,7 @@ async function createCheckoutSession({ claimId, email, unicodeVariant, templateT
         price_data: {
           currency: 'usd',
           product_data: {
-            name: `PUNYCODEX Domain Claim: ${unicodeVariant}`,
+            name: `PUNICODEX Domain Claim: ${unicodeVariant}`,
             description: `Unicode domain restoration + temple deployment`,
           },
           unit_amount: amount,
@@ -164,7 +164,7 @@ async function createPatronCheckoutSession({
   amountCents,
   socialPlatform,
   socialUrl,
-  siteName = 'PUNYCODEX',
+  siteName = 'PUNICODEX',
 }) {
   const patron = await createPatronCheckoutRecord({
     templeId,
@@ -222,7 +222,7 @@ async function createCreativeCheckoutSession({ purchaseId, email, assetTitle, am
         price_data: {
           currency: 'usd',
           product_data: {
-            name: `PÚNYCODEX Creative Asset: ${assetTitle}`,
+            name: `PuniCodex Creative Asset: ${assetTitle}`,
             description: 'Single-use license for myth-inspired student creative work',
           },
           unit_amount: amountCents,

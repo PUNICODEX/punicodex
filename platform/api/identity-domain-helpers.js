@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Identity / Domain Helpers
+ * PuniCodex — Identity / Domain Helpers
  *
  * Determines whether a protected identity is legitimately present at a given
  * registrable domain, and discovers when an identity name appears in a

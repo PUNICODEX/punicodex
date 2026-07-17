@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX Crawler Cron
+ * PUNICODEX Crawler Cron
  *
  * Idempotent, small-batched cron endpoint for Vercel.
  * Finds stale indexed sites and adds them to the crawl_queue.

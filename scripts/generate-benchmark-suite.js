@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Evaluation Benchmark Suite Generator (Phase 8)
+ * PuniCodex — Evaluation Benchmark Suite Generator (Phase 8)
  *
  * Emits a held-out evaluation benchmark with known answers across all tasks.
  * This is separate from the train/eval split and is designed for repeatable

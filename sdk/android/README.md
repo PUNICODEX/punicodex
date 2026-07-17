@@ -1,4 +1,4 @@
-# PÚNYCODEX Authenticity SDK — Android
+# PuniCodex Authenticity SDK — Android
 
 Kotlin SDK for the Name Authenticity Shield.
 
@@ -13,7 +13,7 @@ implementation project(':sdk:android:lib')
 ## Usage
 
 ```kotlin
-import com.punycodex.authenticity.AuthenticitySDK
+import com.punicodex.authenticity.AuthenticitySDK
 
 val sdk = AuthenticitySDK.shared
 val result = sdk.classify("аpple") // Cyrillic а

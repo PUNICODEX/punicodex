@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — SIEM connector stub tests (Phase 19).
+ * PuniCodex — SIEM connector stub tests (Phase 19).
  */
 
 const assert = require('node:assert');
@@ -46,9 +46,9 @@ test('Splunk formatter produces a HEC request payload', () => {
   const request = splunkEvent(sampleAlert, { hecToken: 'test-token' });
   assert.strictEqual(request.method, 'POST');
   assert.ok(request.headers.Authorization.includes('test-token'));
-  assert.strictEqual(request.body.source, 'punycodex-authenticity-shield');
+  assert.strictEqual(request.body.source, 'punicodex-authenticity-shield');
   assert.strictEqual(request.body.event.verdict, 'homograph-spoof');
-  assert.strictEqual(request.body.sourcetype, 'punycodex:authenticity');
+  assert.strictEqual(request.body.sourcetype, 'punicodex:authenticity');
 });
 
 test('Datadog formatter produces an event request payload', () => {
@@ -57,14 +57,14 @@ test('Datadog formatter produces an event request payload', () => {
   assert.strictEqual(request.headers['DD-API-KEY'], 'dd-test-key');
   assert.ok(request.body.title.includes('critical'));
   assert.strictEqual(request.body.alert_type, 'error');
-  assert.ok(request.body.tags.some((t) => t === 'target:punycodex-authenticity-shield'));
+  assert.ok(request.body.tags.some((t) => t === 'target:punicodex-authenticity-shield'));
   assert.ok(request.body.tags.some((t) => t === 'verdict:homograph-spoof'));
 });
 
 test('Elastic formatter produces an index document request', () => {
-  const request = elasticDoc(sampleAlert, { index: 'punycodex-test', apiKey: 'es-test-key' });
+  const request = elasticDoc(sampleAlert, { index: 'punicodex-test', apiKey: 'es-test-key' });
   assert.strictEqual(request.method, 'PUT');
-  assert.ok(request.url.includes('/punycodex-test/_doc/'));
+  assert.ok(request.url.includes('/punicodex-test/_doc/'));
   assert.strictEqual(request.body.verdict, 'homograph-spoof');
   assert.ok(request.headers.Authorization.includes('es-test-key'));
 });

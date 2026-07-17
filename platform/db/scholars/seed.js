@@ -1,7 +1,7 @@
 /**
  * Seed the Scholarly Edition database from generated manifests.
  *
- * Publishes the canonical manifest content under the "PÚNYCODEX Team"
+ * Publishes the canonical manifest content under the "PuniCodex Team"
  * identity with full edit-history attribution. Scholar contributions are
  * sacred: a section whose body is already non-empty is never modified.
  *
@@ -22,16 +22,16 @@ const { hashPassword } = require('../../scholars/auth');
 const MANIFESTS_DIR = path.join(__dirname, '..', '..', 'scholars', 'manifests');
 const ALL_MANIFEST = path.join(MANIFESTS_DIR, 'all.json');
 
-const ADMIN_INSTITUTION_NAME = 'PÚNYCODEX Team';
-const ADMIN_INSTITUTION_SLUG = 'punycodex-admin';
-const ADMIN_EMAIL = 'admin@punycodex.com';
-const ADMIN_DISPLAY_NAME = 'PÚNYCODEX Team';
-const ADMIN_NOTE = 'Initial scholarly content published by PÚNYCODEX Team.';
-const LEGACY_ADMIN_NAME = 'PÚNYCODEX Admin';
+const ADMIN_INSTITUTION_NAME = 'PuniCodex Team';
+const ADMIN_INSTITUTION_SLUG = 'punicodex-admin';
+const ADMIN_EMAIL = 'admin@punicodex.com';
+const ADMIN_DISPLAY_NAME = 'PuniCodex Team';
+const ADMIN_NOTE = 'Initial scholarly content published by PuniCodex Team.';
+const LEGACY_ADMIN_NAME = 'PuniCodex Admin';
 
 /**
- * One-time, idempotent rename of the original "PÚNYCODEX Admin" identity to
- * "PÚNYCODEX Team". Runs before every seed (including serverless cold
+ * One-time, idempotent rename of the original "PuniCodex Admin" identity to
+ * "PuniCodex Team". Runs before every seed (including serverless cold
  * starts) so any database copy — local or bundled — self-heals.
  */
 function renameLegacyAdminIdentity(db) {
@@ -71,8 +71,8 @@ function ensureAdminIdentity(db) {
     const result = dbApi.createInstitution({
       name: ADMIN_INSTITUTION_NAME,
       slug: ADMIN_INSTITUTION_SLUG,
-      domain: 'punycodex.com',
-      accreditation: 'PÚNYCODEX internal',
+      domain: 'punicodex.com',
+      accreditation: 'PuniCodex internal',
       metadata: { note: 'Canonical content administration identity.' },
     });
     institution = dbApi.getInstitutionById(result.lastInsertRowid);
@@ -204,7 +204,7 @@ function seedSections(db, temple, manifest, admin, stats) {
   }
 }
 
-const REPUBLISH_NOTE = 'Scholarly elevation pass republished by PÚNYCODEX Team.';
+const REPUBLISH_NOTE = 'Scholarly elevation pass republished by PuniCodex Team.';
 
 /**
  * Republish manifest content over existing sections after an intentional

@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — URL Classifier
+ * PuniCodex — URL Classifier
  *
  * Classifies every part of a URL (hostname labels, path segments, query
  * keys/values) using the canonical name authenticity engine. It escalates
@@ -116,7 +116,7 @@ function classifyUrlParts(urlString, options = {}) {
     let { verdict, severity } = result;
 
     // A protected identity in a hostname label whose registrable domain is not
-    // allowed is a lookalike (e.g., perun.app when punycodex does not own it).
+    // allowed is a lookalike (e.g., perun.app when punicodex does not own it).
     // Do not override an already-deceptive verdict such as a homograph spoof.
     if (
       result.canonicalMatch &&

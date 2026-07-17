@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — IDNA Validator Tests
+ * PuniCodex — IDNA Validator Tests
  */
 
 const assert = require('node:assert');

@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX Authenticity Extension v2 — Popup
+ * PuniCodex Authenticity Extension v2 — Popup
  */
 
 import { getAll, DEFAULTS } from '../shared/storage.js';

@@ -1,6 +1,6 @@
-=== PUNYCODEX Authenticity Shield ===
-Contributors: punycodex
-Donate link: https://punycodex.com/about/authenticity.html
+=== PUNICODEX Authenticity Shield ===
+Contributors: punicodex
+Donate link: https://punicodex.com/about/authenticity.html
 Tags: security, unicode, homograph, phishing, idn
 Requires at least: 6.0
 Tested up to: 6.5
@@ -13,7 +13,7 @@ Warns authors before publishing punycode or visually deceptive Unicode links.
 
 == Description ==
 
-PUNYCODEX Authenticity Shield helps WordPress site owners avoid accidentally
+PUNICODEX Authenticity Shield helps WordPress site owners avoid accidentally
 publishing punycode or mixed-script links that could be used in homograph
 phishing attacks.
 
@@ -25,11 +25,11 @@ The plugin:
 * Provides a block-editor integration for real-time warnings.
 
 For enterprise threat intelligence, SIEM connectors, and browser-wide
-protection, visit <https://punycodex.com/about/authenticity.html>.
+protection, visit <https://punicodex.com/about/authenticity.html>.
 
 == Installation ==
 
-1. Upload the plugin files to `/wp-content/plugins/punycodex-authenticity/`.
+1. Upload the plugin files to `/wp-content/plugins/punicodex-authenticity/`.
 2. Activate the plugin through the 'Plugins' menu in WordPress.
 3. The plugin begins scanning links automatically.
 
@@ -38,7 +38,7 @@ protection, visit <https://punycodex.com/about/authenticity.html>.
 = Does the plugin make external API calls? =
 
 The base plugin operates locally. The optional block-editor integration can
-call the PUNYCODEX public API for deeper analysis if enabled by an
+call the PUNICODEX public API for deeper analysis if enabled by an
 administrator.
 
 = What is a homograph attack? =

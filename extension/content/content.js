@@ -1,12 +1,12 @@
 /**
- * PÚNYCODEX Type — Content Script
+ * PuniCodex Type — Content Script
  * Injects inline autocomplete into standard input fields across the web.
  */
 
 (function() {
     'use strict';
 
-    const engine = PUNYCODEX_ENGINE;
+    const engine = PUNICODEX_ENGINE;
     const trie = engine.buildTrie(LEXICON);
 
     // Settings
@@ -48,8 +48,8 @@
     // Create dropdown element
     function createDropdown() {
         const el = document.createElement('div');
-        el.id = 'punycodex-dropdown';
-        el.className = 'punycodex-dropdown';
+        el.id = 'punicodex-dropdown';
+        el.className = 'punicodex-dropdown';
         el.setAttribute('role', 'listbox');
         el.style.display = 'none';
         document.body.appendChild(el);
@@ -108,16 +108,16 @@
         dropdown.innerHTML = completions.map((entry, i) => {
             const emoji = engine.getPantheonEmoji(entry.pantheon);
             return `
-                <div class="punycodex-item" data-index="${i}" data-id="${entry.id}" role="option" aria-selected="false">
-                    <span class="punycodex-emoji">${emoji}</span>
-                    <span class="punycodex-name">${engine.escapeHtml(entry.ascii)}</span>
-                    <span class="punycodex-arrow">→</span>
-                    <span class="punycodex-unicode">${engine.escapeHtml(engine.nfc(entry.unicode))}</span>
+                <div class="punicodex-item" data-index="${i}" data-id="${entry.id}" role="option" aria-selected="false">
+                    <span class="punicodex-emoji">${emoji}</span>
+                    <span class="punicodex-name">${engine.escapeHtml(entry.ascii)}</span>
+                    <span class="punicodex-arrow">→</span>
+                    <span class="punicodex-unicode">${engine.escapeHtml(engine.nfc(entry.unicode))}</span>
                 </div>
             `;
         }).join('');
 
-        dropdown.querySelectorAll('.punycodex-item').forEach(item => {
+        dropdown.querySelectorAll('.punicodex-item').forEach(item => {
             item.addEventListener('click', () => {
                 const id = item.dataset.id;
                 const entry = LEXICON.find(e => e.id === id);
@@ -142,7 +142,7 @@
     }
 
     function setActiveItem(index) {
-        const items = dropdown.querySelectorAll('.punycodex-item');
+        const items = dropdown.querySelectorAll('.punicodex-item');
         items.forEach((item, i) => {
             const isActive = i === index;
             item.classList.toggle('active', isActive);
@@ -170,7 +170,7 @@
 
     function handleKeydown(e) {
         if (!isDropdownVisible) return;
-        const items = dropdown.querySelectorAll('.punycodex-item');
+        const items = dropdown.querySelectorAll('.punicodex-item');
 
         if (e.key === 'ArrowDown') {
             e.preventDefault();
@@ -241,7 +241,7 @@
     async function checkPageAuthenticity() {
         try {
             if (settings.authenticityWarnings === false) return;
-            const apiUrl = `https://punycodex.com/api/v2/authenticity/check/?input=${encodeURIComponent(window.location.href)}&type=url`;
+            const apiUrl = `https://punicodex.com/api/v2/authenticity/check/?input=${encodeURIComponent(window.location.href)}&type=url`;
             const res = await fetch(apiUrl, { cache: 'no-store' });
             if (!res.ok) return;
             const payload = await res.json();
@@ -250,8 +250,8 @@
             if (data.severity !== 'high' && data.severity !== 'critical') return;
 
             const banner = document.createElement('div');
-            banner.id = 'punycodex-authenticity-warning';
-            banner.textContent = `PÚNYCODEX warning: ${data.label || data.verdict} — ${data.reason || ''}`;
+            banner.id = 'punicodex-authenticity-warning';
+            banner.textContent = `PuniCodex warning: ${data.label || data.verdict} — ${data.reason || ''}`;
             document.body.appendChild(banner);
         } catch (_e) {
             // Network or CORS issues are expected on some pages; fail silently.
@@ -260,5 +260,5 @@
 
     checkPageAuthenticity();
 
-    console.log('PÚNYCODEX Type content script loaded.');
+    console.log('PuniCodex Type content script loaded.');
 })();

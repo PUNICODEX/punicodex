@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Deploy 32 PUNYCODEX flagships to Vercel + bind custom punycode domains.
+ * Deploy 32 PUNICODEX flagships to Vercel + bind custom punycode domains.
  *
  * Prerequisites:
  *   - vercel CLI installed and authenticated (`vercel login`)
@@ -55,7 +55,7 @@ const FLAGSHIPS = [
 for (const f of FLAGSHIPS) {
   f.punycode = domainToASCII(`${f.unicode}.com`);
   f.siteDir = path.join(ROOT, 'sites', f.id);
-  f.projectName = `punycodex-${f.id}`;
+  f.projectName = `punicodex-${f.id}`;
 }
 
 function sleep(ms) {

@@ -1,5 +1,5 @@
 /**
- * New lexicon entries for the PÚNYCODEX expansion.
+ * New lexicon entries for the PuniCodex expansion.
  *
  * Includes:
  *   - Missing purchased domains: Hygíeia, Papatūānuku, Tiāndì, Yām, Adámas

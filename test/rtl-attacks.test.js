@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — RTL attack detector tests
+ * PuniCodex — RTL attack detector tests
  */
 
 const assert = require('node:assert');

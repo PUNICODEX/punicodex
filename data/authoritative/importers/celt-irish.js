@@ -1,5 +1,5 @@
 /**
- * CELT Irish importer for PÚNYCODEX
+ * CELT Irish importer for PuniCodex
  *
  * Stub: no online source configured yet.
  */

@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Red-Team Runner
+ * PuniCodex — Red-Team Runner
  *
  * Loads authenticity benchmarks, runs every input through the Name Authenticity
  * Shield, and enforces formal error budgets:
@@ -241,7 +241,7 @@ async function main() {
   fs.writeFileSync(reportPath, JSON.stringify(report, null, 2), 'utf8');
 
   console.log('╔════════════════════════════════════════════════════════════╗');
-  console.log('║     PÚNYCODEX — Red-Team Authenticity Report               ║');
+  console.log('║     PuniCodex — Red-Team Authenticity Report               ║');
   console.log('╚════════════════════════════════════════════════════════════╝');
   console.log(`  Total samples: ${report.summary.totalSamples}`);
   console.log(`  TPR: ${formatPercent(metrics.tpr)} (budget ≥ ${formatPercent(TPR_BUDGET)}) ${metrics.tpr >= TPR_BUDGET ? '✓' : '✗'}`);

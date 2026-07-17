@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Batch promotion for the 2026-07-12 domain acquisition batch.
+ * PuniCodex — Batch promotion for the 2026-07-12 domain acquisition batch.
  *
  * This script:
  *   1. Copies mascot / logolockup / logomark PNGs from the materials folder.
@@ -27,7 +27,7 @@ const MATERIALS = path.join(
   'extended flagship materials',
   'newest domain batch 12-07-2026',
   'Kimi_Agent_Srevol Domain Value Analysis',
-  'punycodex'
+  'punicodex'
 );
 
 const ENTRIES = [

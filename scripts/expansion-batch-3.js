@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX Lexicon Expansion Batch 3
+ * PUNICODEX Lexicon Expansion Batch 3
  * Buddhist, Taoist, Korean, Phoenician, Hittite, more Chinese, sacred places, deeper coverage
  */
 

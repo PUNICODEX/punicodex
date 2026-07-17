@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Oracle page smoke tests
+ * PuniCodex — Oracle page smoke tests
  * Verifies that /oracle.html has the required structure, nav, sections,
  * interactive demo wiring, and footer expected by the global layout.
  */
@@ -43,7 +43,7 @@ test('page has exactly one <title>', () => {
 
 test('page has canonical URL', () => {
   const canonical = $('link[rel="canonical"]').attr('href');
-  assert.strictEqual(canonical, 'https://punycodex.com/oracle.html');
+  assert.strictEqual(canonical, 'https://punicodex.com/oracle.html');
 });
 
 test('page has meta description', () => {

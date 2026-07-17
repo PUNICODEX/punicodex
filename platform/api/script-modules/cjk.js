@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — CJK script risk module
+ * PuniCodex — CJK script risk module
  *
  * Detects fullwidth ASCII spoofs, kana↔kanji lookalikes, simplified/traditional
  * collisions, and mixed-script attacks in CJK text.

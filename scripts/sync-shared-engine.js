@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Sync canonical engine to extension and mobile shared copies
+ * PUNICODEX — Sync canonical engine to extension and mobile shared copies
  *
  * type/js/engine.js is the single source of truth.
  * This script copies it to:

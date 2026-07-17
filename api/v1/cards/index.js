@@ -1,6 +1,6 @@
 /**
  * GET /api/v1/cards
- * List and search the generated PÚNYCODEX card set.
+ * List and search the generated PuniCodex card set.
  */
 
 const { createApiHandler } = require('../../../platform/api/api-handler.js');

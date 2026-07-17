@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX Authenticity Extension v2 — Background service worker
+ * PuniCodex Authenticity Extension v2 — Background service worker
  */
 
 import { getAll, DEFAULTS } from '../shared/storage.js';
@@ -23,7 +23,7 @@ function getApiUrl(settings, url) {
 }
 
 function buildInterstitialUrl(tabUrl, verdict, settings) {
-  const base = settings.interstitialUrl || 'https://punycodex.com/interstitial.html';
+  const base = settings.interstitialUrl || 'https://punicodex.com/interstitial.html';
   const params = new URLSearchParams();
   params.set('url', tabUrl);
   params.set('verdict', verdict.verdict || '');

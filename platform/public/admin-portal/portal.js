@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Unified Admin Portal (shared shell)
+ * PuniCodex — Unified Admin Portal (shared shell)
  * Auth guard, /me-driven role-based nav, API wrapper (x-admin-token +
  * trailing slashes), toasts, modal, and formatting helpers. Loaded by every
  * portal page except the login screen.
@@ -10,7 +10,7 @@
 (function () {
   'use strict';
 
-  const TOKEN_KEY = 'punycodex_portal_token';
+  const TOKEN_KEY = 'punicodex_portal_token';
 
   // Pages set <body data-depth="1"> when they live one directory below the
   // portal root (applications/, patrons/, scholars/, users/).

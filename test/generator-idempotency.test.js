@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Generator Idempotency Tests
+ * PuniCodex — Generator Idempotency Tests
  *
  * Fast, targeted regression tests for generator scripts that have historically
  * been non-idempotent (rewriting timestamps on every run). Each test runs a

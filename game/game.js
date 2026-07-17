@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   PÚNYCODEX Mythic Duel — game client
+   PuniCodex Mythic Duel — game client
 
    Tabs: Lobby / Collection / Packs / Battle.
    All dynamic DOM is built with createElement + property assignment (never
@@ -14,7 +14,7 @@
 
   /* ── Constants ───────────────────────────────────────────────────────── */
 
-  var STORAGE_KEY = 'punycodex.cards.v1';
+  var STORAGE_KEY = 'punicodex.cards.v1';
   var STARTER_INK = 150;
   var STARTER_UNIQUE = 24;
   var REWARDS = { win: 50, loss: 15, draw: 15 };

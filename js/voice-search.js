@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX Voice Search — Web Speech API integration.
+ * PUNICODEX Voice Search — Web Speech API integration.
  */
 (function (global) {
   'use strict';

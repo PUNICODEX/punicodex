@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Partner Onboarding Tests (Phase 19)
+ * PuniCodex — Partner Onboarding Tests (Phase 19)
  */
 
 const assert = require('node:assert');
@@ -8,7 +8,7 @@ const Database = require('better-sqlite3');
 const { prepareTestDb, cleanupTestDb } = require('./helpers/test-db.js');
 
 const testDbPath = prepareTestDb(__filename);
-process.env.PUNYCODEX_TEST_DB_PATH = testDbPath;
+process.env.PUNICODEX_TEST_DB_PATH = testDbPath;
 
 const db = new Database(testDbPath);
 const partners = require('../platform/api/partners.js');

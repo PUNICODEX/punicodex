@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Locale-aware confusable resolver
+ * PuniCodex — Locale-aware confusable resolver
  *
  * Loads locale-specific homoglyph mappings from platform/db/locale-confusables.json
  * and resolves the appropriate locale from an Accept-Language header or TLD.

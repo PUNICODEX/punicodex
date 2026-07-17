@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Similarity graph generator
+ * PuniCodex — Similarity graph generator
  *
  * Reads the canonical lexicon and similarity groups, expands function groups
  * into undirected edges, merges high-confidence curated pairs, and writes the

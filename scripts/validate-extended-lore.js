@@ -39,8 +39,8 @@ for (const id of process.argv.slice(2)) {
   const html = fs.readFileSync(file, 'utf8');
 
   const checks = [
-    ['<!-- PUNYCODEX-ANALYTICS-START -->', 'analytics start marker'],
-    ['<!-- PUNYCODEX-ANALYTICS-END -->', 'analytics end marker'],
+    ['<!-- PUNICODEX-ANALYTICS-START -->', 'analytics start marker'],
+    ['<!-- PUNICODEX-ANALYTICS-END -->', 'analytics end marker'],
     ['analytics-beacon.js', 'beacon script'],
     ['</html>', 'closing html'],
     ['nav-link', 'nav links'],

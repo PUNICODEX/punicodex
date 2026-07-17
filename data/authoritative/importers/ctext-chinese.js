@@ -1,5 +1,5 @@
 /**
- * CText Chinese importer for PÚNYCODEX
+ * CText Chinese importer for PuniCodex
  *
  * Stub: no online source configured yet.
  */

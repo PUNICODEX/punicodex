@@ -11,9 +11,9 @@ const http = require('node:http');
 
 process.env.ADMIN_PASSWORD = 'test-patrons-admin-password';
 process.env.STRIPE_SECRET_KEY = 'sk_test_dummy';
-process.env.PLATFORM_URL = 'https://punycodex.com';
+process.env.PLATFORM_URL = 'https://punicodex.com';
 process.env.STRIPE_WEBHOOK_SECRET = 'whsec_dummy';
-process.env.PUNYCODEX_BCRYPT_ROUNDS = '4';
+process.env.PUNICODEX_BCRYPT_ROUNDS = '4';
 
 const { prepareTestDb } = require('./helpers/test-db.js');
 prepareTestDb(__filename);

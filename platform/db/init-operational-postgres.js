@@ -13,6 +13,8 @@ const OPERATIONAL_TABLES = [
   'analytics_events',
   'admin_sessions',
   'admin_actions',
+  'admin_users',
+  'patrons',
   'verified_sessions',
   'email_verifications',
   'api_keys',

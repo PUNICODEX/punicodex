@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Scholarly Edition Edit Quality Gate Tests
+ * PuniCodex — Scholarly Edition Edit Quality Gate Tests
  */
 
 const assert = require('node:assert');

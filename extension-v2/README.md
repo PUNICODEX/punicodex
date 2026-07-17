@@ -1,6 +1,6 @@
-# PÚNYCODEX Authenticity Extension v2
+# PuniCodex Authenticity Extension v2
 
-Manifest V3 browser extension that integrates the PÚNYCODEX Authenticity Checker.
+Manifest V3 browser extension that integrates the PuniCodex Authenticity Checker.
 
 ## Features
 
@@ -23,7 +23,7 @@ To package for the Chrome Web Store:
 
 ```bash
 cd extension-v2
-zip -r punycodex-authenticity-v2.zip \
+zip -r punicodex-authenticity-v2.zip \
   manifest.json background/ content/ popup/ options/ shared/ icons/
 ```
 

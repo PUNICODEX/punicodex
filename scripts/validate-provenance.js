@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Original Script Provenance Validator
+ * PuniCodex — Original Script Provenance Validator
  *
  * Ensures the rich provenance overhaul is wired correctly:
  *  - create-flagship.js imports and delegates to buildRichProvenanceSection
@@ -89,7 +89,7 @@ const REQUIRED_HTML_MARKERS = [
 ];
 
 function main() {
-  console.log(`${C.bold}${C.cyan}PUNYCODEX Provenance Validator${C.reset}\n`);
+  console.log(`${C.bold}${C.cyan}PUNICODEX Provenance Validator${C.reset}\n`);
 
   // 1. Wiring checks
   info('Checking generator wiring...');

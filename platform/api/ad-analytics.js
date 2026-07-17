@@ -11,7 +11,7 @@ function isSafeRedirectUrl(url, platformUrl) {
   if (url.startsWith('/')) return true;
   try {
     const target = new URL(url);
-    const platform = new URL(platformUrl || process.env.PLATFORM_URL || 'https://punycodex.com');
+    const platform = new URL(platformUrl || process.env.PLATFORM_URL || 'https://punicodex.com');
     if (target.protocol !== 'http:' && target.protocol !== 'https:') return false;
     if (target.hostname === platform.hostname && target.port === platform.port) return true;
     // Allow valid external advertiser URLs (http/https only).

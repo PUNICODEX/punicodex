@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Flagship patron page smoke tests
+ * PuniCodex — Flagship patron page smoke tests
  * Verifies that every generated flagship temple has a patron page with the
  * museum-plaque wall, honest availability, flat pricing, safe padding, and
  * working mobile navigation. These checks exist to prevent regressions in the

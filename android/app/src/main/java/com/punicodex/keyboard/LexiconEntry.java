@@ -1,4 +1,4 @@
-package com.punycodex.keyboard;
+package com.punicodex.keyboard;
 
 import java.util.ArrayList;
 import java.util.List;

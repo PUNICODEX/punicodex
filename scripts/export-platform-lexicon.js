@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Export lexicon to platform/browser/renderer/lexicon.json
+ * PUNICODEX — Export lexicon to platform/browser/renderer/lexicon.json
  *
  * Source of truth: type/js/lexicon.js
  *

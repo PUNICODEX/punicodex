@@ -387,7 +387,7 @@
 })();
 
 // ========== BOOKING SYSTEM ==========
-const API_BASE = window.PUNYCODEX_API_BASE || ''; // Set window.PUNYCODEX_API_BASE in HTML if needed
+const API_BASE = window.PUNICODEX_API_BASE || ''; // Set window.PUNICODEX_API_BASE in HTML if needed
 
 // Only initialize on pages with the booking modal
 if (!document.getElementById('booking-modal')) {
@@ -466,7 +466,7 @@ async function loadSlots() {
     slotsData = data.slots || [];
     updateSlotUI();
   } catch (err) {
-    console.error('[PUNYCODEX] loadSlots failed:', err);
+    console.error('[PUNICODEX] loadSlots failed:', err);
   }
 }
 
@@ -722,7 +722,7 @@ function openModal(slotOrId) {
     document.body.style.overflow = 'hidden';
 
   } catch (err) {
-    console.error('[PUNYCODEX] openModal failed:', err);
+    console.error('[PUNICODEX] openModal failed:', err);
   }
 }
 
@@ -1032,7 +1032,7 @@ async function handleReturnFromStripe() {
       showBookingError('Payment is still processing. Please refresh in a moment.');
     }
   } catch (err) {
-    console.error('[PUNYCODEX] handleReturnFromStripe failed:', err);
+    console.error('[PUNICODEX] handleReturnFromStripe failed:', err);
   }
 }
 
@@ -1371,7 +1371,7 @@ handleReturnFromStripe();
         grid.insertBefore(renderPatron(patron), joinCard);
       });
     } catch (err) {
-      console.error('[PUNYCODEX] loadPatrons failed:', err);
+      console.error('[PUNICODEX] loadPatrons failed:', err);
     }
   }
 

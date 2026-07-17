@@ -1,7 +1,7 @@
-package com.punycodex.keyboard;
+package com.punicodex.keyboard;
 
-import com.punycodex.app.BuildConfig;
-import com.punycodex.app.R;
+import com.punicodex.app.BuildConfig;
+import com.punicodex.app.R;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -1332,7 +1332,7 @@ public class PunyKeyboardService extends InputMethodService {
             hideExcessChips();
             if (typedWordView != null) {
                 typedWordView.setText("");
-                typedWordView.setHint(isPasswordField ? "••••••" : "PÚNYCODEX");
+                typedWordView.setHint(isPasswordField ? "••••••" : "PuniCodex");
             }
             return;
         }
@@ -1347,7 +1347,7 @@ public class PunyKeyboardService extends InputMethodService {
 
         if (word.length() == 0) {
             hideExcessChips();
-            if (typedWordView != null) typedWordView.setHint("PÚNYCODEX");
+            if (typedWordView != null) typedWordView.setHint("PuniCodex");
             return;
         }
 

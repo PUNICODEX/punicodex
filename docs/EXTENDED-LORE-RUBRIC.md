@@ -32,8 +32,8 @@ rubric.
 ## 3. Structure and chrome (non-negotiable)
 
 - The page's chrome is untouchable: everything in `<head>` (meta, JSON-LD,
-  styles), the injected marker blocks (`PUNYCODEX-ANALYTICS-*`,
-  `PUNYCODEX-UNIVERSITY-COLLABORATORS-*`), global nav, canvas/hero scripts,
+  styles), the injected marker blocks (`PUNICODEX-ANALYTICS-*`,
+  `PUNICODEX-UNIVERSITY-COLLABORATORS-*`), global nav, canvas/hero scripts,
   and the footer stay byte-identical.
 - Edit only the content inside the page's `<section>` blocks (and the
   hero's inner copy where it is generic). Never whole-file rewrites —

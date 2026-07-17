@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX Homograph Defense Service (Legacy Compatibility Shim)
+ * PuniCodex Homograph Defense Service (Legacy Compatibility Shim)
  *
  * The canonical trust-model logic now lives in `authenticity-service.js`.
  * This file re-exports the original API surface so existing callers

@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════
-   PÚNYCODEX — Core Shared Behaviors
+   PuniCodex — Core Shared Behaviors
    Nav, scroll reveal, clipboard, utilities.
    Loaded by main.js and temple-base.js.
    ═══════════════════════════════════════════════════════════ */

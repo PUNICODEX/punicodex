@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Indic script risk module tests
+ * PuniCodex — Indic script risk module tests
  */
 
 const assert = require('node:assert');

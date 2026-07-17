@@ -64,7 +64,7 @@
   }
 
   if (templeId) {
-    if (eyebrow) eyebrow.textContent = `PUNYCODEX — ${templeId}`;
+    if (eyebrow) eyebrow.textContent = `PUNICODEX — ${templeId}`;
     if (title) title.textContent = 'Student Work Inspired by This Archetype';
   }
 

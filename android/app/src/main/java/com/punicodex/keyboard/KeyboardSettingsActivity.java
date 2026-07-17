@@ -1,4 +1,4 @@
-package com.punycodex.keyboard;
+package com.punicodex.keyboard;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,7 +27,7 @@ public class KeyboardSettingsActivity extends AppCompatActivity {
         layout.setBackgroundColor(0xFF0A0A0A);
 
         TextView title = new TextView(this);
-        title.setText("PÚNYCODEX Keyboard");
+        title.setText("PuniCodex Keyboard");
         title.setTextColor(0xFFD4AF37);
         title.setTextSize(24);
         title.setPadding(0, 0, 0, 16);
@@ -41,7 +41,7 @@ public class KeyboardSettingsActivity extends AppCompatActivity {
         layout.addView(subtitle);
 
         Button openAppBtn = new Button(this);
-        openAppBtn.setText("Open PÚNYCODEX App");
+        openAppBtn.setText("Open PuniCodex App");
         openAppBtn.setBackgroundColor(0xFFD4AF37);
         openAppBtn.setTextColor(0xFF0A0A0A);
         openAppBtn.setPadding(24, 24, 24, 24);

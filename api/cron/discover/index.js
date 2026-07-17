@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX Discovery Cron
+ * PUNICODEX Discovery Cron
  *
  * Idempotent cron endpoint for Vercel.
  * Queries CT logs for recently seen xn-- domains and queues them for crawling.

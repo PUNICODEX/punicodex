@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Symbolic & Hermetic Correspondence Corpus Generator (Phase 12)
+ * PuniCodex — Symbolic & Hermetic Correspondence Corpus Generator (Phase 12)
  *
  * Builds a training corpus that teaches the AI to map mythological figures to
  * symbolic systems (planetary, elemental, alchemical, tarot, chakras, sefirot,
@@ -128,7 +128,7 @@ function buildLookupExamples(entries, symbolsData, count, rng) {
 
     let output;
     if (systems.length === 0) {
-      output = `${e.unicode} does not yet have established symbolic correspondences in the PÚNYCODEX corpus. This may be because the figure's domain is too local, too obscure, or because explicit scholarly mappings are still being curated. When in doubt, we prefer silence over invention.`;
+      output = `${e.unicode} does not yet have established symbolic correspondences in the PuniCodex corpus. This may be because the figure's domain is too local, too obscure, or because explicit scholarly mappings are still being curated. When in doubt, we prefer silence over invention.`;
     } else {
       const lines = systems.map((sys) => {
         const ms = grouped[sys];
@@ -243,7 +243,7 @@ function buildCautionExamples(entries, symbolsData, count, rng) {
       task: 'symbolic_caution',
       instruction: `Is it correct to say ${e.unicode} corresponds to ${m.symbol} in ${systemLabel(m.system, symbolsData)}?`,
       input: `${e.unicode} → ${m.system}:${m.symbol}`,
-      output: `This correspondence is marked as **low confidence** in the PÚNYCODEX corpus. ${m.rationale} It is best treated as a suggestive analogy or a late interpretive overlay rather than an ancient, attested equivalence. When discussing ${e.unicode} with others, lead with high-confidence mappings and clearly label speculative ones to avoid presenting modern esoteric synthesis as historical fact.`,
+      output: `This correspondence is marked as **low confidence** in the PuniCodex corpus. ${m.rationale} It is best treated as a suggestive analogy or a late interpretive overlay rather than an ancient, attested equivalence. When discussing ${e.unicode} with others, lead with high-confidence mappings and clearly label speculative ones to avoid presenting modern esoteric synthesis as historical fact.`,
       metadata: { entryId: e.id, system: m.system, symbol: m.symbol },
     });
   }

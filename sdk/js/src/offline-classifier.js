@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Offline Name Authenticity Classifier
+ * PuniCodex — Offline Name Authenticity Classifier
  *
  * Browser-safe, zero-dependency classifier for terms. Uses only pure-JS
  * platform modules (confusable atlas, name decomposer, glyph renderer) and a

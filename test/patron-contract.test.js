@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * PÚNYCODEX — Patron frontend ↔ backend contract tests
+ * PuniCodex — Patron frontend ↔ backend contract tests
  *
  * Guards the contract between the flagship patron frontends
  * (templates/flagship/patron/patron.js, templates/flagship/flagship.js) and

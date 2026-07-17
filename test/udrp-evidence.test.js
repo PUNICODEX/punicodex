@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — UDRP Evidence & Case Tracking Tests (Phase 16)
+ * PuniCodex — UDRP Evidence & Case Tracking Tests (Phase 16)
  */
 
 const assert = require('node:assert');
@@ -14,7 +14,7 @@ const db = new Database(testDbPath);
 migrateEnterpriseGovernance({ db });
 migrateRegulatory({ db });
 
-process.env.PUNYCODEX_TEST_DB_PATH = testDbPath;
+process.env.PUNICODEX_TEST_DB_PATH = testDbPath;
 
 const udrpService = require('../platform/api/udrp-service.js');
 const { closeDb } = require('../platform/db/operational.js');

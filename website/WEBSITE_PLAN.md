@@ -1,4 +1,4 @@
-# PÚNYCODEX — Enterprise Website Design Pack Plan
+# PuniCodex — Enterprise Website Design Pack Plan
 ## $50M Grade Digital Experience
 
 ---
@@ -18,11 +18,11 @@ website/
 ## COMPONENTS (13 items)
 
 ### Navigation
-1. **nav_dark** — Black bg, PÚNYCODEX wordmark left, deity links right, gold hover
+1. **nav_dark** — Black bg, PuniCodex wordmark left, deity links right, gold hover
 2. **nav_light** — White bg, charcoal wordmark, subtle gold accents
 
 ### Hero Sections
-3. **hero_full** — Full-screen black, golden Psi icon, "PÚNYCODEX" massive, tagline, CTA
+3. **hero_full** — Full-screen black, golden Psi icon, "PuniCodex" massive, tagline, CTA
 4. **hero_split** — Left: dark with wordmark + copy. Right: grid of 6 deity mascots
 
 ### Content Components
@@ -36,7 +36,7 @@ website/
 
 ### Footer & Chrome
 10. **footer** — Black, 4-column: Brand / Deities / Resources / Connect
-11. **loading_screen** — Black, golden Psi pulsing, "PÚNYCODEX" appearing
+11. **loading_screen** — Black, golden Psi pulsing, "PuniCodex" appearing
 12. **page_404** — "This deity is not in our pantheon" with golden Psi
 
 ### Interactive

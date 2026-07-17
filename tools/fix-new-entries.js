@@ -14,6 +14,6 @@ for (const entry of lexicon) {
 }
 
 const body = JSON.stringify(lexicon, null, 2);
-const out = `/*\n * PUNYCODEX Lexicon\n * ${lexicon.length} validated entries across multiple pantheons\n */\n\nconst LEXICON = ${body};\n\nif (typeof module !== 'undefined' && module.exports) {\n  module.exports = { LEXICON };\n}\n`;
+const out = `/*\n * PUNICODEX Lexicon\n * ${lexicon.length} validated entries across multiple pantheons\n */\n\nconst LEXICON = ${body};\n\nif (typeof module !== 'undefined' && module.exports) {\n  module.exports = { LEXICON };\n}\n`;
 fs.writeFileSync(file, out.replace(/\r\n/g, '\n'), 'utf8');
 console.log('Fixed pantheons and yinyang ascii');

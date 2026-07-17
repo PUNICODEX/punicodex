@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Source Catalog
+ * PUNICODEX — Source Catalog
  * Rich citation metadata for scholarly reference works.
  */
 

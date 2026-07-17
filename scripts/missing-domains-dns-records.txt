@@ -1,4 +1,4 @@
-PUNYCODEX — DNS records to add for the 20 GoDaddy domains that are not yet resolving
+PUNICODEX — DNS records to add for the 20 GoDaddy domains that are not yet resolving
 ======================================================================================
 
 For each domain below, add these records in your GoDaddy DNS manager.
@@ -52,10 +52,10 @@ Expected behavior after propagation
 Once the A record is live, visiting any of these domains will hit Vercel and the
 site middleware will redirect (301) to:
 
-  https://punycodex.com/{id}/
+  https://punicodex.com/{id}/
 
 For example:
-  typhōn.com  ->  https://punycodex.com/typhon/
-  ēa.com      ->  https://punycodex.com/enki/
+  typhōn.com  ->  https://punicodex.com/typhon/
+  ēa.com      ->  https://punicodex.com/enki/
 
 If you prefer a 302 redirect instead of 301, let me know and I'll update middleware.js.

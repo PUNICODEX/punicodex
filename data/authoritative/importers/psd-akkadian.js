@@ -1,5 +1,5 @@
 /**
- * PSD Akkadian importer for PÚNYCODEX
+ * PSD Akkadian importer for PuniCodex
  *
  * Stub: no online source configured yet.
  */

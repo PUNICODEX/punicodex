@@ -1,4 +1,4 @@
--- PUNYCODEX — MLOps & Continuous Learning Schema (Phase 14)
+-- PUNICODEX — MLOps & Continuous Learning Schema (Phase 14)
 -- Idempotent. Run via platform/db/init.js or platform/db/migrate-mlops.js.
 
 CREATE TABLE IF NOT EXISTS telemetry_events (

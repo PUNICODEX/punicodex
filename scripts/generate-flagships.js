@@ -216,7 +216,7 @@ allEntries.sort((a, b) => {
 
 const lines = [
     '/**',
-    ' * PÚNYCODEX — Central Archetype Database',
+    ' * PuniCodex — Central Archetype Database',
     ' * Handcrafted flagship temples only.',
     ` * ${allEntries.length} handcrafted archetypes.`,
     ' */',

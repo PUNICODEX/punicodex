@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Scholarly Edition content regression suite
+ * PuniCodex — Scholarly Edition content regression suite
  *
  * Proves the canonical Scholarly Edition content pipeline can never silently
  * break. Covers all built archetypes (flagship temples):

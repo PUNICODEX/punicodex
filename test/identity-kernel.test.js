@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Canonical Identity Kernel 2.0 Tests
+ * PuniCodex — Canonical Identity Kernel 2.0 Tests
  */
 
 const assert = require('node:assert');

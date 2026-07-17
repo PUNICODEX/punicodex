@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Tool-Use / Function-Calling Corpus Generator (Phase 4)
+ * PuniCodex — Tool-Use / Function-Calling Corpus Generator (Phase 4)
  *
- * Emits multi-turn examples where the assistant must invoke PÚNYCODEX APIs
+ * Emits multi-turn examples where the assistant must invoke PuniCodex APIs
  * to answer user questions: punycode conversion, name authenticity checks,
  * lexicon search, and URL decomposition.
  *
@@ -52,7 +52,7 @@ const TOOLS = [
     type: 'function',
     function: {
       name: 'search_names',
-      description: 'Search the PÚNYCODEX lexicon for entries matching a query.',
+      description: 'Search the PuniCodex lexicon for entries matching a query.',
       parameters: {
         type: 'object',
         properties: {
@@ -182,7 +182,7 @@ function buildCheckToolExample(entry, index) {
       },
       {
         role: 'assistant',
-        content: `${input} is a ${entry.ownership.isOwned ? 'canonical owned form' : 'recognized scholarly variant'} of ${entry.ascii} in the PÚNYCODEX corpus.`,
+        content: `${input} is a ${entry.ownership.isOwned ? 'canonical owned form' : 'recognized scholarly variant'} of ${entry.ascii} in the PuniCodex corpus.`,
       },
     ],
     metadata: { pantheon: entry.pantheon, owned: entry.ownership.isOwned },
@@ -196,7 +196,7 @@ function buildSearchToolExample(entry, index) {
     task: 'tool_search',
     tools: TOOLS,
     messages: [
-      { role: 'user', content: `Find the PÚNYCODEX entry for ${entry.ascii}.` },
+      { role: 'user', content: `Find the PuniCodex entry for ${entry.ascii}.` },
       {
         role: 'assistant',
         content: '',

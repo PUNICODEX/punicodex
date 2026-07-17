@@ -1,4 +1,4 @@
-# PÚNYCODEX Scholarly Edition — Launch Runbook
+# PuniCodex Scholarly Edition — Launch Runbook
 
 ## Pre-Launch Checklist
 

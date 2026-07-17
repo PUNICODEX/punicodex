@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Event-driven Crawler Service
+ * PUNICODEX — Event-driven Crawler Service
  *
  * Receives domain-change events (webhooks, CT logs, DNS changes) and enqueues
  * them for crawling. The processor consumes pending events, runs the existing

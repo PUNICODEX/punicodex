@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Realms page flagship-badge tests
+ * PuniCodex — Realms page flagship-badge tests
  *
  * realms/index.html is hand-maintained; its flagship badges drifted out of
  * sync once already (valholl, nikko were promoted but never badged). This

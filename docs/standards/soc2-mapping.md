@@ -5,7 +5,7 @@
 
 ## Summary
 
-This document maps PUNYCODEX Name Authenticity Shield controls to SOC 2 Trust Services Criteria and links each control to its evidence.
+This document maps PUNICODEX Name Authenticity Shield controls to SOC 2 Trust Services Criteria and links each control to its evidence.
 
 ## Control Mapping
 

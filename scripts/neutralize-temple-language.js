@@ -13,7 +13,7 @@ const REPLACEMENTS = [
   // Head metadata (variable deity names)
   {
     pattern: /<title>([^<]+) — In alignment with the ([^<]+)<\/title>/g,
-    replacement: '<title>$1 — $2 | PUNYCODEX</title>',
+    replacement: '<title>$1 — $2 | PUNICODEX</title>',
   },
   {
     pattern: /<meta name="description" content="In alignment with ([^"]+) — the ([^"]+)\. Premium advertising placements on a domain rooted in ancient power\.">/g,
@@ -21,7 +21,7 @@ const REPLACEMENTS = [
   },
   {
     pattern: /<meta property="og:title" content="([^"]+) — In alignment with the ([^"]+)">/g,
-    replacement: '<meta property="og:title" content="$1 — $2 | PUNYCODEX">',
+    replacement: '<meta property="og:title" content="$1 — $2 | PUNICODEX">',
   },
   {
     pattern: /<meta property="og:description" content="In alignment with ([^"]+) — the ([^"]+)\. Premium advertising placements on a domain rooted in ancient power\.">/g,
@@ -29,7 +29,7 @@ const REPLACEMENTS = [
   },
   {
     pattern: /<meta name="twitter:title" content="([^"]+) — In alignment with the ([^"]+)">/g,
-    replacement: '<meta name="twitter:title" content="$1 — $2 | PUNYCODEX">',
+    replacement: '<meta name="twitter:title" content="$1 — $2 | PUNICODEX">',
   },
   {
     pattern: /<meta name="twitter:description" content="In alignment with ([^"]+) — the ([^"]+)\.">/g,
@@ -37,7 +37,7 @@ const REPLACEMENTS = [
   },
   {
     pattern: /"name": "([^"]+) — In alignment with the ([^"]+)",/g,
-    replacement: '"name": "$1 — $2 | PUNYCODEX",',
+    replacement: '"name": "$1 — $2 | PUNICODEX",',
   },
   {
     pattern: /"description": "In alignment with ([^"]+) — the ([^"]+)\.",/g,
@@ -46,11 +46,11 @@ const REPLACEMENTS = [
   // Hero section
   {
     pattern: /<p class="patron-eyebrow">In alignment with<\/p>/g,
-    replacement: '<p class="patron-eyebrow">PUNYCODEX entry for</p>',
+    replacement: '<p class="patron-eyebrow">PUNICODEX entry for</p>',
   },
   {
     pattern: /<p class="patron-eyebrow">Endorsed by<\/p>/g,
-    replacement: '<p class="patron-eyebrow">PUNYCODEX entry for</p>',
+    replacement: '<p class="patron-eyebrow">PUNICODEX entry for</p>',
   },
   {
     pattern: /<span class="meta-badge">Premium Ad Spaces Available<\/span>/g,

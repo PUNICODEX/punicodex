@@ -1,4 +1,4 @@
--- PUNYCODEX — Threat Intelligence Graph Schema Migration (Phase 8)
+-- PUNICODEX — Threat Intelligence Graph Schema Migration (Phase 8)
 -- Idempotent. Run via platform/db/init.js or a SQL runner.
 
 CREATE TABLE IF NOT EXISTS clusters (

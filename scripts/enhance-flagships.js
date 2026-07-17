@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Flagship Temple Enhancer
+ * PUNICODEX — Flagship Temple Enhancer
  * Adds schema.org, global nav, related entries, and fixed CTAs
  * to the 20 existing hand-crafted temple pages.
  */
@@ -64,7 +64,7 @@ ${JSON.stringify({
     '@type': 'WebPage',
     name: `${entry.unicode} — ${entry.domain}`,
     description: `The authentic digital shrine to ${entry.unicode}. Explore the correct ${PANTHEON_LABELS[entry.pantheon] || 'ancient'} orthography, Unicode restoration, and scholarly sources for ${entry.unicode}.com.`,
-    url: `https://punycodex.com/sites/${entry.id}/`,
+    url: `https://punicodex.com/sites/${entry.id}/`,
     about: {
         '@type': 'Thing',
         name: hasOriginal ? entry.greek : entry.unicode,
@@ -73,12 +73,12 @@ ${JSON.stringify({
     },
     isPartOf: {
         '@type': 'WebSite',
-        name: 'PUNYCODEX',
-        url: 'https://punycodex.com',
+        name: 'PUNICODEX',
+        url: 'https://punicodex.com',
     },
     primaryImageOfPage: {
         '@type': 'ImageObject',
-        url: 'https://punycodex.com/assets/images/og-default.svg',
+        url: 'https://punicodex.com/assets/images/og-default.svg',
     },
 }, null, 4)}
     </script>`;
@@ -89,7 +89,7 @@ function generateGlobalNav() {
     <!-- Global Nav -->
     <div style="position:fixed;top:0;left:0;width:100%;z-index:1001;background:rgba(10,10,10,0.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.06);">
         <div style="max-width:1200px;margin:0 auto;padding:0.4rem clamp(1.5rem,5vw,3rem);display:flex;align-items:center;justify-content:space-between;">
-            <a href="/" style="font-family:'Cinzel',serif;font-size:0.8rem;font-weight:700;letter-spacing:0.15em;color:#D4AF37;text-decoration:none;">PUNYCODEX</a>
+            <a href="/" style="font-family:'Cinzel',serif;font-size:0.8rem;font-weight:700;letter-spacing:0.15em;color:#D4AF37;text-decoration:none;">PUNICODEX</a>
             <div style="display:flex;gap:1.5rem;">
                 <a href="/pantheon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Pantheon</a>
                 <a href="/lexicon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Lexicon</a>
@@ -139,7 +139,7 @@ function generateTypeCTA(entry) {
     <section style="padding:6rem 0;background:linear-gradient(180deg,#0A0A0A 0%,rgba(65,105,225,0.08) 100%);text-align:center;">
         <div class="container" style="max-width:700px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem);">
             <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.75rem,3vw,2.5rem);color:#F5F5F5;margin-bottom:1.5rem;letter-spacing:0.05em;">Experience the Name</h2>
-            <p style="font-size:1.05rem;color:#A0A0A0;line-height:1.8;margin-bottom:2.5rem;">See how ${escapeHtml(entry.unicode)} behaves in the PUNYCODEX Type Tool — with predictive autocomplete, character-by-character breakdown, and scholarly constraint validation.</p>
+            <p style="font-size:1.05rem;color:#A0A0A0;line-height:1.8;margin-bottom:2.5rem;">See how ${escapeHtml(entry.unicode)} behaves in the PUNICODEX Type Tool — with predictive autocomplete, character-by-character breakdown, and scholarly constraint validation.</p>
             <div style="display:inline-flex;align-items:center;gap:1rem;padding:1rem 2rem;background:rgba(0,0,0,0.3);border:1px solid rgba(212,175,55,0.25);border-radius:2px;font-family:'Fira Code','Courier New',monospace;font-size:1.1rem;color:#D4AF37;margin-bottom:1.5rem;">
                 <code>${entry.ascii}</code>
                 <span style="color:#A0A0A0;">&rarr;</span>

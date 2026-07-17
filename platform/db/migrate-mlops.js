@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — MLOps & Continuous Learning Migration Runner (Phase 14)
+ * PUNICODEX — MLOps & Continuous Learning Migration Runner (Phase 14)
  *
  * Idempotently applies platform/db/migrations/003_mlops.sql.
  */

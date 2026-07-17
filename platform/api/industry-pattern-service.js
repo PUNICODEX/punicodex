@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Industry-pattern service
+ * PuniCodex — Industry-pattern service
  *
  * Loads the generated industry-pattern graph and exposes per-entry and
  * per-industry lookups for API v1 endpoints and corpus consumers.

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Pronunciation Atlas Seeder
+ * PuniCodex — Pronunciation Atlas Seeder
  *
  * Builds the canonical type/js/pronunciation-atlas.js.
  *
@@ -209,7 +209,7 @@ function seed() {
         dialect: lorePron.dialect || null,
         confidence: 'canonical',
         audioPath: lorePron.audioPath || null,
-        note: lorePron.note || `Curated pronunciation from the PÚNYCODEX scholarly edition for ${entry.unicode}.`,
+        note: lorePron.note || `Curated pronunciation from the PuniCodex scholarly edition for ${entry.unicode}.`,
       };
       continue;
     }
@@ -233,7 +233,7 @@ function seed() {
 
   const outputPath = path.join(ROOT, 'type', 'js', 'pronunciation-atlas.js');
   const header = `/**
- * PÚNYCODEX — Pronunciation Atlas
+ * PuniCodex — Pronunciation Atlas
  *
  * Canonical pronunciation data for every lexicon entry, including IPA,
  * phoneme breakdowns, approximations, and confidence levels.

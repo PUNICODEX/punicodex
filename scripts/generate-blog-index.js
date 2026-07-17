@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Blog index generator
+ * PuniCodex — Blog index generator
  *
  * Builds the static root blog index at blog/index.html from the canonical
  * per-temple posts (platform/blog/content/{id}.json), the canonical lexicon,
@@ -138,18 +138,18 @@ const jsonLd = JSON.stringify(
   {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'PÚNYCODEX Blog — Unicode Restoration Essays',
+    name: 'PuniCodex Blog — Unicode Restoration Essays',
     description:
       'Long-read essays on the restoration of flagship Unicode names: mythology, original scripts, pronunciation, archaeology, and the IDN engineering that brings ancient names to the address bar.',
-    url: 'https://punycodex.com/blog/',
-    isPartOf: { '@type': 'WebSite', name: 'PUNYCODEX', url: 'https://punycodex.com' },
+    url: 'https://punicodex.com/blog/',
+    isPartOf: { '@type': 'WebSite', name: 'PUNICODEX', url: 'https://punicodex.com' },
     mainEntity: {
       '@type': 'ItemList',
       numberOfItems: posts.length,
       itemListElement: posts.map((p, i) => ({
         '@type': 'ListItem',
         position: i + 1,
-        url: `https://punycodex.com/sites/${p.id}/blog/`,
+        url: `https://punicodex.com/sites/${p.id}/blog/`,
         name: p.title,
       })),
     },
@@ -167,30 +167,30 @@ const html = `<!DOCTYPE html>
 <!-- GENERATED FILE — do not edit by hand. Regenerate with: node scripts/generate-blog-index.js -->
 <html lang="en">
 <head>
-<!-- PUNYCODEX-ANALYTICS-START -->
+<!-- PUNICODEX-ANALYTICS-START -->
 <script src="/js/analytics-beacon.js" defer></script>
-<!-- PUNYCODEX-ANALYTICS-END -->
+<!-- PUNICODEX-ANALYTICS-END -->
 
     <meta charset="UTF-8">
     <meta name="google" content="notranslate">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog — ${total} Unicode Restoration Essays | PUNYCODEX</title>
+    <title>Blog — ${total} Unicode Restoration Essays | PUNICODEX</title>
     <meta name="description" content="Long-read essays on ${total} flagship Unicode restorations: mythology, original scripts, pronunciation, archaeology, and the IDN engineering behind ancient names.">
-    <link rel="canonical" href="https://punycodex.com/blog/">
+    <link rel="canonical" href="https://punicodex.com/blog/">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <!-- Open Graph -->
-    <meta property="og:title" content="Blog — ${total} Unicode Restoration Essays | PUNYCODEX">
+    <meta property="og:title" content="Blog — ${total} Unicode Restoration Essays | PUNICODEX">
     <meta property="og:description" content="Long-read essays on ${total} flagship Unicode restorations across ${pantheonCount} pantheons.">
-    <meta property="og:url" content="https://punycodex.com/blog/">
+    <meta property="og:url" content="https://punicodex.com/blog/">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="PUNYCODEX">
+    <meta property="og:site_name" content="PUNICODEX">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Blog — ${total} Unicode Restoration Essays | PUNYCODEX">
+    <meta name="twitter:title" content="Blog — ${total} Unicode Restoration Essays | PUNICODEX">
     <meta name="twitter:description" content="Long-read essays on ${total} flagship Unicode restorations across ${pantheonCount} pantheons.">
 
     <!-- Schema.org -->
@@ -248,7 +248,7 @@ const html = `<!DOCTYPE html>
     <!-- Navigation -->
     <nav class="main-nav" id="main-nav">
         <div class="nav-inner">
-            <a href="/" class="nav-logo">PUNYCODEX</a>
+            <a href="/" class="nav-logo">PUNICODEX</a>
             <div class="nav-links">
                 <a href="/pantheon/" class="nav-link">Pantheon</a>
                 <a href="/realms/" class="nav-link">Realms</a>
@@ -310,7 +310,7 @@ const html = `<!DOCTYPE html>
 
     <!-- Hero -->
     <section class="blogi-hero">
-        <h1 class="blogi-hero-title">The PÚNYCODEX Blog</h1>
+        <h1 class="blogi-hero-title">The PuniCodex Blog</h1>
         <p class="blogi-hero-subtitle">Long-read essays on ${total} flagship Unicode restorations — the mythology, original scripts, pronunciation, archaeology, and IDN engineering behind the ancient names that now live in the address bar.</p>
         <div class="blogi-stats">
             <div class="blogi-stat">
@@ -394,7 +394,7 @@ ${cardsHtml}
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="/" class="footer-logo">PUNYCODEX</a>
+                    <a href="/" class="footer-logo">PUNICODEX</a>
                     <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
                 </div>
                 <div class="footer-info">

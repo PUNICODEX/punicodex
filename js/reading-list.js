@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX Reading List / Queue — save temples and sites for later.
+ * PUNICODEX Reading List / Queue — save temples and sites for later.
  */
 (function (global) {
   'use strict';

@@ -7,7 +7,7 @@ const LEXICON_PATH = path.join(__dirname, '..', 'type', 'js', 'lexicon.js');
 const lexicon = fs.readFileSync(LEXICON_PATH, 'utf8');
 
 // These are the only plain ASCII domains the user owns (canonical in ASCII form)
-const ALLOWED_ASCII = new Set(['helheimr.com', 'muspellheimr.com', 'punycodex.com']);
+const ALLOWED_ASCII = new Set(['helheimr.com', 'muspellheimr.com', 'punicodex.com']);
 
 function getLexiconEntry(id) {
   const idPattern = new RegExp(`id\\s*:\\s*['"\`]${id}['"\`]`, 'g');

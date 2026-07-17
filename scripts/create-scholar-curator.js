@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Create a Scholarly Edition curator account.
+ * PuniCodex — Create a Scholarly Edition curator account.
  *
  * Usage: node scripts/create-scholar-curator.js email@domain.com password
  *

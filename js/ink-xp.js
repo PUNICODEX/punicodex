@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX Ink XP — frontend helper for awarding and displaying XP.
+ * PUNICODEX Ink XP — frontend helper for awarding and displaying XP.
  */
 (function (global) {
   'use strict';

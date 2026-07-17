@@ -1,14 +1,14 @@
-# PUNYCODEX Art Marketplace — Design Spec
+# PUNICODEX Art Marketplace — Design Spec
 
 **Status:** Design / preparation  
-**Goal:** Let artists upload designs for PUNYCODEX entries, display watermarked previews, and sell unmarked originals.  
+**Goal:** Let artists upload designs for PUNICODEX entries, display watermarked previews, and sell unmarked originals.  
 **Relation to core:** A vertical that increases the value of every entry and gives artists a reason to contribute to the canonical name graph.
 
 ---
 
 ## 1. Overview
 
-Each PUNYCODEX entry is a cultural concept with visual potential. The art marketplace turns those concepts into licensable, collectible images. Buyers see a watermarked preview; after payment the original high-resolution file is released.
+Each PUNICODEX entry is a cultural concept with visual potential. The art marketplace turns those concepts into licensable, collectible images. Buyers see a watermarked preview; after payment the original high-resolution file is released.
 
 Key principles:
 - **Watermark is non-removable from previews.** A visible, branded overlay plus a subtle forensic fingerprint (e.g., perceptual hash + user-specific metadata) makes leaks traceable.
@@ -34,7 +34,7 @@ Key principles:
 | Column | Type | Notes |
 |--------|------|-------|
 | `id` | TEXT PK | |
-| `entry_id` | TEXT FK → entries.id | The PUNYCODEX concept this art depicts. |
+| `entry_id` | TEXT FK → entries.id | The PUNICODEX concept this art depicts. |
 | `artist_id` | TEXT FK → artists.id | |
 | `title` | TEXT | |
 | `description` | TEXT | |
@@ -82,7 +82,7 @@ Key principles:
 1. Artist submits original image (PNG/JPG/WebP, max 25 MB).
 2. Server validates dimensions, file type, and malware (ClamAV or similar).
 3. Server generates:
-   - `preview`: downscaled to 1200px on long edge, overlaid with PUNYCODEX watermark + artist name + translucent grid.
+   - `preview`: downscaled to 1200px on long edge, overlaid with PUNICODEX watermark + artist name + translucent grid.
    - `original`: stored encrypted/private, untouched.
    - `fingerprint`: pHash + embedded buyer-agnostic metadata (artist ID, artwork ID, upload timestamp).
 4. Artwork enters `pending` status.

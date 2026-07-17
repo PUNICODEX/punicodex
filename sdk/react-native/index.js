@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — React Native wrapper for the Authenticity SDK
+ * PuniCodex — React Native wrapper for the Authenticity SDK
  *
  * Re-exports the lightweight mobile classifier so React Native apps can check
  * names and URLs offline without a native bridge for the core logic.

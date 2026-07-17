@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Scholarly Edition Taxonomy Engine
+ * PuniCodex — Scholarly Edition Taxonomy Engine
  *
  * Canonical section registry for the 123 flagship Scholarly Editions.
  * Structure-first: defines what sections every temple may contain,

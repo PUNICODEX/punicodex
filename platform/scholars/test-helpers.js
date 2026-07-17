@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Scholars API test helpers
+ * PuniCodex — Scholars API test helpers
  *
  * Shared setup, teardown, and HTTP utilities for tests that exercise the
  * Scholars Express router against a real SQLite database.
@@ -27,13 +27,13 @@ function runScholarsMigrations(db) {
 /**
  * Create a fresh, empty SQLite database file for a Scholars test suite.
  *
- * Sets `process.env.PUNYCODEX_TEST_DB_PATH`. Pass a short, filesystem-safe
+ * Sets `process.env.PUNICODEX_TEST_DB_PATH`. Pass a short, filesystem-safe
  * suite name (e.g. `load` or `concurrency`).
  */
 function setupTestDb(suiteName) {
-  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), `punycodex-scholars-${suiteName}-`));
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), `punicodex-scholars-${suiteName}-`));
   const dbPath = path.join(tmpDir, 'test.db');
-  process.env.PUNYCODEX_TEST_DB_PATH = dbPath;
+  process.env.PUNICODEX_TEST_DB_PATH = dbPath;
   currentTmpDir = tmpDir;
   return { dbPath, tmpDir };
 }
@@ -41,7 +41,7 @@ function setupTestDb(suiteName) {
 /**
  * Start an isolated Scholars API server.
  *
- * Assumes `process.env.PUNYCODEX_TEST_DB_PATH` is already set. Returns an
+ * Assumes `process.env.PUNICODEX_TEST_DB_PATH` is already set. Returns an
  * object with HTTP helpers, the db layer, and a cleanup function.
  */
 async function startScholarsServer() {
@@ -197,7 +197,7 @@ async function startScholarsServer() {
     } catch (_e) {
       // best effort
     }
-    const dbPath = process.env.PUNYCODEX_TEST_DB_PATH;
+    const dbPath = process.env.PUNICODEX_TEST_DB_PATH;
     if (dbPath) {
       for (const file of [dbPath, `${dbPath}-wal`, `${dbPath}-shm`]) {
         try {

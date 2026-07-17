@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX API v1 — Lightweight request validation
+ * PuniCodex API v1 — Lightweight request validation
  *
  * Manual validation keeps the API layer dependency-free while still providing
  * clear, structured error messages. If the project later adopts Zod, these

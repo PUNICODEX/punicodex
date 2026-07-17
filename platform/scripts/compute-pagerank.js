@@ -8,7 +8,7 @@
 const Database = require('better-sqlite3');
 const path = require('node:path');
 
-const DB_PATH = path.join(__dirname, '..', 'db', 'punycodex.db');
+const DB_PATH = path.join(__dirname, '..', 'db', 'punicodex.db');
 const DAMPING = 0.85;
 const CONVERGENCE = 0.0001;
 const MAX_ITERATIONS = 100;

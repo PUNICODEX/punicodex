@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Brand Dispute Service Tests
+ * PuniCodex — Brand Dispute Service Tests
  *
  * Covers dispute creation, review, appeal, listing, and retrieval.
  */

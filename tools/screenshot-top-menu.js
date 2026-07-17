@@ -1,5 +1,5 @@
 const { chromium } = require('playwright-core');
-const BASE = 'https://punycodex-main-pebt8502q-hekaverse.vercel.app';
+const BASE = 'https://punicodex-main-pebt8502q-hekaverse.vercel.app';
 const ids = ['zeus','hekate','om'];
 (async () => {
   const browser = await chromium.launch({ headless: true, executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe' });

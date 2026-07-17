@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Threat Intelligence Stream Tests (Phase 8)
+ * PUNICODEX — Threat Intelligence Stream Tests (Phase 8)
  */
 
 const assert = require('node:assert');

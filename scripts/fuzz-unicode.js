@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Unicode Fuzzer
+ * PuniCodex — Unicode Fuzzer
  *
  * Generates random Unicode strings from configurable scripts, runs them through
  * the Name Authenticity Shield, and records any exceptions/crashes. Designed to
@@ -192,7 +192,7 @@ function main() {
   fs.writeFileSync(reportPath, JSON.stringify(report, null, 2), 'utf8');
 
   console.log('╔════════════════════════════════════════════════════════════╗');
-  console.log('║     PÚNYCODEX — Unicode Fuzz Report                        ║');
+  console.log('║     PuniCodex — Unicode Fuzz Report                        ║');
   console.log('╚════════════════════════════════════════════════════════════╝');
   console.log(`  Samples: ${options.samples}`);
   console.log(`  Crashes: ${crashes.length} (${(report.summary.crashRate * 100).toFixed(3)}%)`);

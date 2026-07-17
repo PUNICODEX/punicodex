@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Red-Team CI Tests
+ * PuniCodex — Red-Team CI Tests
  *
  * Verifies that the red-team runner computes metrics correctly, writes a
  * report, and exits with the expected code when budgets are met or broken.

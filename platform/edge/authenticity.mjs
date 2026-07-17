@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Edge Function sample for the Authenticity Shield.
+ * PuniCodex — Edge Function sample for the Authenticity Shield.
  *
  * This module targets Vercel Edge Functions (WinterCG-compatible runtimes).
  * It caches classification results at the CDN edge using a deterministic key
@@ -90,9 +90,9 @@ export default async function handler(request) {
     }
 
     const headers = new Headers(originResponse.headers);
-    headers.set('X-Punycodex-Edge-Cache-Key', key);
-    headers.set('X-Punycodex-Edge-Cache-Ttl', String(cacheTtl(verdict)));
-    headers.set('X-Punycodex-Edge-Model-Version', MODEL_VERSION);
+    headers.set('X-Punicodex-Edge-Cache-Key', key);
+    headers.set('X-Punicodex-Edge-Cache-Ttl', String(cacheTtl(verdict)));
+    headers.set('X-Punicodex-Edge-Model-Version', MODEL_VERSION);
 
     return new Response(body, {
       status: originResponse.status,

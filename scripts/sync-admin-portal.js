@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Sync Admin Portal
+ * PuniCodex — Sync Admin Portal
  *
  * Copies the static admin portal pages from platform/public/admin-portal/
  * to admin-portal/ at the project root so they are served at /admin-portal/*

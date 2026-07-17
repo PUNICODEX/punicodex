@@ -1,5 +1,5 @@
 /**
- * Shared Redis client for PUNYCODEX.
+ * Shared Redis client for PUNICODEX.
  *
  * Provides a singleton Redis connection with lazy connect, error recovery,
  * and an in-memory fallback when REDIS_URL is not configured or Redis is

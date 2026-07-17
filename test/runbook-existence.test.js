@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Runbook Existence Tests (Phase 20)
+ * PuniCodex — Runbook Existence Tests (Phase 20)
  */
 
 const assert = require('node:assert');

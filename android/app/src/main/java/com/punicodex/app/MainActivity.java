@@ -1,8 +1,8 @@
-package com.punycodex.app;
+package com.punicodex.app;
 
 import android.os.Bundle;
 import com.getcapacitor.BridgeActivity;
-import com.punycodex.keyboard.PunyKeyboardPlugin;
+import com.punicodex.keyboard.PunyKeyboardPlugin;
 
 public class MainActivity extends BridgeActivity {
     @Override

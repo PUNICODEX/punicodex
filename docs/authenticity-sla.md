@@ -1,13 +1,13 @@
-# PUNYCODEX Name Authenticity Shield — Service Level Agreement
+# PUNICODEX Name Authenticity Shield — Service Level Agreement
 
 **Version:** 2.0 Phase 11  
 **Effective date:** 2026-06-22  
-**Owner:** PUNYCODEX Security & Trust Engineering  
+**Owner:** PUNICODEX Security & Trust Engineering  
 **Review cadence:** Quarterly
 
 ## 1. Purpose
 
-This document defines the quarterly error budgets, service-level objectives (SLOs), liability caps, and escalation contacts for the PUNYCODEX Name Authenticity Shield V2. It governs the adversarial test harness, red-team CI pipeline, and production classification service.
+This document defines the quarterly error budgets, service-level objectives (SLOs), liability caps, and escalation contacts for the PUNICODEX Name Authenticity Shield V2. It governs the adversarial test harness, red-team CI pipeline, and production classification service.
 
 ## 2. Scope
 
@@ -57,14 +57,14 @@ Each quarter the service is allocated the following error budgets. Breaching a b
 
 | Severity | Condition | Contact | Response time |
 |----------|-----------|---------|---------------|
-| P0 — Critical | Fuzzer crash, TPR < 95%, or FPR > 0.1% | security@punycodex.com, +1-555-PUNY-SEC | 1 hour |
-| P1 — High | TPR < 99.99%, FPR > 0.001%, or drift > 0.1% | security@punycodex.com, #incidents | 4 hours |
-| P2 — Medium | Latency SLO miss or benchmark regeneration failure | platform-eng@punycodex.com | 24 hours |
-| P3 — Low | Documentation or artifact issues | docs@punycodex.com | 72 hours |
+| P0 — Critical | Fuzzer crash, TPR < 95%, or FPR > 0.1% | security@punicodex.com, +1-555-PUNY-SEC | 1 hour |
+| P1 — High | TPR < 99.99%, FPR > 0.001%, or drift > 0.1% | security@punicodex.com, #incidents | 4 hours |
+| P2 — Medium | Latency SLO miss or benchmark regeneration failure | platform-eng@punicodex.com | 24 hours |
+| P3 — Low | Documentation or artifact issues | docs@punicodex.com | 72 hours |
 
 ## 7. Liability Cap
 
-PUNYCODEX's aggregate liability for classification errors covered by this SLA is capped at the lesser of:
+PUNICODEX's aggregate liability for classification errors covered by this SLA is capped at the lesser of:
 
 (a) USD $10,000 per incident, or  
 (b) USD $100,000 per quarter.

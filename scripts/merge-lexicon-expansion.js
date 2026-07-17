@@ -53,7 +53,7 @@ function main() {
   // Update header count
   const newCount = existing.length + toAdd.length;
   content = content.replace(
-    /(\*\s*PUNYCODEX Lexicon\s*\n\s*\*\s*)\d+\s+validated entries/,
+    /(\*\s*PUNICODEX Lexicon\s*\n\s*\*\s*)\d+\s+validated entries/,
     `$1${newCount} validated entries`
   );
 

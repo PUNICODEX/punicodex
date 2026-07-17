@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Privacy & Data-Subject Rights Service (Phase 16)
+ * PUNICODEX — Privacy & Data-Subject Rights Service (Phase 16)
  *
  * GDPR / CCPA data-subject request handling, export, deletion, and audit.
  */

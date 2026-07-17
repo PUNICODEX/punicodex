@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Temple Base Interactions
+ * PUNICODEX — Temple Base Interactions
  * Shared JavaScript for all temple pages (base + flagship).
  * Handles: scroll reveals, navigation, mobile toggle, generic canvas,
  * reduced motion, smooth scroll.

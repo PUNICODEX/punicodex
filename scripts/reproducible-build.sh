@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# PUNYCODEX — Reproducible Extension Build Script (Phase 18)
+# PUNICODEX — Reproducible Extension Build Script (Phase 18)
 #
 # Produces a deterministic zip of the browser extension when invoked with a
 # clean checkout of a release tag. The output hash is written to stdout and to
@@ -21,7 +21,7 @@ SOURCE_DATE_EPOCH="${SOURCE_DATE_EPOCH:-0}"
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 BUILD_DIR="${REPO_ROOT}/${OUTPUT_DIR}"
 WORK_DIR="${BUILD_DIR}/repro-$$"
-ZIP_NAME="punycodex-type-extension-${TAG}.zip"
+ZIP_NAME="punicodex-type-extension-${TAG}.zip"
 ZIP_PATH="${BUILD_DIR}/${ZIP_NAME}"
 
 cleanup() {
@@ -52,7 +52,7 @@ npm ci --ignore-scripts --no-audit --no-fund 2>/dev/null || npm install --ignore
 SOURCE_DATE_EPOCH="${SOURCE_DATE_EPOCH}" node extension/build.js
 
 # Move the produced zip to a deterministic path.
-BUILT_ZIP="$(find . -maxdepth 2 -name 'punycodex-type-extension*.zip' | head -n 1)"
+BUILT_ZIP="$(find . -maxdepth 2 -name 'punicodex-type-extension*.zip' | head -n 1)"
 if [ -z "${BUILT_ZIP}" ]; then
   echo "Extension zip not found after build" >&2
   exit 1

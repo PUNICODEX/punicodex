@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Feature Drift Monitor (Phase 14)
+ * PuniCodex — Feature Drift Monitor (Phase 14)
  *
  * Records per-feature distributions and compares them against a baseline using
  * KL divergence. Alerts when drift exceeds a configurable threshold.

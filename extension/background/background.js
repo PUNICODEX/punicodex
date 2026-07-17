@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX Type — Background Service Worker (Manifest V3)
+ * PuniCodex Type — Background Service Worker (Manifest V3)
  */
 
 chrome.runtime.onInstalled.addListener((details) => {
@@ -12,7 +12,7 @@ chrome.runtime.onInstalled.addListener((details) => {
             siteMode: 'all',
             siteList: [],
         });
-        console.log('PÚNYCODEX Type installed.');
+        console.log('PuniCodex Type installed.');
     }
 });
 

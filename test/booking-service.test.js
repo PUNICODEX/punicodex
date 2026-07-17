@@ -10,7 +10,7 @@ const crypto = require('node:crypto');
 const Database = require('better-sqlite3');
 
 process.env.STRIPE_SECRET_KEY = 'sk_test_dummy';
-process.env.PLATFORM_URL = 'https://punycodex.com';
+process.env.PLATFORM_URL = 'https://punicodex.com';
 
 const { prepareTestDb, getTestDbPath } = require('./helpers/test-db.js');
 prepareTestDb(__filename);

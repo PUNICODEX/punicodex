@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Adversarial Generator Tests
+ * PuniCodex — Adversarial Generator Tests
  */
 
 const assert = require('node:assert');

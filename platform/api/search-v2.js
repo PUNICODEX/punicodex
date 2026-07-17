@@ -311,7 +311,7 @@ function buildSearchCacheKey({
   rankVariant,
 }) {
   const payload = { q: finalQ || rawQ, vertical, limit, offset, sort, filters, rankVariant };
-  return `punycodex:search:v2:${crypto.createHash('sha256').update(JSON.stringify(payload)).digest('hex')}`;
+  return `punicodex:search:v2:${crypto.createHash('sha256').update(JSON.stringify(payload)).digest('hex')}`;
 }
 
 async function buildSearchResponse({
@@ -649,7 +649,7 @@ function computeInstantAnswer(q) {
     return {
       type: 'tier-system',
       title: 'The Definitive Tier System',
-      body: 'PUNYCODEX classifies Unicode name restorations into Dual-Tier (3 names with multiple historically valid spellings), Tier-1 (13 names with the only historically valid stress+length spelling), and Tier-2 (single-feature or unmarked forms).',
+      body: 'PUNICODEX classifies Unicode name restorations into Dual-Tier (3 names with multiple historically valid spellings), Tier-1 (13 names with the only historically valid stress+length spelling), and Tier-2 (single-feature or unmarked forms).',
       link: '/tiers/',
     };
   }

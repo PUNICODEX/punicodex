@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Mythic Duel card generator
+ * PuniCodex — Mythic Duel card generator
  *
  * Builds the canonical card database from the same sources of truth that
  * drive every other surface of the site:
@@ -51,7 +51,7 @@ const SET = {
   name: 'First Restoration',
   code: 'FR1',
   description:
-    'The founding set of Mythic Duel: every card a PÚNYCODEX entry, every stat derived from scholarly data.',
+    'The founding set of Mythic Duel: every card a PuniCodex entry, every stat derived from scholarly data.',
 };
 
 // ── Deterministic hashing ───────────────────────────────────────────────────

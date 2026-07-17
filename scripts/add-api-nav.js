@@ -50,11 +50,11 @@ function updateTopLevelPage(filePath) {
 
 function updateBaseTemple(filePath) {
   let html = fs.readFileSync(filePath, 'utf8');
-  const apiHref = 'https://punycodex.com/api/v1/docs/';
+  const apiHref = 'https://punicodex.com/api/v1/docs/';
   if (hasApiLink(html, apiHref)) return false;
 
   // Base temple nav ends with Tiers link
-  const pattern = /(<div class="nav-links">[\s\S]*?<a href="https:\/\/punycodex\.com\/tiers\/" class="nav-link">Tiers<\/a>)(\s*<\/div>)/;
+  const pattern = /(<div class="nav-links">[\s\S]*?<a href="https:\/\/punicodex\.com\/tiers\/" class="nav-link">Tiers<\/a>)(\s*<\/div>)/;
   if (!pattern.test(html)) return false;
 
   html = html.replace(pattern, (match, before, closing) => {

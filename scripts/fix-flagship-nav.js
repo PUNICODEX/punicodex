@@ -19,22 +19,22 @@ const ROOT = path.resolve(__dirname, '..');
 const NAV_REPLACEMENT = `    <!-- Global Nav -->
     <nav class="main-nav" id="main-nav">
         <div class="nav-inner">
-            <a href="https://punycodex.com/" class="nav-wordmark">P<span class="accent">U</span>NYCODEX</a>
+            <a href="https://punicodex.com/" class="nav-wordmark">P<span class="accent">U</span>NYCODEX</a>
             <div class="nav-links">
-                <a href="https://punycodex.com/pantheon/" class="nav-link">Pantheon</a>
-                <a href="https://punycodex.com/realms/" class="nav-link">Realms</a>
-                <a href="https://punycodex.com/lexicon/" class="nav-link">Lexicon</a>
-                <a href="https://punycodex.com/tiers/" class="nav-link">Tier System</a>
-                <a href="https://punycodex.com/type/" class="nav-link">Type</a>
-                <a href="https://punycodex.com/search.html" class="nav-link">Search</a>
-                <a href="https://punycodex.com/codex/" class="nav-link">Codex</a>
-                <a href="https://punycodex.com/api/v1/docs/" class="nav-link">API</a>
-                <a href="https://punycodex.com/appraise/" class="nav-link">Appraise</a>
-                <a href="https://punycodex.com/store/" class="nav-link">Store</a>
-                <a href="https://punycodex.com/about/" class="nav-link">About</a>
-                <a href="https://punycodex.com/contact/" class="nav-link">Contact</a>
+                <a href="https://punicodex.com/pantheon/" class="nav-link">Pantheon</a>
+                <a href="https://punicodex.com/realms/" class="nav-link">Realms</a>
+                <a href="https://punicodex.com/lexicon/" class="nav-link">Lexicon</a>
+                <a href="https://punicodex.com/tiers/" class="nav-link">Tier System</a>
+                <a href="https://punicodex.com/type/" class="nav-link">Type</a>
+                <a href="https://punicodex.com/search.html" class="nav-link">Search</a>
+                <a href="https://punicodex.com/codex/" class="nav-link">Codex</a>
+                <a href="https://punicodex.com/api/v1/docs/" class="nav-link">API</a>
+                <a href="https://punicodex.com/appraise/" class="nav-link">Appraise</a>
+                <a href="https://punicodex.com/store/" class="nav-link">Store</a>
+                <a href="https://punicodex.com/about/" class="nav-link">About</a>
+                <a href="https://punicodex.com/contact/" class="nav-link">Contact</a>
             </div>
-            <a href="https://punycodex.com/pantheon/" class="nav-cta"><span>Enter</span></a>
+            <a href="https://punicodex.com/pantheon/" class="nav-cta"><span>Enter</span></a>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
                 <span></span>
                 <span></span>
@@ -45,18 +45,18 @@ const NAV_REPLACEMENT = `    <!-- Global Nav -->
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobile-menu">
-        <a href="https://punycodex.com/pantheon/">Pantheon</a>
-        <a href="https://punycodex.com/realms/">Realms</a>
-        <a href="https://punycodex.com/lexicon/">Lexicon</a>
-        <a href="https://punycodex.com/tiers/">Tier System</a>
-        <a href="https://punycodex.com/type/">Type</a>
-        <a href="https://punycodex.com/search.html">Search</a>
-        <a href="https://punycodex.com/codex/">Codex</a>
-        <a href="https://punycodex.com/api/v1/docs/">API</a>
-        <a href="https://punycodex.com/appraise/">Appraise</a>
-        <a href="https://punycodex.com/store/">Store</a>
-        <a href="https://punycodex.com/about/">About</a>
-        <a href="https://punycodex.com/contact/">Contact</a>
+        <a href="https://punicodex.com/pantheon/">Pantheon</a>
+        <a href="https://punicodex.com/realms/">Realms</a>
+        <a href="https://punicodex.com/lexicon/">Lexicon</a>
+        <a href="https://punicodex.com/tiers/">Tier System</a>
+        <a href="https://punicodex.com/type/">Type</a>
+        <a href="https://punicodex.com/search.html">Search</a>
+        <a href="https://punicodex.com/codex/">Codex</a>
+        <a href="https://punicodex.com/api/v1/docs/">API</a>
+        <a href="https://punicodex.com/appraise/">Appraise</a>
+        <a href="https://punicodex.com/store/">Store</a>
+        <a href="https://punicodex.com/about/">About</a>
+        <a href="https://punicodex.com/contact/">Contact</a>
     </div>
 `;
 
@@ -64,36 +64,36 @@ const FOOTER_REPLACEMENT = `    <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="https://punycodex.com/" class="footer-wordmark">P<span class="accent">U</span>NYCODEX</a>
+                    <a href="https://punicodex.com/" class="footer-wordmark">P<span class="accent">U</span>NYCODEX</a>
                     <p class="footer-tagline">Restoring the original names of the gods to the digital realm.</p>
                 </div>
                 <div class="footer-column">
                     <h4 class="footer-heading">Explore</h4>
-                    <a href="https://punycodex.com/pantheon/">Pantheon</a>
-                    <a href="https://punycodex.com/realms/">Realms</a>
-                    <a href="https://punycodex.com/lexicon/">Lexicon</a>
-                    <a href="https://punycodex.com/tiers/">Tier System</a>
-                    <a href="https://punycodex.com/type/">Type</a>
-                    <a href="https://punycodex.com/search.html">Search</a>
+                    <a href="https://punicodex.com/pantheon/">Pantheon</a>
+                    <a href="https://punicodex.com/realms/">Realms</a>
+                    <a href="https://punicodex.com/lexicon/">Lexicon</a>
+                    <a href="https://punicodex.com/tiers/">Tier System</a>
+                    <a href="https://punicodex.com/type/">Type</a>
+                    <a href="https://punicodex.com/search.html">Search</a>
                 </div>
                 <div class="footer-column">
                     <h4 class="footer-heading">Resources</h4>
-                    <a href="https://punycodex.com/codex/">Codex</a>
-                    <a href="https://punycodex.com/api/v1/docs/">API</a>
-                    <a href="https://punycodex.com/appraise/">Appraise</a>
-                    <a href="https://punycodex.com/authenticity/">Authenticity</a>
-                    <a href="https://punycodex.com/oracle.html">Oracle</a>
+                    <a href="https://punicodex.com/codex/">Codex</a>
+                    <a href="https://punicodex.com/api/v1/docs/">API</a>
+                    <a href="https://punicodex.com/appraise/">Appraise</a>
+                    <a href="https://punicodex.com/authenticity/">Authenticity</a>
+                    <a href="https://punicodex.com/oracle.html">Oracle</a>
                 </div>
                 <div class="footer-column">
                     <h4 class="footer-heading">Connect</h4>
-                    <a href="https://punycodex.com/about/">About</a>
-                    <a href="https://punycodex.com/contact/">Contact</a>
-                    <a href="https://punycodex.com/privacy/">Privacy</a>
-                    <a href="https://punycodex.com/terms/">Terms</a>
+                    <a href="https://punicodex.com/about/">About</a>
+                    <a href="https://punicodex.com/contact/">Contact</a>
+                    <a href="https://punicodex.com/privacy/">Privacy</a>
+                    <a href="https://punicodex.com/terms/">Terms</a>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2026 PÚNYCODEX. All rites reserved.</p>
+                <p>© 2026 PuniCodex. All rites reserved.</p>
             </div>
         </div>
     </footer>

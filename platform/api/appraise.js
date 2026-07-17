@@ -1,10 +1,10 @@
 /**
- * PÚNYCODEX — Unicode Domain Appraisal Engine
+ * PuniCodex — Unicode Domain Appraisal Engine
  *
  * The first appraisal model built specifically for Unicode / IDN domain names.
  * It uses the plain-ASCII equivalent as a control value, then layers a
  * transparent Unicode premium on top. The premium is derived from the
- * PÚNYCODEX flywheel data (tier, canonical form, original script, sources,
+ * PuniCodex flywheel data (tier, canonical form, original script, sources,
  * lore, availability, indexed sites, and safety signals) so every valuation
  * is explainable, self-validating, and protective.
  *
@@ -114,7 +114,7 @@ const TENANT_OCCUPANCY_BRAND = 0.75;
 const BRAND_TENANT_MULTIPLIER = 1.5;
 
 // Global brands whose exact ASCII .com is effectively priceless and whose
-// canonical Unicode transliterations in PÚNYCODEX command a scarcity premium.
+// canonical Unicode transliterations in PuniCodex command a scarcity premium.
 // Values are wholesale scarcity floors, not market comps.
 const BRAND_SCARCITY_OVERRIDES = {
   nike: { tier: 'mega', asciiValue: 2_000_000, canonicalShare: 0.35 },
@@ -304,7 +304,7 @@ function twoLetterQualityScore(name) {
 // Aftermarket scarcity floor for short ASCII .com names. The base formula
 // undervalues truly scarce names (1-5 letter dictionary words, etc.), so this
 // floor applies to *all* clean .com names of 1-6 characters, not just names
-// already present in the PÚNYCODEX lexicon.
+// already present in the PuniCodex lexicon.
 function intrinsicAsciiFloor(name, tld) {
   if (tld !== 'com') return 0;
   const len = [...String(name || '')].length;

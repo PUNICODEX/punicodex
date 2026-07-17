@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Temple Page Generator
+ * PUNICODEX — Temple Page Generator
  * Generates SEO-optimized base temple pages from the lexicon.
  * Skips existing directories (preserves flagships).
  *
@@ -230,7 +230,7 @@ function getDomainStatus(entry) {
       status: 'owned',
       displayDomain,
       punycode,
-      label: 'PUNYCODEX Domain',
+      label: 'PUNICODEX Domain',
       cta: `Visit ${escapeHtml(displayDomain)}`,
       href: `https://${escapeHtml(asciiDomain)}/`,
       isOwned: true,
@@ -246,8 +246,8 @@ function getDomainStatus(entry) {
         displayDomain,
         punycode,
         label: 'Registered',
-        cta: 'View on PUNYCODEX search',
-        href: `https://punycodex.com/search.html?q=${encodeURIComponent(asciiDomain)}`,
+        cta: 'View on PUNICODEX search',
+        href: `https://punicodex.com/search.html?q=${encodeURIComponent(asciiDomain)}`,
         isOwned: false,
       };
     }
@@ -261,7 +261,7 @@ function getDomainStatus(entry) {
     punycode,
     label: 'Domain Reference',
     cta: 'Check availability',
-    href: `https://punycodex.com/search.html?q=${encodeURIComponent(asciiDomain)}`,
+    href: `https://punicodex.com/search.html?q=${encodeURIComponent(asciiDomain)}`,
     isOwned: false,
   };
 }
@@ -273,7 +273,7 @@ function getAsciiBanner(entry, status) {
   return `
     <div class="ascii-banner reveal-up">
       <div class="ascii-banner-label">ASCII Scholarly Entry</div>
-      <p class="ascii-banner-text">This name is currently represented in plain Latin letters. PUNYCODEX catalogs it as a scholarly reference entry; the Unicode restoration does not add diacritics or original-script marks.</p>
+      <p class="ascii-banner-text">This name is currently represented in plain Latin letters. PUNICODEX catalogs it as a scholarly reference entry; the Unicode restoration does not add diacritics or original-script marks.</p>
     </div>
   `;
 }
@@ -316,7 +316,7 @@ function getTierExplanation(entry, subtype) {
   const pantheonLabel = PANTHEON_LABELS[entry.pantheon] || 'Ancient';
 
   if (entry.tier === 'dual') {
-    return `The ${pantheonLabel} original <strong>${original}</strong> contains both stress (acute/circumflex) and at least one long vowel. Multiple historically valid Unicode spellings exist — each corresponds to a real, attested alternate restoration. The PUNYCODEX owns the canonical variants, making this a <strong>Dual-Tier</strong> pair.`;
+    return `The ${pantheonLabel} original <strong>${original}</strong> contains both stress (acute/circumflex) and at least one long vowel. Multiple historically valid Unicode spellings exist — each corresponds to a real, attested alternate restoration. The PUNICODEX owns the canonical variants, making this a <strong>Dual-Tier</strong> pair.`;
   }
   if (entry.tier === '1') {
     const isGreek = entry.pantheon === 'greek' || entry.pantheon === 'greek-location';
@@ -335,7 +335,7 @@ function getTierExplanation(entry, subtype) {
     if (hasLength) {
       return `The ${pantheonLabel} original <strong>${original}</strong> preserves vowel length (macron) in its Unicode restoration. There is only <strong>one</strong> historically valid spelling with this feature preserved. This is classified as a <strong>single-tier Tier-1 Macron-Preserving</strong> name.`;
     }
-    return `The ${pantheonLabel} form <strong>${original}</strong> is classified as <strong>single-tier Tier-1</strong> in the PUNYCODEX collection. The Unicode restoration represents the scholarly convention for this name.`;
+    return `The ${pantheonLabel} form <strong>${original}</strong> is classified as <strong>single-tier Tier-1</strong> in the PUNICODEX collection. The Unicode restoration represents the scholarly convention for this name.`;
   }
   if (entry.tier === '2') {
     if (isAsciiOnlyUnicode(entry)) {
@@ -483,7 +483,7 @@ function generateTempleHTML(entry, related) {
             const isInternal = LEXICON.some((e) => e.id === c.id);
             const tag = isInternal ? 'a' : 'span';
             const href = isInternal
-              ? ` href="https://punycodex.com/sites/${c.id}${BUILT_ARCHETYPE_IDS.has(c.id) ? '/lore/' : '/'}"`
+              ? ` href="https://punicodex.com/sites/${c.id}${BUILT_ARCHETYPE_IDS.has(c.id) ? '/lore/' : '/'}"`
               : '';
             return `<${tag}${href} class="cognate-card reveal-up">
                 <span class="cognate-lang">${escapeHtml(c.language)}</span>
@@ -501,19 +501,19 @@ function generateTempleHTML(entry, related) {
 
   // Meta
   const pageTitle = domainStatus.isOwned
-    ? `${hasOriginal ? `${originalScript} — ` : ''}${entry.unicode} | ${entry.domain} | PUNYCODEX`
-    : `${entry.unicode} — ${entry.meaning || entry.domain} | PUNYCODEX`;
+    ? `${hasOriginal ? `${originalScript} — ` : ''}${entry.unicode} | ${entry.domain} | PUNICODEX`
+    : `${entry.unicode} — ${entry.meaning || entry.domain} | PUNICODEX`;
   const pageDesc = domainStatus.isOwned
     ? `Discover ${entry.unicode}.com — the authentic Unicode domain for ${hasOriginal ? `${originalScript}, ` : ''}${entry.domain}. Scholarly orthography, Punycode encoding, and sources: ${entry.sources.join(', ')}.`
-    : `Scholarly profile of ${entry.unicode} — ${entry.meaning || entry.domain}. PUNYCODEX documents the authentic Unicode orthography. Sources: ${entry.sources.join(', ')}.`;
-  const canonicalUrl = `https://punycodex.com/sites/${entry.id}/`;
+    : `Scholarly profile of ${entry.unicode} — ${entry.meaning || entry.domain}. PUNICODEX documents the authentic Unicode orthography. Sources: ${entry.sources.join(', ')}.`;
+  const canonicalUrl = `https://punicodex.com/sites/${entry.id}/`;
 
   // Tier feature cards
   const hasStress = entry.breakdown.some((b) => b.type === 'stress');
   const hasLength = entry.breakdown.some((b) => b.type === 'length');
   const hasBoth = hasStress && hasLength;
 
-  return `<!-- PUNYCODEX Base Temple — Auto-Generated by scripts/generate-temples.js -->
+  return `<!-- PUNICODEX Base Temple — Auto-Generated by scripts/generate-temples.js -->
 <!-- Do not edit by hand. Regenerate with: node scripts/generate-temples.js -->
 <!DOCTYPE html>
 <html lang="en">
@@ -530,12 +530,12 @@ function generateTempleHTML(entry, related) {
     <meta property="og:description" content="${escapeHtml(pageDesc)}">
     <meta property="og:url" content="${canonicalUrl}">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="PUNYCODEX">
-    <meta property="og:image" content="https://punycodex.com/assets/images/og-default.svg">
+    <meta property="og:site_name" content="PUNICODEX">
+    <meta property="og:image" content="https://punicodex.com/assets/images/og-default.svg">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://punycodex.com/assets/images/og-default.svg">
+    <meta name="twitter:image" content="https://punicodex.com/assets/images/og-default.svg">
     <meta name="twitter:title" content="${escapeHtml(pageTitle)}">
     <meta name="twitter:description" content="${escapeHtml(pageDesc)}">
     
@@ -556,12 +556,12 @@ ${JSON.stringify(
     },
     isPartOf: {
       '@type': 'WebSite',
-      name: 'PUNYCODEX',
-      url: 'https://punycodex.com',
+      name: 'PUNICODEX',
+      url: 'https://punicodex.com',
     },
     primaryImageOfPage: {
       '@type': 'ImageObject',
-      url: 'https://punycodex.com/assets/images/og-default.svg',
+      url: 'https://punicodex.com/assets/images/og-default.svg',
     },
   },
   null,
@@ -572,7 +572,7 @@ ${JSON.stringify(
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://punycodex.com/css/temple-base.css">
+    <link rel="stylesheet" href="https://punicodex.com/css/temple-base.css">
     <style>
         :root {
             --primary: ${colors.primary};
@@ -589,16 +589,16 @@ ${JSON.stringify(
     <!-- Global Strip -->
     <div class="global-strip">
         <div class="global-strip-inner">
-            <a href="https://punycodex.com/" class="global-brand">P<span>U</span>NYCODEX</a>
+            <a href="https://punicodex.com/" class="global-brand">P<span>U</span>NYCODEX</a>
             <div class="global-links">
-                <a href="https://punycodex.com/pantheon/">Pantheon</a>
-                <a href="https://punycodex.com/lexicon/">Lexicon</a>
-                <a href="https://punycodex.com/connections/">Connections</a>
-                <a href="https://punycodex.com/type/">Type</a>
-                <a href="https://punycodex.com/search.html">Search</a>
-                <a href="https://punycodex.com/tiers/">Tiers</a>
-                <a href="https://punycodex.com/oracle.html">Oracle</a>
-                <a href="https://punycodex.com/about/">About</a>
+                <a href="https://punicodex.com/pantheon/">Pantheon</a>
+                <a href="https://punicodex.com/lexicon/">Lexicon</a>
+                <a href="https://punicodex.com/connections/">Connections</a>
+                <a href="https://punicodex.com/type/">Type</a>
+                <a href="https://punicodex.com/search.html">Search</a>
+                <a href="https://punicodex.com/tiers/">Tiers</a>
+                <a href="https://punicodex.com/oracle.html">Oracle</a>
+                <a href="https://punicodex.com/about/">About</a>
             </div>
         </div>
     </div>
@@ -606,14 +606,14 @@ ${JSON.stringify(
     <!-- Navigation -->
     <nav class="main-nav base-nav" id="main-nav">
         <div class="nav-inner">
-            <a href="https://punycodex.com/" class="nav-logo base-nav-logo" aria-label="PUNYCODEX — ${escapeHtml(entry.unicode)}">
+            <a href="https://punicodex.com/" class="nav-logo base-nav-logo" aria-label="PUNICODEX — ${escapeHtml(entry.unicode)}">
                 <span class="nav-logo-text">${escapeHtml(entry.unicode)}</span>
             </a>
             <div class="nav-links base-nav-links">
-                <a href="https://punycodex.com/pantheon/" class="nav-link">Pantheon</a>
-                <a href="https://punycodex.com/lexicon/" class="nav-link">Lexicon</a>
-                <a href="https://punycodex.com/connections/" class="nav-link">Connections</a>
-                <a href="https://punycodex.com/type/#${entry.id}" class="nav-link">Type</a>
+                <a href="https://punicodex.com/pantheon/" class="nav-link">Pantheon</a>
+                <a href="https://punicodex.com/lexicon/" class="nav-link">Lexicon</a>
+                <a href="https://punicodex.com/connections/" class="nav-link">Connections</a>
+                <a href="https://punicodex.com/type/#${entry.id}" class="nav-link">Type</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-controls="mobile-menu">
                 <span></span><span></span><span></span>
@@ -625,32 +625,32 @@ ${JSON.stringify(
         <div class="mobile-menu-section">
             <span class="mobile-menu-title">Explore</span>
             <div class="mobile-menu-group">
-                <a href="https://punycodex.com/pantheon/">Pantheon</a>
-                <a href="https://punycodex.com/lexicon/">Lexicon</a>
-                <a href="https://punycodex.com/connections/">Connections</a>
+                <a href="https://punicodex.com/pantheon/">Pantheon</a>
+                <a href="https://punicodex.com/lexicon/">Lexicon</a>
+                <a href="https://punicodex.com/connections/">Connections</a>
             </div>
         </div>
         <div class="mobile-menu-section">
             <span class="mobile-menu-title">Tools</span>
             <div class="mobile-menu-group">
-                <a href="https://punycodex.com/type/#${entry.id}">Type</a>
-                <a href="https://punycodex.com/search.html">Search</a>
-                <a href="https://punycodex.com/tiers/">Tiers</a>
-                <a href="https://punycodex.com/oracle.html">Oracle</a>
+                <a href="https://punicodex.com/type/#${entry.id}">Type</a>
+                <a href="https://punicodex.com/search.html">Search</a>
+                <a href="https://punicodex.com/tiers/">Tiers</a>
+                <a href="https://punicodex.com/oracle.html">Oracle</a>
             </div>
         </div>
         <div class="mobile-menu-section">
             <span class="mobile-menu-title">Resources</span>
             <div class="mobile-menu-group">
-                <a href="https://punycodex.com/codex/">Codex</a>
-                <a href="https://punycodex.com/api/v1/docs/">API</a>
+                <a href="https://punicodex.com/codex/">Codex</a>
+                <a href="https://punicodex.com/api/v1/docs/">API</a>
             </div>
         </div>
         <div class="mobile-menu-section">
             <span class="mobile-menu-title">About</span>
             <div class="mobile-menu-group">
-                <a href="https://punycodex.com/about/">About</a>
-                <a href="https://punycodex.com/contact/">Contact</a>
+                <a href="https://punicodex.com/about/">About</a>
+                <a href="https://punicodex.com/contact/">Contact</a>
             </div>
         </div>
     </div>
@@ -691,7 +691,7 @@ ${JSON.stringify(
                             <path d="M7 17L17 7M17 7H7M17 7V17"/>
                         </svg>
                     </a>
-                    <a href="https://punycodex.com/type/#${entry.id}" class="btn-primary btn-ghost">
+                    <a href="https://punicodex.com/type/#${entry.id}" class="btn-primary btn-ghost">
                         <span>Try the Type Tool</span>
                     </a>
                 </div>
@@ -789,7 +789,7 @@ ${JSON.stringify(
                 <div class="explainer-label">${isAsciiOnlyUnicode(entry) ? 'Domain Encoding' : 'Punycode Encoding'}</div>
                 <div class="explainer-box">
                     <code class="explainer-code">${entry.unicode.toLowerCase()}.com &rarr; ${punycode || `${entry.unicode.toLowerCase()}.com`}</code>
-                    <p class="explainer-note">${isAsciiOnlyUnicode(entry) ? `Because <strong>${escapeHtml(entry.unicode)}</strong> uses only ASCII characters, no Punycode encoding is required. The browser displays the name as-is.` : `The non-ASCII characters in <strong>${escapeHtml(entry.unicode)}</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>${escapeHtml(entry.unicode)}</em>.`}${domainStatus.status === 'registered' || domainStatus.status === 'live' ? ` This domain is currently registered by another party.` : !domainStatus.isOwned ? ` PUNYCODEX does not claim this domain is available; always verify status with a registrar.` : ''}</p>
+                    <p class="explainer-note">${isAsciiOnlyUnicode(entry) ? `Because <strong>${escapeHtml(entry.unicode)}</strong> uses only ASCII characters, no Punycode encoding is required. The browser displays the name as-is.` : `The non-ASCII characters in <strong>${escapeHtml(entry.unicode)}</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>${escapeHtml(entry.unicode)}</em>.`}${domainStatus.status === 'registered' || domainStatus.status === 'live' ? ` This domain is currently registered by another party.` : !domainStatus.isOwned ? ` PUNICODEX does not claim this domain is available; always verify status with a registrar.` : ''}</p>
                 </div>
             </div>
         </div>
@@ -971,7 +971,7 @@ ${JSON.stringify(
                     if (cognateEntry) {
                       const cSubtype = getTierSubtype(cognateEntry);
                       return `
-                <a href="https://punycodex.com/sites/${cognateEntry.id}${cognateEntry.hasAdSite ? '/lore/' : '/'}" class="related-card reveal-up">
+                <a href="https://punicodex.com/sites/${cognateEntry.id}${cognateEntry.hasAdSite ? '/lore/' : '/'}" class="related-card reveal-up">
                     <span class="related-name">${escapeHtml(cognateEntry.unicode)}</span>
                     <span class="related-greek">${cognateEntry.greek && cognateEntry.greek !== '—' ? escapeHtml(cognateEntry.greek) : ''}</span>
                     <span class="related-domain">${escapeHtml(cognateEntry.domain)}</span>
@@ -1005,7 +1005,7 @@ ${JSON.stringify(
                   .map((r) => {
                     const rSubtype = getTierSubtype(r);
                     return `
-                <a href="https://punycodex.com/sites/${r.id}${r.hasAdSite ? '/lore/' : '/'}" class="related-card reveal-up">
+                <a href="https://punicodex.com/sites/${r.id}${r.hasAdSite ? '/lore/' : '/'}" class="related-card reveal-up">
                     <span class="related-name">${escapeHtml(r.unicode)}</span>
                     <span class="related-greek">${r.greek && r.greek !== '—' ? escapeHtml(r.greek) : ''}</span>
                     <span class="related-domain">${escapeHtml(r.domain)}</span>
@@ -1017,7 +1017,7 @@ ${JSON.stringify(
             `
                 : `
             <div class="tier-explanation reveal-up">
-                <p class="lead-text">Explore the full <a href="https://punycodex.com/lexicon/" style="color:var(--primary);">Lexicon</a> to discover more names from the ${pantheonLabel} tradition.</p>
+                <p class="lead-text">Explore the full <a href="https://punicodex.com/lexicon/" style="color:var(--primary);">Lexicon</a> to discover more names from the ${pantheonLabel} tradition.</p>
             </div>
             `
             }
@@ -1029,13 +1029,13 @@ ${JSON.stringify(
         <div class="container">
             <div class="type-cta-content reveal-up">
                 <h2 class="type-cta-title">Experience the Name</h2>
-                <p class="type-cta-body">See how ${escapeHtml(entry.unicode)} behaves in the PUNYCODEX Type Tool — with predictive autocomplete, character-by-character breakdown, and scholarly constraint validation.</p>
+                <p class="type-cta-body">See how ${escapeHtml(entry.unicode)} behaves in the PUNICODEX Type Tool — with predictive autocomplete, character-by-character breakdown, and scholarly constraint validation.</p>
                 <div class="type-cta-input">
                     <code>${entry.ascii}</code>
                     <span style="color:var(--white-dim);">&rarr;</span>
                     <code>${escapeHtml(entry.unicode)}</code>
                 </div>
-                <a href="https://punycodex.com/type/#${entry.id}" class="btn-primary">
+                <a href="https://punicodex.com/type/#${entry.id}" class="btn-primary">
                     <span>Open in Type Tool</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M7 17L17 7M17 7H7M17 7V17"/>
@@ -1050,7 +1050,7 @@ ${JSON.stringify(
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="https://punycodex.com/" class="footer-logo">PUNYCODEX</a>
+                    <a href="https://punicodex.com/" class="footer-logo">PUNICODEX</a>
                     <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
                 </div>
                 <div class="footer-info">
@@ -1074,8 +1074,8 @@ ${JSON.stringify(
         </div>
     </footer>
 
-    <script src="https://punycodex.com/js/px-core.js"></script>
-    <script src="https://punycodex.com/js/temple-base.js"></script>
+    <script src="https://punicodex.com/js/px-core.js"></script>
+    <script src="https://punicodex.com/js/temple-base.js"></script>
 </body>
 </html>`;
 }
@@ -1090,7 +1090,7 @@ async function main() {
   let skipped = 0;
   const errors = [];
 
-  console.log('🏛️  PUNYCODEX Temple Generator');
+  console.log('🏛️  PUNICODEX Temple Generator');
   console.log(`   Lexicon entries: ${LEXICON.length}`);
   console.log('');
 
@@ -1107,7 +1107,7 @@ async function main() {
       const existing = fs.readFileSync(indexPath, 'utf8');
       const isBaseTemple =
         existing.includes('temple-base.css') ||
-        existing.includes('PUNYCODEX Base Temple — Auto-Generated');
+        existing.includes('PUNICODEX Base Temple — Auto-Generated');
       if (!isBaseTemple) {
         skipped++;
         continue;

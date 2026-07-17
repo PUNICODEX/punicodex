@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Provenance Polish Pass
+ * PuniCodex — Provenance Polish Pass
  *
  * Final cleanup of type/js/original-scripts-extra.json for all non-pilot entries:
  *   - Promote enriched -> canonical when all required fields are present.
@@ -749,7 +749,7 @@ function main() {
 
   fs.writeFileSync(EXTRA_PATH, JSON.stringify(data, null, 2) + '\n', 'utf8');
 
-  console.log('PUNYCODEX provenance polish complete.');
+  console.log('PUNICODEX provenance polish complete.');
   console.log(`  Entries promoted enriched -> canonical: ${promoted}`);
   console.log(`  Source entries removed by deduplication: ${sourcesRemoved}`);
   console.log(`  Egyptian sign notes improved: ${egyptianSignsUpdated}`);

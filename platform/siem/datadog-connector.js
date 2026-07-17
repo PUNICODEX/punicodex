@@ -1,16 +1,16 @@
 /**
- * PUNYCODEX — Datadog Logs Connector Stub (Phase 19)
+ * PUNICODEX — Datadog Logs Connector Stub (Phase 19)
  *
  * Formats authenticity verdicts as Datadog log entries.
  */
 
 function formatEvent(verdict, options = {}) {
   const event = {
-    ddsource: options.source || 'punycodex-authenticity',
-    ddtags: options.tags || 'service:punycodex,env:production',
-    hostname: options.hostname || 'punycodex-api',
-    service: 'punycodex-authenticity',
-    message: `PUNYCODEX verdict: ${verdict.verdict}`,
+    ddsource: options.source || 'punicodex-authenticity',
+    ddtags: options.tags || 'service:punicodex,env:production',
+    hostname: options.hostname || 'punicodex-api',
+    service: 'punicodex-authenticity',
+    message: `PUNICODEX verdict: ${verdict.verdict}`,
     verdict: verdict.verdict,
     severity: verdict.severity,
     input: verdict.input,

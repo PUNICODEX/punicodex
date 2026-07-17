@@ -1,5 +1,5 @@
 const { chromium } = require('playwright-core');
-const BASE = process.env.BASE || 'https://punycodex-main-5xkio15ko-hekaverse.vercel.app';
+const BASE = process.env.BASE || 'https://punicodex-main-5xkio15ko-hekaverse.vercel.app';
 (async () => {
   const browser = await chromium.launch({ headless: true, executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe' });
   for (const vp of [{ width: 375, height: 812, name: 'mobile' }, { width: 1280, height: 800, name: 'desktop' }]) {

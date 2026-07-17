@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Threat Reputation Model (Phase 8)
+ * PUNICODEX — Threat Reputation Model (Phase 8)
  *
  * Computes a 0–1 reputation score for a threat event based on source
  * authority, cluster size, domain age, and time decay.

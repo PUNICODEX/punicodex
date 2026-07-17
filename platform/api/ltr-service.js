@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Learning-to-Rank Service (Phase 6)
+ * PUNICODEX — Learning-to-Rank Service (Phase 6)
  *
  * Records search-result clicks and computes a lightweight LTR boost per
  * (query, site) pair. The boost is blended into the ranking score so results

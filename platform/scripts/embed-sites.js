@@ -7,7 +7,7 @@
 const Database = require('better-sqlite3');
 const path = require('node:path');
 
-const DB_PATH = path.join(__dirname, '..', 'db', 'punycodex.db');
+const DB_PATH = path.join(__dirname, '..', 'db', 'punicodex.db');
 const MODEL = 'Xenova/all-MiniLM-L6-v2';
 
 function serializeEmbedding(floatArray) {

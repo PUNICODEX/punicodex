@@ -34,7 +34,7 @@ function escapeJsString(str, useDoubleQuotes = false) {
 }
 
 function main() {
-  console.log('=== PUNYCODEX Lexicon Expansion v2 ===\n');
+  console.log('=== PUNICODEX Lexicon Expansion v2 ===\n');
   
   const existing = loadExistingLexicon();
   console.log(`Existing entries: ${existing.length}`);

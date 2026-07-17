@@ -3,7 +3,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { domainToASCII } = require('node:url');
 
-const DB_PATH = path.join(__dirname, 'punycodex.db');
+const DB_PATH = path.join(__dirname, 'punicodex.db');
 const db = new Database(DB_PATH);
 
 function addColumn(table, col, type) {

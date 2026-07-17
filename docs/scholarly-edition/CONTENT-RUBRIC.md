@@ -1,6 +1,6 @@
 # Scholarly Edition Content Rubric (v1.0)
 
-The Scholarly Edition is the permanent, citable scholarly layer of PÚNYCODEX.
+The Scholarly Edition is the permanent, citable scholarly layer of PuniCodex.
 Every section must read as if written for a university reference work. This
 rubric is the bar a section must clear before any student or university ever
 edits it. It binds all content in `platform/scholars/content/{id}.json`.

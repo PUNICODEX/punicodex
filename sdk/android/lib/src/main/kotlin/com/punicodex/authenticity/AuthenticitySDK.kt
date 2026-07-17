@@ -1,9 +1,9 @@
-package com.punycodex.authenticity
+package com.punicodex.authenticity
 
 import java.net.URL
 
 /**
- * PÚNYCODEX Authenticity Shield — Android SDK
+ * PuniCodex Authenticity Shield — Android SDK
  *
  * Lightweight offline classifier for homograph and mixed-script attacks.
  * Mirrors the API contract of the iOS Swift SDK and the JS SDK.

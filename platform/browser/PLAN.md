@@ -1,10 +1,10 @@
-# PUNYCODEX Browser — Electron MVP Implementation Plan
+# PUNICODEX Browser — Electron MVP Implementation Plan
 
 ## Vision
 
-A native desktop browser where Unicode domains are first-class citizens. The address bar renders scholarly Unicode names natively (never punycode for lexicon-verified domains), integrates PUNYCODEX search directly, and surfaces domain intelligence (tier badges, character breakdowns, variant spellings, pantheon metadata) inline.
+A native desktop browser where Unicode domains are first-class citizens. The address bar renders scholarly Unicode names natively (never punycode for lexicon-verified domains), integrates PUNICODEX search directly, and surfaces domain intelligence (tier badges, character breakdowns, variant spellings, pantheon metadata) inline.
 
-**Strategic thesis:** Mainstream browsers treat IDN as a security risk and display punycode. A PUNYCODEX browser makes Unicode domains feel native, creating the distribution channel that makes the entire PUNYCODEX ecosystem inevitable.
+**Strategic thesis:** Mainstream browsers treat IDN as a security risk and display punycode. A PUNICODEX browser makes Unicode domains feel native, creating the distribution channel that makes the entire PUNICODEX ecosystem inevitable.
 
 ---
 
@@ -33,7 +33,7 @@ platform/browser/
 
 ```json
 {
-  "name": "punycodex-browser",
+  "name": "punicodex-browser",
   "version": "0.1.0",
   "main": "main.js",
   "scripts": {
@@ -58,7 +58,7 @@ Install with: `cd platform/browser && npm install`
 ### 1. Browser Window Chrome
 
 - **Frameless/custom** Electron window with titlebar integrating omnibox
-- Dark theme matching PUNYCODEX design system (`#0a0a0f` bg, `#c9a96e` accent)
+- Dark theme matching PUNICODEX design system (`#0a0a0f` bg, `#c9a96e` accent)
 - Tab bar (simplified — just one tab for MVP, multi-tab in v2)
 - Window controls (close/minimize/maximize) on right
 
@@ -70,7 +70,7 @@ Install with: `cd platform/browser && npm install`
 
 ### 2. Omnibox (Address Bar)
 
-The crown jewel. Replaces the traditional address bar with a PUNYCODEX-first search interface.
+The crown jewel. Replaces the traditional address bar with a PUNICODEX-first search interface.
 
 **Behavior matrix:**
 
@@ -80,10 +80,10 @@ The crown jewel. Replaces the traditional address bar with a PUNYCODEX-first sea
 | `xn--...` (punycode) | Convert to Unicode, show in bar, navigate |
 | `.com` / `.net` / `.org` suffix present | Treat as URL, navigate |
 | Lexicon-verified Unicode name | Show green checkmark, navigate |
-| Everything else | Query PUNYCODEX `/api/search`, show dropdown |
+| Everything else | Query PUNICODEX `/api/search`, show dropdown |
 
 **Dropdown UI:**
-- PUNYCODEX results first (max 5), grouped by tier
+- PUNICODEX results first (max 5), grouped by tier
   - Each result shows: Unicode name, Greek original, tier badge, pantheon, meaning snippet
   - "Live Site" indicator if indexed
   - Clicking navigates to the domain
@@ -92,7 +92,7 @@ The crown jewel. Replaces the traditional address bar with a PUNYCODEX-first sea
 
 **Unicode rendering rule:**
 ```
-IF domain is in PUNYCODEX lexicon:
+IF domain is in PUNICODEX lexicon:
   address_bar.display = entry.unicode + ".com"
   show green checkmark + tier badge
 ELSE IF domain contains non-ASCII:
@@ -169,7 +169,7 @@ Three-state trust system in the address bar:
 
 | State | Icon | Meaning |
 |-------|------|---------|
-| ✅ Green | Scholarly verified | In PUNYCODEX lexicon |
+| ✅ Green | Scholarly verified | In PUNICODEX lexicon |
 | ⚠️ Gray | Unknown Unicode | Non-ASCII, not in lexicon |
 | — None | ASCII plain | Standard ASCII domain |
 
@@ -179,7 +179,7 @@ Green domains get Unicode display. Gray domains display punycode (same as Chrome
 
 ## API Contracts
 
-The browser calls the existing PUNYCODEX server at `http://localhost:3456`.
+The browser calls the existing PUNICODEX server at `http://localhost:3456`.
 
 ### `GET /api/search?q={query}&limit=5`
 Returns search results. Browser uses this for omnibox dropdown.
@@ -193,7 +193,7 @@ Returns platform stats. Browser shows in about/settings page.
 ### `GET /api/health`
 Heartbeat check. Browser uses to detect if local server is running.
 
-**Server discovery:** The browser should try localhost:3456 first. If unavailable, show a "Start PUNYCODEX Server" button that runs `npm run platform` from the project root.
+**Server discovery:** The browser should try localhost:3456 first. If unavailable, show a "Start PUNICODEX Server" button that runs `npm run platform` from the project root.
 
 ---
 
@@ -247,7 +247,7 @@ Exposes only safe APIs to the renderer:
 ```javascript
 const { contextBridge, ipcRenderer } = require('electron');
 
-contextBridge.exposeInMainWorld('punycodex', {
+contextBridge.exposeInMainWorld('punicodex', {
   // Navigation
   navigate: (url) => ipcRenderer.invoke('navigate', url),
   
@@ -273,7 +273,7 @@ Structure:
     <!-- Omnibox container -->
     <div class="omnibox-container">
       <div class="trust-icon"></div>
-      <input type="text" class="omnibox" placeholder="Search PUNYCODEX or enter address…">
+      <input type="text" class="omnibox" placeholder="Search PUNICODEX or enter address…">
       <div class="omnibox-dropdown"></div>
     </div>
     
@@ -300,7 +300,7 @@ Structure:
 
 Key functions:
 - `normalizeInput(input)` → determines if URL, punycode, or search query
-- `searchPunycodex(query)` → fetches `/api/search?q={query}&limit=5`
+- `searchPunicodex(query)` → fetches `/api/search?q={query}&limit=5`
 - `renderDropdown(results)` → builds HTML for dropdown
 - `onEnter(url)` → navigates webview
 - `updateDisplay(url)` → converts punycode→Unicode if lexicon-verified
@@ -347,7 +347,7 @@ function isPunycode(str) { return str.startsWith('xn--'); }
 
 ## Design System
 
-Reuse PUNYCODEX colors exactly:
+Reuse PUNICODEX colors exactly:
 ```css
 :root {
   --bg: #0a0a0f;
@@ -392,7 +392,7 @@ npx electron-forge make   # Builds .exe, .dmg, .AppImage
 
 **IN MVP:**
 - Single window, single webview
-- Omnibox with PUNYCODEX search + dropdown
+- Omnibox with PUNICODEX search + dropdown
 - Domain intelligence sidebar
 - Variant navigator banner
 - Trust indicator (green/gray/none)
@@ -443,7 +443,7 @@ The browser's `package.json` is separate from the root `package.json`. No depend
 ## Next Steps After MVP
 
 1. **Multi-tab support** — BrowserView array, tab bar UI
-2. **Bookmarks** — SQLite store, sync with PUNYCODEX account
+2. **Bookmarks** — SQLite store, sync with PUNICODEX account
 3. **Content quality scoring** — Crawler extension that scores sites, search ranks by score
 4. **Tauri rewrite** — Drop from ~150MB to ~5MB binary
 5. **Mobile port** — React Native WebView wrapper
@@ -455,7 +455,7 @@ The browser's `package.json` is separate from the root `package.json`. No depend
 ## Success Criteria for MVP
 
 - [ ] `npm install && electron .` launches a working browser window
-- [ ] Typing `hekate` in omnibox shows PUNYCODEX results with tier badges
+- [ ] Typing `hekate` in omnibox shows PUNICODEX results with tier badges
 - [ ] Clicking a result navigates webview to the domain
 - [ ] Address bar displays `Hekátē.com` (Unicode) with green checkmark
 - [ ] Sidebar shows entry details, breakdown, variants

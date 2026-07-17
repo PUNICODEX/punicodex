@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX API v1 — Rate limiter
+ * PuniCodex API v1 — Rate limiter
  *
  * Redis-backed fixed-window counter with an in-memory fallback. When
  * `REDIS_URL` is configured, limits are global across Vercel serverless
@@ -115,7 +115,7 @@ class RedisRateLimiter {
 
     const now = Date.now();
     const windowStart = Math.floor(now / this.windowMs) * this.windowMs;
-    const redisKey = `punycodex:rl:v1:${this.tier}:${key}:${windowStart}`;
+    const redisKey = `punicodex:rl:v1:${this.tier}:${key}:${windowStart}`;
     const ttlSeconds = Math.ceil(this.windowMs / 1000);
 
     try {

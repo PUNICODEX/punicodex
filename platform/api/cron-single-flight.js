@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Cron single-flight guard
+ * PuniCodex — Cron single-flight guard
  *
  * Prevents overlapping cron invocations from doing duplicate work. Uses a
  * lightweight SQLite-backed lock table so the guard works for both local

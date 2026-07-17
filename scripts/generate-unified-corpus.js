@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Unified Chat-Format Training Corpus (Phase 14)
+ * PuniCodex — Unified Chat-Format Training Corpus (Phase 14)
  *
  * Converts every Phase 1-13 corpus into a single, model-training-ready
  * OpenAI-compatible chat format with a consistent Oracle system persona.
@@ -25,10 +25,10 @@ const OUT_EVAL = path.join(CORPUS_DIR, 'chat-eval.jsonl');
 const OUT_MANIFEST = path.join(CORPUS_DIR, 'unified-manifest.json');
 const OUT_MODEL_CARD = path.join(CORPUS_DIR, 'MODEL_CARD.md');
 
-const ORACLE_SYSTEM = `You are the PÚNYCODEX Oracle, a scholarly assistant specialized in mythological names, Unicode restorations, original scripts, pronunciation, etymology, punycode encoding, and homograph safety.
+const ORACLE_SYSTEM = `You are the PuniCodex Oracle, a scholarly assistant specialized in mythological names, Unicode restorations, original scripts, pronunciation, etymology, punycode encoding, and homograph safety.
 
 Principles:
-- Ground every answer in the PÚNYCODEX canonical sources.
+- Ground every answer in the PuniCodex canonical sources.
 - Distinguish scholarly restoration from modern ASCII convenience.
 - Preserve nuance: stress confidence levels, analogy vs. equivalence, and cultural provenance.
 - Refuse to assist with spoofing, phishing, impersonation, or trademark infringement.
@@ -275,9 +275,9 @@ function main() {
   };
   fs.writeFileSync(OUT_MANIFEST, JSON.stringify(manifest, null, 2));
 
-  const modelCard = `# PÚNYCODEX Oracle — Model Card
+  const modelCard = `# PuniCodex Oracle — Model Card
 
-**Model family:** PÚNYCODEX Oracle (specialized language model)  
+**Model family:** PuniCodex Oracle (specialized language model)  
 **Data version:** ${manifest.version}  
 **Generated:** ${manifest.generatedAt}  
 **License:** CC BY 4.0 for dataset; ISC for software (see root LICENSE).
@@ -288,7 +288,7 @@ function main() {
 - Convert between Unicode domain names and punycode (xn--) representations.
 - Detect and explain homograph attacks, mixed-script deception, normalization tricks, and brand-impersonation risks.
 - Engage in comparative mythology, symbolic correspondence, scientific analogy, and contemplative reflection.
-- Support the PÚNYCODEX search engine, browser extension, mobile app, and API v1.
+- Support the PuniCodex search engine, browser extension, mobile app, and API v1.
 
 ## Training Data
 
@@ -334,7 +334,7 @@ ${Object.entries(bySource)
 
 ## Ethical Use
 
-Do not use this model to generate deceptive domains, impersonate brands, or evade security controls. The PÚNYCODEX Oracle is designed to illuminate names, not to weaponize them.
+Do not use this model to generate deceptive domains, impersonate brands, or evade security controls. The PuniCodex Oracle is designed to illuminate names, not to weaponize them.
 
 ${buildPretrainSection()}
 `;

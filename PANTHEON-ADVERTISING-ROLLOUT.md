@@ -98,7 +98,7 @@ This is exactly what Nike and Hermes already have.
 
 ## Platform Limits
 
-**Cloudflare Pages (punycodex@gmail.com):** 20 projects — MAXED OUT
+**Cloudflare Pages (punicodex@gmail.com):** 20 projects — MAXED OUT
 - Cannot add more projects
 - Existing 20 stay as-is
 

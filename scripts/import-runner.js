@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Authoritative import runner
+ * PuniCodex — Authoritative import runner
  *
  * Runs importer modules from `data/authoritative/importers/{source}.js`,
  * stores raw snapshots, and writes normalized suggestion batches.
@@ -219,7 +219,7 @@ async function main() {
 
   if (positional.length === 0) {
     const importers = listImporters();
-    console.log('PÚNYCODEX import runner');
+    console.log('PuniCodex import runner');
     console.log('');
     if (importers.length === 0) {
       console.log('No importers found in data/authoritative/importers/');

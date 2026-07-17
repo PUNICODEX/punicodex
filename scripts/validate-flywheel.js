@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Flywheel Integrity Validator (Phase 2)
+ * PuniCodex — Flywheel Integrity Validator (Phase 2)
  *
  * Proves that the canonical sources and every generated consumer are
  * internally consistent. Run via `npm test` or standalone.
@@ -11,7 +11,7 @@ const vm = require('node:vm');
 const { domainToASCII } = require('node:url');
 
 const ROOT = path.resolve(__dirname, '..');
-const BASE_URL = 'https://punycodex.com';
+const BASE_URL = 'https://punicodex.com';
 
 // ── Canonical sources ──────────────────────────────────────────────────────
 const PATHS = {
@@ -156,7 +156,7 @@ function getRendererEntry(entry, isFlagship) {
 
 // ═════════════════════════════════════════════════════════════════════════════
 console.log('╔════════════════════════════════════════════════════════╗');
-console.log('║  PÚNYCODEX — Flywheel Integrity Validator              ║');
+console.log('║  PuniCodex — Flywheel Integrity Validator              ║');
 console.log('╚════════════════════════════════════════════════════════╝');
 
 const lexicon = loadLexicon();

@@ -23,6 +23,6 @@ console.log('  pantheon:', hasPantheon);
 const navMatch = html.match(/(<div class="nav-links">)([\s\S]*?)(<\/div>)/);
 if (navMatch) {
     console.log('\nNav block found, length:', navMatch[0].length);
-    console.log('Has external:', navMatch[2].includes('punycodex.com'));
+    console.log('Has external:', navMatch[2].includes('punicodex.com'));
     console.log('Nav block:\n', navMatch[0]);
 }

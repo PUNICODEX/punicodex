@@ -16,7 +16,7 @@ function apiInfo(titles) {
   return new Promise((resolve, reject) => {
     const ts = titles.map(t => 'File:' + encodeURIComponent(t)).join('|');
     const url = `https://commons.wikimedia.org/w/api.php?action=query&titles=${ts}&prop=imageinfo&iiprop=url|size|mime|thumbmime&iiurlwidth=800&format=json&origin=*`;
-    https.get(url, { headers: { 'User-Agent': 'PUNYCODEX-gallery-audit/1.0' } }, (res) => {
+    https.get(url, { headers: { 'User-Agent': 'PUNICODEX-gallery-audit/1.0' } }, (res) => {
       let data = '';
       res.on('data', c => data += c);
       res.on('end', () => { try { resolve(JSON.parse(data)); } catch (e) { reject(e); } });

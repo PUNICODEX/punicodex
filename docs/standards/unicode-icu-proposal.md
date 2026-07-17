@@ -1,4 +1,4 @@
-# PUNYCODEX Proposal — Unicode ICU Best Practice for Name Safety
+# PUNICODEX Proposal — Unicode ICU Best Practice for Name Safety
 
 **Document type:** Draft best-practice submission for ICU (International Components for Unicode)
 **Version:** 1.0
@@ -46,7 +46,7 @@ ICU should support locale-specific confusable tables:
 
 ## 3. Reference Data
 
-PUNYCODEX publishes a curated confusable atlas at `platform/db/confusables.json` and per-locale overrides at `platform/db/locale-confusables.json`. These datasets are available under the project license for adoption into ICU test suites.
+PUNICODEX publishes a curated confusable atlas at `platform/db/confusables.json` and per-locale overrides at `platform/db/locale-confusables.json`. These datasets are available under the project license for adoption into ICU test suites.
 
 ## 4. Backwards Compatibility
 
@@ -56,4 +56,4 @@ All proposed additions are additive; existing `uspoof_checkUnicodeString` behavi
 
 1. Open a Unicode CLDR/ICU ticket referencing this proposal.
 2. Contribute confusable data and test cases to the ICU repository.
-3. Publish an interoperability report comparing ICU, PUNYCODEX, and browser vendor implementations.
+3. Publish an interoperability report comparing ICU, PUNICODEX, and browser vendor implementations.

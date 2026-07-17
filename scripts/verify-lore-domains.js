@@ -4,7 +4,7 @@ const path = require('path');
 const SITES_DIR = path.join(__dirname, '..', 'sites');
 
 // These are the only plain ASCII domains the user owns
-const ALLOWED_ASCII = new Set(['helheimr.com', 'muspellheimr.com', 'punycodex.com']);
+const ALLOWED_ASCII = new Set(['helheimr.com', 'muspellheimr.com', 'punicodex.com']);
 
 const dirs = fs.readdirSync(SITES_DIR).filter(d => {
   return fs.existsSync(path.join(SITES_DIR, d, 'lore', 'index.html'));

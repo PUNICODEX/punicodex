@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Multimodal tests
+ * PuniCodex — Multimodal tests
  */
 
 const assert = require('node:assert');

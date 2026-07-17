@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Export Flagship Lore Catalog
+ * PuniCodex — Export Flagship Lore Catalog
  *
  * Reads the canonical scripts/lore-catalog.json and produces clean,
  * consumer-specific JSON artifacts with HTML stripped from narrative fields.

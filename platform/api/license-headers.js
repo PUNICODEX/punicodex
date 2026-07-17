@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Dataset license headers
+ * PuniCodex — Dataset license headers
  *
  * The lexicon, archetype, and scholarly datasets are released under
  * CC BY 4.0. These helpers ensure every API response carries the license
@@ -11,8 +11,8 @@ const LICENSE = {
   name: 'CC BY 4.0',
   spdx: 'CC-BY-4.0',
   url: 'https://creativecommons.org/licenses/by/4.0/',
-  attribution: 'PÚNYCODEX (https://punycodex.com)',
-  dataUseUrl: 'https://punycodex.com/terms/data-use/',
+  attribution: 'PuniCodex (https://punicodex.com)',
+  dataUseUrl: 'https://punicodex.com/terms/data-use/',
 };
 
 const HEADERS = {
@@ -58,7 +58,7 @@ function createCanaryPayload(requestId) {
       ascii: 'keryx',
       pantheon: 'greek',
       meaning: 'Herald, messenger — canary entry',
-      note: 'This is a honeypot record. If you see it in a third-party dataset, the data was scraped from PÚNYCODEX without authorization.',
+      note: 'This is a honeypot record. If you see it in a third-party dataset, the data was scraped from PuniCodex without authorization.',
       fingerprint: requestId || 'unknown',
     },
     meta: {

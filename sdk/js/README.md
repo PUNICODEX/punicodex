@@ -1,20 +1,20 @@
-# @punycodex/authenticity-sdk
+# @punicodex/authenticity-sdk
 
-Browser-grade JavaScript SDK for the PÚNYCODEX Name Authenticity Shield.
+Browser-grade JavaScript SDK for the PuniCodex Name Authenticity Shield.
 
 ## Install
 
 ```bash
-npm install @punycodex/authenticity-sdk
+npm install @punicodex/authenticity-sdk
 ```
 
 ## Quick start
 
 ```javascript
-const { AuthenticitySDK } = require('@punycodex/authenticity-sdk');
+const { AuthenticitySDK } = require('@punicodex/authenticity-sdk');
 
 const sdk = new AuthenticitySDK({
-  apiBaseUrl: 'https://punycodex.com/api/v2',
+  apiBaseUrl: 'https://punicodex.com/api/v2',
   apiKey: 'your-api-key',
   offlineFirst: true,
 });
@@ -28,7 +28,7 @@ console.log(sdk.decideAction(verdict)); // { action: 'block', reason: 'severity'
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `apiBaseUrl` | `string` | `https://punycodex.com/api/v2` | Base URL of the Authenticity API. |
+| `apiBaseUrl` | `string` | `https://punicodex.com/api/v2` | Base URL of the Authenticity API. |
 | `apiKey` | `string` | `null` | Bearer token for authenticated endpoints. |
 | `offlineFirst` | `boolean` | `false` | Run the pure-JS offline classifier for `term` checks before calling the API. |
 | `policy` | `object` | see below | Decision policy for `decideAction`. |

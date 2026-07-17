@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Scholarly Edition DB Layer Tests
+ * PuniCodex — Scholarly Edition DB Layer Tests
  *
  * Uses a temporary copy of the SQLite database so production data is never touched.
  */

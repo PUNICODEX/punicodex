@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Booking migration v3
+ * PuniCodex — Booking migration v3
  *
  * Seeds the new 13+1 tenant-space layout (5 banners + 8 boxes + Full Page Takeover)
  * for every ad-enabled flagship temple. It is idempotent and booking-safe:
@@ -17,7 +17,7 @@ const Database = require('better-sqlite3');
 
 const ROOT = path.join(__dirname, '..', '..');
 const SITES_DIR = path.join(ROOT, 'sites');
-const DB_PATH = path.join(__dirname, 'punycodex.db');
+const DB_PATH = path.join(__dirname, 'punicodex.db');
 
 const SLOT_TYPES = [
   'Banner',

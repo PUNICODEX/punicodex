@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Flagship Temple Content Quality Audit
+ * PuniCodex — Flagship Temple Content Quality Audit
  *
  * Audits every built flagship temple for richness and canonical soundness:
  *   - lore-catalog coverage and schema integrity

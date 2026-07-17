@@ -34,6 +34,6 @@ lexicon.push({
 });
 
 const body = JSON.stringify(lexicon, null, 2);
-const out = `/*\n * PUNYCODEX Lexicon\n * ${lexicon.length} validated entries across multiple pantheons\n */\n\nconst LEXICON = ${body};\n`;
+const out = `/*\n * PUNICODEX Lexicon\n * ${lexicon.length} validated entries across multiple pantheons\n */\n\nconst LEXICON = ${body};\n`;
 fs.writeFileSync(LEXICON_PATH, out.replace(/\r\n/g, '\n'), 'utf8');
 console.log(`Added leviathan entry. Total entries: ${lexicon.length}`);

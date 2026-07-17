@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Authenticity i18n loader
+ * PuniCodex — Authenticity i18n loader
  *
  * Resolves locale from Accept-Language header or ?lang= query parameter.
  */

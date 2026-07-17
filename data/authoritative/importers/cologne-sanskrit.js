@@ -1,5 +1,5 @@
 /**
- * Cologne Sanskrit importer for PÚNYCODEX
+ * Cologne Sanskrit importer for PuniCodex
  *
  * Reads the local Monier-Williams XML corpus (Cologne Digital Sanskrit
  * Dictionaries) and suggests English glosses plus Devanagari original-script

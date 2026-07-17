@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ * PuniCodex — Scholarly Edition Markdown Renderer
  *
  * Dual-mode renderer: loadable via require() in Node (build-time baking in
  * scripts/generate-scholars.js) and inlineable verbatim into a browser

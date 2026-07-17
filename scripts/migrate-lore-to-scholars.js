@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Migrate lore-catalog.json into the Scholarly Edition.
+ * PuniCodex — Migrate lore-catalog.json into the Scholarly Edition.
  *
  * Reads scripts/lore-catalog.json and populates scholars_sections for every
  * flagship temple that has lore data. Idempotent: sections with a non-empty
@@ -31,9 +31,9 @@ const LORE_TO_SECTION_MAP = {
   originalScriptNote: 'original-script',
 };
 
-const INSTITUTION_NAME = 'PUNYCODEX Migration';
-const INSTITUTION_SLUG = 'punycodex-migration';
-const MIGRATION_EMAIL = 'migration@punycodex.com';
+const INSTITUTION_NAME = 'PUNICODEX Migration';
+const INSTITUTION_SLUG = 'punicodex-migration';
+const MIGRATION_EMAIL = 'migration@punicodex.com';
 const MIGRATION_NOTE = 'Migrated from scripts/lore-catalog.json';
 
 function normalizeSources(raw) {
@@ -127,8 +127,8 @@ function ensureMigrationUser(db) {
     const result = dbApi.createInstitution({
       name: INSTITUTION_NAME,
       slug: INSTITUTION_SLUG,
-      domain: 'punycodex.com',
-      accreditation: 'PUNYCODEX internal migration',
+      domain: 'punicodex.com',
+      accreditation: 'PUNICODEX internal migration',
       metadata: { note: MIGRATION_NOTE },
     });
     institution = dbApi.getInstitutionById(result.lastInsertRowid);
@@ -149,7 +149,7 @@ function ensureMigrationUser(db) {
       email: MIGRATION_EMAIL,
       institutionId: institution.id,
       role: 'curator',
-      displayName: 'PUNYCODEX Migration',
+      displayName: 'PUNICODEX Migration',
       department: 'Digital Philology',
     });
     user = dbApi.getUserById(result.lastInsertRowid);

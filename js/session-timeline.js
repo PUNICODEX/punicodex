@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX Session Timeline — record and display recent activity.
+ * PUNICODEX Session Timeline — record and display recent activity.
  */
 (function (global) {
   'use strict';

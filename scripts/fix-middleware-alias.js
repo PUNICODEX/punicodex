@@ -7,7 +7,7 @@ let src = fs.readFileSync(file, 'utf8');
 const insertion = `
   // ─── 0. Direct-serve flagship domains ──────────────────────────────
   // Some deity domains should serve their temple page directly instead
-  // of redirecting to punycodex.com/{id}.
+  // of redirecting to punicodex.com/{id}.
   const DIRECT_SERVE_MAP = {
     'helheimr.com': 'helheimr',
     'www.helheimr.com': 'helheimr',

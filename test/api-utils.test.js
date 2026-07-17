@@ -61,8 +61,8 @@ async function run() {
 
 test('setCors allows whitelisted origins with credentials', () => {
   const res = mockRes();
-  setCors({ headers: { origin: 'https://punycodex.com' } }, res);
-  assert.strictEqual(res.headers['Access-Control-Allow-Origin'], 'https://punycodex.com');
+  setCors({ headers: { origin: 'https://punicodex.com' } }, res);
+  assert.strictEqual(res.headers['Access-Control-Allow-Origin'], 'https://punicodex.com');
   assert.strictEqual(res.headers['Access-Control-Allow-Credentials'], 'true');
 });
 

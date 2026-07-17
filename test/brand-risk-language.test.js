@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Brand-Risk Language Regression Test
+ * PuniCodex — Brand-Risk Language Regression Test
  *
  * Scans public-facing pages and source templates for phrasing that could invite
  * trademark disputes, UDRP claims, or implied-endorsement arguments from

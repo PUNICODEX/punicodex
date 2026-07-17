@@ -1,11 +1,11 @@
-# PUNYCODEX Deployment — DO NOT FUCK THIS UP
+# PUNICODEX Deployment — DO NOT FUCK THIS UP
 
 ## Critical Rules
 
 ### 1. Production Branch is `main`, NOT `master`
-- Cloudflare Pages serves `punycodex.com` from the **`main`** branch
+- Cloudflare Pages serves `punicodex.com` from the **`main`** branch
 - `master` branch goes to **Preview** only
-- Always deploy with: `npx wrangler pages deploy . --project-name=punycodex --branch=main`
+- Always deploy with: `npx wrangler pages deploy . --project-name=punicodex --branch=main`
 
 ### 2. Cache Busting is MANDATORY
 - `_headers` sets `Cache-Control: public, max-age=31536000, immutable` on `.css`, `.js`, `.png`, `.svg`
@@ -28,10 +28,10 @@ git push origin master:main
 
 # 2. Deploy to PRODUCTION (main branch)
 # Set CLOUDFLARE_API_TOKEN in your environment before running
-npx wrangler pages deploy . --project-name=punycodex --branch=main
+npx wrangler pages deploy . --project-name=punicodex --branch=main
 
 # 3. Verify live site (not the preview URL)
-curl -s https://punycodex.com/ | head -5
+curl -s https://punicodex.com/ | head -5
 ```
 
 ### 5. Multi-Account Deployment (Norse sites: helheimr, muspellheimr)
@@ -40,7 +40,7 @@ Wrangler caches the last-used `account_id` in `node_modules/.cache/wrangler/page
 to the wrong account and fail with `Authentication error [code: 10000]`.
 
 ```powershell
-# Main account (punycodex.com, hermes, nike, etc.)
+# Main account (punicodex.com, hermes, nike, etc.)
 Get-Content .env | ForEach-Object { $k, $v = $_ -split '=', 2; [Environment]::SetEnvironmentVariable($k, $v, 'Process') }
 Remove-Item node_modules/.cache/wrangler/pages.json -Force -ErrorAction SilentlyContinue
 npx wrangler pages deploy . --project-name=hermes --branch=main --commit-dirty=true
@@ -65,5 +65,5 @@ npx wrangler pages deploy . --project-name=helheimr --branch=main --commit-dirty
 ### 7. If Something Looks Broken on Live
 1. Check if the HTML references the right `?v=` version
 2. Check if you deployed to `main`, not `master`
-3. Check `npx wrangler pages deployment list --project-name=punycodex` to confirm
+3. Check `npx wrangler pages deployment list --project-name=punicodex` to confirm
 4. Cloudflare edge cache can lag ~30s; wait a moment then hard-refresh

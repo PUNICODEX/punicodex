@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX Type — Lexicon & Engine Validation Suite
+ * PuniCodex Type — Lexicon & Engine Validation Suite
  * Run: node type/js/validate.js
  * Exit code 0 = all passed, 1 = any failed
  */

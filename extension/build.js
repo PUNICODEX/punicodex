@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX Type Extension — Build Script
+ * PuniCodex Type Extension — Build Script
  * Creates a ZIP package for Chrome Web Store submission.
  * Run: node extension/build.js
  */
@@ -9,7 +9,7 @@ const path = require('path');
 const { execSync } = require('child_process');
 
 const EXT_DIR = __dirname;
-const OUT_FILE = path.join(EXT_DIR, 'punycodex-type-extension.zip');
+const OUT_FILE = path.join(EXT_DIR, 'punicodex-type-extension.zip');
 const TEMP_DIR = path.join(EXT_DIR, '_build_temp');
 
 // Clean up old build artifacts

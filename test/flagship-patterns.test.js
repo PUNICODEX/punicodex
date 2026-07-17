@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Flagship Patterns Tab Tests
+ * PuniCodex — Flagship Patterns Tab Tests
  *
  * Guards the industry-pattern system end to end:
  *   1. Canonical dataset schema — valid sectors, ids, weights, justifications.

@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Cognate Network Graph
+ * PUNICODEX — Cognate Network Graph
  * Canvas-based force-directed graph. No external dependencies.
  */
 

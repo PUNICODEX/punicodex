@@ -1,6 +1,6 @@
-# PUNYCODEX Open-Source Tooling
+# PUNICODEX Open-Source Tooling
 
-This document describes the standalone tools extracted from PUNYCODEX that can
+This document describes the standalone tools extracted from PUNICODEX that can
 be reused, packaged, and released as open-source libraries.
 
 ## 1. Unicode Domain Crawler
@@ -13,7 +13,7 @@ Features:
 - Content extraction (title, meta, Open Graph, structured data)
 - SQLite persistence with FTS5 search
 
-Release package: `@punycodex/crawler`
+Release package: `@punicodex/crawler`
 
 ## 2. Scholarly Lexicon Engine
 
@@ -24,7 +24,7 @@ Features:
 - FTS5 + semantic vector retrieval
 - Variant and breakdown resolution
 
-Release package: `@punycodex/lexicon`
+Release package: `@punicodex/lexicon`
 
 ## 3. Oracle RAG
 
@@ -35,7 +35,7 @@ Features:
 - Lore-aware answer synthesis
 - Optional LLM grounding with citations
 
-Release package: `@punycodex/oracle`
+Release package: `@punicodex/oracle`
 
 ## 4. Query Intelligence
 
@@ -46,7 +46,7 @@ Features:
 - Related searches
 - Autocomplete
 
-Release package: `@punycodex/query-intel`
+Release package: `@punicodex/query-intel`
 
 ## 5. Embeddings Pipeline
 
@@ -56,7 +56,7 @@ Features:
 - Local transformer embeddings via `@xenova/transformers`
 - Vector similarity search in SQLite
 
-Release package: `@punycodex/embeddings`
+Release package: `@punicodex/embeddings`
 
 ## 6. Name Authenticity Checker
 
@@ -72,7 +72,7 @@ Features:
 - Threat feed with manual review workflow
 - Public checker page, API v1/v2 endpoints, browser-extension integration
 
-Release package: `@punycodex/authenticity`
+Release package: `@punicodex/authenticity`
 
 ## Release Checklist
 

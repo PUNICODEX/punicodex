@@ -1,20 +1,20 @@
-# PÚNYCODEX Name Authenticity Shield — Model Card
+# PuniCodex Name Authenticity Shield — Model Card
 
 ## Model Overview
 
 The **Name Authenticity Shield** is the spoof-detection classifier behind
-PÚNYCODEX. It evaluates Unicode names, domains, and URLs to determine whether
+PuniCodex. It evaluates Unicode names, domains, and URLs to determine whether
 they are legitimate canonical forms, recognized scholarly variants, styled
 names, or deceptive homograph / mixed-script / lookalike attacks.
 
 - **Version:** 2.0
 - **Date:** 2026-06-21
-- **Owner:** PÚNYCODEX
+- **Owner:** PuniCodex
 - **License:** Project data license TBD (see `data-version.json`)
 
 ## Intended Use
 
-- Protect users of the PÚNYCODEX search engine, type tool, browser extension,
+- Protect users of the PuniCodex search engine, type tool, browser extension,
   and API from Unicode-domain homograph attacks.
 - Provide defensible evidence for SOC teams, trademark investigators, and
   domain-dispute proceedings.
@@ -28,7 +28,7 @@ names, or deceptive homograph / mixed-script / lookalike attacks.
 - It does **not** perform live WHOIS or DNS resolution; DNS and ownership data
   are cached or manually curated.
 - It is not intended to police arbitrary personal names; only protected
-  identities in the PÚNYCODEX lexicon, brand seed list, and owned-domain list
+  identities in the PuniCodex lexicon, brand seed list, and owned-domain list
   are defended.
 
 ## Input / Output
@@ -84,7 +84,7 @@ names, or deceptive homograph / mixed-script / lookalike attacks.
 
 - The lexicon prioritizes historically attested names from Greco-Roman,
   Norse, Egyptian, Japanese, Hindu, and other pantheons. This reflects the
-  scholarly scope of PÚNYCODEX, not a value judgment.
+  scholarly scope of PuniCodex, not a value judgment.
 - Brand seed list is dominated by global technology and financial services
   firms because these are the most frequently spoofed categories. Additional
   verticals are added through the enterprise governance workflow.

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Industry-pattern graph generator
+ * PuniCodex — Industry-pattern graph generator
  *
  * Reads the canonical industry-pattern map (type/js/industry-patterns.js),
  * expands it into per-entry pattern profiles and per-industry membership

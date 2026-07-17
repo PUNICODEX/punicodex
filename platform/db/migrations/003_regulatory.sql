@@ -1,4 +1,4 @@
--- PUNYCODEX — Regulatory, Legal & Abuse-Handling Schema (Phase 16)
+-- PUNICODEX — Regulatory, Legal & Abuse-Handling Schema (Phase 16)
 -- Idempotent. Run via platform/db/init.js or platform/db/migrate-regulatory.js.
 
 CREATE TABLE IF NOT EXISTS dsar_requests (
@@ -85,4 +85,4 @@ CREATE INDEX IF NOT EXISTS idx_lawful_status ON lawful_access_requests(status);
 
 -- System tenant used by regulatory services for audit-log entries.
 INSERT OR IGNORE INTO tenants (id, name, plan, rate_limit_tier, data_region)
-VALUES ('system', 'PUNYCODEX System', 'internal', 'internal', 'us-east-1');
+VALUES ('system', 'PUNICODEX System', 'internal', 'internal', 'us-east-1');

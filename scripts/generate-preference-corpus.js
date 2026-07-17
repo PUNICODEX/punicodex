@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Preference / RLHF Corpus Generator (Phase 6)
+ * PuniCodex — Preference / RLHF Corpus Generator (Phase 6)
  *
  * Emits chosen vs rejected response pairs for scholarly and safety queries.
  * The chosen response is grounded, concise, and cites sources; the rejected
@@ -83,7 +83,7 @@ function buildSourcePreference(entry, index) {
     task: 'preference_sources',
     instruction: 'Answer the user question with a grounded, accurate response.',
     input: `What sources attest ${entry.unicode}?`,
-    chosen: `The entry for ${entry.unicode} is attested by ${sourceList} and other scholarly references in the PÚNYCODEX source catalog.`,
+    chosen: `The entry for ${entry.unicode} is attested by ${sourceList} and other scholarly references in the PuniCodex source catalog.`,
     rejected: `There are no real sources; these names were made up for the internet.`,
     metadata: { reason: 'chosen cites sources; rejected is a false hallucination' },
   };

@@ -1,4 +1,4 @@
-package com.punycodex.keyboard;
+package com.punicodex.keyboard;
 
 import android.content.ComponentName;
 import android.content.Context;

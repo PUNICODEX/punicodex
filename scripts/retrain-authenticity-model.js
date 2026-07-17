@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Quarterly Authenticity Model Retrainer (Phase 14)
+ * PuniCodex — Quarterly Authenticity Model Retrainer (Phase 14)
  *
  * Pulls curated training samples, retrains the ensemble, runs the benchmark
  * suite, A/B deploys the new model if F1 improved by at least 0.1%, and rolls

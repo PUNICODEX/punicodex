@@ -19,9 +19,9 @@ for (const id of BUILT_TEMPLES) {
     if (!entry) continue;
 
     const hasOriginal = entry.greek && entry.greek !== '—';
-    const pageTitle = `${entry.greek && hasOriginal ? entry.greek + ' — ' : ''}${entry.unicode} | ${entry.domain} | PUNYCODEX`;
+    const pageTitle = `${entry.greek && hasOriginal ? entry.greek + ' — ' : ''}${entry.unicode} | ${entry.domain} | PUNICODEX`;
     const pageDesc = `The authentic digital shrine to ${entry.unicode}. Explore the correct orthography, reconstructed pronunciation, and timeless mythology of ${hasOriginal ? entry.greek : entry.unicode}.`;
-    const canonicalUrl = `https://punycodex.com/sites/${id}/`;
+    const canonicalUrl = `https://punicodex.com/sites/${id}/`;
 
     const seoBlock = `
     <link rel="canonical" href="${canonicalUrl}">
@@ -31,7 +31,7 @@ for (const id of BUILT_TEMPLES) {
     <meta property="og:description" content="${escapeHtml(pageDesc)}">
     <meta property="og:url" content="${canonicalUrl}">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="PUNYCODEX">
+    <meta property="og:site_name" content="PUNICODEX">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">

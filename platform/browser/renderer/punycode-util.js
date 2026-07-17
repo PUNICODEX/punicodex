@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Unicode ↔ Punycode helpers
+ * PUNICODEX — Unicode ↔ Punycode helpers
  * Mortal translations of divine names.
  */
 

@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — URL Decomposer Tests
+ * PuniCodex — URL Decomposer Tests
  */
 
 const assert = require('node:assert');

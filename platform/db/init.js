@@ -2,7 +2,7 @@ const Database = require('better-sqlite3');
 const fs = require('node:fs');
 const path = require('node:path');
 
-const DB_PATH = path.join(__dirname, 'punycodex.db');
+const DB_PATH = path.join(__dirname, 'punicodex.db');
 
 // Remove existing DB to rebuild
 if (fs.existsSync(DB_PATH)) {

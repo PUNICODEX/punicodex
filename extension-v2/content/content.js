@@ -1,9 +1,9 @@
 /**
- * PÚNYCODEX Authenticity Extension v2 — Content script
+ * PuniCodex Authenticity Extension v2 — Content script
  */
 
-const BANNER_STORAGE_KEY = 'punycodex_banner_dismissed';
-const MODAL_STORAGE_KEY = 'punycodex_modal_dismissed';
+const BANNER_STORAGE_KEY = 'punicodex_banner_dismissed';
+const MODAL_STORAGE_KEY = 'punicodex_modal_dismissed';
 
 function isDismissed(url, key) {
   try {
@@ -25,14 +25,14 @@ function markDismissed(url, key) {
 }
 
 function severityClass(severity) {
-  if (severity === 'critical' || severity === 'high') return 'punycodex-risk-high';
-  if (severity === 'medium') return 'punycodex-risk-medium';
-  return 'punycodex-risk-low';
+  if (severity === 'critical' || severity === 'high') return 'punicodex-risk-high';
+  if (severity === 'medium') return 'punicodex-risk-medium';
+  return 'punicodex-risk-low';
 }
 
 function createIcon(type) {
   const span = document.createElement('span');
-  span.className = 'punycodex-icon';
+  span.className = 'punicodex-icon';
   span.setAttribute('aria-hidden', 'true');
   span.textContent = type === 'block' ? '⛔' : type === 'alert' ? '⚠' : type === 'ask' ? '?' : 'ℹ';
   return span;
@@ -42,12 +42,12 @@ function showBanner(verdict) {
   const url = location.href;
   if (isDismissed(url, BANNER_STORAGE_KEY)) return;
 
-  const existing = document.getElementById('punycodex-authenticity-banner');
+  const existing = document.getElementById('punicodex-authenticity-banner');
   if (existing) return;
 
   const banner = document.createElement('div');
-  banner.id = 'punycodex-authenticity-banner';
-  banner.className = `punycodex-banner ${severityClass(verdict.severity)}`;
+  banner.id = 'punicodex-authenticity-banner';
+  banner.className = `punicodex-banner ${severityClass(verdict.severity)}`;
   banner.setAttribute('role', 'alert');
   banner.setAttribute('aria-live', 'polite');
 
@@ -56,11 +56,11 @@ function showBanner(verdict) {
   title.textContent = verdict.label || verdict.verdict;
 
   const reason = document.createElement('span');
-  reason.className = 'punycodex-banner-reason';
+  reason.className = 'punicodex-banner-reason';
   reason.textContent = verdict.reason || verdict.explanation || '';
 
   const close = document.createElement('button');
-  close.className = 'punycodex-banner-close';
+  close.className = 'punicodex-banner-close';
   close.setAttribute('aria-label', 'Dismiss warning');
   close.textContent = '×';
   close.addEventListener('click', () => {
@@ -79,26 +79,26 @@ function showModal(verdict) {
   const url = location.href;
   if (isDismissed(url, MODAL_STORAGE_KEY)) return;
 
-  const existing = document.getElementById('punycodex-authenticity-modal');
+  const existing = document.getElementById('punicodex-authenticity-modal');
   if (existing) return;
 
   const overlay = document.createElement('div');
-  overlay.id = 'punycodex-authenticity-modal';
-  overlay.className = `punycodex-modal ${severityClass(verdict.severity)}`;
+  overlay.id = 'punicodex-authenticity-modal';
+  overlay.className = `punicodex-modal ${severityClass(verdict.severity)}`;
   overlay.setAttribute('role', 'dialog');
   overlay.setAttribute('aria-modal', 'true');
-  overlay.setAttribute('aria-labelledby', 'punycodex-modal-title');
+  overlay.setAttribute('aria-labelledby', 'punicodex-modal-title');
 
   const panel = document.createElement('div');
-  panel.className = 'punycodex-modal-panel';
+  panel.className = 'punicodex-modal-panel';
   panel.setAttribute('role', 'document');
 
   const header = document.createElement('div');
-  header.className = 'punycodex-modal-header';
+  header.className = 'punicodex-modal-header';
   header.appendChild(createIcon(verdict.severity === 'critical' ? 'block' : 'alert'));
 
   const title = document.createElement('h2');
-  title.id = 'punycodex-modal-title';
+  title.id = 'punicodex-modal-title';
   title.textContent = verdict.label || verdict.verdict;
   header.appendChild(title);
 
@@ -106,17 +106,17 @@ function showModal(verdict) {
   body.textContent = verdict.reason || verdict.explanation || '';
 
   const actions = document.createElement('div');
-  actions.className = 'punycodex-modal-actions';
+  actions.className = 'punicodex-modal-actions';
 
   const backBtn = document.createElement('button');
-  backBtn.className = 'punycodex-modal-primary';
+  backBtn.className = 'punicodex-modal-primary';
   backBtn.textContent = 'Back to safety';
   backBtn.addEventListener('click', () => {
     history.back();
   });
 
   const proceedBtn = document.createElement('button');
-  proceedBtn.className = 'punycodex-modal-secondary';
+  proceedBtn.className = 'punicodex-modal-secondary';
   proceedBtn.textContent = 'Proceed';
   proceedBtn.addEventListener('click', () => {
     markDismissed(url, MODAL_STORAGE_KEY);
@@ -137,10 +137,10 @@ function showModal(verdict) {
 
 async function highlightLink(anchor) {
   const href = anchor.href;
-  if (!href || href.startsWith('#') || anchor.dataset.punycodexChecked === 'true') {
+  if (!href || href.startsWith('#') || anchor.dataset.punicodexChecked === 'true') {
     return;
   }
-  anchor.dataset.punycodexChecked = 'true';
+  anchor.dataset.punicodexChecked = 'true';
 
   try {
     const response = await chrome.runtime.sendMessage({ action: 'checkLink', url: href });
@@ -151,9 +151,9 @@ async function highlightLink(anchor) {
     if (severity === 'none' || severity === 'low') return;
     if (action && action.action === 'allow') return;
 
-    anchor.classList.add('punycodex-risk-link');
-    anchor.dataset.punycodexRisk = severity;
-    anchor.dataset.punycodexVerdict = verdict.verdict;
+    anchor.classList.add('punicodex-risk-link');
+    anchor.dataset.punicodexRisk = severity;
+    anchor.dataset.punicodexVerdict = verdict.verdict;
     anchor.title = `${verdict.label || verdict.verdict}: ${verdict.reason || verdict.explanation || ''}`;
   } catch {
     // ignore network / context errors

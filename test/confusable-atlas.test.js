@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Confusable Atlas Tests
+ * PuniCodex — Confusable Atlas Tests
  */
 
 const assert = require('node:assert');

@@ -3,7 +3,7 @@
 // Run `npm run generate` to regenerate.
 //
 /*
- * PUNYCODEX Lexicon
+ * PUNICODEX Lexicon
  * 894 validated entries across multiple pantheons
  */
 

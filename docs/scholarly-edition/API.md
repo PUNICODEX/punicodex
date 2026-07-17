@@ -1,4 +1,4 @@
-# PÚNYCODEX Scholarly Edition — API Reference
+# PuniCodex Scholarly Edition — API Reference
 
 Base URL: `/api/v1/scholars`
 
@@ -34,7 +34,7 @@ applications and Institution endpoints).
 Every response carries `X-RateLimit-Limit`, `X-RateLimit-Remaining`, and
 `X-RateLimit-Reset`. Exceeding a limit returns 429 with `retryAfter`.
 Limiters are Redis-backed when `REDIS_URL` is configured (global across
-serverless invocations, key prefix `punycodex:rl:scholars:{tier}:...`),
+serverless invocations, key prefix `punicodex:rl:scholars:{tier}:...`),
 falling back to per-process memory otherwise. Tiers: `public` 120/min,
 `auth` 60/min, `strict` 10/min, `login` 10/15min.
 

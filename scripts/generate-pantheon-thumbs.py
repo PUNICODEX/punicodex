@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PÚNYCODEX — Generate small pantheon card thumbnails.
+PuniCodex — Generate small pantheon card thumbnails.
 
 Reads js/archetypes-v2.js, finds each archetype's mascot/logomark source image,
 and writes a 160 px (fit-within) WebP thumbnail to

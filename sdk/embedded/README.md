@@ -1,4 +1,4 @@
-# PÚNYCODEX Authenticity — Embedded / IoT
+# PuniCodex Authenticity — Embedded / IoT
 
 Sample firmware integrations for routers and IoT gateways.
 

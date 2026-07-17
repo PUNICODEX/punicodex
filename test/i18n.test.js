@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Authenticity i18n Tests
+ * PuniCodex — Authenticity i18n Tests
  */
 
 const assert = require('node:assert');

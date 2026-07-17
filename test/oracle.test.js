@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Oracle tests
+ * PuniCodex — Oracle tests
  */
 
 const assert = require('node:assert');

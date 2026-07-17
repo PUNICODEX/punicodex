@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Authenticity Threat Feed Service
+ * PUNICODEX — Authenticity Threat Feed Service
  *
  * Persistent backend for discovered spoof names/domains and user reports.
  * All functions are synchronous and operate on the shared SQLite connection.

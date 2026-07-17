@@ -6,7 +6,7 @@
 
 ## Summary
 
-PUNYCODEX responds to ICANN SSAC consultations on IDN security, emphasizing registrar-level confusable alerts, rapid revocation, and machine-readable transparency reports.
+PUNICODEX responds to ICANN SSAC consultations on IDN security, emphasizing registrar-level confusable alerts, rapid revocation, and machine-readable transparency reports.
 
 ## Key Points
 

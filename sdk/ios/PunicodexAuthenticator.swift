@@ -1,13 +1,13 @@
 import Foundation
 
-/// PÚNYCODEX Authenticity Shield — iOS / watchOS / iPadOS SDK
+/// PuniCodex Authenticity Shield — iOS / watchOS / iPadOS SDK
 ///
 /// Lightweight offline classifier for homograph and mixed-script attacks.
 /// Mirrors the API contract of the Android Kotlin SDK and the JS SDK so
 /// wrappers (React Native, Flutter) can share the same surface.
-public final class PunycodexAuthenticator: Sendable {
+public final class PunicodexAuthenticator: Sendable {
 
-    public static let shared = PunycodexAuthenticator()
+    public static let shared = PunicodexAuthenticator()
 
     private let brands: [BrandIdentity]
     private let confusables: [String: String]

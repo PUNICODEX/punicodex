@@ -40,7 +40,7 @@ const ARCHETYPES = vm.runInNewContext(
 );
 const flagshipIds = new Set(ARCHETYPES.filter((a) => a.built).map((a) => a.id));
 
-const BASE_URL = 'https://punycodex.com';
+const BASE_URL = 'https://punicodex.com';
 
 const mainPages = [
   { loc: '/', priority: '1.0', changefreq: 'weekly' },

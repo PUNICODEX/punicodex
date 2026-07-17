@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX 3D Temple Mode — WebGL scene per pantheon with hotspots.
+ * PUNICODEX 3D Temple Mode — WebGL scene per pantheon with hotspots.
  */
 (function (global) {
   'use strict';

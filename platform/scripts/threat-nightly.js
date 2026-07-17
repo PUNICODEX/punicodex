@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Nightly Threat Intelligence Maintenance (Phase 8)
+ * PUNICODEX — Nightly Threat Intelligence Maintenance (Phase 8)
  *
  * Re-clusters unclustered events, re-scores all relationships, and
  * auto-promotes high-confidence clusters.

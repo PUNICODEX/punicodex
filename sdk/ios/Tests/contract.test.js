@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — iOS SDK contract validation
+ * PuniCodex — iOS SDK contract validation
  *
  * The iOS SDK is written in Swift and is normally tested with XCTest inside
  * Xcode. In this repository we validate the public API contract from Node so
@@ -35,7 +35,7 @@ async function run() {
 }
 
 const swiftSource = fs.readFileSync(
-  path.join(__dirname, '..', 'PunycodexAuthenticator.swift'),
+  path.join(__dirname, '..', 'PunicodexAuthenticator.swift'),
   'utf8'
 );
 
@@ -45,13 +45,13 @@ const packageManifest = fs.readFileSync(
 );
 
 test('Swift package declares the expected library target', () => {
-  assert.ok(packageManifest.includes('name: "PunycodexAuthenticator"'));
+  assert.ok(packageManifest.includes('name: "PunicodexAuthenticator"'));
   assert.ok(packageManifest.includes('.library'));
   assert.ok(packageManifest.includes('.testTarget'));
 });
 
 test('Swift SDK exposes the main Authenticator class', () => {
-  assert.ok(swiftSource.includes('public final class PunycodexAuthenticator'));
+  assert.ok(swiftSource.includes('public final class PunicodexAuthenticator'));
   assert.ok(swiftSource.includes('public static let shared'));
 });
 

@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Master generator
+ * PUNICODEX — Master generator
  *
  * Orchestrates all source-to-output generation scripts so that a single
  * canonical change propagates to every consumer.
@@ -97,7 +97,7 @@ function run(script) {
 }
 
 console.log('╔════════════════════════════════════════════════════════╗');
-console.log('║  PÚNYCODEX — Generating all derived artifacts          ║');
+console.log('║  PuniCodex — Generating all derived artifacts          ║');
 console.log('╚════════════════════════════════════════════════════════╝');
 
 for (const script of scripts) {

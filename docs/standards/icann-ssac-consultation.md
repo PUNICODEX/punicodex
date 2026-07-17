@@ -6,7 +6,7 @@
 
 ## Summary
 
-PUNYCODEX welcomes the opportunity to contribute to ICANN's ongoing work on IDN security. Our operational experience crawling and classifying Unicode domains confirms that homograph attacks remain a significant and evolving risk to DNS stability and user trust.
+PUNICODEX welcomes the opportunity to contribute to ICANN's ongoing work on IDN security. Our operational experience crawling and classifying Unicode domains confirms that homograph attacks remain a significant and evolving risk to DNS stability and user trust.
 
 ## Key Points
 

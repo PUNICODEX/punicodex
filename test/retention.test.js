@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Retention Tests
+ * PuniCodex — Retention Tests
  */
 
 const assert = require('node:assert');
@@ -11,7 +11,7 @@ const { migrateEnterpriseGovernance } = require('../platform/db/migrate-enterpri
 const db = new Database(testDbPath);
 migrateEnterpriseGovernance({ db });
 
-process.env.PUNYCODEX_TEST_DB_PATH = testDbPath;
+process.env.PUNICODEX_TEST_DB_PATH = testDbPath;
 
 const retention = require('../platform/api/retention.js');
 const { run, get, closeDb } = require('../platform/db/operational.js');

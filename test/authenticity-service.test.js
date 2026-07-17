@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Authenticity Service Tests
+ * PuniCodex — Authenticity Service Tests
  *
  * Tests the new verdict-oriented API introduced by the Name Authenticity
  * Checker. The legacy homograph-defense tests continue to cover the old

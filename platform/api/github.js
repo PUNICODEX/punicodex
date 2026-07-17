@@ -13,7 +13,7 @@ async function createRepo({ name, description, token }) {
     },
     body: JSON.stringify({
       name,
-      description: description || 'PUNYCODEX temple',
+      description: description || 'PUNICODEX temple',
       private: false,
       has_issues: false,
       has_wiki: false,

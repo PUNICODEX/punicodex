@@ -1,6 +1,6 @@
 # Unicode ICU Submission — Extended Confusable Detection API
 
-**Project:** PUNYCODEX Name Authenticity Shield  
+**Project:** PUNICODEX Name Authenticity Shield  
 **Submission type:** Best-practice proposal / API extension request  
 **Target:** ICU (International Components for Unicode) and Unicode Consortium  
 **Date:** 2026-06-22
@@ -34,14 +34,14 @@ The `USpoofCheckExtendedResult` structure would return:
 
 ## Reference Data Offered
 
-PUNYCODEX maintains a curated, license-clean dataset of:
+PUNICODEX maintains a curated, license-clean dataset of:
 
 - ~8,000 single-codepoint confusable mappings derived from the Unicode confusables table.
 - ~50 whole-word confusable patterns validated against real-world phishing data.
 - Per-font glyph similarity scores for system UI fonts and monospace/serif variants.
 - A public benchmark of 100,000 deceptive and 50,000 legitimate Unicode names.
 
-We propose to donate this dataset to ICU under a compatible open-source license once the PUNYCODEX data license is finalized.
+We propose to donate this dataset to ICU under a compatible open-source license once the PUNICODEX data license is finalized.
 
 ## Backward Compatibility
 
@@ -50,9 +50,9 @@ The proposed API is additive. Existing `uspoof_check` behavior remains unchanged
 ## Next Steps
 
 1. Open an ICU ticket with this proposal and a reference implementation patch.
-2. Publish the PUNYCODEX benchmark as a Unicode technical note.
+2. Publish the PUNICODEX benchmark as a Unicode technical note.
 3. Coordinate with the Unicode Confusables Maintenance Committee on data updates.
 
 ---
 
-*Contact: security@punycodex.com*
+*Contact: security@punicodex.com*

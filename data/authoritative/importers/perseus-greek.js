@@ -1,5 +1,5 @@
 /**
- * Perseus Greek importer for PÚNYCODEX
+ * Perseus Greek importer for PuniCodex
  *
  * Uses the Perseus Digital Library morphology service and LSJ text pages to:
  *   - verify the ancient Greek form stored in each Greek entry
@@ -50,7 +50,7 @@ async function fetchMorphJson(greek, fetchFn) {
   const url = `${MORPH_API}?lang=grc&word=${encodeURIComponent(greek)}&engine=morpheusgrc`;
   const res = await fetchFn(url, {
     headers: {
-      'User-Agent': 'PUNYCODEX importer (github.com/PUNYCODEX/punycodex)',
+      'User-Agent': 'PUNICODEX importer (github.com/PUNICODEX/punicodex)',
       Accept: 'application/json',
     },
   });
@@ -62,7 +62,7 @@ async function fetchLsjDoc(greek, fetchFn) {
   const url = `${MORPH_HTML}?l=${encodeURIComponent(greek)}&la=greek`;
   const res = await fetchFn(url, {
     headers: {
-      'User-Agent': 'PUNYCODEX importer (github.com/PUNYCODEX/punycodex)',
+      'User-Agent': 'PUNICODEX importer (github.com/PUNICODEX/punicodex)',
     },
   });
   if (!res.ok) return null;
@@ -130,7 +130,7 @@ async function fetchLsjDefinition(doc, fetchFn) {
   const url = `${LSJ_TEXT}?doc=${encodeURIComponent(doc)}`;
   const res = await fetchFn(url, {
     headers: {
-      'User-Agent': 'PUNYCODEX importer (github.com/PUNYCODEX/punycodex)',
+      'User-Agent': 'PUNICODEX importer (github.com/PUNICODEX/punicodex)',
     },
   });
   if (!res.ok) return null;

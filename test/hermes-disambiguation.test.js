@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Hermès Disambiguation Tests
+ * PuniCodex — Hermès Disambiguation Tests
  *
  * Validates that the brand identity for Hermès coexists with the lexicon
  * identity for the Greek deity Hermês.

@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Model Card Tests
+ * PuniCodex — Model Card Tests
  *
  * Verifies that the authenticity model card exists and documents the required
  * sections.

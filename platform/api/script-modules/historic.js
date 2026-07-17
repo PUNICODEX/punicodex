@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Historic script risk module
+ * PuniCodex — Historic script risk module
  *
  * Treats Runic, Cuneiform, and similar historic scripts as stylistic unless
  * they are mixed with modern scripts in a way that could impersonate a

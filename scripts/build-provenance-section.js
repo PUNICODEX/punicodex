@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Rich Original Script Provenance Section Builder
+ * PuniCodex — Rich Original Script Provenance Section Builder
  *
  * Builds the "Original Script & Provenance" HTML panel for flagship lore pages.
  * Consumes the enriched schema from type/js/original-scripts.js and produces
@@ -179,7 +179,7 @@ function buildPlaceholderSection(entry, label) {
   const specimen = escapeHtml(getOriginalScript(entry) || entry.unicode || '');
   const note = SCRIPTLESS_PANTHEONS.has(entry.pantheon)
     ? `No indigenous writing system is securely attested for individual ${entry.pantheon} names. The form shown is a modern scholarly transliteration.`
-    : `A bespoke provenance study for ${escapeHtml(entry.unicode || '')} is being prepared by the PUNYCODEX scholarly team.`;
+    : `A bespoke provenance study for ${escapeHtml(entry.unicode || '')} is being prepared by the PUNICODEX scholarly team.`;
 
   return `
 <!-- Original Script Provenance -->

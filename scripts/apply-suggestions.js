@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Apply a suggestion batch to canonical sources.
+ * PuniCodex — Apply a suggestion batch to canonical sources.
  *
  * This script is the only automated path that may mutate canonical sources
  * from the authoritative import framework. It performs conservative edits and

@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Lexicon Entry Smoke Cases
+ * PuniCodex — Lexicon Entry Smoke Cases
  *
  * One focused test per canonical lexicon entry. These are intentionally
  * lightweight schema checks that complement the heavy validator assertions

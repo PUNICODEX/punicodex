@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Telemetry Privacy Tests (Phase 14)
+ * PuniCodex — Telemetry Privacy Tests (Phase 14)
  */
 
 const assert = require('node:assert');
@@ -11,7 +11,7 @@ const { migrateMLOps } = require('../platform/db/migrate-mlops.js');
 const db = new Database(testDbPath);
 migrateMLOps({ db });
 
-process.env.PUNYCODEX_TEST_DB_PATH = testDbPath;
+process.env.PUNICODEX_TEST_DB_PATH = testDbPath;
 
 const telemetry = require('../platform/api/telemetry.js');
 const { run, all, get, insert, closeDb } = require('../platform/db/operational.js');

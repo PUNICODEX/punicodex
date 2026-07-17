@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — first-party site analytics engine.
+ * PuniCodex — first-party site analytics engine.
  *
  * Privacy-first page-view analytics:
  *   - IPs are stored only as sha256(ip).substring(0, 16) — never raw
@@ -19,7 +19,7 @@ const { classifyUserAgent } = require('./bot-detection');
 const { all, get, insert, run, isPostgres } = require('../db/operational');
 const { runMigration } = require('../db/migrate-site-analytics');
 
-const KEY_PREFIX = 'punycodex:analytics:';
+const KEY_PREFIX = 'punicodex:analytics:';
 const ROLLUP_TTL_SECONDS = 40 * 24 * 60 * 60; // 40 days
 const MAX_PATH_LENGTH = 200;
 const MAX_REFERRER_LENGTH = 300;

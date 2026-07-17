@@ -1,5 +1,5 @@
 /**
- * Allen Egyptian importer for PÚNYCODEX
+ * Allen Egyptian importer for PuniCodex
  *
  * Stub: no online source configured yet.
  */

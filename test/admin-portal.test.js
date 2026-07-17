@@ -10,10 +10,10 @@
 const assert = require('node:assert');
 
 process.env.ADMIN_PASSWORD = 'test-portal-admin-password';
-process.env.PUNYCODEX_BCRYPT_ROUNDS = '4';
+process.env.PUNICODEX_BCRYPT_ROUNDS = '4';
 process.env.STRIPE_SECRET_KEY = 'sk_test_dummy';
 process.env.STRIPE_WEBHOOK_SECRET = 'whsec_dummy';
-process.env.PLATFORM_URL = 'https://punycodex.com';
+process.env.PLATFORM_URL = 'https://punicodex.com';
 
 const { prepareTestDb } = require('./helpers/test-db.js');
 prepareTestDb(__filename);
@@ -112,7 +112,7 @@ async function runTests() {
     const saved = process.env.ADMIN_PASSWORD;
     delete process.env.ADMIN_PASSWORD;
     try {
-      const res = await portalLogin('admin@punycodex.com', 'whatever');
+      const res = await portalLogin('admin@punicodex.com', 'whatever');
       assert.strictEqual(res.status, 503);
       assert.strictEqual(res.body.code, 'portal_unconfigured');
     } finally {
@@ -121,25 +121,25 @@ async function runTests() {
   });
 
   await test('first login bootstraps a superadmin from ADMIN_PASSWORD', async () => {
-    const res = await portalLogin('admin@punycodex.com', process.env.ADMIN_PASSWORD);
+    const res = await portalLogin('admin@punicodex.com', process.env.ADMIN_PASSWORD);
     assert.strictEqual(res.status, 200);
     assert.strictEqual(res.body.success, true);
     assert.ok(res.body.token);
     assert.strictEqual(res.body.user.role, 'superadmin');
-    assert.strictEqual(res.body.user.email, 'admin@punycodex.com');
+    assert.strictEqual(res.body.user.email, 'admin@punicodex.com');
     assert.strictEqual(res.body.requirePasswordChange, false);
     superToken = res.body.token;
     superUser = res.body.user;
 
     const row = db()
       .prepare('SELECT * FROM admin_users WHERE email = ?')
-      .get('admin@punycodex.com');
+      .get('admin@punicodex.com');
     assert.ok(row, 'admin_users row should exist');
     assert.strictEqual(row.role, 'superadmin');
   });
 
   await test('bootstrap is idempotent — second login succeeds normally', async () => {
-    const res = await portalLogin('admin@punycodex.com', process.env.ADMIN_PASSWORD);
+    const res = await portalLogin('admin@punicodex.com', process.env.ADMIN_PASSWORD);
     assert.strictEqual(res.status, 200);
     const count = db().prepare('SELECT COUNT(*) as c FROM admin_users').get().c;
     assert.strictEqual(count, 1);
@@ -150,7 +150,7 @@ async function runTests() {
       headers: adminHeader(superToken),
     });
     assert.strictEqual(res.status, 200);
-    assert.strictEqual(res.body.user.email, 'admin@punycodex.com');
+    assert.strictEqual(res.body.user.email, 'admin@punicodex.com');
     assert.strictEqual(res.body.role, 'superadmin');
     assert.ok(res.body.permissions.includes('users'));
   });
@@ -184,27 +184,27 @@ async function runTests() {
   // ── Login lifecycle / lockout ────────────────────────────────
   await test('wrong password is rejected and locks the account after 5 attempts', async () => {
     for (let i = 0; i < 5; i++) {
-      const res = await portalLogin('admin@punycodex.com', 'wrong-password');
+      const res = await portalLogin('admin@punicodex.com', 'wrong-password');
       assert.strictEqual(res.status, 401);
       assert.strictEqual(res.body.code, 'invalid_credentials');
     }
-    const locked = await portalLogin('admin@punycodex.com', 'wrong-password');
+    const locked = await portalLogin('admin@punicodex.com', 'wrong-password');
     assert.strictEqual(locked.status, 401);
     assert.strictEqual(locked.body.code, 'account_locked');
 
     // Even the correct password is refused while locked.
-    const stillLocked = await portalLogin('admin@punycodex.com', process.env.ADMIN_PASSWORD);
+    const stillLocked = await portalLogin('admin@punicodex.com', process.env.ADMIN_PASSWORD);
     assert.strictEqual(stillLocked.status, 401);
     assert.strictEqual(stillLocked.body.code, 'account_locked');
 
     // Unlock manually so the rest of the suite can proceed.
     db().prepare('UPDATE admin_users SET login_attempts = 0, locked_until = NULL').run();
-    const recovered = await portalLogin('admin@punycodex.com', process.env.ADMIN_PASSWORD);
+    const recovered = await portalLogin('admin@punicodex.com', process.env.ADMIN_PASSWORD);
     assert.strictEqual(recovered.status, 200);
   });
 
   await test('unknown email uses the constant-time path and returns 401', async () => {
-    const res = await portalLogin('nobody@punycodex.com', 'whatever-password');
+    const res = await portalLogin('nobody@punicodex.com', 'whatever-password');
     assert.strictEqual(res.status, 401);
     assert.strictEqual(res.body.code, 'invalid_credentials');
   });

@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Spatial Workspace tests
+ * PuniCodex — Spatial Workspace tests
  */
 
 const assert = require('node:assert');

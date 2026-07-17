@@ -1,5 +1,5 @@
 /**
- * GRETIL Sanskrit importer for PÚNYCODEX
+ * GRETIL Sanskrit importer for PuniCodex
  *
  * Stub: no online source configured yet.
  */

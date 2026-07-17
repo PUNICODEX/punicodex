@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Bulk Original-Script Provenance Enrichment
+ * PuniCodex — Bulk Original-Script Provenance Enrichment
  *
  * Generates rich provenance objects for built flagship temples and merges them
  * into type/js/original-scripts-extra.json. The schema matches the 8 pilot
@@ -846,7 +846,7 @@ const GENERATORS = {
 };
 
 function main() {
-  console.log(`${C.bold}${C.cyan}PUNYCODEX Bulk Provenance Enrichment${C.reset}\n`);
+  console.log(`${C.bold}${C.cyan}PUNICODEX Bulk Provenance Enrichment${C.reset}\n`);
 
   const archetypes = loadModuleVar(PATHS.archetypes, 'ARCHETYPES');
   const lexicon = loadModuleVar(PATHS.lexicon, 'LEXICON');

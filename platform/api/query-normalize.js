@@ -1,5 +1,5 @@
 /**
- * Unicode-aware query normalization for PUNYCODEX search.
+ * Unicode-aware query normalization for PUNICODEX search.
  *
  * Core principle: a user searching for a deity should find the correct
  * Unicode restoration even if they type:

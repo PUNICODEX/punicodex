@@ -1,6 +1,6 @@
 const https = require('https');
 const ids = ['hekate','om','zeus'];
-const BASE = 'punycodex-main-pebt8502q-hekaverse.vercel.app';
+const BASE = 'punicodex-main-pebt8502q-hekaverse.vercel.app';
 function fetch(id) {
   return new Promise((resolve, reject) => {
     https.get({ hostname: BASE, path: `/sites/${id}/`, headers: { 'User-Agent': 'Mozilla/5.0' } }, res => {

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Evaluation Benchmark Generator
+ * PuniCodex — Evaluation Benchmark Generator
  *
  * Splits the synthetic instruction data into a training set and a held-out
  * evaluation set. The split is deterministic (hash of example id) so it is

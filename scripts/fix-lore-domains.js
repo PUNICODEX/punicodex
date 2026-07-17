@@ -74,7 +74,7 @@ for (const id of dirs) {
     for (const m of matches) {
       const before = html.slice(Math.max(0, m.index - 20), m.index);
       const after = html.slice(m.index + m[0].length, m.index + m[0].length + 20);
-      // Don't replace if it's inside a URL path like /sites/selene/ or punycodex.com
+      // Don't replace if it's inside a URL path like /sites/selene/ or punicodex.com
       if (before.includes('/') && !before.includes('href=') && !before.includes('content=')) {
         continue;
       }

@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Mobile share extension, keyboard, clipboard, and shield tests
+ * PuniCodex — Mobile share extension, keyboard, clipboard, and shield tests
  *
  * Mocks the iOS/Android share-extension flow, keyboard warning flow, clipboard
  * scan, and local history on top of the lightweight mobile classifier.

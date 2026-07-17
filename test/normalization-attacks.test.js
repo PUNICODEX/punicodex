@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Normalization Attack Tests
+ * PuniCodex — Normalization Attack Tests
  *
  * Verifies detection of precomposed vs decomposed forms, overlong NFD stacks,
  * NFKC distance, invisible characters, and bidirectional overrides.

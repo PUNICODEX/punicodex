@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Scholarly Edition Cache Layer
+ * PuniCodex — Scholarly Edition Cache Layer
  *
  * Uses Redis when REDIS_URL is configured; otherwise falls back to
  * an in-memory LRU cache. This keeps the Scholars API fast without

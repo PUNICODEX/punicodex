@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX Browser — Variant Banner
+ * PUNICODEX Browser — Variant Banner
  * Shows accepted scholarly spelling variants for the current domain.
  */
 

@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Canonical Identity Kernel 2.0
+ * PuniCodex — Canonical Identity Kernel 2.0
  *
  * In-memory identity registry that powers the Name Authenticity Shield.
  * Bridges brand/trademark/lexicon identities with visual/folded matching.

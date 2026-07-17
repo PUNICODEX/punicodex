@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Transparency Report Service (Phase 16)
+ * PUNICODEX — Transparency Report Service (Phase 16)
  *
  * Generates a machine-readable quarterly transparency report from regulatory tables.
  */
@@ -52,7 +52,7 @@ function generateTransparencyReport() {
       ),
     },
     notes: [
-      'Counts reflect records held in PUNYCODEX regulatory tables.',
+      'Counts reflect records held in PUNICODEX regulatory tables.',
       'DSAR deletion deadlines are tracked per request and auditable via the hash-chained audit log.',
       'UDRP outcomes are recorded manually or via importer; transparency figures are derived automatically.',
     ],

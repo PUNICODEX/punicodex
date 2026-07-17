@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Chaos Failover Tests (Phase 20)
+ * PuniCodex — Chaos Failover Tests (Phase 20)
  *
  * Verifies that the classification pipeline degrades gracefully when optional
  * dependencies (Redis, primary DB) become unreachable.

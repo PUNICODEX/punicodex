@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Link Checker
+ * PuniCodex — Link Checker
  * Scans all HTML files for broken internal links.
  * Run: node test/links.js
  */

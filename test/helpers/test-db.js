@@ -2,7 +2,7 @@
  * Test DB isolation helpers.
  *
  * Each mutating test suite should call `prepareTestDb(__filename)` at the top
- * of the file, set `process.env.PUNYCODEX_TEST_DB_PATH` to the returned path,
+ * of the file, set `process.env.PUNICODEX_TEST_DB_PATH` to the returned path,
  * and then require any service that opens a DB connection.
  *
  * Because `test/run-all.js` spawns each suite in a separate process, module
@@ -12,7 +12,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 
-const GOLDEN_DB = path.join(__dirname, '..', '..', 'platform', 'db', 'punycodex.db');
+const GOLDEN_DB = path.join(__dirname, '..', '..', 'platform', 'db', 'punicodex.db');
 const TEST_TMP = path.join(__dirname, '..', 'tmp');
 
 function ensureTmp() {
@@ -47,7 +47,7 @@ function prepareTestDb(suiteName) {
     }
   }
 
-  process.env.PUNYCODEX_TEST_DB_PATH = testDb;
+  process.env.PUNICODEX_TEST_DB_PATH = testDb;
   return testDb;
 }
 

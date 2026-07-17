@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX Authenticity Extension v2 — Tests
+ * PuniCodex Authenticity Extension v2 — Tests
  */
 
 const assert = require('node:assert');
@@ -164,7 +164,7 @@ test('buildInterstitialUrl encodes verdict and alternatives', async () => {
       targetIdentity: { name: 'Apple' },
       safeAlternatives: ['https://www.apple.com'],
     },
-    { interstitialUrl: 'https://punycodex.com/interstitial.html', locale: 'en' }
+    { interstitialUrl: 'https://punicodex.com/interstitial.html', locale: 'en' }
   );
   assert.ok(url.includes('verdict=homograph-spoof'));
   assert.ok(url.includes('severity=high'));

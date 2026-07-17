@@ -1,5 +1,5 @@
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
-const FROM_EMAIL = process.env.FROM_EMAIL || 'bookings@punycodex.com';
+const FROM_EMAIL = process.env.FROM_EMAIL || 'bookings@punicodex.com';
 const PLATFORM_URL = process.env.PLATFORM_URL || 'http://localhost:3456';
 
 function escapeHtml(text) {
@@ -353,10 +353,10 @@ async function notifyCreativePurchaseReady({ email, assetId, purchaseId }) {
   const downloadUrl = `${PLATFORM_URL}/api/v1/creatives/${assetId}/download?purchaseId=${purchaseId}&email=${encodeURIComponent(email)}`;
   return sendEmail({
     to: email,
-    subject: `Your PÚNYCODEX creative asset is ready for download`,
+    subject: `Your PuniCodex creative asset is ready for download`,
     html: `
       <div style="font-family:system-ui,sans-serif;max-width:480px;margin:0 auto;color:#111;">
-        <h2 style="color:#d4af37;">PÚNYCODEX Marketplace — Purchase Confirmed</h2>
+        <h2 style="color:#d4af37;">PuniCodex Marketplace — Purchase Confirmed</h2>
         <p>Hi there,</p>
         <p>Thank you for licensing a student creative asset. Your purchase is confirmed and the unwatermarked original is ready for download.</p>
         <p><a href="${escapeHtml(downloadUrl)}" style="display:inline-block;background:#d4af37;color:#000;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600;">Download Asset</a></p>
@@ -419,7 +419,7 @@ async function notifyPatronWelcome({ email, displayName, templeId }) {
     subject: `Welcome to the ${displayName} patron circle`,
     html: `
       <div style="font-family:system-ui,sans-serif;max-width:480px;margin:0 auto;color:#111;">
-        <h2 style="color:#d4af37;">PUNYCODEX — Patron Confirmed</h2>
+        <h2 style="color:#d4af37;">PUNICODEX — Patron Confirmed</h2>
         <p>Hi ${escapeHtml(displayName || 'there')},</p>
         <p>Thank you for becoming a patron. Your name will appear on the temple page, and your support helps keep these Unicode restorations alive.</p>
         <p><a href="${escapeHtml(templeUrl)}" style="display:inline-block;background:#d4af37;color:#000;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600;">View Temple</a></p>

@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Elastic (ECS) Connector Stub (Phase 19)
+ * PUNICODEX — Elastic (ECS) Connector Stub (Phase 19)
  *
  * Formats authenticity verdicts as Elastic Common Schema documents.
  */
@@ -13,12 +13,12 @@ function formatEvent(verdict, options = {}) {
       type: ['info'],
       severity: mapSeverity(verdict.severity),
       outcome: verdict.verdict,
-      reason: `PUNYCODEX classified ${verdict.input} as ${verdict.verdict}`,
+      reason: `PUNICODEX classified ${verdict.input} as ${verdict.verdict}`,
     },
     source: {
       name: verdict.input,
     },
-    punycodex: {
+    punicodex: {
       verdict: verdict.verdict,
       severity: verdict.severity,
       input: verdict.input,
@@ -28,7 +28,7 @@ function formatEvent(verdict, options = {}) {
       evidenceSummary: verdict.evidence ? summarizeEvidence(verdict.evidence) : null,
       tenantId: verdict.tenantId || null,
     },
-    tags: options.tags || ['punycodex', 'authenticity'],
+    tags: options.tags || ['punicodex', 'authenticity'],
   };
   return JSON.stringify(event);
 }
@@ -55,7 +55,7 @@ function summarizeEvidence(evidence) {
 function sendBatch(events, indexUrl, apiKey) {
   const lines = [];
   for (const e of events) {
-    lines.push(JSON.stringify({ index: { _index: 'punycodex-authenticity' } }));
+    lines.push(JSON.stringify({ index: { _index: 'punicodex-authenticity' } }));
     lines.push(formatEvent(e));
   }
   const payload = `${lines.join('\n')}\n`;

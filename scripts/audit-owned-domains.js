@@ -79,7 +79,7 @@ if (duplicates.length) {
 }
 
 // Check extended materials folder
-const materialsDir = path.join(ROOT, 'extended flagship materials', 'punycodex');
+const materialsDir = path.join(ROOT, 'extended flagship materials', 'punicodex');
 const materialFolders = fs.existsSync(materialsDir) ? fs.readdirSync(materialsDir, { withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => d.name) : [];
 const materialIds = materialFolders.map((f) => f.toLowerCase().replace(/[^a-z0-9]/g, ''));
 console.log('\n--- Extended materials folders not matching a built flagship ---');

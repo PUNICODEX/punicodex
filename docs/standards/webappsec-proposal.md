@@ -6,7 +6,7 @@
 
 ## Summary
 
-PUNYCODEX proposes a browser-facing IDN display policy that lets user agents render Unicode domain names safely without breaking legitimate internationalized content. The policy builds on UTS #46 and adds mixed-script/confusable warnings.
+PUNICODEX proposes a browser-facing IDN display policy that lets user agents render Unicode domain names safely without breaking legitimate internationalized content. The policy builds on UTS #46 and adds mixed-script/confusable warnings.
 
 ## Recommended Controls
 

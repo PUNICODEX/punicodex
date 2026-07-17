@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Threat Graph Schema Migration Runner
+ * PUNICODEX — Threat Graph Schema Migration Runner
  *
  * Idempotently applies platform/db/threat-graph.sql.
  */

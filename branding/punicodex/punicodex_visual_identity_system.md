@@ -1,4 +1,4 @@
-# PUNYCODEX — Complete Visual Identity System
+# PUNICODEX — Complete Visual Identity System
 ## Epic Anime/Manga Mythological Mascot Collection
 
 ---
@@ -770,16 +770,16 @@ Every deity incorporates **#D4AF37** (Classic Gold) as a unifying accent color �
 
 ---
 
-## PUNYCODEX UNIFIED BRAND APPLICATION
+## PUNICODEX UNIFIED BRAND APPLICATION
 
 ### Pantheon Collection Presentation
 When displaying all 24 deities together:
 - **Grid**: 4x6 or 6x4 arrangement on deep black (#0A0A0A) background
 - **Spacing**: Equal margins, each mascot given equal visual weight
-- **Header**: "THE PUNYCODEX PANTHEON" in Cinzel Pro, gold (#D4AF37) on black
+- **Header**: "THE PUNICODEX PANTHEON" in Cinzel Pro, gold (#D4AF37) on black
 - **Subheader**: "24 Domains. 24 Deities. One Epic Collection." in Montserrat Light
 
-### Hub Site (punycodex.com) Color Architecture
+### Hub Site (punicodex.com) Color Architecture
 | Section | Background | Text | Accents |
 |---------|-----------|------|---------|
 | Hero | #0A0A0A (Void Black) | #D4AF37 (Gold) | Lightning effects |
@@ -799,7 +799,7 @@ When displaying all 24 deities together:
 ### Social Media Templates
 - **Instagram post**: Single deity on black, name in Cinzel at top, domain at bottom, gold divider lines
 - **Instagram carousel**: Swipe through all 24, consistent format
-- **Twitter/X banner**: 6 deity lineup fading into black edges, "PUNYCODEX" centered
+- **Twitter/X banner**: 6 deity lineup fading into black edges, "PUNICODEX" centered
 - **Story/Reels**: Vertical format ideal for 2:3 mascots, parallax depth effect
 
 ---

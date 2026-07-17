@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Multi-source authoritative import orchestrator
+ * PuniCodex — Multi-source authoritative import orchestrator
  *
  * Runs the best available importers for each pantheon, merges their
  * suggestions by authority tier, flags conflicts, and emits a single
@@ -230,7 +230,7 @@ async function main() {
   const sourceTierMap = buildSourceTierMap(tiers);
   const allSources = tiers.tiers.flatMap((t) => t.sources);
 
-  console.log(`PÚNYCODEX multi-source orchestrator (runId: ${runId})`);
+  console.log(`PuniCodex multi-source orchestrator (runId: ${runId})`);
   if (pantheonFilter) {
     console.log(`  pantheon filter: ${pantheonFilter}`);
   }

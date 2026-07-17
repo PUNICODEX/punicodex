@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Glyph Renderer Tests
+ * PuniCodex — Glyph Renderer Tests
  *
  * Validates the font-metric perceptual similarity backend used by the
  * Name Authenticity Shield V2. These tests do not require a native canvas

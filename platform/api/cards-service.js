@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX API v1 — Cards service layer
+ * PuniCodex API v1 — Cards service layer
  *
  * Exposes the generated card set (platform/api/cards.json, produced by
  * scripts/generate-cards.js from the canonical lexicon, archetypes,

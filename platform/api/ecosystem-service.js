@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Ecosystem Service (Phase 9)
+ * PuniCodex — Ecosystem Service (Phase 9)
  *
  * Public partner directory and lightweight usage accounting for the partner
  * program. Partners can opt into public listing and report usage of shared

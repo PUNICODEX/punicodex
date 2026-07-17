@@ -1,7 +1,7 @@
 const { chromium } = require('playwright-core');
 const path = require('path');
 const ROOT = path.join(__dirname, '..');
-const BASE = process.argv[2] || 'https://punycodex-main-hekaverse.vercel.app';
+const BASE = process.argv[2] || 'https://punicodex-main-hekaverse.vercel.app';
 const IDS = (process.argv[3] || 'om').split(',');
 
 (async () => {

@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Scholarly Edition Edit Quality Gates
+ * PuniCodex — Scholarly Edition Edit Quality Gates
  *
  * Scores and validates proposed section edits before they enter the review queue.
  * No external dependencies.

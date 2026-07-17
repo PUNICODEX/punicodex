@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Cards API tests
+ * PuniCodex — Cards API tests
  *
  * Tests /api/v1/cards and /api/v1/cards/:id through the real Vercel handler
  * functions, plus the cards service layer directly.

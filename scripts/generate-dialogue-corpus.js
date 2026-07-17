@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Dialogue / Conversation Corpus Generator (Phase 3)
+ * PuniCodex — Dialogue / Conversation Corpus Generator (Phase 3)
  *
  * Emits multi-turn, grounded conversations for instruction-tuning chat models.
  * Every turn is anchored to canonical corpus fields so the model learns to
@@ -65,7 +65,7 @@ function buildRestorationDialogue(entry, index) {
       {
         role: 'assistant',
         content: entry.punycodeDomain
-          ? `${entry.punycodeDomain} is the punycode encoding of ${entry.unicodeDomain}. ${entry.ownership.isOwned ? 'It is part of the PÚNYCODEX owned collection.' : 'Always verify the registrant before trusting it.'}`
+          ? `${entry.punycodeDomain} is the punycode encoding of ${entry.unicodeDomain}. ${entry.ownership.isOwned ? 'It is part of the PuniCodex owned collection.' : 'Always verify the registrant before trusting it.'}`
           : `No punycode domain is recorded for ${entry.unicode} in the corpus.`,
       },
     ],
@@ -159,7 +159,7 @@ function buildSafetyDialogue(entry, index) {
       { role: 'user', content: `I saw the domain ${spoof}. Is it related to ${entry.unicode}?` },
       {
         role: 'assistant',
-        content: `No. ${spoof} is a lookalike domain. The canonical registrable form in the PÚNYCODEX collection is ${entry.punycodeDomain} (${entry.unicodeDomain}). Always check the registrable domain, not just a subdomain or keyword.`,
+        content: `No. ${spoof} is a lookalike domain. The canonical registrable form in the PuniCodex collection is ${entry.punycodeDomain} (${entry.unicodeDomain}). Always check the registrable domain, not just a subdomain or keyword.`,
       },
       { role: 'user', content: 'What should I look for to be safe?' },
       {

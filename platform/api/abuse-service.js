@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Abuse Reporting Service (Phase 16)
+ * PUNICODEX — Abuse Reporting Service (Phase 16)
  *
  * Third-party abuse-report ingestion, triage, and escalation workflow.
  */

@@ -1,10 +1,10 @@
 /**
- * PUNYCODEX Workspaces — save/restore/share named tab groups.
+ * PUNICODEX Workspaces — save/restore/share named tab groups.
  */
 (function (global) {
   'use strict';
 
-  const STORAGE_KEY = 'punycodex_workspaces';
+  const STORAGE_KEY = 'punicodex_workspaces';
 
   function load() {
     try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch { return []; }

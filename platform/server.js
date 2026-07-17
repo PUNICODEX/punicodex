@@ -149,7 +149,7 @@ const app = express();
 const PORT = process.env.PORT || 3456;
 
 const ALLOWED_ORIGINS = new Set(
-  (process.env.ALLOWED_ORIGINS || 'https://punycodex.com,http://localhost:3456')
+  (process.env.ALLOWED_ORIGINS || 'https://punicodex.com,http://localhost:3456')
     .split(',')
     .map((s) => s.trim())
     .filter(Boolean)
@@ -180,7 +180,7 @@ const domainCheckLimit = createPublicRateLimit('domain-check');
 
 // Database for crawler
 const Database = require('better-sqlite3');
-const db = new Database(path.join(__dirname, 'db', 'punycodex.db'));
+const db = new Database(path.join(__dirname, 'db', 'punicodex.db'));
 db.pragma('journal_mode = WAL');
 
 const crawler = new UnicodeCrawler(db);
@@ -1154,7 +1154,7 @@ app.get('/api/search/paa', searchLimit, async (req, res) => {
   }
 });
 
-// Oracle — conversational RAG over the PUNYCODEX knowledge base
+// Oracle — conversational RAG over the PUNICODEX knowledge base
 app.get('/api/oracle', searchLimit, async (req, res) => {
   try {
     const { q } = req.query;
@@ -2553,7 +2553,7 @@ app.post('/api/admin/disputes/:id/appeal', requireAdmin, async (req, res) => {
 });
 
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`PUNYCODEX Platform running on http://0.0.0.0:${PORT}`);
+  console.log(`PUNICODEX Platform running on http://0.0.0.0:${PORT}`);
   console.log('');
   console.log('Phase 1 — Lexicon & Search:');
   console.log('  GET  /api/health');

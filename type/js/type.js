@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX Type — Unicode Typing Engine
+ * PuniCodex Type — Unicode Typing Engine
  * Predictive transliteration with scholarly constraint
  * SSS-grade: IME-aware, accessible, keyboard-navigable,
  * haptic-enabled, URL-synced, NFC-normalized.
@@ -24,7 +24,7 @@
     // ENGINE
     // ═══════════════════════════════════════════════════════════
 
-    const trie = PUNYCODEX_ENGINE.buildTrie(LEXICON);
+    const trie = PUNICODEX_ENGINE.buildTrie(LEXICON);
 
     // ═══════════════════════════════════════════════════════════
     // DOM REFERENCES
@@ -121,11 +121,11 @@
     }
 
     // ═══════════════════════════════════════════════════════════
-    // CORE LOGIC (delegates to PUNYCODEX_ENGINE)
+    // CORE LOGIC (delegates to PUNICODEX_ENGINE)
     // ═══════════════════════════════════════════════════════════
 
     function nfc(str) {
-        return PUNYCODEX_ENGINE.nfc(str);
+        return PUNICODEX_ENGINE.nfc(str);
     }
 
     function loadLoreCatalog() {
@@ -145,19 +145,19 @@
     }
 
     function getCompletions(prefix, limit = CONFIG.maxCompletions) {
-        return PUNYCODEX_ENGINE.getCompletions(trie, prefix, { limit, pantheonFilter: activePantheon });
+        return PUNICODEX_ENGINE.getCompletions(trie, prefix, { limit, pantheonFilter: activePantheon });
     }
 
     function getValidNextChars(prefix) {
-        return PUNYCODEX_ENGINE.getValidNextChars(trie, prefix, { pantheonFilter: activePantheon });
+        return PUNICODEX_ENGINE.getValidNextChars(trie, prefix, { pantheonFilter: activePantheon });
     }
 
     function findExactMatches(input) {
-        return PUNYCODEX_ENGINE.findExactMatches(trie, input, { pantheonFilter: activePantheon });
+        return PUNICODEX_ENGINE.findExactMatches(trie, input, { pantheonFilter: activePantheon });
     }
 
     function findExactMatch(input) {
-        return PUNYCODEX_ENGINE.findExactMatch(trie, input, { pantheonFilter: activePantheon });
+        return PUNICODEX_ENGINE.findExactMatch(trie, input, { pantheonFilter: activePantheon });
     }
 
     // ═══════════════════════════════════════════════════════════
@@ -364,22 +364,22 @@
 
     function updateMeta(entry) {
         if (entry) {
-            document.title = `PÚNYCODEX Type — ${nfc(entry.unicode)}`;
+            document.title = `PuniCodex Type — ${nfc(entry.unicode)}`;
             const desc = `${nfc(entry.unicode)}${entry.greek !== '—' ? ' (' + entry.greek + ')' : ''} — ${entry.meaning}. ${entry.domain}.`;
             const metaDesc = document.querySelector('meta[name="description"]');
             if (metaDesc) metaDesc.content = desc;
             const ogTitle = document.querySelector('meta[property="og:title"]');
-            if (ogTitle) ogTitle.content = `${nfc(entry.unicode)} — PÚNYCODEX Type`;
+            if (ogTitle) ogTitle.content = `${nfc(entry.unicode)} — PuniCodex Type`;
             const ogDesc = document.querySelector('meta[property="og:description"]');
             if (ogDesc) ogDesc.content = desc;
             const ogUrl = document.querySelector('meta[property="og:url"]');
             if (ogUrl) ogUrl.content = `${location.origin}${location.pathname}#${entry.id}`;
         } else {
-            document.title = 'PÚNYCODEX Type — Scholarly Transliteration Engine';
+            document.title = 'PuniCodex Type — Scholarly Transliteration Engine';
             const metaDesc = document.querySelector('meta[name="description"]');
             if (metaDesc) metaDesc.content = 'Type classical names and watch them restore to their correct Unicode orthography. A predictive typing system for scholarly transliteration.';
             const ogTitle = document.querySelector('meta[property="og:title"]');
-            if (ogTitle) ogTitle.content = 'PÚNYCODEX Type — Scholarly Transliteration Engine';
+            if (ogTitle) ogTitle.content = 'PuniCodex Type — Scholarly Transliteration Engine';
             const ogDesc = document.querySelector('meta[property="og:description"]');
             if (ogDesc) ogDesc.content = 'Type classical names and watch them restore to their correct Unicode orthography.';
             const ogUrl = document.querySelector('meta[property="og:url"]');

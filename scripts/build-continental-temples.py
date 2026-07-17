@@ -205,20 +205,20 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{greek} — {unicode} | {tagline} | PUNYCODEX</title>
+    <title>{greek} — {unicode} | {tagline} | PUNICODEX</title>
     <meta name="description" content="{description}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700&family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link rel="canonical" href="https://punycodex.com/sites/{site_id}/">
-    <meta property="og:title" content="{greek} — {unicode} | {tagline} | PUNYCODEX">
+    <link rel="canonical" href="https://punicodex.com/sites/{site_id}/">
+    <meta property="og:title" content="{greek} — {unicode} | {tagline} | PUNICODEX">
     <meta property="og:description" content="{og_desc}">
-    <meta property="og:url" content="https://punycodex.com/sites/{site_id}/">
+    <meta property="og:url" content="https://punicodex.com/sites/{site_id}/">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="PUNYCODEX">
+    <meta property="og:site_name" content="PUNICODEX">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{greek} — {unicode} | {tagline} | PUNYCODEX">
+    <meta name="twitter:title" content="{greek} — {unicode} | {tagline} | PUNICODEX">
     <meta name="twitter:description" content="{description}">
     <script type="application/ld+json">
 {schema_json}
@@ -429,7 +429,7 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <span class="footer-logo">PUNYCODEX</span>
+                    <span class="footer-logo">PUNICODEX</span>
                     <p>Restoring the original names of gods, realms, and archetypes to the digital world.</p>
                 </div>
                 <div class="footer-links">
@@ -443,7 +443,7 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
             <div class="footer-bottom">
                 <p>{unicode} — {tier} ({tier_subtype})</p>
                 <p>Original Greek: {greek}</p>
-                <p>© PUNYCODEX. All realms restored.</p>
+                <p>© PUNICODEX. All realms restored.</p>
             </div>
         </div>
     </footer>
@@ -530,7 +530,7 @@ def build_schema(site_id, config):
         "@type": "WebPage",
         "name": config['unicode'] + " — " + config['tagline'],
         "description": config['description'],
-        "url": f"https://punycodex.com/sites/{site_id}/",
+        "url": f"https://punicodex.com/sites/{site_id}/",
         "about": {
             "@type": "Thing",
             "name": config['greek'],
@@ -539,8 +539,8 @@ def build_schema(site_id, config):
         },
         "isPartOf": {
             "@type": "WebSite",
-            "name": "PUNYCODEX",
-            "url": "https://punycodex.com"
+            "name": "PUNICODEX",
+            "url": "https://punicodex.com"
         }
     }
     return json.dumps(data, indent=4, ensure_ascii=False)

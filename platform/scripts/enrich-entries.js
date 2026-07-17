@@ -110,7 +110,7 @@ function inferSymbols(entry) {
 function generateEtymologyNarrative(entry) {
   const ety = safeJsonParse(entry.etymology);
   if (!ety) {
-    return `The deeper etymology of **${entry.unicode}** is still being researched. The meaning currently on file is “${entry.meaning || 'unknown'}.” As the PUNYCODEX corpus expands, a fuller narrative of its linguistic roots will appear here.`;
+    return `The deeper etymology of **${entry.unicode}** is still being researched. The meaning currently on file is “${entry.meaning || 'unknown'}.” As the PUNICODEX corpus expands, a fuller narrative of its linguistic roots will appear here.`;
   }
   const parts = [];
   if (ety.protoForm && ety.protoLanguage) {
@@ -165,9 +165,9 @@ function generateSummary(entry) {
   const tier = tierDisplay(entry.tier, entry.tier_label);
   const meaning = entry.meaning ? `Its meaning is recorded as “${entry.meaning}.”` : '';
   const domain = entry.domain ? `The name is associated with ${entry.domain}.` : '';
-  const flagship = entry.has_flagship ? `PUNYCODEX hosts a flagship temple for this name.` : '';
+  const flagship = entry.has_flagship ? `PUNICODEX hosts a flagship temple for this name.` : '';
 
-  return `**${name}** is a ${tier} ${pantheon} name. ${meaning} ${domain} ${flagship} In the PUNYCODEX restoration system, it is rendered with the original stress and length marks intact, making it both a scholarly record and a usable Unicode domain identity.`;
+  return `**${name}** is a ${tier} ${pantheon} name. ${meaning} ${domain} ${flagship} In the PUNICODEX restoration system, it is rendered with the original stress and length marks intact, making it both a scholarly record and a usable Unicode domain identity.`;
 }
 
 function enrichEntry(entry) {

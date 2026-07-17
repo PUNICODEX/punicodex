@@ -1,11 +1,11 @@
 /**
- * PÚNYCODEX Type — Extension Popup
+ * PuniCodex Type — Extension Popup
  */
 
 (function() {
     'use strict';
 
-    const engine = PUNYCODEX_ENGINE;
+    const engine = PUNICODEX_ENGINE;
     const trie = engine.buildTrie(LEXICON);
 
     // DOM refs
@@ -321,7 +321,7 @@
                 return;
             }
             const url = new URL(tab.url);
-            const apiUrl = `https://punycodex.com/api/v2/authenticity/check/?input=${encodeURIComponent(url.href)}&type=url`;
+            const apiUrl = `https://punicodex.com/api/v2/authenticity/check/?input=${encodeURIComponent(url.href)}&type=url`;
             const res = await fetch(apiUrl, { cache: 'no-store' });
             if (!res.ok) throw new Error('API unavailable');
             const payload = await res.json();
@@ -333,7 +333,7 @@
             authDetail.textContent = data.reason || data.explanation || '';
         } catch (err) {
             authStatus.textContent = 'Offline';
-            authDetail.textContent = 'Connect to punycodex.com to enable tab checks.';
+            authDetail.textContent = 'Connect to punicodex.com to enable tab checks.';
         }
     }
 

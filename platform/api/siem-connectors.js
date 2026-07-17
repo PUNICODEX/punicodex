@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — SIEM Connector Dispatch (Phase 19)
+ * PUNICODEX — SIEM Connector Dispatch (Phase 19)
  *
  * Unified formatter/dispatcher for Splunk, Datadog, and Elastic SIEMs.
  * Backed by per-platform stubs in platform/siem/.
@@ -22,8 +22,8 @@ function splunkEvent(alert, options = {}) {
     },
     body: {
       time: alert.timestamp ? new Date(alert.timestamp).getTime() / 1000 : Date.now() / 1000,
-      source: 'punycodex-authenticity-shield',
-      sourcetype: 'punycodex:authenticity',
+      source: 'punicodex-authenticity-shield',
+      sourcetype: 'punicodex:authenticity',
       event: {
         input: alert.input,
         punycode: alert.punycode,
@@ -37,7 +37,7 @@ function splunkEvent(alert, options = {}) {
 
 function datadogEvent(alert, options = {}) {
   const apiKey = options.apiKey || 'no-key';
-  const title = `[${alert.severity}] PUNYCODEX ${alert.verdict}: ${alert.input}`;
+  const title = `[${alert.severity}] PUNICODEX ${alert.verdict}: ${alert.input}`;
   return {
     method: 'POST',
     url: options.url || 'https://api.datadoghq.com/api/v1/events',
@@ -47,11 +47,11 @@ function datadogEvent(alert, options = {}) {
     },
     body: {
       title,
-      text: `PUNYCODEX detected ${alert.verdict} for ${alert.input} (${alert.punycode || 'n/a'}).`,
+      text: `PUNICODEX detected ${alert.verdict} for ${alert.input} (${alert.punycode || 'n/a'}).`,
       alert_type: alert.severity === 'critical' || alert.severity === 'high' ? 'error' : 'warning',
       tags: [
-        'source:punycodex-authenticity-shield',
-        'target:punycodex-authenticity-shield',
+        'source:punicodex-authenticity-shield',
+        'target:punicodex-authenticity-shield',
         `verdict:${alert.verdict}`,
         `severity:${alert.severity}`,
       ],
@@ -64,7 +64,7 @@ function datadogEvent(alert, options = {}) {
 
 function elasticDoc(alert, options = {}) {
   const apiKey = options.apiKey || 'no-key';
-  const index = options.index || 'punycodex-authenticity';
+  const index = options.index || 'punicodex-authenticity';
   const id = crypto.randomUUID();
   return {
     method: 'PUT',

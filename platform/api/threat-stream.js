@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Threat Intelligence Stream Ingest (Phase 8)
+ * PUNICODEX — Threat Intelligence Stream Ingest (Phase 8)
  *
  * Pluggable stream consumer that normalizes threat events from crawlers,
  * external feeds, and user reports into a shared graph schema.

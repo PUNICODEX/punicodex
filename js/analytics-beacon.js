@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — first-party analytics beacon.
+ * PuniCodex — first-party analytics beacon.
  * Sends one anonymous page-view ping per page load to /api/analytics/collect/.
  * Honors Do Not Track, never throws, no dependencies.
  */

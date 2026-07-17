@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- PUNYCODEX-ANALYTICS-START -->
+<!-- PUNICODEX-ANALYTICS-START -->
 <script src="/js/analytics-beacon.js" defer></script>
-<!-- PUNYCODEX-ANALYTICS-END -->
+<!-- PUNICODEX-ANALYTICS-END -->
 
-<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
 <link rel="stylesheet" href="/css/university-collaborators.css?v=2">
 <script src="/js/university-collaborators.js?v=2" defer></script>
-<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PUNYCODEX Browser</title>
-  <meta name="description" content="A browser shell for the Unicode web, powered by PUNYCODEX.">
-  <link rel="canonical" href="https://punycodex.com/browser.html">
+  <title>PUNICODEX Browser</title>
+  <meta name="description" content="A browser shell for the Unicode web, powered by PUNICODEX.">
+  <link rel="canonical" href="https://punicodex.com/browser.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -92,9 +92,9 @@
     let tabs = [];
     let activeTabId = null;
     let tabCounter = 0;
-    let historyStack = JSON.parse(localStorage.getItem('punycodex_browser_history') || '[]');
-    let savedItems = JSON.parse(localStorage.getItem('punycodex_browser_saved') || '[]');
-    let workspaces = JSON.parse(localStorage.getItem('punycodex_workspaces') || '[]');
+    let historyStack = JSON.parse(localStorage.getItem('punicodex_browser_history') || '[]');
+    let savedItems = JSON.parse(localStorage.getItem('punicodex_browser_saved') || '[]');
+    let workspaces = JSON.parse(localStorage.getItem('punicodex_workspaces') || '[]');
 
     const COMMANDS = [
       { id: 'new-tab', title: 'New Tab', action: () => addTab() },
@@ -222,7 +222,7 @@
       const div = document.createElement('div');
       div.className = 'cn-ntp';
       div.innerHTML = `
-        <div class="cn-ntp-logo">PUNYCODEX</div>
+        <div class="cn-ntp-logo">PUNICODEX</div>
         <div class="cn-ntp-search">
           <input type="text" placeholder="Search the Unicode web…" value="${escapeHtml(q)}" id="ntpInput" autocomplete="off">
         </div>
@@ -277,13 +277,13 @@
 
     function recordHistory(url) {
       historyStack = [url, ...historyStack.filter(h => h !== url)].slice(0, 50);
-      localStorage.setItem('punycodex_browser_history', JSON.stringify(historyStack));
+      localStorage.setItem('punicodex_browser_history', JSON.stringify(historyStack));
       renderSidebar();
     }
 
     function clearHistory() {
       historyStack = [];
-      localStorage.removeItem('punycodex_browser_history');
+      localStorage.removeItem('punicodex_browser_history');
       renderSidebar();
     }
 
@@ -292,7 +292,7 @@
       if (!name) return;
       workspaces = workspaces.filter(w => w.name !== name);
       workspaces.unshift({ name, tabs: tabs.map(t => ({ url: t.url, title: t.title })), createdAt: Date.now() });
-      localStorage.setItem('punycodex_workspaces', JSON.stringify(workspaces));
+      localStorage.setItem('punicodex_workspaces', JSON.stringify(workspaces));
       renderSidebar();
       alert(`Workspace “${name}” saved. Share with ?workspace=${encodeURIComponent(name)}`);
     }
@@ -409,8 +409,8 @@
     init();
   </script>
 
-<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
 <div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
-<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
 </body>
 </html>

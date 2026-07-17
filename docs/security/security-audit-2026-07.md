@@ -1,4 +1,4 @@
-# PÚNYCODEX — Security Audit, July 2026
+# PuniCodex — Security Audit, July 2026
 
 **Date:** 2026-07-17
 **Scope:** Vercel serverless API surface (`api/**`), platform services
@@ -110,8 +110,8 @@ used by `createScholarsRateLimit`.
 **Fix:** `createLoginRateLimit` is now async and awaits
 `loginLimiter.checkAsync(key)` (`platform/scholars/security.js:250-289`),
 mirroring `createScholarsRateLimit`: with `REDIS_URL` configured, counters
-are global across instances (`punycodex:rl:scholars:login:...`); without it,
-the in-memory fallback is used. The `PUNYCODEX_SCHOLARS_DISABLE_RATE_LIMIT=1`
+are global across instances (`punicodex:rl:scholars:login:...`); without it,
+the in-memory fallback is used. The `PUNICODEX_SCHOLARS_DISABLE_RATE_LIMIT=1`
 escape hatch (used by the load and concurrency suites) is preserved.
 Additionally, the limiter — previously defined but not mounted — is now wired
 into the login route ahead of the per-IP strict limiter
@@ -121,7 +121,7 @@ account) was constrained only by the per-IP limiter.
 
 **Verification:** `node test/security-hardening.test.js` — "scholars login
 limiter blocks the 11th attempt for one IP+email", "scholars login limiter
-honors the PUNYCODEX_SCHOLARS_DISABLE_RATE_LIMIT escape hatch".
+honors the PUNICODEX_SCHOLARS_DISABLE_RATE_LIMIT escape hatch".
 `node platform/scholars/router.test.js` (91 tests, exercises `/auth/login`
 end-to-end), `node platform/scholars/load.test.js`,
 `node platform/scholars/concurrency.test.js`,

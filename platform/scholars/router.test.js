@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Scholars API tests
+ * PuniCodex — Scholars API tests
  *
  * Spins up a real Express server with the scholars router and exercises
  * endpoints using node:http requests against an isolated SQLite database.
@@ -10,11 +10,11 @@ const os = require('node:os');
 const path = require('node:path');
 const http = require('node:http');
 
-const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'punycodex-scholars-api-'));
+const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'punicodex-scholars-api-'));
 const dbPath = path.join(tmpDir, 'test.db');
 const uploadDir = path.join(tmpDir, 'uploads');
-process.env.PUNYCODEX_TEST_DB_PATH = dbPath;
-process.env.PUNYCODEX_SCHOLARS_UPLOAD_DIR = uploadDir;
+process.env.PUNICODEX_TEST_DB_PATH = dbPath;
+process.env.PUNICODEX_SCHOLARS_UPLOAD_DIR = uploadDir;
 
 const { getDb, closeDb } = require('../db/connection');
 const dbLayer = require('../db/scholars');
@@ -1142,7 +1142,7 @@ async function main() {
         contactName: 'Dean Classics',
         contactEmail: 'dean@applied.edu',
         departmentFocus: 'Classics, History',
-        message: 'We would like to sponsor PÚNYCODEX for our students.',
+        message: 'We would like to sponsor PuniCodex for our students.',
       },
     });
     if (res.status !== 201)

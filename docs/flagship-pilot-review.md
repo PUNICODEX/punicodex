@@ -1,7 +1,7 @@
 # Flagship Temple Pilot Review — 12-Temple Canonical Audit
 
 Date: 2026-07-15
-Reviewer: PUNYCODEX automated + manual audit
+Reviewer: PUNICODEX automated + manual audit
 Scope: 12 representative flagship temples across 12 distinct pantheons
 
 ## Summary

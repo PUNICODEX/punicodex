@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX API v2 — Catch-all router
+ * PuniCodex API v2 — Catch-all router
  *
  * Handles every /api/v2/* path from a single Vercel optional catch-all route.
  * Improvements over v1:
@@ -481,7 +481,7 @@ async function handleOpenApi(_req, res) {
 
 async function handleRoot(_req, res) {
   success(res, {
-    name: 'PÚNYCODEX API v2',
+    name: 'PuniCodex API v2',
     description: 'Versioned REST API for the Unicode web.',
     endpoints: getOpenApiSpec().paths,
   });
@@ -491,7 +491,7 @@ function getOpenApiSpec() {
   return {
     openapi: '3.0.0',
     info: {
-      title: 'PÚNYCODEX API v2',
+      title: 'PuniCodex API v2',
       version: '2.0.0',
       description: 'Versioned REST API for the Unicode web.',
     },

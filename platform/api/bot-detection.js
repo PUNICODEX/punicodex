@@ -1,5 +1,5 @@
 /**
- * Shared bot detection for the PÚNYCODEX analytics pipelines.
+ * Shared bot detection for the PuniCodex analytics pipelines.
  *
  * `isBotBasic` carries the exact pattern set the ad-analytics pipeline has
  * always used (extracted unchanged from platform/api/bookings.js), so
@@ -76,7 +76,7 @@ const CATEGORY_RULES = [
   { category: 'headless', reason: 'playwright', re: /playwright/i },
   { category: 'headless', reason: 'selenium', re: /selenium/i },
   // HTTP clients, libraries, and the site's own crawler
-  { category: 'tool', reason: 'punycodex-bot', re: /punycodex-bot/i },
+  { category: 'tool', reason: 'punicodex-bot', re: /punicodex-bot/i },
   { category: 'tool', reason: 'curl', re: /curl/i },
   { category: 'tool', reason: 'wget', re: /wget/i },
   { category: 'tool', reason: 'python-requests', re: /python-requests/i },

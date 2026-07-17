@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Verdict Mapper
+ * PuniCodex — Verdict Mapper
  *
  * Maps ensemble probability + features into a human-readable authenticity
  * verdict, severity, and reason.

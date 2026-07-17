@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Forensics PDF Tests
+ * PuniCodex — Forensics PDF Tests
  *
  * Verifies that the forensics PDF generator produces a valid PDF buffer for
  * high/critical verdicts.
@@ -57,7 +57,7 @@ test('PDF includes key evidence fields', () => {
   const evidence = buildEvidence(input, result);
   const { buffer } = generateForensicsPdf(input, result, evidence);
   const text = buffer.toString('ascii');
-  assert.ok(text.includes('PUNYCODEX'), 'expected title');
+  assert.ok(text.includes('PUNICODEX'), 'expected title');
   assert.ok(text.includes(input) || text.includes('Input:'), 'expected input field');
   assert.ok(text.includes(result.verdict), 'expected verdict');
   assert.ok(text.includes('CHARACTER ATTESTATION'), 'expected character attestation section');

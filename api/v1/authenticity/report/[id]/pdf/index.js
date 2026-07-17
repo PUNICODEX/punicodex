@@ -58,7 +58,7 @@ module.exports = createApiHandler(async (req, res) => {
   const { buffer, contentType, reportId } = generateForensicsPdf(input, result, evidence);
 
   res.setHeader('Content-Type', contentType);
-  res.setHeader('Content-Disposition', `attachment; filename="punycodex-report-${reportId}.pdf"`);
+  res.setHeader('Content-Disposition', `attachment; filename="punicodex-report-${reportId}.pdf"`);
   res.setHeader('Content-Length', buffer.length);
   res.status(200).send(buffer);
 });

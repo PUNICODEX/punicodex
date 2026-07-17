@@ -1,5 +1,5 @@
 /**
- * Hybrid Ranking Model for PUNYCODEX web search.
+ * Hybrid Ranking Model for PUNICODEX web search.
  *
  * Combines multiple signals into a single ranking score with A/B variant support.
  *

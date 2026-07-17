@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — GDPR / CCPA Data-Subject Rights Tests (Phase 16)
+ * PuniCodex — GDPR / CCPA Data-Subject Rights Tests (Phase 16)
  */
 
 const assert = require('node:assert');
@@ -14,7 +14,7 @@ const db = new Database(testDbPath);
 migrateEnterpriseGovernance({ db });
 migrateRegulatory({ db });
 
-process.env.PUNYCODEX_TEST_DB_PATH = testDbPath;
+process.env.PUNICODEX_TEST_DB_PATH = testDbPath;
 
 const privacyService = require('../platform/api/privacy-service.js');
 const abuseService = require('../platform/api/abuse-service.js');

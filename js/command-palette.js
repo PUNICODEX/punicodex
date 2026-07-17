@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX Command Palette — fuzzy command search with keyboard navigation.
+ * PUNICODEX Command Palette — fuzzy command search with keyboard navigation.
  */
 (function (global) {
   'use strict';

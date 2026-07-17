@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Canonical cross-cultural similarity groups
+ * PuniCodex — Canonical cross-cultural similarity groups
  *
  * Hand-curated function/phenomenon/role clusters that connect entries across
  * pantheons. These groups are the canonical source for the generated similarity

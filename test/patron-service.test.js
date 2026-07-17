@@ -8,7 +8,7 @@
 const assert = require('node:assert');
 
 process.env.STRIPE_SECRET_KEY = 'sk_test_dummy';
-process.env.PLATFORM_URL = 'https://punycodex.com';
+process.env.PLATFORM_URL = 'https://punicodex.com';
 process.env.STRIPE_WEBHOOK_SECRET = 'whsec_dummy';
 
 const { prepareTestDb } = require('./helpers/test-db.js');
@@ -231,10 +231,10 @@ test('valid X social link is stored', async () => {
     email: 'x@example.com',
     displayName: 'X Patron',
     socialPlatform: 'x',
-    socialUrl: 'https://x.com/punycodex',
+    socialUrl: 'https://x.com/punicodex',
   });
   assert.strictEqual(patron.socialPlatform, 'x');
-  assert.strictEqual(patron.socialUrl, 'https://x.com/punycodex');
+  assert.strictEqual(patron.socialUrl, 'https://x.com/punicodex');
 });
 
 test('valid Instagram social link is stored', async () => {
@@ -243,10 +243,10 @@ test('valid Instagram social link is stored', async () => {
     email: 'ig@example.com',
     displayName: 'IG Patron',
     socialPlatform: 'instagram',
-    socialUrl: 'https://www.instagram.com/punycodex/',
+    socialUrl: 'https://www.instagram.com/punicodex/',
   });
   assert.strictEqual(patron.socialPlatform, 'instagram');
-  assert.strictEqual(patron.socialUrl, 'https://www.instagram.com/punycodex/');
+  assert.strictEqual(patron.socialUrl, 'https://www.instagram.com/punicodex/');
 });
 
 test('valid LinkedIn social link is stored', async () => {
@@ -255,10 +255,10 @@ test('valid LinkedIn social link is stored', async () => {
     email: 'linkedin@example.com',
     displayName: 'LinkedIn Patron',
     socialPlatform: 'linkedin',
-    socialUrl: 'https://www.linkedin.com/in/punycodex/',
+    socialUrl: 'https://www.linkedin.com/in/punicodex/',
   });
   assert.strictEqual(patron.socialPlatform, 'linkedin');
-  assert.strictEqual(patron.socialUrl, 'https://www.linkedin.com/in/punycodex/');
+  assert.strictEqual(patron.socialUrl, 'https://www.linkedin.com/in/punicodex/');
 });
 
 test('valid TikTok social link is stored', async () => {
@@ -267,10 +267,10 @@ test('valid TikTok social link is stored', async () => {
     email: 'tiktok@example.com',
     displayName: 'TikTok Patron',
     socialPlatform: 'tiktok',
-    socialUrl: 'https://www.tiktok.com/@punycodex',
+    socialUrl: 'https://www.tiktok.com/@punicodex',
   });
   assert.strictEqual(patron.socialPlatform, 'tiktok');
-  assert.strictEqual(patron.socialUrl, 'https://www.tiktok.com/@punycodex');
+  assert.strictEqual(patron.socialUrl, 'https://www.tiktok.com/@punicodex');
 });
 
 test('valid YouTube social link is stored', async () => {
@@ -279,10 +279,10 @@ test('valid YouTube social link is stored', async () => {
     email: 'youtube@example.com',
     displayName: 'YouTube Patron',
     socialPlatform: 'youtube',
-    socialUrl: 'https://www.youtube.com/@punycodex',
+    socialUrl: 'https://www.youtube.com/@punicodex',
   });
   assert.strictEqual(patron.socialPlatform, 'youtube');
-  assert.strictEqual(patron.socialUrl, 'https://www.youtube.com/@punycodex');
+  assert.strictEqual(patron.socialUrl, 'https://www.youtube.com/@punicodex');
 });
 
 test('valid GitHub social link is stored', async () => {
@@ -291,10 +291,10 @@ test('valid GitHub social link is stored', async () => {
     email: 'github@example.com',
     displayName: 'GitHub Patron',
     socialPlatform: 'github',
-    socialUrl: 'https://github.com/punycodex',
+    socialUrl: 'https://github.com/punicodex',
   });
   assert.strictEqual(patron.socialPlatform, 'github');
-  assert.strictEqual(patron.socialUrl, 'https://github.com/punycodex');
+  assert.strictEqual(patron.socialUrl, 'https://github.com/punicodex');
 });
 
 test('valid website social link is stored', async () => {
@@ -303,10 +303,10 @@ test('valid website social link is stored', async () => {
     email: 'web@example.com',
     displayName: 'Web Patron',
     socialPlatform: 'website',
-    socialUrl: 'https://punycodex.com/',
+    socialUrl: 'https://punicodex.com/',
   });
   assert.strictEqual(patron.socialPlatform, 'website');
-  assert.strictEqual(patron.socialUrl, 'https://punycodex.com/');
+  assert.strictEqual(patron.socialUrl, 'https://punicodex.com/');
 });
 
 test('non-https social URL is rejected', async () => {
@@ -315,7 +315,7 @@ test('non-https social URL is rejected', async () => {
     email: 'http@example.com',
     displayName: 'HTTP Patron',
     socialPlatform: 'x',
-    socialUrl: 'http://x.com/punycodex',
+    socialUrl: 'http://x.com/punicodex',
   });
   assert.strictEqual(patron.socialPlatform, 'x');
   assert.strictEqual(patron.socialUrl, null);
@@ -327,7 +327,7 @@ test('malformed social URL is rejected', async () => {
     email: 'bad@example.com',
     displayName: 'Bad URL Patron',
     socialPlatform: 'x',
-    socialUrl: 'https://example.com/punycodex',
+    socialUrl: 'https://example.com/punicodex',
   });
   assert.strictEqual(patron.socialPlatform, 'x');
   assert.strictEqual(patron.socialUrl, null);
@@ -339,7 +339,7 @@ test('unsupported social platform is rejected', async () => {
     email: 'unknown@example.com',
     displayName: 'Unknown Platform Patron',
     socialPlatform: 'myspace',
-    socialUrl: 'https://myspace.com/punycodex',
+    socialUrl: 'https://myspace.com/punicodex',
   });
   assert.strictEqual(patron.socialPlatform, null);
   assert.strictEqual(patron.socialUrl, null);

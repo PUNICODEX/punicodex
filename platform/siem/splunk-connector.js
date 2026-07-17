@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Splunk HEC Connector Stub (Phase 19)
+ * PUNICODEX — Splunk HEC Connector Stub (Phase 19)
  *
  * Formats authenticity verdicts as Splunk HTTP Event Collector events.
  */
@@ -7,8 +7,8 @@
 function formatEvent(verdict, options = {}) {
   const event = {
     time: verdict.generatedAt ? new Date(verdict.generatedAt).getTime() / 1000 : Date.now() / 1000,
-    source: options.source || 'punycodex-authenticity',
-    sourcetype: options.sourcetype || 'punycodex:authenticity:verdict',
+    source: options.source || 'punicodex-authenticity',
+    sourcetype: options.sourcetype || 'punicodex:authenticity:verdict',
     index: options.index || 'security',
     event: {
       verdict: verdict.verdict,

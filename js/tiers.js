@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Tier System Page JavaScript v11
+ * PuniCodex — Tier System Page JavaScript v11
  * Simplified: hero counters, scroll reveal, constellation, converter.
  */
 

@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Build Authenticity Benchmark Datasets
+ * PuniCodex — Build Authenticity Benchmark Datasets
  *
  * Regenerates the red-team benchmark JSONL files under
  * data/benchmarks/authenticity/:
@@ -93,7 +93,7 @@ function buildLegitimateSet(count) {
   const seen = new Set();
   const protectedNames = buildProtectedNameSet();
 
-  // 1. PUNYCODEX lexicon names (canonical ASCII + Unicode variants).
+  // 1. PUNICODEX lexicon names (canonical ASCII + Unicode variants).
   for (const entry of LEXICON) {
     if (rows.length >= count) break;
     const candidates = [

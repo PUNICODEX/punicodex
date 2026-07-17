@@ -1,6 +1,6 @@
 # Unicode Premium Algorithm Design Report
 
-> Research input for the PÚNYCODEX appraisal engine. Focuses on the **Unicode premium layer** — the percentage of the ASCII control value that a Unicode / IDN form should capture.
+> Research input for the PuniCodex appraisal engine. Focuses on the **Unicode premium layer** — the percentage of the ASCII control value that a Unicode / IDN form should capture.
 
 ## Current State
 
@@ -56,7 +56,7 @@ Publicly reported pure **IDN / Unicode .com** sales are sparse compared with ASC
 ### Non-Latin IDNs (Chinese, Japanese, Arabic, etc.)
 - Chinese-character `.com` IDNs have sold from **low 5 figures to low 7 figures** (e.g., reported sales of ¥-denominated IDNs in the $50K–$500K range, with a handful above $1M).
 - Japanese IDN `.com` sales typically cluster **$10K–$200K** for common words.
-- These sales are usually tied to dictionary words or culturally significant terms — i.e., they map closely to the PÚNYCODEX "canonical / ideal" bucket.
+- These sales are usually tied to dictionary words or culturally significant terms — i.e., they map closely to the PuniCodex "canonical / ideal" bucket.
 
 ### ASCII anchors (from `docs/2letter-com-valuation-report.md`)
 - 2L `.com` wholesale floor: **$450K+**
@@ -305,4 +305,4 @@ Assuming the ASCII control fixes from `docs/2letter-com-valuation-report.md` are
 
 ---
 
-*Report prepared for PÚNYCODEX appraisal engine v1.0.0.*
+*Report prepared for PuniCodex appraisal engine v1.0.0.*

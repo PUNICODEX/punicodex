@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — DNS Enricher
+ * PuniCodex — DNS Enricher
  *
  * Resolves basic DNS records for a domain and, when possible, estimates domain
  * age from a WHOIS creation date. Includes a synchronous mock helper for tests.

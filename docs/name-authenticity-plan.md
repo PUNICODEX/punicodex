@@ -1,10 +1,10 @@
-# PUNYCODEX Name Authenticity Checker — Enterprise 20-Phase Implementation Plan
+# PUNICODEX Name Authenticity Checker — Enterprise 20-Phase Implementation Plan
 
 ## Vision
 
 A **Name Authenticity Checker** that lets anyone paste a name or domain and instantly receive an authoritative verdict:
 
-- **Authentic Canonical** — matches the PUNYCODEX lexicon exactly.
+- **Authentic Canonical** — matches the PUNICODEX lexicon exactly.
 - **Authentic Styled Variant** — a legitimate alternate spelling (macron-only, different accent convention, etc.) that the lexicon recognizes.
 - **Suspicious / Deceptive Spoof** — uses confusable Unicode characters, mixed scripts, or homoglyphs to impersonate a canonical name.
 - **Unknown** — not in the corpus and not obviously deceptive.
@@ -116,7 +116,7 @@ It must be **variant-aware**, **attack-flawless**, **visually inevitable**, and 
 - `apollōn.com` if not registered → `suspicious` (strictDomains=true) or `styled` (strictDomains=false).
 - `áres` → `canonical`.
 
-**Flywheel impact:** Protects the scholarly nuance that makes PUNYCODEX unique.
+**Flywheel impact:** Protects the scholarly nuance that makes PUNICODEX unique.
 
 ---
 
@@ -292,7 +292,7 @@ CREATE TABLE authenticity_log (
 **Objective:** Bring the checker to the browser.
 
 **Deliverables:**
-- Context menu: "Check authenticity with PUNYCODEX" for selected text or link.
+- Context menu: "Check authenticity with PUNICODEX" for selected text or link.
 - Content script highlights suspicious links on pages with a subtle border.
 - Popup mini-checker with instant verdict.
 - Report button to send spoof findings to `discovered_spoofs`.
@@ -443,7 +443,7 @@ CREATE TABLE authenticity_log (
 
 **Deliverables:**
 - `/about/authenticity.html` explaining the feature and the science.
-- Blog post: "The PUNYCODEX Authenticity Checker: How we detect Unicode homograph attacks."
+- Blog post: "The PUNICODEX Authenticity Checker: How we detect Unicode homograph attacks."
 - API cookbook examples in 5 languages.
 - Social/Open Graph assets for the checker page.
 - Update `data-version.json` schema to include `authenticityModelVersion`.
@@ -479,4 +479,4 @@ CREATE TABLE authenticity_log (
 
 ---
 
-*Plan version 1.0 — generated for the PUNYCODEX canonical Unicode name platform.*
+*Plan version 1.0 — generated for the PUNICODEX canonical Unicode name platform.*

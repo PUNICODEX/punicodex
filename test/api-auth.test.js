@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — API Auth Helper Tests
+ * PuniCodex — API Auth Helper Tests
  */
 
 const assert = require('node:assert');

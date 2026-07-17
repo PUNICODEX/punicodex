@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Scholarly Edition API
+ * PuniCodex — Scholarly Edition API
  *
  * Routes under /api/v1/scholars/
  */
@@ -1278,7 +1278,7 @@ router.delete(
 const ALLOWED_MEDIA_TYPES = ['image/webp', 'image/png', 'image/jpeg'];
 const MAX_MEDIA_BYTES = 5 * 1024 * 1024;
 const UPLOAD_DIR =
-  process.env.PUNYCODEX_SCHOLARS_UPLOAD_DIR ||
+  process.env.PUNICODEX_SCHOLARS_UPLOAD_DIR ||
   path.join(__dirname, '..', 'public', 'uploads', 'scholars');
 
 function ensureUploadDir() {

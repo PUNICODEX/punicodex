@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Multimodal Corpus Generator (Phase 5)
+ * PuniCodex — Multimodal Corpus Generator (Phase 5)
  *
  * Emits vision-language instruction examples grounded in the flagship mascot,
  * logomark, and original-script assets. Each example pairs an image URL with

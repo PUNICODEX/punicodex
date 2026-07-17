@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX Browser — Electron main process.
+ * PUNICODEX Browser — Electron main process.
  */
 const { app, BrowserWindow, shell } = require('electron');
 const path = require('node:path');

@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX Lexicon Expansion Batch
+ * PUNICODEX Lexicon Expansion Batch
  * All new entries to be generated
  */
 

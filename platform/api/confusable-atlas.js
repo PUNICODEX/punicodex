@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Confusable Atlas V2
+ * PuniCodex — Confusable Atlas V2
  *
  * A structured, multi-dimensional map of Unicode characters that can be used
  * to impersonate Latin/ASCII names. It powers the skeleton-fold similarity

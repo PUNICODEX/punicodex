@@ -1,7 +1,7 @@
 const Database = require('better-sqlite3');
 const path = require('node:path');
 
-const DB_PATH = path.join(__dirname, 'punycodex.db');
+const DB_PATH = path.join(__dirname, 'punicodex.db');
 const db = new Database(DB_PATH);
 
 // Drop old FTS if exists (for rebuild)
@@ -465,7 +465,7 @@ const insertSite = db.prepare(`
 `);
 
 for (const f of flagships) {
-  const title = `PUNYCODEX Temple: ${f.domain}`;
+  const title = `PUNICODEX Temple: ${f.domain}`;
   const desc = `Scholarly restoration of ${f.id} with full Unicode orthography.`;
   insertSite.run(
     f.domain,
@@ -482,7 +482,7 @@ for (const f of flagships) {
     title,
     desc,
     'website',
-    'PUNYCODEX',
+    'PUNICODEX',
     'en',
     1,
     desc.split(/\s+/).length,

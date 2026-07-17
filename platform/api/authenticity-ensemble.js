@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Authenticity Ensemble Risk Classifier
+ * PuniCodex — Authenticity Ensemble Risk Classifier
  *
  * Weighted logistic-style scorer + deterministic guardrails. Returns a
  * calibrated deceptive probability plus rule overrides.

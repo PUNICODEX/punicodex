@@ -1,8 +1,8 @@
-# PUNYCODEX Strategic Vision: The Unicode Web as Real Estate
+# PUNICODEX Strategic Vision: The Unicode Web as Real Estate
 
 ## North Star
 
-PUNYCODEX evolves from a curated Unicode domain directory into an **archetype-aligned domain leasing platform** with a genuine search engine. Each Unicode domain becomes leasable real estate where tenants build businesses that resonate with the mythological energy of the name.
+PUNICODEX evolves from a curated Unicode domain directory into an **archetype-aligned domain leasing platform** with a genuine search engine. Each Unicode domain becomes leasable real estate where tenants build businesses that resonate with the mythological energy of the name.
 
 ## The Pivot
 
@@ -36,7 +36,7 @@ Each `/sites/{id}/` becomes a tabbed interface:
 │  │  [Shop] [Contact] [About]           │   │
 │  └─────────────────────────────────────┘   │
 │                                             │
-│  LORE TAB (preserved PUNYCODEX content)     │
+│  LORE TAB (preserved PUNICODEX content)     │
 │  ┌─────────────────────────────────────┐   │
 │  │  Hermês — Messenger, Commerce       │   │
 │  │  Greek · Tier-1 · PIE *ser-         │   │
@@ -93,7 +93,7 @@ User searches: *"wireless modem near me"*
 
 Google cannot replicate this because:
 
-1. **Semantic archetype layer**: No search engine maps business content to mythological archetypes. PUNYCODEX owns the lexicon + the domain + the mapping.
+1. **Semantic archetype layer**: No search engine maps business content to mythological archetypes. PUNICODEX owns the lexicon + the domain + the mapping.
 2. **Unicode domain authority**: We are the registry of record for these specific Unicode restorations. Google indexes us; we *are* the namespace.
 3. **Curated tenant quality**: Not anyone can lease — tenants must archetypally align. This creates a filter bubble of quality that generic search can't match.
 
@@ -101,7 +101,7 @@ Google cannot replicate this because:
 
 | Component | Current | Future |
 |-----------|---------|--------|
-| `indexed_sites` | 48 flagships, all "PUNYCODEX Temple" | 200+ tenant sites with real business content |
+| `indexed_sites` | 48 flagships, all "PUNICODEX Temple" | 200+ tenant sites with real business content |
 | `archetype_score` | 0.0 (default) | Computed by crawler: semantic match between page content and entry meaning |
 | `tenant_*` columns | NULL | Populated for leased domains |
 | Search ranking | BM25 × tier × flagship | BM25 × tier × flagship × archetype × tenant_quality × geo |

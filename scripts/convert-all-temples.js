@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PUNYCODEX — Batch Temple-to-Ad Conversion
+ * PUNICODEX — Batch Temple-to-Ad Conversion
  *
  * Converts all non-ad temples in one run.
  *

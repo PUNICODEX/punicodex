@@ -1,4 +1,4 @@
-# PUNYCODEX — Comprehensive Audit & Strategic Review
+# PUNICODEX — Comprehensive Audit & Strategic Review
 
 **Audit date:** 2026-06-21  
 **Auditor:** Kimi Code CLI (agent swarm)  
@@ -10,7 +10,7 @@
 
 ## 1. Executive Summary
 
-PUNYCODEX is a genuinely unique asset: a curated, academically-oriented Unicode-name knowledge graph, a working type engine, a domain portfolio, and the beginnings of a search engine/browser/ecosystem. The foundation is strong enough that **all 77,522 test assertions pass** when the generated-artifacts and flywheel suites are excluded—but those two suites are currently failing because the working tree is out of sync with its own canonical sources.
+PUNICODEX is a genuinely unique asset: a curated, academically-oriented Unicode-name knowledge graph, a working type engine, a domain portfolio, and the beginnings of a search engine/browser/ecosystem. The foundation is strong enough that **all 77,522 test assertions pass** when the generated-artifacts and flywheel suites are excluded—but those two suites are currently failing because the working tree is out of sync with its own canonical sources.
 
 The audit found **no fatal flaws in the concept**, but it found many places where the execution is not yet "team-of-experts, years-in-the-making" polished. The biggest themes are:
 
@@ -36,9 +36,9 @@ The good news: most issues are discrete, well-scoped fixes. The data core and th
 | 5 | 🔴 Critical | Ads/Monetization | Stripe webhook body parsed before signature verification | `platform/server.js:176`, `platform/api/stripe.js` | Webhooks fail; payments not confirmed | Mount raw body parser before global JSON parser |
 | 6 | 🔴 Critical | Ads/Monetization | Ad click redirects blocked for external URLs | `platform/server.js:154-166`, `/api/analytics/click` | Clicks not recorded, users not redirected | Allow valid `http(s)` advertiser URLs |
 | 7 | 🔴 Critical | Ads/Monetization | Displayed prices differ from backend prices | `sites/*/index.html`, `terms/advertising/index.html`, `migrate-booking.js` | Billing disputes, trust loss | Single source of truth for pricing |
-| 8 | 🔴 Critical | Search | Search index dominated by synthetic flagship stubs | `platform/db/migrate-crawler.js`, `punycodex.db` | Results are templated marketing, not live web | Real-crawl flagships or mark pending |
+| 8 | 🔴 Critical | Search | Search index dominated by synthetic flagship stubs | `platform/db/migrate-crawler.js`, `punicodex.db` | Results are templated marketing, not live web | Real-crawl flagships or mark pending |
 | 9 | 🔴 Critical | Search | Click feedback does not influence ranking | `platform/server.js:776-815`, `platform/api/ltr-service.js` | Learning-to-rank loop disconnected | Consolidate `search_clicks` / `search_result_clicks` |
-| 10 | 🔴 Critical | Browser | Electron preload API is unimplemented | `platform/browser/preload.js`, `renderer/*.js` | Electron app cannot start | Implement `window.punycodex` bridge or remove Electron UI |
+| 10 | 🔴 Critical | Browser | Electron preload API is unimplemented | `platform/browser/preload.js`, `renderer/*.js` | Electron app cannot start | Implement `window.punicodex` bridge or remove Electron UI |
 | 11 | 🔴 Critical | Browser | `main.js` loads the wrong shell | `platform/browser/main.js:10` | All renderer UI is unreachable | Load `renderer/index.html` or delete renderer code |
 | 12 | 🔴 Critical | Browser | Electron build scripts cannot run | `package.json:35-37` | Cannot package browser | Install `electron`, `electron-builder`, `cross-env` |
 | 13 | 🔴 Critical | Browser | Renderer artifacts stale | `platform/browser/renderer/lexicon.json`, `lore-catalog.json` | CI fails; API lore stale | Run `npm run generate` |
@@ -64,7 +64,7 @@ The good news: most issues are discrete, well-scoped fixes. The data core and th
 | 33 | 🟠 High | Docs | `SEARCH-ENGINE-EVOLUTION.md` is materially obsolete | `SEARCH-ENGINE-EVOLUTION.md` | Misdirects prioritization | Rewrite status or retire |
 | 34 | 🟠 High | Docs | `vercel.json` violates `headers-only` guardrail | `vercel.json`, `AGENTS.md` | Guardrail no longer enforced | Decide cron/function home; update docs |
 | 35 | 🟠 High | Browser | Browser shell rejects Unicode domains | `platform/public/browser.html:206`, `js/browser-shell.js:19` | Cannot navigate to Unicode domains | Use `domainToASCII`/`URL` parsing |
-| 36 | 🟠 High | Browser | Web shell uses insecure iframe sandbox | `platform/public/browser.html:188-192` | Popups/forms allowed in PUNYCODEX origin | Use `<webview>` or tighten sandbox |
+| 36 | 🟠 High | Browser | Web shell uses insecure iframe sandbox | `platform/public/browser.html:188-192` | Popups/forms allowed in PUNICODEX origin | Use `<webview>` or tighten sandbox |
 | 37 | 🟠 High | Extension | Content script runs in password fields | `extension/content/content.js:210-218` | Privacy/security risk | Remove `password` from `isTextInput` |
 | 38 | 🟠 High | Extension | Hard-coded stale counts & missing pantheons | `extension/popup/popup.html`, `options/options.html` | Misrepresents scope | Drive from canonical lexicon |
 | 39 | 🟠 High | Mobile | Stale counts & missing pantheon filters | `mobile/index.html`, `mobile/manifest.json` | Misleading metadata; 5 pantheons hidden | Update counts and add pills |
@@ -178,7 +178,7 @@ The good news: most issues are discrete, well-scoped fixes. The data core and th
 - Postgres operational-DB support is incomplete: most operational modules import `better-sqlite3` directly and bypass `platform/db/operational.js`.
 - `platform/db/init-operational-postgres.js` is not included in `npm run db` / `npm run db-init`.
 
-**Medium:** hardcoded `pk_punycodex_demo` API key seeded on migration; admin password compared without timing-safe equality; Vercel cron endpoints callable without secret; public submission/partner endpoints unrate-limited; admin Vercel endpoints bypass `createApiHandler` (no logging/rate-limit); API v2 not mounted locally; `/api/v1/names/batch` unreachable locally; v1 OpenAPI omits batch; v2 OpenAPI wraps spec in envelope; OUWP doc references wrong partner path; CORS lacks `Vary: Origin`; Swagger docs have no CSP.
+**Medium:** hardcoded `pk_punicodex_demo` API key seeded on migration; admin password compared without timing-safe equality; Vercel cron endpoints callable without secret; public submission/partner endpoints unrate-limited; admin Vercel endpoints bypass `createApiHandler` (no logging/rate-limit); API v2 not mounted locally; `/api/v1/names/batch` unreachable locally; v1 OpenAPI omits batch; v2 OpenAPI wraps spec in envelope; OUWP doc references wrong partner path; CORS lacks `Vary: Origin`; Swagger docs have no CSP.
 
 **Low:** module-level DB openings can fail on Vercel cold start; `STRIPE_SECRET_KEY` required unconditionally at startup.
 
@@ -271,7 +271,7 @@ The good news: most issues are discrete, well-scoped fixes. The data core and th
 **Healthy:** The web shell `browser.html` renders and the `js/browser-shell.js` logic passes its own tests.
 
 **Critical gaps:**
-- `platform/browser/preload.js` does not implement the `window.punycodex` API that every renderer module expects (minimize/maximize/close, API calls, lexicon entry/search/variants, normalize URL, session, open external).
+- `platform/browser/preload.js` does not implement the `window.punicodex` API that every renderer module expects (minimize/maximize/close, API calls, lexicon entry/search/variants, normalize URL, session, open external).
 - `platform/browser/main.js` loads `platform/public/browser.html` in production, not the fully built `renderer/index.html`. All renderer UI code is dead.
 - Build scripts reference `electron` and `electron-builder`, which are not installed. `NODE_ENV=development` syntax is invalid on Windows.
 - Renderer lexicon/lore-catalog are stale; `npm test` fails.
@@ -297,7 +297,7 @@ The good news: most issues are discrete, well-scoped fixes. The data core and th
 - `.env` is tracked in Git even though `.gitignore` lists `.env` (the ignore was added after the file was committed).
 
 **High gaps:**
-- `platform/db/migrate-api-keys.js` seeds a hardcoded `pk_punycodex_demo` key on every DB init.
+- `platform/db/migrate-api-keys.js` seeds a hardcoded `pk_punicodex_demo` key on every DB init.
 - Admin login has no rate limiting or lockout.
 - No Vercel `api/admin/login.js` function exists, breaking admin auth on the deployed site.
 - Invalid API keys bypass rate limiting because `api-handler.js` returns 401 before the rate-limiter runs.
@@ -314,7 +314,7 @@ The good news: most issues are discrete, well-scoped fixes. The data core and th
 
 ### 4.1 The concept is genuinely defensible
 
-You are right that meaningful Unicode names are scarce and undervalued. The world conflates "IDN" with emoji domains and visually-confusable ASCII lookalikes. A curated layer that separates *meaningful, historically attested names* from *stylish noise* is a real category. PUNYCODEX can own that category because:
+You are right that meaningful Unicode names are scarce and undervalued. The world conflates "IDN" with emoji domains and visually-confusable ASCII lookalikes. A curated layer that separates *meaningful, historically attested names* from *stylish noise* is a real category. PUNICODEX can own that category because:
 
 - It has the only scholarly Unicode-restored theonym lexicon (860 entries, original scripts, tier rules, source citations).
 - It owns the matching domains for the flagship names.
@@ -354,7 +354,7 @@ The ad/booking infrastructure is surprisingly complete in the local server. The 
 
 ### 4.6 The browser shell is the wrong priority in its current form
 
-The Electron app is unbuildable and loads the wrong page. The web shell (`platform/public/browser.html`) is more viable but uses iframes and cannot navigate Unicode domains. If the goal is a "PUNYCODEX Browser," the fastest path is probably a browser extension that intercepts Unicode URLs and routes them through PUNYCODEX context panels, not a full Electron wrapper.
+The Electron app is unbuildable and loads the wrong page. The web shell (`platform/public/browser.html`) is more viable but uses iframes and cannot navigate Unicode domains. If the goal is a "PUNICODEX Browser," the fastest path is probably a browser extension that intercepts Unicode URLs and routes them through PUNICODEX context panels, not a full Electron wrapper.
 
 ### 4.7 Security must be hardened before the first public API consumer
 
@@ -398,7 +398,7 @@ As requested, the following old audit scripts, transient audit outputs, and obso
 - `.vercel/output/static/scripts/audit-ad-sites.js`
 - `.vercel/output/static/scripts/audit-domains.js`
 
-The remaining roadmap and rollout documents (`PANTHEON-ADVERTISING-ROLLOUT.md`, `PUNYCODEX-21ST-CENTURY-ROADMAP.md`, `AD_CONVERSION_GUIDE.md`, `ACCURACY.md`, `AGENTS.md`, `OWNED_DOMAINS.md`, `UTF8_PRESERVATION_GUIDE.md`, `DNS-SETUP-GUIDE.txt`) were kept because they are either still active plans or authoritative reference manuals, but several are flagged above for refresh.
+The remaining roadmap and rollout documents (`PANTHEON-ADVERTISING-ROLLOUT.md`, `PUNICODEX-21ST-CENTURY-ROADMAP.md`, `AD_CONVERSION_GUIDE.md`, `ACCURACY.md`, `AGENTS.md`, `OWNED_DOMAINS.md`, `UTF8_PRESERVATION_GUIDE.md`, `DNS-SETUP-GUIDE.txt`) were kept because they are either still active plans or authoritative reference manuals, but several are flagged above for refresh.
 
 ---
 
@@ -438,7 +438,7 @@ The remaining roadmap and rollout documents (`PANTHEON-ADVERTISING-ROLLOUT.md`, 
 
 ## 7. Questions for You
 
-Below are the strategic questions I think we should discuss before the next sprint. There is no right answer for any of them; they depend on how you want to position PUNYCODEX in the market and what resources you have.
+Below are the strategic questions I think we should discuss before the next sprint. There is no right answer for any of them; they depend on how you want to position PUNICODEX in the market and what resources you have.
 
 1. **Deployment target:** Is Vercel the permanent production platform, or do you still intend to use Cloudflare Pages for part of the stack? The repo is configured for Vercel but `DEPLOY.md` still says Cloudflare.
 
@@ -450,12 +450,12 @@ Below are the strategic questions I think we should discuss before the next spri
 
 5. **Accuracy vs. scale:** Should we pause adding new entries until the 32 missing original scripts and the ~270 ASCII-primary entries are audited? Or do you want to keep expanding the lexicon and backfill accuracy later?
 
-6. **Team/AI scaling:** You mentioned "a consecutive non-stop plan to evolve PUNYCODEX in ways unimaginable for a single dev and an AI system." What shape do you want that collaboration to take? For example:
+6. **Team/AI scaling:** You mentioned "a consecutive non-stop plan to evolve PUNICODEX in ways unimaginable for a single dev and an AI system." What shape do you want that collaboration to take? For example:
    - You define vision and commercial priorities; I own implementation sprints.
    - We pair on architecture decisions but I execute code and tests.
    - I become a "maintainer" that monitors CI, runs curators, and proposes PRs.
 
-7. **The "Unicode web" argument:** Your strongest argument is that meaningful names are finite and valuable. Do you want PUNYCODEX to be perceived primarily as:
+7. **The "Unicode web" argument:** Your strongest argument is that meaningful names are finite and valuable. Do you want PUNICODEX to be perceived primarily as:
    - A domain portfolio / brand network?
    - A search engine for Unicode domains?
    - A scholarly knowledge graph?
@@ -464,7 +464,7 @@ Below are the strategic questions I think we should discuss before the next spri
 
 8. **iOS and app stores:** Are you committed to shipping iOS, or is Android + PWA + extension enough for the next phase? iOS adds significant Capacitor/App Store work.
 
-9. **Open protocol vs. controlled platform:** Phase 10 of the roadmap talks about publishing the Unicode Web Index Protocol. How open do you want it? Fully open standard with competitors, or a partner-licensed protocol that keeps PUNYCODEX as the canonical registry?
+9. **Open protocol vs. controlled platform:** Phase 10 of the roadmap talks about publishing the Unicode Web Index Protocol. How open do you want it? Fully open standard with competitors, or a partner-licensed protocol that keeps PUNICODEX as the canonical registry?
 
 10. **Funding / runway:** Many of the issues above are discrete engineering fixes, but some (real crawls at scale, iOS, autonomous agents, fine-tuned AI) require compute, registrar/API spend, and time. What is the realistic monthly budget/compute envelope I should design against?
 

@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX API v1 — Integration tests
+ * PuniCodex API v1 — Integration tests
  *
  * Tests every v1 endpoint against the real SQLite database using the same
  * Vercel handler functions that production uses.
@@ -369,7 +369,7 @@ async function runTests() {
     });
     assert.strictEqual(status, 201);
     assert.strictEqual(body.success, true);
-    assert.ok(body.key.plaintext.startsWith('pk_punycodex_'), 'key must have correct prefix');
+    assert.ok(body.key.plaintext.startsWith('pk_punicodex_'), 'key must have correct prefix');
     assert.strictEqual(body.key.tier, 'hobby');
     createdKey = body.key.plaintext;
   });

@@ -10,7 +10,7 @@ while preserving provenance, licensing, and scholarly attribution.
 
 ## Status
 
-Version 1.0 — Draft. Maintained by the PUNYCODEX project.
+Version 1.0 — Draft. Maintained by the PUNICODEX project.
 
 ## 1. Scope
 
@@ -37,7 +37,7 @@ A record represents one Unicode-aware web property.
   "script": "Greek",
   "canonicalEntry": {
     "id": "zeus",
-    "source": "https://punycodex.com/api/v1/names/zeus"
+    "source": "https://punicodex.com/api/v1/names/zeus"
   },
   "verifiedAt": "2026-06-17T00:00:00Z",
   "verificationMethod": "dns-txt",
@@ -47,7 +47,7 @@ A record represents one Unicode-aware web property.
     "fetchedAt": "2026-06-17T00:00:00Z"
   },
   "license": "CC BY 4.0",
-  "attribution": ["PUNYCODEX", "LSJ"]
+  "attribution": ["PUNICODEX", "LSJ"]
 }
 ```
 
@@ -63,7 +63,7 @@ A record represents one Unicode-aware web property.
 ### 2.3 DNS TXT Record Format
 
 ```
-_ouwp.example.com. IN TXT "v=OUWP1; id=zeus; verify=https://punycodex.com/api/v1/names/zeus"
+_ouwp.example.com. IN TXT "v=OUWP1; id=zeus; verify=https://punicodex.com/api/v1/names/zeus"
 ```
 
 ## 3. API Exchange Format
@@ -94,7 +94,7 @@ Response envelope:
   "total": 1,
   "limit": 20,
   "offset": 0,
-  "attribution": "Data © PUNYCODEX contributors, CC BY 4.0"
+  "attribution": "Data © PUNICODEX contributors, CC BY 4.0"
 }
 ```
 
@@ -125,6 +125,6 @@ Future versions may add:
 
 ## 7. References
 
-- PUNYCODEX API docs: https://punycodex.com/api/v1/docs
+- PUNICODEX API docs: https://punicodex.com/api/v1/docs
 - IDNA2008: https://unicode.org/reports/tr46/
 - RFC 5891: Internationalized Domain Names in Applications

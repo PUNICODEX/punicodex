@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Scholarly Edition API flow regression suite
+ * PuniCodex — Scholarly Edition API flow regression suite
  *
  * End-to-end proof that the Scholarly Edition backend can never silently
  * break. Boots a real Express server + isolated SQLite database (mirroring
@@ -14,8 +14,8 @@
  *   5. re-seeding never clobbers scholar-approved content
  *   6. hostile markdown (<script>, <img onerror>) is stored raw but ALWAYS
  *      rendered escaped — both by markdown.js and by the baked page
- *   7. the "PÚNYCODEX Team" identity exists but can never authenticate
- *   8. first-run history attribution names PÚNYCODEX Team + admin userId
+ *   7. the "PuniCodex Team" identity exists but can never authenticate
+ *   8. first-run history attribution names PuniCodex Team + admin userId
  *
  * Run: node test/scholars-api-flow.test.js
  */
@@ -25,11 +25,11 @@ const os = require('node:os');
 const path = require('node:path');
 const http = require('node:http');
 
-const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'punycodex-scholars-flow-'));
+const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'punicodex-scholars-flow-'));
 const dbPath = path.join(tmpDir, 'test.db');
 const uploadDir = path.join(tmpDir, 'uploads');
-process.env.PUNYCODEX_TEST_DB_PATH = dbPath;
-process.env.PUNYCODEX_SCHOLARS_UPLOAD_DIR = uploadDir;
+process.env.PUNICODEX_TEST_DB_PATH = dbPath;
+process.env.PUNICODEX_SCHOLARS_UPLOAD_DIR = uploadDir;
 
 const ROOT = path.join(__dirname, '..');
 const { getDb, closeDb } = require(path.join(ROOT, 'platform', 'db', 'connection'));
@@ -507,15 +507,15 @@ test('hostile markup is escaped by markdown.js and the baked page', async () => 
 // ─────────────────────────────────────────────────────────────
 
 test('seeded admin institution exists and admin login always fails', async () => {
-  const institution = dbLayer.getInstitutionBySlug('punycodex-admin');
-  assert(institution, 'punycodex-admin institution missing after seed');
+  const institution = dbLayer.getInstitutionBySlug('punicodex-admin');
+  assert(institution, 'punicodex-admin institution missing after seed');
   assert(
-    institution.name === 'PÚNYCODEX Team',
+    institution.name === 'PuniCodex Team',
     `unexpected admin institution name: ${institution.name}`
   );
 
-  const admin = dbLayer.getUserByEmail('admin@punycodex.com');
-  assert(admin, 'admin@punycodex.com user missing after seed');
+  const admin = dbLayer.getUserByEmail('admin@punicodex.com');
+  assert(admin, 'admin@punicodex.com user missing after seed');
   ctx.adminUserId = admin.id;
   assert(
     verifyPassword('any-guess-password', admin.password_hash) === false,
@@ -527,7 +527,7 @@ test('seeded admin institution exists and admin login always fails', async () =>
   );
 
   const login = await request('POST', '/api/v1/scholars/auth/login/', {
-    body: { email: 'admin@punycodex.com', password: 'any-guess-password' },
+    body: { email: 'admin@punicodex.com', password: 'any-guess-password' },
   });
   assert(login.status === 401, `expected 401 for admin login attempt, got ${login.status}`);
 });
@@ -536,7 +536,7 @@ test('seeded admin institution exists and admin login always fails', async () =>
 // 9. First-run attribution
 // ─────────────────────────────────────────────────────────────
 
-test('earliest zeus mythology history record is attributed to PÚNYCODEX Team', async () => {
+test('earliest zeus mythology history record is attributed to PuniCodex Team', async () => {
   const res = await request('GET', `/api/v1/scholars/sections/${ctx.mythologySectionId}/history`);
   assert(res.status === 200, `expected 200, got ${res.status}`);
   const records = res.body.data;
@@ -547,8 +547,8 @@ test('earliest zeus mythology history record is attributed to PÚNYCODEX Team', 
   })[0];
   assert(
     typeof earliest.attribution.note === 'string' &&
-      earliest.attribution.note.includes('PÚNYCODEX Team'),
-    `earliest attribution note missing 'PÚNYCODEX Team': ${JSON.stringify(earliest.attribution)}`
+      earliest.attribution.note.includes('PuniCodex Team'),
+    `earliest attribution note missing 'PuniCodex Team': ${JSON.stringify(earliest.attribution)}`
   );
   assert(
     earliest.attribution.userId === ctx.adminUserId,

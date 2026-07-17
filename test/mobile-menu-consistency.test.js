@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Mobile menu consistency tests
+ * PuniCodex — Mobile menu consistency tests
  *
  * Every non-temple navigation page must expose the same canonical,
  * sectioned enterprise mobile menu (Explore / Tools / Resources / About),
@@ -95,7 +95,7 @@ test('pages whose own link is in the menu carry the active marker', () => {
 test('university-sponsorship page is free of the collaborators strip', () => {
   const html = readPage(path.join('university-sponsorship', 'index.html'));
   assert.ok(
-    !html.includes('PUNYCODEX-UNIVERSITY-COLLABORATORS'),
+    !html.includes('PUNICODEX-UNIVERSITY-COLLABORATORS'),
     'no strip markers on the sponsorship page'
   );
   assert.ok(!html.includes('university-collaborators-strip'), 'no strip container');

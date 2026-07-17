@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Add an owned domain
+ * PuniCodex — Add an owned domain
  *
  * Usage:
  *   node scripts/add-owned-domain.js <id> <domain>

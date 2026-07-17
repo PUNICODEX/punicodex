@@ -1,7 +1,7 @@
 /**
  * Global Strip Mobile Layout Regression Tests
  *
- * Ensures the PUNYCODEX global strip on flagship temples keeps its
+ * Ensures the PUNICODEX global strip on flagship temples keeps its
  * compact, inline link layout on mobile. A previous regression collapsed
  * the links into a multi-row grid; these tests guard against that.
  */
@@ -211,7 +211,7 @@ test('px-core.js binds the shared mobile nav toggle', () => {
 test('base temples load px-core.js for shared nav handling', () => {
   const template = fs.readFileSync(path.join(root, 'scripts', 'generate-temples.js'), 'utf8');
   assert.ok(
-    template.includes('https://punycodex.com/js/px-core.js'),
+    template.includes('https://punicodex.com/js/px-core.js'),
     'generate-temples.js must load px-core.js before temple-base.js'
   );
 });

@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Codex Atlas
+ * PuniCodex — Codex Atlas
  * Interactive scholarly explorer driven by canonical lexicon data.
  */
 (function () {
@@ -339,7 +339,7 @@
             <span class="${tierClass}" title="${escapeHtml(tierTooltip)}">${escapeHtml(entry.tierLabel)}</span>
             <span class="pantheon-badge pantheon-${entry.pantheon}">${escapeHtml(entry.pantheon)}</span>
             ${availabilityBadge}
-            ${entry.isOwned ? '<span class="owned-badge">PUNYCODEX Domain</span>' : ''}
+            ${entry.isOwned ? '<span class="owned-badge">PUNICODEX Domain</span>' : ''}
             ${entry.hasFlagship ? '<span class="flagship-badge">Flagship Temple</span>' : ''}
           </div>
         </div>
@@ -1323,7 +1323,7 @@
 
     const owned = lexiconData.entries.filter((e) => e.isOwned);
     container.innerHTML = `
-      <div class="owned-count">${owned.length} PÚNYCODEX-owned domains</div>
+      <div class="owned-count">${owned.length} PuniCodex-owned domains</div>
       <div class="owned-grid">
         ${owned
           .map(

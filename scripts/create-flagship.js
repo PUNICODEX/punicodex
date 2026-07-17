@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PUNYCODEX — Flagship Temple Creator
+ * PUNICODEX — Flagship Temple Creator
  *
  * Generates a complete, validated flagship temple for a lexicon entry.
  * Does NOT read from sites/nike. Uses first-class templates under templates/flagship/.
@@ -1096,7 +1096,7 @@ function generateTierExplanation(entry) {
   if (entry.tier === '1') {
     return `The ${sourceLabel} <strong>${source}</strong> has one canonical Unicode restoration that preserves its distinctive identity. Within the ${entry.pantheon} tradition, this makes it a <strong>single-tier Tier-1</strong> name.`;
   }
-  return `The ${sourceLabel} <strong>${source}</strong> preserves a recognizable written identity in its Unicode restoration. Classified as <strong>${entry.tierLabel || 'Tier-2'}</strong> in the PUNYCODEX tier system.`;
+  return `The ${sourceLabel} <strong>${source}</strong> preserves a recognizable written identity in its Unicode restoration. Classified as <strong>${entry.tierLabel || 'Tier-2'}</strong> in the PUNICODEX tier system.`;
 }
 
 function _tierGridValues(entry) {
@@ -1226,7 +1226,7 @@ function _buildTierSection(entry, _sectionNumber) {
     <div class="container">
         <div class="section-header reveal-up">
             <h2 class="section-title">Tier Classification</h2>
-            <p class="section-subtitle">Where ${entry.unicode} stands in the PUNYCODEX tier system</p>
+            <p class="section-subtitle">Where ${entry.unicode} stands in the PUNICODEX tier system</p>
         </div>
         <div class="tier-grid tier-grid-single">
             <div class="tier-card reveal-up">
@@ -1537,7 +1537,7 @@ function buildZeusFooter(entry, assetPrefix) {
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="https://punycodex.com/" class="footer-logo">PUNYCODEX</a>
+                    <a href="https://punicodex.com/" class="footer-logo">PUNICODEX</a>
                     <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
                 </div>
                 <div class="footer-info">

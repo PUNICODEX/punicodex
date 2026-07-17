@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Provenance Quality Enrichment Pass
+ * PuniCodex — Provenance Quality Enrichment Pass
  *
  * Reads type/js/original-scripts-extra.json and improves templated or empty
  * fields for all non-pilot entries. The 8 pilots (reviewStatus === "canonical"

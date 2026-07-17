@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Codex Noir premium interactions.
+ * PUNICODEX — Codex Noir premium interactions.
  * Spotlight hover, ambient particles, typewriter placeholders, staggered reveals.
  * Performance-first: reduced particle counts, O(n) grid connections, throttled
  * spotlight, debounced mutation observer, reduced-motion support, and visibility
@@ -338,7 +338,7 @@
   }
 
   // Expose API
-  window.PunyCodexEffects = {
+  window.PuniCodexEffects = {
     initParticles,
     initSpotlight,
     initTypewriter,

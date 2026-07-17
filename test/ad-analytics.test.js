@@ -7,7 +7,7 @@
 const assert = require('node:assert');
 const Database = require('better-sqlite3');
 
-process.env.PLATFORM_URL = 'https://punycodex.com';
+process.env.PLATFORM_URL = 'https://punicodex.com';
 
 const { prepareTestDb, getTestDbPath } = require('./helpers/test-db.js');
 prepareTestDb(__filename);
@@ -116,32 +116,32 @@ async function run() {
 
 // isSafeRedirectUrl unit tests
 test('isSafeRedirectUrl allows absolute same-origin paths', () => {
-  assert.strictEqual(isSafeRedirectUrl('/sites/zeus', 'https://punycodex.com'), true);
+  assert.strictEqual(isSafeRedirectUrl('/sites/zeus', 'https://punicodex.com'), true);
 });
 
 test('isSafeRedirectUrl allows full same-origin URLs', () => {
   assert.strictEqual(
-    isSafeRedirectUrl('https://punycodex.com/sites/zeus', 'https://punycodex.com'),
+    isSafeRedirectUrl('https://punicodex.com/sites/zeus', 'https://punicodex.com'),
     true
   );
 });
 
 test('isSafeRedirectUrl allows external URLs', () => {
-  assert.strictEqual(isSafeRedirectUrl('https://example.com/ad', 'https://punycodex.com'), true);
+  assert.strictEqual(isSafeRedirectUrl('https://example.com/ad', 'https://punicodex.com'), true);
 });
 
 test('isSafeRedirectUrl rejects non-http protocols', () => {
-  assert.strictEqual(isSafeRedirectUrl('javascript:alert(1)', 'https://punycodex.com'), false);
-  assert.strictEqual(isSafeRedirectUrl('ftp://punycodex.com/file', 'https://punycodex.com'), false);
+  assert.strictEqual(isSafeRedirectUrl('javascript:alert(1)', 'https://punicodex.com'), false);
+  assert.strictEqual(isSafeRedirectUrl('ftp://punicodex.com/file', 'https://punicodex.com'), false);
 });
 
 test('isSafeRedirectUrl rejects malformed URLs', () => {
-  assert.strictEqual(isSafeRedirectUrl('::::', 'https://punycodex.com'), false);
-  assert.strictEqual(isSafeRedirectUrl('', 'https://punycodex.com'), false);
+  assert.strictEqual(isSafeRedirectUrl('::::', 'https://punicodex.com'), false);
+  assert.strictEqual(isSafeRedirectUrl('', 'https://punicodex.com'), false);
 });
 
 test('isSafeRedirectUrl falls back to PLATFORM_URL env', () => {
-  assert.strictEqual(isSafeRedirectUrl('https://punycodex.com/ok'), true);
+  assert.strictEqual(isSafeRedirectUrl('https://punicodex.com/ok'), true);
 });
 
 // Pixel tests
@@ -180,7 +180,7 @@ test('trackClick records click and redirects for live booking', async () => {
   await trackClick(
     token,
     '/sites/zeus',
-    mockReq({ headers: { referer: 'https://punycodex.com' } }),
+    mockReq({ headers: { referer: 'https://punicodex.com' } }),
     res
   );
   assert.strictEqual(res.redirectUrl, '/sites/zeus');

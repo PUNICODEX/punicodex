@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Generated card set tests
+ * PuniCodex — Generated card set tests
  *
  * Validates the canon-derived card set produced by scripts/generate-cards.js
  * against docs/card-game-spec.md:

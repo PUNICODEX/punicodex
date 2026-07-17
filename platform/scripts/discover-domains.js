@@ -6,7 +6,7 @@ const Database = require('better-sqlite3');
 const path = require('node:path');
 const { URL } = require('node:url');
 
-const DB_PATH = path.join(__dirname, '..', 'db', 'punycodex.db');
+const DB_PATH = path.join(__dirname, '..', 'db', 'punicodex.db');
 const db = new Database(DB_PATH);
 
 db.pragma('journal_mode = WAL');
@@ -64,7 +64,7 @@ async function discoverFromCtLogs(options = {}) {
         const timeout = setTimeout(() => controller.abort(), 120000);
 
         const resp = await fetch(url, {
-          headers: { Accept: 'application/json', 'User-Agent': 'PUNYCODEX-Discovery/1.0' },
+          headers: { Accept: 'application/json', 'User-Agent': 'PUNICODEX-Discovery/1.0' },
           signal: controller.signal,
         });
 

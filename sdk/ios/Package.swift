@@ -2,7 +2,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "PunycodexAuthenticator",
+    name: "PunicodexAuthenticator",
     platforms: [
         .iOS(.v15),
         .macOS(.v12),
@@ -12,20 +12,20 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "PunycodexAuthenticator",
-            targets: ["PunycodexAuthenticator"]
+            name: "PunicodexAuthenticator",
+            targets: ["PunicodexAuthenticator"]
         ),
     ],
     targets: [
         .target(
-            name: "PunycodexAuthenticator",
+            name: "PunicodexAuthenticator",
             path: ".",
             exclude: ["Package.swift", "README.md", "Tests"],
-            sources: ["PunycodexAuthenticator.swift"]
+            sources: ["PunicodexAuthenticator.swift"]
         ),
         .testTarget(
-            name: "PunycodexAuthenticatorTests",
-            dependencies: ["PunycodexAuthenticator"],
+            name: "PunicodexAuthenticatorTests",
+            dependencies: ["PunicodexAuthenticator"],
             path: "Tests"
         ),
     ]

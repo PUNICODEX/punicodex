@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Blog content generator
+ * PuniCodex — Blog content generator
  *
  * Synthesizes one long-read SEO blog post per built flagship temple from the
  * canonical scholarly sources. Output is the canonical source for the blog tab:
@@ -278,7 +278,7 @@ function fallbackUrl(id) {
     baltic: 'https://www.lki.lt/',
     abrahamic: 'https://www.perseus.tufts.edu/hopper/',
   };
-  return map[entry?.pantheon] || 'https://punycodex.com/lexicon/';
+  return map[entry?.pantheon] || 'https://punicodex.com/lexicon/';
 }
 
 function buildData(id) {
@@ -369,7 +369,7 @@ const DESCRIPTION_TEMPLATES = [
   'Explore the Unicode restoration of {unicode} and why the original form still matters in 2026.',
   'A scholarly look at {unicode}: etymology, pronunciation, and the fight to keep original names on the web.',
   'From {script} to Unicode: why {unicode} is more than a domain name.',
-  'Why {unicode} remains a living name: mythology, modern DNS, and the PÚNYCODEX restoration.',
+  'Why {unicode} remains a living name: mythology, modern DNS, and the PuniCodex restoration.',
   'Discover {unicode}: the story behind the Unicode domain, the original script, and the scholars preserving it.',
 ];
 
@@ -403,7 +403,7 @@ function makeKeywords(data) {
     `${data.pantheon} mythology`,
     'Unicode domain',
     'original script',
-    'PÚNYCODEX',
+    'PuniCodex',
     'IDN',
     `${data.scriptName} restoration`,
   ];
@@ -428,7 +428,7 @@ const INTROS = [
   (d) =>
     `Every address bar is a choice. When you type **${d.unicode}**, you are not typing a novelty; you are restoring a name that the early DNS, built for English typewriters, could not carry. The plain ASCII form *${d.ascii}* is a leftover of that constraint, not the name itself. This post is the long version of the restoration: where the name comes from, how the ${d.scriptName} tradition wrote it, how it is pronounced, what the myths and the material record preserve, and why its Unicode form now lives as a working domain. The claim throughout is simple — the original spelling is not decoration. It is the name.`,
   (d) =>
-    `Behind the modern ASCII form *${d.ascii}* hides a much longer story. **${d.unicode}** reaches back through manuscripts, inscriptions, and oral tradition long before it ever touched a keyboard, and every mark in the restored spelling is a receipt from that journey. In what follows we trace the name from its ${d.scriptName} attestations through its mythology, its cult, its symbols, and its afterlife in other cultures — and we show how the PÚNYCODEX project turned that philological record into a Unicode domain that resolves today. The history was never lost. It was only waiting for the infrastructure to catch up.`,
+    `Behind the modern ASCII form *${d.ascii}* hides a much longer story. **${d.unicode}** reaches back through manuscripts, inscriptions, and oral tradition long before it ever touched a keyboard, and every mark in the restored spelling is a receipt from that journey. In what follows we trace the name from its ${d.scriptName} attestations through its mythology, its cult, its symbols, and its afterlife in other cultures — and we show how the PuniCodex project turned that philological record into a Unicode domain that resolves today. The history was never lost. It was only waiting for the infrastructure to catch up.`,
   (d) =>
     `Long before it was a domain, this name traveled through scripts. **${d.unicode}** begins in ${d.scriptName}, passes through scholarly transliteration, and ends — for now — inside the punycode machinery of the global DNS. Each stage of that journey preserves some information and loses some, and the craft of restoration is knowing exactly which marks matter. This post follows the name stage by stage: the original script, the reconstructed pronunciation, the mythological record, the material evidence, and finally the Unicode form that carries all of it into the address bar. Think of it as a biography of a name, told through its spelling.`,
   (d) =>
@@ -445,21 +445,21 @@ const INTROS = [
 
 const CLOSINGS = [
   (d) =>
-    `Restoring **${d.unicode}** is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. Every section of this post — the script, the sound, the myths, the evidence — converges on the same point: the marks in ${d.unicode} are information, and information deserves an address of its own. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier, and every visit to ${d.domainUnicode || 'the temple'} is a vote for the restored form.`,
+    `Restoring **${d.unicode}** is part of a larger effort to make the web multilingual by default. The PuniCodex project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. Every section of this post — the script, the sound, the myths, the evidence — converges on the same point: the marks in ${d.unicode} are information, and information deserves an address of its own. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier, and every visit to ${d.domainUnicode || 'the temple'} is a vote for the restored form.`,
   (d) =>
-    `The story of ${d.unicode} did not end in antiquity; it changed medium. Names that survive for millennia do so because each generation finds a new carrier for them — clay, papyrus, print, and now DNS. The PÚNYCODEX restoration simply makes the carrier honest: the spelling that resolves is the spelling the evidence supports. If this post showed anything, it is that *${d.ascii}* and **${d.unicode}** are not the same name with different styling. They are a summary and the text it summarizes. The web can now serve the text.`,
+    `The story of ${d.unicode} did not end in antiquity; it changed medium. Names that survive for millennia do so because each generation finds a new carrier for them — clay, papyrus, print, and now DNS. The PuniCodex restoration simply makes the carrier honest: the spelling that resolves is the spelling the evidence supports. If this post showed anything, it is that *${d.ascii}* and **${d.unicode}** are not the same name with different styling. They are a summary and the text it summarizes. The web can now serve the text.`,
   (d) =>
-    `Every stage of the journey from ${d.scriptName} to Unicode was an act of care: the scribe who first wrote the name, the lexicographer who glossed it, the engineer who taught the DNS to carry it. The PÚNYCODEX restoration is the latest stage, not the last word — the Scholarly Edition is revised as the evidence improves. What does not change is the principle: a name deserves to be written the way its own tradition wrote it. **${d.unicode}** in the address bar is that principle, made routable.`,
+    `Every stage of the journey from ${d.scriptName} to Unicode was an act of care: the scribe who first wrote the name, the lexicographer who glossed it, the engineer who taught the DNS to carry it. The PuniCodex restoration is the latest stage, not the last word — the Scholarly Edition is revised as the evidence improves. What does not change is the principle: a name deserves to be written the way its own tradition wrote it. **${d.unicode}** in the address bar is that principle, made routable.`,
   (d) =>
     `In 2026 the stakes are practical. Search indexes, language models, and localization pipelines all inherit whatever spelling the web normalizes — which means every Unicode domain is also a training signal. **${d.unicode}** teaches the machinery that the restored form exists, that it is used, and that it points to a real place. That is why a project built on philology ends up caring about DNS: the infrastructure decides which names the future sees. This restoration makes sure the future sees the whole name.`,
   (d) =>
-    `The marks in **${d.unicode}** were never lost; they were only waiting for a carrier that could hold them. Now that the carrier exists, the burden flips: every use of *${d.ascii}* is a choice to leave evidence on the table. The PÚNYCODEX temple keeps the restored form in circulation — as a domain, a dataset entry, and a scholarly argument — so that the choice to use it stays easy. Accent by accent, macron by macron, that is how the original names come back: not with a single grand gesture, but with a spelling that finally works everywhere.`,
+    `The marks in **${d.unicode}** were never lost; they were only waiting for a carrier that could hold them. Now that the carrier exists, the burden flips: every use of *${d.ascii}* is a choice to leave evidence on the table. The PuniCodex temple keeps the restored form in circulation — as a domain, a dataset entry, and a scholarly argument — so that the choice to use it stays easy. Accent by accent, macron by macron, that is how the original names come back: not with a single grand gesture, but with a spelling that finally works everywhere.`,
   (d) =>
-    `A door only matters if people walk through it. ${d.domainUnicode ? `**${d.domainUnicode}** is open` : 'The temple is open'}, and everything behind it — the myths, the scholarship, the canvas, the patrons — hangs on the restored spelling. The PÚNYCODEX project bets that the web will make room for names as they were actually written, and ${d.unicode} is one of its standing proofs. Visit, share, cite, type it yourself: each use is a small rehearsal for a web where no name has to hide its marks to be found.`,
+    `A door only matters if people walk through it. ${d.domainUnicode ? `**${d.domainUnicode}** is open` : 'The temple is open'}, and everything behind it — the myths, the scholarship, the canvas, the patrons — hangs on the restored spelling. The PuniCodex project bets that the web will make room for names as they were actually written, and ${d.unicode} is one of its standing proofs. Visit, share, cite, type it yourself: each use is a small rehearsal for a web where no name has to hide its marks to be found.`,
   (d) =>
-    `Pronunciation turns out to be the heart of the matter. The marks in **${d.unicode}** are instructions for the voice, and a web that strips them is a web that mispronounces the past at scale. The restoration hands the instructions back: say it as the evidence suggests, type it as the tradition wrote it, and let the punycode machinery do the quiet translation in between. That is all the PÚNYCODEX project asks of the infrastructure — and everything it asks of you, the reader, is to use the whole name.`,
+    `Pronunciation turns out to be the heart of the matter. The marks in **${d.unicode}** are instructions for the voice, and a web that strips them is a web that mispronounces the past at scale. The restoration hands the instructions back: say it as the evidence suggests, type it as the tradition wrote it, and let the punycode machinery do the quiet translation in between. That is all the PuniCodex project asks of the infrastructure — and everything it asks of you, the reader, is to use the whole name.`,
   (d) =>
-    `Myth, script, sound, cult, legacy, domain: the faces of ${d.unicode} add up to a single argument — that a name is a record, and records deserve fidelity. The PÚNYCODEX restoration keeps that record in working order: the temple presents it, the Scholarly Edition footnotes it, the lexicon catalogs it, and the domain makes it addressable. *${d.ascii}* will always exist as a fallback. But fallback is not identity. **${d.unicode}** is the name; everything else is a convenience.`,
+    `Myth, script, sound, cult, legacy, domain: the faces of ${d.unicode} add up to a single argument — that a name is a record, and records deserve fidelity. The PuniCodex restoration keeps that record in working order: the temple presents it, the Scholarly Edition footnotes it, the lexicon catalogs it, and the domain makes it addressable. *${d.ascii}* will always exist as a fallback. But fallback is not identity. **${d.unicode}** is the name; everything else is a convenience.`,
 ];
 
 // ── Canonical-data section builders ─────────────────────────────────────────
@@ -571,7 +571,7 @@ function d_scriptPhrase(data) {
 
 function pantheonBlock(data) {
   return (
-    `${data.unicode} is one of ${data.pantheonCount} entries the PÚNYCODEX lexicon catalogues under the ${data.pantheonDisplay} pantheon. ` +
+    `${data.unicode} is one of ${data.pantheonCount} entries the PuniCodex lexicon catalogues under the ${data.pantheonDisplay} pantheon. ` +
     `The [Pantheon page](/pantheon/) gathers the tradition's major figures in one place, and the [Lexicon](/lexicon/) lets you filter all ${LEXICON.length} restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.`
   );
 }
@@ -582,7 +582,7 @@ function faqBlock(data) {
     `**What does ${data.unicode} mean?** ${data.meaning ? `The traditional gloss is "${data.meaning}."` : 'The lexicon records no single-line gloss for this name; the sections above give the full picture.'}`
   );
   qa.push(
-    `**Which tradition does ${data.unicode} belong to?** ${data.unicode} is catalogued in the ${data.pantheonDisplay} pantheon of the PÚNYCODEX lexicon.`
+    `**Which tradition does ${data.unicode} belong to?** ${data.unicode} is catalogued in the ${data.pantheonDisplay} pantheon of the PuniCodex lexicon.`
   );
   qa.push(
     `**Why is ${data.unicode} classified as ${data.tierLabel}?** Because ${tierExplanation(data)} — and the marks in the restored spelling preserve exactly that evidence.`
@@ -602,7 +602,7 @@ function faqBlock(data) {
 
 function typeBlock(data) {
   return (
-    `You do not need a special keyboard to use this restoration. The [PÚNYCODEX Type Tool](/type/) converts the ASCII form *${data.ascii}* into **${data.unicode}** as you type, and the browser extension offers the same conversion inside any text field. ` +
+    `You do not need a special keyboard to use this restoration. The [PuniCodex Type Tool](/type/) converts the ASCII form *${data.ascii}* into **${data.unicode}** as you type, and the browser extension offers the same conversion inside any text field. ` +
     `Copy the restored form, paste it into the address bar, and the DNS does the rest.`
   );
 }
@@ -666,7 +666,7 @@ function sourcesMd(sources, data) {
 function exploreBlock(data) {
   return (
     `This post is one doorway into the temple. The [home page](../) carries the full character breakdown and the ambient canvas; the [lore page](../lore/) tells the myths in long form; the [Scholarly Edition](../scholars/) preserves the sources, pronunciation data, and revision history; and the [patron wall](../patron/) supports the restoration directly. ` +
-    `For the wider map, browse the [Lexicon](/lexicon/), explore the [Pantheon](/pantheon/), or return to the [PÚNYCODEX blog](/blog/).`
+    `For the wider map, browse the [Lexicon](/lexicon/), explore the [Pantheon](/pantheon/), or return to the [PuniCodex blog](/blog/).`
   );
 }
 
@@ -796,7 +796,7 @@ for (const id of BUILT_IDS) {
     description,
     keywords: makeKeywords(data),
     tags: makeTags(data),
-    author: 'PÚNYCODEX Team',
+    author: 'PuniCodex Team',
     publishedAt: PUBLISHED_AT,
     body,
     readingTime: `${Math.max(4, Math.round(wc / 200))} min read`,

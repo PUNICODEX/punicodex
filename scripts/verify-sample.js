@@ -10,7 +10,7 @@ function checkNav(file, label) {
             const m = l.match(/href="([^"]+)"[^>]*>([^<]+)/);
             console.log('  ' + m[2] + ' -> ' + m[1]);
         });
-        const hasExternal = navMatch[0].includes('punycodex.com');
+        const hasExternal = navMatch[0].includes('punicodex.com');
         console.log('  Has external:', hasExternal);
     }
     console.log('');

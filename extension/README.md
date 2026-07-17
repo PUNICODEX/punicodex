@@ -1,4 +1,4 @@
-# PÚNYCODEX Type — Browser Extension
+# PuniCodex Type — Browser Extension
 
 Scholarly transliteration for classical names. Type `apollo` → Apóllōn.
 
@@ -61,4 +61,4 @@ extension/
 
 ## License
 
-© PÚNYCODEX. All rights reserved.
+© PuniCodex. All rights reserved.

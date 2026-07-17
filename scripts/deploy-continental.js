@@ -16,7 +16,7 @@ const SITES = [
 for (const s of SITES) {
   s.punycode = domainToASCII(`${s.unicode}.com`);
   s.siteDir = path.join(ROOT, 'sites', s.id);
-  s.projectName = `punycodex-${s.id}`;
+  s.projectName = `punicodex-${s.id}`;
 }
 
 function sleep(ms) {

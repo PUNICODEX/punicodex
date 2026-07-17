@@ -1,4 +1,4 @@
-package com.punycodex.keyboard;
+package com.punicodex.keyboard;
 
 public class PaletteEntry {
     public final String character;

@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Central Archetype Database
+ * PuniCodex — Central Archetype Database
  * Handcrafted flagship temples only.
  * 74 handcrafted archetypes.
  */

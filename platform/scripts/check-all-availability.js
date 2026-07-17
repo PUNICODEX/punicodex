@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Bulk Availability Check
+ * PUNICODEX — Bulk Availability Check
  * Corrects punycodes and checks actual domain status for all entries.
  * Run: node platform/scripts/check-all-availability.js
  */
@@ -9,7 +9,7 @@ const path = require('node:path');
 const { domainToASCII } = require('node:url');
 const { checkBulk } = require('../api/availability-checker');
 
-const DB_PATH = path.join(__dirname, '..', 'db', 'punycodex.db');
+const DB_PATH = path.join(__dirname, '..', 'db', 'punicodex.db');
 const db = new Database(DB_PATH);
 
 db.exec(`
@@ -37,7 +37,7 @@ function generateRegistrarLinks(punycode) {
 }
 
 async function main() {
-  console.log('═══ PUNYCODEX Domain Availability Audit ═══\n');
+  console.log('═══ PUNICODEX Domain Availability Audit ═══\n');
 
   const entries = db.prepare('SELECT id, ascii, unicode FROM entries').all();
   console.log(`Checking ${entries.length} domains...\n`);

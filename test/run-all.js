@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Master Test Runner
+ * PuniCodex — Master Test Runner
  * Runs all Node.js test suites and reports combined results.
  * Run: node test/run-all.js
  */
@@ -198,7 +198,7 @@ let totalPass = 0;
 let _totalFail = 0;
 
 console.log(`${C.bold}╔══════════════════════════════════════════════════╗${C.reset}`);
-console.log(`${C.bold}║     PÚNYCODEX — Master Test Runner              ║${C.reset}`);
+console.log(`${C.bold}║     PuniCodex — Master Test Runner              ║${C.reset}`);
 console.log(`${C.bold}╚══════════════════════════════════════════════════╝${C.reset}`);
 
 for (const suite of SUITES) {

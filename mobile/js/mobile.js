@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX Type — Mobile PWA v2
+ * PuniCodex Type — Mobile PWA v2
  * Three modes: Type | Compose | History
  * Detail modal for rich entry exploration.
  * Robust clipboard with HTTP fallback.
@@ -8,7 +8,7 @@
 (function() {
     'use strict';
 
-    const engine = PUNYCODEX_ENGINE;
+    const engine = PUNICODEX_ENGINE;
     const trie = engine.buildTrie(LEXICON);
     const API_BASE = '';
 
@@ -139,9 +139,9 @@
     let dirVirtualItems = [];
 
     const STORAGE_KEYS = {
-        recent: 'punycodex_recent',
-        favorites: 'punycodex_favorites',
-        stats: 'punycodex_stats'
+        recent: 'punicodex_recent',
+        favorites: 'punicodex_favorites',
+        stats: 'punicodex_stats'
     };
 
     // ═══════════════════════════════════════════════
@@ -275,7 +275,7 @@
     }
 
     async function shareText(text, title) {
-        const shareData = { title: title || 'PÚNYCODEX', text };
+        const shareData = { title: title || 'PuniCodex', text };
         try {
             if (navigator.share) {
                 await navigator.share(shareData);
@@ -1181,7 +1181,7 @@
     composeShareBtn.addEventListener('click', async () => {
         const text = getConvertedText();
         if (!text.trim()) { showToast('Nothing to share'); return; }
-        const ok = await shareText(text, 'PÚNYCODEX');
+        const ok = await shareText(text, 'PuniCodex');
         if (!ok) {
             const copied = await copyToClipboard(text);
             showToast(copied ? 'Copied to clipboard' : 'Share unavailable');
@@ -1518,7 +1518,7 @@
         if (!kbdStatusBanner) return;
         kbdStatusBanner.className = 'keyboard-status-banner ' + (enabled ? 'enabled' : 'disabled');
         kbdStatusIcon.textContent = enabled ? '✓' : '◈';
-        kbdStatusText.textContent = enabled ? 'PÚNYCODEX keyboard is enabled' : 'PÚNYCODEX keyboard is not enabled';
+        kbdStatusText.textContent = enabled ? 'PuniCodex keyboard is enabled' : 'PuniCodex keyboard is not enabled';
 
         // Update setup steps
         const step1 = document.getElementById('setup-step-1');
@@ -1577,7 +1577,7 @@
     const totalSlides = onboardingSlides.length;
 
     function initOnboarding() {
-        const onboarded = localStorage.getItem('punycodex_onboarded');
+        const onboarded = localStorage.getItem('punicodex_onboarded');
         if (onboarded || !onboardingOverlay) return;
 
         // Show after a brief delay so the UI renders first
@@ -1605,7 +1605,7 @@
     function closeOnboarding() {
         if (!onboardingOverlay) return;
         onboardingOverlay.classList.add('hidden');
-        localStorage.setItem('punycodex_onboarded', '1');
+        localStorage.setItem('punicodex_onboarded', '1');
     }
 
     if (onboardingSkip) {

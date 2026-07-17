@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Scholarly Edition Security Middleware
+ * PuniCodex — Scholarly Edition Security Middleware
  *
  * Security headers, rate limiting, input validation, password-strength
  * validation, and audit logging helpers for the Scholars API.
@@ -96,7 +96,7 @@ class ScholarsRateLimiter {
 
     const now = Date.now();
     const windowStart = Math.floor(now / this.windowMs) * this.windowMs;
-    const redisKey = `punycodex:rl:scholars:${this.name}:${key}:${windowStart}`;
+    const redisKey = `punicodex:rl:scholars:${this.name}:${key}:${windowStart}`;
     const ttlSeconds = Math.ceil(this.windowMs / 1000);
 
     try {
@@ -162,7 +162,7 @@ const loginLimiter = new ScholarsRateLimiter({
  * @param {'public'|'auth'|'strict'} [options.tier='auth'] - Which limit bucket to use.
  */
 function createScholarsRateLimit(endpointName, { tier = 'auth' } = {}) {
-  if (process.env.PUNYCODEX_SCHOLARS_DISABLE_RATE_LIMIT === '1') {
+  if (process.env.PUNICODEX_SCHOLARS_DISABLE_RATE_LIMIT === '1') {
     return function noOpRateLimit(_req, _res, next) {
       next();
     };
@@ -245,7 +245,7 @@ function validateInputLength(fields) {
  * per-process in-memory windows otherwise.
  */
 function createLoginRateLimit() {
-  if (process.env.PUNYCODEX_SCHOLARS_DISABLE_RATE_LIMIT === '1') {
+  if (process.env.PUNICODEX_SCHOLARS_DISABLE_RATE_LIMIT === '1') {
     return function noOpLoginRateLimit(_req, _res, next) {
       next();
     };

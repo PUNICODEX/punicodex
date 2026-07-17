@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Performance & load tests for the Authenticity Shield.
+ * PuniCodex — Performance & load tests for the Authenticity Shield.
  *
  * Micro-benchmarks the core classification path locally. Full k6/Artillery
  * load tests live in test/load/k6-authenticity.js.

@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Expand select base temples into full flagship pages.
+ * PUNICODEX — Expand select base temples into full flagship pages.
  * Injects Name Variations, Mythology & Lore, Pronunciation, Symbols,
  * Syncretism, and Cultural Legacy sections into a generated base temple.
  *

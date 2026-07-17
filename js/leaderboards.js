@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX Leaderboards — render anonymized leaderboards.
+ * PUNICODEX Leaderboards — render anonymized leaderboards.
  */
 (function (global) {
   'use strict';

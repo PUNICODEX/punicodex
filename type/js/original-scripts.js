@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Original script resolution and provenance
+ * PuniCodex — Original script resolution and provenance
  *
  * The legacy lexicon stores the "original script" in a field named `greek`.
  * That works for Greek, Chinese, Japanese and Taoist entries, but for other
@@ -2249,7 +2249,7 @@ function getNoScriptNote(entry) {
   if (entry.pantheon && SCRIPTLESS_PANTHEONS.has(entry.pantheon)) {
     return `No indigenous writing system is securely attested for individual ${pantheon} names. The form shown is a modern scholarly transliteration.`;
   }
-  return `The original script for this ${pantheon} name has not yet been added to PUNYCODEX. The form shown is a scholarly transliteration.`;
+  return `The original script for this ${pantheon} name has not yet been added to PUNICODEX. The form shown is a scholarly transliteration.`;
 }
 
 // ═════════════════════════════════════════════════════════════════════════════

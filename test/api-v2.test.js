@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX API v2 — Integration tests
+ * PuniCodex API v2 — Integration tests
  */
 
 const assert = require('node:assert');
@@ -95,7 +95,7 @@ async function runTests() {
     const { status, body } = await invoke('GET', '/api/v2');
     assert.strictEqual(status, 200);
     assertEnvelope(body);
-    assert.strictEqual(body.data.name, 'PÚNYCODEX API v2');
+    assert.strictEqual(body.data.name, 'PuniCodex API v2');
   });
 
   await test('GET /api/v2/names returns paginated names', async () => {

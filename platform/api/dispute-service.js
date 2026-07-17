@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Brand Dispute Service
+ * PuniCodex — Brand Dispute Service
  *
  * Tracks, reviews, and appeals disputes raised against Brand Shield decisions.
  * Disputes are stored in SQLite and support the full review lifecycle.

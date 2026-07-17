@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PUNYCODEX — Deploy 43 Flagship Temples to Cloudflare Pages (Direct Upload)
+ * PUNICODEX — Deploy 43 Flagship Temples to Cloudflare Pages (Direct Upload)
  *
  * Corrects the previous broken approach by uploading local site folders
  * directly instead of expecting non-existent Git repos.
@@ -27,9 +27,9 @@ const DELAY_MS = 1200; // Stay under rate limits
 const ROOT = path.join(__dirname, '..');
 
 // ─── Load 42 flagships from database with correct punycodes ───
-// Skips helheimr (plain ASCII, user request) and punycodex (not a flagship)
+// Skips helheimr (plain ASCII, user request) and punicodex (not a flagship)
 function loadFlagships() {
-  const dbPath = path.join(ROOT, 'platform', 'db', 'punycodex.db');
+  const dbPath = path.join(ROOT, 'platform', 'db', 'punicodex.db');
   const Database = require('better-sqlite3');
   const db = new Database(dbPath);
 
@@ -262,7 +262,7 @@ async function verifyDomain(domain) {
 
 // ─── Main ───
 async function main() {
-  console.log('═══ PUNYCODEX Flagship Deployment ═══');
+  console.log('═══ PUNICODEX Flagship Deployment ═══');
   console.log(isDryRun ? '\n[DRY RUN] No changes will be made.\n' : '\n');
 
   // Load flagships

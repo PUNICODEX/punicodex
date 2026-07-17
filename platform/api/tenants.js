@@ -2,7 +2,7 @@
  * Tenant onboarding service.
  *
  * Handles creation, validation, and lease lifecycle of tenants on
- * PUNYCODEX domains. A tenant is a business that leases a Unicode domain
+ * PUNICODEX domains. A tenant is a business that leases a Unicode domain
  * and serves content on its front URL.
  */
 

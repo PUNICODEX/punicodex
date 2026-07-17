@@ -2,7 +2,7 @@
 'use strict';
 
 /**
- * PÚNYCODEX — Fix cross-tradition pollution in original-scripts-extra.json
+ * PuniCodex — Fix cross-tradition pollution in original-scripts-extra.json
  *
  * A bulk enrichment script incorrectly copied Avestan / Old Persian /
  * Zoroastrian (and a few other) scholarly sources and uncertainty notes into

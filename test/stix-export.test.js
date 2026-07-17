@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — STIX 2.1 Export Tests (Phase 18)
+ * PuniCodex — STIX 2.1 Export Tests (Phase 18)
  */
 
 const assert = require('node:assert');
@@ -7,7 +7,7 @@ const Database = require('better-sqlite3');
 const { prepareTestDb, cleanupTestDb } = require('./helpers/test-db.js');
 
 const testDbPath = prepareTestDb(__filename);
-process.env.PUNYCODEX_TEST_DB_PATH = testDbPath;
+process.env.PUNICODEX_TEST_DB_PATH = testDbPath;
 
 const db = new Database(testDbPath);
 db.pragma('foreign_keys = OFF');

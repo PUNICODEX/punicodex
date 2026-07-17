@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
 <link rel="stylesheet" href="/css/university-collaborators.css?v=2">
 <script src="/js/university-collaborators.js?v=2" defer></script>
-<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PUNYCODEX — Universal Unicode Search</title>
+  <title>PUNICODEX — Universal Unicode Search</title>
   <meta name="description" content="Search the Unicode web across sites, domains, lore, images, and scholarly sources.">
-  <link rel="canonical" href="https://punycodex.com/search-v2.html">
+  <link rel="canonical" href="https://punicodex.com/search-v2.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -25,10 +25,10 @@
   <header class="cn-header">
     <div class="cn-header-inner">
       <div class="cn-header-top">
-        <a href="/" class="cn-logo-row" aria-label="PUNYCODEX home">
+        <a href="/" class="cn-logo-row" aria-label="PUNICODEX home">
           <div class="cn-logo-seal">P</div>
           <div>
-            <div class="cn-logo-text">PUNYCODEX</div>
+            <div class="cn-logo-text">PUNICODEX</div>
             <div class="cn-logo-sub">Universal Unicode Search</div>
           </div>
         </a>
@@ -97,7 +97,7 @@
     let currentVertical = 'all';
     let currentCursor = null;
     let isLoading = false;
-    let sessionToken = localStorage.getItem('punycodex_search_session') || null;
+    let sessionToken = localStorage.getItem('punicodex_search_session') || null;
 
     function init() {
       verticalsEl.innerHTML = VERTICALS.map(v =>
@@ -175,7 +175,7 @@
         const data = await res.json();
         if (data.sessionToken) {
           sessionToken = data.sessionToken;
-          localStorage.setItem('punycodex_search_session', sessionToken);
+          localStorage.setItem('punicodex_search_session', sessionToken);
         }
         render(data, append);
       } catch (e) {
@@ -263,9 +263,9 @@
       }
 
       // Refresh premium interactions on new cards
-      if (window.PunyCodexEffects) {
-        window.PunyCodexEffects.initSpotlight('.cn-card');
-        window.PunyCodexEffects.initStagger('.cn-card', 0.04);
+      if (window.PuniCodexEffects) {
+        window.PuniCodexEffects.initSpotlight('.cn-card');
+        window.PuniCodexEffects.initStagger('.cn-card', 0.04);
       }
 
       renderSidebar(data.related || [], data.trending || []);
@@ -475,8 +475,8 @@
     init();
   </script>
 
-<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
 <div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
-<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
 </body>
 </html>

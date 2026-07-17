@@ -1,14 +1,14 @@
 /**
- * PUNYCODEX Browser Shell — Tab/omnibox/sidebar primitives.
+ * PUNICODEX Browser Shell — Tab/omnibox/sidebar primitives.
  * Used by platform/public/browser.html and can be wired into any page.
  */
 (function (global) {
   'use strict';
 
   const STORAGE_KEYS = {
-    history: 'punycodex_browser_history',
-    saved: 'punycodex_browser_saved',
-    workspaces: 'punycodex_workspaces',
+    history: 'punicodex_browser_history',
+    saved: 'punicodex_browser_saved',
+    workspaces: 'punicodex_workspaces',
   };
 
   function resolveInput(input) {

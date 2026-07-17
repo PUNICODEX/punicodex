@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Risk Feature Vector
+ * PuniCodex — Risk Feature Vector
  *
  * Computes a compact, synchronous feature vector for the Ensemble Risk
  * Classifier. All features are deterministic and cache-friendly.

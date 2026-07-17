@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Promote a base temple to a handcrafted flagship
+ * PuniCodex — Promote a base temple to a handcrafted flagship
  *
  * Usage:
  *   node scripts/promote-to-flagship.js <id> [--domain <domain>]

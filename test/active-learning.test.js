@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Active Learning Tests (Phase 14)
+ * PuniCodex — Active Learning Tests (Phase 14)
  */
 
 const assert = require('node:assert');
@@ -16,7 +16,7 @@ const { migrateMLOps } = require('../platform/db/migrate-mlops.js');
 const db = new Database(testDbPath);
 migrateMLOps({ db });
 
-process.env.PUNYCODEX_TEST_DB_PATH = testDbPath;
+process.env.PUNICODEX_TEST_DB_PATH = testDbPath;
 
 const activeLearning = require('../platform/api/active-learning.js');
 const { run, all, get, insert, closeDb } = require('../platform/db/operational.js');

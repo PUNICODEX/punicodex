@@ -1,4 +1,4 @@
--- PUNYCODEX — Enterprise Governance & Compliance Schema (Phase 10)
+-- PUNICODEX — Enterprise Governance & Compliance Schema (Phase 10)
 -- Standalone schema reference for tenants, RBAC, audit, and API keys v2.
 
 CREATE TABLE IF NOT EXISTS tenants (

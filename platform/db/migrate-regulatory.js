@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Regulatory, Legal & Abuse-Handling Schema Migration (Phase 16)
+ * PUNICODEX — Regulatory, Legal & Abuse-Handling Schema Migration (Phase 16)
  *
  * Idempotently applies platform/db/migrations/003_regulatory.sql.
  */

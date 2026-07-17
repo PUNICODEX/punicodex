@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Evidence Builder v2
+ * PuniCodex — Evidence Builder v2
  *
  * Constructs a defensible evidence object for every Name Authenticity Shield
  * verdict. The evidence object is suitable for SOC review, legal submission,

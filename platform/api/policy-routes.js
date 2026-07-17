@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Policy route handlers
+ * PuniCodex — Policy route handlers
  *
  * Shared by Express server.js and the API v2 catch-all router.
  */

@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Sync middleware.js DOMAIN_MAP with js/archetypes-v2.js
+ * PUNICODEX — Sync middleware.js DOMAIN_MAP with js/archetypes-v2.js
  *
  * Source of truth: js/archetypes-v2.js
  *

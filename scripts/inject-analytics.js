@@ -10,7 +10,7 @@
  * The first-party beacon (<script src="/js/analytics-beacon.js" defer>) is
  * ALWAYS injected. GA4/GSC tags are only added when the env vars are set.
  * Injection is idempotent: the previously injected block (between the
- * PUNYCODEX-ANALYTICS markers) is stripped before re-injecting.
+ * PUNICODEX-ANALYTICS markers) is stripped before re-injecting.
  */
 
 const fs = require('fs');
@@ -20,8 +20,8 @@ const ROOT = path.join(__dirname, '..');
 const GA_ID = process.env.GA_MEASUREMENT_ID;
 const GSC = process.env.GSC_VERIFICATION;
 
-const MARKER_START = '<!-- PUNYCODEX-ANALYTICS-START -->';
-const MARKER_END = '<!-- PUNYCODEX-ANALYTICS-END -->';
+const MARKER_START = '<!-- PUNICODEX-ANALYTICS-START -->';
+const MARKER_END = '<!-- PUNICODEX-ANALYTICS-END -->';
 const BEACON_TAG = '<script src="/js/analytics-beacon.js" defer></script>';
 
 function buildSnippet() {
@@ -46,6 +46,9 @@ function buildSnippet() {
 
 function walk(dir, callback) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    // Skip dot-directories (.backup, .git, …): stale snapshots must never be
+    // injected (their old markers would earn a second beacon block).
+    if (entry.name.startsWith('.')) continue;
     const fullPath = path.join(dir, entry.name);
     if (entry.isDirectory()) {
       walk(fullPath, callback);

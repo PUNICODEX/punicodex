@@ -6,7 +6,7 @@ const LEXICON_PATH = path.join(__dirname, '..', 'type', 'js', 'lexicon.js');
 const src = fs.readFileSync(LEXICON_PATH, 'utf8');
 
 const headerMatch = src.match(/\/\*[\s\S]*?\*\//);
-const header = headerMatch ? headerMatch[0] : '/* PUNYCODEX Lexicon */';
+const header = headerMatch ? headerMatch[0] : '/* PUNICODEX Lexicon */';
 
 const lexicon = vm.runInNewContext(`(function(){\n${src}\nreturn LEXICON;})()`);
 

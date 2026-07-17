@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Router / IoT DNS filter sample
+ * PuniCodex — Router / IoT DNS filter sample
  *
  * Minimal C stub showing how an embedded firmware module could call the
  * lightweight classifier before resolving a DNS name. Production firmware would
@@ -12,7 +12,7 @@
 #include <string.h>
 
 /* Placeholder: production builds would embed the full confusable map. */
-static int punycodex_classify(const char *name) {
+static int punicodex_classify(const char *name) {
     if (name == NULL || name[0] == '\0') {
         return 0; /* unknown / none */
     }
@@ -54,7 +54,7 @@ int main(void) {
 
     for (size_t i = 0; i < sizeof(tests) / sizeof(tests[0]); i++) {
         const char *name = tests[i];
-        int severity = punycodex_classify(name);
+        int severity = punicodex_classify(name);
         printf("%s -> %s\n", name, severity_name(severity));
     }
 

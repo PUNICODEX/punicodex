@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — SOC 2 Evidence Generator
+ * PUNICODEX — SOC 2 Evidence Generator
  *
  * Reads governance audit logs and tenant state, then writes a dated
  * evidence bundle to docs/soc2-evidence-YYYY-MM-DD.json.

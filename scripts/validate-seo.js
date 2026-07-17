@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — SEO Validation Script
+ * PUNICODEX — SEO Validation Script
  * Verifies schema.org, meta tags, and canonical URLs on all temple pages.
  */
 
@@ -54,8 +54,8 @@ function checkPage(entry) {
   if (!canonMatch) {
     errors.push({ id: entry.id, issue: 'Missing canonical URL' });
   } else {
-    const expectedRoot = `https://punycodex.com/${entry.id}/`;
-    const expectedSites = `https://punycodex.com/sites/${entry.id}/`;
+    const expectedRoot = `https://punicodex.com/${entry.id}/`;
+    const expectedSites = `https://punicodex.com/sites/${entry.id}/`;
     if (canonMatch[1] !== expectedRoot && canonMatch[1] !== expectedSites) {
       errors.push({ id: entry.id, issue: `Wrong canonical: ${canonMatch[1]}` });
     }

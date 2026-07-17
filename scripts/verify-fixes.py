@@ -26,8 +26,8 @@ for site in ['ab', 'akh', 'maa', 'muspellheimr']:
         if pat in content:
             print(f'  OK: {name}')
     
-    if 'PUNYCODEX' in text:
-        print('  OK: PUNYCODEX')
+    if 'PUNICODEX' in text:
+        print('  OK: PUNICODEX')
     
     # Check for remaining corruption
     corrupt_patterns = [

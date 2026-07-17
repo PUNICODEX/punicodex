@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Safety Corpus Regression Tests
+ * PuniCodex — Safety Corpus Regression Tests
  *
  * Guards the Phase 2 adversarial/safety instruction corpus.
  */

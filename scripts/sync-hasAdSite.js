@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Sync hasAdSite flags with built flagships
+ * PUNICODEX — Sync hasAdSite flags with built flagships
  *
  * Reads js/archetypes-v2.js to find all built flagships,
  * then ensures type/js/lexicon.js and js/archetypes-v2.js

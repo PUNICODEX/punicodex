@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — STIX 2.1 Threat-Intel Export (Phase 18)
+ * PUNICODEX — STIX 2.1 Threat-Intel Export (Phase 18)
  *
  * Exports discovered spoofs, blocked inputs, and spoof relationships as
  * STIX 2.1 bundles. Designed to be consumable by TAXII servers and SIEMs.
@@ -11,10 +11,10 @@ const { getDbPath } = require('../db/db');
 
 const DEFAULT_IDENTITY = {
   type: 'identity',
-  id: 'identity--punycodex-authenticity-shield',
-  name: 'PUNYCODEX Name Authenticity Shield',
+  id: 'identity--punicodex-authenticity-shield',
+  name: 'PUNICODEX Name Authenticity Shield',
   identity_class: 'organization',
-  contact_information: 'https://punycodex.com/about/authenticity.html',
+  contact_information: 'https://punicodex.com/about/authenticity.html',
 };
 
 function stixId(type) {
@@ -52,8 +52,8 @@ function createIndicator(spoof) {
     id,
     created: toStixTimestamp(spoof.first_seen),
     modified: toStixTimestamp(spoof.last_seen),
-    name: `PUNYCODEX spoof: ${spoof.input}`,
-    description: `PUNYCODEX classified ${spoof.input} (${spoof.input_type}) as ${spoof.verdict} with severity ${spoof.severity}.`,
+    name: `PUNICODEX spoof: ${spoof.input}`,
+    description: `PUNICODEX classified ${spoof.input} (${spoof.input_type}) as ${spoof.verdict} with severity ${spoof.severity}.`,
     pattern,
     pattern_type: 'stix',
     valid_from: toStixTimestamp(spoof.first_seen),
@@ -164,7 +164,7 @@ function exportBlockedInputs(options = {}) {
       id,
       created: toStixTimestamp(row.blocked_at),
       modified: toStixTimestamp(row.blocked_at),
-      name: `PUNYCODEX blocked input: ${row.input}`,
+      name: `PUNICODEX blocked input: ${row.input}`,
       description: `Blocked input of type ${row.type}. Reason: ${row.reason || 'not provided'}.`,
       pattern: `[domain-name:value = '${escapePattern(row.input)}']`,
       pattern_type: 'stix',
@@ -213,7 +213,7 @@ function exportRelationships(options = {}) {
       id,
       created: toStixTimestamp(row.discovered_at),
       modified: toStixTimestamp(row.discovered_at),
-      name: `PUNYCODEX relationship: ${row.input}`,
+      name: `PUNICODEX relationship: ${row.input}`,
       description: `Spoof relationship of type ${row.type} targeting ${row.target_identity_id || 'unknown'}.`,
       pattern: `[domain-name:value = '${escapePattern(row.input)}']`,
       pattern_type: 'stix',

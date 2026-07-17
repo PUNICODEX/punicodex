@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Canonical Identity Kernel 2.0 Migration
+ * PuniCodex — Canonical Identity Kernel 2.0 Migration
  *
  * Idempotent migration that creates the identity tables, upgrades the legacy
  * canonical_domains table, and seeds protected identities (brands + lexicon).

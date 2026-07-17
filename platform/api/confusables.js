@@ -1,5 +1,5 @@
 /**
- * Unicode confusable / homoglyph detection for PUNYCODEX.
+ * Unicode confusable / homoglyph detection for PUNICODEX.
  *
  * Unicode grants many ways to write visually identical or near-identical
  * strings (Latin "a" vs Cyrillic "а", Greek "ο" vs Latin "o", etc.).

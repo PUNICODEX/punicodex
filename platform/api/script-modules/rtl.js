@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Right-to-left attack detector
+ * PuniCodex — Right-to-left attack detector
  *
  * Detects bidirectional override characters that flip visual order, exposes
  * the logical vs. simplified visual order, and computes a risk score.

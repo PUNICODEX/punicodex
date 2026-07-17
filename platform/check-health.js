@@ -1,4 +1,4 @@
-const db = require('better-sqlite3')('db/punycodex.db');
+const db = require('better-sqlite3')('db/punicodex.db');
 const stats = {
   active: db.prepare("SELECT COUNT(*) as c FROM indexed_sites WHERE status='active'").get().c,
   punycode: db

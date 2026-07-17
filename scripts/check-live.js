@@ -1,4 +1,4 @@
-fetch('https://punycodex-main.vercel.app/js/archetypes.js')
+fetch('https://punicodex-main.vercel.app/js/archetypes.js')
 .then(r => r.text())
 .then(text => {
   const count = (text.match(/id:\s*"/g) || []).length;

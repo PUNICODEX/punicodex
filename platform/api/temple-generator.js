@@ -13,7 +13,7 @@ function generateTemple(entry) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${entry.unicode} — PUNYCODEX</title>
+  <title>${entry.unicode} — PUNICODEX</title>
   <style>
     :root {
       --bg: #0a0a0f;
@@ -122,7 +122,7 @@ function generateTemple(entry) {
 <body>
   <div class="container">
     <header>
-      <div class="logo">PUNYCODEX</div>
+      <div class="logo">PUNICODEX</div>
       <div class="unicode-name">${entry.unicode}</div>
       <div class="greek-name">${entry.greek || ''}</div>
       <div class="meta">
@@ -158,7 +158,7 @@ function generateTemple(entry) {
   </div>
 
   <div class="footer">
-    <p>Restored by <a href="https://punycodex.com">PUNYCODEX</a> — The Unicode Domain Authority</p>
+    <p>Restored by <a href="https://punicodex.com">PUNICODEX</a> — The Unicode Domain Authority</p>
     <p style="margin-top:0.5rem;">ASCII fallback: ${entry.ascii}.com</p>
   </div>
 </body>

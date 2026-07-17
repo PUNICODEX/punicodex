@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX Lexicon Expansion Batch 2
+ * PUNICODEX Lexicon Expansion Batch 2
  * Targeting major gaps: Chinese, more Greek/Hindu/Norse/Egyptian/Celtic/Japanese
  */
 

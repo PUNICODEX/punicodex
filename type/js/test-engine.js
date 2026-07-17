@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX Type — Engine Unit Test Suite
+ * PuniCodex Type — Engine Unit Test Suite
  * Run: node type/js/test-engine.js
  * Exit code 0 = all passed, 1 = any failed
  */
@@ -49,7 +49,7 @@ function section(name) {
 // ENGINE (production code under test)
 // ═══════════════════════════════════════════════════════════
 
-const PUNYCODEX_ENGINE = require('./engine');
+const PUNICODEX_ENGINE = require('./engine');
 const {
   buildTrie,
   getNodeForPrefix,
@@ -57,7 +57,7 @@ const {
   getValidNextChars,
   findExactMatches,
   findExactMatch,
-} = PUNYCODEX_ENGINE;
+} = PUNICODEX_ENGINE;
 
 const trie = buildTrie(LEXICON);
 

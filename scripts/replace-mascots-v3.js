@@ -9,7 +9,7 @@ const { spawnSync } = require('node:child_process');
 const ffmpeg = require('ffmpeg-static');
 
 const ROOT = path.join(__dirname, '..');
-const srcRoot = path.join(ROOT, 'extended flagship materials', 'punycodex');
+const srcRoot = path.join(ROOT, 'extended flagship materials', 'punicodex');
 const sitesDir = path.join(ROOT, 'sites');
 
 function run(args) {

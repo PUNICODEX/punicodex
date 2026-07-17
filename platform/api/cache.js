@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Result cache for the Authenticity Shield.
+ * PuniCodex — Result cache for the Authenticity Shield.
  *
  * Provides Redis-backed result caching with an in-memory fallback. Cache keys
  * are SHA-256 hashes of the normalized input, model version, and tenant policy
@@ -11,7 +11,7 @@
  *   - suspicious / deceptive / known-threat        → 5 minutes
  *
  * In test environments caching is disabled by default to avoid cross-test
- * staleness. Set PUNYCODEX_CACHE=1 to enable it explicitly in tests.
+ * staleness. Set PUNICODEX_CACHE=1 to enable it explicitly in tests.
  */
 
 const crypto = require('node:crypto');
@@ -28,8 +28,8 @@ let sweepTimer = null;
 let cacheStats = { hits: 0, misses: 0, sets: 0 };
 
 function isCacheEnabled() {
-  if (process.env.PUNYCODEX_CACHE_DISABLED === '1') return false;
-  if (process.env.PUNYCODEX_CACHE === '1') return true;
+  if (process.env.PUNICODEX_CACHE_DISABLED === '1') return false;
+  if (process.env.PUNICODEX_CACHE === '1') return true;
   // Default off in test environments to prevent cross-test interference.
   if (process.env.NODE_ENV === 'test') return false;
   return true;
@@ -144,7 +144,7 @@ async function setCachedResult(key, result, ttlSeconds) {
   const client = getRedisClient();
   if (client) {
     try {
-      await client.setex(`punycodex:cache:result:${key}`, ttl, JSON.stringify(result));
+      await client.setex(`punicodex:cache:result:${key}`, ttl, JSON.stringify(result));
       cacheStats.sets += 1;
     } catch (err) {
       console.error('[cache] Redis SETEX failed:', err.message);
@@ -177,7 +177,7 @@ async function invalidateCache(pattern = null) {
   try {
     if (!pattern) {
       // Flush only our application namespace.
-      const keys = await client.keys('punycodex:cache:result:*');
+      const keys = await client.keys('punicodex:cache:result:*');
       if (keys.length > 0) {
         await client.del(...keys);
       }

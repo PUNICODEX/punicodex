@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Search Engine Kernel v2 tests
+ * PuniCodex — Search Engine Kernel v2 tests
  */
 
 const assert = require('node:assert');

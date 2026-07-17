@@ -4,7 +4,7 @@
  * Changes:
  * 1. Remove justify-content: center from .nav-logo (left-align all logos)
  * 2. Set .nav-logo-img height to 128px (match zeus)
- * 3. Add global PUNYCODEX strip to temples missing it
+ * 3. Add global PUNICODEX strip to temples missing it
  * 4. Add top:40px offset to main-nav for temples getting the strip
  * 
  * Usage: node scripts/standardize-nav.js [--dry-run]
@@ -45,7 +45,7 @@ const ADD_STRIP_AND_SIZE = [
 const STRIP_HTML = `    <!-- Global Nav -->
     <div style="position:fixed;top:0;left:0;width:100%;z-index:1001;background:rgba(10,10,10,0.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.06);">
         <div style="max-width:1200px;margin:0 auto;padding:0.4rem clamp(1.5rem,5vw,3rem);display:flex;align-items:center;justify-content:space-between;">
-            <a href="/" style="font-family:'Cinzel',serif;font-size:0.8rem;font-weight:700;letter-spacing:0.15em;color:#D4AF37;text-decoration:none;">PUNYCODEX</a>
+            <a href="/" style="font-family:'Cinzel',serif;font-size:0.8rem;font-weight:700;letter-spacing:0.15em;color:#D4AF37;text-decoration:none;">PUNICODEX</a>
             <div style="display:flex;gap:1.5rem;">
                 <a href="/pantheon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Pantheon</a>
                 <a href="/lexicon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Lexicon</a>
@@ -192,7 +192,7 @@ function addGlobalStrip(html, site) {
   const bodyRe = /(<body>\n)(\s*<!--\s*[A-Za-z]+\s*Canvas\s*-->\n\s*<canvas)/;
   if (bodyRe.test(html)) {
     const newHtml = html.replace(bodyRe, `$1${STRIP_HTML}$2`);
-    logChange(site, 'HTML', 'added global PUNYCODEX strip');
+    logChange(site, 'HTML', 'added global PUNICODEX strip');
     return newHtml;
   }
 
@@ -200,7 +200,7 @@ function addGlobalStrip(html, site) {
   const bodySimpleRe = /(<body>\n)/;
   if (bodySimpleRe.test(html)) {
     const newHtml = html.replace(bodySimpleRe, `$1${STRIP_HTML}`);
-    logChange(site, 'HTML', 'added global PUNYCODEX strip (fallback)');
+    logChange(site, 'HTML', 'added global PUNICODEX strip (fallback)');
     return newHtml;
   }
 

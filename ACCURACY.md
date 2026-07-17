@@ -1,7 +1,7 @@
-# PUNYCODEX Accuracy Control Manual
+# PUNICODEX Accuracy Control Manual
 
 This document is the authoritative standard for the philological and technical
-accuracy of every entry in the PUNYCODEX lexicon. It exists so that future
+accuracy of every entry in the PUNICODEX lexicon. It exists so that future
 edits — whether made by humans or agents — are transparent, defensible, and
 verifiable.
 

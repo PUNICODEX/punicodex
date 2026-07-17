@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — SLO Metrics Module (Phase 20)
+ * PuniCodex — SLO Metrics Module (Phase 20)
  *
  * Defines service-level objectives and evaluates current compliance.
  * Lightweight and dependency-free so it can run at the edge or in tests.

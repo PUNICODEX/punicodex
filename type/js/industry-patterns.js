@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Canonical industry-pattern map
+ * PuniCodex — Canonical industry-pattern map
  *
  * Hand-curated mapping of real-world modern industries to the flagship entries
  * whose canonical domains, symbols, and mythology make the connection genuine.

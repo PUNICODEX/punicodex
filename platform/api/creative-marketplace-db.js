@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Creative Marketplace payment helpers
+ * PuniCodex — Creative Marketplace payment helpers
  *
  * Shared logic between the Stripe webhook handler and the marketplace router.
  */

@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX Authenticity Extension v2 — Options page
+ * PuniCodex Authenticity Extension v2 — Options page
  */
 
 import { getAll, set, reset, DEFAULTS } from '../shared/storage.js';

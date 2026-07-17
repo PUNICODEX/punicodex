@@ -6,7 +6,7 @@
 
 const assert = require('node:assert');
 
-process.env.PLATFORM_URL = 'https://punycodex.com';
+process.env.PLATFORM_URL = 'https://punicodex.com';
 
 const {
   escapeHtml,

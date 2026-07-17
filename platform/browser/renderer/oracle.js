@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — The Oracle
+ * PUNICODEX — The Oracle
  * Consult the Canon of 891 names. Works even when the Oracle is silent.
  */
 
@@ -50,7 +50,7 @@ const _Oracle = (function () {
     // Question-shaped queries go to the /api/oracle RAG endpoint.
     if (looksLikeQuestion(query)) {
       try {
-        const apiRes = await window.punycodex.apiGet(`/api/oracle/?q=${encodeURIComponent(query)}`);
+        const apiRes = await window.punicodex.apiGet(`/api/oracle/?q=${encodeURIComponent(query)}`);
         if (apiRes.ok && apiRes.data) {
           lastResults = [];
           renderOracleAnswer(apiRes.data);
@@ -63,12 +63,12 @@ const _Oracle = (function () {
 
     try {
       // Always search the local Canon first (works offline)
-      const local = await window.punycodex.lexiconSearch(query);
+      const local = await window.punicodex.lexiconSearch(query);
 
       // Attempt to enrich with server data (availability, sites)
       let enriched = local;
       try {
-        const apiRes = await window.punycodex.apiGet(
+        const apiRes = await window.punicodex.apiGet(
           `/api/search/?q=${encodeURIComponent(query)}&limit=20`
         );
         if (apiRes.ok && apiRes.data.entries) {
@@ -195,7 +195,7 @@ const _Oracle = (function () {
 
     // Try to load full entry from local Canon
     try {
-      const localEntry = await window.punycodex.lexiconEntry(entry.id);
+      const localEntry = await window.punicodex.lexiconEntry(entry.id);
       if (localEntry) {
         Sidebar.load(localEntry);
         Sidebar.showPanel('record');

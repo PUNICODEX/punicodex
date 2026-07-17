@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — Scientific & Philosophical Analogy Corpus Generator (Phase 13)
+ * PuniCodex — Scientific & Philosophical Analogy Corpus Generator (Phase 13)
  *
  * Builds a training corpus that teaches the AI to bridge ancient mythological
  * figures with modern scientific and philosophical concepts. Every analogy is
@@ -123,7 +123,7 @@ function buildLookupExamples(entries, scienceData, count, rng) {
 
     let output;
     if (disciplines.length === 0) {
-      output = `${e.unicode} does not yet have curated scientific or philosophical analogies in the PÚNYCODEX corpus. This is not a deficit; many figures resist modern translation without distorting their original meaning. We prefer silence over forced equivalence.`;
+      output = `${e.unicode} does not yet have curated scientific or philosophical analogies in the PuniCodex corpus. This is not a deficit; many figures resist modern translation without distorting their original meaning. We prefer silence over forced equivalence.`;
     } else {
       const lines = disciplines.map((d) => {
         const ms = grouped[d];

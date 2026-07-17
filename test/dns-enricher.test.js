@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — DNS Enricher Tests
+ * PuniCodex — DNS Enricher Tests
  */
 
 const assert = require('node:assert');

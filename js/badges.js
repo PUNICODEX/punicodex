@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX Badges — display and notification helper.
+ * PUNICODEX Badges — display and notification helper.
  */
 (function (global) {
   'use strict';

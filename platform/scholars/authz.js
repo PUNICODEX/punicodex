@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Scholarly Edition Authorization (RBAC)
+ * PuniCodex — Scholarly Edition Authorization (RBAC)
  *
  * B2B sponsorship model:
  * - Students submit edits only for temples/sections tied to their institution's

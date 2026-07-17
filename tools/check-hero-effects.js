@@ -1,5 +1,5 @@
 const { chromium } = require('playwright-core');
-const BASE = process.argv[2] || 'https://punycodex-main-pebt8502q-hekaverse.vercel.app';
+const BASE = process.argv[2] || 'https://punicodex-main-pebt8502q-hekaverse.vercel.app';
 const IDS = (process.argv[3] || 'zeus,demeter,hekate').split(',');
 
 (async () => {

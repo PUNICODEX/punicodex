@@ -1,4 +1,4 @@
--- PUNYCODEX — Enterprise Governance & Compliance Schema (Phase 10)
+-- PUNICODEX — Enterprise Governance & Compliance Schema (Phase 10)
 -- Idempotent. Run via platform/db/init.js or platform/db/migrate-enterprise-governance.js.
 
 CREATE TABLE IF NOT EXISTS tenants (

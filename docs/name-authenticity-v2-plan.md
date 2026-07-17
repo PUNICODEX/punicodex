@@ -1,4 +1,4 @@
-# PUNYCODEX Name Authenticity Shield — V2 Plan
+# PUNICODEX Name Authenticity Shield — V2 Plan
 ## From Academic Checker to an Unspoofable, Browser-Grade, Enterprise-Licensable Global Standard
 
 **Version:** 2.0-alpha  
@@ -27,7 +27,7 @@ The V1 implementation (committed as `f8aa45ee`) is a solid scholarly foundation.
 3. **No contextual script risk** — `Hermès` (Latin + legitimate combining grave) is not differentiated from `Hermès` with a Cyrillic `е` or Greek `ὲ` by context; the system relies on a small map.
 4. **No IDNA2008 / UTS #46 deep validation** — punycode edge cases (leading/trailing hyphen, label length, non-LDH, dotless-i, case folding) are not enforced.
 5. **No registrable-domain / eTLD awareness** — `apple.com.evil.com` and `xn--pple-wmc.com` are not distinguished robustly.
-6. **No brand / trademark corpus beyond the PUNYCODEX lexicon** — a major brand such as `Hermès`, `Nike`, `Apple`, `Google`, or `Tesla` is not modeled unless it happens to be a deity entry.
+6. **No brand / trademark corpus beyond the PUNICODEX lexicon** — a major brand such as `Hermès`, `Nike`, `Apple`, `Google`, or `Tesla` is not modeled unless it happens to be a deity entry.
 7. **No learned classifier** — the fixed 0.85 skeleton threshold can be gamed by subtle substitutions or contextual additions.
 8. **No adversarial test harness** — there is no red-team generator, no formal false-positive budget, no differential testing.
 9. **No browser-native SDK or enterprise policy layer** — the extension calls the website API, but there is no offline WASM model, no managed policy, no SIEM export.
@@ -68,7 +68,7 @@ Each phase below is intentionally exhaustive. Treat each as a mini-spec with its
 
 1.1. **Canonical Unicode confusable database (`platform/db/confusables.sqlite` or JSON)**
 - Ingest the **Unicode Confusables** table (UTR #39, `confusables.txt`) and the **Intentional Confusables** list.
-- Add PUNYCODEX-specific confusables not in the standard: combining diacritic stacks that mimic precomposed accents, math bold/fraktur/monospace variants, enclosed alphanumerics, fullwidth forms, small-capital forms, IPA lookalikes.
+- Add PUNICODEX-specific confusables not in the standard: combining diacritic stacks that mimic precomposed accents, math bold/fraktur/monospace variants, enclosed alphanumerics, fullwidth forms, small-capital forms, IPA lookalikes.
 - Store for each confusable:
   - `source_codepoint`, `target_codepoint` or `target_ascii`
   - `script_family`, `category` (homoglyph, near-homoglyph, stylistic, diacritic, invisible)
@@ -127,7 +127,7 @@ Each phase below is intentionally exhaustive. Treat each as a mini-spec with its
 
 ### Phase 2 — Canonical Identity Kernel 2.0
 
-**Objective:** Build a unified registry of *identities*: PUNYCODEX lexicon entries, owned canonical domains, registered brand names, and trademarked Unicode forms. The kernel must know that `Hermes` (ASCII brand), `Hermès` (French brand), and `Hermês` (Greek deity) are distinct legitimate identities and that a Cyrillic substitution in any of them is an attack.
+**Objective:** Build a unified registry of *identities*: PUNICODEX lexicon entries, owned canonical domains, registered brand names, and trademarked Unicode forms. The kernel must know that `Hermes` (ASCII brand), `Hermès` (French brand), and `Hermês` (Greek deity) are distinct legitimate identities and that a Cyrillic substitution in any of them is an attack.
 
 **Deliverables:**
 
@@ -157,7 +157,7 @@ CREATE INDEX idx_identities_unicode ON identities(unicode);
 2.2. **Identity matcher (`platform/api/identity-kernel.js`)**
 - `findIdentities(input, options)` returns all matching identities with match type (`exact`, `variant`, `folded`, `visual`, `domain`).
 - Support identity-level variants and aliases (e.g., `Hermes` and `Hermès` are linked under `hermes-brand` if the brand owns both).
-- Distinguish identity type in verdict reasoning: *"This impersonates the French trademark HERMÈS"* vs *"This impersonates the PUNYCODEX entry Hermês"*.
+- Distinguish identity type in verdict reasoning: *"This impersonates the French trademark HERMÈS"* vs *"This impersonates the PUNICODEX entry Hermês"*.
 
 2.3. **Owned / canonical domain registry v2**
 - Expand `canonical_domains` with:
@@ -165,14 +165,14 @@ CREATE INDEX idx_identities_unicode ON identities(unicode);
   - `registrar`, `registration_date`, `renewal_date`
   - `verification_method` (DNS TXT, HTTP file, WHOIS/RDAP, trademark office)
   - `status` (`active`, `expired`, `disputed`, `revoked`)
-- Import the existing PUNYCODEX owned-domain set and enrich with WHOIS/RDAP metadata.
+- Import the existing PUNICODEX owned-domain set and enrich with WHOIS/RDAP metadata.
 
 2.4. **Top-brand seed pack**
 - Seed the identity kernel with a curated, license-clean list of globally recognized brands (Hermès, Nike, Apple, Google, Microsoft, Amazon, Meta, Tesla, etc.) including their legitimate Unicode forms and common ASCII aliases.
 - Each seed entry carries provenance notes and a `do_not_serve` flag if licensing forbids public exposure; the classifier still uses it privately.
 
 2.5. **Lexicon linkage**
-- Every PUNYCODEX lexicon entry becomes an `identity` row of type `lexicon`.
+- Every PUNICODEX lexicon entry becomes an `identity` row of type `lexicon`.
 - `entry.variants` are normalized into `identity_aliases`.
 
 **Acceptance criteria:**
@@ -217,7 +217,7 @@ For every input, compute:
 - **Rule guardrails:** any invisible character in a hostname → at least medium; any Cyrillic/Latin homograph in a hostname → at least high.
 - **Gradient-boosted decision tree** (or logistic regression if model size matters) trained on:
   - Positive class: known phishing/homograph samples from OpenPhish, PhishTank, URLhaus, crawler discoveries.
-  - Negative class: PUNYCODEX lexicon, legitimate brand identities, common real names.
+  - Negative class: PUNICODEX lexicon, legitimate brand identities, common real names.
 - **Confidence calibration** with isotonic regression so output probabilities are reliable.
 - **Thresholds tuned to FPR < 0.001%** on a held-out legitimate set and TPR > 99.99% on a held-out deceptive set.
 
@@ -385,7 +385,7 @@ Return a typed tree:
 - Explicitly model:
   - ASCII brand: `Hermes` (German luxury holding / courier / common name)
   - Unicode trademark: `Hermès` (French maison, legitimate combining grave)
-  - Greek deity: `Hermês` (PUNYCODEX)
+  - Greek deity: `Hermês` (PUNICODEX)
 - Define disambiguation rules by context: domain owner, country, accompanying text.
 - A Cyrillic substitution in `Hermès` must flag as targeting the French trademark; a Latin-stripped `Hermes` must remain legitimate for the ASCII brand.
 
@@ -428,11 +428,11 @@ Return a typed tree:
 7.1. **WebAssembly core (`platform/wasm/`)**
 - Compile the confusable atlas, identity kernel, and lightweight ensemble to WASM via AssemblyScript or Rust.
 - Target size < 500 KB gzipped.
-- Expose C API and JS bindings (`@punycodex/authenticity-wasm`).
+- Expose C API and JS bindings (`@punicodex/authenticity-wasm`).
 - Browser extension ships the WASM bundle so classification is local-first.
 
 7.2. **JavaScript/TypeScript SDK (`sdk/js/`)**
-- `@punycodex/authenticity-sdk` npm package.
+- `@punicodex/authenticity-sdk` npm package.
 - Methods: `check(input)`, `checkBatch(inputs)`, `checkUrl(url)`, `on(tabUpdated)`, `configure(policy)`.
 - Offline mode uses WASM; online mode refreshes threat feed and identity registry.
 - Enterprise policy hooks:
@@ -485,7 +485,7 @@ Return a typed tree:
 8.1. **Streaming ingest (`platform/api/threat-stream.js`)**
 - Kafka / AWS Kinesis / Redis Streams adapter (pluggable).
 - Sources:
-  - PUNYCODEX crawler (every newly discovered xn-- domain)
+  - PUNICODEX crawler (every newly discovered xn-- domain)
   - Certificate Transparency log watchers
   - OpenPhish, PhishTank, URLhaus, GitHub phishing lists
   - User reports from extension + public page
@@ -950,7 +950,7 @@ Generate synthetic attacks:
 - React Native / Flutter wrappers.
 
 17.2. **Mobile UX**
-- Share-extension: paste any link from any app into the PUNYCODEX Authenticity Checker.
+- Share-extension: paste any link from any app into the PUNICODEX Authenticity Checker.
 - Keyboard integration: warn when typing or pasting a spoof into a text field.
 - App-attestation to prevent SDK tampering.
 
@@ -983,7 +983,7 @@ Generate synthetic attacks:
 
 ### Phase 18 — Certifications, Standards & Industry Adoption
 
-**Objective:** Make PUNYCODEX the reference implementation for Unicode name safety.
+**Objective:** Make PUNICODEX the reference implementation for Unicode name safety.
 
 **Deliverables:**
 
@@ -1010,7 +1010,7 @@ Generate synthetic attacks:
 **Acceptance criteria:**
 - SOC 2 Type II report available to enterprise customers.
 - Threat feed is consumable via STIX 2.1.
-- Public benchmark shows PUNYCODEX in top tier.
+- Public benchmark shows PUNICODEX in top tier.
 
 **Tests:**
 - `test/stix-export.test.js`
@@ -1208,4 +1208,4 @@ While the phases are numbered, the recommended execution order is:
 
 ---
 
-*Plan version 2.0 — PUNYCODEX Name Authenticity Shield.*
+*Plan version 2.0 — PUNICODEX Name Authenticity Shield.*

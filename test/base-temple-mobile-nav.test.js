@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Base Temple mobile navigation regression tests
+ * PuniCodex — Base Temple mobile navigation regression tests
  *
  * Ensures every non-flagship (generated) temple page has a global strip,
  * a compact base nav, and a working mobile hamburger menu. This prevents
@@ -66,15 +66,15 @@ test('CSS exposes base-nav layout and compact mobile height', () => {
 test('base temple generator loads px-core.js before temple-base.js', () => {
   const template = fs.readFileSync(TEMPLATE, 'utf8');
   assert.ok(
-    template.includes('https://punycodex.com/js/px-core.js'),
+    template.includes('https://punicodex.com/js/px-core.js'),
     'generate-temples.js must load px-core.js'
   );
   assert.ok(
-    template.includes('https://punycodex.com/js/temple-base.js'),
+    template.includes('https://punicodex.com/js/temple-base.js'),
     'generate-temples.js must load temple-base.js'
   );
-  const pxIdx = template.indexOf('https://punycodex.com/js/px-core.js');
-  const tbIdx = template.indexOf('https://punycodex.com/js/temple-base.js');
+  const pxIdx = template.indexOf('https://punicodex.com/js/px-core.js');
+  const tbIdx = template.indexOf('https://punicodex.com/js/temple-base.js');
   assert.ok(pxIdx < tbIdx, 'px-core.js must load before temple-base.js');
 });
 
@@ -160,7 +160,7 @@ test('base temple mobile menu contains expected sections', () => {
   }
 });
 
-test('base nav logo text does not duplicate the PUNYCODEX wordmark', () => {
+test('base nav logo text does not duplicate the PUNICODEX wordmark', () => {
   for (const id of ids.slice(0, 20)) {
     const $ = loadHomePage(id);
     assert.ok($, `${id}: home page missing`);

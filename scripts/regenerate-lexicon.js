@@ -45,7 +45,7 @@ ${bd}
 }).join(',\n');
 
 const newContent = `/*
- * PUNYCODEX Lexicon
+ * PUNICODEX Lexicon
  * ${clean.length} validated entries across 14 pantheons
  */
 

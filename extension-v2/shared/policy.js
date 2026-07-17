@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX Authenticity Extension v2 — Lightweight policy evaluator
+ * PuniCodex Authenticity Extension v2 — Lightweight policy evaluator
  */
 
 const DEFAULT_POLICY = Object.freeze({

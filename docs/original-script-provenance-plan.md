@@ -1,4 +1,4 @@
-# PUNYCODEX — Original Script Provenance Overhaul Plan
+# PUNICODEX — Original Script Provenance Overhaul Plan
 
 ## 0. Executive Summary / Diagnosis
 
@@ -321,4 +321,4 @@ Add CI gate:
 
 ---
 
-*Prepared for PUNYCODEX. Follows `ACCURACY.md` source hierarchy and `AGENTS.md` generated-output workflow.*
+*Prepared for PUNICODEX. Follows `ACCURACY.md` source hierarchy and `AGENTS.md` generated-output workflow.*

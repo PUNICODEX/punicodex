@@ -1,5 +1,5 @@
 /**
- * PUNYCODEX — Renderer Orchestrator
+ * PUNICODEX — Renderer Orchestrator
  * Coordinates the Inscription Field, the viewing pool, the Temple Record,
  * and the vessel's controls.
  */
@@ -12,15 +12,15 @@
   // ═══════════════════════════════════════════════════════════
 
   document.getElementById('winMinimize').addEventListener('click', () => {
-    window.punycodex.minimize();
+    window.punicodex.minimize();
   });
 
   document.getElementById('winMaximize').addEventListener('click', () => {
-    window.punycodex.maximize();
+    window.punicodex.maximize();
   });
 
   document.getElementById('winClose').addEventListener('click', () => {
-    window.punycodex.close();
+    window.punicodex.close();
   });
 
   // ═══════════════════════════════════════════════════════════
@@ -104,7 +104,7 @@
   const btnRetry = document.getElementById('btnRetryServer');
 
   async function checkServer() {
-    const res = await window.punycodex.apiHealth();
+    const res = await window.punicodex.apiHealth();
     if (res.ok) {
       serverOverlay.classList.add('hidden');
     } else {
@@ -115,7 +115,7 @@
   btnRetry.addEventListener('click', async () => {
     btnRetry.textContent = 'Rekindling...';
     btnRetry.disabled = true;
-    const restartRes = await window.punycodex.serverRestart();
+    const restartRes = await window.punicodex.serverRestart();
     if (restartRes.ok) {
       setTimeout(checkServer, 2000);
     } else {
@@ -124,8 +124,8 @@
     }
   });
 
-  if (window.punycodex.onServerDied) {
-    window.punycodex.onServerDied(() => {
+  if (window.punicodex.onServerDied) {
+    window.punicodex.onServerDied(() => {
       serverOverlay.classList.remove('hidden');
     });
   }
@@ -148,7 +148,7 @@
 
   async function init() {
     try {
-      const savedUrls = await window.punycodex.getSession();
+      const savedUrls = await window.punicodex.getSession();
       if (savedUrls.length > 0) {
         savedUrls.forEach((url, i) => {
           Tabs.createTab(url, i === savedUrls.length - 1);
@@ -159,7 +159,7 @@
     } catch (_e) {
       Tabs.createTab('http://localhost:3456/search.html', true);
     }
-    console.log('PUNYCODEX vessel initialized');
+    console.log('PUNICODEX vessel initialized');
   }
 
   init();

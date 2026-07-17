@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * PÚNYCODEX — Blog index tests
+ * PuniCodex — Blog index tests
  *
  * Validates the generated root blog index (blog/index.html, produced by
  * scripts/generate-blog-index.js): SEO head, analytics markers, JSON-LD
@@ -73,29 +73,29 @@ test('blog/index.html exists with a complete SEO head', () => {
   assert.ok(fs.existsSync(INDEX_PATH), 'expected blog/index.html to exist');
   const html = readIndex();
 
-  assert.match(html, /<title>Blog — 196 Unicode Restoration Essays \| PUNYCODEX<\/title>/);
+  assert.match(html, /<title>Blog — 196 Unicode Restoration Essays \| PUNICODEX<\/title>/);
   assert.match(html, /<meta name="description" content="[^"]+">/, 'missing meta description');
   assert.match(
     html,
-    /<link rel="canonical" href="https:\/\/punycodex\.com\/blog\/">/,
-    'canonical must be exactly https://punycodex.com/blog/'
+    /<link rel="canonical" href="https:\/\/punicodex\.com\/blog\/">/,
+    'canonical must be exactly https://punicodex.com/blog/'
   );
   assert.match(html, /<meta property="og:title"[^>]*>/, 'missing og:title');
   assert.match(html, /<meta property="og:description"[^>]*>/, 'missing og:description');
   assert.match(
     html,
-    /<meta property="og:url" content="https:\/\/punycodex\.com\/blog\/">/,
+    /<meta property="og:url" content="https:\/\/punicodex\.com\/blog\/">/,
     'missing og:url for /blog/'
   );
   assert.match(html, /<meta property="og:type" content="website"/, 'missing og:type website');
-  assert.match(html, /<meta property="og:site_name" content="PUNYCODEX"/, 'missing og:site_name');
+  assert.match(html, /<meta property="og:site_name" content="PUNICODEX"/, 'missing og:site_name');
   assert.match(html, /<meta name="twitter:card"/, 'missing twitter:card');
 });
 
 test('analytics markers are present', () => {
   const html = readIndex();
-  assert.match(html, /<!-- PUNYCODEX-ANALYTICS-START -->/, 'missing analytics start marker');
-  assert.match(html, /<!-- PUNYCODEX-ANALYTICS-END -->/, 'missing analytics end marker');
+  assert.match(html, /<!-- PUNICODEX-ANALYTICS-START -->/, 'missing analytics start marker');
+  assert.match(html, /<!-- PUNICODEX-ANALYTICS-END -->/, 'missing analytics end marker');
   assert.match(
     html,
     /<script src="\/js\/analytics-beacon\.js" defer><\/script>/,
@@ -108,7 +108,7 @@ test('JSON-LD is a CollectionPage with an ItemList of exactly 196 items', () => 
   const ld = extractJsonLd(readIndex());
   assert.ok(ld, 'JSON-LD is missing or invalid');
   assert.equal(ld['@type'], 'CollectionPage');
-  assert.equal(ld.url, 'https://punycodex.com/blog/');
+  assert.equal(ld.url, 'https://punicodex.com/blog/');
 
   const list = ld.mainEntity;
   assert.ok(list, 'JSON-LD missing mainEntity');
@@ -122,7 +122,7 @@ test('JSON-LD is a CollectionPage with an ItemList of exactly 196 items', () => 
     assert.equal(item['@type'], 'ListItem');
     assert.equal(item.position, i + 1, 'ListItem positions must be 1-based and sequential');
     assert.ok(typeof item.name === 'string' && item.name.length > 0, 'ListItem missing name');
-    const m = String(item.url).match(/^https:\/\/punycodex\.com\/sites\/([^/]+)\/blog\/$/);
+    const m = String(item.url).match(/^https:\/\/punicodex\.com\/sites\/([^/]+)\/blog\/$/);
     assert.ok(m, `ListItem url has unexpected shape: ${item.url}`);
     assert.ok(BUILT_SET.has(m[1]), `ListItem url points at non-built id: ${m[1]}`);
     seen.add(m[1]);
@@ -201,7 +201,7 @@ test('sitemap.xml contains /blog/', () => {
   const sitemap = fs.readFileSync(path.join(ROOT, 'sitemap.xml'), 'utf8');
   assert.match(
     sitemap,
-    /<loc>https:\/\/punycodex\.com\/blog\/<\/loc>/,
+    /<loc>https:\/\/punicodex\.com\/blog\/<\/loc>/,
     'sitemap.xml is missing the /blog/ entry'
   );
 });

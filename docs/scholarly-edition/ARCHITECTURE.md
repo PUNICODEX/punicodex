@@ -1,4 +1,4 @@
-# PÚNYCODEX Scholarly Edition — Reference Architecture
+# PuniCodex Scholarly Edition — Reference Architecture
 
 > Version 1.0.0 — Additive scholarly layer for 123 flagship temples.
 
@@ -6,7 +6,7 @@
 
 ## 1. Overview
 
-The Scholarly Edition is a separate layer that sits alongside existing PÚNYCODEX temples. It adds editable, attributable scholarly content without modifying canonical sources or the existing temple generation pipeline.
+The Scholarly Edition is a separate layer that sits alongside existing PuniCodex temples. It adds editable, attributable scholarly content without modifying canonical sources or the existing temple generation pipeline.
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -20,7 +20,7 @@ The Scholarly Edition is a separate layer that sits alongside existing PÚNYCODE
                                 │
                                 ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                  PÚNYCODEX Scholars Service                  │
+│                  PuniCodex Scholars Service                  │
 │  Auth · Edits · Reviews · History · Attribution · Search     │
 │         Neon PostgreSQL  ·  Redis  ·  Vercel Serverless       │
 └─────────────────────────────────────────────────────────────┘
@@ -207,7 +207,7 @@ Phase 2: university SSO via OAuth2/SAML.
 
 ---
 
-## 14. Integration with Existing PÚNYCODEX
+## 14. Integration with Existing PuniCodex
 
 - No changes to `type/js/lexicon.js` canonical source.
 - No changes to `js/archetypes-v2.js` except through existing governance.

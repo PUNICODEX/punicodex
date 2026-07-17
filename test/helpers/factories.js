@@ -2,7 +2,7 @@
  * Test factories for creating real rows in the isolated test database.
  *
  * All factories assume `prepareTestDb(__filename)` has already been called and
- * `process.env.PUNYCODEX_TEST_DB_PATH` is set.
+ * `process.env.PUNICODEX_TEST_DB_PATH` is set.
  */
 
 const crypto = require('node:crypto');

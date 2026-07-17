@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PÚNYCODEX — WebP conversion + picture markup updater.
+ * PuniCodex — WebP conversion + picture markup updater.
  *
  * Scans raster images referenced by the public site, converts missing or
  * stale PNG/JPG siblings to WebP (quality 85), and updates templates + HTML
@@ -237,8 +237,8 @@ function updateHtmlFile(filePath, dimCache) {
     '$1/assets/images/og-default.webp$2'
   );
   updated = updated.replace(
-    /"url":\s*"https:\/\/punycodex\.com\/assets\/images\/og-default\.svg"/gi,
-    '"url": "https://punycodex.com/assets/images/og-default.webp"'
+    /"url":\s*"https:\/\/punicodex\.com\/assets\/images\/og-default\.svg"/gi,
+    '"url": "https://punicodex.com/assets/images/og-default.webp"'
   );
 
   if (updated !== original) {

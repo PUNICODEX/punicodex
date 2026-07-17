@@ -1,5 +1,5 @@
 /**
- * PÚNYCODEX — Scholarly Edition Authentication
+ * PuniCodex — Scholarly Edition Authentication
  *
  * Phase 2: password-based authentication for students and institution admins.
  * Magic-link helpers are kept as deprecated compatibility shims.
@@ -23,7 +23,7 @@ const {
 
 const SESSION_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
 const MAGIC_TOKEN_TTL_MS = 15 * 60 * 1000; // 15 minutes
-const BCRYPT_ROUNDS = Number(process.env.PUNYCODEX_BCRYPT_ROUNDS) || 12;
+const BCRYPT_ROUNDS = Number(process.env.PUNICODEX_BCRYPT_ROUNDS) || 12;
 const MAX_LOGIN_ATTEMPTS = 5;
 
 // In-memory store for magic tokens until email provider is wired.

@@ -6,10 +6,10 @@ let src = fs.readFileSync(file, 'utf8');
 
 const block = `
   // ─── 0b. Defensive domains ─────────────────────────────────────────
-  // punicodex.com is a defensive typo domain -> redirect to punycodex.com
+  // punicodex.com is a defensive typo domain -> redirect to punicodex.com
   const DEFENSIVE_DOMAINS = new Set(['punicodex.com', 'www.punicodex.com']);
   if (DEFENSIVE_DOMAINS.has(host)) {
-    url.hostname = 'punycodex.com';
+    url.hostname = 'punicodex.com';
     return new Response(null, {
       status: 301,
       headers: {

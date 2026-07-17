@@ -1,4 +1,4 @@
-# PUNYCODEX Authenticity Shield — WordPress Plugin
+# PUNICODEX Authenticity Shield — WordPress Plugin
 
 Warns WordPress authors before publishing punycode or visually deceptive Unicode links.
 
@@ -11,14 +11,14 @@ Warns WordPress authors before publishing punycode or visually deceptive Unicode
 
 ## Installation
 
-1. Copy this directory to `wp-content/plugins/punycodex-authenticity/`.
+1. Copy this directory to `wp-content/plugins/punicodex-authenticity/`.
 2. Activate the plugin in WordPress Admin → Plugins.
 3. Create or edit a post containing a suspicious link to see the warning.
 
 ## Enterprise API
 
 For advanced classification, forensics reports, SIEM export, and enterprise
-policy, use the [PUNYCODEX Authenticity API](https://punycodex.com/api/v1/docs).
+policy, use the [PUNICODEX Authenticity API](https://punicodex.com/api/v1/docs).
 
 ## Development
 
@@ -32,4 +32,4 @@ npm run build
 
 ## License
 
-ISC — see `punycodex-authenticity.php` header.
+ISC — see `punicodex-authenticity.php` header.
