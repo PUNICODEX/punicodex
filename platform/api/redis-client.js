@@ -17,11 +17,21 @@ function hasRedisConfig() {
 }
 
 function createRedisClient() {
-  const client = new Redis(process.env.REDIS_URL, {
-    maxRetriesPerRequest: 1,
-    enableReadyCheck: false,
-    lazyConnect: true,
-  });
+  let client;
+  try {
+    client = new Redis(process.env.REDIS_URL, {
+      maxRetriesPerRequest: 1,
+      enableReadyCheck: false,
+      lazyConnect: true,
+    });
+  } catch (err) {
+    // A malformed REDIS_URL throws at construction time, before the error
+    // event can fire. Bad config must never take the site down: disable
+    // Redis and let callers fall back to the in-memory path instead.
+    console.error('[redis-client] invalid REDIS_URL, using in-memory fallback:', err.message);
+    disableRedis();
+    return null;
+  }
 
   client.on('error', (err) => {
     console.error('[redis-client] Redis connection error:', err.message);

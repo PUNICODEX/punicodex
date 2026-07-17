@@ -54,6 +54,7 @@ const SUITES = [
   { name: 'API Utils Tests', cmd: 'node test/api-utils.test.js' },
   { name: 'Client IP Tests', cmd: 'node test/client-ip.test.js' },
   { name: 'Rate Limiter Tests', cmd: 'node test/rate-limiter.test.js' },
+  { name: 'Redis Client Resilience Tests', cmd: 'node test/redis-client.test.js' },
   { name: 'Security Hardening Tests', cmd: 'node test/security-hardening.test.js' },
   { name: 'Safe JSON Tests', cmd: 'node test/safe-json.test.js' },
   { name: 'Operational DB Tests', cmd: 'node test/operational-db.test.js' },
