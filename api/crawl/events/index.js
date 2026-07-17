@@ -3,6 +3,25 @@ const {
   processPendingEvents,
 } = require('../../../platform/api/event-crawler-service');
 const { handleError, setCors, requireAdmin } = require('../../_utils');
+const { checkPublicRateLimitByReq } = require('../../../platform/api/public-rate-limiter');
+
+// Priority is caller-influenceable queue ordering (ASC = sooner). Clamp it to
+// a small integer range so a public caller cannot starve or jump the queue.
+const PRIORITY_MIN = 1;
+const PRIORITY_MAX = 10;
+const PRIORITY_DEFAULT = 5;
+
+function isNonEmptyString(value, maxLength) {
+  return typeof value === 'string' && value.trim().length > 0 && value.length <= maxLength;
+}
+
+function clampPriority(raw) {
+  if (raw == null) return { priority: PRIORITY_DEFAULT };
+  const value = Number(raw);
+  if (!Number.isFinite(value)) return { error: 'priority must be a number' };
+  const rounded = Math.round(value);
+  return { priority: Math.min(PRIORITY_MAX, Math.max(PRIORITY_MIN, rounded)) };
+}
 
 module.exports = async (req, res) => {
   setCors(req, res);
@@ -11,17 +30,34 @@ module.exports = async (req, res) => {
   try {
     // Public webhook for external domain-change notifications
     if (req.method === 'POST') {
-      const { source, domain, punycode, eventType, payload, priority } = req.body || {};
-      if (!domain || !source) {
-        return res.status(400).json({ error: 'domain and source are required' });
+      if (!(await checkPublicRateLimitByReq(req, res, 'crawl-events'))) return;
+
+      const body = req.body;
+      if (!body || typeof body !== 'object' || Array.isArray(body)) {
+        return res.status(400).json({ error: 'JSON object body required' });
       }
+      const { source, domain, punycode, eventType, payload, priority } = body;
+      if (!isNonEmptyString(domain, 255) || !isNonEmptyString(source, 100)) {
+        return res
+          .status(400)
+          .json({ error: 'domain and source are required and must be strings' });
+      }
+      if (punycode != null && !isNonEmptyString(punycode, 255)) {
+        return res.status(400).json({ error: 'punycode must be a string' });
+      }
+      if (eventType != null && !isNonEmptyString(eventType, 50)) {
+        return res.status(400).json({ error: 'eventType must be a string' });
+      }
+      const parsed = clampPriority(priority);
+      if (parsed.error) return res.status(400).json({ error: parsed.error });
+
       const id = enqueueEvent({
         source,
         domain,
         punycode,
         eventType: eventType || 'update',
         payload,
-        priority: priority != null ? Number(priority) : 5,
+        priority: parsed.priority,
       });
       return res.status(202).json({ id, status: 'pending' });
     }

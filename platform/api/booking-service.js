@@ -31,6 +31,20 @@ class BookingError extends Error {
   }
 }
 
+// Email verification codes are stored as SHA-256 hashes so a database read
+// (backup, logs, SQLi) never discloses a usable code. Comparison is done in
+// constant time against the hash of the candidate code.
+function hashVerificationCode(code) {
+  return crypto.createHash('sha256').update(String(code)).digest('hex');
+}
+
+function verificationCodeMatches(stored, candidate) {
+  const storedBuf = Buffer.from(String(stored || ''), 'utf8');
+  const candidateBuf = Buffer.from(hashVerificationCode(candidate), 'utf8');
+  if (storedBuf.length !== candidateBuf.length) return false;
+  return crypto.timingSafeEqual(storedBuf, candidateBuf);
+}
+
 function parseLeaseMonths(leaseMonths) {
   const months = parseInt(leaseMonths, 10) || 1;
   if (![1, 12].includes(months)) {
@@ -256,7 +270,7 @@ async function sendVerification(email) {
       VALUES ($1, $2, $3)
       ON CONFLICT (email) DO UPDATE SET code = EXCLUDED.code, expires_at = EXCLUDED.expires_at
     `,
-    [email, code, expires]
+    [email, hashVerificationCode(code), expires]
   );
 
   await emailSendVerificationCode({ email, code });
@@ -273,7 +287,7 @@ async function checkVerification(email, code) {
   if (new Date(row.expires_at) < new Date()) {
     throw new BookingError(400, 'Code expired. Please request a new one.');
   }
-  if (row.code !== code) throw new BookingError(400, 'Invalid code.');
+  if (!verificationCodeMatches(row.code, code)) throw new BookingError(400, 'Invalid code.');
 
   await run('DELETE FROM email_verifications WHERE email = $1', [email]);
   const verificationToken = await createVerifiedSession(email);

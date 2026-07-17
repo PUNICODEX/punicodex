@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNYCODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js" defer></script>
+<!-- PUNYCODEX-ANALYTICS-END -->
+
+<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
+<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Admin Portal — Applications | PÚNYCODEX</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../portal.css">
+</head>
+<body data-page="applications" data-depth="1">
+    <a class="skip-link" href="#portal-main">Skip to content</a>
+    <div id="portal-header"></div>
+
+    <main id="portal-main" class="portal-main">
+        <div class="portal-page-head">
+            <h1>Applications</h1>
+            <p>Unified queue: business lease applications (bookings) and university sponsorship applications.</p>
+        </div>
+
+        <section class="panel" aria-label="Application filters">
+            <div class="portal-form-row">
+                <div class="field">
+                    <label for="filter-kind">Kind</label>
+                    <select id="filter-kind">
+                        <option value="">All kinds</option>
+                        <option value="business">Business</option>
+                        <option value="university">University</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="filter-status">Status</label>
+                    <select id="filter-status">
+                        <option value="pending">Pending</option>
+                        <option value="">All statuses</option>
+                        <option value="approved">Approved</option>
+                        <option value="rejected">Rejected</option>
+                    </select>
+                </div>
+                <button type="button" class="btn btn-primary" id="filter-apply">Apply</button>
+            </div>
+        </section>
+
+        <section class="panel" aria-label="Application queue">
+            <div class="panel-head">
+                <h2 class="panel-title">Queue</h2>
+                <div id="pending-counts"></div>
+            </div>
+            <div id="apps-table">
+                <div class="state-block">Loading applications…</div>
+            </div>
+            <div class="portal-form-row" id="apps-pager" style="margin-top:1rem;" hidden>
+                <button type="button" class="btn btn-secondary btn-sm" id="apps-prev">← Previous</button>
+                <span class="field-hint" id="apps-page-label"></span>
+                <button type="button" class="btn btn-secondary btn-sm" id="apps-next">Next →</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="../portal.js"></script>
+    <script>
+    (function () {
+        var PAGE_SIZE = 50;
+        var state = { kind: '', status: 'pending', offset: 0 };
+
+        function permissionFor(kind) {
+            return kind === 'business' ? 'leasing' : 'scholars';
+        }
+
+        function isActionable(item) {
+            return item.status === 'pending' || item.status === 'pending_application';
+        }
+
+        function renderCounts(counts) {
+            counts = counts || {};
+            document.getElementById('pending-counts').innerHTML =
+                '<span class="badge badge--business">business pending: ' + Portal.fmtNumber(counts.business) + '</span> ' +
+                '<span class="badge badge--university">university pending: ' + Portal.fmtNumber(counts.university) + '</span>';
+        }
+
+        function renderTable(data) {
+            var wrap = document.getElementById('apps-table');
+            var items = data.items || [];
+            renderCounts(data.pendingCounts);
+            if (!items.length) {
+                wrap.innerHTML = '<div class="state-block">No applications match these filters.</div>';
+            } else {
+                var rows = items
+                    .map(function (item) {
+                        var canAct = isActionable(item) && Portal.can(permissionFor(item.kind));
+                        var actions = canAct
+                            ? '<button type="button" class="btn btn-sm btn-success" data-action="approve" data-kind="' + item.kind + '" data-id="' + item.id + '">Approve</button>' +
+                              '<button type="button" class="btn btn-sm btn-danger" data-action="reject" data-kind="' + item.kind + '" data-id="' + item.id + '">Reject</button>'
+                            : '<span class="cell-sub">—</span>';
+                        return (
+                            '<tr>' +
+                            '<td><span class="badge badge--' + item.kind + '">' + item.kind + '</span></td>' +
+                            '<td><div class="cell-title">' + Portal.escapeHtml(item.applicant || '—') + '</div>' +
+                            (item.websiteUrl ? '<div class="cell-sub">' + Portal.escapeHtml(item.websiteUrl) + '</div>' : '') +
+                            '</td>' +
+                            '<td>' + Portal.escapeHtml(item.contactEmail || '—') + '</td>' +
+                            '<td>' + Portal.escapeHtml(item.detail || '—') + '</td>' +
+                            '<td>' + Portal.statusBadge(item.status) + '</td>' +
+                            '<td>' + Portal.escapeHtml(Portal.fmtDate(item.createdAt)) + '</td>' +
+                            '<td><div class="cell-actions">' + actions + '</div></td>' +
+                            '</tr>'
+                        );
+                    })
+                    .join('');
+                wrap.innerHTML =
+                    '<div class="table-wrap"><table class="portal-table">' +
+                    '<thead><tr><th>Kind</th><th>Applicant</th><th>Contact</th><th>Detail</th><th>Status</th><th>Created</th><th>Actions</th></tr></thead>' +
+                    '<tbody>' + rows + '</tbody></table></div>';
+            }
+
+            var pager = document.getElementById('apps-pager');
+            pager.hidden = false;
+            document.getElementById('apps-page-label').textContent =
+                'Showing ' + items.length + ' · offset ' + data.offset;
+            document.getElementById('apps-prev').disabled = data.offset <= 0;
+            document.getElementById('apps-next').disabled = items.length < data.limit;
+        }
+
+        async function load() {
+            document.getElementById('apps-table').innerHTML = '<div class="state-block">Loading applications…</div>';
+            try {
+                var params = new URLSearchParams();
+                if (state.kind) params.set('kind', state.kind);
+                if (state.status) params.set('status', state.status);
+                params.set('limit', String(PAGE_SIZE));
+                params.set('offset', String(state.offset));
+                renderTable(await Portal.api('/api/admin/portal/applications/?' + params.toString()));
+            } catch (err) {
+                document.getElementById('apps-table').innerHTML =
+                    '<div class="state-block error">' + Portal.escapeHtml(err.message) + '</div>';
+            }
+        }
+
+        function showBusinessApproved(data) {
+            var url = data.stripeUrl || '';
+            Portal.openModal(
+                '<h2>Business Application Approved</h2>' +
+                '<p>Status is now <strong>pending_payment</strong>. Send the applicant this Stripe checkout link:</p>' +
+                '<div class="credential-box"><dl>' +
+                '<dt>Stripe URL</dt><dd><code>' + Portal.escapeHtml(url) + '</code></dd>' +
+                '</dl></div>' +
+                '<div class="modal-actions">' +
+                '<button type="button" class="btn btn-secondary" id="modal-close">Close</button>' +
+                '<button type="button" class="btn btn-primary" id="modal-copy">Copy Link</button>' +
+                '</div>',
+                'Business application approved'
+            );
+            document.getElementById('modal-close').addEventListener('click', Portal.closeModal);
+            document.getElementById('modal-copy').addEventListener('click', function () {
+                Portal.copyToClipboard(url, 'Stripe URL');
+            });
+        }
+
+        function showUniversityApproved(data) {
+            var lines = [
+                'Institution ID: ' + (data.institutionId != null ? data.institutionId : '—'),
+                'Admin ID: ' + (data.adminId != null ? data.adminId : '—'),
+                'Admin email: ' + (data.adminEmail || '—'),
+                'Temporary password: ' + (data.adminPassword || '—'),
+            ];
+            Portal.openModal(
+                '<h2>University Sponsorship Approved</h2>' +
+                '<p class="credential-warning">These credentials are shown exactly once. Copy them now and relay them to the institution out-of-band.</p>' +
+                '<div class="credential-box"><dl>' +
+                '<dt>Institution</dt><dd><code>' + Portal.escapeHtml(String(data.institutionId != null ? data.institutionId : '—')) + '</code></dd>' +
+                '<dt>Admin ID</dt><dd><code>' + Portal.escapeHtml(String(data.adminId != null ? data.adminId : '—')) + '</code></dd>' +
+                '<dt>Admin Email</dt><dd><code>' + Portal.escapeHtml(data.adminEmail || '—') + '</code></dd>' +
+                '<dt>Temp Password</dt><dd><code>' + Portal.escapeHtml(data.adminPassword || '—') + '</code></dd>' +
+                '</dl></div>' +
+                '<div class="modal-actions">' +
+                '<button type="button" class="btn btn-secondary" id="modal-close">Close</button>' +
+                '<button type="button" class="btn btn-primary" id="modal-copy-all">Copy All</button>' +
+                '</div>',
+                'University sponsorship approved'
+            );
+            document.getElementById('modal-close').addEventListener('click', Portal.closeModal);
+            document.getElementById('modal-copy-all').addEventListener('click', function () {
+                Portal.copyToClipboard(lines.join('\n'), 'Credentials');
+            });
+        }
+
+        function showRejectModal(kind, id) {
+            Portal.openModal(
+                '<h2>Reject ' + (kind === 'business' ? 'Business' : 'University') + ' Application</h2>' +
+                '<div class="field"><label for="reject-note">Note (optional)</label>' +
+                '<textarea id="reject-note" placeholder="Reason shown to the applicant / kept in the audit trail"></textarea></div>' +
+                '<div class="modal-actions">' +
+                '<button type="button" class="btn btn-secondary" id="modal-cancel">Cancel</button>' +
+                '<button type="button" class="btn btn-danger" id="modal-reject">Reject Application</button>' +
+                '</div>',
+                'Reject application'
+            );
+            document.getElementById('modal-cancel').addEventListener('click', Portal.closeModal);
+            document.getElementById('modal-reject').addEventListener('click', async function () {
+                var btn = this;
+                btn.disabled = true;
+                var note = document.getElementById('reject-note').value.trim();
+                var body = kind === 'business' ? { note: note } : { reviewComment: note };
+                try {
+                    await Portal.api('/api/admin/portal/applications/' + kind + '/' + id + '/reject/', {
+                        method: 'POST',
+                        body: body,
+                    });
+                    Portal.closeModal();
+                    Portal.toast('Application rejected', 'success');
+                    load();
+                } catch (err) {
+                    btn.disabled = false;
+                    Portal.toast('Reject failed: ' + err.message, 'error');
+                }
+            });
+        }
+
+        async function approve(kind, id) {
+            var label = kind === 'business' ? 'business lease' : 'university sponsorship';
+            if (!window.confirm('Approve this ' + label + ' application?')) return;
+            try {
+                var data = await Portal.api('/api/admin/portal/applications/' + kind + '/' + id + '/approve/', {
+                    method: 'POST',
+                    body: {},
+                });
+                if (kind === 'business') showBusinessApproved(data);
+                else showUniversityApproved(data);
+                load();
+            } catch (err) {
+                Portal.toast('Approve failed: ' + err.message, 'error');
+            }
+        }
+
+        async function init() {
+            var ctx = await Portal.initShell('applications');
+            if (!ctx) return;
+
+            document.getElementById('filter-apply').addEventListener('click', function () {
+                state.kind = document.getElementById('filter-kind').value;
+                state.status = document.getElementById('filter-status').value;
+                state.offset = 0;
+                load();
+            });
+            document.getElementById('apps-prev').addEventListener('click', function () {
+                state.offset = Math.max(0, state.offset - PAGE_SIZE);
+                load();
+            });
+            document.getElementById('apps-next').addEventListener('click', function () {
+                state.offset += PAGE_SIZE;
+                load();
+            });
+            document.getElementById('apps-table').addEventListener('click', function (e) {
+                var btn = e.target.closest('button[data-action]');
+                if (!btn) return;
+                var kind = btn.getAttribute('data-kind');
+                var id = btn.getAttribute('data-id');
+                if (btn.getAttribute('data-action') === 'approve') approve(kind, id);
+                else showRejectModal(kind, id);
+            });
+
+            load();
+        }
+
+        init();
+    })();
+    </script>
+
+<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+</body>
+</html>

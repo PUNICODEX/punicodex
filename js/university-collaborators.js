@@ -3,14 +3,19 @@
  *
  * Renders the universal pre-footer university sponsors section.
  * Edit the UNIVERSITY_COLLABORATORS array below to add real sponsors.
- * Empty slots are auto-generated up to MIN_EMPTY_SLOTS.
+ * When no sponsors are confirmed, a single quiet invitation row is shown.
  */
 
 (function () {
   'use strict';
 
-  const MIN_EMPTY_SLOTS = 4;
   const SPONSORSHIP_URL = '/university-sponsorship/';
+
+  const TIER_LABELS = {
+    founding: 'Founding Partner',
+    sponsoring: 'Sponsoring Institution',
+    contributing: 'Contributing Institution',
+  };
 
   // Add confirmed university collaborators here.
   const UNIVERSITY_COLLABORATORS = [
@@ -35,172 +40,88 @@
       .replace(/'/g, '&#39;');
   }
 
-  function buildFeaturedCard(sponsor, index) {
-    const isEmpty = !sponsor;
-    if (isEmpty) {
-      return `
-        <a href="${SPONSORSHIP_URL}" class="uc-card uc-card-empty">
-          <div class="uc-empty-icon">+</div>
-          <p class="uc-card-name">Reserve Your Place</p>
-          <p class="uc-card-tagline">Join partner institutions empowering student scholars and creators.</p>
-        </a>
-      `;
-    }
-
-    const logoHtml = sponsor.logo
-      ? `<img src="${escapeHtml(sponsor.logo)}" alt="${escapeHtml(sponsor.name)} logo" class="uc-card-logo" loading="lazy">`
-      : `<div class="uc-card-logo" style="display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--uc-gold)">Ψ</div>`;
-
-    const wrapperStart = sponsor.url ? `<a href="${escapeHtml(sponsor.url)}" target="_blank" rel="noopener" class="uc-card">` : '<div class="uc-card">';
-    const wrapperEnd = sponsor.url ? '</a>' : '</div>';
-
-    return `
-      ${wrapperStart}
-        ${logoHtml}
-        <p class="uc-card-name">${escapeHtml(sponsor.name)}</p>
-        ${sponsor.tagline ? `<p class="uc-card-tagline">${escapeHtml(sponsor.tagline)}</p>` : ''}
-      ${wrapperEnd}
-    `;
+  function monogram(name) {
+    const words = String(name)
+      .split(/\s+/)
+      .filter((w) => w && /[A-Za-z]/.test(w.charAt(0)))
+      .filter((w) => !/^(of|the|and|for|in|de)$/i.test(w));
+    const initials = (words.length ? words : [String(name)])
+      .slice(0, 2)
+      .map((w) => w.charAt(0).toUpperCase())
+      .join('');
+    return initials || 'Ψ';
   }
 
-  function buildMarquee(sponsors) {
-    if (!sponsors || sponsors.length === 0) return '';
-    const items = sponsors
-      .map((s) => {
-        if (!s.logo) return '';
-        const linkStart = s.url ? `<a href="${escapeHtml(s.url)}" target="_blank" rel="noopener">` : '<span>';
-        const linkEnd = s.url ? '</a>' : '</span>';
-        return `${linkStart}<img src="${escapeHtml(s.logo)}" alt="${escapeHtml(s.name)}" class="uc-marquee-logo" loading="lazy">${linkEnd}`;
-      })
-      .filter(Boolean)
-      .join('');
+  function tierLabel(tier) {
+    if (!tier) return '';
+    return TIER_LABELS[tier] || String(tier);
+  }
 
-    if (!items) return '';
+  function buildCard(sponsor) {
+    const logoHtml = sponsor.logo
+      ? `<img src="${escapeHtml(sponsor.logo)}" alt="" class="uc-card-logo" loading="lazy">`
+      : `<span class="uc-card-monogram" aria-hidden="true">${escapeHtml(monogram(sponsor.name))}</span>`;
 
-    // Duplicate for seamless loop.
+    const tier = tierLabel(sponsor.tier);
+    const tierHtml = tier ? `<p class="uc-card-tier">${escapeHtml(tier)}</p>` : '';
+    const taglineHtml = sponsor.tagline
+      ? `<p class="uc-card-tagline">${escapeHtml(sponsor.tagline)}</p>`
+      : '';
+
+    const inner = `
+        ${logoHtml}
+        <p class="uc-card-name">${escapeHtml(sponsor.name)}</p>
+        ${taglineHtml}
+        ${tierHtml}
+    `;
+
+    if (sponsor.url) {
+      return `<a href="${escapeHtml(sponsor.url)}" target="_blank" rel="noopener" class="uc-card" aria-label="${escapeHtml(sponsor.name)} — academic collaborator">${inner}</a>`;
+    }
+    return `<div class="uc-card">${inner}</div>`;
+  }
+
+  function buildInvitation() {
     return `
-      <div class="uc-marquee" aria-hidden="true">
-        <div class="uc-marquee-track">${items}${items}</div>
+      <div class="uc-invite">
+        <p class="uc-invite-text">
+          We are inviting a small number of universities to become founding academic
+          collaborators — mentoring the student scholars and creators who restore
+          these names.
+        </p>
+        <a href="${SPONSORSHIP_URL}" class="uc-invite-link">
+          Learn about university sponsorship <span aria-hidden="true">→</span>
+        </a>
       </div>
     `;
   }
 
   function renderStrip(container) {
-    const realSponsors = UNIVERSITY_COLLABORATORS.filter((s) => s && s.id && s.name);
-    const featuredSponsors = realSponsors.slice(0, 4);
-    const marqueeSponsors = realSponsors.slice(4);
-    const emptySlots = Math.max(MIN_EMPTY_SLOTS - featuredSponsors.length, 0);
-    const gridItems = [...featuredSponsors, ...Array(emptySlots).fill(null)];
+    const sponsors = UNIVERSITY_COLLABORATORS.filter((s) => s && s.id && s.name);
 
-    const marqueeHtml = marqueeSponsors.length > 0 ? buildMarquee(marqueeSponsors) : '';
+    const bodyHtml = sponsors.length
+      ? `<ul class="uc-grid" role="list">
+          ${sponsors.map((s) => `<li class="uc-grid-item">${buildCard(s)}</li>`).join('')}
+        </ul>
+        <p class="uc-footnote">
+          <a href="${SPONSORSHIP_URL}">Become a collaborator <span aria-hidden="true">→</span></a>
+        </p>`
+      : buildInvitation();
 
     container.innerHTML = `
-      <canvas class="uc-canvas" aria-hidden="true"></canvas>
       <div class="uc-inner">
         <div class="uc-header">
           <span class="uc-eyebrow">Scholarly Partnership</span>
-          <h2 class="uc-title">Academic <span class="accent">Collaborators</span></h2>
+          <h2 class="uc-title">Academic Collaborators</h2>
           <p class="uc-subtitle">
-            Partner institutions empowering the next generation of Unicode restoration.
-            Their students contribute to our <a href="/scholars/">Scholars</a> archive and
-            <a href="/creatives/">Creative</a> marketplace, turning ancient names into modern craft.
+            Partner institutions whose students contribute to the
+            <a href="/scholars/">Scholarly Edition</a> and the
+            <a href="/creatives/">Creative</a> marketplace.
           </p>
         </div>
-        <div class="uc-grid">
-          ${gridItems.map((s, i) => buildFeaturedCard(s, i)).join('')}
-        </div>
-        ${marqueeHtml}
-        <div class="uc-cta">
-          <a href="${SPONSORSHIP_URL}">Become a Collaborator <span aria-hidden="true">→</span></a>
-        </div>
+        ${bodyHtml}
       </div>
     `;
-
-    initCanvas(container.querySelector('.uc-canvas'));
-  }
-
-  function initCanvas(canvas) {
-    if (!canvas || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    let width, height;
-    let particles = [];
-    let animationId;
-    let isVisible = false;
-
-    function resize() {
-      const rect = canvas.parentElement.getBoundingClientRect();
-      width = rect.width;
-      height = rect.height;
-      canvas.width = width;
-      canvas.height = height;
-      particles = [];
-      const count = Math.min(Math.floor(width * height / 18000), 40);
-      for (let i = 0; i < count; i++) {
-        particles.push({
-          x: Math.random() * width,
-          y: Math.random() * height,
-          vx: (Math.random() - 0.5) * 0.25,
-          vy: (Math.random() - 0.5) * 0.25,
-          r: Math.random() * 1.5 + 0.5,
-        });
-      }
-    }
-
-    function draw() {
-      if (!isVisible) {
-        animationId = requestAnimationFrame(draw);
-        return;
-      }
-      ctx.clearRect(0, 0, width, height);
-      ctx.fillStyle = 'rgba(212, 175, 55, 0.35)';
-      ctx.strokeStyle = 'rgba(212, 175, 55, 0.08)';
-
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < 0 || p.x > width) p.vx *= -1;
-        if (p.y < 0 || p.y > height) p.vy *= -1;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fill();
-
-        for (let j = i + 1; j < particles.length; j++) {
-          const q = particles[j];
-          const dx = p.x - q.x;
-          const dy = p.y - q.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 90) {
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(q.x, q.y);
-            ctx.stroke();
-          }
-        }
-      }
-      animationId = requestAnimationFrame(draw);
-    }
-
-    function onVisibility(entries) {
-      isVisible = entries.some((e) => e.isIntersecting);
-    }
-
-    resize();
-    draw();
-
-    window.addEventListener('resize', resize, { passive: true });
-
-    const observer = new IntersectionObserver(onVisibility, { threshold: 0.1 });
-    observer.observe(canvas.parentElement);
-
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden && animationId) cancelAnimationFrame(animationId);
-      else if (!document.hidden) draw();
-    });
   }
 
   function init() {

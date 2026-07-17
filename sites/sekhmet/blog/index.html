@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,33 +170,198 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-egyptian-pantheon">The Egyptian Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>Why Sḫmt Belongs in the Address Bar</h1>
-<p>Every address bar is a choice. When you type <strong>Sḫmt</strong>, you are not typing a novelty; you are restoring a name. The plain ASCII form <em>sekhmet</em> is the leftover of a DNS that was built for English typewriters, not for the world&#39;s naming traditions. Sḫmt (sekhmet) — War, Vengeance, Healing · The Powerful One (Egyptian sḫmt) — belongs to the Egyptian tradition, where it is catalogued under the domain &quot;War, Vengeance, Healing&quot;. The name means &quot;The Powerful One (Egyptian sḫmt)&quot;. Sḫmt is the solar eye when it has had enough. A lioness-headed goddess crowned with the sun disk and uraeus, she is the most terrifying expression of divine force in Egypt: plague-bringer, battlefield devourer, and — paradoxically — one of the most skilled healers in the pantheon. Her priests were also physicians; her name means &#39;the powerful one,&#39; and power is rarely gentle. In the theology of Memphis and Thebes she belongs to the entourage of Ptah and Mut, yet her deepest affinity is with the sun. She is the eye of Re...</p>
-<h2>The Name the DNS Almost Forgot</h2>
-<p>The name is attested in Hieroglyphs as 𓃭. Etymologically it means &quot;The Powerful One (Egyptian sḫmt)&quot;. The ASCII form sekhmet survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Sḫmt recovers the full diacritic detail of the scholarly transliteration directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The letter-by-letter transformation runs: - s → S — Same - e → ḫ — H-with-breve: voiceless velar fricative - k → — — Dropped: merged into ḫ - h → — — Dropped: merged into ḫ - m → m — Same - e → — — Dropped: vowel not written - t → t — Same The... In scholarly terms, it belongs to the <strong>Tier 2</strong> class: the original preserves at least one philological feature that ASCII cannot encode. That detail is not decorative; it is the difference between a label and a lived name.</p>
-<h2>From Hieroglyphs to the Browser</h2>
-<p>The name is preserved in Hieroglyphs as 𓃭 — Egyptian hieroglyphic, attested Old Kingdom – Late Antiquity, c. 2600 BCE – 400 CE, in Egypt. The script is written right-to-left / top-to-bottom. The scholarly transliteration is Sḫmt (Egyptological conventional), giving the normalized reading Original vocalisation unknown; Egyptological /ˈsɛx.mɛt/.. The rendering proceeds step by step: - The Egyptian name is written 𓃭 in hieroglyphs. - Hieroglyphs combine logograms, phonograms, and determinatives; the exact function of each sign depends on context. - Egyptian writing does not record vowels; the vocalised form is a modern convention reconstructed from Coptic and Greek evidence. - The Unicode restoration Sḫmt uses Egyptological alef/ayin and other... The PÚNYCODEX temple does not invent a spelling; it recovers one. By registering the Unicode form, the project proves that the original script can survive inside the infrastructure of the modern web.</p>
-<h2>Why 2026 Still Needs This</h2>
-<p>In 2026, names are data. Search engines, AI training corpora, and localization teams all need authoritative forms. Sḫmt is a small but concrete demonstration that philology and DNS can coexist. The <a href="/sites/sekhmet/scholars/">Scholarly Edition</a> preserves the argument; the blog makes it approachable.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Sḫmt is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>Why Sḫmt belongs in your address bar</h1>
+<p>Every address bar is a choice. When you type <strong>Sḫmt</strong>, you are not typing a novelty; you are restoring a name that the early DNS, built for English typewriters, could not carry. The plain ASCII form <em>sekhmet</em> is a leftover of that constraint, not the name itself. This post is the long version of the restoration: where the name comes from, how the Hieroglyphs tradition wrote it, how it is pronounced, what the myths and the material record preserve, and why its Unicode form now lives as a working domain. The claim throughout is simple — the original spelling is not decoration. It is the name.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Sḫmt</li>
+  <li><strong>ASCII form:</strong> sekhmet</li>
+  <li><strong>Meaning:</strong> &quot;The Powerful One (Egyptian sḫmt)&quot;</li>
+  <li><strong>Domain of influence:</strong> War, Vengeance, Healing</li>
+  <li><strong>Pantheon:</strong> Egyptian</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> 𓃭 (Hieroglyphs)</li>
+  <li><strong>Live domain:</strong> sḫmt.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Sḫmt</strong> (<em>sekhmet</em>) — War, Vengeance, Healing · The Powerful One (Egyptian sḫmt) — belongs to the Egyptian tradition, where it is catalogued under the domain &quot;War, Vengeance, Healing&quot;. The name means &quot;The Powerful One (Egyptian sḫmt)&quot;.</p>
+<p><strong>Sḫmt</strong> is the solar eye when it has had enough. A lioness-headed goddess crowned with the sun disk and uraeus, she is the most terrifying expression of divine force in Egypt: plague-bringer, battlefield devourer, and — paradoxically — one of the most skilled healers in the pantheon. Her priests were also physicians; her name means &#39;the powerful one,&#39; and power is rarely gentle.</p>
+<p>In the theology of Memphis and Thebes she belongs to the entourage of Ptah and Mut, yet her deepest affinity is with the sun. She is the eye of Re that judges and burns, then returns pacified as Hathor. To know Sekhmet is to know that destruction and restoration can wear the same face.</p>
+<p>PÚNYCODEX restores the name as <strong>Sḫmt</strong> and serves its temple at <a href="https://xn--smt-b2y.com">sḫmt.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>sekhmet</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Hieroglyphs as <strong>𓃭</strong>. Etymologically it means &quot;The Powerful One (Egyptian sḫmt)&quot;.</p>
+<p>The ASCII form <em>sekhmet</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Sḫmt</strong> recovers the full diacritic detail of the scholarly transliteration directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>s</strong> → <strong>S</strong> — Same</li>
+  <li><strong>e</strong> → <strong>ḫ</strong> — H-with-breve: voiceless velar fricative</li>
+  <li><strong>k</strong> → <strong>—</strong> — Dropped: merged into ḫ</li>
+  <li><strong>h</strong> → <strong>—</strong> — Dropped: merged into ḫ</li>
+  <li><strong>m</strong> → <strong>m</strong> — Same</li>
+  <li><strong>e</strong> → <strong>—</strong> — Dropped: vowel not written</li>
+  <li><strong>t</strong> → <strong>t</strong> — Same</li>
+</ul>
+<p>The project holds the domain <strong>sḫmt.com</strong> (xn--smt-b2y.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Hieroglyphs as <strong>𓃭</strong> — Egyptian hieroglyphic, attested Old Kingdom – Late Antiquity, c. 2600 BCE – 400 CE, in Egypt. The script is written right-to-left / top-to-bottom.</p>
+<p>The scholarly transliteration is <em>Sḫmt</em> (Egyptological conventional), giving the normalized reading Original vocalisation unknown; Egyptological /ˈsɛx.mɛt/..</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The Egyptian name is written 𓃭 in hieroglyphs.</li>
+  <li>Hieroglyphs combine logograms, phonograms, and determinatives; the exact function of each sign depends on context.</li>
+  <li>Egyptian writing does not record vowels; the vocalised form is a modern convention reconstructed from Coptic and Greek evidence.</li>
+  <li>The Unicode restoration Sḫmt uses Egyptological alef/ayin and other registrable characters; the hieroglyphic form is not registrable in .com.</li>
+</ul>
+<p>The name is written s-ḫ-m-t, with the seated-lioness determinative (E6). The root sḫm means &#39;to be powerful&#39;; the final -t marks the feminine form. The ḫ is a voiceless velar fricative, rendered in PÚNYCODEX by h-breve (U+1E2B). Coptic preserves a late form Ⲥⲁⲭⲙⲓ (Sakhmi). Because the name is also the word for power, the registrable Sḫmt is at once a proper noun and a theological statement: this goddess <em>is</em> might.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/saxˈmaːt/</strong> — Egyptological Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>S-</strong> — Voiceless alveolar fricative [s], as in English &#39;sun&#39;.</li>
+  <li><strong>-a-</strong> — Short open vowel before the second consonant; vowels are not written in hieroglyphs.</li>
+  <li><strong>-ḫ-</strong> — Voiceless velar fricative [x], the &#39;kh&#39; of Scottish &#39;loch&#39;; written with h-breve (U+1E2B).</li>
+  <li><strong>-m-</strong> — Bilabial nasal [m], as in English &#39;moon&#39;.</li>
+  <li><strong>-aː-</strong> — Long stressed vowel in the feminine syllable; the length is inferred from Coptic and from nominal patterns.</li>
+  <li><strong>-t</strong> — Voiceless alveolar stop [t]; the feminine ending, often silent in later speech and reflected as -i in Coptic Ⲥⲁⲭⲙⲓ.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;sakh-MAHT&#39; — &#39;sakh&#39; as in &#39;Bach&#39; with an s, then &#39;maht&#39; with a long &#39;ah&#39; and a crisp or silent final t.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Coptic</strong> — Ⲥⲁⲭⲙⲓ (Sakhmi), a late reflex of the goddess&#39;s name</li>
+  <li><strong>Greek</strong> — Σαχμις (Sachmis), the Hellenized rendering</li>
+  <li><strong>Egyptian root</strong> — sḫm, &#39;to be powerful&#39;</li>
+</ul>
+<p>The name is the feminine form of the root sḫm, &#39;to be powerful&#39;. Hieroglyphs record S-ḫ-m-t; the vowels are reconstructed from Coptic Ⲥⲁⲭⲙⲓ and from Egyptian feminine-participle patterns. The ḫ is a voiceless velar fricative, not English &#39;k&#39;. In PUNYCODEX the Sḫmt spelling preserves the historic ḫ (U+1E2B) as a Tier 2 restoration; the ASCII fallback is &#39;sekhm(t)&#39;. Sources: Allen, Middle Egyptian (2014); Faulkner, A Concise Dictionary of Middle Egyptian, s.v. sḫm; Wörterbuch der ägyptischen Sprache IV, s.v. sḫm; Hoch, Semitic Words in Egyptian Texts (1994), on Egyptian ḫ in Semitic orthography.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Sekhmet&#39;s mythology is dominated by one stupendous story and its aftermath: the day the sun-god sent her to punish humanity, and the trick that turned genocide into festival.</p>
+<h3 id="the-destruction-of-mankind-book-of-the-heavenly-cow">The Destruction of Mankind (Book of the Heavenly Cow)</h3>
+<p>In the <em>Book of the Heavenly Cow</em>, Re grows old and learns that mankind plots against him. He sends Sekhmet, his eye, to destroy them. She rampages in leonine fury, and the land runs with blood. To stop her, Re has the gods brew vast quantities of beer and dye it red like blood. Sekhmet drinks it, becomes drunk, and her rage subsides; in her gentler form she is Hathor. The festival of drunkenness at Thebes commemorates this transformation.</p>
+<h3 id="daughter-of-re-consort-of-ptah-memphis">Daughter of Re, Consort of Ptah (Memphis)</h3>
+<p>At Memphis, Sekhmet is the daughter of Re and the consort of Ptah, forming a triad with Nefertem. As Ptah&#39;s fierce complement, she protects the Memphite cosmogony and the kingship it legitimizes. Her statues guarded the temple&#39;s thresholds.</p>
+<h3 id="mut-at-karnak-thebes">Mut at Karnak (Thebes)</h3>
+<p>In Theban theology, Sekhmet merges with Mut, consort of Amun-Ra. Hundreds of granite statues of Sekhmet — one for each day and night of the year — lined the Mut precinct at Karnak, ensuring that her protective gaze never slept.</p>
+<h3 id="the-physician-s-patron-healing">The Physician&#39;s Patron (Healing)</h3>
+<p>Medical papyri and temple inscriptions invoke Sekhmet against the demons of disease. Her priests were counted among Egypt&#39;s physicians; the goddess who sends fever is also the one who can revoke it.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography of Sḫmt concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>Lioness</strong> — Her primary form and the animal embodiment of solar ferocity</li>
+  <li><strong>Sun disk and uraeus</strong> — Her identity as the eye of Re, the burning emanation of the sun</li>
+  <li><strong>Papyrus scepter</strong> — The wand her seated statues from the Mut precinct grasp together with the ankh, pairing fertility with force</li>
+  <li><strong>Ankh</strong> — The life she can grant after she has taken it</li>
+  <li><strong>Red beer</strong> — The pacifying drink of the Destruction of Mankind, dyed to look like blood, that turned her rage into festival</li>
+  <li><strong>Arrow</strong> — The plague and punishment she sends as Re&#39;s messenger</li>
+  <li><strong>Fire and desert wind</strong> — Her breath; the scorching south wind was called the breath of Sekhmet.</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>The most striking material witnesses are the hundreds of granodiorite statues of Sekhmet commissioned by Amenhotep III — Egyptological tradition reckons them as one for each day and night of the year — for his mortuary temple at Kom el-Hetan and for the Mut precinct at Karnak, where they ensured that her protective gaze never slept; hundreds remain in situ, and the rest fill museum galleries from the British Museum and the Louvre to Turin. Bronze amulets, votive ears, and healing stelae come from Saqqara, Memphis, and Deir el-Medina, evidence of her double clientele among the sick and the frightened. The Book of the Heavenly Cow, her defining narrative, survives on the gilded outermost shrine of Tutankhamun (KV62) and on the walls of the tombs of Seti I (KV17), Tausret (KV14), and Ramesses VI (KV9) — a royal text that placed the near-destruction of mankind inside the king&#39;s own burial.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p><strong>Sḫmt</strong> is the solar eye when it has had enough. A lioness-headed goddess crowned with the sun disk and uraeus, she is the most terrifying expression of divine force in Egypt: plague-bringer, battlefield devourer, and — paradoxically — one of the most skilled healers in the pantheon. Her priests were also physicians; her name means &#39;the powerful one,&#39; and power is rarely gentle.</p>
+<p>In the theology of Memphis and Thebes she belongs to the entourage of Ptah and Mut, yet her deepest affinity is with the sun. She is the eye of Re that judges and burns, then returns pacified as Hathor. To know Sekhmet is to know that destruction and restoration can wear the same face.</p>
+<h3 id="the-eye-of-ra">The Eye of Ra</h3>
+<p>She is the sun-god&#39;s burning gaze, sent to punish rebellion and to protect cosmic order.</p>
+<h3 id="destroyer-of-mankind">Destroyer of Mankind</h3>
+<p>The Destruction of Mankind myth tells how Re unleashed her and almost lost control.</p>
+<h3 id="lady-of-life">Lady of Life</h3>
+<p>Her priests practiced medicine; spells invoke Sekhmet to turn away disease and poison.</p>
+<h3 id="fire-and-fever">Fire and Fever</h3>
+<p>Heat, fever, and the parching wind of the desert are hers; so is their relief.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Sekhmet and Hathor are two sides of the same solar eye: the destroyer and the lover, the lioness and the cow. In Thebes she fuses with Mut; in Memphis with Bastet and Wadjet as protective forces. The Greeks sometimes compared her to Athena for her martial aspect, but the comparison is inexact: Athena is strategist, Sekhmet is conflagration. Later magical texts from Roman Egypt invoke her under Greek names and with syncretic attributes, blending her lion-roar with the names of Jewish and Greek angels. In modern goddess spirituality she has become the archetype of the angry, healing feminine.</p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include [[kali|Kālī]] (war / destruction), [[anat|ꜥAnat]] (war / battle), [[ares|Árēs]] (war / battle), [[ashur|Aššur]] (war / battle), [[athena|Athénā]] (war / battle), and [[durga|Durgā]] (war / battle).</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Sekhmet strides through modern culture as the goddess of righteous rage and embodied power. Her sculptural afterlife is unmatched by any other Egyptian goddess: the hundreds of granodiorite statues Amenhotep III commissioned now fill galleries from the British Museum and the Louvre to Turin&#39;s Museo Egizio, making her lioness head one of the most familiar faces of Egyptian art in the West. She appears in fantasy games, novels, and Neopagan ritual as a lioness-warrior and healer, and medical and wellness communities sometimes invoke her name for protective energy. Scholars of ancient medicine study her priesthood as an early example of temple-based healing: the medical papyri address the &#39;priest of Sekhmet&#39; alongside the physician as a practitioner of diagnosis and treatment. At a time when female anger is still policed, Sekhmet offers an ancient precedent: a goddess whose fury is not pathology but the immune system of the cosmos.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Sḫmt given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Allen, Middle Egyptian (2014).</li>
+  <li> Faulkner, A Concise Dictionary of Middle Egyptian, s.v. sḫm.</li>
+  <li> Wörterbuch der ägyptischen Sprache IV, s.v. sḫm.</li>
+  <li> Lichtheim, Ancient Egyptian Literature, vol. 2.</li>
+  <li> Hornung, The Ancient Egyptian Books of the Afterlife.</li>
+  <li> Book of the Heavenly Cow.</li>
+  <li> Papyrus Ebers.</li>
+  <li> Robins, Women in Ancient Egypt.</li>
+  <li> Teeter, Religion and Ritual in Ancient Egypt.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Sekhmet teaches that the same fire that burns also sterilizes. She is not a goddess of controlled, domesticated warmth; she is the wild heat that purifies by destroying what cannot survive it. In that sense she is a frightening model of justice: not patient deliberation but swift, blazing consequence.</p>
+<p>Yet her story turns on mercy. The beer that dyes the sand red is a divine joke, but it is also a profound insight: rage can be transformed, not by force, but by intoxication, festival, and the refusal to keep feeding it. Sekhmet wakes us from the fantasy that anger must either be denied or obeyed. It can be honored, poured out, and allowed to fall asleep in the lap of Hathor.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Sḫmt is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>sekhmet</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 7 characters of the name, the restoration adjusts 4: 4 further adjustments (ḫ, k, h, e). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>sekhmet</em> to <strong>Sḫmt</strong>, one character at a time:</p>
+<ul>
+  <li><strong>s</strong> → <strong>S</strong> — Same</li>
+  <li><strong>e</strong> → <strong>ḫ</strong> — H-with-breve: voiceless velar fricative</li>
+  <li><strong>k</strong> → <strong>k</strong> — Dropped: merged into ḫ</li>
+  <li><strong>h</strong> → <strong>h</strong> — Dropped: merged into ḫ</li>
+  <li><strong>m</strong> → <strong>m</strong> — Same</li>
+  <li><strong>e</strong> → <strong>e</strong> — Dropped: vowel not written</li>
+  <li><strong>t</strong> → <strong>t</strong> — Same</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>sḫmt.com</strong>, which the DNS carries in punycode form as xn--smt-b2y.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Sḫmt; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Hieroglyphs can now be typed into any browser on earth.</p>
+<h2 id="the-egyptian-pantheon">The Egyptian Pantheon</h2>
+<p>Sḫmt is one of 66 entries the PÚNYCODEX lexicon catalogues under the Egyptian pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Sḫmt mean?</strong> The traditional gloss is &quot;The Powerful One (Egyptian sḫmt).&quot;</p>
+<p><strong>Which tradition does Sḫmt belong to?</strong> Sḫmt is catalogued in the Egyptian pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Sḫmt classified as Tier 2?</strong> Because the original preserves at least one philological feature that ASCII cannot encode — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Sḫmt a working domain?</strong> Yes — sḫmt.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for sḫmt.com?</strong> The DNS encoding is xn--smt-b2y.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Restoring <strong>Sḫmt</strong> is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. Every section of this post — the script, the sound, the myths, the evidence — converges on the same point: the marks in Sḫmt are information, and information deserves an address of its own. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier, and every visit to sḫmt.com is a vote for the restored form.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/taweret/">Tꜣwrt</a></li>
   <li><a href="/sites/ab/">Ꜣb</a></li>
   <li><a href="/sites/apep/">Ꜥpp</a></li>
 </ul>
-<h2>Read More</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.cambridge.org/">James P. Allen, Middle Egyptian: An Introduction to the Language and Culture of Hieroglyphs, Cambridge University Press, 2000.</a></li>
+  <li>Allen, Middle Egyptian (2014).</li>
+  <li>Faulkner, A Concise Dictionary of Middle Egyptian, s.v. sḫm.</li>
+  <li>Wörterbuch der ägyptischen Sprache IV, s.v. sḫm.</li>
+  <li>Wilkinson, The Complete Gods and Goddesses of Ancient Egypt (2003), s.v. Sekhmet.</li>
+  <li>Lexicon authorities for this entry: Faulkner, Wb.</li>
 </ul>
-<h2>What the Sources Record</h2>
-<p>Sḫmt is the solar eye when it has had enough. A lioness-headed goddess crowned with the sun disk and uraeus, she is the most terrifying expression of divine force in Egypt: plague-bringer, battlefield devourer, and — paradoxically — one of the most skilled healers in the pantheon. Her priests were also physicians; her name means &#39;the powerful one,&#39; and power is rarely gentle. In the theology of Memphis and Thebes she belongs to the entourage of Ptah and Mut, yet her deepest affinity is with the sun. She is the eye of Re that judges and burns, then returns pacified as Hathor. To know Sekhmet is to know that destruction and restoration can wear the same face. ### The Eye of Ra She is the sun-god&#39;s burning gaze, sent to punish rebellion and to protect...</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">egyptian</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

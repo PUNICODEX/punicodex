@@ -7,6 +7,7 @@ const {
 } = require('../../platform/api/daily-challenge');
 const { getLeaderboards } = require('../../platform/api/leaderboards');
 const { getSessionToken, getOrCreateSession } = require('../../platform/api/search-v2');
+const { checkPublicRateLimitByReq } = require('../../platform/api/public-rate-limiter');
 const { handleError, setCors } = require('../_utils');
 
 const ENTRIES = loadEntries();
@@ -56,6 +57,7 @@ module.exports = async (req, res) => {
     }
 
     if (req.method === 'POST') {
+      if (!(await checkPublicRateLimitByReq(req, res, 'gamification-write'))) return;
       const { action } = req.body || {};
 
       if (action === 'xp') {

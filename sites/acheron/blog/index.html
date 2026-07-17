@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,45 +170,172 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>16 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#epithets-cult-titles">Epithets &amp; Cult Titles</a></li>
+                <li><a href="#the-homeric-hymns">The Homeric Hymns</a></li>
+                <li><a href="#oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>The Name Achérōn and the World It Opens</h1>
-<p>A name is a door. Achérōn opens onto river of woe. Achérōn (Greek Ἀχέρων; ASCII acheron) is the River of Woe: the boundary stream of the Greek underworld across which the dead are ferried, and at the same time a real river of Thesprotia in Epirus whose dark, partly subterranean course convinced the Greeks that here the upper world touched the lower. Its first and defining attestation is Homeric: Circe directs Odysseus to the place &#39;where into Acheron flow Pyriphlegethon and Cocytus, a branch of the water of Styx, and there is a rock where the two loud-roaring rivers meet&#39;. Plato&#39;s Phaedo gives the fullest ancient map — Acheron flowing opposite Oceanus, under the earth, into the Acherusian Lake, where the souls of the dead gather, dwell, and are purified. The historical river had its own underworld...</p>
-<h2>Domain and Meaning</h2>
-<p>The temple domain is <strong>River of Woe</strong>. The traditional meaning is &quot;River of woe.&quot; Together, those two facts explain why the name mattered enough to be remembered for millennia.</p>
-<h2>The Mythic Landscape</h2>
-<p>Achérōn is less a character than a place of passage . Its mythology is the geography of death: where the rivers flow, who ferries the dead, and what must be left behind. Myth is the memory of a civilization, and names are the hooks on which that memory hangs.</p>
-<h2>Modern Patterns</h2>
-<p>The <a href="/sites/acheron/patterns/">Patterns</a> page maps the industries and sister temples that share Achérōn&#39;s current. A name that once organized ritual now organizes search, advertising, and creative collaboration.</p>
-<h2>Join the Restoration</h2>
-<p>You can support the work through the <a href="/sites/acheron/patron/">Patron</a> wall, submit creative work, or simply share the address. Every visit to Achérōn is a vote for original scripts.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Achérōn is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>The name Achérōn and the world it opens</h1>
+<p>A name is a door. <strong>Achérōn</strong> opens onto an entire world: the domain of river of woe, a Greek tradition, and centuries of storytelling, worship, and scholarship. This post walks through that world room by room — the name and its roots, the original script, the sound of it, the myths, the symbols, the sites, the afterlife across cultures — and ends at the newest room of all: a Unicode domain that makes the whole structure addressable. <em>acheron</em> gets you to the same building, but only the restored form tells you why it was built.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Achérōn</li>
+  <li><strong>ASCII form:</strong> acheron</li>
+  <li><strong>Meaning:</strong> &quot;River of woe&quot;</li>
+  <li><strong>Domain of influence:</strong> River of Woe</li>
+  <li><strong>Pantheon:</strong> Greek</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Original script:</strong> Ἀχέρων (Greek)</li>
+  <li><strong>Live domain:</strong> achérōn.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Achérōn</strong> (Greek <strong>Ἀχέρων</strong>; ASCII <em>acheron</em>) is the River of Woe: the boundary stream of the Greek underworld across which the dead are ferried, and at the same time a real river of Thesprotia in Epirus whose dark, partly subterranean course convinced the Greeks that here the upper world touched the lower. Its first and defining attestation is Homeric: Circe directs Odysseus to the place &#39;where into Acheron flow Pyriphlegethon and Cocytus, a branch of the water of Styx, and there is a rock where the two loud-roaring rivers meet&#39;. Plato&#39;s <em>Phaedo</em> gives the fullest ancient map — Acheron flowing opposite Oceanus, under the earth, into the Acherusian Lake, where the souls of the dead gather, dwell, and are purified. The historical river had its own underworld institution, the Nekromanteion of Thesprotia, where Herodotus says Periander of Corinth consulted the ghost of his wife Melissa; Pausanias thought Homer had simply seen this landscape and given its rivers&#39; names to the rivers of Hades. In Latin poetry the river hardens into type: Virgil&#39;s &#39;turbid Acheron&#39; seething with mud, and Charon ferrying only the buried.</p>
+<p>PÚNYCODEX restores the name as <strong>Achérōn</strong> and serves this temple at <a href="https://xn--achrn-dsa51e.com">achérōn.com</a>. The Greek original carries both the acute accent and a long omega, and exactly one historically valid Unicode restoration exists; the name is therefore classified Tier 1. The plain ASCII form <em>acheron</em> is a convenience of the domain-name system, not an ancient spelling.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Greek as <strong>Ἀχέρων</strong>. The ancients themselves supplied its meaning: the lyric poet Melanippides says it is called Acheron &#39;since within the bosom of the earth it goes forward pouring forth pains (ἄχη)&#39;, and the Byzantine Suda derives it from <strong>ἄχε ῥεῖν</strong>, &#39;to flow with grief&#39; — from ἄχος, &#39;pain, woe&#39;, whence the river&#39;s English title, the River of Woe. This is folk etymology, not linguistics: the true origin of the word is unknown, and Beekes treats it as unexplained. The Greeks also heard the name in a tree: Homer calls the white poplar ἀχεροΐς, and Pausanias explains that Heracles found it growing on the banks of the Thesprotian Acheron.</p>
+<p>The ASCII form <em>acheron</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Achérōn</strong> recovers both the stress accent and the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>a</strong> → <strong>A</strong> — A uppercase</li>
+  <li><strong>c</strong> → <strong>c</strong> — c same</li>
+  <li><strong>h</strong> → <strong>h</strong> — h same</li>
+  <li><strong>e</strong> → <strong>é</strong> — Acute on e</li>
+  <li><strong>r</strong> → <strong>r</strong> — r same</li>
+  <li><strong>o</strong> → <strong>ō</strong> — Macron: long vowel</li>
+  <li><strong>n</strong> → <strong>n</strong> — n same</li>
+</ul>
+<p>The project holds the domain <strong>achérōn.com</strong> (xn--achrn-dsa51e.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is written in Greek as <strong>Ἀχέρων</strong>. This original script is the form against which the ASCII fallback <em>acheron</em> and the PÚNYCODEX restoration <strong>Achérōn</strong> are measured: the restoration preserves both the pitch accent and the vowel quantity of the written form, so that a reader typing the modern address still speaks the ancient name.</p>
+<p>The word declines as a third-declension masculine: nominative Ἀχέρων, genitive Ἀχέροντος. The acute accent on the short epsilon of the second syllable and the long omega of the final syllable together carry the name&#39;s two prosodic marks, and it is this combination that places the restoration in Tier 1. In its first literary appearance the word is already a river of Hades (Odyssey 10.513), but Pausanias believed the direction of borrowing ran the other way — that Homer had seen the Acheron and Acherusian lake of Thesprotia and &#39;gave to the rivers there the names of those in Thesprotia&#39;. PUNYCODEX writes Achérōn with the acute and the macron, since the Greek alphabet is not registrable.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/a.kʰé.rɔːn/</strong> — Classical Attic values: short alpha with smooth breathing, aspirated chi [kʰ] with the accented short epsilon, and a long closed final syllable [rɔːn] with omega.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>A-</strong> — Short alpha with smooth breathing, unstressed opening.</li>
+  <li><strong>-khé-</strong> — Aspirated kappa with acute on short epsilon [kʰé], the pitch peak.</li>
+  <li><strong>-rōn</strong> — Rho-omega-nu, a long second syllable giving the name its weight and length.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;ah-KHAY-rohn&#39; — the middle syllable is pitched high; the final -ōn is long and sonorous.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Greek</strong> — Ἀχέρων (Achérōn), the river of woe in the underworld.</li>
+  <li><strong>Etymology</strong> — Anciently derived from ἄχος (áchos), &#39;grief, pain&#39;; the true etymology is uncertain.</li>
+  <li><strong>Geography</strong> — A real river in Thesprotia, Epirus, identified with the underworld river.</li>
+</ul>
+<p>Achérōn is Tier 1 because the Greek Ἀχέρων contains both stress (acute on έ) and length (ω). The name is at once a real river in Epirus and the mythic boundary of Hades.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Achérōn is less a character than a place of passage; its mythology is the geography of death. Honesty requires one correction to the handbooks first: Hesiod never gives the river a genealogy — the Theogony&#39;s catalogue of the sons of Oceanus and Tethys does not name him — and his parenthood as a child of Oceanus is only presumed from his standing as a river; the Renaissance mythographer Natalis Comes instead makes him a son of Helios and Earth, changed into the underworld stream because he refreshed the Titans with drink.</p>
+<h3 id="circe-s-map-odyssey">Circe&#39;s map (Odyssey)</h3>
+<p>His earliest attestation is already his defining scene: in Odyssey 10 Circe directs Odysseus to the rock where Pyriphlegethon and Cocytus flow into Acheron, and there Odysseus digs the trench, pours libations, and calls up the dead — the river as the membrane between epic and necromancy.</p>
+<h3 id="the-lyric-and-tragic-river">The lyric and tragic river</h3>
+<p>Sappho longed &#39;to die and see the dewy, lotus-covered banks of Acheron&#39;; Alcaeus reminds Sisyphus that for all his cunning he &#39;crossed eddying Acheron twice&#39;. Aeschylus gives Cassandra her farewell — &#39;by Cocytus and the banks of Acheron I soon must chant my prophecies&#39; — and launches the &#39;sacred, slack-sailed, black-clothed ship&#39; of the dead across it &#39;to the sunless land that receives all men&#39;; Euripides&#39; chorus praises Alcestis as the bravest wife ever ferried over its tarn.</p>
+<h3 id="plato-s-underworld-phaedo">Plato&#39;s underworld (Phaedo)</h3>
+<p>Plato gives the fullest map: Acheron flows opposite Oceanus, under the earth through desert places, into the Acherusian Lake, where most souls gather, dwell their appointed time, and are purified — the curable sinners calling across the water to those they wronged until they are received.</p>
+<h3 id="father-of-ascalaphus">Father of Ascalaphus</h3>
+<p>Once the river takes a family: Ascalaphus, the underworld gardener whose testimony doomed Persephone to her divided year, is the son of Acheron by Gorgyra in Apollodorus, by the nymph Orphne in Ovid.</p>
+<h3 id="the-roman-confluence-virgil">The Roman confluence (Virgil)</h3>
+<p>Virgil makes Acheron the principal water of Tartarus — a whirlpool &#39;turbid with mud and with vast abyss&#39; that spews its sand into Cocytus — and stations Charon at its crossing, refusing the unburied.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>Achérōn is a landscape, not a person, so its emblems are the furniture of its banks and crossings, several of them documented in ancient art and text:</p>
+<ul>
+  <li><strong>Dark, reedy water</strong> — Polygnotus painted it at Delphi as &#39;water like a river, clearly intended for Acheron, with reeds growing in it; the forms of the fishes appear so dim that you will take them to be shadows rather than fish&#39;.</li>
+  <li><strong>Charon&#39;s skiff</strong> — the boat that waits at the reed-grown shore, in Polygnotus&#39;s painting and on the Attic white-ground lekythoi deposited in graves.</li>
+  <li><strong>The ferryman&#39;s coin</strong> — the <em>danake</em>, the fare placed with the dead for passage across the Acherusian lake.</li>
+  <li><strong>The white poplar</strong> — ἀχεροΐς, &#39;the Acheron tree&#39;: Heracles found it on the river&#39;s banks in Thesprotia and brought it to Olympia, where its wood alone was burned in the sacrifices to Zeus.</li>
+</ul>
+<p>Achérōn is rarely personified in art; it appears instead as landscape within underworld scenes. The most famous was Polygnotus&#39;s monumental <strong>Nekyia</strong> in the Lesche of the Knidians at Delphi (c. 460 BCE), where Pausanias (10.28.1–2) describes the river Acheron with reeds on its banks, faint shadowy fish in its water, and the boat of the aged Charon receiving souls. On Attic white-ground lekythoi of the fifth century BCE the river is implied rather than shown: Charon&#39;s skiff waits at a reed-grown shore while the dead approach with their offerings. The bull-horned river-god type standard for other streams is nowhere securely assigned to Acheron; the dread of naming the river apparently inhibited its anthropomorphic form.</p>
+<h2 id="epithets-cult-titles">Epithets &amp; Cult Titles</h2>
+<p>Achérōn attracted no cult epithets; its modifiers are poetic, and they gather around grief:</p>
+<ul>
+  <li><strong>Ἀχέρων ὁ τοῦ ἄχεος ποταμός</strong> — &#39;the river of woe&#39;: the ancient association of the name with <strong>ἄχος</strong> (<em>áchos</em>), &#39;grief, pain&#39;, current in classical authors and the lexica, though the true etymology is uncertain.</li>
+  <li><strong>Ἀχερουσία λίμνη</strong> (<em>Acherousía límnē</em>) — &#39;the Acherusian lake&#39;: the marshy mere across which Charon ferries souls in Aristophanes&#39; Frogs (137).</li>
+  <li><strong>Acheron turbidus</strong> — &#39;turbid Acheron&#39;: Virgil&#39;s whirlpool &#39;thick with mud and with vast abyss&#39; (Aeneid 6.296–297), which spews all its sand into Cocytus.</li>
+</ul>
+<h2 id="the-homeric-hymns">The Homeric Hymns</h2>
+<p>No Homeric Hymn is addressed to Achérōn; the underworld rivers inspired dread, not cult song. The river&#39;s earliest attestation is already its defining scene: in Odyssey 10 Circe directs Odysseus to the place &#39;where into Acheron flow Pyriphlegethon and Cocytus, a branch of the water of Styx&#39; (Od. 10.513–514), the first hexameter map of the confluence of the rivers of woe. Notably, the Theogony&#39;s catalogue of the sons of Oceanus and Tethys (Th. 337–345) does not name Acheron; its genealogy as a child of Oceanus was supplied only by later mythographic tradition. Homer, not Hesiod, is the river&#39;s first witness.</p>
+<h2 id="oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</h2>
+<p>Achérōn possessed the most famous oracle of the dead in the Greek world, the <strong>Nekromanteion of the Acheron</strong> in Thesprotia (Epirus), near modern Mesopotamos. Herodotus (5.92) already tells of Periander of Corinth sending to this oracle to consult the ghost of his wife Melissa. The excavated site — a fortified Hellenistic complex built over a dark subterranean chamber — is interpreted as the hall where consultants, prepared by diet and ritual, encountered the dead. Pausanias (1.17.5) records the Acheron and the Acherusian lake of Thesprotia and connects the local landscape with Homer&#39;s underworld. In Italy, volcanic <strong>Lake Avernus</strong> near Cumae was later identified as a second Acherusian entrance to Hades (Strabo 5.4.5).</p>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Achérōn has the richest archaeology of any Greek underworld name, because the myth anchored itself in a real karst landscape. The Thesprotian river flows through Epirus into the Acherusian lake below ancient Ephyre, much of its course sinking and rising through limestone — the physical origin, ancients and moderns agree, of its infernal reputation; Thucydides describes the system in plain geographic terms. Above its gorge near modern Mesopotamos stands the fortified Hellenistic complex excavated by Sotirios Dakaris from 1958 onward: a monumental court, storerooms, and a great central hall built over a dark subterranean chamber, which Dakaris identified as the Nekromanteion where Herodotus says Periander consulted the ghost of Melissa — consultants passing, in his reconstruction, through purification and diet to an encounter staged in the vaulted crypt. The identification is famous but not uncontested: some archaeologists read the complex as a fortified farmhouse, and the honest record keeps both readings open while noting that the hill, the river, and Herodotus&#39; oracle lie exactly where the texts put them. A second excavatable echo stands at the edge of the Greek world: Apollonius Rhodius describes the Acheron of Bithynia pouring from the rock beneath Cape Acherusias by a cavern whose icy breath frosts the trees each morning — myth transplanted onto a Black Sea headland.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Achérōn&#39;s domains are those of a boundary: four attested aspects of the river that separates the living from the dead.</p>
+<h3 id="boundary-of-hades">Boundary of Hades</h3>
+<p>In Homer it is the confluence itself — the rock where Pyriphlegethon and Cocytus join Acheron — that marks the entrance to the dank domains of Hades.</p>
+<h3 id="river-of-grief">River of Grief</h3>
+<p>Ancient etymology heard ἄχη, &#39;pains&#39;, in its waters: Melanippides says it flows within the earth &#39;pouring forth pains&#39;, and Plato makes the Acherusian Lake the place where souls dwell, pay penalties, and are purified of wrong.</p>
+<h3 id="real-and-mythic">Real and mythic</h3>
+<p>The Thesprotian Acheron was geography before it was eschatology: Thucydides describes the river falling into the Acherusian lake below Ephyre, and Pausanias believed Homer had seen the place and named the underworld rivers after it.</p>
+<h3 id="ferry-of-the-dead">Ferry of the dead</h3>
+<p>Across its water the dead must be carried: Aristophanes sets Charon&#39;s skiff on &#39;the Acherusian lake&#39;, and Virgil fixes the rule — only the buried may cross; the unburied wait a hundred years.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>A river has no equivalent in another pantheon; Achérōn&#39;s &#39;syncretism&#39; is geographic translation — the migration of the underworld entrance from one real landscape to the next. The process is documented. The Thesprotian Acheron in Epirus came first: Pausanias believed Homer had seen that lake and river and &#39;gave to the rivers of Hades the names of those in Thesprotia&#39;. As Greek horizons widened, other entrances were found: Apollonius Rhodius describes a second Acheron on the Black Sea coast of Bithynia, gushing from the rock beneath Cape Acherusias beside a cavern of Hades that breathes icy air; Strabo knows a third in Bruttium in Italy; Pausanias records an Acherusian lake near Hermione in Argolis; and volcanic Lake Avernus by Cumae became the canonical Italian mouth of hell. Roman poetry then internalized the river completely: Virgil and Seneca map it inside the earth — Seneca&#39;s Acheron &#39;cannot be recrossed&#39; — and in late usage &#39;Acheron&#39; simply means the underworld itself, as in Virgil&#39;s line that Freud took as the epigraph of <em>The Interpretation of Dreams</em>: &#39;if I cannot bend the gods above, I will stir Acheron&#39;. Beyond Greece and Rome, Etruscan religion knew the figure as Acheruns and devoted ritual books (the <em>acheruntici libri</em>) to the deification of souls. Kindred underworld names in the corpus include <a href="/sites/hades/">Hádēs</a>, <a href="/sites/persephone/">Persephonē</a>, and <a href="/sites/thanatos/">Thánatos</a>.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Achérōn is the river whose name means grief, and its afterlife is the largest of any underworld stream. Dante inherits it whole: at the opening of <em>Inferno</em>&#39;s third canto the damned crowd the &#39;dark river&#39; where Charon, the demon with eyes of burning coal, ferries them across — Virgil&#39;s turbid Acheron turned Christian. Virgil&#39;s own phrase for stirring the lower world, <em>Acheronta movebo</em>, became the epigraph of Freud&#39;s <em>Interpretation of Dreams</em> (1900) and through it a motto of psychoanalysis: the descent to the underworld as the descent into the mind. In Greek lands the name never left the map — the Acheron still flows through Thesprotia past the excavated Nekromanteion, its springs and underground passages still offered to visitors as the ancients&#39; entrance to Hades. And lyric keeps its older, stranger note: Sappho already wrote &#39;a longing grips me to die and see the dewy, lotus-covered banks of Acheron&#39; — the river of woe imagined, once, as a place of flowers.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Achérōn given in this edition rests on the witnesses and reference works listed below. The epic and philosophical texts map the underworld river; the historians and geographers fix the earthly one; the lexica secure the name.</p>
+<ul>
+  <li> Homer, Odyssey 10.513–515, 11; Hesiod, Theogony 337–345 (the catalogue that omits him).</li>
+  <li> Plato, Phaedo 112e–114a; Aristophanes, Frogs 137.</li>
+  <li> Sappho fr. 95; Alcaeus fr. 38A; Melanippides fr. 759; Aeschylus, Agamemnon 1156–1160, Seven Against Thebes 854–860; Euripides, Alcestis 439–444.</li>
+  <li> Herodotus 5.92; Thucydides 1.46; Strabo 5.4.5, 6.1.5; Pausanias 1.17.4–5, 2.35.7, 5.14.2, 10.28.1–2.</li>
+  <li> Virgil, Aeneid 6.295–330, 7.312; Ovid, Metamorphoses 5.539; Seneca, Hercules Furens 709–762; Apollonius Rhodius, Argonautica 2.352–360, 2.726–731.</li>
+  <li> LSJ (Liddell–Scott–Jones), s.v. Ἀχέρων. <a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Word study</a>; Beekes, Etymological Dictionary of Greek, s.v. Ἀχέρων; Suidas, s.vv. Ἀχέρων, Ἀχερουσία.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Achérōn is the first river we cannot cross alone. In the myth, the dead need a ferry and a coin; they must leave the body behind and pay for passage. The river therefore marks not just death but transition: the moment when the old self is no longer sufficient.</p>
+<p>Grief flows like a river because it too has no final shore. We cross and recross it, carried by memory, paying with tears. Achérōn reminds us that sorrow is a geography, not an event — a landscape with real rivers, real reeds, and real crossings. To name it in Unicode is to acknowledge that grief, like a river, has its own ancient right of way.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Achérōn is classified as <strong>Tier 1</strong>: the original carries both stress and length, and only one valid Unicode restoration exists. The ASCII fallback <em>acheron</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 7 characters of the name, the restoration adjusts 2: 1 mark of stress (é); 1 mark of length (ō). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>achérōn.com</strong>, which the DNS carries in punycode form as xn--achrn-dsa51e.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Achérōn; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Greek can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>A door only matters if people walk through it. <strong>achérōn.com</strong> is open, and everything behind it — the myths, the scholarship, the canvas, the patrons — hangs on the restored spelling. The PÚNYCODEX project bets that the web will make room for names as they were actually written, and Achérōn is one of its standing proofs. Visit, share, cite, type it yourself: each use is a small rehearsal for a web where no name has to hide its marks to be found.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/perseus/">Perseus</a></li>
   <li><a href="/sites/philoctetes/">Philoktētēs</a></li>
   <li><a href="/sites/phoebe/">Phoíbē</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">LSJ (Liddell–Scott–Jones), s.v. Ἀχέρων.</a></li>
+  <li>Homer, Odyssey 10.513–515.</li>
+  <li>Plato, Phaedo 112e–114a.</li>
+  <li>Herodotus, Histories 5.92; Pausanias, Description of Greece 1.17.4–5.</li>
+  <li>Virgil, Aeneid 6.295–330.</li>
+  <li>Lexicon authorities for this entry: Hesiod, LSJ.</li>
 </ul>
-<h2>The Name in Context</h2>
-<p>Achérōn (Greek Ἀχέρων; ASCII acheron) is the River of Woe: the boundary stream of the Greek underworld across which the dead are ferried, and at the same time a real river of Thesprotia in Epirus whose dark, partly subterranean course convinced the Greeks that here the upper world touched the lower. Its first and defining attestation is Homeric: Circe directs Odysseus to the place &#39;where into Acheron flow Pyriphlegethon and Cocytus, a branch of the water of Styx, and there is a rock where the two loud-roaring rivers meet&#39;. Plato&#39;s Phaedo gives the fullest ancient map — Acheron flowing opposite Oceanus, under the earth, into the Acherusian Lake, where the souls of the dead gather, dwell, and are purified. The historical river had its own underworld...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Achérōn as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Greek to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Achérōn through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/acheron/">home page</a> offers the full name breakdown, the <a href="/sites/acheron/lore/">lore page</a> explores the myth, and the <a href="/sites/acheron/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Achérōn do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
-<h2>A Note on the Address Bar</h2>
-<p>When you type Achérōn, the browser performs an invisible conversion into Punycode so the global DNS can route the request. The user sees the original name; the machines see a compatible ASCII encoding. That duality is the engineering compromise that makes the restoration possible, and it is the reason every Unicode domain is both a technical milestone and a small act of cultural memory.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">greek</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

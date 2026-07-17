@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,39 +170,206 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-sanskrit-pantheon">The Sanskrit Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#typing-prajapati">Typing Prajāpati</a></li>
+                <li><a href="#sister-temples">Sister Temples</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>The Many Faces of Prajāpati</h1>
-<p>No important name has only one face. Prajāpati appears as a mythic character, a scholarly reconstruction, a cultural memory, and now a Unicode domain. Prajāpati (Sanskrit प्रजापति, from prajā- &#39;offspring, creatures&#39; + pati- &#39;lord&#39;: &#39;lord of creatures&#39;) is the creator principle of the Vedic Brāhmaṇas — the one who broods over the waters, heats himself by ascetic ardor (tapas), and brings forth gods, humans, and animals by sacrifice. The Ṛgveda names him only once, in the closing verse of the Hiraṇyagarbha Sūkta (RV 10.121.10), but in the Brāhmaṇas he rises to supremacy as the god who is the sacrifice and the year, emptied out by creation and perpetually reassembled by ritual; in the Purāṇic age his functions and his title pass to [[brahma|Brahmā]], and &#39;Prajāpati&#39; becomes the collective name of the mind-born lords of creatures. He never acquired temples or images: he remains the slow, patient power...</p>
-<h2>In Myth</h2>
-<p>Prajāpati&#39;s mythology is cosmogonic speculation cast as narrative. He is the One who becomes many, the undifferentiated whole who divides himself so that time, space, and species can exist. The mythic face is the one most people meet first, and it is the reason the name survived.</p>
-<h2>Across Cultures</h2>
-<p>Prajāpati is the bridge between Vedic impersonality and Purāṇic theism. His identification with Puruṣa links him to cosmic-sacrifice theology; his absorption into Brahmā links him to the later Trimūrti. The Atharvaveda already calls him the first physician, connecting creation with healing. In some strands of Vedānta, Prajāpati becomes a name for the personal god who presides over the lower Brahman, while the higher Brahman remains unnamed. His absence of cultic statues in the Vedic period makes him a pure concept: the generative ground before the gods take shape. Within the Sanskrit tradition, closely related names in the corpus include [[durga|Durgā]], [[ganesha|Gaṇeśa]], [[kali|Kālī]], [[lakshmi|Lakṣmī]], [[nirmata|Nirmātā]], and [[om|Oṃ]]. Each culture kept what resonated and reshaped the rest.</p>
-<h2>In the Scholarly Record</h2>
-<p>Prajāpati never became a popular devotional deity with mass temples, but his influence is foundational. The Puruṣa Sūkta remains one of the most recited hymns in Hindu ritual, used in weddings, housewarmings, and temple consecrations. The varṇa imagery derived from the cosmic body has shaped Indian social theory for millennia — debated, resisted, and reinterpreted, but never ignored. In modern India, &#39;Prajāpati&#39; is a common surname and a title of honor. The idea that creation is a sacrifice rather than a manufacture continues to inform Hindu ecological and ritual thinking: the world is not raw material but a living body. The Scholarly Edition collects those traces so readers can follow the argument from source to conclusion.</p>
-<h2>The Unicode Face</h2>
-<p>The newest face is digital. Prajāpati demonstrates that a name can be at once ancient and clickable, venerable and searchable. That is the face this blog exists to celebrate.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Prajāpati is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>The many faces of Prajāpati</h1>
+<p>No important name has only one face. <strong>Prajāpati</strong> appears as a figure of myth, a scholarly reconstruction, a piece of material culture, a memory carried across languages, and — most recently — a Unicode domain. This post looks at each face in turn: the name and its roots, the Devanagari original, the reconstructed pronunciation, the mythological record, the symbols and sanctuaries, the cross-cultural afterlife, and the engineering that lets the restored spelling resolve in a browser. Taken together, those faces explain why <em>prajapati</em> was never going to be enough — and why the restored form is worth a domain of its own.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Prajāpati</li>
+  <li><strong>ASCII form:</strong> prajapati</li>
+  <li><strong>Meaning:</strong> &quot;lord of creatures, creator, RV. &amp;c. &amp;c. (N. of a supreme god above or among the Vedic deities [RV. (only x, 21, 10); AV.; VS.; Br.] but in later times also applied to Viṣṇu, Śiva&quot;</li>
+  <li><strong>Domain of influence:</strong> Lord of Creatures</li>
+  <li><strong>Pantheon:</strong> Sanskrit</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> प्रजापति (Devanagari)</li>
+  <li><strong>Live domain:</strong> Prajāpati.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Prajāpati</strong> (Sanskrit प्रजापति, from prajā- &#39;offspring, creatures&#39; + pati- &#39;lord&#39;: &#39;lord of creatures&#39;) is the creator principle of the Vedic Brāhmaṇas — the one who broods over the waters, heats himself by ascetic ardor (<em>tapas</em>), and brings forth gods, humans, and animals by sacrifice. The Ṛgveda names him only once, in the closing verse of the Hiraṇyagarbha Sūkta (RV 10.121.10), but in the Brāhmaṇas he rises to supremacy as the god who is the sacrifice and the year, emptied out by creation and perpetually reassembled by ritual; in the Purāṇic age his functions and his title pass to [[brahma|Brahmā]], and &#39;Prajāpati&#39; becomes the collective name of the mind-born lords of creatures. He never acquired temples or images: he remains the slow, patient power of generation itself, a god of ritual theology rather than of devotion.</p>
+<p>PÚNYCODEX restores the name as <strong>Prajāpati</strong> and serves its temple at <a href="https://xn--prajpati-k7a.com">Prajāpati.com</a>. The macron on ā recovers the vowel quantity of the Sanskrit original; because Sanskrit accentuation is pitch-based and unwritten, this single preserved feature places the name in Tier 2. The ASCII form <em>prajapati</em> is a modern convenience of the early domain-name system, not an ancient spelling.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Devanagari as <strong>प्रजापति</strong>. It is a transparent tatpuruṣa compound: prajā- (&#39;offspring, progeny, creatures&#39;, from the root jan-, &#39;to be born, to beget&#39;) + pati- (&#39;lord, master&#39;, the same word as Greek pósis and Latin potis). &#39;Lord of offspring&#39; is thus not a title imposed on the word but its literal meaning, and the compound&#39;s transparency made it available both as a theonym and, later, as a class-name for the mind-born progenitors.</p>
+<p>The ASCII form <em>prajapati</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Prajāpati</strong> recovers the long ā of the original directly in the address bar. Because Sanskrit accentuation is pitch-based and unwritten, the restoration preserves this single phonological feature, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>p</strong> → <strong>P</strong> — Same, capitalized</li>
+  <li><strong>r</strong> → <strong>r</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+  <li><strong>j</strong> → <strong>j</strong> — Same</li>
+  <li><strong>a</strong> → <strong>ā</strong> — Macron: long /aː/</li>
+  <li><strong>p</strong> → <strong>p</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+  <li><strong>t</strong> → <strong>t</strong> — Same</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+</ul>
+<p>The project holds the domain <strong>Prajāpati.com</strong> (xn--prajpati-k7a.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: Sanskrit tatpuruṣa compound prajā- &#39;offspring, creatures&#39; + pati- &#39;lord, master&#39;, meaning &#39;Lord of Creatures&#39;.</p>
+<p>The reconstruction is classed as attested.</p>
+<p>Kindred forms recorded in the lexicon:</p>
+<ul>
+  <li><strong>prajā-</strong> (sanskrit) — &#39;offspring, creatures&#39; (MW, RV)</li>
+  <li><strong>pati-</strong> (sanskrit) — &#39;lord, master&#39; (MW, RV)</li>
+</ul>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is written in Devanagari as <strong>प्रजापति</strong>. Devanagari is a Brahmic abugida — each consonant sign carries an inherent vowel — written left-to-right; it descends from Brāhmī through the Nāgarī scripts, is attested in inscriptions from about the 7th century CE, and is today the standard script of Sanskrit, Hindi, and Marathi.</p>
+<p>The scholarly transliteration is <em>Prajāpati</em> (IAST), giving the normalized reading /prəˈdʒaːpəti/. The rendering proceeds step by step:</p>
+<ul>
+  <li>Sanskrit Prajāpati is written प्रजापति in Devanagari — akṣaras प्र (pra), जा (jā), प (pa), ति (ti).</li>
+  <li>IAST marks the long ā of the second syllable; plain ASCII <em>prajapati</em> loses this quantity.</li>
+  <li>The compound is transparent: prajā- (&#39;offspring, creatures&#39;) + pati- (&#39;lord, master&#39;), from the root jan-, &#39;to be born&#39;.</li>
+  <li>In Vedic usage the name functions both as a singular theonym and, later, as a class-name for the mind-born progenitors.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/prɐ.dʑaː.pɐ.ti/</strong> — Sanskrit/Vedic Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Pra-</strong> — Initial [p] with r-colored short [ɐ], the forward-thrusting prefix meaning &#39;forth, forward&#39;.</li>
+  <li><strong>-jā-</strong> — Voiced affricate [dʑ] plus long [aː], from jan- (&#39;to be born, to procreate&#39;) — the generative core of the name.</li>
+  <li><strong>-pati</strong> — Unaspirated [p] plus short [ɐ] and [ti], the lord or master of what precedes.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;pruh-JAH-puh-tee&#39; — the second syllable is long and bright; the j is soft, like the &#39;j&#39; in &#39;judge&#39; but lighter.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Sanskrit</strong> — प्रजापति (Prajāpati), from pra-ja- (&#39;progeny&#39;) + pati (&#39;lord&#39;)</li>
+  <li><strong>Vedic usage</strong> — In the Ṛgveda, &#39;Prajāpati&#39; is rare; the title becomes central in the Brāhmaṇas</li>
+  <li><strong>Later Hinduism</strong> — Merged with Brahmā as &#39;Prajāpati Brahmā,&#39; the creator of the Purāṇic triad</li>
+</ul>
+<p>The IAST form Prajāpati marks the long ā in the second syllable and the unaspirated p. The compound literally means &#39;Lord of Offspring&#39; or &#39;Lord of Creatures.&#39; Devanagari प्रजापति is the form used in Vedic recitation and later theistic texts.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Prajāpati&#39;s mythology is cosmogonic speculation cast as narrative. He is the One who becomes many, the undifferentiated whole who divides himself so that time, space, and species can exist.</p>
+<h3 id="from-tapas-to-cosmic-egg-creation">From Tapas to Cosmic Egg (Creation)</h3>
+<p>In the Śatapatha Brāhmaṇa, Prajāpati exists first as the nonmanifest unity-totality. Desire (<em>kāma</em>) moves him to reproduce, so he heats himself by ascetic ardor (<em>tapas</em>) until he creates the triple Veda, then the Waters, and finally enters them. An egg develops; from it he is born as the year, the sacrifice, and the ordered cosmos. Exhausted by creation, he must be restored through ritual — which is why every sacrifice is said to be Prajāpati.</p>
+<h3 id="the-purusa-sukta-purusa">The Puruṣa Sūkta (Puruṣa)</h3>
+<p>Ṛgveda 10.90 hymns the Puruṣa, the Cosmic Man whose body is the whole universe. The gods sacrifice him, and from his parts arise the four varṇas, the sun, moon, and earth, and all creatures. In the Brāhmaṇas this Puruṣa is identified with Prajāpati: &#39;Puruṣa is Prajāpati; Puruṣa is the Year.&#39; Creation is therefore not manufacture but self-sacrifice — the deity giving himself to become the world.</p>
+<h3 id="from-prajapati-to-brahma-brahmanization">From Prajāpati to Brahmā (Brahmanization)</h3>
+<p>As Vedic speculation gives way to theistic Purāṇic narrative, the abstract creator becomes the four-faced god Brahmā. Prajāpati&#39;s functions — creation, Vedic knowledge, and sovereignty over creatures — are inherited by Brahmā, who is often called Prajāpati Brahmā. The older name survives as a title rather than a separate deity, though it is still used in mantras and rituals of conception, pregnancy, and childbirth.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Prajāpati concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>Egg (aṇḍa)</strong> — The golden egg from which Prajāpati hatches; the universe in embryonic form.</li>
+  <li><strong>Fire altar</strong> — The Vedic ritual ground laid out as his body; sacrifice as cosmic engineering.</li>
+  <li><strong>Year</strong> — Prajāpati is identified with the year; his joints are the seasons.</li>
+  <li><strong>Puruṣa</strong> — The Cosmic Man whose sacrifice generates the varṇas, heavens, and earth.</li>
+  <li><strong>Swan or goose (haṃsa)</strong> — In Purāṇic iconography, his mount; the bird that separates milk from water, essence from accretion.</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Prajāpati has no archaeological cult record: no temple, cult image, or votive inscription dedicated to him is attested from ancient India, because he was never a devotional god but a figure of ritual theology. His material footprint is the sacrifice itself. The Vedic fire altar (agni), laid out in brick according to the geometry of the Śulbasūtras, was explicitly constructed as Prajāpati&#39;s dismembered and reassembled body — a technology documented ethnographically in 1975, when Frits Staal recorded the full Agnicayana performed by Nambudiri Brahmins in Kerala. When the Purāṇic age needed an image for the creator, it gave one to Brahmā instead: the four-faced Brahmā who appears in Gupta temple relief, as at Deogarh (6th century CE), inherits Prajāpati&#39;s functions and his title.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Prajāpati is not a god of thunder or war. He is the slow, patient power of generation itself — the one who broods over the waters, performs tapas (ascetic heat), and brings forth creatures by sacrifice. In the Brāhmaṇas he becomes the supreme creator; in the Purāṇas, he passes his crown to Brahmā.</p>
+<h3 id="creation-by-tapas">Creation by Tapas</h3>
+<p>He heats himself by ascetic ardor until the cosmos condenses from his sweat and seminal emission.</p>
+<h3 id="lord-of-sacrifice">Lord of Sacrifice</h3>
+<p>The ritual fire altar is his body; every sacrifice reconstructs the world from his dismembered form.</p>
+<h3 id="father-of-the-veda">Father of the Veda</h3>
+<p>He produces the triple Veda from himself so that gods and humans may speak the language of order.</p>
+<h3 id="cosmic-egg">Cosmic Egg</h3>
+<p>From the waters an egg develops; its shell becomes earth, its inner fire becomes sun and life.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Prajāpati is the bridge between Vedic impersonality and Purāṇic theism. His identification with Puruṣa links him to cosmic-sacrifice theology; his absorption into Brahmā links him to the later Trimūrti. The Atharvaveda already calls him the first physician, connecting creation with healing. In some strands of Vedānta, Prajāpati becomes a name for the personal god who presides over the lower Brahman, while the higher Brahman remains unnamed. His absence of cultic statues in the Vedic period makes him a pure concept: the generative ground before the gods take shape.</p>
+<p>Within the Sanskrit tradition, closely related names in the corpus include [[durga|Durgā]], [[ganesha|Gaṇeśa]], [[kali|Kālī]], [[lakshmi|Lakṣmī]], [[nirmata|Nirmātā]], and [[om|Oṃ]].</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Prajāpati never became a popular devotional deity with mass temples, but his influence is foundational. The Puruṣa Sūkta remains one of the most recited hymns in Hindu ritual, used in weddings, housewarmings, and temple consecrations. The varṇa imagery derived from the cosmic body has shaped Indian social theory for millennia — debated, resisted, and reinterpreted, but never ignored. In modern India, &#39;Prajāpati&#39; is a common surname and a title of honor. The idea that creation is a sacrifice rather than a manufacture continues to inform Hindu ecological and ritual thinking: the world is not raw material but a living body.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Prajāpati given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Monier-Williams Sanskrit Dictionary. <a href="https://www.sanskrit-lexicon.uni-koeln.de/monier/index.html">Full text</a></li>
+  <li> Mayrhofer, EWAia.</li>
+  <li> Ṛgveda 10.90, Puruṣa Sūkta.</li>
+  <li> Śatapatha Brāhmaṇa.</li>
+  <li> Taittirīya Brāhmaṇa, Jaiminīya Brāhmaṇa.</li>
+  <li> Brahmāṇḍa Purāṇa.</li>
+  <li> Ṛgveda Saṃhitā 10.121, Hiraṇyagarbha Sūkta.</li>
+  <li> Atharvaveda 19.53 (Prajāpati as first physician).</li>
+  <li> Chāndogya Upaniṣad 8.13–15 (Prajāpati teaching the Self).</li>
+  <li> Manusmṛti 1.34 (Prajāpati&#39;s ten mind-born sons).</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Before there was a world, there was only the will to become. That is Prajāpati. Not a craftsman standing outside his work, but the work itself in the moment before it knows it is a work. His tapas is the concentrated energy that precedes all making — the silence so full that it must become sound, the darkness so dense that it must become light. Every creative act repeats his gesture: the painter before the canvas, the writer before the blank page, the parent before the child. To create is to risk dismemberment, to give pieces of oneself so that something else can live.</p>
+<p>Prajāpati teaches that creation is not a one-time event. It is continuous, renewed at every sacrifice, every dawn, every breath. The cosmos is not a machine set running; it is a fire that must be fed. To remember his name is to remember that we too are made of sacrifice — the generations before us, the beings that feed us, the sun that burns for us. We are the children of Prajāpati, and one day we too must become his body.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Prajāpati is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>prajapati</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 9 characters of the name, the restoration adjusts 1: 1 mark of length (ā). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>prajapati</em> to <strong>Prajāpati</strong>, one character at a time:</p>
+<ul>
+  <li><strong>p</strong> → <strong>P</strong> — Same, capitalized</li>
+  <li><strong>r</strong> → <strong>r</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+  <li><strong>j</strong> → <strong>j</strong> — Same</li>
+  <li><strong>a</strong> → <strong>ā</strong> — Long vowel</li>
+  <li><strong>p</strong> → <strong>p</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+  <li><strong>t</strong> → <strong>t</strong> — Same</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>Prajāpati.com</strong>, which the DNS carries in punycode form as xn--prajpati-k7a.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Prajāpati; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Devanagari can now be typed into any browser on earth.</p>
+<h2 id="the-sanskrit-pantheon">The Sanskrit Pantheon</h2>
+<p>Prajāpati is one of 88 entries the PÚNYCODEX lexicon catalogues under the Sanskrit pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Prajāpati mean?</strong> The traditional gloss is &quot;lord of creatures, creator, RV. &amp;c. &amp;c. (N. of a supreme god above or among the Vedic deities [RV. (only x, 21, 10); AV.; VS.; Br.] but in later times also applied to Viṣṇu, Śiva.&quot;</p>
+<p><strong>Which tradition does Prajāpati belong to?</strong> Prajāpati is catalogued in the Sanskrit pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Prajāpati classified as Tier 2?</strong> Because the original preserves at least one philological feature that ASCII cannot encode — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Prajāpati a working domain?</strong> Yes — Prajāpati.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for Prajāpati.com?</strong> The DNS encoding is xn--prajpati-k7a.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="typing-prajapati">Typing Prajāpati</h2>
+<p>You do not need a special keyboard to use this restoration. The <a href="/type/">PÚNYCODEX Type Tool</a> converts the ASCII form <em>prajapati</em> into <strong>Prajāpati</strong> as you type, and the browser extension offers the same conversion inside any text field. Copy the restored form, paste it into the address bar, and the DNS does the rest.</p>
+<h2 id="sister-temples">Sister Temples</h2>
+<p>Other temples in the Sanskrit pantheon include <a href="/sites/moksha/">Mokṣa</a>, <a href="/sites/narasimha/">Narasiṃha</a>, and <a href="/sites/prithvi/">Pṛthivī</a> — each with its own restoration story, its own scholarly record, and its own place in the lexicon.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Myth, script, sound, cult, legacy, domain: the faces of Prajāpati add up to a single argument — that a name is a record, and records deserve fidelity. The PÚNYCODEX restoration keeps that record in working order: the temple presents it, the Scholarly Edition footnotes it, the lexicon catalogs it, and the domain makes it addressable. <em>prajapati</em> will always exist as a fallback. But fallback is not identity. <strong>Prajāpati</strong> is the name; everything else is a convenience.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/nakula/">Nakula</a></li>
   <li><a href="/sites/nandi/">Nandí</a></li>
   <li><a href="/sites/narada/">Nārada</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.sanskrit-lexicon.uni-koeln.de/monier/index.html">Monier-Williams, M. A Sanskrit-English Dictionary. Oxford, 1899; s.v. prajāpati.</a></li>
+  <li>Lévi, S., La doctrine du sacrifice dans les Brâhmaṇas (Paris, 1898).</li>
+  <li>Śatapatha Brāhmaṇa (Prajāpati as sacrifice and year).</li>
+  <li>Mayrhofer, M., Etymologisches Wörterbuch des Altindoarischen (Heidelberg, 1986–2001); s.v. prajā, páti.</li>
+  <li>Mayrhofer, EWAia.</li>
+  <li>Lexicon authorities for this entry: MW, RV.</li>
 </ul>
-<h2>The Cultural Afterlife</h2>
-<p>Prajāpati never became a popular devotional deity with mass temples, but his influence is foundational. The Puruṣa Sūkta remains one of the most recited hymns in Hindu ritual, used in weddings, housewarmings, and temple consecrations. The varṇa imagery derived from the cosmic body has shaped Indian social theory for millennia — debated, resisted, and reinterpreted, but never ignored. In modern India, &#39;Prajāpati&#39; is a common surname and a title of honor. The idea that creation is a sacrifice rather than a manufacture continues to inform Hindu ecological and ritual thinking: the world is not raw material but a living body.</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Prajāpati as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Devanagari to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Prajāpati through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">sanskrit</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

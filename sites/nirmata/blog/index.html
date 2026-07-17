@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,37 +170,193 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>13 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-sanskrit-pantheon">The Sanskrit Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#typing-nirmata">Typing Nirmātā</a></li>
+                <li><a href="#sister-temples">Sister Temples</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>The Many Faces of Nirmātā</h1>
-<p>No important name has only one face. Nirmātā appears as a mythic character, a scholarly reconstruction, a cultural memory, and now a Unicode domain. Nirmātā (nirmata) — Creation, The Divine Architect · Creator, maker, architect (from Sanskrit निर्मातृ) — belongs to the Sanskrit tradition, where it is catalogued under the domain &quot;Creation, The Divine Architect&quot;. The name means &quot;Creator, maker, architect (from Sanskrit निर्मातृ)&quot;. Nirmātā is the one who measures, fashions, and brings form out of formlessness. In Sanskrit the word is an agent noun built from the root mā, &#39;to measure,&#39; with the prefix nir-, &#39;forth.&#39; It names not a single mythic character but the cosmic function of making: the architect who lays out the blueprint of existence, the sculptor who carves matter into shape, and the ritualist whose precise gestures recreate the world. The concept stands close to Viśvakarman, the Vedic...</p>
-<h2>In Myth</h2>
-<p>Because Nirmātā is a title and concept rather than a single mythic protagonist, its mythology is distributed across the figures who embody making: Viśvakarman in the Vedas, Brahmā in the Purāṇas, and the human ritualist who rebuilds the cosmos on the sacrificial ground. The mythic face is the one most people meet first, and it is the reason the name survived.</p>
-<h2>Across Cultures</h2>
-<p>The idea of a divine architect or maker appears across ancient cultures: the Greek Daimurge, the Egyptian Ptah and Khnum, the Mesopotamian Marduk fashioning the world from the body of Tiamat, and the Judeo-Christian Creator measuring the deep. In India, the nirmātā function is distributed among Viśvakarman, Brahmā, Prajāpati, and Śiva as the supreme yogin whose meditation projects the world. The philosophical schools further refined the concept: Sāṃkhya spoke of prakṛti as the material matrix, Vedānta of Brahman as the sole reality behind apparent creation, and Tantra of śakti as the active power that shapes form. Nirmātā thus names a shared human intuition — that the ordered world implies an ordering intelligence — while remaining rooted in... Each culture kept what resonated and reshaped the rest.</p>
-<h2>In the Scholarly Record</h2>
-<p>The word nirmātā lives on in modern Hindi, Marathi, and other South Asian languages as &#39;producer&#39; or &#39;creator,&#39; especially in film and the arts. The concept of the divine architect continues to inspire architects, sculptors, and ritual specialists across the Hindu world. In diaspora communities, figures like Viśvakarman and Brahmā remain symbols of craftsmanship and creative intelligence, while the Sanskrit root mā echoes in terms for measurement, meter, mother, and the world-shaping power of māyā. The Unicode restoration Nirmātā keeps visible the long vowels and precise etymology that make this name a philosophical statement as much as a title. The Scholarly Edition collects those traces so readers can follow the argument from source to conclusion.</p>
-<h2>The Unicode Face</h2>
-<p>The newest face is digital. Nirmātā demonstrates that a name can be at once ancient and clickable, venerable and searchable. That is the face this blog exists to celebrate.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Nirmātā is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>The many faces of Nirmātā</h1>
+<p>No important name has only one face. <strong>Nirmātā</strong> appears as a figure of myth, a scholarly reconstruction, a piece of material culture, a memory carried across languages, and — most recently — a Unicode domain. This post looks at each face in turn: the name and its roots, the Devanagari original, the reconstructed pronunciation, the mythological record, the symbols and sanctuaries, the cross-cultural afterlife, and the engineering that lets the restored spelling resolve in a browser. Taken together, those faces explain why <em>nirmata</em> was never going to be enough — and why the restored form is worth a domain of its own.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Nirmātā</li>
+  <li><strong>ASCII form:</strong> nirmata</li>
+  <li><strong>Meaning:</strong> &quot;Creator, maker, architect (from Sanskrit निर्मातृ)&quot;</li>
+  <li><strong>Domain of influence:</strong> Creation, The Divine Architect</li>
+  <li><strong>Pantheon:</strong> Sanskrit</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Original script:</strong> निर्माता (Devanagari)</li>
+  <li><strong>Live domain:</strong> nirmātā.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Nirmātā</strong> (<em>nirmata</em>) — Creation, The Divine Architect · Creator, maker, architect (from Sanskrit निर्मातृ) — belongs to the Sanskrit tradition, where it is catalogued under the domain &quot;Creation, The Divine Architect&quot;. The name means &quot;Creator, maker, architect (from Sanskrit निर्मातृ)&quot;.</p>
+<p><strong>Nirmātā</strong> is the one who measures, fashions, and brings form out of formlessness. In Sanskrit the word is an agent noun built from the root <em>mā</em>, &#39;to measure,&#39; with the prefix <em>nir-</em>, &#39;forth.&#39; It names not a single mythic character but the cosmic function of making: the architect who lays out the blueprint of existence, the sculptor who carves matter into shape, and the ritualist whose precise gestures recreate the world.</p>
+<p>The concept stands close to <em>Viśvakarman</em>, the Vedic divine craftsman, and to the later figure of Brahmā as creator. To invoke Nirmātā is to honor the intelligence that precedes every made thing — the plan without which no cosmos can arise.</p>
+<p>PÚNYCODEX restores the name as <strong>Nirmātā</strong> and serves its temple at <a href="https://xn--nirmt-iwab.com">nirmātā.com</a>. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>nirmata</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Devanagari as <strong>निर्माता</strong>. Etymologically it means &quot;Creator, maker, architect (from Sanskrit निर्मातृ)&quot;.</p>
+<p>The ASCII form <em>nirmata</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Nirmātā</strong> recovers the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>n</strong> → <strong>N</strong> — Same, capitalized</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+  <li><strong>r</strong> → <strong>r</strong> — Same</li>
+  <li><strong>m</strong> → <strong>m</strong> — Same</li>
+  <li><strong>a</strong> → <strong>ā</strong> — Macron: long /aː/</li>
+  <li><strong>t</strong> → <strong>t</strong> — Same</li>
+  <li><strong>a</strong> → <strong>ā</strong> — Macron: long /aː/</li>
+</ul>
+<p>The project holds the domain <strong>nirmātā.com</strong> (xn--nirmt-iwab.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Devanagari as <strong>निर्माता</strong> — Brahmic abugida, attested Vedic – present, c. 1500 BCE –, in South Asia. The script is written left-to-right.</p>
+<p>The scholarly transliteration is <em>Nirmātā</em> (IAST), giving the normalized reading /nɪrˈmaː.taː/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>Sanskrit Nirmātā is written निर्माता in Devanagari.</li>
+  <li>Each aksara combines a consonant with an inherent or explicit vowel.</li>
+  <li>IAST diacritics preserve length, retroflexion, and aspiration lost in plain ASCII.</li>
+  <li>The Devanagari form is not used as the primary domain because Indic scripts are not in the .com IDN table.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/nɪr.ˈmaː.taː/</strong> — Sanskrit Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>nir-</strong> — Voiceless alveolar nasal [n] plus short close front [ɪ] and retroflex tap [r]; the prefix nir- carries the sense of &#39;out, forth, away&#39;</li>
+  <li><strong>-mā-</strong> — Long open [aː], the root mā meaning &#39;to measure, build, fashion&#39;</li>
+  <li><strong>-tā</strong> — Voiceless alveolar stop [t] plus long open [aː]; the agent suffix -tṛ/-tā means &#39;one who makes&#39;</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;neer-MAH-tah&#39; — stress the long middle syllable, roll the &#39;r&#39; lightly, and hold both final vowels long.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Sanskrit</strong> — निर्माता (nirmātā), the masculine agent noun from nir- + √mā, &#39;maker, creator, builder&#39;</li>
+  <li><strong>Sanskrit root</strong> — √mā (to measure, build, fashion), the same root behind māyā and mātra</li>
+  <li><strong>Related terms</strong> — nirmāṇa (creation, formation); viśvakarman (the divine architect)</li>
+</ul>
+<p>Nirmātā is Tier 1 because both ā vowels are long. The name is a transparent Sanskrit agent noun, not a personal divine name in classical Hinduism, but it captures the abstract principle of the divine maker.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Because Nirmātā is a title and concept rather than a single mythic protagonist, its mythology is distributed across the figures who embody making: Viśvakarman in the Vedas, Brahmā in the Purāṇas, and the human ritualist who rebuilds the cosmos on the sacrificial ground.</p>
+<h3 id="visvakarman-the-all-maker-rgveda">Viśvakarman, the All-Maker (Ṛgveda)</h3>
+<p>Ṛgveda 10.81–82 hymns Viśvakarman as the maker of all things, the smith whose axe forged the worlds and whose eye is the sun. He is the father of all beings, the one who knows the measure of heaven and earth. Though later overshadowed by Brahmā, Viśvakarman remains the archetype of the nirmātā in Vedic poetry.</p>
+<h3 id="brahma-born-from-the-lotus-puranic-cosmogony">Brahmā Born from the Lotus (Purāṇic cosmogony)</h3>
+<p>In the Purāṇas, Brahmā the creator awakens from the lotus that grows from Viṣṇu&#39;s navel. He is born already equipped with the Vedas and the task of fashioning the cosmos. As the supreme nirmātā he creates the planets, the gods, the sages, and the categories of living beings, establishing the measured order within which karma unfolds.</p>
+<h3 id="the-fire-altar-as-cosmos-satapatha-brahmana">The Fire Altar as Cosmos (Śatapatha Brāhmaṇa)</h3>
+<p>The Śatapatha Brāhmaṇa describes the construction of the Vedic fire altar (agnicayana) as a ritual re-creation of the universe. Each brick, each layer, and each measurement corresponds to a part of the cosmos. The sacrificer who builds it becomes, for the duration of the rite, a nirmātā, a second creator restoring what decay has loosened.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Nirmātā concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>Compass and rule</strong> — The tools of measurement by which the architect orders space and proportion</li>
+  <li><strong>The Vedic altar (vedi)</strong> — A microcosm built to exact measure, embodying the nirmātā&#39;s power to recreate the universe</li>
+  <li><strong>The potter&#39;s wheel</strong> — The rotating disk on which formless clay becomes vessel, a classical image of divine creation</li>
+  <li><strong>The lotus emerging from Viṣṇu&#39;s navel</strong> — Brahmā&#39;s birth seat, showing that creation arises from the preserved center of cosmic being</li>
+  <li><strong>The cosmic egg (brahmāṇḍa)</strong> — The measured, finite container from which the expanding universe is hatched</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>The nirmātā ideal is most visible where measurement itself is the rite. The Śatapatha Brāhmaṇa (books 6–9) expounds the agnicayana — the piling of the fire altar — as the measured reconstruction of Prajāpati&#39;s dismembered body: a bird-shaped altar raised in five layers of over ten thousand bricks, each laid to mantra and measure. The rite survived into living memory: in April 1975 the Nambudiri Brahmins of Panjal, Kerala, performed the full twelve-day agnicayana, documented brick by brick in Frits Staal&#39;s <em>AGNI: The Vedic Ritual of the Fire Altar</em>. The same science of measured creation governs the śilpaśāstras — treatises such as the Mānasāra and the Mayamata — which prescribe the <strong>vāstupuruṣamaṇḍala</strong>, the square diagram of the cosmic man upon which the sthapati, the architect-priest, lays out every temple and town. The rock-cut caves of the Deccan and the temples of Khajuraho and Bhubaneswar embody the canon in stone, and Viśvakarman remains invoked at foundation rites across the subcontinent.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p><strong>Nirmātā</strong> is the one who measures, fashions, and brings form out of formlessness. In Sanskrit the word is an agent noun built from the root <em>mā</em>, &#39;to measure,&#39; with the prefix <em>nir-</em>, &#39;forth.&#39; It names not a single mythic character but the cosmic function of making: the architect who lays out the blueprint of existence, the sculptor who carves matter into shape, and the ritualist whose precise gestures recreate the world.</p>
+<p>The concept stands close to <em>Viśvakarman</em>, the Vedic divine craftsman, and to the later figure of Brahmā as creator. To invoke Nirmātā is to honor the intelligence that precedes every made thing — the plan without which no cosmos can arise.</p>
+<h3 id="cosmic-architect">Cosmic Architect</h3>
+<p>Like Viśvakarman, the nirmātā measures heaven and earth, laying the foundations of the worlds.</p>
+<h3 id="maya-as-measurement">Māyā as Measurement</h3>
+<p>The same root mā gives māyā: the measured, shaped world that both reveals and conceals the absolute.</p>
+<h3 id="ritual-construction">Ritual Construction</h3>
+<p>In Vedic ritual, every altar is a nirmāṇa, a measured re-creation of the cosmos by human hands.</p>
+<h3 id="brahma-the-creator">Brahmā the Creator</h3>
+<p>The personal creator god Brahmā is the supreme nirmātā, the one from whom the living universe emanates.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>The idea of a divine architect or maker appears across ancient cultures: the Greek Daimurge, the Egyptian Ptah and Khnum, the Mesopotamian Marduk fashioning the world from the body of Tiamat, and the Judeo-Christian Creator measuring the deep. In India, the nirmātā function is distributed among Viśvakarman, Brahmā, Prajāpati, and Śiva as the supreme yogin whose meditation projects the world. The philosophical schools further refined the concept: Sāṃkhya spoke of prakṛti as the material matrix, Vedānta of Brahman as the sole reality behind apparent creation, and Tantra of śakti as the active power that shapes form. Nirmātā thus names a shared human intuition — that the ordered world implies an ordering intelligence — while remaining rooted in Sanskrit grammar and ritual.</p>
+<p>Within the Sanskrit tradition, closely related names in the corpus include [[durga|Durgā]], [[ganesha|Gaṇeśa]], [[kali|Kālī]], [[lakshmi|Lakṣmī]], [[om|Oṃ]], and [[parvati|Pārvatī]].</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>The word nirmātā lives on in modern Hindi, Marathi, and other South Asian languages as &#39;producer&#39; or &#39;creator,&#39; especially in film and the arts. The concept of the divine architect continues to inspire architects, sculptors, and ritual specialists across the Hindu world. In diaspora communities, figures like Viśvakarman and Brahmā remain symbols of craftsmanship and creative intelligence, while the Sanskrit root <em>mā</em> echoes in terms for measurement, meter, mother, and the world-shaping power of māyā. The Unicode restoration <em>Nirmātā</em> keeps visible the long vowels and precise etymology that make this name a philosophical statement as much as a title.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Nirmātā given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Ṛgveda Saṃhitā 10.81–82 (Viśvakarman hymns).</li>
+  <li> Śatapatha Brāhmaṇa (agnicayana and the fire altar).</li>
+  <li> Viṣṇu Purāṇa, Book 1 (Brahmā&#39;s birth from the navel-lotus).</li>
+  <li> Manusmṛti 1.11–19 (creation by Brahmā).</li>
+  <li> Monier-Williams, Sanskrit-English Dictionary (nirmātṛ).</li>
+  <li> Staal, Agni: The Vedic Ritual of the Fire Altar.</li>
+  <li> Kramrisch, The Presence of Śiva.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Nirmātā asks us to notice the intelligence behind form. Every bridge, every poem, every cell, and every galaxy is a kind of making — something shaped where before there was only possibility. To call the divine &#39;maker&#39; is not to reduce spirit to craft but to elevate craft into spirit.</p>
+<p>Yet the Sanskrit word carries a subtle warning. <em>Mā</em> means both &#39;to measure&#39; and &#39;to fashion illusion&#39; (māyā). Every made thing is measured, and therefore limited. The nirmātā gives the world its beauty and its boundaries. To honor the maker is to love the world without mistaking its forms for the final truth.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Nirmātā is classified as <strong>Tier 1</strong>: the original carries both stress and length, and only one valid Unicode restoration exists. The ASCII fallback <em>nirmata</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 7 characters of the name, the restoration adjusts 2: 2 marks of length (ā, ā). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>nirmata</em> to <strong>Nirmātā</strong>, one character at a time:</p>
+<ul>
+  <li><strong>n</strong> → <strong>N</strong> — Same, capitalized</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+  <li><strong>r</strong> → <strong>r</strong> — Same</li>
+  <li><strong>m</strong> → <strong>m</strong> — Same</li>
+  <li><strong>a</strong> → <strong>ā</strong> — Macron: long /aː/</li>
+  <li><strong>t</strong> → <strong>t</strong> — Same</li>
+  <li><strong>a</strong> → <strong>ā</strong> — Macron: long /aː/</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>nirmātā.com</strong>, which the DNS carries in punycode form as xn--nirmt-iwab.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Nirmātā; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Devanagari can now be typed into any browser on earth.</p>
+<h2 id="the-sanskrit-pantheon">The Sanskrit Pantheon</h2>
+<p>Nirmātā is one of 88 entries the PÚNYCODEX lexicon catalogues under the Sanskrit pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Nirmātā mean?</strong> The traditional gloss is &quot;Creator, maker, architect (from Sanskrit निर्मातृ).&quot;</p>
+<p><strong>Which tradition does Nirmātā belong to?</strong> Nirmātā is catalogued in the Sanskrit pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Nirmātā classified as Tier 1?</strong> Because the original carries both stress and length, and only one valid Unicode restoration exists — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Nirmātā a working domain?</strong> Yes — nirmātā.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for nirmātā.com?</strong> The DNS encoding is xn--nirmt-iwab.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="typing-nirmata">Typing Nirmātā</h2>
+<p>You do not need a special keyboard to use this restoration. The <a href="/type/">PÚNYCODEX Type Tool</a> converts the ASCII form <em>nirmata</em> into <strong>Nirmātā</strong> as you type, and the browser extension offers the same conversion inside any text field. Copy the restored form, paste it into the address bar, and the DNS does the rest.</p>
+<h2 id="sister-temples">Sister Temples</h2>
+<p>Other temples in the Sanskrit pantheon include <a href="/sites/vishnu/">Viṣṇu</a>, <a href="/sites/vishvakarman/">Viśvakarman</a>, and <a href="/sites/vyasa/">Vyāsa</a> — each with its own restoration story, its own scholarly record, and its own place in the lexicon.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Myth, script, sound, cult, legacy, domain: the faces of Nirmātā add up to a single argument — that a name is a record, and records deserve fidelity. The PÚNYCODEX restoration keeps that record in working order: the temple presents it, the Scholarly Edition footnotes it, the lexicon catalogs it, and the domain makes it addressable. <em>nirmata</em> will always exist as a fallback. But fallback is not identity. <strong>Nirmātā</strong> is the name; everything else is a convenience.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/kubera/">Kubera</a></li>
   <li><a href="/sites/matsya/">Matsya</a></li>
   <li><a href="/sites/nandi/">Nandí</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
-  <li><a href="https://www.sanskrit-lexicon.uni-koeln.de/">Scholarly reference</a></li>
+  <li>Ṛgveda Saṃhitā 10.81–82 (Viśvakarman hymns).</li>
+  <li>Śatapatha Brāhmaṇa (agnicayana and the fire altar).</li>
+  <li>Viṣṇu Purāṇa, Book 1 (Brahmā&#39;s birth from the navel-lotus).</li>
+  <li>Staal, F., AGNI: The Vedic Ritual of the Fire Altar (1983), documenting the 1975 Panjal agnicayana.</li>
+  <li>Lexicon authorities for this entry: MW.</li>
 </ul>
-<h2>The Cultural Afterlife</h2>
-<p>The word nirmātā lives on in modern Hindi, Marathi, and other South Asian languages as &#39;producer&#39; or &#39;creator,&#39; especially in film and the arts. The concept of the divine architect continues to inspire architects, sculptors, and ritual specialists across the Hindu world. In diaspora communities, figures like Viśvakarman and Brahmā remain symbols of craftsmanship and creative intelligence, while the Sanskrit root mā echoes in terms for measurement, meter, mother, and the world-shaping power of māyā. The Unicode restoration Nirmātā keeps visible the long vowels and precise etymology that make this name a philosophical statement as much as a title.</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Nirmātā as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Devanagari to the modern browser. Every visit to this temple is a small act of preservation.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">sanskrit</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

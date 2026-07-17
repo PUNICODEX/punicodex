@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,45 +170,192 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-sanskrit-pantheon">The Sanskrit Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#typing-laksmi">Typing Lakṣmī</a></li>
+                <li><a href="#sister-temples">Sister Temples</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>Pronouncing Lakṣmī: A Guide for the Curious</h1>
-<p>Saying <strong>Lakṣmī</strong> out loud is harder than reading it on a screen, and more rewarding. Scholars reconstruct the sound as <em>&#39;LUKH-shmee&#39; — the middle consonant is a curled-tongue &#39;sh&#39;, and the final vowel is held long like &#39;ee&#39; in &#39;see&#39;.</em>.</p>
-<h2>The Reconstructed Sound</h2>
-<p>The name is attested in Devanagari as लक्ष्मी. The noun lakṣmī derives from lakṣman, &quot;mark, sign, token&quot;; Monier-Williams defines the goddess as the deity of fortune and beauty, in later mythology identified with Śrī and regarded as the wife of Viṣṇu-Nārāyaṇa. The ASCII form lakshmi survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Lakṣmī recovers the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The letter-by-letter transformation runs: - l → L — Same - a → a — Short /a/ - k → k —... The sounds preserved in Lakṣmī are not random; they follow rules that linguists have spent centuries recovering.</p>
-<h2>Sound by Sound</h2>
-<p> Each segment locks into the next, so a small change in one place ripples through the whole name.</p>
-<h2>Kin Forms</h2>
-<p>Names rarely have only one valid shape. The restoration chooses the form that best balances historical accuracy with the practical limits of DNS.</p>
-<h2>From Speech to Screen</h2>
-<p>Pronunciation and spelling converge in Unicode. Lakṣmī carries enough phonetic information to be read aloud by someone who knows the conventions, and enough visual distinctiveness to stand out in an address bar.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Lakṣmī is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>Pronouncing Lakṣmī: a guide for the curious</h1>
+<p>Saying <strong>Lakṣmī</strong> aloud is harder than reading it on a screen, and more rewarding. The restored spelling is a compressed pronunciation guide: every accent and macron is an instruction. This post unpacks those instructions — the reconstructed sound, the phoneme-by-phoneme record, the kindred forms in neighboring languages — and then zooms out to the full record around the name: its Devanagari writing, its mythology, its cult, and its modern life as a Unicode domain. Whether you arrive as a linguist, a reader of myth, or a domainer, you will leave able to say the name the way the evidence suggests it was said — and able to type it the way it was written.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Lakṣmī</li>
+  <li><strong>ASCII form:</strong> lakshmi</li>
+  <li><strong>Meaning:</strong> &quot;of the goddess of fortune and beauty (frequently in the later mythology identified with Śrī and regarded as the wife of Viṣṇu or Nārāyaṇa; accord. to R. i, 45&quot;</li>
+  <li><strong>Domain of influence:</strong> Wealth, Fortune, Beauty</li>
+  <li><strong>Pantheon:</strong> Sanskrit</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Original script:</strong> लक्ष्मी (Devanagari)</li>
+  <li><strong>Live domain:</strong> lakṣmī.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Lakṣmī</strong> (<em>lakshmi</em>) — Wealth, Fortune, Beauty · the goddess of fortune and beauty — belongs to the Sanskrit tradition, where it is catalogued under the domain &quot;Wealth, Fortune, Beauty&quot;. The noun <em>lakṣmī</em> derives from <em>lakṣman</em>, &quot;mark, sign&quot; — the auspicious token by which fortune is known; later mythology identifies its bearer with the Vedic goddess Śrī and makes her the wife of Viṣṇu-Nārāyaṇa, inseparable from him in every descent.</p>
+<p><strong>Lakṣmī</strong> is the goddess who turns possibility into prosperity. She is wealth in all its forms — gold grain, good children, royal power, moral merit, and the beauty that makes life worth living. In the Sanskrit imagination she is not mere money; she is <em>śrī</em>, the radiant splendor that surrounds any flourishing person, household, or kingdom. Where she dwells, there is abundance; where she departs, even palaces become deserts.</p>
+<p>She is most often invoked as the consort of Viṣṇu, the preserving god, and she accompanies him in each of his earthly descents — as Sītā beside Rāma. But her origins are older and more independent, rooted in the Śrī Sūkta&#39;s Vedic hymns to royal fortune and abundance.</p>
+<p>PÚNYCODEX restores the name as <strong>Lakṣmī</strong> and serves its temple at <a href="https://xn--lakm-tya2995b.com">lakṣmī.com</a>. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>lakshmi</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Devanagari as <strong>लक्ष्मी</strong>. The noun <em>lakṣmī</em> derives from <em>lakṣman</em>, &quot;mark, sign, token&quot;; Monier-Williams defines the goddess as the deity of fortune and beauty, in later mythology identified with Śrī and regarded as the wife of Viṣṇu-Nārāyaṇa.</p>
+<p>The ASCII form <em>lakshmi</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Lakṣmī</strong> recovers the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>l</strong> → <strong>L</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Short /a/</li>
+  <li><strong>k</strong> → <strong>k</strong> — Same</li>
+  <li><strong>s</strong> → <strong>ṣ</strong> — S-dot-under: retroflex /ʂ/</li>
+  <li><strong>h</strong> → <strong>—</strong> — Dropped: digraph simplified</li>
+  <li><strong>m</strong> → <strong>m</strong> — Same</li>
+  <li><strong>i</strong> → <strong>ī</strong> — Macron: long /iː/</li>
+</ul>
+<p>The project holds the domain <strong>lakṣmī.com</strong> (xn--lakm-tya2995b.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Devanagari as <strong>लक्ष्मी</strong> — Brahmic abugida, attested Vedic – present, c. 1500 BCE –, in South Asia. The script is written left-to-right.</p>
+<p>The scholarly transliteration is <em>Lakṣmī</em> (IAST), giving the normalized reading /ˈləkʂ.miː/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>Sanskrit Lakṣmī is written लक्ष्मी in Devanagari.</li>
+  <li>Each aksara combines a consonant with an inherent or explicit vowel.</li>
+  <li>IAST diacritics preserve length, retroflexion, and aspiration lost in plain ASCII.</li>
+  <li>The Devanagari form is not used as the primary domain because Indic scripts are not in the .com IDN table.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/lək.ʂmiː/</strong> — Sanskrit Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Lak-</strong> — Light lateral [l], short [ə] (the reduced Sanskrit &#39;a&#39;), and retroflex fricative [ʂ] — a &#39;sh&#39; sound made with the tongue curled back</li>
+  <li><strong>-ṣmī</strong> — Voiced bilabial nasal [m] followed by long close front [iː]; the macron marks length, giving the name its Tier-1 status</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;LUKH-shmee&#39; — the middle consonant is a curled-tongue &#39;sh&#39;, and the final vowel is held long like &#39;ee&#39; in &#39;see&#39;.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Sanskrit</strong> — लक्ष्मी (lakṣmī), from lakṣma, &#39;mark, sign, auspicious token&#39;</li>
+  <li><strong>Vedic</strong> — Śrī, an independent goddess of beauty and royal fortune later fused with Lakṣmī</li>
+  <li><strong>Tamil</strong> — லட்சுமி (Lakṣmi), the Dravidian rendering of the goddess</li>
+</ul>
+<p>Lakṣmī is Tier 1 because the final ī is long. The retroflex ṣ in the middle of the name is a distinct Sanskrit sound; English &#39;Lakshmi&#39; with plain &#39;sh&#39; loses this phonetic information.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Lakṣmī&#39;s mythology centers on emergence, courtship, and the precariousness of fortune. She rises from the churning ocean, chooses Viṣṇu as her lord, and moves restlessly among mortals and gods, testing their merit and generosity. Her stories teach that wealth must be cultivated through dharma, not merely seized.</p>
+<h3 id="born-from-the-churning-ocean-samudra-manthan">Born from the Churning Ocean (Samudra Manthan)</h3>
+<p>When the gods and demons churned the cosmic ocean in search of amṛta, the first treasures to surface were poison, the moon, and the wish-fulfilling cow. Then, robed in lotuses and glowing like a second dawn, Lakṣmī rose from the foam. Every god stretched out his hand, but she passed them by and placed a garland around Viṣṇu&#39;s neck, choosing the preserver as her eternal consort. The gods cheered, for her choice meant that fortune itself had allied with cosmic order.</p>
+<h3 id="sita-fortune-incarnate-ramayana">Sītā, Fortune Incarnate (Rāmāyaṇa)</h3>
+<p>In the Rāmāyaṇa, Sītā is understood as an embodiment of Lakṣmī who has descended with Viṣṇu&#39;s avatāra Rāma. Her birth from a furrow in the earth, her marriage to Rāma, and her abduction by Rāvaṇa form the central narrative of the epic. Through loyalty, suffering, and final restoration, Sītā reveals Lakṣmī&#39;s capacity to remain pure and sovereign even in captivity.</p>
+<h3 id="the-fickle-goddess-mahabharata">The Fickle Goddess (Mahābhārata)</h3>
+<p>The Mahābhārata tells how Lakṣmī once asked the sage Bhṛgu which among the gods was most worthy of her. Bhṛgu tested Brahmā, Śiva, and Viṣṇu; only Viṣṇu&#39;s forbearance pleased her. The story underlines a persistent theme: fortune is not loyal by nature. She dwells with truth, generosity, and patience, and she deserts the proud, the cruel, and the lazy.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Lakṣmī concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>Lotus (padma)</strong> — She stands or sits upon a lotus, a symbol of purity rising unstained from the waters of material existence</li>
+  <li><strong>Gold coins</strong> — The shower of wealth that flows from her hands; prosperity as divine blessing</li>
+  <li><strong>Owl (ulūka)</strong> — Her vehicle, associated with alertness and, in some readings, with the ability to find value in darkness</li>
+  <li><strong>Elephant (gaja)</strong> — The showering elephants of the Samudra Manthan symbolize royal abundance and fertilizing rain</li>
+  <li><strong>Conch and discus</strong> — Attributes shared with Viṣṇu, marking her identity as his śakti</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Her earliest identifiable images predate the Kuṣāṇas: among the 2nd-century BCE railing reliefs of Bharhut a lotus-borne goddess is labeled <strong>Sirimā Devatā</strong> — Śrī herself — and the stūpa&#39;s medallions already show the lustration-by-elephants scheme that becomes her signature. Terracotta plaques of the lotus-goddess from Vaiśālī, Kauśāmbī, and Śrāvastī attest a popular cult around the turn of the era, and the <strong>gajalakṣmī</strong> type — the goddess flanked by two elephants pouring water — enters early Indian coinage and the sculpture of Gandhāra and Mathurā in the first centuries CE. Gupta gold coinage sets her on its reverses as the emblem of royal fortune; Gupta and early-medieval temples seat her beside Viṣṇu or lustrated by elephants, and from the medieval period her iconography is fixed — lotus throne, lotuses in hand, gold streaming from her palm, elephants or the owl beside her. Living centers such as the Mahālakṣmī temple of Kolhāpur, reckoned among the Śakti pīṭhas, carry her cult unbroken into the present.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p><strong>Lakṣmī</strong> is the goddess who turns possibility into prosperity. She is wealth in all its forms — gold grain, good children, royal power, moral merit, and the beauty that makes life worth living. In the Sanskrit imagination she is not mere money; she is <em>śrī</em>, the radiant splendor that surrounds any flourishing person, household, or kingdom. Where she dwells, there is abundance; where she departs, even palaces become deserts.</p>
+<p>She is most often invoked as the consort of Viṣṇu, the preserving god, and she accompanies him in each of his earthly descents. But her origins are older and more independent, rooted in Vedic hymns to royal fortune and in the goddess Śrī celebrated for her loveliness and power.</p>
+<h3 id="wealth-and-abundance">Wealth and Abundance</h3>
+<p>She governs crops, cattle, gold, and every resource that sustains life; her name is invoked at markets, harvests, and account books.</p>
+<h3 id="beauty-and-sri">Beauty and Śrī</h3>
+<p>As Śrī she is the fragrance, grace, and radiance that distinguish the noble and the divine from the merely ordinary.</p>
+<h3 id="royal-fortune">Royal Fortune</h3>
+<p>Kingship is legitimized by her presence; the wheel of sovereignty turns only for the ruler whom Lakṣmī favors.</p>
+<h3 id="visnu-s-consort">Viṣṇu&#39;s Consort</h3>
+<p>She accompanies the preserver in every avatāra, descending with him to restore dharma whenever the world grows dark.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Lakṣmī absorbed the Vedic goddess Śrī and, in later Hinduism, was identified with Rādhā, Sītā, and the various consorts of Viṣṇu. In Buddhism, the goddess Śrī or Lakṣmī appears as a protector of the Dharma and a bringer of royal fortune; in Jainism, similar auspicious goddesses guard the Jinas. Southeast Asian kings from Cambodia to Bali claimed her presence as a sign of legitimate rule. The ancient pairing of a goddess of abundance with a preserver god has parallels in Near Eastern and Greco-Roman divine couples, though Lakṣmī&#39;s specific association with the lotus and the churning ocean is distinctively Indic.</p>
+<p>Within the Sanskrit tradition, closely related names in the corpus include [[durga|Durgā]], [[ganesha|Gaṇeśa]], [[kali|Kālī]], [[nirmata|Nirmātā]], [[om|Oṃ]], and [[parvati|Pārvatī]].</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Lakṣmī remains one of the most widely worshipped goddesses in the Hindu world. Dīpāvalī, the festival of lights, is above all her festival: lamps are lit to welcome her into homes, businesses are closed and reopened with new account books, and families pray for a year of prosperity. Her image appears on coins, banknotes, corporate logos, and domestic shrines across South Asia and the diaspora. In classical and Bollywood dance, in temple sculpture, and in feminist reinterpretations, Lakṣmī continues to represent the idea that beauty and wealth are not vices but divine gifts that must be honored and shared.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Lakṣmī given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Rāmāyaṇa, Bālakāṇḍa 66 (birth and marriage of Sītā).</li>
+  <li> Mahābhārata, Ādi Parvan (Lakṣmī and Bhṛgu).</li>
+  <li> Viṣṇu Purāṇa, Book 1, chapters 8–9 (churning of the ocean and Lakṣmī&#39;s birth).</li>
+  <li> Śrī Sūkta (Vedic hymn to royal fortune and abundance).</li>
+  <li> Monier-Williams, Sanskrit-English Dictionary (lakṣmī).</li>
+  <li> Kinsley, Hindu Goddesses: Visions of the Divine Feminine.</li>
+  <li> Coburn, Encountering the Goddess: A Translation of the Devī-Māhātmya.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Lakṣmī challenges the suspicion that wealth and spirituality cannot coexist. In her presence, abundance is not exploitation but flowering; beauty is not vanity but the radiance of a well-ordered life. She asks us to consider what we truly value and whether we are capable of receiving good things without clutching them.</p>
+<p>Yet she is also a warning. Fortune is described as restless because it cannot be hoarded; it must circulate through generosity, ritual, and care. To worship Lakṣmī is therefore to commit to a discipline of abundance — not merely asking for more, but becoming the kind of person around whom prosperity can settle without being corrupted.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Lakṣmī is classified as <strong>Tier 1</strong>: the original carries both stress and length, and only one valid Unicode restoration exists. The ASCII fallback <em>lakshmi</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 7 characters of the name, the restoration adjusts 3: 1 mark of length (ī); 2 further adjustments (ṣ, h). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>lakshmi</em> to <strong>Lakṣmī</strong>, one character at a time:</p>
+<ul>
+  <li><strong>l</strong> → <strong>L</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Short /a/</li>
+  <li><strong>k</strong> → <strong>k</strong> — Same</li>
+  <li><strong>s</strong> → <strong>ṣ</strong> — S-dot-under: retroflex /ʂ/</li>
+  <li><strong>h</strong> → <strong>h</strong> — Dropped: digraph simplified</li>
+  <li><strong>m</strong> → <strong>m</strong> — Same</li>
+  <li><strong>i</strong> → <strong>ī</strong> — Macron: long /iː/</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>lakṣmī.com</strong>, which the DNS carries in punycode form as xn--lakm-tya2995b.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Lakṣmī; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Devanagari can now be typed into any browser on earth.</p>
+<h2 id="the-sanskrit-pantheon">The Sanskrit Pantheon</h2>
+<p>Lakṣmī is one of 88 entries the PÚNYCODEX lexicon catalogues under the Sanskrit pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Lakṣmī mean?</strong> The traditional gloss is &quot;of the goddess of fortune and beauty (frequently in the later mythology identified with Śrī and regarded as the wife of Viṣṇu or Nārāyaṇa; accord. to R. i, 45.&quot;</p>
+<p><strong>Which tradition does Lakṣmī belong to?</strong> Lakṣmī is catalogued in the Sanskrit pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Lakṣmī classified as Tier 1?</strong> Because the original carries both stress and length, and only one valid Unicode restoration exists — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Lakṣmī a working domain?</strong> Yes — lakṣmī.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for lakṣmī.com?</strong> The DNS encoding is xn--lakm-tya2995b.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="typing-laksmi">Typing Lakṣmī</h2>
+<p>You do not need a special keyboard to use this restoration. The <a href="/type/">PÚNYCODEX Type Tool</a> converts the ASCII form <em>lakshmi</em> into <strong>Lakṣmī</strong> as you type, and the browser extension offers the same conversion inside any text field. Copy the restored form, paste it into the address bar, and the DNS does the rest.</p>
+<h2 id="sister-temples">Sister Temples</h2>
+<p>Other temples in the Sanskrit pantheon include <a href="/sites/shiva/">Śiva</a>, <a href="/sites/tantra/">Tantra</a>, and <a href="/sites/valmiki/">Vālmīki</a> — each with its own restoration story, its own scholarly record, and its own place in the lexicon.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Pronunciation turns out to be the heart of the matter. The marks in <strong>Lakṣmī</strong> are instructions for the voice, and a web that strips them is a web that mispronounces the past at scale. The restoration hands the instructions back: say it as the evidence suggests, type it as the tradition wrote it, and let the punycode machinery do the quiet translation in between. That is all the PÚNYCODEX project asks of the infrastructure — and everything it asks of you, the reader, is to use the whole name.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/yama/">Yama</a></li>
   <li><a href="/sites/aditi/">Aditi</a></li>
   <li><a href="/sites/benares/">Benarés</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
-  <li><a href="https://www.sanskrit-lexicon.uni-koeln.de/">Scholarly reference</a></li>
+  <li>Viṣṇu Purāṇa, Book 1, chapters 8–9 (churning of the ocean and Lakṣmī&#39;s birth).</li>
+  <li>Rāmāyaṇa, Bālakāṇḍa 66 (birth and marriage of Sītā).</li>
+  <li>Śrī Sūkta (khila hymn to Śrī, appended to the Ṛgveda).</li>
+  <li>Monier-Williams, Sanskrit-English Dictionary (lakṣmī; from lakṣman, &quot;mark, sign&quot;).</li>
+  <li>Lexicon authorities for this entry: MW, KEWA.</li>
 </ul>
-<h2>What the Sources Record</h2>
-<p>Lakṣmī is the goddess who turns possibility into prosperity. She is wealth in all its forms — gold grain, good children, royal power, moral merit, and the beauty that makes life worth living. In the Sanskrit imagination she is not mere money; she is śrī, the radiant splendor that surrounds any flourishing person, household, or kingdom. Where she dwells, there is abundance; where she departs, even palaces become deserts. She is most often invoked as the consort of Viṣṇu, the preserving god, and she accompanies him in each of his earthly descents. But her origins are older and more independent, rooted in Vedic hymns to royal fortune and in the goddess Śrī celebrated for her loveliness and power. ### Wealth and Abundance She governs crops, cattle,...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Lakṣmī as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Devanagari to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Lakṣmī through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/lakshmi/">home page</a> offers the full name breakdown, the <a href="/sites/lakshmi/lore/">lore page</a> explores the myth, and the <a href="/sites/lakshmi/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Lakṣmī do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
-<h2>A Note on the Address Bar</h2>
-<p>When you type Lakṣmī, the browser performs an invisible conversion into Punycode so the global DNS can route the request. The user sees the original name; the machines see a compatible ASCII encoding. That duality is the engineering compromise that makes the restoration possible, and it is the reason every Unicode domain is both a technical milestone and a small act of cultural memory.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">sanskrit</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

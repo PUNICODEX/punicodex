@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,40 +170,174 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#epithets-cult-titles">Epithets &amp; Cult Titles</a></li>
+                <li><a href="#the-homeric-hymns">The Homeric Hymns</a></li>
+                <li><a href="#oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>Hýdra in 2026: Why Scholars Still Care</h1>
-<p>In 2026, names are treated as data points. Hýdra is a reminder that they are also cultural artifacts. Hýdra (hydra) is the Lernaean water-serpent of Greek myth: a many-headed monster reared by [[hera|Hēra]] in the marsh of Lerna in the Argolid and destroyed by [[herakles|Hēraklēs]] as the second of his labors. The name is the ordinary Greek noun for a water-snake — ὕδρα, from ὕδωρ, &#39;water&#39; — raised to a proper name for the serpent par excellence; the lexicon glosses the creature simply as &#39;water serpent&#39;. Her earliest witness is Hesiod, who counts the Hydra among the monstrous brood of [[typhon|Typhōn]] and Echidna and already knows the essential plot: Hera reared the serpent in her implacable anger at Herakles, who killed it with his nephew Iolaos beside him and Athena guiding his hand. The canonical prose account is Apollodorus, who gives the... The question is not whether the name is old, but whether the digital world is old enough to hold it.</p>
-<h2>The Scholarly Argument</h2>
-<p>Ὕδρα (feminine) is a common noun before it is a monster&#39;s name: Greek lexica record ὕδρα, beside the by-form ὕδρη, as &#39;water-snake&#39;, a transparent derivative of ὕδωρ, &#39;water&#39;. The root is old Indo-European inheritance: ὕδωρ belongs to the family of wed- / ud- that also yields Sanskrit udán- and English water, so the monster&#39;s name marks her as the dangerous power of her own element. As a proper name, ἡ Ὕδρα, &#39;the Water-Snake&#39;, the word is accented on the first syllable, and that acute is what the PÚNYCODEX restoration reproduces: Hýdra. The ASCII spelling hydra descends through Latin hydra, which dropped the rough breathing of the Greek ὑ-; it is a convenience of the early domain-name system, not an ancient form. The letter-by-letter transformation... The PÚNYCODEX Scholarly Edition collects these arguments in one place, with sources and revision history, so the claim can be inspected rather than merely asserted.</p>
-<h2>What the Accent Preserves</h2>
-<p>This entry is classified as <strong>Tier 2</strong>. the original preserves at least one philological feature that ASCII cannot encode Those marks are not ornaments; they are the coordinates that place the name inside a language.</p>
-<h2>A Living Edition</h2>
-<p>The <a href="/sites/hydra/scholars/">Scholarly Edition</a> is not a static page. Verified contributors can improve it, and every change is attributed. That model turns a blog post like this one into an invitation to dig deeper.</p>
-<h2>Where to Learn More</h2>
+            <h1>Hýdra in 2026: why scholars still care</h1>
+<p>In 2026, names are treated as data points. <strong>Hýdra</strong> is a reminder that they are also cultural artifacts — and that the difference matters for search engines, AI training corpora, and anyone who types the name of a Greek figure into a browser. Scholars never stopped caring about the difference between <em>hydra</em> and Hýdra; the web simply made that care actionable. What follows is the full scholarly picture — name, script, sound, myth, cult, and legacy — followed by the engineering compromise that lets a restored spelling live at a real address. The question is not whether the name is old. It is whether the digital world is old enough to hold it.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Hýdra</li>
+  <li><strong>ASCII form:</strong> hydra</li>
+  <li><strong>Meaning:</strong> &quot;Water serpent&quot;</li>
+  <li><strong>Domain of influence:</strong> Many-Headed Serpent</li>
+  <li><strong>Pantheon:</strong> Greek</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> Ὕδρα (Greek)</li>
+  <li><strong>Live domain:</strong> hýdra.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Hýdra</strong> (<em>hydra</em>) is the Lernaean water-serpent of Greek myth: a many-headed monster reared by [[hera|Hēra]] in the marsh of Lerna in the Argolid and destroyed by [[herakles|Hēraklēs]] as the second of his labors. The name is the ordinary Greek noun for a water-snake — ὕδρα, from ὕδωρ, &#39;water&#39; — raised to a proper name for the serpent par excellence; the lexicon glosses the creature simply as &#39;water serpent&#39;.</p>
+<p>Her earliest witness is Hesiod, who counts the Hydra among the monstrous brood of [[typhon|Typhōn]] and Echidna and already knows the essential plot: Hera reared the serpent in her implacable anger at Herakles, who killed it with his nephew Iolaos beside him and Athena guiding his hand. The canonical prose account is Apollodorus, who gives the monster nine heads, one of them immortal, and makes the labor a lesson in method rather than strength.</p>
+<p>PÚNYCODEX restores the name as <strong>Hýdra</strong> and serves this temple at <a href="https://xn--hdra-5ra.com">hýdra.com</a>. The restoration carries the acute stress of the Greek Ὕδρα but marks no vowel length, so the name sits in Tier 2; the ASCII form <em>hydra</em> is the modern fallback imposed by the early domain-name system, not an ancient spelling.</p>
+<h2 id="the-name">The Name</h2>
+<p><strong>Ὕδρα</strong> (feminine) is a common noun before it is a monster&#39;s name: Greek lexica record ὕδρα, beside the by-form ὕδρη, as &#39;water-snake&#39;, a transparent derivative of ὕδωρ, &#39;water&#39;. The root is old Indo-European inheritance: ὕδωρ belongs to the family of <em>wed- / </em>ud- that also yields Sanskrit udán- and English <em>water</em>, so the monster&#39;s name marks her as the dangerous power of her own element.</p>
+<p>As a proper name, ἡ Ὕδρα, &#39;the Water-Snake&#39;, the word is accented on the first syllable, and that acute is what the PÚNYCODEX restoration reproduces: <strong>Hýdra</strong>. The ASCII spelling <em>hydra</em> descends through Latin <em>hydra</em>, which dropped the rough breathing of the Greek ὑ-; it is a convenience of the early domain-name system, not an ancient form.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>h</strong> → <strong>H</strong> — H uppercase</li>
+  <li><strong>y</strong> → <strong>ý</strong> — Acute on y</li>
+  <li><strong>d</strong> → <strong>d</strong> — d same</li>
+  <li><strong>r</strong> → <strong>r</strong> — r same</li>
+  <li><strong>a</strong> → <strong>a</strong> — a same</li>
+</ul>
+<p>The project holds the domain <strong>hýdra.com</strong> (xn--hdra-5ra.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is written in Greek as <strong>Ὕδρα</strong>: upsilon with rough breathing and acute accent, followed by delta, rho, alpha. The rough breathing marks the initial aspiration — the <em>h</em> that Latin later dropped to give <em>hydra</em>; the acute fixes the pitch peak on the first syllable. Breathings and accents are editorial signs systematized in Alexandria, absent from Classical inscriptions, where the word appears simply as ΥΔΡΑ; the printed form <strong>Ὕδρα</strong> is the convention of modern critical editions and lexica.</p>
+<p>This original script is the measure of both the ASCII fallback <em>hydra</em> and the PÚNYCODEX restoration <strong>Hýdra</strong>: the restoration keeps the acute of the edited Greek, so that a reader typing the modern address still speaks the ancient name.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/hý.dra/</strong> — Attic Greek Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Hý-</strong> — Rough breathing on upsilon with acute [hý] — the name begins with a breathy, high-pitched syllable.</li>
+  <li><strong>-dra</strong> — Delta-rho-alpha; the root ὕδωρ, &#39;water,&#39; is visible, though the creature is a water-serpent in form and habitat.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;HOO-drah&#39; — the first syllable is pitched high and begins with a rough &#39;h&#39;; the final -a is short.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Greek</strong> — Ὕδρα (Hýdra), the water-serpent slain by Herakles</li>
+  <li><strong>Root</strong> — ὕδωρ (hýdōr), &#39;water&#39;; the Hydra is the dangerous aspect of stagnant water</li>
+</ul>
+<p>Hýdra is Tier 2 because the Greek Ὕδρα preserves the acute stress on the first syllable but has no long vowel. The rough breathing on the upsilon is essential to the name&#39;s sound and identity.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Hýdra&#39;s myth is a <strong>labor of escalation</strong>: Herakles must learn that brute force feeds the monster, and that victory comes only when fire meets flesh at the exact moment of severance.</p>
+<h3 id="birth-hesiod-theogony-313-318">Birth (Hesiod, Theogony 313–318)</h3>
+<p>Hesiod makes the Hydra a daughter of [[typhon|Typhōn]] and Echidna — kin, therefore, to the Chimaira, the Sphinx, and the Nemean Lion — and says that Hera reared the Lernaean serpent in her implacable anger at Herakles, who destroyed it with Iolaos and with Athena&#39;s aid.</p>
+<h3 id="the-second-labor-apollodorus-bibliotheca-2-5-2">The Second Labor (Apollodorus, Bibliotheca 2.5.2)</h3>
+<p>Eurystheus ordered Herakles to kill the Hydra of Lerna. The serpent had nine heads, eight mortal and one immortal; when Herakles smashed a head, two grew in its place, and Hera sent a giant crab to maul his foot. Herakles killed the crab, called in Iolaos, and had him fire the grove so that each neck-stump could be cauterized the moment a head fell. The regeneration stopped; the immortal head he cut off and buried beneath a heavy rock on the road from Lerna to Elaious.</p>
+<h3 id="the-poison-that-outlived-the-monster">The Poison That Outlived the Monster</h3>
+<p>Before leaving, Herakles slit the body and dipped his arrows in its gall, making their wounds incurable. The labor thus armed its hero for his own last tragedy: the arrow that killed the centaur Nessos carried the Hydra&#39;s venom, and Nessos&#39; poisoned blood, given to Deianeira as a love-charm, destroyed Herakles in turn — the sequence Sophocles stages in the <em>Trachiniae</em>. Euripides&#39; chorus of old Thebans sings the same tradition, coupling the hydra with the envenomed shafts in its catalogue of the labors.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The attributes fixed by the ancient sources are few, and all are functional parts of the combat:</p>
+<ul>
+  <li><strong>Serpent heads</strong> — nine by Apollodorus&#39; count, eight mortal and one immortal; multiplicity and the endless return of the trial.</li>
+  <li><strong>Torch</strong> — the firebrands of Iolaos, with which each neck-stump was cauterized the instant a head fell, so that nothing could regrow.</li>
+  <li><strong>Crab</strong> — Hera&#39;s ally, sent to bite Herakles&#39; foot during the fight; the catasterism tradition afterwards placed it in the zodiac as Cancer.</li>
+  <li><strong>Venom</strong> — the gall in which Herakles dipped his arrows, making their wounds incurable; the poison long outlived the monster and finally killed its slayer.</li>
+</ul>
+<p>The Lernaean combat is among the most painted of the labors. From the mid-sixth century BCE Attic black-figure shows Herakles hacking at a many-headed serpent while Iolaos brandishes torches to cauterize the stumps; Hera&#39;s crab often nips at the hero&#39;s heel. Artists never agreed on the head-count — three, seven, nine, or a writhing mass — since multiplicity, not number, is the point; the poetry never fixes a figure, and the canonical nine belongs to Apollodorus&#39; prose handbook. The serpent coils around a tree or rises from the marsh. The type persists into Roman labor-cycle reliefs and mosaics, and the monster&#39;s identity is always secured by the fire in Iolaos&#39;s hand: without the torch, she is an ordinary dragon.</p>
+<h2 id="epithets-cult-titles">Epithets &amp; Cult Titles</h2>
+<p>Monsters attract descriptors rather than cult epithets: no one ever invoked the Hydra by sacred titles. Its standing poetic tags are these:</p>
+<ul>
+  <li><strong>Λερναίη</strong> (Lernaíē) — &#39;of Lerna&#39;; the geographic epithet is fixed already in Hesiod and never leaves the serpent.</li>
+  <li><strong>ἀθάνατος</strong> (athánatos) — &#39;immortal&#39;; Apollodorus applies it to the single deathless head that Herakles finally buries beneath a rock.</li>
+  <li><strong>the doubling heads</strong> — Latin epic makes regeneration the defining trait: Ovid says it profited the Hydra nothing to grow back through loss and redouble its strength after every wound.</li>
+  <li><strong>horrendum stridens</strong> — &#39;hissing horribly&#39;; Virgil&#39;s underworld tag for the <em>belua Lernae</em>, proof that by the Augustan age the serpent needed no name at all, only her marsh.</li>
+</ul>
+<h2 id="the-homeric-hymns">The Homeric Hymns</h2>
+<p>No Homeric Hymn is addressed to Hýdra: the hymn corpus praises gods, and the Hydra is a monster — never an object of song or prayer. Its earliest hexameter witness is Hesiod&#39;s <em>Theogony</em>, which names the &#39;Hydra of Lerna&#39; among the brood of Typhon and Echidna and already compresses the whole labor into a few lines: Hera reared the serpent in her implacable anger at [[herakles|Hēraklês]], who destroyed it with Iolaos beside him and Athena guiding his hand. Monsters do enter the hymns, but only to die at a god&#39;s hands — the she-dragon Apollo kills at Delphi in the Hymn to Pythian Apollo is the type — so the Hydra&#39;s absence from hymnody is structural, not accidental: it had no voice, no altar, no worshipper; it existed to be opposed.</p>
+<h2 id="oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</h2>
+<p>The Hydra had no oracle and no cult — monsters have adversaries, not worshippers. But its landscape was genuinely sacred: Lerna in the Argolid held the sanctuary of Demeter Prosymna and mystery rites that Pausanias says Philammon founded, and its bottomless Alcyonian lake was locally regarded as an entrance to the underworld, where Dionysos descended to bring back Semele. The lake&#39;s depth was a standing marvel: Pausanias reports that the emperor Nero let down a weighted rope of several stades and never touched bottom. The serpent is best understood as the genius of that numinous marsh — the dangerous face of a real holy place, not a temple power with priests or prophecy.</p>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Lerna itself is real and deeply excavated. The American School of Classical Studies dug the site under J. L. Caskey in the 1950s and uncovered, beside the marsh, the Early Helladic settlement whose House of the Tiles — a monumental corridor building of the third millennium BCE — is among the most famous Bronze Age structures in Greece. The myth settled on the place late, but the place kept the myth: Pausanias in the second century CE still found the Alcyonian lake, the sanctuary of Demeter Prosymna, and the local memory of the serpent.</p>
+<p>In art the combat is among the most painted of the labors: from the mid-sixth century BCE Attic black-figure shows Herakles hacking at the many-headed serpent while Iolaos brandishes torches, with Hera&#39;s crab at the hero&#39;s heel. In the sky, Hydra stands among Ptolemy&#39;s forty-eight constellations in the <em>Almagest</em>, transmitted through medieval and Renaissance star atlases as the longest constellation of the southern sky.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Hýdra&#39;s domains are those of a trial: the monster exists to be overcome, and everything in her ancient record serves that single function.</p>
+<h3 id="regenerating-heads">Regenerating Heads</h3>
+<p>For every head Herakles struck off, two grew in its place; Apollodorus counts nine heads in all, eight mortal and one immortal.</p>
+<h3 id="the-lerna-swamp">The Lerna Swamp</h3>
+<p>A marshy basin south of Argos whose Alcyonian lake antiquity believed bottomless; Pausanias reports that the emperor Nero let down a weighted rope of many stades without finding the floor.</p>
+<h3 id="herakles-second-labor">Herakles&#39; Second Labor</h3>
+<p>Hesiod already compresses the whole story into a few lines: Hera reared the serpent against [[herakles|Hēraklēs]], and he destroyed it with Iolaos beside him and Athena guiding his hand.</p>
+<h3 id="immortal-head">Immortal Head</h3>
+<p>One head could not die; Herakles severed it and buried it beneath a heavy rock on the road from Lerna to Elaious, where it went on breathing venom.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>The Hydra belongs to a broad family of serpent-combat myths that comparatists read together as a type, without asserting direct descent: the Ugaritic storm-god Baal confronts Lotan, &#39;the twisting serpent with seven heads&#39;; the Rig Veda celebrates Indra&#39;s slaying of the dragon Vṛtra; and within Greece the pattern returns when [[apollon|Apóllōn]] kills the she-dragon at Delphi and when Zeus battles [[typhon|Typhōn]]. The standard comparative study of the type remains Fontenrose&#39;s <em>Python</em>. Her own distinctive trait — regeneration, two heads for one — proved harder to parallel: later European dragon lore multiplies heads freely, but the doubling wound remains her signature.</p>
+<p>Rome knew her as the <em>belua Lernae</em>: Virgil stations the &#39;beast of Lerna, hissing horribly,&#39; among the monsters at the gates of Dis. And the name migrated into science: Linnaeus gave the regenerating freshwater polyp the genus name <em>Hydra</em> in the tenth edition of the <em>Systema Naturae</em> (1758), after Abraham Trembley&#39;s discovery that the animal regrows from fragments — the myth made literal under the microscope.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>&#39;Hydra-headed&#39; is the standing English metaphor for an evil that multiplies under attack; the Oxford English Dictionary records the compound in exactly this sense, and public language has never let it go — conspiracies, insurgencies, and criminal syndicates are all routinely figured as hydras whose heads cannot be cut fast enough. Modern fiction borrows the structure as readily as the name: the Marvel comics organization Hydra builds its creed on the monster&#39;s regenerating heads.</p>
+<p>Science made the metaphor flesh. The freshwater polyp <em>Hydra</em> regrows so completely from fragments that it has become a model organism for the study of regeneration and biological immortality — a tiny animal that performs, indefinitely, the trick that cost Herakles a labor.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Hýdra given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, s.v. ὕδρα. <a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Full text</a></li>
+  <li> Beekes, Etymological Dictionary of Greek, s.v. ὕδωρ.</li>
+  <li> Hesiod, Theogony 313–318 (Loeb Classical Library No. 57). <a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Full text</a></li>
+  <li> Apollodorus, Bibliotheca 2.5.2 (the second labor).</li>
+  <li> Sophocles, Trachiniae (the hydra-venom and the death of Herakles).</li>
+  <li> Euripides, Herakles (choral catalogue of the labors).</li>
+  <li> Pausanias, Description of Greece 2.36–37 (Lerna and Demeter Prosymna).</li>
+  <li> Fontenrose, Python: A Study of Delphic Myth and Its Origins (1959).</li>
+  <li> Linnaeus, Systema Naturae, 10th ed. (1758).</li>
+  <li> Caskey, J. L., Lerna excavation reports, Hesperia 23–27 (1954–1958).</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Hýdra is the lesson that some enemies cannot be defeated by the same energy that animates them. Cut a head and the body grows stronger; meet rage with rage and the conflict feeds itself. The myth recommends precision, partnership, and the right tool at the right moment.</p>
+<p>Yet there is also humility in the labor. Herakles needs help. The greatest hero cannot do it alone. And one head remains unkillable, buried rather than destroyed — a reminder that some dangers are managed, not solved. The Hydra teaches both strategy and acceptance: fight with fire, but know that the immortal head still breathes beneath the stone.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Hýdra is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>hydra</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 5 characters of the name, the restoration adjusts 1: 1 mark of stress (ý). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>hýdra.com</strong>, which the DNS carries in punycode form as xn--hdra-5ra.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Hýdra; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Greek can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>In 2026 the stakes are practical. Search indexes, language models, and localization pipelines all inherit whatever spelling the web normalizes — which means every Unicode domain is also a training signal. <strong>Hýdra</strong> teaches the machinery that the restored form exists, that it is used, and that it points to a real place. That is why a project built on philology ends up caring about DNS: the infrastructure decides which names the future sees. This restoration makes sure the future sees the whole name.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/nemesis/">Némésis</a></li>
   <li><a href="/sites/numen/">Nūmen</a></li>
   <li><a href="/sites/okeanos/">Ōkeanós</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, s.v. ὕδρα.</a></li>
   <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Hesiod, Theogony 313–318 (birth, rearing, and slaying of the Hydra of Lerna).</a></li>
+  <li>Apollodorus, Bibliotheca 2.5.2 (the second labor).</li>
+  <li>Beekes, Etymological Dictionary of Greek, s.v. ὕδωρ (Indo-European wed-).</li>
+  <li>Pausanias, Description of Greece 2.36–37 (Lerna and the Alcyonian lake).</li>
+  <li>Apollodorus, Bibliotheca 2.5.2 (heads, fire, and gall).</li>
+  <li>Lexicon authorities for this entry: Hesiod, LSJ.</li>
 </ul>
-<h2>What the Sources Record</h2>
-<p>Hýdra&#39;s domains are those of a trial: the monster exists to be overcome, and everything in her ancient record serves that single function. ### Regenerating Heads For every head Herakles struck off, two grew in its place; Apollodorus counts nine heads in all, eight mortal and one immortal. ### The Lerna Swamp A marshy basin south of Argos whose Alcyonian lake antiquity believed bottomless; Pausanias reports that the emperor Nero let down a weighted rope of many stades without finding the floor. ### Herakles&#39; Second Labor Hesiod already compresses the whole story into a few lines: Hera reared the serpent against [[herakles|Hēraklēs]], and he destroyed it with Iolaos beside him and Athena guiding his hand. ### Immortal Head One head could not die;...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Hýdra as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Greek to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Hýdra through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/hydra/">home page</a> offers the full name breakdown, the <a href="/sites/hydra/lore/">lore page</a> explores the myth, and the <a href="/sites/hydra/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Hýdra do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">greek</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

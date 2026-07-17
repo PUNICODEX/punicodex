@@ -2,10 +2,18 @@ const crypto = require('node:crypto');
 const { validateAdminToken } = require('../platform/api/admin');
 const { setLicenseHeaders, addLicenseToPayload } = require('../platform/api/license-headers.js');
 
+// In production, 500 responses must not leak internal error details (stack
+// fragments, SQL messages, file paths) to clients. The full error is always
+// logged server-side; the client receives a generic message.
+function isProduction() {
+  return process.env.NODE_ENV === 'production' || Boolean(process.env.VERCEL);
+}
+
 function handleError(res, err) {
   console.error('API error:', err);
   setLicenseHeaders(res);
-  res.status(500).json(addLicenseToPayload({ error: err.message || 'Internal server error' }));
+  const message = isProduction() ? 'Internal server error' : err.message || 'Internal server error';
+  res.status(500).json(addLicenseToPayload({ error: message }));
 }
 
 const ALLOWED_ORIGINS = new Set(

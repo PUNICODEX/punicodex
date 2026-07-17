@@ -98,6 +98,7 @@ const { scoreEdit, validateEdit, buildQualityReason, MIN_SCORE } = require('./qu
 const {
   securityHeaders,
   createScholarsRateLimit,
+  createLoginRateLimit,
   validateInputLength,
   validatePassword,
   auditLog,
@@ -235,6 +236,7 @@ router.get('/health', createScholarsRateLimit('health', { tier: 'public' }), (_r
 
 router.post(
   '/auth/login',
+  createLoginRateLimit(),
   createScholarsRateLimit('auth:login', { tier: 'strict' }),
   validateInputLength([
     { key: 'email', max: 254 },

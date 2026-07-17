@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNYCODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js" defer></script>
+<!-- PUNYCODEX-ANALYTICS-END -->
+
+<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
+<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Admin Portal — Sign In | PÚNYCODEX</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../portal.css">
+</head>
+<body data-depth="1">
+    <main class="login-page">
+        <div class="login-card">
+            <p class="login-eyebrow">PÚNYCODEX Admin Portal</p>
+            <h1 class="login-title" id="login-title">Sign In</h1>
+            <p class="login-subtitle" id="login-subtitle">Unified operations console for leasing, patrons, scholarly review, and platform administration.</p>
+
+            <form class="login-form" id="login-form" novalidate>
+                <div class="field">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" autocomplete="email" required>
+                </div>
+                <div class="field">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" autocomplete="current-password" required>
+                </div>
+                <button type="submit" class="login-submit" id="login-submit">Sign In</button>
+            </form>
+
+            <form class="login-form" id="password-form" novalidate hidden>
+                <div class="field">
+                    <label for="current-password">Current (Temporary) Password</label>
+                    <input type="password" id="current-password" name="current-password" autocomplete="current-password" required>
+                </div>
+                <div class="field">
+                    <label for="new-password">New Password</label>
+                    <input type="password" id="new-password" name="new-password" autocomplete="new-password" required>
+                    <span class="field-hint">At least 8 characters.</span>
+                </div>
+                <div class="field">
+                    <label for="confirm-password">Confirm New Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" autocomplete="new-password" required>
+                </div>
+                <button type="submit" class="login-submit" id="password-submit">Set Password</button>
+            </form>
+
+            <div class="login-message" id="login-message" role="alert" aria-live="polite"></div>
+
+            <div class="login-setup" id="login-setup" role="alert">
+                <strong>Portal not configured.</strong> No administrator account exists yet.
+                Set the <code>ADMIN_PASSWORD</code> environment variable on the host (and optionally
+                <code>ADMIN_EMAIL</code>), then sign in once with those credentials to bootstrap the
+                first superadmin account.
+            </div>
+
+            <div class="login-footer">
+                <a href="/">← Back to punycodex.com</a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+    (function () {
+        var TOKEN_KEY = 'punycodex_portal_token';
+        var form = document.getElementById('login-form');
+        var passwordForm = document.getElementById('password-form');
+        var submitBtn = document.getElementById('login-submit');
+        var passwordSubmitBtn = document.getElementById('password-submit');
+        var messageEl = document.getElementById('login-message');
+        var setupEl = document.getElementById('login-setup');
+
+        function getRedirect() {
+            var params = new URLSearchParams(window.location.search);
+            var redirect = params.get('redirect');
+            if (!redirect) return '../';
+            // Reject absolute URLs and protocol-relative URLs (open-redirect guard).
+            if (/^[a-z][a-z0-9+.-]*:/i.test(redirect) || redirect.indexOf('//') === 0) return '../';
+            return redirect;
+        }
+
+        function showMessage(text, type) {
+            messageEl.textContent = text;
+            messageEl.className = 'login-message visible ' + (type === 'success' ? 'success' : 'error');
+        }
+
+        function clearMessage() {
+            messageEl.textContent = '';
+            messageEl.className = 'login-message';
+        }
+
+        function showSetup() {
+            setupEl.className = 'login-setup visible';
+        }
+
+        function hideSetup() {
+            setupEl.className = 'login-setup';
+        }
+
+        // Already signed in? Verify the token and go straight to the dashboard.
+        (function checkExistingSession() {
+            var token = null;
+            try { token = localStorage.getItem(TOKEN_KEY); } catch (err) { /* ignore */ }
+            if (!token) return;
+            fetch('/api/admin/portal/me/', { headers: { 'x-admin-token': token, Accept: 'application/json' } })
+                .then(function (res) {
+                    if (res.ok) window.location.href = getRedirect();
+                })
+                .catch(function () { /* stay on the login screen */ });
+        })();
+
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            clearMessage();
+            hideSetup();
+
+            var email = document.getElementById('email').value.trim();
+            var password = document.getElementById('password').value;
+            if (!email || !password) {
+                showMessage('Please enter both email and password.', 'error');
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Signing in…';
+
+            var res;
+            var data;
+            try {
+                res = await fetch('/api/admin/portal/login/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+                    body: JSON.stringify({ email: email, password: password }),
+                });
+                data = await res.json().catch(function () { return null; });
+            } catch (err) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Sign In';
+                showMessage('Network error. Please try again.', 'error');
+                return;
+            }
+
+            if (res.ok && data && data.token) {
+                try { localStorage.setItem(TOKEN_KEY, data.token); } catch (err) { /* ignore */ }
+                if (data.requirePasswordChange === true) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Sign In';
+                    showPasswordForm();
+                    return;
+                }
+                showMessage('Sign-in successful. Redirecting…', 'success');
+                window.location.href = getRedirect();
+                return;
+            }
+
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Sign In';
+
+            if (res.status === 503 && data && data.code === 'portal_unconfigured') {
+                showSetup();
+                showMessage('The admin portal has not been bootstrapped yet.', 'error');
+                return;
+            }
+            if (res.status === 429) {
+                showMessage('Too many sign-in attempts. Please wait a few minutes and try again.', 'error');
+                return;
+            }
+            if (res.status === 401 && data && data.code) {
+                if (data.code === 'account_locked') {
+                    showMessage(data.error || 'Account is temporarily locked. Try again later.', 'error');
+                    return;
+                }
+                if (data.code === 'account_inactive') {
+                    showMessage(data.error || 'Account is disabled. Contact a superadmin.', 'error');
+                    return;
+                }
+                showMessage(data.error || 'Invalid email or password.', 'error');
+                return;
+            }
+            showMessage((data && data.error) || 'Sign in failed. Please try again.', 'error');
+        });
+
+        function showPasswordForm() {
+            form.hidden = true;
+            passwordForm.hidden = false;
+            document.getElementById('login-title').textContent = 'Set Your Password';
+            document.getElementById('login-subtitle').textContent =
+                'Your account uses a temporary password. Choose a permanent password to continue.';
+            clearMessage();
+            document.getElementById('current-password').focus();
+        }
+
+        passwordForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            clearMessage();
+
+            var currentPassword = document.getElementById('current-password').value;
+            var newPassword = document.getElementById('new-password').value;
+            var confirmPassword = document.getElementById('confirm-password').value;
+
+            if (!currentPassword) {
+                showMessage('Please enter your current (temporary) password.', 'error');
+                return;
+            }
+            if (newPassword.length < 8) {
+                showMessage('New password must be at least 8 characters long.', 'error');
+                return;
+            }
+            if (newPassword !== confirmPassword) {
+                showMessage('New passwords do not match.', 'error');
+                return;
+            }
+
+            passwordSubmitBtn.disabled = true;
+            passwordSubmitBtn.textContent = 'Updating…';
+
+            var token = null;
+            try { token = localStorage.getItem(TOKEN_KEY); } catch (err) { /* ignore */ }
+
+            var res;
+            var data;
+            try {
+                res = await fetch('/api/admin/portal/me/password/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Accept: 'application/json',
+                        'x-admin-token': token || '',
+                    },
+                    body: JSON.stringify({ currentPassword: currentPassword, newPassword: newPassword }),
+                });
+                data = await res.json().catch(function () { return null; });
+            } catch (err) {
+                passwordSubmitBtn.disabled = false;
+                passwordSubmitBtn.textContent = 'Set Password';
+                showMessage('Network error. Please try again.', 'error');
+                return;
+            }
+
+            if (res.ok) {
+                // The server destroys every session on password change, so the
+                // user must sign in again with the new password.
+                try { localStorage.removeItem(TOKEN_KEY); } catch (err) { /* ignore */ }
+                passwordForm.hidden = true;
+                form.hidden = false;
+                document.getElementById('login-title').textContent = 'Sign In';
+                document.getElementById('login-subtitle').textContent =
+                    'Password updated. Sign in with your new password.';
+                showMessage('Password updated. Please sign in again.', 'success');
+                return;
+            }
+
+            passwordSubmitBtn.disabled = false;
+            passwordSubmitBtn.textContent = 'Set Password';
+            if (res.status === 401) {
+                showMessage((data && data.error) || 'Current password is incorrect.', 'error');
+            } else if (res.status === 400) {
+                showMessage((data && data.error) || 'The new password does not meet the requirements.', 'error');
+            } else {
+                showMessage((data && data.error) || 'Password change failed. Please try again.', 'error');
+            }
+        });
+    })();
+    </script>
+
+<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+</body>
+</html>

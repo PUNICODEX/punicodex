@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,36 +170,174 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#epithets-cult-titles">Epithets &amp; Cult Titles</a></li>
+                <li><a href="#the-homeric-hymns">The Homeric Hymns</a></li>
+                <li><a href="#oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>The Many Faces of Lētō</h1>
-<p>No important name has only one face. Lētō appears as a mythic character, a scholarly reconstruction, a cultural memory, and now a Unicode domain. Lētō (leto) is the mother of Apollo and Artemis. Hesiod makes her the daughter of the Titans Koîos and Phoíbē, &#39;dark-robed Leto, ever gentle to mortals and immortals&#39;; the Homeric Hymn to Apollo tells her one great story — pursued by Hera&#39;s jealousy, refused by every land that fears her unborn son, until the barren island of Delos accepts her, and she bears Apollo beneath a palm tree after nine days of labor prolonged by Hera&#39;s withholding of Eileithyia. Her cult travels with her children&#39;s: Delos, and the Letoon near Xanthos in Lycia, where she was worshipped with the twins as a triad. PÚNYCODEX restores the name as Lētō and serves this temple at lētō.com. The Greek Λητώ carries both length (ē, ō) and the circumflex pitch contour, placing the name...</p>
-<h2>In Myth</h2>
-<p>Lētō&#39;s mythology is dominated by one of the most famous birth narratives in Greek religion: the persecution of a pregnant goddess and the founding of a holy island. The mythic face is the one most people meet first, and it is the reason the name survived.</p>
-<h2>Across Cultures</h2>
-<p>The Romans knew Lētō as Latona, and her cult spread through Italy with that of Apollo: Virgil and Ovid tell her story under the Latin name, and the frog-metamorphosis of the Lycian peasants became a set piece of Roman mythography. Her deepest identification was Anatolian: at the Letoon in Lycia she was worshipped with the twins as the federal triad of the Lycian League, and modern etymology connects her very name with Lycian lada, &#39;wife&#39; — an Anatolian goddess naturalized on Delos. Later European art remembered her chiefly through the Ovidian pond episode, a favourite of Baroque painters exploring divine wrath and metamorphosis. Within the corpus her story is shared with [[apollon|Apóllōn]] and [[artemis|Ártemis]], the twins she bore;... Each culture kept what resonated and reshaped the rest.</p>
-<h2>In the Scholarly Record</h2>
-<p>Lētō&#39;s most enduring legacy is Delos itself: the barren island that accepted her became one of the great sanctuaries of the Greek world and is today, with its whole archaeological landscape, a UNESCO World Heritage site (1990); her Lycian seat entered the same register in 1988 as Xanthos-Letoon. Astronomy keeps her name as the asteroid 68 Leto, discovered by Robert Luther in 1861. In European art her Roman form Latona enjoyed a long second life: the Latona Fountain in the gardens of Versailles stages her with the infant Apollo and Diana above the Lycian peasants mid-transformation into frogs — the Ovidian episode frozen in marble and water. Her story of persecution and sanctuary continues to resonate in later narratives of divine mothers and exiled... The Scholarly Edition collects those traces so readers can follow the argument from source to conclusion.</p>
-<h2>The Unicode Face</h2>
-<p>The newest face is digital. Lētō demonstrates that a name can be at once ancient and clickable, venerable and searchable. That is the face this blog exists to celebrate.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Lētō is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>The many faces of Lētō</h1>
+<p>No important name has only one face. <strong>Lētō</strong> appears as a figure of myth, a scholarly reconstruction, a piece of material culture, a memory carried across languages, and — most recently — a Unicode domain. This post looks at each face in turn: the name and its roots, the Greek original, the reconstructed pronunciation, the mythological record, the symbols and sanctuaries, the cross-cultural afterlife, and the engineering that lets the restored spelling resolve in a browser. Taken together, those faces explain why <em>leto</em> was never going to be enough — and why the restored form is worth a domain of its own.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Lētō</li>
+  <li><strong>ASCII form:</strong> leto</li>
+  <li><strong>Meaning:</strong> &quot;Lady, forgotten one&quot;</li>
+  <li><strong>Domain of influence:</strong> Motherhood, Night</li>
+  <li><strong>Pantheon:</strong> Greek</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Original script:</strong> Λητώ (Greek)</li>
+  <li><strong>Live domain:</strong> lētō.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Lētō</strong> (<em>leto</em>) is the mother of Apollo and Artemis. Hesiod makes her the daughter of the Titans Koîos and Phoíbē, &#39;dark-robed Leto, ever gentle to mortals and immortals&#39;; the Homeric Hymn to Apollo tells her one great story — pursued by Hera&#39;s jealousy, refused by every land that fears her unborn son, until the barren island of Delos accepts her, and she bears Apollo beneath a palm tree after nine days of labor prolonged by Hera&#39;s withholding of Eileithyia. Her cult travels with her children&#39;s: Delos, and the Letoon near Xanthos in Lycia, where she was worshipped with the twins as a triad.</p>
+<p>PÚNYCODEX restores the name as <strong>Lētō</strong> and serves this temple at <a href="https://xn--lt-wma7u.com">lētō.com</a>. The Greek Λητώ carries both length (ē, ō) and the circumflex pitch contour, placing the name in Tier 1. The ASCII form <em>leto</em> is a modern convenience of the domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Greek as <strong>Λητώ</strong>. Etymologically it means &quot;Lady, forgotten one&quot; — a gloss that fuses two competing derivations, and the dispute should be stated honestly. Modern etymology, noting that her great cult seat stood in Lycia, connects the name with Lycian <em>lada</em>, &#39;wife&#39;; an older Greek folk etymology heard in it λήθω, &#39;to escape notice&#39;, as if she were &#39;the hidden one&#39;.</p>
+<p>The ASCII form <em>leto</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Lētō</strong> recovers the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>l</strong> → <strong>L</strong> — Lambda</li>
+  <li><strong>e</strong> → <strong>ē</strong> — Eta: long epsilon</li>
+  <li><strong>t</strong> → <strong>t</strong> — Tau</li>
+  <li><strong>o</strong> → <strong>ō</strong> — Omega: long omicron</li>
+</ul>
+<p>Attested and derived spellings of the name:</p>
+<ul>
+  <li><strong>Leto</strong> — ASCII form: Plain ASCII form</li>
+</ul>
+<p>The project holds the domain <strong>lētō.com</strong> (xn--lt-wma7u.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is written in Greek as <strong>Λητώ</strong>. This original script is the form against which the ASCII fallback <em>leto</em> and the PÚNYCODEX restoration <strong>Lētō</strong> are measured: the restoration preserves its vowel quantity of the written form, so that a reader typing the modern address still speaks the ancient name.</p>
+<p>The Greek is Λητώ. The first vowel is eta (ē), long [eː]; the final omega (ō) is long [ɔː] with a circumflex accent indicating a falling pitch on a long vowel. The Roman form Latona loses both the vowel length and the pitch contour. PUNYCODEX restores Lētō with the macron on ē and the circumflex on ō, since the full Greek breathing marks are not registrable.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/leː.tɔ̌ː/</strong> — Ancient Greek Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>L-</strong> — Voiced alveolar lateral approximant [l].</li>
+  <li><strong>-ē-</strong> — Long close-mid front vowel [eː], written eta.</li>
+  <li><strong>-t-</strong> — Voiceless alveolar stop [t].</li>
+  <li><strong>-ō</strong> — Long open-mid back rounded vowel [ɔː], with circumflex marking length and falling pitch.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;LAY-toh&#39; — hold the first vowel long like &#39;lay&#39; without the off-glide, and let the final &#39;oh&#39; carry a gentle rise-and-fall pitch.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Greek</strong> — Λητώ (Lētṓ), mother of Apollo and Artemis.</li>
+  <li><strong>Roman</strong> — Latona, the Latin adaptation under which she was worshipped in Italy and named by Virgil and Ovid.</li>
+  <li><strong>Lycian</strong> — Lada, &#39;wife&#39;, the local word modern etymology connects with her name, given her cult at the Letoon near Xanthos.</li>
+</ul>
+<p>Lētō is Tier 1: the Greek original contains both length (ē and ō) and the circumflex pitch contour. The English &#39;Leto&#39; preserves neither.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Lētō&#39;s mythology is dominated by one of the most famous birth narratives in Greek religion: the persecution of a pregnant goddess and the founding of a holy island.</p>
+<h3 id="the-wanderings-of-leto-homeric-hymn-to-apollo-delian-part">The Wanderings of Lētō (Homeric Hymn to Apollo, Delian part)</h3>
+<p>Hera, furious that Zeus had fathered children by Lētō, kept Eileithyia, goddess of childbirth, ignorant on Olympus, so that Lētō labored nine days and nights in vain; the goddesses with her sent Iris to fetch Eileithyia with the promise of a necklace nine cubits long. Before that, no land would receive her: the Hymn lists the cities and islands that refused out of fear of her son, until barren Delos accepted her and she swore the island its future glory. There, clinging to a palm tree, she bore Apollo. Later mythography sharpens the persecution — Hyginus has Hera send the serpent Pýthōn to hunt her — and Apollodorus records that Artemis was born first and served as midwife to her twin brother.</p>
+<h3 id="latona-and-the-lycian-peasants-ovid-metamorphoses-6">Latona and the Lycian Peasants (Ovid, Metamorphoses 6)</h3>
+<p>In Ovid&#39;s version, the thirsty Latona stopped at a Lycian pool to drink. Local peasants stirred the mud to prevent her. In anger she transformed them into frogs, condemning them to croak forever in the mire. The story explains the croaking of frogs and warns against insulting a goddess in need.</p>
+<h3 id="the-letoon-of-lycia-cult">The Letoon of Lycia (Cult)</h3>
+<p>At the Letoon near Xanthos, Lētō was worshipped alongside Apollo and Artemis as a triad. The sanctuary served as the federal cult center of the Lycian League, and the great Xanthian trilingual inscription — Greek, Lycian, and Aramaic — was set up there, linking the three languages&#39; conceptions of the goddess and her children.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Lētō concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>Date palm</strong> — The tree to which Lētō clung while giving birth on Delos; the Hymn fixes the scene, and the palm beside the sacred lake remained a landmark of the island.</li>
+  <li><strong>Wolf</strong> — The animal of her wilderness wanderings: Antoninus Liberalis preserves the tradition that she came from the Hyperboreans in the guise of a she-wolf, and that Lycia, once Tremilis, was renamed for the wolves (lýkoi) that befriended her.</li>
+  <li><strong>Island</strong> — Delos, the unstable rock that became fixed because it received the gods.</li>
+  <li><strong>Bow and lyre</strong> — The attributes of her children, Apollo and Artemis, beside whom she is nearly always shown.</li>
+</ul>
+<p>Lētō&#39;s images cluster around the Delian birth: on Attic vases she stands or kneels grasping the palm tree while Eileithyia and the attendant goddesses gather round, a type fixed by the Homeric Hymn&#39;s account. In Classical and later art she appears as a dignified, veiled matron beside Apollo and Artemis — the triad of Delos and the Letoon — rather than as an independent protagonist. Roman art took up the Ovidian episode of Latona at the Lycian pond, repulsed by the peasants she turns to frogs, a scene of metamorphosis popular on sarcophagi. No lone cult statue of hers ever rivalled her children&#39;s.</p>
+<h2 id="epithets-cult-titles">Epithets &amp; Cult Titles</h2>
+<p>Lētō&#39;s epithets come from a single lapidary passage — Hesiod&#39;s genealogy of her parents in the <em>Theogony</em> (lines 404–410) — supplemented by her Roman name:</p>
+<ul>
+  <li><strong>κυανόπεπλος</strong> (<em>kyanópeplos</em>) — &#39;dark-robed&#39; — Hesiod&#39;s adjective for her in the Theogony&#39;s account of Koîos and Phoíbē.</li>
+  <li><strong>ἤπιος</strong> (<em>ḗpios</em>) — &#39;gentle&#39; — the same passage praises her as ever gentle to mortals and immortals.</li>
+  <li><strong>μείλιχος</strong> (<em>meílichos</em>) — &#39;mild, gracious&#39; — Theogony: &#39;mild from the beginning, most kindly within Olympus&#39;.</li>
+  <li><strong>Latona</strong> — her Roman name, under which she was worshipped in Italy and invoked by Virgil and Ovid.</li>
+</ul>
+<p>The cluster is characterful: where other gods are feared, Hesiod&#39;s Lētō is gentle — the temperament that survives her persecution and wins over Delos.</p>
+<h2 id="the-homeric-hymns">The Homeric Hymns</h2>
+<p>No hymn is addressed to Lētō herself, but she is the dramatic centre of the Delian half of the third Homeric Hymn, To Apollo: rejected by every land that fears her son, she wanders until barren Delos accepts her, swears the island its future glory, leans on the palm tree, and bears Apollo after nine days of labor prolonged by Hera&#39;s withholding of Eileithyia. Homer already knows her as Apollo&#39;s mother — the Iliad opens by naming him &#39;son of Lētō and Zeus&#39; — and in Iliad 21 she quietly gathers Artemis&#39;s scattered bow and arrows after the battle of the gods. Callimachus&#39; Hymn to Delos later retells her wanderings at full Alexandrian length.</p>
+<h2 id="oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</h2>
+<p>Lētō had no oracle of her own; her cult travels with her children&#39;s. Two sites dominate. Delos, where the hymn fixed her labor, honoured her within Apollo&#39;s great sanctuary — the sacred lake and the palm tree of her birth scene remained landmarks into the Classical period, the same palm Odysseus recalls when he compares Nausicaa to a young shoot he once saw by Apollo&#39;s altar. The Letoon near Xanthos in Lycia was her grandest seat: the federal sanctuary of the Lycian League, shared with Apollo and Artemis, and the findspot of the famous Xanthian trilingual inscription in Greek, Lycian, and Aramaic. Elsewhere her temples are few and modest, generally annexed to cults of the divine twins — fitting for a goddess whose theology is motherhood itself.</p>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Lētō&#39;s two cult landscapes are both extensively excavated. On Delos, where the Hymn fixed her labor, the French School at Athens has dug since 1873: the sanctuary of Apollo preserves the landmarks of her birth story — the sacred lake (now drained), the palm tree kept as a cult memorial, and the terrace of the Naxian lions guarding the approach. The Letoon near Xanthos in Lycia, excavated by the French mission since the 1950s, held three temples — to Leto, to Artemis, and to Apollo — beneath the cliff of the federal sanctuary of the Lycian League; there in 1973 excavators found the Xanthian trilingual, the stele in Greek, Lycian, and Aramaic (337 BCE) that is the key document of Lycian religion. Both sites are on the UNESCO World Heritage list — Delos (1990), Xanthos-Letoon (1988) — a rare instance of a goddess&#39;s mythic geography being preserved entire.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Lētō is the <strong>mother of Apollo and Artemis</strong>, pursued across land and sea by Hera&#39;s jealousy, and at last given refuge by the floating island of Delos. She is the goddess of the hidden journey, the patience of motherhood, and the sanctuary that becomes holy because it sheltered the gods.</p>
+<h3 id="mother-of-twins">Mother of Twins</h3>
+<p>She bore Apollo and Artemis, the archer gods of light and wilderness.</p>
+<h3 id="refugee-goddess">Refugee Goddess</h3>
+<p>Hera denied her a fixed birthplace; every land refused her out of fear, and Delos alone offered sanctuary.</p>
+<h3 id="letoon">Letoön</h3>
+<p>Her great sanctuary near Xanthos in Lycia, shared with her children as a triad.</p>
+<h3 id="chthonic-mother">Chthonic Mother</h3>
+<p>Hesiod&#39;s &#39;dark-robed&#39; epithet and her links to night and Lycian cults give her a darker, older dimension.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>The Romans knew Lētō as Latona, and her cult spread through Italy with that of Apollo: Virgil and Ovid tell her story under the Latin name, and the frog-metamorphosis of the Lycian peasants became a set piece of Roman mythography. Her deepest identification was Anatolian: at the Letoon in Lycia she was worshipped with the twins as the federal triad of the Lycian League, and modern etymology connects her very name with Lycian <em>lada</em>, &#39;wife&#39; — an Anatolian goddess naturalized on Delos. Later European art remembered her chiefly through the Ovidian pond episode, a favourite of Baroque painters exploring divine wrath and metamorphosis. Within the corpus her story is shared with [[apollon|Apóllōn]] and [[artemis|Ártemis]], the twins she bore; [[delos|Dēlos]], the island that took her in; and [[hera|Hēra]], whose jealousy drove her wanderings.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Lētō&#39;s most enduring legacy is Delos itself: the barren island that accepted her became one of the great sanctuaries of the Greek world and is today, with its whole archaeological landscape, a UNESCO World Heritage site (1990); her Lycian seat entered the same register in 1988 as Xanthos-Letoon. Astronomy keeps her name as the asteroid 68 Leto, discovered by Robert Luther in 1861. In European art her Roman form Latona enjoyed a long second life: the Latona Fountain in the gardens of Versailles stages her with the infant Apollo and Diana above the Lycian peasants mid-transformation into frogs — the Ovidian episode frozen in marble and water. Her story of persecution and sanctuary continues to resonate in later narratives of divine mothers and exiled queens: the hidden journey that ends with a place made holy by hospitality.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Lētō given in this edition rests on the witnesses and reference works listed below. The Hymn supplies the birth narrative; Hesiod the genealogy; mythography and Roman poetry the later episodes; inscriptions the Lycian cult.</p>
+<ul>
+  <li> Homeric Hymn to Apollo (Delian part), lines 1–178.</li>
+  <li> Hesiod, Theogony 404–410, Loeb Classical Library No. 57. <a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Full text</a></li>
+  <li> Callimachus, Hymn to Delos (the Alexandrian retelling of her wanderings).</li>
+  <li> Apollodorus, Bibliotheca 1.4.1. <a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0022">Full text</a></li>
+  <li> Ovid, Metamorphoses 6.313–381 (Latona and the Lycian peasants).</li>
+  <li> Antoninus Liberalis, Metamorphoses 35 (Leto and the wolves).</li>
+  <li> LSJ (Liddell-Scott-Jones), s.v. Λητώ; Beekes, Etymological Dictionary of Greek, s.v. Λητώ.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Lētō is the goddess of the difficult birth. Hounded, homeless, and in labour, she finds the one place willing to receive her and makes it the axis of the Greek world. Her story is a reminder that holiness often begins in refusal: every other island said no, and so Delos became yes.</p>
+<p>She is also the mother who disappears behind her children. Apollo and Artemis take the myths; Lētō takes the labour. To remember her is to remember the hidden work that makes glory possible—the wandering, the waiting, the palm tree, the sweat. The divine twins were born because she would not stop looking for a place to rest.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Lētō is classified as <strong>Tier 1</strong>: the original carries both stress and length, and only one valid Unicode restoration exists. The ASCII fallback <em>leto</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 4 characters of the name, the restoration adjusts 2: 2 marks of length (ē, ō). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>lētō.com</strong>, which the DNS carries in punycode form as xn--lt-wma7u.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Lētō; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Greek can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Myth, script, sound, cult, legacy, domain: the faces of Lētō add up to a single argument — that a name is a record, and records deserve fidelity. The PÚNYCODEX restoration keeps that record in working order: the temple presents it, the Scholarly Edition footnotes it, the lexicon catalogs it, and the domain makes it addressable. <em>leto</em> will always exist as a fallback. But fallback is not identity. <strong>Lētō</strong> is the name; everything else is a convenience.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/oileus/">Oïleus</a></li>
   <li><a href="/sites/okeanos/">Ōkeanós</a></li>
   <li><a href="/sites/orestes/">Orestēs</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Hesiod, Theogony 404–410 (Leto, daughter of Koios and Phoibe).</a></li>
   <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0022">Hyginus, Fabulae 140 (the pursuit by Python); Apollodorus, Bibliotheca 1.4.1 (Artemis born first).</a></li>
+  <li>Homeric Hymn to Apollo (Delian part), lines 45–122 (the wanderings and the birth).</li>
+  <li>Pausanias, Description of Greece; the Xanthian trilingual inscription (the Letoon triad).</li>
+  <li>Homeric Hymn to Apollo.</li>
+  <li>Beekes, Etymological Dictionary of Greek, s.v. Λητώ (Lycian lada &#39;wife&#39;; the name&#39;s Anatolian connection).</li>
+  <li>Lexicon authorities for this entry: LSJ, Pape-Benseler, Beekes.</li>
 </ul>
-<h2>The Cultural Afterlife</h2>
-<p>Lētō&#39;s most enduring legacy is Delos itself: the barren island that accepted her became one of the great sanctuaries of the Greek world and is today, with its whole archaeological landscape, a UNESCO World Heritage site (1990); her Lycian seat entered the same register in 1988 as Xanthos-Letoon. Astronomy keeps her name as the asteroid 68 Leto, discovered by Robert Luther in 1861. In European art her Roman form Latona enjoyed a long second life: the Latona Fountain in the gardens of Versailles stages her with the infant Apollo and Diana above the Lycian peasants mid-transformation into frogs — the Ovidian episode frozen in marble and water. Her story of persecution and sanctuary continues to resonate in later narratives of divine mothers and exiled...</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">greek</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,44 +170,197 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>15 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>Pronouncing Ištar: A Guide for the Curious</h1>
-<p>Saying <strong>Ištar</strong> out loud is harder than reading it on a screen, and more rewarding. Scholars reconstruct the sound as <em>&#39;EESH-tar&#39; — the š is like the sh in &#39;ship,&#39; and the final syllable is slightly drawn out.</em>.</p>
-<h2>The Reconstructed Sound</h2>
-<p>The name is attested in cuneiform as 𒀭𒀹𒁯 — the divine determinative with signs read IŠ.TAR — while Sumerian writes the underlying goddess 𒀭𒈹 (Inanna). Its etymology is uncertain and debated. Most Assyriologists treat Ištar as the Akkadian form of a Semitic divine name ʿAštar: masculine in the South Arabian tradition, where Athtar is a Venus god, but feminine as Ugaritic and Phoenician Astarte. This Semitic cult merged so early and so completely with Sumerian Inanna that the two are treated as one goddess from the Old Akkadian period onward. A minority of scholars, citing the name&#39;s aberrant gender reflexes and consonant count across the Semitic family, have questioned whether it is Semitic at all; the standard handbooks accordingly record the... The sounds preserved in Ištar are not random; they follow rules that linguists have spent centuries recovering.</p>
-<h2>Sound by Sound</h2>
-<p>Etymologically, the divine name ištar is not semitic in origin and likely derives from a sumerian divine title associated with the planet venus; it became the akkadian goddess of love, war, and the morning/evening star That points back to a reconstructed form like <em>unknown</em>. Each segment locks into the next, so a small change in one place ripples through the whole name.</p>
-<h2>Kin Forms</h2>
-<p>Related spellings include ištar, Inanna. Names rarely have only one valid shape. The restoration chooses the form that best balances historical accuracy with the practical limits of DNS.</p>
-<h2>From Speech to Screen</h2>
-<p>Pronunciation and spelling converge in Unicode. Ištar carries enough phonetic information to be read aloud by someone who knows the conventions, and enough visual distinctiveness to stand out in an address bar.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Ištar is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>Pronouncing Ištar: a guide for the curious</h1>
+<p>Saying <strong>Ištar</strong> aloud is harder than reading it on a screen, and more rewarding. The restored spelling is a compressed pronunciation guide: every accent and macron is an instruction. This post unpacks those instructions — the reconstructed sound, the phoneme-by-phoneme record, the kindred forms in neighboring languages — and then zooms out to the full record around the name: its Cuneiform writing, its mythology, its cult, and its modern life as a Unicode domain. Whether you arrive as a linguist, a reader of myth, or a domainer, you will leave able to say the name the way the evidence suggests it was said — and able to type it the way it was written.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Ištar</li>
+  <li><strong>ASCII form:</strong> ishtar</li>
+  <li><strong>Meaning:</strong> &quot;Lady of Heaven (Akkadian Ištar)&quot;</li>
+  <li><strong>Domain of influence:</strong> Love, War, Fertility, Venus</li>
+  <li><strong>Pantheon:</strong> Mesopotamian</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> 𒀭𒀹𒁯 (Cuneiform)</li>
+  <li><strong>Live domain:</strong> ištar.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Ištar</strong> (<em>ishtar</em>) is the Akkadian great goddess of love, war, and the planet Venus — the morning and evening star. Her cult fused the Sumerian <strong>Inanna</strong>, &#39;Lady of Heaven&#39; (<em>nin-an-a(k)</em>), with the Semitic deity whose name appears in South Arabian as Athtar and in the Levant as Astarte, producing the most complex divine personality of the ancient Near East: sexual desire and reproductive power, the frenzy of battle, and the patronage of kings in a single figure. Her mythology spans the <em>Descent of Inanna</em>, the Bull of Heaven episode of <em>Gilgamesh</em> Tablet VI, and the sacred-marriage songs of Dumuzi.</p>
+<p>The name is written 𒀭𒀹𒁯 in cuneiform. The Unicode restoration <strong>Ištar</strong> writes the Akkadian sibilant /ʃ/ with the caron š, following standard Assyriological transliteration; no contrastive long vowel or canonical stress pattern is securely attested in the standard form, so the name is classed Tier 2.</p>
+<p>PÚNYCODEX serves the temple at <a href="https://xn--itar-g6a.com">ištar.com</a>; the plain ASCII <em>ishtar</em> is the fallback the early domain-name system imposed, not an ancient spelling.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in cuneiform as <strong>𒀭𒀹𒁯</strong> — the divine determinative with signs read IŠ.TAR — while Sumerian writes the underlying goddess 𒀭𒈹 (Inanna). Its etymology is uncertain and debated. Most Assyriologists treat Ištar as the Akkadian form of a Semitic divine name <em>ʿAštar</em>: masculine in the South Arabian tradition, where Athtar is a Venus god, but feminine as Ugaritic and Phoenician Astarte. This Semitic cult merged so early and so completely with Sumerian <strong>Inanna</strong> that the two are treated as one goddess from the Old Akkadian period onward. A minority of scholars, citing the name&#39;s aberrant gender reflexes and consonant count across the Semitic family, have questioned whether it is Semitic at all; the standard handbooks accordingly record the etymology as unknown and the identification with Inanna as primary.</p>
+<p>Cognate and counterpart forms:</p>
+<ul>
+  <li><strong>Inanna</strong> (Sumerian) — the underlying Sumerian goddess, &#39;Lady of Heaven&#39;</li>
+  <li><strong>Astarte</strong> (Ugaritic/Phoenician) — the West Semitic cognate of the theonym</li>
+  <li><strong>Athtar</strong> (South Arabian) — the masculine Arabian counterpart, a Venus god</li>
+</ul>
+<p>The ASCII form <em>ishtar</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The restoration <strong>Ištar</strong> recovers the scholarly transliteration directly in the address bar.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>i</strong> → <strong>I</strong> — Same</li>
+  <li><strong>s</strong> → <strong>š</strong> — S-caron: voiceless postalveolar /ʃ/</li>
+  <li><strong>h</strong> → <strong>—</strong> — Dropped: digraph simplified</li>
+  <li><strong>t</strong> → <strong>t</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+  <li><strong>r</strong> → <strong>r</strong> — Same</li>
+</ul>
+<p>Attested and derived spellings of the name:</p>
+<ul>
+  <li><strong>ištar</strong> — owned form: owned lowercase Unicode domain label</li>
+  <li><strong>Inanna</strong> — scholarly variant: Sumerian counterpart</li>
+</ul>
+<p>The project holds the domain <strong>ištar.com</strong> (xn--itar-g6a.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: The divine name Ištar is not Semitic in origin and likely derives from a Sumerian divine title associated with the planet Venus; it became the Akkadian goddess of love, war, and the morning/evening star</p>
+<p>The reconstructed proto-form is <em>unknown</em> (unknown), glossed as &quot;Lady of Heaven&quot;.</p>
+<p>The reconstruction is classed as unknown.</p>
+<p>Kindred forms recorded in the lexicon:</p>
+<ul>
+  <li><strong>Inanna</strong> (Sumerian) — variant</li>
+  <li><strong>Astarte</strong> (Phoenician) — cognate</li>
+</ul>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Cuneiform as <strong>𒀭𒀹𒁯</strong> — Sumero-Akkadian cuneiform, attested Sumerian / Old Babylonian – Neo-Assyrian, c. 2600–600 BCE, in Mesopotamia. The script is written left-to-right / top-to-bottom.</p>
+<p>The scholarly transliteration is <em>Ištar</em> (Sumerian logogram + Akkadian scholarly), giving the normalized reading /ˈiʃ.taːr/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The name is written 𒀭𒀹𒁯 in cuneiform.</li>
+  <li>Sumerian logograms may be read with Akkadian values; the divine determinative 𒀭 marks theonyms.</li>
+  <li>Macrons in the Unicode restoration mark long vowels inferred from Akkadian and Sumerian convention.</li>
+  <li>The Unicode restoration Ištar is registrable in .com; the cuneiform form is not supported in the .com IDN table.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/ˈiʃ.taːr/</strong> — Akkadian Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Iš-</strong> — Close front [i] followed by voiceless postalveolar fricative [ʃ] — the Akkadian rendering of the Sumerian divine name.</li>
+  <li><strong>-tar</strong> — Voiceless dental [t] and syllabic [ar] — the second element, possibly connected with &#39;morning star&#39; or simply the borrowing of Inanna.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;EESH-tar&#39; — the š is like the sh in &#39;ship,&#39; and the final syllable is slightly drawn out.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Sumerian</strong> — 𒀭𒈹 (Inanna), the earlier name and the underlying deity</li>
+  <li><strong>Akkadian</strong> — 𒀭𒈹 (Ištar), the East Semitic form attested from the Old Akkadian period onward</li>
+  <li><strong>Logographic</strong> — 𒀭𒌋𒁯 (dINANNA / dIŠTAR), the divine determinative with the star sign</li>
+</ul>
+<p>Ištar is Tier 2 because the Akkadian conventional transcription preserves no Greek-style stress and no reliably contrastive long vowel in the standard scholarly form. The macron form Ištār is sometimes used to mark an optional or dialectal length, but the primary cuneiform evidence supports /ˈiʃtar/; the Unicode form Ištar is therefore the transparent, historically defensible spelling, with the caron š marking the Akkadian sibilant.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Ištar&#39;s myths are stories of <strong>extremity</strong>: descent into death, demand for the impossible, and the transformation of gender and power. She is never merely an object of desire; she is desire in motion, war in motion, the star that crosses the boundary between heaven and the underworld.</p>
+<h3 id="inanna-s-descent-to-the-underworld-descent">Inanna&#39;s Descent to the Underworld (Descent)</h3>
+<p>In the Sumerian <em>Descent of Inanna</em>, the goddess abandons heaven and earth to descend to the netherworld ruled by her sister Ereškigal. At each of the seven gates she is stripped of a garment or ornament until she stands naked before the throne of the dead. She is killed and hung on a hook. Her faithful servant Ninšubur persuades Enki to create two sexless beings who revive her with the food and water of life. The myth is a meditation on death, sovereignty, and the price of rebirth.</p>
+<h3 id="istar-and-the-bull-of-heaven-gilgamesh">Ištar and the Bull of Heaven (Gilgamesh)</h3>
+<p>In Tablet VI of the <em>Epic of Gilgamesh</em>, Ištar proposes marriage to Gilgamesh, king of Uruk. He rejects her, reciting the fates of her former lovers: Tammuz (Dumuzi), the lover of her youth, for whom she decreed weeping year after year; the allalu-bird, whose wing she broke; the lion, for whom she dug the hunters&#39; pits; the horse, condemned to whip, spur, and thirst; the shepherd, turned into a wolf; and the gardener Išullanu. Enraged, Ištar demands the Bull of Heaven from her father [[anu|Anû]] and unleashes it on Uruk; Gilgamesh and Enkidu kill the bull, an insult for which Enkidu pays with his life.</p>
+<h3 id="dumuzi-and-inanna-sacred-marriage">Dumuzi and Inanna (Sacred Marriage)</h3>
+<p>The Sumerian sacred-marriage songs celebrate the union of Inanna and Dumuzi, the shepherd-king. Their love ensures the fertility of the land and the legitimacy of the king. In the <em>Descent</em>, however, Inanna chooses Dumuzi to take her place in the underworld for half the year, so that his sister Geštinanna may take the other half. The myth explains the cycle of the seasons and the alternating presence of life and death in the agricultural year.</p>
+<h3 id="the-mourning-goddess-at-the-flood-gilgamesh-xi">The Mourning Goddess at the Flood (Gilgamesh XI)</h3>
+<p>Ištar appears in neither the <em>Enuma Elish</em> — whose drama is cast almost entirely among male gods — nor, in her own person, in <em>Atra-hasis</em>, where the mourning mother of humankind is the birth-goddess Mami/Nintu. It is the Standard Babylonian <em>Gilgamesh</em>, Tablet XI, that gives her the flood role: as the deluge destroys her people she cries out like a woman in labour, and afterwards she holds up her lapis-lazuli fly necklace as an eternal memorial of the drowned. The later tradition thus transfers to Ištar the great-goddess function of grieving for humanity.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>Her attributes compress the goddess&#39;s double nature — celestial and warlike, erotic and sovereign:</p>
+<ul>
+  <li><strong>Eight-pointed star</strong> — the sign of Venus, her planet; the star sign 𒀭 writes her name in cuneiform, and in art the star disk crowns her tiara.</li>
+  <li><strong>Lion</strong> — her animal and her mount: she stands upon lions as mistress of battle, and hymns heap lion and dragon epithets upon her war aspect.</li>
+  <li><strong>Rosette</strong> — the fertility emblem attached to her cult from the Uruk-period cylinder seals onward.</li>
+  <li><strong>Weapons rising from her shoulders</strong> — the standard image of the armed goddess on Old Babylonian seals, the visual formula for her warrior aspect.</li>
+  <li><strong>Dove</strong> — properly an emblem of her Levantine heir Astarte and of later love-goddess iconography; its association with Ištar herself is secondary.</li>
+  <li><strong>Owls</strong> — the so-called Burney Relief (&#39;Queen of the Night&#39;), a terracotta of a winged, taloned goddess flanked by owls, is popularly labelled Inanna/Ištar, but the identification is contested; Ereškigal and the demoness Lilitu have also been proposed.</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>The most visible monument of her cult is the <strong>Ishtar Gate</strong> of Babylon, built under Nebuchadnezzar II (c. 575 BCE), excavated by Robert Koldewey&#39;s German expedition (1899–1917), and reconstructed in Berlin&#39;s Pergamon Museum; its glazed-brick lions line the processional way named for her.</p>
+<p>At Uruk, the <strong>Eanna</strong> precinct — &#39;House of Heaven&#39;, the sanctuary she shared with [[anu|Anû]] — preserves the sequence of Inanna temples from the Uruk period onward, source of the archaic cylinder seals that first display her star, lion, and rosette. In Assyria her temples at Nineveh (Emašmaš) and Arbela (Egašankalamma) ranked among the richest of the empire, and the Ištar of Arbela speaks in the prophetic oracles delivered to Esarhaddon and Ashurbanipal. At Mari on the middle Euphrates, the palace of Zimri-Lim preserved the &#39;Investiture&#39; fresco, in which Ištar hands the rod and ring of rule to the king.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Ištar is the most <strong>volatile</strong> of the great Mesopotamian goddesses. She is the planet Venus, the morning and evening star; she is sexual desire and reproductive power; she is the frenzy of battle and the protector of kings. No other deity in the ancient Near East so thoroughly unites what later cultures would separate into Aphrodítē and Árēs.</p>
+<h3 id="the-star">The Star</h3>
+<p>The eight-pointed star of Venus; Ištar is the brightest planet and the celestial sign of the goddess.</p>
+<h3 id="love-and-fertility">Love and Fertility</h3>
+<p>The sacred marriage, the life-giving womb, the power that turns desire into offspring and fields into harvest.</p>
+<h3 id="war">War</h3>
+<p>She rides into battle with weapons at her shoulders; kings claim her as their divine patron in war.</p>
+<h3 id="lions-and-doves">Lions and Doves</h3>
+<p>The lion is her warlike aspect; the dove is her amorous aspect — power and tenderness in one deity.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Ištar absorbed the Sumerian <em>Inanna</em> so completely that the two are now treated as a single deity across the ancient Near East. She was identified with the Canaanite <em>Astarte</em>, the Hurrian <em>Šauška</em>, the Egyptian <em>Qudshu</em>, the Greek <em>Aphrodítē</em> (especially in her eastern, armed form), and contributed features to the Iranian goddess <em>Anāhitā</em> under the Achaemenids. The Hellenistic cult of Aphrodite Ourania at Ascalon and elsewhere preserves strong Ištar/Astarte elements. In later Gnostic and magical texts, Ištar&#39;s star became an emblem of celestial femininity and erotic power.</p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include [[aphrodite|Aphrodítē]] (love / beauty / desire), [[anat|ꜥAnat]] (war / battle), [[ares|Árēs]] (war / battle), [[ashur|Aššur]] (war / battle), [[athena|Athénā]] (war / battle), and [[babaluaye|Ọbalúayé]] (earth / mother / fertility).</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Ištar&#39;s afterlife runs through her Levantine form <strong>Astarte</strong>, known to the Hebrew Bible as Ashtoreth and to the Greeks as the celestial, sometimes armed Aphrodite of Cyprus and Ascalon; through Astarte&#39;s star and dove, traits of the Mesopotamian goddess entered the Mediterranean iconography of love. In the biblical tradition she shadows the &#39;Queen of Heaven&#39; whose cult Jeremiah denounces in Judah and Egypt, and later exegesis heard an echo of Babylon&#39;s great goddess in the Whore of Babylon of Revelation. Her eight-pointed star persists in Near Eastern and occult symbolism.</p>
+<p>A popular claim derives English <strong>Easter</strong> from her name. The derivation is not supported by scholarship: Bede explains the month-name Eosturmonath from a Germanic goddess Eostre, and no historical or linguistic chain connects Eostre with Ištar or Astarte; the resemblance is coincidence.</p>
+<p>Modern receptions — from nineteenth-century paintings of the goddess to her central place in feminist re-readings of <em>Gilgamesh</em> — have made her the emblem of the love-and-war goddess, though the Sumerian and Akkadian sources present a far less domesticated personality than the modern archetype.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Ištar given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Electronic Text Corpus of Sumerian Literature, Oxford Oriental Institute, 1998. <a href="https://etcsl.orinst.ox.ac.uk/">Full text</a></li>
+  <li> The Assyrian Dictionary of the Oriental Institute of the University of Chicago, 21 vols., Oriental Institute, Chicago (completed 2010), 1956. <a href="https://isac.uchicago.edu/research/publications/assyrian-dictionary-oriental-institute-university-chicago">Full text</a></li>
+  <li> Akkadisches Handwörterbuch, 3 vols., Harrassowitz, Wiesbaden (completed 1981), 1965.</li>
+  <li> Black &amp; Green, Gods, Demons and Symbols of Ancient Mesopotamia.</li>
+  <li> Jacobsen, The Treasures of Darkness.</li>
+  <li> Kramer, The Sumerians.</li>
+  <li> George, The Babylonian Gilgamesh Epic: Introduction, Critical Edition and Cuneiform Texts (Tablet VI: the proposal and the Bull of Heaven).</li>
+  <li> Inanna&#39;s Descent to the Netherworld (Sumerian, ETCSL c.1.4.1: the goddess&#39;s journey to the realm of Ereškigal). <a href="https://etcsl.orinst.ox.ac.uk/section1/tr141.htm">Full text</a></li>
+  <li> Enheduanna, The Exaltation of Inana (Inana B), ETCSL c.4.07.2. <a href="https://etcsl.orinst.ox.ac.uk/section4/tr4072.htm">Full text</a></li>
+  <li> Abusch, &quot;Ishtar&#39;s Proposal and Gilgamesh&#39;s Refusal,&quot; History of Religions 26 (1986): 143–187.</li>
+  <li> Dalley, Myths from Mesopotamia (the Akkadian Descent of Ishtar).</li>
+  <li> Code of Hammurabi, prologue (invokes Ishtar as lady of battle and love).</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Ištar refuses to be one thing. She is the morning star and the evening star, the lover and the warrior, the goddess who descends into death and returns clothed in her own power. In a world that likes its deities sorted by function, she is a reminder that the most ancient sacred forces were polymorphous: desire and violence, fertility and mourning, all braided into a single brilliant light.</p>
+<p>To restore the name <em>Ištar</em> is to refuse the flattening of the feminine divine into mere beauty or mere nurturing. She is the terror of the battlefield and the tenderness of the bridal chamber; the goddess who weeps for the flood&#39;s victims and sends the Bull of Heaven to avenge her pride. Her star still rises. It still crosses from day into night, from life into death, and back again.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Ištar is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>ishtar</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 6 characters of the name, the restoration adjusts 2: 2 further adjustments (š, h). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>ištar.com</strong>, which the DNS carries in punycode form as xn--itar-g6a.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Ištar; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Cuneiform can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Pronunciation turns out to be the heart of the matter. The marks in <strong>Ištar</strong> are instructions for the voice, and a web that strips them is a web that mispronounces the past at scale. The restoration hands the instructions back: say it as the evidence suggests, type it as the tradition wrote it, and let the punycode machinery do the quiet translation in between. That is all the PÚNYCODEX project asks of the infrastructure — and everything it asks of you, the reader, is to use the whole name.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/kishar/">Kišar</a></li>
   <li><a href="/sites/lahmu/">Lahmu</a></li>
   <li><a href="/sites/nabu/">Nabû</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://etcsl.orinst.ox.ac.uk/">Electronic Text Corpus of Sumerian Literature, Oxford Oriental Institute, 1998.</a></li>
   <li><a href="https://isac.uchicago.edu/research/publications/assyrian-dictionary-oriental-institute-university-chicago">The Assyrian Dictionary of the Oriental Institute of the University of Chicago, 21 vols., Oriental Institute, Chicago (completed 2010), 1956.</a></li>
   <li><a href="https://etcsl.orinst.ox.ac.uk/section1/tr141.htm">Inanna&#39;s Descent to the Netherworld (Sumerian, ETCSL c.1.4.1: the goddess&#39;s journey to the realm of Ereškigal).</a></li>
   <li><a href="https://etcsl.orinst.ox.ac.uk/section4/tr4072.htm">Enheduanna, The Exaltation of Inana (Inana B), ETCSL c.4.07.2.</a></li>
+  <li>Black &amp; Green, Gods, Demons and Symbols of Ancient Mesopotamia.</li>
+  <li>Leick (ed.), The Babylonian World (Routledge, 2007), on the uncertain etymology of Inanna and Ishtar.</li>
+  <li>Wilson-Wright, Athtart: The Transmission and Transformation of a Goddess in the Late Bronze Age (Mohr Siebeck, 2016).</li>
+  <li>Collon, The Queen of the Night (British Museum Press, 2005).</li>
+  <li>Lexicon authorities for this entry: CAD, AHw.</li>
 </ul>
-<h2>What the Sources Record</h2>
-<p>Ištar is the most volatile of the great Mesopotamian goddesses. She is the planet Venus, the morning and evening star; she is sexual desire and reproductive power; she is the frenzy of battle and the protector of kings. No other deity in the ancient Near East so thoroughly unites what later cultures would separate into Aphrodítē and Árēs. ### The Star The eight-pointed star of Venus; Ištar is the brightest planet and the celestial sign of the goddess. ### Love and Fertility The sacred marriage, the life-giving womb, the power that turns desire into offspring and fields into harvest. ### War She rides into battle with weapons at her shoulders; kings claim her as their divine patron in war. ### Lions and Doves The lion is her warlike aspect; the dove...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Ištar as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Cuneiform to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Ištar through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/ishtar/">home page</a> offers the full name breakdown, the <a href="/sites/ishtar/lore/">lore page</a> explores the myth, and the <a href="/sites/ishtar/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">mesopotamian</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

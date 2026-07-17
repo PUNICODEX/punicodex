@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,40 +170,192 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-chinese-pantheon">The Chinese Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>Lóng in 2026: Why Scholars Still Care</h1>
-<p>In 2026, names are treated as data points. Lóng is a reminder that they are also cultural artifacts. Lóng (long) — Dragon · Chinese dragon — belongs to the Chinese tradition, where it is catalogued under the domain &quot;Dragon&quot;. The name means &quot;Chinese dragon&quot;. Lóng is not the fire-breathing tyrant of Western fairy tales. The Chinese dragon is a composite being — antlers of a stag, head of a camel, eyes of a demon, neck of a snake, belly of a clam, scales of a carp, claws of an eagle, pads of a tiger — the &#39;nine resemblances&#39; catalogued by the Han scholar Wang Fu — and yet it moves as a single fluid force. It is the spirit of water in all its forms: the river, the rain, the mist, and the storm. It is also the imperial emblem of absolute legitimacy, the yang counterweight to the phoenix&#39;s yin, and the power that makes the fields fertile. Wherever... The question is not whether the name is old, but whether the digital world is old enough to hold it.</p>
-<h2>The Scholarly Argument</h2>
-<p>The name is attested in Chinese characters as 龍. Etymologically it means &quot;Chinese dragon&quot;. The ASCII form long survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Lóng recovers the stress accent of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The letter-by-letter transformation runs: - l → L — Same, capitalized - o → ó — Second tone - n → n — Same - g → g — Same The project holds the domain lóng.com (xn--lng-gna.com) as the canonical home of this name. The PÚNYCODEX Scholarly Edition collects these arguments in one place, with sources and revision history, so the claim can be inspected rather than merely asserted.</p>
-<h2>What the Accent Preserves</h2>
-<p>This entry is classified as <strong>Tier 2</strong>. the original preserves at least one philological feature that ASCII cannot encode Those marks are not ornaments; they are the coordinates that place the name inside a language.</p>
-<h2>A Living Edition</h2>
-<p>The <a href="/sites/long/scholars/">Scholarly Edition</a> is not a static page. Verified contributors can improve it, and every change is attributed. That model turns a blog post like this one into an invitation to dig deeper.</p>
-<h2>Where to Learn More</h2>
+            <h1>Lóng in 2026: why scholars still care</h1>
+<p>In 2026, names are treated as data points. <strong>Lóng</strong> is a reminder that they are also cultural artifacts — and that the difference matters for search engines, AI training corpora, and anyone who types the name of a Chinese figure into a browser. Scholars never stopped caring about the difference between <em>long</em> and Lóng; the web simply made that care actionable. What follows is the full scholarly picture — name, script, sound, myth, cult, and legacy — followed by the engineering compromise that lets a restored spelling live at a real address. The question is not whether the name is old. It is whether the digital world is old enough to hold it.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Lóng</li>
+  <li><strong>ASCII form:</strong> long</li>
+  <li><strong>Meaning:</strong> &quot;Chinese dragon&quot;</li>
+  <li><strong>Domain of influence:</strong> Dragon</li>
+  <li><strong>Pantheon:</strong> Chinese</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> 龍 (Chinese characters)</li>
+  <li><strong>Live domain:</strong> lóng.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Lóng</strong> (<em>long</em>) — Dragon · Chinese dragon — belongs to the Chinese tradition, where it is catalogued under the domain &quot;Dragon&quot;. The name means &quot;Chinese dragon&quot;.</p>
+<p><strong>Lóng</strong> is not the fire-breathing tyrant of Western fairy tales. The Chinese dragon is a composite being — antlers of a stag, head of a camel, eyes of a demon, neck of a snake, belly of a clam, scales of a carp, claws of an eagle, pads of a tiger — the &#39;nine resemblances&#39; catalogued by the Han scholar Wang Fu — and yet it moves as a single fluid force. It is the spirit of water in all its forms: the river, the rain, the mist, and the storm. It is also the imperial emblem of absolute legitimacy, the yang counterweight to the phoenix&#39;s yin, and the power that makes the fields fertile.</p>
+<p>Wherever Chinese civilization spread, the dragon went with it: carved on jade, coiled around columns, embroidered on silk, and raised above temples as a promise that heaven still listened.</p>
+<p>PÚNYCODEX restores the name as <strong>Lóng</strong> and serves its temple at <a href="https://xn--lng-gna.com">lóng.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>long</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Chinese characters as <strong>龍</strong>. Etymologically it means &quot;Chinese dragon&quot;.</p>
+<p>The ASCII form <em>long</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Lóng</strong> recovers the stress accent of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>l</strong> → <strong>L</strong> — Same, capitalized</li>
+  <li><strong>o</strong> → <strong>ó</strong> — Second tone</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+  <li><strong>g</strong> → <strong>g</strong> — Same</li>
+</ul>
+<p>The project holds the domain <strong>lóng.com</strong> (xn--lng-gna.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Chinese characters as <strong>龍</strong> — Hanzi (Sino-Tibetan), attested Oracle-bone – present, c. 1200 BCE –, in China. The script is written left-to-right; traditional top-to-bottom.</p>
+<p>The scholarly transliteration is <em>Lóng</em> (Hanyu Pinyin with tone mark), giving the normalized reading /lʊŋ/ or /loŋ/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The Chinese character 龍 (simplified 龙) represents the dragon, a central cosmological creature in Chinese religion and imperial symbolism.</li>
+  <li>Modern Mandarin reading is lóng (second tone), written in Pinyin with an acute accent.</li>
+  <li>Old Chinese reconstructions include <em>C-rjoŋ or </em>mə-roŋ (Baxter-Sagart); the initial consonant cluster is debated.</li>
+  <li>The Unicode restoration Lóng preserves the Mandarin tone mark; the ASCII form loses tone and therefore meaning-distinctive information.</li>
+</ul>
+<p>The original script is 龍 in traditional Chinese and 龙 in simplified. Pinyin <em>Lóng</em> (Tone 2) is the Modern Standard Mandarin reading, recorded in the Unihan Database and standard dictionaries. The registrable Unicode restoration uses tone-marked Pinyin rather than the hanzi because PUNYCODEX renders the original character in the temple&#39;s &#39;Original Script&#39; card while keeping the domain label pronounceable and internationally registrable. Baxter &amp; Sagart (2014) reconstruct the Old Chinese form as *[m]-roŋ.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/lʊŋ˧˥/</strong> — Modern Standard Mandarin (Pinyin).</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>lóng</strong> — Single syllable with voiced alveolar lateral approximant [l], final [ʊŋ] (close-mid back rounded vowel + velar nasal), and Tone 2 (rising, ˧˥). Pinyin &#39;o&#39; before &#39;ng&#39; corresponds to IPA [ʊ].</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: LUHNG — the &#39;o&#39; is like the &#39;oo&#39; in &#39;book&#39;, and the tone rises from mid to high, as in a questioning intonation.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Traditional</strong> — 龍</li>
+  <li><strong>Simplified</strong> — 龙</li>
+  <li><strong>Wade-Giles</strong> — lung²</li>
+  <li><strong>Cantonese</strong> — lung⁴</li>
+  <li><strong>Related terms</strong> — 龍王 Lóngwáng (Dragon King); 龍鳳 lóngfèng (dragon and phoenix)</li>
+</ul>
+<p>龍 denotes the Chinese dragon, an emblem of imperial authority, fertility, and cosmic yang force. The Modern Standard Mandarin reading is lóng (Tone 2), as recorded in the Unihan Database (Unicode Consortium, kMandarin) and standard Mandarin dictionaries. Baxter &amp; Sagart (2014) reconstruct the Old Chinese form as *[m]-roŋ (GSR 1193a). The tone-marked Pinyin restoration Lóng preserves the citation rising tone of the second tone; in connected speech the contour may be compressed, but the lexical tone remains Tone 2.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Chinese dragon lore is less a single narrative than a vast ecology of stories about transformation, weather, and sovereignty. The dragon is not born from an egg alone; it is earned, summoned, or revealed.</p>
+<h3 id="yinglong-the-winged-dragon-shanhaijing">Yinglong, the Winged Dragon (Shanhaijing)</h3>
+<p>In the <em>Classic of Mountains and Seas</em>, the winged dragon Yinglong answers the Yellow Emperor&#39;s call at the Battle of Zhuolu. Chiyou, the rebel, has raised fog so thick that armies lose their way; Yinglong slays Chiyou and ends the war. Afterward the dragon is said to be bound to the earth, unable to return to heaven — a mythic echo of the cost of using cosmic power for mortal victory.</p>
+<h3 id="the-carp-at-dragon-gate-folklore">The Carp at Dragon Gate (Folklore)</h3>
+<p>Each year carp swim upstream against the Yellow River&#39;s rapids at Longmen. Those that leap the falls are transformed into dragons. The tale turned the phrase <em>lǐ yú tiào lóng mén</em> into a metaphor for success in the imperial examinations — the small, persistent creature who becomes a sovereign force.</p>
+<h3 id="the-dragon-kings-of-the-four-seas-daoist-and-popular-religion">The Dragon Kings of the Four Seas (Daoist and Popular Religion)</h3>
+<p>Four Dragon Kings rule the eastern, southern, western, and northern seas. They control tides, storms, and the water table; villages propitiated them with offerings during drought. The best known is the Dragon King of the Eastern Sea, Ao Guang, whose treasury and temper feature in tales from the <em>Journey to the West</em>.</p>
+<h3 id="the-azure-dragon-of-the-east-astronomy-and-iconography">The Azure Dragon of the East (Astronomy and Iconography)</h3>
+<p>Qīnglóng, the Azure Dragon, is one of the Four Symbols guarding the cardinal directions. It corresponds to spring, the east, and the wood phase. Ancient star maps trace its sinuous body across the eastern sky, a celestial dragon that marks the season of planting and renewal.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography of Lóng concentrates in a small set of recurring attributes, each a compressed statement about the name. The canonical anatomy is the &#39;nine resemblances&#39; (九似) recorded by the Eastern Han scholar Wang Fu — stag&#39;s horns, camel&#39;s head, demon&#39;s eyes, snake&#39;s neck, clam&#39;s belly, carp&#39;s scales, eagle&#39;s claws, tiger&#39;s paws, cow&#39;s ears — a composite codified by Song writers and painters:</p>
+<ul>
+  <li><strong>Dragon pearl</strong> — Wisdom and spiritual energy, the luminous essence the dragon guards or pursues; in painting it often blazes with flame-scrolls.</li>
+  <li><strong>Antlers and horns</strong> — Vitality, longevity, and the stag-like generative power of nature.</li>
+  <li><strong>Carp scales</strong> — Transformation: the carp that leaps the Dragon Gate rapids becomes a dragon.</li>
+  <li><strong>Clouds and waves</strong> — The dragon&#39;s medium; it does not fly through air but swims through mist and rain.</li>
+  <li><strong>Five claws</strong> — Imperial supremacy. Ming and Qing sumptuary law reserved the five-clawed dragon for the emperor; princes and high officials bore the four-clawed <em>mang</em> 蟒.</li>
+</ul>
+<p>The pearl-chasing dragon enters the great painting tradition with Chen Rong&#39;s <em>Nine Dragons</em> handscroll (dated 1244, Museum of Fine Arts, Boston), whose creatures tumble through cloud and surf with the pearl just beyond reach.</p>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>The earliest dragon image in China may be the mosaic of clam shells laid out beside the dead in tomb M45 at Xishuipo, Puyang (Yangshao culture, fourth millennium BCE), where a dragon and a tiger flank the buried man. The coiled jade &#39;pig-dragons&#39; of the Hongshan culture (c. 4700–2900 BCE) from Inner Mongolia and Liaoning show the creature already rendered in the prestige material of the age. The Erlitou culture (c. 1900–1500 BCE) produced a turquoise-inlaid dragon plaque, and Shang and Zhou bronzes wove dragon forms into the <em>taotie</em> masks of ritual vessels. Han dynasty tomb murals and stone reliefs show dragons pulling chariots, guarding ascents to immortality, and separating heaven from earth. Textual witnesses begin with the Shang oracle-bone inscriptions, in which the graph 龍 already appears; by the Western Zhou the dragon is firmly established as a royal and meteorological symbol.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p><strong>Lóng</strong> is not the fire-breathing tyrant of Western fairy tales. The Chinese dragon is a composite being — antlers of a stag, head of a camel, eyes of a demon, neck of a snake, belly of a clam, scales of a carp, claws of an eagle, pads of a tiger — the &#39;nine resemblances&#39; catalogued by the Han scholar Wang Fu — and yet it moves as a single fluid force. It is the spirit of water in all its forms: the river, the rain, the mist, and the storm. It is also the imperial emblem of absolute legitimacy, the yang counterweight to the phoenix&#39;s yin, and the power that makes the fields fertile.</p>
+<p>Wherever Chinese civilization spread, the dragon went with it: carved on jade, coiled around columns, embroidered on silk, and raised above temples as a promise that heaven still listened.</p>
+<h3 id="water-and-weather">Water and Weather</h3>
+<p>Dragons command rivers, lakes, clouds, and rain; drought is read as the dragon&#39;s withdrawal, flood as its untimely arrival.</p>
+<h3 id="imperial-authority">Imperial Authority</h3>
+<p>The five-clawed dragon was reserved for the Son of Heaven; to usurp it was treason, to bear it legitimately was to claim the mandate of heaven.</p>
+<h3 id="the-pearl-of-wisdom">The Pearl of Wisdom</h3>
+<p>The dragon chasing a flaming pearl symbolizes the pursuit of enlightenment, potency, and the luminous source of all things.</p>
+<h3 id="cosmic-yang">Cosmic Yang</h3>
+<p>As the active, ascending, bright principle, the dragon pairs with the phoenix to model the complementary dynamism of the cosmos.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>The Chinese dragon absorbed and influenced dragon imagery across East Asia. The Japanese <em>ryū</em> and <em>tatsu</em>, the Korean <em>yong</em>, and the Vietnamese <em>rồng</em> all descend from the same visual and cosmological root, though each culture adjusted claw count, temperament, and symbolic color. Indian <em>nāgas</em> — serpent deities of water and the underworld — entered Chinese Buddhism and were often depicted as dragon-like guardians, especially at temple gates and in rain-making rituals. The Western dragon, by contrast, is a distinct tradition: a hoarding, fire-breathing antagonist shaped by Near Eastern and medieval European warfare, only superficially related to the Chinese rain-bringing sovereign. Modern global culture often conflates the two, but they answer to different cosmologies.</p>
+<p>Within the Chinese tradition, closely related names in the corpus include [[bagua|Bāguà]], [[taichi|Tàijí]], [[taishang|Tàishàng]], [[tian|Tiān]], [[tiandi|Tiāndì]], and [[wuxing|Wǔxíng]].</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>The dragon never left Chinese public life. The Qing imperial flag was a five-clawed dragon on a yellow field; the Republic of China and early People&#39;s Republic used dragon motifs on currency, stamps, and regalia. Today the dragon dance winds through Lunar New Year streets worldwide, and the Year of the Dragon is the most auspicious sign in the zodiac. In feng shui, dragon imagery channels <em>qi</em>; in martial arts, <em>Long Xing Mo Qiao</em> and other styles imitate its coiling power. The dragon has also become a contested nationalist symbol — claimed by state propaganda, diaspora communities, and pop culture alike as a badge of Chinese identity, ambition, and ancestral continuity.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Lóng given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Shanhaijing (Classic of Mountains and Seas). <a href="https://ctext.org/shan-hai-jing">Full text</a></li>
+  <li> Sima Qian, Shiji (Records of the Grand Historian).</li>
+  <li> Shuowen Jiezi.</li>
+  <li> Yijing (Book of Changes).</li>
+  <li> Baxter &amp; Sagart, Old Chinese Reconstruction. <a href="http://ocbaxtersagart.lsait.lsa.umich.edu/">Full text</a></li>
+  <li> Eberhard, A Dictionary of Chinese Symbols.</li>
+  <li> Liu, The Chinese Dragon.</li>
+  <li> Unihan Database (Unicode Consortium). <a href="https://www.unicode.org/charts/unihan.html">Full text</a></li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>The Chinese dragon teaches that power need not be hard. It is water made conscious: yielding enough to flow around any obstacle, forceful enough to wear down mountains. Unlike the Western dragon guarding a static hoard, the Chinese dragon is process — rain becoming river, river becoming mist, mist returning to cloud. It is a reminder that sovereignty in the Chinese imagination is less about domination than about maintaining the dynamic balance that lets life flourish.</p>
+<p>To name a domain <em>Lóng</em> is therefore to claim something older than empire: the claim that the cosmos itself pulses with living, transformative energy. The dragon does not ask to be worshipped from a distance; it asks to be recognized in the rain on the field, the mist on the mountain, and the long coiling body of a river moving toward the sea.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Lóng is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>long</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 4 characters of the name, the restoration adjusts 1: 1 mark of stress (ó). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>long</em> to <strong>Lóng</strong>, one character at a time:</p>
+<ul>
+  <li><strong>l</strong> → <strong>L</strong> — Same, capitalized</li>
+  <li><strong>o</strong> → <strong>ó</strong> — Second tone</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+  <li><strong>g</strong> → <strong>g</strong> — Same</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>lóng.com</strong>, which the DNS carries in punycode form as xn--lng-gna.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Lóng; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Chinese characters can now be typed into any browser on earth.</p>
+<h2 id="the-chinese-pantheon">The Chinese Pantheon</h2>
+<p>Lóng is one of 43 entries the PÚNYCODEX lexicon catalogues under the Chinese pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Lóng mean?</strong> The traditional gloss is &quot;Chinese dragon.&quot;</p>
+<p><strong>Which tradition does Lóng belong to?</strong> Lóng is catalogued in the Chinese pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Lóng classified as Tier 2?</strong> Because the original preserves at least one philological feature that ASCII cannot encode — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Lóng a working domain?</strong> Yes — lóng.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for lóng.com?</strong> The DNS encoding is xn--lng-gna.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>In 2026 the stakes are practical. Search indexes, language models, and localization pipelines all inherit whatever spelling the web normalizes — which means every Unicode domain is also a training signal. <strong>Lóng</strong> teaches the machinery that the restored form exists, that it is used, and that it points to a real place. That is why a project built on philology ends up caring about DNS: the infrastructure decides which names the future sees. This restoration makes sure the future sees the whole name.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/mazu/">Māzǔ</a></li>
   <li><a href="/sites/nuwa/">Nǚwā</a></li>
   <li><a href="/sites/sanzang/">Sānzàng</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://ctext.org/shan-hai-jing">Shanhaijing (Classic of Mountains and Seas).</a></li>
   <li><a href="https://www.unicode.org/charts/unihan.html">Unihan Database (Unicode Consortium), kMandarin reading for U+9F8D 龍.</a></li>
   <li><a href="http://ocbaxtersagart.lsait.lsa.umich.edu/">Baxter &amp; Sagart, Old Chinese: A New Reconstruction (2014).</a></li>
   <li><a href="https://ctext.org/book-of-changes">Yijing (Book of Changes), Qian hexagram line statements.</a></li>
+  <li><a href="https://ctext.org/book-of-poetry">Shijing (Book of Poetry), sacrificial odes.</a></li>
+  <li><a href="https://ctext.org/chun-qiu-zuo-zhuan">Zuozhuan (Chunqiu Zuozhuan), Duke Zhao 29.</a></li>
+  <li>Sima Qian, Shiji (Records of the Grand Historian).</li>
+  <li>Shuowen Jiezi.</li>
+  <li>Wang Fu&#39;s &#39;nine resemblances&#39; (九似), quoted in M. W. de Visser, The Dragon in China and Japan (1913).</li>
+  <li>Eberhard, A Dictionary of Chinese Symbols.</li>
+  <li>Lexicon authorities for this entry: Chinese folklore, Chinese classics.</li>
 </ul>
-<h2>What the Sources Record</h2>
-<p>Lóng is not the fire-breathing tyrant of Western fairy tales. The Chinese dragon is a composite being — antlers of a stag, head of a camel, eyes of a demon, neck of a snake, belly of a clam, scales of a carp, claws of an eagle, pads of a tiger — the &#39;nine resemblances&#39; catalogued by the Han scholar Wang Fu — and yet it moves as a single fluid force. It is the spirit of water in all its forms: the river, the rain, the mist, and the storm. It is also the imperial emblem of absolute legitimacy, the yang counterweight to the phoenix&#39;s yin, and the power that makes the fields fertile. Wherever Chinese civilization spread, the dragon went with it: carved on jade, coiled around columns, embroidered on silk, and raised above temples as a promise that heaven...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Lóng as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Chinese characters to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Lóng through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/long/">home page</a> offers the full name breakdown, the <a href="/sites/long/lore/">lore page</a> explores the myth, and the <a href="/sites/long/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">chinese</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,39 +170,191 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#name-variations">Name Variations</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-sanskrit-pantheon">The Sanskrit Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>The Hidden History Behind Oṃ</h1>
-<p>Behind the modern ASCII <em>om</em> hides a longer story. The name is attested in Devanagari as ओं. Monier-Williams defines it as a word of solemn affirmation and respectful assent — &quot;yes, verily, so be it&quot; — comparing its function with Amen and noting its place at the head of Vedic recitation. The ASCII form om survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Oṃ recovers the full diacritic detail of the scholarly transliteration directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The letter-by-letter transformation runs: - o → O — Same, capitalized - m → ṃ — M with dot: anusvara Attested and... That history reaches back through manuscripts, inscriptions, and oral traditions before it ever reached a keyboard.</p>
-<h2>Etymology</h2>
-<p>The deeper roots of Oṃ are still debated among specialists.  The traditional gloss is &quot;a word of solemn affirmation and respectful assent, sometimes translated by ‘yes, verily, so be it’ (and in this sense compared with Amen; it is placed at the commencement of most.&quot;</p>
-<h2>In Myth</h2>
-<p>Oṃ has no biography, but it has a theology. Its &#39;mythology&#39; is the story of how a single syllable became the audible form of the absolute, repeated by gods, sages, and seekers across millennia. These narratives are not dusty footnotes; they are the reason the name acquired its resonance.</p>
-<h2>Across Cultures</h2>
-<p>Oṃ crossed every boundary within the Indian subcontinent and beyond. Hinduism made it the essence of the Vedas; Buddhism placed it at the head of mantras from Tibet to Japan; Jainism uses it as a condensed invocation of the five supreme beings. The syllable also migrated into Southeast Asian ritual, Tantric Buddhism, and modern global spirituality, where it became a universal emblem of meditation. What unifies these uses is the belief that Oṃ is not arbitrary: it is the sound that remains when individual words fall away, the sonic residue of the absolute. Within the Sanskrit tradition, closely related names in the corpus include [[durga|Durgā]], [[ganesha|Gaṇeśa]], [[kali|Kālī]], [[lakshmi|Lakṣmī]], [[nirmata|Nirmātā]], and [[parvati|Pārvatī]]. Names travel, adapt, and accumulate meanings. Tracking that travel is part of what makes the restoration worthwhile.</p>
-<h2>The Unicode Decision</h2>
-<p>Restoring Oṃ is not an aesthetic choice. It is a decision to honor the name as attested rather than the name as flattened by ASCII. That choice is documented in the <a href="/sites/om/scholars/">Scholarly Edition</a> and defended by the sources below.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Oṃ is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>The hidden history behind Oṃ</h1>
+<p>Behind the modern ASCII form <em>om</em> hides a much longer story. <strong>Oṃ</strong> reaches back through manuscripts, inscriptions, and oral tradition long before it ever touched a keyboard, and every mark in the restored spelling is a receipt from that journey. In what follows we trace the name from its Devanagari attestations through its mythology, its cult, its symbols, and its afterlife in other cultures — and we show how the PÚNYCODEX project turned that philological record into a Unicode domain that resolves today. The history was never lost. It was only waiting for the infrastructure to catch up.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Oṃ</li>
+  <li><strong>ASCII form:</strong> om</li>
+  <li><strong>Meaning:</strong> &quot;a word of solemn affirmation and respectful assent, sometimes translated by ‘yes, verily, so be it’ (and in this sense compared with Amen; it is placed at the commencement of most&quot;</li>
+  <li><strong>Domain of influence:</strong> Sacred Syllable, Cosmic Sound</li>
+  <li><strong>Pantheon:</strong> Sanskrit</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> ओं (Devanagari)</li>
+  <li><strong>Live domain:</strong> oṃ.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Oṃ</strong> (<em>om</em>) — The primordial sound · Om — belongs to the Sanskrit tradition, where it is catalogued under the domain &quot;Sacred Syllable, Cosmic Sound&quot;. Monier-Williams defines the syllable as a word of solemn affirmation and respectful assent — &quot;yes, verily, so be it&quot; — compares its function with Amen, and notes its place at the commencement of Vedic recitation.</p>
+<p><strong>Oṃ</strong> is not a word in the ordinary sense. It is the sonic seed from which Vedic revelation, Upaniṣadic metaphysics, and Hindu, Buddhist, and Jain ritual practice all draw their breath. In the Sanskrit tradition it is the <em>praṇava</em>, the primordial sound that precedes speech and survives when speech falls silent. To chant it is to align the body, breath, and mind with the fundamental vibration that the tradition identifies with Brahman, the absolute.</p>
+<p>Its three constituents — a, u, m — map onto the entire cosmos: the three states of consciousness, the three divine functions, and the three times. Beyond them lies the silence that follows, the fourth state (<em>turīya</em>) that is the goal of contemplation. The Taittirīya Upaniṣad states the equation outright — &quot;oṃ is Brahman; oṃ is this whole world&quot; (1.8) — and the Chāndogya Upaniṣad opens by identifying the syllable with the udgītha, the loud chant of the Sāmaveda, as the essence of all essences.</p>
+<p>PÚNYCODEX restores the name as <strong>Oṃ</strong> and serves its temple at <a href="https://xn--o-opm.com">oṃ.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>om</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Devanagari as <strong>ओं</strong>. Monier-Williams defines it as a word of solemn affirmation and respectful assent — &quot;yes, verily, so be it&quot; — comparing its function with Amen and noting its place at the head of Vedic recitation.</p>
+<p>The ASCII form <em>om</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Oṃ</strong> recovers the full diacritic detail of the scholarly transliteration directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>o</strong> → <strong>O</strong> — Same, capitalized</li>
+  <li><strong>m</strong> → <strong>ṃ</strong> — M with dot: anusvara</li>
+</ul>
+<p>Attested and derived spellings of the name:</p>
+<ul>
+  <li><strong>Oṁ</strong> — scholarly variant: Popular transliteration of Om with raised anusvara dot</li>
+</ul>
+<p>The project holds the domain <strong>oṃ.com</strong> (xn--o-opm.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Devanagari as <strong>ओं</strong> — Brahmic abugida, attested Vedic – present, c. 1500 BCE –, in South Asia. The script is written left-to-right.</p>
+<p>The scholarly transliteration is <em>Oṃ</em> (IAST), giving the normalized reading /ˈoːm/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>Sanskrit Oṃ is written ओं in Devanagari.</li>
+  <li>Each aksara combines a consonant with an inherent or explicit vowel.</li>
+  <li>IAST diacritics preserve length, retroflexion, and aspiration lost in plain ASCII.</li>
+  <li>The Devanagari form is not used as the primary domain because Indic scripts are not in the .com IDN table.</li>
+</ul>
+<p>The written emblem has a double life. In running Devanāgarī the syllable is written <strong>ओं</strong> — the vowel ओ closed by the anusvāra dot — while the monumental sign <strong>ॐ</strong> (encoded at U+0950, DEVANAGARI OM) is a fused ligature that later tradition reads as three curves surmounted by the crescent-and-dot: the waking, dream, and deep-sleep states below, the veil of māyā and the fourth-state point above. IAST <em>Oṃ</em> writes the nasal closure with the anusvāra ṃ; the alternative <em>Oṁ</em> with the candrabindu is equally current in modern editions.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/oːm/</strong> — Sanskrit Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>o</strong> — Long rounded back vowel [oː], pronounced with the lips rounded and the tongue raised at the back; in Vedic recitation this is a sustained, resonant tone.</li>
+  <li><strong>ṃ</strong> — Anusvāra [◌̃], a nasal resonance that closes the syllable by allowing air to flow through the nose; not a separate &#39;m&#39; consonant but a full nasalization of the preceding vowel.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;OHM&#39; — hold the open &#39;o&#39; long, then let the sound dissolve into a hum that vibrates in the nose and skull.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Sanskrit</strong> — ॐ (oṃ), the visual glyph formed from the ligature of ओ (o) and the anusvāra dot</li>
+  <li><strong>Vedic</strong> — ओम् (om), the three phonemes a-u-m analyzed in the Māṇḍūkya Upaniṣad</li>
+  <li><strong>Pali/Prakrit</strong> — oṃ, the syllable adopted into Buddhist and Jain mantras across South and Southeast Asia</li>
+</ul>
+<p>Oṃ is Tier 2: the dot-under m (ṃ) preserves the anusvāra, a phonetic feature absent from English, but the form lacks a stress or length mark on the vowel. The syllable is traditionally analyzed as containing the three sounds a, u, and m, representing the triads of waking-dream-sleep, creation-preservation-dissolution, and Brahma-Viṣṇu-Śiva.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Oṃ has no biography, but it has a theology. Its &#39;mythology&#39; is the story of how a single syllable became the audible form of the absolute, repeated by gods, sages, and seekers across millennia.</p>
+<h3 id="the-four-footed-syllable-mandukya-upanisad">The Four-Footed Syllable (Māṇḍūkya Upaniṣad)</h3>
+<p>The Māṇḍūkya Upaniṣad, the shortest of the principal Upaniṣads, devotes itself entirely to Oṃ. It teaches that the syllable has four &#39;feet&#39; (<em>pāda</em>): the sound &#39;a&#39; is the waking state (<em>vaiśvānara</em>), &#39;u&#39; is the dream state (<em>taijasa</em>), &#39;m&#39; is deep sleep (<em>prājña</em>), and the silence that follows is the fourth state, <em>turīya</em>, the Self itself. This analysis turned Oṃ from a ritual exclamation into a complete metaphysical map.</p>
+<h3 id="om-and-the-three-vedas-taittiriya-upanisad">Oṃ and the Three Vedas (Taittirīya Upaniṣad)</h3>
+<p>The Taittirīya Upaniṣad identifies Oṃ as the essence of the three Vedas. Just as all leaves are held together by a single stalk, all speech is held together by this syllable. The one who knows Oṃ obtains whatever he desires, because Oṃ is the seed of all articulate power and the doorway through which the Vedic hymns reach the gods.</p>
+<h3 id="the-sacrifice-of-sound-bhagavad-gita">The Sacrifice of Sound (Bhagavad Gītā)</h3>
+<p>In the Gītā, Kṛṣṇa declares that among words he is the syllable &#39;a&#39; (which begins Oṃ) and that the knowers of Brahman, beginning the sacrifice with Oṃ, attain the supreme goal (Gītā 17.23–24). The syllable thus becomes the signature of orthodox ritual, the sound with which every sacred action should commence.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Oṃ concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>The Oṃ glyph (ॐ)</strong> — The ligature of ओ and anusvāra, the single most recognizable sonic icon of Dharmic religions</li>
+  <li><strong>Conch shell (śaṅkha)</strong> — Its spiral form and resonant blast evoke the primordial sound that calls the cosmos into order</li>
+  <li><strong>Three curves of the glyph</strong> — Represent the three states of consciousness — waking, dreaming, and deep sleep — and the three guṇas</li>
+  <li><strong>Dot and crescent above</strong> — The dot is the transcendent fourth state (turīya); the crescent is māyā, the veil of appearance</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Oṃ&#39;s archaeology is paradoxical: the most sacred sound of the tradition is among the last of its elements to be written down. Its home is the śrauta recitation hall, and for most of its history the syllable was carried by memory rather than by monuments; its emergence as a written sign tracks the spread of manuscript culture in the early centuries CE. From the Gupta age onward the <strong>oṃkāra</strong>, the syllable as written emblem, becomes the standard auspicious opening of Indian writing: copper-plate charters, stone inscriptions, and manuscript folios across the subcontinent begin with it or with its ligatured sign, a convention the palaeographical literature already documents. Buddhist and Jain scribal traditions adopt the same usage, which travels with Sanskrit culture into the inscriptions of Kambuja and Java; medieval temples fix the glyph above doorways and at the head of yantras, where it remains the visual signature of sacred space.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p><strong>Oṃ</strong> is not a word in the ordinary sense. It is the sonic seed from which Vedic revelation, Upaniṣadic metaphysics, and Hindu, Buddhist, and Jain ritual practice all draw their breath. In the Sanskrit tradition it is the <em>praṇava</em>, the primordial sound that precedes speech and survives when speech falls silent. To chant it is to align the body, breath, and mind with the fundamental vibration that the tradition identifies with Brahman, the absolute.</p>
+<p>Its three constituents — a, u, m — map onto the entire cosmos: the three states of consciousness, the three divine functions, and the three times. Beyond them lies the silence that follows, the fourth state (<em>turīya</em>) that is the goal of contemplation.</p>
+<h3 id="pranava">Praṇava</h3>
+<p>The sacred monosyllable that opens and closes Vedic recitation; without it, mantras are considered incomplete.</p>
+<h3 id="a-u-m">A-U-M</h3>
+<p>The three phonemes represent waking, dreaming, and deep sleep, and the three gods Brahmā, Viṣṇu, and Śiva.</p>
+<h3 id="turiya-silence">Turīya Silence</h3>
+<p>The silence after Oṃ is the fourth state, pure consciousness without object, the Self that underlies all experience.</p>
+<h3 id="ritual-affirmation">Ritual Affirmation</h3>
+<p>Oṃ is the Vedic &#39;yes, verily, so be it&#39; (Monier-Williams); it sanctifies beginnings, endings, and every offering.</p>
+<h3 id="a-u-m-2">A-U-M</h3>
+<p>The three phonemes represent waking, dreaming, and deep sleep, and the three gods Brahmā, Viṣṇu, and Śiva.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Oṃ crossed every boundary within the Indian subcontinent and beyond. Hinduism made it the essence of the Vedas; Buddhism placed it at the head of mantras from Tibet to Japan; Jainism uses it as a condensed invocation of the five supreme beings. The syllable also migrated into Southeast Asian ritual, Tantric Buddhism, and modern global spirituality, where it became a universal emblem of meditation. What unifies these uses is the belief that Oṃ is not arbitrary: it is the sound that remains when individual words fall away, the sonic residue of the absolute.</p>
+<p>Within the Sanskrit tradition, closely related names in the corpus include [[durga|Durgā]], [[ganesha|Gaṇeśa]], [[kali|Kālī]], [[lakshmi|Lakṣmī]], [[nirmata|Nirmātā]], and [[parvati|Pārvatī]].</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Oṃ is arguably the most widely recognized sacred sound on Earth. It opens Hindu prayers, Buddhist chants, and yoga classes on every continent. Its glyph adorns temples, jewelry, album covers, and meditation apps. In India, the sound marks the beginning of recitation, weddings, and pilgrimages; in the diaspora, it signals continuity with Dharmic identity. Scholars of religion study Oṃ as a case study in how a phoneme becomes theology: the Māṇḍūkya Upaniṣad&#39;s fourfold analysis remains a foundational text for Vedānta, while modern neuroscience examines its effects on breath, heart rate, and brainwave patterns. The Unicode restoration <em>Oṃ</em> preserves the anusvāra that transforms a simple &#39;Om&#39; into a precise Sanskrit phonetic symbol.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Oṃ given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Māṇḍūkya Upaniṣad (the four pādas of Oṃ).</li>
+  <li> Taittirīya Upaniṣad 1.8 (Oṃ as the essence of the Vedas).</li>
+  <li> Chāndogya Upaniṣad 1.1 (the udgītha and the syllable oṃ).</li>
+  <li> Bhagavad Gītā 17.23–24 (Oṃ in sacrifice).</li>
+  <li> Monier-Williams, Sanskrit-English Dictionary (entry oṃ).</li>
+  <li> Frawley (Vamadeva Shastri), Mantra Yoga and Primal Sound.</li>
+  <li> Padoux, Vāc: The Concept of the Word in Selected Hindu Tantras.</li>
+  <li> Alper, Understanding Mantras.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Oṃ is an invitation to stop talking and start listening. It asks the chanter to feel the sound not as a word about reality but as a vibration of reality itself. The &#39;a&#39; begins in the belly, the &#39;u&#39; rises through the chest, the &#39;m&#39; hums in the skull, and the silence after opens into a space that has no center and no edge.</p>
+<p>In that silence, the distinction between speaker and listener, between self and world, becomes thin. Oṃ does not name God; it offers the body a way to remember that it is already part of what the Upaniṣads call Brahman. The syllable is therefore both the simplest and most ambitious of sounds: one letter that contains the whole cosmos, one breath that outlasts every scripture.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Oṃ is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>om</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 2 characters of the name, the restoration adjusts 1: 1 further adjustment (ṃ). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="name-variations">Name Variations</h2>
+<p>The lexicon records 1 additional form of the name:</p>
+<ul>
+  <li><strong>Oṁ</strong> (alt) — Popular transliteration of Om with raised anusvara dot</li>
+</ul>
+<p>The temple uses <strong>Oṃ</strong> as the primary form: it is the spelling that best balances philological accuracy with the practical limits of DNS.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>om</em> to <strong>Oṃ</strong>, one character at a time:</p>
+<ul>
+  <li><strong>o</strong> → <strong>O</strong> — Same, capitalized</li>
+  <li><strong>m</strong> → <strong>ṃ</strong> — M with dot: anusvara</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>oṃ.com</strong>, which the DNS carries in punycode form as xn--o-opm.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Oṃ; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Devanagari can now be typed into any browser on earth.</p>
+<h2 id="the-sanskrit-pantheon">The Sanskrit Pantheon</h2>
+<p>Oṃ is one of 88 entries the PÚNYCODEX lexicon catalogues under the Sanskrit pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Oṃ mean?</strong> The traditional gloss is &quot;a word of solemn affirmation and respectful assent, sometimes translated by ‘yes, verily, so be it’ (and in this sense compared with Amen; it is placed at the commencement of most.&quot;</p>
+<p><strong>Which tradition does Oṃ belong to?</strong> Oṃ is catalogued in the Sanskrit pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Oṃ classified as Tier 2?</strong> Because the original preserves at least one philological feature that ASCII cannot encode — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Oṃ a working domain?</strong> Yes — oṃ.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for oṃ.com?</strong> The DNS encoding is xn--o-opm.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>The story of Oṃ did not end in antiquity; it changed medium. Names that survive for millennia do so because each generation finds a new carrier for them — clay, papyrus, print, and now DNS. The PÚNYCODEX restoration simply makes the carrier honest: the spelling that resolves is the spelling the evidence supports. If this post showed anything, it is that <em>om</em> and <strong>Oṃ</strong> are not the same name with different styling. They are a summary and the text it summarizes. The web can now serve the text.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/kali/">Kālī</a></li>
   <li><a href="/sites/kartikeya/">Kārtikeya</a></li>
   <li><a href="/sites/kubera/">Kubera</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://sacred-texts.com/hin/sbe01/index.htm">Upaniṣads, Translated by F. Max Müller (SBE 1, 15), 800 BCE.</a></li>
+  <li>Māṇḍūkya Upaniṣad (the four pādas of Oṃ).</li>
+  <li>Taittirīya Upaniṣad 1.8 (Oṃ as the essence of the Vedas).</li>
+  <li>Chāndogya Upaniṣad 1.1 (the udgītha and the syllable oṃ).</li>
+  <li>Monier-Williams, Sanskrit-English Dictionary (oṃ).</li>
+  <li>Lexicon authorities for this entry: MW, Upanishads.</li>
 </ul>
-<h2>The Cultural Afterlife</h2>
-<p>Oṃ is arguably the most widely recognized sacred sound on Earth. It opens Hindu prayers, Buddhist chants, and yoga classes on every continent. Its glyph adorns temples, jewelry, album covers, and meditation apps. In India, the sound marks the beginning of recitation, weddings, and pilgrimages; in the diaspora, it signals continuity with Dharmic identity. Scholars of religion study Oṃ as a case study in how a phoneme becomes theology: the Māṇḍūkya Upaniṣad&#39;s fourfold analysis remains a foundational text for Vedānta, while modern neuroscience examines its effects on breath, heart rate, and brainwave patterns. The Unicode restoration Oṃ preserves the anusvāra that transforms a simple &#39;Om&#39; into a precise Sanskrit phonetic symbol.</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Oṃ as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Devanagari to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Oṃ through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">sanskrit</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

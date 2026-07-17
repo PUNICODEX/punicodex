@@ -2,9 +2,15 @@
 /**
  * PÚNYCODEX — Blog content generator
  *
- * Synthesizes one SEO-optimized blog post per built flagship temple from the
+ * Synthesizes one long-read SEO blog post per built flagship temple from the
  * canonical scholarly sources. Output is the canonical source for the blog tab:
  *   platform/blog/content/{id}.json
+ *
+ * Posts are assembled from the full scholars-content sections (all of them,
+ * uncapped) plus canonical lexicon/archetype data (etymology, breakdown,
+ * variants, tier classification, owned domain + punycode). Every sentence
+ * traces to a canonical source; editorial framing is limited to the
+ * restoration/DNS angle. Target length: ~2,800–3,600 rendered words.
  *
  * Usage:
  *   node scripts/generate-blog-content.js
@@ -41,7 +47,14 @@ const LORE_CATALOG = JSON.parse(fs.readFileSync(LORE_CATALOG_PATH, 'utf8'));
 const LEXICON_BY_ID = new Map(LEXICON.map((e) => [e.id, e]));
 
 const REGENERATE = process.argv.includes('--regenerate');
-const PUBLISHED_AT = '2026-07-16';
+// Stamped only when a post is (re)generated; untouched posts keep their date.
+const PUBLISHED_AT = new Date().toISOString().slice(0, 10);
+
+// Word-count band. The hard test band is 2400–4200 rendered words; the
+// generator aims for the tighter TARGET range and never pads with fiction.
+const TARGET_MIN = 2800;
+const TARGET_MAX = 3600;
+const HARD_MAX = 4100;
 
 // ── Deterministic helpers ───────────────────────────────────────────────────
 
@@ -96,23 +109,63 @@ function plain(text) {
   return stripMd(stripHtml(text)).replace(/\s+/g, ' ').trim();
 }
 
-function firstSentence(text) {
-  const cleaned = plain(text);
-  const m = cleaned.match(/^[^.!?]+[.!?]/);
-  return m ? m[0].trim() : cleaned.slice(0, 140).trim() || cleaned;
+// Word count matching the rendered-page count. stripMd must run on the raw
+// markdown (real newlines intact) so heading/list markers are removed before
+// whitespace collapses — otherwise every marker would count as a word.
+function countWords(md) {
+  return stripMd(md)
+    .split(/\s+/)
+    .filter((w) => w.length > 0).length;
 }
 
-function excerpt(text, max = 1150) {
-  const cleaned = plain(text).replace(/\[\^\d+\]/g, '');
-  if (!cleaned) return '';
-  if (cleaned.length <= max) return cleaned;
-  const trunc = cleaned.slice(0, max);
-  const lastSpace = trunc.lastIndexOf(' ');
-  return (lastSpace > 80 ? trunc.slice(0, lastSpace) : trunc) + '...';
+// Convert a lore-catalog HTML fragment to blog-safe markdown.
+function htmlToMd(html) {
+  let t = String(html || '');
+  t = t.replace(/<a\s+[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi, '[$2]($1)');
+  t = t.replace(/<(strong|b)>/gi, '**').replace(/<\/(strong|b)>/gi, '**');
+  t = t.replace(/<(em|i)>/gi, '*').replace(/<\/(em|i)>/gi, '*');
+  t = t.replace(/<li[^>]*>/gi, '- ');
+  t = t.replace(/<\/(p|h[1-6]|li|div|blockquote)>\s*/gi, '\n\n');
+  t = t.replace(/<br\s*\/?>/gi, '\n');
+  t = t.replace(/<[^>]+>/g, '');
+  t = t
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;|&apos;/g, "'")
+    .replace(/&nbsp;/g, ' ');
+  t = t.replace(/\[\^\d+\]/g, '');
+  t = t.replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n');
+  return t.trim();
 }
 
-function wordCount(md) {
-  return md.split(/\s+/).filter((w) => w.length > 0).length;
+// Normalize a scholars-section body for blog inclusion: drop footnote
+// markers (the renderer does not process them) and collapse blank runs.
+function cleanSection(body) {
+  return String(body || '')
+    .replace(/\r\n/g, '\n')
+    .replace(/\[\^\d+\]/g, '')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+}
+
+function normKey(s) {
+  return String(s || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '');
+}
+
+function coveredBy(haystack, needle) {
+  const n = normKey(needle);
+  return n.length > 3 && normKey(haystack).includes(n);
+}
+
+function displayPantheon(p) {
+  return String(p || 'mythological')
+    .split('-')
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(' ');
 }
 
 // ── Source extraction ───────────────────────────────────────────────────────
@@ -130,38 +183,72 @@ function sectionBody(scholars, key) {
   return scholars?.sections?.[key]?.body || '';
 }
 
-function collectExternalLinks(scholars, lore) {
+// Scholars sections in reading order, with the H2 each receives in the post.
+const SECTION_ORDER = [
+  ['overview', 'Overview'],
+  ['the-name', 'The Name'],
+  ['original-script', 'The Original Script'],
+  ['pronunciation', 'Pronunciation'],
+  ['mythology', 'Mythology'],
+  ['symbols', 'Symbols & Iconography'],
+  ['epithets', 'Epithets & Cult Titles'],
+  ['homeric-hymns', 'The Homeric Hymns'],
+  ['oracle-sites', 'Oracle Sites & Sanctuaries'],
+  ['archaeology', 'Archaeology & Evidence'],
+  ['domains', 'Realm & Domain'],
+  ['syncretism', 'Across Cultures'],
+  ['cultural-legacy', 'Cultural Legacy'],
+  ['scholarly-sources', 'The Scholarly Record'],
+  ['meditation', 'A Meditation'],
+];
+
+// Lore-catalog fallbacks used only when a scholars section is entirely absent
+// (the scholars bodies otherwise subsume the lore text).
+const LORE_FALLBACK = {
+  mythology: (lore) => lore?.mythology?.lead,
+  symbols: () => '',
+  domains: (lore) => lore?.domains?.lead,
+  syncretism: (lore) => lore?.syncretism,
+  'cultural-legacy': (lore) => lore?.culturalLegacy,
+  archaeology: (lore) => lore?.archaeology,
+  meditation: (lore) => lore?.extendedMeditation,
+  pronunciation: (lore) => lore?.pronunciation?.note,
+};
+
+function collectSources(scholars, lore) {
   const links = [];
-  const add = (name, url) => {
-    if (!url || typeof url !== 'string') return;
-    if (!url.startsWith('http')) return;
-    // avoid duplicates
+  const citations = [];
+  const addLink = (name, url) => {
+    if (!url || typeof url !== 'string' || !url.startsWith('http')) return;
     if (links.some((l) => l.url === url)) return;
     links.push({ name: plain(name).replace(/\s+/g, ' ') || 'Source', url });
+  };
+  const addCitation = (c) => {
+    const t = plain(c);
+    if (!t || t.length < 8) return;
+    if (citations.some((x) => normKey(x) === normKey(t))) return;
+    citations.push(t);
   };
 
   if (scholars?.sections) {
     for (const sec of Object.values(scholars.sections)) {
-      if (sec.sources) {
-        for (const s of sec.sources) {
-          add(s.citation || s.name || 'Source', s.url);
-        }
+      for (const s of sec.sources || []) {
+        addLink(s.name || s.citation || 'Source', s.url);
+        if (s.citation && !s.url) addCitation(s.citation);
       }
     }
   }
-
-  if (lore?.sources) {
-    for (const s of lore.sources) {
-      add(s.name || s.citation || 'Source', s.url);
-    }
+  for (const s of lore?.sources || []) {
+    addLink(s.name || s.citation || 'Source', s.url);
+    if (s.citation && !s.url) addCitation(s.citation);
   }
 
-  if (links.length === 0) {
+  if (links.length === 0 && citations.length === 0) {
     const fallback = fallbackUrl(scholars?.entryId);
-    if (fallback) add('Scholarly reference', fallback);
+    if (fallback) addLink('Scholarly reference', fallback);
   }
 
-  return links.slice(0, 4);
+  return { links: links.slice(0, 6), citations: citations.slice(0, 4) };
 }
 
 function fallbackUrl(id) {
@@ -184,7 +271,7 @@ function fallbackUrl(id) {
     zoroastrian: 'https://avesta.org/',
     slavic: 'https://www.rusliterature.org/',
     nahuatl: 'https://nahuatl.wired-humanities.org/',
-    polynesian: 'https://www.te Papa.govt.nz/',
+    polynesian: 'https://www.tepapa.govt.nz/',
     yoruba: 'https://www.artsrn.ualberta.ca/ifa/',
     incan: 'https://www.britishmuseum.org/',
     korean: 'https://stdict.korean.go.kr/',
@@ -202,64 +289,58 @@ function buildData(id) {
 
   const script = getOriginalScript(entry);
   const scriptName = getScriptName(entry);
-  const scriptLabel = script ? `${scriptName}` : 'scholarly transliteration';
 
-  const overview = sectionBody(scholars, 'overview') || lore?.domains?.lead || '';
-  const theName = sectionBody(scholars, 'the-name') || overview;
-  const pronunciation = sectionBody(scholars, 'pronunciation') || '';
-  const domains = sectionBody(scholars, 'domains') || lore?.domains?.lead || '';
-  const mythology = sectionBody(scholars, 'mythology') || '';
-  const syncretism = sectionBody(scholars, 'syncretism') || lore?.syncretism || '';
-  const culturalLegacy = sectionBody(scholars, 'cultural-legacy') || lore?.culturalLegacy || '';
-  const originalScript = sectionBody(scholars, 'original-script') || lore?.originalScriptNote || '';
-
-  const pronunciationApprox =
-    lore?.pronunciation?.approximation || firstSentence(pronunciation);
-
-  const mythologyLead =
-    lore?.mythology?.lead || (lore?.mythology?.myths?.[0]?.text) || mythology;
-
-  const etymology = entry?.etymology;
+  // Full, uncapped scholars sections in reading order. The symbols and
+  // iconography sections merge into a single H2.
+  const sections = [];
+  for (const [key, heading] of SECTION_ORDER) {
+    let body = cleanSection(sectionBody(scholars, key));
+    if (!body) {
+      const fallback = LORE_FALLBACK[key];
+      body = fallback ? htmlToMd(fallback(lore)) : '';
+    }
+    if (key === 'symbols') {
+      const icono = cleanSection(sectionBody(scholars, 'iconography'));
+      if (icono) body = body ? `${body}\n\n${icono}` : icono;
+    }
+    if (body) sections.push({ key, heading, body });
+  }
 
   return {
     id,
+    entry,
+    archetype,
+    lore,
+    scholars,
+    sections,
     unicode: entry?.unicode || id,
     ascii: entry?.ascii || id,
     greek: entry?.greek || '',
-    domain: entry?.domain || archetype?.domain || '',
+    sphere: entry?.domain || archetype?.domain || '',
     meaning: entry?.meaning || '',
     tier: entry?.tier || '',
     tierLabel: entry?.tierLabel || archetype?.tier || '',
     pantheon: entry?.pantheon || '',
+    pantheonDisplay: displayPantheon(entry?.pantheon),
+    pantheonCount: LEXICON.filter((e) => e.pantheon === entry?.pantheon).length,
     script: script || entry?.greek || '',
-    scriptName,
-    scriptLabel,
-    overviewFirst: excerpt(overview, 760),
-    nameFirst: excerpt(theName, 760),
-    domainsFirst: excerpt(domains, 760),
-    pronunciationApprox: firstSentence(pronunciationApprox),
-    mythFirst: excerpt(mythologyLead, 760),
-    syncretismFirst: excerpt(syncretism, 760),
-    cultureFirst: excerpt(culturalLegacy, 760),
-    scriptNote: excerpt(originalScript, 760) || `The name appears in ${scriptLabel}.`,
-    etymologyDerivation: etymology?.derivation || etymology?.protoGloss || '',
-    etymologyProto: etymology?.protoForm || '',
-    etymologyGloss: etymology?.protoGloss || '',
-    variants: (entry?.variants || [])
-      .filter((v) => v && v.unicode)
-      .map((v) => v.unicode)
-      .slice(0, 3),
+    scriptName: scriptName || 'the original script',
+    etymology: entry?.etymology || null,
+    variants: (entry?.variants || []).filter((v) => v && v.unicode),
+    breakdown: (entry?.breakdown || []).filter((b) => b && b.char),
+    domainUnicode: archetype?.domainUnicode || '',
+    domainPunycode: archetype?.domainPunycode || '',
   };
 }
 
 // ── Internal crosslinks ─────────────────────────────────────────────────────
 
-function internalLinks(id, pantheon, count) {
+function internalLinks(id, pantheon, count, seedSalt) {
   const same = LEXICON.filter((e) => e.id !== id && e.pantheon === pantheon).sort(
     (a, b) => a.id.localeCompare(b.id)
   );
   const pool = same.length >= count ? same : LEXICON.filter((e) => e.id !== id).sort((a, b) => a.id.localeCompare(b.id));
-  const seed = hash(id + ':bloglinks');
+  const seed = hash(id + seedSalt);
   const picked = pickFrom(pool, seed, count);
   return picked.map((e) => ({ id: e.id, label: e.unicode || e.id }));
 }
@@ -339,308 +420,342 @@ function makeTags(data) {
   ].filter(Boolean).slice(0, 5);
 }
 
-// ── Angle builders ──────────────────────────────────────────────────────────
-
-function relatedLinksMd(links) {
-  return links
-    .map((l) => `- [${l.label}](/sites/${l.id}/)`)
-    .join('\n');
-}
-
-function sourcesMd(links) {
-  if (links.length === 0) return '';
-  return links
-    .map((l) => `- [${l.name}](${l.url})`)
-    .join('\n');
-}
-
-function angle0(data, links, externals) {
-  return `# Why ${data.unicode} Belongs in the Address Bar
-
-Every address bar is a choice. When you type **${data.unicode}**, you are not typing a novelty; you are restoring a name. The plain ASCII form *${data.ascii}* is the leftover of a DNS that was built for English typewriters, not for the world's naming traditions. ${data.overviewFirst || data.nameFirst}
-
-## The Name the DNS Almost Forgot
-
-${data.nameFirst || `The name ${data.unicode} carries a meaning that ASCII cannot show.`} In scholarly terms, it belongs to the **${data.tierLabel}** class: ${tierExplanation(data)}. That detail is not decorative; it is the difference between a label and a lived name.
-
-## From ${data.scriptName} to the Browser
-
-${data.scriptNote || `The original form appears in ${data.scriptName || 'its source tradition'}.`} The PÚNYCODEX temple does not invent a spelling; it recovers one. By registering the Unicode form, the project proves that the original script can survive inside the infrastructure of the modern web.
-
-## Why 2026 Still Needs This
-
-In 2026, names are data. Search engines, AI training corpora, and localization teams all need authoritative forms. ${data.unicode} is a small but concrete demonstration that philology and DNS can coexist. The [Scholarly Edition](/sites/${data.id}/scholars/) preserves the argument; the blog makes it approachable.
-
-## Related Names
-
-${relatedLinksMd(links)}
-
-## Read More
-
-${sourcesMd(externals)}`;
-}
-
-function angle1(data, links, externals) {
-  return `# The Hidden History Behind ${data.unicode}
-
-Behind the modern ASCII *${data.ascii}* hides a longer story. ${data.nameFirst || data.overviewFirst} That history reaches back through manuscripts, inscriptions, and oral traditions before it ever reached a keyboard.
-
-## Etymology
-
-${data.etymologyDerivation ? data.etymologyDerivation : `The deeper roots of ${data.unicode} are still debated among specialists.`} ${data.etymologyProto ? `Reconstructed proto-forms such as *${data.etymologyProto}* give linguists a ladder back toward the name's earliest sound.` : ''} ${data.meaning ? `The traditional gloss is "${data.meaning}."` : ''}
-
-## In Myth
-
-${data.mythFirst || `${data.unicode} appears in stories that shaped its civilization.`} These narratives are not dusty footnotes; they are the reason the name acquired its resonance.
-
-## Across Cultures
-
-${data.syncretismFirst || `${data.unicode} did not stay inside one language or one pantheon.`} Names travel, adapt, and accumulate meanings. Tracking that travel is part of what makes the restoration worthwhile.
-
-## The Unicode Decision
-
-Restoring ${data.unicode} is not an aesthetic choice. It is a decision to honor the name as attested rather than the name as flattened by ASCII. That choice is documented in the [Scholarly Edition](/sites/${data.id}/scholars/) and defended by the sources below.
-
-## Related Names
-
-${relatedLinksMd(links)}
-
-## Sources
-
-${sourcesMd(externals)}`;
-}
-
-function angle2(data, links, externals) {
-  return `# From ${data.scriptName} to Unicode: The Journey of ${data.unicode}
-
-Long before it was a domain, the name traveled through scripts. ${data.scriptNote || `In ${data.scriptName || 'its original writing system'}, the form carries information that the Latin alphabet alone cannot hold.`} This post follows ${data.unicode} from its earliest attestation to the address bar.
-
-## The Original Sign
-
-${data.script ? `The original script gives us **${data.script}**. ` : ''}${data.scriptNote || `That sign or sequence encodes sounds, syllables, and cultural context that a simple transliteration loses.`}
-
-## The Scholarly Transliteration
-
-${data.nameFirst || data.overviewFirst} Scholars settled on ${data.unicode} as the registrable restoration: faithful enough to be recognizable, precise enough to carry the marks that matter.
-
-## DNS as a Time Machine
-
-Punycode lets the DNS carry non-ASCII characters without breaking older routers. To the user, the address bar shows ${data.unicode}; to the infrastructure, it is an encoded xn-- string. The duality is invisible, but the result is revolutionary: a pre-digital name living inside a post-digital system.
-
-## Pronunciation
-
-${data.pronunciationApprox ? `Scholars reconstruct the sound as *${data.pronunciationApprox}*.` : `The pronunciation of ${data.unicode} has been reconstructed from meter, rhyme, and comparative evidence.`} Hearing the name in your own voice is one way to make the restoration personal.
-
-## Related Names
-
-${relatedLinksMd(links)}
-
-## Further Reading
-
-${sourcesMd(externals)}`;
-}
-
-function angle3(data, links, externals) {
-  return `# ${data.unicode} in 2026: Why Scholars Still Care
-
-In 2026, names are treated as data points. ${data.unicode} is a reminder that they are also cultural artifacts. ${data.overviewFirst || data.nameFirst} The question is not whether the name is old, but whether the digital world is old enough to hold it.
-
-## The Scholarly Argument
-
-${data.nameFirst || `The restoration of ${data.unicode} rests on attested spelling, stress, and length.`} The PÚNYCODEX Scholarly Edition collects these arguments in one place, with sources and revision history, so the claim can be inspected rather than merely asserted.
-
-## What the Accent Preserves
-
-${data.tierLabel ? `This entry is classified as **${data.tierLabel}**. ` : ''}${tierExplanation(data)} Those marks are not ornaments; they are the coordinates that place the name inside a language.
-
-## A Living Edition
-
-The [Scholarly Edition](/sites/${data.id}/scholars/) is not a static page. Verified contributors can improve it, and every change is attributed. That model turns a blog post like this one into an invitation to dig deeper.
-
-## Where to Learn More
-
-${relatedLinksMd(links)}
-
-## Sources
-
-${sourcesMd(externals)}`;
-}
-
-function angle4(data, links, externals) {
-  return `# How ${data.unicode} Got Its Accent Back
-
-The ASCII form *${data.ascii}* is missing something. ${data.unicode} restores the marks that the original language used to distinguish this name from a thousand others. ${data.nameFirst || data.overviewFirst}
-
-## The Missing Marks
-
-${data.tierLabel ? `Classified as **${data.tierLabel}**, this restoration ` : 'This restoration '}carries the stress and length that standard ASCII discards. ${tierExplanation(data)}
-
-## Step by Step
-
-The transformation from *${data.ascii}* to **${data.unicode}** happens one character at a time. Some letters stay the same; others gain accents, macrons, or entirely new shapes. The breakdown on the [temple home page](/sites/${data.id}/) shows exactly how.
-
-## Why Stress and Length Matter
-
-In the source language, changing a stress or a vowel length can change a meaning. Names are especially sensitive because they are proper nouns: one spelling points to one entity. ${data.unicode} preserves that pointer in a way *${data.ascii}* cannot.
-
-## The Restored Form
-
-${data.unicode} is now a domain. That simple fact turns a philological detail into a public demonstration. Anyone who types it participates in the restoration.
-
-## Related Names
-
-${relatedLinksMd(links)}
-
-## Sources
-
-${sourcesMd(externals)}`;
-}
-
-function angle5(data, links, externals) {
-  return `# The Name ${data.unicode} and the World It Opens
-
-A name is a door. ${data.unicode} opens onto ${data.domain ? data.domain.toLowerCase() : 'a mythic landscape'}. ${data.overviewFirst || data.nameFirst}
-
-## Domain and Meaning
-
-${data.domain ? `The temple domain is **${data.domain}**. ` : ''}${data.meaning ? `The traditional meaning is "${data.meaning}." ` : ''}Together, those two facts explain why the name mattered enough to be remembered for millennia.
-
-## The Mythic Landscape
-
-${data.mythFirst || `${data.unicode} appears in narratives that shaped how its culture understood power, identity, and fate.`} Myth is the memory of a civilization, and names are the hooks on which that memory hangs.
-
-## Modern Patterns
-
-The [Patterns](/sites/${data.id}/patterns/) page maps the industries and sister temples that share ${data.unicode}'s current. A name that once organized ritual now organizes search, advertising, and creative collaboration.
-
-## Join the Restoration
-
-You can support the work through the [Patron](/sites/${data.id}/patron/) wall, submit creative work, or simply share the address. Every visit to ${data.unicode} is a vote for original scripts.
-
-## Related Names
-
-${relatedLinksMd(links)}
-
-## Sources
-
-${sourcesMd(externals)}`;
-}
-
-function angle6(data, links, externals) {
-  return `# Pronouncing ${data.unicode}: A Guide for the Curious
-
-Saying **${data.unicode}** out loud is harder than reading it on a screen, and more rewarding. ${data.pronunciationApprox ? `Scholars reconstruct the sound as *${data.pronunciationApprox}*.` : `The original pronunciation has to be reconstructed from meter, cognates, and later testimony.`}
-
-## The Reconstructed Sound
-
-${data.nameFirst || data.overviewFirst} The sounds preserved in ${data.unicode} are not random; they follow rules that linguists have spent centuries recovering.
-
-## Sound by Sound
-
-${data.etymologyDerivation ? `Etymologically, ${data.etymologyDerivation.toLowerCase()} ` : ''}${data.etymologyProto ? `That points back to a reconstructed form like *${data.etymologyProto}*.` : ''} Each segment locks into the next, so a small change in one place ripples through the whole name.
-
-## Kin Forms
-
-${data.variants.length ? `Related spellings include ${data.variants.join(', ')}. ` : ''}Names rarely have only one valid shape. The restoration chooses the form that best balances historical accuracy with the practical limits of DNS.
-
-## From Speech to Screen
-
-Pronunciation and spelling converge in Unicode. ${data.unicode} carries enough phonetic information to be read aloud by someone who knows the conventions, and enough visual distinctiveness to stand out in an address bar.
-
-## Related Names
-
-${relatedLinksMd(links)}
-
-## Sources
-
-${sourcesMd(externals)}`;
-}
-
-function angle7(data, links, externals) {
-  return `# The Many Faces of ${data.unicode}
-
-No important name has only one face. ${data.unicode} appears as a mythic character, a scholarly reconstruction, a cultural memory, and now a Unicode domain. ${data.overviewFirst || data.nameFirst}
-
-## In Myth
-
-${data.mythFirst || `${data.unicode} moves through stories that test the boundaries of power and mortality.`} The mythic face is the one most people meet first, and it is the reason the name survived.
-
-## Across Cultures
-
-${data.syncretismFirst || `${data.unicode} was borrowed, translated, and reinterpreted as it moved between languages.`} Each culture kept what resonated and reshaped the rest.
-
-## In the Scholarly Record
-
-${data.cultureFirst || `${data.unicode} has left traces in inscriptions, manuscripts, and comparative linguistics.`} The Scholarly Edition collects those traces so readers can follow the argument from source to conclusion.
-
-## The Unicode Face
-
-The newest face is digital. ${data.unicode} demonstrates that a name can be at once ancient and clickable, venerable and searchable. That is the face this blog exists to celebrate.
-
-## Related Names
-
-${relatedLinksMd(links)}
-
-## Sources
-
-${sourcesMd(externals)}`;
-}
-
-const ANGLES = [angle0, angle1, angle2, angle3, angle4, angle5, angle6, angle7];
+// ── Angle intros and closings ───────────────────────────────────────────────
+// Editorial voice only: these frames talk about the restoration, the DNS,
+// and the project — never about mythology, which comes from the sources.
+
+const INTROS = [
+  (d) =>
+    `Every address bar is a choice. When you type **${d.unicode}**, you are not typing a novelty; you are restoring a name that the early DNS, built for English typewriters, could not carry. The plain ASCII form *${d.ascii}* is a leftover of that constraint, not the name itself. This post is the long version of the restoration: where the name comes from, how the ${d.scriptName} tradition wrote it, how it is pronounced, what the myths and the material record preserve, and why its Unicode form now lives as a working domain. The claim throughout is simple — the original spelling is not decoration. It is the name.`,
+  (d) =>
+    `Behind the modern ASCII form *${d.ascii}* hides a much longer story. **${d.unicode}** reaches back through manuscripts, inscriptions, and oral tradition long before it ever touched a keyboard, and every mark in the restored spelling is a receipt from that journey. In what follows we trace the name from its ${d.scriptName} attestations through its mythology, its cult, its symbols, and its afterlife in other cultures — and we show how the PÚNYCODEX project turned that philological record into a Unicode domain that resolves today. The history was never lost. It was only waiting for the infrastructure to catch up.`,
+  (d) =>
+    `Long before it was a domain, this name traveled through scripts. **${d.unicode}** begins in ${d.scriptName}, passes through scholarly transliteration, and ends — for now — inside the punycode machinery of the global DNS. Each stage of that journey preserves some information and loses some, and the craft of restoration is knowing exactly which marks matter. This post follows the name stage by stage: the original script, the reconstructed pronunciation, the mythological record, the material evidence, and finally the Unicode form that carries all of it into the address bar. Think of it as a biography of a name, told through its spelling.`,
+  (d) =>
+    `In 2026, names are treated as data points. **${d.unicode}** is a reminder that they are also cultural artifacts — and that the difference matters for search engines, AI training corpora, and anyone who types the name of a ${d.pantheonDisplay} figure into a browser. Scholars never stopped caring about the difference between *${d.ascii}* and ${d.unicode}; the web simply made that care actionable. What follows is the full scholarly picture — name, script, sound, myth, cult, and legacy — followed by the engineering compromise that lets a restored spelling live at a real address. The question is not whether the name is old. It is whether the digital world is old enough to hold it.`,
+  (d) =>
+    `The ASCII form *${d.ascii}* is missing something. **${d.unicode}** restores the marks the source language used to distinguish this name from a thousand others — and those marks change how the name is read, pronounced, and understood. This post explains, with the full scholarly record behind it, what each restored mark preserves: the ${d.scriptName} evidence, the reconstructed sound, the myths the name carries, and the classification logic that separates Tier 1 restorations from Tier 2. By the end, the marks in ${d.unicode} will look less like ornaments and more like what they are — recovered evidence, pinned back in its proper place.`,
+  (d) =>
+    `A name is a door. **${d.unicode}** opens onto an entire world: ${d.sphere ? `the domain of ${d.sphere.toLowerCase()}, ` : ''}a ${d.pantheonDisplay} tradition, and centuries of storytelling, worship, and scholarship. This post walks through that world room by room — the name and its roots, the original script, the sound of it, the myths, the symbols, the sites, the afterlife across cultures — and ends at the newest room of all: a Unicode domain that makes the whole structure addressable. *${d.ascii}* gets you to the same building, but only the restored form tells you why it was built.`,
+  (d) =>
+    `Saying **${d.unicode}** aloud is harder than reading it on a screen, and more rewarding. The restored spelling is a compressed pronunciation guide: every accent and macron is an instruction. This post unpacks those instructions — the reconstructed sound, the phoneme-by-phoneme record, the kindred forms in neighboring languages — and then zooms out to the full record around the name: its ${d.scriptName} writing, its mythology, its cult, and its modern life as a Unicode domain. Whether you arrive as a linguist, a reader of myth, or a domainer, you will leave able to say the name the way the evidence suggests it was said — and able to type it the way it was written.`,
+  (d) =>
+    `No important name has only one face. **${d.unicode}** appears as a figure of myth, a scholarly reconstruction, a piece of material culture, a memory carried across languages, and — most recently — a Unicode domain. This post looks at each face in turn: the name and its roots, the ${d.scriptName} original, the reconstructed pronunciation, the mythological record, the symbols and sanctuaries, the cross-cultural afterlife, and the engineering that lets the restored spelling resolve in a browser. Taken together, those faces explain why *${d.ascii}* was never going to be enough — and why the restored form is worth a domain of its own.`,
+];
+
+const CLOSINGS = [
+  (d) =>
+    `Restoring **${d.unicode}** is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. Every section of this post — the script, the sound, the myths, the evidence — converges on the same point: the marks in ${d.unicode} are information, and information deserves an address of its own. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier, and every visit to ${d.domainUnicode || 'the temple'} is a vote for the restored form.`,
+  (d) =>
+    `The story of ${d.unicode} did not end in antiquity; it changed medium. Names that survive for millennia do so because each generation finds a new carrier for them — clay, papyrus, print, and now DNS. The PÚNYCODEX restoration simply makes the carrier honest: the spelling that resolves is the spelling the evidence supports. If this post showed anything, it is that *${d.ascii}* and **${d.unicode}** are not the same name with different styling. They are a summary and the text it summarizes. The web can now serve the text.`,
+  (d) =>
+    `Every stage of the journey from ${d.scriptName} to Unicode was an act of care: the scribe who first wrote the name, the lexicographer who glossed it, the engineer who taught the DNS to carry it. The PÚNYCODEX restoration is the latest stage, not the last word — the Scholarly Edition is revised as the evidence improves. What does not change is the principle: a name deserves to be written the way its own tradition wrote it. **${d.unicode}** in the address bar is that principle, made routable.`,
+  (d) =>
+    `In 2026 the stakes are practical. Search indexes, language models, and localization pipelines all inherit whatever spelling the web normalizes — which means every Unicode domain is also a training signal. **${d.unicode}** teaches the machinery that the restored form exists, that it is used, and that it points to a real place. That is why a project built on philology ends up caring about DNS: the infrastructure decides which names the future sees. This restoration makes sure the future sees the whole name.`,
+  (d) =>
+    `The marks in **${d.unicode}** were never lost; they were only waiting for a carrier that could hold them. Now that the carrier exists, the burden flips: every use of *${d.ascii}* is a choice to leave evidence on the table. The PÚNYCODEX temple keeps the restored form in circulation — as a domain, a dataset entry, and a scholarly argument — so that the choice to use it stays easy. Accent by accent, macron by macron, that is how the original names come back: not with a single grand gesture, but with a spelling that finally works everywhere.`,
+  (d) =>
+    `A door only matters if people walk through it. ${d.domainUnicode ? `**${d.domainUnicode}** is open` : 'The temple is open'}, and everything behind it — the myths, the scholarship, the canvas, the patrons — hangs on the restored spelling. The PÚNYCODEX project bets that the web will make room for names as they were actually written, and ${d.unicode} is one of its standing proofs. Visit, share, cite, type it yourself: each use is a small rehearsal for a web where no name has to hide its marks to be found.`,
+  (d) =>
+    `Pronunciation turns out to be the heart of the matter. The marks in **${d.unicode}** are instructions for the voice, and a web that strips them is a web that mispronounces the past at scale. The restoration hands the instructions back: say it as the evidence suggests, type it as the tradition wrote it, and let the punycode machinery do the quiet translation in between. That is all the PÚNYCODEX project asks of the infrastructure — and everything it asks of you, the reader, is to use the whole name.`,
+  (d) =>
+    `Myth, script, sound, cult, legacy, domain: the faces of ${d.unicode} add up to a single argument — that a name is a record, and records deserve fidelity. The PÚNYCODEX restoration keeps that record in working order: the temple presents it, the Scholarly Edition footnotes it, the lexicon catalogs it, and the domain makes it addressable. *${d.ascii}* will always exist as a fallback. But fallback is not identity. **${d.unicode}** is the name; everything else is a convenience.`,
+];
+
+// ── Canonical-data section builders ─────────────────────────────────────────
 
 function tierExplanation(data) {
   if (data.tier === 'dual') {
-    return `the Greek original carries both stress and length, and multiple historically valid Unicode spellings exist`;
+    return 'the original carries both stress and length, and multiple historically valid Unicode spellings exist';
   }
   if (data.tier === '1') {
-    return `the Greek original carries both stress and length, and only one valid Unicode restoration exists`;
+    return 'the original carries both stress and length, and only one valid Unicode restoration exists';
   }
-  return `the original preserves at least one philological feature that ASCII cannot encode`;
+  return 'the original preserves at least one philological feature that ASCII cannot encode';
 }
 
-function buildBody(data, angleIdx, links, externals) {
-  const builder = ANGLES[angleIdx % ANGLES.length];
-  let body = builder(data, links, externals).trim();
+function atGlanceBlock(data) {
+  const rows = [`- **Restored name:** ${data.unicode}`, `- **ASCII form:** ${data.ascii}`];
+  if (data.meaning) rows.push(`- **Meaning:** "${data.meaning}"`);
+  if (data.sphere) rows.push(`- **Domain of influence:** ${data.sphere}`);
+  rows.push(`- **Pantheon:** ${data.pantheonDisplay}`);
+  rows.push(`- **Classification:** ${data.tierLabel}`);
+  if (data.script && data.script !== '—') rows.push(`- **Original script:** ${data.script} (${data.scriptName})`);
+  if (data.domainUnicode) rows.push(`- **Live domain:** ${data.domainUnicode}`);
+  return rows.join('\n');
+}
 
-  // If the angle is still light, add a substantive extra section before the closing.
-  let wc = wordCount(body);
-  if (wc < 850) {
-    const extraSections = [
-      { h: 'What the Sources Record', t: data.domainsFirst || data.overviewFirst },
-      { h: 'The Cultural Afterlife', t: data.cultureFirst || data.overviewFirst },
-      { h: 'The Name in Context', t: data.overviewFirst || data.domainsFirst },
-    ];
-    const extra = extraSections[angleIdx % extraSections.length];
-    if (extra.t) {
-      body += `\n\n## ${extra.h}\n\n${extra.t}`;
-      wc = wordCount(body);
+function etymologyBlock(data) {
+  const e = data.etymology;
+  if (!e) return '';
+  const parts = [];
+  if (e.derivation) parts.push(`The recorded derivation reads: ${e.derivation}`);
+  if (e.protoForm) {
+    let s = `The reconstructed proto-form is *${e.protoForm}*`;
+    if (e.protoLanguage) s += ` (${e.protoLanguage})`;
+    if (e.protoGloss) s += `, glossed as "${e.protoGloss}"`;
+    parts.push(`${s}.`);
+  } else if (e.protoGloss) {
+    parts.push(`The root gloss is "${e.protoGloss}."`);
+  }
+  if (e.certainty) parts.push(`The reconstruction is classed as ${e.certainty}.`);
+  const cognates = (e.cognates || []).filter((c) => c && c.form);
+  if (cognates.length) {
+    const items = cognates
+      .slice(0, 6)
+      .map((c) => `- **${c.form}**${c.language ? ` (${c.language})` : ''}${c.note ? ` — ${c.note}` : c.relationship ? ` — ${c.relationship}` : ''}`)
+      .join('\n');
+    parts.push(`Kindred forms recorded in the lexicon:\n\n${items}`);
+  }
+  return parts.join('\n\n');
+}
+
+function tierBlock(data) {
+  const changed = data.breakdown.filter((b) => b.type && b.type !== 'same');
+  let summary = '';
+  if (changed.length) {
+    const stress = changed.filter((b) => b.type === 'stress').map((b) => b.to || b.char);
+    const length = changed.filter((b) => b.type === 'length').map((b) => b.to || b.char);
+    const other = changed.filter((b) => b.type !== 'stress' && b.type !== 'length').map((b) => b.to || b.char);
+    const bits = [];
+    if (stress.length) bits.push(`${stress.length} mark${stress.length === 1 ? '' : 's'} of stress (${stress.join(', ')})`);
+    if (length.length) bits.push(`${length.length} mark${length.length === 1 ? '' : 's'} of length (${length.join(', ')})`);
+    if (other.length) bits.push(`${other.length} further adjustment${other.length === 1 ? '' : 's'} (${other.join(', ')})`);
+    summary = `Across the ${data.breakdown.length} characters of the name, the restoration adjusts ${changed.length}: ${bits.join('; ')}.`;
+  }
+  return (
+    `${data.unicode} is classified as **${data.tierLabel}**: ${tierExplanation(data)}. ` +
+    `The ASCII fallback *${data.ascii}* still resolves everywhere, but it is the restored form that carries the name's full information.` +
+    (summary ? ` ${summary}` : '') +
+    ` That is the whole thesis of this temple: the marks are the message.`
+  );
+}
+
+function variantsBlock(data) {
+  if (!data.variants.length) return '';
+  const items = data.variants
+    .slice(0, 5)
+    .map((v) => `- **${v.unicode}**${v.type ? ` (${v.type})` : ''}${v.note ? ` — ${v.note}` : ''}`)
+    .join('\n');
+  return (
+    `The lexicon records ${data.variants.length} additional form${data.variants.length === 1 ? '' : 's'} of the name:\n\n${items}\n\n` +
+    `The temple uses **${data.unicode}** as the primary form: it is the spelling that best balances philological accuracy with the practical limits of DNS.`
+  );
+}
+
+function breakdownBlock(data) {
+  if (data.breakdown.length < 2) return '';
+  const items = data.breakdown
+    .map((b) => {
+      const note = b.note ? ` — ${b.note}` : '';
+      return `- **${b.char}** → **${b.to || b.char}**${note}`;
+    })
+    .join('\n');
+  return `The journey from *${data.ascii}* to **${data.unicode}**, one character at a time:\n\n${items}`;
+}
+
+function domainBlock(data) {
+  if (!data.domainUnicode) return '';
+  const puny = data.domainPunycode
+    ? `, which the DNS carries in punycode form as ${data.domainPunycode} —`
+    : '. Behind the scenes the DNS carries it in punycode form —';
+  return (
+    `The restored name is live as a working domain: **${data.domainUnicode}**${puny} an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. ` +
+    `The visitor sees ${data.unicode}; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way ${d_scriptPhrase(data)} can now be typed into any browser on earth.`
+  );
+}
+
+function d_scriptPhrase(data) {
+  return `its own tradition wrote it in ${data.scriptName}`;
+}
+
+function pantheonBlock(data) {
+  return (
+    `${data.unicode} is one of ${data.pantheonCount} entries the PÚNYCODEX lexicon catalogues under the ${data.pantheonDisplay} pantheon. ` +
+    `The [Pantheon page](/pantheon/) gathers the tradition's major figures in one place, and the [Lexicon](/lexicon/) lets you filter all ${LEXICON.length} restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.`
+  );
+}
+
+function faqBlock(data) {
+  const qa = [];
+  qa.push(
+    `**What does ${data.unicode} mean?** ${data.meaning ? `The traditional gloss is "${data.meaning}."` : 'The lexicon records no single-line gloss for this name; the sections above give the full picture.'}`
+  );
+  qa.push(
+    `**Which tradition does ${data.unicode} belong to?** ${data.unicode} is catalogued in the ${data.pantheonDisplay} pantheon of the PÚNYCODEX lexicon.`
+  );
+  qa.push(
+    `**Why is ${data.unicode} classified as ${data.tierLabel}?** Because ${tierExplanation(data)} — and the marks in the restored spelling preserve exactly that evidence.`
+  );
+  if (data.domainUnicode) {
+    qa.push(
+      `**Is ${data.unicode} a working domain?** Yes — ${data.domainUnicode} resolves today and routes to this temple.`
+    );
+    if (data.domainPunycode) {
+      qa.push(
+        `**What is the punycode for ${data.domainUnicode}?** The DNS encoding is ${data.domainPunycode}; browsers perform the translation automatically, so visitors only ever see the restored name.`
+      );
+    }
+  }
+  return qa.join('\n\n');
+}
+
+function typeBlock(data) {
+  return (
+    `You do not need a special keyboard to use this restoration. The [PÚNYCODEX Type Tool](/type/) converts the ASCII form *${data.ascii}* into **${data.unicode}** as you type, and the browser extension offers the same conversion inside any text field. ` +
+    `Copy the restored form, paste it into the address bar, and the DNS does the rest.`
+  );
+}
+
+function sistersBlock(data, sisters) {
+  if (!sisters.length) return '';
+  const names = sisters.map((l) => `[${l.label}](/sites/${l.id}/)`);
+  const list = names.length > 1 ? `${names.slice(0, -1).join(', ')}, and ${names[names.length - 1]}` : names[0];
+  return `Other temples in the ${data.pantheonDisplay} pantheon include ${list} — each with its own restoration story, its own scholarly record, and its own place in the lexicon.`;
+}
+
+// Lore-catalog extras not already covered by the scholars sections (deduped
+// by title/name). Used only to deepen thin-source entries.
+function loreExtras(data) {
+  const lore = data.lore;
+  if (!lore) return { myths: '', cards: '', symbols: '' };
+  const bodyOf = (key) => data.sections.find((s) => s.key === key)?.body || '';
+
+  const myths = (lore.mythology?.myths || [])
+    .filter((m) => m && m.title && !coveredBy(bodyOf('mythology'), m.title))
+    .slice(0, 3)
+    .map((m) => `### ${m.tag ? `${m.title} (${m.tag})` : m.title}\n\n${htmlToMd(m.text)}`)
+    .filter((s) => s.length > 20)
+    .join('\n\n');
+
+  const cards = (lore.domains?.cards || [])
+    .filter((c) => c && c.name && !coveredBy(bodyOf('domains'), c.name))
+    .slice(0, 4)
+    .map((c) => `### ${c.name}\n\n${htmlToMd(c.desc || c.text || '')}`)
+    .filter((s) => s.length > 20)
+    .join('\n\n');
+
+  const symbolItems = (lore.symbols || [])
+    .filter((s) => s && s.name && !coveredBy(bodyOf('symbols'), s.name))
+    .slice(0, 5)
+    .map((s) => `- **${s.name}**${s.meaning ? ` — ${htmlToMd(s.meaning)}` : ''}`)
+    .join('\n');
+
+  return { myths, cards, symbols: symbolItems };
+}
+
+// ── Closing blocks ──────────────────────────────────────────────────────────
+
+function relatedLinksMd(links) {
+  return links.map((l) => `- [${l.label}](/sites/${l.id}/)`).join('\n');
+}
+
+function sourcesMd(sources, data) {
+  const items = [];
+  for (const l of sources.links) items.push(`- [${l.name}](${l.url})`);
+  for (const c of sources.citations) items.push(`- ${c}`);
+  const lexSources = (data.entry?.sources || []).filter(Boolean);
+  if (lexSources.length) items.push(`- Lexicon authorities for this entry: ${lexSources.join(', ')}.`);
+  if (!items.length) return '';
+  return (
+    `The full scholarly apparatus — every citation, revision, and review — lives in the [Scholarly Edition](../scholars/). Key references for this post:\n\n` +
+    items.join('\n')
+  );
+}
+
+function exploreBlock(data) {
+  return (
+    `This post is one doorway into the temple. The [home page](../) carries the full character breakdown and the ambient canvas; the [lore page](../lore/) tells the myths in long form; the [Scholarly Edition](../scholars/) preserves the sources, pronunciation data, and revision history; and the [patron wall](../patron/) supports the restoration directly. ` +
+    `For the wider map, browse the [Lexicon](/lexicon/), explore the [Pantheon](/pantheon/), or return to the [PÚNYCODEX blog](/blog/).`
+  );
+}
+
+// ── Body assembly ───────────────────────────────────────────────────────────
+
+function buildBody(data, angleIdx, links, sisters, sources) {
+  const title = makeTitle(data, angleIdx);
+  const parts = [];
+  const push = (key, heading, md, optional = false) => {
+    if (md && md.trim()) parts.push({ key, heading, md: md.trim(), optional });
+  };
+
+  push('intro', null, `# ${title}\n\n${INTROS[angleIdx % INTROS.length](data)}`);
+  push('ataglance', 'At a Glance', atGlanceBlock(data));
+
+  const etymologyMd = etymologyBlock(data);
+  for (const sec of data.sections) {
+    push(`sec:${sec.key}`, sec.heading, sec.body);
+    if (sec.key === 'the-name' && etymologyMd) {
+      push('etymology', 'Etymology & Roots', etymologyMd);
     }
   }
 
-  // Add a unifying closing section before the related-name list.
-  const closing = `\n\n## Why This Restoration Matters\n\nRestoring ${data.unicode} is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.`;
-  body = body.replace(/\n\n## Related Names/, `${closing}\n\n## Related Names`);
+  push('tier', 'The Unicode Restoration', tierBlock(data));
+  push('variants', 'Name Variations', variantsBlock(data), true);
+  push('breakdown', 'Character by Character', breakdownBlock(data), true);
+  push('domain', 'The Domain Name', domainBlock(data));
+  push('pantheon', `The ${data.pantheonDisplay} Pantheon`, pantheonBlock(data), true);
+  push('faq', 'Frequently Asked Questions', faqBlock(data), true);
+  push('type', `Typing ${data.unicode}`, typeBlock(data), true);
+  push('sisters', 'Sister Temples', sistersBlock(data, sisters), true);
+  push('closing', 'Why This Restoration Matters', CLOSINGS[angleIdx % CLOSINGS.length](data));
+  push('explore', 'Explore Further', exploreBlock(data));
+  // These two sections must always END the post, in this order.
+  push('related', 'Related Names', relatedLinksMd(links));
+  push('sources', 'Sources', sourcesMd(sources, data));
 
-  // Ensure word count lands in the 700–900 target range (test allows up to 950).
-  wc = wordCount(body);
-  const expansions = [
-    `\n\n## The PÚNYCODEX Angle\n\nThe PÚNYCODEX project treats ${data.unicode} as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from ${data.scriptName || 'its source tradition'} to the modern browser. Every visit to this temple is a small act of preservation.`,
-    `\n\n## For Developers and Linguists\n\nThe PÚNYCODEX dataset exposes ${data.unicode} through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.`,
-    `\n\n## Visit the Temple\n\nIf this post sparked your curiosity, the [home page](/sites/${data.id}/) offers the full name breakdown, the [lore page](/sites/${data.id}/lore/) explores the myth, and the [Scholarly Edition](/sites/${data.id}/scholars/) provides the footnotes. Each page is a doorway into the same restoration.`,
-    `\n\n## Why This Name Still Travels\n\nNames like ${data.unicode} do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.`,
-    `\n\n## A Note on the Address Bar\n\nWhen you type ${data.unicode}, the browser performs an invisible conversion into Punycode so the global DNS can route the request. The user sees the original name; the machines see a compatible ASCII encoding. That duality is the engineering compromise that makes the restoration possible, and it is the reason every Unicode domain is both a technical milestone and a small act of cultural memory.`
+  const render = (list) =>
+    list
+      .filter((p) => p.active)
+      .map((p) => (p.heading ? `## ${p.heading}\n\n${p.md}` : p.md))
+      .join('\n\n');
+
+  for (const p of parts) p.active = !p.optional;
+  let wc = countWords(render(parts));
+
+  // Deepen thin-source entries: lore-catalog extras first (real content,
+  // deduped against the scholars bodies), then the canonical-data sections.
+  const extras = loreExtras(data);
+  const loreAdditions = [
+    ['sec:mythology', extras.myths],
+    ['sec:domains', extras.cards],
+    ['sec:symbols', extras.symbols],
   ];
-  while (wc < 720 && expansions.length > 0) {
-    body += expansions.shift();
-    wc = wordCount(body);
+  for (const [key, addition] of loreAdditions) {
+    if (wc >= TARGET_MIN || !addition) continue;
+    const target = parts.find((p) => p.key === key);
+    if (target) {
+      target.md += `\n\n${addition}`;
+      wc = countWords(render(parts));
+    }
   }
-  while (wc > 950) {
-    const lastBreak = Math.max(body.lastIndexOf('\n\n'), body.lastIndexOf('\n## '));
-    if (lastBreak <= 200) break;
-    body = body.slice(0, lastBreak).trim();
-    wc = wordCount(body);
+  for (const p of parts) {
+    if (wc >= TARGET_MIN) break;
+    if (p.optional && !p.active) {
+      p.active = true;
+      wc = countWords(render(parts));
+    }
   }
-  return body;
+
+  // Trim over-long entries without touching the closing pair: fold the
+  // scholarly-record section away (its citations live on in Sources), then
+  // the meditation if absolutely necessary.
+  if (wc > TARGET_MAX) {
+    const sr = parts.find((p) => p.key === 'sec:scholarly-sources');
+    if (sr && sr.active) {
+      sr.active = false;
+      wc = countWords(render(parts));
+    }
+  }
+  if (wc > HARD_MAX) {
+    const med = parts.find((p) => p.key === 'sec:meditation');
+    if (med && med.active) {
+      med.active = false;
+      wc = countWords(render(parts));
+    }
+  }
+
+  return { body: render(parts), wc };
 }
 
 // ── Main loop ───────────────────────────────────────────────────────────────
@@ -649,6 +764,8 @@ fs.mkdirSync(BLOG_DIR, { recursive: true });
 
 let created = 0;
 let skipped = 0;
+const counts = [];
+const outOfBand = [];
 
 for (const id of BUILT_IDS) {
   const outPath = path.join(BLOG_DIR, `${id}.json`);
@@ -659,16 +776,19 @@ for (const id of BUILT_IDS) {
 
   const data = buildData(id);
   const seed = hash(id);
-  const angleIdx = seed % ANGLES.length;
+  const angleIdx = seed % INTROS.length;
 
-  const links = internalLinks(id, data.pantheon, 3);
-  const scholars = loadScholars(id);
-  const externals = collectExternalLinks(scholars, LORE_CATALOG[id]);
+  const links = internalLinks(id, data.pantheon, 3, ':bloglinks');
+  const sisters = internalLinks(id, data.pantheon, 3, ':sisters').filter(
+    (s) => !links.some((l) => l.id === s.id)
+  );
+  const sources = collectSources(data.scholars, data.lore);
 
   const title = makeTitle(data, angleIdx);
   const description = makeDescription(data, angleIdx);
-  const body = buildBody(data, angleIdx, links, externals);
-  const wc = wordCount(body);
+  const { body, wc } = buildBody(data, angleIdx, links, sisters, sources);
+  counts.push([id, wc]);
+  if (wc < 2400 || wc > 4200) outOfBand.push([id, wc]);
 
   const post = {
     entryId: id,
@@ -686,4 +806,16 @@ for (const id of BUILT_IDS) {
   created++;
 }
 
+if (counts.length) {
+  counts.sort((a, b) => a[1] - b[1]);
+  const min = counts[0];
+  const max = counts[counts.length - 1];
+  const median = counts[Math.floor(counts.length / 2)];
+  console.log(
+    `Word counts — min ${min[1]} (${min[0]}), median ${median[1]} (${median[0]}), max ${max[1]} (${max[0]})`
+  );
+  if (outOfBand.length) {
+    console.warn(`WARNING: ${outOfBand.length} posts outside 2400–4200: ${outOfBand.map(([i, w]) => `${i}:${w}`).join(', ')}`);
+  }
+}
 console.log(`Blog content: ${created} created, ${skipped} preserved (total ${BUILT_IDS.length})`);

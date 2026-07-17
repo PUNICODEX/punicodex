@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,45 +170,201 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-sanskrit-pantheon">The Sanskrit Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#typing-visnu">Typing Viṣṇu</a></li>
+                <li><a href="#sister-temples">Sister Temples</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>Pronouncing Viṣṇu: A Guide for the Curious</h1>
-<p>Saying <strong>Viṣṇu</strong> out loud is harder than reading it on a screen, and more rewarding. Scholars reconstruct the sound as <em>&#39;VISH-noo&#39; — the first syllable has a crisp, tongue-tip sh; the second is short and resonant.</em>.</p>
-<h2>The Reconstructed Sound</h2>
-<p>The name is attested in Devanagari as विष्णु. It is traditionally derived from the root viṣ- (&#39;to pervade, be active&#39;) or viś- (&#39;to enter, settle&#39;): &#39;the all-pervading&#39; — an analysis Yāska already records in the Nirukta. The name&#39;s prehistory beyond that is disputed: Mayrhofer treats a secure Proto-Indo-European reconstruction as out of reach, and the traditional derivation, though ancient, is not demonstrable. The ASCII form vishnu survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Viṣṇu recovers the retroflex ṣ and ṇ of the original directly in the address bar. Because Sanskrit accentuation is pitch-based and unwritten, the restoration... The sounds preserved in Viṣṇu are not random; they follow rules that linguists have spent centuries recovering.</p>
-<h2>Sound by Sound</h2>
-<p>Etymologically, from sanskrit viṣṇu- &#39;all-pervading&#39;, traditionally derived from the root viṣ- &#39;to pervade, be active&#39;; a secure proto-indo-european reconstruction and the name&#39;s prehistory remain disputed.  Each segment locks into the next, so a small change in one place ripples through the whole name.</p>
-<h2>Kin Forms</h2>
-<p>Names rarely have only one valid shape. The restoration chooses the form that best balances historical accuracy with the practical limits of DNS.</p>
-<h2>From Speech to Screen</h2>
-<p>Pronunciation and spelling converge in Unicode. Viṣṇu carries enough phonetic information to be read aloud by someone who knows the conventions, and enough visual distinctiveness to stand out in an address bar.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Viṣṇu is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>Pronouncing Viṣṇu: a guide for the curious</h1>
+<p>Saying <strong>Viṣṇu</strong> aloud is harder than reading it on a screen, and more rewarding. The restored spelling is a compressed pronunciation guide: every accent and macron is an instruction. This post unpacks those instructions — the reconstructed sound, the phoneme-by-phoneme record, the kindred forms in neighboring languages — and then zooms out to the full record around the name: its Devanagari writing, its mythology, its cult, and its modern life as a Unicode domain. Whether you arrive as a linguist, a reader of myth, or a domainer, you will leave able to say the name the way the evidence suggests it was said — and able to type it the way it was written.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Viṣṇu</li>
+  <li><strong>ASCII form:</strong> vishnu</li>
+  <li><strong>Meaning:</strong> &quot;N. of one of the principal Hindū deities (in the later mythology regarded as ‘the preserver’, and with Brahmā ‘the creator’ and Śiva ‘the destroyer’, constituting the wellknown&quot;</li>
+  <li><strong>Domain of influence:</strong> Preservation, Protection, Universe</li>
+  <li><strong>Pantheon:</strong> Sanskrit</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> विष्णु (Devanagari)</li>
+  <li><strong>Live domain:</strong> Viṣṇu.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Viṣṇu</strong> (Sanskrit विष्णु, traditionally derived from the root viṣ-, &#39;to pervade, be active&#39;: &#39;the all-pervading&#39;) is the preserver of the Hindu triad — the god who sustains what [[brahma|Brahmā]] creates and what [[shiva|Śiva]] dissolves, and who descends as an avatāra whenever dharma fails. In the Ṛgveda he is a minor but distinctive deity, celebrated for the three strides by which he measured the cosmos; the Brāhmaṇas identify him with the sacrifice itself, and by the epic age — fused with Nārāyaṇa and Vāsudeva-Kṛṣṇa — he has become the supreme lord of the largest devotional traditions of Hinduism. The etymology of the name is genuinely disputed: the derivation from viṣ- is old — Yāska already discusses it in the Nirukta — but a secure Proto-Indo-European reconstruction has resisted scholars.</p>
+<p>PÚNYCODEX restores the name as <strong>Viṣṇu</strong> and serves its temple at <a href="https://xn--viu-j5ytg.com">Viṣṇu.com</a>. The underdots mark the retroflex ṣ and ṇ of the Sanskrit original; because Sanskrit accentuation is pitch-based and unwritten, this single preserved layer places the name in Tier 2. The ASCII form <em>vishnu</em> is a modern convenience of the early domain-name system, not an ancient spelling.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Devanagari as <strong>विष्णु</strong>. It is traditionally derived from the root viṣ- (&#39;to pervade, be active&#39;) or viś- (&#39;to enter, settle&#39;): &#39;the all-pervading&#39; — an analysis Yāska already records in the Nirukta. The name&#39;s prehistory beyond that is disputed: Mayrhofer treats a secure Proto-Indo-European reconstruction as out of reach, and the traditional derivation, though ancient, is not demonstrable.</p>
+<p>The ASCII form <em>vishnu</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Viṣṇu</strong> recovers the retroflex ṣ and ṇ of the original directly in the address bar. Because Sanskrit accentuation is pitch-based and unwritten, the restoration preserves this single phonological layer, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>v</strong> → <strong>V</strong> — Same</li>
+  <li><strong>i</strong> → <strong>i</strong> — Short /i/</li>
+  <li><strong>s</strong> → <strong>ṣ</strong> — S-dot-under: retroflex /ʂ/</li>
+  <li><strong>h</strong> → <strong>—</strong> — Dropped: digraph simplified</li>
+  <li><strong>n</strong> → <strong>ṇ</strong> — N-dot-under: retroflex /ɳ/</li>
+  <li><strong>u</strong> → <strong>u</strong> — Short /u/</li>
+</ul>
+<p>The project holds the domain <strong>Viṣṇu.com</strong> (xn--viu-j5ytg.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: From Sanskrit viṣṇu- &#39;all-pervading&#39;, traditionally derived from the root viṣ- &#39;to pervade, be active&#39;; a secure Proto-Indo-European reconstruction and the name&#39;s prehistory remain disputed.</p>
+<p>The reconstruction is classed as disputed.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is written in Devanagari as <strong>विष्णु</strong>. Devanagari is a Brahmic abugida — each consonant sign carries an inherent vowel — written left-to-right; it descends from Brāhmī through the Nāgarī scripts, is attested in inscriptions from about the 7th century CE, and is today the standard script of Sanskrit, Hindi, and Marathi.</p>
+<p>The scholarly transliteration is <em>Viṣṇu</em> (IAST), giving the normalized reading /ˈʋɪʂɳʊ/. The rendering proceeds step by step:</p>
+<ul>
+  <li>Sanskrit Viṣṇu is written विष्णु in Devanagari — akṣaras वि (vi) and ष्णु (ṣṇu, a conjunct of ष and ण).</li>
+  <li>IAST underdots mark the retroflex sibilant ṣ and the retroflex nasal ṇ; plain ASCII <em>vishnu</em> loses both and inserts an epenthetic h.</li>
+  <li>The name is traditionally derived from the root viś- (&#39;to enter, pervade&#39;) or viṣ- (&#39;to be active&#39;); the semantic core is pervasion — the god who is everywhere.</li>
+  <li>Yāska&#39;s Nirukta already debates the derivation; a secure Proto-Indo-European reconstruction remains disputed.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/ʋɪʂ.ɳʊ/</strong> — Sanskrit/Vedic Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Vi-</strong> — Labiodental or dental approximant [ʋ] plus short [ɪ] — the prefix of pervasion, the sound that spreads.</li>
+  <li><strong>-ṣṇu</strong> — Retroflex sibilant [ʂ] plus retroflex nasal cluster [ɳʊ], from the root viṣ- (&#39;to pervade, to work&#39;) — the name&#39;s active core.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;VISH-noo&#39; — the first syllable has a crisp, tongue-tip sh; the second is short and resonant.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Sanskrit</strong> — विष्णु (Viṣṇu), from viṣ- / viś- (&#39;to pervade, enter, settle&#39;)</li>
+  <li><strong>Vedic</strong> — In the Ṛgveda a relatively minor solar deity; his three strides make him &#39;the wide-strider&#39;</li>
+  <li><strong>Later epithets</strong> — Trivikrama (&#39;three strides&#39;), Nārāyaṇa (&#39;son of the primal waters&#39;), Hari</li>
+</ul>
+<p>The IAST form Viṣṇu marks the retroflex ṣ and the retroflex nasal ṇ. Etymologically the name means &#39;All-Pervading.&#39; Devanagari विष्णु is the most common theistic spelling; in Vedic mantras the accent may fall differently depending on grammatical case.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Viṣṇu&#39;s mythology grows from a minor Vedic solar figure into the preserver of the cosmos. Its center is movement: the three strides, the ten descents, the sleep between worlds.</p>
+<h3 id="the-three-strides-vedic">The Three Strides (Vedic)</h3>
+<p>In Ṛgveda 1.154, Viṣṇu strides out three times. With each step he measures a realm — earth, atmosphere, and heaven — until the gods themselves find his third step unreachable. This is the seed of his later title Trivikrama, &#39;he who makes three strides.&#39; The myth imagines the sun&#39;s daily arc as the god&#39;s footfall across the cosmos.</p>
+<h3 id="the-dasavatara-avatara">The Daśāvatāra (Avatāra)</h3>
+<p>The Purāṇas systematize Viṣṇu&#39;s descents into ten principal incarnations: Matsya the fish, Kūrma the tortoise, Varāha the boar, Narasiṃha the man-lion, Vāmana the dwarf, Paraśurāma the axe-bearer, Rāma the prince, Kṛṣṇa the cowherd, the Buddha, and the future Kalkī. Each appears in a different cosmic age to counter a specific threat. The list itself is a theology of history: divine response to evolving evil.</p>
+<h3 id="rama-and-krsna-epic">Rāma and Kṛṣṇa (Epic)</h3>
+<p>The Rāmāyaṇa tells of Rāma, the ideal king whose exile, fidelity, and war against Rāvaṇa define dharmic rule. The Mahābhārata tells of Kṛṣṇa, the divine charioteer whose Bhagavad Gītā transforms a battlefield into a discourse on duty, devotion, and knowledge. These two avatāras are the most widely worshipped forms of Viṣṇu in India and the diaspora.</p>
+<h3 id="the-cosmic-sleep-cosmology">The Cosmic Sleep (Cosmology)</h3>
+<p>At the end of each cosmic cycle, Viṣṇu withdraws the universe into himself and sleeps on the serpent Śeṣa, floating on the causal ocean of milk. From his navel sprouts a lotus, and from the lotus emerges Brahmā to begin creation anew. This image is one of Hinduism&#39;s most sublime visions: preservation as rest, creation as dream, and the universe as the breathing of one divine body.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Viṣṇu concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>Discus (cakra)</strong> — Sudarśana, the wheel of divine will that cuts through illusion and evil.</li>
+  <li><strong>Conch (śaṅkha)</strong> — The primeval sound Oṃ, announcing divine presence and the dissolution of boundaries.</li>
+  <li><strong>Mace (gadā)</strong> — The power of knowledge; often identified with Kāmadeva or the force of cosmic law.</li>
+  <li><strong>Lotus (padma)</strong> — Purity and the unfolding of creation; Brahmā is born from the lotus rising from Viṣṇu&#39;s navel.</li>
+  <li><strong>Garuda</strong> — The eagle-king, his mount, symbolizing the Vedas and the swiftness of divine knowledge.</li>
+  <li><strong>Śeṣa</strong> — The cosmic serpent upon whom Viṣṇu reclines between universes.</li>
+</ul>
+<ul>
+  <li><strong>Śeṣa</strong> — The cosmic serpent upon whom Viṣṇu reclines between universes.</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>The material record for Vaiṣṇava devotion opens with the Heliodorus pillar at Besnagar near Vidisha (c. 110 BCE): a Garuḍa-topped column whose Brāhmī inscription names its dedicator Heliodorus, a Greek ambassador from Taxila, as a bhāgavata — a devotee of Vāsudeva, &#39;the god of gods&#39; — making it the earliest epigraphic witness to personal devotion to the god who becomes Viṣṇu. Kuṣāṇa-period Mathura then supplies the first anthropomorphic images of Vāsudeva-Kṛṣṇa and his kinsmen, and the Gupta age produces the monumental idiom: the colossal Varāha panel of Udayagiri Cave 5 (early 5th century CE) and the Anantaśāyin relief of the Daśāvatāra temple at Deogarh. The Changu Narayan temple in Nepal, with its 5th-century Licchavi inscriptions, is among the oldest standing Vaiṣṇava shrines; the medieval temple cities of Tirupati in South India and Angkor Wat in Cambodia (12th century) testify to the cult&#39;s trans-regional reach.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Viṣṇu is the second great power of the Hindu triad, the one who sustains what Brahmā creates and what Śiva will one day dissolve. But preservation is not passivity. It requires constant intervention, which is why Viṣṇu descends again and again as an <strong>avatāra</strong> — a deliberate crossing-down into history.</p>
+<h3 id="preservation">Preservation</h3>
+<p>He maintains cosmic order (dharma) across the ages, keeping the universe from collapsing into chaos.</p>
+<h3 id="the-three-strides">The Three Strides</h3>
+<p>As Trivikrama he measures earth, sky, and heaven in three steps; as Vāmana he does it as a dwarf.</p>
+<h3 id="avataras">Avatāras</h3>
+<p>From fish to future horseman, he enters the world whenever dharma declines and adharma rises.</p>
+<h3 id="cosmic-sleep">Cosmic Sleep</h3>
+<p>Between cosmic cycles he sleeps on Śeṣa, the thousand-hooded serpent, floating on the ocean of milk.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Viṣṇu absorbed countless regional deities: Kṛṣṇa of the Yādava cowherds, Rāma of the Ikṣvāku line, Nārāyaṇa of the Vedic waters, and the cosmic Puruṣa of speculative Brahmanism. In South India he merges with Śrī (Lakṣmī) and Bhū (earth) in temple theology; in Bengal, he is the serene Nārāyaṇa beside the fierce Kālī. Buddhism absorbs him as a guardian of the dharma; Jainism reckons Rāma (Padma) and Kṛṣṇa (Vāsudeva) among its own series of great men. Vaishnavism became one of the largest religious communities on earth, spanning philosophical schools from the non-dualist Śaṅkara to the dualist Madhva and the devotional Gaudīya tradition of Bengal.</p>
+<p>Within the Sanskrit tradition, closely related names in the corpus include [[durga|Durgā]], [[ganesha|Gaṇeśa]], [[kali|Kālī]], [[lakshmi|Lakṣmī]], [[nirmata|Nirmātā]], and [[om|Oṃ]].</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Viṣṇu&#39;s presence is woven into the texture of South Asian civilization. The Rāmāyaṇa and Mahābhārata are national epics, performed in village plays, televised during festivals, and cited in political speech. The Hare Kṛṣṇa movement carried Gaudīya Vaishnavism to the West; ISKCON temples now stand on every continent. Viṣṇu&#39;s symbols — the conch, the discus, the tilaka mark — identify millions of devotees. The ideal of the avatāra, a divine descent to restore justice, has influenced Indian political thought, literature, and popular cinema. In an unstable world, Viṣṇu remains the god who promises to come again.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Viṣṇu given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Monier-Williams Sanskrit Dictionary. <a href="https://www.sanskrit-lexicon.uni-koeln.de/monier/index.html">Full text</a></li>
+  <li> Mayrhofer, EWAia.</li>
+  <li> Ṛgveda 1.154, 7.99.</li>
+  <li> Śatapatha Brāhmaṇa.</li>
+  <li> Rāmāyaṇa, Mahābhārata.</li>
+  <li> Bhagavad Gītā.</li>
+  <li> Viṣṇu Purāṇa, Bhāgavata Purāṇa.</li>
+  <li> Ṛgveda Saṃhitā 7.99 (Viṣṇu hymns and the wide-strider).</li>
+  <li> Yaska, Nirukta 12.19–21 (etymology and analysis of Viṣṇu).</li>
+  <li> Bhāgavata Purāṇa 10 (Kṛṣṇa līlā and divine descent).</li>
+  <li> Brahmasūtra with Rāmānuja&#39;s Śrībhāṣya (Vaiṣṇava Vedānta).</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Viṣṇu teaches that the highest power is not the power that destroys but the power that keeps things going. Maintenance is harder than creation; it requires patience, repetition, and the willingness to return to the same task age after age. Every parent who wakes in the night, every farmer who plants again after a flood, every healer who stays with a patient long after the drama has faded — they are images of Viṣṇu.</p>
+<p>His three strides remind us that the cosmos is measured, not random. His avatāras remind us that when order collapses, the sacred does not abandon the world but enters it. His sleep on the serpent reminds us that endings are also wombs. To call on Viṣṇu is to choose the long work of preservation over the short thrill of annihilation. It is to believe that the world, for all its wounds, is worth saving.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Viṣṇu is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>vishnu</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 6 characters of the name, the restoration adjusts 3: 3 further adjustments (ṣ, h, ṇ). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>vishnu</em> to <strong>Viṣṇu</strong>, one character at a time:</p>
+<ul>
+  <li><strong>v</strong> → <strong>V</strong> — Same</li>
+  <li><strong>i</strong> → <strong>i</strong> — Short /i/</li>
+  <li><strong>s</strong> → <strong>ṣ</strong> — S-dot-under: retroflex /ʂ/</li>
+  <li><strong>h</strong> → <strong>h</strong> — Dropped: digraph simplified</li>
+  <li><strong>n</strong> → <strong>ṇ</strong> — N-dot-under: retroflex /ɳ/</li>
+  <li><strong>u</strong> → <strong>u</strong> — Short /u/</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>Viṣṇu.com</strong>, which the DNS carries in punycode form as xn--viu-j5ytg.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Viṣṇu; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Devanagari can now be typed into any browser on earth.</p>
+<h2 id="the-sanskrit-pantheon">The Sanskrit Pantheon</h2>
+<p>Viṣṇu is one of 88 entries the PÚNYCODEX lexicon catalogues under the Sanskrit pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Viṣṇu mean?</strong> The traditional gloss is &quot;N. of one of the principal Hindū deities (in the later mythology regarded as ‘the preserver’, and with Brahmā ‘the creator’ and Śiva ‘the destroyer’, constituting the wellknown.&quot;</p>
+<p><strong>Which tradition does Viṣṇu belong to?</strong> Viṣṇu is catalogued in the Sanskrit pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Viṣṇu classified as Tier 2?</strong> Because the original preserves at least one philological feature that ASCII cannot encode — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Viṣṇu a working domain?</strong> Yes — Viṣṇu.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for Viṣṇu.com?</strong> The DNS encoding is xn--viu-j5ytg.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="typing-visnu">Typing Viṣṇu</h2>
+<p>You do not need a special keyboard to use this restoration. The <a href="/type/">PÚNYCODEX Type Tool</a> converts the ASCII form <em>vishnu</em> into <strong>Viṣṇu</strong> as you type, and the browser extension offers the same conversion inside any text field. Copy the restored form, paste it into the address bar, and the DNS does the rest.</p>
+<h2 id="sister-temples">Sister Temples</h2>
+<p>Other temples in the Sanskrit pantheon include <a href="/sites/drona/">Droṇa</a>, <a href="/sites/indra/">Indra</a>, and <a href="/sites/karma/">Karma</a> — each with its own restoration story, its own scholarly record, and its own place in the lexicon.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Pronunciation turns out to be the heart of the matter. The marks in <strong>Viṣṇu</strong> are instructions for the voice, and a web that strips them is a web that mispronounces the past at scale. The restoration hands the instructions back: say it as the evidence suggests, type it as the tradition wrote it, and let the punycode machinery do the quiet translation in between. That is all the PÚNYCODEX project asks of the infrastructure — and everything it asks of you, the reader, is to use the whole name.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/dhyana/">Dhyāna</a></li>
   <li><a href="/sites/ganga/">Gaṅgā</a></li>
   <li><a href="/sites/kailasa/">Kailāsa</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.sanskrit-lexicon.uni-koeln.de/monier/index.html">Monier-Williams, M. A Sanskrit-English Dictionary. Oxford, 1899; s.v. viṣṇu.</a></li>
+  <li>Jaiswal, S., The Origin and Development of Vaiṣṇavism (Delhi, 1967).</li>
+  <li>Mayrhofer, M., Etymologisches Wörterbuch des Altindoarischen (Heidelberg, 1986–2001); s.v. viṣṇu.</li>
+  <li>Mayrhofer, EWAia.</li>
+  <li>Ṛgveda 1.154, 7.99.</li>
+  <li>Lexicon authorities for this entry: MW, KEWA.</li>
 </ul>
-<h2>What the Sources Record</h2>
-<p>Viṣṇu is the second great power of the Hindu triad, the one who sustains what Brahmā creates and what Śiva will one day dissolve. But preservation is not passivity. It requires constant intervention, which is why Viṣṇu descends again and again as an avatāra — a deliberate crossing-down into history. ### Preservation He maintains cosmic order (dharma) across the ages, keeping the universe from collapsing into chaos. ### The Three Strides As Trivikrama he measures earth, sky, and heaven in three steps; as Vāmana he does it as a dwarf. ### Avatāras From fish to future horseman, he enters the world whenever dharma declines and adharma rises. ### Cosmic Sleep Between cosmic cycles he sleeps on Śeṣa, the thousand-hooded serpent, floating on the ocean of...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Viṣṇu as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Devanagari to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Viṣṇu through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/vishnu/">home page</a> offers the full name breakdown, the <a href="/sites/vishnu/lore/">lore page</a> explores the myth, and the <a href="/sites/vishnu/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Viṣṇu do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
-<h2>A Note on the Address Bar</h2>
-<p>When you type Viṣṇu, the browser performs an invisible conversion into Punycode so the global DNS can route the request. The user sees the original name; the machines see a compatible ASCII encoding. That duality is the engineering compromise that makes the restoration possible, and it is the reason every Unicode domain is both a technical milestone and a small act of cultural memory.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">sanskrit</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

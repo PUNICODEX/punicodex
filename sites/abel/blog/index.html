@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,39 +170,181 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-canaanite-pantheon">The Canaanite Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>Hāḇel in 2026: Why Scholars Still Care</h1>
-<p>In 2026, names are treated as data points. Hāḇel is a reminder that they are also cultural artifacts. Hāḇel (Hebrew הֶבֶל; English Abel) is the second son of Adam and Eve, a keeper of sheep whose accepted offering provokes the Bible&#39;s first murder. He speaks no recorded sentence in the Hebrew Bible: introduced by his work and his sacrifice (Genesis 4:2–4), he dies in the field at his brother&#39;s hand, and his afterlife in the text is his blood, which &#39;is crying out&#39; from the ground (Genesis 4:10). Jewish, Christian, and Islamic tradition all remember him as the first innocent victim — &#39;righteous Abel&#39; (Matthew 23:35), the model martyr, the shepherd who prefigures the Good Shepherd. The name is identical to the common noun heḇel, &#39;breath, vapor&#39; — the word Qohelet hammers as &#39;vanity of vanities&#39; (Ecclesiastes 1:2). Genesis records no naming speech for... The question is not whether the name is old, but whether the digital world is old enough to hold it.</p>
-<h2>The Scholarly Argument</h2>
-<p>The name is attested in Biblical Hebrew as הֶבֶל (Heḇel in strict Tiberian transliteration), pointed with two short segol vowels and an undageshed, fricative bet. It is identical to the common noun heḇel, &#39;breath, vapor, something fleeting&#39; — the refrain-word of Qohelet&#39;s &#39;vanity of vanities&#39; (Ecclesiastes 1:2). Genesis gives Abel no naming speech; unlike Cain&#39;s, his name arrives unexplained, and commentators ancient and modern have heard in it a quiet anticipation of his story: a life that vanishes like breath. The English form Abel descends from the Septuagint&#39;s Ἅβελ through Latin and reflects neither the Tiberian vowels nor the fricative bet. PÚNYCODEX restores Hāḇel: the macron on ā is a project convention adopted from the Greek-Latin tradition... The PÚNYCODEX Scholarly Edition collects these arguments in one place, with sources and revision history, so the claim can be inspected rather than merely asserted.</p>
-<h2>What the Accent Preserves</h2>
-<p>This entry is classified as <strong>Tier 2</strong>. the original preserves at least one philological feature that ASCII cannot encode Those marks are not ornaments; they are the coordinates that place the name inside a language.</p>
-<h2>A Living Edition</h2>
-<p>The <a href="/sites/abel/scholars/">Scholarly Edition</a> is not a static page. Verified contributors can improve it, and every change is attributed. That model turns a blog post like this one into an invitation to dig deeper.</p>
-<h2>Where to Learn More</h2>
+            <h1>Hāḇel in 2026: why scholars still care</h1>
+<p>In 2026, names are treated as data points. <strong>Hāḇel</strong> is a reminder that they are also cultural artifacts — and that the difference matters for search engines, AI training corpora, and anyone who types the name of a Canaanite figure into a browser. Scholars never stopped caring about the difference between <em>habel</em> and Hāḇel; the web simply made that care actionable. What follows is the full scholarly picture — name, script, sound, myth, cult, and legacy — followed by the engineering compromise that lets a restored spelling live at a real address. The question is not whether the name is old. It is whether the digital world is old enough to hold it.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Hāḇel</li>
+  <li><strong>ASCII form:</strong> habel</li>
+  <li><strong>Meaning:</strong> &quot;Second son of Adam and Eve&quot;</li>
+  <li><strong>Domain of influence:</strong> First Victim</li>
+  <li><strong>Pantheon:</strong> Canaanite</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> הֶבֶל (Hebrew)</li>
+  <li><strong>Live domain:</strong> hāḇel.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Hāḇel</strong> (Hebrew הֶבֶל; English <em>Abel</em>) is the second son of Adam and Eve, a keeper of sheep whose accepted offering provokes the Bible&#39;s first murder. He speaks no recorded sentence in the Hebrew Bible: introduced by his work and his sacrifice (Genesis 4:2–4), he dies in the field at his brother&#39;s hand, and his afterlife in the text is his blood, which &#39;is crying out&#39; from the ground (Genesis 4:10). Jewish, Christian, and Islamic tradition all remember him as the first innocent victim — &#39;righteous Abel&#39; (Matthew 23:35), the model martyr, the shepherd who prefigures the Good Shepherd.</p>
+<p>The name is identical to the common noun <em>heḇel</em>, &#39;breath, vapor&#39; — the word Qohelet hammers as &#39;vanity of vanities&#39; (Ecclesiastes 1:2). Genesis records no naming speech for Abel as it does for Cain; scholars read the name as a quiet commentary on the brevity of his life.</p>
+<p>PÚNYCODEX restores the name as <strong>Hāḇel</strong>, following the Greek Ἅβελ and the Latin-English tradition: the macron on <strong>ā</strong> is a project convention — the Tiberian pointing has two short segols (<em>Heḇel</em>, /ˈhɛvɛl/) — and the line under <strong>ḇ</strong> marks the fricative bet [v]. Because the restoration signals vowel length, by convention in this case, but does not mark stress position, the name is classified Tier 2 (macron-preserving). The temple is served at <a href="https://xn--hel-1oa4628a.com">hāḇel.com</a>; the plain ASCII <em>habel</em> remains the fallback imposed by the early domain-name system.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Biblical Hebrew as <strong>הֶבֶל</strong> (<em>Heḇel</em> in strict Tiberian transliteration), pointed with two short <em>segol</em> vowels and an undageshed, fricative bet. It is identical to the common noun <em>heḇel</em>, &#39;breath, vapor, something fleeting&#39; — the refrain-word of Qohelet&#39;s &#39;vanity of vanities&#39; (Ecclesiastes 1:2). Genesis gives Abel no naming speech; unlike Cain&#39;s, his name arrives unexplained, and commentators ancient and modern have heard in it a quiet anticipation of his story: a life that vanishes like breath.</p>
+<p>The English form <em>Abel</em> descends from the Septuagint&#39;s Ἅβελ through Latin and reflects neither the Tiberian vowels nor the fricative bet. PÚNYCODEX restores <strong>Hāḇel</strong>: the macron on <strong>ā</strong> is a project convention adopted from the Greek-Latin tradition rather than from the Masoretic pointing, which has two short vowels, while the line under <strong>ḇ</strong> records the fricative <em>vet</em> [v]. The restoration preserves vowel length — conventionally, in this case — but not stress position, which places the name in Tier 2 (macron-preserving).</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>h</strong> → <strong>H</strong> — Same, capitalized</li>
+  <li><strong>a</strong> → <strong>ā</strong> — Macron: long vowel</li>
+  <li><strong>b</strong> → <strong>ḇ</strong> — Beth with line below</li>
+  <li><strong>e</strong> → <strong>e</strong> — Same</li>
+  <li><strong>l</strong> → <strong>l</strong> — Same</li>
+</ul>
+<p>The project holds the domain <strong>hāḇel.com</strong> (xn--hel-1oa4628a.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Hebrew as <strong>הֶבֶל</strong>, written in the square Hebrew alphabet — a consonantal script (abjad) of twenty-two letters, adopted from Aramaic models in the Second Temple period and written right to left. The consonantal skeleton is ה-ב-ל (<em>h-b-l</em>), identical to the common noun <em>heḇel</em>, &#39;breath, vapor&#39; — the word Qohelet repeats as &#39;vanity of vanities&#39;. The Masoretic pointing gives two short <em>segol</em> vowels [ɛ], and the <em>bet</em> carries no dagesh, marking the fricative pronunciation [v].</p>
+<p>The strict Tiberian transliteration is <em>Heḇel</em>, giving the reconstructed reading /ˈhɛvɛl/. The rendering proceeds step by step:</p>
+<ul>
+  <li>The name is written הֶבֶל in the pointed Masoretic text (BHS): three consonants carrying two segol signs.</li>
+  <li>The undageshed bet is the fricative <em>vet</em> [v], marked in scholarly transliteration with a line below, ḇ.</li>
+  <li>PÚNYCODEX&#39;s display form <strong>Hāḇel</strong> follows the Greek Ἅβελ and the Latin-English &#39;Abel&#39; tradition rather than the Tiberian vocalization: the macron on ā is a project convention, not a feature of the Masoretic pointing.</li>
+  <li>The familiar English <em>Abel</em> descends from the Septuagint&#39;s Ἅβελ through Latin; the project&#39;s plain ASCII label is <em>habel</em>.</li>
+</ul>
+<p>The Hebrew vocalization is medieval in attestation but older in tradition: the consonants are Second Temple-era, while the points were fixed by the Tiberian Masoretes in the early medieval period, and the first-millennium BCE pronunciation of the name may have differed in detail.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/ˈhɛvɛl/</strong> — Biblical Hebrew (Tiberian/Masoretic).</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>hĕ-</strong> — Voiceless glottal fricative [h] — Hebrew he — followed by short [ɛ], the segol under ה.</li>
+  <li><strong>-vel</strong> — Voiced labiodental fricative [v] — Hebrew vet without dagesh, fricative [β]/[v] — plus short [ɛ], the segol under ב, ending in [l].</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;HEH-vel&#39; — both vowels are short &#39;e&#39; as in &#39;bed&#39;; the &#39;v&#39; is soft, and the stress falls on the first syllable.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Hebrew root</strong> — h-b-l, &#39;breath, vapor, vanity&#39; — the name is identical to the common noun</li>
+  <li><strong>Greek</strong> — Ἅβελ (Habel), the Septuagint form that influenced the Latin/English &#39;Abel&#39;</li>
+  <li><strong>Aramaic</strong> — הֶבֶל (Hevel), as in the Targumim</li>
+  <li><strong>Arabic</strong> — Hābīl (هَابِيل), the Qur&#39;anic figure</li>
+</ul>
+<p>BHS points the name הֶבֶל (Genesis 4:2). The Tiberian/Masoretic pronunciation is Hevel [ˈhɛvɛl], with two short segol vowels and a fricative bet (vet). The PUNYCODEX display form Hāḇel follows the Greek/Latin conventional spelling (Ἅβελ / Abel) rather than the Masoretic vocalization; the macron on ā is not supported by the Tiberian pointing. HALOT s.v. הֶבֶל; TDOT s.v. Abel.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Hāḇel&#39;s mythology is almost entirely passive. He does not choose his fate; he is chosen by God&#39;s favor and killed by his brother&#39;s envy. In that passivity, however, he becomes one of the most powerful symbols in the biblical tradition.</p>
+<h3 id="the-favored-offering-genesis-4-2-5">The Favored Offering (Genesis 4:2–5)</h3>
+<p>Cain and Abel both bring offerings to the LORD. Cain brings fruit of the ground; Abel brings the firstborn of his flock and their fat portions. The LORD has regard for Abel and his offering, but not for Cain. The text does not explain the reason for the preference, though later readers have proposed faith, blood sacrifice, or quality of heart. Abel&#39;s acceptance is the catalyst for everything that follows.</p>
+<h3 id="murder-in-the-field-genesis-4-8">Murder in the Field (Genesis 4:8)</h3>
+<p>Cain speaks to Abel, and when they are in the field, Cain rises up and kills him. Abel does not resist, bargain, or flee. His death is as sudden and unexplained as his acceptance was mysterious. In Christian tradition this silence becomes prophetic: like the lamb led to slaughter, Abel is the innocent victim whose blood accuses rather than avenges.</p>
+<h3 id="the-crying-blood-genesis-4-9-10">The Crying Blood (Genesis 4:9–10)</h3>
+<p>God asks Cain, &#39;Where is Abel your brother?&#39; and Cain lies. God answers: &#39;What have you done? The voice of your brother&#39;s blood is crying out to me from the ground.&#39; Abel, silent in life, becomes eloquent in death. The image of blood crying from the earth establishes a biblical principle: the dead can demand justice even when the living refuse to speak.</p>
+<h3 id="the-replacement-and-the-memory-genesis-4-25-26-later-tradition">The Replacement and the Memory (Genesis 4:25–26; later tradition)</h3>
+<p>Adam and Eve have another son, Seth, through whom the line continues. Abel has no descendants in the genealogy; his only afterlife is in memory. Yet that memory proves durable: Jesus speaks of &#39;the blood of Abel the righteous,&#39; and the author of Hebrews contrasts Abel&#39;s blood with Christ&#39;s, noting that Jesus&#39; blood &#39;speaks a better word than the blood of Abel.&#39; The victim becomes a type of every innocent killed.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Hāḇel concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>Lamb</strong> — The firstling of the flock and the innocent animal whose death prefigures later sacrifice</li>
+  <li><strong>Shepherd&#39;s crook</strong> — His pastoral calling and, in Christian reading, the gentle authority of Christ</li>
+  <li><strong>Altar smoke</strong> — The sign of an offering accepted by God</li>
+  <li><strong>Blood</strong> — The blood that cries from the ground and that &#39;speaks a better word than the blood of Abel&#39; in the New Testament</li>
+  <li><strong>Silence</strong> — Abel never speaks; his voice is heard only after death</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>There is no archaeological evidence for Abel as an individual; his story belongs to the primeval cycle of Genesis 1–11, which is not open to excavation. The world it presumes, however, is real: sheep-and-goat pastoralism is amply attested in the Neolithic and Bronze Age Levant through zooarchaeological assemblages, and the story&#39;s staged contrast between the farmer Cain and the herder Abel reflects a genuine structural tension of early Near Eastern economies — the same tension Sumerian literature dramatizes in the debate between Dumuzi the shepherd and Enkimdu the farmer for the favor of Inanna. Any search for the &#39;field&#39; of the murder is misplaced; the narrative&#39;s geography is etiological, not cartographic.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Hāḇel is the <strong>second son whose only crime is to be accepted</strong>. A keeper of sheep, he brings the firstborn of his flock and their fat portions, and God regards his offering. He does not speak a single recorded sentence in the Hebrew Bible. His entire life is told in a few verses, yet his name has become synonymous with innocence destroyed and blood that cannot be buried.</p>
+<h3 id="keeper-of-sheep">Keeper of Sheep</h3>
+<p>Abel&#39;s vocation is pastoral; he offers the firstlings and fat of his flock, and God looks on him with favor (Genesis 4:2, 4).</p>
+<h3 id="the-shepherd-s-crook">The Shepherd&#39;s Crook</h3>
+<p>The gentle tool of his trade, later inverted into the Christian image of the Good Shepherd who lays down his life for the sheep.</p>
+<h3 id="accepted-offering">Accepted Offering</h3>
+<p>His sacrifice rises as smoke that pleases God, setting in motion the envy that destroys him.</p>
+<h3 id="blood-that-cries">Blood That Cries</h3>
+<p>After his murder, God tells Cain that Abel&#39;s blood is crying out from the ground — the first biblical image of victimhood that demands justice (Genesis 4:10).</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Abel&#39;s afterlives deepen his silence into speech. Christian tradition makes him a type of Christ: the innocent shepherd killed by his own brother, whose blood cries for justice as Christ&#39;s &#39;speaks a better word&#39; of reconciliation (Hebrews 11:4; 12:24). The Qur&#39;an, which never names him — tafsīr calls him Hābīl — gives him the story&#39;s moral voice: threatened with death, he refuses to raise his hand, choosing to be killed rather than to kill (5:27–29). Jewish tradition moves him from victim to judge: in the Testament of Abraham Abel presides over the souls before the final assize, and later kabbalistic tradition reincarnates his soul in Moses — the shepherd of the flock become the shepherd of Israel. The figure of the innocent, silent victim — Abel, Isaac, the lamb — runs like a thread through the Abrahamic traditions.</p>
+<p>Within the corpus, the figure bound most closely to his story is his brother <a href="/sites/cain/">Qāyīn</a>, whose rejected offering and unsilenceable guilt complete the pair.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Hāḇel is the archetype of the <strong>innocent victim</strong>. His name has named countless characters in literature and film who suffer for their goodness, and the phrase &#39;Cain and Abel&#39; has become shorthand for any fatal rivalry between brothers; painters from Titian and Tintoretto to Rubens fixed the murder in the European imagination. In theology, Abel&#39;s blood becomes the symbol of justice that cannot be silenced, and the Roman Canon still asks God to accept the Church&#39;s gifts as he accepted the gifts of his &#39;righteous servant Abel&#39;. In psychology, the Abel-figure represents the vulnerable self destroyed by envy. The story also haunts discussions of sacrifice: why does divine favor fall on one offering and not another? Abel does not answer; his silence is the point.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Hāḇel given in this edition rests on the witnesses and reference works listed below. The lexica establish the name&#39;s identity with the noun heḇel, &#39;breath, vapor&#39;; Genesis 4 supplies the entire narrative; the New Testament passages give him his martyrological afterlife; and the Qur&#39;an supplies the Islamic telling.</p>
+<ul>
+  <li> HALOT s.v. הֶבֶל — the noun &#39;breath, vapor&#39; and the proper name.</li>
+  <li> TDOT s.v. Abel — theological profile of the figure.</li>
+  <li> Genesis 4 — the primary narrative: offerings, murder, crying blood.</li>
+  <li> Matthew 23:35; Luke 11:51; Hebrews 11:4; 12:24 — &#39;righteous Abel&#39; and the better word.</li>
+  <li> Qur&#39;an, Surah 5:27–31 — the two sons of Adam.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Hāḇel is the one who does nothing wrong and is destroyed for it. He offers what he has, accepts what comes, and dies without a recorded word. In a culture that celebrates agency, Abel is a difficult figure: he is important precisely because he does not act. His significance lies in being seen, being favored, and being killed — a progression that mirrors the fate of many who are noticed for qualities that provoke others.</p>
+<p>Yet Abel&#39;s silence is not emptiness. After his death, his blood speaks. The earth itself becomes his witness, refusing to absorb the crime quietly. In this, Abel anticipates every tradition that says the victim&#39;s voice must be heard, even — especially — when the victim can no longer speak. To remember Hāḇel is to remember that innocence is not a protection, but it is also not a waste. It cries out until it is answered.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Hāḇel is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>habel</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 5 characters of the name, the restoration adjusts 2: 1 mark of length (ā); 1 further adjustment (ḇ). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>habel</em> to <strong>Hāḇel</strong>, one character at a time:</p>
+<ul>
+  <li><strong>h</strong> → <strong>H</strong> — Same, capitalized</li>
+  <li><strong>a</strong> → <strong>ā</strong> — Macron: long vowel</li>
+  <li><strong>b</strong> → <strong>ḇ</strong> — Beth with line below</li>
+  <li><strong>e</strong> → <strong>e</strong> — Same</li>
+  <li><strong>l</strong> → <strong>l</strong> — Same</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>hāḇel.com</strong>, which the DNS carries in punycode form as xn--hel-1oa4628a.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Hāḇel; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Hebrew can now be typed into any browser on earth.</p>
+<h2 id="the-canaanite-pantheon">The Canaanite Pantheon</h2>
+<p>Hāḇel is one of 12 entries the PÚNYCODEX lexicon catalogues under the Canaanite pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Hāḇel mean?</strong> The traditional gloss is &quot;Second son of Adam and Eve.&quot;</p>
+<p><strong>Which tradition does Hāḇel belong to?</strong> Hāḇel is catalogued in the Canaanite pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Hāḇel classified as Tier 2?</strong> Because the original preserves at least one philological feature that ASCII cannot encode — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Hāḇel a working domain?</strong> Yes — hāḇel.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for hāḇel.com?</strong> The DNS encoding is xn--hel-1oa4628a.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>In 2026 the stakes are practical. Search indexes, language models, and localization pipelines all inherit whatever spelling the web normalizes — which means every Unicode domain is also a training signal. <strong>Hāḇel</strong> teaches the machinery that the restored form exists, that it is used, and that it points to a real place. That is why a project built on philology ends up caring about DNS: the infrastructure decides which names the future sees. This restoration makes sure the future sees the whole name.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/yam/">Yām</a></li>
   <li><a href="/sites/cain/">Qāyīn</a></li>
   <li><a href="/sites/moses/">Mōšeh</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
-  <li><a href="https://www.britishmuseum.org/">Scholarly reference</a></li>
+  <li>Genesis 4 (primary Abel narrative); Matthew 23:35.</li>
+  <li>HALOT s.v. הֶבֶל.</li>
+  <li>Khan, The Tiberian Pronunciation Tradition of Biblical Hebrew (2020).</li>
+  <li>Biblia Hebraica Stuttgartensia (BHS), Genesis 4:2.</li>
+  <li>Lexicon authorities for this entry: Abraham.</li>
 </ul>
-<h2>What the Sources Record</h2>
-<p>Hāḇel is the second son whose only crime is to be accepted. A keeper of sheep, he brings the firstborn of his flock and their fat portions, and God regards his offering. He does not speak a single recorded sentence in the Hebrew Bible. His entire life is told in a few verses, yet his name has become synonymous with innocence destroyed and blood that cannot be buried. ### Keeper of Sheep Abel&#39;s vocation is pastoral; he offers the firstlings and fat of his flock, and God looks on him with favor (Genesis 4:2, 4). ### The Shepherd&#39;s Crook The gentle tool of his trade, later inverted into the Christian image of the Good Shepherd who lays down his life for the sheep. ### Accepted Offering His sacrifice rises as smoke that pleases God, setting in motion...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Hāḇel as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Hebrew to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Hāḇel through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/abel/">home page</a> offers the full name breakdown, the <a href="/sites/abel/lore/">lore page</a> explores the myth, and the <a href="/sites/abel/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Hāḇel do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">canaanite</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

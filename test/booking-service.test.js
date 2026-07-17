@@ -6,6 +6,7 @@
  */
 
 const assert = require('node:assert');
+const crypto = require('node:crypto');
 const Database = require('better-sqlite3');
 
 process.env.STRIPE_SECRET_KEY = 'sk_test_dummy';
@@ -33,6 +34,20 @@ require.cache[stripeModulePath] = {
   }),
 };
 
+// Capture verification codes at the email boundary before booking-service
+// loads. Codes are stored hashed in the DB, so tests observe the code where
+// it is actually delivered: the outgoing verification email.
+const emailModulePath = require.resolve('../platform/api/email.js');
+const realEmail = require(emailModulePath);
+const deliveredCodes = new Map();
+require.cache[emailModulePath].exports = {
+  ...realEmail,
+  sendVerificationCode: async ({ email, code }) => {
+    deliveredCodes.set(email, code);
+    return { success: true, mocked: true };
+  },
+};
+
 const {
   BookingError,
   listSlots,
@@ -57,7 +72,11 @@ const {
   getIndividualSlotIds,
 } = require('./helpers/slots.js');
 
-function getVerificationCode(email) {
+function getDeliveredCode(email) {
+  return deliveredCodes.get(email);
+}
+
+function getStoredCode(email) {
   const db = new Database(getTestDbPath(__filename));
   const row = db.prepare('SELECT code FROM email_verifications WHERE email = ?').get(email);
   db.close();
@@ -66,7 +85,7 @@ function getVerificationCode(email) {
 
 async function makeVerifiedEmail(email) {
   await sendVerification(email);
-  const code = getVerificationCode(email);
+  const code = getDeliveredCode(email);
   const result = await checkVerification(email, code);
   return result.verificationToken;
 }
@@ -127,11 +146,14 @@ test('sendVerification rejects invalid email', async () => {
   }
 });
 
-test('sendVerification stores a 6-digit code', async () => {
+test('sendVerification stores only a sha256 hash of the code', async () => {
   const result = await sendVerification('test-verify@example.com');
   assert.strictEqual(result.sent, true);
-  const code = getVerificationCode('test-verify@example.com');
-  assert.ok(/^\d{6}$/.test(code));
+  const delivered = getDeliveredCode('test-verify@example.com');
+  assert.ok(/^\d{6}$/.test(delivered));
+  const stored = getStoredCode('test-verify@example.com');
+  assert.notStrictEqual(stored, delivered);
+  assert.strictEqual(stored, crypto.createHash('sha256').update(delivered).digest('hex'));
 });
 
 test('checkVerification rejects missing inputs', async () => {
@@ -158,10 +180,7 @@ test('checkVerification rejects wrong and expired codes', async () => {
   ).run('wrong-code@example.com');
   db.close();
   try {
-    await checkVerification(
-      'wrong-code@example.com',
-      getVerificationCode('wrong-code@example.com')
-    );
+    await checkVerification('wrong-code@example.com', getDeliveredCode('wrong-code@example.com'));
     assert.fail('expected error');
   } catch (err) {
     assert.strictEqual(err.status, 400);

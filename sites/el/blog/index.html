@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,46 +170,210 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#name-variations">Name Variations</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-canaanite-pantheon">The Canaanite Pantheon</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>How Ēl Got Its Accent Back</h1>
-<p>The ASCII form <em>el</em> is missing something. Ēl restores the marks that the original language used to distinguish this name from a thousand others. The name is attested in Ugaritic as 𐎛𐎍. Etymologically it means &quot;The high god of the Canaanite pantheon; the common Semitic word for &quot;god&quot; and a divine name&quot;. The reconstructed proto-form is ʾil- (proto-afro-asiatic, &quot;god, divine power&quot;). From Common Semitic ʾil-/ʾēl, with long /ē/ preserved by the macron Cognate forms across related languages: - אֵל (ʾĒl) (Hebrew) - إِلٰه (ʾilāh) (Arabic) - ilu (Akkadian) The ASCII form el survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Ēl recovers the vowel length of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both,...</p>
-<h2>The Missing Marks</h2>
-<p>Classified as <strong>Tier 2</strong>, this restoration carries the stress and length that standard ASCII discards. the original preserves at least one philological feature that ASCII cannot encode</p>
-<h2>Step by Step</h2>
-<p>The transformation from <em>el</em> to <strong>Ēl</strong> happens one character at a time. Some letters stay the same; others gain accents, macrons, or entirely new shapes. The breakdown on the <a href="/sites/el/">temple home page</a> shows exactly how.</p>
-<h2>Why Stress and Length Matter</h2>
-<p>In the source language, changing a stress or a vowel length can change a meaning. Names are especially sensitive because they are proper nouns: one spelling points to one entity. Ēl preserves that pointer in a way <em>el</em> cannot.</p>
-<h2>The Restored Form</h2>
-<p>Ēl is now a domain. That simple fact turns a philological detail into a public demonstration. Anyone who types it participates in the restoration.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Ēl is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>How Ēl got its accent back</h1>
+<p>The ASCII form <em>el</em> is missing something. <strong>Ēl</strong> restores the marks the source language used to distinguish this name from a thousand others — and those marks change how the name is read, pronounced, and understood. This post explains, with the full scholarly record behind it, what each restored mark preserves: the Ugaritic evidence, the reconstructed sound, the myths the name carries, and the classification logic that separates Tier 1 restorations from Tier 2. By the end, the marks in Ēl will look less like ornaments and more like what they are — recovered evidence, pinned back in its proper place.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Ēl</li>
+  <li><strong>ASCII form:</strong> el</li>
+  <li><strong>Meaning:</strong> &quot;The high god of the Canaanite pantheon; the common Semitic word for &quot;god&quot; and a divine name&quot;</li>
+  <li><strong>Domain of influence:</strong> Supreme God, Father of Gods</li>
+  <li><strong>Pantheon:</strong> Canaanite</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> 𐎛𐎍 (Ugaritic)</li>
+  <li><strong>Live domain:</strong> ēl.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Ēl</strong> (<em>el</em>) — The Ancient High God · Father of the Divine Assembly — is the supreme god of the Canaanite pantheon as it is known from the tablets of Ugarit, catalogued in this edition under the domain &quot;Supreme God, Father of Gods.&quot; His name is simultaneously a proper name and the common Semitic noun &quot;god,&quot; a double identity that shaped three millennia of West Semitic theology.</p>
+<p>Ēl is the <strong>ancient one at the center</strong> of the Canaanite pantheon. He is the father of gods and men, the Bull whose creative power generates the divine assembly, and the king whose distant authority nonetheless settles every dispute. Unlike Baꜥal, who acts, Ēl decrees. His throne is at the source of the rivers; his tent is where the gods come to receive judgment.</p>
+<p>PÚNYCODEX restores the name as <strong>Ēl</strong> and serves its temple at <a href="https://xn--l-oia.com">ēl.com</a>. The macron records the long /ē/ inferred from Hebrew אֵל and from comparative Semitic evidence; it is the one prosodic feature the restoration carries, and it places the name in Tier 2. The plain ASCII <em>el</em> is a fallback imposed by the early domain-name system — in a two-letter name, the lost vowel length is half the philology, which is precisely what the restoration refuses to surrender.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Ugaritic as <strong>𐎛𐎍</strong>. Etymologically it means &quot;The high god of the Canaanite pantheon; the common Semitic word for &quot;god&quot; and a divine name&quot;.</p>
+<p>The reconstructed proto-form is <em>ʾil-</em> (proto-afro-asiatic, &quot;god, divine power&quot;). From Common Semitic ʾil-/ʾēl, with long /ē/ preserved by the macron</p>
+<p>Cognate forms across related languages:</p>
+<ul>
+  <li><strong>אֵל (ʾĒl)</strong> (Hebrew)</li>
+  <li><strong>إِلٰه (ʾilāh)</strong> (Arabic)</li>
+  <li><strong>ilu</strong> (Akkadian)</li>
+</ul>
+<p>The ASCII form <em>el</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Ēl</strong> recovers the vowel length of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>e</strong> → <strong>Ē</strong> — Macron marks long /ē/; capitalized in the restoration</li>
+  <li><strong>l</strong> → <strong>l</strong> — Same</li>
+</ul>
+<p>Attested and derived spellings of the name:</p>
+<ul>
+  <li><strong>ēl</strong> — owned form: Lowercase display form of the owned domain</li>
+</ul>
+<p>The project holds the domain <strong>ēl.com</strong> (xn--l-oia.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: From Common Semitic ʾil-/ʾēl, with long /ē/ preserved by the macron</p>
+<p>The reconstructed proto-form is <em>*ʾil-</em> (proto-afro-asiatic), glossed as &quot;god, divine power&quot;.</p>
+<p>The reconstruction is classed as attested.</p>
+<p>Kindred forms recorded in the lexicon:</p>
+<ul>
+  <li><strong>אֵל (ʾĒl)</strong> (Hebrew) — cognate</li>
+  <li><strong>إِلٰه (ʾilāh)</strong> (Arabic) — cognate</li>
+  <li><strong>ilu</strong> (Akkadian) — cognate</li>
+</ul>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Ugaritic as <strong>𐎛𐎍</strong> — Northwest Semitic cuneiform alphabet, attested Late Bronze Age, c. 1400–1200 BCE, in Ugarit (modern Ras Shamra, Syria). The script is written left-to-right.</p>
+<p>The scholarly transliteration is <em>Ēl</em> (Ugaritic alphabetic cuneiform), giving the normalized reading /ˈʔiːl/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The name is written 𐎛𐎍 in the Ugaritic cuneiform alphabet.</li>
+  <li>Ugaritic ʿayin is rendered with Egyptological Ain (ꜥ) for DNS registrability.</li>
+  <li>Long vowels are reconstructed from Hebrew and Akkadian cognates and marked with macrons.</li>
+  <li>The Unicode restoration Ēl is registrable in .com; the Ugaritic cuneiform form is not supported in the .com IDN table.</li>
+</ul>
+<p>Ugaritic writes the name 𐎛𐎍 (ʾ-i-l), the common word for &#39;god&#39; as well as the proper name of the high god. Phoenician writes 𐤀𐤋 (ʾ-l). The macron over ē in Ēl marks the long vowel inferred from Hebrew אֵל and from comparative Semitic evidence. The name is both appellative and proper name, a fact that makes Ēl uniquely elusive and foundational.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/ʔeːl/</strong> — Ugaritic/Phoenician Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>ʔē-</strong> — Glottal stop [ʔ] plus long [eː], marked by macron; the long vowel distinguishes the divine name from the common noun &#39;god&#39; in some forms.</li>
+  <li><strong>-l</strong> — Voiced alveolar lateral approximant [l]; the root ʾil- means &#39;god, divine power&#39; throughout Semitic.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;AYLE&#39; — like &#39;ale&#39; with a long vowel and a slight glottal catch at the beginning; the name is short and resonant.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Ugaritic</strong> — 𐎛𐎍 (ʾil), the high god; also 𐎛𐎍𐎁 (ʾil ʾib), &#39;god of the father&#39; / divine ancestor</li>
+  <li><strong>Hebrew</strong> — אֵל (ʾĒl), &#39;God&#39; or the name El; preserved in Israel, Bethel, Gabriel, Michael</li>
+  <li><strong>Arabic</strong> — إِلٰه (ʾilāh), &#39;god,&#39; and al-ʾilāh &gt; Allāh, &#39;the God&#39;</li>
+  <li><strong>Akkadian</strong> — ilu, the common word for &#39;god&#39;</li>
+</ul>
+<p>Ēl is both a proper name and the common Semitic word for &#39;god.&#39; The macron marks the long vowel inferred from Hebrew אֵל and Ugaritic spellings. As a Tier-2 name it preserves length (macron) but not stress/accent, fitting the project&#39;s convention for registering a single distinctive prosodic feature.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Ēl appears in almost every major Ugaritic myth, yet he rarely takes center stage. He is the one appealed to, the one who gives or withholds blessing, the one whose laughter signals cosmic assent. His mythology is the mythology of authority itself — distant, benevolent, sometimes foolish, always final.</p>
+<h3 id="the-divine-kingmaker-the-baal-cycle">The Divine Kingmaker (The Baal Cycle)</h3>
+<p>In KTU 1.2 iii, Ēl initially grants kingship to Yamm, the Sea. Later, persuaded by Asherah, he approves Baꜥal&#39;s palace and kingship (KTU 1.3 v 36; 1.4 iv 48). Even Baꜥal&#39;s triumphant reign depends on the old king&#39;s word. Ēl is not the warrior; he is the source from which warrior-kingship flows.</p>
+<h3 id="father-of-years-the-baal-cycle">Father of Years (The Baal Cycle)</h3>
+<p>When messengers approach Ēl, they find him at the source of the rivers, in the midst of the divine assembly. His epithet <em>ab šnm</em>, &#39;father of years,&#39; emphasizes that he is older than the seasons themselves. Yet he is also approachable, even convivial: in KTU 1.114 he gets drunk at a banquet and must be helped home.</p>
+<h3 id="the-generous-patriarch-epic-of-kirta">The Generous Patriarch (Epic of Kirta)</h3>
+<p>In the Epic of Kirta (KTU 1.14–16), Ēl appears to the king in a dream and grants him a son and victory. He is the divine patron of kings, the one who blesses the righteous ruler and ensures the continuity of his house. His mercy is a recurring theme, though it can look like passivity.</p>
+<h3 id="the-procreator-myth-of-the-gracious-gods">The Procreator (Myth of the Gracious Gods)</h3>
+<p>In KTU 1.23, Ēl&#39;s sexual vitality is celebrated in a myth of the birth of the &#39;gracious gods&#39; (Shahar and Shalim, Dawn and Dusk). The text&#39;s coarse humor underscores the ancient connection between the high god&#39;s creative power and the fertility of the cosmos.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>Ēl&#39;s attributes are consistent across the texts and the sparse iconography, each compressing a claim about aged, generative sovereignty:</p>
+<ul>
+  <li><strong>Bull</strong> — The standing title <em>ṯr ʾil</em>, &quot;Bull El,&quot; runs through the Baꜥal Cycle; the animal concentrates generative strength and patriarchal rank rather than ferocity.</li>
+  <li><strong>Grey beard</strong> — The epithet <em>ab šnm</em>, &quot;Father of Years,&quot; makes age itself his credential; he is older than the assembly he rules.</li>
+  <li><strong>Source of the rivers</strong> — His tent stands <em>mbk nhrm, qrb apq thmtm</em>, &quot;at the source of the rivers, amid the channels of the two deeps,&quot; the cosmic spring where the gods convene.</li>
+  <li><strong>Seated, blessing figure</strong> — A 13th-century BCE serpentine stela from Ugarit (National Museum, Aleppo) shows a bearded god enthroned, right hand raised in blessing toward a standing worshipper — the standard candidate for Ēl&#39;s portrait. Small bronze statuettes from the same city of a cloaked, sandaled old man with raised hand receive the same identification.</li>
+  <li><strong>Tent</strong> — Baꜥal must fight for a palace; Ēl already dwells in a tent, the patriarchal dwelling that no rival built and none can take.</li>
+</ul>
+<ul>
+  <li><strong>Source of rivers</strong> — The cosmic freshwater spring where his tent stands</li>
+  <li><strong>Winged sun or throne</strong> — His exalted kingship over the divine council</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Ēl&#39;s archaeological footprint is textual above all. The alphabetic-cuneiform tablets of Ras Shamra — the Baꜥal Cycle (KTU 1.1–1.6), the Epic of Kirta (KTU 1.14–1.16), and the god lists (KTU 1.47; 1.118) — place ʾil at the head of Ugarit&#39;s pantheon and were excavated in the acropolis archives of the city. The serpentine stela of a seated, blessing god and the bronze figurines of an aged, cloaked deity give the high god a face, though both identifications rest on iconographic inference rather than accompanying inscription.</p>
+<p>Beyond Ugarit, the Karatepe bilingual (KAI 26, 8th century BCE) invokes &quot;El, creator of the earth&quot; (ʾl qn ʾrṣ); the Sefire treaty steles (KAI 222) list &quot;El and Elyan&quot; among the divine witnesses; and the Deir ꜥAlla plaster texts place El at the head of a council of Shadday-gods. In the Iron Age Levant his name survives most densely in theophoric personal names on seals and ostraca — the quiet epigraphic residue of a god absorbed into other names rather than erased.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Ēl is the <strong>ancient one at the center</strong> of the Canaanite pantheon. He is the father of gods and men, the Bull whose creative power generates the divine assembly, and the king whose distant authority nonetheless settles every dispute. Unlike Baꜥal, who acts, Ēl decrees. His throne is at the source of the rivers; his tent is where the gods come to receive judgment.</p>
+<h3 id="creator-of-creatures">Creator of Creatures</h3>
+<p>His epithet bny bnwt, &#39;Creator of Creatures,&#39; marks him as the ultimate source of all life.</p>
+<h3 id="bull-el">Bull El</h3>
+<p>The bull is his animal: strength, fertility, and patriarchal authority concentrated in one image.</p>
+<h3 id="king-and-judge">King and Judge</h3>
+<p>The divine assembly gathers before him; kingship is conferred by his word, whether for Baꜥal or for Athtar.</p>
+<h3 id="father-of-gods-and-men">Father of Gods and Men</h3>
+<p>He is &#39;ab ʾilm, &#39;father of the gods,&#39; and &#39;ab ʾadmi, &#39;father of man&#39; — the origin of all genealogies.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Ēl is the common Semitic god par excellence. His name underlies Hebrew ʾĒl and its compounds (Israel, Gabriel, Michael), and it survives in Arabic Allāh (&lt; al-ʾilāh, &#39;the God&#39;). In the Greek world, the Phoenician high god was identified with Kronos, the aged father of Zeus, while Baꜥal was compared to Zeus himself. In Hurrian and Hittite treaties, Ēl appears as Elkunirša, paired with Asherah/Ašertu. The biblical tradition eventually absorbed Ēl into Yahweh: many of Israel&#39;s oldest poems use ʾĒl as a name or title for their own god, and the epithet ʾĒl Shaddai may preserve a Canaanite title of the high god.</p>
+<p>Within the Canaanite tradition, closely related names in the corpus include [[abel|Hāḇel]], [[anat|ꜥAnat]], [[asherah|ꜥAsherah]], [[baal|Baꜥal]], [[cain|Qāyīn]], and [[david|Dāwîḏ]].</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Ēl did not disappear; he was subsumed. His name lives in the word &#39;God&#39; itself across the Semitic languages, in countless theophoric personal names, and in the biblical title El Shaddai. The God of Abraham, Isaac, and Jacob is partly shaped by the old Canaanite high god: distant, paternal, creator, judge. In modern religious studies, Ēl has become a test case for how monotheism emerged not by inventing a new deity but by elevating and narrowing an old one. To name Ēl is therefore to name a ancestor shared by Judaism, Christianity, and Islam — and by the Canaanite religion they eventually superseded.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Ēl given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> KTU (Ugaritic texts).</li>
+  <li> Corpus Inscriptionum Semiticarum, Académie des Inscriptions et Belles-Lettres, Paris, 1881. <a href="https://aibl.fr/travaux/le-cabinet-du-corpus-inscriptionum-semiticarum/">Full text</a></li>
+  <li> Coogan, Stories from Ancient Canaan.</li>
+  <li> Smith, The Origins of Biblical Monotheism.</li>
+  <li> Cross, Canaanite Myth and Hebrew Epic.</li>
+  <li> Wyatt, Religious Texts from Ugarit.</li>
+  <li> KTU 1.1–1.6 (Ugaritic Baal Cycle: El&#39;s decrees and divine council).</li>
+  <li> KTU 1.14–1.16 (Epic of Keret).</li>
+  <li> Hebrew Bible, Genesis 14:18–22 (El Elyon, Melchizedek of Salem).</li>
+  <li> Hebrew Bible, Psalm 82; Deuteronomy 32:8–9 (El/Elyon and the divine council).</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Ēl is the god of &#39;and then what?&#39; He does not rush into battle; he sits at the source of the rivers and lets the younger gods come to him. His authority is so settled that he can afford to be slow, even tipsy, even outmaneuvered by his own wife and children. Yet when he speaks, the cosmos arranges itself around his word.</p>
+<p>There is a kind of spiritual maturity in Ēl that the modern world often undervalues. He represents the authority that does not need to prove itself, the father who does not compete with his children, the creator who can delegate the storm to Baꜥal without jealousy. To meditate on Ēl is to ask whether our own craving for action, novelty, and recognition allows room for the older, slower power that holds everything together.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Ēl is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>el</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 2 characters of the name, the restoration adjusts 1: 1 mark of length (Ē). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="name-variations">Name Variations</h2>
+<p>The lexicon records 1 additional form of the name:</p>
+<ul>
+  <li><strong>ēl</strong> (owned) — Lowercase display form of the owned domain</li>
+</ul>
+<p>The temple uses <strong>Ēl</strong> as the primary form: it is the spelling that best balances philological accuracy with the practical limits of DNS.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>el</em> to <strong>Ēl</strong>, one character at a time:</p>
+<ul>
+  <li><strong>e</strong> → <strong>Ē</strong> — Macron marks long /ē/; capitalized in the restoration</li>
+  <li><strong>l</strong> → <strong>l</strong> — Same</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>ēl.com</strong>, which the DNS carries in punycode form as xn--l-oia.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Ēl; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Ugaritic can now be typed into any browser on earth.</p>
+<h2 id="the-canaanite-pantheon">The Canaanite Pantheon</h2>
+<p>Ēl is one of 12 entries the PÚNYCODEX lexicon catalogues under the Canaanite pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>The marks in <strong>Ēl</strong> were never lost; they were only waiting for a carrier that could hold them. Now that the carrier exists, the burden flips: every use of <em>el</em> is a choice to leave evidence on the table. The PÚNYCODEX temple keeps the restored form in circulation — as a domain, a dataset entry, and a scholarly argument — so that the choice to use it stays easy. Accent by accent, macron by macron, that is how the original names come back: not with a single grand gesture, but with a spelling that finally works everywhere.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/david/">Dāwîḏ</a></li>
   <li><a href="/sites/leviathan/">Liwyāṯān</a></li>
   <li><a href="/sites/moses/">Mōšeh</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://aibl.fr/travaux/le-cabinet-du-corpus-inscriptionum-semiticarum/">Corpus Inscriptionum Semiticarum, Académie des Inscriptions et Belles-Lettres, Paris, 1881.</a></li>
   <li><a href="https://www.ancientneareast.net/ugarit-ras-shamra/">Ugaritic Textual Corpus, Ras Shamra–Ugarit corpus (KTU / CUSAS), 1200 BCE.</a></li>
+  <li>Dietrich, Loretz &amp; Sanmartín (eds.), The Cuneiform Alphabetic Texts from Ugarit (KTU), 3rd enlarged ed., Ugarit-Verlag, 2013.</li>
+  <li>Coogan &amp; Smith, Stories from Ancient Canaan, 2nd ed., Westminster John Knox, 2012.</li>
+  <li>Cross, Canaanite Myth and Hebrew Epic, Harvard University Press, 1973.</li>
+  <li>KTU (Ugaritic texts).</li>
+  <li>Lexicon authorities for this entry: Ugaritic texts, CIS, KTU, Coogan, Smith, Cross.</li>
 </ul>
-<h2>The Cultural Afterlife</h2>
-<p>Ēl did not disappear; he was subsumed. His name lives in the word &#39;God&#39; itself across the Semitic languages, in countless theophoric personal names, and in the biblical title El Shaddai. The God of Abraham, Isaac, and Jacob is partly shaped by the old Canaanite high god: distant, paternal, creator, judge. In modern religious studies, Ēl has become a test case for how monotheism emerged not by inventing a new deity but by elevating and narrowing an old one. To name Ēl is therefore to name a ancestor shared by Judaism, Christianity, and Islam — and by the Canaanite religion they eventually superseded.</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Ēl as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Ugaritic to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Ēl through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/el/">home page</a> offers the full name breakdown, the <a href="/sites/el/lore/">lore page</a> explores the myth, and the <a href="/sites/el/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Ēl do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
-<h2>A Note on the Address Bar</h2>
-<p>When you type Ēl, the browser performs an invisible conversion into Punycode so the global DNS can route the request. The user sees the original name; the machines see a compatible ASCII encoding. That duality is the engineering compromise that makes the restoration possible, and it is the reason every Unicode domain is both a technical milestone and a small act of cultural memory.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">canaanite</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

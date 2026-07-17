@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,35 +170,200 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-egyptian-pantheon">The Egyptian Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#typing-hk">Typing Ḥkꜣ</a></li>
+                <li><a href="#sister-temples">Sister Temples</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>From Hieroglyphs to Unicode: The Journey of Ḥkꜣ</h1>
-<p>Long before it was a domain, the name traveled through scripts. The name is preserved in Hieroglyphs as 𓎛𓂓𓏛 — Egyptian hieroglyphic, attested Old Kingdom – Late Antiquity, c. 2600 BCE – 400 CE, in Egypt. The script is written right-to-left / top-to-bottom. The scholarly transliteration is Ḥkꜣ (Egyptological conventional), giving the normalized reading Original vocalisation unknown; Egyptological /ˈhiː.kaʕ/.. The rendering proceeds step by step: - The Egyptian name is written 𓎛𓂓𓏛 in hieroglyphs. - Hieroglyphs combine logograms, phonograms, and determinatives; the exact function of each sign depends on context. - Egyptian writing does not record vowels; the vocalised form is a modern convention reconstructed from Coptic and Greek evidence. - The Unicode restoration Ḥkꜣ uses Egyptological alef/ayin and other... This post follows Ḥkꜣ from its earliest attestation to the address bar.</p>
-<h2>The Original Sign</h2>
-<p>The original script gives us <strong>𓎛𓂓𓏛</strong>. The name is preserved in Hieroglyphs as 𓎛𓂓𓏛 — Egyptian hieroglyphic, attested Old Kingdom – Late Antiquity, c. 2600 BCE – 400 CE, in Egypt. The script is written right-to-left / top-to-bottom. The scholarly transliteration is Ḥkꜣ (Egyptological conventional), giving the normalized reading Original vocalisation unknown; Egyptological /ˈhiː.kaʕ/.. The rendering proceeds step by step: - The Egyptian name is written 𓎛𓂓𓏛 in hieroglyphs. - Hieroglyphs combine logograms, phonograms, and determinatives; the exact function of each sign depends on context. - Egyptian writing does not record vowels; the vocalised form is a modern convention reconstructed from Coptic and Greek evidence. - The Unicode restoration Ḥkꜣ uses Egyptological alef/ayin and other...</p>
-<h2>The Scholarly Transliteration</h2>
-<p>The name is attested in Hieroglyphs as 𓎛𓂓𓏛. Etymologically it means &quot;Magic, first work&quot;. From Egyptian ḥkꜣ &#39;magic, first work&#39;, the power of effective speech; the hieroglyphic spelling records consonants only. The ASCII form heka survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Ḥkꜣ recovers the full diacritic detail of the scholarly transliteration directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The letter-by-letter transformation runs: - h → Ḥ — H with dot: voiceless pharyngeal - e → k — Special phonetic character - k → ꜣ — Special... Scholars settled on Ḥkꜣ as the registrable restoration: faithful enough to be recognizable, precise enough to carry the marks that matter.</p>
-<h2>DNS as a Time Machine</h2>
-<p>Punycode lets the DNS carry non-ASCII characters without breaking older routers. To the user, the address bar shows Ḥkꜣ; to the infrastructure, it is an encoded xn-- string. The duality is invisible, but the result is revolutionary: a pre-digital name living inside a post-digital system.</p>
-<h2>Pronunciation</h2>
-<p>Scholars reconstruct the sound as <em>&#39;heh-KAH&#39; — start with a strong, throaty h, then a sharp ka held slightly longer at the end.</em>. Hearing the name in your own voice is one way to make the restoration personal.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Ḥkꜣ is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>From Hieroglyphs to Unicode: the journey of Ḥkꜣ</h1>
+<p>Long before it was a domain, this name traveled through scripts. <strong>Ḥkꜣ</strong> begins in Hieroglyphs, passes through scholarly transliteration, and ends — for now — inside the punycode machinery of the global DNS. Each stage of that journey preserves some information and loses some, and the craft of restoration is knowing exactly which marks matter. This post follows the name stage by stage: the original script, the reconstructed pronunciation, the mythological record, the material evidence, and finally the Unicode form that carries all of it into the address bar. Think of it as a biography of a name, told through its spelling.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Ḥkꜣ</li>
+  <li><strong>ASCII form:</strong> heka</li>
+  <li><strong>Meaning:</strong> &quot;Magic, first work&quot;</li>
+  <li><strong>Domain of influence:</strong> Magic, Medicine</li>
+  <li><strong>Pantheon:</strong> Egyptian</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> 𓎛𓂓𓏛 (Hieroglyphs)</li>
+  <li><strong>Live domain:</strong> Ḥkꜣ.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Ḥkꜣ</strong> (<em>heka</em>) — Magic, first work — belongs to the Egyptian tradition, where it is catalogued under the domain &quot;Magic, Medicine&quot;. The name means &quot;Magic, first work&quot;.</p>
+<p><strong>Ḥkꜣ</strong> is not stage magic. It is the power that makes intention effective — the force by which the gods created the world and by which human beings, with the right knowledge, can protect, heal, curse, or transform. Heka is both a god and a faculty, a substance and a technique. In Egyptian thought there is no sharp line between prayer, medicine, and magic: all are ways of aligning human action with the creative power that sustains ma&#39;at.</p>
+<p>PÚNYCODEX restores the name as <strong>Ḥkꜣ</strong> and serves its temple at <a href="https://xn--k-xnm1886d.com">Ḥkꜣ.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>heka</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Hieroglyphs as <strong>𓎛𓂓𓏛</strong>. Etymologically it means &quot;Magic, first work&quot;.</p>
+<p>From Egyptian ḥkꜣ &#39;magic, first work&#39;, the power of effective speech; the hieroglyphic spelling records consonants only.</p>
+<p>The ASCII form <em>heka</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Ḥkꜣ</strong> recovers the full diacritic detail of the scholarly transliteration directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>h</strong> → <strong>Ḥ</strong> — H with dot: voiceless pharyngeal</li>
+  <li><strong>e</strong> → <strong>k</strong> — Special phonetic character</li>
+  <li><strong>k</strong> → <strong>ꜣ</strong> — Special phonetic character</li>
+  <li><strong>a</strong> → <strong>—</strong> — Dropped: vowel not written</li>
+</ul>
+<p>The project holds the domain <strong>Ḥkꜣ.com</strong> (xn--k-xnm1886d.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: From Egyptian ḥkꜣ &#39;magic, first work&#39;, the power of effective speech; the hieroglyphic spelling records consonants only.</p>
+<p>The root gloss is &quot;magic, authoritative speech.&quot;</p>
+<p>The reconstruction is classed as attested.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Hieroglyphs as <strong>𓎛𓂓𓏛</strong> — Egyptian hieroglyphic, attested Old Kingdom – Late Antiquity, c. 2600 BCE – 400 CE, in Egypt. The script is written right-to-left / top-to-bottom.</p>
+<p>The scholarly transliteration is <em>Ḥkꜣ</em> (Egyptological conventional), giving the normalized reading Original vocalisation unknown; Egyptological /ˈhiː.kaʕ/..</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The Egyptian name is written 𓎛𓂓𓏛 in hieroglyphs.</li>
+  <li>Hieroglyphs combine logograms, phonograms, and determinatives; the exact function of each sign depends on context.</li>
+  <li>Egyptian writing does not record vowels; the vocalised form is a modern convention reconstructed from Coptic and Greek evidence.</li>
+  <li>The Unicode restoration Ḥkꜣ uses Egyptological alef/ayin and other registrable characters; the hieroglyphic form is not registrable in .com.</li>
+</ul>
+<p>The hieroglyphic spelling of <em>ḥkꜣ</em> combines the twisted wick (V28, phonogram ḥk), the ka-arms (D28, phonogram kꜣ), and a determinative such as the papyrus-roll or seated god. The initial <strong>ḥ</strong> is a voiceless pharyngeal fricative; English speakers may approximate it by breathing a dry &#39;h&#39; while tightening the throat. The final <strong>ꜣ</strong> is the Egyptian alef, a consonantal sound that closes the root without adding a full vowel.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/ħaˈkaːʕ/</strong> — Egyptological Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Ḥ-</strong> — Voiceless pharyngeal fricative [ħ], a dry h pronounced deep in the throat — the breath of a god before speech.</li>
+  <li><strong>-e-</strong> — Short unstressed vowel, reconstructed from Coptic ϩⲓⲕ (hik).</li>
+  <li><strong>-kaː-</strong> — Long vowel before the ka-radical; the word contains the root of ka, the vital essence, because magic activates life.</li>
+  <li><strong>-ʕ</strong> — Final alef (ꜣ), leaving the name open like an incantation that has not yet ended.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;heh-KAH&#39; — start with a strong, throaty h, then a sharp ka held slightly longer at the end.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Egyptian</strong> — ḥkꜣ, &#39;magic, magical power&#39;; related to ḥkꜣ &#39;to rule, to be effective&#39;</li>
+  <li><strong>Coptic</strong> — ϩⲓⲕ (hik), &#39;sorcery, magic&#39;</li>
+  <li><strong>Greek (possible loan)</strong> — Hecate&#39;s name may carry an Egyptian echo, though the etymology is disputed</li>
+</ul>
+<p>Heka is Tier 2 because the restoration preserves the long vowel conventionally understood in the final syllable (the ꜣ alef), without a stress accent in the Greek sense. The ḥ marks a consonant English lacks; it is not &#39;h&#39; as in &#39;house&#39; but a voiceless fricative produced at the back of the throat, giving the name its hissing, authoritative sound.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Heka appears in the oldest strata of Egyptian theology as a force rather than a character. Only gradually is he personified as a god in his own right — a being present before duality and therefore before the distinction between possible and actual.</p>
+<h3 id="coffin-texts-spell-261-before-the-gods">Coffin Texts Spell 261 (Before the Gods)</h3>
+<p>In Coffin Texts Spell 261, Heka declares: &#39;To me belonged the universe before you gods came into being; you have come afterwards because I am Heka.&#39; This is not mere boasting. It places heka prior to divine genealogy: the power to be effective is older than the beings who wield it. Creation, in this view, is an act of heka performed by Atum, Re, and every competent magician after them.</p>
+<h3 id="heka-in-the-circuit-of-re-the-solar-boat">Heka in the Circuit of Re (The Solar Boat)</h3>
+<p>Heka is said to travel in the sun-god&#39;s bark, repelling the chaos-serpent Apopis and defending the ordered cosmos. The &#39;Book of Overthrowing Apopis&#39; records rituals in which wax images of the enemy are bound, burned, and spat upon — acts of state heka performed daily in temples to ensure that the sun rises.</p>
+<h3 id="heka-sia-and-hu-the-triad-of-creation">Heka, Sia, and Hu (The Triad of Creation)</h3>
+<p>Heka is often grouped with <strong>Sia</strong> (perception, divine insight) and <strong>Hu</strong> (authoritative speech). Together they form the mental and verbal equipment of the creator: to know, to command, and to make effective. Where Hu speaks the word and Sia grasps its meaning, Heka is the bridge between intention and result — the moment a wish becomes real.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography of ḥkꜣ is double: an object-world of magical instruments, and the modest anthropomorphic figure of the god himself, standing in the crew of the solar bark.</p>
+<ul>
+  <li><strong>Serpent staff</strong> — the wand entwined with cobras, emblem of the power to strike or to heal</li>
+  <li><strong>Wedjat eye</strong> — restoration achieved by magical means, the eye healed by Thoth&#39;s utterance</li>
+  <li><strong>Ankh</strong> — life activated and sustained by heka</li>
+  <li><strong>Papyrus scroll</strong> — the written spell, heka&#39;s physical vehicle; to know the words is to hold the power</li>
+  <li><strong>Open mouth</strong> — the Opening of the Mouth ritual, in which heka and breath reanimate statue and mummy</li>
+  <li><strong>Ivory wand</strong> — the curved &#39;apotropaic knife&#39; of the Middle Kingdom, incised with protective genii to defend mothers and children</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>The material culture of heka is unusually rich. Middle Kingdom deposits of execration figurines and inscribed pots — bound, broken, and buried to neutralise named enemies — come from Saqqara and from the Nubian fortress of Mirgissa, and the same rite survives in later state ritual as the &#39;Book of Overthrowing Apopis&#39;. Ivory apotropaic wands incised with protective genii, made to defend mothers and infants, are known from tombs at Lisht and other Middle Kingdom sites. The textual record runs from the London and Ebers medical papyri, where incantation and prescription sit side by side, to the great Late Period healing monuments: the cippi of Horus and the Metternich Stela (Metropolitan Museum 50.85), whose spells range Heka among the powers that repel hostile creatures.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p><strong>Ḥkꜣ</strong> is not stage magic. It is the power that makes intention effective — the force by which the gods created the world and by which human beings, with the right knowledge, can protect, heal, curse, or transform. Heka is both a god and a faculty, a substance and a technique. In Egyptian thought there is no sharp line between prayer, medicine, and magic: all are ways of aligning human action with the creative power that sustains ma&#39;at.</p>
+<h3 id="creative-force">Creative Force</h3>
+<p>The primordial energy Atum used to shape Shu and Tefnut and to call the cosmos into being.</p>
+<h3 id="medicine">Medicine</h3>
+<p>Medical papyri prescribe spells alongside herbs; healing is the practical, beneficent face of heka.</p>
+<h3 id="protective-speech">Protective Speech</h3>
+<p>Amulets, execration figurines, and tomb inscriptions all depend on heka-words to bind or repel.</p>
+<h3 id="divine-authority">Divine Authority</h3>
+<p>As a god, Heka travels in the solar bark and is invoked by lector-priests as a power older than the gods themselves (Coffin Texts Spell 261).</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>In the Late and Greco-Roman periods, Heka was identified with the ibis-headed Thoth as &#39;lord of heka&#39; and with Isis, who bears the title Weret-hekau, &#39;Great of Magic&#39;. The Coptic word <em>hik</em> survived to mean magic or sorcery, now carrying darker connotations under Christian influence. Some scholars have suggested that the Greek goddess Hecate&#39;s name and associations may owe something to Egyptian Heka, though the connection is philologically contested. Modern occult and Hermetic traditions have embraced Heka as the paradigmatic &#39;word of power&#39;, the spoken formula that reshapes reality.</p>
+<p>Within the Egyptian tradition, closely related names in the corpus include [[ab|Ꜣb]], [[akh|Ꜣḫ]], [[amun|Ꜣmun]], [[ankh|ꜥnḫ]], [[apep|Ꜥpp]], and [[ba|Bꜣ]].</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>The Egyptian understanding of magic as a natural, creative force — rather than as supernatural fraud — shaped the ancient Mediterranean world. Greece and Rome acknowledged Egypt as a premier school of the magical arts; the Greek Magical Papyri are full of invocations that claim Egyptian authority. Medieval grimoires, Renaissance ceremonial magic, and modern chaos magic all preserve the premise that words, correctly spoken, can compel reality. The phrase &#39;as above, so below&#39; is Hermetic, but its ancestor is the Egyptian conviction that heka aligns human speech with divine creation. Heka reminds us that &#39;magic&#39; was once a respectable technology of the soul.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Ḥkꜣ given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Faulkner, The Ancient Egyptian Coffin Texts.</li>
+  <li> Wörterbuch der ägyptischen Sprache (Wb), ḥkꜣ.</li>
+  <li> Gardiner, Egyptian Grammar.</li>
+  <li> Allen, Genesis in Egypt.</li>
+  <li> Ritner, The Mechanics of Ancient Egyptian Magical Practice.</li>
+  <li> Pyramid Texts.</li>
+  <li> Coffin Texts, Spell 261.</li>
+  <li> Book of the Dead.</li>
+  <li> Edwin Smith Medical Papyrus (heka-spells alongside surgical remedies).</li>
+  <li> Ebers Medical Papyrus (incantations and materia medica).</li>
+  <li> London Medical Papyrus (heka for skin and eye diseases).</li>
+  <li> Book of the Dead, Spell 17 (heka in solar theology).</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>We moderns tend to separate magic from medicine, prayer from spell, psychology from ritual. The Egyptians did not. For them, <em>heka</em> was the continuous field in which all these activities took place — the power to make something happen because it was named, imagined, and performed with right knowledge. A prescription without a spoken formula was incomplete; a curse without medical knowledge was rare. Efficacy was holistic.</p>
+<p>To restore the name <em>Ḥkꜣ</em> is to remember that creativity is not a private feeling but a force. The word that heals, the word that binds, the word that calls the world into shape — these are not metaphors. They are the inheritance of a civilisation that believed the first act of creation was a speaking, and that human beings, made in the image of the gods, could still learn the grammar of that speaking. Heka is the reminder that language is older than matter, and that the right name spoken at the right time is a kind of making.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Ḥkꜣ is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>heka</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 4 characters of the name, the restoration adjusts 4: 4 further adjustments (Ḥ, k, ꜣ, a). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>heka</em> to <strong>Ḥkꜣ</strong>, one character at a time:</p>
+<ul>
+  <li><strong>h</strong> → <strong>Ḥ</strong> — H with dot: voiceless pharyngeal</li>
+  <li><strong>e</strong> → <strong>k</strong> — Special phonetic character</li>
+  <li><strong>k</strong> → <strong>ꜣ</strong> — Special phonetic character</li>
+  <li><strong>a</strong> → <strong>a</strong> — Dropped: vowel not written</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>Ḥkꜣ.com</strong>, which the DNS carries in punycode form as xn--k-xnm1886d.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Ḥkꜣ; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Hieroglyphs can now be typed into any browser on earth.</p>
+<h2 id="the-egyptian-pantheon">The Egyptian Pantheon</h2>
+<p>Ḥkꜣ is one of 66 entries the PÚNYCODEX lexicon catalogues under the Egyptian pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Ḥkꜣ mean?</strong> The traditional gloss is &quot;Magic, first work.&quot;</p>
+<p><strong>Which tradition does Ḥkꜣ belong to?</strong> Ḥkꜣ is catalogued in the Egyptian pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Ḥkꜣ classified as Tier 2?</strong> Because the original preserves at least one philological feature that ASCII cannot encode — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Ḥkꜣ a working domain?</strong> Yes — Ḥkꜣ.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for Ḥkꜣ.com?</strong> The DNS encoding is xn--k-xnm1886d.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="typing-hk">Typing Ḥkꜣ</h2>
+<p>You do not need a special keyboard to use this restoration. The <a href="/type/">PÚNYCODEX Type Tool</a> converts the ASCII form <em>heka</em> into <strong>Ḥkꜣ</strong> as you type, and the browser extension offers the same conversion inside any text field. Copy the restored form, paste it into the address bar, and the DNS does the rest.</p>
+<h2 id="sister-temples">Sister Temples</h2>
+<p>Other temples in the Egyptian pantheon include <a href="/sites/henkhisesui/">Ḥnḫsšwj</a>, <a href="/sites/ka/">Kꜣ</a>, and <a href="/sites/khonsu/">Ḫnsw</a> — each with its own restoration story, its own scholarly record, and its own place in the lexicon.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Every stage of the journey from Hieroglyphs to Unicode was an act of care: the scribe who first wrote the name, the lexicographer who glossed it, the engineer who taught the DNS to carry it. The PÚNYCODEX restoration is the latest stage, not the last word — the Scholarly Edition is revised as the evidence improves. What does not change is the principle: a name deserves to be written the way its own tradition wrote it. <strong>Ḥkꜣ</strong> in the address bar is that principle, made routable.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/luxor/">Luxor</a></li>
   <li><a href="/sites/mafdet/">Mꜣfdt</a></li>
   <li><a href="/sites/neith/">Nt</a></li>
 </ul>
-<h2>Further Reading</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.cambridge.org/">James P. Allen, Middle Egyptian: An Introduction to the Language and Culture of Hieroglyphs, Cambridge University Press, 2000.</a></li>
+  <li>Faulkner, The Ancient Egyptian Coffin Texts.</li>
+  <li>Wörterbuch der ägyptischen Sprache (Wb), ḥkꜣ.</li>
+  <li>Gardiner, Egyptian Grammar.</li>
+  <li>Ritner, R. K. The Mechanics of Ancient Egyptian Magical Practice (SAOC 54). Chicago: Oriental Institute, 1993.</li>
+  <li>Lexicon authorities for this entry: Faulkner, Wb.</li>
 </ul>
-<h2>The Name in Context</h2>
-<p>Ḥkꜣ (heka) — Magic, first work — belongs to the Egyptian tradition, where it is catalogued under the domain &quot;Magic, Medicine&quot;. The name means &quot;Magic, first work&quot;. Ḥkꜣ is not stage magic. It is the power that makes intention effective — the force by which the gods created the world and by which human beings, with the right knowledge, can protect, heal, curse, or transform. Heka is both a god and a faculty, a substance and a technique. In Egyptian thought there is no sharp line between prayer, medicine, and magic: all are ways of aligning human action with the creative power that sustains ma&#39;at. PÚNYCODEX restores the name as Ḥkꜣ and serves its temple at Ḥkꜣ.com. The original preserves one prosodic feature — stress or vowel length — rather than both,...</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">egyptian</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

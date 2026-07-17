@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,41 +170,198 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-norse-pantheon">The Norse Pantheon</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>Miðgarðr in 2026: Why Scholars Still Care</h1>
-<p>In 2026, names are treated as data points. Miðgarðr is a reminder that they are also cultural artifacts. Miðgarðr (Old Norse Miðgarðr, &#39;middle enclosure&#39;, from mið &#39;middle&#39; + garðr &#39;enclosure, yard&#39;) is the world of human beings in Norse cosmology. The Eddic accounts of its making are uniform: after Óðinn and his brothers kill the primordial giant Ymir, the gods shape the earth from his flesh, the sea from his blood, the mountains from his bones, and — Grímnismál and Vafþrúðnismál agree — they build Miðgarðr for the sons of men from the giant&#39;s brows, a defensive wall against the jötnar. The word is not Norse alone: Gothic midjungards, Old English middangeard, Old Saxon middilgard, and Old High German mittilagart show the &#39;middle-yard&#39; to be a shared Germanic image of the human dwelling-place, ringed by sea, wilderness, and the worlds of gods and... The question is not whether the name is old, but whether the digital world is old enough to hold it.</p>
-<h2>The Scholarly Argument</h2>
-<p>The name is rendered in Younger Futhark as ᛘᛁᚦᚴᛅᚱᚦᛁ; the sixteen-rune futhark does not distinguish the voiced fricative ð from the voiceless þ, writing both with the thurs rune ᚦ. Etymologically it is a transparent Old Norse compound meaning &#39;middle enclosure&#39;. The Proto-Germanic ancestor of the compound is midi- + gardaz: midi- &#39;middle&#39; and gardaz &#39;enclosure, yard&#39; — the same gardaz that survives in English &#39;yard&#39; and &#39;garden&#39;. The world of men is named as a walled space. Cognate forms across related languages: - middangeard (Old English) — Anglo-Saxon counterpart - midjungards (Gothic) — &#39;world&#39; in Wulfila&#39;s Bible translation - mittilagart (Old High German) — the world that burns in the Muspilli The ASCII form midgardr survives only because the... The PÚNYCODEX Scholarly Edition collects these arguments in one place, with sources and revision history, so the claim can be inspected rather than merely asserted.</p>
-<h2>What the Accent Preserves</h2>
-<p>This entry is classified as <strong>Tier 2</strong>. the original preserves at least one philological feature that ASCII cannot encode Those marks are not ornaments; they are the coordinates that place the name inside a language.</p>
-<h2>A Living Edition</h2>
-<p>The <a href="/sites/midgardr/scholars/">Scholarly Edition</a> is not a static page. Verified contributors can improve it, and every change is attributed. That model turns a blog post like this one into an invitation to dig deeper.</p>
-<h2>Where to Learn More</h2>
+            <h1>Miðgarðr in 2026: why scholars still care</h1>
+<p>In 2026, names are treated as data points. <strong>Miðgarðr</strong> is a reminder that they are also cultural artifacts — and that the difference matters for search engines, AI training corpora, and anyone who types the name of a Norse figure into a browser. Scholars never stopped caring about the difference between <em>midgardr</em> and Miðgarðr; the web simply made that care actionable. What follows is the full scholarly picture — name, script, sound, myth, cult, and legacy — followed by the engineering compromise that lets a restored spelling live at a real address. The question is not whether the name is old. It is whether the digital world is old enough to hold it.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Miðgarðr</li>
+  <li><strong>ASCII form:</strong> midgardr</li>
+  <li><strong>Meaning:</strong> &quot;Middle enclosure (from mið + garðr)&quot;</li>
+  <li><strong>Domain of influence:</strong> Middle Enclosure (Earth)</li>
+  <li><strong>Pantheon:</strong> Norse</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> ᛘᛁᚦᚴᛅᚱᚦᛁ (Younger Futhark)</li>
+  <li><strong>Live domain:</strong> miðgarðr.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Miðgarðr</strong> (Old Norse <em>Miðgarðr</em>, &#39;middle enclosure&#39;, from <em>mið</em> &#39;middle&#39; + <em>garðr</em> &#39;enclosure, yard&#39;) is the world of human beings in Norse cosmology. The Eddic accounts of its making are uniform: after Óðinn and his brothers kill the primordial giant Ymir, the gods shape the earth from his flesh, the sea from his blood, the mountains from his bones, and — <em>Grímnismál</em> and <em>Vafþrúðnismál</em> agree — they build Miðgarðr for the sons of men from the giant&#39;s brows, a defensive wall against the jötnar. The word is not Norse alone: Gothic <em>midjungards</em>, Old English <em>middangeard</em>, Old Saxon <em>middilgard</em>, and Old High German <em>mittilagart</em> show the &#39;middle-yard&#39; to be a shared Germanic image of the human dwelling-place, ringed by sea, wilderness, and the worlds of gods and giants.</p>
+<p>PÚNYCODEX restores the name as <strong>Miðgarðr</strong> and serves its temple at <a href="https://xn--migarr-qwad.com">miðgarðr.com</a>. The eth (ð) preserves the voiced dental fricative of the Old Norse compound; no vowel in it is marked long or stressed, which places the name in Tier 2. The ASCII fallback <em>midgardr</em> is a convenience of the early domain-name system, not an ancient spelling.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is rendered in Younger Futhark as <strong>ᛘᛁᚦᚴᛅᚱᚦᛁ</strong>; the sixteen-rune futhark does not distinguish the voiced fricative ð from the voiceless þ, writing both with the thurs rune ᚦ. Etymologically it is a transparent Old Norse compound meaning &#39;middle enclosure&#39;.</p>
+<p>The Proto-Germanic ancestor of the compound is <em>midi- + </em>gardaz: <em>midi- &#39;middle&#39; and </em>gardaz &#39;enclosure, yard&#39; — the same *gardaz that survives in English &#39;yard&#39; and &#39;garden&#39;. The world of men is named as a walled space.</p>
+<p>Cognate forms across related languages:</p>
+<ul>
+  <li><strong>middangeard</strong> (Old English) — Anglo-Saxon counterpart</li>
+  <li><strong>midjungards</strong> (Gothic) — &#39;world&#39; in Wulfila&#39;s Bible translation</li>
+  <li><strong>mittilagart</strong> (Old High German) — the world that burns in the Muspilli</li>
+</ul>
+<p>The ASCII form <em>midgardr</em> survives only because the early domain-name system could not carry the letter eth; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Miðgarðr</strong> recovers the voiced dental fricative ð of the Old Norse spelling directly in the address bar; since ð is a consonant letter and no vowel is marked long or stressed, the name is classed Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>m</strong> → <strong>M</strong> — Same</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+  <li><strong>d</strong> → <strong>ð</strong> — Eth: voiced dental fricative</li>
+  <li><strong>g</strong> → <strong>g</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+  <li><strong>r</strong> → <strong>r</strong> — Same</li>
+  <li><strong>d</strong> → <strong>ð</strong> — Eth: voiced dental fricative</li>
+  <li><strong>r</strong> → <strong>r</strong> — Same</li>
+</ul>
+<p>The project holds the domain <strong>miðgarðr.com</strong> (xn--migarr-qwad.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: PGmc <em>midi- &quot;middle&quot; + </em>gardaz &quot;enclosure, yard&quot;. The world of men.</p>
+<p>The reconstructed proto-form is <em>*midi- + </em>gardaz* (proto-indo-european), glossed as &quot;middle + enclosure&quot;.</p>
+<p>The reconstruction is classed as attested.</p>
+<p>Kindred forms recorded in the lexicon:</p>
+<ul>
+  <li><strong>middangeard</strong> (old-english) — Anglo-Saxon counterpart</li>
+</ul>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Younger Futhark as <strong>ᛘᛁᚦᚴᛅᚱᚦᛁ</strong> — Germanic runic, attested Viking Age, c. 800–1100 CE, in Scandinavia. The script is written left-to-right, top-to-bottom.</p>
+<p>The scholarly transliteration is <em>Miðgarðr</em> (normalized Old Norse), giving the normalized reading /ˈmið.ɡarðr/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The Younger Futhark form ᛘᛁᚦᚴᛅᚱᚦᛁ provides a Viking-Age runic attestation or normalized reconstruction.</li>
+  <li>Younger Futhark has only sixteen runes and does not distinguish short/long vowels or voiced/voiceless stops.</li>
+  <li>The normalized Old Norse form is based on 13th-century manuscript tradition (Poetic and Prose Eddas).</li>
+  <li>The Unicode restoration Miðgarðr requires the letter eth (ð), which the .com registry admits through punycode (miðgarðr.com = xn--migarr-qwad.com).</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/ˈmiðˌɡarðr/</strong> — Old Norse Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Mi-</strong> — Short close front [i] with initial stress; mið means &#39;middle&#39;</li>
+  <li><strong>-ð-</strong> — Voiced dental fricative [ð], the eth in mið; it is the soft &#39;th&#39; of &#39;this&#39;, not the hard &#39;th&#39; of &#39;thin&#39;</li>
+  <li><strong>-garð-</strong> — Voiced velar stop [ɡ], short [a], and voiced dental fricative [ð] in garðr &#39;enclosure, yard&#39;</li>
+  <li><strong>-r</strong> — Tapped or trilled alveolar [r], the masculine nominative ending</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;MITH-garther&#39; — the first &#39;th&#39; is voiced like &#39;this&#39;, and the second &#39;th&#39; in &#39;garth&#39; is the same; roll the final r lightly.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Old English</strong> — middangeard, the Anglo-Saxon &#39;middle-yard&#39;, direct cognate of Miðgarðr</li>
+  <li><strong>Gothic</strong> — midjungards, the world in Wulfila&#39;s translation of the Gospels</li>
+  <li><strong>Modern English</strong> — Middle-earth, Tolkien&#39;s deliberate calque of the Germanic name</li>
+</ul>
+<p>Miðgarðr is Tier 2: it preserves the voiced dental fricative ð (eth), a sound English lost in most positions, but it carries no stress or length mark. The compound is transparent: mið &#39;middle&#39; + garðr &#39;enclosure&#39;.</p>
+<h2 id="mythology">Mythology</h2>
+<p><strong>Miðgarðr</strong> is the middle enclosure, the world of human beings suspended between the divine realm of Ásgarðr above and the underworlds below. The gods carved it from Ymir&#39;s flesh, made its mountains from his bones, its seas from his blood, and set the Miðgarðsormr to encircle all land in the surrounding ocean. A defensive wall raised from the giant&#39;s brows protects it from the jötnar, yet it remains permeable: gods cross its boundaries, and at Ragnarǫk those boundaries will fail. Within this ring dwell the races of women and men, placed there by the gods and granted the fields, forests, and shores that make mortal life possible. The very name survives in Old English <em>middangeard</em> and Old High German <em>mittilagart</em>, a shared Germanic image of the human dwelling-place ringed by the unknown. The concept gave Norse culture a powerful image of the civilized world as a fragile garden surrounded by wilderness, chaos, and the sea.</p>
+<h3 id="the-making-of-mi-gar-r-grimnismal-and-vaf-ru-nismal">The Making of Miðgarðr (Grímnismál and Vafþrúðnismál)</h3>
+<p>After the sons of Borr slew the primeval giant Ymir, his body became the substance of the world. His flesh was fashioned into earth, his blood into the sea, his bones into mountains, his hair into trees, and his skull into the sky. From his eyebrows the blithe gods made Miðgarðr for the sons of men, and from his brains the heavy clouds were shaped.</p>
+<p>This act of cosmic carpentry makes Miðgarðr literally a piece of the giant translated into habitable form. The violence at the origin of the world is never forgotten; it lingers in the landscape and in the giant&#39;s body that still surrounds and supports human life.</p>
+<h3 id="fishing-for-the-world-serpent-hymiskvi-a">Fishing for the World Serpent (Hymiskviða)</h3>
+<p>Þórr goes fishing with the giant Hymir, using the head of an ox as bait. He hooks none other than the Miðgarðsormr, the serpent that lies in the sea encircling Miðgarðr. As Þórr pulls the beast up, its venom drips and its eyes glare; Hymir, terrified, cuts the line, and the serpent sinks back into the deep.</p>
+<p>The encounter is one of the defining images of Miðgarðr&#39;s fragility: the world is surrounded by a creature that could crush it, held at bay only by the vigilance of the thunder-god. At Ragnarǫk, the serpent will rise and the two will kill one another.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>Miðgarðr&#39;s iconography is the iconography of enclosure and connection: the tree at its centre, the bridge above it, the serpent around it.</p>
+<ul>
+  <li><strong>Yggdrasill ash</strong> — The world-tree at whose centre Miðgarðr is girdled</li>
+  <li><strong>Midgard serpent (Miðgarðsormr)</strong> — The encircling sea-dragon that holds the world of men in its coils</li>
+  <li><strong>Rainbow bridge (Bifröst)</strong> — The arch that links the middle enclosure to Ásgarðr, its red band a burning fire against the hill-giants</li>
+  <li><strong>Fence of brows</strong> — The wall the gods raised from Ymir&#39;s eyebrows to hold the giants out</li>
+  <li><strong>Girdling ocean</strong> — The sea that surrounds Miðgarðr, separating it from the outer worlds</li>
+</ul>
+<ul>
+  <li><strong>Yggdrasil ash</strong> — The world-tree at whose centre Miðgarðr is girdled</li>
+  <li><strong>Hearth fire</strong> — The protected flame at the centre of every human dwelling within the enclosed world</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>The material world behind the word <em>garðr</em> — the fenced farmstead — is exceptionally well documented. The chieftain&#39;s house at Borg in Lofoten, occupied through the first millennium and rebuilt to a hall some 83 metres long, is among the largest known Viking-Age longhouses; at Hofstaðir in northern Iceland, excavation of a great hall uncovered cattle skulls deposited in and around the structure, evidence of ritual practice within the enclosed yard. The inhabited middle-world at its densest survives in the trading towns of Hedeby, Birka, and Kaupang, whose planned plots, jetties, and defences show the garðr scaled up to urban form. And the middle enclosure&#39;s defining fear is carved in stone at Gosforth in Cumbria, where the tenth-century cross — the product of a Christian, Anglo-Scandinavian workshop — depicts scenes widely read as Ragnarök, including Víðarr&#39;s slaying of the wolf: the myth of the day the fence fails.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Miðgarðr is defined by its boundaries: what the gods fenced in, what they fenced out, and what still crosses the fence.</p>
+<h3 id="middle-enclosure">Middle Enclosure</h3>
+<p>Miðgarðr is the fenced ring of human habitation carved from Ymir&#39;s flesh and set between gods and giants.</p>
+<h3 id="ymir-s-body">Ymir&#39;s Body</h3>
+<p>The gods made the earth from the giant&#39;s flesh, mountains from his bones, seas from his blood, and sky from his skull.</p>
+<h3 id="mi-gar-sormr">Miðgarðsormr</h3>
+<p>The world serpent encircles all land in the surrounding ocean, held at bay by Þórr&#39;s vigilance.</p>
+<h3 id="fenced-garden">Fenced Garden</h3>
+<p>A garðr is a bounded enclosure; Miðgarðr is the protected middle world surrounded by wilderness and sea.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Miðgarðr is the clearest case of a pagan cosmological word being baptized without being replaced. When the fourth-century Gothic bishop Wulfila translated the Bible, <em>midjungards</em> became the ordinary Gothic word for &#39;world&#39;; Old English poetry followed, so that <em>middangeard</em> serves Christian epic as naturally as it once served Germanic cosmology — in the Advent lyric Crist A it is the dwelling awaiting redemption, and in Beowulf it is the yard in which Heorot stands. The Old Saxon Heliand writes <em>middilgard</em> into the life of Christ, and the ninth-century Old High German Muspilli lets <em>mittilagart</em> burn in the fire of the Last Judgment — the Germanic middle-yard surviving precisely as the thing the Christian end of the world consumes. The learned Norse tradition then re-mythologized the same word: Snorri&#39;s Prologue fits his cosmology into a Trojan-derived universal history, while the modern reception — above all Tolkien&#39;s Middle-earth, deliberately adopted from the Old English cognate — returned the compound to the centre of a new mythology.</p>
+<p>Within the Norse tradition, closely related names in the corpus include [[alfheimr|Álfheimr]], [[buri|Búri]], [[eggther|Eggþér]], [[helheimr|Helheimr]], [[jormungandr|Jǫrmungandr]], and [[jotunheimr|Jötunheimr]].</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Miðgarðr&#39;s modern career is dominated by a single act of adoption. J. R. R. Tolkien took the Old English cognate <em>middangeard</em> — the inhabited world of men, set amid the encircling seas — and made Middle-earth the stage of <em>The Hobbit</em> and <em>The Lord of the Rings</em>, a philological borrowing he explained repeatedly in his letters; through Tolkien the Germanic middle-yard became the default geography of modern fantasy. The Norse form itself entered global popular culture through Marvel, where Midgard is the gods&#39; name for Earth in the <em>Thor</em> comics and films, and through the games industry, which uses &#39;Midgard&#39; freely for human worlds, from <em>God of War</em> (2018) to the survival game <em>Tribes of Midgard</em> (2021). Behind the reception stands the word&#39;s quiet durability: modern Icelandic still uses <em>garður</em> for a yard and <em>Miðgarður</em> for the mythic earth, and the restored Unicode form Miðgarðr keeps the medieval spelling — eth and all — attached to a name most readers now meet only flattened as &#39;Midgard&#39;.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Miðgarðr given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> The Poetic Edda (Völuspá, Vafþrúðnismál, Grímnismál, Hymiskviða); Snorri Sturluson, Prose Edda (Gylfaginning).</li>
+  <li> Simek, Rudolf. Dictionary of Northern Mythology, trans. Angela Hall. Cambridge: D. S. Brewer, 1993.</li>
+  <li> de Vries, Jan. Altnordisches etymologisches Wörterbuch. 2nd ed. Leiden: Brill, 1962.</li>
+  <li> Poetic Edda: Vafþrúðnismál (the slaying of Ymir and the making of Miðgarðr from the giant&#39;s body).</li>
+  <li> The Old High German poem Muspilli (the burning of mittilagart at the Last Judgment).</li>
+  <li> The Old English poems Beowulf and Crist A (middangeard as the inhabited middle-earth).</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Of all the Norse world-names, Miðgarðr is the one its inhabitants can still be said to live inside. A <em>garðr</em> is a yard: the fenced space around a farm where law, family, and livestock are safe, and where what lies outside the fence has no claim. The cosmology simply scales the farm up to the earth — a middle yard, walled with a giant&#39;s brows, ringed by sea and serpent, holding out as long as the gods can hold it. Every Icelandic homefield wall restates the image, and every reader who has felt the cultivated world to be a small lit space against the dark understands it without translation. The name preserves the insight that habitation is not the default state of the world but an enclosure defended against it.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Miðgarðr is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>midgardr</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 8 characters of the name, the restoration adjusts 2: 2 further adjustments (ð, ð). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>midgardr</em> to <strong>Miðgarðr</strong>, one character at a time:</p>
+<ul>
+  <li><strong>m</strong> → <strong>M</strong> — Same</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+  <li><strong>d</strong> → <strong>ð</strong> — Eth: voiced dental fricative</li>
+  <li><strong>g</strong> → <strong>g</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+  <li><strong>r</strong> → <strong>r</strong> — Same</li>
+  <li><strong>d</strong> → <strong>ð</strong> — Eth: voiced dental fricative</li>
+  <li><strong>r</strong> → <strong>r</strong> — Same</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>miðgarðr.com</strong>, which the DNS carries in punycode form as xn--migarr-qwad.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Miðgarðr; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Younger Futhark can now be typed into any browser on earth.</p>
+<h2 id="the-norse-pantheon">The Norse Pantheon</h2>
+<p>Miðgarðr is one of 86 entries the PÚNYCODEX lexicon catalogues under the Norse pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>In 2026 the stakes are practical. Search indexes, language models, and localization pipelines all inherit whatever spelling the web normalizes — which means every Unicode domain is also a training signal. <strong>Miðgarðr</strong> teaches the machinery that the restored form exists, that it is used, and that it points to a real place. That is why a project built on philology ends up caring about DNS: the infrastructure decides which names the future sees. This restoration makes sure the future sees the whole name.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/buri/">Búri</a></li>
   <li><a href="/sites/fenrir/">Fenrir</a></li>
   <li><a href="/sites/fulla/">Fulla</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
-  <li><a href="https://heimskringla.no/wiki/Main_Page">Scholarly reference</a></li>
+  <li>Poetic Edda, Grímnismál 40–41 and Vafþrúðnismál 21 (the making of Miðgarðr from Ymir).</li>
+  <li>Simek, Rudolf. Dictionary of Northern Mythology, trans. Angela Hall. Cambridge: D. S. Brewer, 1993, s.v. Miðgarðr.</li>
+  <li>Barnes, Michael P. Runes: A Handbook. Woodbridge: Boydell, 2012.</li>
+  <li>de Vries, Jan. Altnordisches etymologisches Wörterbuch. 2nd ed. Leiden: Brill, 1962, s.v. Miðgarðr, garðr.</li>
+  <li>Lexicon authorities for this entry: Cleasby-Vigfusson, Zoëga.</li>
 </ul>
-<h2>What the Sources Record</h2>
-<p>Miðgarðr is defined by its boundaries: what the gods fenced in, what they fenced out, and what still crosses the fence. ### Middle Enclosure Miðgarðr is the fenced ring of human habitation carved from Ymir&#39;s flesh and set between gods and giants. ### Ymir&#39;s Body The gods made the earth from the giant&#39;s flesh, mountains from his bones, seas from his blood, and sky from his skull. ### Miðgarðsormr The world serpent encircles all land in the surrounding ocean, held at bay by Þórr&#39;s vigilance. ### Fenced Garden A garðr is a bounded enclosure; Miðgarðr is the protected middle world surrounded by wilderness and sea.</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Miðgarðr as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Younger Futhark to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Miðgarðr through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/midgardr/">home page</a> offers the full name breakdown, the <a href="/sites/midgardr/lore/">lore page</a> explores the myth, and the <a href="/sites/midgardr/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Miðgarðr do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
-<h2>A Note on the Address Bar</h2>
-<p>When you type Miðgarðr, the browser performs an invisible conversion into Punycode so the global DNS can route the request. The user sees the original name; the machines see a compatible ASCII encoding. That duality is the engineering compromise that makes the restoration possible, and it is the reason every Unicode domain is both a technical milestone and a small act of cultural memory.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">norse</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

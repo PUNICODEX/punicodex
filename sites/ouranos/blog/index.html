@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,45 +170,194 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>15 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#epithets-cult-titles">Epithets &amp; Cult Titles</a></li>
+                <li><a href="#the-homeric-hymns">The Homeric Hymns</a></li>
+                <li><a href="#oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-greek-pantheon">The Greek Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>How Ouranós Got Its Accent Back</h1>
-<p>The ASCII form <em>ouranos</em> is missing something. Ouranós restores the marks that the original language used to distinguish this name from a thousand others. The name is attested in Greek as Οὐρανός. Etymologically it means &quot;Heaven, sky&quot;. The ASCII form ouranos survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Ouranós recovers the stress accent of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The letter-by-letter transformation runs: - o → O — O uppercase - u → u — u same - r → r — r same - a → a — a same - n → n — n same - o → ó — Acute on o - s → s — s same The project holds the domain ouranós.com (xn--ourans-fxa.com) as the canonical home of this name.</p>
-<h2>The Missing Marks</h2>
-<p>Classified as <strong>Tier 1</strong>, this restoration carries the stress and length that standard ASCII discards. the Greek original carries both stress and length, and only one valid Unicode restoration exists</p>
-<h2>Step by Step</h2>
-<p>The transformation from <em>ouranos</em> to <strong>Ouranós</strong> happens one character at a time. Some letters stay the same; others gain accents, macrons, or entirely new shapes. The breakdown on the <a href="/sites/ouranos/">temple home page</a> shows exactly how.</p>
-<h2>Why Stress and Length Matter</h2>
-<p>In the source language, changing a stress or a vowel length can change a meaning. Names are especially sensitive because they are proper nouns: one spelling points to one entity. Ouranós preserves that pointer in a way <em>ouranos</em> cannot.</p>
-<h2>The Restored Form</h2>
-<p>Ouranós is now a domain. That simple fact turns a philological detail into a public demonstration. Anyone who types it participates in the restoration.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Ouranós is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>How Ouranós got its accent back</h1>
+<p>The ASCII form <em>ouranos</em> is missing something. <strong>Ouranós</strong> restores the marks the source language used to distinguish this name from a thousand others — and those marks change how the name is read, pronounced, and understood. This post explains, with the full scholarly record behind it, what each restored mark preserves: the Greek evidence, the reconstructed sound, the myths the name carries, and the classification logic that separates Tier 1 restorations from Tier 2. By the end, the marks in Ouranós will look less like ornaments and more like what they are — recovered evidence, pinned back in its proper place.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Ouranós</li>
+  <li><strong>ASCII form:</strong> ouranos</li>
+  <li><strong>Meaning:</strong> &quot;Heaven, sky&quot;</li>
+  <li><strong>Domain of influence:</strong> Sky</li>
+  <li><strong>Pantheon:</strong> Greek</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Original script:</strong> Οὐρανός (Greek)</li>
+  <li><strong>Live domain:</strong> ouranós.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Ouranós</strong> (<em>ouranos</em>) is the personified sky of Greek cosmogony. In Hesiod&#39;s <em>Theogony</em> Gaia bears him &#39;starry, equal to herself, so that he might cover her on every side and be a secure seat for the blessed gods&#39;; he becomes her consort and, as Apollodorus puts it, &#39;Sky was the first who ruled over the whole world.&#39; With Gaia he fathers the Titans, the Cyclopes, and the Hundred-Handers — children he hates and hides away inside the earth, until Gaia arms the youngest Titan, Kronos, with an adamantine sickle and the sky is overthrown and emasculated. From his blood spring the Erinyes, the Giants, and the ash-tree nymphs; from the foam around his severed member, Aphrodite.</p>
+<p>PÚNYCODEX restores the name as <strong>Ouranós</strong> and serves this temple at <a href="https://xn--ourans-fxa.com">ouranós.com</a>. The Greek Οὐρανός carries both length (the diphthong ου) and stress (acute on the final syllable), and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The ASCII form <em>ouranos</em> is a modern convenience of the domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Greek as <strong>Οὐρανός</strong>. Etymologically it means &quot;Heaven, sky&quot;.</p>
+<p>The ASCII form <em>ouranos</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Ouranós</strong> recovers the stress accent of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>o</strong> → <strong>O</strong> — O uppercase</li>
+  <li><strong>u</strong> → <strong>u</strong> — u same</li>
+  <li><strong>r</strong> → <strong>r</strong> — r same</li>
+  <li><strong>a</strong> → <strong>a</strong> — a same</li>
+  <li><strong>n</strong> → <strong>n</strong> — n same</li>
+  <li><strong>o</strong> → <strong>ó</strong> — Acute on o</li>
+  <li><strong>s</strong> → <strong>s</strong> — s same</li>
+</ul>
+<p>The project holds the domain <strong>ouranós.com</strong> (xn--ourans-fxa.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is written in Greek as <strong>Οὐρανός</strong>. This original script is the form against which the ASCII fallback <em>ouranos</em> and the PÚNYCODEX restoration <strong>Ouranós</strong> are measured: the restoration preserves the pitch accent of the written form, so that a reader typing the modern address still speaks the ancient name.</p>
+<p>The orthography is instructive. The initial diphthong ου carries a smooth breathing — the word begins with a vowel, not an [h] — and is long by nature, whether it descends from a true diphthong or contraction; the acute accent on the final -ός marks the pitch peak of the nominative. Dialect inscriptions and manuscripts preserve the variants ὠρανός and ὠρηνός, which the etymological tradition reads as traces of the word&#39;s non-Attic, probably Pre-Greek prehistory. Since breathings and accents cannot be registered in a domain, the restoration keeps the one feature the system allows: the acute on ó.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/oː.ra.nós/</strong> — Attic Greek Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Ou-</strong> — Diphthong [oː], a long rounded opening syllable.</li>
+  <li><strong>-ra-</strong> — Rho plus short alpha, the middle syllable unstressed.</li>
+  <li><strong>-nós</strong> — Nu-omicron-sigma with acute [nós] — the pitch peak and a common masculine ending.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;oo-rah-NOSS&#39; — the first syllable is long and rounded, the final syllable pitched high.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Greek</strong> — Οὐρανός (Ouranós), the sky or heaven, personified as a god; dialect variants ὠρανός and ὠρηνός are also attested.</li>
+  <li><strong>Etymology</strong> — Disputed. Older handbooks proposed an Indo-European derivation, but no IE etymology commands acceptance, and Beekes treats the word as probably Pre-Greek, citing the variant forms as substrate evidence.</li>
+  <li><strong>Latin</strong> — Caelus, the Roman sky; the planet name Uranus is a modern Latinization of the Greek.</li>
+</ul>
+<p>Ouranós is Tier 1 because the Greek Οὐρανός contains both length (the diphthong ου in the first syllable) and stress (acute on the final ό). The name is the standard Greek word for sky or heaven.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Ouranós is the <strong>first tyrant</strong> of Greek cosmogony: a father who fears his children and is destroyed by one of them. His fall sets the pattern of divine succession.</p>
+<h3 id="birth-and-union-with-ge-hesiod-theogony-116-147">Birth and Union with Gē (Hesiod, Theogony 116–147)</h3>
+<p>After Chaos and Gē came Ouranós, &#39;starry&#39; and equal to her in size. He covered Gē on every side and became the secure seat of the blessed gods. With her he fathered the Titans, the Cyclopes, and the Hundred-Handers.</p>
+<h3 id="the-castration-hesiod-theogony-154-182">The Castration (Hesiod, Theogony 154–182)</h3>
+<p>Ouranós hated his children and hid them away in a secret place within Gē, keeping them from the light. In pain, Gē fashioned a great sickle of grey adamant and persuaded Kronos to lie in wait. When Ouranós came to lie with Gē, bringing on the night, Kronos cut off his genitals and cast them into the sea. From the foam that gathered around the member arose Aphrodite.</p>
+<h3 id="the-births-from-blood-hesiod-theogony-183-187">The Births from Blood (Hesiod, Theogony 183–187)</h3>
+<p>From the drops of Ouranós&#39;s blood that fell on Gē sprang the Erinyes, the Giants, and the ash-tree nymphs. His overthrow thus generated the very forces that would later threaten Zeus&#39;s own rule, making the primal violence echo through cosmic history.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Ouranós concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>Starry sky</strong> — His body and realm: Gaia bears &#39;starry Ouranos, equal to herself&#39; (<em>Theogony</em> 127).</li>
+  <li><strong>Adamantine sickle</strong> — The weapon of his overthrow, which Gaia makes of grey adamant and gives to Kronos.</li>
+  <li><strong>Mountains</strong> — The children Gaia bears immediately after him (the Ourea, <em>Theogony</em> 129), standing at the interface of earth and sky he was made to cover.</li>
+  <li><strong>Aphrodite born from foam</strong> — The goddess who arises from the sea-foam that gathers around his severed member (<em>Theogony</em> 188–206).</li>
+</ul>
+<p>Greek art rarely personifies Ouranos, and no secure archaic cult image exists. His one narrative appearance is the castration: Kronos with the adamantine sickle and Gaia attending, a scene preserved on a small number of Greek and South Italian vases. The developed personification is Roman. Caelus, his Latin equivalent, appears on imperial sarcophagi and state reliefs as a bearded, half-draped man holding a billowing veil (<em>velificatio</em>) arched above his head — a conventional sign for the vault of heaven. In both traditions the imagery stresses cosmic expanse over personality, fitting a god who is more world than character.</p>
+<h2 id="epithets-cult-titles">Epithets &amp; Cult Titles</h2>
+<p>Few epithets attach to a god with so little cult; what survives is poetic description rather than invocation.</p>
+<ul>
+  <li><strong>ἀστερόεις</strong> (<em>asteróeis</em>) — &#39;starry&#39; — Hesiod&#39;s formula at <em>Theogony</em> 127: Gaia bears &#39;starry Ouranos, equal to herself&#39;.</li>
+  <li><strong>ἶσος ἑῇ</strong> (<em>îsos heêi</em>) — &#39;equal to herself&#39; — the same line&#39;s defining clause: the sky exactly covers the earth that bore him.</li>
+  <li><strong>εὐρύς</strong> (<em>eurýs</em>) — &#39;broad&#39; — the Homeric formula &#39;broad Heaven above&#39; (Οὐρανὸς εὐρὺς ὕπερθε) in oath language, as when Hera swears by Earth, Heaven, and Styx at <em>Iliad</em> 15.36.</li>
+  <li><strong>παγγενέτωρ</strong> (<em>pangenétōr</em>) — &#39;father of all&#39; — the fourth Orphic Hymn&#39;s title for him as parent of gods and cosmos.</li>
+</ul>
+<p>The set is revealing: the tradition can describe the sky&#39;s extent and paternity, but offers no cult title, because there was no cult to address him in.</p>
+<h2 id="the-homeric-hymns">The Homeric Hymns</h2>
+<p>No Homeric Hymn to Ouranos survives: the corpus of thirty-three hymns addresses gods of living cult, and the sky father belongs to the cosmogonic past, not to the present pantheon. His earliest hexameter attestations are Hesiodic and Homeric. Hesiod&#39;s Theogony gives the full account — Gaia bears &#39;starry Ouranos, equal to herself&#39;, and later comes the castration by Kronos that ends his rule. In Homer he is not a character but a power sworn by: Hera&#39;s great oath in Iliad 15 invokes &#39;Earth and broad Heaven above&#39; together with the waters of Styx, the strongest oath among the gods. Later hexameter tradition does address him directly: the fourth Orphic Hymn calls on Ouranos as eternal cosmic element and father of all.</p>
+<h2 id="oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</h2>
+<p>No temple, altar, or oracle of Ouranos is securely attested anywhere in the Greek world: the sky father was a cosmogonic figure, not a recipient of cult, and no sanctuary inscription names him. His religious presence is that of a witness — invoked with Gaia in solemn oaths, as in Iliad 15, and remembered in theogonic recitation. The nearest cultic associations belong to his consort Gaia, who held real prophetic seats: Aeschylus&#39; Eumenides recalls that Gaia was the first to give oracles at Delphi before passing the seat down the line to Apollo. The fourth Orphic Hymn is liturgical poetry, not evidence of a standing sanctuary.</p>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Ouranós received no temples, altars, or dedications: his presence in Greek religion is cosmogonic and oath-bound rather than cultic, and no sanctuary inscription names him. His material record is iconographic and mostly Roman. Greek and South Italian vases preserve a handful of castration scenes — Kronos with the sickle, Gaia attending — but the developed personification belongs to Latin art: Caelus, the bearded sky, arches his billowing veil (velificatio) over imperial compositions, most famously at the crown of the cuirass of the Augustus of Prima Porta, where heaven canopies the emperor&#39;s cosmic settlement. A late echo of his celestial identity is the naming of the planet Uranus after its 1781 discovery — a modern act of celestial epigraphy rather than archaeology.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Ouranós is the <strong>personification of the sky</strong>, the primordial father whose body forms the vault of heaven. Born from Gē without a mate, he became her consort and the first ruler of the cosmos — until his son overthrew him.</p>
+<h3 id="primordial-sky">Primordial Sky</h3>
+<p>The solid dome overhead, studded with stars, who was also a living god — Gaia bears him &#39;starry, equal to herself&#39;.</p>
+<h3 id="father-of-the-titans">Father of the Titans</h3>
+<p>With Gē he fathered the first generation of gods: Kronos, Rhea, Oceanus, and the rest of the twelve, then the Cyclopes and the Hundred-Handers.</p>
+<h3 id="overthrown-king">Overthrown King</h3>
+<p>Kronos castrated him with an adamantine sickle, ending his rule and inaugurating the Titan age.</p>
+<h3 id="vault-of-stars">Vault of Stars</h3>
+<p>His mutilated body became the visible heavens, the outer boundary of the cosmos — the sky &#39;equal&#39; to the earth it covers.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Ouranós stands at the head of the best-documented case of mythic borrowing between Greece and the Near East. The Hittite &#39;Song of Kumarbi&#39; (Kingship in Heaven) tells how the sky-god Anu is deposed and emasculated by Kumarbi, who is in turn overthrown by the storm-god — the sequence Anu–Kumarbi–Teššub matching Ouranos–Kronos–Zeus so closely that scholarship reads Hesiod&#39;s succession myth against its west Asiatic antecedents. Rome had no independent cult of him: Latin used <em>caelum</em> for the sky and gave the cosmic father a shadowy personification as Caelus in poetry and philosophy. Within the corpus his story is continued by his consort [[gaia|Gaîa]], his overthrower [[kronos|Krónos]], the daughter born of his foam [[aphrodite|Aphrodítē]], and his grandson [[zeus|Zeús]], who repeats and escapes the pattern.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Ouranós is the ancestor of every &#39;heaven&#39; in Western thought, and his name has had an unusually literal afterlife. When William Herschel discovered a new planet in 1781, it was Johann Bode who proposed calling it Uranus — the one classical planet name drawn from Greek rather than Latin, chosen so that Saturn (Kronos) would have his father beside him in the sky. Martin Klaproth then named the element he isolated in 1789 uranium, after the planet. The compounds &#39;urano-&#39; (uranography, uranology) still map and describe the heavens. In modern Greek, ουρανός remains the everyday word for sky, so that the primordial father of the <em>Theogony</em> survives as ordinary vocabulary long after his myth became literature.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Ouranós given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Full text</a></li>
+  <li> Beekes, Etymological Dictionary of Greek.</li>
+  <li> Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE. <a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Full text</a></li>
+  <li> Homer, Iliad.</li>
+  <li> Apollodorus, Bibliotheca.</li>
+  <li> Plato, Timaeus.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Ouranós is the sky as prison. He covers Gē completely, not as a lover but as a lid, and his children cannot be born into light. His castration is therefore a cosmogonic necessity: the sky must be pushed back so that life can emerge between earth and heaven.</p>
+<p>Yet his fall is also tragedy. He is the first god to learn that power cannot hold what it fears. The wound that removes his generative organs generates new divinities — Aphrodite, the Erinyes, the Giants — so that even destruction becomes creation. Ouranós reminds us that the cosmos itself was born from a wound, and that every heaven is shaped by what it once tried to suppress.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Ouranós is classified as <strong>Tier 1</strong>: the original carries both stress and length, and only one valid Unicode restoration exists. The ASCII fallback <em>ouranos</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 7 characters of the name, the restoration adjusts 1: 1 mark of stress (ó). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>ouranos</em> to <strong>Ouranós</strong>, one character at a time:</p>
+<ul>
+  <li><strong>o</strong> → <strong>O</strong> — O uppercase</li>
+  <li><strong>u</strong> → <strong>u</strong> — u same</li>
+  <li><strong>r</strong> → <strong>r</strong> — r same</li>
+  <li><strong>a</strong> → <strong>a</strong> — a same</li>
+  <li><strong>n</strong> → <strong>n</strong> — n same</li>
+  <li><strong>o</strong> → <strong>ó</strong> — Acute on o</li>
+  <li><strong>s</strong> → <strong>s</strong> — s same</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>ouranós.com</strong>, which the DNS carries in punycode form as xn--ourans-fxa.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Ouranós; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Greek can now be typed into any browser on earth.</p>
+<h2 id="the-greek-pantheon">The Greek Pantheon</h2>
+<p>Ouranós is one of 263 entries the PÚNYCODEX lexicon catalogues under the Greek pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Ouranós mean?</strong> The traditional gloss is &quot;Heaven, sky.&quot;</p>
+<p><strong>Which tradition does Ouranós belong to?</strong> Ouranós is catalogued in the Greek pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Ouranós classified as Tier 1?</strong> Because the original carries both stress and length, and only one valid Unicode restoration exists — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Ouranós a working domain?</strong> Yes — ouranós.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for ouranós.com?</strong> The DNS encoding is xn--ourans-fxa.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>The marks in <strong>Ouranós</strong> were never lost; they were only waiting for a carrier that could hold them. Now that the carrier exists, the burden flips: every use of <em>ouranos</em> is a choice to leave evidence on the table. The PÚNYCODEX temple keeps the restored form in circulation — as a domain, a dataset entry, and a scholarly argument — so that the choice to use it stays easy. Accent by accent, macron by macron, that is how the original names come back: not with a single grand gesture, but with a spelling that finally works everywhere.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/elpis/">Elpís</a></li>
   <li><a href="/sites/enyo/">Enyṓ</a></li>
   <li><a href="/sites/eos/">Ēōs</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Hesiod, Theogony 126–187 (birth, rule, and overthrow of Ouranos).</a></li>
   <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0022">Apollodorus, Bibliotheca 1.1.1 (&#39;Sky was the first who ruled over the whole world&#39;).</a></li>
   <li><a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843.</a></li>
+  <li>Beekes, Etymological Dictionary of Greek.</li>
+  <li>Beekes, Etymological Dictionary of Greek, s.v. οὐρανός (probably Pre-Greek; variants ὠρανός, ὠρηνός).</li>
+  <li>Beekes, Etymological Dictionary of Greek, s.v. οὐρανός.</li>
+  <li>Hittite &#39;Song of Kumarbi&#39; (Kingship in Heaven); Güterbock, Kumarbi: Mythen vom churritischen Kronos (the succession parallel).</li>
+  <li>Lexicon authorities for this entry: Hesiod, LSJ.</li>
 </ul>
-<h2>The Cultural Afterlife</h2>
-<p>Ouranós is the ancestor of every &#39;heaven&#39; in Western thought, and his name has had an unusually literal afterlife. When William Herschel discovered a new planet in 1781, it was Johann Bode who proposed calling it Uranus — the one classical planet name drawn from Greek rather than Latin, chosen so that Saturn (Kronos) would have his father beside him in the sky. Martin Klaproth then named the element he isolated in 1789 uranium, after the planet. The compounds &#39;urano-&#39; (uranography, uranology) still map and describe the heavens. In modern Greek, ουρανός remains the everyday word for sky, so that the primordial father of the Theogony survives as ordinary vocabulary long after his myth became literature.</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Ouranós as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Greek to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Ouranós through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/ouranos/">home page</a> offers the full name breakdown, the <a href="/sites/ouranos/lore/">lore page</a> explores the myth, and the <a href="/sites/ouranos/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Ouranós do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">greek</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

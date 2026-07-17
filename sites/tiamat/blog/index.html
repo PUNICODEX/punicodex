@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,43 +170,194 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-mesopotamian-pantheon">The Mesopotamian Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>The Name Tiāmat and the World It Opens</h1>
-<p>A name is a door. Tiāmat opens onto phonological reconstruction, salt water, chaos. Tiāmat (tiamat) — from Akkadian tiāmtu (later Babylonian tâmtu), &#39;sea&#39; — is the primordial salt-water ocean of Babylonian cosmogony and the antagonist of the Enuma Elish. She is first the generative deep whose waters mingle with the freshwater [[apsu|Apsû]] to beget the gods; then, after Apsû&#39;s death, the mother of eleven monsters led by her consort Kingu; and finally the cosmic body Marduk splits to roof the sky and floor the earth. No temple, cult image, or hymn dedicated to her is known: the tradition remembers her as a cosmogonic principle, not a civic deity — a point the lexical record confirms, where tiāmtu remains the everyday Akkadian word for &#39;sea&#39;. The epic&#39;s manuscripts write the name syllabically with the divine determinative...</p>
-<h2>Domain and Meaning</h2>
-<p>The temple domain is <strong>Phonological Reconstruction, Salt Water, Chaos</strong>. The traditional meaning is &quot;Sea.&quot; Together, those two facts explain why the name mattered enough to be remembered for millennia.</p>
-<h2>The Mythic Landscape</h2>
-<p>Tiāmat is the Babylonian primordial salt sea — the churning watery chaos from whom the gods are born and against whom order must be asserted. In the Enuma Elish she is first the generative mother of the divine generations, then the dragon-mother of monsters, and finally the cosmic body out of which Marduk fashions heaven and earth. She is not merely a sea; she is the possibility of both creation and destruction that precedes form. Myth is the memory of a civilization, and names are the hooks on which that memory hangs.</p>
-<h2>Modern Patterns</h2>
-<p>The <a href="/sites/tiamat/patterns/">Patterns</a> page maps the industries and sister temples that share Tiāmat&#39;s current. A name that once organized ritual now organizes search, advertising, and creative collaboration.</p>
-<h2>Join the Restoration</h2>
-<p>You can support the work through the <a href="/sites/tiamat/patron/">Patron</a> wall, submit creative work, or simply share the address. Every visit to Tiāmat is a vote for original scripts.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Tiāmat is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>The name Tiāmat and the world it opens</h1>
+<p>A name is a door. <strong>Tiāmat</strong> opens onto an entire world: the domain of phonological reconstruction, salt water, chaos, a Mesopotamian tradition, and centuries of storytelling, worship, and scholarship. This post walks through that world room by room — the name and its roots, the original script, the sound of it, the myths, the symbols, the sites, the afterlife across cultures — and ends at the newest room of all: a Unicode domain that makes the whole structure addressable. <em>tiamat</em> gets you to the same building, but only the restored form tells you why it was built.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Tiāmat</li>
+  <li><strong>ASCII form:</strong> tiamat</li>
+  <li><strong>Meaning:</strong> &quot;Sea&quot;</li>
+  <li><strong>Domain of influence:</strong> Phonological Reconstruction, Salt Water, Chaos</li>
+  <li><strong>Pantheon:</strong> Mesopotamian</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> 𒀭𒋾𒊩𒆳 (Cuneiform)</li>
+  <li><strong>Live domain:</strong> tiāmat.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Tiāmat</strong> (<em>tiamat</em>) — from Akkadian <strong>tiāmtu</strong> (later Babylonian <em>tâmtu</em>), &#39;sea&#39; — is the primordial salt-water ocean of Babylonian cosmogony and the antagonist of the <em>Enuma Elish</em>. She is first the generative deep whose waters mingle with the freshwater [[apsu|Apsû]] to beget the gods; then, after Apsû&#39;s death, the mother of eleven monsters led by her consort Kingu; and finally the cosmic body Marduk splits to roof the sky and floor the earth. No temple, cult image, or hymn dedicated to her is known: the tradition remembers her as a cosmogonic principle, not a civic deity — a point the lexical record confirms, where <em>tiāmtu</em> remains the everyday Akkadian word for &#39;sea&#39;.</p>
+<p>The epic&#39;s manuscripts write the name syllabically with the divine determinative (dTI.A.MA.TUM). The macron on the first vowel of <strong>Tiāmat</strong> marks a length reconstructed from Akkadian phonology — discussable rather than sign-given — and places the name in Tier 2.</p>
+<p>PÚNYCODEX serves the temple at <a href="https://xn--timat-gwa.com">tiāmat.com</a>; the plain ASCII <em>tiamat</em> is the fallback the early domain system imposed, not the restoration.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is the Akkadian common noun <strong>tiāmtu</strong> (later Babylonian <em>tâmtu</em>), &#39;sea, ocean&#39;, wearing the feminine ending <em>-t</em>; as a theonym it names the sea personified. The word belongs to a Semitic family of sea-names — compare Ugaritic <em>thm</em> and Hebrew <em>tĕhôm</em>, &#39;the deep&#39; of Genesis 1:2 — so that the biblical deep and the Babylonian dragon are, linguistically, one word. Whether the Genesis writer consciously polemicized against the Babylonian goddess or simply inherited the shared noun is debated.</p>
+<p>Cuneiform manuscripts of the <em>Enuma Elish</em> write the name syllabically (𒀭𒋾𒀀𒈲𒌈, dTI.A.MA.TUM), the determinative 𒀭 marking it as a theonym. The macron on <strong>Tiāmat</strong> records the long first vowel inferred from Akkadian phonology — discussable rather than sign-given — and places the name in Tier 2.</p>
+<p>The ASCII form <em>tiamat</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>t</strong> → <strong>T</strong> — Same, capitalized</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+  <li><strong>a</strong> → <strong>ā</strong> — Macron: long first vowel, reconstructed from Akkadian phonology</li>
+  <li><strong>m</strong> → <strong>m</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+  <li><strong>t</strong> → <strong>t</strong> — Same</li>
+</ul>
+<p>The project holds the domain <strong>tiāmat.com</strong> (xn--timat-gwa.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Cuneiform as <strong>𒀭𒋾𒊩𒆳</strong> — Sumero-Akkadian cuneiform, attested Sumerian / Old Babylonian – Neo-Assyrian, c. 2600–600 BCE, in Mesopotamia. The script is written left-to-right / top-to-bottom.</p>
+<p>The scholarly transliteration is <em>Tiāmat</em> (Sumerian logogram + Akkadian scholarly), giving the normalized reading /tiˈaː.mat/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The name is written 𒀭𒋾𒊩𒆳 in cuneiform.</li>
+  <li>Sumerian logograms may be read with Akkadian values; the divine determinative 𒀭 marks theonyms.</li>
+  <li>Macrons in the Unicode restoration mark long vowels inferred from Akkadian and Sumerian convention.</li>
+  <li>The Unicode restoration Tiāmat is registrable in .com; the cuneiform form is not supported in the .com IDN table.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/tiˈaːmat/</strong> — Akkadian Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Ti-</strong> — Voiceless alveolar stop [t] followed by close front vowel [i]; the first syllable is light and leads into the long vowel.</li>
+  <li><strong>-ā-</strong> — Long open front vowel [aː] — the macron marks a reconstructed vowel length that Assyriologists infer from Akkadian phonology and cognates; the cuneiform signs do not encode length directly.</li>
+  <li><strong>-mat</strong> — Bilabial nasal [m], open vowel [a], and voiceless alveolar stop [t]; the final -t is the feminine ending of Akkadian tiāmtu, &#39;sea&#39;.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;tee-AH-maht&#39; — stress the long second syllable and let it open like a calm sea before the final consonants close it.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Akkadian</strong> — 𒀭𒋾𒀀𒈲𒌈 (tiāmtu / tâmtu), &#39;sea&#39; — the cosmic salt water and the goddess identified with it</li>
+  <li><strong>Sumerian comparison</strong> — abzu, the freshwater abyss; Tiāmat is the salt-water counterpart to Apsû&#39;s fresh water</li>
+  <li><strong>Hebrew comparison</strong> — tĕhôm, the primordial deep of Genesis 1:2, likely a cognate or reflex of Tiāmat</li>
+</ul>
+<p>Tiāmat is Tier 2 because the macron on the first a marks a reconstructed vowel length, not a canonical Greek-style stress or a universally agreed long vowel. It is a pedagogical mark: a visible question that invites discussion about how the name was pronounced in Akkadian. Standard Assyriology writes Tiamat or Tiāmat; the Unicode form Tiāmat belongs to PÚNYCODEX&#39;s phonological reconstruction hub.</p>
+<h2 id="mythology">Mythology</h2>
+<p><strong>Tiāmat</strong> is the Babylonian primordial salt sea — the churning watery chaos from whom the gods are born and against whom order must be asserted. In the <em>Enuma Elish</em> she is first the generative mother of the divine generations, then the mother of monsters, and finally the cosmic body out of which Marduk fashions heaven and earth. She is not merely a sea; she is the <em>possibility</em> of both creation and destruction that precedes form.</p>
+<h3 id="the-salt-water-mother-cosmogony">The Salt-Water Mother (Cosmogony)</h3>
+<p>Before the gods existed, there was only [[apsu|Apsû]], the freshwater abyss, and Tiāmat, the salt sea. Their waters mingled and produced the first generations of deities: Lahmu and Lahamu, then Anshar and Kishar, then Anu, and finally Ea. Tiāmat is therefore the primordial matrix — the saline womb in which the cosmos gestates. Where Apsû is stillness and depth, Tiāmat is movement, breadth, and the uncontained.</p>
+<h3 id="the-war-of-the-gods-conflict">The War of the Gods (Conflict)</h3>
+<p>When the younger gods disturb Apsû&#39;s rest, Apsû resolves to destroy them; Tiāmat refuses. Ea slays Apsû and builds his house upon the corpse, but Tiāmat, stirred by the new winds and urged on by her offspring, raises an army of monsters — serpents, dragons, scorpion-men, and storm-demons — to avenge her consort. She places Kingu, her new consort, at the head of the host and fastens the Tablet of Destinies to his breast.</p>
+<h3 id="marduk-splits-tiamat-transformation">Marduk Splits Tiāmat (Transformation)</h3>
+<p>Marduk of Babylon accepts the challenge of battle on the condition that the gods grant him supreme kingship. He confronts Tiāmat with net, bow, and winds; when she opens her mouth to swallow him, he drives the evil wind into her so that she cannot close her lips, and shoots an arrow that splits her heart. He divides her corpse in two: from one half he makes the sky, from the other the earth.</p>
+<h3 id="the-cosmos-from-chaos-legacy">The Cosmos from Chaos (Legacy)</h3>
+<p>From Tiāmat&#39;s eyes Marduk releases the Tigris and the Euphrates; he piles the mountains upon her breasts and bores springs through them to carry off the waters; her tail he twists into the <em>dur-maḫ</em>, the great bond that fastens heaven, earth, and the underworld together (Tablet V). Her death is not an annihilation but an ordering: the chaotic sea is reassembled into the fixed forms of the world, and every city, mountain, and river rests upon the body of the primordial salt-water mother.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The tradition gives Tiāmat no cult statue and no stable portrait — the <em>Enuma Elish</em> itself is vague about her shape — but a consistent set of images gathers around her:</p>
+<ul>
+  <li><strong>Salt water</strong> — the open sea as the uncontained deep: <em>tiāmtu</em> in Akkadian is the ocean that surrounds the world and the chaos that precedes it.</li>
+  <li><strong>The divided body</strong> — her split form, half sky and half earth, is the epic&#39;s central image: the ordered world is her anatomy.</li>
+  <li><strong>The monster host</strong> — the eleven creatures she bears for the war, among them fierce serpents, the <em>mušḫuššu</em>-dragon, scorpion-men, fish-men, and the bull-man: the combat myth&#39;s catalogue of chaos.</li>
+  <li><strong>The tail-bond</strong> — her tail, twisted by Marduk into the <em>dur-maḫ</em>, the great bond fastening heaven, earth, and the underworld (Tablet V).</li>
+</ul>
+<ul>
+  <li><strong>Dragon body</strong> — The cosmic form that becomes heaven and earth when split by Marduk</li>
+  <li><strong>Monster army</strong> — The forces of chaos mobilized against the younger gods</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Tiāmat has no temple and no cult site; her archaeology is the archaeology of a text. The <em>Enuma Elish</em> survives in copies from Nineveh, Sippar, Babylon, and Aššur, and in Babylon it was liturgy: festival ritual texts prescribe the epic&#39;s recitation before Marduk&#39;s statue during the New Year (akītu) festival, when the story of her defeat rehearsed the renewal of cosmic order. The E-sagil temple and the ziggurat Etemenanki — &#39;House, foundation of heaven and earth&#39; — embodied in brick the order won from her body.</p>
+<p>Her monster brood had a monumental afterlife of its own: the <em>mušḫuššu</em>-dragon, listed among the creatures she bore, became Marduk&#39;s sacred animal and marches in glazed brick across the Ishtar Gate of Babylon.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>The name is written 𒀭𒋾𒀀𒈲𒌈. Standard Assyriology transliterates it as <strong>Tiamat</strong> or <strong>Tiāmat</strong>, from Akkadian <em>tiāmtu</em>, &#39;sea&#39;. But the length of the first vowel — the very mark that turns Tiamat into Tiāmat — remains a reconstruction, not a sign-given fact. It is here, in the space between the cuneiform sign and the spoken sound, that this temple operates. This node of PÚNYCODEX is dedicated to the <strong>phonological reconstruction and didactic grammar</strong> of the ancient Near East: vowel length is marked not because it is certain, but because it is discussable — the macron is a question mark made visible.</p>
+<p><strong>Tiāmat</strong> is nevertheless the salt-water chaos mother of Babylonian cosmogony — the primordial sea whose mingling with Apsû&#39;s fresh abyss produces the gods, and whose defeated body becomes the sky and earth. She is the contradiction at the heart of creation: the mother who must be overcome for the world to exist.</p>
+<h3 id="salt-sea">Salt Sea</h3>
+<p>The primordial tiāmtu, the cosmic salt water that surrounds and underlies the ordered world.</p>
+<h3 id="mother-of-monsters">Mother of Monsters</h3>
+<p>She breeds dragons, serpents, and scorpion-men to avenge Apsû and challenge the younger gods.</p>
+<h3 id="cosmic-body">Cosmic Body</h3>
+<p>Marduk divides her corpse to form heaven, earth, rivers, and mountains.</p>
+<h3 id="chaos-vs-order">Chaos vs. Order</h3>
+<p>She embodies the formless deep that must be shaped — never simply evil, but the raw material of cosmos.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Tiāmat&#39;s influence radiates across ancient Near Eastern and later mythologies.</p>
+<p>The Unicode form <strong>Tiāmat</strong> is a reconstruction node: standard Assyriology writes Tiamat or Tiāmat, and the macron makes visible the open question of first-vowel length. In the Hebrew Bible, the primordial <em>tĕhôm</em> (&#39;deep&#39;) of Genesis 1:2 likely preserves a memory of Tiāmat, now depersonified into the watery chaos that precedes God&#39;s ordering word. Greek sources knew the Babylonian chaos dragon through Berossus; the Hebrew Bible&#39;s combat hymns — God dividing the sea and crushing Leviathan and Rahab (Psalms 74 and 89, Job 26, Isaiah 51:9–10) — work the same combat pattern, and the dragon imagery of Revelation 12 extends it into Christian apocalyptic. In modern fantasy, games, and occult cosmology, Tiamat survives as the five-headed dragon queen and as a symbol of primordial feminine chaos suppressed by patriarchal order.</p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include [[typhon|Typhōn]] (chaos / monster), [[apep|Ꜥpp]] (chaos / primordial / world serpent), [[chaos|Cháos]] (chaos / primordial / world serpent), [[jormungandr|Jǫrmungandr]] (chaos / primordial / world serpent), [[leviathan|Liwyāṯān]] (chaos / primordial / world serpent), and [[yam|Yām]] (chaos / primordial / world serpent).</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>The image of a cosmic sea-monster split to create the world has never lost its power.</p>
+<p>It appears in biblical creation hymns that depict God dividing the sea and crushing Leviathan (Psalm 74, Psalm 89, Job 26), in medieval maps that place dragons at the edges of the known world, and in modern geology&#39;s recognition that Earth&#39;s water and land are products of ancient cataclysms. Tiamat has become an icon of feminist theology and eco-spirituality: the primordial mother whose defeat by a storm-god encodes the violence of order against nature. PÚNYCODEX keeps the macron not as a settled fact but as an invitation: every visitor is welcome into the philological conversation about how this name — and the chaos it names — was pronounced.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Tiāmat given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Enuma Elish: The Babylonian Epic of Creation, Standard Babylonian version, 1200 BCE. <a href="http://etana.org/node/581">Full text</a></li>
+  <li> CAD (Chicago Assyrian Dictionary).</li>
+  <li> ETCSL (Electronic Text Corpus of Sumerian Literature).</li>
+  <li> Jacobsen, The Treasures of Darkness.</li>
+  <li> Dalley, Myths from Mesopotamia.</li>
+  <li> Foster, Before the Muses.</li>
+  <li> Atrahasis (Akkadian Flood Story).</li>
+  <li> Berossus, Babyloniaca.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Every cosmogony must say what the world is made of. The Babylonian answer is blunt: it is made of a body. Sky, earth, rivers, mountains — the <em>Enuma Elish</em> builds each from the anatomy of the sea that came before, so that order is never created out of nothing but always carved out of something older and alive.</p>
+<p>The name keeps that memory in grammar: <em>Tiāmat</em> is the ordinary Akkadian word for &#39;sea&#39; wearing the divine determinative. To write it with the macron is to admit that the reconstruction is an inference — and the inference, like the world in the poem, rests on something deep that the surface does not show.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Tiāmat is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>tiamat</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 6 characters of the name, the restoration adjusts 1: 1 mark of length (ā). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>tiamat</em> to <strong>Tiāmat</strong>, one character at a time:</p>
+<ul>
+  <li><strong>t</strong> → <strong>T</strong> — Same, capitalized</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+  <li><strong>a</strong> → <strong>ā</strong> — Long vowel</li>
+  <li><strong>m</strong> → <strong>m</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+  <li><strong>t</strong> → <strong>t</strong> — Same</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>tiāmat.com</strong>, which the DNS carries in punycode form as xn--timat-gwa.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Tiāmat; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Cuneiform can now be typed into any browser on earth.</p>
+<h2 id="the-mesopotamian-pantheon">The Mesopotamian Pantheon</h2>
+<p>Tiāmat is one of 30 entries the PÚNYCODEX lexicon catalogues under the Mesopotamian pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Tiāmat mean?</strong> The traditional gloss is &quot;Sea.&quot;</p>
+<p><strong>Which tradition does Tiāmat belong to?</strong> Tiāmat is catalogued in the Mesopotamian pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Tiāmat classified as Tier 2?</strong> Because the original preserves at least one philological feature that ASCII cannot encode — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Tiāmat a working domain?</strong> Yes — tiāmat.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for tiāmat.com?</strong> The DNS encoding is xn--timat-gwa.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>A door only matters if people walk through it. <strong>tiāmat.com</strong> is open, and everything behind it — the myths, the scholarship, the canvas, the patrons — hangs on the restored spelling. The PÚNYCODEX project bets that the web will make room for names as they were actually written, and Tiāmat is one of its standing proofs. Visit, share, cite, type it yourself: each use is a small rehearsal for a web where no name has to hide its marks to be found.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/lahamu/">Lahamu</a></li>
   <li><a href="/sites/nabu/">Nabû</a></li>
   <li><a href="/sites/ninhursag/">Ninḫursaĝ</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="http://etana.org/node/581">Enuma Elish: The Babylonian Epic of Creation, Standard Babylonian version, 1200 BCE.</a></li>
+  <li>CAD (Chicago Assyrian Dictionary).</li>
+  <li>ETCSL (Electronic Text Corpus of Sumerian Literature).</li>
+  <li>The Assyrian Dictionary of the Oriental Institute of the University of Chicago (CAD), s.v. tâmtu/tiāmtu.</li>
+  <li>Lambert, Babylonian Creation Myths (Eisenbrauns, 2013).</li>
+  <li>Lexicon authorities for this entry: Enuma Elish, Black-Green.</li>
 </ul>
-<h2>The Name in Context</h2>
-<p>Tiāmat (tiamat) — from Akkadian tiāmtu (later Babylonian tâmtu), &#39;sea&#39; — is the primordial salt-water ocean of Babylonian cosmogony and the antagonist of the Enuma Elish. She is first the generative deep whose waters mingle with the freshwater [[apsu|Apsû]] to beget the gods; then, after Apsû&#39;s death, the mother of eleven monsters led by her consort Kingu; and finally the cosmic body Marduk splits to roof the sky and floor the earth. No temple, cult image, or hymn dedicated to her is known: the tradition remembers her as a cosmogonic principle, not a civic deity — a point the lexical record confirms, where tiāmtu remains the everyday Akkadian word for &#39;sea&#39;. The epic&#39;s manuscripts write the name syllabically with the divine determinative...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Tiāmat as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Cuneiform to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Tiāmat through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/tiamat/">home page</a> offers the full name breakdown, the <a href="/sites/tiamat/lore/">lore page</a> explores the myth, and the <a href="/sites/tiamat/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Tiāmat do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">mesopotamian</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

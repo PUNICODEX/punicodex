@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,35 +170,166 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>From Hebrew to Unicode: The Journey of Mōšeh</h1>
-<p>Long before it was a domain, the name traveled through scripts. The name is preserved in Hebrew as מֹשֶׁה, written in the square Hebrew alphabet — a consonantal script (abjad) of twenty-two letters, adopted from Aramaic models in the Second Temple period and written right to left. The consonantal skeleton is מ-ש-ה (m-š-h), attested consonantally in the Dead Sea Scrolls and throughout the Masoretic manuscript tradition. The vowel points are the contribution of the medieval Tiberian Masoretes, whose reading the Biblia Hebraica Stuttgartensia prints: holam with the mem, segol under the shin, and the shin-dot that distinguishes שׁ /ʃ/ from שׂ /s/. The final he is a mater lectionis — a silent vowel-letter — and is not pronounced as a consonant. The scholarly transliteration is Mōšeh, giving the reconstructed Tiberian... This post follows Mōšeh from its earliest attestation to the address bar.</p>
-<h2>The Original Sign</h2>
-<p>The original script gives us <strong>מֹשֶׁה</strong>. The name is preserved in Hebrew as מֹשֶׁה, written in the square Hebrew alphabet — a consonantal script (abjad) of twenty-two letters, adopted from Aramaic models in the Second Temple period and written right to left. The consonantal skeleton is מ-ש-ה (m-š-h), attested consonantally in the Dead Sea Scrolls and throughout the Masoretic manuscript tradition. The vowel points are the contribution of the medieval Tiberian Masoretes, whose reading the Biblia Hebraica Stuttgartensia prints: holam with the mem, segol under the shin, and the shin-dot that distinguishes שׁ /ʃ/ from שׂ /s/. The final he is a mater lectionis — a silent vowel-letter — and is not pronounced as a consonant. The scholarly transliteration is Mōšeh, giving the reconstructed Tiberian...</p>
-<h2>The Scholarly Transliteration</h2>
-<p>The name is attested in Biblical Hebrew as מֹשֶׁה (Mōšeh), pointed in the Tiberian tradition with a long holam and a short segol; the final he is a silent mater lectionis. Its etymology is uncertain. The biblical narrative supplies its own: Pharaoh&#39;s daughter names the foundling Mōšeh &#39;because I drew him out of the water&#39;, punning on the verb māšâ, &#39;to draw out&#39; (Exodus 2:10). Many scholars instead regard the name as Egyptian in origin, from the element -mose &#39;born of&#39; in names such as Thutmose, Ahmose, and Ramesses; on that view the Hebrew pun is a later popular etymology. The English form Moses descends from the Septuagint&#39;s Greek Μωϋσῆς through Latin Moses and preserves nothing of the Hebrew vocalization. PÚNYCODEX restores Mōšeh: the macron on ō... Scholars settled on Mōšeh as the registrable restoration: faithful enough to be recognizable, precise enough to carry the marks that matter.</p>
-<h2>DNS as a Time Machine</h2>
-<p>Punycode lets the DNS carry non-ASCII characters without breaking older routers. To the user, the address bar shows Mōšeh; to the infrastructure, it is an encoded xn-- string. The duality is invisible, but the result is revolutionary: a pre-digital name living inside a post-digital system.</p>
-<h2>Pronunciation</h2>
-<p>Scholars reconstruct the sound as <em>&#39;moh-SHEH&#39; — the first vowel is long and steady like &#39;mow&#39;; the second syllable is short and crisp, ending in a soft breath.</em>. Hearing the name in your own voice is one way to make the restoration personal.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Mōšeh is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>From Hebrew to Unicode: the journey of Mōšeh</h1>
+<p>Long before it was a domain, this name traveled through scripts. <strong>Mōšeh</strong> begins in Hebrew, passes through scholarly transliteration, and ends — for now — inside the punycode machinery of the global DNS. Each stage of that journey preserves some information and loses some, and the craft of restoration is knowing exactly which marks matter. This post follows the name stage by stage: the original script, the reconstructed pronunciation, the mythological record, the material evidence, and finally the Unicode form that carries all of it into the address bar. Think of it as a biography of a name, told through its spelling.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Mōšeh</li>
+  <li><strong>ASCII form:</strong> moses</li>
+  <li><strong>Meaning:</strong> &quot;Hebrew prophet and lawgiver&quot;</li>
+  <li><strong>Domain of influence:</strong> Prophet, Lawgiver</li>
+  <li><strong>Pantheon:</strong> Canaanite</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> מֹשֶׁה (Hebrew)</li>
+  <li><strong>Live domain:</strong> mōšeh.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Mōšeh</strong> (Hebrew מֹשֶׁה; English <em>Moses</em>) is the central human figure of the Torah: the prophet who leads Israel out of Egyptian slavery, mediates the covenant at Sinai, and delivers the law that bears his name. The Pentateuch frames his career between the Nile basket (Exodus 2) and the solitary death on Mount Nebo (Deuteronomy 34), and the great monotheistic traditions each claim him — as Moshe Rabbenu in Judaism, as the lawgiver who prefigures Christ in Christianity, and as Mūsā, Kalīm Allāh, in Islam.</p>
+<p>The name&#39;s etymology is uncertain. Exodus 2:10 explains it with a pun on the Hebrew verb <em>māšâ</em>, &#39;to draw out&#39;, while many Egyptologists derive it from the Egyptian element <em>ms</em> (<em>-mose</em>), &#39;born of&#39;, familiar from royal names such as Thutmose and Ahmose; on that reading the Hebrew form would preserve an Egyptian name shorn of its original theophoric element.</p>
+<p>PÚNYCODEX restores the name as <strong>Mōšeh</strong>, transcribing the Tiberian Masoretic vocalization: the macron marks the long <em>holam</em> [oː] and the caron marks the shin [ʃ]. Because the restoration preserves vowel length but does not mark stress position, the name is classified Tier 2 (macron-preserving). The temple is served at <a href="https://xn--meh-qxa4h.com">mōšeh.com</a>; the ASCII form <em>moses</em>, transmitted through Greek Μωϋσῆς and Latin <em>Moses</em>, remains the fallback imposed by the early domain-name system.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Biblical Hebrew as <strong>מֹשֶׁה</strong> (<em>Mōšeh</em>), pointed in the Tiberian tradition with a long <em>holam</em> and a short <em>segol</em>; the final <em>he</em> is a silent mater lectionis. Its etymology is uncertain. The biblical narrative supplies its own: Pharaoh&#39;s daughter names the foundling <em>Mōšeh</em> &#39;because I drew him out of the water&#39;, punning on the verb <em>māšâ</em>, &#39;to draw out&#39; (Exodus 2:10). Many scholars instead regard the name as Egyptian in origin, from the element <em>-mose</em> &#39;born of&#39; in names such as Thutmose, Ahmose, and Ramesses; on that view the Hebrew pun is a later popular etymology.</p>
+<p>The English form <em>Moses</em> descends from the Septuagint&#39;s Greek Μωϋσῆς through Latin <em>Moses</em> and preserves nothing of the Hebrew vocalization. PÚNYCODEX restores <strong>Mōšeh</strong>: the macron on <strong>ō</strong> preserves the long Tiberian vowel, and the caron on <strong>š</strong> marks the Hebrew shin (שׁ). The restoration preserves vowel length but not stress position, which places the name in Tier 2 (macron-preserving).</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>m</strong> → <strong>M</strong> — Same, capitalized</li>
+  <li><strong>o</strong> → <strong>ō</strong> — Macron: long vowel</li>
+  <li><strong>s</strong> → <strong>š</strong> — Shin š</li>
+  <li><strong>e</strong> → <strong>e</strong> — Same</li>
+  <li><strong>s</strong> → <strong>h</strong> — Heh h</li>
+</ul>
+<p>The project holds the domain <strong>mōšeh.com</strong> (xn--meh-qxa4h.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Hebrew as <strong>מֹשֶׁה</strong>, written in the square Hebrew alphabet — a consonantal script (abjad) of twenty-two letters, adopted from Aramaic models in the Second Temple period and written right to left. The consonantal skeleton is מ-ש-ה (<em>m-š-h</em>), attested consonantally in the Dead Sea Scrolls and throughout the Masoretic manuscript tradition. The vowel points are the contribution of the medieval Tiberian Masoretes, whose reading the Biblia Hebraica Stuttgartensia prints: <em>holam</em> with the mem, <em>segol</em> under the shin, and the shin-dot that distinguishes שׁ /ʃ/ from שׂ /s/. The final <em>he</em> is a mater lectionis — a silent vowel-letter — and is not pronounced as a consonant.</p>
+<p>The scholarly transliteration is <em>Mōšeh</em>, giving the reconstructed Tiberian reading /moːˈʃɛh/. The rendering proceeds step by step:</p>
+<ul>
+  <li>The name is written מֹשֶׁה in the pointed Masoretic text: three consonants carrying two vowel signs and the shin-dot.</li>
+  <li>Tiberian pointing supplies the vowels: long <em>holam</em> [oː] on the first syllable, short <em>segol</em> [ɛ] on the second.</li>
+  <li>The transliteration <em>Mōšeh</em> marks the long vowel with a macron and the postalveolar fricative with a caron, following academic convention.</li>
+  <li>PÚNYCODEX adopts the registrable Latin form <strong>Mōšeh</strong> as its restoration; the plain ASCII <em>moses</em> descends instead from the Septuagint&#39;s Μωϋσῆς through Latin <em>Moses</em>.</li>
+</ul>
+<p>The Hebrew vocalization is medieval in attestation but older in tradition: the consonants are Second Temple-era, while the points were fixed by the Tiberian Masoretes in the early medieval period, and the first-millennium BCE pronunciation of the name may have differed in detail.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/moːˈʃɛh/</strong> — Biblical Hebrew (Tiberian/Masoretic).</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>mō-</strong> — Bilabial nasal [m] followed by long [oː], the Tiberian holam under מ.</li>
+  <li><strong>-šeh</strong> — Voiceless postalveolar fricative [ʃ] — Hebrew shin, marked by the upper right dot — plus short [ɛ], the segol under ש; the final ה is silent in Masoretic reading, often transcribed only as a breath.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;moh-SHEH&#39; — the first vowel is long and steady like &#39;mow&#39;; the second syllable is short and crisp, ending in a soft breath.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Egyptian</strong> — msj / mose, &#39;born (of)&#39; — the probable etymon, punned on Hebrew māšâ in Exodus 2:10</li>
+  <li><strong>Aramaic</strong> — מֹשֶׁה (Mōšeh), the standard targumic form</li>
+  <li><strong>Arabic</strong> — Mūsā (مُوسَى), the Qur&#39;anic prophet</li>
+</ul>
+<p>BHS points the name מֹשֶׁה (Exodus 2:10). The first vowel is a long holam [oː]; the second is a short segol [ɛ]. The Tiberian tradition preserves the final he as a silent mater, not as a pronounced consonant. The name lacks the Tiberian pharyngeals aleph [ʔ] and ayin [ʕ]. HALOT s.v. מֹשֶׁה; TDOT s.v. Moses; Khan, The Tiberian Pronunciation Tradition of Biblical Hebrew (2020).</p>
+<h2 id="mythology">Mythology</h2>
+<p>Moses&#39; story is not a single hero&#39;s quest but a <strong>forty-year negotiation</strong> between a people and their god. Every episode tests whether liberation can become responsibility, and whether a reluctant mediator can hold both sides to the covenant.</p>
+<h3 id="the-child-in-the-basket-exodus-2">The Child in the Basket (Exodus 2)</h3>
+<p>Born under Pharaoh&#39;s edict of death, the infant Moses is hidden in a papyrus basket on the Nile and discovered by Pharaoh&#39;s daughter. The name Mōšeh is explained as a pun on Hebrew māšâ, &#39;to draw out,&#39; though Egyptologists also hear in it the common New Kingdom name element -mose, &#39;born of&#39; (a deity). The story joins Egypt and Israel in a single life.</p>
+<h3 id="the-reluctant-prophet-exodus-3-4">The Reluctant Prophet (Exodus 3–4)</h3>
+<p>At Horeb, God speaks from a burning bush and commissions Moses to confront Pharaoh. Moses objects five times: Who am I? What is your name? What if they do not believe? I am slow of speech. Send someone else. Each objection is answered; Aaron is given as spokesman, and the staff becomes the sign of authority. The scene establishes the biblical type of the unwilling prophet.</p>
+<h3 id="plagues-and-sea-exodus-7-14">Plagues and Sea (Exodus 7–14)</h3>
+<p>Before Pharaoh, Moses and Aaron announce ten blows against Egypt&#39;s land, gods, and economy — water to blood, frogs, lice, flies, pestilence, boils, hail, locusts, darkness, and the death of the firstborn. The Exodus climaxes at the Sea of Reeds, where Moses stretches out his staff and the waters part, then close upon the pursuing chariots. The event becomes Israel&#39;s founding memory.</p>
+<h3 id="sinai-and-the-broken-tablets-exodus-19-24-32">Sinai and the Broken Tablets (Exodus 19–24; 32)</h3>
+<p>At Mount Sinai, Moses enters the cloud, speaks with God &#39;face to face, as one speaks to a friend,&#39; and receives the tablets of the Decalogue. When he descends and finds the people worshipping a golden calf, he shatters the tablets in fury, then intercedes for the people so effectively that YHWH relents from destroying them. He ascends again to receive a second set.</p>
+<h3 id="the-striking-of-the-rock-and-the-view-from-nebo-numbers-20-deuteronomy-34">The Striking of the Rock and the View from Nebo (Numbers 20; Deuteronomy 34)</h3>
+<p>In the wilderness, Moses strikes a rock to bring water rather than speaking to it as commanded, and for this breach he is forbidden to enter Canaan. From Mount Nebo he sees the promised land and dies alone; no one knows his grave. The ambiguity — faithful servant, frustrated leader, excluded from the goal — gives his death its enduring pathos.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Mōšeh concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>Shepherd&#39;s staff</strong> — The simple tool that becomes a serpent, splits the sea, and brings water from stone</li>
+  <li><strong>Tablets of the Law</strong> — The written covenant between Israel and YHWH; the first set shattered, the second preserved</li>
+  <li><strong>Burning bush</strong> — The theophany that commissions Moses without consuming him, a sign of divine presence that needs no fuel</li>
+  <li><strong>Pillar of cloud and fire</strong> — The visible guide that leads Israel by day and night through the wilderness</li>
+  <li><strong>Radiant face</strong> — The veil that Moses wears after speaking with YHWH, a sign of proximity to unbearable light</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>No archaeological find names Moses directly, and the historicity of the Exodus remains debated. The Merneptah Stele (c. 1208 BCE) is the earliest extra-biblical reference to a people called Israel in Canaan. Excavations at Tel el-Dab&#39;a (ancient Avaris) in the eastern Nile Delta reveal a large Semitic settlement during the Second Intermediate Period, though its connection to the Exodus narrative is contested. Proto-Sinaitic inscriptions from Serabit el-Khadim suggest early alphabetic writing in the Sinai mining region, a context compatible with later tradition. The search for Mount Sinai continues at several candidates, including Jebel Musa in the southern Sinai Peninsula and Jebel al-Lawz in northwest Arabia, but no consensus exists.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Mōšeh is the <strong>prophet who stammers before Pharaoh and then speaks the world into law</strong>. Born into slavery, raised in a palace, exiled to the wilderness, he becomes the hinge on which Israel turns from a people of laborers into a people of covenant. His life is a series of reluctant confrontations — with kings, with clouds, with his own kin — and at every turn he insists on arguing, pleading, and interceding.</p>
+<h3 id="the-burning-bush">The Burning Bush</h3>
+<p>On Horeb, a bush burns without being consumed and a voice names itself &#39;I am who I am&#39;; Moses hides his face and accepts a commission he does not want (Exodus 3).</p>
+<h3 id="staff-of-wonders">Staff of Wonders</h3>
+<p>His shepherd&#39;s staff becomes a serpent, splits the sea, and strikes the rock — the tool of a man who turns ordinary matter into divine sign.</p>
+<h3 id="tablets-of-the-covenant">Tablets of the Covenant</h3>
+<p>At Sinai he ascends into cloud and fire to receive the law — twice, after shattering the first tablets in rage at the golden calf (Exodus 19–24; 32).</p>
+<h3 id="intercessor-in-the-wilderness">Intercessor in the Wilderness</h3>
+<p>When Israel rebels or the covenant breaks, Moses stands in the gap, pleading with YHWH to remember mercy rather than justice (Exodus 32; Numbers 14).</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Moses crosses boundaries between traditions as easily as he once crossed the Nile. In Judaism he is Moshe Rabbenu, &#39;Moses our teacher&#39;, the greatest of the prophets and the definitive lawgiver. Christianity reads him as the precursor of Christ — present with Elijah at the Transfiguration (Matthew 17:1–8), the giver of the Law that the Gospel is said to fulfill. Islam honors him as Mūsā, the most frequently named prophet in the Qur&#39;an and the only one titled Kalīm Allāh, &#39;the one to whom God spoke directly&#39; (Q 4:164); his confrontations with Pharaoh prefigure every later struggle between truth and tyranny. The Samaritans claim him as their sole prophet and author of their Pentateuch; the Ethiopian tradition treasures him in the Kebra Nagast; Philo of Alexandria recast him as a philosopher-king in De vita Mosis; and Freud&#39;s Moses and Monotheism made him an Egyptian — a reading included here as a landmark of modern reception rather than as scholarly consensus.</p>
+<p>Within the corpus, the figures most closely bound to his story are the covenant survivor <a href="/sites/noah/">Nōaḥ</a> and the covenant king <a href="/sites/david/">Dāwîḏ</a>, with whom later Jewish and Christian reading groups him as an architect of Israel&#39;s founding charters.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Moses is the archetype of the liberator who writes the law. The Exodus narrative has shaped Western ideas of emancipation, from the Puritans fleeing England to the African-American spirituals of the nineteenth century to modern civil-rights rhetoric. The tablets of the Decalogue remain a global symbol of morality and justice, while Michelangelo&#39;s horned statue and Cecil B. DeMille&#39;s parted sea have fixed his image in popular imagination. In constitutional thought, Moses stands for the claim that a nation&#39;s laws can derive from something higher than the will of its rulers — a covenant rather than a command.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Mōšeh given in this edition rests on the witnesses and reference works listed below. The Hebrew lexica secure the form and the disputed etymology of the name; the Pentateuch supplies the entire narrative framework; the early Jewish writers show the figure already being reinterpreted in the Hellenistic period; and the modern studies represent the range of contemporary scholarship.</p>
+<ul>
+  <li> HALOT s.v. מֹשֶׁה — form, vocalization, and etymological options (Hebrew <em>māšâ</em>; Egyptian <em>ms</em>).</li>
+  <li> TDOT s.v. Moses — theological profile and reception history of the name.</li>
+  <li> Khan, The Tiberian Pronunciation Tradition of Biblical Hebrew (2020) — basis of the reconstructed pronunciation.</li>
+  <li> Exodus 2–40 — the primary narrative: birth, call, plagues, sea, Sinai.</li>
+  <li> Numbers 11–27; Deuteronomy 1–34 — wilderness leadership and the death outside the land.</li>
+  <li> Josephus, Jewish Antiquities 2.205–4.331 — the Hellenistic Jewish retelling.</li>
+  <li> Philo of Alexandria, De vita Mosis — Moses as philosopher-king.</li>
+  <li> Propp, Exodus 1–18 (Anchor Bible, 1999) — the standard modern historical-critical commentary.</li>
+  <li> Freud, Moses and Monotheism (1939) — the Egyptian-Moses hypothesis, cited as reception, not consensus.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Moses is the prophet of the <strong>unfinished conversation</strong>. He does not receive the law in silence; he argues, objects, and renegotiates. His most famous quality is not eloquence but persistence — a man &#39;slow of speech&#39; who nonetheless speaks to kings and to God. In an age that equates authority with certainty, Moses reminds us that true leadership often begins in reluctance and is sustained by question rather than answer.</p>
+<p>His death is as instructive as his life. After leading a people to the edge of their promised land, he is not allowed to enter it. The leader&#39;s reward is not possession but vision: to see what others will inherit. Moses dies alone, buried by God, because no single monument could contain him. To remember Mōšeh is to remember that the great work is always larger than the person who begins it.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Mōšeh is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>moses</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 5 characters of the name, the restoration adjusts 3: 1 mark of length (ō); 2 further adjustments (š, h). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>mōšeh.com</strong>, which the DNS carries in punycode form as xn--meh-qxa4h.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Mōšeh; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Hebrew can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Every stage of the journey from Hebrew to Unicode was an act of care: the scribe who first wrote the name, the lexicographer who glossed it, the engineer who taught the DNS to carry it. The PÚNYCODEX restoration is the latest stage, not the last word — the Scholarly Edition is revised as the evidence improves. What does not change is the principle: a name deserves to be written the way its own tradition wrote it. <strong>Mōšeh</strong> in the address bar is that principle, made routable.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/baal/">Baꜥal</a></li>
   <li><a href="/sites/noah/">Nōaḥ</a></li>
   <li><a href="/sites/asherah/">ꜥAsherah</a></li>
 </ul>
-<h2>Further Reading</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
-  <li><a href="https://www.britishmuseum.org/">Scholarly reference</a></li>
+  <li>TDOT s.v. Moses.</li>
+  <li>HALOT s.v. מֹשֶׁה.</li>
+  <li>Khan, The Tiberian Pronunciation Tradition of Biblical Hebrew (2020).</li>
+  <li>Biblia Hebraica Stuttgartensia (BHS), Exodus 2:10 and passim.</li>
+  <li>Lexicon authorities for this entry: Abraham.</li>
 </ul>
-<h2>The Name in Context</h2>
-<p>Mōšeh (Hebrew מֹשֶׁה; English Moses) is the central human figure of the Torah: the prophet who leads Israel out of Egyptian slavery, mediates the covenant at Sinai, and delivers the law that bears his name. The Pentateuch frames his career between the Nile basket (Exodus 2) and the solitary death on Mount Nebo (Deuteronomy 34), and the great monotheistic traditions each claim him — as Moshe Rabbenu in Judaism, as the lawgiver who prefigures Christ in Christianity, and as Mūsā, Kalīm Allāh, in Islam. The name&#39;s etymology is uncertain. Exodus 2:10 explains it with a pun on the Hebrew verb māšâ, &#39;to draw out&#39;, while many Egyptologists derive it from the Egyptian element ms (-mose), &#39;born of&#39;, familiar from royal names such as Thutmose and Ahmose; on...</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">canaanite</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

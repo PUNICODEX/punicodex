@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,35 +170,171 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>The Many Faces of Ꜣḫ</h1>
-<p>No important name has only one face. Ꜣḫ appears as a mythic character, a scholarly reconstruction, a cultural memory, and now a Unicode domain. Ꜣḫ (akh) — the transfigured, effective spirit of the justified dead — belongs to the Egyptian tradition, where it is catalogued under the domain &quot;Soul, Afterlife, Transfiguration&quot;. The name means &quot;Akh, transfigured spirit; effective, luminous being. One of the highest forms of the soul&quot;. The ꜣḫ is less a separate soul-component than the goal-state of Egyptian funerary practice: once the corpse has been preserved, the ka fed, the ba freed, and the heart weighed true, the dead person is &quot;transfigured&quot; (sꜣḫ) into an effective spirit able to act among gods and men. The root ꜣḫ means &quot;to be effective, splendid, luminous&quot;; its derivatives include ꜣḫt, the &quot;horizon&quot; where the sun exercises power, and the causative sꜣḫ, the ritual &quot;making-into-an-akh&quot;...</p>
-<h2>In Myth</h2>
-<p>The Ꜣḫ is the Egyptian self made effective. After death, once the ba has flown and the ka has been fed, once the heart has been weighed and found true, the justified dead becomes an akh&amp;mdash;a luminous, potent spirit capable of speech, movement, and influence among gods and mortals. No longer merely a soul in pieces, the akh is the completed person, transfigured into a being of light and power who can travel freely through the Duat and even return to the world of the living. Egyptian letters to the dead address the akh by name, asking it to appear in dreams, heal the sick, or settle family disputes, treating the transfigured dead as an active member of the household rather than a distant memory. The transformation into an akh was not automatic; it... The mythic face is the one most people meet first, and it is the reason the name survived.</p>
-<h2>Across Cultures</h2>
-<p>The akh is an anthropological category, not a deity, and so has no cultic syncretism of the kind that joins gods: no temple was dedicated to an akh, and honest scholarship should say so plainly. What the concept underwent instead was translation. In Ptolemaic and Roman Egypt the justified akh met Greek ideas of the blessed, heroic dead, and the old offering cult for the akhu shaded into the Greco-Egyptian cult of ancestors; Demotic funerary texts keep the vocabulary of effectiveness alive beside Greek formulations. In Coptic Christian usage the ancient soul-vocabulary was recast, yet prayers and offerings for the dead continued the practical logic of the letters to the dead. Within the corpus, the akh&#39;s closest kin are the components it presupposes... Each culture kept what resonated and reshaped the rest.</p>
-<h2>In the Scholarly Record</h2>
-<p>The idea of a transfigured afterlife self left two conspicuous legacies. The first is onomastic: when Amenhotep IV changed his name in his fifth regnal year, he became Akhenaten (ꜣḫ-n-jtn), writing the first element with the crested ibis of ꜣḫ — &quot;Effective for the Aten&quot; — and anchoring the most debated royal name in Egyptian history to the root of efficacy. The second is conceptual: the sꜣḫ logic of transfiguration passed into the Greco-Egyptian world, where Hermetic and magical literature promises that the purified practitioner may become an effective, luminous being, and Coptic Christianity continued the care for the potent dead in its own idiom. Modern Egyptology made the akh a technical term of religious anthropology — Zandee, Hornung, and Smith... The Scholarly Edition collects those traces so readers can follow the argument from source to conclusion.</p>
-<h2>The Unicode Face</h2>
-<p>The newest face is digital. Ꜣḫ demonstrates that a name can be at once ancient and clickable, venerable and searchable. That is the face this blog exists to celebrate.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Ꜣḫ is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>The many faces of Ꜣḫ</h1>
+<p>No important name has only one face. <strong>Ꜣḫ</strong> appears as a figure of myth, a scholarly reconstruction, a piece of material culture, a memory carried across languages, and — most recently — a Unicode domain. This post looks at each face in turn: the name and its roots, the Hieroglyphs original, the reconstructed pronunciation, the mythological record, the symbols and sanctuaries, the cross-cultural afterlife, and the engineering that lets the restored spelling resolve in a browser. Taken together, those faces explain why <em>akh</em> was never going to be enough — and why the restored form is worth a domain of its own.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Ꜣḫ</li>
+  <li><strong>ASCII form:</strong> akh</li>
+  <li><strong>Meaning:</strong> &quot;Akh, transfigured spirit; effective, luminous being. One of the highest forms of the soul&quot;</li>
+  <li><strong>Domain of influence:</strong> Soul, Afterlife, Transfiguration</li>
+  <li><strong>Pantheon:</strong> Egyptian</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> 𓅜𓏤 (Hieroglyphs)</li>
+  <li><strong>Live domain:</strong> ꜣḫ.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Ꜣḫ</strong> (<em>akh</em>) — the transfigured, effective spirit of the justified dead — belongs to the Egyptian tradition, where it is catalogued under the domain &quot;Soul, Afterlife, Transfiguration&quot;. The name means &quot;Akh, transfigured spirit; effective, luminous being. One of the highest forms of the soul&quot;.</p>
+<p>The <em>ꜣḫ</em> is less a separate soul-component than the goal-state of Egyptian funerary practice: once the corpse has been preserved, the <a href="/sites/ka/">ka</a> fed, the <a href="/sites/ba/">ba</a> freed, and the heart weighed true, the dead person is &quot;transfigured&quot; (<em>sꜣḫ</em>) into an effective spirit able to act among gods and men. The root <em>ꜣḫ</em> means &quot;to be effective, splendid, luminous&quot;; its derivatives include <em>ꜣḫt</em>, the &quot;horizon&quot; where the sun exercises power, and the causative <em>sꜣḫ</em>, the ritual &quot;making-into-an-akh&quot; performed by lector priests. The living treated the akhu as reachable agents: surviving letters to the dead petition them by name for healing, children, and legal redress.</p>
+<p>PÚNYCODEX restores the name as <strong>Ꜣḫ</strong> and serves its temple at <a href="https://xn--9gg9559c.com">ꜣḫ.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>akh</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Hieroglyphs as <strong>𓅜𓏤</strong>. Etymologically it means &quot;Akh, transfigured spirit; effective, luminous being. One of the highest forms of the soul&quot;.</p>
+<p>The reconstructed proto-form is <em>ʾḫ</em> (proto-afro-asiatic, &quot;effective, blessed spirit&quot;). From Egyptian ʾḫ &quot;effective spirit&quot;; the transfigured dead who achieve immortality.</p>
+<p>The ASCII form <em>akh</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Ꜣḫ</strong> recovers the full diacritic detail of the scholarly transliteration directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>a</strong> → <strong>Ꜣ</strong> — Ayin: voiced pharyngeal</li>
+  <li><strong>k</strong> → <strong>ḫ</strong> — H with breve: voiceless velar</li>
+  <li><strong>h</strong> → <strong>—</strong> — Dropped: vowel not written</li>
+</ul>
+<p>The project holds the domain <strong>ꜣḫ.com</strong> (xn--9gg9559c.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: From Egyptian ʾḫ &quot;effective spirit&quot;; the transfigured dead who achieve immortality.</p>
+<p>The reconstructed proto-form is <em>*ʾḫ</em> (proto-afro-asiatic), glossed as &quot;effective, blessed spirit&quot;.</p>
+<p>The reconstruction is classed as attested.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Hieroglyphs as <strong>𓅜𓏤</strong> — Egyptian hieroglyphic, attested Old Kingdom – Late Antiquity, c. 2600 BCE – 400 CE, in Egypt. The script is written right-to-left / top-to-bottom.</p>
+<p>The scholarly transliteration is <em>Ꜣḫ</em> (Egyptological conventional), giving the normalized reading Original vocalisation unknown; Egyptological /ɑːx/..</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The Egyptian name is written 𓅜𓏤 in hieroglyphs.</li>
+  <li>Hieroglyphs combine logograms, phonograms, and determinatives; the exact function of each sign depends on context.</li>
+  <li>Egyptian writing does not record vowels; the vocalised form is a modern convention reconstructed from Coptic and Greek evidence.</li>
+  <li>The Unicode restoration Ꜣḫ uses Egyptological alef/ayin and other registrable characters; the hieroglyphic form is not registrable in .com.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/ʔaːx/</strong> — Egyptological Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Ꜣ</strong> — Glottal stop [ʔ] or voiced pharyngeal [ʕ] — the first consonant is disputed; Egyptologists write it as Ꜣ (alef)</li>
+  <li><strong>a</strong> — Unstressed open vowel [a], supplied by modern vocalisation; hieroglyphs did not write vowels</li>
+  <li><strong>ḫ</strong> — Voiceless velar fricative [x], like the &#39;ch&#39; in Scottish &#39;loch&#39;; distinct from the palatal ḫ (ḫ) and the glottal h (ḥ)</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;AHKH&#39; — start with a slight catch in the throat, then a short &#39;ah&#39;, and end with the raspy &#39;ch&#39; of &#39;Bach&#39;.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Egyptian</strong> — Ꜣḫ, the standard hieroglyphic spelling of the transfigured spirit</li>
+  <li><strong>Coptic</strong> — ⲁϩ (ah), a late Egyptian reflex of the same root meaning &#39;to be effective&#39;</li>
+  <li><strong>Akkadian</strong> — ekimmu, the restless dead, a rough Mesopotamian counterpart to the unquiet akh</li>
+</ul>
+<p>Egyptian writing recorded only consonants; the vowels in &#39;akh&#39; are a modern convention. The Tier-2 Unicode form Ꜣḫ preserves two distinctive Egyptological consonants — alef and velar ḫ — but does not claim to reproduce the spoken vowels of Pharaonic Egyptian.</p>
+<h2 id="mythology">Mythology</h2>
+<p>The Ꜣḫ is the Egyptian self made effective. After death, once the <a href="/sites/ba/">ba</a> has flown and the <a href="/sites/ka/">ka</a> has been fed, once the heart has been weighed and found true, the justified dead becomes an akh — a luminous, potent spirit capable of speech, movement, and influence among gods and mortals. No longer merely a soul in pieces, the akh is the completed person, transfigured into a being who can travel freely through the Duat and even return to the world of the living. Egyptian letters to the dead address the akh by name, asking it to appear in dreams, heal the sick, or settle family disputes, treating the transfigured dead as an active member of the household rather than a distant memory. The transformation was not automatic; it required correct burial, continued offerings, and the successful navigation of the underworld, and magical spells protected the akh from gatekeepers, demons, and the second death. In this theology, a name correctly spoken and a body correctly preserved were the twin guarantees of eternal agency.</p>
+<h3 id="the-king-ascends-as-an-akh-pyramid-texts">The King Ascends as an Akh (Pyramid Texts)</h3>
+<p>In the Pyramid Texts, the oldest corpus of Egyptian religious literature, the king is repeatedly promised transfiguration: he rises to join the Imperishable Stars and takes his seat among the gods as an equipped, effective spirit, his resurrection wrought by the same <em>sꜣḫ</em> liturgies that name the process. The Cannibal Hymn of Unas and Teti (Utterances 273–274) pushes the image to its limit — the king devours the gods and thereby &#39;eats their magic, swallows their spirits (<em>ꜣḫw</em>)&#39;, absorbing the efficacy of the divine themselves.</p>
+<h3 id="the-transfiguration-spells-book-of-the-dead">The Transfiguration Spells (Book of the Dead)</h3>
+<p>The Book of the Dead treats akh-hood as the corpus&#39;s goal-state. Spell 97 exists &#39;for causing a man to be an akh in the realm of the dead&#39;; Spell 130 gathers the disparate parts of the deceased&#39;s being into an effective akh with an eternal ba; and the rubrics of Spells 133, 136A, and 142 are &#39;for making a spirit excellent&#39; — in Egyptian, <em>sꜣḫ</em>, the causative of the very word <em>ꜣḫ</em>. In Spell 9 the vindicated Ani announces the result: &#39;I am noble, I am an akh, I am equipped; O all you gods and all you akhu, prepare a path for me.&#39;</p>
+<p>Precision matters at the edges. The celebrated Spell 89, with its vignette of the human-headed bird hovering over the mummy, concerns the reunion of the <a href="/sites/ba/">ba</a> with the body — the precondition of transfiguration, not the state itself.</p>
+<h3 id="spell-89-and-the-reunion-of-spirit-and-body-book-of-the-dead">Spell 89 and the Reunion of Spirit and Body (Book of the Dead)</h3>
+<p>The <em>Book of the Dead</em> contains several spells whose sole purpose is to protect and empower the akh. Spell 89, &amp;ldquo;For causing the akh to go out from the god&#39;s domain and for uniting it to its body in the realm of the dead,&amp;rdquo; addresses a profound Egyptian anxiety: that the transfigured spirit might become separated from its corpse and lose the power to return. The spell promises that the akh will go forth by day, will stand among the gods, and will never again be driven from its proper form.</p>
+<p>Other spells warn against the akh being &amp;ldquo;taken away&amp;rdquo; by enemies or demons in the necropolis, showing that even the transformed dead needed magical armor. Amulets, inscribed coffins, and tomb stelae were deployed to make the akh permanent, effective, and safe&amp;mdash;a luminous identity no longer dependent on the fragile body below.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The akh has no cult statue of its own — it is a status, not a god — but a recognisable cluster of images gathers around the transfigured dead:</p>
+<ul>
+  <li><strong>Crested ibis (Gardiner G25)</strong> — the very hieroglyph of the root <em>ꜣḫ</em>, its iridescent plumage the script&#39;s own image of luminous efficacy</li>
+  <li><strong>Bennu heron</strong> — the solar bird of renewal to which the transfigured dead are assimilated at dawn</li>
+  <li><strong>Sun-disk with uraei</strong> — the akh&#39;s identification with Re and the circumpolar stars</li>
+  <li><strong>Heart scarab</strong> — the amulet that keeps the heart silent at judgement, the precondition of akh-hood</li>
+  <li><strong>Shen-ring</strong> — eternal protection encircling the completed, effective self</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>The akh leaves no temple, but its material footprint is large. The word fills tomb inscriptions, coffin panels, and funerary papyri from the Old Kingdom onward: pyramid chambers carry the utterances that promise the king&#39;s transfiguration, and Middle Kingdom coffins preserve the <em>sꜣḫ</em> liturgies by which priests made the private dead effective. The most intimate evidence is the corpus of letters to the dead — attested from the Old Kingdom into the Late Period — written on offering bowls, jar stands, linen, and stelae, through which the living petitioned named akhu for healing, fertility, and justice; the classic edition remains Gardiner and Sethe&#39;s. New Kingdom papyri and tomb chapels add the vignettes of justification, and the mortuary liturgies of the Late and Ptolemaic periods keep the transfiguration vocabulary alive to the end of pharaonic religion.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>The akh&#39;s sphere is the afterlife made operative: the transfigured dead as effective agents. In Egyptian anthropology the <em>ꜣḫ</em> is the person after justification — declared &#39;true of voice&#39; before the tribunal of Osiris — equipped with the spells and offerings that make it able to act in both worlds.</p>
+<h3 id="transfigured-spirit">Transfigured Spirit</h3>
+<p>The akh is the justified dead made luminous and effective, a being able to move among gods and mortals; Book of the Dead Spell 97 exists precisely &#39;for causing a man to become an akh in the realm of the dead&#39;.</p>
+<h3 id="ascension-in-the-pyramid-texts">Ascension in the Pyramid Texts</h3>
+<p>Royal utterances promise that the king will join the Imperishable Stars and sit among the gods as an equipped akh, and the Cannibal Hymn (Utterances 273–274) imagines him swallowing the very spirits (<em>ꜣḫw</em>) of the gods.</p>
+<h3 id="the-transfiguration-spells">The Transfiguration Spells</h3>
+<p>Book of the Dead chapters rubriced &#39;for making a spirit excellent&#39; (Spells 133, 136A, 142) are transfiguration liturgies — their Egyptian verb is <em>sꜣḫ</em>, &#39;to make into an akh&#39;.</p>
+<h3 id="letters-to-the-dead">Letters to the Dead</h3>
+<p>The living wrote to the akhu by name on bowls, linen, and stelae, asking them to heal, judge, or appear in dreams: the transfigured dead remained active members of the household.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>The akh is an anthropological category, not a deity, and so has no cultic syncretism of the kind that joins gods: no temple was dedicated to an akh, and honest scholarship should say so plainly. What the concept underwent instead was translation.</p>
+<p>In Ptolemaic and Roman Egypt the justified akh met Greek ideas of the blessed, heroic dead, and the old offering cult for the akhu shaded into the Greco-Egyptian cult of ancestors; Demotic funerary texts keep the vocabulary of effectiveness alive beside Greek formulations. In Coptic Christian usage the ancient soul-vocabulary was recast, yet prayers and offerings for the dead continued the practical logic of the letters to the dead. Within the corpus, the akh&#39;s closest kin are the components it presupposes and surpasses: [[ab|Ꜣb]], [[ankh|ꜥnḫ]], [[ba|Bꜣ]], and [[ka|Kꜣ]].</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>The idea of a transfigured afterlife self left two conspicuous legacies. The first is onomastic: when Amenhotep IV changed his name in his fifth regnal year, he became Akhenaten (<em>ꜣḫ-n-jtn</em>), writing the first element with the crested ibis of <em>ꜣḫ</em> — &quot;Effective for the Aten&quot; — and anchoring the most debated royal name in Egyptian history to the root of efficacy. The second is conceptual: the <em>sꜣḫ</em> logic of transfiguration passed into the Greco-Egyptian world, where Hermetic and magical literature promises that the purified practitioner may become an effective, luminous being, and Coptic Christianity continued the care for the potent dead in its own idiom. Modern Egyptology made the akh a technical term of religious anthropology — Zandee, Hornung, and Smith built their accounts of Egyptian death upon it — and modern Kemetic practice revives it as the goal of the soul&#39;s work.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Ꜣḫ given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Faulkner, R. O. The Ancient Egyptian Pyramid Texts. Oxford: Clarendon, 1969.</li>
+  <li> Faulkner, R. O. The Ancient Egyptian Coffin Texts. Warminster: Aris &amp; Phillips, 1973–1978.</li>
+  <li> Faulkner, R. O. (trans.); Andrews, C. (ed.). The Ancient Egyptian Book of the Dead. London: British Museum Press, 1985.</li>
+  <li> Pyramid Texts, Utterances 273–274 (the Cannibal Hymn: the king swallows the spirits (ꜣḫw) of the gods).</li>
+  <li> Book of the Dead, Spell 97 (for causing a man to become an akh in the realm of the dead).</li>
+  <li> Book of the Dead, Spell 130 (making the disparate parts of the deceased into an effective akh with an eternal ba).</li>
+  <li> Book of the Dead, Spells 133, 136A, 142 (transfiguration liturgies, &#39;for making a spirit excellent&#39;).</li>
+  <li> Gardiner, A. H. &amp; Sethe, K. Egyptian Letters to the Dead. London: Egypt Exploration Society, 1928.</li>
+  <li> Erman, A. &amp; Grapow, H. Wörterbuch der ägyptischen Sprache, s.v. ꜣḫ, ꜣḫt, sꜣḫ.</li>
+  <li> Smith, M. Following Osiris: Perspectives on the Osirian Afterlife from Four Millennia. Oxford: Oxford University Press, 2017.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>The akh answers a question every funerary culture must ask: what is death <em>for</em>? Egypt&#39;s reply was unusual. Survival was not a passive persistence but a change of state — a person could fail at death as one fails at a task, or succeed and become <em>effective</em>. Justification, equipment, and transfiguration converted the passive dead into agents who could still protect a household, confront an enemy, or advise in a dream.</p>
+<p>The name compresses that theology into three consonants — <em>ꜣ-ḫ</em>, written with the crested ibis whose shimmering plumage gave the script its image of luminosity. To restore the diacritics is to restore the category: not a vague &quot;soul&quot; but an achieved condition — the self completed, made luminous, and able to act.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Ꜣḫ is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>akh</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 3 characters of the name, the restoration adjusts 3: 3 further adjustments (Ꜣ, ḫ, h). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>ꜣḫ.com</strong>, which the DNS carries in punycode form as xn--9gg9559c.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Ꜣḫ; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Hieroglyphs can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Myth, script, sound, cult, legacy, domain: the faces of Ꜣḫ add up to a single argument — that a name is a record, and records deserve fidelity. The PÚNYCODEX restoration keeps that record in working order: the temple presents it, the Scholarly Edition footnotes it, the lexicon catalogs it, and the domain makes it addressable. <em>akh</em> will always exist as a fallback. But fallback is not identity. <strong>Ꜣḫ</strong> is the name; everything else is a convenience.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/mehetweret/">Mḥtwrt</a></li>
   <li><a href="/sites/neith/">Nt</a></li>
   <li><a href="/sites/nun/">Nnw</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.cambridge.org/">James P. Allen, Middle Egyptian: An Introduction to the Language and Culture of Hieroglyphs, Cambridge University Press, 2000.</a></li>
+  <li>Faulkner, R. O. A Concise Dictionary of Middle Egyptian, s.v. ꜣḫ. Oxford: Griffith Institute, 1962.</li>
+  <li>Gardiner, A. H. &amp; Sethe, K. Egyptian Letters to the Dead. London: Egypt Exploration Society, 1928.</li>
+  <li>Erman, A. &amp; Grapow, H. Wörterbuch der ägyptischen Sprache, s.v. ꜣḫ, ꜣḫt, sꜣḫ. Berlin: Akademie-Verlag, 1926–1961.</li>
+  <li>Erman, A. &amp; Grapow, H. Wörterbuch der ägyptischen Sprache, s.v. ꜣḫ. Berlin: Akademie-Verlag, 1926–1961.</li>
+  <li>Lexicon authorities for this entry: Faulkner, Wb.</li>
 </ul>
-<h2>The Cultural Afterlife</h2>
-<p>The idea of a transfigured afterlife self left two conspicuous legacies. The first is onomastic: when Amenhotep IV changed his name in his fifth regnal year, he became Akhenaten (ꜣḫ-n-jtn), writing the first element with the crested ibis of ꜣḫ — &quot;Effective for the Aten&quot; — and anchoring the most debated royal name in Egyptian history to the root of efficacy. The second is conceptual: the sꜣḫ logic of transfiguration passed into the Greco-Egyptian world, where Hermetic and magical literature promises that the purified practitioner may become an effective, luminous being, and Coptic Christianity continued the care for the potent dead in its own idiom. Modern Egyptology made the akh a technical term of religious anthropology — Zandee, Hornung, and Smith...</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">egyptian</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

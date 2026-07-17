@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,37 +170,197 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-sanskrit-pantheon">The Sanskrit Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#typing-parvati">Typing Pārvatī</a></li>
+                <li><a href="#sister-temples">Sister Temples</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>From Devanagari to Unicode: The Journey of Pārvatī</h1>
-<p>Long before it was a domain, the name traveled through scripts. The name is preserved in Devanagari as पार्वती — Brahmic abugida, attested Vedic – present, c. 1500 BCE –, in South Asia. The script is written left-to-right. The scholarly transliteration is Pārvatī (IAST), giving the normalized reading /ˈpaːr.ʋə.tiː/. The rendering proceeds step by step: - Sanskrit Pārvatī is written पार्वती in Devanagari. - Each aksara combines a consonant with an inherent or explicit vowel. - IAST diacritics preserve length, retroflexion, and aspiration lost in plain ASCII. - The Devanagari form is not used as the primary domain because Indic scripts are not in the .com IDN table. This post follows Pārvatī from its earliest attestation to the address bar.</p>
-<h2>The Original Sign</h2>
-<p>The original script gives us <strong>पार्वती</strong>. The name is preserved in Devanagari as पार्वती — Brahmic abugida, attested Vedic – present, c. 1500 BCE –, in South Asia. The script is written left-to-right. The scholarly transliteration is Pārvatī (IAST), giving the normalized reading /ˈpaːr.ʋə.tiː/. The rendering proceeds step by step: - Sanskrit Pārvatī is written पार्वती in Devanagari. - Each aksara combines a consonant with an inherent or explicit vowel. - IAST diacritics preserve length, retroflexion, and aspiration lost in plain ASCII. - The Devanagari form is not used as the primary domain because Indic scripts are not in the .com IDN table.</p>
-<h2>The Scholarly Transliteration</h2>
-<p>The name is attested in Devanagari as पार्वती. It is the feminine derivative of parvata, &quot;mountain&quot; — &quot;she of the mountains&quot;: Monier-Williams defines pārvatī as the wife of Śiva and daughter of Himavat, king of the snowy mountains, citing her from the Upaniṣads through the Mahābhārata and the kāvya literature. The ASCII form parvati survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Pārvatī recovers the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The letter-by-letter transformation... Scholars settled on Pārvatī as the registrable restoration: faithful enough to be recognizable, precise enough to carry the marks that matter.</p>
-<h2>DNS as a Time Machine</h2>
-<p>Punycode lets the DNS carry non-ASCII characters without breaking older routers. To the user, the address bar shows Pārvatī; to the infrastructure, it is an encoded xn-- string. The duality is invisible, but the result is revolutionary: a pre-digital name living inside a post-digital system.</p>
-<h2>Pronunciation</h2>
-<p>Scholars reconstruct the sound as <em>&#39;PAHR-vuh-tee&#39; — hold the first &#39;pahr&#39; and final &#39;tee&#39; long; the &#39;v&#39; is light, almost like a &#39;w&#39;.</em>. Hearing the name in your own voice is one way to make the restoration personal.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Pārvatī is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>From Devanagari to Unicode: the journey of Pārvatī</h1>
+<p>Long before it was a domain, this name traveled through scripts. <strong>Pārvatī</strong> begins in Devanagari, passes through scholarly transliteration, and ends — for now — inside the punycode machinery of the global DNS. Each stage of that journey preserves some information and loses some, and the craft of restoration is knowing exactly which marks matter. This post follows the name stage by stage: the original script, the reconstructed pronunciation, the mythological record, the material evidence, and finally the Unicode form that carries all of it into the address bar. Think of it as a biography of a name, told through its spelling.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Pārvatī</li>
+  <li><strong>ASCII form:</strong> parvati</li>
+  <li><strong>Meaning:</strong> &quot;of the god Śiva&#39;s wife (as daughter of Himavat, king of the snowy mountains), Up.; MBh.; Kāv.&quot;</li>
+  <li><strong>Domain of influence:</strong> Mountains, Fertility, Devotion</li>
+  <li><strong>Pantheon:</strong> Sanskrit</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Original script:</strong> पार्वती (Devanagari)</li>
+  <li><strong>Live domain:</strong> pārvatī.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Pārvatī</strong> (<em>parvati</em>) — Mountains, Fertility, Devotion · of the god Śiva&#39;s wife (as daughter of Himavat, king of the snowy mountains), Up.; MBh.; Kāv. — belongs to the Sanskrit tradition, where it is catalogued under the domain &quot;Mountains, Fertility, Devotion&quot;. The name means &quot;she of the mountains&quot; — the feminine derivative of <em>parvata</em>, &quot;mountain&quot;: the daughter of Himavat, the king of the snows, born to become the wife of Śiva.</p>
+<p><strong>Pārvatī</strong> is the mountain goddess whose devotion transforms the absolute into a husband. Born as the daughter of Himavat, the personified Himalaya, she is Satī reborn, destined to marry Śiva and bridge the abyss between his fierce asceticism and the needs of the world. She is gentle, patient, and resolute — the feminine power (<em>śakti</em>) without whom the great yogin remains withdrawn from creation.</p>
+<p>Her domain is the sacred marriage itself: the union of opposites that makes the cosmos fertile. Through her, the renouncer becomes householder, the destroyer becomes father, and the snow-capped peak becomes a bridal chamber.</p>
+<p>PÚNYCODEX restores the name as <strong>Pārvatī</strong> and serves its temple at <a href="https://xn--prvat-fwa21a.com">pārvatī.com</a>. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>parvati</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Devanagari as <strong>पार्वती</strong>. It is the feminine derivative of <em>parvata</em>, &quot;mountain&quot; — &quot;she of the mountains&quot;: Monier-Williams defines <em>pārvatī</em> as the wife of Śiva and daughter of Himavat, king of the snowy mountains, citing her from the Upaniṣads through the Mahābhārata and the kāvya literature.</p>
+<p>The ASCII form <em>parvati</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Pārvatī</strong> recovers the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>p</strong> → <strong>P</strong> — Same</li>
+  <li><strong>a</strong> → <strong>ā</strong> — Macron: long a</li>
+  <li><strong>r</strong> → <strong>r</strong> — Same</li>
+  <li><strong>v</strong> → <strong>v</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+  <li><strong>t</strong> → <strong>t</strong> — Same</li>
+  <li><strong>i</strong> → <strong>ī</strong> — Macron: long i</li>
+</ul>
+<p>The project holds the domain <strong>pārvatī.com</strong> (xn--prvat-fwa21a.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Devanagari as <strong>पार्वती</strong> — Brahmic abugida, attested Vedic – present, c. 1500 BCE –, in South Asia. The script is written left-to-right.</p>
+<p>The scholarly transliteration is <em>Pārvatī</em> (IAST), giving the normalized reading /ˈpaːr.ʋə.tiː/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>Sanskrit Pārvatī is written पार्वती in Devanagari.</li>
+  <li>Each aksara combines a consonant with an inherent or explicit vowel.</li>
+  <li>IAST diacritics preserve length, retroflexion, and aspiration lost in plain ASCII.</li>
+  <li>The Devanagari form is not used as the primary domain because Indic scripts are not in the .com IDN table.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/ˈpaːr.ʋə.tiː/</strong> — Sanskrit Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Pār-</strong> — Voiceless bilabial stop [p] plus long open [aː], followed by voiced labiodental approximant [ʋ] — softer than English &#39;v&#39;</li>
+  <li><strong>-va-</strong> — Short open [a], the second syllable is light and unstressed</li>
+  <li><strong>-tī</strong> — Voiceless alveolar stop [t] plus long close front [iː]; the macron marks length, giving Tier-1 status</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;PAHR-vuh-tee&#39; — hold the first &#39;pahr&#39; and final &#39;tee&#39; long; the &#39;v&#39; is light, almost like a &#39;w&#39;.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Sanskrit</strong> — पार्वती (pārvatī), &#39;she who is from the mountain (parvata)&#39;, daughter of Himavat</li>
+  <li><strong>Earlier names</strong> — Satī, the first wife of Śiva who immolated herself and was reborn as Pārvatī</li>
+  <li><strong>Tamil</strong> — பார்வதி (Pārvati), the goddess of the Tamil Śaiva devotional tradition</li>
+</ul>
+<p>Pārvatī is Tier 1 because both the initial ā and final ī are long. The name is a transparent feminine derivative of parvata, &#39;mountain,&#39; specifically the Himalaya.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Pārvatī&#39;s mythology is the story of a love that refuses to fail. From Satī&#39;s tragic death to Pārvatī&#39;s disciplined courtship, her narratives explore how devotion can soften even the most remote ascetic and how the feminine divine restores the world when the masculine principle withdraws too far.</p>
+<h3 id="the-birth-and-penance-of-parvati-siva-purana">The Birth and Penance of Pārvatī (Śiva Purāṇa)</h3>
+<p>After Satī immolated herself in protest against her father Dakṣa&#39;s insult to Śiva, the goddess was reborn as Pārvatī, daughter of the mountain king Himavat. From childhood she was drawn to Śiva, who sat motionless in meditation, clad in ash and serpents. While her parents worried, Pārvatī undertook severe tapas in the snowy forests, repeating his name until the earth trembled. Her ascetic power grew so great that the gods themselves grew alarmed and urged Śiva to accept her.</p>
+<h3 id="the-marriage-of-siva-and-parvati-kumarasambhava">The Marriage of Śiva and Pārvatī (Kumārasambhava)</h3>
+<p>Kālidāsa&#39;s <em>Kumārasambhava</em> tells the courtship in exquisite verse. Śiva tests Pārvatī by appearing as a wandering ascetic who speaks against his own worth. Pārvatī&#39;s calm defense of the god reveals the depth of her understanding, and Śiva reveals himself. Their marriage is celebrated by the whole cosmos, and from their union is born Skanda, the commander of the gods&#39; armies.</p>
+<h3 id="the-birth-of-ganesa-skanda-purana">The Birth of Gaṇeśa (Skanda Purāṇa)</h3>
+<p>In one widely told story, Pārvatī creates Gaṇeśa from the turmeric paste of her own body to guard her door while she bathes. When Śiva returns and is stopped by the boy, he strikes off his head in anger. Stricken with remorse, Śiva restores the boy to life with the head of an elephant, and Gaṇeśa becomes the beloved son of Pārvatī and the remover of obstacles.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>Pārvatī&#39;s iconography splits along the line of her two natures — the gentle wife of the mountain and the sovereign warrior she can become:</p>
+<ul>
+  <li><strong>Blue lotus (nīlotpala)</strong> — Her constant attribute in benign images: purity and the unfolding of devotion.</li>
+  <li><strong>The mirror and bridal ornaments</strong> — In Umāmaheśvara groups she appears as the adorned bride beside the ash-smeared ascetic, the visual grammar of the sacred marriage.</li>
+  <li><strong>Lion or tiger</strong> — The vehicle she shares with her warrior forms Durgā and Caṇḍī; the benign Umā of the early images has no mount of her own, and the lion arrives with her fierce aspect.</li>
+  <li><strong>Two-armed and four-armed forms</strong> — From the modest wife of domestic shrines to the cosmic Devī of Śākta worship.</li>
+  <li><strong>The Himalaya itself</strong> — Her father and birthplace: the snow-peaks and the rivers descending from them are her oldest landscape, older than any temple image.</li>
+</ul>
+<ul>
+  <li><strong>Coral and gold ornaments</strong> — The beauty and auspiciousness of the married goddess</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>The goddess enters the material record beside her husband: the <strong>Umāmaheśvara</strong> motif — Śiva seated in intimate embrace with Umā — appears in Mathurā sculpture by the Kuṣāṇa period and multiplies under the Guptas, when the divine couple becomes a fixed subject of temple art. The great cave temples monumentalize her mythology: Elephanta devotes whole panels to the marriage of Śiva and Pārvatī (Kalyāṇasundara) and to Rāvaṇa shaking Mount Kailāsa beneath their feet, while Ellora and Badami carry major groups of the couple. Medieval temples across the subcontinent give her independent shrines as Gaurī, Umā, or Bhavānī, and the living cult keeps its own calendar — the Gaurī festivals of Maharashtra and the Hartālikā Teej of Rajasthan and the Himalayan regions, in which women celebrate her marriage and her disciplined power.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p><strong>Pārvatī</strong> is the mountain goddess whose devotion transforms the absolute into a husband. Born as the daughter of Himavat, the personified Himalaya, she is Satī reborn, destined to marry Śiva and bridge the abyss between his fierce asceticism and the needs of the world. She is gentle, patient, and resolute — the feminine power (<em>śakti</em>) without whom the great yogin remains withdrawn from creation.</p>
+<p>Her domain is the sacred marriage itself: the union of opposites that makes the cosmos fertile. Through her, the renouncer becomes householder, the destroyer becomes father, and the snow-capped peak becomes a bridal chamber.</p>
+<h3 id="tapas-and-devotion">Tapas and Devotion</h3>
+<p>She wins Śiva not by beauty alone but by the heat of her own ascetic discipline, matching his severity with hers.</p>
+<h3 id="divine-mother">Divine Mother</h3>
+<p>As mother of Gaṇeśa and Skanda/Kārttikeya, she grounds the divine family in domestic love and protective power.</p>
+<h3 id="sakti-of-siva">Śakti of Śiva</h3>
+<p>She is the active energy that complements Śiva&#39;s stillness; without her, he cannot move toward the world.</p>
+<h3 id="mountain-and-fertility">Mountain and Fertility</h3>
+<p>Her Himalayan birth links her to snow, purity, and the life-giving rivers that descend from the heights.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Pārvatī is inseparable from the broader network of Śiva&#39;s consorts and energies. She is Satī reborn, Umā in the Vedas, Gaurī the fair one, and Caṇḍī or Durgā when wrathful. In South India she merges with the Tamil goddess Taṇṇammai; in Bengal and Assam she is identified with the mother goddess. Tantric traditions further multiply her forms, seeing her as the gentle face of the supreme śakti whose fierce aspect is Kālī. The mountain-goddess type has Indo-European echoes — the goddess born from or dwelling on the high peaks — but Pārvatī&#39;s specific identity as Śiva&#39;s wife and the mother of Gaṇeśa is distinctively Hindu.</p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include [[babaluaye|Ọbalúayé]], [[bastet|Bꜣstt]], [[coatlicue|Cōātlīcue]], [[dagan|Dāgan]], [[demeter|Dēmētēr]], and [[gaia|Gaîa]], each linked through earth / mother / fertility.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Pārvatī remains a model of the devoted wife, the disciplined yoginī, and the protective mother in Hindu culture. Her marriage to Śiva is re-enacted in countless festivals, dance dramas, and domestic rituals; images of the divine couple (<em>umāmaheśvara</em>) grace temples and home shrines from Nepal to Tamil Nadu. In classical dance, especially Bharatanatyam and Odissi, her narratives are central. Feminist scholars have reclaimed her tapas as an assertion of female spiritual agency, while popular film and television continue to tell her stories to mass audiences. The name Pārvatī is also widely chosen for girls, embodying the ideal of strength cloaked in gentleness.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Pārvatī given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Śiva Purāṇa, Satī Khaṇḍa and Pārvatī Khaṇḍa.</li>
+  <li> Kālidāsa, Kumārasambhava.</li>
+  <li> Skanda Purāṇa (birth of Gaṇeśa).</li>
+  <li> Devībhāgavata Purāṇa.</li>
+  <li> Monier-Williams, Sanskrit-English Dictionary (pārvatī).</li>
+  <li> Kinsley, Hindu Goddesses: Visions of the Divine Feminine.</li>
+  <li> Handelman and Shulman, Śiva in the Forest of Pines.</li>
+</ul>
+<p>The list spans the entry&#39;s two source-worlds: the Purāṇas and Kālidāsa&#39;s kāvya supply the continuous narrative from Satī to Pārvatī, while Kinsley maps her place among the Hindu goddesses and Handelman–Shulman model the close reading of Śaiva myth around the divine couple.</p>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Pārvatī teaches that love can be a form of asceticism. She does not pursue Śiva through seduction or demand; she becomes so still, so focused, so burning with intention that the universe rearranges itself to bring them together. Her devotion is not submission but a discipline of matching power.</p>
+<p>In a world that often pits independence against intimacy, Pārvatī offers a third path: the one who is fully herself and fully given. She is the mountain — immovable, clear, life-giving — and she is the river that descends from it, reaching everywhere. To remember her is to remember that the greatest strength can wear the gentlest face.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Pārvatī is classified as <strong>Tier 1</strong>: the original carries both stress and length, and only one valid Unicode restoration exists. The ASCII fallback <em>parvati</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 7 characters of the name, the restoration adjusts 2: 2 marks of length (ā, ī). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>parvati</em> to <strong>Pārvatī</strong>, one character at a time:</p>
+<ul>
+  <li><strong>p</strong> → <strong>P</strong> — Same</li>
+  <li><strong>a</strong> → <strong>ā</strong> — Macron: long a</li>
+  <li><strong>r</strong> → <strong>r</strong> — Same</li>
+  <li><strong>v</strong> → <strong>v</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+  <li><strong>t</strong> → <strong>t</strong> — Same</li>
+  <li><strong>i</strong> → <strong>ī</strong> — Macron: long i</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>pārvatī.com</strong>, which the DNS carries in punycode form as xn--prvat-fwa21a.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Pārvatī; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Devanagari can now be typed into any browser on earth.</p>
+<h2 id="the-sanskrit-pantheon">The Sanskrit Pantheon</h2>
+<p>Pārvatī is one of 88 entries the PÚNYCODEX lexicon catalogues under the Sanskrit pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Pārvatī mean?</strong> The traditional gloss is &quot;of the god Śiva&#39;s wife (as daughter of Himavat, king of the snowy mountains), Up.; MBh.; Kāv..&quot;</p>
+<p><strong>Which tradition does Pārvatī belong to?</strong> Pārvatī is catalogued in the Sanskrit pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Pārvatī classified as Tier 1?</strong> Because the original carries both stress and length, and only one valid Unicode restoration exists — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Pārvatī a working domain?</strong> Yes — pārvatī.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for pārvatī.com?</strong> The DNS encoding is xn--prvat-fwa21a.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="typing-parvati">Typing Pārvatī</h2>
+<p>You do not need a special keyboard to use this restoration. The <a href="/type/">PÚNYCODEX Type Tool</a> converts the ASCII form <em>parvati</em> into <strong>Pārvatī</strong> as you type, and the browser extension offers the same conversion inside any text field. Copy the restored form, paste it into the address bar, and the DNS does the rest.</p>
+<h2 id="sister-temples">Sister Temples</h2>
+<p>Other temples in the Sanskrit pantheon include <a href="/sites/shunya/">Śūnya</a>, <a href="/sites/sita/">Sītā</a>, and <a href="/sites/skanda/">Skanda</a> — each with its own restoration story, its own scholarly record, and its own place in the lexicon.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Every stage of the journey from Devanagari to Unicode was an act of care: the scribe who first wrote the name, the lexicographer who glossed it, the engineer who taught the DNS to carry it. The PÚNYCODEX restoration is the latest stage, not the last word — the Scholarly Edition is revised as the evidence improves. What does not change is the principle: a name deserves to be written the way its own tradition wrote it. <strong>Pārvatī</strong> in the address bar is that principle, made routable.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/surya/">Sūrya</a></li>
   <li><a href="/sites/valmiki/">Vālmīki</a></li>
   <li><a href="/sites/vyasa/">Vyāsa</a></li>
 </ul>
-<h2>Further Reading</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
-  <li><a href="https://www.sanskrit-lexicon.uni-koeln.de/">Scholarly reference</a></li>
+  <li>Śiva Purāṇa, Satī Khaṇḍa and Pārvatī Khaṇḍa.</li>
+  <li>Kālidāsa, Kumārasambhava.</li>
+  <li>Skanda Purāṇa (birth of Gaṇeśa).</li>
+  <li>Monier-Williams, Sanskrit-English Dictionary (pārvatī; from parvata, &quot;mountain&quot;).</li>
+  <li>Lexicon authorities for this entry: MW, KEWA.</li>
 </ul>
-<h2>The Name in Context</h2>
-<p>Pārvatī (parvati) — Mountains, Fertility, Devotion · of the god Śiva&#39;s wife (as daughter of Himavat, king of the snowy mountains), Up.; MBh.; Kāv. — belongs to the Sanskrit tradition, where it is catalogued under the domain &quot;Mountains, Fertility, Devotion&quot;. The name means &quot;she of the mountains&quot; — the feminine derivative of parvata, &quot;mountain&quot;: the daughter of Himavat, the king of the snows, born to become the wife of Śiva. Pārvatī is the mountain goddess whose devotion transforms the absolute into a husband. Born as the daughter of Himavat, the personified Himalaya, she is Satī reborn, destined to marry Śiva and bridge the abyss between his fierce asceticism and the needs of the world. She is gentle, patient, and resolute — the feminine power...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Pārvatī as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Devanagari to the modern browser. Every visit to this temple is a small act of preservation.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">sanskrit</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

@@ -7,7 +7,19 @@ const {
   getReports,
 } = require('../../platform/agents/research-assistant');
 const { getSessionToken, getOrCreateSession } = require('../../platform/api/search-v2');
+const { checkPublicRateLimitByReq } = require('../../platform/api/public-rate-limiter');
 const { handleError, setCors } = require('../_utils');
+
+// verifyAvailability performs real DNS lookups per row; cap the batch so an
+// anonymous caller cannot turn this endpoint into an outbound DNS amplifier.
+const SENTINEL_MAX_BATCH = 50;
+
+function parseBatchSize(raw) {
+  if (raw == null) return SENTINEL_MAX_BATCH;
+  const value = Number(raw);
+  if (!Number.isFinite(value)) return null;
+  return Math.min(SENTINEL_MAX_BATCH, Math.max(1, Math.floor(value)));
+}
 
 module.exports = async (req, res) => {
   setCors(req, res);
@@ -22,6 +34,8 @@ module.exports = async (req, res) => {
     const { agent } = req.query;
 
     if (req.method === 'POST') {
+      if (!(await checkPublicRateLimitByReq(req, res, 'agents-run', { tier: 'public-strict' })))
+        return;
       if (agent === 'scout') {
         const { domains } = req.body || {};
         if (!Array.isArray(domains))
@@ -30,8 +44,9 @@ module.exports = async (req, res) => {
         return res.json(result);
       }
       if (agent === 'sentinel') {
-        const { batchSize } = req.body || {};
-        const result = await verifyAvailability(batchSize || 50);
+        const batchSize = parseBatchSize(req.body?.batchSize);
+        if (batchSize == null) return res.status(400).json({ error: 'batchSize must be a number' });
+        const result = await verifyAvailability(batchSize);
         return res.json({ checked: result.length, results: result });
       }
       if (agent === 'lore-curator') {

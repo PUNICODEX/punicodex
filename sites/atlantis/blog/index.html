@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,45 +170,202 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-greek-location-pantheon">The Greek Location Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#typing-atlantis">Typing Atlantís</a></li>
+                <li><a href="#sister-temples">Sister Temples</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>The Name Atlantís and the World It Opens</h1>
-<p>A name is a door. Atlantís opens onto lost island, legendary realm, sea. Atlantís (atlantis) — &#39;daughter of Atlas&#39; — is the island empire Plato sets beyond the Pillars of Heracles in the Timaeus and Critias: a naval power defeated by a prehistoric Athens and swallowed by the sea in a single day and night. Atlantís is the legendary island civilization described by Plato, a powerful naval empire that angered the gods and sank beneath the waves. The tale functions in the dialogues as a philosophical counter-image to ideal Athens — the archetype of the golden age destroyed by its own ambition — and antiquity already debated whether it was history or parable. PÚNYCODEX restores the name as Atlantís and serves its temple at atlantís.com. The original preserves one prosodic feature — the acute accent on the final iota — rather...</p>
-<h2>Domain and Meaning</h2>
-<p>The temple domain is <strong>Lost Island, Legendary Realm, Sea</strong>. The traditional meaning is &quot;Daughter of Atlas; the legendary lost island civilization.&quot; Together, those two facts explain why the name mattered enough to be remembered for millennia.</p>
-<h2>The Mythic Landscape</h2>
-<p>Atlantís is Plato&#39;s story , whether invented or adapted from older traditions. It serves as a philosophical allegory about the corruption of power and the fragility of civilization. Myth is the memory of a civilization, and names are the hooks on which that memory hangs.</p>
-<h2>Modern Patterns</h2>
-<p>The <a href="/sites/atlantis/patterns/">Patterns</a> page maps the industries and sister temples that share Atlantís&#39;s current. A name that once organized ritual now organizes search, advertising, and creative collaboration.</p>
-<h2>Join the Restoration</h2>
-<p>You can support the work through the <a href="/sites/atlantis/patron/">Patron</a> wall, submit creative work, or simply share the address. Every visit to Atlantís is a vote for original scripts.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Atlantís is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>The name Atlantís and the world it opens</h1>
+<p>A name is a door. <strong>Atlantís</strong> opens onto an entire world: the domain of lost island, legendary realm, sea, a Greek Location tradition, and centuries of storytelling, worship, and scholarship. This post walks through that world room by room — the name and its roots, the original script, the sound of it, the myths, the symbols, the sites, the afterlife across cultures — and ends at the newest room of all: a Unicode domain that makes the whole structure addressable. <em>atlantis</em> gets you to the same building, but only the restored form tells you why it was built.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Atlantís</li>
+  <li><strong>ASCII form:</strong> atlantis</li>
+  <li><strong>Meaning:</strong> &quot;Daughter of Atlas; the legendary lost island civilization&quot;</li>
+  <li><strong>Domain of influence:</strong> Lost Island, Legendary Realm, Sea</li>
+  <li><strong>Pantheon:</strong> Greek Location</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> Ἀτλαντίς (Greek)</li>
+  <li><strong>Live domain:</strong> atlantís.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Atlantís</strong> (<em>atlantis</em>) — &#39;daughter of Atlas&#39; — is the island empire Plato sets beyond the Pillars of Heracles in the <em>Timaeus</em> and <em>Critias</em>: a naval power defeated by a prehistoric Athens and swallowed by the sea in a single day and night.</p>
+<p>Atlantís is the <strong>legendary island civilization</strong> described by Plato, a powerful naval empire that angered the gods and sank beneath the waves. The tale functions in the dialogues as a philosophical counter-image to ideal Athens — the archetype of the golden age destroyed by its own ambition — and antiquity already debated whether it was history or parable.</p>
+<p>PÚNYCODEX restores the name as <strong>Atlantís</strong> and serves its temple at <a href="https://xn--atlants-dza.com">atlantís.com</a>. The original preserves one prosodic feature — the acute accent on the final iota — rather than both stress and vowel length, which places the name in Tier 2. The plain ASCII form <em>atlantis</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Greek as <strong>Ἀτλαντίς</strong>. Etymologically it means &quot;Daughter of Atlas; the legendary lost island civilization&quot;.</p>
+<p>The reconstructed proto-form is <em>tl̥-n-h₂</em> (proto-indo-european, &quot;to bear, uphold&quot;). From Atlas (Ἄτλας), the Titan who holds up the heavens; Atlantis is &quot;the island of Atlas.&quot;</p>
+<p>Cognate forms across related languages:</p>
+<ul>
+  <li><strong>Atlas</strong> (greek) — The Titan after whom the island is named</li>
+</ul>
+<p>In Greek the word is a feminine patronymic adjective — the full expression is Ἀτλαντὶς νῆσος, &#39;the island of Atlas,&#39; with the noun understood. Plato makes the derivation explicit: the island&#39;s first king was named Atlas, and from him both the island and the outer sea took their names (Critias 114a).</p>
+<p>The ASCII form <em>atlantis</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Atlantís</strong> recovers the stress accent of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>a</strong> → <strong>A</strong> — Same, capitalized</li>
+  <li><strong>t</strong> → <strong>t</strong> — Same</li>
+  <li><strong>l</strong> → <strong>l</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+  <li><strong>t</strong> → <strong>t</strong> — Same</li>
+  <li><strong>i</strong> → <strong>í</strong> — Acute on iota</li>
+  <li><strong>s</strong> → <strong>s</strong> — Same</li>
+</ul>
+<p>The project holds the domain <strong>atlantís.com</strong> (xn--atlants-dza.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: From Atlas (Ἄτλας), the Titan who holds up the heavens; Atlantis is &quot;the island of Atlas.&quot;</p>
+<p>The reconstructed proto-form is <em>*tl̥-n-h₂</em> (proto-indo-european), glossed as &quot;to bear, uphold&quot;.</p>
+<p>The reconstruction is classed as attested.</p>
+<p>Kindred forms recorded in the lexicon:</p>
+<ul>
+  <li><strong>Atlas</strong> (greek) — The Titan after whom the island is named</li>
+</ul>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is written in Greek as <strong>Ἀτλαντίς</strong>. This original script is the form against which the ASCII fallback <em>atlantis</em> and the PÚNYCODEX restoration <strong>Atlantís</strong> are measured: the restoration preserves the pitch accent of the written form, so that a reader typing the modern address still speaks the ancient name.</p>
+<p>The word is attested almost exclusively in Plato: the <em>Timaeus</em> and <em>Critias</em> supply the ancient corpus, and the later authors who mention the island copy him. In form it is built with the regular Greek feminine patronymic suffix -ίς (genitive -ίδος), &#39;daughter of&#39; — the same suffix the poets use in Ἀτλαντίδες for the daughters of Atlas. The acute on the final iota is part of the word&#39;s prosody: short iota, final stress. The restoration <strong>Atlantís</strong> carries exactly that accent into the address bar.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/at.lan.tís/</strong> — Attic Greek Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>At-</strong> — Short alpha [a] plus voiceless dental stop [t]; the opening syllable is unstressed</li>
+  <li><strong>-lan-</strong> — Lateral [l], short [a], and nasal [n]; the middle syllable carries the root Átlas</li>
+  <li><strong>-tis</strong> — [t] plus short iota and final sigma [s]; the iota bears the acute accent, marking the final syllable as stressed</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;at-lahn-TEES&#39; — three short syllables, the stress falling on the clipped final i.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Greek</strong> — Ἀτλαντίς (Atlantís), &#39;daughter of Atlas,&#39; the legendary island</li>
+  <li><strong>Root</strong> — Ἄτλας (Átlas), the Titan who held up the heavens</li>
+  <li><strong>Narrative</strong> — The word survives almost wholly through Plato&#39;s Timaeus and Critias</li>
+</ul>
+<p>Atlantís is accent-preserving Tier 2: the acute on the final iota marks stress, but the vowel is short — the name is the feminine patronymic form of Átlas, &#39;daughter of Atlas,&#39; turned into a place name. English &#39;Atlantis&#39; flattens both the accent and the short final syllable.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Atlantís is <strong>Plato&#39;s story</strong>, whether invented or adapted from older traditions. It serves as a philosophical allegory about the corruption of power and the fragility of civilization.</p>
+<h3 id="the-egyptian-priest-s-tale-plato-timaeus">The Egyptian Priest&#39;s Tale (Plato, Timaeus)</h3>
+<p>Solon visits Egypt and hears from a priest of Saïs that Athens once defeated a great Atlantic power nine thousand years earlier. The Greeks have forgotten because catastrophes repeatedly destroy their records, while Egypt&#39;s memory is preserved by the Nile&#39;s stability.</p>
+<h3 id="the-island-and-its-kings-plato-critias">The Island and Its Kings (Plato, Critias)</h3>
+<p>Atlantis was allotted to Poseidon, who fell in love with a mortal woman, Kleito. Their descendants — ten kings in five pairs of twins, with Atlas the eldest — built a magnificent capital of concentric harbors, temples, and walls. For generations they were virtuous; then wealth and power corrupted them.</p>
+<h3 id="the-cataclysm-plato-timaeus-25c-d-critias-121b-c">The Cataclysm (Plato, Timaeus 25c-d; Critias 121b-c)</h3>
+<p>Zeus assembled the gods to pronounce judgment on Atlantis — and at that very moment the unfinished <em>Critias</em> breaks off. The <em>Timaeus</em> supplies the outcome: &#39;violent earthquakes and floods&#39; came, &#39;and in a single day and night of misfortune&#39; the Athenian army sank into the earth and the island of Atlantis &#39;disappeared in the depths of the sea.&#39; Only impassable mud shoals remained where the island had been.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>Atlantis has no ancient iconography — no vase painting, relief, or coin depicts it — so its &#39;symbols&#39; are the material details Plato gives the island in the <em>Critias</em>: engineered concentric rings of land and water, walls faced with orichalcum that &#39;sparkled like fire,&#39; and the temple of Poseidon and Kleito at the center of the rings.</p>
+<ul>
+  <li><strong>Concentric rings of land and water</strong> — The engineered geography of the Atlantean capital</li>
+  <li><strong>Poseidon&#39;s trident</strong> — The island&#39;s divine patron, who begot its ten kings on Kleito</li>
+  <li><strong>Orichalcum</strong> — The legendary precious metal of Atlantis, second in value only to gold</li>
+  <li><strong>Sinking temple</strong> — The modern icon of a civilization&#39;s architecture overwhelmed by the sea</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>No archaeological site has been convincingly identified with Plato&#39;s Atlantis, and marine geology excludes a sunken landmass of continental scale in the Atlantic: the ocean floor holds no foundered continent, only volcanic islands and spreading ridges. The two serious real-world analogues are catastrophes of Plato&#39;s own world. Akrotiri on Thera, a Bronze Age town sealed by the great volcanic eruption and excavated by Spyridon Marinatos from 1967, had been proposed by Marinatos himself as early as 1939 as the disaster behind the Atlantis memory; and Helike in Achaea, destroyed by earthquake and tsunami in 373 BCE — within Plato&#39;s lifetime — was rediscovered by archaeologists only in 2001. Other candidacies — Spartel Bank, the Doñana marshes, the Azores — remain hypotheses without a single attributable artifact.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Atlantís is the <strong>legendary island civilization</strong> described by Plato, a powerful naval empire that angered the gods and sank beneath the waves in a single day and night. According to the priest of Saïs who tells Solon the story, the war between Atlantis and Athens was fought nine thousand years before Solon&#39;s day, and Athens — alone — defeated the invaders and freed the peoples within the Pillars. It is the archetype of the golden age destroyed by its own ambition.</p>
+<h3 id="island-empire">Island Empire</h3>
+<p>A ringed island beyond the Pillars of Herakles, rich in metals, timber, and fertile soil.</p>
+<h3 id="naval-power">Naval Power</h3>
+<p>Its fleet dominated the Mediterranean until Athens led a resistance of free Greeks.</p>
+<h3 id="hubris-and-fall">Hubris and Fall</h3>
+<p>Its kings grew greedy and impious; Zeus punished them with earthquakes and floods.</p>
+<h3 id="underwater-ruin">Underwater Ruin</h3>
+<p>Sank beneath the Atlantic, becoming the template for every lost-civilization legend.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Antiquity received Plato&#39;s tale with skepticism and belief in equal measure. Strabo repeats the jest — attributed through Poseidonius to Aristotle — that the man who invented the island also sank it, while Proclus reports that Crantor, Plato&#39;s first commentator, claimed the story was still inscribed on pillars in Egypt: the first of many &#39;confirmations.&#39; Modern speculation began in earnest with Ignatius Donnelly&#39;s <em>Atlantis: The Antediluvian World</em> (1882), which recast Plato&#39;s parable as literal history and founded the genre of Atlantology. Occult, utopian, and pseudo-archaeological writers have since identified the island with Thera, Tartessos, Malta, the Azores, and the Americas — identifications the skeptical literature catalogues and dismantles. The name&#39;s genuine legacy is geographic: already Herodotus calls the outer sea beyond the Pillars &#39;the Atlantis,&#39; and Plato&#39;s island borrowed its name from the same Titan.</p>
+<p>Kindred places in the corpus include [[atlas|Átlas]], [[elysion|Ēlysion]], [[delphoi|Delphoí]], [[olympos|Ólympos]], [[aigyptos|Aígyptos]], and [[libye|Libyē]].</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Atlantis became Western culture&#39;s favorite lost world. Francis Bacon borrowed the name for his utopian <em>New Atlantis</em> (1627), and Jules Verne let Captain Nemo walk the drowned ruins in <em>Twenty Thousand Leagues under the Seas</em> (1870). Tolkien built Númenor — in Quenya Atalantë, &#39;the Downfallen&#39; — on the same drowning-island pattern and acknowledged the debt in his letters. The twentieth century split the legacy in two: scholarship reads the tale as Plato&#39;s parable of imperial Athens, while occultism from Blavatsky&#39;s <em>The Secret Doctrine</em> (1888) onward claimed it as recovered prehistory, and cinema and comics turned it into a drowned high-tech civilization. Restoring <strong>Atlantís</strong> in Unicode ties the modern name back to Plato&#39;s Greek — the acute of the <em>Timaeus</em> and <em>Critias</em> — rather than to the Atlantis of speculation.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Atlantís given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, s.v. Ἀτλαντίς. <a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Full text</a></li>
+  <li> Beekes, Etymological Dictionary of Greek, s.v. Ἄτλας.</li>
+  <li> Plato, Timaeus 21e-25d.</li>
+  <li> Plato, Critias 108e-121c.</li>
+  <li> Strabo, Geography 2.3.6.</li>
+  <li> Vidal-Naquet, P., The Atlantis Story: A Short History of Plato&#39;s Myth (2007).</li>
+  <li> Feder, K. L., Frauds, Myths, and Mysteries: Science and Pseudoscience in Archaeology.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Atlantis is the myth that we want to be true. It promises that somewhere, once, people knew more than we do — and that their knowledge sleeps beneath the waves, waiting to be recovered. That desire says less about history than about our own dissatisfaction with the present.</p>
+<p>But Plato&#39;s lesson is moral, not archaeological. Atlantis falls not because it lacks power but because it loses virtue. The city of rings becomes a city of greed. The myth asks every civilization: What are you becoming while you grow? If the answer is &#39;more like Atlantis,&#39; the sea is already rising.</p>
+<p>Plato never finished the story: the <em>Critias</em> breaks off in mid-sentence, at the very moment Zeus rises to pronounce judgment. The island is thus doubly drowned — once in the sea, and once in its author&#39;s silence.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Atlantís is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>atlantis</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 8 characters of the name, the restoration adjusts 1: 1 mark of stress (í). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>atlantis</em> to <strong>Atlantís</strong>, one character at a time:</p>
+<ul>
+  <li><strong>a</strong> → <strong>A</strong> — Same, capitalized</li>
+  <li><strong>t</strong> → <strong>t</strong> — Same</li>
+  <li><strong>l</strong> → <strong>l</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+  <li><strong>t</strong> → <strong>t</strong> — Same</li>
+  <li><strong>i</strong> → <strong>í</strong> — Acute on iota</li>
+  <li><strong>s</strong> → <strong>s</strong> — Same</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>atlantís.com</strong>, which the DNS carries in punycode form as xn--atlants-dza.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Atlantís; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Greek can now be typed into any browser on earth.</p>
+<h2 id="the-greek-location-pantheon">The Greek Location Pantheon</h2>
+<p>Atlantís is one of 24 entries the PÚNYCODEX lexicon catalogues under the Greek Location pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Atlantís mean?</strong> The traditional gloss is &quot;Daughter of Atlas; the legendary lost island civilization.&quot;</p>
+<p><strong>Which tradition does Atlantís belong to?</strong> Atlantís is catalogued in the Greek Location pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Atlantís classified as Tier 2?</strong> Because the original preserves at least one philological feature that ASCII cannot encode — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Atlantís a working domain?</strong> Yes — atlantís.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for atlantís.com?</strong> The DNS encoding is xn--atlants-dza.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="typing-atlantis">Typing Atlantís</h2>
+<p>You do not need a special keyboard to use this restoration. The <a href="/type/">PÚNYCODEX Type Tool</a> converts the ASCII form <em>atlantis</em> into <strong>Atlantís</strong> as you type, and the browser extension offers the same conversion inside any text field. Copy the restored form, paste it into the address bar, and the DNS does the rest.</p>
+<h2 id="sister-temples">Sister Temples</h2>
+<p>Other temples in the Greek Location pantheon include <a href="/sites/epeiros/">Ēpeiros</a>, and <a href="/sites/ithake/">Ithákē</a> — each with its own restoration story, its own scholarly record, and its own place in the lexicon.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>A door only matters if people walk through it. <strong>atlantís.com</strong> is open, and everything behind it — the myths, the scholarship, the canvas, the patrons — hangs on the restored spelling. The PÚNYCODEX project bets that the web will make room for names as they were actually written, and Atlantís is one of its standing proofs. Visit, share, cite, type it yourself: each use is a small rehearsal for a web where no name has to hide its marks to be found.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/delphoi/">Delphoí</a></li>
   <li><a href="/sites/hyperborea/">Hyperbórea</a></li>
   <li><a href="/sites/libye/">Libyē</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, s.v. Ἀτλαντίς.</a></li>
+  <li>Plato, Timaeus 24e-25d (the priest&#39;s tale and the sinking).</li>
+  <li>Vidal-Naquet, P., The Atlantis Story: A Short History of Plato&#39;s Myth. Exeter: University of Exeter Press, 2007.</li>
+  <li>Beekes, Etymological Dictionary of Greek, s.v. Ἄτλας.</li>
+  <li>Plato, Critias 114a (the island and sea named after King Atlas).</li>
+  <li>Lexicon authorities for this entry: LSJ, Plato.</li>
 </ul>
-<h2>The Name in Context</h2>
-<p>Atlantís (atlantis) — &#39;daughter of Atlas&#39; — is the island empire Plato sets beyond the Pillars of Heracles in the Timaeus and Critias: a naval power defeated by a prehistoric Athens and swallowed by the sea in a single day and night. Atlantís is the legendary island civilization described by Plato, a powerful naval empire that angered the gods and sank beneath the waves. The tale functions in the dialogues as a philosophical counter-image to ideal Athens — the archetype of the golden age destroyed by its own ambition — and antiquity already debated whether it was history or parable. PÚNYCODEX restores the name as Atlantís and serves its temple at atlantís.com. The original preserves one prosodic feature — the acute accent on the final iota — rather...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Atlantís as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Greek to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Atlantís through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/atlantis/">home page</a> offers the full name breakdown, the <a href="/sites/atlantis/lore/">lore page</a> explores the myth, and the <a href="/sites/atlantis/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Atlantís do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
-<h2>A Note on the Address Bar</h2>
-<p>When you type Atlantís, the browser performs an invisible conversion into Punycode so the global DNS can route the request. The user sees the original name; the machines see a compatible ASCII encoding. That duality is the engineering compromise that makes the restoration possible, and it is the reason every Unicode domain is both a technical milestone and a small act of cultural memory.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">greek-location</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

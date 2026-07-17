@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,36 +170,197 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>15 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#epithets-cult-titles">Epithets &amp; Cult Titles</a></li>
+                <li><a href="#the-homeric-hymns">The Homeric Hymns</a></li>
+                <li><a href="#oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>Why Érōs Belongs in the Address Bar</h1>
-<p>Every address bar is a choice. When you type <strong>Érōs</strong>, you are not typing a novelty; you are restoring a name. The plain ASCII form <em>eros</em> is the leftover of a DNS that was built for English typewriters, not for the world&#39;s naming traditions. Érōs (eros) — Love, desire (from ἔραμαι) — belongs to the Greek tradition, where it is catalogued under the domain &quot;Love, Desire, Attraction&quot;. The name means &quot;Love, desire (from ἔραμαι)&quot;. Érōs is not merely romance. He is the attraction that makes things move toward each other: fire upward, water downward, god toward mortal, atom toward atom. In the earliest Greek cosmogonies, Érōs is a primordial power; only later does he become the mischievous child of Aphrodite. PÚNYCODEX restores the name as Érōs and serves its temple at Érōs.com. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form eros survives as a modern convenience imposed by...</p>
-<h2>The Name the DNS Almost Forgot</h2>
-<p>The name is attested in Greek as Ἔρως. Etymologically it means &quot;Love, desire (from ἔραμαι)&quot;. From Greek ἔρως, derived from the verb ἔραμαι / ἐράω &#39;to love, desire&#39;; the further Indo-European etymology is uncertain. Cognate forms across related languages: - ἔραμαι (greek) — Verb &#39;to love, desire&#39; (LSJ, Beekes) The ASCII form eros survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Érōs recovers both the stress accent and the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The... In scholarly terms, it belongs to the <strong>Tier 1</strong> class: the Greek original carries both stress and length, and only one valid Unicode restoration exists. That detail is not decorative; it is the difference between a label and a lived name.</p>
-<h2>From Greek to the Browser</h2>
-<p>The name is preserved in Greek as Ἔρως — Greek alphabet (Classical / Attic), attested Ancient Greek, c. 8th century BCE – present, in Greece and the Greek-speaking Mediterranean. The script is written left-to-right. The scholarly transliteration is Érōs (Greek alphabet with polytonic accents), giving the normalized reading /ˈe.rɔːs/. The rendering proceeds step by step: - The Greek form Ἔρως is written in the Classical Greek alphabet. - Letters with acute, grave, or circumflex accents preserve the pitch accent of Ancient Greek. - Macrons and omegas (η, ω) mark long vowels, a feature lost in the plain ASCII form. - The Unicode restoration Érōs encodes the scholarly spelling as a registrable domain name. The PÚNYCODEX temple does not invent a spelling; it recovers one. By registering the Unicode form, the project proves that the original script can survive inside the infrastructure of the modern web.</p>
-<h2>Why 2026 Still Needs This</h2>
-<p>In 2026, names are data. Search engines, AI training corpora, and localization teams all need authoritative forms. Érōs is a small but concrete demonstration that philology and DNS can coexist. The <a href="/sites/eros/scholars/">Scholarly Edition</a> preserves the argument; the blog makes it approachable.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Érōs is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>Why Érōs belongs in your address bar</h1>
+<p>Every address bar is a choice. When you type <strong>Érōs</strong>, you are not typing a novelty; you are restoring a name that the early DNS, built for English typewriters, could not carry. The plain ASCII form <em>eros</em> is a leftover of that constraint, not the name itself. This post is the long version of the restoration: where the name comes from, how the Greek tradition wrote it, how it is pronounced, what the myths and the material record preserve, and why its Unicode form now lives as a working domain. The claim throughout is simple — the original spelling is not decoration. It is the name.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Érōs</li>
+  <li><strong>ASCII form:</strong> eros</li>
+  <li><strong>Meaning:</strong> &quot;Love, desire (from ἔραμαι)&quot;</li>
+  <li><strong>Domain of influence:</strong> Love, Desire, Attraction</li>
+  <li><strong>Pantheon:</strong> Greek</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Original script:</strong> Ἔρως (Greek)</li>
+  <li><strong>Live domain:</strong> Érōs.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Érōs</strong> (<em>eros</em>) — Love, desire (from ἔραμαι) — belongs to the Greek tradition, where it is catalogued under the domain &quot;Love, Desire, Attraction&quot;. The name means &quot;Love, desire (from ἔραμαι)&quot;.</p>
+<p>Érōs is not merely romance. He is the <strong>attraction that makes things move toward each other</strong>: fire upward, water downward, god toward mortal, atom toward atom. In the earliest Greek cosmogonies, Érōs is a primordial power; only later does he become the mischievous child of Aphrodite.</p>
+<p>PÚNYCODEX restores the name as <strong>Érōs</strong> and serves its temple at <a href="https://xn--rs-9ia51b.com">Érōs.com</a>. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>eros</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Greek as <strong>Ἔρως</strong>. Etymologically it means &quot;Love, desire (from ἔραμαι)&quot;.</p>
+<p>From Greek ἔρως, derived from the verb ἔραμαι / ἐράω &#39;to love, desire&#39;; the further Indo-European etymology is uncertain.</p>
+<p>Cognate forms across related languages:</p>
+<ul>
+  <li><strong>ἔραμαι</strong> (greek) — Verb &#39;to love, desire&#39; (LSJ, Beekes)</li>
+</ul>
+<p>The ASCII form <em>eros</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Érōs</strong> recovers both the stress accent and the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>e</strong> → <strong>É</strong> — Epsilon with acute</li>
+  <li><strong>r</strong> → <strong>r</strong> — Rho</li>
+  <li><strong>o</strong> → <strong>ō</strong> — Omega: long omicron</li>
+  <li><strong>s</strong> → <strong>s</strong> — Sigma</li>
+</ul>
+<p>The project holds the domain <strong>Érōs.com</strong> (xn--rs-9ia51b.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: From Greek ἔρως, derived from the verb ἔραμαι / ἐράω &#39;to love, desire&#39;; the further Indo-European etymology is uncertain.</p>
+<p>The reconstruction is classed as attested.</p>
+<p>Kindred forms recorded in the lexicon:</p>
+<ul>
+  <li><strong>ἔραμαι</strong> (greek) — Verb &#39;to love, desire&#39; (LSJ, Beekes)</li>
+</ul>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Greek as <strong>Ἔρως</strong> — Greek alphabet (Classical / Attic), attested Ancient Greek, c. 8th century BCE – present, in Greece and the Greek-speaking Mediterranean. The script is written left-to-right.</p>
+<p>The scholarly transliteration is <em>Érōs</em> (Greek alphabet with polytonic accents), giving the normalized reading /ˈe.rɔːs/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The Greek form Ἔρως is written in the Classical Greek alphabet.</li>
+  <li>Letters with acute, grave, or circumflex accents preserve the pitch accent of Ancient Greek.</li>
+  <li>Macrons and omegas (η, ω) mark long vowels, a feature lost in the plain ASCII form.</li>
+  <li>The Unicode restoration Érōs encodes the scholarly spelling as a registrable domain name.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/eˈrɔːs/</strong> — Attic Greek Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>E-</strong> — Smooth breathing; short epsilon opens the name without aspiration.</li>
+  <li><strong>-r-</strong> — Single rho, a liquid that rolls between the vowels.</li>
+  <li><strong>-ōs</strong> — Long omega [ɔː], the sustained note at the end — desire prolonged.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &quot;eh-ROSS&quot; — with the second syllable held longer than English allows; the o is deep and sustained.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Greek</strong> — ἔραμαι (eramai), &quot;to desire, love&quot;; ἔρως is the noun of desire</li>
+  <li><strong>Beekes</strong> — possibly Pre-Greek; no secure Indo-European etymology</li>
+</ul>
+<p>Érōs is Tier 1 because the Greek Ἔρως contains both stress (acute on the initial epsilon) and length (the long omega). The acute on the initial É preserves the stress, while the macron on the final ō preserves the long vowel. The name is the full scholarly form of the force that moves the cosmos.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Érōs stands at the beginning in Hesiod and at the margins in Homer. He is one of the oldest gods, yet his stories are few — because his power is everywhere.</p>
+<h3 id="fourth-of-the-primordials-theogony">Fourth of the Primordials (Theogony)</h3>
+<p>Hesiod places Érōs fourth in the procession of being: after Cháos, Gaia, and Tartarus, but before the children of Night. &quot;He is the most beautiful among the immortal gods,&quot; Hesiod writes, &quot;he makes the limbs go limp and overcomes the intelligence and prudent counsel in the breasts of all gods and men&quot; (<em>Theogony</em> 120–122).</p>
+<h3 id="first-of-all-parmenides">First of All (Parmenides)</h3>
+<p>The pre-Socratic philosopher Parmenides made Érōs the first of all gods to come into being — &#39;first of all the gods she devised Érōs&#39; (fr. 28 B 13 Diels-Kranz) — not a child of Aphrodite but the primal force of attraction that organizes reality. In this philosophical reading, love is not an emotion; it is a <strong>cosmological principle</strong>.</p>
+<h3 id="the-cosmic-egg-aristophanes">The Cosmic Egg (Aristophanes)</h3>
+<p>In Aristophanes&#39; <em>Birds</em> (414 BCE), a parody of Orphic cosmogony, Érōs hatches from the wind-egg laid by black-winged Night in the bosom of Erebus, and then mates with Chaos in broad Tartarus to produce the race of birds (Birds 693–702). The image preserves the older idea of Érōs as a self-generating power of union.</p>
+<h3 id="the-roman-eros-psyche">The Roman Eros (Psyche)</h3>
+<p>In Apuleius&#39; Latin novel <em>The Golden Ass</em>, Érōs becomes Cupid, the lover of Psyche (&quot;Soul&quot;). The tale — of forbidden love, betrayal, and divine reconciliation — became the template for countless later stories, though it belongs to Roman, not archaic Greek, tradition.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>Érōs&#39;s attributes accumulate in layers, and the sources allow each layer to be dated:</p>
+<ul>
+  <li><strong>Bow and arrows</strong> — already canonical in classical tragedy: the chorus of Euripides&#39; <em>Hippolytus</em> sings that no shaft of fire or of the stars rivals &#39;the shaft of Aphrodite that Érōs, the son of Zeus, hurls from his hand&#39; (Hipp. 530–534); the late Orphic <em>Hymn to Eros</em> (58) still praises his far-flying arrows.</li>
+  <li><strong>Wings</strong> — the attribute art never surrenders: on fifth-century Attic red-figure he already hovers winged at the shoulder of [[aphrodite|Aphrodítē]], and Plato&#39;s <em>Phaedrus</em> makes the growth of the soul&#39;s wings the measure of desire.</li>
+  <li><strong>Torch</strong> — a Hellenistic and Roman addition: in gems, sarcophagi, and Pompeian painting Érōs carries the torch of the heart&#39;s fire, sometimes reversed in funerary scenes as the flame extinguished by death.</li>
+  <li><strong>Rose</strong> — the flower of Aphrodítē transfers to her son in Roman and later imagery: beauty whose thorn wounds as it invites.</li>
+  <li><strong>Heart</strong> — the modern target-diagram of the god, descending from the ancient language of the heart as the seat of longing.</li>
+</ul>
+<p>Érōs&#39;s body ages in reverse. On fifth-century Attic red-figure he is a <strong>beautiful winged youth</strong> — long-haired, wreathed — hovering at [[aphrodite|Aphrodítē]]&#39;s shoulder, attending brides on nuptial vessels, or flying toward the beloved with hare, wreath, or fillet; the <strong>bow and arrows</strong> that define him later are present but not yet his identity. In the fourth century Praxiteles&#39; <strong>Érōs of Thespiae</strong> gave him his most admired sculptural form, a standing youth of melancholy beauty which Roman emperors carried off and copied.</p>
+<p>The Hellenistic age made him a <strong>child</strong>, then multiplied him into the playful <strong>Erotes</strong> — sleeping, flying, stringing the bow, riding lions and dolphins — who fill gems, sarcophagi, and Pompeian walls. From there the line runs unbroken to the Roman <strong>Cupid</strong> and the Renaissance putto: Hesiod&#39;s primordial power ends, in art, as a toddler with a bow.</p>
+<h2 id="epithets-cult-titles">Epithets &amp; Cult Titles</h2>
+<ul>
+  <li><strong>κάλλιστος ἐν ἀθανάτοισι θεοῖσι (kállistos en athanátoisi theoîsi)</strong> — &#39;most beautiful among the immortal gods,&#39; Hesiod&#39;s predicate at his first appearance (<em>Theogony</em> 120).</li>
+  <li><strong>λυσιμελής (lysimelḗs)</strong> — &#39;limb-loosening,&#39; Hesiod&#39;s defining epithet (<em>Theogony</em> 121), which Sappho takes up and makes her own: &#39;once again limb-loosening Érōs shakes me.&#39;</li>
+  <li><strong>γλυκύπικρος (glykýpikros)</strong> — &#39;sweetbitter,&#39; Sappho&#39;s coinage for desire — &#39;the irresistible creeping thing&#39; (fr. 130): the most influential two syllables in the history of love poetry.</li>
+  <li><strong>πτερόεις (pteróeis)</strong> — &#39;winged,&#39; his standard poetic and artistic predicate from lyric onward, the quality on which Plato&#39;s <em>Phaedrus</em> builds its great myth of the soul.</li>
+  <li><strong>Cupido / Amor</strong> — the Roman names under which the god, shrinking from youth to child, conquered Western art.</li>
+</ul>
+<h2 id="the-homeric-hymns">The Homeric Hymns</h2>
+<p>No Homeric Hymn to Érōs survives — the archaic corpus passes him by, though the late Orphic <em>Hymn to Eros</em> (58) salutes him as the great, winged, two-natured power whose arrows reach gods and mortals alike.</p>
+<p>The earliest attestations divide into person and pressure. Hesiod makes Érōs the fourth being of the universe, after Chaos, Gaia, and Tartaros: &#39;most beautiful among the immortal gods, the limb-loosener, who overpowers the mind and shrewd counsel in the breast of every god and mortal&#39; (<em>Theogony</em> 120–122). Homer, by contrast, never personifies him: in the <em>Iliad</em> ἔρως is the force itself, striking Zeús at the sight of Hēra &#39;as when first they mingled in love&#39; (14.294). Between the two — Hesiod&#39;s god and Homer&#39;s experience — lies the whole later history of the figure.</p>
+<h2 id="oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</h2>
+<p>Érōs had no oracle, but — unusually for a personification — he had real cult. Its heart was <strong>Thespiae</strong> in Boeotia, whose citizens honoured him above all other gods in the form of an <strong>unwrought stone</strong>, an aniconic image of great antiquity; their festival, the Erotidia, celebrated him with music and athletic contests, and the town later treasured Praxiteles&#39; marble Érōs as its pride. In <strong>Athens</strong> an altar of Érōs stood before the entrance of the Academy — said to be the first ever dedicated to him — fittingly at the gate of a gymnasium, since in <strong>Elis</strong> and elsewhere he shared altars with Hermēs, and with Anteros, &#39;Love returned,&#39; in the gymnasia where boys and men exercised together.</p>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Érōs is exceptional among personifications in possessing real, documented cult, and the material record is correspondingly rich. Its heart was <strong>Thespiae</strong> in Boeotia: Pausanias reports that the Thespians honoured Érōs above all other gods from the beginning, in the form of an <strong>unwrought stone</strong> — an aniconic image of great antiquity — and that the town&#39;s later treasures were a marble Érōs by Praxiteles, associated with the courtesan Phryne, and a bronze by Lysippus. The Praxitelean statue was carried off by Caligula, restored by Claudius, carried off again by Nero, and perished in a fire at Rome. The town&#39;s festival, the <strong>Erotidia</strong>, celebrated him with music and athletic contests into Roman times, and Parium on the Hellespont worshipped him with equal honour. In <strong>Athens</strong>, the altar of Érōs before the entrance of the Academy — said to have been dedicated by Charmus — was reputed the first ever raised to him; in <strong>Elis</strong> he shared gymnasium altars with Anteros, &#39;Love returned.&#39; In art, fifth-century Attic red-figure fills wedding vessels with winged Erotes, the habit the Hellenistic age multiplied into the playful child-gods of gems and sarcophagi.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Érōs is not merely romance. He is the <strong>attraction that makes things move toward each other</strong>: fire upward, water downward, god toward mortal, atom toward atom. In the earliest Greek cosmogonies, Érōs is a primordial power; only later does he become the mischievous child of Aphrodite.</p>
+<h3 id="the-bow">The Bow</h3>
+<p>His weapon makes the limbs go slack and the mind unmade; no god or mortal is immune.</p>
+<h3 id="wings">Wings</h3>
+<p>Desire is swift and sudden; it arrives before reason can arrange a defense.</p>
+<h3 id="the-heart-aflame">The Heart Aflame</h3>
+<p>The fire of longing — physical, spiritual, cosmic.</p>
+<h3 id="the-rose">The Rose</h3>
+<p>Flower of Aphrodite and Érōs; beauty that wounds as it invites.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>The Roman <em>Cupido</em> inherited Érōs&#39;s arrows and wings but gradually shrank from a handsome youth into a plump, blindfolded infant — the Renaissance putto. In Plato&#39;s <em>Symposium</em>, Érōs is redefined as the longing for beauty and the ladder from physical desire to the Form of the Good. For the Stoics, Érōs was a natural affinity (<em>oikeiōsis</em>) that binds the cosmos. Freud divided the psyche into <em>Eros</em> and <em>Thanatos</em>, life-drive and death-drive, making the Greek god the name of everything in us that seeks connection, pleasure, and life.</p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include [[aphrodite|Aphrodítē]], [[ishtar|Ištar]], and [[oshun|Ọṣun]], each linked through love / beauty / desire.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Érōs is one of the most productive words in European languages: <em>erotic</em>, <em>erogenous</em>, <em>erotomania</em> descend directly from his name. His image travelled even further than his word: the winged child with a bow — the Roman Cupid — became one of the most recognizable figures in Western art, from Pompeian walls to Renaissance putti and Valentine&#39;s cards. Philosophy kept the grander reading alive: Plato&#39;s <em>Symposium</em> turned desire into the ladder from bodily beauty to the Form of the Good, and that sublimated Érōs runs through Western thought to Freud, who in <em>Beyond the Pleasure Principle</em> (1920) divided the psyche between Eros, the drive that binds and preserves, and Thanatos, the drive toward dissolution. Popular culture prefers the smaller god: pop songs, perfume advertisements, and greeting cards. Yet the archaic Érōs was more formidable — a beautiful power who could unmake kings and gods. To restore the name <em>Érōs</em> with its long omega is to remember that desire is not trivial; it is one of the forces that turns the world.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Érōs given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Full text</a></li>
+  <li> Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a href="https://brill.com/view/title/17858">Full text</a></li>
+  <li> Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE. <a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Full text</a></li>
+  <li> Aristophanes, Birds.</li>
+  <li> Plato, Symposium.</li>
+  <li> Apuleius, The Golden Ass.</li>
+  <li> Orphic Hymns.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Érōs is the least visible of the great powers because we experience him from inside. He is not a storm you watch from a window; he is the weather inside the room. Every longing — for a person, for a place, for a version of yourself — is a local manifestation of the same force Hesiod placed at the foundation of the cosmos.</p>
+<p>The modern world speaks of desire mostly as consumer appetite or romantic plot. But the Greek Érōs is larger: he is the pull that holds atoms together and tears empires apart. To name him correctly is to admit that attraction is not an interruption of reason but one of its oldest engines. The heart has its own logic, and Érōs wrote it.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Érōs is classified as <strong>Tier 1</strong>: the original carries both stress and length, and only one valid Unicode restoration exists. The ASCII fallback <em>eros</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 4 characters of the name, the restoration adjusts 2: 1 mark of stress (É); 1 mark of length (ō). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>Érōs.com</strong>, which the DNS carries in punycode form as xn--rs-9ia51b.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Érōs; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Greek can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Restoring <strong>Érōs</strong> is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. Every section of this post — the script, the sound, the myths, the evidence — converges on the same point: the marks in Érōs are information, and information deserves an address of its own. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier, and every visit to Érōs.com is a vote for the restored form.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/erato/">Erátō</a></li>
   <li><a href="/sites/eris/">Éris</a></li>
   <li><a href="/sites/ethos/">Éthos</a></li>
 </ul>
-<h2>Read More</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843.</a></li>
   <li><a href="https://brill.com/view/title/17858">Etymological Dictionary of Greek, 2 vols., Brill, 2010.</a></li>
   <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE.</a></li>
   <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Paus.+9.27">Pausanias, Description of Greece 9.27.1–5 (Thespiae and Parium).</a></li>
+  <li><a href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ">Wörterbuch der griechischen Eigennamen, 3rd ed., 1863.</a></li>
+  <li>Euripides, Hippolytus 530–534; Orphic Hymn 58 (to Eros).</li>
+  <li>Plato, Phaedrus 246a–257b; Lexicon Iconographicum Mythologiae Classicae (LIMC), s.v. Eros.</li>
+  <li>LIMC s.v. Eros/Amor (torch in Hellenistic and Roman art).</li>
+  <li>Parmenides, On Nature, fr. 28 B 13 Diels-Kranz.</li>
+  <li>Lexicon authorities for this entry: LSJ, Pape-Benseler, Beekes.</li>
 </ul>
-<h2>What the Sources Record</h2>
-<p>Érōs is not merely romance. He is the attraction that makes things move toward each other: fire upward, water downward, god toward mortal, atom toward atom. In the earliest Greek cosmogonies, Érōs is a primordial power; only later does he become the mischievous child of Aphrodite. ### The Bow His weapon makes the limbs go slack and the mind unmade; no god or mortal is immune. ### Wings Desire is swift and sudden; it arrives before reason can arrange a defense. ### The Heart Aflame The fire of longing — physical, spiritual, cosmic. ### The Rose Flower of Aphrodite and Érōs; beauty that wounds as it invites.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">greek</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

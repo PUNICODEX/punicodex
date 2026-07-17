@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,35 +170,184 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-yoruba-pantheon">The Yoruba Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#typing-sango">Typing Ṣàngó</a></li>
+                <li><a href="#sister-temples">Sister Temples</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>The Many Faces of Ṣàngó</h1>
-<p>No important name has only one face. Ṣàngó appears as a mythic character, a scholarly reconstruction, a cultural memory, and now a Unicode domain. Ṣàngó (shango) — Thunder, Fire, Justice · He who strikes — belongs to the Yoruba tradition, where it is catalogued under the domain &quot;Thunder, Fire, Justice&quot;. The name means &quot;He who strikes&quot;. Ṣàngó is the thunder-god and the deified fourth king of the Oyo Empire. In life he was a warrior-king; in death he became the storm itself, the fire that strikes from heaven and the drumbeat that makes the possessed dance. He is justice without bureaucracy, punishment without delay, and charisma so intense that it can kill. His mythology is inseparable from history. The kings of Oyo traced their legitimacy to him, and his priests kept the sacred stones said to be thunderbolts he had hurled to earth. PÚNYCODEX restores the name as Ṣàngó and serves its temple at...</p>
-<h2>In Myth</h2>
-<p>Ṣàngó&#39;s mythology moves between the palace and the sky. He is a king who could not govern his own household, a husband of multiple orishas, and a storm whose justice is as dramatic as its noise. The mythic face is the one most people meet first, and it is the reason the name survived.</p>
-<h2>Across Cultures</h2>
-<p>In Brazilian Candomblé, Ṣàngó became Xangô, syncretised with Saint Barbara because of her association with lightning and thunder. In Cuban Santería he is Changó, one of the most popular orishas, often merged with the Catholic Saint Barbara and celebrated with bàtá drumming. The diaspora emphasis on dance and drumming preserves the Yoruba connection between kingship, rhythm, and storm. Haitian Vodou knows him as Ogou, though the Haitian figure absorbs multiple West African iron and war gods. Kindred figures in the PÚNYCODEX cross-tradition index include [[baal|Baꜥal]] (thunder / storm sovereignty), [[enlil|Enlīl]] (thunder / storm sovereignty), [[hephaistos|Hēphaistos]] (fire / forge / craft), [[maat|Mꜣꜥt]] (justice / law / truth), [[oya|Ọya]]... Each culture kept what resonated and reshaped the rest.</p>
-<h2>In the Scholarly Record</h2>
-<p>Ṣàngó is one of the most recognisable orishas in the African diaspora. His image appears in Caribbean and Latin American art, music, and festival; his bàtá drumming has influenced jazz, salsa, and contemporary world music. In Nigeria, the Ṣàngó Festival in Oyo draws thousands annually, and the Aláàfin still maintains ritual ties to him. Politically, Ṣàngó remains a symbol of Yoruba royal authority and cultural pride, while spiritually he embodies the idea that justice should be as visible and unavoidable as a thunderclap. His drums are part of that legacy in a literal sense: the consecrated bàtá ensembles of the Lukumí houses of Havana and Matanzas carried Yoruba drum language into the foundations of Afro-Cuban popular music, and his red-and-white... The Scholarly Edition collects those traces so readers can follow the argument from source to conclusion.</p>
-<h2>The Unicode Face</h2>
-<p>The newest face is digital. Ṣàngó demonstrates that a name can be at once ancient and clickable, venerable and searchable. That is the face this blog exists to celebrate.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Ṣàngó is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>The many faces of Ṣàngó</h1>
+<p>No important name has only one face. <strong>Ṣàngó</strong> appears as a figure of myth, a scholarly reconstruction, a piece of material culture, a memory carried across languages, and — most recently — a Unicode domain. This post looks at each face in turn: the name and its roots, the Yoruba transcription original, the reconstructed pronunciation, the mythological record, the symbols and sanctuaries, the cross-cultural afterlife, and the engineering that lets the restored spelling resolve in a browser. Taken together, those faces explain why <em>shango</em> was never going to be enough — and why the restored form is worth a domain of its own.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Ṣàngó</li>
+  <li><strong>ASCII form:</strong> shango</li>
+  <li><strong>Meaning:</strong> &quot;He who strikes&quot;</li>
+  <li><strong>Domain of influence:</strong> Thunder, Fire, Justice</li>
+  <li><strong>Pantheon:</strong> Yoruba</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Live domain:</strong> ṣàngó.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Ṣàngó</strong> (<em>shango</em>) — Thunder, Fire, Justice · He who strikes — belongs to the Yoruba tradition, where it is catalogued under the domain &quot;Thunder, Fire, Justice&quot;. The name means &quot;He who strikes&quot;.</p>
+<p><strong>Ṣàngó</strong> is the thunder-god and the deified fourth king of the Oyo Empire. In life he was a warrior-king; in death he became the storm itself, the fire that strikes from heaven and the drumbeat that makes the possessed dance. He is justice without bureaucracy, punishment without delay, and charisma so intense that it can kill.</p>
+<p>His mythology is inseparable from history. The kings of Oyo traced their legitimacy to him, and his priests kept the sacred stones said to be thunderbolts he had hurled to earth.</p>
+<p>PÚNYCODEX restores the name as <strong>Ṣàngó</strong> and serves its temple at <a href="https://xn--ng-iia2fq79p.com">ṣàngó.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>shango</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>No indigenous written attestation survives for this name; <strong>Ṣàngó</strong> is a scholarly transliteration of the reconstructed spoken form. Etymologically the name means &quot;He who strikes&quot;.</p>
+<p>The ASCII form <em>shango</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Ṣàngó</strong> recovers the stress accent of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>s</strong> → <strong>Ṣ</strong> — S with dot below</li>
+  <li><strong>h</strong> → <strong>—</strong> — Not written</li>
+  <li><strong>a</strong> → <strong>à</strong> — Grave on a</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+  <li><strong>g</strong> → <strong>g</strong> — Same</li>
+  <li><strong>o</strong> → <strong>ó</strong> — Acute on o</li>
+</ul>
+<p>The project holds the domain <strong>ṣàngó.com</strong> (xn--ng-iia2fq79p.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>No indigenous writing system is securely attested for Yoruba before the nineteenth century: the tradition was carried in speech, praise poetry, drum-language, and the memorised verses of Ifá. Muslim Yoruba scholars maintained an Ajami literature in Arabic script, and the modern Latin orthography was developed by Church Missionary Society workers in the 1840s–1850s, codified in Samuel Ajayi Crowther&#39;s Yoruba grammar of 1852 and his Bible translation.</p>
+<p>The form <strong>Ṣàngó</strong> is therefore a scholarly transliteration rather than an attested ancient spelling, and no mark in it is decorative. The Ṣ carries the dot below that distinguishes postalveolar /ʃ/ from /s/ — a phonemic contrast in Yoruba — and the grave–acute contour records the low–high tone of /ʃà.ŋó/. The ASCII form <em>shango</em> is an English respelling that maps ṣ onto sh; the restoration writes the language&#39;s own letter. The etymology is not securely established: the tradition glosses the name as &#39;he who strikes&#39;, fitting the thunder-god&#39;s function, while Johnson records Ṣàngó as the fourth Aláàfin of Ọ̀yọ́ whose deification the cult celebrates.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/ʃà.ŋɡó/</strong> — Yoruba Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Ṣ-</strong> — Voiceless postalveolar fricative [ʃ] with a dot below in Yoruba orthography; the dot is etymological rather than phonemic in this position.</li>
+  <li><strong>-à-</strong> — Open central vowel [a] with low tone.</li>
+  <li><strong>-ŋgó</strong> — Velar nasal [ŋ] followed by voiced velar stop [g] and close back rounded vowel [o] with high tone; the syllable is nasalised.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: SHAH-ngoh — low &#39;sha&#39;, then a sharp high &#39;ngoh&#39; with the final syllable slightly nasal.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Yoruba</strong> — Ṣàngó, the deified fourth king of Oyo and orixá of thunder and fire.</li>
+  <li><strong>Brazilian Candomblé</strong> — Xangô, the just king who wields the double-headed axe and judges disputes.</li>
+  <li><strong>Cuban Santería</strong> — Changó, the dancer, drummer, and lord of lightning.</li>
+</ul>
+<p>Ṣàngó is Tier 2: the acute accent on ó preserves the high tone of the final syllable, but Yoruba tone is not length. The dot below ṣ marks the historical/orthographic distinction of the Yoruba &#39;s&#39; series.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Ṣàngó&#39;s mythology moves between the palace and the sky. He is a king who could not govern his own household, a husband of multiple orishas, and a storm whose justice is as dramatic as its noise.</p>
+<h3 id="the-fourth-king-of-oyo-royal-history">The Fourth King of Oyo (Royal History)</h3>
+<p>Ṣàngó was the fourth <em>Aláàfin</em> (king) of Oyo. The traditions disagree about his end: some say he hanged himself after a political defeat, others that he was consumed by his own fire and ascended to heaven. What is consistent is that after his death he was deified, and subsequent Oyo kings ruled as his descendants. His capital at Koso became a major cult centre.</p>
+<h3 id="sango-and-his-wives-marriage">Ṣàngó and his Wives (Marriage)</h3>
+<p>Ṣàngó is linked to several powerful female orishas. Ọya is said to have been his favourite companion in war, learning the secrets of fire from him. Ọṣun won his heart with honey and brass. Ọbà, his first wife, tried to win him back by cutting off her ear to make a stew, a myth that warns against sacrificing identity for love. These stories make Ṣàngó&#39;s mythology a theatre of desire, jealousy, and power.</p>
+<h3 id="the-thunder-that-hears-oaths-justice">The Thunder That Hears Oaths (Justice)</h3>
+<p>In Yoruba courts and shrines, oaths sworn in Ṣàngó&#39;s name were binding because the thunder-god was believed to strike perjurers. The fear was not merely supernatural: it reinforced social order by making the sky itself a witness to human promises. His justice is swift, public, and terrifying.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography of Ṣàngó clusters around the storm and the crown, and his regalia is among the most recognisable of any orisha cult; carved dance wands surmounted by the double axe (ọ̀ṣẹ́ Ṣàngó) are a standard category of Yoruba art in museum collections.</p>
+<ul>
+  <li><strong>Thunderstones (ọ̀pá Ṣàngó)</strong> — Prehistoric stone axes believed to be the thunderbolts Ṣàngó hurled to earth, kept on his shrines as his physical presence.</li>
+  <li><strong>Double-headed axe (ọ̀gẹ́)</strong> — The emblem of his kingship and his power to render judgment, carried on his dance wands and stamped on his regalia.</li>
+  <li><strong>Bàtá drum</strong> — The drum language that summons him and encodes Yoruba history; his rhythms belong to a consecrated ensemble.</li>
+  <li><strong>Red and white beads</strong> — The colours of fire, blood, and royal authority, strung for his priests and initiates.</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Ṣàngó&#39;s material record is anchored in the thunderstones: Neolithic stone axes (ẹdùn àrá, &#39;thunder stones&#39;) which Yoruba belief identifies as bolts he hurled to earth, gathered for generations and kept charged on his shrines. His cult centre at Koso, near Ọ̀yọ́, preserves the ritual memory of the deified Aláàfin, and carved dance wands (ọ̀ṣẹ́ Ṣàngó), double-axe emblems, and consecrated bàtá drums form a standard category of Yoruba ritual art in museum collections.</p>
+<p>In the diaspora, red-and-white beadwork, thunderstone shrines, and consecrated drums document the cult&#39;s unbroken material continuity from Ọ̀yọ́ to Havana and Bahia — one of the few orisha cults whose objects, colours, and instruments crossed the Atlantic essentially unchanged.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p><strong>Ṣàngó</strong> is the thunder-god and the deified fourth king of the Oyo Empire. In life he was a warrior-king; in death he became the storm itself, the fire that strikes from heaven and the drumbeat that makes the possessed dance. He is justice without bureaucracy, punishment without delay, and charisma so intense that it can kill.</p>
+<p>His mythology is inseparable from history. The kings of Oyo traced their legitimacy to him, and his priests kept the sacred stones said to be thunderbolts he had hurled to earth.</p>
+<h3 id="lightning">Lightning</h3>
+<p>He strikes the liar, the thief, and the oath-breaker; his fire is both weapon and verdict.</p>
+<h3 id="double-headed-axe">Double-Headed Axe</h3>
+<p>The ọ̀gẹ́ — his emblem of royal justice and the power to split heaven and earth.</p>
+<h3 id="royal-charisma">Royal Charisma</h3>
+<p>He was king before he was god; his worship links divine power to political authority.</p>
+<h3 id="drum-and-dance">Drum and Dance</h3>
+<p>The bàtá drum calls him down; possession by Ṣàngó begins in the shoulders and feet.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>In Brazilian Candomblé, Ṣàngó became Xangô, syncretised with Saint Barbara because of her association with lightning and thunder. In Cuban Santería he is Changó, one of the most popular orishas, often merged with the Catholic Saint Barbara and celebrated with bàtá drumming. The diaspora emphasis on dance and drumming preserves the Yoruba connection between kingship, rhythm, and storm. Haitian Vodou knows him as Ogou, though the Haitian figure absorbs multiple West African iron and war gods.</p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include [[baal|Baꜥal]] (thunder / storm sovereignty), [[enlil|Enlīl]] (thunder / storm sovereignty), [[hephaistos|Hēphaistos]] (fire / forge / craft), [[maat|Mꜣꜥt]] (justice / law / truth), [[oya|Ọya]] (thunder / storm sovereignty), and [[perkunas|Perkūnas]] (thunder / storm sovereignty).</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Ṣàngó is one of the most recognisable orishas in the African diaspora. His image appears in Caribbean and Latin American art, music, and festival; his bàtá drumming has influenced jazz, salsa, and contemporary world music. In Nigeria, the Ṣàngó Festival in Oyo draws thousands annually, and the <em>Aláàfin</em> still maintains ritual ties to him. Politically, Ṣàngó remains a symbol of Yoruba royal authority and cultural pride, while spiritually he embodies the idea that justice should be as visible and unavoidable as a thunderclap.</p>
+<p>His drums are part of that legacy in a literal sense: the consecrated bàtá ensembles of the Lukumí houses of Havana and Matanzas carried Yoruba drum language into the foundations of Afro-Cuban popular music, and his red-and-white beadwork remains one of the most visible signs of orisha devotion across the Americas.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Ṣàngó given in this edition rests on the witnesses and reference works listed below; each contributes a distinct stratum of evidence, and here more than anywhere the line between myth and documented royal history must be drawn with care.</p>
+<ul>
+  <li> Bascom, William, Ifa Divination: Communication Between Gods and Men in West Africa (Indiana University Press, 1969). — Records the Ifá traditions of Ṣàngó, his marriage to Ọya, and the cowrie-divination link.</li>
+  <li> Johnson, Samuel, The History of the Yorubas (Routledge, 1921). — The primary historical tradition of the fourth Aláàfin, his reign, and his apotheosis at Koso.</li>
+  <li> Law, Robin, The Oyo Empire, c. 1600–c. 1836 (Clarendon Press, 1977). — The modern historian&#39;s reconstruction of the empire whose kings claimed Ṣàngó as ancestor and charter.</li>
+  <li> Mason, John, Four New World Yoruba Rituals (Yoruba Theological Archministry, 1985). — Documents the New World liturgy of Changó and Xangô.</li>
+  <li> Verger, Pierre, Notes sur le Culte des Orisa et Vodun (IFAN, 1957). — Comparative record of the cult in West Africa and Bahia.</li>
+  <li> Murphy, Joseph M., Santería: African Spirits in America (Beacon Press, 1988). — Ethnography of the Lukumí Changó and his pairing with Santa Bárbara.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Ṣàngó is the god who refuses to be ignored. His thunder does not negotiate; it announces. In a world of deferred justice and hidden corruption, he represents the fantasy — and the danger — of immediate consequence. To call on him is to ask that the truth be made loud.</p>
+<p>Yet his mythology is also a caution. He was a king who lost control, a husband whose charisma destroyed the women around him, a storm that could not be aimed with precision. His double-headed axe cuts both ways. The same fire that punishes the liar can consume the proud. Ṣàngó&#39;s real teaching may be that justice without patience becomes mere spectacle — and that the thunderclap, however satisfying, is only the beginning of the rain.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Ṣàngó is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>shango</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 6 characters of the name, the restoration adjusts 4: 2 marks of stress (à, ó); 2 further adjustments (Ṣ, h). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>shango</em> to <strong>Ṣàngó</strong>, one character at a time:</p>
+<ul>
+  <li><strong>s</strong> → <strong>Ṣ</strong> — S with dot below</li>
+  <li><strong>h</strong> → <strong>h</strong> — Not written</li>
+  <li><strong>a</strong> → <strong>à</strong> — Grave on a</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+  <li><strong>g</strong> → <strong>g</strong> — Same</li>
+  <li><strong>o</strong> → <strong>ó</strong> — Acute on o</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>ṣàngó.com</strong>, which the DNS carries in punycode form as xn--ng-iia2fq79p.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Ṣàngó; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Yoruba transcription can now be typed into any browser on earth.</p>
+<h2 id="the-yoruba-pantheon">The Yoruba Pantheon</h2>
+<p>Ṣàngó is one of 30 entries the PÚNYCODEX lexicon catalogues under the Yoruba pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Ṣàngó mean?</strong> The traditional gloss is &quot;He who strikes.&quot;</p>
+<p><strong>Which tradition does Ṣàngó belong to?</strong> Ṣàngó is catalogued in the Yoruba pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Ṣàngó classified as Tier 2?</strong> Because the original preserves at least one philological feature that ASCII cannot encode — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Ṣàngó a working domain?</strong> Yes — ṣàngó.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for ṣàngó.com?</strong> The DNS encoding is xn--ng-iia2fq79p.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="typing-sango">Typing Ṣàngó</h2>
+<p>You do not need a special keyboard to use this restoration. The <a href="/type/">PÚNYCODEX Type Tool</a> converts the ASCII form <em>shango</em> into <strong>Ṣàngó</strong> as you type, and the browser extension offers the same conversion inside any text field. Copy the restored form, paste it into the address bar, and the DNS does the rest.</p>
+<h2 id="sister-temples">Sister Temples</h2>
+<p>Other temples in the Yoruba pantheon include <a href="/sites/bunjil/">Bunjil</a>, <a href="/sites/eingana/">Eingana</a>, and <a href="/sites/gnowee/">Gnowee</a> — each with its own restoration story, its own scholarly record, and its own place in the lexicon.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Myth, script, sound, cult, legacy, domain: the faces of Ṣàngó add up to a single argument — that a name is a record, and records deserve fidelity. The PÚNYCODEX restoration keeps that record in working order: the temple presents it, the Scholarly Edition footnotes it, the lexicon catalogs it, and the domain makes it addressable. <em>shango</em> will always exist as a fallback. But fallback is not identity. <strong>Ṣàngó</strong> is the name; everything else is a convenience.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/babaluaye/">Ọbalúayé</a></li>
   <li><a href="/sites/eshu/">Ẹṣu</a></li>
   <li><a href="/sites/obatala/">Ọbatálá</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://archive.org/details/historyofyorubas00john">Johnson, Samuel, The History of the Yorubas (Routledge, 1921).</a></li>
+  <li>Bascom, Ifa Divination.</li>
+  <li>Johnson, The History of the Yorubas.</li>
+  <li>Law, The Oyo Empire c. 1600–c. 1836.</li>
+  <li>Crowther, Samuel Ajayi, A Grammar and Vocabulary of the Yoruba Language (Seeleys, 1852).</li>
+  <li>Lexicon authorities for this entry: Abraham.</li>
 </ul>
-<h2>The Cultural Afterlife</h2>
-<p>Ṣàngó is one of the most recognisable orishas in the African diaspora. His image appears in Caribbean and Latin American art, music, and festival; his bàtá drumming has influenced jazz, salsa, and contemporary world music. In Nigeria, the Ṣàngó Festival in Oyo draws thousands annually, and the Aláàfin still maintains ritual ties to him. Politically, Ṣàngó remains a symbol of Yoruba royal authority and cultural pride, while spiritually he embodies the idea that justice should be as visible and unavoidable as a thunderclap. His drums are part of that legacy in a literal sense: the consecrated bàtá ensembles of the Lukumí houses of Havana and Matanzas carried Yoruba drum language into the foundations of Afro-Cuban popular music, and his red-and-white...</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">yoruba</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

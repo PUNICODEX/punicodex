@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,41 +170,194 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-norse-pantheon">The Norse Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>Helheimr in 2026: Why Scholars Still Care</h1>
-<p>In 2026, names are treated as data points. Helheimr is a reminder that they are also cultural artifacts. Helheimr (Old Norse Helheimr, &#39;Hel&#39;s home&#39;, from Hel + heimr) is the Norse realm of the unheroic dead. Snorri&#39;s Gylfaginning gives the canonical picture: Óðinn casts Hel, daughter of Loki and the giantess Angrboða, into Niflheimr and grants her authority over nine worlds, so that all who die of sickness or old age are sent to her. The Eddic poems know the same geography under several names — Hel, Helheimr, and the intensified Niflhel, &#39;mist-Hel&#39; — and they are consistent about the road: northward and downward, across the river Gjöll and the gold-roofed bridge Gjallarbrú, past the hound Garmr at the cave Gnipahellir. Unlike Valhǫll, which receives a chosen warrior elite, Helheimr is the destination of ordinary mortality: the hall that waits beyond... The question is not whether the name is old, but whether the digital world is old enough to hold it.</p>
-<h2>The Scholarly Argument</h2>
-<p>The name is rendered in Younger Futhark as ᚼᛁᛚᚼᛁᛘᚱ; the sixteen-rune futhark writes what the manuscript tradition transmits as the compound Helheimr. Etymologically it means &#39;Hel&#39;s home&#39;. The Proto-Germanic ancestor of the compound is haljō + haimaz: haljō &#39;the hidden one, the concealed place&#39;, from the Germanic root hel- &#39;to conceal&#39; — Gothic halja, from the same root, renders Hades in Wulfila&#39;s fourth-century Bible translation — and haimaz &#39;home&#39;. The realm is thus literally &#39;the home of the hidden&#39;. The ASCII form helheimr survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. In this case the Unicode restoration Helheimr coincides with the ASCII form: normalized... The PÚNYCODEX Scholarly Edition collects these arguments in one place, with sources and revision history, so the claim can be inspected rather than merely asserted.</p>
-<h2>What the Accent Preserves</h2>
-<p>This entry is classified as <strong>Tier 2</strong>. the original preserves at least one philological feature that ASCII cannot encode Those marks are not ornaments; they are the coordinates that place the name inside a language.</p>
-<h2>A Living Edition</h2>
-<p>The <a href="/sites/helheimr/scholars/">Scholarly Edition</a> is not a static page. Verified contributors can improve it, and every change is attributed. That model turns a blog post like this one into an invitation to dig deeper.</p>
-<h2>Where to Learn More</h2>
+            <h1>Helheimr in 2026: why scholars still care</h1>
+<p>In 2026, names are treated as data points. <strong>Helheimr</strong> is a reminder that they are also cultural artifacts — and that the difference matters for search engines, AI training corpora, and anyone who types the name of a Norse figure into a browser. Scholars never stopped caring about the difference between <em>helheimr</em> and Helheimr; the web simply made that care actionable. What follows is the full scholarly picture — name, script, sound, myth, cult, and legacy — followed by the engineering compromise that lets a restored spelling live at a real address. The question is not whether the name is old. It is whether the digital world is old enough to hold it.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Helheimr</li>
+  <li><strong>ASCII form:</strong> helheimr</li>
+  <li><strong>Meaning:</strong> &quot;Hel&#39;s home (from Hel + heimr)&quot;</li>
+  <li><strong>Domain of influence:</strong> Realm of the Dead</li>
+  <li><strong>Pantheon:</strong> Norse</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> ᚼᛁᛚᚼᛁᛘᚱ (Younger Futhark)</li>
+  <li><strong>Live domain:</strong> helheimr.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Helheimr</strong> (Old Norse <em>Helheimr</em>, &#39;Hel&#39;s home&#39;, from <em>Hel</em> + <em>heimr</em>) is the Norse realm of the unheroic dead. Snorri&#39;s <em>Gylfaginning</em> gives the canonical picture: Óðinn casts Hel, daughter of Loki and the giantess Angrboða, into Niflheimr and grants her authority over nine worlds, so that all who die of sickness or old age are sent to her. The Eddic poems know the same geography under several names — Hel, Helheimr, and the intensified Niflhel, &#39;mist-Hel&#39; — and they are consistent about the road: northward and downward, across the river Gjöll and the gold-roofed bridge Gjallarbrú, past the hound Garmr at the cave Gnipahellir. Unlike Valhǫll, which receives a chosen warrior elite, Helheimr is the destination of ordinary mortality: the hall that waits beyond every bedside death.</p>
+<p>PÚNYCODEX restores the name as <strong>Helheimr</strong> and serves its temple at <a href="https://helheimr.com">helheimr.com</a>. The compound is written without diacritics in normalized Old Norse, so the restoration is itself plain ASCII; its Tier 2 classification reflects that no vowel in it is marked long or stressed.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is rendered in Younger Futhark as <strong>ᚼᛁᛚᚼᛁᛘᚱ</strong>; the sixteen-rune futhark writes what the manuscript tradition transmits as the compound Helheimr. Etymologically it means &#39;Hel&#39;s home&#39;.</p>
+<p>The Proto-Germanic ancestor of the compound is <em>haljō + </em>haimaz: <em>haljō &#39;the hidden one, the concealed place&#39;, from the Germanic root </em>hel- &#39;to conceal&#39; — Gothic <em>halja</em>, from the same root, renders Hades in Wulfila&#39;s fourth-century Bible translation — and *haimaz &#39;home&#39;. The realm is thus literally &#39;the home of the hidden&#39;.</p>
+<p>The ASCII form <em>helheimr</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. In this case the Unicode restoration <strong>Helheimr</strong> coincides with the ASCII form: normalized Old Norse writes the compound without length or stress marks, and its Tier 2 classification reflects that plain phonology.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>h</strong> → <strong>H</strong> — Same</li>
+  <li><strong>e</strong> → <strong>e</strong> — Same</li>
+  <li><strong>l</strong> → <strong>l</strong> — Same</li>
+  <li><strong>h</strong> → <strong>h</strong> — Same</li>
+  <li><strong>e</strong> → <strong>e</strong> — Same</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+  <li><strong>m</strong> → <strong>m</strong> — Same</li>
+  <li><strong>r</strong> → <strong>r</strong> — Same</li>
+</ul>
+<p>The project holds the domain <strong>helheimr.com</strong> (helheimr.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: PGmc <em>haljō &quot;hidden one, underworld&quot; + </em>haimaz &quot;home&quot;. The realm of the dead.</p>
+<p>The reconstructed proto-form is <em>*haljō + </em>haimaz* (proto-indo-european), glossed as &quot;hidden + home&quot;.</p>
+<p>The reconstruction is classed as attested.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Younger Futhark as <strong>ᚼᛁᛚᚼᛁᛘᚱ</strong> — Germanic runic, attested Viking Age, c. 800–1100 CE, in Scandinavia. The script is written left-to-right, top-to-bottom.</p>
+<p>The scholarly transliteration is <em>Helheimr</em> (normalized Old Norse), giving the normalized reading /ˈhɛl.hɛi̯mr/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The Younger Futhark form ᚼᛁᛚᚼᛁᛘᚱ provides a Viking-Age runic attestation or normalized reconstruction.</li>
+  <li>Younger Futhark has only sixteen runes and does not distinguish short/long vowels or voiced/voiceless stops.</li>
+  <li>The normalized Old Norse form is based on 13th-century manuscript tradition (Poetic and Prose Eddas).</li>
+  <li>The Unicode restoration Helheimr is written without diacritics in normalized Old Norse, so it is registrable in .com directly as plain ASCII (helheimr.com), with no punycode conversion required.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/ˈhɛlˌhɛi̯mr/</strong> — Old Norse Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Hel-</strong> — Voiceless glottal fricative [h], short [ɛ], and alveolar lateral [l]; Hel is the hidden goddess of death</li>
+  <li><strong>-hei-</strong> — Diphthong [ɛi̯] — the same rising glide as in heimr, meaning &#39;home, world&#39;</li>
+  <li><strong>-mr</strong> — Bilabial nasal [m] plus tapped [r]; the compound shortens heimr to heim- before the final r</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;HEL-haymr&#39; — a crisp initial h, then &#39;hell&#39; and &#39;haymer&#39; run together, with a light rolled r.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Old English</strong> — hell, the Anglo-Saxon underworld, cognate with Norse Hel</li>
+  <li><strong>Gothic</strong> — halja, the feminine noun for the underworld in Wulfila&#39;s Bible</li>
+  <li><strong>Old Norse</strong> — Hel, the goddess whose name also names her realm</li>
+</ul>
+<p>Helheimr is a transparent Old Norse compound of Hel + heimr. It is Tier 2 because no vowel is marked long or stressed; the name relies on everyday Old Norse phonology. Modern English &#39;hell&#39; descends from the same Germanic root but has lost the diphthong.</p>
+<h2 id="mythology">Mythology</h2>
+<p><strong>Helheimr</strong> is the grey underworld ruled by the goddess Hel, daughter of Loki and the giantess Angrboða. Unlike the warrior&#39;s paradise of Valhöll, it receives those who die of sickness, age, or any death not on the battlefield. The realm lies downward and northward, its entrance guarded by the hound Garmr and the maiden Móðguðr, who challenges the dead at the bridge Gjallarbrú. Here the dead continue a shadowy existence in a household whose dish is Hunger and whose knife is Famine. In Old Norse imagination, Helheimr is less a place of active punishment than the common destination of ordinary mortality, the quiet hall that waits beyond every bedside death. This unheroic afterlife reflects a Norse view that most deaths are not glorious, and the realm&#39;s misty, hall-bound existence shaped later Scandinavian conceptions of the quiet dead, preserved in folklore about the grave-mound and the mountain of the dead.</p>
+<h3 id="hermo-r-s-ride-to-hel-gylfaginning">Hermóðr&#39;s Ride to Hel (Gylfaginning)</h3>
+<p>When Baldr is killed by the mistletoe dart, the gods mourn so deeply that Frigg asks who among the Æsir will ride to Hel and offer her a ransom for his return. Hermóðr the Bold, Óðinn&#39;s son, undertakes the journey. He takes Óðinn&#39;s eight-legged horse Sleipnir and rides for nine nights through valleys so dark and deep that he sees nothing, until he reaches the river Gjöll and the gold-roofed bridge that leads to Hel&#39;s hall.</p>
+<p>Hel agrees to release Baldr only if every creature in the nine worlds weeps for him. Almost all do, but the giantess Þökk — whom Snorri reports to have been Loki in disguise — refuses, and Baldr must remain in Helheimr until Ragnarǫk. The myth establishes Helheimr as a realm of fixed law, not arbitrary cruelty, and it makes the underworld&#39;s door a place where even gods can negotiate.</p>
+<h3 id="the-halls-of-hel-gylfaginning">The Halls of Hel (Gylfaginning)</h3>
+<p>In <em>Gylfaginning</em>, Snorri describes Helheimr as a realm of high walls and forbidding gates. Hel herself is half flesh-coloured and half blue-black, a visual emblem of the threshold she guards. Her hall is called Éljúðnir, &#39;sprayed with sleet-storms&#39;, and its furnishings personify deprivation: her dish is Hunger, her knife Famine, her serving-man Ganglati (&#39;tardy&#39;), her serving-maid Ganglöt, her threshold Stumbling-block, her bed Sick-bed, and its hangings Gleaming-bale.</p>
+<p>These grim furnishings do not describe torture so much as the slow diminishment of the unheroic dead. Helheimr is less a place of punishment than a place of continuation, where existence persists without the vitality that defines life among gods and men.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>Helheimr&#39;s iconography is textual rather than pictorial: the sources describe the realm through a short list of grim properties, each a compressed statement about the dead it receives.</p>
+<ul>
+  <li><strong>Gjallarbrú</strong> — The resounding bridge crossed by the dead on the way to Hel&#39;s hall</li>
+  <li><strong>Hel&#39;s hall Éljúðnir</strong> — The hall whose name means &#39;sprayed with sleet-storms&#39;, where the goddess receives the dead</li>
+  <li><strong>Famine (Sultr), Hel&#39;s knife</strong> — One of the personified furnishings of Hel&#39;s household in Gylfaginning</li>
+  <li><strong>Hel&#39;s two-coloured face</strong> — Snorri describes the goddess as half flesh-coloured and half blue-black, the visible emblem of her threshold</li>
+  <li><strong>Náströnd shore</strong> — The &#39;corpse-strand&#39; of Völuspá where oath-breakers, murderers, and adulterers wade</li>
+</ul>
+<ul>
+  <li><strong>Threshold knife (Famine)</strong> — One of the named thresholds of Hel&#39;s hall, personifying starvation</li>
+  <li><strong>Hooded or half-faced woman</strong> — Hel&#39;s own depiction, one side beautiful and one side corpse-pale</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>The archaeology of Helheimr is the archaeology of the Viking-Age dead themselves. The cemetery at Lindholm Høje above Aalborg, used from the late Iron Age into the Viking period, preserves hundreds of burials — cremations and inhumations — many enclosed by stone settings in the form of ships, as if the grave itself were equipped for a journey. The same idea is pictured on the Gotland picture stones: on the Tjängvide stone (G 110) a rider on an eight-legged horse is received by a figure offering a drinking horn, a scene long read as the dead man&#39;s welcome into the otherworld, and the Ardre VIII stone (G 114) carries related journey imagery. Rich ship and boat graves — Oseberg and Gokstad in the Oslofjord, the Vendel and Valsgärde cemeteries in Sweden — provisioned the dead with ships, horses, sledges, and household goods, material testimony to an afterlife imagined as continued existence rather than annihilation or reward. Runestones across Denmark, Sweden, and Norway record the dead by name and kin, rarely by destination.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Helheimr is described in the sources through its threshold architecture and its household: the northward road, the river Gjöll, the resounding bridge, the hound, and the grey hall where Hel keeps the unheroic dead.</p>
+<h3 id="hel-s-grey-hall">Hel&#39;s Grey Hall</h3>
+<p>Éljúðnir is the hall of Hel; Hunger is her dish and Famine her knife.</p>
+<h3 id="gjallarbru">Gjallarbrú</h3>
+<p>The bridge over the river Gjöll is guarded by Móðguðr, who challenges the dead to declare their name and kin.</p>
+<h3 id="garmr">Garmr</h3>
+<p>The bloody hound who guards the entrance to Helheimr waits at Gnipahellir for the end times.</p>
+<h3 id="common-afterlife">Common Afterlife</h3>
+<p>Unlike Valhöll, Helheimr receives those who die of sickness, age, or accident—the quiet destiny of most mortals.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>No Germanic concept travelled further into Christian vocabulary than this one. The noun behind Hel is pan-Germanic: Wulfila&#39;s fourth-century Gothic Bible already uses <em>halja</em> to render Hades, and Old English <em>hell</em>, Old Saxon <em>hellia</em>, and Old High German <em>hella</em> all became the ordinary Christian words for the place of damnation. The pagan geography was absorbed rather than replaced: the name of the quiet Norse underworld survived, but its content was rewritten as the fiery hell of sermon and vision literature. Snorri&#39;s systematic description of Éljúðnir — with its named dish, knife, and threshold — has itself been read as thirteenth-century systematizing coloured by Christian inferno imagery, though the grey, law-bound character of his Hel is notably un-Christian. The older, gentler conception left a parallel afterlife in Icelandic folk-belief, where the dead of a family were said to &#39;die into&#39; a local mountain — most famously Helgafell in Eyrbyggja saga — a domestic underworld quite unlike both Snorri&#39;s Hel and the Christian inferno.</p>
+<p>Within the Norse tradition, closely related names in the corpus include [[alfheimr|Álfheimr]], [[buri|Búri]], [[eggther|Eggþér]], [[jormungandr|Jǫrmungandr]], [[jotunheimr|Jötunheimr]], and [[midgardr|Miðgarðr]].</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Helheimr&#39;s most pervasive legacy is lexical: the English word <em>hell</em> descends from the same Germanic root as Hel, so that every English speaker who names the Christian underworld unknowingly uses the old realm-name; the same is true of German <em>Hölle</em> and the Scandinavian <em>helvete</em>. In popular culture the realm and its ruler have acquired a visibility the medieval texts never gave them: Marvel Studios cast Hel as Hela, goddess of death, in <em>Thor: Ragnarok</em> (2017); Ninja Theory&#39;s <em>Hellblade: Senua&#39;s Sacrifice</em> (2017) sends its protagonist into Helheim along a road of darkness and sacrifice deliberately modelled on the Eddic journey to the dead; and Santa Monica Studio&#39;s <em>God of War</em> (2018) stages Helheim as a frozen realm whose winds no fire can thaw. Modern scholarship and neopagan reconstruction alike stress the older character of the place — not a hell of torment but the quiet house of the ordinary dead, a distinction the Unicode form Helheimr, the compound as the Eddas wrote it, helps to keep visible.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Helheimr given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> The Poetic Edda (Baldrs draumar, Vafþrúðnismál, Völuspá, Grímnismál); Snorri Sturluson, Prose Edda (Gylfaginning).</li>
+  <li> Simek, Rudolf. Dictionary of Northern Mythology, trans. Angela Hall. Cambridge: D. S. Brewer, 1993.</li>
+  <li> de Vries, Jan. Altnordisches etymologisches Wörterbuch. 2nd ed. Leiden: Brill, 1962.</li>
+  <li> Poetic Edda: Vafþrúðnismál (Óðinn&#39;s wisdom contest; the dead who pass &#39;from Hel and into Hel&#39;).</li>
+  <li> Saxo Grammaticus, Gesta Danorum (Hadingus&#39;s descent to the realm of the dead).</li>
+  <li> Davidson, Hilda Ellis. Gods and Myths of Northern Europe. Harmondsworth: Penguin, 1964.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Helheimr poses a question the other realms do not: what happens to everyone? Valhǫll is for the chosen, Fólkvangr for a share of the slain, but the texts are unanimous that the common road runs north and down, to the hall whose dish is Hunger and whose bed is Sick-bed. It is a sober cosmology: the afterlife is not a prize but an address, and the address is a home — <em>heimr</em> — like any other. That the modern word hell descends from this same root shows how much the Christian transformation of the North owed to the vocabulary it displaced: the word survived, while the quiet world it named was emptied and refilled with fire.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Helheimr is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>helheimr</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>helheimr</em> to <strong>Helheimr</strong>, one character at a time:</p>
+<ul>
+  <li><strong>h</strong> → <strong>H</strong> — Same</li>
+  <li><strong>e</strong> → <strong>e</strong> — Same</li>
+  <li><strong>l</strong> → <strong>l</strong> — Same</li>
+  <li><strong>h</strong> → <strong>h</strong> — Same</li>
+  <li><strong>e</strong> → <strong>e</strong> — Same</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+  <li><strong>m</strong> → <strong>m</strong> — Same</li>
+  <li><strong>r</strong> → <strong>r</strong> — Same</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>helheimr.com</strong>, which the DNS carries in punycode form as helheimr.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Helheimr; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Younger Futhark can now be typed into any browser on earth.</p>
+<h2 id="the-norse-pantheon">The Norse Pantheon</h2>
+<p>Helheimr is one of 86 entries the PÚNYCODEX lexicon catalogues under the Norse pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Helheimr mean?</strong> The traditional gloss is &quot;Hel&#39;s home (from Hel + heimr).&quot;</p>
+<p><strong>Which tradition does Helheimr belong to?</strong> Helheimr is catalogued in the Norse pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Helheimr classified as Tier 2?</strong> Because the original preserves at least one philological feature that ASCII cannot encode — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Helheimr a working domain?</strong> Yes — helheimr.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for helheimr.com?</strong> The DNS encoding is helheimr.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>In 2026 the stakes are practical. Search indexes, language models, and localization pipelines all inherit whatever spelling the web normalizes — which means every Unicode domain is also a training signal. <strong>Helheimr</strong> teaches the machinery that the restored form exists, that it is used, and that it points to a real place. That is why a project built on philology ends up caring about DNS: the infrastructure decides which names the future sees. This restoration makes sure the future sees the whole name.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/njordr/">Njǫrðr</a></li>
   <li><a href="/sites/saga/">Sága</a></li>
   <li><a href="/sites/skuld/">Skuld</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
-  <li><a href="https://heimskringla.no/wiki/Main_Page">Scholarly reference</a></li>
+  <li>Snorri Sturluson, Edda, Gylfaginning (Hel cast into Niflheimr and given power over nine worlds).</li>
+  <li>Simek, Rudolf. Dictionary of Northern Mythology, trans. Angela Hall. Cambridge: D. S. Brewer, 1993, s.v. Hel, Helheimr.</li>
+  <li>Barnes, Michael P. Runes: A Handbook. Woodbridge: Boydell, 2012.</li>
+  <li>de Vries, Jan. Altnordisches etymologisches Wörterbuch. 2nd ed. Leiden: Brill, 1962, s.v. Hel, heimr.</li>
+  <li>Lexicon authorities for this entry: Cleasby-Vigfusson, Zoëga.</li>
 </ul>
-<h2>What the Sources Record</h2>
-<p>Helheimr is described in the sources through its threshold architecture and its household: the northward road, the river Gjöll, the resounding bridge, the hound, and the grey hall where Hel keeps the unheroic dead. ### Hel&#39;s Grey Hall Éljúðnir is the hall of Hel; Hunger is her dish and Famine her knife. ### Gjallarbrú The bridge over the river Gjöll is guarded by Móðguðr, who challenges the dead to declare their name and kin. ### Garmr The bloody hound who guards the entrance to Helheimr waits at Gnipahellir for the end times. ### Common Afterlife Unlike Valhöll, Helheimr receives those who die of sickness, age, or accident—the quiet destiny of most mortals.</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Helheimr as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Younger Futhark to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Helheimr through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/helheimr/">home page</a> offers the full name breakdown, the <a href="/sites/helheimr/lore/">lore page</a> explores the myth, and the <a href="/sites/helheimr/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Helheimr do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
-<h2>A Note on the Address Bar</h2>
-<p>When you type Helheimr, the browser performs an invisible conversion into Punycode so the global DNS can route the request. The user sees the original name; the machines see a compatible ASCII encoding. That duality is the engineering compromise that makes the restoration possible, and it is the reason every Unicode domain is both a technical milestone and a small act of cultural memory.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">norse</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

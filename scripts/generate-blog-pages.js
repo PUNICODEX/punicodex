@@ -165,16 +165,72 @@ function escapeHtml(str) {
     .replace(/'/g, '&#39;');
 }
 
+// Slug for anchored headings: ASCII-folded, hyphenated, unique per document.
+function slugify(text) {
+  const base = String(text)
+    .replace(/(\*\*|__|\*|`)/g, '')
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+  return base || 'section';
+}
+
+// URL-scheme allowlist plus a plausibility check: only http:, https:,
+// mailto:, anchored relative URLs (/, ./, ../, #), and path-like targets
+// (containing /, ., ?, or #) become links. Anything else — unknown schemes
+// (javascript:, data:) or bracket notations from linguistic reconstructions
+// such as *[g](r)ək — renders as literal text, never as an anchor.
+function isSafeHref(url) {
+  const u = String(url).trim();
+  if (/^(https?:|mailto:)/i.test(u)) return true;
+  if (/^[a-z][a-z0-9+.-]*:/i.test(u)) return false;
+  if (/^(\/|\.\/|\.\.\/|#)/.test(u)) return true;
+  return /[\/.?#]/.test(u);
+}
+
+// Render the post markdown to HTML and collect the H2 table of contents.
+// Returns { html, toc: [{ slug, text }] }.
 function mdToHtml(md) {
   let html = escapeHtml(md);
 
+  // Defense in depth: footnote markers are not rendered, drop them.
+  html = html.replace(/\[\^\d+\]/g, '');
+
   // Inline links before formatting so escaped brackets are not an issue.
-  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+  // Non-plausible targets stay as literal source text (see isSafeHref).
+  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (m, label, url) => {
+    if (!isSafeHref(url)) return m;
+    return `<a href="${url}">${label}</a>`;
+  });
   html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
   html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
 
-  html = html.replace(/^### (.+)$/gm, '<h3>$1</h3>');
-  html = html.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+  const usedSlugs = new Map();
+  const toc = [];
+  // Headings are already entity-escaped at this point; slugs should be
+  // computed from the plain text, and the TOC reuses the escaped form.
+  const unescape = (s) =>
+    s
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'");
+  const uniqueSlug = (text) => {
+    const base = slugify(unescape(text));
+    const seen = usedSlugs.get(base) || 0;
+    usedSlugs.set(base, seen + 1);
+    return seen === 0 ? base : `${base}-${seen + 1}`;
+  };
+
+  html = html.replace(/^### (.+)$/gm, (m, text) => `<h3 id="${uniqueSlug(text)}">${text}</h3>`);
+  html = html.replace(/^## (.+)$/gm, (m, text) => {
+    const slug = uniqueSlug(text);
+    toc.push({ slug, text: text.replace(/(\*\*|__|\*|`)/g, '') });
+    return `<h2 id="${slug}">${text}</h2>`;
+  });
   html = html.replace(/^# (.+)$/gm, '<h1>$1</h1>');
 
   const lines = html.split('\n');
@@ -206,7 +262,21 @@ function mdToHtml(md) {
   }
   if (inList) out.push('</ul>');
 
-  return out.join('\n');
+  return { html: out.join('\n'), toc };
+}
+
+function buildTocHtml(toc) {
+  if (!toc.length) return '';
+  // toc text is already entity-escaped by mdToHtml; insert as-is.
+  const items = toc
+    .map((t) => `                <li><a href="#${t.slug}">${t.text}</a></li>`)
+    .join('\n');
+  return `<nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+${items}
+            </ol>
+        </nav>`;
 }
 
 function buildFooter(id, entry, domainsText, tierLabel) {
@@ -283,6 +353,8 @@ for (const id of BUILT_IDS) {
 
   let html = TEMPLATE;
 
+  const rendered = mdToHtml(post.body);
+
   const replacements = {
     TEMPLE_ID: id,
     UNICODE: escapeHtml(unicode),
@@ -296,7 +368,8 @@ for (const id of BUILT_IDS) {
     SECONDARY: escapeHtml(home.secondary),
     POST_TITLE: escapeHtml(post.title),
     POST_DESCRIPTION: escapeHtml(post.description),
-    POST_BODY_HTML: mdToHtml(post.body),
+    POST_BODY_HTML: rendered.html,
+    TOC_HTML: buildTocHtml(rendered.toc),
     POST_KEYWORDS_JSON: post.keywords.map((k) => `"${escapeHtml(k)}"`).join(', '),
     POST_TAGS_HTML: post.tags.map((t) => `<span class="blog-tag">${escapeHtml(t)}</span>`).join(''),
     READING_TIME: escapeHtml(post.readingTime),

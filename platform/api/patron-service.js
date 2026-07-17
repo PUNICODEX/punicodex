@@ -190,11 +190,94 @@ async function countActivePatronsByTemple(templeId) {
   return row?.count || 0;
 }
 
+// ─────────────────────────────────────────────────────────────
+// Admin operations (admin portal + /api/patrons admin subroutes)
+// ─────────────────────────────────────────────────────────────
+
+const PATRON_ADMIN_STATUSES = ['pending_payment', 'active', 'cancelled', 'expired'];
+
+async function listPatrons({ templeId = null, status = null, limit = 100, offset = 0 } = {}) {
+  const conditions = [];
+  const params = [];
+  if (templeId) {
+    conditions.push(`temple_id = $${params.length + 1}`);
+    params.push(templeId);
+  }
+  if (status) {
+    conditions.push(`status = $${params.length + 1}`);
+    params.push(status);
+  }
+  const where = conditions.length ? `WHERE ${conditions.join(' AND ')}` : '';
+  params.push(limit, offset);
+  return all(
+    `SELECT * FROM patrons ${where} ORDER BY created_at DESC LIMIT $${params.length - 1} OFFSET $${params.length}`,
+    params
+  );
+}
+
+async function countPatrons({ templeId = null, status = null } = {}) {
+  const conditions = [];
+  const params = [];
+  if (templeId) {
+    conditions.push(`temple_id = $${params.length + 1}`);
+    params.push(templeId);
+  }
+  if (status) {
+    conditions.push(`status = $${params.length + 1}`);
+    params.push(status);
+  }
+  const where = conditions.length ? `WHERE ${conditions.join(' AND ')}` : '';
+  const row = await get(`SELECT COUNT(*) as count FROM patrons ${where}`, params);
+  return row?.count || 0;
+}
+
+async function getPatronStats() {
+  const byStatus = await all(`SELECT status, COUNT(*) as count FROM patrons GROUP BY status`);
+  const counts = { pending_payment: 0, active: 0, cancelled: 0, expired: 0 };
+  for (const row of byStatus) {
+    counts[row.status] = row.count;
+  }
+  const mrrRow = await get(
+    "SELECT COALESCE(SUM(amount_cents), 0) as mrr FROM patrons WHERE status = 'active'"
+  );
+  const templeRow = await get(
+    "SELECT COUNT(DISTINCT temple_id) as count FROM patrons WHERE status = 'active'"
+  );
+  const mrrCents = mrrRow?.mrr || 0;
+  return {
+    total: counts.pending_payment + counts.active + counts.cancelled + counts.expired,
+    pendingPayment: counts.pending_payment,
+    active: counts.active,
+    cancelled: counts.cancelled,
+    expired: counts.expired,
+    activeTemples: templeRow?.count || 0,
+    estimatedMrrCents: mrrCents,
+    estimatedMrrDollars: (mrrCents / 100).toFixed(2),
+    limitPerTemple: PATRON_LIMIT_PER_TEMPLE,
+  };
+}
+
+async function setPatronStatus(id, status) {
+  if (!['cancelled', 'expired'].includes(status)) {
+    throw Object.assign(new Error("status must be 'cancelled' or 'expired'"), { status: 400 });
+  }
+  const existing = await getPatronById(id);
+  if (!existing) return null;
+  await run(
+    `UPDATE patrons
+     SET status = $1, ends_at = CURRENT_TIMESTAMP, updated_at = CURRENT_TIMESTAMP
+     WHERE id = $2`,
+    [status, id]
+  );
+  return getPatronById(id);
+}
+
 module.exports = {
   PATRON_TIER_DEFAULT_CENTS,
   PATRON_TIER_MIN_CENTS,
   PATRON_TIER_MAX_CENTS,
   PATRON_LIMIT_PER_TEMPLE,
+  PATRON_ADMIN_STATUSES,
   createPatronCheckoutRecord,
   getPatronById,
   getPatronByStripeSubscriptionId,
@@ -203,4 +286,8 @@ module.exports = {
   cancelPatronBySubscriptionId,
   countActivePatronsByTemple,
   isPatronLimitReached,
+  listPatrons,
+  countPatrons,
+  getPatronStats,
+  setPatronStatus,
 };

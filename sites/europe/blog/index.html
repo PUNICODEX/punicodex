@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,38 +170,197 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-greek-location-pantheon">The Greek Location Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#typing-europe">Typing Eurṓpē</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>The Many Faces of Eurṓpē</h1>
-<p>No important name has only one face. Eurṓpē appears as a mythic character, a scholarly reconstruction, a cultural memory, and now a Unicode domain. Eurṓpē (europe) is the Greek name of the mainland north and west of the Aegean, personified as the Tyrian princess whom Zeus, in the form of a white bull, carried across the sea to Crete. The traditional etymology — &#39;broad-faced&#39;, from εὐρύς and ὤψ — is folk-etymology; the true origin is unknown, and a Semitic root meaning &#39;west, evening&#39; has long been proposed. Homer makes Eurṓpē the daughter of Phoinix and mother of Minos and Rhadamanthys, anchoring the Cretan royal line; as a continent her name was fixed in the geographers&#39; tripartite world beside Asía and Libyē, though Herodotus professed its naming unexplained.^3 PÚNYCODEX restores the name as Eurṓpē and serves its temple at eurṓpē.com. The original carries both stress and vowel length, and...</p>
-<h2>In Myth</h2>
-<p>Eurṓpē begins as a Phoenician princess of extraordinary beauty and ends as the name of an entire continent. Her story is one of divine abduction and transformation: Zeus, smitten, takes the form of a white bull and carries her across the sea from Tyre to Crete. What begins as violence becomes foundation myth, for Europa becomes the mother of the kings and judges who shape the earliest Greek understanding of justice and law. The very name of the continent, whether derived from the heroine or from a Semitic word for the setting sun, thus preserves the memory of a Phoenician girl who crossed the sea and founded a dynasty. The name Europe eventually named the continent west of the Aegean. Phoenician traders, Greek colonists, and Roman administrators... The mythic face is the one most people meet first, and it is the reason the name survived.</p>
-<h2>Across Cultures</h2>
-<p>Europa came from Phoenicia, and scholars have long suspected she brought a goddess with her: the parallel between Europa and the Tyrian Astarte — the celestial queen whose cult moved westward — is a standard observation of comparative scholarship, though it remains inference, not attested equation. Her brother Cadmus carried Phoenician letters to Greece, Herodotus says, so the alphabet itself rides the same westward current as the princess. Rome naturalized her: Ovid gives the canonical Latin telling, and Europa riding the bull became a staple of Roman mosaic and sarcophagus art from Africa to the Rhine. In Hellenistic and Roman iconography she completed her translation from woman to landmass, enthroned as the personified continent beside Asia and... Each culture kept what resonated and reshaped the rest.</p>
-<h2>In the Scholarly Record</h2>
-<p>Eurṓpē completed the rarest journey a name can make: from a woman, to a myth, to a civilization&#39;s self-designation. The continent took her name in the geographers&#39; tripartite world, and every later construction — Christendom, the West, the modern European Union — inherited the Greek word. The bull-riding princess still stamps the Greek two-euro coin, a state icon quoted directly from the ancient painters. Restoring the omega, the eta, and the acute is a small orthographic act that honors the continent&#39;s classical naming: the plain form europe keeps the map but loses the music. Few names have been asked to mean so much; fewer still have kept, beneath every new meaning, the face of a single Phoenician girl. The Scholarly Edition collects those traces so readers can follow the argument from source to conclusion.</p>
-<h2>The Unicode Face</h2>
-<p>The newest face is digital. Eurṓpē demonstrates that a name can be at once ancient and clickable, venerable and searchable. That is the face this blog exists to celebrate.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Eurṓpē is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>The many faces of Eurṓpē</h1>
+<p>No important name has only one face. <strong>Eurṓpē</strong> appears as a figure of myth, a scholarly reconstruction, a piece of material culture, a memory carried across languages, and — most recently — a Unicode domain. This post looks at each face in turn: the name and its roots, the Greek original, the reconstructed pronunciation, the mythological record, the symbols and sanctuaries, the cross-cultural afterlife, and the engineering that lets the restored spelling resolve in a browser. Taken together, those faces explain why <em>europe</em> was never going to be enough — and why the restored form is worth a domain of its own.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Eurṓpē</li>
+  <li><strong>ASCII form:</strong> europe</li>
+  <li><strong>Meaning:</strong> &quot;Broad-faced (from εὐρύς + ὤψ)&quot;</li>
+  <li><strong>Domain of influence:</strong> Personified Continent of Europe</li>
+  <li><strong>Pantheon:</strong> Greek Location</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Original script:</strong> Εὐρώπη (Greek)</li>
+  <li><strong>Live domain:</strong> eurṓpē.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Eurṓpē</strong> (<em>europe</em>) is the Greek name of the mainland north and west of the Aegean, personified as the Tyrian princess whom Zeus, in the form of a white bull, carried across the sea to Crete. The traditional etymology — &#39;broad-faced&#39;, from εὐρύς and ὤψ — is folk-etymology; the true origin is unknown, and a Semitic root meaning &#39;west, evening&#39; has long been proposed.</p>
+<p>Homer makes Eurṓpē the daughter of Phoinix and mother of Minos and Rhadamanthys, anchoring the Cretan royal line; as a continent her name was fixed in the geographers&#39; tripartite world beside Asía and Libyē, though Herodotus professed its naming unexplained.</p>
+<p>PÚNYCODEX restores the name as <strong>Eurṓpē</strong> and serves its temple at <a href="https://xn--eurp-eva0406b.com">eurṓpē.com</a>. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>europe</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Greek as <strong>Εὐρώπη</strong>. Etymologically it means &quot;Broad-faced (from εὐρύς + ὤψ)&quot;.</p>
+<p>The reconstructed proto-form is <em>h₁rewr-</em> (proto-indo-european, &quot;wide, broad&quot;). From εὐρύς &quot;wide&quot; + ὤψ &quot;face, eye&quot;. Broad-faced.</p>
+<p>The ASCII form <em>europe</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Eurṓpē</strong> recovers both the stress accent and the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>e</strong> → <strong>E</strong> — Epsilon</li>
+  <li><strong>u</strong> → <strong>u</strong> — Upsilon</li>
+  <li><strong>r</strong> → <strong>r</strong> — Rho</li>
+  <li><strong>o</strong> → <strong>ṓ</strong> — Omega with acute and length</li>
+  <li><strong>p</strong> → <strong>p</strong> — Pi</li>
+  <li><strong>e</strong> → <strong>ē</strong> — Eta: long vowel</li>
+</ul>
+<p>The project holds the domain <strong>eurṓpē.com</strong> (xn--eurp-eva0406b.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: From εὐρύς &quot;wide&quot; + ὤψ &quot;face, eye&quot;. Broad-faced.</p>
+<p>The reconstructed proto-form is <em>*h₁rewr-</em> (proto-indo-european), glossed as &quot;wide, broad&quot;.</p>
+<p>The reconstruction is classed as attested.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Greek as <strong>Εὐρώπη</strong> — Greek alphabet (Classical / Attic), attested Ancient Greek, c. 8th century BCE – present, in Greece and the Greek-speaking Mediterranean. The script is written left-to-right.</p>
+<p>The scholarly transliteration is <em>Eurṓpē</em> (Greek alphabet with polytonic accents), giving the normalized reading /eu̯ˈrɔːpɛː/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The Greek form Εὐρώπη is written in the Classical Greek alphabet.</li>
+  <li>Letters with acute, grave, or circumflex accents preserve the pitch accent of Ancient Greek.</li>
+  <li>Macrons and omegas (η, ω) mark long vowels, a feature lost in the plain ASCII form.</li>
+  <li>The Unicode restoration Eurṓpē encodes the scholarly spelling as a registrable domain name.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/eu̯.rɔːˈpɛː/</strong> — Ancient Greek Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Eu-</strong> — Diphthong [eu̯] — a rounded glide from mid-close [e] to close [u], the standard Greek εὐ</li>
+  <li><strong>-rō-</strong> — Long open-mid back [ɔː] with acute and length mark; omega is a long o, not the modern English &#39;oh&#39;</li>
+  <li><strong>-pē</strong> — Voiceless bilabial stop [p] plus long close-mid front [ɛː], the Greek eta ē</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;ehv-ROH-pay&#39; — begin with a quick &#39;eh-oo&#39; glide, hold the &#39;roh&#39; long, and finish with a stretched &#39;pay&#39;.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Greek</strong> — εὐρύς (eurýs), &#39;wide&#39;, and ὤψ (ṓps), &#39;face, eye&#39;, the traditional etymology</li>
+  <li><strong>Phoenician</strong> — ʿrb, &#39;west, evening&#39;, an alternative Semitic origin proposed by some scholars</li>
+  <li><strong>Latin</strong> — Europa, the Roman form that fixed the continent&#39;s name in the West</li>
+</ul>
+<p>Eurṓpē is a full Tier-1 Greek restoration: both the omega (length + stress in the circumflex position) and the eta are long vowels, and the acute marks recessive stress. The traditional &#39;wide-faced&#39; etymology is Greek folk-etymology; the true pre-Greek origin remains uncertain.</p>
+<h2 id="mythology">Mythology</h2>
+<p><strong>Eurṓpē</strong> begins as a Phoenician princess of extraordinary beauty and ends as the name of an entire continent. Her story is one of divine abduction and transformation: Zeus, smitten, takes the form of a white bull and carries her across the sea from Tyre to Crete. What begins as violence becomes foundation myth, for Europa becomes the mother of the kings and judges who shape the earliest Greek understanding of justice and law. The very name of the continent, whether derived from the heroine or from a Semitic word for the setting sun, thus preserves the memory of a Phoenician girl who crossed the sea and founded a dynasty. The name Europe eventually named the continent west of the Aegean. Phoenician traders, Greek colonists, and Roman administrators carried the term across the Mediterranean until it became the medieval and modern designation for the peninsula that would shape Western Christendom. The mythic bull-riding princess thus gave her name to a civilization that never forgot its Eastern origins.</p>
+<h3 id="the-bull-from-the-sea-cretan-myth">The Bull from the Sea (Cretan Myth)</h3>
+<p>Europa was gathering flowers with her companions on the Phoenician shore when a great white bull appeared among the herds. Its hide was gleaming, its horns were shaped like a crescent moon, and its breath smelled of crocuses. The princess trusted the beast enough to climb onto its back. At once it bolted into the sea and swam westward, pursued by Europa&#39;s frightened companions along the beach until the bull and its rider vanished over the waves.</p>
+<p>The bull was Zeus. He carried Europa across the Mediterranean to Crete, where he revealed himself in a sacred grove near Gortyn. There she became the mother of Minos, Rhadamanthys, and Sarpedon. Minos would rule Crete and establish the labyrinth; Rhadamanthys would become one of the judges of the dead; and Sarpedon would fight at Troy. A single abduction thus generated the mythic charter for Cretan kingship and afterlife justice.</p>
+<h3 id="from-princess-to-continent-eponym">From Princess to Continent (Eponym)</h3>
+<p>The continent that received the Phoenician princess took her name. Herodotus and later writers regularly derive <em>Eurṓpē</em> from the heroine, pairing her with Asia and Libya as the three named continents of the inhabited world. The etymology probably does not hold: the name may be Semitic, possibly meaning &#39;dark&#39; or &#39;western,&#39; or it may reflect the Greek sense that the land lay opposite the rising sun.</p>
+<p>Yet the mythic derivation mattered more than philological accuracy. It allowed Greeks to imagine Europe as a place linked by marriage to Zeus and by blood to the Cretan dynasties. The continent was not merely geography but a family inheritance, shaped by the same divine desires that shaped cities and royal houses.</p>
+<h3 id="the-bull-and-the-bride-iconography">The Bull and the Bride (Iconography)</h3>
+<p>In Greek vase-painting, the scene of Europa on the bull became a favorite image of crossing and transformation. She rides sidesaddle, one hand gripping the bull&#39;s horn, her veil streaming behind her as dolphins leap beneath the waves. The bull&#39;s calm strength contrasts with the terror of abduction, turning the scene into an emblem of divine election rather than mere violence.</p>
+<p>Roman and later European artists reinterpreted the myth as an allegory of continent personified. Europa, seated on the bull, became a standard figure in maps and emblems, until her name outgrew the story entirely. Today the continent is named for a Phoenician girl who, in one version of the tale, became a queen of Crete and the ancestress of European civilization.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Eurṓpē concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>Bull of Zeus</strong> — The disguise in which Zeus carried the Phoenician princess across the sea</li>
+  <li><strong>Cretan labyrinth</strong> — The island where Zeus&#39;s love for Europa produced Minos and the Minoan line</li>
+  <li><strong>Plane tree (plátanos)</strong> — The shade-tree under which Europa rested, a sacred spot in Gortyn</li>
+  <li><strong>Continental crown</strong> — The personified continent enthroned, adapted from Hellenistic and Roman iconography</li>
+  <li><strong>Phoenician prow</strong> — Europa&#39;s origin as a Tyrian princess carried westward by a god</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Europa received no temple cult, but her image is unusually well attested in the material record. The mint of Gortyna — the city of the plane tree where the myth placed her union with Zeus — struck silver coins in the fourth century BCE showing Europa seated in the branches, the most direct numismatic portrait of any continent-eponym. Roman mosaics of the bull-riding princess survive across the empire, and the myth&#39;s settings remained real places: the evergreen plane of Gortyna was shown to travelers as a natural monument into late antiquity. No sanctuary claims her; the honest record is one of art, not worship.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p><strong>Eurṓpē</strong> is at once the Tyrian princess of the Cretan myth and the continent that inherited her name; the aspects below trace that double identity.</p>
+<h3 id="bull-from-the-sea">Bull from the Sea</h3>
+<p>Zeus took the form of a white bull and carried the Phoenician princess Eurṓpē across the sea to Crete.</p>
+<h3 id="continent-eponym">Continent Eponym</h3>
+<p>The land that received her took her name, making Europe a mythic body as well as a geographical space.</p>
+<h3 id="mother-of-minos">Mother of Minos</h3>
+<p>Eurṓpē bore Minos, Rhadamanthys, and Sarpedon, founding the Cretan dynasty and a judge of the dead.</p>
+<h3 id="western-horizon">Western Horizon</h3>
+<p>Europe lay where the sun set; its name may echo a Semitic word for &quot;west,&quot; the realm of the setting sun.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Europa came from Phoenicia, and scholars have long suspected she brought a goddess with her: the parallel between Europa and the Tyrian Astarte — the celestial queen whose cult moved westward — is a standard observation of comparative scholarship, though it remains inference, not attested equation. Her brother Cadmus carried Phoenician letters to Greece, Herodotus says, so the alphabet itself rides the same westward current as the princess. Rome naturalized her: Ovid gives the canonical Latin telling, and Europa riding the bull became a staple of Roman mosaic and sarcophagus art from Africa to the Rhine. In Hellenistic and Roman iconography she completed her translation from woman to landmass, enthroned as the personified continent beside Asia and Libya. Sibling temples: <a href="/sites/asia/">Asía</a> and <a href="/sites/libye/">Libyē</a>, the other two names of Herodotus&#39; tripartite world.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p><strong>Eurṓpē</strong> completed the rarest journey a name can make: from a woman, to a myth, to a civilization&#39;s self-designation. The continent took her name in the geographers&#39; tripartite world, and every later construction — Christendom, the West, the modern European Union — inherited the Greek word. The bull-riding princess still stamps the Greek two-euro coin, a state icon quoted directly from the ancient painters. Restoring the omega, the eta, and the acute is a small orthographic act that honors the continent&#39;s classical naming: the plain form <em>europe</em> keeps the map but loses the music. Few names have been asked to mean so much; fewer still have kept, beneath every new meaning, the face of a single Phoenician girl.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Eurṓpē given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li>
+  <li> Moschus, Europa (the fullest surviving account of the bull myth).</li>
+  <li> Homer, Iliad.</li>
+  <li> Homer, Odyssey.</li>
+  <li> Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE. <a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Full text</a></li>
+  <li> Pindar, Pythian Odes.</li>
+  <li> Pausanias, Description of Greece.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>A woman, a bull, a sea-crossing, a continent. <strong>Eurṓpē</strong> compresses into one name the oldest story the Greeks told about their own west: that its culture arrived from the east, carried across the water, and took root in new soil. The restored omega and eta hold the length of the Greek name; the acute holds its pitch. What the plain form <em>europe</em> flattens into a modern abstraction, the restoration returns to a woman gathering flowers on the Phoenician shore. To hold the accented name is to hold both ends of the journey at once: the princess and the continent, the myth and the map — and the sea that carried one into the other.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Eurṓpē is classified as <strong>Tier 1</strong>: the original carries both stress and length, and only one valid Unicode restoration exists. The ASCII fallback <em>europe</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 6 characters of the name, the restoration adjusts 2: 1 mark of length (ē); 1 further adjustment (ṓ). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>europe</em> to <strong>Eurṓpē</strong>, one character at a time:</p>
+<ul>
+  <li><strong>e</strong> → <strong>E</strong> — Epsilon</li>
+  <li><strong>u</strong> → <strong>u</strong> — Upsilon</li>
+  <li><strong>r</strong> → <strong>r</strong> — Rho</li>
+  <li><strong>o</strong> → <strong>ṓ</strong> — Omega with acute and length</li>
+  <li><strong>p</strong> → <strong>p</strong> — Pi</li>
+  <li><strong>e</strong> → <strong>ē</strong> — Eta: long vowel</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>eurṓpē.com</strong>, which the DNS carries in punycode form as xn--eurp-eva0406b.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Eurṓpē; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Greek can now be typed into any browser on earth.</p>
+<h2 id="the-greek-location-pantheon">The Greek Location Pantheon</h2>
+<p>Eurṓpē is one of 24 entries the PÚNYCODEX lexicon catalogues under the Greek Location pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Eurṓpē mean?</strong> The traditional gloss is &quot;Broad-faced (from εὐρύς + ὤψ).&quot;</p>
+<p><strong>Which tradition does Eurṓpē belong to?</strong> Eurṓpē is catalogued in the Greek Location pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Eurṓpē classified as Tier 1?</strong> Because the original carries both stress and length, and only one valid Unicode restoration exists — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Eurṓpē a working domain?</strong> Yes — eurṓpē.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for eurṓpē.com?</strong> The DNS encoding is xn--eurp-eva0406b.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="typing-europe">Typing Eurṓpē</h2>
+<p>You do not need a special keyboard to use this restoration. The <a href="/type/">PÚNYCODEX Type Tool</a> converts the ASCII form <em>europe</em> into <strong>Eurṓpē</strong> as you type, and the browser extension offers the same conversion inside any text field. Copy the restored form, paste it into the address bar, and the DNS does the rest.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Myth, script, sound, cult, legacy, domain: the faces of Eurṓpē add up to a single argument — that a name is a record, and records deserve fidelity. The PÚNYCODEX restoration keeps that record in working order: the temple presents it, the Scholarly Edition footnotes it, the lexicon catalogs it, and the domain makes it addressable. <em>europe</em> will always exist as a fallback. But fallback is not identity. <strong>Eurṓpē</strong> is the name; everything else is a convenience.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/thebai/">Thēbaí</a></li>
   <li><a href="/sites/troia/">Troía</a></li>
   <li><a href="/sites/aitolia/">Aitōlia</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0134">Homer, Iliad 14.321-322 (Europa daughter of Phoinix).</a></li>
   <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0126">Herodotus, Histories 4.42-45 (the extent and naming of Europe).</a></li>
   <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE.</a></li>
   <li><a href="https://www.loebclassics.com/">Histories, Loeb Classical Library, 440 BCE.</a></li>
+  <li>Moschus, Europa (the bull and the sea-crossing).</li>
+  <li>Beekes, R. S. P. Etymological Dictionary of Greek, s.v. Εὐρώπη. Leiden: Brill, 2010.</li>
+  <li>Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li>
+  <li>Material evidence from the Greek world — inscriptions, sanctuaries, votive deposits, and literary papyri — anchors the name in historical cult.</li>
+  <li>Lexicon authorities for this entry: LSJ, Herodotus.</li>
 </ul>
-<h2>The Cultural Afterlife</h2>
-<p>Eurṓpē completed the rarest journey a name can make: from a woman, to a myth, to a civilization&#39;s self-designation. The continent took her name in the geographers&#39; tripartite world, and every later construction — Christendom, the West, the modern European Union — inherited the Greek word. The bull-riding princess still stamps the Greek two-euro coin, a state icon quoted directly from the ancient painters. Restoring the omega, the eta, and the acute is a small orthographic act that honors the continent&#39;s classical naming: the plain form europe keeps the map but loses the music. Few names have been asked to mean so much; fewer still have kept, beneath every new meaning, the face of a single Phoenician girl.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">greek-location</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

@@ -46,6 +46,7 @@ const mainPages = [
   { loc: '/', priority: '1.0', changefreq: 'weekly' },
   { loc: '/pantheon/', priority: '0.9', changefreq: 'weekly' },
   { loc: '/lexicon/', priority: '0.9', changefreq: 'weekly' },
+  { loc: '/blog/', priority: '0.7', changefreq: 'weekly' },
   { loc: '/type/', priority: '0.9', changefreq: 'weekly' },
   { loc: '/tiers/', priority: '0.8', changefreq: 'monthly' },
   { loc: '/realms/', priority: '0.8', changefreq: 'monthly' },

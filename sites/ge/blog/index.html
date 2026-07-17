@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,44 +170,201 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#epithets-cult-titles">Epithets &amp; Cult Titles</a></li>
+                <li><a href="#the-homeric-hymns">The Homeric Hymns</a></li>
+                <li><a href="#oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-greek-pantheon">The Greek Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>The Hidden History Behind Gē</h1>
-<p>Behind the modern ASCII <em>ge</em> hides a longer story. The name is attested in Greek as Γῆ. Etymologically it means &quot;Earth&quot;. The ASCII form ge survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Gē recovers the vowel length of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The letter-by-letter transformation runs: - g → G — G uppercase - e → ē — Macron: long vowel The project holds the domain gē.com (xn--g-pia.com) as the canonical home of this name. That history reaches back through manuscripts, inscriptions, and oral traditions before it ever reached a keyboard.</p>
-<h2>Etymology</h2>
-<p>The deeper roots of Gē are still debated among specialists.  The traditional gloss is &quot;Earth.&quot;</p>
-<h2>In Myth</h2>
-<p>Gē is a primordial power whose myths are acts of generation and revenge. She creates without a mate, then conspires with her son Kronos against her husband Ouranos. These narratives are not dusty footnotes; they are the reason the name acquired its resonance.</p>
-<h2>Across Cultures</h2>
-<p>Gē was identified early with the Minoan-Mycenaean earth mother and later with the Anatolian Cybele and the Roman Terra Mater. In Orphic cosmogonies she is sometimes preceded by Night or Water, but she remains the foundational maternal power. Neoplatonists interpreted her as the material substrate of the visible world, the &#39;receptacle&#39; of becoming. Modern ecological movements have reclaimed Gaia/Gē as a symbol of the living planet. Within the Greek tradition, closely related names in the corpus include [[acheron|Achérōn]], [[adamas|Adámas]], [[aer|Aḗr]], [[aither|Aithḗr]], [[ananke|Anánkē]], and [[andromeda|Andromedē]]. Names travel, adapt, and accumulate meanings. Tracking that travel is part of what makes the restoration worthwhile.</p>
-<h2>The Unicode Decision</h2>
-<p>Restoring Gē is not an aesthetic choice. It is a decision to honor the name as attested rather than the name as flattened by ASCII. That choice is documented in the <a href="/sites/ge/scholars/">Scholarly Edition</a> and defended by the sources below.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Gē is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>The hidden history behind Gē</h1>
+<p>Behind the modern ASCII form <em>ge</em> hides a much longer story. <strong>Gē</strong> reaches back through manuscripts, inscriptions, and oral tradition long before it ever touched a keyboard, and every mark in the restored spelling is a receipt from that journey. In what follows we trace the name from its Greek attestations through its mythology, its cult, its symbols, and its afterlife in other cultures — and we show how the PÚNYCODEX project turned that philological record into a Unicode domain that resolves today. The history was never lost. It was only waiting for the infrastructure to catch up.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Gē</li>
+  <li><strong>ASCII form:</strong> ge</li>
+  <li><strong>Meaning:</strong> &quot;Earth&quot;</li>
+  <li><strong>Domain of influence:</strong> Earth</li>
+  <li><strong>Pantheon:</strong> Greek</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> Γῆ (Greek)</li>
+  <li><strong>Live domain:</strong> gē.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Gē</strong> (<em>ge</em>) — Earth · Earth — belongs to the Greek tradition, where it is catalogued under the domain &quot;Earth&quot;. The name means &quot;Earth&quot;.</p>
+<p>Gē is the <strong>earth as goddess</strong>, the primordial ground from which gods, Titans, and mortals arise. She is not a distant creator but the very substance beneath our feet, venerated in every Greek city and invoked in oaths, harvests, and burials.</p>
+<p>PÚNYCODEX restores the name as <strong>Gē</strong> and serves its temple at <a href="https://xn--g-pia.com">gē.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>ge</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Greek as <strong>Γῆ</strong>. Etymologically it means &quot;Earth&quot;.</p>
+<p>The ASCII form <em>ge</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Gē</strong> recovers the vowel length of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>g</strong> → <strong>G</strong> — G uppercase</li>
+  <li><strong>e</strong> → <strong>ē</strong> — Macron: long vowel</li>
+</ul>
+<p>The project holds the domain <strong>gē.com</strong> (xn--g-pia.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Greek as <strong>Γῆ</strong> — Greek alphabet (Classical / Attic), attested from the earliest Greek literature onward, in Greece and the Greek-speaking Mediterranean. The script is written left-to-right.</p>
+<p>The scholarly transliteration is <em>Gê</em> or <em>Gē</em> (Greek alphabet with polytonic accents), giving the normalized reading /gɛː/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The Greek form Γῆ is a monosyllable in the Classical Greek alphabet.</li>
+  <li>Its circumflex marks a contraction: the word was once two syllables — Homeric Γαῖα (<em>Gaîa</em>) and the older disyllabic stem behind it — compressed in Attic into one.</li>
+  <li>The vowel η is long by nature; the Unicode restoration Gē registers that length with a macron.</li>
+</ul>
+<p>Γῆ continues the Indo-European word for earth, <em>dʰéǵʰōm</em>, whose other descendants include Latin <em>humus</em> and, through the notion of &quot;earthling,&quot; English <em>human</em>; the precise reshaping of the inherited stem in Greek remains debated among etymologists. Because the canonical reading registers the length without a stress mark, Gē stands in Tier 2, and the restoration is a single long vowel carried into the address bar.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/gɛː/</strong> — Attic Greek Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Gē</strong> — Voiced velar stop [g] plus long eta [ɛː]. The name is a single long syllable, the earth named as one continuous thing.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;GAY&#39; — one long, level syllable, like the sustained note of a deep drum.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Greek</strong> — Γῆ (Gê/Gē), the earth as goddess and as solid ground</li>
+  <li><strong>PIE</strong> — *dʰéǵʰōm, &#39;earth&#39;; Greek γῆ and Latin humus are related derivatives</li>
+  <li><strong>Homeric</strong> — Γαῖα (Gaîa), the more metrical and later poetic form of the name</li>
+</ul>
+<p>Gē is Tier 2 because the Greek Γῆ preserves the long vowel (eta) but has no stress mark in standard Attic orthography. It is the older cultic form of the earth goddess, later often called Gaîa in poetry.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Gē is a <strong>primordial power</strong> whose myths are acts of generation and revenge. She creates without a mate, then conspires with her son Kronos against her husband Ouranos.</p>
+<h3 id="birth-of-the-cosmos-hesiod-theogony">Birth of the Cosmos (Hesiod, Theogony)</h3>
+<p>After Chaos came Gē &#39;broad-breasted,&#39; the ever-sure seat of all immortals. She gave birth to Ouranos, the mountains, and Pontos, the sea. Alone she is generative; with Ouranos she becomes the mother of the Titans and the origin of the Olympian order.</p>
+<h3 id="the-castration-of-ouranos-hesiod-theogony">The Castration of Ouranos (Hesiod, Theogony)</h3>
+<p>Gē grew weary of Ouranos forcing her children back into her womb. She fashioned the adamantine sickle and persuaded Kronos to ambush his father. The blood from the wound produced the Erinyes, the Giants, and the ash-tree nymphs — new beings born from violence against the sky.</p>
+<h3 id="ge-kourotrophos-cult">Gē Kourotrophos (Cult)</h3>
+<p>In Athens and other cities, Gē was worshipped as Kourotrophos, &#39;nurse of children,&#39; and as Gē Olympia, the earth who receives offerings at the city&#39;s hearth. Her cult was quiet, universal, and older than the Olympian pantheon.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>Gē&#39;s attributes visualize a single idea — that the ground beneath is alive and gives.</p>
+<ul>
+  <li><strong>The cornucopia and fruits</strong> — the abundance rising from her soil, her standard attribute in Hellenistic and Roman images, when she is shown at all.</li>
+  <li><strong>The child in her arms</strong> — the visualization of her cult title Kourotrophos, &quot;nurse of the young&quot;: on Attic vases she rises waist-deep from the earth to hand the earth-born Erichthonios up to <a href="/sites/athena/">Athénā</a>.</li>
+  <li><strong>The serpent</strong> — the creature of her chthonic side: in later tradition the Delphic Python is her child, set to guard the oracle that was hers before Apollo&#39;s (Euripides, <em>Iphigenia among the Taurians</em> 1244–1249).</li>
+  <li><strong>The omphalos</strong> — the &quot;navel-stone&quot; at Delphi, an aniconic marker of the earth&#39;s centre, shown on vases with Apollo seated upon it and described by Pausanias (10.16).</li>
+  <li><strong>Rooted trees</strong> — oak and olive growing directly from her body, the oldest shorthand for her generative reach.</li>
+</ul>
+<p>Gē&#39;s canonical type in Greek art is the half-figure rising from the ground — the <em>anodos</em>: a mature woman emerging waist-deep from the earth, arms extended. She appears thus on Attic vases of the birth of Erichthonios, handing the earth-born child up to [[athena|Athénā]], and in Gigantomachy scenes pleading for her giant sons — most monumentally on the east frieze of the Great Altar of Pergamon (c. 170 BCE), where she rises between Athénā and the fallen Alkyoneus. Her attributes are the cornucopia, fruits, and the children in her arms that visualize her title Kourotrophos; seated earth-mother figurines extend the type into archaic terracotta. No cult statue of her is described in detail — fittingly, since her image everywhere is the ground itself, opening.</p>
+<ul>
+  <li><strong>Oak or olive tree</strong> — The rooted life that grows directly from her</li>
+  <li><strong>Black stone</strong> — Aniconic representation of the earth goddess at numerous archaic shrines</li>
+</ul>
+<h2 id="epithets-cult-titles">Epithets &amp; Cult Titles</h2>
+<p>Gē&#39;s titles are among the oldest in Greek religion:</p>
+<ul>
+  <li><strong>εὐρύστερνος (eurysternos)</strong> — &quot;broad-breasted&quot;; her Hesiodic formula at the moment of creation (<em>Theogony</em> 117).</li>
+  <li><strong>παμμήτειρα (pammeteira)</strong> — &quot;mother of all&quot;; the address of Homeric Hymn 30.</li>
+  <li><strong>παμμήτωρ (pammetōr)</strong> — the same title in tragedy: Aeschylus&#39; Prometheus calls on &quot;all-mother Earth&quot; in his opening appeal (<em>Prometheus Bound</em> 90).</li>
+  <li><strong>κουροτρόφος (kourotrophos)</strong> — &quot;nurse of the young&quot;; her Athenian cult title, shared with Demeter Chloē in the sanctuary by the Acropolis entrance (Pausanias 1.22.3).</li>
+  <li><strong>ἕδος ἀσφαλὲς αἰεί (hedos asphales aiei)</strong> — &quot;the ever-sure seat&quot;; <em>Theogony</em> 117&#39;s description of her as the immovable foundation of the gods.</li>
+</ul>
+<h2 id="the-homeric-hymns">The Homeric Hymns</h2>
+<p>Gē has her own Homeric Hymn: Hymn 30, &quot;To Earth the Mother of All&quot; (Εἲς Γῆν μητέρα πάντων), one of the finest of the shorter hymns. It opens &quot;I will sing of well-founded Earth, mother of all, eldest of beings, who nourishes all things in the world&quot; — all that move on the goodly land, in the paths of the sea, and in the air — and credits her with fair children and crops, with prosperity and a happy old age. The hymn&#39;s formulaic title, <em>pammeteira</em> (&quot;mother of all&quot;), became her standard address. It is the only Homeric Hymn devoted to a primordial being, and it reads like a surviving piece of the oldest stratum of Greek prayer: a hymn not to an Olympian specialist but to the ground itself. Hesiod&#39;s <em>Theogony</em> (116–117) supplies her cosmogonic frame: &quot;broad-breasted Gē, the ever-sure seat of all the immortals.&quot;</p>
+<h2 id="oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</h2>
+<p>Gē&#39;s oldest cultic identity is oracular. Aeschylus&#39; Pythia opens the <em>Eumenides</em> by naming Earth as the first prophetess of Delphi — succeeded by Themis, then Phoibe, then Apollo — and Pausanias (10.5) records the same succession, naming Earth the first possessor of the oracle; the omphalos stone marked her navel. Her documented sites:</p>
+<ul>
+  <li><strong>Delphi</strong> — first holder of the oracle in the Aeschylean succession myth, and in Pausanias&#39; account of the sanctuary&#39;s history.</li>
+  <li><strong>Athens</strong> — sanctuary of Gē Kourotrophos and Demeter Chloē on the slope below the Acropolis entrance (Pausanias 1.22.3).</li>
+  <li><strong>Aigeira in Achaea</strong> — a cave oracle of Earth described by Pausanias (7.25.13), where the priestess drank bull&#39;s blood before prophesying.</li>
+</ul>
+<p>Pausanias also notes altars and images of Earth at several other Peloponnesian sanctuaries, evidence of a quiet, universal cult.</p>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Gē&#39;s cult was universal and therefore architecturally modest: the earth needed no temple, being itself the precinct, and her worship left altars, offering-pits, and aniconic stones rather than great buildings. Pausanias records her sanctuary as Kourotrophos together with Demeter Chloē on the slope below the Acropolis entrance at Athens (1.22.3), a cave oracle of Earth at Aigeira in Achaea where the priestess drank bull&#39;s blood before prophesying (7.25.13), and the tradition that Delphi itself was first her oracle before passing to Themis and then Apollo (10.5) — the succession that Aeschylus stages in the prologue of the <em>Eumenides</em>. The omphalos stone shown at Delphi, described by Pausanias (10.16), remains the most famous aniconic object of her sphere. Across Greece, chthonic offering-pits (bothroi) for liquid offerings and simple boundary stones attest the everyday, non-monumental practice of her cult, which ran beneath the spectacular worship of her Olympian children.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Gē is the <strong>earth as goddess</strong>, the primordial ground from which gods, Titans, and mortals arise. She is not a distant creator but the very substance beneath our feet, venerated in every Greek city and invoked in oaths, harvests, and burials.</p>
+<h3 id="mother-of-all">Mother of All</h3>
+<p>From Gē spring the Titans, the Giants, the Erinyes, and — with Ouranos — the whole cosmos.</p>
+<h3 id="giver-of-crops">Giver of Crops</h3>
+<p>Agricultural fertility and the annual return of grain depend on her body.</p>
+<h3 id="tomb-and-womb">Tomb and Womb</h3>
+<p>She receives the dead and regenerates life; grave and cradle are the same soil.</p>
+<h3 id="oracle-of-the-dead">Oracle of the Dead</h3>
+<p>Her chthonic power underlies oracles and dream-visions at sanctuaries of the underworld.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Gē was identified early with the Minoan-Mycenaean earth mother and later with the Anatolian Cybele and the Roman Terra Mater. In Orphic cosmogonies she is sometimes preceded by Night or Water, but she remains the foundational maternal power. Neoplatonists interpreted her as the material substrate of the visible world, the &#39;receptacle&#39; of becoming. Modern ecological movements have reclaimed Gaia/Gē as a symbol of the living planet.</p>
+<p>Within the Greek tradition, closely related names in the corpus include [[acheron|Achérōn]], [[adamas|Adámas]], [[aer|Aḗr]], [[aither|Aithḗr]], [[ananke|Anánkē]], and [[andromeda|Andromedē]].</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Gē&#39;s legacy is the most pervasive of any Greek divine name, because it is embedded in the vocabulary of knowledge itself: <em>geology</em>, <em>geography</em>, <em>geometry</em>, and every geo- compound carry her root — <em>geometry</em> preserving the memory of its origin as &quot;earth-measurement,&quot; the land-surveying that Herodotus (2.109) says arose in Egypt, where the Nile&#39;s annual flood erased the field boundaries, before passing to the Greeks. Her poetic double Γαῖα supplied the twentieth century&#39;s most consequential revival: the Gaia hypothesis of James Lovelock — named, at the suggestion of the novelist William Golding, after the Greek earth — which proposes that the planet&#39;s surface systems behave as a self-regulating whole. In Greek religion she was never a specialist but the substrate of cult itself, invoked in the greatest oaths beside Zeus and the Sun (Homer, <em>Iliad</em> 3.276–280), receiving the dead, feeding the living; modern ecological thought, in recasting the planet as kin rather than resource, has returned to her oldest register.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Gē given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Full text</a></li>
+  <li> Beekes, Etymological Dictionary of Greek.</li>
+  <li> Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE. <a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Full text</a></li>
+  <li> Homer, Iliad and Odyssey.</li>
+  <li> Aeschylus, Eumenides and Prometheus Bound.</li>
+  <li> Pausanias, Description of Greece.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Gē does not choose sides; she is the board on which the game is played. Titans and Olympians alike are her children, and in the end all bodies return to her. This gives her a strange neutrality: she can conspire against the sky and still receive the sky-god&#39;s thunderbolts into her breast.</p>
+<p>To meditate on Gē is to remember dependence. We do not stand apart from nature; we stand on it. The modern ecological crisis is, at root, a forgetting of Gē — a pretense that the ground is merely resource rather than kin. Restoring her name in Unicode is a small symbolic act of remembering that the earth is older than all our conflicts and more patient than all our gods.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Gē is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>ge</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 2 characters of the name, the restoration adjusts 1: 1 mark of length (ē). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>ge</em> to <strong>Gē</strong>, one character at a time:</p>
+<ul>
+  <li><strong>g</strong> → <strong>G</strong> — G uppercase</li>
+  <li><strong>e</strong> → <strong>ē</strong> — Macron: long vowel</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>gē.com</strong>, which the DNS carries in punycode form as xn--g-pia.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Gē; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Greek can now be typed into any browser on earth.</p>
+<h2 id="the-greek-pantheon">The Greek Pantheon</h2>
+<p>Gē is one of 263 entries the PÚNYCODEX lexicon catalogues under the Greek pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Gē mean?</strong> The traditional gloss is &quot;Earth.&quot;</p>
+<p><strong>Which tradition does Gē belong to?</strong> Gē is catalogued in the Greek pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Gē classified as Tier 2?</strong> Because the original preserves at least one philological feature that ASCII cannot encode — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Gē a working domain?</strong> Yes — gē.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for gē.com?</strong> The DNS encoding is xn--g-pia.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>The story of Gē did not end in antiquity; it changed medium. Names that survive for millennia do so because each generation finds a new carrier for them — clay, papyrus, print, and now DNS. The PÚNYCODEX restoration simply makes the carrier honest: the spelling that resolves is the spelling the evidence supports. If this post showed anything, it is that <em>ge</em> and <strong>Gē</strong> are not the same name with different styling. They are a summary and the text it summarizes. The web can now serve the text.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/pathos/">Páthos</a></li>
   <li><a href="/sites/peleus/">Pēleus</a></li>
   <li><a href="/sites/pentheus/">Pentheús</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843.</a></li>
   <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE.</a></li>
+  <li>Beekes, Etymological Dictionary of Greek.</li>
+  <li>Beekes, Etymological Dictionary of Greek, s.v. γῆ.</li>
+  <li>Lexicon Iconographicum Mythologiae Classicae (LIMC), s.v. Ge/Gaia.</li>
+  <li>Euripides, Iphigenia among the Taurians 1244–1249.</li>
+  <li>Lexicon authorities for this entry: Hesiod, LSJ.</li>
 </ul>
-<h2>The Cultural Afterlife</h2>
-<p>Gē&#39;s legacy is the most pervasive of any Greek divine name, because it is embedded in the vocabulary of knowledge itself: geology, geography, geometry, and every geo- compound carry her root — geometry preserving the memory of its origin as &quot;earth-measurement,&quot; the land-surveying that Herodotus (2.109) says arose in Egypt, where the Nile&#39;s annual flood erased the field boundaries, before passing to the Greeks. Her poetic double Γαῖα supplied the twentieth century&#39;s most consequential revival: the Gaia hypothesis of James Lovelock — named, at the suggestion of the novelist William Golding, after the Greek earth — which proposes that the planet&#39;s surface systems behave as a self-regulating whole. In Greek religion she was never a specialist but the...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Gē as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Greek to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Gē through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/ge/">home page</a> offers the full name breakdown, the <a href="/sites/ge/lore/">lore page</a> explores the myth, and the <a href="/sites/ge/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Gē do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">greek</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

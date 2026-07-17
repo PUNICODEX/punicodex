@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,45 +170,194 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-japanese-pantheon">The Japanese Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#typing-fujin">Typing Fūjin</a></li>
+                <li><a href="#sister-temples">Sister Temples</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>The Name Fūjin and the World It Opens</h1>
-<p>A name is a door. Fūjin opens onto wind. Fūjin (fujin) — Wind · Wind god — belongs to the Japanese tradition, where it is catalogued under the domain &quot;Wind&quot;. The name means &quot;Wind god&quot;. Fūjin is the wind made wild. In Japanese art he appears as a fierce demon, hair streaming, clad in a leopard-skin loincloth, carrying a vast bag of winds on his shoulders. When he opens it, gales tear through forests, scatter roofs, and flatten fields; when he closes it, the air grows still. He is one of the oldest kami in the Japanese pantheon, a destructive force that is also necessary for pollination, dispersal of seeds, and the cleansing of stale air. He is the brother or counterpart of Raijin, the thunder god, and the two are often depicted together at temple gates, where their terrifying presence keeps...</p>
-<h2>Domain and Meaning</h2>
-<p>The temple domain is <strong>Wind</strong>. The traditional meaning is &quot;Wind god.&quot; Together, those two facts explain why the name mattered enough to be remembered for millennia.</p>
-<h2>The Mythic Landscape</h2>
-<p>Fūjin&#39;s mythology is grounded in the creation narratives of the Kojiki and Nihon Shoki , in popular Buddhist iconography, and in the visual tradition of Japanese screen painting. He is both a primordial force and a temple guardian. Myth is the memory of a civilization, and names are the hooks on which that memory hangs.</p>
-<h2>Modern Patterns</h2>
-<p>The <a href="/sites/fujin/patterns/">Patterns</a> page maps the industries and sister temples that share Fūjin&#39;s current. A name that once organized ritual now organizes search, advertising, and creative collaboration.</p>
-<h2>Join the Restoration</h2>
-<p>You can support the work through the <a href="/sites/fujin/patron/">Patron</a> wall, submit creative work, or simply share the address. Every visit to Fūjin is a vote for original scripts.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Fūjin is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>The name Fūjin and the world it opens</h1>
+<p>A name is a door. <strong>Fūjin</strong> opens onto an entire world: the domain of wind, a Japanese tradition, and centuries of storytelling, worship, and scholarship. This post walks through that world room by room — the name and its roots, the original script, the sound of it, the myths, the symbols, the sites, the afterlife across cultures — and ends at the newest room of all: a Unicode domain that makes the whole structure addressable. <em>fujin</em> gets you to the same building, but only the restored form tells you why it was built.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Fūjin</li>
+  <li><strong>ASCII form:</strong> fujin</li>
+  <li><strong>Meaning:</strong> &quot;Wind god&quot;</li>
+  <li><strong>Domain of influence:</strong> Wind</li>
+  <li><strong>Pantheon:</strong> Japanese</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Original script:</strong> 風神 (Japanese characters)</li>
+  <li><strong>Live domain:</strong> fūjin.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Fūjin</strong> (<em>fujin</em>) — Wind · Wind god — belongs to the Japanese tradition, where it is catalogued under the domain &quot;Wind&quot;. The name means &quot;Wind god&quot;.</p>
+<p><strong>Fūjin</strong> is the wind made wild. In Japanese art he appears as a fierce demon, hair streaming, clad in a leopard-skin loincloth, carrying a vast bag of winds on his shoulders. When he opens it, gales tear through forests, scatter roofs, and flatten fields; when he closes it, the air grows still. He is one of the oldest kami in the Japanese pantheon, a destructive force that is also necessary for pollination, dispersal of seeds, and the cleansing of stale air.</p>
+<p>He is the brother or counterpart of Raijin, the thunder god, and the two are often depicted together at temple gates, where their terrifying presence keeps danger away from sacred ground.</p>
+<p>PÚNYCODEX restores the name as <strong>Fūjin</strong> and serves its temple at <a href="https://xn--fjin-v7a.com">fūjin.com</a>. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>fujin</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Japanese characters as <strong>風神</strong>. Etymologically it means &quot;Wind god&quot;.</p>
+<p>The ASCII form <em>fujin</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Fūjin</strong> recovers the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>f</strong> → <strong>F</strong> — Same, capitalized</li>
+  <li><strong>u</strong> → <strong>ū</strong> — Long vowel</li>
+  <li><strong>j</strong> → <strong>j</strong> — Same</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+</ul>
+<p>The project holds the domain <strong>fūjin.com</strong> (xn--fjin-v7a.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Japanese characters as <strong>風神</strong> — Kanji (Sino-Japanese logographs), attested Nara period – present, c. 8th c. CE –, in Japan. The script is written left-to-right; traditional top-to-bottom.</p>
+<p>The scholarly transliteration is <em>Fūjin</em> (Hepburn romanisation with macron), giving the normalized reading /ɸɯː.dʑiɴ/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The name is written with two kanji: 風 &#39;wind&#39; + 神 &#39;god&#39;.</li>
+  <li>Hepburn romanization Fūjin uses a macron to mark the long vowel /ɯː/.</li>
+  <li>The compound appears in the Kojiki and Nihon Shoki as one of the kami born from Izanagi&#39;s purification.</li>
+  <li>The Unicode restoration Fūjin preserves vowel length; the kanji form is not used as a domain because CJK scripts are not supported in the .com IDN table.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/ɸɯː.dʑiɴ/</strong> — Modern Standard Japanese (Hepburn).</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Fū-</strong> — Voiceless bilabial fricative [ɸ] (like a soft &#39;f&#39; made with both lips) plus long close back rounded [ɯː]; the macron marks length, giving Tier-1 status</li>
+  <li><strong>-jin</strong> — Voiced alveolo-palatal affricate [dʑ] plus close front [i] and moraic nasal [ɴ]; the final -n is a uvular nasal</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;FOO-jin&#39; — the first syllable is long and breezy, with lips almost touching for the &#39;f&#39;; the final &#39;jin&#39; is quick with a soft &#39;j&#39;.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Japanese</strong> — 風神 (fūjin), &#39;wind god,&#39; from fū &#39;wind&#39; + shin/jin &#39;god&#39;</li>
+  <li><strong>Chinese antecedent</strong> — Fengshen (風神), the Chinese wind deity; Fūjin is a Japanese adaptation</li>
+  <li><strong>Pairing</strong> — Raijin (雷神), the thunder god, his frequent companion in art and temple architecture</li>
+</ul>
+<p>Fūjin is Tier 1 because the initial ū is long. The name is a straightforward Sino-Japanese compound: 風 (fū, &#39;wind&#39;) + 神 (jin, &#39;god/spirit&#39;). He is typically paired with Raijin, the thunder god, in Japanese temple and popular art.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Fūjin&#39;s mythology is grounded in the creation narratives of the <em>Kojiki</em> and <em>Nihon Shoki</em>, in popular Buddhist iconography, and in the visual tradition of Japanese screen painting. He is both a primordial force and a temple guardian.</p>
+<h3 id="the-birth-of-the-wind-kami-kojiki-nihon-shoki">The Birth of the Wind Kami (Kojiki / Nihon Shoki)</h3>
+<p>The <em>Kojiki</em>&#39;s birth-of-the-kami sequence includes Shinatsuhiko-no-mikoto, the wind deity born to Izanagi and Izanami among the elemental gods that follow the making of the islands. The demonic figure called Fūjin — leopard skin, wind-bag, streaming hair — is the later, Buddhist-inflected portrait of these older wind kami, fixed in Japanese art from the medieval period onward.</p>
+<h3 id="wind-in-the-age-of-the-gods-nihon-shoki">Wind in the Age of the Gods (Nihon Shoki)</h3>
+<p>The <em>Nihon Shoki</em> gives the wind its own etiology: in an alternate account of the creation, Izanagi blows away the mist that wraps the new-made land, and from that breath the wind kami Shinatsuhiko is born — wind as the first clearing of the world. The name Fūjin itself is the later Sino-Japanese label under which the native wind kami were merged with the Buddhist wind deva.</p>
+<h3 id="guardian-of-the-four-heavens-buddhist-iconography">Guardian of the Four Heavens (Buddhist iconography)</h3>
+<p>In esoteric Buddhism the wind god is Fūten, one of the Twelve Devas (<em>jūniten</em>) who guard the directions; protector of the north-west, he adapts the Indian wind god Vāyu transmitted through the mandalas of esoteric ritual. Temples across Japan, above all Sanjūsangen-dō in Kyōto, house famous depictions of Fūjin and Raijin as muscular, wind-whipped guardians of the Dharma.</p>
+<h3 id="the-birth-of-fujin-kojiki-nihon-shoki">The Birth of Fūjin (Kojiki / Nihon Shoki)</h3>
+<p>In the creation myth, Izanagi purifies himself after returning from Yomi, the land of the dead. As he washes, beings are born from his discarded garments and body. Fūjin and Raijin are among the kami produced in this act of purification. Some accounts say they were born from Izanagi&#39;s breath or from the decaying body of the primordial chaos, making them elemental forces as old as the world itself.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Fūjin concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>Wind bag (fūtaku)</strong> — The sack from which all winds are released, his most distinctive attribute</li>
+  <li><strong>Leopard skin</strong> — His wild garment, marking him as a powerful, untamed kami</li>
+  <li><strong>Green or red skin</strong> — His demonic complexion, shared with other fierce protective deities</li>
+  <li><strong>Streaming hair</strong> — The visual sign of wind in motion, often rendered with exaggerated dynamism</li>
+  <li><strong>Temple gate pairing with Raijin</strong> — The <em>fūjin-raijin-zu</em> motif that protects Buddhist temples from harmful influences</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Fūjin is best known from Japanese painting and sculpture rather than from archaeological contexts alone. The oldest surviving depictions appear in Heian- and Kamakura-period Buddhist iconography, where he serves as a guardian deity. The most famous visual testimony is the pair of folding screens by Tawaraya Sōtatsu (early 17th century), now at the Kyoto National Museum and Kenninji temple, which depict Fūjin and Raijin in gold-leaf clouds. Temple sculptures and ema (votive plaques) across Japan preserve popular representations of the wind god, while the textual record in the Kojiki and Nihon Shoki anchors his mythological origins in the creation age.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p><strong>Fūjin</strong> is the wind made wild. In Japanese art he appears as a fierce demon, hair streaming, clad in a leopard-skin loincloth, carrying a vast bag of winds on his shoulders. When he opens it, gales tear through forests, scatter roofs, and flatten fields; when he closes it, the air grows still. He is one of the oldest kami in the Japanese pantheon, a destructive force that is also necessary for pollination, dispersal of seeds, and the cleansing of stale air.</p>
+<p>He is the brother or counterpart of Raijin, the thunder god, and the two are often depicted together at temple gates, where their terrifying presence keeps danger away from sacred ground.</p>
+<h3 id="bag-of-winds">Bag of Winds</h3>
+<p>He carries a great sack (fūtaku) slung over his shoulders; opening it releases the winds of the world.</p>
+<h3 id="demon-guardian">Demon Guardian</h3>
+<p>His fierce face and muscular body mark him as one of the powerful oni-like kami who protect temples.</p>
+<h3 id="companion-of-raijin">Companion of Raijin</h3>
+<p>He is paired with the thunder god at temple gates and in screen paintings, storm and wind as twin forces.</p>
+<h3 id="cosmic-breath">Cosmic Breath</h3>
+<p>Beyond destruction, wind is the breath that moves pollen, carries clouds, and clears the air for new growth.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Fūjin descends from the Chinese wind deity Fengshen, transmitted to Japan along with Buddhism and continental iconography. He also resembles wind gods across Eurasia, from the Greek Boreas and the Vedic Vāta to the Central Asian wind demons depicted on Silk Road textiles. In Japan, however, he became thoroughly domesticated as a kami, paired with Raijin and rendered in a distinctive visual style by artists such as Tawaraya Sōtatsu and Ogata Kōrin. The Japanese fascination with storms — wind, rain, thunder, lightning — produced one of the most dynamic bodies of religious painting in East Asia, with Fūjin and Raijin at its center.</p>
+<p>Within the Japanese tradition, closely related names in the corpus include [[jizo|Jizō]], [[kobe|Kōbe]], [[kyoto|Kyōto]], [[nikko|Nikkō]], [[osaka|Ōsaka]], and [[amun|Ꜣmun]].</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Fūjin remains one of Japan&#39;s most recognizable kami. The folding screens (<em>byōbu</em>) depicting Fūjin and Raijin by Tawaraya Sōtatsu are national treasures and icons of Japanese art. Temples still display the pair at gates and in festival processions, and Fūjin appears in manga, anime, video games, and advertising as a symbol of overwhelming natural force. His name is invoked in discussions of typhoons and seasonal winds, and the visual motif of a figure with a wind bag has become a global shorthand for the wind itself. The Unicode restoration <em>Fūjin</em> preserves the long vowel that the plain ASCII form <em>fujin</em> cannot carry — the same macron that distinguishes the god&#39;s name (風神) from its commonest homophone, <em>fujin</em> (婦人), &#39;a lady&#39;.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Fūjin given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Kojiki (birth of kami from Izanagi&#39;s purification).</li>
+  <li> Nihon Shoki (age of the gods and wind kami).</li>
+  <li> Philippi, Kojiki.</li>
+  <li> Aston, Nihongi: Chronicles of Japan from the Earliest Times to A.D. 697.</li>
+  <li> Grapard, The Protocol of the Gods: A Study of the Kasuga Cult in Japanese History.</li>
+  <li> Bock, Engi-shiki.</li>
+  <li> Kageyama, The Arts of Shinto.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Fūjin is the god of the air we cannot see but cannot live without. His bag of winds contains both destruction and renewal: the gale that uproots trees also scatters seeds, the storm that sinks ships also clears the sky. He is a reminder that the atmosphere is not empty space but a living force.</p>
+<p>To contemplate Fūjin is to feel the wind as sacred. Every breath, every gust, every seasonal shift becomes a meeting with an ancient power. He does not ask for worship in stillness; he is worshipped in motion, in the visible effects of the invisible.</p>
+<p>The <em>Engishiki</em> preserves the prayers of farmers who asked the wind kami of Tatsuta and Hirose to spare the ripening grain; twice in the thirteenth century, the memory of the nation says, the answer came as the <em>kamikaze</em> that scattered the Mongol fleets. Fūjin&#39;s bag thus holds both the gale that is begged to pass and the gale that is begged to come — and the contemplation of wind ends in the recognition that every breath is borrowed from a power no one owns.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Fūjin is classified as <strong>Tier 1</strong>: the original carries both stress and length, and only one valid Unicode restoration exists. The ASCII fallback <em>fujin</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 5 characters of the name, the restoration adjusts 1: 1 mark of length (ū). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>fujin</em> to <strong>Fūjin</strong>, one character at a time:</p>
+<ul>
+  <li><strong>f</strong> → <strong>F</strong> — Same, capitalized</li>
+  <li><strong>u</strong> → <strong>ū</strong> — Long vowel</li>
+  <li><strong>j</strong> → <strong>j</strong> — Same</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>fūjin.com</strong>, which the DNS carries in punycode form as xn--fjin-v7a.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Fūjin; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Japanese characters can now be typed into any browser on earth.</p>
+<h2 id="the-japanese-pantheon">The Japanese Pantheon</h2>
+<p>Fūjin is one of 43 entries the PÚNYCODEX lexicon catalogues under the Japanese pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Fūjin mean?</strong> The traditional gloss is &quot;Wind god.&quot;</p>
+<p><strong>Which tradition does Fūjin belong to?</strong> Fūjin is catalogued in the Japanese pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Fūjin classified as Tier 1?</strong> Because the original carries both stress and length, and only one valid Unicode restoration exists — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Fūjin a working domain?</strong> Yes — fūjin.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for fūjin.com?</strong> The DNS encoding is xn--fjin-v7a.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="typing-fujin">Typing Fūjin</h2>
+<p>You do not need a special keyboard to use this restoration. The <a href="/type/">PÚNYCODEX Type Tool</a> converts the ASCII form <em>fujin</em> into <strong>Fūjin</strong> as you type, and the browser extension offers the same conversion inside any text field. Copy the restored form, paste it into the address bar, and the DNS does the rest.</p>
+<h2 id="sister-temples">Sister Temples</h2>
+<p>Other temples in the Japanese pantheon include <a href="/sites/ebisu/">Ebisu</a>, <a href="/sites/hachiman/">Hachiman</a>, and <a href="/sites/inari/">Inari</a> — each with its own restoration story, its own scholarly record, and its own place in the lexicon.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>A door only matters if people walk through it. <strong>fūjin.com</strong> is open, and everything behind it — the myths, the scholarship, the canvas, the patrons — hangs on the restored spelling. The PÚNYCODEX project bets that the web will make room for names as they were actually written, and Fūjin is one of its standing proofs. Visit, share, cite, type it yourself: each use is a small rehearsal for a web where no name has to hide its marks to be found.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/kotoshironushi/">Kotoshironushi</a></li>
   <li><a href="/sites/ninigi/">Ninigi</a></li>
   <li><a href="/sites/sarutahiko/">Sarutahiko</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://sacred-texts.com/shi/kojiki.htm">Kojiki (Records of Ancient Matters), 712; trans. D. L. Philippi.</a></li>
   <li><a href="https://sacred-texts.com/shi/nihon0.htm">Nihon Shoki (Chronicles of Japan), 720; trans. W. G. Aston.</a></li>
   <li><a href="https://sacred-texts.com/shi/kj/index.htm">Kojiki (Records of Ancient Matters), Translated by Basil Hall Chamberlain, 712.</a></li>
+  <li>Kojiki (birth of kami from Izanagi&#39;s purification).</li>
+  <li>Nihon Shoki (age of the gods and wind kami).</li>
+  <li>Philippi, Kojiki.</li>
+  <li>Sawa, Ryūken (Takaaki), Art in Japanese Esoteric Buddhism (the transmission of deva iconography to Japan).</li>
+  <li>Lexicon authorities for this entry: Kojiki, Nihon Shoki.</li>
 </ul>
-<h2>The Name in Context</h2>
-<p>Fūjin (fujin) — Wind · Wind god — belongs to the Japanese tradition, where it is catalogued under the domain &quot;Wind&quot;. The name means &quot;Wind god&quot;. Fūjin is the wind made wild. In Japanese art he appears as a fierce demon, hair streaming, clad in a leopard-skin loincloth, carrying a vast bag of winds on his shoulders. When he opens it, gales tear through forests, scatter roofs, and flatten fields; when he closes it, the air grows still. He is one of the oldest kami in the Japanese pantheon, a destructive force that is also necessary for pollination, dispersal of seeds, and the cleansing of stale air. He is the brother or counterpart of Raijin, the thunder god, and the two are often depicted together at temple gates, where their terrifying presence keeps...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Fūjin as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Japanese characters to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Fūjin through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/fujin/">home page</a> offers the full name breakdown, the <a href="/sites/fujin/lore/">lore page</a> explores the myth, and the <a href="/sites/fujin/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Fūjin do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">japanese</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

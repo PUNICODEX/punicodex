@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,48 +170,202 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-chinese-pantheon">The Chinese Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#typing-wuxing">Typing Wǔxíng</a></li>
+                <li><a href="#sister-temples">Sister Temples</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>The Name Wǔxíng and the World It Opens</h1>
-<p>A name is a door. Wǔxíng opens onto five elements, change. Wǔxíng (wuxing) — Five Elements, Change · Five phases — belongs to the Chinese tradition, where it is catalogued under the domain &quot;Five Elements, Change&quot;. The name means &quot;Five phases&quot;. Wǔxíng is often mistranslated as &#39;five elements,&#39; but xíng means movement, conduct, or phase. Wood, fire, earth, metal, and water are not static substances but dynamic processes: wood grows, fire flames, earth ripens, metal contracts, water descends. Together they form a grammar of transformation that Chinese thinkers applied to seasons, organs, emotions, dynasties, and military strategy. The system works through two main cycles: the generating cycle (wood feeds fire, fire makes earth, earth bears metal, metal carries water, water nourishes wood) and the controlling...</p>
-<h2>Domain and Meaning</h2>
-<p>The temple domain is <strong>Five Elements, Change</strong>. The traditional meaning is &quot;Five phases.&quot; Together, those two facts explain why the name mattered enough to be remembered for millennia.</p>
-<h2>The Mythic Landscape</h2>
-<p>Wǔxíng has no divine biography, but its intellectual history is dramatic: it began as a description of natural processes, became a theory of state legitimacy, and ended as the diagnostic language of Traditional Chinese Medicine. Myth is the memory of a civilization, and names are the hooks on which that memory hangs.</p>
-<h2>Modern Patterns</h2>
-<p>The <a href="/sites/wuxing/patterns/">Patterns</a> page maps the industries and sister temples that share Wǔxíng&#39;s current. A name that once organized ritual now organizes search, advertising, and creative collaboration.</p>
-<h2>Join the Restoration</h2>
-<p>You can support the work through the <a href="/sites/wuxing/patron/">Patron</a> wall, submit creative work, or simply share the address. Every visit to Wǔxíng is a vote for original scripts.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Wǔxíng is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>The name Wǔxíng and the world it opens</h1>
+<p>A name is a door. <strong>Wǔxíng</strong> opens onto an entire world: the domain of five elements, change, a Chinese tradition, and centuries of storytelling, worship, and scholarship. This post walks through that world room by room — the name and its roots, the original script, the sound of it, the myths, the symbols, the sites, the afterlife across cultures — and ends at the newest room of all: a Unicode domain that makes the whole structure addressable. <em>wuxing</em> gets you to the same building, but only the restored form tells you why it was built.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Wǔxíng</li>
+  <li><strong>ASCII form:</strong> wuxing</li>
+  <li><strong>Meaning:</strong> &quot;Five phases&quot;</li>
+  <li><strong>Domain of influence:</strong> Five Elements, Change</li>
+  <li><strong>Pantheon:</strong> Chinese</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> 五行 (Chinese characters)</li>
+  <li><strong>Live domain:</strong> wǔxíng.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Wǔxíng</strong> (<em>wuxing</em>) — Five Elements, Change · Five phases — belongs to the Chinese tradition, where it is catalogued under the domain &quot;Five Elements, Change&quot;. The name means &quot;Five phases&quot;.</p>
+<p><strong>Wǔxíng</strong> is often mistranslated as &#39;five elements,&#39; but <em>xíng</em> means movement, conduct, or phase. Wood, fire, earth, metal, and water are not static substances but dynamic processes: wood grows, fire flames, earth ripens, metal contracts, water descends. Together they form a grammar of transformation that Chinese thinkers applied to seasons, organs, emotions, dynasties, and military strategy.</p>
+<p>The system works through two main cycles: the generating cycle (wood feeds fire, fire makes earth, earth bears metal, metal carries water, water nourishes wood) and the controlling cycle (wood parts earth, earth absorbs water, water quenches fire, fire melts metal, metal chops wood).</p>
+<p>PÚNYCODEX restores the name as <strong>Wǔxíng</strong> and serves its temple at <a href="https://xn--wxng-wpa89k.com">wǔxíng.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>wuxing</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Chinese characters as <strong>五行</strong>. Etymologically it means &quot;Five phases&quot;.</p>
+<p>The ASCII form <em>wuxing</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Wǔxíng</strong> recovers the stress accent of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>w</strong> → <strong>W</strong> — Same, capitalized</li>
+  <li><strong>u</strong> → <strong>ǔ</strong> — Special character</li>
+  <li><strong>x</strong> → <strong>x</strong> — Same</li>
+  <li><strong>i</strong> → <strong>í</strong> — Stress on i</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+  <li><strong>g</strong> → <strong>g</strong> — Same</li>
+</ul>
+<p>The project holds the domain <strong>wǔxíng.com</strong> (xn--wxng-wpa89k.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Chinese characters as <strong>五行</strong> — Hanzi (Sino-Tibetan), attested Oracle-bone – present, c. 1200 BCE –, in China. The script is written left-to-right; traditional top-to-bottom.</p>
+<p>The scholarly transliteration is <em>Wǔxíng</em> (Hanyu Pinyin with tone mark), giving the normalized reading /u˨˩˦ ɕiŋ˧˥/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The name is written with the Chinese characters 五行.</li>
+  <li>Each character is a logogram that encodes meaning and historical pronunciation.</li>
+  <li>Hanyu Pinyin with tone marks preserves Mandarin pronunciation; the ASCII form loses tone.</li>
+  <li>The Unicode restoration Wǔxíng is the registrable form because hanzi are outside the .com IDN table.</li>
+</ul>
+<p>The original script is 五行; traditional and simplified forms are identical. The Modern Standard Mandarin reading in the philosophical sense is <em>Wǔxíng</em> (Tone 3 + Tone 2), per Hanyu Pinyin and the Unihan Database. Note that 行 has a separate reading <em>háng</em> (&#39;row, profession&#39;); here it means &#39;movement, conduct, phase.&#39; The registrable form preserves the tone marks; the characters are displayed in the Original Script card. The two graphs are treated in the standard reconstructions: Karlgren&#39;s GSR series 0058 (五) and 0748 (行), with the Middle and Old Chinese values tabulated by Pulleyblank and Schuessler; Baxter &amp; Sagart reconstruct 五 as <em>C.ŋˤaʔ and 行 in the sense &#39;walk, conduct&#39; as </em>C.[g]raŋ.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/u˨˩˦ ɕiŋ˧˥/</strong> — Modern Standard Mandarin (Pinyin).</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>wǔ</strong> — Syllable beginning with labio-velar glide [w], high back rounded vowel [u], and Tone 3 (falling-rising, ˨˩˦). In connected speech before a non-third tone, this is often realized as a &#39;half-third&#39; low falling tone.</li>
+  <li><strong>xíng</strong> — Syllable with voiceless alveolo-palatal fricative [ɕ], high front vowel [i], velar nasal [ŋ], and Tone 2 (rising, ˧˥). Pinyin &#39;x&#39; before front vowels is always [ɕ], like an extended &#39;sh&#39; in &#39;she&#39;.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: WOO-SHING — &#39;wu&#39; dips low and rises (or stays low in fast speech), and &#39;xing&#39; rises like &#39;sheen&#39; with a rising tone.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Traditional</strong> — 五行</li>
+  <li><strong>Simplified</strong> — 五行</li>
+  <li><strong>Wade-Giles</strong> — wu³-hsing²</li>
+  <li><strong>Related terms</strong> — 金木水火土 jīn-mù-shuǐ-huǒ-tǔ (metal, wood, water, fire, earth)</li>
+</ul>
+<p>五行 (Wǔxíng) denotes the &#39;Five Phases&#39; or &#39;Five Agents&#39;—wood, fire, earth, metal, and water—the cyclical modes of transformation in Chinese cosmology, medicine, and feng shui. The Modern Standard Mandarin reading in this philosophical context is wǔ (Tone 3) + xíng (Tone 2), as given by the Unihan Database (kMandarin) and the Hanyu Pinyin scheme. Baxter &amp; Sagart (2014) reconstruct 五 as <em>C.ŋˤaʔ (GSR 0058a) and 行 in the sense &#39;walk, conduct&#39; as </em>C.[g]raŋ (GSR 0748a). The Unicode restoration Wǔxíng preserves the citation tones; note that 行 is disyllabically distinguished from the reading háng (&#39;row, profession&#39;).</p>
+<h2 id="mythology">Mythology</h2>
+<p>Wǔxíng has no divine biography, but its intellectual history is dramatic: it began as a description of natural processes, became a theory of state legitimacy, and ended as the diagnostic language of Traditional Chinese Medicine.</p>
+<h3 id="the-great-plan-shangshu-hongfan">The Great Plan (Shangshu, Hongfan)</h3>
+<p>The <em>Hongfan</em> chapter of the <em>Shangshu</em> presents the five phases as the first of the &#39;Nine Categories&#39; revealed to Yu the Great. Water, fire, wood, metal, and earth each have their nature: water soaks and descends, fire blazes and ascends, wood bends and straightens, metal yields and changes, earth sows and gathers. This is the earliest systematic statement of Wǔxíng cosmology.</p>
+<h3 id="the-yin-yang-and-five-phases-school-zou-yan">The Yin-Yang and Five Phases School (Zou Yan)</h3>
+<p>The philosopher Zou Yan (c. 324–250 BCE) applied the five phases to history, arguing that dynasties rise and fall according to which phase they embody. Each new dynasty was thought to possess the virtue of the next phase, giving cosmic legitimacy to political revolution.</p>
+<h3 id="five-phases-as-cosmic-seasons-huainanzi">Five Phases as Cosmic Seasons (Huainanzi)</h3>
+<p>The <em>Huainanzi</em> (c. 139 BCE) integrates Wǔxíng with astronomy, music, and politics, mapping the phases onto the calendar, the directions, and the musical pitch pipes. The text shows the system at its most encyclopedic, linking microcosm and macrocosm through a single set of correspondences.</p>
+<h3 id="the-body-as-landscape-huangdi-neijing">The Body as Landscape (Huangdi Neijing)</h3>
+<p>The <em>Huangdi Neijing</em> turns Wǔxíng into medicine. The liver belongs to wood, the heart to fire, the spleen to earth, the lungs to metal, and the kidneys to water. Health is the smooth circulation of these phases; disease is their obstruction or excess.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The correspondences of Wǔxíng concentrate in a fixed set of fivefold associations, each phase a compressed statement about a mode of change. The scheme&#39;s oldest systematic witness, the <em>Hongfan</em>, already pairs each phase with its characteristic action and taste — water with salt, fire with bitter, wood with sour, metal with acrid, earth with sweet:</p>
+<ul>
+  <li><strong>Wood</strong> — Growth, spring, the east, the liver, the colour green/blue, the wind</li>
+  <li><strong>Fire</strong> — Flaming, summer, the south, the heart, the colour red, heat</li>
+  <li><strong>Earth</strong> — Ripening, late summer, the centre, the spleen, the colour yellow, dampness</li>
+  <li><strong>Metal</strong> — Contracting, autumn, the west, the lungs, the colour white, dryness</li>
+  <li><strong>Water</strong> — Descending, winter, the north, the kidneys, the colour black/dark, cold</li>
+</ul>
+<p>The <em>Huangdi Neijing</em> completed the table for medicine, adding the five emotions, five sounds, and five climatic influences, so that a physician could read the body&#39;s weather by the same grammar as the year&#39;s.</p>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>The textual foundation of Wǔxíng appears in the <em>Shangshu</em>&#39;s <em>Hongfan</em> chapter, transmitted through Warring States and Han manuscript traditions. The Mawangdui tomb library preserves early medical manuscripts that apply the five phases to diagnosis and treatment, while the <em>Huangdi Neijing</em> became the canonical medical synthesis. Han dynasty lacquerware, bronze mirrors, and tomb murals display the color-direction correspondences of the five phases. Unlike a deity, Wǔxíng has no temple, but its logic is inscribed across the material culture of state ritual, medicine, and calendrical science.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p><strong>Wǔxíng</strong> is often mistranslated as &#39;five elements,&#39; but <em>xíng</em> means movement, conduct, or phase. Wood, fire, earth, metal, and water are not static substances but dynamic processes: wood grows, fire flames, earth ripens, metal contracts, water descends. Together they form a grammar of transformation that Chinese thinkers applied to seasons, organs, emotions, dynasties, and military strategy.</p>
+<p>The system works through two main cycles: the generating cycle (wood feeds fire, fire makes earth, earth bears metal, metal carries water, water nourishes wood) and the controlling cycle (wood parts earth, earth absorbs water, water quenches fire, fire melts metal, metal chops wood).</p>
+<h3 id="generation-cycle">Generation Cycle</h3>
+<p>Each phase gives birth to the next in a circle of mutual nourishment and support.</p>
+<h3 id="control-cycle">Control Cycle</h3>
+<p>Each phase checks another, preventing any one process from running to destructive excess.</p>
+<h3 id="correspondence-system">Correspondence System</h3>
+<p>Every phase maps to a direction, season, color, organ, emotion, taste, and musical note.</p>
+<h3 id="cosmic-calendar">Cosmic Calendar</h3>
+<p>The phases organize the year: wood/spring, fire/summer, earth/late summer, metal/autumn, water/winter.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Wǔxíng was sometimes compared by Western observers to the Greek four elements, but the comparison is misleading. The Greek elements are building blocks of substance; the Chinese phases are patterns of change. A closer Indian analogue is the <em>pañca mahābhūta</em>, though the correspondences differ. Wǔxíng entered Japan as <em>gogyō</em> and Korea as <em>ohaeng</em>, shaping East Asian medicine, astrology, and martial arts. In modern times, Wǔxíng has been invoked — and sometimes distorted — in management theory, martial-arts branding, and popular spirituality, often reduced to a color-coded personality test. The medical tradition, however, continues to use the five phases as a sophisticated heuristic for pattern differentiation.</p>
+<p>Within the Chinese tradition, closely related names in the corpus include [[bagua|Bāguà]], [[long|Lóng]], [[taichi|Tàijí]], [[taishang|Tàishàng]], [[tian|Tiān]], and [[tiandi|Tiāndì]].</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Wǔxíng is the hidden scaffolding of much that looks merely &#39;Chinese&#39; on the surface. The five flavors, five colors, five notes, five grains, and five directions all derive from it. Traditional Chinese Medicine diagnoses in its terms; feng shui designs spaces by it; Xingyiquan organizes its five basic fists around it; Chinese astrology assigns each year an element. The system even colored imperial ritual: the Yellow Emperor claimed earth, the Qin chose black water to overcome Zhou red fire. Today Wǔxíng survives in video-game elemental mechanics, wellness branding, and martial-arts school names — sometimes faithfully, often trivially. Its deepest legacy is a habit of mind: the tendency to see nature not as a collection of things but as a field of interactive processes.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Wǔxíng given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Shangshu, Hongfan (The Great Plan). <a href="https://ctext.org/shang-shu/hong-fan">Full text</a></li>
+  <li> Huangdi Neijing.</li>
+  <li> Huainanzi, Liu An; Chinese Text Project, 139 BCE. <a href="https://ctext.org/huainanzi">Full text</a></li>
+  <li> Shiji (Records of the Grand Historian).</li>
+  <li> Graham, Yin-Yang and the Nature of Correlative Thinking.</li>
+  <li> Sivin, Medicine, Philosophy and Religion in Ancient China.</li>
+  <li> Unschuld, Medicine in China.</li>
+  <li> Baxter &amp; Sagart, Old Chinese Reconstruction. <a href="http://ocbaxtersagart.lsait.lsa.umich.edu/">Full text</a></li>
+  <li> Unihan Database (Unicode Consortium). <a href="https://www.unicode.org/charts/unihan.html">Full text</a></li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Wǔxíng teaches that nothing is only what it is. Wood is also the process of becoming fire; fire is also the ash that becomes earth; earth is also the ore that becomes metal; metal is also the condensation that becomes water; water is also the nourishment that becomes wood. Identity, in this system, is a verb.</p>
+<p>This has practical consequences. To treat a symptom in Chinese medicine is not to kill a germ but to rebalance a process. To choose an auspicious date is not to appease a god but to align with seasonal momentum. To practice Xingyiquan is to embody the five phases until they move through the body the way they move through the year. Wǔxíng is less a belief than a method: look for the pattern of change, and work with it rather than against it.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Wǔxíng is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>wuxing</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 6 characters of the name, the restoration adjusts 2: 1 mark of stress (í); 1 further adjustment (ǔ). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>wuxing</em> to <strong>Wǔxíng</strong>, one character at a time:</p>
+<ul>
+  <li><strong>w</strong> → <strong>W</strong> — Same, capitalized</li>
+  <li><strong>u</strong> → <strong>ǔ</strong> — Special character</li>
+  <li><strong>x</strong> → <strong>x</strong> — Same</li>
+  <li><strong>i</strong> → <strong>í</strong> — Stress on i</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+  <li><strong>g</strong> → <strong>g</strong> — Same</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>wǔxíng.com</strong>, which the DNS carries in punycode form as xn--wxng-wpa89k.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Wǔxíng; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Chinese characters can now be typed into any browser on earth.</p>
+<h2 id="the-chinese-pantheon">The Chinese Pantheon</h2>
+<p>Wǔxíng is one of 43 entries the PÚNYCODEX lexicon catalogues under the Chinese pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Wǔxíng mean?</strong> The traditional gloss is &quot;Five phases.&quot;</p>
+<p><strong>Which tradition does Wǔxíng belong to?</strong> Wǔxíng is catalogued in the Chinese pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Wǔxíng classified as Tier 2?</strong> Because the original preserves at least one philological feature that ASCII cannot encode — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Wǔxíng a working domain?</strong> Yes — wǔxíng.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for wǔxíng.com?</strong> The DNS encoding is xn--wxng-wpa89k.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="typing-wuxing">Typing Wǔxíng</h2>
+<p>You do not need a special keyboard to use this restoration. The <a href="/type/">PÚNYCODEX Type Tool</a> converts the ASCII form <em>wuxing</em> into <strong>Wǔxíng</strong> as you type, and the browser extension offers the same conversion inside any text field. Copy the restored form, paste it into the address bar, and the DNS does the rest.</p>
+<h2 id="sister-temples">Sister Temples</h2>
+<p>Other temples in the Chinese pantheon include <a href="/sites/erlang/">Èrláng</a>, <a href="/sites/jiuhua/">Jiǔhuá</a>, and <a href="/sites/longwang/">Lóngwáng</a> — each with its own restoration story, its own scholarly record, and its own place in the lexicon.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>A door only matters if people walk through it. <strong>wǔxíng.com</strong> is open, and everything behind it — the myths, the scholarship, the canvas, the patrons — hangs on the restored spelling. The PÚNYCODEX project bets that the web will make room for names as they were actually written, and Wǔxíng is one of its standing proofs. Visit, share, cite, type it yourself: each use is a small rehearsal for a web where no name has to hide its marks to be found.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/sunwukong/">SūnWùkōng</a></li>
   <li><a href="/sites/taishang/">Tàishàng</a></li>
   <li><a href="/sites/tiandi/">Tiāndì</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://ctext.org/shang-shu/hong-fan">Shangshu, Hongfan (The Great Plan).</a></li>
   <li><a href="https://ctext.org/huainanzi">Huainanzi, Liu An; Chinese Text Project, 139 BCE.</a></li>
   <li><a href="https://www.unicode.org/charts/unihan.html">Unihan Database (Unicode Consortium), kMandarin readings for U+4E94 五 and U+884C 行.</a></li>
   <li><a href="http://ocbaxtersagart.lsait.lsa.umich.edu/">Baxter &amp; Sagart, Old Chinese: A New Reconstruction (2014).</a></li>
+  <li><a href="https://ctext.org/">Chinese classical texts, Chinese Text Project, 500 BCE.</a></li>
+  <li>Huangdi Neijing.</li>
+  <li>Shiji (Records of the Grand Historian).</li>
+  <li>Graham, Yin-Yang and the Nature of Correlative Thinking.</li>
+  <li>Sivin, Medicine, Philosophy and Religion in Ancient China.</li>
+  <li>Lexicon authorities for this entry: I Ching, Chinese classics.</li>
 </ul>
-<h2>The Name in Context</h2>
-<p>Wǔxíng (wuxing) — Five Elements, Change · Five phases — belongs to the Chinese tradition, where it is catalogued under the domain &quot;Five Elements, Change&quot;. The name means &quot;Five phases&quot;. Wǔxíng is often mistranslated as &#39;five elements,&#39; but xíng means movement, conduct, or phase. Wood, fire, earth, metal, and water are not static substances but dynamic processes: wood grows, fire flames, earth ripens, metal contracts, water descends. Together they form a grammar of transformation that Chinese thinkers applied to seasons, organs, emotions, dynasties, and military strategy. The system works through two main cycles: the generating cycle (wood feeds fire, fire makes earth, earth bears metal, metal carries water, water nourishes wood) and the controlling...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Wǔxíng as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Chinese characters to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Wǔxíng through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/wuxing/">home page</a> offers the full name breakdown, the <a href="/sites/wuxing/lore/">lore page</a> explores the myth, and the <a href="/sites/wuxing/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Wǔxíng do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
-<h2>A Note on the Address Bar</h2>
-<p>When you type Wǔxíng, the browser performs an invisible conversion into Punycode so the global DNS can route the request. The user sees the original name; the machines see a compatible ASCII encoding. That duality is the engineering compromise that makes the restoration possible, and it is the reason every Unicode domain is both a technical milestone and a small act of cultural memory.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">chinese</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

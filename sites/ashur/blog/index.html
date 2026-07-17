@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,45 +170,168 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>How Aššur Got Its Accent Back</h1>
-<p>The ASCII form <em>ashur</em> is missing something. Aššur restores the marks that the original language used to distinguish this name from a thousand others. The name is attested in cuneiform as 𒀭𒀸𒋩 — the divine determinative followed by the syllabic spelling aš-šur — and, from the later second millennium, in the logographic writing 𒀭𒊹 (AN.ŠAR₂), borrowed from the primordial god Anšar. The god&#39;s name is identical with that of his city and land, and its etymology is correspondingly unresolved: it has been connected with a root meaning &#39;to lead&#39; (&#39;the leading one&#39;) and with the name of a mountain or sanctuary, god and city having been mutually identified from the beginning. The ASCII form ashur survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Aššur recovers the geminate sibilant of the...</p>
-<h2>The Missing Marks</h2>
-<p>Classified as <strong>Tier 2</strong>, this restoration carries the stress and length that standard ASCII discards. the original preserves at least one philological feature that ASCII cannot encode</p>
-<h2>Step by Step</h2>
-<p>The transformation from <em>ashur</em> to <strong>Aššur</strong> happens one character at a time. Some letters stay the same; others gain accents, macrons, or entirely new shapes. The breakdown on the <a href="/sites/ashur/">temple home page</a> shows exactly how.</p>
-<h2>Why Stress and Length Matter</h2>
-<p>In the source language, changing a stress or a vowel length can change a meaning. Names are especially sensitive because they are proper nouns: one spelling points to one entity. Aššur preserves that pointer in a way <em>ashur</em> cannot.</p>
-<h2>The Restored Form</h2>
-<p>Aššur is now a domain. That simple fact turns a philological detail into a public demonstration. Anyone who types it participates in the restoration.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Aššur is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>How Aššur got its accent back</h1>
+<p>The ASCII form <em>ashur</em> is missing something. <strong>Aššur</strong> restores the marks the source language used to distinguish this name from a thousand others — and those marks change how the name is read, pronounced, and understood. This post explains, with the full scholarly record behind it, what each restored mark preserves: the Cuneiform evidence, the reconstructed sound, the myths the name carries, and the classification logic that separates Tier 1 restorations from Tier 2. By the end, the marks in Aššur will look less like ornaments and more like what they are — recovered evidence, pinned back in its proper place.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Aššur</li>
+  <li><strong>ASCII form:</strong> ashur</li>
+  <li><strong>Meaning:</strong> &quot;National god of Assyria (Akkadian Aššur)&quot;</li>
+  <li><strong>Domain of influence:</strong> War, Kingship, Assyrian Patron</li>
+  <li><strong>Pantheon:</strong> Mesopotamian</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> 𒀭𒀸𒋩 (Cuneiform)</li>
+  <li><strong>Live domain:</strong> aššur.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Aššur</strong> (<em>ashur</em>) is the national god of Assyria, catalogued in the lexicon under War, Kingship, Assyrian Patron. The name belongs at once to the god, to his city Assur on the Tigris, to the land that grew around that city, and to the people who called themselves by it; scholarship has long treated the god as the deified city itself rather than an independent nature power.</p>
+<p>Unlike Enlīl, whose cosmic kingship was rooted in the air and the Ekur, Aššur&#39;s sovereignty travels with the Assyrian army. He is the divine king-maker, the patron of archers and chariots, and the heavenly father who receives the king&#39;s report after every campaign; Assyrian royal inscriptions open every victory account with his mandate.</p>
+<p>PÚNYCODEX restores the name as <strong>Aššur</strong> and serves its temple at <a href="https://xn--aur-0zaa.com">aššur.com</a>. The restoration&#39;s only diacritic is the caron on the geminate sibilant <em>šš</em> — a consonantal mark, not a prosodic one: the name carries neither a stress accent nor a macron, and accordingly stands in Tier 2. The plain ASCII form <em>ashur</em> survives as a fallback imposed by early domain-name infrastructure; the restoration, not the fallback, is the philologically complete form.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in cuneiform as <strong>𒀭𒀸𒋩</strong> — the divine determinative followed by the syllabic spelling <em>aš-šur</em> — and, from the later second millennium, in the logographic writing <strong>𒀭𒊹</strong> (AN.ŠAR₂), borrowed from the primordial god Anšar. The god&#39;s name is identical with that of his city and land, and its etymology is correspondingly unresolved: it has been connected with a root meaning &#39;to lead&#39; (&#39;the leading one&#39;) and with the name of a mountain or sanctuary, god and city having been mutually identified from the beginning.</p>
+<p>The ASCII form <em>ashur</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Aššur</strong> recovers the geminate sibilant of the scholarly transliteration directly in the address bar. The name&#39;s single diacritic is consonantal — the caron on <em>š</em> — so no prosodic feature (stress or vowel length) is restored, and the name stands in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>a</strong> → <strong>A</strong> — Same</li>
+  <li><strong>s</strong> → <strong>š</strong> — S-caron: voiceless postalveolar /ʃ/</li>
+  <li><strong>h</strong> → <strong>š</strong> — S-caron: doubled consonant</li>
+  <li><strong>u</strong> → <strong>u</strong> — Same</li>
+  <li><strong>r</strong> → <strong>r</strong> — Same</li>
+</ul>
+<p>The project holds the domain <strong>aššur.com</strong> (xn--aur-0zaa.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Sumero-Akkadian cuneiform as <strong>𒀭𒀸𒋩</strong>, a script written left-to-right and top-to-bottom and attested for this theonym from the Old Assyrian through the Neo-Assyrian period (c. 2000–600 BCE) in northern Mesopotamia.</p>
+<p>The scholarly transliteration is <em>Aššur</em>, giving the normalized reading /ˈaʃ.ʃur/; Neo-Assyrian spelling practice and the later Aramaic and Hebrew transcriptions support a long final vowel (<em>Aššūr</em>) in the first millennium.</p>
+<p>Sign by sign:</p>
+<ul>
+  <li><strong>𒀭</strong> — <em>dingir</em>, the divine determinative: marks the name as a theonym and is not pronounced.</li>
+  <li><strong>𒀸</strong> — the sign AŠ, here the syllabic value <em>aš</em>; as a logogram it also writes &#39;one, unit.&#39;</li>
+  <li><strong>𒋩</strong> — the sign ŠUR, here the syllabic value <em>šur</em>.</li>
+</ul>
+<p>Alongside the syllabic spelling stands the logographic writing <strong>𒀭𒊹</strong> (AN.ŠAR₂), borrowed from the primordial god Anšar and read, in Assyrian usage, as Aššur; the equation let theologians present the national god as the oldest of gods. The doubled <em>š</em> of the transliteration records a geminate consonant held longer than a single sibilant. The PÚNYCODEX restoration <strong>Aššur</strong> reproduces exactly the standard Assyriological citation form: it marks the geminate and, like the dictionaries, commits to no length mark, leaving Middle Assyrian <em>Aššur</em> and Neo-Assyrian <em>Aššūr</em> equally covered. The restoration is registrable as a .com domain; the cuneiform form is not supported in the .com IDN table.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/aʃˈʃuːr/</strong> — Akkadian/Assyrian Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Ašš-</strong> — Open [a] followed by a geminate voiceless postalveolar fricative [ʃː]; the doubled š of the Assyrian theonym.</li>
+  <li><strong>-ūr</strong> — Long close back rounded vowel [uː] plus alveolar tap or trill [r]; the final vowel length is inferred from Neo-Assyrian and later Aramaic/Hebrew transcriptions.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;ahsh-SHOOR&#39; — start with &#39;ahsh,&#39; hold the sh slightly, then draw out the &#39;oor&#39;.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Akkadian</strong> — 𒀭𒀸𒋩 (dAššur), the national god written with the divine determinative</li>
+  <li><strong>Sumerian</strong> — 𒀭𒊹 (AN.ŠAR₂), the later logographic spelling equated with Anšar</li>
+  <li><strong>Hebrew</strong> — אַשּׁוּר (ʾAššûr), Assyria and its god</li>
+  <li><strong>Aramaic</strong> — ܐܵܫܘܿܪ (ʾĀšōr), later Assyrian form</li>
+</ul>
+<p>The god&#39;s name is identical with the city and land of Assyria; from the Middle Assyrian period it is usually spelled Aš-šur. The doubled š indicates a geminate consonant, and the final vowel is commonly reconstructed long in Neo-Assyrian (Aššūr); older or dialectal forms may carry a short /u/. The PÚNYCODEX form Aššur marks the geminate sibilant without committing to vowel length.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Aššur&#39;s mythology is inseparable from Assyrian royal ideology. The king is his vicar; the empire is his estate; the annual campaign is an act of worship. The stories are told not in narrative epics but in royal inscriptions, temple hymns, and the state theology of a nation at war.</p>
+<h3 id="assur-and-the-enuma-elis-cosmogony">Aššur and the Enuma Eliš (Cosmogony)</h3>
+<p>Assyrian scribes produced a version of the Babylonian <em>Enuma Eliš</em> in which Aššur, not Marduk, slays Tiāmat and receives the fifty names of kingship. The text transfers cosmic supremacy from Babylon&#39;s god to Assyria&#39;s god, making Aššur the creator and king of all gods. It is theology as geopolitics, and it worked as long as Assyrian armies were victorious.</p>
+<h3 id="the-king-as-assur-s-steward-royal-ideology">The King as Aššur&#39;s Steward (Royal Ideology)</h3>
+<p>Every Assyrian king ruled by Aššur&#39;s mandate. Inscriptions open with the formula &#39;Aššur, the great lord, granted me strength,&#39; and campaigns are waged &#39;by the might of Aššur.&#39; The king did not make war for personal glory but to extend the god&#39;s territory, punish rebels, and collect tribute for the temple at Assur. Defeat was theological crisis; victory was proof that Aššur&#39;s order was universal.</p>
+<h3 id="sennacherib-s-report-annals">Sennacherib&#39;s Report (Annals)</h3>
+<p>Sennacherib&#39;s annals describe the campaign against Judah in 701 BCE as carried out with the might of Aššur. The siege of Lachish and the blockade of Jerusalem were framed as acts of divine discipline against a rebellious vassal. Whether the account is historically exact, it shows how tightly war, piety, and royal propaganda were woven around the god.</p>
+<h3 id="the-house-of-assur-at-assur-temple-cult">The House of Aššur at Assur (Temple Cult)</h3>
+<p>The Aššur temple at Assur was enlarged by Šamšī-Adad I in the eighteenth century BCE and rebuilt repeatedly thereafter, from Erība-Adad I to Sennacherib and Ashurbanipal; beside it rose the great staged tower, dedicated to Aššur in his aspect as Enlil. Sennacherib made the boldest intervention: after 689 BCE he rebuilt the sanctuary as the Ešarra (&#39;House of the Universe&#39;) and remodelled its cella Eḫursaĝgalkurkura on the pattern of Babylon&#39;s Esagil, so that the Assyrian cult centre physically restated the god&#39;s claim to Marduk&#39;s cosmic office. Royal inscriptions record the installation of cedar beams, gold doors, and statues captured from foreign lands — each offering a visible sign that the world was being gathered into Aššur&#39;s house.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Aššur concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>Winged sun disc with archer</strong> — The Assyrian adaptation of the solar disc, sometimes showing Aššur as a bowman within the winged orb</li>
+  <li><strong>Horned crown</strong> — The tiered crown of divine kingship, marking him as supreme among the gods</li>
+  <li><strong>Bow and arrow</strong> — The weapons of the divine warrior-king; Assyrian armies fought under his archery</li>
+  <li><strong>Triangle or mountain</strong> — The stylized mountain of Assur and the cosmic peak on which his temple stood</li>
+  <li><strong>Lightning and storm</strong> — His assimilation to Enlīl brought the storm-wind and thunderbolt into his iconography</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Aššur&#39;s primary cult center was the city of Assur (modern Qal&#39;at Sherqat) on the Tigris, where German, Iraqi, and international teams excavated the Aššur temple, its ziggurat, and the surrounding palace and residential quarters. Royal inscriptions from Assur, Nimrud, Khorsabad, and Nineveh document repeated rebuilding of the temple and the deposition of booty. The wall reliefs of Neo-Assyrian palaces — lions, sieges, tribute processions — are visual propaganda of Aššur&#39;s empire. Foundation tablets, royal annals, and prism inscriptions from Nineveh&#39;s library preserve the theological claims that made Assyria a sacred project.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Aššur is the <strong>god who is the nation</strong>. His name is identical with the city of Assur, the land of Assyria, and the people who called themselves after both. Unlike Enlīl, whose cosmic kingship was rooted in the air and the Ekur, Aššur&#39;s sovereignty travels with the Assyrian army. He is the divine king-maker, the patron of archers and chariots, and the heavenly father who receives the king&#39;s report after every campaign.</p>
+<h3 id="national-patron">National Patron</h3>
+<p>Assyria itself is his body; to worship Aššur is to belong to the land and its king.</p>
+<h3 id="god-of-war">God of War</h3>
+<p>The king fights as Aššur&#39;s steward; victory in battle is proof of divine favor and cosmic order.</p>
+<h3 id="king-of-heaven">King of Heaven</h3>
+<p>Identified with Enlīl and Anšar, Aššur becomes the summit of the Mesopotamian pantheon in Assyrian theology.</p>
+<h3 id="the-royal-temple">The Royal Temple</h3>
+<p>His house at Assur was rebuilt by every major king; tribute, booty, and prisoners flowed into its treasury.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>The Assyrians wrote their god&#39;s name with the logogram of the primordial <strong>Anšar</strong> (𒀭𒊹 AN.ŠAR₂) — &#39;the totality of heaven,&#39; who stands with Kišar, &#39;the totality of earth,&#39; at the head of the <em>Enuma Elish</em> genealogy — thereby grafting the young national god onto the oldest stratum of the pantheon. More influentially, Aššur absorbed the identity of <strong>Enlīl</strong>, the old Sumerian king of the gods: the staged tower at Assur was dedicated to Aššur in his manifestation as Enlil, Enlil&#39;s spouse Ninlil became Aššur&#39;s consort Mullissu, and Sennacherib rebuilt the Aššur temple as the Ešarra (&#39;House of the Universe&#39;). The identification served imperial policy — if Aššur holds Enlil&#39;s cosmic kingship, the Assyrian king legitimately outranks Babylon&#39;s Marduk — and the Assyrian recension of the <em>Enuma Elish</em>, which substitutes Aššur for Marduk as Tiāmat&#39;s conqueror, carries the logic to its conclusion (see the Enuma Elish section). Some scholars have compared Aššur with the Canaanite high god <strong>Ēl</strong>, both being paternal supreme gods bound to a people&#39;s identity, though the comparison remains heuristic rather than genetic. After the empire&#39;s fall the cult lapsed, and Aššur survived as the name of a land and a people rather than as an object of worship.</p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include [[anat|ꜥAnat]], [[ares|Árēs]], [[athena|Athénā]], [[durga|Durgā]], [[huitzilopochtli|Huitzilopōchtli]], and [[ishtar|Ištar]], each linked through war / battle.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>When the Medes and Babylonians sacked Assur in 614 BCE and Nineveh in 612 BCE, the cult died with the state, but the name proved indestructible. The Achaemenids ruled the region as the satrapy of Athura (Old Persian <em>Aθur</em>), the Parthians administered it as Assuristan, and Aramaic-speaking Christians of the Church of the East carried the ethnonym forward; modern Assyrians still call themselves <em>Āthūrāyē</em> or <em>Sūrāyē</em> in their Aramaic tongue, an unbroken — if repeatedly transformed — line of descent from the god&#39;s name. The Hebrew Bible preserves the same continuity from the outside, listing Asshur among the sons of Shem (Genesis 10:22) and casting Assyria as &#39;the rod of my anger&#39; in the prophets (Isaiah 10:5). Modern scholarship repaid the debt by naming itself after him: Assyriology took its title from the Assyrian ruins — above all Nineveh — where cuneiform was first deciphered. In 2003 UNESCO inscribed the god&#39;s city, Ashur (Qal&#39;at Sherqat), on the World Heritage List and simultaneously on the List of World Heritage in Danger, where it remains. In the wider imagination &#39;Assyria&#39; still evokes lion hunts, winged bulls, and relentless armies — a legacy Aššur would have recognized, since his power was always displayed as the might of the state.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Aššur given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Chicago Assyrian Dictionary (CAD), Aššur.</li>
+  <li> George, House Most High: The Temples of Ancient Mesopotamia.</li>
+  <li> Black &amp; Green, Gods, Demons and Symbols of Ancient Mesopotamia.</li>
+  <li> Pongratz-Leisten, Religion and Ideology in Assyria.</li>
+  <li> Frahm, Assyria: The Rise and Fall of the World&#39;s First Empire.</li>
+  <li> Royal Inscriptions of Mesopotamia, Assyrian Periods (RIMA).</li>
+  <li> Enuma Eliš, Assyrian recension.</li>
+  <li> Annals of Sennacherib.</li>
+  <li> Hebrew Bible, Genesis 10:11; 2 Kings 18–19; Isaiah 36–37.</li>
+  <li> Ashurbanipal&#39;s Esagila inscription and Aššur temple building texts.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Aššur is the most political of gods because he <em>is</em> a polity. Other deities have temples; Aššur had an empire. Other gods grant kingship; Aššur granted nationhood. The boundary between worship and statecraft was not blurred in Assyria — it was erased by design. The king was priest, the army was congregation, and the annual campaign was pilgrimage.</p>
+<p>This makes Aššur uncomfortable to the modern imagination, which likes to separate religion from nationalism. Yet he is also brutally honest: he names the sacral dimension that empires have always claimed, whether they invoke a sun-god, a tribal ancestor, or a modern ideology. Aššur forces us to ask what happens when a people identifies its highest value with its collective power.</p>
+<p>To pronounce <em>Aššur</em> — with that doubled, held <em>š</em> — is to feel the pressure of a name that wants to be a place, a people, and a destiny all at once. He is the god who does not travel as a missionary; he travels as an army. And when the army stopped, the name kept marching through history under new banners.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Aššur is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>ashur</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 5 characters of the name, the restoration adjusts 2: 2 further adjustments (š, š). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>aššur.com</strong>, which the DNS carries in punycode form as xn--aur-0zaa.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Aššur; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Cuneiform can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>The marks in <strong>Aššur</strong> were never lost; they were only waiting for a carrier that could hold them. Now that the carrier exists, the burden flips: every use of <em>ashur</em> is a choice to leave evidence on the table. The PÚNYCODEX temple keeps the restored form in circulation — as a domain, a dataset entry, and a scholarly argument — so that the choice to use it stays easy. Accent by accent, macron by macron, that is how the original names come back: not with a single grand gesture, but with a spelling that finally works everywhere.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/dumuzid/">Dumuzid</a></li>
   <li><a href="/sites/enlil/">Enlīl</a></li>
   <li><a href="/sites/gula/">Gula</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://whc.unesco.org/en/list/1130/">UNESCO World Heritage Centre, &#39;Ashur (Qal&#39;at Sherqat)&#39; (inscribed 2003).</a></li>
+  <li>Lambert, &#39;The God Aššur,&#39; Iraq 45/1 (1983), pp. 82–86.</li>
+  <li>George, House Most High: The Temples of Ancient Mesopotamia.</li>
+  <li>Chicago Assyrian Dictionary (CAD), s.v. Aššur.</li>
+  <li>Akkadisches Handwörterbuch (AHw), s.v. Aššur.</li>
+  <li>Lexicon authorities for this entry: CAD, AHw.</li>
 </ul>
-<h2>The Cultural Afterlife</h2>
-<p>When the Medes and Babylonians sacked Assur in 614 BCE and Nineveh in 612 BCE, the cult died with the state, but the name proved indestructible. The Achaemenids ruled the region as the satrapy of Athura (Old Persian Aθur), the Parthians administered it as Assuristan, and Aramaic-speaking Christians of the Church of the East carried the ethnonym forward; modern Assyrians still call themselves Āthūrāyē or Sūrāyē in their Aramaic tongue, an unbroken — if repeatedly transformed — line of descent from the god&#39;s name. The Hebrew Bible preserves the same continuity from the outside, listing Asshur among the sons of Shem (Genesis 10:22) and casting Assyria as &#39;the rod of my anger&#39; in the prophets (Isaiah 10:5). Modern scholarship repaid the debt by naming...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Aššur as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Cuneiform to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Aššur through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/ashur/">home page</a> offers the full name breakdown, the <a href="/sites/ashur/lore/">lore page</a> explores the myth, and the <a href="/sites/ashur/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Aššur do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
-<h2>A Note on the Address Bar</h2>
-<p>When you type Aššur, the browser performs an invisible conversion into Punycode so the global DNS can route the request. The user sees the original name; the machines see a compatible ASCII encoding. That duality is the engineering compromise that makes the restoration possible, and it is the reason every Unicode domain is both a technical milestone and a small act of cultural memory.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">mesopotamian</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

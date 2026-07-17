@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,41 +170,191 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>13 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-japanese-pantheon">The Japanese Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#typing-nikko">Typing Nikkō</a></li>
+                <li><a href="#sister-temples">Sister Temples</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>Nikkō in 2026: Why Scholars Still Care</h1>
-<p>In 2026, names are treated as data points. Nikkō is a reminder that they are also cultural artifacts. Nikkō (nikko) — Sacred Site, Tochigi · Sunlight — belongs to the Japanese tradition, where it is catalogued under the domain &quot;Sacred Site, Tochigi&quot;. The name means &quot;Sunlight&quot;. Nikkō is the town, the mountain, and the luminous name that binds them. In Japanese, the word means simply &#39;sunlight,&#39; but by the 17th century it had become synonymous with one of Japan&#39;s most spectacular religious sites: the Tōshōgū shrine complex, where Tokugawa Ieyasu, the founder of the Tokugawa shogunate, was enshrined as the deified Tōshō Daigongen, &#39;Great Illuminating Deity of the East.&#39; Nikkō is where nature and politics meet in gold. Cedar avenues, waterfalls, and mountain mists frame shrines and mausoleums built with the wealth and craftsmanship of a newly unified... The question is not whether the name is old, but whether the digital world is old enough to hold it.</p>
-<h2>The Scholarly Argument</h2>
-<p>The name is attested in Japanese characters as 日光. Etymologically it means &quot;Sunlight&quot;. The ASCII form nikko survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Nikkō recovers the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The letter-by-letter transformation runs: - n → N — Same - i → i — Same - k → k — Same - k → k — Same - o → ō — Macron: long vowel The project holds the domain nikkō.com (xn--nikk-o3a.com) as the canonical home of this name. The PÚNYCODEX Scholarly Edition collects these arguments in one place, with sources and revision history, so the claim can be inspected rather than merely asserted.</p>
-<h2>What the Accent Preserves</h2>
-<p>This entry is classified as <strong>Tier 1</strong>. the Greek original carries both stress and length, and only one valid Unicode restoration exists Those marks are not ornaments; they are the coordinates that place the name inside a language.</p>
-<h2>A Living Edition</h2>
-<p>The <a href="/sites/nikko/scholars/">Scholarly Edition</a> is not a static page. Verified contributors can improve it, and every change is attributed. That model turns a blog post like this one into an invitation to dig deeper.</p>
-<h2>Where to Learn More</h2>
+            <h1>Nikkō in 2026: why scholars still care</h1>
+<p>In 2026, names are treated as data points. <strong>Nikkō</strong> is a reminder that they are also cultural artifacts — and that the difference matters for search engines, AI training corpora, and anyone who types the name of a Japanese figure into a browser. Scholars never stopped caring about the difference between <em>nikko</em> and Nikkō; the web simply made that care actionable. What follows is the full scholarly picture — name, script, sound, myth, cult, and legacy — followed by the engineering compromise that lets a restored spelling live at a real address. The question is not whether the name is old. It is whether the digital world is old enough to hold it.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Nikkō</li>
+  <li><strong>ASCII form:</strong> nikko</li>
+  <li><strong>Meaning:</strong> &quot;Sunlight&quot;</li>
+  <li><strong>Domain of influence:</strong> Sacred Site, Tochigi</li>
+  <li><strong>Pantheon:</strong> Japanese</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Original script:</strong> 日光 (Japanese characters)</li>
+  <li><strong>Live domain:</strong> nikkō.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Nikkō</strong> (<em>nikko</em>) — Sacred Site, Tochigi · Sunlight — belongs to the Japanese tradition, where it is catalogued under the domain &quot;Sacred Site, Tochigi&quot;. The name means &quot;Sunlight&quot;.</p>
+<p><strong>Nikkō</strong> is the town, the mountain, and the luminous name that binds them. In Japanese, the word means simply &#39;sunlight,&#39; but by the 17th century it had become synonymous with one of Japan&#39;s most spectacular religious sites: the Tōshōgū shrine complex, where Tokugawa Ieyasu, the founder of the Tokugawa shogunate, was enshrined as the deified Tōshō Daigongen, &#39;Great Illuminating Deity of the East.&#39;</p>
+<p>Nikkō is where nature and politics meet in gold. Cedar avenues, waterfalls, and mountain mists frame shrines and mausoleums built with the wealth and craftsmanship of a newly unified Japan. It is a place of sunlight filtered through forest, of ancestral power made beautiful, and of Shinto-Buddhist synthesis at its most ornate.</p>
+<p>PÚNYCODEX restores the name as <strong>Nikkō</strong> and serves its temple at <a href="https://xn--nikk-o3a.com">nikkō.com</a>. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>nikko</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Japanese characters as <strong>日光</strong>. Etymologically it means &quot;Sunlight&quot;.</p>
+<p>The ASCII form <em>nikko</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Nikkō</strong> recovers the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>n</strong> → <strong>N</strong> — Same</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+  <li><strong>k</strong> → <strong>k</strong> — Same</li>
+  <li><strong>k</strong> → <strong>k</strong> — Same</li>
+  <li><strong>o</strong> → <strong>ō</strong> — Macron: long vowel</li>
+</ul>
+<p>The project holds the domain <strong>nikkō.com</strong> (xn--nikk-o3a.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Japanese characters as <strong>日光</strong> — Kanji (Sino-Japanese logographs), attested Heian – present, in Nikkō, Tochigi Prefecture, Japan. The script is written left-to-right; traditional top-to-bottom.</p>
+<p>The scholarly transliteration is <em>Nikkō</em> (Hepburn romanisation with macron), giving the normalized reading /nikːoː/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>日光 is a Sino-Japanese compound: 日 &#39;sun&#39; + 光 &#39;light&#39;, hence &#39;sunlight&#39;.</li>
+  <li>The standard Hepburn romanisation is Nikkō, with a macron over the final o marking a long vowel.</li>
+  <li>The geminate consonant -kk- reflects the sequential voicing assimilation of 日 (nichi) + 光 (kō) → Nikkō.</li>
+  <li>The place name Nikkō is famous for the Tōshō-gū shrine, dedicated to Tokugawa Ieyasu.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/ɲi.kːoː/</strong> — Modern Standard Japanese (Hepburn).</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Ni-</strong> — Voiced palatal nasal [ɲ] plus short close front [i]; the &#39;n&#39; before &#39;k&#39; is pronounced with the tongue near the hard palate</li>
+  <li><strong>-kkō</strong> — Long close back rounded [oː], preceded by a geminate (double) [kː]; the macron marks length, giving Tier-1 status</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;NEE-koh&#39; — the first syllable is quick with a soft &#39;ny&#39; color; hold the final &#39;koh&#39; long, as if pronouncing two k&#39;s in a row.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Japanese</strong> — 日光 (nikkō), &#39;sunlight,&#39; from nichi &#39;sun&#39; + kō &#39;light&#39;</li>
+  <li><strong>Classical reading</strong> — Nikkōzan, the mountain name of the great Tōshōgū shrine complex</li>
+  <li><strong>Related term</strong> — Tōshōgū (東照宮), the &#39;Shrine of the Illuminating East&#39; dedicated to Tokugawa Ieyasu</li>
+</ul>
+<p>Nikkō is Tier 1 because the final ō is long. In Japanese, the double k (kk) is a geminate consonant that creates a brief pause before the long vowel. The name refers both to the town in Tochigi Prefecture and to the sacred mountain complex that made it famous.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Nikkō&#39;s mythology is both ancient and recent. The mountain had long been a site of Buddhist-Shinto practice, but its modern identity was forged by the apotheosis of Tokugawa Ieyasu and the extraordinary building campaign that followed his death.</p>
+<h3 id="shodo-shonin-and-the-sacred-bridge-foundation-legend">Shōdō Shōnin and the Sacred Bridge (Foundation legend)</h3>
+<p>According to tradition, the Buddhist monk Shōdō Shōnin founded the first temple at Nikkō in the 8th century. When he could not cross the turbulent Daiya River, the mountain deity appeared in a dream and offered two serpents to form a bridge. The Shinkyō, the vermillion lacquered bridge at the entrance to the shrine complex, commemorates this divine assistance and marks the boundary between the secular world and the sacred mountain.</p>
+<h3 id="the-deification-of-tokugawa-ieyasu-edo-period">The Deification of Tokugawa Ieyasu (Edo period)</h3>
+<p>After his death in 1616, Tokugawa Ieyasu was enshrined at Nikkō as Tōshō Daigongen, a manifestation of the Buddhist divinity Yakushi Nyorai and the Shinto sun goddess Amaterasu. His grandson Iemitsu rebuilt the complex between 1634 and 1636 with staggering opulence, employing thousands of craftsmen. The result was both a mausoleum and a political statement: the shogun&#39;s power now rested in a sacred mountain bathed in sunlight.</p>
+<h3 id="separation-of-shinto-and-buddhism-meiji-era">Separation of Shinto and Buddhism (Meiji era)</h3>
+<p>The Meiji government&#39;s policy of shinbutsu bunri forcibly separated Shinto and Buddhism. At Nikkō, Buddhist elements were stripped from the Tōshōgū, and the complex was reclassified as a Shinto shrine. Despite this rupture, the art and architecture of Nikkō preserve the hybrid religious world of early modern Japan, where kami and Buddhas were understood as local manifestations of one another.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Nikkō concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>Shinkyō (Sacred Bridge)</strong> — The vermillion bridge that marks the entrance to the sacred precinct and the crossing from mundane to holy space</li>
+  <li><strong>Three wise monkeys (sanzaru)</strong> — The carved monkeys embodying the proverb &#39;see no evil, hear no evil, speak no evil&#39;</li>
+  <li><strong>Sleeping cat (nemuri-neko)</strong> — The famous carved cat attributed to Hidari Jingorō, guarding Ieyasu&#39;s mausoleum</li>
+  <li><strong>Yōmeimon Gate</strong> — The &#39;Sunset Gate,&#39; lavishly carved and gilded, symbolizing the wealth of the shogunate</li>
+  <li><strong>Cedar trees (sugi)</strong> — The ancient avenue of cryptomeria linking the town to the shrines, a living sacred architecture</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>The Tōshōgū complex as it exists today is primarily an Edo-period creation (1634–1636), though it rests on older religious layers. The main hall, Yōmeimon gate, five-storied pagoda, and Okumiya inner shrine are outstanding examples of early Edo architecture and polychrome decoration. The Shinkyō bridge, rebuilt in 1904, preserves the form of the original sacred crossing. Archaeological and architectural study of the site has documented the materials, craftsmen, and techniques employed in Iemitsu&#39;s rebuilding, while the surrounding cedar avenue (planted in the 17th century) remains one of Japan&#39;s most impressive designed landscapes.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p><strong>Nikkō</strong> is the town, the mountain, and the luminous name that binds them. In Japanese, the word means simply &#39;sunlight,&#39; but by the 17th century it had become synonymous with one of Japan&#39;s most spectacular religious sites: the Tōshōgū shrine complex, where Tokugawa Ieyasu, the founder of the Tokugawa shogunate, was enshrined as the deified Tōshō Daigongen, &#39;Great Illuminating Deity of the East.&#39;</p>
+<p>Nikkō is where nature and politics meet in gold. Cedar avenues, waterfalls, and mountain mists frame shrines and mausoleums built with the wealth and craftsmanship of a newly unified Japan. It is a place of sunlight filtered through forest, of ancestral power made beautiful, and of Shinto-Buddhist synthesis at its most ornate.</p>
+<h3 id="toshogu">Tōshōgū</h3>
+<p>The lavish shrine-tomb of Tokugawa Ieyasu, a UNESCO World Heritage site and masterpiece of early Edo art.</p>
+<h3 id="three-wise-monkeys">Three Wise Monkeys</h3>
+<p>The famous &#39;see no evil, hear no evil, speak no evil&#39; carving on the sacred stable.</p>
+<h3 id="cedar-avenue">Cedar Avenue</h3>
+<p>Thousands of giant cryptomeria trees line the approach, turning the path itself into a sacred corridor.</p>
+<h3 id="sacred-bridge">Sacred Bridge</h3>
+<p>The Shinkyō, a vermillion lacquered bridge over the Daiya River, marks the boundary between worlds.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Nikkō is a textbook case of <em>shinbutsu shūgō</em>, the medieval Japanese synthesis of Shinto and Buddhism. Tōshō Daigongen was simultaneously a Shinto kami and a Buddhist avatar; the shrine&#39;s architecture borrows from both traditions. This synthesis was forcibly dismantled in the Meiji period but survives in the layered art and ritual of the site. Nikkō also sits within a broader East Asian culture of mountain sacredness, where peaks serve as boundaries between worlds and repositories of ancestral power. The cedar avenues and vermillion bridges echo Chinese and Korean models, while the specific cult of Ieyasu is uniquely Japanese.</p>
+<p>Within the Japanese tradition, closely related names in the corpus include [[fujin|Fūjin]], [[jizo|Jizō]], [[kobe|Kōbe]], [[kyoto|Kyōto]], and [[osaka|Ōsaka]].</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Nikkō is one of Japan&#39;s most visited sacred sites and a UNESCO World Heritage property. Its autumn maples, snow-covered gates, and the famous proverb <em>Nikkō wo mizu shite kekkō to iu nakare</em> — &#39;do not say <em>splendid</em> until you have seen Nikkō&#39; — continue to shape Japanese aesthetics. The Three Wise Monkeys have become a global visual proverb, and images of the Shinkyō and Yōmeimon appear in travel literature, photography, and advertising worldwide. For Japanese nationalism, Nikkō is a symbol of the Tokugawa peace and imperial continuity; for contemporary visitors, it is a place where nature, art, and history converge. The Unicode restoration <em>Nikkō</em> preserves the long final vowel that the plain ASCII form <em>nikko</em> cannot carry.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Nikkō given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Kojiki (foundation myths and kami references).</li>
+  <li> Nihon Shoki (imperial and Tokugawa-period histories).</li>
+  <li> Tōshōgū engi and Tokugawa-period shrine records.</li>
+  <li> Aston, Nihongi: Chronicles of Japan from the Earliest Times to A.D. 697.</li>
+  <li> Philippi, Kojiki.</li>
+  <li> Bock, Engi-shiki.</li>
+  <li> UNESCO World Heritage listing for Shrines and Temples of Nikko.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Nikkō asks what it means to make power visible. The Tokugawa shogunate did not bury its founder in quiet simplicity; it wrapped him in gold, cedar, and carved beasts, turning a mountainside into a sermon on authority. Yet the forest is older than the shogunate, and the sunlight falls on the gates without preference.</p>
+<p>To visit Nikkō is to walk between these two truths: that humans build monuments to themselves, and that the world continues indifferently splendid. The Three Wise Monkeys remind us that not everything seen needs to be spoken, and the cedars remind us that what endures is often what was planted in silence.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Nikkō is classified as <strong>Tier 1</strong>: the original carries both stress and length, and only one valid Unicode restoration exists. The ASCII fallback <em>nikko</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 5 characters of the name, the restoration adjusts 1: 1 mark of length (ō). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>nikko</em> to <strong>Nikkō</strong>, one character at a time:</p>
+<ul>
+  <li><strong>n</strong> → <strong>N</strong> — Same</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+  <li><strong>k</strong> → <strong>k</strong> — Same</li>
+  <li><strong>k</strong> → <strong>k</strong> — Same</li>
+  <li><strong>o</strong> → <strong>ō</strong> — Macron: long vowel</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>nikkō.com</strong>, which the DNS carries in punycode form as xn--nikk-o3a.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Nikkō; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Japanese characters can now be typed into any browser on earth.</p>
+<h2 id="the-japanese-pantheon">The Japanese Pantheon</h2>
+<p>Nikkō is one of 43 entries the PÚNYCODEX lexicon catalogues under the Japanese pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Nikkō mean?</strong> The traditional gloss is &quot;Sunlight.&quot;</p>
+<p><strong>Which tradition does Nikkō belong to?</strong> Nikkō is catalogued in the Japanese pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Nikkō classified as Tier 1?</strong> Because the original carries both stress and length, and only one valid Unicode restoration exists — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Nikkō a working domain?</strong> Yes — nikkō.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for nikkō.com?</strong> The DNS encoding is xn--nikk-o3a.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="typing-nikko">Typing Nikkō</h2>
+<p>You do not need a special keyboard to use this restoration. The <a href="/type/">PÚNYCODEX Type Tool</a> converts the ASCII form <em>nikko</em> into <strong>Nikkō</strong> as you type, and the browser extension offers the same conversion inside any text field. Copy the restored form, paste it into the address bar, and the DNS does the rest.</p>
+<h2 id="sister-temples">Sister Temples</h2>
+<p>Other temples in the Japanese pantheon include <a href="/sites/ninigi/">Ninigi</a>, <a href="/sites/raijin/">Raijin</a>, and <a href="/sites/tajikarao/">Tajikarao</a> — each with its own restoration story, its own scholarly record, and its own place in the lexicon.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>In 2026 the stakes are practical. Search indexes, language models, and localization pipelines all inherit whatever spelling the web normalizes — which means every Unicode domain is also a training signal. <strong>Nikkō</strong> teaches the machinery that the restored form exists, that it is used, and that it points to a real place. That is why a project built on philology ends up caring about DNS: the infrastructure decides which names the future sees. This restoration makes sure the future sees the whole name.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/ebisu/">Ebisu</a></li>
   <li><a href="/sites/goshin/">Goshin</a></li>
   <li><a href="/sites/hoori/">Hoori</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://whc.unesco.org/en/list/913">UNESCO World Heritage Centre, Shrines and Temples of Nikko, inscribed 1999.</a></li>
   <li><a href="https://sacred-texts.com/shi/kojiki.htm">Kojiki (Records of Ancient Matters), 712; trans. D. L. Philippi.</a></li>
   <li><a href="https://sacred-texts.com/shi/kj/index.htm">Kojiki (Records of Ancient Matters), Translated by Basil Hall Chamberlain, 712.</a></li>
+  <li>Kojiki (foundation myths and kami references).</li>
+  <li>Nihon Shoki (imperial and Tokugawa-period histories).</li>
+  <li>Tōshōgū engi and Tokugawa-period shrine records.</li>
+  <li>Teeuwen, Mark, and John Breen, A New History of Shinto (shinbutsu shūgō and the Meiji separation).</li>
+  <li>Lexicon authorities for this entry: Hepburn, Kojiki.</li>
 </ul>
-<h2>What the Sources Record</h2>
-<p>Nikkō is the town, the mountain, and the luminous name that binds them. In Japanese, the word means simply &#39;sunlight,&#39; but by the 17th century it had become synonymous with one of Japan&#39;s most spectacular religious sites: the Tōshōgū shrine complex, where Tokugawa Ieyasu, the founder of the Tokugawa shogunate, was enshrined as the deified Tōshō Daigongen, &#39;Great Illuminating Deity of the East.&#39; Nikkō is where nature and politics meet in gold. Cedar avenues, waterfalls, and mountain mists frame shrines and mausoleums built with the wealth and craftsmanship of a newly unified Japan. It is a place of sunlight filtered through forest, of ancestral power made beautiful, and of Shinto-Buddhist synthesis at its most ornate. ### Tōshōgū The lavish...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Nikkō as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Japanese characters to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Nikkō through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/nikko/">home page</a> offers the full name breakdown, the <a href="/sites/nikko/lore/">lore page</a> explores the myth, and the <a href="/sites/nikko/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Nikkō do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">japanese</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

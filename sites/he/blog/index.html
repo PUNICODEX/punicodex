@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,45 +170,200 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#epithets-cult-titles">Epithets &amp; Cult Titles</a></li>
+                <li><a href="#the-homeric-hymns">The Homeric Hymns</a></li>
+                <li><a href="#oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#name-variations">Name Variations</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>Pronouncing Hē: A Guide for the Curious</h1>
-<p>Saying <strong>Hē</strong> out loud is harder than reading it on a screen, and more rewarding. Scholars reconstruct the sound as <em>&#39;HAY&#39; — one long syllable, beginning with a soft &#39;h&#39; and drawn out like a breath.</em>.</p>
-<h2>The Reconstructed Sound</h2>
-<p>The name is attested in Greek as ἡ. Etymologically it means &quot;Feminine nominative singular article in Ancient Greek; in Orphic and Neoplatonic thought, the receptacle of divine overflow and counterpart to τὸ ἕν (Hén).&quot;. The reconstructed proto-form is so- (proto-indo-european, &quot;this, the&quot;). Ancient Greek definite article ἡ, feminine nominative singular of ὁ. Philosophically reinterpreted in later Platonism as the feminine principle of manifestation. Cognate forms across related languages: - ὁ, ἡ, τό (greek) — definite article - sā (sanskrit) — feminine demonstrative The ASCII form he survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Hē... The sounds preserved in Hē are not random; they follow rules that linguists have spent centuries recovering.</p>
-<h2>Sound by Sound</h2>
-<p>Etymologically, ancient greek definite article ἡ, feminine nominative singular of ὁ. philosophically reinterpreted in later platonism as the feminine principle of manifestation. That points back to a reconstructed form like <em>*so-</em>. Each segment locks into the next, so a small change in one place ripples through the whole name.</p>
-<h2>Kin Forms</h2>
-<p>Related spellings include hē, he. Names rarely have only one valid shape. The restoration chooses the form that best balances historical accuracy with the practical limits of DNS.</p>
-<h2>From Speech to Screen</h2>
-<p>Pronunciation and spelling converge in Unicode. Hē carries enough phonetic information to be read aloud by someone who knows the conventions, and enough visual distinctiveness to stand out in an address bar.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Hē is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>Pronouncing Hē: a guide for the curious</h1>
+<p>Saying <strong>Hē</strong> aloud is harder than reading it on a screen, and more rewarding. The restored spelling is a compressed pronunciation guide: every accent and macron is an instruction. This post unpacks those instructions — the reconstructed sound, the phoneme-by-phoneme record, the kindred forms in neighboring languages — and then zooms out to the full record around the name: its Greek writing, its mythology, its cult, and its modern life as a Unicode domain. Whether you arrive as a linguist, a reader of myth, or a domainer, you will leave able to say the name the way the evidence suggests it was said — and able to type it the way it was written.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Hē</li>
+  <li><strong>ASCII form:</strong> he</li>
+  <li><strong>Meaning:</strong> &quot;Feminine nominative singular article in Ancient Greek; in Orphic and Neoplatonic thought, the receptacle of divine overflow and counterpart to τὸ ἕν (Hén).&quot;</li>
+  <li><strong>Domain of influence:</strong> The Divine Feminine Principle, She Who Is</li>
+  <li><strong>Pantheon:</strong> Greek</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> ἡ (Greek)</li>
+  <li><strong>Live domain:</strong> hē.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Hē</strong> (<em>he</em>) is the Ancient Greek feminine nominative singular article, <strong>ἡ</strong> — the ordinary word &#39;she, the&#39; before feminine nouns — which later philosophical tradition elevated into a name for the feminine principle of being. In the PÚNYCODEX corpus she is catalogued under the domain &quot;The Divine Feminine Principle, She Who Is,&quot; not as a goddess of myth or cult but as a philosophical personification: the grammatical &#39;she&#39; read as counterpart to τὸ ἕν (Hén), the One of Platonic theology.</p>
+<p>No ancient hymn, temple, or image of ἡ exists; her being is textual. Plato&#39;s <em>Timaeus</em> gives the tradition its seed in the feminine receptacle (hupodochē) of becoming, and Neoplatonic readers set that receptive principle beside the One.</p>
+<p>PÚNYCODEX restores the name as <strong>Hē</strong> and serves this temple at <a href="https://xn--h-pia.com">hē.com</a>. Because the Greek ἡ preserves one prosodic feature — vowel length — rather than both stress and length, the name sits in Tier 2; the ASCII form <em>he</em> is a modern technological convenience imposed by the domain-name system, not an ancient spelling.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Greek as <strong>ἡ</strong>. Etymologically it means &quot;Feminine nominative singular article in Ancient Greek; in Orphic and Neoplatonic thought, the receptacle of divine overflow and counterpart to τὸ ἕν (Hén).&quot;.</p>
+<p>The reconstructed proto-form is <em>so-</em> (proto-indo-european, &quot;this, the&quot;). Ancient Greek definite article ἡ, feminine nominative singular of ὁ. Philosophically reinterpreted in later Platonism as the feminine principle of manifestation.</p>
+<p>Cognate forms across related languages:</p>
+<ul>
+  <li><strong>ὁ, ἡ, τό</strong> (greek) — definite article</li>
+  <li><strong>sā</strong> (sanskrit) — feminine demonstrative</li>
+</ul>
+<p>The ASCII form <em>he</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Hē</strong> recovers the vowel length of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>h</strong> → <strong>H</strong> — Same, capitalized</li>
+  <li><strong>e</strong> → <strong>ē</strong> — Macron marks long e</li>
+</ul>
+<p>Attested and derived spellings of the name:</p>
+<ul>
+  <li><strong>hē</strong> — owned form: Lowercase owned domain form</li>
+  <li><strong>he</strong> — ASCII form: Plain ASCII form</li>
+</ul>
+<p>The project holds the domain <strong>hē.com</strong> (xn--h-pia.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: Ancient Greek definite article ἡ, feminine nominative singular of ὁ. Philosophically reinterpreted in later Platonism as the feminine principle of manifestation.</p>
+<p>The reconstructed proto-form is <em>*so-</em> (proto-indo-european), glossed as &quot;this, the&quot;.</p>
+<p>The reconstruction is classed as attested.</p>
+<p>Kindred forms recorded in the lexicon:</p>
+<ul>
+  <li><strong>ὁ, ἡ, τό</strong> (greek) — definite article</li>
+  <li><strong>sā</strong> (sanskrit) — feminine demonstrative</li>
+</ul>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is written in Greek as <strong>ἡ</strong>: a single letter, eta, carrying the rough breathing (spiritus asper) that marks initial [h]. This original script is the form against which the ASCII fallback <em>he</em> and the PÚNYCODEX restoration <strong>Hē</strong> are measured: the restoration preserves the vowel quantity of the written form, so that a reader typing the modern address still speaks the ancient name.</p>
+<p>The letter&#39;s own history mirrors the word&#39;s double life. In the archaic epichoric alphabets the sign Η (heta) denoted the consonant [h]; only when the Ionian alphabet reassigned it to long open e did ἡ come to be written as it is today — the reform Athens officially adopted in 403/2 BCE. The rough breathing survives in polytonic orthography but has no ASCII equivalent and cannot be registered in a domain, so the restoration marks what the domain system permits: the long ē.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/hɛː/</strong> — Attic Greek Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Hē</strong> — Rough breathing on long eta [hɛː]. The word is a single syllable, the feminine nominative singular article.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;HAY&#39; — one long syllable, beginning with a soft &#39;h&#39; and drawn out like a breath.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Greek</strong> — ἡ (hē), feminine nominative singular definite article, &#39;the&#39;</li>
+  <li><strong>PIE</strong> — <em>so-/</em>seh₂, the demonstrative stem giving Greek ὁ, ἡ, τό and Sanskrit sā</li>
+  <li><strong>Philosophical</strong> — In Neoplatonism, Hē as the feminine principle of manifestation and reception</li>
+</ul>
+<p>Hē is Tier 2 because the Greek ἡ preserves the long vowel (eta) but is a grammatical particle, not a stressed lexical word in ordinary syntax. Its theological reinterpretation comes from later Platonism, which treated the article as a metaphysical principle.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Hē has <strong>no myth in the traditional sense</strong>. Its &#39;mythology&#39; is the history of interpretation: how a tiny grammatical word became, for some philosophers, a divine name.</p>
+<h3 id="the-receptacle-plato-timaeus">The Receptacle (Plato, Timaeus)</h3>
+<p>Plato calls the principle of matter the hupodochē, the &#39;receptacle&#39; of all becoming. It receives forms the way a mother receives seed. Later readers — especially Neoplatonists and Renaissance mystics — identified this receptive principle with the feminine and, by extension, with the word ἡ.</p>
+<h3 id="he-and-hen-neoplatonism">Hē and Hén (Neoplatonism)</h3>
+<p>In Neoplatonic and theurgical texts, the masculine τὸ ἕν (Hén, the One) is paired with ἡ (Hē), the feminine principle of procession and manifestation. The dyad generates the multiplicity of the cosmos from the simplicity of the One.</p>
+<h3 id="the-article-as-name-grammar">The Article as Name (Grammar)</h3>
+<p>In ordinary Greek, ἡ is simply &#39;the&#39; before feminine nouns. Its elevation to a theological name is an example of linguistic mysticism: the sounds and structures of language are treated as maps of reality. Hē is therefore a goddess born from philology as much as from cult.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The &#39;symbols&#39; of Hē require a caveat: no ancient attribute exists, because no ancient image of the article was ever made. The temple&#39;s emblematic set is therefore avowedly allegorical — modern signs for a philosophical construction:</p>
+<ul>
+  <li><strong>The letter eta (Η)</strong> — The long vowel that carries the feminine article and the name; the one authentically ancient item in the set, since ἡ is itself a piece of writing.</li>
+  <li><strong>Vessel or cup</strong> — The receptacle (hupodochē) that receives and holds form, after Plato&#39;s image of the all-receiving matrix of becoming.</li>
+  <li><strong>Mirror</strong> — The reflecting surface in which the One becomes visible as many.</li>
+  <li><strong>Open door</strong> — Manifestation as the threshold through which being enters appearance.</li>
+</ul>
+<p>No image of <strong>ἡ</strong> exists, nor could one: Greek art personified only what cult or poetry had already given a face — Peitho, Nike, Eirene — and the feminine article never received one. The developed classical habit of giving figure to abstractions shows how narrowly she missed eligibility: personification required a personality, and a grammatical particle had none. Her &#39;iconography&#39; is palaeographic: the letter <strong>Η</strong>, originally the sign of the rough breathing, which the Ionian alphabet reassigned to long e and which Athens officially adopted in 403/2 BCE — the character this temple treats as her seal. Vessels, mirrors, and open doors sometimes used to picture her are modern allegory, not ancient evidence.</p>
+<h2 id="epithets-cult-titles">Epithets &amp; Cult Titles</h2>
+<p>A grammatical word has predicates, not cult epithets; the tradition supplies these:</p>
+<ul>
+  <li><strong>ἡ</strong> (hē) — &#39;she, the&#39;; the feminine nominative singular article itself — the whole personification is this word.</li>
+  <li><strong>ὑποδοχή</strong> (hupodokhḗ) — &#39;receptacle&#39;; Plato&#39;s name for the all-receiving matrix of becoming.</li>
+  <li><strong>μήτηρ καὶ τιθήνη</strong> (mḗtēr kaì tithḗnē) — &#39;mother and nurse&#39;; the <em>Timaeus</em> likens the receptacle to a mother receiving form.</li>
+  <li><strong>χώρα</strong> (khṓra) — &#39;space, place&#39;; the same principle&#39;s third Platonic name.</li>
+  <li>counterpart <strong>τὸ ἕν</strong> (tò hén) — &#39;the One&#39;, [[hen|Hén]]; the masculine correlate beside which Neoplatonic thought sets the feminine.</li>
+</ul>
+<h2 id="the-homeric-hymns">The Homeric Hymns</h2>
+<p>No Homeric Hymn — indeed no ancient hymn of any kind — is addressed to <strong>ἡ</strong>. The Hymns sing to persons, and the feminine article is a grammatical particle: in Homer and Hesiod it occurs in its thousands as ordinary syntax, never as a name. In fact, in Homeric Greek ὁ, ἡ, τό has not yet settled into the definite article of the classical language: it still serves chiefly as a demonstrative, and the fully grammaticalized article is a post-epic development — one more reason the epic corpus could never have sung to ἡ. Her journey toward divinity is philosophical. Plato&#39;s <em>Timaeus</em> describes the formless receptacle of becoming in maternal terms, and Neoplatonic readers later pondered that receptive, feminine principle beside τὸ ἕν, the One. Even the Orphic Hymns, which personify Night and Justice, leave ἡ unsung.</p>
+<h2 id="oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</h2>
+<p>There is no oracle, altar, or sanctuary of <strong>ἡ</strong> anywhere in the Greek world, and there never was: the &#39;goddess&#39; is a reader&#39;s construction, born from a grammatical word. The contrast with cultic practice is instructive. The Athenians could dedicate an altar to an abstraction — Pausanias singles out their altar of Pity (Eleos) in the agora as a distinctively Athenian act of humanity — and classical cult housed Peace, Health, and Rumor; but abstraction-worship stopped short of grammar, and no inscription dedicates anything to ἡ. Her true sites are textual — the passage of Plato&#39;s <em>Timaeus</em> that names the receptacle, the <em>Enneads</em> of Plotinus, and Proclus&#39; commentary on the <em>Timaeus</em>, where the receptive principle is weighed beside the One.</p>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>There is no archaeological evidence for a cult of ἡ as a personified goddess, and none should be expected: the entry is a philosophical and linguistic construction, not a deity of Greek religion. The Greeks did occasionally give cult to abstractions — the altar of Pity (Eleos) in the Athenian agora, which Pausanias singles out as a distinctively Athenian dedication, is the famous case — but no sanctuary, votive, or inscription addresses the article. Her material context is textual: papyri and manuscripts of Plato&#39;s <em>Timaeus</em>, Plotinus, and Proclus, in which the receptive, feminine principle is weighed beside the One, together with the epigraphic record of the letter Η itself. The PÚNYCODEX temple thus preserves an idea rather than a site.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Hē is the <strong>Ancient Greek feminine article</strong>, later reinterpreted by philosophers as a name for the feminine principle of being. It is the grammatical &#39;she&#39; that becomes, in Neoplatonic and esoteric thought, the counterpart to the One.</p>
+<h3 id="grammatical-goddess">Grammatical Goddess</h3>
+<p>The definite article &#39;she,&#39; personified by later mystical thought as feminine being.</p>
+<h3 id="receptacle-of-form">Receptacle of Form</h3>
+<p>In Platonic interpretation, Hē is the hupodochē, the receiving matrix in which the forms impress becoming.</p>
+<h3 id="counterpart-to-hen">Counterpart to Hén</h3>
+<p>If τὸ ἕν (Hén) is the One, ἡ (Hē) is the manifested other, the dyad that follows unity.</p>
+<h3 id="linguistic-mysticism">Linguistic Mysticism</h3>
+<p>A case where grammar becomes theology: the smallest word elevated to cosmic status.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Hē as a theological principle has resonances rather than identities in other traditions: the Chinese yin, the Indian prakṛti, the Gnostic Sophia, and the Jewish Shekhinah all name a feminine receptive power, though none is cognate with the Greek article. Within Greek thought her nearest kin is the Platonic hupodochē, the receptacle of becoming, and her masculine counterpart is [[hen|Hén]], the One beside which Neoplatonic theology sets the feminine principle. As receptive, generative earth the principle also overlaps with [[ge|Gē]]. The PÚNYCODEX entry treats ἡ as a philosophical personification rather than a traditional deity, which makes it unique among the flagship entries.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Hē is the smallest flagship in the PÚNYCODEX pantheon: two letters, one syllable. Her legacy is paradoxical. The article ἡ is among the most frequent words in all Greek literature, yet as a divine name she exists only in the tradition of reading grammar as theology — and in this project&#39;s act of personification. That act poses a live question for modern gender discourse: whether elevating the feminine article to a divine name affirms the feminine principle or merely abstracts it, since abstraction is not the same as personhood. The letter eta meanwhile serves science on its own account as the conventional symbol for efficiency and for viscosity in physics and engineering — a second career for the character this temple treats as her seal.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Hē given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the philosophical texts supply the tradition that made a grammatical word into a principle.</p>
+<ul>
+  <li> Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, s.v. ὁ, ἡ, τό. <a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Full text</a></li>
+  <li> Beekes, Etymological Dictionary of Greek (the article&#39;s demonstrative origin).</li>
+  <li> Plato, Timaeus 48e–52d (the receptacle, chōra, &#39;mother and nurse&#39;).</li>
+  <li> Plotinus, Enneads (the One and procession).</li>
+  <li> Proclus, Commentary on Plato&#39;s Timaeus (the receptacle in Neoplatonic exegesis).</li>
+  <li> Smyth, Greek Grammar (the article in epic and classical usage).</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Hē asks what it means to be named by a function. She is not a character with myths but a grammatical marker that philosophers adored. Is this diminishment or elevation? The question is her theology.</p>
+<p>In naming her Hē, PUNYCODEX preserves a moment when language turned mystical. The article that says &#39;she, the one we mean&#39; becomes the name for all that is meant. She is therefore the goddess of reference, the feminine &#39;this&#39; that lets the world be pointed at and known. To meditate on Hē is to meditate on how names make things real — and how even the smallest words can carry the weight of cosmos.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Hē is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>he</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 2 characters of the name, the restoration adjusts 1: 1 mark of length (ē). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="name-variations">Name Variations</h2>
+<p>The lexicon records 2 additional forms of the name:</p>
+<ul>
+  <li><strong>hē</strong> (owned) — Lowercase owned domain form</li>
+  <li><strong>he</strong> (ascii) — Plain ASCII form</li>
+</ul>
+<p>The temple uses <strong>Hē</strong> as the primary form: it is the spelling that best balances philological accuracy with the practical limits of DNS.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>he</em> to <strong>Hē</strong>, one character at a time:</p>
+<ul>
+  <li><strong>h</strong> → <strong>H</strong> — Same, capitalized</li>
+  <li><strong>e</strong> → <strong>ē</strong> — Macron marks long e</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>hē.com</strong>, which the DNS carries in punycode form as xn--h-pia.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Hē; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Greek can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Pronunciation turns out to be the heart of the matter. The marks in <strong>Hē</strong> are instructions for the voice, and a web that strips them is a web that mispronounces the past at scale. The restoration hands the instructions back: say it as the evidence suggests, type it as the tradition wrote it, and let the punycode machinery do the quiet translation in between. That is all the PÚNYCODEX project asks of the infrastructure — and everything it asks of you, the reader, is to use the whole name.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/achilles/">Achillēs</a></li>
   <li><a href="/sites/adamas/">Adámas</a></li>
   <li><a href="/sites/admetus/">Admētos</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, s.v. ὁ, ἡ, τό.</a></li>
+  <li>Smyth, Greek Grammar (the definite article in epic and classical usage).</li>
+  <li>Plato, Timaeus 48e–52d (the receptacle of becoming).</li>
+  <li>Beekes, Etymological Dictionary of Greek.</li>
+  <li>Jeffery, The Local Scripts of Archaic Greece (the letter H and the Ionic alphabet reform).</li>
+  <li>Lexicon authorities for this entry: LSJ, Beekes, Plato, Plotinus.</li>
 </ul>
-<h2>What the Sources Record</h2>
-<p>Hē is the Ancient Greek feminine article, later reinterpreted by philosophers as a name for the feminine principle of being. It is the grammatical &#39;she&#39; that becomes, in Neoplatonic and esoteric thought, the counterpart to the One. ### Grammatical Goddess The definite article &#39;she,&#39; personified by later mystical thought as feminine being. ### Receptacle of Form In Platonic interpretation, Hē is the hupodochē, the receiving matrix in which the forms impress becoming. ### Counterpart to Hén If τὸ ἕν (Hén) is the One, ἡ (Hē) is the manifested other, the dyad that follows unity. ### Linguistic Mysticism A case where grammar becomes theology: the smallest word elevated to cosmic status.</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Hē as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Greek to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Hē through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/he/">home page</a> offers the full name breakdown, the <a href="/sites/he/lore/">lore page</a> explores the myth, and the <a href="/sites/he/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Hē do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
-<h2>A Note on the Address Bar</h2>
-<p>When you type Hē, the browser performs an invisible conversion into Punycode so the global DNS can route the request. The user sees the original name; the machines see a compatible ASCII encoding. That duality is the engineering compromise that makes the restoration possible, and it is the reason every Unicode domain is both a technical milestone and a small act of cultural memory.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">greek</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

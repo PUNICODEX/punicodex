@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,34 +170,199 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#epithets-cult-titles">Epithets &amp; Cult Titles</a></li>
+                <li><a href="#the-homeric-hymns">The Homeric Hymns</a></li>
+                <li><a href="#oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>Why Hén Belongs in the Address Bar</h1>
-<p>Every address bar is a choice. When you type <strong>Hén</strong>, you are not typing a novelty; you are restoring a name. The plain ASCII form <em>hen</em> is the leftover of a DNS that was built for English typewriters, not for the world&#39;s naming traditions. Hén (hen) — The One · Neoplatonic Unity — belongs to the Greek tradition, where it is catalogued under the domain &quot;Unity, The One, Oneness&quot;. The name means &quot;Greek neuter of εἷς, &quot;one&quot;; philosophically &quot;The One&quot; in Neoplatonism.&quot;. Hén is the Greek neuter of εἷς, &#39;one&#39;. In everyday speech it is simply the number; in philosophy it became one of the most powerful words in the Western tradition. For Parmenides, Plato, and the Neoplatonists, τὸ ἕν names the ultimate source from which all multiplicity flows. PÚNYCODEX restores the name as Hén and serves its temple at Hén.com. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form hen survives as a modern convenience...</p>
-<h2>The Name the DNS Almost Forgot</h2>
-<p>The name is attested in Greek as ἕν — the neuter of εἷς, &#39;one&#39;; in philosophy, &#39;the One&#39; of Neoplatonism. The reconstructed proto-form is sem- (proto-indo-european, &quot;one&quot;). From Greek ἕν, neuter of εἷς &quot;one&quot;, continuing Proto-Indo-European sem- &quot;one&quot;, reflected in Latin semel &quot;once&quot; and English same. Cognate forms across related languages: - εἷς, μία, ἕν (greek) — one - semel (latin) — once - same (english) — one The ASCII form hen survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Hén recovers the stress accent of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than... In scholarly terms, it belongs to the <strong>Tier 2</strong> class: the original preserves at least one philological feature that ASCII cannot encode. That detail is not decorative; it is the difference between a label and a lived name.</p>
-<h2>From Greek to the Browser</h2>
-<p>The name is preserved in Greek as ἕν — Greek alphabet (Classical / Attic), attested Ancient Greek, c. 8th century BCE – present, in Greece and the Greek-speaking Mediterranean. The script is written left-to-right. The scholarly transliteration is Hén (Greek alphabet with polytonic accents), giving the normalized reading /ˈhen/. The rendering proceeds step by step: - The Greek form ἕν is written in the Classical Greek alphabet. - Letters with acute, grave, or circumflex accents preserve the pitch accent of Ancient Greek. - Macrons and omegas (η, ω) mark long vowels, a feature lost in the plain ASCII form. - The Unicode restoration Hén encodes the scholarly spelling as a registrable domain name. The PÚNYCODEX temple does not invent a spelling; it recovers one. By registering the Unicode form, the project proves that the original script can survive inside the infrastructure of the modern web.</p>
-<h2>Why 2026 Still Needs This</h2>
-<p>In 2026, names are data. Search engines, AI training corpora, and localization teams all need authoritative forms. Hén is a small but concrete demonstration that philology and DNS can coexist. The <a href="/sites/hen/scholars/">Scholarly Edition</a> preserves the argument; the blog makes it approachable.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Hén is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>Why Hén belongs in your address bar</h1>
+<p>Every address bar is a choice. When you type <strong>Hén</strong>, you are not typing a novelty; you are restoring a name that the early DNS, built for English typewriters, could not carry. The plain ASCII form <em>hen</em> is a leftover of that constraint, not the name itself. This post is the long version of the restoration: where the name comes from, how the Greek tradition wrote it, how it is pronounced, what the myths and the material record preserve, and why its Unicode form now lives as a working domain. The claim throughout is simple — the original spelling is not decoration. It is the name.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Hén</li>
+  <li><strong>ASCII form:</strong> hen</li>
+  <li><strong>Meaning:</strong> &quot;Greek neuter of εἷς, &quot;one&quot;; philosophically &quot;The One&quot; in Neoplatonism.&quot;</li>
+  <li><strong>Domain of influence:</strong> Unity, The One, Oneness</li>
+  <li><strong>Pantheon:</strong> Greek</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> ἕν (Greek)</li>
+  <li><strong>Live domain:</strong> Hén.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Hén</strong> (<em>hen</em>) — The One · Neoplatonic Unity — belongs to the Greek tradition, where it is catalogued under the domain &quot;Unity, The One, Oneness&quot;. The name means &quot;Greek neuter of εἷς, &quot;one&quot;; philosophically &quot;The One&quot; in Neoplatonism.&quot;.</p>
+<p>Hén is the Greek neuter of εἷς, &#39;one&#39;. In everyday speech it is simply the number; in philosophy it became one of the most powerful words in the Western tradition. For Parmenides, Plato, and the Neoplatonists, τὸ ἕν names the ultimate source from which all multiplicity flows.</p>
+<p>PÚNYCODEX restores the name as <strong>Hén</strong> and serves its temple at <a href="https://xn--hn-bja.com">Hén.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>hen</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Greek as <strong>ἕν</strong> — the neuter of εἷς, &#39;one&#39;; in philosophy, &#39;the One&#39; of Neoplatonism.</p>
+<p>The reconstructed proto-form is <em>sem-</em> (proto-indo-european, &quot;one&quot;). From Greek ἕν, neuter of εἷς &quot;one&quot;, continuing Proto-Indo-European *sem- &quot;one&quot;, reflected in Latin semel &quot;once&quot; and English same.</p>
+<p>Cognate forms across related languages:</p>
+<ul>
+  <li><strong>εἷς, μία, ἕν</strong> (greek) — one</li>
+  <li><strong>semel</strong> (latin) — once</li>
+  <li><strong>same</strong> (english) — one</li>
+</ul>
+<p>The ASCII form <em>hen</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Hén</strong> recovers the stress accent of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>h</strong> → <strong>H</strong> — Same, capitalized</li>
+  <li><strong>e</strong> → <strong>é</strong> — Acute marks stress on e</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+</ul>
+<p>Attested and derived spellings of the name:</p>
+<ul>
+  <li><strong>hén</strong> — owned form: Lowercase owned domain form</li>
+  <li><strong>hen</strong> — ASCII form: Plain ASCII form</li>
+</ul>
+<p>The project holds the domain <strong>Hén.com</strong> (xn--hn-bja.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: From Greek ἕν, neuter of εἷς &quot;one&quot;, continuing Proto-Indo-European *sem- &quot;one&quot;, reflected in Latin semel &quot;once&quot; and English same.</p>
+<p>The reconstructed proto-form is <em>*sem-</em> (proto-indo-european), glossed as &quot;one&quot;.</p>
+<p>The reconstruction is classed as speculative.</p>
+<p>Kindred forms recorded in the lexicon:</p>
+<ul>
+  <li><strong>εἷς, μία, ἕν</strong> (greek) — one</li>
+  <li><strong>semel</strong> (latin) — once</li>
+  <li><strong>same</strong> (english) — one</li>
+</ul>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Greek as <strong>ἕν</strong> — Greek alphabet (Classical / Attic), attested Ancient Greek, c. 8th century BCE – present, in Greece and the Greek-speaking Mediterranean. The script is written left-to-right.</p>
+<p>The scholarly transliteration is <em>Hén</em> (Greek alphabet with polytonic accents), giving the normalized reading /ˈhen/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The Greek form ἕν is written in the Classical Greek alphabet.</li>
+  <li>Letters with acute, grave, or circumflex accents preserve the pitch accent of Ancient Greek.</li>
+  <li>Macrons and omegas (η, ω) mark long vowels, a feature lost in the plain ASCII form.</li>
+  <li>The Unicode restoration Hén encodes the scholarly spelling as a registrable domain name.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/hɛ́n/</strong> — Attic Greek Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>h-</strong> — Rough breathing [h], the audible breath that precedes the vowel in classical Greek.</li>
+  <li><strong>-é-</strong> — Short epsilon with acute pitch stress [ɛ́], the prosodic peak of the word.</li>
+  <li><strong>-n</strong> — Voiced alveolar nasal [n], closing the syllable.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;HEN&#39; — with a slight initial h and a rising pitch on the first, only syllable.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Greek</strong> — τὸ ἕν (to hen), &#39;the one&#39; — the neuter form used in philosophical texts</li>
+  <li><strong>PIE</strong> — *sem- &#39;one&#39;, reflected in Latin semel and English same</li>
+</ul>
+<p>Hén is Tier 2: the Greek ἕν preserves only the acute pitch stress on the first syllable and has no long vowel. It is an Accent-Preserving Tier-2 name.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Hén has no myths in the usual sense, because it is not a person but a principle. Yet its philosophical biography is one of the great narratives of ancient thought.</p>
+<h3 id="what-is-is-one-parmenides">What Is Is One (Parmenides)</h3>
+<p>In his poem <em>On Nature</em>, Parmenides argues that what genuinely is must be one, unchanging, and indivisible. Plurality, change, and becoming are illusions of mortal opinion. The way of truth leads to a single, continuous reality.</p>
+<h3 id="the-one-and-the-good-plato">The One and the Good (Plato)</h3>
+<p>In the <em>Republic</em>, Plato places the Form of the Good beyond being, the source that makes the other forms intelligible. Though Plato does not consistently call it ἕν, later Platonists identified the Good with the One, the simple first principle of all things.</p>
+<h3 id="the-one-beyond-intellect-plotinus">The One beyond Intellect (Plotinus)</h3>
+<p>Plotinus, the founder of Neoplatonism, made τὸ ἕν the first of his three hypostases. It is absolutely simple, beyond being, intellect, and speech. From it proceeds Nous (Intellect), and from Nous proceeds Soul, and from Soul proceeds the material world.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>Nothing was ever pictured or dedicated to the One, so its &#39;symbols&#39; belong to mathematics and metaphysics rather than to cult art:</p>
+<ul>
+  <li><strong>The monad</strong> — the Pythagorean unit from which the number series proceeds; the early school treated one not as a number but as the source and measure of number.</li>
+  <li><strong>The point</strong> — the geometric image of the partless: that which has position but no magnitude, the diagram&#39;s answer to the demand for something without plurality.</li>
+  <li><strong>The circle</strong> — the perfect figure, all of whose points stand at equal distance from the centre; in later Platonist schemata it pictures the undivided whole around its source.</li>
+  <li><strong>The radiant centre</strong> — the emanation diagrams of the Neoplatonic tradition and its Renaissance heirs, in which all things proceed from a single centre and, in Plotinus&#39; account, strain to return to it.</li>
+  <li><strong>The table of opposites</strong> — Aristotle&#39;s report of the Pythagorean <em>systoichia</em>, where the one is ranged with limit, rest, light, and good against the unlimited many.</li>
+</ul>
+<p>No ancient image of the One exists. Personification requires attributes, and the whole point of τὸ ἕν is that it has none — it is without form, figure, or number. Greek and Roman art therefore offers no iconographic type. What the tradition offers instead are diagrams: the Pythagorean monad drawn as a point within a circle, the emanation schemes of later Platonist manuscripts, and the Renaissance frontispieces that picture the Neoplatonic hierarchy as concentric spheres descending from a radiant centre. These images belong to the history of mathematics and book illustration, not to cult art — an absence that is itself doctrinally correct, since the One is strictly beyond representation.</p>
+<h2 id="epithets-cult-titles">Epithets &amp; Cult Titles</h2>
+<p>The One has no cult epithets; nothing was ever sacrificed to τὸ ἕν. What it has instead are philosophical predicates, fixed by the schools that made it the first principle:</p>
+<ul>
+  <li><strong>τὸ ἕν (to hen)</strong> — &quot;the One&quot;; Plotinus&#39; standard name for the first hypostasis, absolutely simple and beyond speech (<em>Enneads</em> V.4).</li>
+  <li><strong>τὸ ἀγαθόν (to agathon)</strong> — &quot;the Good&quot;; Plato&#39;s supreme form in the <em>Republic</em>, which later Platonists identified with the One.</li>
+  <li><strong>ἐπέκεινα τῆς οὐσίας (epekeina tēs ousias)</strong> — &quot;beyond being&quot;; the celebrated formula of <em>Republic</em> 509b for the Good&#39;s superiority to essence.</li>
+  <li><strong>τὸ πρῶτον (to prōton)</strong> — &quot;the First&quot;; the One as uncaused cause in Neoplatonic systematization.</li>
+  <li><strong>ἁπλοῦν (haploun)</strong> — &quot;the absolutely simple&quot;; Plotinus&#39; insistence that the One admits no plurality, not even that of thinker and thought.</li>
+</ul>
+<h2 id="the-homeric-hymns">The Homeric Hymns</h2>
+<p>No Homeric Hymn to the One exists, nor could one: τὸ ἕν is a principle, not a person, and the hymnic tradition addresses gods with names, genealogies, and deeds. The word ἕν enters elevated literature through philosophy rather than cult song. Its earliest surviving hexameter vehicle is Parmenides&#39; <em>On Nature</em> (fr. 28 B 8 Diels-Kranz), where Being is declared ungenerated and imperishable, whole, unique, unmoving, and complete — a sustained meditation on unity composed in Homeric metre. Xenophanes (fr. 21 B 23) had already spoken of &quot;one god, greatest among gods and men.&quot; Thereafter the One is hymned only in the prose of metaphysics: Plato&#39;s <em>Parmenides</em> and Plotinus&#39; <em>Enneads</em> are its true liturgy.</p>
+<h2 id="oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</h2>
+<p>The One had no oracles, sanctuaries, altars, or temples; it is the one &quot;principle&quot; of the corpus that was deliberately never worshipped. Its geography is that of the schools: Plato&#39;s Academy in the groves of Kolonos outside Athens, where the &quot;unwritten doctrines&quot; concerning the One and the Indefinite Dyad were reportedly discussed, and Plotinus&#39; seminar at Rome in the third century CE, where the One was the object of contemplation rather than prayer. The closest thing to a rite was philosophical askēsis itself. Scholars seeking the One&#39;s &quot;cult site&quot; must look to the manuscript tradition of the <em>Enneads</em>, arranged and edited by Porphyry, not to any excavated shrine.</p>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>A philosophical abstraction has no archaeology in the cult sense, and any inventory that pretended otherwise would be a fabrication: no shrine, altar, or votive was ever dedicated to the One. What survives is the material history of a text tradition. The word ἕν is one of the most frequent tokens in the language, inscribed on stone, scratched on ostraka, and written across papyri from classical Athens to late-antique Alexandria; the philosophical corpus that made τὸ ἕν a first principle — Plato&#39;s dialogues and the <em>Enneads</em> of Plotinus — reached us through medieval manuscripts whose ancestors were the papyrus rolls of the Alexandrian schools. Porphyry&#39;s edition of the <em>Enneads</em> (c. 301 CE) fixed the text in which the One survives; its onward journey through Syriac and Arabic — above all the ninth-century &#39;Theology of Aristotle&#39; — and back into Latin is the closest thing this entry has to an excavation record.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Hén is the Greek neuter of εἷς, &#39;one&#39;. In everyday speech it is simply the number; in philosophy it became one of the most powerful words in the Western tradition. For Parmenides, Plato, and the Neoplatonists, τὸ ἕν names the ultimate source from which all multiplicity flows.</p>
+<h3 id="unity">Unity</h3>
+<p>The indivisible whole that precedes every plurality and every distinction.</p>
+<h3 id="the-good">The Good</h3>
+<p>In Plato, the One beyond being is identified with the Form of the Good, source of all knowability.</p>
+<h3 id="first-principle">First Principle</h3>
+<p>For Plotinus, τὸ ἕν is the first hypostasis, absolutely simple and unknowable, from which Mind and Soul proceed.</p>
+<h3 id="indivisibility">Indivisibility</h3>
+<p>What is truly one cannot be divided without ceasing to be itself; it is the root of identity.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>The Greek ἕν shaped Jewish and Christian monotheism through Philo and the Church Fathers, who read the biblical God through Platonist categories. In Indian philosophy, the Upaniṣadic Brahman and the Buddhist śūnyatā offer analogous reflections on unity beyond plurality. The modern mathematical concept of the unit and the philosophical problem of the one and the many both descend from this small Greek word.</p>
+<p>Within the corpus, its nearest neighbors are the other names Greek philosophy raised from words to principles: [[logos|Lógos]] (word, reason, principle), [[nous|Noûs]] (mind, intellect — Plotinus&#39; second hypostasis, which proceeds from the One), and [[ananke|Anánkē]] (necessity, the compulsion under which even gods act).</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Few words so short have carried so much. The Pythagoreans made the <strong>monad</strong> the principle of number — the early school did not count one as a number at all — and Aristotle reports their table of opposites, in which the one stands with limit, rest, light, and good against the many. Through Philo of Alexandria and the Greek Fathers, the Neoplatonic One was read into biblical monotheism; through the Arabic &#39;Theology of Aristotle,&#39; a paraphrase of Plotinus, it entered Islamic philosophy. Nicholas of Cusa made the coincidence of opposites in the One the heart of learned ignorance; Leibniz populated the universe with monads; Spinoza argued there could be only one substance. The modern heirs are quieter but everywhere: the unit of arithmetic, the singleton of set theory, and the standing philosophical problem of the one and the many. Restoring <em>Hén</em> preserves the acute accent that marked the word&#39;s pitch in the classical language — a tiny diacritic with an enormous philosophical pedigree.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Hén given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence. Presocratic fragments are cited by Diels–Kranz number, Plato by Stephanus page, and Plotinus by Ennead and tractate in Porphyry&#39;s arrangement.</p>
+<ul>
+  <li> Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Full text</a></li>
+  <li> Beekes, Etymological Dictionary of Greek.</li>
+  <li> Plato, Republic.</li>
+  <li> Plotinus, Enneads.</li>
+  <li> Parmenides, On Nature.</li>
+  <li> Kahn, The Verb &#39;Be&#39; in Ancient Greek.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>There is a temptation to treat a word of three letters as a small thing. Hén is the smallest name in this collection and the largest claim ever made in Greek: that beneath the many there is a One, and that the many can be understood at all only because the One somehow holds them. Parmenides heard it as a prohibition — do not say &#39;is not&#39; — and Plotinus heard it as a promise: everything that proceeds from the One can also turn back toward it.</p>
+<p>The restoration of a single acute accent may look like pedantry. But the accent is where the pitch rose when the word was still spoken — the little hill in the sound. To write <em>hen</em> without it is to file the word flat; to write <em>hén</em> is to hear, however faintly, the emphasis with which a language first said &#39;one.&#39; Small diacritic, large history: that disproportion is the whole point of the entry.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Hén is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>hen</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 3 characters of the name, the restoration adjusts 1: 1 mark of stress (é). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>Hén.com</strong>, which the DNS carries in punycode form as xn--hn-bja.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Hén; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Greek can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Restoring <strong>Hén</strong> is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. Every section of this post — the script, the sound, the myths, the evidence — converges on the same point: the marks in Hén are information, and information deserves an address of its own. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier, and every visit to Hén.com is a vote for the restored form.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/nyx/">Nýx</a></li>
   <li><a href="/sites/olympia/">Olympía</a></li>
   <li><a href="/sites/palamedes/">Palamḗdēs</a></li>
 </ul>
-<h2>Read More</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843.</a></li>
   <li><a href="https://catalog.perseus.org/catalog/urn:cts:greekLit:tlg0059">Plato, Dialogues, Loeb Classical Library / Oxford Classical Texts, 348 BCE.</a></li>
+  <li>Beekes, Etymological Dictionary of Greek.</li>
+  <li>Plato, Republic.</li>
+  <li>Aristotle, Metaphysics 1.5 (985b–986a), on the Pythagorean monad and table of opposites.</li>
+  <li>Plotinus, Enneads V.4 and VI.9 (procession from and return to the One).</li>
+  <li>Lexicon authorities for this entry: LSJ, Beekes, Plato.</li>
 </ul>
-<h2>What the Sources Record</h2>
-<p>Hén is the Greek neuter of εἷς, &#39;one&#39;. In everyday speech it is simply the number; in philosophy it became one of the most powerful words in the Western tradition. For Parmenides, Plato, and the Neoplatonists, τὸ ἕν names the ultimate source from which all multiplicity flows. ### Unity The indivisible whole that precedes every plurality and every distinction. ### The Good In Plato, the One beyond being is identified with the Form of the Good, source of all knowability. ### First Principle For Plotinus, τὸ ἕν is the first hypostasis, absolutely simple and unknowable, from which Mind and Soul proceed. ### Indivisibility What is truly one cannot be divided without ceasing to be itself; it is the root of identity.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">greek</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

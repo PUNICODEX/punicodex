@@ -403,6 +403,15 @@ try {
   process.exit(1);
 }
 
+// Run admin users migration after DB is initialized
+try {
+  const { execSync } = require('node:child_process');
+  execSync(`node "${path.join(__dirname, 'migrate-admin-users.js')}"`, { stdio: 'inherit' });
+} catch (err) {
+  console.error('Admin users migration failed:', err.message);
+  process.exit(1);
+}
+
 // Apply threat intelligence graph schema
 try {
   const threatGraphSql = fs.readFileSync(path.join(__dirname, 'threat-graph.sql'), 'utf8');

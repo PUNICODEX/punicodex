@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,38 +170,202 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>13 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-chinese-pantheon">The Chinese Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#typing-bagua">Typing Bāguà</a></li>
+                <li><a href="#sister-temples">Sister Temples</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>The Many Faces of Bāguà</h1>
-<p>No important name has only one face. Bāguà appears as a mythic character, a scholarly reconstruction, a cultural memory, and now a Unicode domain. Bāguà (bagua) — Cosmology, Divination · Eight trigrams — belongs to the Chinese tradition, where it is catalogued under the domain &quot;Cosmology, Divination&quot;. The name means &quot;Eight trigrams&quot;. Bāguà is the Chinese universe reduced to eight three-line figures. Each trigram — 乾 Qián, 坤 Kūn, 震 Zhèn, 巽 Xùn, 坎 Kǎn, 離 Lí, 艮 Gèn, 兌 Duì — stacks yin and yang lines in every possible combination of three, producing a complete symbolic alphabet for describing situations, forces, and transformations. From the trigrams come the sixty-four hexagrams of the Yijing, the oldest continuously used divination manual in the world. Bāguà is not only a fortune-telling tool. It is a map of reality: directions, seasons, family roles, body parts, and moral qualities all attach...</p>
-<h2>In Myth</h2>
-<p>The Bāguà are surrounded by origin stories that credit culture heroes, sages, and even river creatures with their discovery. Whether these are history, legend, or mythic shorthand, they reveal how seriously the Chinese tradition took the trigrams as a key to cosmic order. The mythic face is the one most people meet first, and it is the reason the name survived.</p>
-<h2>Across Cultures</h2>
-<p>Bāguà is shared by Confucian, Daoist, and folk-religious traditions, each giving the trigrams a different emphasis. Confucians read them as moral archetypes; Daoists use them in talismans and internal alchemy; feng shui masters arrange buildings by their directions. The arrangement called the Early Heaven sequence is associated with Fuxi and cosmogony, while the Later Heaven sequence is associated with King Wen and the flow of time. In Korea, the trigrams appear on the national flag; in Japan, they influenced Onmyōdō cosmology. Richard Wilhelm&#39;s 1923 German translation, rendered into English by Cary Baynes, introduced the I Ching to modern Europe and America, where it became a countercultural classic. Within the Chinese tradition, closely related... Each culture kept what resonated and reshaped the rest.</p>
-<h2>In the Scholarly Record</h2>
-<p>The Bāguà are everywhere once you know how to look. The Korean flag places four of the trigrams at its corners; martial artists practice Baguazhang, the Eight Trigram Palm, walking in circles that map the directions; computer scientists and designers use the Unicode trigram block (U+2630–U+2637) as glyphs for menus and progress indicators. Feng shui consultants still lay the octagonal bagua over floor plans to diagnose relationships, wealth, career, and health. The I Ching itself has been translated into dozens of languages and consulted by everyone from Carl Jung to John Cage. The trigrams have proved durable because they are not answers; they are a grammar for asking better questions about change. The Scholarly Edition collects those traces so readers can follow the argument from source to conclusion.</p>
-<h2>The Unicode Face</h2>
-<p>The newest face is digital. Bāguà demonstrates that a name can be at once ancient and clickable, venerable and searchable. That is the face this blog exists to celebrate.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Bāguà is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>The many faces of Bāguà</h1>
+<p>No important name has only one face. <strong>Bāguà</strong> appears as a figure of myth, a scholarly reconstruction, a piece of material culture, a memory carried across languages, and — most recently — a Unicode domain. This post looks at each face in turn: the name and its roots, the Chinese characters original, the reconstructed pronunciation, the mythological record, the symbols and sanctuaries, the cross-cultural afterlife, and the engineering that lets the restored spelling resolve in a browser. Taken together, those faces explain why <em>bagua</em> was never going to be enough — and why the restored form is worth a domain of its own.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Bāguà</li>
+  <li><strong>ASCII form:</strong> bagua</li>
+  <li><strong>Meaning:</strong> &quot;Eight trigrams&quot;</li>
+  <li><strong>Domain of influence:</strong> Cosmology, Divination</li>
+  <li><strong>Pantheon:</strong> Chinese</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> 八卦 (Chinese characters)</li>
+  <li><strong>Live domain:</strong> bāguà.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Bāguà</strong> (<em>bagua</em>) — Cosmology, Divination · Eight trigrams — belongs to the Chinese tradition, where it is catalogued under the domain &quot;Cosmology, Divination&quot;. The name means &quot;Eight trigrams&quot;.</p>
+<p><strong>Bāguà</strong> is the Chinese universe reduced to eight three-line figures. Each trigram — 乾 Qián, 坤 Kūn, 震 Zhèn, 巽 Xùn, 坎 Kǎn, 離 Lí, 艮 Gèn, 兌 Duì — stacks yin and yang lines in every possible combination of three, producing a complete symbolic alphabet for describing situations, forces, and transformations. From the trigrams come the sixty-four hexagrams of the <em>Yijing</em>, the oldest continuously used divination manual in the world.</p>
+<p>Bāguà is not only a fortune-telling tool. It is a map of reality: directions, seasons, family roles, body parts, and moral qualities all attach to the eight figures.</p>
+<p>PÚNYCODEX restores the name as <strong>Bāguà</strong> and serves its temple at <a href="https://xn--bgu-cla6n.com">bāguà.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>bagua</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Chinese characters as <strong>八卦</strong>. Etymologically it means &quot;Eight trigrams&quot;.</p>
+<p>The ASCII form <em>bagua</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Bāguà</strong> recovers the tone marks of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>b</strong> → <strong>B</strong> — Same, capitalized</li>
+  <li><strong>a</strong> → <strong>ā</strong> — Long vowel</li>
+  <li><strong>g</strong> → <strong>g</strong> — Same</li>
+  <li><strong>u</strong> → <strong>u</strong> — Same</li>
+  <li><strong>a</strong> → <strong>à</strong> — Stress on a</li>
+</ul>
+<p>The project holds the domain <strong>bāguà.com</strong> (xn--bgu-cla6n.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Chinese characters as <strong>八卦</strong> — Hanzi (Sino-Tibetan), attested Oracle-bone – present, c. 1200 BCE –, in China. The script is written left-to-right; traditional top-to-bottom.</p>
+<p>The scholarly transliteration is <em>Bāguà</em> (Hanyu Pinyin with tone mark), giving the normalized reading /pa˥ ku̯a˥˩/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The name is written with the Chinese characters 八卦.</li>
+  <li>Each character is a logogram that encodes meaning and historical pronunciation.</li>
+  <li>Hanyu Pinyin with tone marks preserves Mandarin pronunciation; the ASCII form loses tone.</li>
+  <li>The Unicode restoration Bāguà is the registrable form because hanzi are outside the .com IDN table.</li>
+</ul>
+<p>The original script is 八卦; traditional and simplified forms are identical. The Modern Standard Mandarin reading is <em>Bāguà</em> (Tone 1 + Tone 4). <em>Bā</em> means &#39;eight&#39; and <em>guà</em> means &#39;trigram&#39; or &#39;hexagram&#39; in divinatory usage. The registrable form uses tone-marked Pinyin so the domain remains readable across scripts; the characters are displayed in the Original Script card. The two graphs are treated in the standard reconstructions: Karlgren&#39;s GSR series 0281 (八) and 0879 (卦), with the Middle and Old Chinese values tabulated by Pulleyblank and Schuessler; Baxter &amp; Sagart reconstruct 八 as <em>pret and 卦 as </em>[k]ʷre-s.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/pa˥ kwa˥˩/</strong> — Modern Standard Mandarin (Pinyin).</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>bā</strong> — Syllable with unaspirated bilabial stop [p], open front vowel [a], and Tone 1 (high level, ˥). Pinyin &#39;b&#39; is unaspirated, unlike English &#39;b&#39; in word-initial position.</li>
+  <li><strong>guà</strong> — Syllable with unaspirated velar stop [k], labio-velar glide [w], open vowel [a], and Tone 4 (falling, ˥˩). The &#39;u&#39; after &#39;g&#39; indicates labialization [kʷ].</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: BAH-GWAH — first syllable high and level, second syllable falling (high to low) like a command.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Traditional</strong> — 八卦</li>
+  <li><strong>Simplified</strong> — 八卦</li>
+  <li><strong>Wade-Giles</strong> — pa¹-kua⁴</li>
+  <li><strong>Related terms</strong> — 易經 Yìjīng (I Ching); 六十四卦 liùshísì guà (sixty-four hexagrams)</li>
+</ul>
+<p>八卦 (Bāguà) refers to the eight trigrams of the Yijing: 乾 qián, 坤 kūn, 震 zhèn, 巽 xùn, 坎 kǎn, 離 lí, 艮 gèn, and 兌 duì. The Modern Standard Mandarin reading is bā (Tone 1) + guà (Tone 4), as recorded in the Unihan Database (kMandarin). For historical context, Baxter &amp; Sagart (2014) reconstruct 八 as <em>pret (GSR 0281a) and 卦 as </em>[k]ʷre-s (GSR 0879s). The tone-marked Pinyin restoration Bāguà correctly shows the high level tone of &#39;eight&#39; and the falling tone of &#39;trigram&#39;.</p>
+<h2 id="mythology">Mythology</h2>
+<p>The Bāguà are surrounded by origin stories that credit culture heroes, sages, and even river creatures with their discovery. Whether these are history, legend, or mythic shorthand, they reveal how seriously the Chinese tradition took the trigrams as a key to cosmic order.</p>
+<h3 id="trigrams-from-the-river-legend-of-fuxi">Trigrams from the River (Legend of Fuxi)</h3>
+<p>Tradition says that the culture hero Fuxi observed the patterns on a dragon-horse that emerged from the Yellow River — the <em>Hétú</em> — and derived the eight trigrams. The <em>Luoshu</em>, a numeric diagram borne by a turtle from the Luo River, later supplied the magic-square arrangement used in feng shui.</p>
+<h3 id="king-wen-and-the-sixty-four-hexagrams-yijing-tradition">King Wen and the Sixty-Four Hexagrams (Yijing Tradition)</h3>
+<p>King Wen of Zhou, imprisoned by the Shang king, stacked the eight trigrams into sixty-four hexagrams and composed the hexagram statements. His son, the Duke of Zhou, added line statements. Confucius or his school later wrote the Ten Wings, transforming a divination manual into a philosophical classic.</p>
+<h3 id="the-sage-who-invented-the-yijing-xici">The Sage Who Invented the Yijing (Xici)</h3>
+<p>The <em>Xici</em> appendix claims that in antiquity the sages invented knotted cords, writing, agriculture, and the Yijing in response to human need. The trigrams were not abstract speculation but practical tools devised by wise rulers to help people navigate change.</p>
+<h3 id="bagua-mirrors-and-protective-charms-daoist-usage">Bagua Mirrors and Protective Charms (Daoist Usage)</h3>
+<p>In popular religion the eight trigrams are arranged around a central taijitu and mounted as a mirror to deflect harmful <em>qi</em>. The bagua mirror is still hung above doors across the Chinese diaspora, a compact cosmogram that claims the whole of space and time in a single octagon.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Bāguà concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>Qián ☰ (Heaven)</strong> — Creativity, strength, the father, the creative impulse</li>
+  <li><strong>Kūn ☷ (Earth)</strong> — Receptivity, devotion, the mother, the power of bearing</li>
+  <li><strong>Zhèn ☳ (Thunder)</strong> — Arousal, movement, the eldest son, sudden change</li>
+  <li><strong>Xùn ☴ (Wind/Wood)</strong> — Gentle penetration, the eldest daughter, influence</li>
+  <li><strong>Kǎn ☵ (Water)</strong> — The abyss, danger, the middle son, the testing flow</li>
+  <li><strong>Lí ☲ (Fire)</strong> — Clarity, attachment, the middle daughter, brightness</li>
+  <li><strong>Gèn ☶ (Mountain)</strong> — Stillness, keeping still, the youngest son, boundary</li>
+  <li><strong>Duì ☱ (Lake)</strong> — Joy, openness, the youngest daughter, completion</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>The Bāguà are rooted in the Shang dynasty practice of pyromancy on oracle bones and turtle plastrons, though the trigram system itself reaches written maturity in the Zhou period. The oldest extant <em>Yijing</em> manuscripts are the Shanghai Museum bamboo slips (c. 300 BCE) and the Fuyang Han slips, excavated in 1977 from the tomb of Xiahou Zao (d. 165 BCE), both already organizing the hexagrams from the eight trigrams; the Mawangdui silk <em>Zhouyi</em> (tomb sealed 168 BCE) transmits the text with a markedly different hexagram order. Han commentaries, including the <em>Xici</em>, fixed the philosophical interpretation of the trigrams, while Song and Ming editions transmitted the diagrams that remain standard today.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p><strong>Bāguà</strong> is the Chinese universe reduced to eight three-line figures. Each trigram — 乾 Qián, 坤 Kūn, 震 Zhèn, 巽 Xùn, 坎 Kǎn, 離 Lí, 艮 Gèn, 兌 Duì — stacks yin and yang lines in every possible combination of three, producing a complete symbolic alphabet for describing situations, forces, and transformations. From the trigrams come the sixty-four hexagrams of the <em>Yijing</em>, the oldest continuously used divination manual in the world.</p>
+<p>Bāguà is not only a fortune-telling tool. It is a map of reality: directions, seasons, family roles, body parts, and moral qualities all attach to the eight figures.</p>
+<h3 id="the-three-lines">The Three Lines</h3>
+<p>A solid line is yang; a broken line is yin. Three lines yield 2³ = 8 trigrams, the elementary vocabulary of change.</p>
+<h3 id="heaven-and-earth">Heaven and Earth</h3>
+<p>Qián ☰, three solid lines, is heaven and creative power; Kūn ☷, three broken lines, is earth and receptive yielding.</p>
+<h3 id="cosmic-directions">Cosmic Directions</h3>
+<p>The Later Heaven arrangement assigns each trigram to a direction, a season, and a domain of human life.</p>
+<h3 id="divination-method">Divination Method</h3>
+<p>Yarrow stalks, coins, and milfoil turn trigrams into hexagrams, turning a question into a reading of timing and transformation.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Bāguà is shared by Confucian, Daoist, and folk-religious traditions, each giving the trigrams a different emphasis. Confucians read them as moral archetypes; Daoists use them in talismans and internal alchemy; feng shui masters arrange buildings by their directions. The arrangement called the Early Heaven sequence is associated with Fuxi and cosmogony, while the Later Heaven sequence is associated with King Wen and the flow of time. In Korea, the trigrams appear on the national flag; in Japan, they influenced Onmyōdō cosmology. Richard Wilhelm&#39;s 1923 German translation, rendered into English by Cary Baynes, introduced the <em>I Ching</em> to modern Europe and America, where it became a countercultural classic.</p>
+<p>Within the Chinese tradition, closely related names in the corpus include [[long|Lóng]], [[taichi|Tàijí]], [[taishang|Tàishàng]], [[tian|Tiān]], [[tiandi|Tiāndì]], and [[wuxing|Wǔxíng]].</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>The Bāguà are everywhere once you know how to look. The Korean flag places four of the trigrams at its corners; martial artists practice <em>Baguazhang</em>, the Eight Trigram Palm, walking in circles that map the directions; computer scientists and designers use the Unicode trigram block (U+2630–U+2637) as glyphs for menus and progress indicators. Feng shui consultants still lay the octagonal bagua over floor plans to diagnose relationships, wealth, career, and health. The <em>I Ching</em> itself has been translated into dozens of languages and consulted by everyone from Carl Jung to John Cage. The trigrams have proved durable because they are not answers; they are a grammar for asking better questions about change.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Bāguà given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Yijing (Book of Changes). <a href="https://ctext.org/book-of-changes">Full text</a></li>
+  <li> Wilhelm/Baynes, I Ching.</li>
+  <li> Shaughnessy, I Ching: The Classic of Changes.</li>
+  <li> Lynn, The Classic of Changes.</li>
+  <li> Huainanzi, Liu An; Chinese Text Project, 139 BCE. <a href="https://ctext.org/huainanzi">Full text</a></li>
+  <li> Shiji (Records of the Grand Historian).</li>
+  <li> Baxter &amp; Sagart, Old Chinese Reconstruction. <a href="http://ocbaxtersagart.lsait.lsa.umich.edu/">Full text</a></li>
+  <li> Unihan Database (Unicode Consortium). <a href="https://www.unicode.org/charts/unihan.html">Full text</a></li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Bāguà is the intuition that reality can be modeled without being exhausted. Eight figures, each only three lines long, are enough to describe marriages, wars, harvests, illnesses, and revolutions because the trigrams do not describe events; they describe tendencies. A trigram is a weather pattern, not a weather report.</p>
+<p>To consult the <em>Yijing</em> is to accept that you already know the answer but cannot yet see its shape. The trigram does not predict the future like a calendar; it clarifies the present like a mirror. In this sense Bāguà is less occult than psychological: it forces the questioner to recognize which forces are active, which are latent, and which direction the situation is turning. The eight figures are not magic. They are a discipline of attention.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Bāguà is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>bagua</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 5 characters of the name, the restoration adjusts 2: 1 mark of stress (à); 1 mark of length (ā). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>bagua</em> to <strong>Bāguà</strong>, one character at a time:</p>
+<ul>
+  <li><strong>b</strong> → <strong>B</strong> — Same, capitalized</li>
+  <li><strong>a</strong> → <strong>ā</strong> — Long vowel</li>
+  <li><strong>g</strong> → <strong>g</strong> — Same</li>
+  <li><strong>u</strong> → <strong>u</strong> — Same</li>
+  <li><strong>a</strong> → <strong>à</strong> — Stress on a</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>bāguà.com</strong>, which the DNS carries in punycode form as xn--bgu-cla6n.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Bāguà; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Chinese characters can now be typed into any browser on earth.</p>
+<h2 id="the-chinese-pantheon">The Chinese Pantheon</h2>
+<p>Bāguà is one of 43 entries the PÚNYCODEX lexicon catalogues under the Chinese pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Bāguà mean?</strong> The traditional gloss is &quot;Eight trigrams.&quot;</p>
+<p><strong>Which tradition does Bāguà belong to?</strong> Bāguà is catalogued in the Chinese pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Bāguà classified as Tier 2?</strong> Because the original preserves at least one philological feature that ASCII cannot encode — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Bāguà a working domain?</strong> Yes — bāguà.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for bāguà.com?</strong> The DNS encoding is xn--bgu-cla6n.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="typing-bagua">Typing Bāguà</h2>
+<p>You do not need a special keyboard to use this restoration. The <a href="/type/">PÚNYCODEX Type Tool</a> converts the ASCII form <em>bagua</em> into <strong>Bāguà</strong> as you type, and the browser extension offers the same conversion inside any text field. Copy the restored form, paste it into the address bar, and the DNS does the rest.</p>
+<h2 id="sister-temples">Sister Temples</h2>
+<p>Other temples in the Chinese pantheon include <a href="/sites/long/">Lóng</a>, <a href="/sites/mazu/">Māzǔ</a>, and <a href="/sites/mozi/">Mòzǐ</a> — each with its own restoration story, its own scholarly record, and its own place in the lexicon.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Myth, script, sound, cult, legacy, domain: the faces of Bāguà add up to a single argument — that a name is a record, and records deserve fidelity. The PÚNYCODEX restoration keeps that record in working order: the temple presents it, the Scholarly Edition footnotes it, the lexicon catalogs it, and the domain makes it addressable. <em>bagua</em> will always exist as a fallback. But fallback is not identity. <strong>Bāguà</strong> is the name; everything else is a convenience.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/confucius/">Kǒngzǐ</a></li>
   <li><a href="/sites/emei/">Éméi</a></li>
   <li><a href="/sites/fuxi/">Fúxī</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://ctext.org/book-of-changes">Yijing (Book of Changes).</a></li>
   <li><a href="https://www.unicode.org/charts/unihan.html">Unihan Database (Unicode Consortium), kMandarin readings for U+516B 八 and U+5366 卦.</a></li>
   <li><a href="http://ocbaxtersagart.lsait.lsa.umich.edu/">Baxter &amp; Sagart, Old Chinese: A New Reconstruction (2014).</a></li>
   <li><a href="https://ctext.org/huainanzi">Huainanzi, Liu An; Chinese Text Project, 139 BCE.</a></li>
+  <li><a href="https://ctext.org/shang-shu/hong-fan">Shangshu (Book of Documents), Hongfan (The Great Plan).</a></li>
+  <li><a href="https://ctext.org/chun-qiu-zuo-zhuan">Zuozhuan (Chunqiu Zuozhuan).</a></li>
+  <li>Wilhelm/Baynes, I Ching.</li>
+  <li>Shaughnessy, I Ching: The Classic of Changes.</li>
+  <li>Lynn, The Classic of Changes.</li>
+  <li>Shiji (Records of the Grand Historian).</li>
+  <li>Lexicon authorities for this entry: I Ching, Chinese classics.</li>
 </ul>
-<h2>The Cultural Afterlife</h2>
-<p>The Bāguà are everywhere once you know how to look. The Korean flag places four of the trigrams at its corners; martial artists practice Baguazhang, the Eight Trigram Palm, walking in circles that map the directions; computer scientists and designers use the Unicode trigram block (U+2630–U+2637) as glyphs for menus and progress indicators. Feng shui consultants still lay the octagonal bagua over floor plans to diagnose relationships, wealth, career, and health. The I Ching itself has been translated into dozens of languages and consulted by everyone from Carl Jung to John Cage. The trigrams have proved durable because they are not answers; they are a grammar for asking better questions about change.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">chinese</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

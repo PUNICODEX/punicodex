@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,34 +170,188 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>17 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#epithets-cult-titles">Epithets &amp; Cult Titles</a></li>
+                <li><a href="#the-homeric-hymns">The Homeric Hymns</a></li>
+                <li><a href="#oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>Why Mnēmosýnē Belongs in the Address Bar</h1>
-<p>Every address bar is a choice. When you type <strong>Mnēmosýnē</strong>, you are not typing a novelty; you are restoring a name. The plain ASCII form <em>mnemosyne</em> is the leftover of a DNS that was built for English typewriters, not for the world&#39;s naming traditions. Mnēmosýnē (Greek Μνημοσύνη; ASCII mnemosyne) is the Titaness of memory and remembrance in Greek tradition. Hesiod names her among the children of Ouranos and Gaia in the Titan catalogue of the Theogony, and makes her, through nine nights with Zeus in Pieria, the mother of the nine Muses — daughters born &#39;a forgetting of ills and a rest from sorrow&#39;. Her province is the faculty on which poetry, history, and law all depend: Diodorus Siculus preserves a tradition that she discovered the uses of reason and assigned a name to every object, making her the inventress of language itself, and Plato has Socrates describe the mind&#39;s power to retain impressions as &#39;the gift of Mnemosyne, the mother of the Muses&#39;. In Orphic eschatology the soul of the dead is...</p>
-<h2>The Name the DNS Almost Forgot</h2>
-<p>The name is attested in Greek as Μνημοσύνη, an abstract noun built with the suffix -σύνη (as in δικαιοσύνη, &#39;justice&#39;) on the root of μνάομαι, &#39;to be mindful of, to remember&#39;; the underlying noun μνήμη means &#39;memory, remembrance&#39;. The root descends from Proto-Indo-European men-, &#39;to think&#39;, so that Μνημοσύνη is kin to Latin memoria and mens and, more distantly, to English mind; the English adjective mnemonic comes from her own derivative μνημονικός, &#39;of memory&#39;. Pindar and the choral tradition use the Doric-Aeolic spelling Μναμοσύνα (Mnamosýna), with alpha for eta, and a shorter by-form Μνήμη (Mnḗmē, &#39;Memory&#39;) named one of the three elder Muses worshipped at Ascra below Mount Helicon. The ASCII form mnemosyne survives only because the early... In scholarly terms, it belongs to the <strong>Tier 1</strong> class: the Greek original carries both stress and length, and only one valid Unicode restoration exists. That detail is not decorative; it is the difference between a label and a lived name.</p>
-<h2>From Greek to the Browser</h2>
-<p>The name is written in Greek as Μνημοσύνη. This original script is the form against which the ASCII fallback mnemosyne and the PÚNYCODEX restoration Mnēmosýnē are measured: the restoration preserves both its pitch accent and its vowel quantity of the written form, so that a reader typing the modern address still speaks the ancient name. The Greek is Μνημοσύνη, from μνήμη (&#39;memory&#39;). The initial Mn- cluster is characteristic of Greek words for memory and remembrance. The first and final vowels are long eta (ē), and the stress falls on the antepenult with the acute on -sý-. PUNYCODEX writes Mnēmosýnē with macrons on the long vowels and the acute accent, since the full Greek alphabet is not registrable. The PÚNYCODEX temple does not invent a spelling; it recovers one. By registering the Unicode form, the project proves that the original script can survive inside the infrastructure of the modern web.</p>
-<h2>Why 2026 Still Needs This</h2>
-<p>In 2026, names are data. Search engines, AI training corpora, and localization teams all need authoritative forms. Mnēmosýnē is a small but concrete demonstration that philology and DNS can coexist. The <a href="/sites/mnemosyne/scholars/">Scholarly Edition</a> preserves the argument; the blog makes it approachable.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Mnēmosýnē is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>Why Mnēmosýnē belongs in your address bar</h1>
+<p>Every address bar is a choice. When you type <strong>Mnēmosýnē</strong>, you are not typing a novelty; you are restoring a name that the early DNS, built for English typewriters, could not carry. The plain ASCII form <em>mnemosyne</em> is a leftover of that constraint, not the name itself. This post is the long version of the restoration: where the name comes from, how the Greek tradition wrote it, how it is pronounced, what the myths and the material record preserve, and why its Unicode form now lives as a working domain. The claim throughout is simple — the original spelling is not decoration. It is the name.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Mnēmosýnē</li>
+  <li><strong>ASCII form:</strong> mnemosyne</li>
+  <li><strong>Meaning:</strong> &quot;Memory (from μνήμη)&quot;</li>
+  <li><strong>Domain of influence:</strong> Memory, Muses&#39; Mother</li>
+  <li><strong>Pantheon:</strong> Greek</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Original script:</strong> Μνημοσύνη (Greek)</li>
+  <li><strong>Live domain:</strong> mnēmosýnē.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Mnēmosýnē</strong> (Greek <strong>Μνημοσύνη</strong>; ASCII <em>mnemosyne</em>) is the Titaness of memory and remembrance in Greek tradition. Hesiod names her among the children of Ouranos and Gaia in the Titan catalogue of the <em>Theogony</em>, and makes her, through nine nights with Zeus in Pieria, the mother of the nine Muses — daughters born &#39;a forgetting of ills and a rest from sorrow&#39;. Her province is the faculty on which poetry, history, and law all depend: Diodorus Siculus preserves a tradition that she discovered the uses of reason and assigned a name to every object, making her the inventress of language itself, and Plato has Socrates describe the mind&#39;s power to retain impressions as &#39;the gift of Mnemosyne, the mother of the Muses&#39;. In Orphic eschatology the soul of the dead is told to shun the water of Forgetfulness and to drink instead from the lake of Memory; at the oracle of Trophonios at Lebadeia the consultant drank from springs of both Lethe and Mnemosyne before descending, and after emerging was set on a &#39;chair of Memory&#39; to recite all he had seen.</p>
+<p>PÚNYCODEX restores the name as <strong>Mnēmosýnē</strong> and serves this temple at <a href="https://xn--mnmosn-fza6of.com">mnēmosýnē.com</a>. The Greek original carries both vowel length (long eta twice) and the pitch accent (acute on upsilon), and exactly one historically valid Unicode restoration exists; the name is therefore classified Tier 1. The plain ASCII form <em>mnemosyne</em> is a convenience of the domain-name system, not an ancient spelling.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Greek as <strong>Μνημοσύνη</strong>, an abstract noun built with the suffix -σύνη (as in δικαιοσύνη, &#39;justice&#39;) on the root of μνάομαι, &#39;to be mindful of, to remember&#39;; the underlying noun μνήμη means &#39;memory, remembrance&#39;. The root descends from Proto-Indo-European <em>men-, &#39;to think&#39;, so that Μνημοσύνη is kin to Latin memoria and mens and, more distantly, to English </em>mind<em>; the English adjective </em>mnemonic* comes from her own derivative μνημονικός, &#39;of memory&#39;. Pindar and the choral tradition use the Doric-Aeolic spelling <strong>Μναμοσύνα</strong> (Mnamosýna), with alpha for eta, and a shorter by-form <strong>Μνήμη</strong> (Mnḗmē, &#39;Memory&#39;) named one of the three elder Muses worshipped at Ascra below Mount Helicon.</p>
+<p>The ASCII form <em>mnemosyne</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Mnēmosýnē</strong> recovers both long etas and the acute accent on the upsilon directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>m</strong> → <strong>M</strong> — Mu</li>
+  <li><strong>n</strong> → <strong>n</strong> — Nu</li>
+  <li><strong>e</strong> → <strong>ē</strong> — Eta: long epsilon</li>
+  <li><strong>m</strong> → <strong>m</strong> — Mu</li>
+  <li><strong>o</strong> → <strong>o</strong> — Short omicron</li>
+  <li><strong>s</strong> → <strong>s</strong> — Sigma</li>
+  <li><strong>y</strong> → <strong>ý</strong> — Acute on upsilon</li>
+  <li><strong>n</strong> → <strong>n</strong> — Nu</li>
+  <li><strong>e</strong> → <strong>ē</strong> — Eta: long epsilon</li>
+</ul>
+<p>Attested and derived spellings of the name:</p>
+<ul>
+  <li><strong>Mnemosyne</strong> — ASCII form: Plain ASCII form</li>
+</ul>
+<p>The project holds the domain <strong>mnēmosýnē.com</strong> (xn--mnmosn-fza6of.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: Memory (from μνήμη)</p>
+<p>The root gloss is &quot;Memory.&quot;</p>
+<p>The reconstruction is classed as attested.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is written in Greek as <strong>Μνημοσύνη</strong>. This original script is the form against which the ASCII fallback <em>mnemosyne</em> and the PÚNYCODEX restoration <strong>Mnēmosýnē</strong> are measured: the restoration preserves both its pitch accent and its vowel quantity of the written form, so that a reader typing the modern address still speaks the ancient name.</p>
+<p>The Greek is Μνημοσύνη, from μνήμη (&#39;memory&#39;). The initial Mn- cluster is characteristic of Greek words for memory and remembrance. The first and final vowels are long eta (ē), and the stress falls on the antepenult with the acute on -sý-. PUNYCODEX writes Mnēmosýnē with macrons on the long vowels and the acute accent, since the full Greek alphabet is not registrable.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/mnɛː.mosý.nɛː/</strong> — Classical Attic values: long open eta [ɛː] twice, short omicron [o], the close front rounded [y] of upsilon carrying the acute accent, and the initial cluster [mn] spoken with both nasals sounded, as in μνήμη itself.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Mn-</strong> — Voiced alveolar nasal [m] plus voiceless alveolar nasal [n], the difficult initial cluster.</li>
+  <li><strong>-ē-</strong> — Long close-mid front vowel [eː], written eta.</li>
+  <li><strong>-mo-</strong> — Voiced bilabial nasal [m] followed by short [o].</li>
+  <li><strong>-sý-</strong> — Voiceless alveolar sibilant [s] plus close front [y] with acute stress.</li>
+  <li><strong>-nē</strong> — Long close-mid front vowel [eː] ending the name.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;mneh-MOH-see-nee&#39; — the first syllable is like &#39;mneh&#39;, the stress falls on the third syllable, and both long vowels are held.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Greek</strong> — Μνημοσύνη (Mnēmosýnē), Memory personified; Hesiod places the name in Pieria at the birth of the Muses.</li>
+  <li><strong>Latin</strong> — Moneta, the name Hyginus substitutes for her in the Titan catalogue.</li>
+  <li><strong>Function</strong> — Mother of the nine Muses by Zeus.</li>
+</ul>
+<p>Mnēmosýnē is Tier 1: the Greek original contains both length (ē) and acute stress (ý), making it the fullest scholarly restoration. The English &#39;Mnemosyne&#39; flattens the vowels.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Mnēmosýnē&#39;s myths are few, and nearly all are genealogies of her function: what is told of her is what memory makes possible.</p>
+<h3 id="daughter-of-ouranos-and-gaia">Daughter of Ouranos and Gaia</h3>
+<p>Hesiod places her in the Titan catalogue — &#39;Theia and Rhea, Themis and Mnemosyne and gold-crowned Phoebe and lovely Tethys&#39; — born of Earth&#39;s union with Sky. Diodorus preserves the rationalizing version in which each Titan discovered a benefit for mankind; hers was reason and the naming of things.</p>
+<h3 id="nine-nights-in-pieria">Nine nights in Pieria</h3>
+<p>In the <em>Theogony</em> Zeus lies with her for nine nights &#39;remote from the immortals&#39; in Pieria beneath Olympus; when the year comes round she bears nine daughters &#39;of one mind, whose hearts are set upon song&#39; — among them <a href="/sites/ourania/">Ouranía</a>, the Muse of astronomy. A later passage repeats the union — Zeus &#39;loved Mnemosyne with the beautiful hair&#39; — and names the nine Muses in order. Ovid adds the seduction&#39;s costume: on Arachne&#39;s tapestry Zeus appears &#39;as a shepherd&#39; to snare Mnemosyne. Antoninus Liberalis retells the Pierian union, and Nonnus still knows the nine wakeful nights.</p>
+<h3 id="memory-among-the-elder-muses">Memory among the elder Muses</h3>
+<p>At Ascra below Helicon the oldest cult knew only three Muses — Melete (&#39;Practice&#39;), Mneme (&#39;Memory&#39;), and Aoide (&#39;Song&#39;) — so that before the Olympian nine existed, memory was herself one of the singing powers.</p>
+<h3 id="the-waters-of-the-dead">The waters of the dead</h3>
+<p>The Orphic gold tablets instruct the soul to refuse the spring of Forgetfulness and to drink from the lake of Memory: remembrance of its divine origin frees the soul from the cycle of rebirth. The same pairing of Lethe and Mnemosyne structured the descent ritual at the Trophonios oracle, where the consultant drank of both waters.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>Greek art never fixed a canonical attribute for Mnēmosýnē: the LIMC records no standard iconographic type for her, and her few certain images show her simply present among her daughters the Muses. What functions as her symbolism is therefore textual and ritual rather than figural:</p>
+<ul>
+  <li><strong>The spring of Memory</strong> — the water that bears her name at the Trophonios oracle and in the Orphic tablets, where the dead must drink to retain themselves.</li>
+  <li><strong>The chair of Mnemosyne</strong> — the seat at Lebadeia on which the returning consultant was set to recite his vision, the rite&#39;s final station.</li>
+  <li><strong>The wax tablet</strong> — Plato&#39;s image for the mind&#39;s power to hold impressions, explicitly called her gift: memory as the writing surface of the soul.</li>
+  <li><strong>The nine Muses</strong> — her visible embodiment in cult and art; at Athens and at Tegea her image stood among theirs.</li>
+</ul>
+<p>No secure iconographic type for Mnēmosýnē exists in archaic or Classical Greek art: she has no standard attribute, pose, or labelled image, and the vase painters who crowd Olympus with named deities pass her by. Roman monuments of the Muses sometimes add a tenth, matronly figure that scholars have wished to call Mnēmosýnē, but the identifications remain conjectural, and uninscribed examples prove nothing. Her true monuments are textual: the Theogony&#39;s nine nights, and the thin gold leaves of the Orphic tablets on which her name instructs the dead to remember. The absence is itself informative — Memory was worshipped as a function, not pictured as a body.</p>
+<h2 id="epithets-cult-titles">Epithets &amp; Cult Titles</h2>
+<p>Mnēmosýnē attracted descriptors rather than formal cult titles, and they cluster around her two roles — Titaness and mother of song:</p>
+<ul>
+  <li><strong>μήτηρ Μουσῶν</strong> (<em>mḗtēr Mousôn</em>) — &#39;mother of the Muses&#39;: her defining title, given in the <em>Homeric Hymn to Hermes</em> (&#39;first among the gods he honoured Mnemosyne, mother of the Muses, in his song&#39;) and repeated in the Orphic hymn addressed to her.</li>
+  <li><strong>Διὸς ἁγνὴ παράκοιτις</strong> (<em>Diòs hagnḕ parákoitis</em>) — &#39;pure consort of Zeus&#39;: the opening address of the Orphic hymn.</li>
+  <li><strong>&#39;who reigns over the hills of Eleuther&#39;</strong> — Hesiod&#39;s image of her at the moment of the Muses&#39; birth in Pieria.</li>
+  <li><strong>&#39;with the beautiful hair&#39;</strong> — the epithet she bears when the <em>Theogony</em> returns to her union with Zeus.</li>
+  <li><strong>&#39;fair-robed child of Ouranos&#39;</strong> — Pindar&#39;s invocation in the seventh Paean, pairing her beauty with her Titan parentage.</li>
+  <li><strong>of Pieria</strong> — the region beneath Olympus where Hesiod sets the nine nights, forever hers by association.</li>
+</ul>
+<h2 id="the-homeric-hymns">The Homeric Hymns</h2>
+<p>No Homeric Hymn is addressed to Mnēmosýnē herself, but the corpus honours her at its most musical moment: in the <em>Hymn to Hermes</em> the infant god, having invented the lyre, sings the gods in due order &#39;and first among them he honoured Mnemosyne, mother of the Muses, in his song; for the son of Maia was of her following&#39; — the first song ever sung on the instrument of song begins with Memory. Hesiod&#39;s <em>Theogony</em> gives her the fuller hymn she never received: nine nights with Zeus in Pieria, and daughters born &#39;a forgetting of ills and a rest from sorrow&#39;. The <em>Works and Days</em> opens by invoking her daughters, the Muses of Pieria, rather than her. The later Orphic corpus does address her directly: the hymn to Mnēmosýnē (no. 77 in the standard modern numbering) calls on her to waken memory in the initiates and to break Lethe&#39;s fetters from their souls.</p>
+<h2 id="oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</h2>
+<p>Mnēmosýnē had no oracle of her own, yet she presides at one in a famous way. At the sanctuary of Trophonios at Lebadeia in Boeotia, the consultant drank first from the spring of Lēthē, Forgetfulness, and then from the spring of Mnēmosýnē, so as to retain the vision received in the cave; Pausanias describes the ritual in detail. Her other seats are her daughters&#39;: the Valley of the Muses on Mount Helicon, and Pieria beneath Olympus, where Hesiod sets their birth. The Orphic gold tablets extend the same logic beyond death: the soul must shun Lēthē&#39;s water and drink from the lake of Memory.</p>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>No sanctuary of her own is attested for Mnēmosýnē; her material presence is always adjunct to the Muses or embedded in another god&#39;s rite, and the evidence is specific enough to name. Pausanias saw images of Mnemosyne standing with the Muses and Apollo in the shrine of Dionysos at Athens, and saw the Muses and Mnemosyne again represented on the altar of Athena Alea at Tegea. At the Trophonion of Lebadeia her presence was ritual rather than sculptural: the paired springs of Lethe and Mnemosyne and the &#39;chair of Mnemosyne&#39; on which the consultant recited his vision are described in detail by Pausanias, and the sanctuary itself, on the banks of the Hercyna, has been investigated by excavation. In the Roman period she acquires a face: a floor mosaic from Antioch (Hatay Archaeology Museum) preserves a labelled image of her, and a mosaic from Elis shows the symbols of Mnemosyne and the nine Muses — both catalogued in the LIMC. The pattern is consistent: Memory is worshipped and depicted as the Muses&#39; ground, never alone.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Mnēmosýnē&#39;s spheres of influence reduce to one — the retention and transmission of what exists — but Greek tradition assigns that single faculty four concrete provinces.</p>
+<h3 id="mother-of-the-muses">Mother of the Muses</h3>
+<p>By Zeus she bore the nine Muses, each presiding over an art or science; Hesiod makes their function, &#39;a forgetting of ills and a rest from sorrow&#39;, the negative image of her own positive gift, and the poets pour libations to &#39;the daughters of Memory&#39; alongside Apollo, the Muses&#39; leader.</p>
+<h3 id="inventress-of-names">Inventress of names</h3>
+<p>Diodorus Siculus records that she &#39;discovered the uses of the power of reason&#39; and &#39;gave a designation to every object about us&#39;, so that speech itself is her benefaction — though some, he notes, assigned the same discovery to Hermes.</p>
+<h3 id="spring-of-the-mysteries">Spring of the mysteries</h3>
+<p>In the gold tablets buried with Orphic initiates, the dead soul must avoid the spring of Forgetfulness and drink from the lake of Memory, so as to remember its divine origin and escape the cycle of rebirth.</p>
+<h3 id="keeper-of-the-oracle-s-waters">Keeper of the oracle&#39;s waters</h3>
+<p>At the sanctuary of Trophonios at Lebadeia the consultant drank water of Lethe and then water of Mnemosyne before the descent, and afterwards was set on the &#39;chair of Mnemosyne&#39; to relate his vision: memory frames the entire rite.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Roman mythography translated her rather than replaced her. Hyginus lists <strong>Moneta</strong> among the Titans exactly where the Greek catalogues place Mnemosyne, and records that &#39;from Jove and Moneta&#39; were born the Musae. The substitution was eased by an existing Roman word: Moneta was already an epithet of Juno (from <em>moneo</em>, &#39;to warn, to remind&#39;), in whose Capitoline temple the Roman mint was later housed — whence English <em>money</em> — but Latin poetry also kept the Greek name itself, and Ovid calls the Muses &#39;Mnemonides&#39;, daughters of Memory. Late antique religion absorbed her into its psychology of recollection: the Orphic hymn addressed to her asks her to &#39;waken the mystics&#39; memory to holy rites and break Lethe&#39;s fetters&#39;, fusing the Titaness with the philosophical doctrine, famous since Plato&#39;s <em>Meno</em>, that all learning is remembering. Plato himself had already made the connection in the <em>Theaetetus</em>, where the wax block of the mind is &#39;the gift of Mnemosyne, the mother of the Muses&#39;.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Her name survives wherever memory is professionalized. The words <em>mnemonic</em> and <em>mnemonics</em> descend from μνημονικός, &#39;of memory&#39;, and <em>museum</em> from Mouseion, the &#39;seat of the Muses&#39; — her daughters&#39; house. The classical art of memory, codified in the <em>Rhetorica ad Herennium</em> and transmitted by Cicero and Quintilian, stored speeches in imagined places and images; Frances Yates&#39;s <em>The Art of Memory</em> (1966) traced that technique from Simonides to the Renaissance memory theatres of Giulio Camillo and Giordano Bruno, restoring Mnemosyne&#39;s province to the center of intellectual history. Aby Warburg named his unfinished picture atlas of 1927–1929 the <em>Bilderatlas Mnemosyne</em>, an attempt to map how images remember antiquity across cultures. Classical scholarship itself keeps her name on its shelf: <em>Mnemosyne</em>, the international journal of classical studies published by Brill, has appeared under her name since 1852. Philostratus had already given her the finest tribute: the aged Apollonius of Tyana, famed for his memory, sang her a hymn in which &#39;everything is worn and withered away by time, whereas time itself never ages, but remains immortal because of memory&#39;.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Mnēmosýnē given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary, philosophical, and ritual texts supply the narrative and cultic evidence.</p>
+<ul>
+  <li> Hesiod, Theogony 53–63, 132–135, 915–917. <a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Full text</a></li>
+  <li> Pausanias, Description of Greece 1.2.5, 8.46.3, 9.29.1–2, 9.39.7–13.</li>
+  <li> Plato, Theaetetus 191c–e; Meno 81c–e.</li>
+  <li> Diodorus Siculus, Library of History 5.66–67.</li>
+  <li> Pseudo-Hyginus, Fabulae, Preface (Moneta for Mnemosyne); Ovid, Metamorphoses 5.268, 6.114.</li>
+  <li> Orphic Hymn 77, To Mnemosyne; Graf &amp; Johnston, Ritual Texts for the Afterlife: Orpheus and the Bacchic Gold Tablets (2007).</li>
+  <li> LSJ (Liddell–Scott–Jones), s.vv. μνημοσύνη, μνήμη; Beekes, Etymological Dictionary of Greek, s.v. μνάομαι.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Mnēmosýnē is the most quietly powerful of the Titans. She does not scheme like Kronos or thunder like Zeus; she remembers. Yet Greek thought makes remembrance the condition of everything else: Plato calls the mind&#39;s power to hold impressions her gift, and the Orphic dead carried her name on thin gold leaves into the grave, lest they drink forgetfulness on the other side. A people that cannot remember its dead is not a people; a person who cannot remember their promises is not yet a person.</p>
+<p>The Orphic instruction is the deepest: when you die, do not drink forgetfulness. Choose memory, even when it hurts. Memory is the link between the soul and the divine. Mnēmosýnē does not promise that the past was good; she promises that it was real, and that reality matters.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Mnēmosýnē is classified as <strong>Tier 1</strong>: the original carries both stress and length, and only one valid Unicode restoration exists. The ASCII fallback <em>mnemosyne</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 9 characters of the name, the restoration adjusts 3: 1 mark of stress (ý); 2 marks of length (ē, ē). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>mnēmosýnē.com</strong>, which the DNS carries in punycode form as xn--mnmosn-fza6of.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Mnēmosýnē; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Greek can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Restoring <strong>Mnēmosýnē</strong> is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. Every section of this post — the script, the sound, the myths, the evidence — converges on the same point: the marks in Mnēmosýnē are information, and information deserves an address of its own. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier, and every visit to mnēmosýnē.com is a vote for the restored form.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/eileithyia/">Eileíthyia</a></li>
   <li><a href="/sites/eos/">Ēōs</a></li>
   <li><a href="/sites/eris/">Éris</a></li>
 </ul>
-<h2>Read More</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Hesiod, Theogony 132–135 (the Titan catalogue).</a></li>
   <li><a href="https://www.theoi.com/Text/OrphicHymns2.html">Orphic Hymn 77, To Mnemosyne (Athanassakis ed.); Plato, Meno 81c–e (anamnesis).</a></li>
+  <li>Hesiod, Theogony 53–63 (the nine nights in Pieria and the birth of the Muses).</li>
+  <li>Diodorus Siculus, Library of History 5.67.3 (Mnemosyne as inventress of naming and reason).</li>
+  <li>Plato, Theaetetus 191c–e (the wax block of the soul as her gift).</li>
+  <li>Graf &amp; Johnston, Ritual Texts for the Afterlife: Orpheus and the Bacchic Gold Tablets (Routledge, 2007).</li>
+  <li>Lexicon authorities for this entry: LSJ, Pape-Benseler, Beekes.</li>
 </ul>
-<h2>What the Sources Record</h2>
-<p>Mnēmosýnē&#39;s spheres of influence reduce to one — the retention and transmission of what exists — but Greek tradition assigns that single faculty four concrete provinces. ### Mother of the Muses By Zeus she bore the nine Muses, each presiding over an art or science; Hesiod makes their function, &#39;a forgetting of ills and a rest from sorrow&#39;, the negative image of her own positive gift, and the poets pour libations to &#39;the daughters of Memory&#39; alongside Apollo, the Muses&#39; leader. ### Inventress of names Diodorus Siculus records that she &#39;discovered the uses of the power of reason&#39; and &#39;gave a designation to every object about us&#39;, so that speech itself is her benefaction — though some, he notes, assigned the same discovery to Hermes. ### Spring of the...</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">greek</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

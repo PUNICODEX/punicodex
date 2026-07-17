@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,45 +170,174 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>16 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#epithets-cult-titles">Epithets &amp; Cult Titles</a></li>
+                <li><a href="#the-homeric-hymns">The Homeric Hymns</a></li>
+                <li><a href="#oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>Pronouncing Koîos: A Guide for the Curious</h1>
-<p>Saying <strong>Koîos</strong> out loud is harder than reading it on a screen, and more rewarding. Scholars reconstruct the sound as <em>&#39;KOY-oss&#39; — pronounce the &#39;oy&#39; as in &#39;boy&#39;, and keep the final syllable short.</em>.</p>
-<h2>The Reconstructed Sound</h2>
-<p>The name is attested in Greek as Κοῖος. Its meaning is uncertain: the standard scholarly gloss connects it with κοῖος, the epic and Aeolic form of the interrogative ποῖος, &#39;of what kind?&#39;, which would make the Titan &#39;the Questioner&#39; — a fitting consort for prophetic Phoíbē, though the connection remains a conjecture rather than a demonstrated etymology. Latin mythography sidestepped the question by renaming him: Hyginus lists Polus where the Greek catalogues place Coeus, &#39;the Pole or axis of heaven&#39;, and it is from this gloss, not from any Greek text, that his celestial interpretation descends. The ASCII form coeus is the old Latinized spelling, a convenience of the domain-name system and of English classical tradition, not an ancient Greek... The sounds preserved in Koîos are not random; they follow rules that linguists have spent centuries recovering.</p>
-<h2>Sound by Sound</h2>
-<p> Each segment locks into the next, so a small change in one place ripples through the whole name.</p>
-<h2>Kin Forms</h2>
-<p>Related spellings include Coeus. Names rarely have only one valid shape. The restoration chooses the form that best balances historical accuracy with the practical limits of DNS.</p>
-<h2>From Speech to Screen</h2>
-<p>Pronunciation and spelling converge in Unicode. Koîos carries enough phonetic information to be read aloud by someone who knows the conventions, and enough visual distinctiveness to stand out in an address bar.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Koîos is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>Pronouncing Koîos: a guide for the curious</h1>
+<p>Saying <strong>Koîos</strong> aloud is harder than reading it on a screen, and more rewarding. The restored spelling is a compressed pronunciation guide: every accent and macron is an instruction. This post unpacks those instructions — the reconstructed sound, the phoneme-by-phoneme record, the kindred forms in neighboring languages — and then zooms out to the full record around the name: its Greek writing, its mythology, its cult, and its modern life as a Unicode domain. Whether you arrive as a linguist, a reader of myth, or a domainer, you will leave able to say the name the way the evidence suggests it was said — and able to type it the way it was written.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Koîos</li>
+  <li><strong>ASCII form:</strong> coeus</li>
+  <li><strong>Meaning:</strong> &quot;Questioning, inquiry&quot;</li>
+  <li><strong>Domain of influence:</strong> Titan of Intellect</li>
+  <li><strong>Pantheon:</strong> Greek</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Original script:</strong> Κοῖος (Greek)</li>
+  <li><strong>Live domain:</strong> koîos.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Koîos</strong> (Greek <strong>Κοῖος</strong>; Latinized <em>Coeus</em>) is one of the twelve Titans of Greek tradition, named by Hesiod among the sons of Ouranos and Gaia in the <em>Theogony</em>&#39;s catalogue. His mythic dossier is almost entirely genealogical, but it runs deep: with his sister <a href="/sites/phoebe/">Phoíbē</a> he fathered <a href="/sites/leto/">Lētō</a> and Asteríē, and through them he stands at the root of the oracular and Olympian line — grandfather of <a href="/sites/apollon/">Apóllōn</a> and <a href="/sites/artemis/">Ártemis</a> by Lētō, and of <a href="/sites/hekate/">Hekátē</a> by Asteríē. He took part in the one deed the Titans performed together: Apollodorus records that all the brothers except Oceanus joined the ambush in which Kronos castrated their father. Latin mythography knew him as <strong>Polus</strong>, &#39;the Pole&#39;, the axis of heaven around which the stars revolve — the source of his later interpretation as Titan of the northern pillar of the sky. After the Titanomachy he shared his generation&#39;s defeat and imprisonment in Tartarus; Valerius Flaccus still pictures him there, madly rattling Zeus&#39;s chains.</p>
+<p>PÚNYCODEX restores the name as <strong>Koîos</strong> and serves this temple at <a href="https://xn--koos-1pa.com">koîos.com</a>. The Greek original carries both vowel length and pitch — the circumflex on the diphthong marks a long vowel with falling tone — and exactly one historically valid Unicode restoration exists; the name is therefore classified Tier 1. The plain ASCII form <em>coeus</em> is a Latinized convenience, not an ancient spelling.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Greek as <strong>Κοῖος</strong>. Its meaning is uncertain: the standard scholarly gloss connects it with κοῖος, the epic and Aeolic form of the interrogative ποῖος, &#39;of what kind?&#39;, which would make the Titan &#39;the Questioner&#39; — a fitting consort for prophetic <a href="/sites/phoebe/">Phoíbē</a>, though the connection remains a conjecture rather than a demonstrated etymology. Latin mythography sidestepped the question by renaming him: Hyginus lists <strong>Polus</strong> where the Greek catalogues place Coeus, &#39;the Pole or axis of heaven&#39;, and it is from this gloss, not from any Greek text, that his celestial interpretation descends.</p>
+<p>The ASCII form <em>coeus</em> is the old Latinized spelling, a convenience of the domain-name system and of English classical tradition, not an ancient Greek spelling. The Unicode restoration <strong>Koîos</strong> transliterates the Greek directly, circumflex and all: the mark on the diphthong -οι- records a long vowel pronounced with falling pitch. Since the original carries both stress and vowel length and exactly one historically valid restoration exists, the name is Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>c</strong> → <strong>K</strong> — Special character</li>
+  <li><strong>o</strong> → <strong>o</strong> — o same</li>
+  <li><strong>e</strong> → <strong>î</strong> — Special character</li>
+  <li><strong>u</strong> → <strong>o</strong> — Special character</li>
+  <li><strong>s</strong> → <strong>s</strong> — s same</li>
+</ul>
+<p>Attested and derived spellings of the name:</p>
+<ul>
+  <li><strong>Coeus</strong> — ASCII form: Plain ASCII form</li>
+</ul>
+<p>The project holds the domain <strong>koîos.com</strong> (xn--koos-1pa.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is written in Greek as <strong>Κοῖος</strong>. This original script is the form against which the ASCII fallback <em>coeus</em> and the PÚNYCODEX restoration <strong>Koîos</strong> are measured: the restoration preserves its full diacritic detail of the written form, so that a reader typing the modern address still speaks the ancient name.</p>
+<p>The Greek is Κοῖος, possibly related to κοέω (&#39;to perceive, to inquire&#39;) or to κοῖος (&#39;what sort of?&#39;). The circumflex on the diphthong -oi- marks a long vowel with falling pitch. The Roman spelling Coeus loses the pitch and the diphthongal quality. PUNYCODEX writes Koîos with the circumflex, preserving the scholarly restoration even though the full Greek alphabet is not registrable.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/kói̯os/</strong> — Classical Attic values: unaspirated [k], the falling diphthong [oi̯] under the circumflex, and short final [os].</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>K-</strong> — Voiceless unaspirated velar stop [k].</li>
+  <li><strong>-oi-</strong> — Diphthong [oi̯], a glide from close-mid [o] to close front [i].</li>
+  <li><strong>-os</strong> — Short [os], the standard masculine nominative ending.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;KOY-oss&#39; — pronounce the &#39;oy&#39; as in &#39;boy&#39;, and keep the final syllable short.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Greek</strong> — Κοῖος (Koîos), a Titan named in Hesiod&#39;s catalogue.</li>
+  <li><strong>Roman interpretation</strong> — Polus, the celestial pole or axis of the heavens, in Hyginus.</li>
+  <li><strong>Children</strong> — Father of Leto and Asteria by Phoebe.</li>
+</ul>
+<p>Koîos is Tier 1: the Greek form carries the circumflex on the diphthong, marking a long vowel with falling pitch. The Latinised &#39;Coeus&#39; flattens this into plain vowels.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Koîos has no independent mythic biography; he exists in genealogies, in one collective act of violence, and in the shadow of the Titanomachy.</p>
+<h3 id="birth-and-the-ambush-of-ouranos">Birth and the ambush of Ouranos</h3>
+<p>Hesiod names him in the Titan catalogue, a son of Ouranos and Gaia. The one deed of his generation was the overthrow of their father: Apollodorus relates that all the brothers except Oceanus joined the ambush, holding Ouranos fast while Kronos cut off his genitals with the sickle of adamant.</p>
+<h3 id="marriage-and-children">Marriage and children</h3>
+<p>Hesiod grants him his single act of mythic significance: <a href="/sites/phoebe/">Phoíbē</a> &#39;came to the desired embrace of Koîos&#39; and bore &#39;dark-gowned Lētō&#39; and Asteríē, who by Perses became the mother of Hecate — so the most obscure Titan is ancestor of Apollo, Artemis, and Hecate alike. Apollodorus and Diodorus repeat the parentage, and the Homeric Hymn to Delian Apollo greets Leto as &#39;most glorious daughter of great Koîos&#39;.</p>
+<h3 id="titanomachy-and-tartarus">Titanomachy and Tartarus</h3>
+<p>When the younger gods rose, Koîos shared the common lot of his brothers: defeat and imprisonment in Tartarus, the void beneath the roots of earth and sea. Pindar knows a tradition that Zeus later released the Titans, and the chorus of Aeschylus&#39; lost <em>Prometheus Unbound</em> consisted of the freed brothers; Roman epic keeps the darker version — Valerius Flaccus leaves Coeus in the pit, bursting his adamantine bonds in vain.</p>
+<h3 id="roman-afterlife">Roman afterlife</h3>
+<p>Virgil twice folds him into the Giants&#39; generation — Terra bore Coeus &#39;in monstrous labour&#39; with Iapetus and Typhoeus, and Fame is his sister — while Ovid gives his obscurity its famous epitaph: Latona, &#39;whom Coeus sired, whoever he may be&#39;.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>Greek art and cult gave Koîos no attribute whatsoever — no vase, coin, or relief bears his name, and no ancient author hands him an emblem — so anything presented as his &#39;symbolism&#39; is inference from text, and only two images have any textual footing at all.</p>
+<ul>
+  <li><strong>The celestial pole</strong> — the single attribute antiquity supplies: Hyginus calls him Polus, &#39;the Pole&#39;, the still axis of the revolving sky; every later image of him as cosmic pillar derives from this gloss.</li>
+  <li><strong>The chains of Tartarus</strong> — Valerius Flaccus pictures him in the lowest pit, bursting &#39;the adamantine bonds&#39; and &#39;trailing Jove&#39;s fettering chains&#39; in a mad hope of scaling heaven: the defeated Titan&#39;s only portrait in ancient verse.</li>
+</ul>
+<p>The raven, torch, and obelisk sometimes attached to him in modern retellings have no ancient warrant; the honest inventory ends with the pole and the chains.</p>
+<p>No image of Koîos is known: no vase, relief, or coin bears his name, and no figure in surviving art can securely be called his. Even generic Titanomachy scenes — as distinct from the far commoner Gigantomachy — are rare in Greek art, and where Titans appear they fight nameless in the melee. His only visual afterlife is modern: genealogical charts of the gods allot him a placeholder among the twelve Titans, an iconography of family trees rather than of ancient worship. The absence is diagnostic. Koîos was a node in a genealogy — the link between bright Phoíbē and the Delian twins — and Greek art, which pictures agents and cult figures, had nothing in him to draw.</p>
+<h2 id="epithets-cult-titles">Epithets &amp; Cult Titles</h2>
+<p>Koîos attracted no epithet tradition: Greek poetry gives him no cult titles and no ornamental adjectives, a silence that matches his lack of stories. What the sources offer are bare predicates and one Latin alias.</p>
+<ul>
+  <li><strong>Τιτήν</strong> (<em>Titḗn</em>) — &#39;Titan&#39; — his class in the Theogony&#39;s catalogue of the children of Ouranos and Gaia.</li>
+  <li><strong>Λητοῦς πατήρ</strong> (<em>Lētoûs patḗr</em>) — &#39;father of Lētō&#39; — his functional identity in every genealogy; the Hymn to Delian Apollo knows Leto as &#39;most glorious daughter of great Koîos&#39;.</li>
+  <li><strong>Φοίβης ἀκοίτης</strong> (<em>Phoíbēs akoítēs</em>) — &#39;consort of Phoíbē&#39; — the Theogony&#39;s account of the union that produced Lētō and Asteríē.</li>
+  <li><strong>Πόλος</strong> (<em>Pólos</em>, Latin <em>Polus</em>) — &#39;the Pole&#39; — the name under which Hyginus lists him among the Titans, his only attested alias.</li>
+  <li><strong>&#39;whoever he may be&#39;</strong> — Ovid&#39;s mocking parenthesis, &#39;whom Coeus sired, whoever he may be&#39;, the closest thing antiquity gives him to a reputation.</li>
+</ul>
+<p>Later attempts to read his name as &#39;the Inquirer&#39; or to tie him to the celestial pole beyond the Hyginus gloss are scholarly interpretation, not attested epithets.</p>
+<h2 id="the-homeric-hymns">The Homeric Hymns</h2>
+<p>No Homeric Hymn to Koîos exists, and no later hymn-maker rescued him from silence: he is the most spectral of the Titans. His entire early dossier is genealogical. Hesiod&#39;s Theogony names him in the catalogue of the Titans, the sons of Ouranos and Gaia, and then grants him his one act of mythic significance: Phoíbē &#39;came to the much-desired bed of Koîos&#39; and bore dark-robed Lētō and Asteríē — making him, through Lētō, the grandfather of Apollo and Artemis. The Homeric corpus mentions him exactly once, and in the same genealogical breath: the Hymn to Delian Apollo greets <a href="/sites/leto/">Lētō</a> as &#39;most glorious daughter of great Koîos&#39;, the father&#39;s name surviving only as the mother&#39;s ornament. The Orphic hymnodist knows him the same way: the Hymn to Leto addresses her as Κοιάντις, &#39;daughter of Koîos&#39;. Homer proper never mentions him. Everything the later mythographers say — Apollodorus, Hyginus — is commentary on those few Hesiodic lines, not new tradition.</p>
+<h2 id="oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</h2>
+<p>No sanctuary, altar, or oracle of Koîos is attested anywhere in the Greek world, and no surviving inscription preserves a dedication to him: his worship simply did not exist. His presence in cultic geography is inherited entirely through his descendants. His daughter Lētō held the Letoon of Xanthos and her honoured place on Delos; his grandson Apollo commanded Delphi, Greece&#39;s most famous oracle — so the obscure Titan stands at the genealogical root of the oracular tradition without ever sharing its cult. After the Titanomachy his only &#39;location&#39; is Tartarus, the prison of his defeated generation.</p>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>No temple, altar, votive, or image of Koîos is attested anywhere in the Greek world, and the iconographic lexica record nothing under his name: his non-existence as a cult figure is total. The Greek soil preserves exactly one trace of the name, and it is hydrological, not hieratic: Pausanias reports that on the road from Andania toward Cyparissiae in Messenia, near Polichne, flow two streams called Elektra and Koios, adding cautiously that &#39;the names perhaps are to be connected with Elektra the daughter of Atlas and Koios the father of Leto&#39; — a local toponym inviting a Titanic aetiology, nothing more. Everything else that might be called his material record belongs to his descendants: the Letoon of Xanthos and the Delian sanctuary of his grandson Apollo are the nearest cultic monuments of his line. The silence is itself the finding: Koîos was a node in a genealogy, and Greek religion, which worships agents with powers and stories, found nothing in him to sacrifice to.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Koîos rules nothing in cult and does nothing alone in myth; his &#39;domains&#39; are the provinces the tradition assigns him by gloss and genealogy.</p>
+<h3 id="titan-of-the-question">Titan of the question</h3>
+<p>The standard gloss of his name — from κοῖος, &#39;of what kind?&#39; — makes him the embodiment of inquiry, the question that precedes every answer; paired with prophetic Phoíbē, the couple has been read as the primal font of knowledge, heavenly and earthly.</p>
+<h3 id="the-pole">The Pole</h3>
+<p>Latin mythography renamed him Polus, the axis of heaven around which the constellations revolve; on this slender peg hangs his whole later identity as Titan of the northern pillar of the sky.</p>
+<h3 id="holder-of-the-sky">Holder of the sky</h3>
+<p>Apollodorus places him in the ambush of Ouranos — all the brothers but Oceanus held their father fast while Kronos struck — a scene modern scholarship reads against Near Eastern cosmologies in which the Titan brothers personify the pillars holding heaven and earth apart.</p>
+<h3 id="root-of-the-oracular-line">Root of the oracular line</h3>
+<p>Through Phoíbē he fathered <a href="/sites/leto/">Lētō</a> and Asteríē: one line runs to Apollo and Delphi, the other to <a href="/sites/hekate/">Hekátē</a> and the night-side of prophecy — the obscure Titan stands at the genealogical root of both.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Koîos was never a cult figure, so his syncretism is entirely interpretive — a series of attempts to say what the name means. Latin mythography performed the decisive identification: Hyginus replaces him with <strong>Polus</strong>, &#39;the Pole&#39;, translating the Titan into the axis of heaven, and reports his children under that name (&#39;from Polus and Phoebe: Latona, Asterie&#39;). A second conflation runs the other way: Hyginus elsewhere lists Coeus among the Giants, and Virgil makes Earth bear him in one labour with Iapetus and Typhoeus — the Titan blurred into the Gigantomachic generation, a confusion already old in Roman verse. Modern scholarship has gone further than antiquity dared: reading the ambush of Ouranos against Near Eastern cosmologies, it casts the four seizing brothers as the pillars of the world and Koîos-Polus as the pillar of the north — an attractive reconstruction, but one that must be labelled modern, since no Greek text assigns the brothers their corners. His real afterlife is genealogical: through <a href="/sites/leto/">Lētō</a> he connects the dark Titans to the bright Olympians, and through Asteríē to <a href="/sites/hekate/">Hekátē</a>.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Koîos survives chiefly as a genealogical fixture — the name that must be written between Ouranos and Apollo in every tree of the gods. His ancient afterlife was defined by Ovid&#39;s dismissive parenthesis, &#39;whom Coeus sired, whoever he may be&#39;, which made him the very type of the forgotten Titan: present in the lineage, absent from the imagination. Roman epic gave him one vivid scene — the chained figure in Valerius Flaccus&#39;s Tartarus, conceiving &#39;a hope of scaling heaven&#39; — and Renaissance mythographers, compiling their dictionaries and genealogies from such sources, kept the name in circulation without ever giving it a face. The Latinized spelling &#39;Coeus&#39; remains the form familiar to readers of classical dictionaries, while the Greek Koîos is almost unknown outside scholarship — exactly the kind of gap between inheritance and form that this project exists to make visible.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Koîos given in this edition rests on the witnesses and reference works listed below. Hesiod supplies the genealogy and the one Hesiodic scene; the mythographers and Roman poets supply what little remains; the lexica secure the name.</p>
+<ul>
+  <li> Hesiod, Theogony 132–135, 404–412, 717–735. <a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Full text</a></li>
+  <li> Homeric Hymn 3 to Delian Apollo 61–62; Orphic Hymn 35, To Leto (Κοιάντις).</li>
+  <li> Pseudo-Apollodorus, Bibliotheca 1.1.3–4, 1.2.2; Diodorus Siculus 5.66.1, 5.67.1.</li>
+  <li> Pseudo-Hyginus, Fabulae, Preface (Polus); Virgil, Georgics 1.276–278, Aeneid 4.174; Ovid, Metamorphoses 6.185; Valerius Flaccus, Argonautica 3.224–231.</li>
+  <li> Pindar, Pythian 4.291; Aeschylus, Prometheus Unbound (lost play); Pausanias 4.33.6.</li>
+  <li> LSJ (Liddell–Scott–Jones), s.v. κοῖος; West, The East Face of Helicon (1997).</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Koîos is the god of the unanswered question. Unlike Apollo, who delivers oracles, Koîos only asks. His obscurity is his essence: he is the intellectual drive that precedes every system, the doubt that keeps doctrine honest. Ovid could already mock him — &#39;whom Coeus sired, whoever he may be&#39; — yet the oracular line of Delphi descends from that nobody.</p>
+<p>To remember him is to remember that even the Olympian gods were descended from uncertainty. Apollo&#39;s certainty—his oracles, his music, his unerring aim—came through Leto, who came through Koîos. Inquiry is older than answer, and the northern sky, silent and fixed, is its oldest emblem.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Koîos is classified as <strong>Tier 1</strong>: the original carries both stress and length, and only one valid Unicode restoration exists. The ASCII fallback <em>coeus</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 5 characters of the name, the restoration adjusts 3: 3 further adjustments (K, î, o). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>koîos.com</strong>, which the DNS carries in punycode form as xn--koos-1pa.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Koîos; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Greek can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Pronunciation turns out to be the heart of the matter. The marks in <strong>Koîos</strong> are instructions for the voice, and a web that strips them is a web that mispronounces the past at scale. The restoration hands the instructions back: say it as the evidence suggests, type it as the tradition wrote it, and let the punycode machinery do the quiet translation in between. That is all the PÚNYCODEX project asks of the infrastructure — and everything it asks of you, the reader, is to use the whole name.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/tisiphone/">Tisíphonē</a></li>
   <li><a href="/sites/achilles/">Achillēs</a></li>
   <li><a href="/sites/aetes/">Aítēs</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Hesiod, Theogony 132–135.</a></li>
+  <li>Hesiod, Theogony 404–410; Pseudo-Apollodorus, Bibliotheca 1.2.2.</li>
+  <li>Pseudo-Apollodorus, Bibliotheca 1.1.3–4.</li>
+  <li>Pseudo-Hyginus, Fabulae, Preface (Polus for Coeus; &#39;from Polus and Phoebe: Latona, Asterie&#39;).</li>
+  <li>Valerius Flaccus, Argonautica 3.224–231.</li>
+  <li>Lexicon authorities for this entry: Hesiod, LSJ.</li>
 </ul>
-<h2>What the Sources Record</h2>
-<p>Koîos rules nothing in cult and does nothing alone in myth; his &#39;domains&#39; are the provinces the tradition assigns him by gloss and genealogy. ### Titan of the question The standard gloss of his name — from κοῖος, &#39;of what kind?&#39; — makes him the embodiment of inquiry, the question that precedes every answer; paired with prophetic Phoíbē, the couple has been read as the primal font of knowledge, heavenly and earthly. ### The Pole Latin mythography renamed him Polus, the axis of heaven around which the constellations revolve; on this slender peg hangs his whole later identity as Titan of the northern pillar of the sky. ### Holder of the sky Apollodorus places him in the ambush of Ouranos — all the brothers but Oceanus held their father fast while...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Koîos as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Greek to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Koîos through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/coeus/">home page</a> offers the full name breakdown, the <a href="/sites/coeus/lore/">lore page</a> explores the myth, and the <a href="/sites/coeus/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Koîos do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
-<h2>A Note on the Address Bar</h2>
-<p>When you type Koîos, the browser performs an invisible conversion into Punycode so the global DNS can route the request. The user sees the original name; the machines see a compatible ASCII encoding. That duality is the engineering compromise that makes the restoration possible, and it is the reason every Unicode domain is both a technical milestone and a small act of cultural memory.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">greek</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,46 +170,197 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>15 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#epithets-cult-titles">Epithets &amp; Cult Titles</a></li>
+                <li><a href="#the-homeric-hymns">The Homeric Hymns</a></li>
+                <li><a href="#oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>The Name Hekátē and the World It Opens</h1>
-<p>A name is a door. Hekátē opens onto magic, crossroads, moon. Hekátē (hekate) — The Torch-Bearer · Queen of Ghosts — belongs to the Greek tradition, where it is catalogued under the domain &quot;Magic, Crossroads, Moon&quot;. The name means &quot;She who works from afar (from ἑκάς)&quot;. Hekátē is the most liminal of the Greek gods. She stands at crossroads, doorways, and the boundary between living and dead. Unlike the Olympians who shine in public cult, she belongs to night, household ritual, and secret knowledge. PÚNYCODEX restores the name as Hekátē and serves its temple at hekátē.com. The original carries both stress and vowel length and admits multiple historically valid spellings, so the temple presents both forms of the pair as a dual-tier restoration. The plain ASCII form hekate survives as a modern convenience imposed...</p>
-<h2>Domain and Meaning</h2>
-<p>The temple domain is <strong>Magic, Crossroads, Moon</strong>. The traditional meaning is &quot;She who works from afar (from ἑκάς).&quot; Together, those two facts explain why the name mattered enough to be remembered for millennia.</p>
-<h2>The Mythic Landscape</h2>
-<p>Hekátē&#39;s mythology is small in scale but vast in implication. She is a Titan who keeps her power after the fall of the Titans, and she becomes Persephonē&#39;s companion in the underworld. Myth is the memory of a civilization, and names are the hooks on which that memory hangs.</p>
-<h2>Modern Patterns</h2>
-<p>The <a href="/sites/hekate/patterns/">Patterns</a> page maps the industries and sister temples that share Hekátē&#39;s current. A name that once organized ritual now organizes search, advertising, and creative collaboration.</p>
-<h2>Join the Restoration</h2>
-<p>You can support the work through the <a href="/sites/hekate/patron/">Patron</a> wall, submit creative work, or simply share the address. Every visit to Hekátē is a vote for original scripts.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Hekátē is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>The name Hekátē and the world it opens</h1>
+<p>A name is a door. <strong>Hekátē</strong> opens onto an entire world: the domain of magic, crossroads, moon, a Greek tradition, and centuries of storytelling, worship, and scholarship. This post walks through that world room by room — the name and its roots, the original script, the sound of it, the myths, the symbols, the sites, the afterlife across cultures — and ends at the newest room of all: a Unicode domain that makes the whole structure addressable. <em>hekate</em> gets you to the same building, but only the restored form tells you why it was built.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Hekátē</li>
+  <li><strong>ASCII form:</strong> hekate</li>
+  <li><strong>Meaning:</strong> &quot;She who works from afar (from ἑκάς)&quot;</li>
+  <li><strong>Domain of influence:</strong> Magic, Crossroads, Moon</li>
+  <li><strong>Pantheon:</strong> Greek</li>
+  <li><strong>Classification:</strong> Dual-Tier</li>
+  <li><strong>Original script:</strong> Ἑκάτη (Greek)</li>
+  <li><strong>Live domain:</strong> hekátē.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Hekátē</strong> (<em>hekate</em>) — The Torch-Bearer · Queen of Ghosts — belongs to the Greek tradition, where it is catalogued under the domain &quot;Magic, Crossroads, Moon&quot;. The name means &quot;She who works from afar (from ἑκάς)&quot;.</p>
+<p>Hekátē is the most liminal of the Greek gods. She stands at crossroads, doorways, and the boundary between living and dead. Unlike the Olympians who shine in public cult, she belongs to <strong>night, household ritual, and secret knowledge</strong>.</p>
+<p>PÚNYCODEX restores the name as <strong>Hekátē</strong> and serves its temple at <a href="https://xn--hekt-7na51a.com">hekátē.com</a>. The original carries both stress and vowel length and admits multiple historically valid spellings, so the temple presents both forms of the pair as a dual-tier restoration. The plain ASCII form <em>hekate</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Greek as <strong>Ἑκάτη</strong>. Etymologically it means &quot;She who works from afar (from ἑκάς)&quot;.</p>
+<p>The reconstructed proto-form is <em>seh₂k-</em> (proto-indo-european, &quot;to work, to do&quot;). Possibly from ἑκάτη &quot;far-shooting&quot;, or pre-Greek. Associated with magic and crossroads.</p>
+<p>The ASCII form <em>hekate</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Hekátē</strong> recovers both the stress accent and the vowel length of the original directly in the address bar. The original carries both stress and vowel length and admits multiple historically valid spellings, so the temple presents both forms of the pair as a dual-tier restoration.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>h</strong> → <strong>H</strong> — Rough breathing</li>
+  <li><strong>e</strong> → <strong>e</strong> — Short epsilon</li>
+  <li><strong>k</strong> → <strong>k</strong> — Kappa</li>
+  <li><strong>a</strong> → <strong>á</strong> — Acute on alpha</li>
+  <li><strong>t</strong> → <strong>t</strong> — Tau</li>
+  <li><strong>e</strong> → <strong>ē</strong> — Eta: long epsilon</li>
+</ul>
+<p>Attested and derived spellings of the name:</p>
+<ul>
+  <li><strong>Hekatē</strong> — macron-only form: LSJ convention: length only, no acute</li>
+</ul>
+<p>The project holds the domain <strong>hekátē.com</strong> (xn--hekt-7na51a.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: Possibly from ἑκάτη &quot;far-shooting&quot;, or pre-Greek. Associated with magic and crossroads.</p>
+<p>The reconstructed proto-form is <em>*seh₂k-</em> (proto-indo-european), glossed as &quot;to work, to do&quot;.</p>
+<p>The reconstruction is classed as speculative.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Greek as <strong>Ἑκάτη</strong> — Greek alphabet (Classical / Attic), attested Ancient Greek, c. 8th century BCE – present, in Greece and the Greek-speaking Mediterranean. The script is written left-to-right.</p>
+<p>The scholarly transliteration is <em>Hekátē</em> (Greek alphabet with polytonic accents), giving the normalized reading /heˈkaː.tɛː/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The Greek form Ἑκάτη is written in the Classical Greek alphabet.</li>
+  <li>Letters with acute, grave, or circumflex accents preserve the pitch accent of Ancient Greek.</li>
+  <li>Macrons and omegas (η, ω) mark long vowels, a feature lost in the plain ASCII form.</li>
+  <li>The Unicode restoration Hekátē encodes the scholarly spelling as a registrable domain name.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/he.ká.tɛː/</strong> — Attic Greek Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>He-</strong> — Rough breathing on short epsilon — the name begins with an audible exhalation, like a breath across a threshold.</li>
+  <li><strong>-ka-</strong> — Kappa plus acute on short alpha — the pitch peak, a sudden calling note.</li>
+  <li><strong>-tē</strong> — Long eta, the final syllable that draws the name into the dark.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;he-KAH-tay&#39; — the second syllable rises in pitch, and the final &#39;ay&#39; is held long like the &#39;a&#39; in &#39;say&#39; stretched out.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Greek</strong> — ἑκάς (hekas), &#39;far&#39; — the traditional etymology, making her &#39;the far-working one&#39;</li>
+  <li><strong>PIE</strong> — <em>seh₂k- or </em>wekʷ-, speculative; Beekes argues for Pre-Greek origin</li>
+  <li><strong>Later cult</strong> — Hekatē as torch-bearing goddess at crossroads and in the underworld</li>
+</ul>
+<p>Hekátē is dual-tier because the Greek Ἑκάτη carries both stress (acute on alpha) and length (eta in the final syllable), and because two historically defensible restorations exist: Hekátē with acute stress and Hekatē with macron-only length. The form is etymologically debated, but both Unicode forms are orthographically legitimate.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Hekátē&#39;s mythology is small in scale but vast in implication. She is a Titan who keeps her power after the fall of the Titans, and she becomes Persephonē&#39;s companion in both worlds.</p>
+<h3 id="daughter-of-perses-the-birth">Daughter of Persês (The Birth)</h3>
+<p>Hesiod (<em>Theogony</em> 409–452) makes Hekátē the daughter of the Titan Persês and Asteria, daughter of Koios. Zeús honors her above all other gods of her generation: she receives a portion of earth, of the barren sea, and of the starry sky, and in each realm mortals call on her — for victory in war and in the games, for the horsemanship of kings, for a great catch of fish, for the increase of herds. This triple portion makes her uniquely able to move between realms — a goddess of boundaries because she owns all boundaries.</p>
+<h3 id="torch-bearer-in-the-dark-the-rape-of-persephone">Torch-Bearer in the Dark (The Rape of Persephonē)</h3>
+<p>When Hádēs seized Persephonē, Hekátē heard the girl&#39;s cry from her cave — she alone of the gods, apart from Hēlios, who saw it (<em>Homeric Hymn to Demeter</em> 22–26). On the tenth day she meets Dēmētēr with a torch in her hands and tells what she knows, and the two go together to Hēlios for the truth (51–58). After the reconciliation she becomes the restored maiden&#39;s minister and companion in both worlds (438–440) — the mediator who walks beside the queen of the dead.</p>
+<h3 id="asteria-becomes-the-island-the-transformation">Asteria Becomes the Island (The Transformation)</h3>
+<p>Hekátē&#39;s mother Asteria, pursued by Zeús, changed herself into a quail and leapt into the sea; the floating island that bore her name, Asteria, was later called Dēlos — the birthplace of Apóllōn and Ártemis. The myth links Hekátē&#39;s lineage to the most sacred place in the Aegean.</p>
+<h3 id="the-chaldean-hekate-late-antiquity">The Chaldean Hekátē (Late Antiquity)</h3>
+<p>In the <em>Chaldean Oracles</em> (second–third century CE) and the Neoplatonic theurgy built upon them, Hekátē becomes a cosmic figure: the mediatrix between the paternal intellect and the cosmos, mistress of the gates through which souls descend and return. This philosophical Hekátē fed directly into Byzantine and Renaissance magic and, much later, into modern witchcraft.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>Each attribute of Hekátē has an anchor in the hymns and ritual literature of her cult:</p>
+<ul>
+  <li><strong>Twin torches</strong> — When she rises from her cave to meet the grieving Dēmētēr, she comes &quot;with a torch in her hands&quot;; the torch-bearing goddess who walks between the worlds is her oldest fixed image (<em>Homeric Hymn to Demeter</em> 51–58).</li>
+  <li><strong>Key</strong> — As κλῃδοῦχος, &quot;key-bearer,&quot; she holds the keys of the underworld gates, a title saluted in the Orphic hymn addressed to her.</li>
+  <li><strong>Dagger</strong> — On the later triple images she carries the knife of sacrifice and purification, beside torch, key, rope, and phialē.</li>
+  <li><strong>Black dog</strong> — The hounds of the town howl when &quot;the goddess is at the crossroads&quot; in Theokritos&#39;s night-rite (<em>Idyll</em> 2); dogs remain her animal in the later accounts of crossroad purification sacrifice.</li>
+  <li><strong>Whip and snake</strong> — Among the attributes of her triple statues, marking her as mistress of the restless dead.</li>
+  <li><strong>Mandrake and aconite</strong> — The poisonous plants of <em>pharmakeia</em>: the magical tradition of the papyri, and already the herb-magic of Theokritos&#39;s Simaítha, places toxic herbs under her patronage.</li>
+</ul>
+<p>Two types coexist in the evidence. The earlier is a <strong>single-bodied maiden goddess</strong>, long-robed and crowned with a headband or polos, carrying her <strong>twin torches</strong> — so she fights the Giants on the Pergamon altar and appears on Attic vases and on the frieze of her own temple at Lagina; a <strong>dog</strong> may attend her, and from the classical period she may also hold the <strong>key</strong> or the <strong>dagger</strong>.</p>
+<p>The second type is the <strong>triple Hekátē</strong>: three bodies, or three heads, back to back around a central pillar, so that she watches every road at once. Pausanias credits the sculptor Alkamenes with inventing the type for the Athenian Acropolis (<em>Hekate Epipyrgidia</em>), and the small triple pillars of this kind — the <strong>hekataia</strong> — became fixtures of Athenian doors and crossroads, passing thence into Roman art and the later imagination of the goddess.</p>
+<h2 id="epithets-cult-titles">Epithets &amp; Cult Titles</h2>
+<ul>
+  <li><strong>Τριοδῖτις (Triodítis)</strong> — &#39;she of the three ways,&#39; from her crossroad shrines; the standard cult title of the goddess at Athens and beyond.</li>
+  <li><strong>Φωσφόρος (Phōsphóros)</strong> — &#39;light-bringer,&#39; of her twin torches; common for Hekátē in later hymn, epigram, and magical texts.</li>
+  <li><strong>Ἐνοδία (Enodía)</strong> — &#39;she on the road,&#39; epigraphically attested in Thessaly and Macedonia and glossed by the ancient lexicographers.</li>
+  <li><strong>Κλῃδοῦχος (Klēidoúchos)</strong> — &#39;key-bearer,&#39; of her power over the gates of the underworld, saluted in the Orphic hymn addressed to her.</li>
+  <li><strong>Βριμώ (Brimṓ)</strong> — &#39;the Dread or Roaring One,&#39; a mystery name of Hekátē in Orphic verse and the Greek magical papyri.</li>
+</ul>
+<h2 id="the-homeric-hymns">The Homeric Hymns</h2>
+<p>No dedicated Homeric Hymn to Hekátē survives. Her place in the hymnic corpus lies inside the Homeric <em>Hymn to Demeter</em>: from her cave she hears Persephonē&#39;s cry, comes to <a href="/sites/demeter/">Dēmētēr</a> with torches to tell what she knows, and after the reconciliation becomes the restored maiden&#39;s attendant and companion in both worlds.</p>
+<p>Her true archaic &#39;hymn&#39; is embedded in epic: the fifty-line digression of Hesiod&#39;s <em>Theogony</em> (404–452) praising Hekátē&#39;s triple portion in sky, sea, and earth — a passage so hymnic in form that scholars have long debated whether Hesiod composed it or a later rhapsode inserted it for her cult. Either way, it is the earliest extended celebration of the goddess in Greek.</p>
+<h2 id="oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</h2>
+<p>Hekátē had no oracular seat; her sanctuaries served night rites, suppers, and purification instead. Her one truly monumental cult was at <strong>Lagina</strong> in Caria, where her temple was the religious heart of Stratonikeia and the scene of an annual festival in which the sacred <strong>key</strong> was carried in procession by a chosen girl. On <strong>Aegina</strong>, Pausanias reports mystery rites of Hekátē said to have been founded by Orpheus himself, with a shrine and wooden image by the temple of Artemis. In <strong>Athens</strong> her little triple images, the hekataia, stood at doorways and at the entrance of the Acropolis, and her &#39;suppers&#39; — eggs, fish, and cakes set out at the crossroads at the new moon — were a standing joke of comedy because the poor ate them.</p>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Her one truly monumental sanctuary stood at <strong>Lagina</strong> in Caria, the cult center of Stratonikeia, where Strabo records a great temple and an annual festival; the temple&#39;s sculptured frieze, including the torch-bearing goddess in the Gigantomachy, is preserved in the Istanbul Archaeological Museums, and Stratonikeian inscriptions record the festival procession in which a chosen girl carried the sacred <strong>key</strong> to the sanctuary. On <strong>Aegina</strong> Pausanias found mystery rites of Hekátē, said to have been founded by Orpheus, with a shrine and a wooden image. In <strong>Athens</strong> the small triple pillars called hekataia stood at doorways and crossroads; Pausanias credits the sculptor Alkamenes with inventing the type for the Acropolis. Her presence in the private archaeology of magic is dense: inscribed lead curse tablets (defixiones) from Athens, Selinous, and across the Greek world invoke her to bind enemies and rivals.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Hekátē is the most liminal of the Greek gods. She stands at crossroads, doorways, and the boundary between living and dead. Unlike the Olympians who shine in public cult, she belongs to <strong>night, household ritual, and secret knowledge</strong>.</p>
+<h3 id="the-three-ways">The Three Ways</h3>
+<p>Crossroads (trioditis) are her sacred places; offerings were left at three-way intersections.</p>
+<h3 id="torch-and-flame">Torch and Flame</h3>
+<p>She carries torches to guide Persephonē from the underworld and to light nocturnal rites.</p>
+<h3 id="ghosts-and-the-dead">Ghosts and the Dead</h3>
+<p>She rules phantoms and sends nightmares; her bark brings the dead.</p>
+<h3 id="magic-and-witchcraft">Magic and Witchcraft</h3>
+<p>Patron of pharmakeia and binding spells; Medea and Circe invoke her power.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Hekátē absorbed many minor deities of thresholds, ghosts, and night. In Roman religion she was identified with Trivia, the goddess of crossroads, and with the lunar Diana and underworld Proserpina in the famous &#39;triple Hecate&#39; of later art. In Egypt she was associated with Isis and Nephthys as a goddess of magic. The Hellenistic and Roman world saw her cult spread through household rituals and curse tablets; her name appears in hundreds of magical papyri, where she is fused with Selēnē and Ártemis and invoked under a cascade of secret names. In modern Neopaganism she is perhaps the most widely worshipped Greek goddess, embodying feminine magical autonomy.</p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include <a href="/sites/artemis/">Ártemis</a>, <a href="/sites/selene/">Selēnē</a>, and <a href="/sites/thoth/">Ḏḥwty</a>, each linked through moon / lunar.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Euripides already writes her into the vocabulary of magic: Medea swears &quot;by the mistress I revere above all and chose as my accomplice — Hekátē, who dwells in the inmost chamber of my hearth&quot; (<em>Medea</em> 395–397). From Seneca&#39;s <em>Medea</em>, where her name is invoked in the witch&#39;s incantation, to Shakespeare&#39;s <em>Macbeth</em> — where Hekátē enters as the witches&#39; angry mistress in scenes long suspected to be interpolations by Thomas Middleton, who made her a singing character in his own play <em>The Witch</em> — she is the standing patron of literary witchcraft. Her triple form, three bodies or three faces turned down three roads, remains one of the most durable images of the uncanny, and in modern Neopaganism she is among the most widely invoked of the Greek goddesses. Restoring <em>Hekátē</em> in Unicode honors not only a Greek goddess but the long, often persecuted tradition of liminal knowledge that she represents.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Hekátē given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Full text</a></li>
+  <li> Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a href="https://brill.com/view/title/17858">Full text</a></li>
+  <li> Wörterbuch der griechischen Eigennamen, 3rd ed., 1863. <a href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ">Full text</a></li>
+  <li> Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE. <a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Full text</a></li>
+  <li> Homeric Hymn to Demeter.</li>
+  <li> Aeschylus, Suppliants.</li>
+  <li> The Chaldean Oracles.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Hekátē is the goddess of the in-between: not day, not night; not Olympian, not chthonic; not alive, not dead. She stands at the crossroad where three paths meet and no direction is obviously right. That is why she belongs to magic: magic is the art of operating at boundaries, of making something happen by standing in the threshold.</p>
+<p>In a culture obsessed with clarity and categories, Hekátē is unsettling because she refuses them. She is powerful precisely where definitions fail. To restore her name is to admit that the ancient world knew something we often forget: that the most important places are the ones between.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Hekátē is classified as <strong>Dual-Tier</strong>: the original carries both stress and length, and multiple historically valid Unicode spellings exist. The ASCII fallback <em>hekate</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 6 characters of the name, the restoration adjusts 2: 1 mark of stress (á); 1 mark of length (ē). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>hekátē.com</strong>, which the DNS carries in punycode form as xn--hekt-7na51a.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Hekátē; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Greek can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>A door only matters if people walk through it. <strong>hekátē.com</strong> is open, and everything behind it — the myths, the scholarship, the canvas, the patrons — hangs on the restored spelling. The PÚNYCODEX project bets that the web will make room for names as they were actually written, and Hekátē is one of its standing proofs. Visit, share, cite, type it yourself: each use is a small rehearsal for a web where no name has to hide its marks to be found.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/theia/">Theía</a></li>
   <li><a href="/sites/theseus/">Thēseus</a></li>
   <li><a href="/sites/typhon/">Typhōn</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843.</a></li>
   <li><a href="https://brill.com/view/title/17858">Etymological Dictionary of Greek, 2 vols., Brill, 2010.</a></li>
   <li><a href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ">Wörterbuch der griechischen Eigennamen, 3rd ed., 1863.</a></li>
   <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Hesiod, Theogony 404–452 (the Hecate digression).</a></li>
+  <li>Homeric Hymn to Demeter 51–58 (Hecate with the torch).</li>
+  <li>Orphic Hymn 1, to Hecate (kleidouchos).</li>
+  <li>Lexicon Iconographicum Mythologiae Classicae (LIMC), s.v. Hekate (attributes of the triple images).</li>
+  <li>Theocritus, Idyll 2 (Simaitha&#39;s nocturnal rite; the dogs at the crossroads).</li>
+  <li>Lexicon authorities for this entry: LSJ, Pape-Benseler, Beekes.</li>
 </ul>
-<h2>The Name in Context</h2>
-<p>Hekátē (hekate) — The Torch-Bearer · Queen of Ghosts — belongs to the Greek tradition, where it is catalogued under the domain &quot;Magic, Crossroads, Moon&quot;. The name means &quot;She who works from afar (from ἑκάς)&quot;. Hekátē is the most liminal of the Greek gods. She stands at crossroads, doorways, and the boundary between living and dead. Unlike the Olympians who shine in public cult, she belongs to night, household ritual, and secret knowledge. PÚNYCODEX restores the name as Hekátē and serves its temple at hekátē.com. The original carries both stress and vowel length and admits multiple historically valid spellings, so the temple presents both forms of the pair as a dual-tier restoration. The plain ASCII form hekate survives as a modern convenience imposed...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Hekátē as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Greek to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Hekátē through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/hekate/">home page</a> offers the full name breakdown, the <a href="/sites/hekate/lore/">lore page</a> explores the myth, and the <a href="/sites/hekate/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Hekátē do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">greek</span><span class="blog-tag">Dual-Tier</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,35 +170,162 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>From Hebrew to Unicode: The Journey of Qāyīn</h1>
-<p>Long before it was a domain, the name traveled through scripts. The name is preserved in Hebrew as קַיִן, written in the square Hebrew alphabet — a consonantal script (abjad) of twenty-two letters, adopted from Aramaic models in the Second Temple period and written right to left. The consonantal skeleton is ק-י-ן (q-y-n): a voiceless uvular plosive [q], distinct from ordinary kaf, followed by yod and nun. The Masoretic pointing gives a short patah under the qof — though the qāṭīl name-pattern presupposes an originally long ā — and a long ḥireq-yod [iː] in the second syllable. The scholarly transliteration is Qāyīn, giving the reconstructed Tiberian reading /qaˈjiːn/. The rendering proceeds step by step: - The name is written קַיִן in the pointed Masoretic text (BHS): three consonants carrying two vowel signs. -... This post follows Qāyīn from its earliest attestation to the address bar.</p>
-<h2>The Original Sign</h2>
-<p>The original script gives us <strong>קַיִן</strong>. The name is preserved in Hebrew as קַיִן, written in the square Hebrew alphabet — a consonantal script (abjad) of twenty-two letters, adopted from Aramaic models in the Second Temple period and written right to left. The consonantal skeleton is ק-י-ן (q-y-n): a voiceless uvular plosive [q], distinct from ordinary kaf, followed by yod and nun. The Masoretic pointing gives a short patah under the qof — though the qāṭīl name-pattern presupposes an originally long ā — and a long ḥireq-yod [iː] in the second syllable. The scholarly transliteration is Qāyīn, giving the reconstructed Tiberian reading /qaˈjiːn/. The rendering proceeds step by step: - The name is written קַיִן in the pointed Masoretic text (BHS): three consonants carrying two vowel signs. -...</p>
-<h2>The Scholarly Transliteration</h2>
-<p>The name is attested in Biblical Hebrew as קַיִן (Qāyīn), pointed with a short patah and a long ḥireq-yod beneath an initial uvular qof. Its etymology is contested. Eve&#39;s naming speech derives it from the verb q-n-h, &#39;to acquire, create&#39; — &#39;I have acquired a man with the LORD&#39; (Genesis 4:1) — the same verb used of God&#39;s creating in Genesis 14:19, 22. A second line of scholarship connects the name with the Semitic noun qayin, &#39;smith, metalworker&#39;, attested in Ugaritic as qyn and echoed in Cain&#39;s descendant Tubal-cain, &#39;forger of every cutting instrument of bronze and iron&#39; (Genesis 4:22), and in the Kenites (qênî), the metalworking clan allied to Israel; on this reading the name preserves a tribal memory rather than a wordplay. The familiar English... Scholars settled on Qāyīn as the registrable restoration: faithful enough to be recognizable, precise enough to carry the marks that matter.</p>
-<h2>DNS as a Time Machine</h2>
-<p>Punycode lets the DNS carry non-ASCII characters without breaking older routers. To the user, the address bar shows Qāyīn; to the infrastructure, it is an encoded xn-- string. The duality is invisible, but the result is revolutionary: a pre-digital name living inside a post-digital system.</p>
-<h2>Pronunciation</h2>
-<p>Scholars reconstruct the sound as <em>&#39;kah-YEEN&#39; — the first consonant is a deep &#39;k&#39; made at the back of the throat (like Arabic qāf); the second syllable is a long &#39;yeen&#39;.</em>. Hearing the name in your own voice is one way to make the restoration personal.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Qāyīn is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>From Hebrew to Unicode: the journey of Qāyīn</h1>
+<p>Long before it was a domain, this name traveled through scripts. <strong>Qāyīn</strong> begins in Hebrew, passes through scholarly transliteration, and ends — for now — inside the punycode machinery of the global DNS. Each stage of that journey preserves some information and loses some, and the craft of restoration is knowing exactly which marks matter. This post follows the name stage by stage: the original script, the reconstructed pronunciation, the mythological record, the material evidence, and finally the Unicode form that carries all of it into the address bar. Think of it as a biography of a name, told through its spelling.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Qāyīn</li>
+  <li><strong>ASCII form:</strong> qayin</li>
+  <li><strong>Meaning:</strong> &quot;First son of Adam and Eve&quot;</li>
+  <li><strong>Domain of influence:</strong> First Murderer</li>
+  <li><strong>Pantheon:</strong> Canaanite</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> קַיִן (Hebrew)</li>
+  <li><strong>Live domain:</strong> qāyīn.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Qāyīn</strong> (Hebrew קַיִן; English <em>Cain</em>) is the firstborn son of Adam and Eve, a tiller of the ground whose rejected offering becomes the seed of the Bible&#39;s first murder. Warned that &#39;sin is crouching at the door&#39;, he rises against his brother in the field; confronted, he answers with the first human lie — &#39;Am I my brother&#39;s keeper?&#39; — and is cursed from the soil that drank Abel&#39;s blood, yet marked with a protective sign and sent to the land of Nod, east of Eden (Genesis 4:1–16). His line builds the first city and fathers the crafts of herding, music, and metalwork (Genesis 4:17–22).</p>
+<p>The name is punned on at his birth: Eve cries <em>qānîtî îš</em>, &#39;I have acquired a man, with the LORD&#39; (Genesis 4:1), deriving Qāyīn from the verb <em>q-n-h</em>, &#39;to acquire, create&#39;. Many scholars instead connect the name with the Semitic word for &#39;smith, metalworker&#39; — compare Cain&#39;s descendant Tubal-cain and the Kenite clan — which would make the fratricide tale a tribal etiology.</p>
+<p>PÚNYCODEX restores the name as <strong>Qāyīn</strong>, transcribing the Tiberian Masoretic reading: the uvular qof is given as q, and the macrons mark the historically long first vowel of the <em>qāṭīl</em> pattern and the long <em>ḥireq-yod</em> [iː]. Because the restoration preserves vowel length but does not mark stress position, the name is classified Tier 2 (macron-preserving). The temple is served at <a href="https://xn--qyn-1oa5s.com">qāyīn.com</a>; the familiar English <em>Cain</em> descends from Greek Κάιν through Latin, while the plain ASCII <em>qayin</em> remains the fallback imposed by the early domain-name system.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Biblical Hebrew as <strong>קַיִן</strong> (<em>Qāyīn</em>), pointed with a short <em>patah</em> and a long <em>ḥireq-yod</em> beneath an initial uvular qof. Its etymology is contested. Eve&#39;s naming speech derives it from the verb <em>q-n-h</em>, &#39;to acquire, create&#39; — &#39;I have acquired a man with the LORD&#39; (Genesis 4:1) — the same verb used of God&#39;s creating in Genesis 14:19, 22. A second line of scholarship connects the name with the Semitic noun <em>qayin</em>, &#39;smith, metalworker&#39;, attested in Ugaritic as <em>qyn</em> and echoed in Cain&#39;s descendant Tubal-cain, &#39;forger of every cutting instrument of bronze and iron&#39; (Genesis 4:22), and in the Kenites (qênî), the metalworking clan allied to Israel; on this reading the name preserves a tribal memory rather than a wordplay.</p>
+<p>The familiar English form <em>Cain</em> descends from the Septuagint&#39;s Κάιν through Latin and erases both the uvular initial and the vowel lengths. PÚNYCODEX restores <strong>Qāyīn</strong>: plain <strong>q</strong> records the qof by academic convention, and the macrons on <strong>ā</strong> and <strong>ī</strong> preserve the historically long vowels of the <em>qāṭīl</em> name-pattern. The restoration preserves vowel length but not stress position, which places the name in Tier 2 (macron-preserving).</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>q</strong> → <strong>Q</strong> — Same, capitalized</li>
+  <li><strong>a</strong> → <strong>ā</strong> — Macron: long vowel</li>
+  <li><strong>y</strong> → <strong>y</strong> — Same</li>
+  <li><strong>i</strong> → <strong>ī</strong> — Macron: long vowel</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+</ul>
+<p>The project holds the domain <strong>qāyīn.com</strong> (xn--qyn-1oa5s.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Hebrew as <strong>קַיִן</strong>, written in the square Hebrew alphabet — a consonantal script (abjad) of twenty-two letters, adopted from Aramaic models in the Second Temple period and written right to left. The consonantal skeleton is ק-י-ן (<em>q-y-n</em>): a voiceless uvular plosive [q], distinct from ordinary kaf, followed by yod and nun. The Masoretic pointing gives a short <em>patah</em> under the qof — though the <em>qāṭīl</em> name-pattern presupposes an originally long <em>ā</em> — and a long <em>ḥireq-yod</em> [iː] in the second syllable.</p>
+<p>The scholarly transliteration is <em>Qāyīn</em>, giving the reconstructed Tiberian reading /qaˈjiːn/. The rendering proceeds step by step:</p>
+<ul>
+  <li>The name is written קַיִן in the pointed Masoretic text (BHS): three consonants carrying two vowel signs.</li>
+  <li>The uvular qof is transliterated q by academic convention; it is not a k.</li>
+  <li>The first vowel was originally long in the <em>qāṭīl</em> pattern; the transliteration marks it with a macron, as it marks the long hireq-yod.</li>
+  <li>PÚNYCODEX adopts the registrable Latin form <strong>Qāyīn</strong> as its restoration; the familiar English <em>Cain</em> descends instead from the Septuagint&#39;s Κάιν through Latin.</li>
+</ul>
+<p>The Hebrew vocalization is medieval in attestation but older in tradition: the consonants are Second Temple-era, while the points were fixed by the Tiberian Masoretes in the early medieval period, and the first-millennium BCE pronunciation of the name may have differed in detail.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/qaˈjiːn/</strong> — Biblical Hebrew (Tiberian/Masoretic).</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>qa-</strong> — Voiceless uvular plosive [q] — Hebrew qof — followed by short [a], the patah under ק.</li>
+  <li><strong>-yīn</strong> — Palatal approximant [j], the yod as consonant, plus long [iː] from the hireq-yod combination, ending in alveolar nasal [n].</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;kah-YEEN&#39; — the first consonant is a deep &#39;k&#39; made at the back of the throat (like Arabic qāf); the second syllable is a long &#39;yeen&#39;.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Hebrew root</strong> — q-n-h, &#39;to acquire, create&#39; — the name is punned in Genesis 4:1 (&#39;I have acquired a man&#39;)</li>
+  <li><strong>Ugaritic</strong> — qyn, possibly &#39;smith, metalworker&#39; (attested in Ugaritic texts)</li>
+  <li><strong>Aramaic</strong> — קַיִן (Qayin), as in the Targumim and Jewish Aramaic</li>
+  <li><strong>Arabic</strong> — Qābīl (قَابِيل), the Qur&#39;anic figure corresponding to Cain</li>
+</ul>
+<p>BHS points the name קַיִן (Genesis 4:1). The first vowel is a short patah [a] in the Masoretic pointing, although the qāṭīl-pattern form historically had a long *ā (reflected in the PUNYCODEX macron convention Qāyīn); the second vowel is a long hireq-yod [iː]. The qof is a uvular [q], distinct from kaf. HALOT s.v. קַיִן; TDOT s.v. Cain.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Qāyīn&#39;s mythology is short, dense, and endlessly reinterpreted. In a few verses, Genesis gives us the first birth, the first vocation, the first sacrifice, the first rejection, the first murder, the first lie, the first curse, and the first city.</p>
+<h3 id="two-brothers-two-offerings-genesis-4-1-5">Two Brothers, Two Offerings (Genesis 4:1–5)</h3>
+<p>Cain brings an offering of the fruit of the ground; Abel brings the firstlings of his flock and their fat portions. The LORD has regard for Abel and his offering, but not for Cain. God warns Cain that sin is crouching at the door, desiring him, and urges him to master it. The warning is personal and immediate; Cain does not master it.</p>
+<h3 id="the-first-murder-genesis-4-6-8">The First Murder (Genesis 4:6–8)</h3>
+<p>Cain speaks to Abel, and when they are in the field, he rises up and kills him. The narrative is brutally terse: no weapon is named, no motive rehearsed beyond the offering. Afterward, God asks Cain, &#39;Where is Abel your brother?&#39; and Cain answers with the first human lie: &#39;I do not know; am I my brother&#39;s keeper?&#39; The question reverberates through every subsequent ethics.</p>
+<h3 id="the-curse-and-the-mark-genesis-4-9-15">The Curse and the Mark (Genesis 4:9–15)</h3>
+<p>God tells Cain that Abel&#39;s blood is crying out from the ground, and curses him from the soil he has tilled: it will no longer yield its strength to him. Cain complains that the punishment is more than he can bear and that anyone who meets him may kill him. God sets a mark on him as a warning against vengeance, and Cain goes away to the land of Nod, east of Eden. The murderer is punished, but also protected.</p>
+<h3 id="the-line-of-cain-genesis-4-17-24">The Line of Cain (Genesis 4:17–24)</h3>
+<p>Cain builds a city and names it after his son Enoch. His descendants become the ancestors of nomadic herders, lyre-and-pipe players, and bronze-and-iron workers. The line culminates in Lamech, who boasts to his wives that he has killed a man for wounding him and a boy for striking him, declaring that if Cain is avenged sevenfold, Lamech is avenged seventy-sevenfold. Violence has already learned to scale.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Qāyīn concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>Plowshare</strong> — His identity as a worker of the soil, later ironically turned to violence</li>
+  <li><strong>Blood</strong> — The blood of Abel that cries out from the ground and cannot be silenced</li>
+  <li><strong>The mark</strong> — A protective sign whose exact nature is never described; later imagined as a horn, a letter, or a visible stigma</li>
+  <li><strong>City walls</strong> — Enoch, the first city, built by an outcast as a refuge against the world he has wounded</li>
+  <li><strong>Bronze and iron tools</strong> — Through his descendants Tubal-cain and others, Cain becomes associated with the crafts of metalwork</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>No archaeological evidence links to the individual Cain, whose story belongs to the primeval history of Genesis rather than to datable history; the land of Nod — the word means &#39;wandering&#39; — is unknown to ancient geography, and no candidate for his city of Enoch has been identified. The narrative does reflect the broader transition to agricultural and pastoral lifeways in the ancient Levant during the Neolithic and Chalcolithic periods, and the tension it stages between farmer and herdsman is a real feature of that economy. The one historical echo most scholars allow is onomastic: the Kenites (qênî), a metalworking people associated with Israel&#39;s southern neighbors (Judges 4:11; 1 Samuel 15:6), share the name&#39;s consonants, suggesting the tale may preserve a tribal etiology for a smithing clan.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Qāyīn is the <strong>first child of the first couple and the first human to shatter the world he was born into</strong>. A tiller of soil, he brings the fruit of his labor to God and sees it rejected while his brother&#39;s offering is accepted. The rejection does not merely disappoint him; it unlocks something ancient and violent. His story is the Bible&#39;s first meditation on envy, anger, and the blood that cries out from the ground.</p>
+<h3 id="tiller-of-the-ground">Tiller of the Ground</h3>
+<p>Cain works the soil, the oldest human vocation; his offering is the fruit of the earth he has labored over (Genesis 4:2–3).</p>
+<h3 id="the-rejected-offering">The Rejected Offering</h3>
+<p>God looks with favor on Abel&#39;s offering but not on Cain&#39;s; the text never explains why, leaving the reader with the mystery of divine preference (Genesis 4:4–5).</p>
+<h3 id="the-mark-of-cain">The Mark of Cain</h3>
+<p>After the murder, God places a sign on Cain to protect him from vengeance, transforming the killer into a wandering, guarded man (Genesis 4:15).</p>
+<h3 id="builder-of-the-first-city">Builder of the First City</h3>
+<p>Cain names his city Enoch after his son, becoming the biblical ancestor of tent-dwellers, musicians, and metalworkers (Genesis 4:17–22).</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Cain&#39;s afterlives reverse and refract the biblical verdict. The Qur&#39;an tells the story without naming him — tafsīr calls him Qābīl — and sharpens the motive: he threatens to kill his brother outright, and after the murder God sends a crow scratching the earth to teach him burial (5:27–31). Gnostic circles went furthest: the sect Irenaeus calls the Cainites honored Cain, with Esau, Korah, and the Sodomites, among those who resisted the creator god — a deliberate inversion of Genesis that the church fathers quote only to condemn. Jewish legend filled the silences: the mark became a horn or a letter of the divine name, and the blind Lamech, aiming at what he took for a beast, became Cain&#39;s unwitting executioner. In English letters, Milton gives the outcast a city and a future in Adam&#39;s vision of things to come (Paradise Lost 11), while Byron&#39;s mystery play Cain (1821) makes him the Romantic rebel who questions an unjust heaven. Across cultures, Cain is the figure who forces the question of why violence begins and how it can be stopped.</p>
+<p>Within the corpus, the figure bound most closely to his story is his brother <a href="/sites/abel/">Hāḇel</a>, the accepted offering whose blood will not stop speaking.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Qāyīn and his brother have become the archetype of fratricide — every killing of brother by brother carries their names. The &#39;mark of Cain&#39; has been misunderstood as a sign of racial blackness and used to justify slavery and racism, though the text gives no hint of ethnicity; in modern legal and criminological writing the same phrase names the stigma that follows a conviction. In literature, Cain appears as the first rebel, the first exile, the first city-builder, and the first artist of violence. Psychology borrows the &#39;Cain complex&#39; for sibling rivalry that can turn deadly, and English idiom still speaks of &#39;raising Cain&#39; for making violent trouble. The story&#39;s central question — &#39;Am I my brother&#39;s keeper?&#39; — remains a test for every society.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Qāyīn given in this edition rests on the witnesses and reference works listed below. The lexica map the contested etymology — the acquisition-pun of Genesis 4:1 against the &#39;smith&#39; derivation; Genesis 4 supplies the whole narrative; the Qur&#39;an gives the story its second canonical telling; and the two English works mark the figure&#39;s great literary afterlives.</p>
+<ul>
+  <li> HALOT s.v. קַיִן — form and etymological options.</li>
+  <li> TDOT s.v. Cain — theological profile of the figure.</li>
+  <li> Genesis 4 — the primary narrative: offerings, murder, mark, city.</li>
+  <li> Qur&#39;an, Surah 5:27–31 — the two sons of Adam and the crow.</li>
+  <li> Milton, Paradise Lost, Books 11–12 — the vision of Cain&#39;s city and seed.</li>
+  <li> Byron, Cain (1821) — the Romantic rebel&#39;s mystery play.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Qāyīn is the first human being who does not know what to do with failure. His offering is rejected, and instead of asking why or changing, he destroys the one whose offering was accepted. In that, he is the ancestor of every envious heart that mistakes another&#39;s success for its own diminishment.</p>
+<p>The ground that receives Abel&#39;s blood becomes a witness; it will not be silent. Cain is cursed from it because the earth has absorbed what should have lived. To meditate on Cain is to meditate on the moment before violence — the warning that sin is crouching at the door — and on how rarely we heed it. The story does not let us write him off as a monster; it shows us a farmer, a brother, a city-builder, a man who could have mastered the crouching thing and did not.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Qāyīn is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>qayin</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 5 characters of the name, the restoration adjusts 2: 2 marks of length (ā, ī). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>qāyīn.com</strong>, which the DNS carries in punycode form as xn--qyn-1oa5s.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Qāyīn; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Hebrew can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Every stage of the journey from Hebrew to Unicode was an act of care: the scribe who first wrote the name, the lexicographer who glossed it, the engineer who taught the DNS to carry it. The PÚNYCODEX restoration is the latest stage, not the last word — the Scholarly Edition is revised as the evidence improves. What does not change is the principle: a name deserves to be written the way its own tradition wrote it. <strong>Qāyīn</strong> in the address bar is that principle, made routable.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/asherah/">ꜥAsherah</a></li>
   <li><a href="/sites/el/">Ēl</a></li>
   <li><a href="/sites/noah/">Nōaḥ</a></li>
 </ul>
-<h2>Further Reading</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
-  <li><a href="https://www.britishmuseum.org/">Scholarly reference</a></li>
+  <li>Genesis 4 (primary Cain narrative).</li>
+  <li>HALOT s.v. קַיִן.</li>
+  <li>Khan, The Tiberian Pronunciation Tradition of Biblical Hebrew (2020).</li>
+  <li>Biblia Hebraica Stuttgartensia (BHS), Genesis 4:1.</li>
+  <li>Lexicon authorities for this entry: Abraham.</li>
 </ul>
-<h2>The Name in Context</h2>
-<p>Qāyīn (Hebrew קַיִן; English Cain) is the firstborn son of Adam and Eve, a tiller of the ground whose rejected offering becomes the seed of the Bible&#39;s first murder. Warned that &#39;sin is crouching at the door&#39;, he rises against his brother in the field; confronted, he answers with the first human lie — &#39;Am I my brother&#39;s keeper?&#39; — and is cursed from the soil that drank Abel&#39;s blood, yet marked with a protective sign and sent to the land of Nod, east of Eden (Genesis 4:1–16). His line builds the first city and fathers the crafts of herding, music, and metalwork (Genesis 4:17–22). The name is punned on at his birth: Eve cries qānîtî îš, &#39;I have acquired a man, with the LORD&#39; (Genesis 4:1), deriving Qāyīn from the verb q-n-h, &#39;to acquire, create&#39;. Many...</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">canaanite</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

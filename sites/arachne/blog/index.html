@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,39 +170,179 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#epithets-cult-titles">Epithets &amp; Cult Titles</a></li>
+                <li><a href="#the-homeric-hymns">The Homeric Hymns</a></li>
+                <li><a href="#oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>Arachnē in 2026: Why Scholars Still Care</h1>
-<p>In 2026, names are treated as data points. Arachnē is a reminder that they are also cultural artifacts. Arachnē (arachne) — Weaver, Turned into Spider · Mythological weaver who was transformed into a spider — belongs to the Greek tradition, where it is catalogued under the domain &quot;Weaver, Turned into Spider&quot;. The name means &quot;Mythological weaver who was transformed into a spider&quot;. Arachnē is the Lydian maiden whose weaving rivaled a goddess&#39;s and who was transformed into the first spider. Her myth is a meditation on skill, pride, and the dangerous boundary between human excellence and divine honor. PÚNYCODEX restores the name as Arachnē and serves its temple at arachnē.com. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form arachne... The question is not whether the name is old, but whether the digital world is old enough to hold it.</p>
-<h2>The Scholarly Argument</h2>
-<p>The name is attested in Greek as Ἀράχνη. Etymologically it means &quot;Mythological weaver who was transformed into a spider&quot;. The ASCII form arachne survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Arachnē recovers the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The letter-by-letter transformation runs: - a → A — Same - r → r — Same - a → a — Same - c → c — Same - h → h — Same - n → n — Same - e → ē — Macron: long eta The project holds the domain arachnē.com (xn--arachn-u3a.com) as... The PÚNYCODEX Scholarly Edition collects these arguments in one place, with sources and revision history, so the claim can be inspected rather than merely asserted.</p>
-<h2>What the Accent Preserves</h2>
-<p>This entry is classified as <strong>Tier 1</strong>. the Greek original carries both stress and length, and only one valid Unicode restoration exists Those marks are not ornaments; they are the coordinates that place the name inside a language.</p>
-<h2>A Living Edition</h2>
-<p>The <a href="/sites/arachne/scholars/">Scholarly Edition</a> is not a static page. Verified contributors can improve it, and every change is attributed. That model turns a blog post like this one into an invitation to dig deeper.</p>
-<h2>Where to Learn More</h2>
+            <h1>Arachnē in 2026: why scholars still care</h1>
+<p>In 2026, names are treated as data points. <strong>Arachnē</strong> is a reminder that they are also cultural artifacts — and that the difference matters for search engines, AI training corpora, and anyone who types the name of a Greek figure into a browser. Scholars never stopped caring about the difference between <em>arachne</em> and Arachnē; the web simply made that care actionable. What follows is the full scholarly picture — name, script, sound, myth, cult, and legacy — followed by the engineering compromise that lets a restored spelling live at a real address. The question is not whether the name is old. It is whether the digital world is old enough to hold it.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Arachnē</li>
+  <li><strong>ASCII form:</strong> arachne</li>
+  <li><strong>Meaning:</strong> &quot;Mythological weaver who was transformed into a spider&quot;</li>
+  <li><strong>Domain of influence:</strong> Weaver, Turned into Spider</li>
+  <li><strong>Pantheon:</strong> Greek</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Original script:</strong> Ἀράχνη (Greek)</li>
+  <li><strong>Live domain:</strong> arachnē.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Arachnē</strong> (<em>arachne</em>) — Weaver, Turned into Spider · Mythological weaver who was transformed into a spider — belongs to the Greek tradition, where it is catalogued under the domain &quot;Weaver, Turned into Spider&quot;. The name means &quot;Mythological weaver who was transformed into a spider&quot;.</p>
+<p>Arachnē is the <strong>Lydian maiden whose weaving rivaled a goddess&#39;s</strong> and who was transformed into the first spider. Her myth is a meditation on skill, pride, and the dangerous boundary between human excellence and divine honor.</p>
+<p>PÚNYCODEX restores the name as <strong>Arachnē</strong> and serves its temple at <a href="https://xn--arachn-u3a.com">arachnē.com</a>. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>arachne</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Greek as <strong>Ἀράχνη</strong>. Etymologically it means &quot;Mythological weaver who was transformed into a spider&quot;.</p>
+<p>The ASCII form <em>arachne</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Arachnē</strong> recovers the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>a</strong> → <strong>A</strong> — Same</li>
+  <li><strong>r</strong> → <strong>r</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+  <li><strong>c</strong> → <strong>c</strong> — Same</li>
+  <li><strong>h</strong> → <strong>h</strong> — Same</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+  <li><strong>e</strong> → <strong>ē</strong> — Macron: long eta</li>
+</ul>
+<p>The project holds the domain <strong>arachnē.com</strong> (xn--arachn-u3a.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Greek as <strong>Ἀράχνη</strong> — Greek alphabet (Classical / Attic), attested first as the common noun ἀράχνη, &quot;spider,&quot; and only later as a personal name: the mythic weaver&#39;s full career in surviving literature begins with Ovid.</p>
+<p>The scholarly transliteration is <em>Arákhnē</em> (Greek alphabet with polytonic accents), giving the normalized reading /a.rákʰ.nɛː/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The Greek form Ἀράχνη is written in the Classical Greek alphabet.</li>
+  <li>The acute accent on the second alpha preserves the pitch accent; the final η is a long vowel.</li>
+  <li>The chi (χ) is an aspirated kappa, [kʰ], preserved in the scholarly transliteration <em>kh</em>; the registrable form Arachnē keeps the Latinized <em>ch</em> and marks the long η with a macron.</li>
+</ul>
+<p>The etymology is disputed: no secure Indo-European derivation exists, proposals linking the word to roots for &quot;spin&quot; or &quot;weave&quot; remain conjectural, and current etymological work treats a Pre-Greek substrate origin as plausible. The Greek carries both stress and length, and a single historically valid spelling exists, placing the name in Tier 1; the restoration keeps the macron that registers the length.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/a.rákʰ.nɛː/</strong> — Attic Greek Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>a-</strong> — Short alpha [a], unstressed opening syllable.</li>
+  <li><strong>-rá-</strong> — Aspirated rho plus acute on short alpha [rákʰ] — the pitch peak and the root of &#39;spider&#39;.</li>
+  <li><strong>-knē</strong> — Kappa-nu-eta [knɛː]; the -χνη ending is the same root seen in ἀράχνης, &#39;spider&#39;.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;ah-RAH-knay&#39; — the middle syllable is stressed and higher-pitched; the final -ē is long.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Greek</strong> — ἀράχνη (arákhnē), &#39;spider&#39; and the name of the Lydian weaver</li>
+  <li><strong>PIE</strong> — Possible root <em>reh₂g- &#39;to weave&#39; or </em>h₂erh₃- &#39;to spin&#39;; etymology disputed</li>
+</ul>
+<p>Arachnē is Tier 1 because the Greek ἀράχνη contains both stress (acute on the short alpha of the second syllable, associated with long-final pattern) and length (final η). The aspirated rho is preserved in the classical spelling.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Arachnē&#39;s myth turns on a <strong>contest of representation</strong>. She is not punished for bad weaving but for weaving too well — and for choosing a subject that shames the gods.</p>
+<h3 id="the-challenge-ovid-metamorphoses">The Challenge (Ovid, Metamorphoses)</h3>
+<p>Arachnē, a Lydian maiden, boasted that her skill surpassed Athena&#39;s. The goddess appeared as an old woman and warned her to repent. When Arachnē refused, Athena revealed herself and proposed a contest. Athena wove the glory of the gods; Arachnē wove their thefts and betrayals — Europa, Leda, Danaë, and others wronged by Olympian desire.</p>
+<h3 id="the-transformation-ovid-metamorphoses">The Transformation (Ovid, Metamorphoses)</h3>
+<p>Athena could find no flaw in Arachnē&#39;s work, yet its impiety enraged her. She struck the maiden, who hanged herself in shame. In pity or punishment, Athena sprinkled her with Hekate&#39;s herb and transformed her into a spider, condemning her and her descendants to weave forever.</p>
+<h3 id="weaving-as-speech-iconography">Weaving as Speech (Iconography)</h3>
+<p>The contest is one of the great myths about art itself. Arachnē&#39;s tapestry is &#39;true&#39; but dangerous; Athena&#39;s is official but sanitized. The myth asks whether skill grants the right to tell forbidden truths, and whether divine power can tolerate accurate criticism.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>Arachnē&#39;s attributes are the instruments of her craft and her punishment, all of them fixed by Ovid&#39;s single full account (<em>Metamorphoses</em> 6.1–145).</p>
+<ul>
+  <li><strong>The loom</strong> — the arena of the contest: two looms set up side by side, the warp stretched, the goddess and the mortal weaving in rivalry (Ovid, <em>Metamorphoses</em> 6.53–69).</li>
+  <li><strong>The tapestry of divine scandals</strong> — her subject: the crimes of the gods in love, Europa, Leda, Danaë and the rest, woven without a flaw (Ovid, <em>Metamorphoses</em> 6.103–128).</li>
+  <li><strong>The hanging thread</strong> — her attempted death: unable to bear Pallas&#39; blows and the shame, she fastens a noose, and Athena lifts her as she hangs (Ovid, <em>Metamorphoses</em> 6.134–136).</li>
+  <li><strong>The spider&#39;s web</strong> — her final form: transformed by the juice of Hekate&#39;s herb, she keeps the spinner&#39;s trade forever, hanging her threads from the rafters (Ovid, <em>Metamorphoses</em> 6.139–145).</li>
+  <li><strong>Purple-dyed wool</strong> — her father&#39;s trade: Idmon of Colophon steeped thirsty wool in Phocaean purple, the luxury dye that frames her as a real weaver of Asia Minor (Ovid, <em>Metamorphoses</em> 6.8–13).</li>
+  <li><strong>Linen cloth and nets</strong> — her inventions, in the culture-hero tradition preserved by Pliny (<em>Natural History</em> 7.196).</li>
+</ul>
+<p>No certain depiction of Arachnē survives from classical Greek art. Attic vases show women at looms — Penelope at her web, on the famous skyphos by the Penelope Painter, is the supreme example — but the contest with [[athena|Athénā]] is not securely identifiable in any archaic or classical painting; the myth&#39;s silence in early literature matches its silence on pots. Roman-period sarcophagi and gems with weaving scenes have been claimed for her, none universally accepted. Her true pictorial career is post-antique: Velázquez&#39;s <em>Las Hilanderas</em> (c. 1657), where the tapestry of the Rape of Europa hangs behind the spinners, made her the emblem of the artist&#39;s dangerous truth-telling. In antiquity her &quot;icon&quot; was the spider itself, drawn on amulets and carved on gems as a symbol of patient craft.</p>
+<h2 id="epithets-cult-titles">Epithets &amp; Cult Titles</h2>
+<p>Arachnē is a mortal craftswoman, not a deity, and has no cult epithets; the tradition knows her through descriptors of place, parentage, and skill:</p>
+<ul>
+  <li><strong>daughter of Idmon of Colophon</strong> — her father a dyer who steeped thirsty wool in Phocaean purple (Ovid, <em>Metamorphoses</em> 6; Pliny, <em>Natural History</em> 7).</li>
+  <li><strong>of Hypaepa in Lydia</strong> — Ovid sets her in the little Lydian town, famous &quot;not for place or birth but for art.&quot;</li>
+  <li><strong>Maeonis</strong> — &quot;the Maeonian,&quot; that is, Lydian; Ovid&#39;s recurring ethnic for her.</li>
+  <li><strong>rival of Pallas</strong> — her narrative predicate: the only mortal to test [[athena|Athénā]] at the loom and lose nothing in craft, everything in judgment.</li>
+  <li><strong>the spider (ἀράχνη)</strong> — her final &quot;title&quot;: the common Greek noun for the spider, so that every web repeats her story.</li>
+</ul>
+<h2 id="the-homeric-hymns">The Homeric Hymns</h2>
+<p>No Homeric Hymn to Arachnē exists, and she is entirely absent from early Greek hexameter: neither Homer nor Hesiod knows her name. The myth is a late, Hellenistic-flavoured aition whose first full telling is Roman — Ovid, <em>Metamorphoses</em> 6.1–145, the weaving contest with Pallas and the transformation into the spider. A bare biographical notice stands earlier in the Roman tradition: Pliny (<em>Natural History</em> 7.196) lists &quot;Arachne, daughter of Idmon of Colophon&quot; among the inventors, crediting her with linen cloth and nets — the profile of a culture-heroine rather than a goddess. If a lost Hellenistic poem lies behind Ovid, as many scholars suppose, it has left no certain fragment; the hymnic and epic corpus of archaic Greece is silent.</p>
+<h2 id="oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</h2>
+<p>Arachnē had no cult, oracle, or sanctuary; she belongs to the class of mythic craftspeople punished by gods, not to the class of powers worshipped after death. Her geography is real but secular: Colophon, her father&#39;s city, one of the twelve Ionian towns of Asia Minor, famous for its horsemen and its luxury; and Hypaepa in Lydia, the small weaving town where Ovid places her — appropriately, since Lydia was a byword for fine textiles and purple dye. No hero-shrine for her is recorded by Pausanias or any other source, and no inscription dedicates a loom or web to her memory. Her afterlife is zoological rather than cultic: the class Arachnida of modern taxonomy carries her name to every spider on earth.</p>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>No shrine, heroön, or votive for Arachnē exists or was ever expected to: she is a punished mortal of romance, and punished mortals receive tombs only when they are also heroes, which she is not. Her geography is real enough to excavate — Colophon, her father&#39;s Ionian city, remembered by Pliny (<em>Natural History</em> 7.196), and Hypaepa in Lydia, the weaving town Ovid assigns her — but neither site preserves a trace of the myth, which no surviving author before Ovid fully tells. The visual record matches the literary silence: no archaic or classical Greek image of the contest is securely identified. Attic vases show women at looms — the Penelope Painter&#39;s skyphos from Chiusi (c. 440 BCE) is the supreme example — but the weaver who challenges Athena is not among them. Roman-period gems and amulets carve the spider itself as an emblem of patient craft, and it is in that small, persistent zoology, rather than in marble, that her material afterlife in antiquity lies.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Arachnē is the <strong>Lydian maiden whose weaving rivaled a goddess&#39;s</strong> and who was transformed into the first spider. Her myth is a meditation on skill, pride, and the dangerous boundary between human excellence and divine honor.</p>
+<h3 id="master-weaver">Master Weaver</h3>
+<p>Her tapestries were so fine that nymphs left their streams to watch her work.</p>
+<h3 id="rival-of-athena">Rival of Athena</h3>
+<p>She challenged Athena to a contest and wove the gods&#39; scandals with flawless skill.</p>
+<h3 id="the-spider">The Spider</h3>
+<p>Transformed into the first arachnid, she kept her gift but lost her human form.</p>
+<h3 id="loom-as-arena">Loom as Arena</h3>
+<p>The contest of weaving becomes a contest over who may speak truth about the gods.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Arachnē has no syncretic history in the strict sense. She was a mortal craftswoman of Lydia, never worshipped, so no foreign people identified her with a deity of their own, and no Roman writer renamed her; Ovid takes her over with her Greek name intact — the same word as the common noun for &quot;spider.&quot; Her migration is of a different kind, from myth into taxonomy: when post-Linnaean zoology systematized the invertebrates, the class of spiders, scorpions, and mites took the name Arachnida from her, so that her shrine became every web on earth. Within the Greek corpus her true kin are the other mortals punished for measuring themselves against the gods — Niobe, Marsyas, the Pierides — whose stories Ovid weaves around hers across the sixth book of the <em>Metamorphoses</em>. Her only divine entanglements are with <a href="/sites/athena/">Athénā</a>, patron of weavers and her rival at the loom, and with <a href="/sites/hekate/">Hekátē</a>, whose herb works the transformation (Ovid, <em>Metamorphoses</em> 6.139).</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Arachnē&#39;s afterlife divides between language and interpretation. Zoology preserves her in the class Arachnida, medicine in <em>arachnophobia</em>, the fear of her descendants, and the Romance and English lexicons in a family of &quot;spider&quot; words that descend from her Greek name. In art her definitive modern monument is Velázquez&#39;s <em>Las Hilanderas</em> (c. 1657, Museo del Prado), where the tapestry of the Rape of Europa — her own subject, taken from Ovid&#39;s account of her weaving — glows on the wall behind the spinners, the painter reading the contest as an allegory of art itself. Modern criticism has made her a test case: feminist readings see a skilled woman silenced by a rival who cannot fault her work, while older moralizing readings kept her as the type of hubris; both agree that Ovid engineered the scandal of the flawless tapestry that tells the truth about the gods. Her deepest legacy may be structural: the idiom of &quot;spinning&quot; and &quot;weaving&quot; a story binds narrative to her craft, and every plot that is woven works, unknowingly, at Arachnē&#39;s loom.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Arachnē given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Full text</a></li>
+  <li> Beekes, Etymological Dictionary of Greek.</li>
+  <li> Ovid, Metamorphoses.</li>
+  <li> Apollodorus, Bibliotheca.</li>
+  <li> Virgil, Georgics.</li>
+  <li> Pausanias, Description of Greece.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Arachnē is the artist as transgressor. Her fingers knew what her tongue could not safely say. The loom became her printing press, her courtroom, her rebellion. Athena did not destroy the tapestry; she destroyed the weaver — a sign that the work itself could not be answered.</p>
+<p>The transformation into a spider is ambiguous. Is it punishment or preservation? Arachnē loses her human form but keeps her gift, weaving now without rivalry, without audience, without end. In that ceaseless making there is something like immortality, and something like loneliness. She is every creator whose excellence outruns their place.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Arachnē is classified as <strong>Tier 1</strong>: the original carries both stress and length, and only one valid Unicode restoration exists. The ASCII fallback <em>arachne</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 7 characters of the name, the restoration adjusts 1: 1 mark of length (ē). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>arachnē.com</strong>, which the DNS carries in punycode form as xn--arachn-u3a.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Arachnē; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Greek can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>In 2026 the stakes are practical. Search indexes, language models, and localization pipelines all inherit whatever spelling the web normalizes — which means every Unicode domain is also a training signal. <strong>Arachnē</strong> teaches the machinery that the restored form exists, that it is used, and that it points to a real place. That is why a project built on philology ends up caring about DNS: the infrastructure decides which names the future sees. This restoration makes sure the future sees the whole name.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/atalanta/">Atalantē</a></li>
   <li><a href="/sites/atlas/">Átlas</a></li>
   <li><a href="/sites/atropos/">Átropos</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843.</a></li>
+  <li>Beekes, Etymological Dictionary of Greek.</li>
+  <li>Ovid, Metamorphoses.</li>
+  <li>Beekes, Etymological Dictionary of Greek, s.v. ἀράχνη.</li>
+  <li>Ovid, Metamorphoses 6.1–145.</li>
+  <li>Lexicon authorities for this entry: LSJ, Pape-Benseler, Beekes.</li>
 </ul>
-<h2>What the Sources Record</h2>
-<p>Arachnē is the Lydian maiden whose weaving rivaled a goddess&#39;s and who was transformed into the first spider. Her myth is a meditation on skill, pride, and the dangerous boundary between human excellence and divine honor. ### Master Weaver Her tapestries were so fine that nymphs left their streams to watch her work. ### Rival of Athena She challenged Athena to a contest and wove the gods&#39; scandals with flawless skill. ### The Spider Transformed into the first arachnid, she kept her gift but lost her human form. ### Loom as Arena The contest of weaving becomes a contest over who may speak truth about the gods.</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Arachnē as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Greek to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Arachnē through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/arachne/">home page</a> offers the full name breakdown, the <a href="/sites/arachne/lore/">lore page</a> explores the myth, and the <a href="/sites/arachne/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Arachnē do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">greek</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

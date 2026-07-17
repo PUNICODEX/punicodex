@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,45 +170,202 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-norse-pantheon">The Norse Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>How Muspellheimr Got Its Accent Back</h1>
-<p>The ASCII form <em>muspellheimr</em> is missing something. Muspellheimr restores the marks that the original language used to distinguish this name from a thousand others. The name is rendered in Younger Futhark as ᛘᚢᛋᛒᛁᛚᛚᚼᛁᛘᚱ; the sixteen-rune futhark does not distinguish b from p, so the runic string writes the p of Muspell with the bjarkan rune ᛒ. Etymologically the compound means &#39;the home of Muspell&#39;, but only the second element is transparent. The first element resists analysis: Muspell- has no agreed etymology, though its occurrence in Old High German (Muspilli) and Old Saxon (mutspelli) proves it a common Germanic inheritance rather than a Norse coinage; glosses such as &#39;world-destroying fire&#39; are paraphrases of its use in the sources, not derivations. The ASCII form muspellheimr survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient...</p>
-<h2>The Missing Marks</h2>
-<p>Classified as <strong>Tier 2</strong>, this restoration carries the stress and length that standard ASCII discards. the original preserves at least one philological feature that ASCII cannot encode</p>
-<h2>Step by Step</h2>
-<p>The transformation from <em>muspellheimr</em> to <strong>Muspellheimr</strong> happens one character at a time. Some letters stay the same; others gain accents, macrons, or entirely new shapes. The breakdown on the <a href="/sites/muspellheimr/">temple home page</a> shows exactly how.</p>
-<h2>Why Stress and Length Matter</h2>
-<p>In the source language, changing a stress or a vowel length can change a meaning. Names are especially sensitive because they are proper nouns: one spelling points to one entity. Muspellheimr preserves that pointer in a way <em>muspellheimr</em> cannot.</p>
-<h2>The Restored Form</h2>
-<p>Muspellheimr is now a domain. That simple fact turns a philological detail into a public demonstration. Anyone who types it participates in the restoration.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Muspellheimr is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>How Muspellheimr got its accent back</h1>
+<p>The ASCII form <em>muspellheimr</em> is missing something. <strong>Muspellheimr</strong> restores the marks the source language used to distinguish this name from a thousand others — and those marks change how the name is read, pronounced, and understood. This post explains, with the full scholarly record behind it, what each restored mark preserves: the Younger Futhark evidence, the reconstructed sound, the myths the name carries, and the classification logic that separates Tier 1 restorations from Tier 2. By the end, the marks in Muspellheimr will look less like ornaments and more like what they are — recovered evidence, pinned back in its proper place.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Muspellheimr</li>
+  <li><strong>ASCII form:</strong> muspellheimr</li>
+  <li><strong>Meaning:</strong> &quot;Muspel-home (world-ender)&quot;</li>
+  <li><strong>Domain of influence:</strong> World of Fire</li>
+  <li><strong>Pantheon:</strong> Norse</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> ᛘᚢᛋᛒᛁᛚᛚᚼᛁᛘᚱ (Younger Futhark)</li>
+  <li><strong>Live domain:</strong> muspellheimr.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Muspellheimr</strong> (Old Norse <em>Muspellheimr</em>, &#39;the home of Muspell&#39;, from <em>Muspell-</em> + <em>heimr</em>) is the world of fire in Norse cosmology: the southern realm of flame whose defender Surtr will burn the ordered world at Ragnarǫk. Snorri&#39;s <em>Gylfaginning</em> places it at the origin as well as the end — before the worlds were made, sparks and molten spray from Muspellheimr met the rime flowing north out of Niflheimr in the void of Ginnungagap, and from the quickening drip the first being, Ymir, emerged. The word itself is older than any of its Norse attestations: it surfaces in the ninth-century Old High German poem <em>Muspilli</em> and as <em>mutspelli</em> in the Old Saxon <em>Heliand</em>, always meaning the fire or day that ends the world, and its etymology remains unsolved.</p>
+<p>PÚNYCODEX restores the name as <strong>Muspellheimr</strong> and serves its temple at <a href="https://muspellheimr.com">muspellheimr.com</a>. The compound carries no diacritics in normalized Old Norse, so the restoration is itself plain ASCII; its Tier 2 classification reflects that no vowel in it is marked long or stressed.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is rendered in Younger Futhark as <strong>ᛘᚢᛋᛒᛁᛚᛚᚼᛁᛘᚱ</strong>; the sixteen-rune futhark does not distinguish b from p, so the runic string writes the p of Muspell with the bjarkan rune ᛒ. Etymologically the compound means &#39;the home of Muspell&#39;, but only the second element is transparent.</p>
+<p>The first element resists analysis: <em>Muspell-</em> has no agreed etymology, though its occurrence in Old High German (<em>Muspilli</em>) and Old Saxon (<em>mutspelli</em>) proves it a common Germanic inheritance rather than a Norse coinage; glosses such as &#39;world-destroying fire&#39; are paraphrases of its use in the sources, not derivations.</p>
+<p>The ASCII form <em>muspellheimr</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. In this case the Unicode restoration <strong>Muspellheimr</strong> coincides with the ASCII form: normalized Old Norse writes the compound without length or stress marks, and its Tier 2 classification reflects that plain phonology.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>m</strong> → <strong>M</strong> — Same, capitalized</li>
+  <li><strong>u</strong> → <strong>u</strong> — Same</li>
+  <li><strong>s</strong> → <strong>s</strong> — Same</li>
+  <li><strong>p</strong> → <strong>p</strong> — Same</li>
+  <li><strong>e</strong> → <strong>e</strong> — Same</li>
+  <li><strong>l</strong> → <strong>l</strong> — Same</li>
+  <li><strong>l</strong> → <strong>l</strong> — Same</li>
+  <li><strong>h</strong> → <strong>h</strong> — Same</li>
+  <li><strong>e</strong> → <strong>e</strong> — Same</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+  <li><strong>m</strong> → <strong>m</strong> — Same</li>
+  <li><strong>r</strong> → <strong>r</strong> — Same</li>
+</ul>
+<p>The project holds the domain <strong>muspellheimr.com</strong> (muspellheimr.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: Uncertain; possibly from PGmc *muspell- &quot;world-end fire&quot;. The realm of fire.</p>
+<p>The reconstructed proto-form is <em>*Muspell-</em> (proto-indo-european), glossed as &quot;world-destroying fire&quot;.</p>
+<p>The reconstruction is classed as speculative.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Younger Futhark as <strong>ᛘᚢᛋᛒᛁᛚᛚᚼᛁᛘᚱ</strong> — Germanic runic, attested Viking Age, c. 800–1100 CE, in Scandinavia. The script is written left-to-right, top-to-bottom.</p>
+<p>The scholarly transliteration is <em>Muspellheimr</em> (normalized Old Norse), giving the normalized reading /ˈmus.pɛl.hɛi̯mr/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The Younger Futhark form ᛘᚢᛋᛒᛁᛚᛚᚼᛁᛘᚱ provides a Viking-Age runic attestation or normalized reconstruction.</li>
+  <li>Younger Futhark has only sixteen runes and does not distinguish short/long vowels or voiced/voiceless stops.</li>
+  <li>The normalized Old Norse form is based on 13th-century manuscript tradition (Poetic and Prose Eddas).</li>
+  <li>The Unicode restoration Muspellheimr is written without diacritics in normalized Old Norse, so it is registrable in .com directly as plain ASCII (muspellheimr.com), with no punycode conversion required.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/ˈmus.pelˌhɛi̯mr/</strong> — Old Norse Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Mus-</strong> — Short [u] between voiced [m] and voiceless [s]; the first element Muspell- is of uncertain origin</li>
+  <li><strong>-pell-</strong> — Voiceless bilabial [p] plus short [ɛ] and alveolar lateral [l]</li>
+  <li><strong>-heimr</strong> — Diphthong [ɛi̯] in heimr, &#39;home, world&#39;, with bilabial [m] and tapped [r]</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;MUSS-pel-haymr&#39; — stress the first syllable, keep the vowels short, and glide through the final &#39;haymer&#39;.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Old Norse</strong> — Muspell, the fire-world and its host; its first element is of uncertain origin</li>
+  <li><strong>Poetic Edda</strong> — Muspellz lýðir, &#39;Muspell&#39;s people&#39;, the host that sails from the east in Völuspá 51</li>
+  <li><strong>Old Saxon</strong> — mutspelli, the day of the world&#39;s end in the Heliand</li>
+</ul>
+<p>Muspellheimr is Tier 2: no vowel is marked long or stressed. The first element Muspell is not a native transparent compound; its prehistory is debated, which is why the pronunciation stays conservative and the etymology is not invented.</p>
+<h2 id="mythology">Mythology</h2>
+<p><strong>Muspellheimr</strong> is the world of fire, the southern realm of flame that existed even before the ordered cosmos was shaped. It is the home of Surtr, the fire giant who will lead its sons across Bifröst at Ragnarǫk, burning the world and slaying Freyr. Unlike Niflheimr&#39;s ice, Muspellheimr represents unconstrained destruction and the heat that first melted the primordial rime, allowing Ymir to emerge from Ginnungagap. No gods dwell there permanently; its inhabitants are fire giants and burning beings for whom order itself is fuel. Medieval Icelanders, living in the shadow of Hekla and Eldgjá, knew this fire firsthand; their lava fields gave empirical weight to the idea of a southern world of flame. Snorri&#39;s account makes it the southern origin of the world-destroying force that surges under Surtr&#39;s leadership at Ragnarǫk, and the realm thus embodies the apocalyptic insight that the same heat that first quickens life will finally consume the ordered cosmos.</p>
+<h3 id="surtr-comes-from-the-south-voluspa">Surtr Comes from the South (Völuspá)</h3>
+<p>The seeress of <em>Völuspá</em> foretells that Surtr will come from the south with fire, his sword brighter than the sun. The bridge Bifröst breaks beneath the tread of Muspell&#39;s sons; the fire giant slays the beautiful god Freyr, who gave away his own sword for love. The flames spread until heaven itself is consumed.</p>
+<p>This is Muspellheimr&#39;s decisive mythic appearance: not as a realm to be visited but as a force that arrives at the end of time. Its fire does not discriminate; it burns gods, giants, and the world-tree alike, making Muspellheimr the agent of universal dissolution.</p>
+<h3 id="the-first-melting-gylfaginning">The First Melting (Gylfaginning)</h3>
+<p>Before the worlds were made, the cold rivers of Niflheimr flowed into Ginnungagap and froze into rime, while sparks and molten fragments from Muspellheimr flew into the same void. Where the fire met the ice, the ice began to drip, and from those drops the body of Ymir was formed.</p>
+<p>Thus Muspellheimr is not merely the world&#39;s destroyer but also one of its two creative poles. Without its heat, the primordial drip would never have quickened into life. The realm holds destruction and genesis in a single burning paradox.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>Muspellheimr&#39;s iconography is eschatological: its emblems are all things of the world&#39;s first morning or its last evening.</p>
+<ul>
+  <li><strong>Surtr&#39;s flaming sword</strong> — The blade brighter than the sun with which the fire-giant comes from the south at the doom</li>
+  <li><strong>Lava field</strong> — The volcanic landscape of Iceland that medieval Norse readers knew firsthand as a working model of the fire-world</li>
+  <li><strong>Spark-shower</strong> — The sparks that flew out of Muspellheimr and were set in the sky as the lights of heaven</li>
+  <li><strong>Myrkviðr, the dark wood</strong> — The forest across which Lokasenna has Muspell&#39;s sons ride to the last battle</li>
+  <li><strong>Broken Bifröst</strong> — The rainbow bridge that shatters beneath the tread of the fire-host</li>
+</ul>
+<ul>
+  <li><strong>Fire-giant&#39;s crown</strong> — Surtr as the ruler of the flaming realm, sometimes shown with a crown of flames</li>
+  <li><strong>World-ash blackened</strong> — The burned Yggdrasil after the fire of Muspell has passed</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Muspellheimr&#39;s material anchor is not a cult site but a catastrophe. The Eldgjá fissure eruption in the Katla volcanic system, ice-core dated to 939 CE, was the largest basaltic lava flood of the Common Era, and it fell within living memory of Iceland&#39;s settlement generation; medieval Icelanders wrote and copied their cosmology in a landscape actively being remade by fire. Hekla, whose first historically recorded eruption came in 1104, was by the later Middle Ages proverbially the gateway to hell in the European imagination — the foreign image of Icelandic fire folding back onto the island itself. The word&#39;s own material witness is a manuscript: the Old High German <em>Muspilli</em> survives in Clm 14098 at the Bavarian State Library, copied into a sermon collection in ninth-century Regensburg.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Muspellheimr is the one realm no god visits and survives unchanged: it exists at the beginning and at the end, as the furnace that quickens creation and the fire that ends it.</p>
+<h3 id="surtr-s-fire">Surtr&#39;s Fire</h3>
+<p>The fire giant Surtr will lead Muspell&#39;s sons across Bifröst, burning the world at Ragnarǫk.</p>
+<h3 id="first-melting">First Melting</h3>
+<p>Sparks from Muspellheimr met Niflheimr&#39;s ice in Ginnungagap, melting the primordial rime from which Ymir emerged.</p>
+<h3 id="fire-giants">Fire Giants</h3>
+<p>Muspellheimr&#39;s inhabitants are burning beings for whom order itself is fuel; no gods dwell there.</p>
+<h3 id="apocalyptic-south">Apocalyptic South</h3>
+<p>The southern realm of flame is both the furnace of creation and the terminal conflagration of the cosmos.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Muspell is the single most instructive case of pagan-Christian convergence in Germanic eschatology. The word first surfaces in Christian environments: the Old High German <em>Muspilli</em> is a fragmentary ninth-century sermon-poem on the soul&#39;s fate and the world&#39;s burning, and the Old Saxon <em>Heliand</em> uses <em>mutspelli</em> for the day of doom; only centuries later does the word appear in Scandinavia, in the Eddas&#39; fire-host of <em>Muspells synir</em> and in Snorri&#39;s geography of Muspellheimr. Because the word is unattested in Old English and a hapax in Old High German, scholars have argued both directions — some taking the Norse fire-world for a pagan survival that continental Christianity borrowed, others a preacher&#39;s coinage that Scandinavia borrowed in turn — and the distribution of the attestations does not settle the question. What is clear is the convergence itself: the biblical fire of judgment and the Germanic fire of Ragnarǫk met in one word, and medieval writers on both sides of the North Sea used it for the same event, the day the world burns.</p>
+<p>Within the Norse tradition, closely related names in the corpus include [[alfheimr|Álfheimr]], [[buri|Búri]], [[eggther|Eggþér]], [[helheimr|Helheimr]], [[jormungandr|Jǫrmungandr]], and [[jotunheimr|Jötunheimr]].</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Muspellheimr&#39;s legacy runs on two tracks, one scholarly and one elemental. The scholarly track is philological: the <em>Muspilli</em> fragment, preserved in the ninth-century manuscript Clm 14098 at the Bavarian State Library, is one of the monuments of Old High German, and the word&#39;s pan-Germanic distribution has made it a standing test-case in the study of pagan-Christian contact. The elemental track is Icelandic: when a volcanic island rose from the sea off Iceland&#39;s south coast in 1963, it was named Surtsey, &#39;Surtr&#39;s island&#39;, after the ruler of Muspellheimr, and the island is now a UNESCO World Heritage site whose name carries the fire-world into modern geology. Popular culture adopted the realm directly: Muspelheim is the fiery opening world of Marvel&#39;s <em>Thor: Ragnarok</em> (2017), where Surtr&#39;s crown is the plot&#39;s key, and a trial-realm of the <em>God of War</em> games. The restored spelling Muspellheimr keeps the double-l form of the manuscripts against the simplified &#39;Muspelheim&#39; of popular media.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Muspellheimr given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> The Poetic Edda (Völuspá, Lokasenna, Fáfnismál, Vafþrúðnismál); Snorri Sturluson, Prose Edda (Gylfaginning).</li>
+  <li> Simek, Rudolf. Dictionary of Northern Mythology, trans. Angela Hall. Cambridge: D. S. Brewer, 1993.</li>
+  <li> de Vries, Jan. Altnordisches etymologisches Wörterbuch. 2nd ed. Leiden: Brill, 1962.</li>
+  <li> Poetic Edda: Vafþrúðnismál (Surtalogi, the fire of Surtr that dies down after the world&#39;s burning).</li>
+  <li> The Old High German Muspilli and the Old Saxon Heliand (the continental witnesses to the word).</li>
+  <li> Oppenheimer, Clive, et al. &#39;The Eldgjá eruption: timing, long-range impacts and influence on the Christianisation of Iceland.&#39; Nature Geoscience 11 (2018): 369–375.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Muspellheimr is the only realm the gods never enter, and that is the point. Everything else in the Norse cosmos can be visited, bargained with, or tricked; the fire-world simply waits, at the beginning and at the end, older than creation and certain of surviving it. The name holds the paradox in a single compound: <em>heimr</em>, a home — but a home to which no road runs, defended by a giant with a flaming sword whose only errand is the last one. To write Muspellheimr with its double l is to keep the strangeness of the word visible: it is not a Norse word that can be parsed, only inherited, and the fire it names is the one element of the cosmology that asks for no belief at all.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Muspellheimr is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>muspellheimr</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>muspellheimr</em> to <strong>Muspellheimr</strong>, one character at a time:</p>
+<ul>
+  <li><strong>m</strong> → <strong>M</strong> — Same, capitalized</li>
+  <li><strong>u</strong> → <strong>u</strong> — Same</li>
+  <li><strong>s</strong> → <strong>s</strong> — Same</li>
+  <li><strong>p</strong> → <strong>p</strong> — Same</li>
+  <li><strong>e</strong> → <strong>e</strong> — Same</li>
+  <li><strong>l</strong> → <strong>l</strong> — Same</li>
+  <li><strong>l</strong> → <strong>l</strong> — Same</li>
+  <li><strong>h</strong> → <strong>h</strong> — Same</li>
+  <li><strong>e</strong> → <strong>e</strong> — Same</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+  <li><strong>m</strong> → <strong>m</strong> — Same</li>
+  <li><strong>r</strong> → <strong>r</strong> — Same</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>muspellheimr.com</strong>, which the DNS carries in punycode form as muspellheimr.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Muspellheimr; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Younger Futhark can now be typed into any browser on earth.</p>
+<h2 id="the-norse-pantheon">The Norse Pantheon</h2>
+<p>Muspellheimr is one of 86 entries the PÚNYCODEX lexicon catalogues under the Norse pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Muspellheimr mean?</strong> The traditional gloss is &quot;Muspel-home (world-ender).&quot;</p>
+<p><strong>Which tradition does Muspellheimr belong to?</strong> Muspellheimr is catalogued in the Norse pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Muspellheimr classified as Tier 2?</strong> Because the original preserves at least one philological feature that ASCII cannot encode — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Muspellheimr a working domain?</strong> Yes — muspellheimr.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for muspellheimr.com?</strong> The DNS encoding is muspellheimr.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>The marks in <strong>Muspellheimr</strong> were never lost; they were only waiting for a carrier that could hold them. Now that the carrier exists, the burden flips: every use of <em>muspellheimr</em> is a choice to leave evidence on the table. The PÚNYCODEX temple keeps the restored form in circulation — as a domain, a dataset entry, and a scholarly argument — so that the choice to use it stays easy. Accent by accent, macron by macron, that is how the original names come back: not with a single grand gesture, but with a spelling that finally works everywhere.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/thor/">Þórr</a></li>
   <li><a href="/sites/thrud/">Thrúd</a></li>
   <li><a href="/sites/thrymr/">Þrymr</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
-  <li><a href="https://heimskringla.no/wiki/Main_Page">Scholarly reference</a></li>
+  <li>Snorri Sturluson, Edda, Gylfaginning (Muspellheimr at creation and at Ragnarǫk).</li>
+  <li>Simek, Rudolf. Dictionary of Northern Mythology, trans. Angela Hall. Cambridge: D. S. Brewer, 1993, s.v. Muspell; the Old High German Muspilli and the Old Saxon Heliand (mutspelli).</li>
+  <li>Barnes, Michael P. Runes: A Handbook. Woodbridge: Boydell, 2012.</li>
+  <li>de Vries, Jan. Altnordisches etymologisches Wörterbuch. 2nd ed. Leiden: Brill, 1962, s.v. Muspell; Simek, Dictionary of Northern Mythology, s.v. Muspell.</li>
+  <li>Lexicon authorities for this entry: Prose Edda, Cleasby-Vigfusson.</li>
 </ul>
-<h2>The Cultural Afterlife</h2>
-<p>Muspellheimr&#39;s legacy runs on two tracks, one scholarly and one elemental. The scholarly track is philological: the Muspilli fragment, preserved in the ninth-century manuscript Clm 14098 at the Bavarian State Library, is one of the monuments of Old High German, and the word&#39;s pan-Germanic distribution has made it a standing test-case in the study of pagan-Christian contact. The elemental track is Icelandic: when a volcanic island rose from the sea off Iceland&#39;s south coast in 1963, it was named Surtsey, &#39;Surtr&#39;s island&#39;, after the ruler of Muspellheimr, and the island is now a UNESCO World Heritage site whose name carries the fire-world into modern geology. Popular culture adopted the realm directly: Muspelheim is the fiery opening world of Marvel&#39;s...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Muspellheimr as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Younger Futhark to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Muspellheimr through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/muspellheimr/">home page</a> offers the full name breakdown, the <a href="/sites/muspellheimr/lore/">lore page</a> explores the myth, and the <a href="/sites/muspellheimr/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Muspellheimr do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
-<h2>A Note on the Address Bar</h2>
-<p>When you type Muspellheimr, the browser performs an invisible conversion into Punycode so the global DNS can route the request. The user sees the original name; the machines see a compatible ASCII encoding. That duality is the engineering compromise that makes the restoration possible, and it is the reason every Unicode domain is both a technical milestone and a small act of cultural memory.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">norse</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

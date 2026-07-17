@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,40 +170,214 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#name-variations">Name Variations</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>ꜥAnat in 2026: Why Scholars Still Care</h1>
-<p>In 2026, names are treated as data points. ꜥAnat is a reminder that they are also cultural artifacts. ꜥAnat (anat) — The Virgin Warrior · Sister of the Storm — is the Canaanite goddess of war and the hunt, catalogued in this edition under the domain &quot;Goddess of War and the Hunt.&quot; In the Ugaritic tablets she is the fiercest fighter in the divine assembly and the staunchest ally of her brother Baꜥal. ꜥAnat is the maiden who refuses to grow up into the domestic sphere. In the Ugaritic texts she is neither wife nor mother but a singular force: a warrior who wades knee-deep in the blood of her enemies, a huntress who ranges the wilderness, and the most faithful ally of Baꜥal. Her title btlt — &quot;maiden&quot; — marks her as marriageable in social terms, yet mythologically she remains unattached, unpredictable, and absolutely devoted to her brother. PÚNYCODEX... The question is not whether the name is old, but whether the digital world is old enough to hold it.</p>
-<h2>The Scholarly Argument</h2>
-<p>The name is attested in Ugaritic as 𐎓𐎐𐎚. Etymologically it means &quot;Canaanite warrior goddess, sister and ally of Baꜥal&quot;. The reconstructed proto-form is ʿanatu (proto-afro-asiatic, &quot;warrior goddess&quot;). From Ugaritic ʿnṯ/ʿnt; the initial pharyngeal is rendered with Egyptian Ain (ꜥ) as the registrable workaround Cognate forms across related languages: - עֲנָת (ʿĂnāt) (Hebrew) - 𐤏𐤍𐤕 (ʿnt) (Phoenician) - عَنَت (ʿanat) (Arabic) The ASCII form anat survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration ꜥAnat recovers the full diacritic detail of the scholarly transliteration directly in the address bar. The original preserves one prosodic feature... The PÚNYCODEX Scholarly Edition collects these arguments in one place, with sources and revision history, so the claim can be inspected rather than merely asserted.</p>
-<h2>What the Accent Preserves</h2>
-<p>This entry is classified as <strong>Tier 2</strong>. the original preserves at least one philological feature that ASCII cannot encode Those marks are not ornaments; they are the coordinates that place the name inside a language.</p>
-<h2>A Living Edition</h2>
-<p>The <a href="/sites/anat/scholars/">Scholarly Edition</a> is not a static page. Verified contributors can improve it, and every change is attributed. That model turns a blog post like this one into an invitation to dig deeper.</p>
-<h2>Where to Learn More</h2>
+            <h1>ꜥAnat in 2026: why scholars still care</h1>
+<p>In 2026, names are treated as data points. <strong>ꜥAnat</strong> is a reminder that they are also cultural artifacts — and that the difference matters for search engines, AI training corpora, and anyone who types the name of a Canaanite figure into a browser. Scholars never stopped caring about the difference between <em>anat</em> and ꜥAnat; the web simply made that care actionable. What follows is the full scholarly picture — name, script, sound, myth, cult, and legacy — followed by the engineering compromise that lets a restored spelling live at a real address. The question is not whether the name is old. It is whether the digital world is old enough to hold it.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> ꜥAnat</li>
+  <li><strong>ASCII form:</strong> anat</li>
+  <li><strong>Meaning:</strong> &quot;Canaanite warrior goddess, sister and ally of Baꜥal&quot;</li>
+  <li><strong>Domain of influence:</strong> Goddess of War and the Hunt</li>
+  <li><strong>Pantheon:</strong> Canaanite</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> 𐎓𐎐𐎚 (Ugaritic)</li>
+  <li><strong>Live domain:</strong> ꜥanat.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>ꜥAnat</strong> (<em>anat</em>) — The Virgin Warrior · Sister of the Storm — is the Canaanite goddess of war and the hunt, catalogued in this edition under the domain &quot;Goddess of War and the Hunt.&quot; In the Ugaritic tablets she is the fiercest fighter in the divine assembly and the staunchest ally of her brother Baꜥal.</p>
+<p>ꜥAnat is the <strong>maiden who refuses to grow up</strong> into the domestic sphere. In the Ugaritic texts she is neither wife nor mother but a singular force: a warrior who wades knee-deep in the blood of her enemies, a huntress who ranges the wilderness, and the most faithful ally of Baꜥal. Her title <em>btlt</em> — &quot;maiden&quot; — marks her as marriageable in social terms, yet mythologically she remains unattached, unpredictable, and absolutely devoted to her brother.</p>
+<p>PÚNYCODEX restores the name as <strong>ꜥAnat</strong> and serves its temple at <a href="https://xn--anat-pe8o.com">ꜥanat.com</a>. The restoration opens the name with the Egyptological Ain (ꜥ, U+A724), standing in for the Semitic pharyngeal <em>ʿayin</em> that begins the Ugaritic spelling 𐎓𐎐𐎚 and that the DNS root zone rejects; this one distinctive phoneme, carried without stress or length mark, places the name in Tier 2. The ASCII <em>anat</em> keeps the skeleton and silences the throat.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Ugaritic as <strong>𐎓𐎐𐎚</strong>. Etymologically it means &quot;Canaanite warrior goddess, sister and ally of Baꜥal&quot;.</p>
+<p>The reconstructed proto-form is <em>ʿanatu</em> (proto-afro-asiatic, &quot;warrior goddess&quot;). From Ugaritic ʿnṯ/ʿnt; the initial pharyngeal is rendered with Egyptian Ain (ꜥ) as the registrable workaround</p>
+<p>Cognate forms across related languages:</p>
+<ul>
+  <li><strong>עֲנָת (ʿĂnāt)</strong> (Hebrew)</li>
+  <li><strong>𐤏𐤍𐤕 (ʿnt)</strong> (Phoenician)</li>
+  <li><strong>عَنَت (ʿanat)</strong> (Arabic)</li>
+</ul>
+<p>The ASCII form <em>anat</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>ꜥAnat</strong> recovers the full diacritic detail of the scholarly transliteration directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>a</strong> → <strong>ꜥA</strong> — Egyptian Ain (ꜥ) represents the Semitic ʿayin, followed by the capital alpha present in the Unicode restoration</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+  <li><strong>t</strong> → <strong>t</strong> — Same</li>
+</ul>
+<p>Attested and derived spellings of the name:</p>
+<ul>
+  <li><strong>ʿAnat</strong> — ideal form: Ugaritic/Phoenician ʿayin (ʿ) is ideal but not registrable at the DNS root</li>
+  <li><strong>ꜥanat</strong> — owned form: Lowercase owned form</li>
+  <li><strong>Anát</strong> — scholarly variant: Stress-only alternate transliteration (previous Phoenician entry)</li>
+</ul>
+<p>The project holds the domain <strong>ꜥanat.com</strong> (xn--anat-pe8o.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: From Ugaritic ʿnṯ/ʿnt; the initial pharyngeal is rendered with Egyptian Ain (ꜥ) as the registrable workaround</p>
+<p>The reconstructed proto-form is <em>*ʿanatu</em> (proto-afro-asiatic), glossed as &quot;warrior goddess&quot;.</p>
+<p>The reconstruction is classed as attested.</p>
+<p>Kindred forms recorded in the lexicon:</p>
+<ul>
+  <li><strong>עֲנָת (ʿĂnāt)</strong> (Hebrew) — cognate</li>
+  <li><strong>𐤏𐤍𐤕 (ʿnt)</strong> (Phoenician) — cognate</li>
+  <li><strong>عَنَت (ʿanat)</strong> (Arabic) — cognate</li>
+</ul>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Ugaritic as <strong>𐎓𐎐𐎚</strong> — Northwest Semitic cuneiform alphabet, attested Late Bronze Age, c. 1400–1200 BCE, in Ugarit (modern Ras Shamra, Syria). The script is written left-to-right.</p>
+<p>The scholarly transliteration is <em>ꜥAnat</em> (Ugaritic alphabetic cuneiform), giving the normalized reading /ʕaˈnaːt/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The name is written 𐎓𐎐𐎚 in the Ugaritic cuneiform alphabet.</li>
+  <li>Ugaritic ʿayin is rendered with Egyptological Ain (ꜥ) for DNS registrability.</li>
+  <li>Long vowels are reconstructed from Hebrew and Akkadian cognates and marked with macrons.</li>
+  <li>The Unicode restoration ꜥAnat is registrable in .com; the Ugaritic cuneiform form is not supported in the .com IDN table.</li>
+</ul>
+<p>The name is written in Ugaritic alphabetic cuneiform as 𐎓𐎐𐎚 (ʿ-n-t). The first sign is ʿayin, a voiced pharyngeal fricative absent from English and from standard Latin transcription. Because the standard IPA ʿ is blocked at the DNS root, PUNYCODEX represents it with the Latin Capital/Small Letter Egyptological Ain (ꜥ / U+A724), preserving visual recognition while remaining registrable.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/ʕa.nat/</strong> — Ugaritic/Phoenician Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>ʕa-</strong> — Voiced pharyngeal fricative [ʕ] — a deep, tightening sound in the throat, followed by open [a]. The Egyptian Ain (ꜥ) is used as the registrable stand-in.</li>
+  <li><strong>-nat</strong> — Plain alveolar sounds: [n], [a], [t]. The final -t is a feminine marker, common in Semitic divine names.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;AH-naht&#39; — start with a rough, throaty &#39;ah&#39; (like Arabic ع), then &#39;naht&#39; with a crisp final t.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Ugaritic</strong> — 𐎓𐎐𐎚 (ʿnt), the warrior goddess&#39;s name in the alphabetic cuneiform of Ras Shamra</li>
+  <li><strong>Hebrew</strong> — עֲנָת (ʿĂnāt), attested as a place and divine name; the name is not etymologically transparent</li>
+  <li><strong>Egyptian</strong> — ʿnṯr, an early loan/adaptation showing her cult reached the Nile Delta</li>
+</ul>
+<p>The ideal spelling would use Semitic ʿayin (ʿ), but that character is rejected by the DNS root zone. We therefore render the pharyngeal with the Egyptological Ain (ꜥ, U+A724), the only registrable Unicode workaround that signals the original consonant. The name is Tier 2: it preserves the ʿayin (a distinctive phoneme) but lacks the long-vowel mark that would make it Tier 1.</p>
+<h2 id="mythology">Mythology</h2>
+<p>ꜥAnat&#39;s mythology is preserved chiefly in the Ugaritic Baꜥal Cycle and the Epic of Aqhat. She is not a fertility goddess in the usual sense; she is force itself, concentrated in a young woman&#39;s body, and her stories turn on violence, loyalty, and the refusal to accept limits.</p>
+<h3 id="wading-in-blood-the-baal-cycle">Wading in Blood (The Baal Cycle)</h3>
+<p>In KTU 1.3 ii, ꜥAnat returns from battle in exultation: &#39;Heads rolled beneath her like balls, hands flew over her like locusts.&#39; She fastens severed heads to her back and hands to her belt, then washes herself clean in the dew sent by Baꜥal, the Rider on the Clouds. The scene is shocking not because she is evil but because she is <em>unrestrained</em> — war as ecstasy, not duty.</p>
+<h3 id="avenger-of-ba-al-the-baal-cycle">Avenger of Baꜥal (The Baal Cycle)</h3>
+<p>When Mot, Death, swallows Baꜥal and the rains fail, ꜥAnat searches the wilderness for her brother. Finding Mot, she attacks him with a sword, winnows him like grain, burns him, grinds him, and scatters him in a field (KTU 1.6 ii 30–35). Her violence is the engine of Baꜥal&#39;s return and the renewal of fertility.</p>
+<h3 id="the-bow-of-the-hero-epic-of-aqhat">The Bow of the Hero (Epic of Aqhat)</h3>
+<p>In KTU 1.17–19, the craftsman god Kothar-wa-Ḫasīs gives the hero Aqhat a marvelous bow. ꜥAnat covets it and offers Aqhat life without death in exchange; he refuses, telling her that womenfolk do not hunt. Enraged, she has the Sutean warrior Yatpan murder Aqhat. The bow is broken, the land withers, and Aqhat&#39;s sister Pughat eventually avenges him.</p>
+<h3 id="mistress-of-the-highlands-hymn">Mistress of the Highlands (Hymn)</h3>
+<p>A hymn to Anat (KTU 1.13) praises her as a swift huntress and protector of the king. She is invoked as a divine patron of royalty and warfare, her energy channeled from chaotic fury into guardian power.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>ꜥAnat&#39;s iconography is martial through and through:</p>
+<ul>
+  <li><strong>Bow</strong> — The weapon Kothar-wa-Ḫasīs made for the hero Aqhat, which she covets, demands, and finally loses with its owner (KTU 1.17–1.19).</li>
+  <li><strong>Spear, sword, and sickle</strong> — The instruments of her two great violences: the battle-ecstasy of KTU 1.3 ii, where heads and hands fly around her, and the dismemberment of [[mot|Mōt]] in KTU 1.6 ii, split with a blade and winnowed like grain.</li>
+  <li><strong>Lion</strong> — Her ferocity links her to the &quot;Mistress of Animals&quot; type of Levantine goddess, flanked by predators.</li>
+  <li><strong>Dew and rain</strong> — After slaughter she washes in &quot;the dew of heaven, the fatness of the earth, the rain of the Rider of Clouds&quot; (KTU 1.3 ii), war&#39;s fury rinsed back into fertility.</li>
+  <li><strong>Shield and raised spear (Egypt)</strong> — On New Kingdom stelae, including a votive stela from Beth-Shean, she stands in Egyptian dress armed for battle and is styled &quot;daughter of Raꜥ.&quot;</li>
+</ul>
+<ul>
+  <li><strong>Bow</strong> — Her favored weapon and the cause of the Aqhat tragedy</li>
+  <li><strong>Spear and sword</strong> — Instruments of her martial rage against divine and human armies</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>ꜥAnat&#39;s primary record is the tablet archive of Ras Shamra: the Baꜥal Cycle (KTU 1.3; 1.6), the Epic of Aqhat (KTU 1.17–1.19), the hymn KTU 1.13, and the god lists (KTU 1.47; 1.118) all name her. No temple at Ugarit has been securely assigned to her; within the city her cult is attested in texts rather than in excavated architecture.</p>
+<p>The richer material trail runs through Egypt, where New Kingdom pharaohs imported her as a war goddess: monuments from the Delta and Memphis style her &quot;daughter of Raꜥ,&quot; Ramesses II named a daughter Bint-Anat, and a votive stela from Beth-Shean (Iron Age I) depicts her in Egyptian dress — a cult traveling the military roads of empire. The latest witnesses are Aramaic: fifth-century BCE papyri from the Jewish garrison at Elephantine name Anat-Yahu and Anat-Bethel in oaths and greetings, her final epigraphic appearances.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>ꜥAnat is the <strong>maiden who refuses to grow up</strong> into the domestic sphere. In the Ugaritic texts she is neither wife nor mother but a singular force: a warrior who wades knee-deep in the blood of her enemies, a huntress who ranges the wilderness, and the most faithful ally of Baꜥal. Her title <em>btlt</em> — &quot;maiden&quot; — marks her as marriageable in social terms, yet mythologically she remains unattached, unpredictable, and absolutely devoted to her brother.</p>
+<h3 id="divine-warfare">Divine Warfare</h3>
+<p>She fights both armies and cosmic foes, wielding bow, spear, and sword; KTU 1.3 ii describes her battle fury in graphic detail.</p>
+<h3 id="the-hunt">The Hunt</h3>
+<p>She ranges mountains and heights in search of game or vengeance; her pursuit of Aqhat turns the hunt into tragic myth.</p>
+<h3 id="loyal-sister">Loyal Sister</h3>
+<p>Baꜥal&#39;s most passionate advocate; she confronts El, avenges Baꜥal&#39;s death, and restores the storm to the world.</p>
+<h3 id="unbound-feminine-power">Unbound Feminine Power</h3>
+<p>A young woman operating in male-coded spheres without condemnation — a figure of autonomous, even terrifying, agency.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>In Egypt, ꜥAnat was worshipped as a war goddess alongside her sister Aštart, especially at Tanis and Memphis; she appears on scarabs and in the Egyptian pantheon as ʿnṯr. Greeks and Romans later identified her with Athena/Minerva in her martial aspect. Some scholars have argued for an early equation with the Mesopotamian Ishtar/Inanna, since both are young, autonomous warrior goddesses, but the Ugaritic texts treat ꜥAnat as a distinct Levantine figure. In the Hebrew Bible, place names such as Anathoth preserve her memory without endorsing her cult.</p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include [[ares|Árēs]] (war / battle), [[artemis|Ártemis]] (hunt / wild), [[ashur|Aššur]] (war / battle), [[athena|Athénā]] (war / battle), [[durga|Durgā]] (war / battle), and [[huitzilopochtli|Huitzilopōchtli]] (war / battle).</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>ꜥAnat&#39;s afterlife is quieter than her mythology. In the Levant her cult faded early — the Tanakh remembers her only in the judge Shamgar ben Anat (Judges 3:31) and in town names such as Anathoth, Jeremiah&#39;s birthplace — while in Egypt she enjoyed a second career: Ramesside pharaohs adopted her as a patron of war, styled her &quot;daughter of Raꜥ,&quot; and Ramesses II named a daughter Bint-Anat. In the fifth century BCE, Jewish soldiers at Elephantine still swore by Anat-Yahu, &quot;Anat of YHWH,&quot; evidence of how deeply the goddess had once been woven into YHWH&#39;s own cult. In contemporary literature and Neopagan practice she resurfaces as an icon of untamed female power — a goddess who will not be domesticated, who fights for those she loves, and who makes the boundary between love and violence uncomfortably thin.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of ꜥAnat given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> KTU (Ugaritic texts).</li>
+  <li> Corpus Inscriptionum Semiticarum, Académie des Inscriptions et Belles-Lettres, Paris, 1881. <a href="https://aibl.fr/travaux/le-cabinet-du-corpus-inscriptionum-semiticarum/">Full text</a></li>
+  <li> Coogan, Stories from Ancient Canaan.</li>
+  <li> Smith, The Ugaritic Baal Cycle.</li>
+  <li> Day, Anat in Ugaritic Narrative.</li>
+  <li> Wyatt, Religious Texts from Ugarit.</li>
+  <li> KTU 1.3 (Baal Cycle: Anat&#39;s battle fury and purification).</li>
+  <li> KTU 1.6 (Baal Cycle: Anat avenges Baal against Mot).</li>
+  <li> KTU 1.17–1.19 (Epic of Aqhat: the bow and the hunt).</li>
+  <li> Hebrew Bible, Judges 3:31; 5:6; Joshua 19:38 (Shamgar ben Anath and Anathoth).</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>ꜥAnat disturbs the modern imagination because she refuses our categories. She is a young woman and a killer, a sister and an avenger, a goddess of life-giving rain and of blood-soaked battlefields. In a world that still struggles to imagine female power without apology, she stands as a difficult ancestor: not a nurturer, not a consort, but a self-possessed force.</p>
+<p>Yet her loyalty is unmistakable. Everything she does for Baꜥal — confronting El, destroying Mot, mourning in the wilderness — she does out of love that does not negotiate. To meditate on ꜥAnat is to meditate on the sacredness of rage rightly aimed, on the ferocity that protects rather than merely consumes. She asks us: What would you fight for, without limit, without consent, because it is yours?</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>ꜥAnat is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>anat</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 4 characters of the name, the restoration adjusts 1: 1 further adjustment (ꜥA). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="name-variations">Name Variations</h2>
+<p>The lexicon records 3 additional forms of the name:</p>
+<ul>
+  <li><strong>ʿAnat</strong> (ideal) — Ugaritic/Phoenician ʿayin (ʿ) is ideal but not registrable at the DNS root</li>
+  <li><strong>ꜥanat</strong> (owned) — Lowercase owned form</li>
+  <li><strong>Anát</strong> (alt) — Stress-only alternate transliteration (previous Phoenician entry)</li>
+</ul>
+<p>The temple uses <strong>ꜥAnat</strong> as the primary form: it is the spelling that best balances philological accuracy with the practical limits of DNS.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>anat</em> to <strong>ꜥAnat</strong>, one character at a time:</p>
+<ul>
+  <li><strong>a</strong> → <strong>ꜥA</strong> — Egyptian Ain (ꜥ) represents the Semitic ʿayin, followed by the capital alpha present in the Unicode restoration</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+  <li><strong>t</strong> → <strong>t</strong> — Same</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>ꜥanat.com</strong>, which the DNS carries in punycode form as xn--anat-pe8o.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees ꜥAnat; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Ugaritic can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>In 2026 the stakes are practical. Search indexes, language models, and localization pipelines all inherit whatever spelling the web normalizes — which means every Unicode domain is also a training signal. <strong>ꜥAnat</strong> teaches the machinery that the restored form exists, that it is used, and that it points to a real place. That is why a project built on philology ends up caring about DNS: the infrastructure decides which names the future sees. This restoration makes sure the future sees the whole name.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/abel/">Hāḇel</a></li>
   <li><a href="/sites/baal/">Baꜥal</a></li>
   <li><a href="/sites/david/">Dāwîḏ</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://aibl.fr/travaux/le-cabinet-du-corpus-inscriptionum-semiticarum/">Corpus Inscriptionum Semiticarum, Académie des Inscriptions et Belles-Lettres, Paris, 1881.</a></li>
   <li><a href="https://www.ancientneareast.net/ugarit-ras-shamra/">Ugaritic Textual Corpus, Ras Shamra–Ugarit corpus (KTU / CUSAS), 1200 BCE.</a></li>
+  <li>Dietrich, Loretz &amp; Sanmartín (eds.), The Cuneiform Alphabetic Texts from Ugarit (KTU), 3rd enlarged ed., Ugarit-Verlag, 2013.</li>
+  <li>Coogan &amp; Smith, Stories from Ancient Canaan, 2nd ed., Westminster John Knox, 2012.</li>
+  <li>Day, Yahweh and the Gods and Goddesses of Canaan, Sheffield Academic Press, 2000.</li>
+  <li>KTU (Ugaritic texts).</li>
+  <li>Lexicon authorities for this entry: Ugaritic texts, CIS, KTU, Coogan, Smith, Day.</li>
 </ul>
-<h2>What the Sources Record</h2>
-<p>ꜥAnat is the maiden who refuses to grow up into the domestic sphere. In the Ugaritic texts she is neither wife nor mother but a singular force: a warrior who wades knee-deep in the blood of her enemies, a huntress who ranges the wilderness, and the most faithful ally of Baꜥal. Her title btlt — &quot;maiden&quot; — marks her as marriageable in social terms, yet mythologically she remains unattached, unpredictable, and absolutely devoted to her brother. ### Divine Warfare She fights both armies and cosmic foes, wielding bow, spear, and sword; KTU 1.3 ii describes her battle fury in graphic detail. ### The Hunt She ranges mountains and heights in search of game or vengeance; her pursuit of Aqhat turns the hunt into tragic myth. ### Loyal Sister Baꜥal&#39;s most...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats ꜥAnat as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Ugaritic to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes ꜥAnat through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/anat/">home page</a> offers the full name breakdown, the <a href="/sites/anat/lore/">lore page</a> explores the myth, and the <a href="/sites/anat/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like ꜥAnat do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">canaanite</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,44 +170,185 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>16 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>Pronouncing Perkūnas: A Guide for the Curious</h1>
-<p>Saying <strong>Perkūnas</strong> out loud is harder than reading it on a screen, and more rewarding. Scholars reconstruct the sound as <em>pyair-KOO-nuss — roll the &#39;r,&#39; make the &#39;oo&#39; long, and give the final syllable a light hiss.</em>.</p>
-<h2>The Reconstructed Sound</h2>
-<p>The name enters the written record in the mid-thirteenth century: the Ruthenian translation of the Chronicle of John Malalas (1261) glosses the object of Baltic worship as Perkoun, “that is, thunder”, and later medieval scribes render it Percunus, Percunos, Pirchunos, Perkuns, or Parcuns for Prussians, Lithuanians, and Letts alike. The word still lives as an ordinary common noun — Lithuanian perkū́nas, Latvian pērkons, both meaning simply “thunder” — and Old Prussian percunis “thunder” appears in the Elbing vocabulary (c. 1300), the oldest written document of any Baltic language. The name&#39;s antiquity is such that Proto-Baltic perkūnas was borrowed into Pre-Mordvin as perkūnā “thunder”, perhaps as early as the Bronze Age. The etymology is disputed.... The sounds preserved in Perkūnas are not random; they follow rules that linguists have spent centuries recovering.</p>
-<h2>Sound by Sound</h2>
-<p>Etymologically, from proto-baltic <em>perkūnas, from pie </em>perkʷu- &quot;oak; thunderer&quot;, also reflected in slavic perun and vedic parjanya. That points back to a reconstructed form like <em>*perkʷu-</em>. Each segment locks into the next, so a small change in one place ripples through the whole name.</p>
-<h2>Kin Forms</h2>
-<p>Related spellings include perkūnas.com, perkunas. Names rarely have only one valid shape. The restoration chooses the form that best balances historical accuracy with the practical limits of DNS.</p>
-<h2>From Speech to Screen</h2>
-<p>Pronunciation and spelling converge in Unicode. Perkūnas carries enough phonetic information to be read aloud by someone who knows the conventions, and enough visual distinctiveness to stand out in an address bar.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Perkūnas is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>Pronouncing Perkūnas: a guide for the curious</h1>
+<p>Saying <strong>Perkūnas</strong> aloud is harder than reading it on a screen, and more rewarding. The restored spelling is a compressed pronunciation guide: every accent and macron is an instruction. This post unpacks those instructions — the reconstructed sound, the phoneme-by-phoneme record, the kindred forms in neighboring languages — and then zooms out to the full record around the name: its Lithuanian / Baltic writing, its mythology, its cult, and its modern life as a Unicode domain. Whether you arrive as a linguist, a reader of myth, or a domainer, you will leave able to say the name the way the evidence suggests it was said — and able to type it the way it was written.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Perkūnas</li>
+  <li><strong>ASCII form:</strong> perkunas</li>
+  <li><strong>Meaning:</strong> &quot;Lithuanian/Baltic thunder deity, cognate with Slavic Perun and Indo-Iranian Parjanya.&quot;</li>
+  <li><strong>Domain of influence:</strong> God of Thunder, Lightning and Storms</li>
+  <li><strong>Pantheon:</strong> Baltic</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Live domain:</strong> perkūnas.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Perkūnas</strong> (Lithuanian; Latvian <em>Pērkons</em>, Old Prussian <em>Perkūns</em>, Sudovian <em>Parkuns</em>) is the Baltic god of thunder, lightning, and storm — in the Lithuanian and Latvian traditions the principal deity after the sky god Dievas, and in Baltic religion generally the guardian of law and order as well as a fertility-bringer whose rain feeds the fields. The Baltic peoples were the last major pagan society in Europe: the Grand Duchy of Lithuania accepted Christianity only in 1387 and Samogitia in 1413, so his cult was still alive when medieval chroniclers described it, and his mythology survived in song and belief into the twentieth century.</p>
+<p>Most of the evidence is oral: the Latvian <em>dainas</em> and Lithuanian <em>dainos</em> recorded in the nineteenth century, together with legends, curses, and weather proverbs preserved in the folklore archives. Across this material Perkūnas is the moral sky — he hurls his axe and fiery bolts at devils, oath-breakers, and witches, strikes the sacred oak, and cleanses the world with storm.</p>
+<p>PÚNYCODEX restores the name as <strong>Perkūnas</strong> and serves its temple at <a href="https://xn--perknas-3sb.com">perkūnas.com</a>. The restoration preserves one prosodic feature — the long vowel <em>ū</em>, written with a macron — and marks no stress, placing the name in Tier 2 (macron-preserving). The plain ASCII <em>perkunas</em> is a modern technical fallback, not an ancient spelling.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name enters the written record in the mid-thirteenth century: the Ruthenian translation of the Chronicle of John Malalas (1261) glosses the object of Baltic worship as <em>Perkoun</em>, “that is, thunder”, and later medieval scribes render it <em>Percunus</em>, <em>Percunos</em>, <em>Pirchunos</em>, <em>Perkuns</em>, or <em>Parcuns</em> for Prussians, Lithuanians, and Letts alike. The word still lives as an ordinary common noun — Lithuanian <em>perkū́nas</em>, Latvian <em>pērkons</em>, both meaning simply “thunder” — and Old Prussian <em>percunis</em> “thunder” appears in the Elbing vocabulary (c. 1300), the oldest written document of any Baltic language. The name&#39;s antiquity is such that Proto-Baltic <em>perkūnas</em> was borrowed into Pre-Mordvin as <em>perkūnā</em> “thunder”, perhaps as early as the Bronze Age.</p>
+<p>The etymology is disputed. Mallory and Adams reconstruct a Proto-Indo-European thunder god <em>\</em>Perkʷúh₃nos<em> from the root </em>\<em>perkʷu-</em> “oak” — “Lord of Oaks” — with Slavic <em>Perun</em> and possibly Vedic <em>Parjanya</em> as reflexes. Fraenkel rejected the oak connection, deriving the name from Lithuanian <em>pèrti</em> “to beat, to strike (of lightning)” — “the Striker”. West goes further and denies that Perkūnas, Perun, and Parjanya can be reduced to a single ancestral theonym at all.</p>
+<p>The ASCII form <em>perkunas</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Perkūnas</strong> recovers the vowel length of the original directly in the address bar. Because it preserves one prosodic feature — length — rather than both stress and length, the name is Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>p</strong> → <strong>P</strong> — Same, capitalized</li>
+  <li><strong>e</strong> → <strong>e</strong> — Same</li>
+  <li><strong>r</strong> → <strong>r</strong> — Same</li>
+  <li><strong>k</strong> → <strong>k</strong> — Same</li>
+  <li><strong>u</strong> → <strong>ū</strong> — Macron marks long u</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+  <li><strong>s</strong> → <strong>s</strong> — Same</li>
+</ul>
+<p>Attested and derived spellings of the name:</p>
+<ul>
+  <li><strong>perkūnas.com</strong> — owned form: Owned domain form</li>
+  <li><strong>perkunas</strong> — ASCII form: Plain ASCII form</li>
+</ul>
+<p>The project holds the domain <strong>perkūnas.com</strong> (xn--perknas-3sb.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: From Proto-Baltic <em>Perkūnas, from PIE </em>perkʷu- &quot;oak; thunderer&quot;, also reflected in Slavic Perun and Vedic Parjanya.</p>
+<p>The reconstructed proto-form is <em>*perkʷu-</em> (proto-indo-european), glossed as &quot;oak, thunder&quot;.</p>
+<p>The reconstruction is classed as attested.</p>
+<p>Kindred forms recorded in the lexicon:</p>
+<ul>
+  <li><strong>Perun</strong> (slavic) — Slavic thunder god</li>
+  <li><strong>Parjanya</strong> (sanskrit) — Vedic thunder/storm deity</li>
+</ul>
+<h2 id="the-original-script">The Original Script</h2>
+<p>No indigenous writing system is securely attested for the Baltic languages: unlike the Germanic runes or Irish ogham, the pre-Christian Balts left no script of their own, and no inscription naming Perkūnas survives. The name reaches writing through foreign hands and alphabets — Cyrillic in the Ruthenian Malalas translation (1261), Latin letters in the Livonian Rhymed Chronicle&#39;s <em>Perkune</em> (c. 1290s) and in the Elbing Old Prussian vocabulary&#39;s <em>percunis</em> (c. 1300). Lithuanian itself becomes a written language only after Christianization: the first printed Lithuanian book, Martynas Mažvydas&#39;s <em>Catechismusa prasty szadei</em>, appeared at Königsberg in 1547.</p>
+<p>The form <strong>Perkūnas</strong> shown here is therefore modern standard Lithuanian orthography rather than an attested ancient spelling: the macron on <em>ū</em> encodes the historical long vowel (dictionaries add an acute for the stressed form <em>perkū́nas</em>), and no mark in it is decorative.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/pʲɛrˈkuːnɐs/</strong> — Lithuanian/Baltic Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>P</strong> — Voiceless bilabial plosive [p], slightly palatalized before the front vowel</li>
+  <li><strong>e</strong> — Open-mid front unrounded vowel [ɛ], like English &#39;bet&#39;</li>
+  <li><strong>r</strong> — Alveolar trill or tap [r], rolled more distinctly than in most English dialects</li>
+  <li><strong>kū</strong> — Voiceless velar plosive [k] plus long close back rounded vowel [uː], the thunder-syllable</li>
+  <li><strong>nas</strong> — Alveolar nasal [n] plus reduced vowel [ɐ] and alveolar fricative [s], the old masculine nominative ending</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: pyair-KOO-nuss — roll the &#39;r,&#39; make the &#39;oo&#39; long, and give the final syllable a light hiss.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Lithuanian</strong> — Perkūnas, the thunder god preserved in folklore and theonymy</li>
+  <li><strong>Latvian</strong> — Pērkons, the Latvian thunder deity</li>
+  <li><strong>Old Prussian</strong> — percunis “thunder”, recorded in the Elbing German–Old Prussian vocabulary (c. 1300), the oldest written attestation of the name in any Baltic language</li>
+  <li><strong>Slavic</strong> — Perun, the cognate Slavic thunder god</li>
+</ul>
+<p>Perkūnas is a Tier-2 macron restoration. The long ū is the preserved non-English feature. The name descends from Proto-Baltic *Perkūnas and is cognate with Slavic Perun, reflecting a common Indo-European thunder deity.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Perkūnas&#39;s mythology is preserved largely in Lithuanian and Latvian folklore recorded in the nineteenth and early twentieth centuries. The medieval church had suppressed his cult, but the dainas remembered him as the thunderer who defended the moral order against devils, witches, and the chaos of the wilderness.</p>
+<h3 id="the-celestial-wedding-daina-cycle">The Celestial Wedding (Daina Cycle)</h3>
+<p>The fullest surviving cycle is the wedding of the sky gods: Saulė (the Sun) betrays Perkūnas with Mėnulis (the Moon) — or, in the commoner variant, Mėnulis is unfaithful to Saulė with Aušrinė, the morning star — and Perkūnas splits the Moon with his sword; the Moon repeats the offence and is punished anew each month, which is why it waxes and wanes and why Sun and Moon keep separate paths across the sky. Greimas made this cycle the centre of his structural analysis of Lithuanian mythology.</p>
+<h3 id="perkunas-and-the-oak-baltic-folklore">Perkūnas and the Oak (Baltic Folklore)</h3>
+<p>In Lithuanian folklore, Perkūnas strikes the oak with lightning, and the fire that results is sacred. Oak groves were his temples, and people would kindle new fire from a tree hit by his bolt. The oak&#39;s hardness and height made it the natural home of the sky-god&#39;s power, and acorns were gathered as protective amulets.</p>
+<h3 id="perkons-judges-the-liar-latvian-dainas">Pērkons Judges the Liar (Latvian Dainas)</h3>
+<p>Latvian dainas sing of Pērkons striking the homes of those who swear false oaths or cheat their neighbors. The thunder god is not indifferent weather; he is a moral agent who punishes hidden crimes that human courts cannot reach. A clap of thunder during a dispute was read as his verdict.</p>
+<h3 id="the-battle-with-velnias-baltic-cosmology">The Battle with Velnias (Baltic Cosmology)</h3>
+<p>Perkūnas frequently battles Velnias, a devil-like figure associated with the forest, cattle, and the underworld. In some tales Velnias steals the celestial cows or hides the sun; Perkūnas pursues him across the sky in a chariot of stone and fire, and the thunderstorm that follows not only clears the ground of evil spirits but returns the stolen cattle.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Perkūnas concentrates in a small set of recurring attributes, each documented in the Baltic folklore record:</p>
+<ul>
+  <li><strong>Stone axe or hammer</strong> — his thunder-weapon; in Latvia small axe amulets were worn on the clothing in his honour, and polished prehistoric axes found in fields were kept as thunderstones fallen from the sky</li>
+  <li><strong>Oak tree</strong> — his sacred tree, the tree most often split by his bolt, hung with offerings</li>
+  <li><strong>Chariot</strong> — a two-wheeled cart harnessed with goats, like Þórr&#39;s, or a fiery chariot drawn by red-and-white horses; in Samogitian tradition he rides a fiery horse</li>
+  <li><strong>Fire and spark</strong> — the heavenly fire he strikes from stone and oak, preserved on earth as perpetual fire in forest and hilltop sanctuaries</li>
+  <li><strong>Bow and fiery arrows</strong> — the lightning itself loosed from the sky; a celestial smith, Kalvelis (Televelis), forges his weapons</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Direct archaeological evidence for a cult of Perkūnas is limited, and honestly so: Baltic ritual centred on open-air sites — sacred groves (Lithuanian <em>alkai</em>), hilltops, springs, and ancient oaks — which leave few structures to excavate. The written record supplies what the ground does not. Peter von Dusburg (1326) describes the Prussian sanctuary at Romowe, where a sacred oak bore images of the gods and a perpetual fire burned before it, and thirteenth-century sources already mention sacrifice to the thunderer for rain and fires kept for him in forests and on hilltops. Place-names preserve the cult landscape: Lithuanian toponyms such as <em>Perkūnkalnis</em>, “Perkūnas&#39;s mountain”, mark hills held sacred to him. In folk practice, polished Neolithic and Bronze Age axes found in fields were kept in Baltic households as thunderstones — sky-fallen objects that guarded the house against lightning and fire — a material bridge between prehistoric artefacts and the historic thunder god. Churches and crosses raised at former sacred groves, and the thunder lore of the dainas, complete the record of a cult conducted in nature rather than in temples.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p><strong>Perkūnas</strong> is the Lithuanian thunder god, the voice of the oak and the bolt that strikes the unjust. In Baltic folklore he rides across the sky in a flaming chariot, hurling stone axes and lightning arrows at demons, liars, and those who break their oaths. He is not merely weather; he is the moral sky, the enforcer of cosmic law in a world of dark forests and hidden spirits.</p>
+<h3 id="thunder-and-lightning">Thunder and Lightning</h3>
+<p>His voice is thunder and his weapon the lightning bolt; the medieval sources already record sacrifice to him for rain in time of drought and perpetual fires kept burning for him in forests and on hilltops.</p>
+<h3 id="the-sacred-oak">The Sacred Oak</h3>
+<p>The oak is his tree — the “oak of Perkūnas” (Lithuanian <em>Perkūno ąžuolas</em>, Latvian <em>Pērkona ozols</em>) is named in sources of the early nineteenth century — and offerings were made at oak groves and at trees struck by his fire.</p>
+<h3 id="divine-justice">Divine Justice</h3>
+<p>He punishes oath-breakers, murderers, and those who wrong the innocent: Baltic tradition remembers him above all as the guardian of law and order.</p>
+<h3 id="foe-of-the-underworld">Foe of the Underworld</h3>
+<p>He battles Velnias, the devil or forest spirit, and drives off witches and other chthonic forces, cleansing the ground with every storm.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Within the Baltic world the god is pan-regional: Lithuanian <em>Perkūnas</em>, Latvian <em>Pērkons</em> — whose functions in the dainas sometimes merge with those of the sky god Dievs, so that he is invoked as <em>Pērkona tēvs</em>, “Father Thunder” — Old Prussian <em>Perkūns</em>, and Sudovian (Yotvingian) <em>Parkuns</em>. The closest historical parallel beyond the Baltic is Slavic Perun: the Rus&#39; Primary Chronicle records that Volodimir set up Perun&#39;s idol, with silver head and golden moustache, on the hill at Kiev in 980, and a second idol stood at Novgorod. Indo-Europeanists such as Mallory and Adams treat Perkūnas, Perun, and Vedic Parjanya as reflexes of a single storm god, an inheritance he would then share with Germanic Þórr and, more distantly, Zeus and Indra; West and others dispute the reconstruction outright. Under Christianity the thunderer&#39;s functions passed largely to the prophet Elijah, whose fiery chariot and midsummer feast absorbed the storm lore of Balts and Slavs alike, while the oak cult, thunder proverbs, and the moral thunder survived under Christian names.</p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include <a href="/sites/baal/">Baꜥal</a>, <a href="/sites/enlil/">Enlīl</a>, <a href="/sites/oya/">Ọya</a>, <a href="/sites/shango/">Ṣàngó</a>, <a href="/sites/thor/">Þórr</a>, and <a href="/sites/trengtreng/">Trengtreng</a>, each linked through thunder and storm sovereignty; <a href="/sites/perun/">Perun</a> is the temple nearest to this one.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>The name never fully left the language: Lithuanian <em>perkūnas</em> and Latvian <em>pērkons</em> remain the everyday words for thunder, and imprecations such as “may Perkūnas strike you” survived in popular speech into the modern era. National-romantic art recovered the god — Čiurlionis gave him a canvas in <em>The Hand of Perkūnas</em>, and Kaunas&#39;s “House of Perkūnas” was named in the late nineteenth century after a figure found in one of its walls was read as his idol. In music, Mārtiņš Brauns&#39;s choir song <em>Saule, Pērkons, Daugava</em>, after Rainis&#39;s 1916 poem, became a fixture of the Latvian Song and Dance Celebration, and the Lithuanian ritual-folklore ensemble Kūlgrinda devoted a full album, <em>Perkūno Giesmės</em> (2003), to his hymns. The very songs that preserve him are now world heritage: Barons&#39;s Cabinet of Folksongs, the collecting project behind the <em>Latvju dainas</em>, is inscribed on UNESCO&#39;s Memory of the World register. The living revival is Romuva, the Baltic faith community, which counts Perkūnas among its principal gods: in 2021 the European Court of Human Rights held that the Lithuanian parliament&#39;s refusal of state recognition violated religious freedom, and in December 2024 the Seimas granted that recognition.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Perkūnas given in this edition rests on the witnesses and reference works listed below. The medieval chronicles and the folklore collections supply the primary evidence; the etymological dictionaries and comparative handbooks secure the form and meaning of the name; the modern monographs synthesize both.</p>
+<ul>
+  <li> Barons, Krišjānis, <em>Latvju dainas</em> (6 vols., 1894–1915); digital Cabinet of Folksongs (dainuskapis.lv).</li>
+  <li> Laurinkienė, Nijolė, <em>The God Perkūnas of the Ancient Lithuanians in Language, Folklore, and Historical Sources</em> (Folklore Fellows’ Communications 327, Helsinki, 2023).</li>
+  <li> West, Martin L., <em>Indo-European Poetry and Myth</em> (Oxford University Press, 2007).</li>
+  <li> Mallory, J. P. &amp; Adams, D. Q., <em>The Oxford Introduction to Proto-Indo-European and the Proto-Indo-European World</em> (Oxford University Press, 2006), p. 410.</li>
+  <li> Fraenkel, Ernst, <em>Litauisches etymologisches Wörterbuch</em>, vol. 1 (Heidelberg: Carl Winter, 1962), s.v. perkū́nas.</li>
+  <li> Greimas, Algirdas Julien, <em>Of Gods and Men: Studies in Lithuanian Mythology</em>, trans. Milda Newman (Indiana University Press, 1992).</li>
+  <li> Ivanov, V. V. &amp; Toporov, V. N., <em>Issledovanija v oblasti slavjanskix drevnostej</em> (Moscow: Nauka, 1974).</li>
+  <li> Gimbutas, Marija, <em>The Balts</em> (London: Thames &amp; Hudson, 1963).</li>
+  <li> Encyclopaedia Britannica, “Pērkons”.</li>
+  <li> Basanavičius, Jonas, Lithuanian folklore collections (<em>Lietuvių mitologija</em>).</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>The Baltic thunder god embodies a moral physics: what is hidden from human judgement is not hidden from the sky. In the dainas Pērkons strikes the house of the false swearer, and the chronicles show communities reading a roll of thunder as a verdict. The cult fused the most violent phenomenon these peoples knew with the idea of enforceable order — the “guardian of law and order” of the reference works is a folk theology compressed into a phrase. That one and the same word names both the god and the noise of the storm is itself a historical record: when the cult was suppressed, the agent did not vanish but contracted into the phenomenon, while song, curse, and proverb kept the memory that thunder once had intention. Perkūnas thus offers a rare case study in how a religion weathers five centuries of prohibition — demoted from deity to vocabulary, yet never entirely silenced.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Perkūnas is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>perkunas</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 8 characters of the name, the restoration adjusts 1: 1 mark of length (ū). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>perkūnas.com</strong>, which the DNS carries in punycode form as xn--perknas-3sb.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Perkūnas; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Lithuanian / Baltic can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Pronunciation turns out to be the heart of the matter. The marks in <strong>Perkūnas</strong> are instructions for the voice, and a web that strips them is a web that mispronounces the past at scale. The restoration hands the instructions back: say it as the evidence suggests, type it as the tradition wrote it, and let the punycode machinery do the quiet translation in between. That is all the PÚNYCODEX project asks of the infrastructure — and everything it asks of you, the reader, is to use the whole name.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/orpheus/">Orpheus</a></li>
   <li><a href="/sites/osiris/">Wsjr</a></li>
   <li><a href="/sites/pachacamac/">Pachacámac</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.britannica.com/topic/Perkons">Encyclopaedia Britannica, “Pērkons” — sky deity of Baltic religion, guardian of law and order and fertility god.</a></li>
   <li><a href="https://www.folklorefellows.fi/wp-content/uploads/FFC-327-Laurinkiene-Introduction.pdf">Laurinkienė, Nijolė, The God Perkūnas of the Ancient Lithuanians in Language, Folklore, and Historical Sources (Folklore Fellows’ Communications 327, Helsinki, 2023).</a></li>
   <li><a href="https://dainuskapis.lv">Barons, Krišjānis, Latvju dainas (6 vols., 1894–1915); digital Cabinet of Folksongs.</a></li>
   <li><a href="https://www.helsinki.fi/assets/drupal/s3fs-public/from_d7/rmn15_2_frog.pdf">Frog, “Theonyms, Alignment and Social Stance-Taking: From Bronze-Age Borrowings to Baby Names”, RMN Newsletter 15 (University of Helsinki), on the Pre-Mordvin loan perkūnā.</a></li>
+  <li><a href="https://www.unesco.org/en/memory-world/dainu-skapis-cabinet-folksongs">UNESCO Memory of the World Register, “Dainu Skapis — Cabinet of Folksongs”.</a></li>
+  <li><a href="https://hudoc.echr.coe.int/eng?i=001-210282">European Court of Human Rights, Ancient Baltic Religious Association Romuva v. Lithuania, no. 48329/19, judgment of 8 June 2021.</a></li>
+  <li>West, Martin L., Indo-European Poetry and Myth (Oxford University Press, 2007), on the medieval attestations of the Baltic thunder god and the independence of Perkūnas, Perun, and Parjanya (p. 245).</li>
+  <li>Mallory, J. P. &amp; Adams, D. Q., The Oxford Introduction to Proto-Indo-European and the Proto-Indo-European World (Oxford University Press, 2006), p. 410.</li>
+  <li>Fraenkel, Ernst, Litauisches etymologisches Wörterbuch, vol. 1 (Heidelberg: Carl Winter, 1962), s.v. perkū́nas (p. 575).</li>
+  <li>Lithuanian folklore collections (Lietuvių mitologija, Jonas Basanavičius).</li>
+  <li>Lexicon authorities for this entry: Folklore, Ivanov-Toporov.</li>
 </ul>
-<h2>What the Sources Record</h2>
-<p>Perkūnas is the Lithuanian thunder god, the voice of the oak and the bolt that strikes the unjust. In Baltic folklore he rides across the sky in a flaming chariot, hurling stone axes and lightning arrows at demons, liars, and those who break their oaths. He is not merely weather; he is the moral sky, the enforcer of cosmic law in a world of dark forests and hidden spirits. ### Thunder and Lightning His voice is thunder and his weapon the lightning bolt; the medieval sources already record sacrifice to him for rain in time of drought and perpetual fires kept burning for him in forests and on hilltops. ### The Sacred Oak The oak is his tree — the “oak of Perkūnas” (Lithuanian Perkūno ąžuolas, Latvian Pērkona ozols) is named in sources of the early...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Perkūnas as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Lithuanian / Baltic to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Perkūnas through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/perkunas/">home page</a> offers the full name breakdown, the <a href="/sites/perkunas/lore/">lore page</a> explores the myth, and the <a href="/sites/perkunas/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">baltic</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

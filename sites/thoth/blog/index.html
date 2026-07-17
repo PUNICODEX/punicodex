@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,45 +170,202 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#name-variations">Name Variations</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-egyptian-pantheon">The Egyptian Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#typing-dhwty">Typing Ḏḥwty</a></li>
+                <li><a href="#sister-temples">Sister Temples</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>Pronouncing Ḏḥwty: A Guide for the Curious</h1>
-<p>Saying <strong>Ḏḥwty</strong> out loud is harder than reading it on a screen, and more rewarding. Scholars reconstruct the sound as <em>tji-HOO-tee — the first consonant is like a &#39;dj&#39; made against the hard palate, and the middle h is a dry throat-fricative.</em>.</p>
-<h2>The Reconstructed Sound</h2>
-<p>The name is attested in Hieroglyphs as 𓅜𓏏 — the sacred ibis on its perch, with the bread-loaf t as phonetic complement — and is traditionally glossed &#39;he who is like the ibis&#39;; fully phonetic spellings ḏ-ḥ-w-t-y are attested from an early date. The ASCII form thoth is a technological compromise imposed by the early domain-name system, not an ancient spelling; what it preserves is the Greek Θώθ rather than the Egyptian. The Unicode restoration Ḏḥwty recovers the scholarly transliteration — palatal ḏ, pharyngeal ḥ — directly in the address bar as a Tier 2 form. The letter-by-letter transformation runs: - t → Ḏ — D-with-dot-below: palatalized d - h → ḥ — H-with-dot: voiceless pharyngeal - o → w — W: bilabial glide - t → t — Same - h → y — Y: palatal... The sounds preserved in Ḏḥwty are not random; they follow rules that linguists have spent centuries recovering.</p>
-<h2>Sound by Sound</h2>
-<p> Each segment locks into the next, so a small change in one place ripples through the whole name.</p>
-<h2>Kin Forms</h2>
-<p>Related spellings include Thóth. Names rarely have only one valid shape. The restoration chooses the form that best balances historical accuracy with the practical limits of DNS.</p>
-<h2>From Speech to Screen</h2>
-<p>Pronunciation and spelling converge in Unicode. Ḏḥwty carries enough phonetic information to be read aloud by someone who knows the conventions, and enough visual distinctiveness to stand out in an address bar.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Ḏḥwty is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>Pronouncing Ḏḥwty: a guide for the curious</h1>
+<p>Saying <strong>Ḏḥwty</strong> aloud is harder than reading it on a screen, and more rewarding. The restored spelling is a compressed pronunciation guide: every accent and macron is an instruction. This post unpacks those instructions — the reconstructed sound, the phoneme-by-phoneme record, the kindred forms in neighboring languages — and then zooms out to the full record around the name: its Hieroglyphs writing, its mythology, its cult, and its modern life as a Unicode domain. Whether you arrive as a linguist, a reader of myth, or a domainer, you will leave able to say the name the way the evidence suggests it was said — and able to type it the way it was written.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Ḏḥwty</li>
+  <li><strong>ASCII form:</strong> thoth</li>
+  <li><strong>Meaning:</strong> &quot;He who is like the ibis&quot;</li>
+  <li><strong>Domain of influence:</strong> Writing, Wisdom, Moon</li>
+  <li><strong>Pantheon:</strong> Egyptian</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> 𓅜𓏏 (Hieroglyphs)</li>
+  <li><strong>Live domain:</strong> ḏḥwty.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Ḏḥwty</strong> (<em>thoth</em>) — Greek Θώθ — is the ibis-headed scribe of the gods: measurer of time, reckoner of accounts, inventor of writing, and the moon whose light orders the night. Egyptian wrote his name logographically with the sacred ibis on its perch, so that the traditional gloss runs &#39;he who is like the ibis&#39;. His roles are the roles of knowledge put to work: he restores the Eye of [[horus|Ḥr]] after the conflict with Seth, mediates the divine tribunal, heals, and stands beside the scales in the Hall of the Two Truths to record the weighing of the heart against the feather of [[maat|Mꜣꜥt]]. At his city Khemenu — &#39;Eight-town&#39;, Greek Hermopolis — he presided over the theology of the eight primeval gods, and in the Graeco-Roman age he merged with Hermes to become Hermes Trismegistus, legendary author of the Hermetic corpus.</p>
+<p>PÚNYCODEX restores the name as <strong>Ḏḥwty</strong> and serves its temple at <a href="https://xn--wty-2yy4e.com">ḏḥwty.com</a>: a Tier 2 restoration preserving the palatal ḏ (U+1E0E) and the pharyngeal ḥ (U+1E25) that the ASCII <em>thoth</em> collapses into digraphs.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Hieroglyphs as <strong>𓅜𓏏</strong> — the sacred ibis on its perch, with the bread-loaf <em>t</em> as phonetic complement — and is traditionally glossed &#39;he who is like the ibis&#39;; fully phonetic spellings ḏ-ḥ-w-t-y are attested from an early date.</p>
+<p>The ASCII form <em>thoth</em> is a technological compromise imposed by the early domain-name system, not an ancient spelling; what it preserves is the Greek Θώθ rather than the Egyptian. The Unicode restoration <strong>Ḏḥwty</strong> recovers the scholarly transliteration — palatal ḏ, pharyngeal ḥ — directly in the address bar as a Tier 2 form.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>t</strong> → <strong>Ḏ</strong> — D-with-dot-below: palatalized d</li>
+  <li><strong>h</strong> → <strong>ḥ</strong> — H-with-dot: voiceless pharyngeal</li>
+  <li><strong>o</strong> → <strong>w</strong> — W: bilabial glide</li>
+  <li><strong>t</strong> → <strong>t</strong> — Same</li>
+  <li><strong>h</strong> → <strong>y</strong> — Y: palatal approximant</li>
+</ul>
+<p>Attested and derived spellings of the name:</p>
+<ul>
+  <li><strong>Thóth</strong> — alternate stress, scholarly variant: Acute on omicron: alternate stress position</li>
+</ul>
+<p>The project holds the domain <strong>ḏḥwty.com</strong> (xn--wty-2yy4e.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Hieroglyphs as <strong>𓅜𓏏</strong> — Egyptian hieroglyphic, attested c. 3200 BCE – 4th century CE in the Nile Valley; the script runs right-to-left, top-to-bottom, or multidirectionally.</p>
+<p>The scholarly transliteration is <em>Ḏḥwty</em> (Egyptological). The original vocalisation is unrecorded; the Greek rendering Θώθ and the Coptic month-name Ⲑⲱⲟⲩⲧ (Thōout) preserve the later pronunciation.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>Ibis (𓅜) + bread sign (𓏏): a logographic writing of the moon-god of writing</li>
+  <li>Fully phonetic spellings ḏ-ḥ-w-t-y are attested from an early date</li>
+  <li>The initial Ḏ marks a voiced palato-alveolar affricate</li>
+</ul>
+<p>PÚNYCODEX registers <strong>Ḏḥwty</strong> as a Tier 2 restoration carrying the palatal ḏ (U+1E0E) and the pharyngeal ḥ (U+1E25) into the address bar; the hieroglyphic form itself lies outside the .com IDN table.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/tɨˈχuːtiː/</strong> — Egyptological Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Ḏ</strong> — Palatalized voiced alveolar stop [ɟ] or affricate, written with d-dot-below; the first consonant of Ḏḥwty</li>
+  <li><strong>ḥ</strong> — Voiceless pharyngeal fricative [ħ], the dotted h that follows the palatal d</li>
+  <li><strong>w</strong> — Bilabial glide [w], represented in writing by the quail-chick sign</li>
+  <li><strong>ty</strong> — Final consonants t-y, with the y indicating a palatalization or the Greek ending -is</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: tji-HOO-tee — the first consonant is like a &#39;dj&#39; made against the hard palate, and the middle h is a dry throat-fricative.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Egyptian hieroglyphs</strong> — 𓄟𓊃𓂧𓏏𓆇 (ḏḥwty), the ibis god&#39;s name written with the ibis and moon signs</li>
+  <li><strong>Coptic</strong> — Ⲑⲱⲟⲩⲧ (Thōout), the lunar month named after the god</li>
+  <li><strong>Greek</strong> — Θώθ (Thōth) / Ἑρμῆς (Hermes), the Graeco-Egyptian Hermes Trismegistus</li>
+</ul>
+<p>Ḏḥwty is a Tier-2 consonantal restoration. Egyptian writing records only the consonants ḏ-ḥ-w-ty; the vowels are reconstructed from Coptic and Greek sources. The initial palatal ḏ and the pharyngeal ḥ are both non-English sounds preserved in the Unicode form.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Thoth moves through Egyptian myth as the indispensable companion: he is present at creation, mediates divine quarrels, heals the wounded eye, and judges the dead. His stories are less about his own ambition than about the power of knowledge, writing, and measured speech to resolve conflict and preserve order.</p>
+<h3 id="the-word-that-organized-creation-heliopolitan-cosmogony">The Word That Organized Creation (Heliopolitan Cosmogony)</h3>
+<p>In some versions of Egyptian cosmogony, Thoth is the tongue of Ptḥ, the means by which the creator&#39;s thoughts become articulate commands. He is also credited with inventing hieroglyphs, numbers, and the calendar, giving humanity the tools to maintain Maat. Without Thoth, creation would remain unspoken and unrecorded.</p>
+<h3 id="the-mediator-of-the-gods-contendings-of-horus-and-seth">The Mediator of the Gods (Contendings of Horus and Seth)</h3>
+<p>In the New Kingdom narrative &#39;The Contendings of Horus and Seth,&#39; Thoth acts as scribe and arbitrator before the divine tribunal. When Horus&#39;s eye is torn out and Seth&#39;s testicles are injured, Thoth heals both wounds and records the final verdict that makes Horus king of the living. His role is neither warrior nor king but the one who makes conflict resolvable through law and writing.</p>
+<h3 id="the-scribe-of-the-weighing-funerary-theology">The Scribe of the Weighing (Funerary Theology)</h3>
+<p>In Spell 125 of the <em>Book of the Dead</em>, Thoth stands beside the scales in the Hall of Judgment and records the result of the weighing of the heart against the feather of Maat. His testimony is decisive: a favorable record means passage into the afterlife, while an unfavorable one means destruction by Ammit. The deceased often identifies himself with Thoth, claiming mastery of the sacred words that protect the soul.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Ḏḥwty concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>Ibis</strong> — The bird whose curved beak and measured step made it emblematic of writing and calculation</li>
+  <li><strong>Baboon</strong> — Thoth&#39;s other sacred animal, associated with the dawn and the rising moon</li>
+  <li><strong>Scribal palette and reed pens</strong> — The tools of the divine scribe who records all deeds and spells</li>
+  <li><strong>Crescent moon and disk</strong> — The lunar phases by which Thoth measures time and renews the cosmic order</li>
+  <li><strong>Eye of Horus (wedjat)</strong> — Restored by Thoth after the conflict of Horus and Seth, symbolizing wholeness regained</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Thoth&#39;s principal cult centre was Khemenu, Greek Hermopolis Magna, modern el-Ashmunein in Middle Egypt. The temple itself is ruined almost beyond reading, but its scale survives in the colossal quartzite baboons dedicated by Amenhotep III — among the largest animal statues of pharaonic Egypt — and in the vast sacred-animal necropolis of Tuna el-Gebel across the river, whose galleries received mummified ibises and baboons offered to the god in their hundreds of thousands. A second great ibis catacomb lies in the Sacred Animal Necropolis of North Saqqara, excavated by W. B. Emery, where the ibis galleries again number their dead in the millions. Temple reliefs from the New Kingdom onward show Thoth writing, healing, and measuring, while the Graeco-Roman Hermetic texts and the Coptic month-name Ⲑⲱⲟⲩⲧ preserve his later reputation as Hermes Trismegistus.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p><strong>Ḏḥwty</strong> is the ibis-headed scribe of the gods, the measurer of time, the reckoner of accounts, and the moon whose light lets humans see at night. He invented writing, preserved the laws of Maat, and stands beside Osiris in the Hall of Judgment to record the verdict of the heart. Where Ptḥ creates by speaking, Thoth creates by writing: he is the god who makes knowledge durable.</p>
+<h3 id="moon-and-measurement">Moon and Measurement</h3>
+<p>Thoth is the moon that measures months, festivals, and the night hours of the Duat.</p>
+<h3 id="scribe-of-maat">Scribe of Maat</h3>
+<p>He records the weighing of the heart and knows the spells that protect the justified dead.</p>
+<h3 id="mediator-and-healer">Mediator and Healer</h3>
+<p>He intervenes in disputes among gods, restores the Eye of Horus, and masters medicine and magic.</p>
+<h3 id="hermopolis">Hermopolis</h3>
+<p>His city Khemenu, &#39;Eight-Town,&#39; was a center of learning and the cult of the Ogdoad.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Thoth&#39;s most enduring syncretism is with the Greek Hermes, producing Hermes Trismegistus, &#39;Thrice-Great Hermes,&#39; the legendary author of the Hermetic corpus. This Graeco-Egyptian figure became a cornerstone of late antique mysticism, alchemy, and astrology, and was reclaimed by Renaissance humanists such as Ficino and Pico della Mirandola. In Coptic Egypt, Thoth&#39;s month name (Thōout) survived in the Christian calendar. His ibis and baboon forms influenced medieval bestiaries and early modern emblem books.</p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include [[ganesha|Gaṇeśa]] (wisdom / writing), [[hermes|Hermês]] (messenger / travel / wisdom), [[ahuramazda|AhuraMazdā]] (wisdom / knowledge), [[artemis|Ártemis]] (moon / lunar), [[athena|Athénā]] (wisdom / knowledge), and [[hekate|Hekátē]] (moon / lunar).</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Thoth&#39;s longest afterlife runs under a Greek name. Fused with Hermes as Hermes Trismegistus, he became the legendary author of the Hermetic corpus — the treatises that Marsilio Ficino put into Latin in 1463 at Cosimo de&#39; Medici&#39;s behest, ahead of Plato himself, setting Hermes at the head of the Renaissance revival of ancient wisdom; the English word &#39;hermetic&#39; still carries the trace. In Egypt his name survives in the calendar: the Coptic month Ⲑⲱⲟⲩⲧ (Thout), first month of the year, keeps the god&#39;s name in liturgical use to this day. Modern Egyptology has recovered his own literary monument in the &#39;Book of Thoth&#39;, a Demotic-Greek initiatory dialogue between a disciple and the god. In popular culture he endures as patron of writers, librarians, and occultists — the scribe whose record decides the fate of souls.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Ḏḥwty given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Book of the Dead, Spell 125 (Thoth records the weighing of the heart).</li>
+  <li> The Contendings of Horus and Seth (papyrus Chester Beatty I).</li>
+  <li> Faulkner, A Concise Dictionary of Middle Egyptian.</li>
+  <li> Wb, ḏḥwty (Erman &amp; Grapow).</li>
+  <li> Allen, Middle Egyptian: An Introduction to the Language and Culture of Hieroglyphs.</li>
+  <li> Copenhaver, Hermetica: The Greek Corpus Hermeticum and the Latin Asclepius.</li>
+  <li> Fowden, The Egyptian Hermes: A Historical Approach to the Late Pagan Mind.</li>
+  <li> Jasnow &amp; Zauzich, The Ancient Egyptian Book of Thoth.</li>
+  <li> Kessler, Tuna el-Gebel I: Die Tiergalerien (1998).</li>
+  <li> Emery, reports on the Sacred Animal Necropolis, North Saqqara (JEA, 1965–71).</li>
+  <li> Crum, A Coptic Dictionary, s.v. Ⲑⲱⲟⲩⲧ.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Thoth is the god who believes that what is written endures. In a world of disappearing messages and ephemeral speech, he reminds us that some words must be preserved: laws, treaties, poems, names. The Egyptians trusted this so deeply that they made writing a divine invention and its god the recorder of every judgment — the being whose palette stands between a heart and its annihilation. To invoke Thoth is to take seriously the responsibility of the scribe — the one who decides what gets remembered and how. His moonlight is not the blazing sun of [[ra|Rꜥ]] but the softer light by which we read, measure, and think.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Ḏḥwty is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>thoth</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 5 characters of the name, the restoration adjusts 4: 4 further adjustments (Ḏ, ḥ, w, y). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="name-variations">Name Variations</h2>
+<p>The lexicon records 1 additional form of the name:</p>
+<ul>
+  <li><strong>Thóth</strong> (alt-stress) — Acute on omicron: alternate stress position</li>
+</ul>
+<p>The temple uses <strong>Ḏḥwty</strong> as the primary form: it is the spelling that best balances philological accuracy with the practical limits of DNS.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>thoth</em> to <strong>Ḏḥwty</strong>, one character at a time:</p>
+<ul>
+  <li><strong>t</strong> → <strong>Ḏ</strong> — D-with-dot-below: palatalized d</li>
+  <li><strong>h</strong> → <strong>ḥ</strong> — H-with-dot: voiceless pharyngeal</li>
+  <li><strong>o</strong> → <strong>w</strong> — W: bilabial glide</li>
+  <li><strong>t</strong> → <strong>t</strong> — Same</li>
+  <li><strong>h</strong> → <strong>y</strong> — Y: palatal approximant</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>ḏḥwty.com</strong>, which the DNS carries in punycode form as xn--wty-2yy4e.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Ḏḥwty; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Hieroglyphs can now be typed into any browser on earth.</p>
+<h2 id="the-egyptian-pantheon">The Egyptian Pantheon</h2>
+<p>Ḏḥwty is one of 66 entries the PÚNYCODEX lexicon catalogues under the Egyptian pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Ḏḥwty mean?</strong> The traditional gloss is &quot;He who is like the ibis.&quot;</p>
+<p><strong>Which tradition does Ḏḥwty belong to?</strong> Ḏḥwty is catalogued in the Egyptian pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Ḏḥwty classified as Tier 2?</strong> Because the original preserves at least one philological feature that ASCII cannot encode — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Ḏḥwty a working domain?</strong> Yes — ḏḥwty.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for ḏḥwty.com?</strong> The DNS encoding is xn--wty-2yy4e.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="typing-dhwty">Typing Ḏḥwty</h2>
+<p>You do not need a special keyboard to use this restoration. The <a href="/type/">PÚNYCODEX Type Tool</a> converts the ASCII form <em>thoth</em> into <strong>Ḏḥwty</strong> as you type, and the browser extension offers the same conversion inside any text field. Copy the restored form, paste it into the address bar, and the DNS does the rest.</p>
+<h2 id="sister-temples">Sister Temples</h2>
+<p>Other temples in the Egyptian pantheon include <a href="/sites/amun/">Ꜣmun</a>, <a href="/sites/apep/">Ꜥpp</a>, and <a href="/sites/duat/">Dwꜣt</a> — each with its own restoration story, its own scholarly record, and its own place in the lexicon.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Pronunciation turns out to be the heart of the matter. The marks in <strong>Ḏḥwty</strong> are instructions for the voice, and a web that strips them is a web that mispronounces the past at scale. The restoration hands the instructions back: say it as the evidence suggests, type it as the tradition wrote it, and let the punycode machinery do the quiet translation in between. That is all the PÚNYCODEX project asks of the infrastructure — and everything it asks of you, the reader, is to use the whole name.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/set/">Stḫ</a></li>
   <li><a href="/sites/shu/">Šw</a></li>
   <li><a href="/sites/sia/">sꜥ</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.cambridge.org/">James P. Allen, Middle Egyptian: An Introduction to the Language and Culture of Hieroglyphs, Cambridge University Press, 2000.</a></li>
+  <li>Wilkinson, The Complete Gods and Goddesses of Ancient Egypt (2003), s.v. Thoth.</li>
+  <li>Faulkner, A Concise Dictionary of Middle Egyptian, s.v. ḏḥwty.</li>
+  <li>Book of the Dead, Spell 125 (Thoth records the weighing of the heart).</li>
+  <li>Fowden, The Egyptian Hermes: A Historical Approach to the Late Pagan Mind.</li>
+  <li>Lexicon authorities for this entry: Faulkner, Wb.</li>
 </ul>
-<h2>What the Sources Record</h2>
-<p>Ḏḥwty is the ibis-headed scribe of the gods, the measurer of time, the reckoner of accounts, and the moon whose light lets humans see at night. He invented writing, preserved the laws of Maat, and stands beside Osiris in the Hall of Judgment to record the verdict of the heart. Where Ptḥ creates by speaking, Thoth creates by writing: he is the god who makes knowledge durable. ### Moon and Measurement Thoth is the moon that measures months, festivals, and the night hours of the Duat. ### Scribe of Maat He records the weighing of the heart and knows the spells that protect the justified dead. ### Mediator and Healer He intervenes in disputes among gods, restores the Eye of Horus, and masters medicine and magic. ### Hermopolis His city Khemenu,...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Ḏḥwty as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Hieroglyphs to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Ḏḥwty through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/thoth/">home page</a> offers the full name breakdown, the <a href="/sites/thoth/lore/">lore page</a> explores the myth, and the <a href="/sites/thoth/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Ḏḥwty do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
-<h2>A Note on the Address Bar</h2>
-<p>When you type Ḏḥwty, the browser performs an invisible conversion into Punycode so the global DNS can route the request. The user sees the original name; the machines see a compatible ASCII encoding. That duality is the engineering compromise that makes the restoration possible, and it is the reason every Unicode domain is both a technical milestone and a small act of cultural memory.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">egyptian</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

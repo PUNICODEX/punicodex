@@ -31,6 +31,7 @@ const SUITES = [
   { name: 'Scholars Content Regression', cmd: 'node test/scholars-content.test.js' },
   { name: 'Scholars API Flow Regression', cmd: 'node test/scholars-api-flow.test.js' },
   { name: 'Flagship Blog Tests', cmd: 'node --test test/blog.test.js' },
+  { name: 'Blog Index Tests', cmd: 'node --test test/blog-index.test.js' },
   {
     name: 'Scholars Session Revocation Tests',
     cmd: 'node platform/scholars/session-revocation.test.js',
@@ -53,6 +54,7 @@ const SUITES = [
   { name: 'API Utils Tests', cmd: 'node test/api-utils.test.js' },
   { name: 'Client IP Tests', cmd: 'node test/client-ip.test.js' },
   { name: 'Rate Limiter Tests', cmd: 'node test/rate-limiter.test.js' },
+  { name: 'Security Hardening Tests', cmd: 'node test/security-hardening.test.js' },
   { name: 'Safe JSON Tests', cmd: 'node test/safe-json.test.js' },
   { name: 'Operational DB Tests', cmd: 'node test/operational-db.test.js' },
   { name: 'Availability Checker Tests', cmd: 'node test/availability-checker.test.js' },
@@ -64,6 +66,9 @@ const SUITES = [
   { name: 'Observability Tests', cmd: 'node test/observability.test.js' },
   { name: 'Admin Tests', cmd: 'node test/admin.test.js' },
   { name: 'Admin Booking Routes', cmd: 'node test/admin-bookings.test.js' },
+  { name: 'Admin Portal Tests', cmd: 'node test/admin-portal.test.js', timeout: 60000 },
+  { name: 'Patrons API Tests', cmd: 'node test/patrons-api.test.js', timeout: 60000 },
+  { name: 'Stripe Webhook Tests', cmd: 'node test/stripe-webhook.test.js' },
   { name: 'Ad Analytics Tests', cmd: 'node test/ad-analytics.test.js' },
   {
     name: 'Site Analytics Tests',
@@ -74,6 +79,9 @@ const SUITES = [
   { name: 'Booking Validation Tests', cmd: 'node test/booking-validation.test.js' },
   { name: 'Patron Service Tests', cmd: 'node test/patron-service.test.js' },
   { name: 'Patron Page Tests', cmd: 'node test/patron-page.test.js' },
+  { name: 'Patron Contract Tests', cmd: 'node --test test/patron-contract.test.js' },
+  { name: 'Collaborators Strip Tests', cmd: 'node test/collaborators-strip.test.js' },
+  { name: 'Admin Portal Page Tests', cmd: 'node test/admin-portal-page.test.js' },
   { name: 'Flagship Mobile Nav Tests', cmd: 'node test/flagship-mobile-nav.test.js' },
   { name: 'Realms Page Tests', cmd: 'node test/realms-page.test.js' },
   {

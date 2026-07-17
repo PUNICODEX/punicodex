@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,42 +170,191 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>15 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#epithets-cult-titles">Epithets &amp; Cult Titles</a></li>
+                <li><a href="#the-homeric-hymns">The Homeric Hymns</a></li>
+                <li><a href="#oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>Selēnē in 2026: Why Scholars Still Care</h1>
-<p>In 2026, names are treated as data points. Selēnē is a reminder that they are also cultural artifacts. Selēnē (selene) — The Radiant · Driver of the Silver Chariot — belongs to the Greek tradition, where it is catalogued under the domain &quot;Moon, Night Light&quot;. The name means &quot;Moon, light (from σέλας)&quot;. Selḗnē is the moon personified: a goddess who drives her silver chariot through the night, governs the menstrual cycle, and presides over dreams and magic. Where Hēlios reveals, Selḗnē conceals and transforms. PÚNYCODEX restores the name as Selēnē and serves its temple at selēnē.com. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form selene survives as a modern convenience imposed by the early domain-name system; the restoration, not the... The question is not whether the name is old, but whether the digital world is old enough to hold it.</p>
-<h2>The Scholarly Argument</h2>
-<p>The name is attested in Greek as Σελήνη. Etymologically it means &quot;Moon, light (from σέλας)&quot;. The reconstructed proto-form is sel- (proto-indo-european, &quot;light, brightness&quot;). From σελήνη &quot;moon&quot;, from σέλας &quot;light, brightness&quot;. The moon goddess. The ASCII form selene survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Selēnē recovers the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The letter-by-letter transformation runs: - s → S — Sigma - e → e — Short epsilon - l → l — Lambda - e → ē... The PÚNYCODEX Scholarly Edition collects these arguments in one place, with sources and revision history, so the claim can be inspected rather than merely asserted.</p>
-<h2>What the Accent Preserves</h2>
-<p>This entry is classified as <strong>Tier 1</strong>. the Greek original carries both stress and length, and only one valid Unicode restoration exists Those marks are not ornaments; they are the coordinates that place the name inside a language.</p>
-<h2>A Living Edition</h2>
-<p>The <a href="/sites/selene/scholars/">Scholarly Edition</a> is not a static page. Verified contributors can improve it, and every change is attributed. That model turns a blog post like this one into an invitation to dig deeper.</p>
-<h2>Where to Learn More</h2>
+            <h1>Selēnē in 2026: why scholars still care</h1>
+<p>In 2026, names are treated as data points. <strong>Selēnē</strong> is a reminder that they are also cultural artifacts — and that the difference matters for search engines, AI training corpora, and anyone who types the name of a Greek figure into a browser. Scholars never stopped caring about the difference between <em>selene</em> and Selēnē; the web simply made that care actionable. What follows is the full scholarly picture — name, script, sound, myth, cult, and legacy — followed by the engineering compromise that lets a restored spelling live at a real address. The question is not whether the name is old. It is whether the digital world is old enough to hold it.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Selēnē</li>
+  <li><strong>ASCII form:</strong> selene</li>
+  <li><strong>Meaning:</strong> &quot;Moon, light (from σέλας)&quot;</li>
+  <li><strong>Domain of influence:</strong> Moon, Night Light</li>
+  <li><strong>Pantheon:</strong> Greek</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Original script:</strong> Σελήνη (Greek)</li>
+  <li><strong>Live domain:</strong> selēnē.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Selēnē</strong> (<em>selene</em>) — The Radiant · Driver of the Silver Chariot — belongs to the Greek tradition, where it is catalogued under the domain &quot;Moon, Night Light&quot;. The name means &quot;Moon, light (from σέλας)&quot;.</p>
+<p>Selḗnē is the moon personified: a goddess who drives her silver chariot through the night, governs the menstrual cycle, and presides over dreams and magic. <strong>Where Hēlios reveals, Selḗnē conceals and transforms.</strong></p>
+<p>PÚNYCODEX restores the name as <strong>Selēnē</strong> and serves its temple at <a href="https://xn--seln-dvab.com">selēnē.com</a>. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>selene</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Greek as <strong>Σελήνη</strong>. Etymologically it means &quot;Moon, light (from σέλας)&quot;.</p>
+<p>The reconstructed proto-form is <em>sel-</em> (proto-indo-european, &quot;light, brightness&quot;). From σελήνη &quot;moon&quot;, from σέλας &quot;light, brightness&quot;. The moon goddess.</p>
+<p>The ASCII form <em>selene</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Selēnē</strong> recovers the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>s</strong> → <strong>S</strong> — Sigma</li>
+  <li><strong>e</strong> → <strong>e</strong> — Short epsilon</li>
+  <li><strong>l</strong> → <strong>l</strong> — Lambda</li>
+  <li><strong>e</strong> → <strong>ē</strong> — Eta: long epsilon</li>
+  <li><strong>n</strong> → <strong>n</strong> — Nu</li>
+  <li><strong>e</strong> → <strong>ē</strong> — Eta: long epsilon</li>
+</ul>
+<p>The project holds the domain <strong>selēnē.com</strong> (xn--seln-dvab.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: From σελήνη &quot;moon&quot;, from σέλας &quot;light, brightness&quot;. The moon goddess.</p>
+<p>The reconstructed proto-form is <em>*sel-</em> (proto-indo-european), glossed as &quot;light, brightness&quot;.</p>
+<p>The reconstruction is classed as attested.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Greek as <strong>Σελήνη</strong> — Greek alphabet (Classical / Attic), attested Ancient Greek, c. 8th century BCE – present, in Greece and the Greek-speaking Mediterranean. The script is written left-to-right.</p>
+<p>The scholarly transliteration is <em>Selēnē</em> (Greek alphabet with polytonic accents), giving the normalized reading /sɛːˈlɛːnɛː/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The Greek form Σελήνη is written in the Classical Greek alphabet.</li>
+  <li>Letters with acute, grave, or circumflex accents preserve the pitch accent of Ancient Greek.</li>
+  <li>Macrons and omegas (η, ω) mark long vowels, a feature lost in the plain ASCII form.</li>
+  <li>The Unicode restoration Selēnē encodes the scholarly spelling as a registrable domain name.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/sɛ.lɛ́ː.nɛː/</strong> — Attic Greek Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Se-</strong> — Sigma plus short epsilon — the name begins softly, like moonlight.</li>
+  <li><strong>-lḗ-</strong> — Lambda plus long eta with the acute pitch — the name&#39;s bright, cool peak.</li>
+  <li><strong>-nē</strong> — Long eta — the final vowel that sustains like a nocturnal note.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;seh-LAY-nay&#39; — the second syllable carries the pitch, and the final vowel is long and pale.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>PIE</strong> — *sel-, &#39;light, brightness&#39; — the root behind σέλας and σελήνη</li>
+  <li><strong>Greek</strong> — σέλας (selas), &#39;light, brightness&#39; — the moon&#39;s light</li>
+  <li><strong>Lunar</strong> — Selene is the moon personified; her Roman equivalent is Luna</li>
+</ul>
+<p>Selḗnē is Tier 1 because the Greek Σελήνη contains both stress (the acute on its second syllable) and length (two long etas). The name is transparent Greek: σελήνη is built on σέλας, &#39;light, brightness&#39; — the moon is simply &#39;the shining one.&#39;</p>
+<h2 id="mythology">Mythology</h2>
+<p>Selḗnē&#39;s myths are fewer than Hēlios&#39;s because the night was less personified in Greek poetry. Her most famous story is a love affair with a mortal.</p>
+<h3 id="endymion-on-mount-latmus-the-lover">Endymion on Mount Latmus (The Lover)</h3>
+<p>Selḗnē loved Endymion, a beautiful shepherd or king: Apollonius first sang her &#39;mad passion&#39; for the fair Endymion in the Latmian cave. Apollodorus gives the famous compromise — Zeús let Endymion choose his own fate, and he chose to sleep forever, remaining deathless and ageless. The Elean version of the story gave the pair fifty daughters, a number scholars link to the fifty lunar months of the Olympiad; on Mount Latmus in Caria the people of Heracleia still showed his shrine. The myth turns the moon&#39;s monthly return into a romantic rendezvous and makes sleep the price of immortality.</p>
+<h3 id="the-moon-s-journey-the-chariot">The Moon&#39;s Journey (The Chariot)</h3>
+<p>Like Hēlios, Selḗnē drives a chariot across the sky. The Homeric <em>Hymn to Selene</em> calls her &#39;long-winged&#39; and &#39;golden-crowned&#39;: she bathes her lovely body in Ocean, dons her far-gleaming raiment, yokes her strong-necked team, and drives at evening in mid-month, when her orbit is full — &#39;a sure token and a sign to mortal men.&#39;</p>
+<h3 id="the-horned-moon-the-bull">The Horned Moon (The Bull)</h3>
+<p>In later accounts Selḗnē drives oxen rather than horses, and the crescent&#39;s horns made the white bull a lunar symbol across the ancient Mediterranean — the Orphic hymn addresses her outright as &#39;bull-horned Mēnē&#39; — linking her to both fertility and sacrifice.</p>
+<h3 id="drawing-down-the-moon-witchcraft">Drawing Down the Moon (Witchcraft)</h3>
+<p>In Greek magic, Selḗnē could be &#39;drawn down&#39; to empower spells, especially those of love, dreams, and transformation. Plato already names the Thessalian women who pull down the moon, and Strepsiades in the Clouds dreams of hiring one to escape his debts. In the Greek magical papyri a long hymn invokes Selḗnē under a litany of names — foam-born, night-ornament, rider of bulls — to charge a spell. This magical Selḗnē merged with Hekátē and Artemis as a triple lunar goddess.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>Selḗnē&#39;s attributes are the furniture of the night sky, stable from archaic art to the Roman sarcophagi:</p>
+<ul>
+  <li><strong>Crescent</strong> — worn on her brow or rising horn-like behind her shoulders; Pausanias saw it already on her stone image in the market-place of Elis.</li>
+  <li><strong>Chariot and horses</strong> — her &#39;long-maned&#39; team, yoked after her bath in Ocean; a pair of winged horses draws her on the Brygos Painter&#39;s cup in Berlin, the earliest surviving image of her drive.</li>
+  <li><strong>Billowing veil</strong> — the great arc of cloth over her head, the night sky made textile; on Roman sarcophagi it curves into a crescent of its own.</li>
+  <li><strong>Torch</strong> — from Hellenistic art onward she carries the pale flame through darkness; the Orphic hymn already calls her torch-bearer.</li>
+  <li><strong>Horns and oxen</strong> — the Orphic hymn hails her as &#39;bull-horned Mēnē,&#39; and late art sometimes yokes bulls, not horses, to her car.</li>
+  <li><strong>Sleeping Endymion</strong> — the eternal youth at her feet, her most beloved attribute in funerary art.</li>
+</ul>
+<p>Selḗnē&#39;s type is fixed by her vehicle and her veil. She drives a chariot — usually a pair of horses, sometimes described as oxen — with a great veil billowing in an arc above her head, the night sky made textile; from Hellenistic art onward a crescent rests on her brow. The horse-heads sinking at the corner of the Parthenon&#39;s east pediment belong to her descending chariot, the night&#39;s end answering the sun&#39;s rise at the other corner — her grandest Classical monument. On the Pergamon altar&#39;s Gigantomachy she rides into battle, and in Roman art the scene of Selḗnē descending to the sleeping Endymion becomes one of the most popular subjects of funerary sarcophagi, the moon&#39;s nightly visit made an image of love surviving death.</p>
+<h2 id="epithets-cult-titles">Epithets &amp; Cult Titles</h2>
+<ul>
+  <li><strong>εὐπλόκαμος</strong> (euplokamos) — &#39;fair-tressed&#39; — the Homeric Hymn&#39;s address.</li>
+  <li><strong>λευκώλενος</strong> (leukōlenos) — &#39;white-armed&#39; — the same hymn, transferring to the moon the formula epic gives Hēra.</li>
+  <li><strong>Μήνη</strong> (Mēnē) — &#39;Moon&#39; — the direct divine name under which she is invoked in the hymn and in later poetry and inscriptions.</li>
+  <li><strong>ταυρόκερως</strong> (taurokerōs) — &#39;bull-horned&#39; — the Orphic hymn&#39;s address, &#39;bull-horned Mēnē,&#39; for the crescent&#39;s horns; the same hymn calls her torch-bearer and lover of horses.</li>
+</ul>
+<p>Beyond these the archaic epithet tradition is genuinely thin: Greek epic personified the sun more readily than the moon, and Selḗnē&#39;s divine predicates migrated early to Ártemis and Hekátē, with whom she was eventually identified as a triple lunar figure.</p>
+<h2 id="the-homeric-hymns">The Homeric Hymns</h2>
+<p>Hymn 32, to Selene, survives: twenty lines describing the goddess bathing her lovely body in Ocean, harnessing her shining horses, and driving her long-maned team across the sky as the moon waxes to fullness. The hymn calls her white-armed and fair-tressed and preserves the union from which she bore Pandēia to Zeús — one of the few myths attaching a child to the moon. Hesiod&#39;s Theogony (371–374) places her in the Titan generation as daughter of Hyperion and Theia, sister of Hēlios and Eōs, making sun, moon, and dawn a single shining family. Beyond these, her hexameter presence is slight: early epic personified the day sky more readily than the night, and much of her poetic life passed into [[hekate|Hekátē]] and lunar [[artemis|Ártemis]].</p>
+<h2 id="oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</h2>
+<p>No oracle of Selḗnē under her own name is recorded, but one oracular sanctuary belonged to her by title. Near Thalamai in Laconia, consultants slept in a sanctuary sacred to Ino to receive the goddess&#39;s answers in dreams; bronze statues of Pasiphaë and Hēlios stood in its unroofed court, and Pausanias himself explains that &#39;Pasiphae is a title of the Moon, and not a local goddess of the people of Thalamai.&#39; Plutarch preserves the Spartan ephors consulting this oracle of Pasiphaë on affairs of state. Otherwise her cultic footprints are images rather than shrines — the horned stone figure in the market-place of Elis — and the shrine of Endymion on Mount Latmus in Caria, where her beloved was locally honored. Her public worship dissolved early into the lunar aspects of [[artemis|Ártemis]] and [[hekate|Hekátē]], whose shrines absorbed whatever cult the moon received.</p>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>No great temple of Selḗnē survives — public cult of the moon was always thin — but her image is fixed in some of antiquity&#39;s grandest monuments. On the Parthenon&#39;s east pediment (c. 438–432 BCE) her chariot plunges at the south corner to answer Hēlios rising at the north; her torso is in the Acropolis Museum (inv. 881) and the head of one of her horses in the British Museum (1816,0610.98) — the identification as Selḗnē is standard, though Nyx has been proposed. Pausanias saw her on the base of Phidias&#39;s Zeus at Olympia, driving &#39;as it seemed to him, a single horse — or, as some said, a mule,&#39; framing with Hēlios the birth of Aphrodite. In the market-place of Elis he records two stone images, one with the sun&#39;s rays projecting from its head, one with the moon&#39;s horns. On the Pergamon altar&#39;s Gigantomachy (c. 180–159 BCE) she rides into battle beside her mother and siblings; the earliest certain image of her chariot is the Brygos Painter&#39;s cup in Berlin (c. 490–480 BCE); and on Roman funerary sarcophagi — the Capitoline and Metropolitan examples are the most famous — she descends, veil billowing, to the sleeping Endymion.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Selḗnē is the moon personified: a goddess who drives her silver chariot through the night, governs the menstrual cycle, and presides over dreams and magic. <strong>Where Hēlios reveals, Selḗnē conceals and transforms.</strong></p>
+<h3 id="the-silver-chariot">The Silver Chariot</h3>
+<p>She crosses the night sky in a chariot drawn by her long-maned team, the counterpart to Hēlios&#39;s golden car.</p>
+<h3 id="cycles-and-time">Cycles and Time</h3>
+<p>The month is hers: Aristotle taught that the menses fall with the waning of the moon, and the tide, the planting calendar, and the ritual month all keep her measure.</p>
+<h3 id="dreams-and-magic">Dreams and Magic</h3>
+<p>Hekátē&#39;s ally; Thessalian witches were already proverbial in classical Athens for drawing down the moon to work spells and send dreams.</p>
+<h3 id="the-lover">The Lover</h3>
+<p>She fell in love with the shepherd Endymion, who sleeps forever on Mount Latmus, deathless and ageless.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>The Romans identified Selḗnē with Luna — Cicero derives the name from lucere, &#39;to shine,&#39; and links it to Lucina, the goddess who brings the newborn into the light — though as with Hēlios/Sol, the Greek goddess was increasingly absorbed by Artemis-Diana in later periods. In Hellenistic and Roman Egypt, Selḗnē was syncretized with Isis, who wears a lunar disk and whom Plutarch&#39;s allegory identifies with the moon&#39;s receptive power. Later Platonists saw the moon as the boundary between the material and immaterial realms, and Plutarch&#39;s dialogue On the Face in the Moon made it the waystation of souls between earth and sun. The English words &#39;selenography&#39; (study of the moon&#39;s surface) and the chemical element selenium derive from her name.</p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include [[artemis|Ártemis]], [[hekate|Hekátē]], and [[thoth|Ḏḥwty]], each linked through moon / lunar.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Selḗnē is the archetype of the moon as feminine, cyclical, and magical. She governs not only the night sky but the rhythms of women&#39;s bodies and the agricultural calendar; the Greeks named Monday ἡμέρα Σελήνης, &#39;day of the Moon,&#39; a name the Romance languages still keep. Her image traveled far: the Kushan king Kanishka I struck coins bearing her figure with the Greek legend ΣΕΛΗΝΗ in the second century CE. The crescent moon remains one of humanity&#39;s most universal symbols, appearing on flags, coins, and religious iconography across cultures. English poetry gave her lover immortality of another kind: Keats opened his <em>Endymion</em> (1818) with &#39;A thing of beauty is a joy for ever.&#39; In modern witchcraft and Neopaganism, the moon goddess — whether called Selene, Diana, or Hecate — is central; in modern science, selenography studies her surface, the element selenium (Berzelius, 1817) bears her name beside tellurium&#39;s earth, and Japan&#39;s lunar orbiter SELENE flew in 2007. Restoring <em>Selḗnē</em> restores the Greek name of the moon as a conscious, luminous presence.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Selēnē given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Full text</a></li>
+  <li> Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a href="https://brill.com/view/title/17858">Full text</a></li>
+  <li> Wörterbuch der griechischen Eigennamen, 3rd ed., 1863. <a href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ">Full text</a></li>
+  <li> Homer, Odyssey.</li>
+  <li> Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE. <a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Full text</a></li>
+  <li> Homeric Hymn to Selene.</li>
+  <li> Plutarch, On the Face in the Moon.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Selḗnē is the goddess of reflected light. She does not generate radiance; she transforms what Hēlios gives. This is her power and her limitation — and the Greeks knew it literally: Anaxagoras was already teaching in the fifth century BCE that the moon shines with borrowed light, a doctrine Plutarch&#39;s dialogue <em>On the Face in the Moon</em> built into a whole cosmology. Lucian lets the goddess herself complain about it: in the <em>Icaromenippus</em>, Selḗnē begs Zeús to wipe out the philosophers who say she steals her light from her brother. The night reveals what the day hides: dreams, secrets, transformations. The moon governs the liminal hours when boundaries loosen.</p>
+<p>Modern life has banished the moon. Electric light has made her irrelevant for practical purposes, and with her disappearance has gone much of the ancient vocabulary for nocturnal experience. The restoration of her name is a small act of lunar reclamation: the night, too, has its goddess.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Selēnē is classified as <strong>Tier 1</strong>: the original carries both stress and length, and only one valid Unicode restoration exists. The ASCII fallback <em>selene</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 6 characters of the name, the restoration adjusts 2: 2 marks of length (ē, ē). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>selēnē.com</strong>, which the DNS carries in punycode form as xn--seln-dvab.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Selēnē; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Greek can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>In 2026 the stakes are practical. Search indexes, language models, and localization pipelines all inherit whatever spelling the web normalizes — which means every Unicode domain is also a training signal. <strong>Selēnē</strong> teaches the machinery that the restored form exists, that it is used, and that it points to a real place. That is why a project built on philology ends up caring about DNS: the infrastructure decides which names the future sees. This restoration makes sure the future sees the whole name.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/hebe/">Hebe</a></li>
   <li><a href="/sites/hector/">Hektōr</a></li>
   <li><a href="/sites/hecuba/">Hekábē</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843.</a></li>
   <li><a href="https://brill.com/view/title/17858">Etymological Dictionary of Greek, 2 vols., Brill, 2010.</a></li>
   <li><a href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ">Wörterbuch der griechischen Eigennamen, 3rd ed., 1863.</a></li>
   <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE.</a></li>
+  <li>Homeric Hymn 32 to Selene.</li>
+  <li>Aristotle, Generation of Animals 4.2 (767a); Pliny, Natural History 2.217 (moon and tides).</li>
+  <li>Plato, Gorgias 513a; Aristophanes, Clouds 749–756.</li>
+  <li>Apollodorus, Library 1.7.5.</li>
+  <li>Lexicon authorities for this entry: LSJ, Pape-Benseler, Beekes.</li>
 </ul>
-<h2>What the Sources Record</h2>
-<p>Selḗnē is the moon personified: a goddess who drives her silver chariot through the night, governs the menstrual cycle, and presides over dreams and magic. Where Hēlios reveals, Selḗnē conceals and transforms. ### The Silver Chariot She crosses the night sky in a chariot drawn by her long-maned team, the counterpart to Hēlios&#39;s golden car. ### Cycles and Time The month is hers: Aristotle taught that the menses fall with the waning of the moon, and the tide, the planting calendar, and the ritual month all keep her measure. ### Dreams and Magic Hekátē&#39;s ally; Thessalian witches were already proverbial in classical Athens for drawing down the moon to work spells and send dreams. ### The Lover She fell in love with the shepherd Endymion, who sleeps...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Selēnē as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Greek to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Selēnē through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/selene/">home page</a> offers the full name breakdown, the <a href="/sites/selene/lore/">lore page</a> explores the myth, and the <a href="/sites/selene/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Selēnē do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">greek</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

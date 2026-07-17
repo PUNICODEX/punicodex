@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,43 +170,195 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>13 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-norse-pantheon">The Norse Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#typing-valholl">Typing Valhǫll</a></li>
+                <li><a href="#sister-temples">Sister Temples</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>The Hidden History Behind Valhǫll</h1>
-<p>Behind the modern ASCII <em>valholl</em> hides a longer story. The name is rendered in Younger Futhark as ᚢᛅᛚᚼᚢᛚ; the word itself is confined to the manuscript record, so the runic form is a normalized reconstruction. Etymologically the compound joins valr &#39;the slain on the battlefield&#39; and hǫll &#39;hall, roofed house&#39; — &#39;hall of the slain&#39;. The Latinized form Valhalla, transmitted through early modern antiquarian writing, is the ancestor of the familiar English spelling; the normalized Old Norse Valhǫll keeps the short rounded vowel (ǫ) of the medieval manuscripts. The ASCII form valholl survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Valhǫll recovers the full diacritic detail of the scholarly... That history reaches back through manuscripts, inscriptions, and oral traditions before it ever reached a keyboard.</p>
-<h2>Etymology</h2>
-<p>The deeper roots of Valhǫll are still debated among specialists.  The traditional gloss is &quot;Hall of the slain warriors.&quot;</p>
-<h2>In Myth</h2>
-<p>Valhǫll is less a single myth than a single place at the center of many myths. It is the destination of the valkyries, the home of the einherjar, and the staging ground for Ragnarök. Every battle death is implicitly a journey toward its doors. These narratives are not dusty footnotes; they are the reason the name acquired its resonance.</p>
-<h2>Across Cultures</h2>
-<p>Valhǫll has often been compared to the warrior paradises of other Indo-European peoples, such as the Celtic Tech Duinn (the House of Donn) or the Germanic comitatus ideal of the lord&#39;s hall continued after death. Some scholars have seen Christian influence in its structure — the hall of the divine king, the everlasting feast — while others argue that the lord&#39;s mead-hall was already the central social institution of Germanic life and needed no borrowing to become an afterlife. The Latinized form Valhalla entered English through 18th-century romantic translations and has become the standard popular term. Within the Norse tradition, closely related names in the corpus include [[alfheimr|Álfheimr]], [[buri|Búri]], [[eggther|Eggþér]],... Names travel, adapt, and accumulate meanings. Tracking that travel is part of what makes the restoration worthwhile.</p>
-<h2>The Unicode Decision</h2>
-<p>Restoring Valhǫll is not an aesthetic choice. It is a decision to honor the name as attested rather than the name as flattened by ASCII. That choice is documented in the <a href="/sites/valholl/scholars/">Scholarly Edition</a> and defended by the sources below.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Valhǫll is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>The hidden history behind Valhǫll</h1>
+<p>Behind the modern ASCII form <em>valholl</em> hides a much longer story. <strong>Valhǫll</strong> reaches back through manuscripts, inscriptions, and oral tradition long before it ever touched a keyboard, and every mark in the restored spelling is a receipt from that journey. In what follows we trace the name from its Younger Futhark attestations through its mythology, its cult, its symbols, and its afterlife in other cultures — and we show how the PÚNYCODEX project turned that philological record into a Unicode domain that resolves today. The history was never lost. It was only waiting for the infrastructure to catch up.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Valhǫll</li>
+  <li><strong>ASCII form:</strong> valholl</li>
+  <li><strong>Meaning:</strong> &quot;Hall of the slain warriors&quot;</li>
+  <li><strong>Domain of influence:</strong> Hall of the Slain</li>
+  <li><strong>Pantheon:</strong> Norse</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> ᚢᛅᛚᚼᚢᛚ (Younger Futhark)</li>
+  <li><strong>Live domain:</strong> valhǫll.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Valhǫll</strong> (<em>valholl</em>) — Hall of the Slain · Hall of the slain warriors — belongs to the Norse tradition, where it is catalogued under the domain &quot;Hall of the Slain&quot;. The name means &quot;Hall of the slain warriors&quot;.</p>
+<p>Valhǫll is the <strong>great hall of Óðinn, roofed with shields and crowded with the einherjar</strong> — warriors who died in battle and were chosen by the valkyries. It is not a quiet heaven but a warrior&#39;s training ground: by day the dead fight to the death, by night they rise whole and feast on the ever-renewing boar Sæhrímnir, while the she-goat Heiðrún pours mead from her udders.</p>
+<p>PÚNYCODEX restores the name as <strong>Valhǫll</strong> and serves its temple at <a href="https://xn--valhll-zcc.com">valhǫll.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>valholl</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is rendered in Younger Futhark as <strong>ᚢᛅᛚᚼᚢᛚ</strong>; the word itself is confined to the manuscript record, so the runic form is a normalized reconstruction. Etymologically the compound joins <em>valr</em> &#39;the slain on the battlefield&#39; and <em>hǫll</em> &#39;hall, roofed house&#39; — &#39;hall of the slain&#39;. The Latinized form <em>Valhalla</em>, transmitted through early modern antiquarian writing, is the ancestor of the familiar English spelling; the normalized Old Norse <strong>Valhǫll</strong> keeps the short rounded vowel (ǫ) of the medieval manuscripts.</p>
+<p>The ASCII form <em>valholl</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Valhǫll</strong> recovers the full diacritic detail of the scholarly transliteration directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>v</strong> → <strong>V</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+  <li><strong>l</strong> → <strong>l</strong> — Same</li>
+  <li><strong>h</strong> → <strong>h</strong> — Same</li>
+  <li><strong>o</strong> → <strong>ǫ</strong> — O-hook: short /ɔ/ vowel</li>
+  <li><strong>l</strong> → <strong>l</strong> — Same</li>
+  <li><strong>l</strong> → <strong>l</strong> — Same</li>
+</ul>
+<p>The project holds the domain <strong>valhǫll.com</strong> (xn--valhll-zcc.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is rendered in Younger Futhark as <strong>ᚢᛅᛚᚼᚢᛚ</strong> — Germanic runic, the epigraphic medium of Viking-Age Scandinavia, c. 800–1100 CE. The script is written left-to-right, top-to-bottom.</p>
+<p>The scholarly transliteration is <em>Valhǫll</em> (normalized Old Norse), giving the normalized reading /ˈwal.hɔlː/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The Younger Futhark form ᚢᛅᛚᚼᚢᛚ is a normalized reconstruction; the word itself is unattested in the runic corpus and is known from the 13th-century manuscript tradition (Poetic and Prose Eddas).</li>
+  <li>Younger Futhark has only sixteen runes and does not distinguish short/long vowels or voiced/voiceless stops, so the runic skeleton cannot encode the ǫ or the geminate ll.</li>
+  <li>The normalized Old Norse form follows the manuscript orthography of the Codex Regius tradition.</li>
+  <li>The Unicode restoration Valhǫll uses the o-hook (ǫ), a letter registrable in .com, to preserve the medieval rounded vowel.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/ˈwal.hɔlː/</strong> — Old Norse Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>V-</strong> — Voiced labiodental fricative [v], from earlier Proto-Germanic *w in initial position.</li>
+  <li><strong>-al-</strong> — Short open front [a] followed by alveolar lateral [l]; the first syllable is stressed.</li>
+  <li><strong>-hǫll</strong> — Voiceless glottal [h], short open-mid back rounded [ɔ], and geminated lateral [lː] written double.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;VAHL-holl&#39; — stress the first syllable, pronounce the &#39;a&#39; as in &#39;father&#39;, and hold the final &#39;l&#39; slightly longer than English usually allows.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Old Norse components</strong> — valr, &#39;the slain (on the battlefield)&#39; + hǫll, &#39;hall, roofed house&#39;</li>
+  <li><strong>Proto-Germanic</strong> — <em>walhą, &#39;the slain&#39; + </em>hallō, &#39;covered place, hall&#39;</li>
+  <li><strong>Modern Icelandic</strong> — Valhöll, the living reflex pronounced with similar vowel quality</li>
+</ul>
+<p>Valhǫll is Tier 2: the ǫ (o with ogonek) preserves the distinctive short rounded back vowel of Old Norse, but the name carries no stress accent or additional length mark. Modern editions often print Valhalla from the medieval Latinized form; Valhǫll restores the native Norse vowel.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Valhǫll is less a single myth than a single place at the center of many myths. It is the destination of the valkyries, the home of the einherjar, and the staging ground for Ragnarök. Every battle death is implicitly a journey toward its doors.</p>
+<h3 id="the-hall-described-grimnismal">The Hall Described (Grímnismál)</h3>
+<p>In <em>Grímnismál</em>, Óðinn in disguise describes Valhǫll in detail: it has 540 doors, and through each door eight hundred warriors will march abreast at Ragnarök. Its roof is covered with golden shields, its benches are strewn with mail coats, and the hall itself is so vast that it contains enough space for all the chosen dead. The poem makes war into architecture.</p>
+<h3 id="the-daily-combat-gylfaginning">The Daily Combat (Gylfaginning)</h3>
+<p>Snorri records the daily life of the einherjar: they don their armor, go out into the courtyard, and fight one another with joy. Those who are killed rise again whole and return to the hall to feast. The boar Sæhrímnir is cooked and eaten every evening, and by morning he is whole again. It is an eternal rehearsal for the last war.</p>
+<h3 id="the-valkyries-choice-voluspa-and-grimnismal">The Valkyries&#39; Choice (Völuspá and Grímnismál)</h3>
+<p>In <em>Völuspá</em>, the valkyries ride through the air and over the sea to choose the slain; <em>Grímnismál</em> adds the division of the spoil — Freyja takes half the fallen for her field Fólkvangr, and half go to Óðinn. The cry of battle and the summons to Valhǫll are woven into the seeress&#39;s prophecy of the world&#39;s end. The hall is both reward and recruitment.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Valhǫll concentrates in a small set of recurring attributes, each drawn from Óðinn&#39;s own catalogue of the hall in <em>Grímnismál</em>:</p>
+<ul>
+  <li><strong>Golden shields on the roof</strong> — the hall&#39;s most famous feature: a roof thatched with war-shields as with shingles, turning shelter into arsenal (st. 9).</li>
+  <li><strong>Spears and mail</strong> — spear-shafts for rafters and benches strewn with mail-coats; every einherji is armed for the final day (sts. 9–10).</li>
+  <li><strong>Valgrind and its guardians</strong> — the sacred gate Valgrind stands before the holy doors, a wolf hangs before the western door, and an eagle hovers above (sts. 10, 22).</li>
+  <li><strong>The boar Sæhrímnir</strong> — the ever-renewed feast, boiled daily by the cook Andhrímnir in the cauldron Eldhrímnir (st. 18).</li>
+  <li><strong>Heiðrún and Eikþyrnir</strong> — the goat who chews Læraðr&#39;s branches and fills a vat with mead, and the stag whose dripping antlers feed the spring Hvergelmir (sts. 25–26).</li>
+</ul>
+<ul>
+  <li><strong>Heiðrún the goat</strong> — She chews the leaves of Læraðr and pours mead from her udders for the warriors.</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>No material structure can be identified with Valhǫll, but the lord&#39;s hall was the central monument of Scandinavian elite culture from the Iron Age through the Viking period. Excavated halls such as Lejre in Denmark, the 83-metre chieftain&#39;s house at Borg in Lofoten, and the hall remains at Gamla Uppsala show the architectural reality behind the myth: long buildings with high roofs, central hearths, and feasting debris on a monumental scale. The boat-grave cemeteries of Vendel and Valsgärde in Uppland furnished their dead with weapons, helmets, and drinking vessels — the warrior&#39;s gear the myth projects into the afterlife — and small silver pendants of armed or horn-bearing women from sites such as Hårby and Tissø are widely read as the valkyries who served the hall.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Valhǫll is the <strong>great hall of Óðinn, roofed with shields and crowded with the einherjar</strong> — warriors who died in battle and were chosen by the valkyries. It is not a quiet heaven but a warrior&#39;s training ground: by day the dead fight to the death, by night they rise whole and feast on the ever-renewing boar Sæhrímnir, while the she-goat Heiðrún pours mead from her udders.</p>
+<h3 id="the-einherjar">The Einherjar</h3>
+<p>The chosen slain who train for the final battle at Ragnarök, fighting by day and rising whole to feast by night.</p>
+<h3 id="shield-roofed-hall">Shield-Roofed Hall</h3>
+<p>Its rafters are hung with spears and its roof is thatched with golden shields, as Óðinn describes his own hall in Grímnismál.</p>
+<h3 id="s-hrimnir">Sæhrímnir</h3>
+<p>The boar slaughtered and reborn each night to feed the hosts, cooked by Andhrímnir in the cauldron Eldhrímnir.</p>
+<h3 id="valkyries">Valkyries</h3>
+<p>The choosers of the slain who decide victory on the field and serve mead in Óðinn&#39;s hall.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Valhǫll has often been compared to the warrior paradises of other Indo-European peoples, such as the Celtic <em>Tech Duinn</em> (the House of Donn) or the Germanic comitatus ideal of the lord&#39;s hall continued after death. Some scholars have seen Christian influence in its structure — the hall of the divine king, the everlasting feast — while others argue that the lord&#39;s mead-hall was already the central social institution of Germanic life and needed no borrowing to become an afterlife. The Latinized form <em>Valhalla</em> entered English through 18th-century romantic translations and has become the standard popular term.</p>
+<p>Within the Norse tradition, closely related names in the corpus include [[alfheimr|Álfheimr]], [[buri|Búri]], [[eggther|Eggþér]], [[helheimr|Helheimr]], [[jormungandr|Jǫrmungandr]], and [[jotunheimr|Jötunheimr]].</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Valhalla has become one of the most recognizable names from Norse mythology, invoked by soldiers, athletes, musicians, and movements seeking a martial afterlife. In modern Heathenry it is honored as the destination of those who die with courage, though practitioners differ on whether it is reserved for battlefield death alone. The image of the warrior&#39;s paradise — feasting, fighting, and awaiting the final call — has shaped fantasy literature, heavy-metal imagery, and popular understandings of Viking belief. Yet the medieval sources present it as one among several afterlives, including Fólkvangr, Hel, and the local grave-mound.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Valhǫll given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Poetic Edda: Grímnismál (description of Valhǫll&#39;s doors, shields, and host).</li>
+  <li> Poetic Edda: Völuspá (valkyries and the chosen slain).</li>
+  <li> Snorri Sturluson, Prose Edda: Gylfaginning (daily life of the einherjar).</li>
+  <li> Cleasby &amp; Vigfusson, An Icelandic-English Dictionary (1874), s.v. valr, hǫll.</li>
+  <li> Zoëga, A Concise Dictionary of Old Icelandic (1910), s.v. Valhöll.</li>
+  <li> de Vries, Jan, Altgermanische Religionsgeschichte.</li>
+  <li> Simek, Rudolf, Dictionary of Northern Mythology.</li>
+  <li> Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Valhǫll is the answer to a haunting question: what becomes of violence after death? The einherjar do not rest; they fight, die, and feast in an endless cycle, preparing for a war they know will consume the gods. It is paradise not as peace but as purpose.</p>
+<p>There is something both noble and terrible in this vision. To die in battle is not an end but a promotion: the warrior becomes eternal. Yet the eternal is not leisure; it is rehearsal for apocalypse. The poem even does the arithmetic — 540 doors, eight hundred warriors through each, 432,000 fighters for a battle the gods already know they will lose. Valhǫll asks what we do with the dead we call heroes — and whether glory is enough to justify the wounds that bring it.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Valhǫll is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>valholl</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 7 characters of the name, the restoration adjusts 1: 1 further adjustment (ǫ). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>valholl</em> to <strong>Valhǫll</strong>, one character at a time:</p>
+<ul>
+  <li><strong>v</strong> → <strong>V</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+  <li><strong>l</strong> → <strong>l</strong> — Same</li>
+  <li><strong>h</strong> → <strong>h</strong> — Same</li>
+  <li><strong>o</strong> → <strong>ǫ</strong> — O-hook: short /ɔ/ vowel</li>
+  <li><strong>l</strong> → <strong>l</strong> — Same</li>
+  <li><strong>l</strong> → <strong>l</strong> — Same</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>valhǫll.com</strong>, which the DNS carries in punycode form as xn--valhll-zcc.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Valhǫll; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Younger Futhark can now be typed into any browser on earth.</p>
+<h2 id="the-norse-pantheon">The Norse Pantheon</h2>
+<p>Valhǫll is one of 86 entries the PÚNYCODEX lexicon catalogues under the Norse pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Valhǫll mean?</strong> The traditional gloss is &quot;Hall of the slain warriors.&quot;</p>
+<p><strong>Which tradition does Valhǫll belong to?</strong> Valhǫll is catalogued in the Norse pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Valhǫll classified as Tier 2?</strong> Because the original preserves at least one philological feature that ASCII cannot encode — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Valhǫll a working domain?</strong> Yes — valhǫll.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for valhǫll.com?</strong> The DNS encoding is xn--valhll-zcc.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="typing-valholl">Typing Valhǫll</h2>
+<p>You do not need a special keyboard to use this restoration. The <a href="/type/">PÚNYCODEX Type Tool</a> converts the ASCII form <em>valholl</em> into <strong>Valhǫll</strong> as you type, and the browser extension offers the same conversion inside any text field. Copy the restored form, paste it into the address bar, and the DNS does the rest.</p>
+<h2 id="sister-temples">Sister Temples</h2>
+<p>Other temples in the Norse pantheon include <a href="/sites/asgardr/">Ásgarðr</a>, and <a href="/sites/baldr/">Baldr</a> — each with its own restoration story, its own scholarly record, and its own place in the lexicon.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>The story of Valhǫll did not end in antiquity; it changed medium. Names that survive for millennia do so because each generation finds a new carrier for them — clay, papyrus, print, and now DNS. The PÚNYCODEX restoration simply makes the carrier honest: the spelling that resolves is the spelling the evidence supports. If this post showed anything, it is that <em>valholl</em> and <strong>Valhǫll</strong> are not the same name with different styling. They are a summary and the text it summarizes. The web can now serve the text.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/verdandi/">Verðandi</a></li>
   <li><a href="/sites/yggdrasill/">Yggdrasill</a></li>
   <li><a href="/sites/andvari/">Andvari</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
-  <li><a href="https://heimskringla.no/wiki/Main_Page">Scholarly reference</a></li>
+  <li>Poetic Edda: Grímnismál (description of Valhǫll&#39;s doors, shields, and host).</li>
+  <li>Snorri Sturluson, Prose Edda: Gylfaginning 20 (daily life of the einherjar; Sæhrímnir and Heiðrún).</li>
+  <li>Cleasby &amp; Vigfusson, An Icelandic-English Dictionary (1874), s.v. Valhöll.</li>
+  <li>Barnes, Michael P., Runes: A Handbook (Boydell, 2012).</li>
+  <li>Lexicon authorities for this entry: Cleasby-Vigfusson, Zoëga.</li>
 </ul>
-<h2>The Cultural Afterlife</h2>
-<p>Valhalla has become one of the most recognizable names from Norse mythology, invoked by soldiers, athletes, musicians, and movements seeking a martial afterlife. In modern Heathenry it is honored as the destination of those who die with courage, though practitioners differ on whether it is reserved for battlefield death alone. The image of the warrior&#39;s paradise — feasting, fighting, and awaiting the final call — has shaped fantasy literature, heavy-metal imagery, and popular understandings of Viking belief. Yet the medieval sources present it as one among several afterlives, including Fólkvangr, Hel, and the local grave-mound.</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Valhǫll as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Younger Futhark to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Valhǫll through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/valholl/">home page</a> offers the full name breakdown, the <a href="/sites/valholl/lore/">lore page</a> explores the myth, and the <a href="/sites/valholl/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Valhǫll do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">norse</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,38 +170,201 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#name-variations">Name Variations</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-japanese-pantheon">The Japanese Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#typing-jizo">Typing Jizō</a></li>
+                <li><a href="#sister-temples">Sister Temples</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>The Many Faces of Jizō</h1>
-<p>No important name has only one face. Jizō appears as a mythic character, a scholarly reconstruction, a cultural memory, and now a Unicode domain. Jizō (jizo) — Protection of Children, Travelers · Earth treasury — belongs to the Japanese tradition, where it is catalogued under the domain &quot;Protection of Children, Travelers&quot;. The name means &quot;Earth treasury&quot;. Jizō is the Bodhisattva Kṣitigarbha as known and loved in Japan: a gentle monk-like figure who refuses buddhahood until all beings, especially those in hell and the spirits of dead children, are saved. His statues stand by roadsides, cemeteries, and temples, clothed in red bibs and caps offered by grieving parents. PÚNYCODEX restores the name as Jizō and serves its temple at jizō.com. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain...</p>
-<h2>In Myth</h2>
-<p>Jizō&#39;s mythology blends Indian scripture, Chinese translation, and Japanese folk belief. He is one of the most actively worshipped Buddhist figures in Japan. The mythic face is the one most people meet first, and it is the reason the name survived.</p>
-<h2>Across Cultures</h2>
-<p>Kṣitigarbha entered China from India, absorbing functions of local earth gods and tomb guardians, and reached Japan already layered with continental meaning. There he met the native guardians of the road: the dōsojin, the &#39;road-ancestor&#39; kami of village limits and crossroads descended from Sarutahiko, whose stones came to stand beside — and often to merge with — images of Jizō, so that the bodhisattva inherited the crossroads from the kami. The medieval synthesis went further at Mount Atago, where Shōgun Jizō, &#39;Jizō of Victory&#39;, was enshrined beside the kami of the mountain and venerated by warriors. As a patron of travelers he has been compared with the Christian St. Christopher; the hidden-Christian communities of Japan, however, are documented as... Each culture kept what resonated and reshaped the rest.</p>
-<h2>In the Scholarly Record</h2>
-<p>Jizō is everywhere in Japan: thousands of stone statues line mountain paths, village boundaries, and temple precincts, and new images are still dedicated every year. The practice of mizuko kuyō — memorial rites for miscarried, aborted, and stillborn children — centres on him and has made him a focus of modern debates about abortion, grief, and maternal responsibility, debates documented with unusual care in William LaFleur&#39;s Liquid Life. His cult is no museum piece: the summer Jizō-bon gatherings of Kansai neighbourhoods, the continual renewal of red bibs and caps on roadside images, and the practical benefits worshippers still seek from him keep the bodhisattva an active presence in daily life rather than a heritage display. Contemporary artists... The Scholarly Edition collects those traces so readers can follow the argument from source to conclusion.</p>
-<h2>The Unicode Face</h2>
-<p>The newest face is digital. Jizō demonstrates that a name can be at once ancient and clickable, venerable and searchable. That is the face this blog exists to celebrate.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Jizō is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>The many faces of Jizō</h1>
+<p>No important name has only one face. <strong>Jizō</strong> appears as a figure of myth, a scholarly reconstruction, a piece of material culture, a memory carried across languages, and — most recently — a Unicode domain. This post looks at each face in turn: the name and its roots, the Japanese Kanji (Jinmeiyō) original, the reconstructed pronunciation, the mythological record, the symbols and sanctuaries, the cross-cultural afterlife, and the engineering that lets the restored spelling resolve in a browser. Taken together, those faces explain why <em>jizo</em> was never going to be enough — and why the restored form is worth a domain of its own.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Jizō</li>
+  <li><strong>ASCII form:</strong> jizo</li>
+  <li><strong>Meaning:</strong> &quot;Earth treasury&quot;</li>
+  <li><strong>Domain of influence:</strong> Protection of Children, Travelers</li>
+  <li><strong>Pantheon:</strong> Japanese</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Original script:</strong> 地蔵 (Japanese Kanji (Jinmeiyō))</li>
+  <li><strong>Live domain:</strong> jizō.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Jizō</strong> (<em>jizo</em>) — Protection of Children, Travelers · Earth treasury — belongs to the Japanese tradition, where it is catalogued under the domain &quot;Protection of Children, Travelers&quot;. The name means &quot;Earth treasury&quot;.</p>
+<p>Jizō is the <strong>Bodhisattva Kṣitigarbha as known and loved in Japan</strong>: a gentle monk-like figure who refuses buddhahood until all beings, especially those in hell and the spirits of dead children, are saved. His statues stand by roadsides, cemeteries, and temples, clothed in red bibs and caps offered by grieving parents.</p>
+<p>PÚNYCODEX restores the name as <strong>Jizō</strong> and serves its temple at <a href="https://xn--jiz-sxa.com">jizō.com</a>. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>jizo</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Japanese Kanji (Jinmeiyō) as <strong>地蔵</strong>. Etymologically it means &quot;Earth treasury&quot;.</p>
+<p>The ASCII form <em>jizo</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Jizō</strong> recovers the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>j</strong> → <strong>J</strong> — Same, capitalized</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+  <li><strong>z</strong> → <strong>z</strong> — Same</li>
+  <li><strong>o</strong> → <strong>ō</strong> — Long vowel</li>
+</ul>
+<p>Attested and derived spellings of the name:</p>
+<ul>
+  <li><strong>Jizo</strong> — ASCII form: Plain ASCII form</li>
+</ul>
+<p>The project holds the domain <strong>jizō.com</strong> (xn--jiz-sxa.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Japanese Kanji (Jinmeiyō) as <strong>地蔵</strong> — Hanzi / Kanji (Sinitic logographic), attested Heian period – present, c. 9th c. CE –, in Japan. The script is written left-to-right; traditional top-to-bottom.</p>
+<p>The scholarly transliteration is <em>Jizō</em> (Hepburn romanisation with macron), giving the normalized reading /dʑi.zoː/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>Sanskrit Kṣitigarbha (&#39;Earth Treasury&#39; or &#39;Earth Womb&#39;) was translated into Chinese as 地藏 (Dìzàng).</li>
+  <li>Japanese borrowed the compound as 地蔵, read in Sino-Japanese as Jizō.</li>
+  <li>Hepburn romanisation writes the long vowel with a macron: Jizō.</li>
+  <li>The ASCII form jizo loses the length mark, collapsing the distinction between short and long ō.</li>
+  <li>The Unicode restoration Jizō is registrable in .com; the kanji form is not supported in the .com IDN table.</li>
+</ul>
+<p>The Japanese name 地蔵 is read Jizō, from Middle Chinese 地藏 Dìzàng, which translates the Sanskrit Kṣitigarbha. 地 (ji) means &#39;earth&#39; and 藏 (zō) means &#39;storehouse&#39; or &#39;womb&#39;. The macron on ō marks the long vowel of the Japanese reading. The full Sanskrit would require retroflex ṣ, aspirated bh, and other characters not registrable in the DNS root zone, so PUNYCODEX uses the Japanese form.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/dʑi.zoː/</strong> — Japanese / Sanskrit Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>J-</strong> — Voiced palatal affricate [dʑ], like English &#39;j&#39; but with the tongue closer to the hard palate.</li>
+  <li><strong>-i-</strong> — Short close front vowel [i].</li>
+  <li><strong>-zō-</strong> — Voiced alveolar fricative [z] plus long [oː], marked by the macron.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;JEE-zoh&#39; — the first syllable is like &#39;jee&#39;, the second is a long, drawn &#39;zoh&#39;.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Japanese</strong> — 地蔵 (Jizō), &#39;Earth Treasury&#39;, a Bodhisattva of hell-beings and children.</li>
+  <li><strong>Chinese</strong> — 地藏 (Dìzàng), &#39;Earth Store&#39;, from the Sanskrit Kṣitigarbha.</li>
+  <li><strong>Sanskrit</strong> — Kṣitigarbha /kʂi.ti.ɡɐr.bʱɐ/, &#39;Womb/Treasury of the Earth&#39;.</li>
+</ul>
+<p>Jizō is Tier 1: the macron on ō marks the long vowel of the Japanese reading. The full Sanskrit name would require retroflex and aspirated consonants not registrable in the DNS root zone.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Jizō&#39;s mythology blends Indian scripture, Chinese translation, and Japanese folk belief. He is one of the most actively worshipped Buddhist figures in Japan.</p>
+<h3 id="the-original-vow-sutra">The Original Vow (Sutra)</h3>
+<p>The Kṣitigarbha Sutra recounts that in a previous life the Bodhisattva was a Brahmin maiden whose mother had slandered the Dharma. After her mother&#39;s death, the daughter made offerings at a temple and was transported to hell, where she met a demon guardian. Moved by the suffering there, she vowed to save all beings in the hell realms, life after life, until not a single one remained.</p>
+<h3 id="sai-no-kawara-japanese-lore">Sai no Kawara (Japanese lore)</h3>
+<p>On the banks of Sai no Kawara, the riverbed between life and rebirth, the souls of dead children are forced to pile stones as penance. Demons scatter their work, but Jizō appears in the guise of a monk to hide the children in his robes and comfort them. The red bibs and caps placed on his statues are gifts intended to warm these child-spirits.</p>
+<h3 id="the-monk-who-was-jizo-folk-tale">The Monk Who Was Jizō (Folk tale)</h3>
+<p>Countless Japanese tales tell of a wandering monk who helps a traveller in distress, only to disappear, leaving behind a statue of Jizō. The stories encode a popular theology: Jizō is not distant in a pure land; he is present on the road, in the rain, at the crossroads where ordinary people lose their way.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Jizō concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>Staff (khakkhara)</strong> — The pewter staff of the wandering monk, its six rings sounding for the six realms of rebirth; tradition gives it two offices, warning small creatures from the path and breaking open the gates of hell.</li>
+  <li><strong>Wish-fulfilling jewel (cintāmaṇi)</strong> — The flaming pearl held in the left hand, said to grant all needs and to shine light into the darkness of the hell realms.</li>
+  <li><strong>Red bib or cap</strong> — The votive bib (<em>yodarekake</em>) tied on stone Jizōs by parents, a gift of clothing for the child-spirits he shelters on the Sai no Kawara riverbed.</li>
+  <li><strong>Lotus seat</strong> — Purity within the muddy world of suffering.</li>
+  <li><strong>Six Jizōs (roku-jizō)</strong> — The set of six images, one for each state of rebirth, erected at cemetery gates and crossroads so that no realm of the dead lies beyond his reach.</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>No monument, inscription, or artifact in the current PÚNYCODEX corpus is yet assigned to Jizō with certainty. That absence should be read honestly: for a Japanese name of this type the material record is expected to be thin, and the primary evidence remains the textual testimony gathered in the Scholarly Sources section.</p>
+<p>Were such evidence to surface, it would take recognizable forms: votive or dedicatory inscriptions naming 地蔵, sanctuary or cult remains tied to protection of children and iconography matching its traditional attributes (staff (khakkhara) and wish-fulfilling jewel (cintāmaṇi)). Each candidate would be weighed against the reconstructed form of the name before entering the scholarly record.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Jizō is the <strong>Bodhisattva Kṣitigarbha as known and loved in Japan</strong>: a gentle monk-like figure who refuses buddhahood until all beings, especially those in hell and the spirits of dead children, are saved. His statues stand by roadsides, cemeteries, and temples, clothed in red bibs and caps offered by grieving parents.</p>
+<h3 id="guardian-of-children">Guardian of Children</h3>
+<p>He protects children, including mizuko, the spirits of miscarried and aborted foetuses.</p>
+<h3 id="savior-of-hell-beings">Savior of Hell-beings</h3>
+<p>He descends into the hell realms to rescue those tormented by their karma.</p>
+<h3 id="patron-of-travelers">Patron of Travelers</h3>
+<p>Roadside Jizō guide and protect those on journeys, both living and dead.</p>
+<h3 id="bodhisattva-vow">Bodhisattva Vow</h3>
+<p>He postpones his own enlightenment until every hell is emptied.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Kṣitigarbha entered China from India, absorbing functions of local earth gods and tomb guardians, and reached Japan already layered with continental meaning. There he met the native guardians of the road: the <em>dōsojin</em>, the &#39;road-ancestor&#39; kami of village limits and crossroads descended from Sarutahiko, whose stones came to stand beside — and often to merge with — images of Jizō, so that the bodhisattva inherited the crossroads from the kami. The medieval synthesis went further at Mount Atago, where Shōgun Jizō, &#39;Jizō of Victory&#39;, was enshrined beside the kami of the mountain and venerated by warriors. As a patron of travelers he has been compared with the Christian St. Christopher; the hidden-Christian communities of Japan, however, are documented as venerating Kannon in Marian guise rather than Jizō — a distinction the record is careful to keep. The result remains a uniquely Japanese figure: a Buddhist bodhisattva who feels, to many worshippers, like a local spirit.</p>
+<p>Within the Japanese tradition, closely related names in the corpus include [[fujin|Fūjin]], [[kobe|Kōbe]], [[kyoto|Kyōto]], [[nikko|Nikkō]], and [[osaka|Ōsaka]].</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Jizō is everywhere in Japan: thousands of stone statues line mountain paths, village boundaries, and temple precincts, and new images are still dedicated every year. The practice of <em>mizuko kuyō</em> — memorial rites for miscarried, aborted, and stillborn children — centres on him and has made him a focus of modern debates about abortion, grief, and maternal responsibility, debates documented with unusual care in William LaFleur&#39;s <em>Liquid Life</em>. His cult is no museum piece: the summer Jizō-bon gatherings of Kansai neighbourhoods, the continual renewal of red bibs and caps on roadside images, and the practical benefits worshippers still seek from him keep the bodhisattva an active presence in daily life rather than a heritage display. Contemporary artists and writers return to Jizō as an emblem of patient, non-judgmental compassion.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Jizō given in this edition rests on the witnesses and reference works listed below. The scripture fixes the vow and the iconography; the modern scholarship traces the cult from medieval China and Japan to the present.</p>
+<ul>
+  <li> Kṣitigarbha Bodhisattva Pūrvapraṇidhāna Sūtra (Jizō bosatsu hongan-kyō), Taishō Tripiṭaka 412, translated into Chinese by Śikṣānanda ca. 700.</li>
+  <li> Glassman, Hank, The Face of Jizō: Image and Cult in Medieval Japanese Buddhism (University of Hawai&#39;i Press, 2012).</li>
+  <li> Ng, Zhiru, The Making of a Savior Bodhisattva: Dizang in Medieval China (University of Hawai&#39;i Press, 2007).</li>
+  <li> Faure, Bernard, The Power of Denial: Buddhism, Purity, and Gender (Princeton University Press, 2003).</li>
+  <li> Reader, Ian, and George J. Tanabe Jr., Practically Religious: Worldly Benefits and the Common Religion of Japan (University of Hawai&#39;i Press, 1998).</li>
+  <li> LaFleur, William R., Liquid Life: Abortion and Buddhism in Japan (Princeton University Press, 1992).</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Jizō is the Bodhisattva of refusal: he refuses to leave until everyone is safe. That sounds impossible, and it is. But the vow is not a plan; it is a posture. It says that the last and least worthy soul matters as much as the first enlightened one.</p>
+<p>In a world that often measures worth by productivity, Jizō sits still. He does not conquer hell; he keeps it company. He does not fix grief; he clothes it in red and stays through the night. His presence beside roads and cemeteries is a reminder that the spiritual life is not an escape from suffering but a vow to remain with it.</p>
+<p>The red bib is the smallest liturgy in Japan: a square of cloth tied by a grieving hand to a stone that cannot feel it. Yet the gesture persists, because the bodhisattva&#39;s vow licenses it — if the least soul matters, then the least offering matters too. On the Sai no Kawara the children pile their stones, and Jizō gathers them into his sleeves; the meditation ends where the vow begins, in the refusal to let any being be the last one left behind.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Jizō is classified as <strong>Tier 1</strong>: the original carries both stress and length, and only one valid Unicode restoration exists. The ASCII fallback <em>jizo</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 4 characters of the name, the restoration adjusts 1: 1 mark of length (ō). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="name-variations">Name Variations</h2>
+<p>The lexicon records 1 additional form of the name:</p>
+<ul>
+  <li><strong>Jizo</strong> (ascii) — Plain ASCII form</li>
+</ul>
+<p>The temple uses <strong>Jizō</strong> as the primary form: it is the spelling that best balances philological accuracy with the practical limits of DNS.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>jizo</em> to <strong>Jizō</strong>, one character at a time:</p>
+<ul>
+  <li><strong>j</strong> → <strong>J</strong> — Same, capitalized</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+  <li><strong>z</strong> → <strong>z</strong> — Same</li>
+  <li><strong>o</strong> → <strong>ō</strong> — Long vowel</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>jizō.com</strong>, which the DNS carries in punycode form as xn--jiz-sxa.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Jizō; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Japanese Kanji (Jinmeiyō) can now be typed into any browser on earth.</p>
+<h2 id="the-japanese-pantheon">The Japanese Pantheon</h2>
+<p>Jizō is one of 43 entries the PÚNYCODEX lexicon catalogues under the Japanese pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Jizō mean?</strong> The traditional gloss is &quot;Earth treasury.&quot;</p>
+<p><strong>Which tradition does Jizō belong to?</strong> Jizō is catalogued in the Japanese pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Jizō classified as Tier 1?</strong> Because the original carries both stress and length, and only one valid Unicode restoration exists — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Jizō a working domain?</strong> Yes — jizō.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for jizō.com?</strong> The DNS encoding is xn--jiz-sxa.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="typing-jizo">Typing Jizō</h2>
+<p>You do not need a special keyboard to use this restoration. The <a href="/type/">PÚNYCODEX Type Tool</a> converts the ASCII form <em>jizo</em> into <strong>Jizō</strong> as you type, and the browser extension offers the same conversion inside any text field. Copy the restored form, paste it into the address bar, and the DNS does the rest.</p>
+<h2 id="sister-temples">Sister Temples</h2>
+<p>Other temples in the Japanese pantheon include <a href="/sites/ninigi/">Ninigi</a>, and <a href="/sites/sarutahiko/">Sarutahiko</a> — each with its own restoration story, its own scholarly record, and its own place in the lexicon.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Myth, script, sound, cult, legacy, domain: the faces of Jizō add up to a single argument — that a name is a record, and records deserve fidelity. The PÚNYCODEX restoration keeps that record in working order: the temple presents it, the Scholarly Edition footnotes it, the lexicon catalogs it, and the domain makes it addressable. <em>jizo</em> will always exist as a fallback. But fallback is not identity. <strong>Jizō</strong> is the name; everything else is a convenience.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/izanami/">Izanami</a></li>
   <li><a href="/sites/kannon/">Kannon</a></li>
   <li><a href="/sites/kotoshironushi/">Kotoshironushi</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://sacred-texts.com/shi/kojiki.htm">Kojiki (Records of Ancient Matters), 712; trans. D. L. Philippi.</a></li>
   <li><a href="https://sacred-texts.com/shi/nihon0.htm">Nihon Shoki (Chronicles of Japan), 720; trans. W. G. Aston.</a></li>
+  <li>Kṣitigarbha Bodhisattva Sutra.</li>
+  <li>Faure, The Power of Denial.</li>
+  <li>Reader and Tanabe, Practically Religious.</li>
+  <li>Buswell, Robert E., and Donald S. Lopez, The Princeton Dictionary of Buddhism (Kṣitigarbha entry: staff, jewel, and monk&#39;s form).</li>
+  <li>Lexicon authorities for this entry: Buddhist texts, Japanese folklore.</li>
 </ul>
-<h2>The Cultural Afterlife</h2>
-<p>Jizō is everywhere in Japan: thousands of stone statues line mountain paths, village boundaries, and temple precincts, and new images are still dedicated every year. The practice of mizuko kuyō — memorial rites for miscarried, aborted, and stillborn children — centres on him and has made him a focus of modern debates about abortion, grief, and maternal responsibility, debates documented with unusual care in William LaFleur&#39;s Liquid Life. His cult is no museum piece: the summer Jizō-bon gatherings of Kansai neighbourhoods, the continual renewal of red bibs and caps on roadside images, and the practical benefits worshippers still seek from him keep the bodhisattva an active presence in daily life rather than a heritage display. Contemporary artists...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Jizō as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Japanese Kanji (Jinmeiyō) to the modern browser. Every visit to this temple is a small act of preservation.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">japanese</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

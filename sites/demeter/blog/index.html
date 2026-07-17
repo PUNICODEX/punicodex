@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,40 +170,204 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>15 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#epithets-cult-titles">Epithets &amp; Cult Titles</a></li>
+                <li><a href="#the-homeric-hymns">The Homeric Hymns</a></li>
+                <li><a href="#oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>Dēmētēr in 2026: Why Scholars Still Care</h1>
-<p>In 2026, names are treated as data points. Dēmētēr is a reminder that they are also cultural artifacts. Dēmētēr (demeter) — The Corn Mother · Bringer of Seasons — belongs to the Greek tradition, where it is catalogued under the domain &quot;Harvest, Agriculture, Fertility&quot;. The name means &quot;Earth Mother (from Δᾶ + μήτηρ)&quot;. Dēmētēr is the foundation of Greek civilization. Without her, no bread, no wine, no city. She is the goddess of the grain that must die and rise again, and her mysteries at Eleusis promised initiates a better fate after death. Where Athena protects the city wall, Dēmētēr protects the field behind it. PÚNYCODEX restores the name as Dēmētēr and serves its temple at dēmētēr.com. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII... The question is not whether the name is old, but whether the digital world is old enough to hold it.</p>
-<h2>The Scholarly Argument</h2>
-<p>The name is attested in Greek as Δημήτηρ. Etymologically it means &quot;Earth Mother (from Δᾶ + μήτηρ)&quot;. The reconstructed proto-form is dʰéǵʰōm mātḗr (proto-indo-european, &quot;earth mother&quot;). Δᾶ (Doric for γῆ &quot;earth&quot;) + μήτηρ &quot;mother&quot;. The earth goddess. The ASCII form demeter survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Dēmētēr recovers the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The letter-by-letter transformation runs: - d → D — Delta - e → ē — Eta: long epsilon - m → m — Mu -... The PÚNYCODEX Scholarly Edition collects these arguments in one place, with sources and revision history, so the claim can be inspected rather than merely asserted.</p>
-<h2>What the Accent Preserves</h2>
-<p>This entry is classified as <strong>Tier 1</strong>. the Greek original carries both stress and length, and only one valid Unicode restoration exists Those marks are not ornaments; they are the coordinates that place the name inside a language.</p>
-<h2>A Living Edition</h2>
-<p>The <a href="/sites/demeter/scholars/">Scholarly Edition</a> is not a static page. Verified contributors can improve it, and every change is attributed. That model turns a blog post like this one into an invitation to dig deeper.</p>
-<h2>Where to Learn More</h2>
+            <h1>Dēmētēr in 2026: why scholars still care</h1>
+<p>In 2026, names are treated as data points. <strong>Dēmētēr</strong> is a reminder that they are also cultural artifacts — and that the difference matters for search engines, AI training corpora, and anyone who types the name of a Greek figure into a browser. Scholars never stopped caring about the difference between <em>demeter</em> and Dēmētēr; the web simply made that care actionable. What follows is the full scholarly picture — name, script, sound, myth, cult, and legacy — followed by the engineering compromise that lets a restored spelling live at a real address. The question is not whether the name is old. It is whether the digital world is old enough to hold it.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Dēmētēr</li>
+  <li><strong>ASCII form:</strong> demeter</li>
+  <li><strong>Meaning:</strong> &quot;Earth Mother (from Δᾶ + μήτηρ)&quot;</li>
+  <li><strong>Domain of influence:</strong> Harvest, Agriculture, Fertility</li>
+  <li><strong>Pantheon:</strong> Greek</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Original script:</strong> Δημήτηρ (Greek)</li>
+  <li><strong>Live domain:</strong> dēmētēr.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Dēmētēr</strong> (<em>demeter</em>) — The Corn Mother · Bringer of Seasons — belongs to the Greek tradition, where it is catalogued under the domain &quot;Harvest, Agriculture, Fertility&quot;. The name means &quot;Earth Mother (from Δᾶ + μήτηρ)&quot;.</p>
+<p>Dēmētēr is the foundation of Greek civilization. Without her, no bread, no wine, no city. She is the goddess of the grain that must die and rise again, and her mysteries at Eleusis promised initiates a better fate after death. <strong>Where Athena protects the city wall, Dēmētēr protects the field behind it.</strong></p>
+<p>PÚNYCODEX restores the name as <strong>Dēmētēr</strong> and serves its temple at <a href="https://xn--dmtr-bvabb.com">dēmētēr.com</a>. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>demeter</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Greek as <strong>Δημήτηρ</strong>. Etymologically it means &quot;Earth Mother (from Δᾶ + μήτηρ)&quot;.</p>
+<p>The reconstructed proto-form is <em>dʰéǵʰōm mātḗr</em> (proto-indo-european, &quot;earth mother&quot;). Δᾶ (Doric for γῆ &quot;earth&quot;) + μήτηρ &quot;mother&quot;. The earth goddess.</p>
+<p>The ASCII form <em>demeter</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Dēmētēr</strong> recovers the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>d</strong> → <strong>D</strong> — Delta</li>
+  <li><strong>e</strong> → <strong>ē</strong> — Eta: long epsilon</li>
+  <li><strong>m</strong> → <strong>m</strong> — Mu</li>
+  <li><strong>e</strong> → <strong>ē</strong> — Eta: long epsilon</li>
+  <li><strong>t</strong> → <strong>t</strong> — Tau</li>
+  <li><strong>e</strong> → <strong>ē</strong> — Eta: long epsilon</li>
+  <li><strong>r</strong> → <strong>r</strong> — Rho</li>
+</ul>
+<p>The project holds the domain <strong>dēmētēr.com</strong> (xn--dmtr-bvabb.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: Δᾶ (Doric for γῆ &quot;earth&quot;) + μήτηρ &quot;mother&quot;. The earth goddess.</p>
+<p>The reconstructed proto-form is <em>*dʰéǵʰōm mātḗr</em> (proto-indo-european), glossed as &quot;earth mother&quot;.</p>
+<p>The reconstruction is classed as attested.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Greek as <strong>Δημήτηρ</strong> — Greek alphabet (Classical / Attic), attested Ancient Greek, c. 8th century BCE – present, in Greece and the Greek-speaking Mediterranean. The script is written left-to-right.</p>
+<p>The scholarly transliteration is <em>Dēmētēr</em> (Greek alphabet with polytonic accents), giving the normalized reading /dɛːˈmɛːtɛːr/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The Greek form Δημήτηρ is written in the Classical Greek alphabet.</li>
+  <li>Letters with acute, grave, or circumflex accents preserve the pitch accent of Ancient Greek.</li>
+  <li>Macrons and omegas (η, ω) mark long vowels, a feature lost in the plain ASCII form.</li>
+  <li>The Unicode restoration Dēmētēr encodes the scholarly spelling as a registrable domain name.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/dɛ.mɛ́.tɛr/</strong> — Attic Greek Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>De-</strong> — Delta plus short epsilon — the name begins with the sound of earth being struck.</li>
+  <li><strong>-mé-</strong> — Mu with acute on short epsilon — the stressed peak, like a seed breaking open.</li>
+  <li><strong>-ter</strong> — Tau-epsilon-rho, the mother-suffix (-τήρ) that marks her as a giver of grain.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;deh-MEH-ter&#39; — stress the middle syllable; the final syllable is light and quick.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>PIE</strong> — <em>dʰeh₁- &#39;grain&#39; + </em>māter- &#39;mother&#39; — the &#39;Grain-Mother&#39;</li>
+  <li><strong>Mycenaean Greek</strong> — da-ma-te, attested in Linear B tablets at Pylos (PY Fr 1202)</li>
+  <li><strong>Cretan</strong> — Damater, the likely archaic form preserved in cult inscriptions</li>
+</ul>
+<p>Dēmētēr is Tier 1 because the Greek Δημήτηρ contains both stress (acute on the short ε) and length (long η in the first syllable). The name is transparently a compound: <em>dʰeh₁- &#39;grain&#39; + </em>māter- &#39;mother.&#39; Her Roman equivalent Ceres gives us &#39;cereal.&#39;</p>
+<h2 id="mythology">Mythology</h2>
+<p>Dēmētēr&#39;s mythology is dominated by one event: <strong>the loss and recovery of her daughter Persephonē</strong>. That single story encodes the origin of winter, the foundation of agriculture, and the hope of immortality.</p>
+<h3 id="the-rape-of-persephone-the-abduction">The Rape of Persephonē (The Abduction)</h3>
+<p>In the <em>Homeric Hymn to Demeter</em>, Hádēs bursts from the earth and seizes Persephonē as she gathers flowers in a meadow — the narcissus that Gaia grew as a snare at Zeús&#39;s bidding. Dēmētēr&#39;s torchlit search takes her across the world for nine days, until Hekátē tells what she heard and Hēlios, who sees all, names the abductor. Her grief is the origin of winter: the earth refuses to bear fruit while the grain goddess mourns.</p>
+<h3 id="nursing-demophoon-at-eleusis-the-sojourn">Nursing Demophoôn at Eleusis (The Sojourn)</h3>
+<p>Disguised as an old woman named Doso, Dēmētēr is welcomed into the house of King Celeus at Eleusis. She attempts to make the mortal child Demophoôn immortal by holding him in the fire each night, but his mother Metaneira interrupts the rite. The goddess reveals herself in blazing glory and demands a temple and mysteries. This is the aition — the founding myth — of the Eleusinian sanctuary.</p>
+<h3 id="the-pomegranate-and-the-seasons-the-return">The Pomegranate and the Seasons (The Return)</h3>
+<p>Zeús sends Hermês to retrieve Persephonē, but because she has eaten a pomegranate seed in the underworld, she must return there for part of each year. The compromise creates the seasons: when Persephonē is below, Dēmētēr grieves and nothing grows; when she returns, the earth blossoms. The myth is not merely explanatory but theological: <strong>death and return are built into the structure of life</strong>.</p>
+<h3 id="initiation-at-eleusis-the-mysteries">Initiation at Eleusis (The Mysteries)</h3>
+<p>The Eleusinian Mysteries were celebrated for nearly two thousand years, from the Bronze Age to the late Roman Empire. Initiates underwent ritual washing, fasting, and a procession from Athens to Eleusis, culminating in the revelation of secret objects and a promise of a better afterlife. The Roman orator Cicero wrote that the mysteries taught us &#39;how to live in joy and how to die with better hope&#39; (<em>On the Laws</em> 2.36).</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>Dēmētēr&#39;s attributes belong to the field, the search, and the rite, and nearly all are anchored in her great Hymn or in the festivals kept in her honor.</p>
+<ul>
+  <li><strong>Wheat sheaf</strong> — the grain that is both her gift and her grief, her constant attribute from Archaic art onward.</li>
+  <li><strong>Torch</strong> — the light of her nine-day search for Persephonē, thereafter carried in the Eleusinian rites.</li>
+  <li><strong>Piglet</strong> — her sacrificial animal, above all at the Thesmophoria, where piglets were thrown into chasms called megara and their remains later brought up and laid on the altars to be mixed with the seed grain.</li>
+  <li><strong>Serpent</strong> — the chthonic companion of the goddess who knows what lies beneath the soil.</li>
+  <li><strong>Poppy</strong> — sleep and the seed that returns; in Classical images she holds its stalks beside the grain.</li>
+  <li><strong>Mystic basket (cista mystica)</strong> — the closed basket of the Mysteries whose contents initiates swore not to reveal; Clement of Alexandria preserves the formula &#39;I took from the cista.&#39;</li>
+</ul>
+<p>Dēmētēr is always the mature mother: veiled or wreathed with grain, dignified, often seated. Her unvarying attributes are the <strong>wheat sheaf</strong>, the <strong>torch</strong> of her search, the sceptre, the <strong>kalathos</strong> basket, and the poppy; the sacrificial pig belongs to her rites rather than her hands.</p>
+<p>Her most frequent image pairs her with Persephonē as the &#39;Two Goddesses&#39; of Eleusis — above all in the great Eleusinian votive relief of about 440 BCE (National Archaeological Museum, Athens), where Dēmētēr hands the grain to the boy Triptolemos while Kore crowns him. Attic red-figure repeats Triptolemos&#39;s mission in his winged serpent chariot dozens of times.</p>
+<p>The finest surviving cult figure is the <strong>Demeter of Cnidus</strong> (British Museum, c. 350–330 BCE), a seated, heavily draped image of brooding majesty from her Knidian sanctuary; Rome&#39;s Ceres inherits the type unchanged.</p>
+<h2 id="epithets-cult-titles">Epithets &amp; Cult Titles</h2>
+<p>Her titles bind her to the grain, the law, and Eleusis.</p>
+<ul>
+  <li><strong>Ἠΰκομος</strong> (<em>ēukomos</em>) — &#39;rich-haired,&#39; the opening epithet of her great hymn, golden as the wheat.</li>
+  <li><strong>Σεμνή</strong> (<em>semnē</em>) — &#39;august, revered,&#39; paired with rich-haired in the hymn&#39;s first line.</li>
+  <li><strong>Θεσμοφόρος</strong> (<em>Thesmophoros</em>) — &#39;bringer of law,&#39; her title as founder of civilized order; her women-only Thesmophoria were among the most widespread festivals in Greece.</li>
+  <li><strong>Χλόη</strong> (<em>Chloē</em>) — &#39;the green shoot,&#39; her Athenian title as the power of young grain.</li>
+  <li><strong>Δηώ</strong> (<em>Dēō</em>) — the shortened poetic form of her name, used in the hymn and by later poets such as Callimachus.</li>
+  <li><strong>Ἐλευσίνια</strong> (<em>Eleusinia</em>) — &#39;of Eleusis,&#39; binding her to the sanctuary of the Mysteries.</li>
+</ul>
+<h2 id="the-homeric-hymns">The Homeric Hymns</h2>
+<p>Dēmētēr is the subject of the second Homeric Hymn (495 hexameters), the best-preserved and most influential hymn in the collection. It narrates the seizure of Persephonē by Hádēs, the mother&#39;s nine-day torchlit search, her disguised sojourn at Eleusis nursing the infant Demophoôn, the famine that starves the gods of sacrifice, and the daughter&#39;s partial return — closing with the foundation of the Mysteries, &#39;awful mysteries which no one may in any way transgress or pry into or utter.&#39;</p>
+<p>The brief Hymn 13 simply salutes &#39;Dēmētēr the rich-haired, the august goddess, her and her daughter, the all-beautiful Persephonē.&#39; Hesiod supplies the frame: Dēmētēr bore Persephonē to Zeús (<em>Theogony</em> 912–914), and in the <em>Works and Days</em> her &#39;holy grain&#39; is the farmer&#39;s constant measure.</p>
+<h2 id="oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</h2>
+<p>Dēmētēr kept no oracle; her central rite was not prophecy but initiation, promising not answers but blessedness after death.</p>
+<ul>
+  <li><strong>Eleusis (Attica)</strong> — her greatest sanctuary, with the Telesterion hall of initiation, in use from Mycenaean times into the late fourth century CE.</li>
+  <li><strong>The Thesmophoria</strong> — not a single site but a network: women-only sanctuaries in nearly every Greek city, from Athens to Sicily.</li>
+  <li><strong>Hermione (Argolid)</strong> — the famous sanctuary of Demeter Chthonia, &#39;of the earth below.&#39;</li>
+  <li><strong>Phigalia (Arcadia)</strong> — the cave of Demeter Melaina, &#39;the Black,&#39; with her horse-headed image, tied to her mourning and to the Poseidon episode.</li>
+  <li><strong>Corinth</strong> — the sanctuaries of Demeter and Kore on the slope of Acrocorinth, cut with rock-built dining rooms for ritual meals.</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Her material record is unusually rich. At <strong>Eleusis</strong>, the sanctuary grew around the <strong>Telestērion</strong>, the great roofed hall of initiation with the small inner chamber — the Anaktoron — that only the hierophant might enter; rebuilt through the sixth and fifth centuries BCE, with the fifth-century work associated with Iktinos, the Parthenon&#39;s architect, it was entered in Roman times through the Greater Propylaea, a deliberate copy of the Athenian gate. The Kallichoron well named in the Hymn still stands by the entrance. At <strong>Corinth</strong>, the terraced sanctuary of Dēmētēr and Korē on the north slope of Acrocorinth preserves dozens of rock-cut dining rooms for the festival meals. At <strong>Hermione</strong> in the Argolid, Pausanias describes the festival of Dēmētēr Chthonia, in which a cow that has never known the yoke is driven into the temple and killed there by old women with sickles. At <strong>Phigalia</strong> in Arcadia, the cave sanctuary of Dēmētēr Meláina, &#39;the Black,&#39; once housed her horse-headed image. Her sanctuary at <strong>Cnidus</strong> yielded the brooding seated Dēmētēr now in the British Museum.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Dēmētēr is the foundation of Greek civilization. Without her, no bread, no wine, no city. She is the goddess of the grain that must die and rise again, and her mysteries at Eleusis promised initiates a better fate after death. <strong>Where Athena protects the city wall, Dēmētēr protects the field behind it.</strong></p>
+<h3 id="grain-and-agriculture">Grain and Agriculture</h3>
+<p>Wheat, barley, and the agricultural cycle; the deity who turns seed into harvest through death and rebirth.</p>
+<h3 id="fertility-of-earth-and-woman">Fertility of Earth and Woman</h3>
+<p>Patron of marriage, childbirth, and the fertility of the land; her power moves through both soil and womb.</p>
+<h3 id="sacred-law">Sacred Law</h3>
+<p>Thesmophoros: she establishes the laws and rituals that bind society, especially those governing women.</p>
+<h3 id="the-eleusinian-mysteries">The Eleusinian Mysteries</h3>
+<p>The most famous mystery cult of the ancient world, promising initiates blessedness after death.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>The Romans identified Dēmētēr with Ceres, an Italic grain goddess whose name gives us &#39;cereal&#39; and &#39;breakfast cereal.&#39; The syncretism was so complete that the two names became interchangeable in the Roman world. In Egypt she was equated with Isis, another grieving mother goddess whose mysteries promised salvation; the iconography of Isis holding the infant Horus influenced later images of the Virgin Mary. The Thesmophoria, a women-only festival in Dēmētēr&#39;s honor, was one of the most widespread and politically significant religious institutions in the Greek world, giving women a recognized role in civic religion.</p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include [[gaia|Gaîa]], [[rhea|Rhéā]], [[babaluaye|Ọbalúayé]], [[bastet|Bꜣstt]], [[coatlicue|Cōātlīcue]], and [[dagan|Dāgan]], each linked through earth / mother / fertility.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Dēmētēr&#39;s legacy is the idea that agriculture is sacred. Every harvest festival, every prayer before a meal, every image of a mother and child owes something to her. The Eleusinian Mysteries shaped later mystery religions, including Christianity&#39;s emphasis on initiation, sacrament, and afterlife hope. Archaeologically, her sanctuary at Eleusis remains one of the most important religious sites in Greece, and the Homeric Hymn to Demeter is a foundational text for the study of Greek religion. In modern environmental thought, Dēmētēr has become a symbol of the earth&#39;s fertility and humanity&#39;s dependence upon it. Restoring <em>Dēmētēr</em> restores the name of the goddess who first made bread possible.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Dēmētēr given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Full text</a></li>
+  <li> Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a href="https://brill.com/view/title/17858">Full text</a></li>
+  <li> Wörterbuch der griechischen Eigennamen, 3rd ed., 1863. <a href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ">Full text</a></li>
+  <li> Homeric Hymn to Demeter.</li>
+  <li> Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE. <a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Full text</a></li>
+  <li> Pausanias, Description of Greece.</li>
+  <li> Burkert, Greek Religion.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Dēmētēr is the goddess of the obvious miracle: a seed buried in darkness becomes bread. The Greeks did not take this for granted. They saw in every harvest a repetition of Persephonē&#39;s return — the dead returning to life, the mother rejoicing, the community fed. The Eleusinian Mysteries made this agricultural fact into a promise about the soul.</p>
+<p>In an age of industrial food and climate instability, Dēmētēr&#39;s name carries a warning. The grain does not grow because we command it. It grows because the earth permits it, and the earth can withdraw its permission. To restore <em>Dēmētēr</em> is to remember that civilization rests on a biological covenant older than any law.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Dēmētēr is classified as <strong>Tier 1</strong>: the original carries both stress and length, and only one valid Unicode restoration exists. The ASCII fallback <em>demeter</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 7 characters of the name, the restoration adjusts 3: 3 marks of length (ē, ē, ē). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>dēmētēr.com</strong>, which the DNS carries in punycode form as xn--dmtr-bvabb.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Dēmētēr; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Greek can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>In 2026 the stakes are practical. Search indexes, language models, and localization pipelines all inherit whatever spelling the web normalizes — which means every Unicode domain is also a training signal. <strong>Dēmētēr</strong> teaches the machinery that the restored form exists, that it is used, and that it points to a real place. That is why a project built on philology ends up caring about DNS: the infrastructure decides which names the future sees. This restoration makes sure the future sees the whole name.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/clotho/">Klōthṓ</a></li>
   <li><a href="/sites/creusa/">Creúsa</a></li>
   <li><a href="/sites/daphne/">Dáphnē</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843.</a></li>
   <li><a href="https://brill.com/view/title/17858">Etymological Dictionary of Greek, 2 vols., Brill, 2010.</a></li>
   <li><a href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ">Wörterbuch der griechischen Eigennamen, 3rd ed., 1863.</a></li>
   <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE.</a></li>
+  <li>Lexicon Iconographicum Mythologiae Classicae (LIMC), s.v. Demeter.</li>
+  <li>Homeric Hymn 2, To Demeter (the torchlit search).</li>
+  <li>Scholion on Lucian, Dialogues of the Courtesans 2.1 (the Thesmophoria rite).</li>
+  <li>Clement of Alexandria, Protrepticus 2.21 (the mystic formula).</li>
+  <li>Lexicon authorities for this entry: LSJ, Pape-Benseler, Beekes.</li>
 </ul>
-<h2>What the Sources Record</h2>
-<p>Dēmētēr is the foundation of Greek civilization. Without her, no bread, no wine, no city. She is the goddess of the grain that must die and rise again, and her mysteries at Eleusis promised initiates a better fate after death. Where Athena protects the city wall, Dēmētēr protects the field behind it. ### Grain and Agriculture Wheat, barley, and the agricultural cycle; the deity who turns seed into harvest through death and rebirth. ### Fertility of Earth and Woman Patron of marriage, childbirth, and the fertility of the land; her power moves through both soil and womb. ### Sacred Law Thesmophoros: she establishes the laws and rituals that bind society, especially those governing women. ### The Eleusinian Mysteries The most famous mystery cult of the...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Dēmētēr as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Greek to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Dēmētēr through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/demeter/">home page</a> offers the full name breakdown, the <a href="/sites/demeter/lore/">lore page</a> explores the myth, and the <a href="/sites/demeter/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">greek</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

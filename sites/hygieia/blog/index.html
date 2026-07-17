@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,37 +170,190 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#epithets-cult-titles">Epithets &amp; Cult Titles</a></li>
+                <li><a href="#the-homeric-hymns">The Homeric Hymns</a></li>
+                <li><a href="#oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>The Many Faces of Hygíeia</h1>
-<p>No important name has only one face. Hygíeia appears as a mythic character, a scholarly reconstruction, a cultural memory, and now a Unicode domain. Hygíeia (hygieia) is the Greek personification of health: daughter of [[asclepius|Asklēpiós]], worshipped beside him in the healing sanctuaries of the Classical and Hellenistic world, and remembered today every time the word &#39;hygiene&#39; is spoken. The name is the abstract noun built on ὑγιής, &#39;healthy, sound&#39;, and means the condition of being sound in body — the lexicon records her simply as Health personified. She enters documented Greek religion remarkably late, in the fifth century BCE, and her rise follows her father&#39;s: the healing cult of Asklepios spread from Epidauros across the Greek world, and Hygieia stood at its center — sworn by in the opening line of the Hippocratic Oath beside Apollo the Physician, Asklepios, and Panakeia. Where...</p>
-<h2>In Myth</h2>
-<p>Hygíeia has few narrative myths of her own; her &#39;mythology&#39; is cultic and conceptual . She is the divine form of a state every Greek desired: hygieia, the condition of being sound. The mythic face is the one most people meet first, and it is the reason the name survived.</p>
-<h2>Across Cultures</h2>
-<p>Rome absorbed Hygíeia into Salus, its own old personification of safety and public welfare: the Republican temple of Salus on the Quirinal was vowed in 311 BCE and dedicated in 302, and on imperial coinage Salus appears in Hygieia&#39;s exact pose, feeding a snake from a patera — the Greek image serving the Roman state cult of Salus Publica Populi Romani. In the Hellenistic East the identifications ran further. A dedication on Delos of 112/1 BCE, set up by a temple servant, honors Isis Hygieia — the Egyptian goddess in her healing aspect fused with the Greek personification of health, one of several Delian dedications that call Isis a healer. And at Athens she was folded into an older goddess entirely: the altar of Athena Hygieia on the Acropolis made... Each culture kept what resonated and reshaped the rest.</p>
-<h2>In the Scholarly Record</h2>
-<p>Hygíeia&#39;s afterlife is unique among Greek personifications: her name became a science. Greek ὑγιεινή (τέχνη), &#39;the healthful art&#39;, passed through Latin and French into English as &#39;hygiene&#39;, the word under which modern societies organize cleanliness, sanitation, and public health; the Oxford English Dictionary traces the term&#39;s medical career from the early modern period to the hygienic movements of the nineteenth century. Her image is equally institutional. The Bowl of Hygieia — her snake coiled around her chalice — is the internationally recognized emblem of pharmacy, displayed by professional pharmaceutical bodies as the mark of the pharmacist&#39;s art. And the Hippocratic Oath, in its ancient and modern versions, still places her name at the... The Scholarly Edition collects those traces so readers can follow the argument from source to conclusion.</p>
-<h2>The Unicode Face</h2>
-<p>The newest face is digital. Hygíeia demonstrates that a name can be at once ancient and clickable, venerable and searchable. That is the face this blog exists to celebrate.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Hygíeia is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>The many faces of Hygíeia</h1>
+<p>No important name has only one face. <strong>Hygíeia</strong> appears as a figure of myth, a scholarly reconstruction, a piece of material culture, a memory carried across languages, and — most recently — a Unicode domain. This post looks at each face in turn: the name and its roots, the Greek original, the reconstructed pronunciation, the mythological record, the symbols and sanctuaries, the cross-cultural afterlife, and the engineering that lets the restored spelling resolve in a browser. Taken together, those faces explain why <em>hygieia</em> was never going to be enough — and why the restored form is worth a domain of its own.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Hygíeia</li>
+  <li><strong>ASCII form:</strong> hygieia</li>
+  <li><strong>Meaning:</strong> &quot;Health, soundness; personified as the goddess of health and cleanliness&quot;</li>
+  <li><strong>Domain of influence:</strong> Health, Hygiene, Wellness</li>
+  <li><strong>Pantheon:</strong> Greek</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> Ὑγίεια (Greek)</li>
+  <li><strong>Live domain:</strong> hygíeia.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Hygíeia</strong> (<em>hygieia</em>) is the Greek personification of health: daughter of [[asclepius|Asklēpiós]], worshipped beside him in the healing sanctuaries of the Classical and Hellenistic world, and remembered today every time the word &#39;hygiene&#39; is spoken. The name is the abstract noun built on ὑγιής, &#39;healthy, sound&#39;, and means the condition of being sound in body — the lexicon records her simply as Health personified.</p>
+<p>She enters documented Greek religion remarkably late, in the fifth century BCE, and her rise follows her father&#39;s: the healing cult of Asklepios spread from Epidauros across the Greek world, and Hygieia stood at its center — sworn by in the opening line of the Hippocratic Oath beside Apollo the Physician, Asklepios, and Panakeia. Where Asklepios cures, Hygieia preserves: she is the divine form of prevention, regimen, and the daily disciplines that keep a body whole.</p>
+<p>PÚNYCODEX restores the name as <strong>Hygíeia</strong> and serves this temple at <a href="https://xn--hygeia-5va.com">hygíeia.com</a>. The restoration carries the acute stress of the Greek Ὑγίεια on the second syllable but marks no vowel length in the accented position, so the name sits in Tier 2; the ASCII form <em>hygieia</em> is the modern fallback imposed by the early domain-name system.</p>
+<h2 id="the-name">The Name</h2>
+<p><strong>Ὑγίεια</strong> (feminine) is an abstract noun made goddess: it is built on the adjective ὑγιής, &#39;healthy, sound in body&#39;, with the suffix -εια that Greek uses to name a state or condition — ὑγίεια is literally &#39;the state of being sound&#39;. The adjective itself is an old compound, conventionally analyzed as <em>su-</em> &#39;well&#39; joined to the root of <em>gʷih₃-</em> &#39;to live&#39;: to be healthy is, in the oldest analysis, to &#39;have a good life&#39;. An alternate accentuation, Ὑγεία (Hygeía), is recorded in later Greek usage and survives as a scholarly variant.</p>
+<p>The ASCII spelling <em>hygieia</em> preserves every letter but none of the prosody; the PÚNYCODEX restoration <strong>Hygíeia</strong> recovers the acute on the second syllable, the pitch peak of the spoken word.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>h</strong> → <strong>H</strong> — Same, capitalized</li>
+  <li><strong>y</strong> → <strong>y</strong> — Same</li>
+  <li><strong>g</strong> → <strong>g</strong> — Same</li>
+  <li><strong>i</strong> → <strong>í</strong> — Acute on iota</li>
+  <li><strong>e</strong> → <strong>e</strong> — Same</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+</ul>
+<p>The project holds the domain <strong>hygíeia.com</strong> (xn--hygeia-5va.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: From ὑγιής &quot;healthy&quot; + abstract suffix -εια. The goddess Hygíeia was worshipped alongside Asclepius as the personification of health.</p>
+<p>The reconstructed proto-form is <em>*h₂ǵ-</em> (proto-indo-european), glossed as &quot;to be healthy, vigorous&quot;.</p>
+<p>The reconstruction is classed as attested.</p>
+<p>Kindred forms recorded in the lexicon:</p>
+<ul>
+  <li><strong>yóga-</strong> (sanskrit) — Yoke, union; from the same PIE root *h₂yug-om</li>
+</ul>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is written in Greek as <strong>Ὑγίεια</strong>: capital upsilon with rough breathing, then gamma, iota with acute, epsilon-iota, alpha. The rough breathing gives the opening aspiration that Latin transliteration kept as <em>h</em> (<em>Hygiea</em>, later <em>hygiēna</em>); the acute on the iota marks the pitch peak of the word&#39;s second syllable. The diphthong ει of the stem is the Classical spelling of a long close ē, which is why the syllable is metrically long even though the restoration marks stress rather than length.</p>
+<p>This original script is the measure of both the ASCII fallback <em>hygieia</em> and the PÚNYCODEX restoration <strong>Hygíeia</strong>: the restoration keeps the acute of the edited Greek, so that a reader typing the modern address still speaks the ancient name.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/hy.gí.eː.a/</strong> — Attic Greek Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Hy-</strong> — Rough breathing on upsilon [hy], the standard opening of ὑγιής, &#39;healthy&#39;.</li>
+  <li><strong>-gí-</strong> — Gamma plus acute on short iota [gí] — the pitch peak of the word.</li>
+  <li><strong>-ei-</strong> — Long epsilon-iota diphthong [eː], the classical spelling of the stem.</li>
+  <li><strong>-a</strong> — Short alpha, the feminine nominative singular ending.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;hoo-GHEE-ay-ah&#39; — the second syllable is pitched high; the -eia is drawn out like &#39;ay-ah&#39;.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Greek</strong> — Ὑγίεια (Hygíeia), the personification of health and soundness</li>
+  <li><strong>Adjective</strong> — ὑγιής (hygiḗs), &#39;healthy, sound, wholesome&#39;</li>
+  <li><strong>Latin</strong> — Hygīa or Salus, the Roman personification of health and safety</li>
+</ul>
+<p>Hygíeia is Tier 2 because the Greek Ὑγίεια preserves the acute stress on the second syllable but the long vowel is in a different position than the stress. The name gave English &#39;hygiene&#39; and remains central to medical vocabulary.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Hygíeia has almost no narrative myths of her own; her &#39;mythology&#39; is <strong>cultic and conceptual</strong> — the divine form of a condition every Greek desired. The texts that matter are genealogies, hymns, and oaths.</p>
+<h3 id="the-healing-family">The Healing Family</h3>
+<p>Ancient genealogies make her the daughter of [[asclepius|Asklēpiós]] and Epione: the Suda lists among their children the sons [[machaon|Machaṓn]] and Podaleirios and the daughters Iaso, Panakeia, Aigle, and Hygieia. Isyllos of Epidauros carved the same family into stone in his paean to Apollo and Asklepios, a hymn inscribed at Epidauros around 300 BCE that names Hygieia among Asklepios&#39; daughters.</p>
+<h3 id="the-eldest-of-blessings">The Eldest of Blessings</h3>
+<p>Her one surviving early hymn is the paean of Ariphron of Sicyon, preserved by Athenaeus: it hails Health as &#39;eldest of the blessed gods&#39; and argues that wealth, children, and royal power are worth nothing without her — the oldest statement of her doctrine that every other good depends on this one.</p>
+<h3 id="the-oath">The Oath</h3>
+<p>Physicians bound themselves to her: the Hippocratic Oath opens by invoking Apollo the Physician, Asklepios, Hygieia, and Panakeia, with all the gods and goddesses as witnesses — her permanent place at the threshold of Western medicine.</p>
+<h3 id="the-orphic-hymn">The Orphic Hymn</h3>
+<p>The Orphic corpus gives her a hymn of her own (no. 68), addressing Health as a royal power over mortals — evidence that personal piety, not only medicine, kept her name in prayer.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>Hygíeia&#39;s attributes are stable across five centuries of images, and each compresses a claim about what health is:</p>
+<ul>
+  <li><strong>Snake</strong> — the coiled serpent of the Asklepieia: renewal by shedding, and the chthonic power that heals in dreams. She feeds it rather than fears it.</li>
+  <li><strong>Bowl (phiale or patera)</strong> — the shallow dish from which she offers the snake its food: purification and the measured administration of remedies.</li>
+  <li><strong>Water and the bath</strong> — the washing at the heart of regimen; her worship was at home in the bathing establishments of the Roman world, where her statues commonly stood.</li>
+  <li><strong>Draped standing figure</strong> — never the action of cure, always its calm precondition: she is shown at rest beside [[asclepius|Asklēpiós]], soundness made visible.</li>
+</ul>
+<p>Hygíeia&#39;s type is serene and remarkably stable: a draped standing woman feeding a coiled snake from a shallow bowl (phiale or patera), often at the side of Asklepios, whose staff and serpent her imagery borrows. Votive reliefs from the Athenian Asklepieion show her within the healing family receiving worshippers, and the sanctuary&#39;s inscribed foundation record — the Telemachos Monument — commemorates the same family group; Classical statue types survive through Roman copies that filled villas and public baths across the empire. On Roman imperial coinage the same figure — snake and patera in hand — appears under the Latin legend SALVS, goddess of public safety. The formula admits no variation: where the snake coils and the bowl tilts, the figure is Hygieia; detached from those attributes she merges into the generalized draped women of Classical votive art.</p>
+<h2 id="epithets-cult-titles">Epithets &amp; Cult Titles</h2>
+<p>Hygíeia&#39;s titles are hymnic and cultic rather than epic, reflecting her late arrival among the gods:</p>
+<ul>
+  <li><strong>πρεσβίστα μακάρων</strong> (presbísta makárōn) — &#39;eldest of the blessed gods&#39;; the opening salutation of Ariphron&#39;s paean.</li>
+  <li><strong>παμβασίλεια</strong> (pambasíleia) — &#39;queen of all&#39;; the Orphic Hymn&#39;s address to Health as universal sovereign.</li>
+  <li><strong>Ἀθηνᾶ Ὑγίεια</strong> (Athēnâ Hygíeia) — Health as epiclesis of [[athena|Athénā]], whose altar on the Athenian Acropolis Plutarch records.</li>
+  <li><strong>Salus</strong> — her Roman identity: under this name the imperial mint struck her image, snake and patera in hand, as the guarantee of the state&#39;s safety.</li>
+</ul>
+<h2 id="the-homeric-hymns">The Homeric Hymns</h2>
+<p>No Homeric Hymn is addressed to Hygíeia, and she is absent from Homer and Hesiod alike: personified Health enters Greek religion only in the fifth century BCE, rising with the cult of Asklepios. Her earliest surviving hymn is the paean of Ariphron of Sicyon, preserved by Athenaeus, which hails Health as &#39;eldest of the blessed gods&#39; and argues that wealth, power, and pleasure are worthless without her. The Orphic corpus later gives her a hymn of her own (Orphic Hymn 68), addressing her as a royal power over mortals. Yet her oldest liturgical function is not sung but sworn: the Hippocratic Oath invokes her beside Apollo the Physician, Asklepios, and Panakeia, at the head of the physician&#39;s witnesses.</p>
+<h2 id="oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</h2>
+<p>Hygíeia had no oracle of her own; prophecy was never her function. At the great Asklepieia the god himself delivered dream-cures through incubation, with Hygieia assisting as companion rather than medium. Her cult was real but always shared: at Epidauros she was honored beside Asklepios; the Athenian Asklepieion on the Acropolis&#39; south slope received her dedications, and an altar of Athena Hygieia stood on the Acropolis itself. Pausanias saw her image beside Asklepios at Titane near Sicyon, and the healing sanctuaries of Kos and Pergamon knew her equally. At Oropos the great altar of the Amphiareion was divided among the gods in portions, and Pausanias assigns one portion to Aphrodite, Panakeia, Iaso, Hygieia, and Athena Paionia — the healing powers sharing a single hearth.</p>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>The Athenian Asklepieion on the south slope of the Acropolis, founded in 420/19 BCE, is the best-documented home of her cult: the inscribed <strong>Telemachos Monument</strong>, a double-sided relief pillar found in the sanctuary, records its foundation and names the whole healing family. Votive reliefs from the same site show Hygieia standing with Asklepios receiving worshippers, often with the snake between them.</p>
+<p>Pausanias preserves her most vivid archaeological trace at Titane near Sicyon, where her image stood in the temple of Asklepios so covered with women&#39;s dedications — locks of hair and Babylonian garments — that it could hardly be seen. The great healing sanctuaries of Epidauros, Kos, and Pergamon all honored her beside her father; at Epidauros her name survives in Isyllos&#39; inscribed paean. In the Roman world her statues became fixtures of villas and public baths, and her type — snake and bowl — passed onto the empire&#39;s coinage as Salus.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Hygíeia&#39;s domains are the practices of soundness: not the drama of cure but the quieter work of never needing one.</p>
+<h3 id="personified-health">Personified Health</h3>
+<p>Worshipped as a goddess in her own right in the Asklepieia, she stood close enough to the physician&#39;s craft to be sworn by in the first line of the Hippocratic Oath, beside Apollo the Physician, Asklepios, and Panakeia.</p>
+<h3 id="snake-and-bowl">Snake and Bowl</h3>
+<p>Her fixed attributes are borrowed from her father&#39;s cult: the coiled snake of renewal and the shallow bowl from which she feeds it — the image that pharmacy later made its own.</p>
+<h3 id="prevention">Prevention</h3>
+<p>She presides over regimen — diet, exercise, bathing, rest — the daily disciplines by which Greeks of the medical schools understood health to be maintained rather than miraculously restored.</p>
+<h3 id="public-health">Public Health</h3>
+<p>Her worship was civic as well as personal: Athens received the Asklepios cult in 420/19 BCE, in a city still marked by the great plague, and set an altar to Athena Hygieia on the Acropolis itself.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Rome absorbed Hygíeia into <strong>Salus</strong>, its own old personification of safety and public welfare: the Republican temple of Salus on the Quirinal was vowed in 311 BCE and dedicated in 302, and on imperial coinage Salus appears in Hygieia&#39;s exact pose, feeding a snake from a patera — the Greek image serving the Roman state cult of <em>Salus Publica Populi Romani</em>.</p>
+<p>In the Hellenistic East the identifications ran further. A dedication on Delos of 112/1 BCE, set up by a temple servant, honors <strong>Isis Hygieia</strong> — the Egyptian goddess in her healing aspect fused with the Greek personification of health, one of several Delian dedications that call Isis a healer. And at Athens she was folded into an older goddess entirely: the altar of <strong>Athena Hygieia</strong> on the Acropolis made health an epiclesis of the city&#39;s own patron, after Athena revealed a cure to Pericles for an injured workman.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Hygíeia&#39;s afterlife is unique among Greek personifications: her name became a science. Greek ὑγιεινή (τέχνη), &#39;the healthful art&#39;, passed through Latin and French into English as &#39;hygiene&#39;, the word under which modern societies organize cleanliness, sanitation, and public health; the Oxford English Dictionary traces the term&#39;s medical career from the early modern period to the hygienic movements of the nineteenth century.</p>
+<p>Her image is equally institutional. The Bowl of Hygieia — her snake coiled around her chalice — is the internationally recognized emblem of pharmacy, displayed by professional pharmaceutical bodies as the mark of the pharmacist&#39;s art. And the Hippocratic Oath, in its ancient and modern versions, still places her name at the beginning of a physician&#39;s promises.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Hygíeia given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, s.v. Ὑγίεια. <a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Full text</a></li>
+  <li> Beekes, Etymological Dictionary of Greek, s.v. ὑγιής.</li>
+  <li> Hippocratic Oath, opening invocation.</li>
+  <li> Suda, s.v. Ἐπιώνη.</li>
+  <li> Isyllos of Epidauros, Paean to Apollo and Asklepios (IG IV².1 128).</li>
+  <li> Athenaeus, Deipnosophistae 15.702 (Ariphron&#39;s paean, PMG 813).</li>
+  <li> Orphic Hymns, no. 68.</li>
+  <li> Plutarch, Life of Pericles 13.</li>
+  <li> Pausanias, Description of Greece 1.34.3 and 2.11.6.</li>
+  <li> Edelstein and Edelstein, Asclepius: Collection and Interpretation of the Testimonies (1945).</li>
+  <li> Inscriptions de Délos 2060.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Hygíeia teaches that health is not a miracle but a practice. The Asklepieia were hospitals, gyms, and temples combined; patients slept in the abaton, dreamed of snakes, and followed regimens of diet and bath. Healing was cooperation between divine power and human discipline.</p>
+<p>In a culture obsessed with cures, Hygíeia asks us to value maintenance. She is the goddess of the daily act: the clean hand, the rested body, the mindful meal. Her restoration in Unicode is a quiet reminder that the most important medical intervention is often the one we perform ourselves, consistently, before illness arrives.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Hygíeia is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>hygieia</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 7 characters of the name, the restoration adjusts 1: 1 mark of stress (í). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>hygíeia.com</strong>, which the DNS carries in punycode form as xn--hygeia-5va.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Hygíeia; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Greek can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Myth, script, sound, cult, legacy, domain: the faces of Hygíeia add up to a single argument — that a name is a record, and records deserve fidelity. The PÚNYCODEX restoration keeps that record in working order: the temple presents it, the Scholarly Edition footnotes it, the lexicon catalogs it, and the domain makes it addressable. <em>hygieia</em> will always exist as a fallback. But fallback is not identity. <strong>Hygíeia</strong> is the name; everything else is a convenience.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/auctoritas/">Auctōritās</a></li>
   <li><a href="/sites/cadmus/">Kádmos</a></li>
   <li><a href="/sites/cassiopeia/">Kassiópeia</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, s.v. Ὑγίεια.</a></li>
+  <li>Hippocratic Oath, opening invocation (Apollo the Physician, Asklepios, Hygieia, Panakeia).</li>
+  <li>Beekes, Etymological Dictionary of Greek, s.v. ὑγιής.</li>
+  <li>Hippocratic Oath, opening invocation.</li>
+  <li>Lexicon Iconographicum Mythologiae Classicae (LIMC), s.v. &#39;Hygieia&#39;.</li>
+  <li>Lexicon authorities for this entry: LSJ, Pausanias, Hesiod.</li>
 </ul>
-<h2>The Cultural Afterlife</h2>
-<p>Hygíeia&#39;s afterlife is unique among Greek personifications: her name became a science. Greek ὑγιεινή (τέχνη), &#39;the healthful art&#39;, passed through Latin and French into English as &#39;hygiene&#39;, the word under which modern societies organize cleanliness, sanitation, and public health; the Oxford English Dictionary traces the term&#39;s medical career from the early modern period to the hygienic movements of the nineteenth century. Her image is equally institutional. The Bowl of Hygieia — her snake coiled around her chalice — is the internationally recognized emblem of pharmacy, displayed by professional pharmaceutical bodies as the mark of the pharmacist&#39;s art. And the Hippocratic Oath, in its ancient and modern versions, still places her name at the...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Hygíeia as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Greek to the modern browser. Every visit to this temple is a small act of preservation.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">greek</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,38 +170,215 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-chinese-pantheon">The Chinese Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#typing-tiandi">Typing Tiāndì</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>From Chinese characters to Unicode: The Journey of Tiāndì</h1>
-<p>Long before it was a domain, the name traveled through scripts. The name is preserved in Chinese characters as 天地 — Hanzi (Sino-Tibetan), a script tradition attested from the oracle bones (c. 1200 BCE) to the present; both graphs are identical in traditional and simplified forms. The script is written left-to-right in modern usage, top-to-bottom in traditional layout. The scholarly transliteration is Tiāndì (Hanyu Pinyin with tone marks), giving the normalized reading /tʰjɛn˥ ti˥˩/. The rendering proceeds step by step: - 天 &#39;heaven, sky&#39; in oracle-bone form is a standing human figure with the head emphasized — the sky written as the crown above man. The Shuowen Jiezi glosses it 顛 &#39;summit, crown&#39;, formed from 一 over 大. - 地 &#39;earth, ground&#39; joins the earth radical 土 to the phonetic 也. - Hanyu Pinyin with tone marks... This post follows Tiāndì from its earliest attestation to the address bar.</p>
-<h2>The Original Sign</h2>
-<p>The original script gives us <strong>天地</strong>. The name is preserved in Chinese characters as 天地 — Hanzi (Sino-Tibetan), a script tradition attested from the oracle bones (c. 1200 BCE) to the present; both graphs are identical in traditional and simplified forms. The script is written left-to-right in modern usage, top-to-bottom in traditional layout. The scholarly transliteration is Tiāndì (Hanyu Pinyin with tone marks), giving the normalized reading /tʰjɛn˥ ti˥˩/. The rendering proceeds step by step: - 天 &#39;heaven, sky&#39; in oracle-bone form is a standing human figure with the head emphasized — the sky written as the crown above man. The Shuowen Jiezi glosses it 顛 &#39;summit, crown&#39;, formed from 一 over 大. - 地 &#39;earth, ground&#39; joins the earth radical 土 to the phonetic 也. - Hanyu Pinyin with tone marks...</p>
-<h2>The Scholarly Transliteration</h2>
-<p>The name is attested in Chinese characters as 天地. Etymologically it means &quot;Heaven and Earth; the natural order of the cosmos&quot;. The reconstructed proto-form is l̥ˤin (proto-sino-tibetan, &quot;heaven, sky&quot;). Tiān 天 (heaven/sky) + dì 地 (earth/ground). The compound expresses the dyad that frames Chinese cosmology. Cognate forms across related languages: - Tiān (chinese) — Heaven as a standalone concept - Dì (chinese) — Earth as a standalone concept The ASCII form tiandi survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Tiāndì recovers the tone marks of the original directly in the address bar. The original preserves one prosodic feature — stress... Scholars settled on Tiāndì as the registrable restoration: faithful enough to be recognizable, precise enough to carry the marks that matter.</p>
-<h2>DNS as a Time Machine</h2>
-<p>Punycode lets the DNS carry non-ASCII characters without breaking older routers. To the user, the address bar shows Tiāndì; to the infrastructure, it is an encoded xn-- string. The duality is invisible, but the result is revolutionary: a pre-digital name living inside a post-digital system.</p>
-<h2>Pronunciation</h2>
-<p>Scholars reconstruct the sound as <em>TYEHN-DEE — &#39;tian&#39; high and level, like a held note; &#39;di&#39; sharp and falling, like a command.</em>. Hearing the name in your own voice is one way to make the restoration personal.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Tiāndì is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>From Chinese characters to Unicode: the journey of Tiāndì</h1>
+<p>Long before it was a domain, this name traveled through scripts. <strong>Tiāndì</strong> begins in Chinese characters, passes through scholarly transliteration, and ends — for now — inside the punycode machinery of the global DNS. Each stage of that journey preserves some information and loses some, and the craft of restoration is knowing exactly which marks matter. This post follows the name stage by stage: the original script, the reconstructed pronunciation, the mythological record, the material evidence, and finally the Unicode form that carries all of it into the address bar. Think of it as a biography of a name, told through its spelling.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Tiāndì</li>
+  <li><strong>ASCII form:</strong> tiandi</li>
+  <li><strong>Meaning:</strong> &quot;Heaven and Earth; the natural order of the cosmos&quot;</li>
+  <li><strong>Domain of influence:</strong> Cosmology, Heaven and Earth, Order</li>
+  <li><strong>Pantheon:</strong> Chinese</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> 天地 (Chinese characters)</li>
+  <li><strong>Live domain:</strong> tiāndì.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Tiāndì</strong> (<em>tiandi</em>) — Cosmology, Heaven and Earth, Order · Heaven and Earth; the natural order of the cosmos — belongs to the Chinese tradition, where it is catalogued under the domain &quot;Cosmology, Heaven and Earth, Order&quot;. The name means &quot;Heaven and Earth; the natural order of the cosmos&quot;.</p>
+<p><strong>Tiāndì</strong> is the Chinese cosmos in two characters. <em>Tiān</em> is Heaven: not a place above the clouds but the supreme moral and natural order, the source of seasons, rain, and legitimacy. <em>Dì</em> is Earth: the receptive ground that bears all things, the source of grain, minerals, and burial. Together they name the whole within which human life finds its proper place.</p>
+<p>The concept shaped everything in traditional China: agriculture, architecture, ethics, and the theory of government. The emperor was called the Son of Heaven because he stood between Tiān and dì, mediating their order for human society.</p>
+<p>PÚNYCODEX restores the name as <strong>Tiāndì</strong> and serves its temple at <a href="https://xn--tind-tpa7j.com">tiāndì.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>tiandi</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Chinese characters as <strong>天地</strong>. Etymologically it means &quot;Heaven and Earth; the natural order of the cosmos&quot;.</p>
+<p>The reconstructed proto-form is <em>l̥ˤin</em> (proto-sino-tibetan, &quot;heaven, sky&quot;). Tiān 天 (heaven/sky) + dì 地 (earth/ground). The compound expresses the dyad that frames Chinese cosmology.</p>
+<p>Cognate forms across related languages:</p>
+<ul>
+  <li><strong>Tiān</strong> (chinese) — Heaven as a standalone concept</li>
+  <li><strong>Dì</strong> (chinese) — Earth as a standalone concept</li>
+</ul>
+<p>The ASCII form <em>tiandi</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Tiāndì</strong> recovers the tone marks of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>t</strong> → <strong>T</strong> — Same, capitalized</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+  <li><strong>a</strong> → <strong>ā</strong> — Macron: first tone</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+  <li><strong>d</strong> → <strong>d</strong> — Same</li>
+  <li><strong>i</strong> → <strong>ì</strong> — Grave: fourth tone</li>
+</ul>
+<p>The project holds the domain <strong>tiāndì.com</strong> (xn--tind-tpa7j.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: Tiān 天 (heaven/sky) + dì 地 (earth/ground). The compound expresses the dyad that frames Chinese cosmology.</p>
+<p>The reconstructed proto-form is <em>*l̥ˤin</em> (proto-sino-tibetan), glossed as &quot;heaven, sky&quot;.</p>
+<p>The reconstruction is classed as attested.</p>
+<p>Kindred forms recorded in the lexicon:</p>
+<ul>
+  <li><strong>Tiān</strong> (chinese) — Heaven as a standalone concept</li>
+  <li><strong>Dì</strong> (chinese) — Earth as a standalone concept</li>
+</ul>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Chinese characters as <strong>天地</strong> — Hanzi (Sino-Tibetan), a script tradition attested from the oracle bones (c. 1200 BCE) to the present; both graphs are identical in traditional and simplified forms. The script is written left-to-right in modern usage, top-to-bottom in traditional layout.</p>
+<p>The scholarly transliteration is <em>Tiāndì</em> (Hanyu Pinyin with tone marks), giving the normalized reading /tʰjɛn˥ ti˥˩/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li><strong>天</strong> &#39;heaven, sky&#39; in oracle-bone form is a standing human figure with the head emphasized — the sky written as the crown above man. The <em>Shuowen Jiezi</em> glosses it 顛 &#39;summit, crown&#39;, formed from 一 over 大.</li>
+  <li><strong>地</strong> &#39;earth, ground&#39; joins the earth radical 土 to the phonetic 也.</li>
+  <li>Hanyu Pinyin with tone marks preserves the Modern Standard Mandarin reading, Tiāndì (Tone 1 + Tone 4); the ASCII form <em>tiandi</em> loses the tones.</li>
+  <li>The registrable Unicode restoration <strong>Tiāndì</strong> keeps the tone marks so the domain label remains pronounceable and unambiguous, while the temple&#39;s Original Script card displays the characters themselves.</li>
+</ul>
+<p>Baxter &amp; Sagart (2014) reconstruct the Old Chinese reading of 天 as *l̥ˤi[n], an initial consonant very different from the modern Mandarin t-.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/tʰjɛn˥˥ ti˥˩/</strong> — Modern Standard Mandarin (Pinyin).</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>tiān</strong> — Aspirated alveolar stop [tʰ], palatal approximant [j], open-mid front vowel [ɛ], and Tone 1 (high level, ˥˥). Pinyin &#39;ian&#39; corresponds to [jɛn] in standard Mandarin.</li>
+  <li><strong>dì</strong> — Unaspirated alveolar stop [t], close front vowel [i], and Tone 4 (falling, ˥˩).</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: TYEHN-DEE — &#39;tian&#39; high and level, like a held note; &#39;di&#39; sharp and falling, like a command.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Traditional</strong> — 天地</li>
+  <li><strong>Classical Chinese</strong> — Tiāndì, the dyad of Heaven and Earth that orders the cosmos.</li>
+  <li><strong>Wade-Giles</strong> — t&#39;ien¹-ti⁴</li>
+  <li><strong>Related terms</strong> — 天人合一 tiān rén hé yī (unity of heaven and humanity); 天道 tiāndào (the way of heaven)</li>
+</ul>
+<p>Tiāndì literally means &#39;Heaven and Earth.&#39; It is not a personal god but the cosmological pair that grounds Chinese natural philosophy, state ritual, and ethics. The Modern Standard Mandarin reading, tiān (Tone 1) + dì (Tone 4), is recorded in the Unihan Database (kMandarin); the Pinyin restoration preserves these citation tones.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Tiāndì is not a mythic protagonist but the setting within which Chinese myths unfold. Its stories are cosmogonic and ritual rather than heroic.</p>
+<h3 id="pangu-separates-heaven-and-earth-cosmogony">Pangu Separates Heaven and Earth (Cosmogony)</h3>
+<p>In the best-known Chinese creation myth, Pangu grows inside a cosmic egg for eighteen thousand years. When he awakens, he pushes the heavy earth downward and the light heaven upward, growing taller each day. After his death his body becomes the landscape: breath the wind, voice the thunder, eyes the sun and moon, limbs the mountains, blood the rivers. Tiāndì is the result of his immense labour.</p>
+<h3 id="the-son-of-heaven-at-the-altars-state-ritual">The Son of Heaven at the Altars (State Ritual)</h3>
+<p>The emperor&#39;s most sacred duty was to sacrifice to Heaven at the winter solstice and to Earth at the summer solstice. The Temple of Heaven in Beijing is the surviving monument to this rite. By performing it correctly, the emperor maintained the Mandate of Heaven; by failing, he risked cosmic disorder and rebellion.</p>
+<h3 id="heaven-earth-and-the-ten-thousand-things-philosophy">Heaven, Earth, and the Ten Thousand Things (Philosophy)</h3>
+<p>The <em>Dàodéjīng</em> says that the Dao gives birth to One, One gives birth to Two, Two gives birth to Three, and Three gives birth to the ten thousand things. In many readings, the Two is the dyad of heaven and earth, the first differentiation from which all phenomena arise. Tiāndì is therefore not merely a physical pair but the ontological frame of Chinese thought.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography of Tiāndì concentrates in ritual objects and geometries rather than images, each a compressed statement about the dyad. The <em>Zhouli</em> fixes the classic pairing: &#39;with the azure bì disc one performs the rites to Heaven; with the yellow cōng tube, the rites to Earth&#39; (以蒼璧禮天，以黃琮禮地):</p>
+<ul>
+  <li><strong>Round heaven and square earth</strong> — The circular altar and square terrace of the imperial ritual complexes encode the cosmic dyad; the same geometry shapes the ritual jades.</li>
+  <li><strong>Jade disc (bì)</strong> — The round, centrally pierced ritual jade offered to Heaven, azure like the sky.</li>
+  <li><strong>Jade tube (cōng)</strong> — The square-sectioned tube offered to Earth, yellow like the soil; square outside and round within, it weds the two geometries in a single object.</li>
+  <li><strong>Yellow earth</strong> — The soil of the central plain, offered at the Altar of Earth and symbolising the nation&#39;s foundation.</li>
+  <li><strong>North Star</strong> — The pivot of heaven around which all stars turn; the <em>Analects</em> makes it the emblem of rule by virtue, which keeps its place while the lesser stars do homage.</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>The cult of Heaven and Earth is materialised in China&#39;s imperial ritual landscape. The oldest witnesses are textual: Shang oracle-bone inscriptions record sacrifices to Shàngdì 上帝, the &#39;Lord on High&#39;, an early precursor of Tiān, and Zhou bronze inscriptions consolidate the dyad of Tiāndì as the foundation of political legitimacy. The <em>Shiji</em>&#39;s &#39;Treatise on the Fēng and Shàn Sacrifices&#39; records how Hàn Wǔdì fixed the imperial rites to the powers of heaven and earth, and a round altar of the Táng dynasty has been excavated in the southern suburbs of Xi&#39;an. The surviving built monuments stand in Beijing: the Temple of Heaven (Tiāntán), begun under the Yǒnglè emperor in 1420, and the Altar of Earth (Dìtán), laid out in 1530 when the Jiājìng emperor separated the rites to Earth from those to Heaven.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p><strong>Tiāndì</strong> is the Chinese cosmos in two characters. <em>Tiān</em> is Heaven: not a place above the clouds but the supreme moral and natural order, the source of seasons, rain, and legitimacy. <em>Dì</em> is Earth: the receptive ground that bears all things, the source of grain, minerals, and burial. Together they name the whole within which human life finds its proper place.</p>
+<p>The concept shaped everything in traditional China: agriculture, architecture, ethics, and the theory of government. The emperor was called the Son of Heaven because he stood between Tiān and dì, mediating their order for human society.</p>
+<h3 id="cosmic-dyad">Cosmic Dyad</h3>
+<p>Heaven is active and round; Earth is receptive and square. Together they generate the ten thousand things.</p>
+<h3 id="imperial-legitimacy">Imperial Legitimacy</h3>
+<p>The emperor ruled by the Mandate of Heaven, sacrificing at the Altar of Heaven and Earth.</p>
+<h3 id="agricultural-order">Agricultural Order</h3>
+<p>The calendar, the seasons, and the harvest depend on the harmony of heaven above and earth below.</p>
+<h3 id="moral-cosmos">Moral Cosmos</h3>
+<p>Right action aligns with the way of heaven; disaster signals its disruption.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Tiāndì absorbed and was absorbed by many Chinese religious currents. Confucian state ritual made the worship of Heaven and Earth the monopoly of the emperor. Popular religion localised the pair as the Jade Emperor (Heaven) and the Goddess of the Earth (Tǔdìgōng). Daoism reinterpreted Tiān as the celestial Dao and dì as the material field it orders. Buddhism, entering China, had to explain its Indic heavens and hells within a Tiāndì-shaped cosmology. Modern Chinese nationalism has claimed Tiān as a proto-monotheistic deity, while environmental thinkers see in Tiāndì an early ecological holism.</p>
+<p>Within the Chinese tradition, closely related names in the corpus include [[bagua|Bāguà]], [[long|Lóng]], [[taichi|Tàijí]], [[taishang|Tàishàng]], [[tian|Tiān]], and [[wuxing|Wǔxíng]].</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Tiāndì remains the backbone of Chinese cosmological language. The phrase <em>tiān xià</em> — &#39;all under heaven&#39; — still names the world, and the dyad even entered the register of dissent: the Tiāndìhuì 天地會, the &#39;Heaven and Earth Society&#39; of the Qing period, swore its brotherhoods with heaven and earth as witnesses and became the ancestor of the later Triads. The Temple of Heaven in Beijing, inscribed on the UNESCO World Heritage List in 1998, is one of the most visited monuments in China. The idea of the Mandate of Heaven survives in political rhetoric, and the concept of harmony between heaven, earth, and humanity shapes everything from traditional medicine to urban feng shui. Even in secular China, &#39;heaven&#39; and &#39;earth&#39; are not merely physical terms; they carry the weight of moral and cultural order.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Tiāndì given in this edition rests on the witnesses and reference works listed below. Lexica and reference databases secure the form and reading of the name; the literary and religious texts supply the narrative and cosmological evidence.</p>
+<ul>
+  <li> I Ching (Yijing).</li>
+  <li> Shijing (Book of Poetry).</li>
+  <li> Shujing (Book of Documents).</li>
+  <li> Zhouli (Rites of Zhou). <a href="https://ctext.org/rites-of-zhou">Full text</a></li>
+  <li> Liji (Book of Rites).</li>
+  <li> Lunyu (Analects). <a href="https://ctext.org/analects">Full text</a></li>
+  <li> Laozi, Daodejing.</li>
+  <li> Zhuangzi. <a href="https://ctext.org/zhuangzi">Full text</a></li>
+  <li> Sima Qian, Shiji.</li>
+  <li> Baxter &amp; Sagart, Old Chinese Reconstruction. <a href="http://ocbaxtersagart.lsait.lsa.umich.edu/">Full text</a></li>
+  <li> Unihan Database (Unicode Consortium). <a href="https://www.unicode.org/charts/unihan.html">Full text</a></li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Tiāndì is the oldest Chinese statement of relationship. Before there are gods, humans, or rituals, there is the pair: the active above and the receptive below. Everything else — morality, agriculture, architecture, family — is an elaboration of this pairing.</p>
+<p>To think Tiāndì is to think positionally. Where do I stand between heaven and earth? Am I aligned with the seasons? Does my conduct echo the order above or disturb it? The question is not whether I believe in a personal god but whether I participate in the pattern that makes life possible. Tiāndì does not demand worship; it demands alignment. The rain falls, the earth yields, and the human task is to fit oneself into that generosity without breaking it.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Tiāndì is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>tiandi</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 6 characters of the name, the restoration adjusts 2: 1 mark of stress (ì); 1 mark of length (ā). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>tiandi</em> to <strong>Tiāndì</strong>, one character at a time:</p>
+<ul>
+  <li><strong>t</strong> → <strong>T</strong> — Same, capitalized</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+  <li><strong>a</strong> → <strong>ā</strong> — Macron: first tone</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+  <li><strong>d</strong> → <strong>d</strong> — Same</li>
+  <li><strong>i</strong> → <strong>ì</strong> — Grave: fourth tone</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>tiāndì.com</strong>, which the DNS carries in punycode form as xn--tind-tpa7j.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Tiāndì; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Chinese characters can now be typed into any browser on earth.</p>
+<h2 id="the-chinese-pantheon">The Chinese Pantheon</h2>
+<p>Tiāndì is one of 43 entries the PÚNYCODEX lexicon catalogues under the Chinese pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Tiāndì mean?</strong> The traditional gloss is &quot;Heaven and Earth; the natural order of the cosmos.&quot;</p>
+<p><strong>Which tradition does Tiāndì belong to?</strong> Tiāndì is catalogued in the Chinese pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Tiāndì classified as Tier 2?</strong> Because the original preserves at least one philological feature that ASCII cannot encode — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Tiāndì a working domain?</strong> Yes — tiāndì.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for tiāndì.com?</strong> The DNS encoding is xn--tind-tpa7j.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="typing-tiandi">Typing Tiāndì</h2>
+<p>You do not need a special keyboard to use this restoration. The <a href="/type/">PÚNYCODEX Type Tool</a> converts the ASCII form <em>tiandi</em> into <strong>Tiāndì</strong> as you type, and the browser extension offers the same conversion inside any text field. Copy the restored form, paste it into the address bar, and the DNS does the rest.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Every stage of the journey from Chinese characters to Unicode was an act of care: the scribe who first wrote the name, the lexicographer who glossed it, the engineer who taught the DNS to carry it. The PÚNYCODEX restoration is the latest stage, not the last word — the Scholarly Edition is revised as the evidence improves. What does not change is the principle: a name deserves to be written the way its own tradition wrote it. <strong>Tiāndì</strong> in the address bar is that principle, made routable.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/fuxi/">Fúxī</a></li>
   <li><a href="/sites/gonggong/">Gōnggōng</a></li>
   <li><a href="/sites/guanyin/">Guānyīn</a></li>
 </ul>
-<h2>Further Reading</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.unicode.org/charts/unihan.html">Unihan Database (Unicode Consortium), kMandarin readings for U+5929 天 and U+5730 地.</a></li>
   <li><a href="http://ocbaxtersagart.lsait.lsa.umich.edu/">Baxter &amp; Sagart, Old Chinese: A New Reconstruction (2014).</a></li>
   <li><a href="https://ctext.org/rites-of-zhou">Zhouli (Rites of Zhou), Chunguan, Da zong bo.</a></li>
   <li><a href="https://ctext.org/analects">Lunyu (Analects) 2.1.</a></li>
+  <li><a href="https://whc.unesco.org/en/list/881">UNESCO World Heritage List, Temple of Heaven (inscribed 1998).</a></li>
+  <li><a href="https://ctext.org/zhuangzi">Zhuangzi.</a></li>
+  <li>I Ching (Yijing).</li>
+  <li>Laozi, Daodejing.</li>
+  <li>Shujing (Book of Documents).</li>
+  <li>Xu Shen, Shuowen Jiezi.</li>
+  <li>Lexicon authorities for this entry: I Ching, Chinese classics, Dao De Jing.</li>
 </ul>
-<h2>The Name in Context</h2>
-<p>Tiāndì (tiandi) — Cosmology, Heaven and Earth, Order · Heaven and Earth; the natural order of the cosmos — belongs to the Chinese tradition, where it is catalogued under the domain &quot;Cosmology, Heaven and Earth, Order&quot;. The name means &quot;Heaven and Earth; the natural order of the cosmos&quot;. Tiāndì is the Chinese cosmos in two characters. Tiān is Heaven: not a place above the clouds but the supreme moral and natural order, the source of seasons, rain, and legitimacy. Dì is Earth: the receptive ground that bears all things, the source of grain, minerals, and burial. Together they name the whole within which human life finds its proper place. The concept shaped everything in traditional China: agriculture, architecture, ethics, and the theory of government....</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">chinese</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

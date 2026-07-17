@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,38 +170,210 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>16 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#epithets-cult-titles">Epithets &amp; Cult Titles</a></li>
+                <li><a href="#the-homeric-hymns">The Homeric Hymns</a></li>
+                <li><a href="#oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>The Many Faces of Hēlios</h1>
-<p>No important name has only one face. Hēlios appears as a mythic character, a scholarly reconstruction, a cultural memory, and now a Unicode domain. Hēlios (helios — Greek Ἥλιος) is the personified Sun of Greek religion: the god who drives his chariot across the sky each day and, seeing everything it shines on, serves as the divine witness of oaths. Hesiod makes him the son of the Titans Hyperion and Theia, brother of Selēnē (Moon) and Ēōs (Dawn) (Th. 371–374). Homer invokes him in the treaty-oath of the Iliad as &#39;Sun, who seest all things and hearest all things&#39; (Il. 3.276–277), and Pindar&#39;s Olympian 7 makes him the patron god of Rhodes, the island that fell to him when the world was divided.^2 PÚNYCODEX restores the name as Hēlios and serves its temple at hēlios.com. The Greek Ἥλιος carries both the acute stress and a long vowel (η, from earlier ā), and exactly one historically valid Unicode...</p>
-<h2>In Myth</h2>
-<p>Hēlios&#39;s myths all depend on his unique vantage point: he sees everything . This makes him a witness, a revealer, and occasionally a victim of his own children&#39;s ambition. The mythic face is the one most people meet first, and it is the reason the name survived.</p>
-<h2>Across Cultures</h2>
-<p>Rome read Hēlios as Sol, and late antiquity exalted him. The Greeks had already identified him with the Egyptian sun god Rꜥ — they called Rꜥ&#39;s cult city Iunu &#39;Heliopolis&#39;, the City of the Sun (Herodotus 2.3). In 274 CE the emperor Aurelian established Sol Invictus as a state cult at Rome; the calendar of 354 records the Sun&#39;s birthday festival on 25 December, a date widely discussed as a possible background to Christmas, though the connection remains debated among historians. The emperor Julian made Hēlios the centre of his pagan restoration: his Hymn to King Helios casts the visible sun as the mediator between the intelligible One and the world, the fullest surviving statement of Neoplatonic solar theology. Kindred figures in the PÚNYCODEX... Each culture kept what resonated and reshaped the rest.</p>
-<h2>In the Scholarly Record</h2>
-<p>Hēlios&#39;s name survives wherever Greek became the language of science: heliocentrism, heliograph, heliotrope, aphelion — and the element helium, named by Norman Lockyer after the unknown yellow line detected in the sun&#39;s spectrum during the eclipse of 1868. His colossal bronze portrait, the Colossus of Rhodes, stood among the Seven Wonders of the ancient world. The Greeks themselves made him the first battleground between religion and astronomy: when Anaxagoras taught that the sun was a red-hot stone larger than the Peloponnese, he was prosecuted for impiety at Athens (Plutarch, Per. 32). Plato took the opposite path and made the sun the visible offspring of the Good, the pattern for every later solar symbolism from Sol Invictus&#39;s radiate crown to... The Scholarly Edition collects those traces so readers can follow the argument from source to conclusion.</p>
-<h2>The Unicode Face</h2>
-<p>The newest face is digital. Hēlios demonstrates that a name can be at once ancient and clickable, venerable and searchable. That is the face this blog exists to celebrate.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Hēlios is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>The many faces of Hēlios</h1>
+<p>No important name has only one face. <strong>Hēlios</strong> appears as a figure of myth, a scholarly reconstruction, a piece of material culture, a memory carried across languages, and — most recently — a Unicode domain. This post looks at each face in turn: the name and its roots, the Greek original, the reconstructed pronunciation, the mythological record, the symbols and sanctuaries, the cross-cultural afterlife, and the engineering that lets the restored spelling resolve in a browser. Taken together, those faces explain why <em>helios</em> was never going to be enough — and why the restored form is worth a domain of its own.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Hēlios</li>
+  <li><strong>ASCII form:</strong> helios</li>
+  <li><strong>Meaning:</strong> &quot;Sun (from ἕλος)&quot;</li>
+  <li><strong>Domain of influence:</strong> Sun, Sight, Oaths</li>
+  <li><strong>Pantheon:</strong> Greek</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Original script:</strong> Ἥλιος (Greek)</li>
+  <li><strong>Live domain:</strong> hēlios.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Hēlios</strong> (<em>helios</em> — Greek Ἥλιος) is the personified Sun of Greek religion: the god who drives his chariot across the sky each day and, seeing everything it shines on, serves as the divine witness of oaths. Hesiod makes him the son of the Titans Hyperion and Theia, brother of Selēnē (Moon) and Ēōs (Dawn) (Th. 371–374). Homer invokes him in the treaty-oath of the Iliad as &#39;Sun, who seest all things and hearest all things&#39; (Il. 3.276–277), and Pindar&#39;s <em>Olympian</em> 7 makes him the patron god of Rhodes, the island that fell to him when the world was divided.</p>
+<p>PÚNYCODEX restores the name as <strong>Hēlios</strong> and serves its temple at <a href="https://xn--hlios-iza.com">hēlios.com</a>. The Greek Ἥλιος carries both the acute stress and a long vowel (η, from earlier <em>ā</em>), and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>helios</em> is a modern fallback imposed by the early domain-name system, not an ancient spelling.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Greek as <strong>Ἥλιος</strong> (Homeric form Ἠέλιος), the common noun for the sun elevated to a theonym. It descends from Proto-Greek <em>hāwelios</em> — the digamma surviving in Cretan Ἀϝέλιος / Ἀβέλιος — and ultimately from the Indo-European word for the sun, <em>seh₂u-el-, whose other heirs include Latin </em>sol<em>, Sanskrit </em>sūrya<em>, Old English </em>swegl<em>, Old Norse </em>sól<em>, and Avestan </em>hvar<em>. The dialects preserve the sound history: Doric and Aeolic keep the original long </em>ā<em> (Ἅλιος, Ἀέλιος), while Attic-Ionic shifts it to η (Ἥλιος, Ἠέλιος). Plato&#39;s </em>Cratylus* records the ancient folk etymologies — from ἁλίζειν, &#39;collecting men when he rises&#39;, or ἀεὶ εἱλεῖν, &#39;ever turning&#39; — which modern scholarship rejects in favour of the Indo-European derivation.</p>
+<p>The restoration <strong>Hēlios</strong> writes the long eta as ē, recovering the vowel length that plain ASCII loses. The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>h</strong> → <strong>H</strong> — Rough breathing</li>
+  <li><strong>e</strong> → <strong>ē</strong> — Eta: long epsilon</li>
+  <li><strong>l</strong> → <strong>l</strong> — Lambda</li>
+  <li><strong>i</strong> → <strong>i</strong> — Short iota</li>
+  <li><strong>o</strong> → <strong>o</strong> — Short omicron</li>
+  <li><strong>s</strong> → <strong>s</strong> — Sigma</li>
+</ul>
+<p>Because the original carries both stress and length, and only this one restoration is historically valid, the name is Tier 1; the ASCII <em>helios</em> survives only as the domain-name system&#39;s fallback. The project holds the domain <strong>hēlios.com</strong> (xn--hlios-iza.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: From Ἥλιος &quot;sun&quot;, cognate with Latin sol, English sun. The solar charioteer.</p>
+<p>The reconstructed proto-form is <em>*seh₂wol-</em> (proto-indo-european), glossed as &quot;sun&quot;.</p>
+<p>The reconstruction is classed as attested.</p>
+<p>Kindred forms recorded in the lexicon:</p>
+<ul>
+  <li><strong>sol</strong> (latin) — The sun</li>
+  <li><strong>Sūrya</strong> (sanskrit) — Vedic sun god</li>
+</ul>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Greek as <strong>Ἥλιος</strong> — Greek alphabet (Classical / Attic), attested Ancient Greek, c. 8th century BCE – present, in Greece and the Greek-speaking Mediterranean. The script is written left-to-right.</p>
+<p>The scholarly transliteration is <em>Hēlios</em> (Greek alphabet with polytonic accents), giving the normalized reading /ˈhɛː.li.os/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The Greek form Ἥλιος is written in the Classical Greek alphabet.</li>
+  <li>Letters with acute, grave, or circumflex accents preserve the pitch accent of Ancient Greek.</li>
+  <li>Macrons and omegas (η, ω) mark long vowels, a feature lost in the plain ASCII form.</li>
+  <li>The Unicode restoration Hēlios encodes the scholarly spelling as a registrable domain name.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed Attic pronunciation of the name is <strong>/hɛ́ː.li.os/</strong> ([hɛ̌ːlios]): three syllables, acute pitch on the long first vowel, with the rough breathing (initial h-) that Cretan spelling shows was once a glide, <em>hāwelios</em>.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Hē-</strong> — rough breathing plus long eta (from Proto-Greek <em>ā</em>), the accented peak of the name.</li>
+  <li><strong>-li-</strong> — lambda plus short iota, light and unaccented.</li>
+  <li><strong>-os</strong> — short omicron plus sigma, the masculine nominative ending.</li>
+</ul>
+<p>For the modern speaker the closest approximation is &#39;HAY-lee-oss&#39;, with the accent on the first syllable.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>PIE <em>sóh₂wl̥</strong></em> — &#39;sun&#39;: root of Greek ἥλιος, Latin sol, Sanskrit sūrya, Old English swegl.</li>
+  <li><strong>Homeric Ἠέλιος</strong> (<em>Ēélios</em>) — the epic scansion; Doric Ἅλιος, Cretan Ἀϝέλιος with the lost digamma.</li>
+  <li><strong>Mycenaean</strong> — the Linear B tablets preserve no certain mention of the god: the name is Indo-European, but his cult, unlike those of Zeus, Poseidon, or Dionysus, is not attested in the Mycenaean record.</li>
+</ul>
+<p>Because Ἥλιος preserves both the acute stress and the long η, and admits exactly one valid restoration, the name is single-tier Tier 1.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Hēlios&#39;s myths all depend on his unique vantage point: he sees everything. This makes him a witness, a revealer, and occasionally the injured party of others&#39; ambition.</p>
+<h3 id="across-the-sky-and-through-oceanus-the-daily-journey">Across the Sky and Through Oceanus (The Daily Journey)</h3>
+<p>Each dawn he yokes his horses and rises from Oceanus; at the height of heaven he pauses, then drives down again to Ocean in the west (HH 31.9–17). The night voyage back to the east he makes in a golden cup — the conceit is as old as the lost <em>Titanomachy</em>, and Stesichorus and Mimnermus sang of it; Heraklēs famously borrowed the cup for the crossing to Gēryōn&#39;s island.</p>
+<h3 id="the-exposure-of-ares-and-aphrodite-the-witness">The Exposure of Árēs and Aphrodítē (The Witness)</h3>
+<p>In the song of Demodokos (Od. 8.266–366) Hēlios spies Árēs and Aphrodítē in Hēphaistos&#39;s house and reports them; the smith&#39;s invisible net does the rest. The episode fixes his role as moral witness: nothing done in daylight is hidden from him.</p>
+<h3 id="phaethon-and-the-scorched-earth-the-son">Phaethōn and the Scorched Earth (The Son)</h3>
+<p>Phaethōn, his son by the Oceanid Clymenē, begged proof of paternity and chose the chariot. He could not hold the horses: the earth burned where he drove low — Libya became desert — and froze where he climbed, until Zeús struck him into the Eridanus. The fullest account is Ovid&#39;s (Met. 1.747–2.400), but the tragedy was already Euripides&#39; lost <em>Phaethon</em>, of which fragments survive.</p>
+<h3 id="the-cattle-of-thrinacia-the-island">The Cattle of Thrinacia (The Island)</h3>
+<p>Hēlios kept seven herds of fifty cattle on Thrinacia — three hundred and fifty, the days of the year. Odysseus&#39;s starving crew slaughtered them; Hēlios demanded justice of Zeús, threatening to &#39;go down to Hādēs and shine among the dead&#39;, and Zeús destroyed the ship with a thunderbolt (Od. 12.127–141, 260–402).</p>
+<h3 id="the-choosing-of-rhodes-the-portion">The Choosing of Rhodes (The Portion)</h3>
+<p>When the gods divided the earth, Hēlios was absent and received no land; rather than cast lots again, he claimed an island he saw rising from the sea — Rhodes — which became his sacred portion, honoured above all other gods there (Pindar, Ol. 7.54–76).</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>Hēlios&#39;s attributes all describe the sun&#39;s motion, light, and heat:</p>
+<ul>
+  <li><strong>Chariot and four horses</strong> — the quadriga of day. Ovid names the team Pyrois, Eous, Aethon, and Phlegon (&#39;Fiery&#39;, &#39;Dawn-born&#39;, &#39;Blazing&#39;, &#39;Burning&#39;); an older list ascribed to the Corinthian epic poet Eumelus gives the trace-horses Eous and Aethiops with the mares Brontē (&#39;Thunder&#39;) and Steropē (&#39;Lightning&#39;).</li>
+  <li><strong>Crown of rays</strong> — the aureole of beams springing from his head, his fixed attribute from Classical vase-painting to imperial coinage.</li>
+  <li><strong>Whip</strong> — his goad over the solar horses.</li>
+  <li><strong>Golden cup</strong> — the vessel of solid gold in which he sails back east each night, from the Hesperides to the land of the Ethiops.</li>
+  <li><strong>Heliotrope and frankincense</strong> — the flowers of his mortal loves: the spurned Clytiē wasted into the sun-following heliotrope, and the buried Leucothoē became the frankincense tree (Ovid, Met. 4).</li>
+</ul>
+<p>Hēlios&#39;s type is fixed by one feature: the <strong>radiate crown</strong>. He is a beardless youth with rays springing from his head — a formula appearing on Rhodian coinage from the fifth century BCE and, as the facing radiate head, one of the most widespread coin images of the Hellenistic world.</p>
+<p>His second great image is the <strong>chariot</strong>: four horses rising from the sea at dawn, beloved of Attic vase painters and architectural sculpture — the horses of Hēlios and the sinking chariot of Selene frame the two corners of the Parthenon&#39;s east pediment.</p>
+<p>The <strong>Colossus of Rhodes</strong> (c. 280 BCE, by Chares of Lindos), some thirty metres of bronze, stood as his monumental portrait until the earthquake of 226 BCE; Pliny preserves its measurements and its fame among the Seven Wonders. Rome&#39;s Sol Invictus on the coins of Aurelian and Constantine is the direct heir of the Rhodian type.</p>
+<h2 id="epithets-cult-titles">Epithets &amp; Cult Titles</h2>
+<p>His titles track his one defining quality: total visibility.</p>
+<ul>
+  <li><strong>Ὑπεριονίδης</strong> (<em>Hyperionidēs</em>) — &#39;son of Hyperion&#39;, Homer&#39;s and Hesiod&#39;s regular title; Homer also calls the sun simply Hyperiōn.</li>
+  <li><strong>Πανόπτης</strong> (<em>panoptēs</em>) — &#39;all-seeing&#39;: the Iliad invokes &#39;Hēlios, who seest all things and hearest all things&#39;, and tragedy speaks of &#39;the all-seeing wheel of the sun&#39;.</li>
+  <li><strong>Ἀκάμας</strong> (<em>akamas</em>) — &#39;tireless&#39;, the Homeric hymn&#39;s word for the sun that never rests from his course.</li>
+  <li><strong>Τιτάν</strong> (<em>Titan</em>) — in later Greek and Latin poetry the sun is the Titan par excellence, a title that passed into Roman Sol.</li>
+  <li><strong>Ἀνίκητος</strong> (<em>anikētos</em>) — &#39;unconquered&#39;, his late-antique cult title, the Greek equivalent of Sol Invictus, stamped on imperial coinage from Aurelian to Constantine.</li>
+</ul>
+<h2 id="the-homeric-hymns">The Homeric Hymns</h2>
+<p>Hēlios has one short hymn, the thirty-first of the collection: nineteen lines calling on the Muse to sing &#39;of Hēlios, whom the ox-eyed Euryphaessa bore to the son of Earth and starry Heaven&#39; — Hyperion — and describing how he yokes his horses at dawn and drives them until evening, looking down upon the grain-giving earth. Like the other late miniature hymns to celestial powers (Hymns 8 and 32), it is a liturgical prelude rather than a narrative.</p>
+<p>His epic presence is older and larger. Hesiod makes him the child of Hyperion and Theia, brother of Selene and Eos (<em>Theogony</em> 371–374). The <em>Odyssey</em> gives him his great scenes: the island Thrinacia with the sacred cattle (Book 12) and his role as the all-seeing informer who exposes what daylight sees.</p>
+<h2 id="oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</h2>
+<p>Despite being the god who sees everything, Hēlios kept no oracular seat in mainland Greece; prophecy belonged to Apóllōn, and the sun&#39;s witness was invoked in oaths rather than consulted.</p>
+<p>His real cult geography:</p>
+<ul>
+  <li><strong>Rhodes</strong> — the island was his portion, awarded while he was absent at the division of the world; Pindar&#39;s <em>Olympian</em> 7 tells the myth, and the Rhodians honored him as chief god with the quadrennial Halieia.</li>
+  <li><strong>Lindos (Rhodes)</strong> — his sanctuary beside Athena&#39;s on the acropolis; the Colossus&#39;s sculptor, Chares, was a Lindian.</li>
+  <li><strong>Corinth</strong> — a temple of Hēlios with a bronze image stood on the road up to Acrocorinth.</li>
+</ul>
+<p>Divination did attach to him in the Greek Magical Papyri of Roman Egypt, where the all-seeing sun is conjured for revelations — a late, private counterpart to the public oracle he never had.</p>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>The material record of the cult centres on <strong>Rhodes</strong>. Its monument was the Colossus: some seventy cubits (about thirty-two metres) of bronze by Chares of Lindos, dedicated to the Sun and counted among the Seven Wonders until an earthquake brought it down in 226 BCE; Pliny preserves its dimensions and its fame. The Rhodian shrine of the god was called the Haleion, and his festival, the Halieia, included the annual rite of hurling a four-horse chariot into the sea as his offering, in re-enactment of Phaethōn&#39;s fall. At <strong>Corinth</strong> a temple of Hēlios with a bronze image stood on the road up to Acrocorinth — the citadel that myth said the arbiter Briareos awarded to Hēlios when he judged his contest with Poseidôn. Rhodian coinage carried his facing radiate head for centuries, the most widely travelled image of the god. At Athens, by contrast, his public cult arrived only in Hellenistic times, where he received wineless offerings — honey, not wine, &#39;so that the god who holds the cosmos in order should not succumb to drunkenness&#39;.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Hēlios is the sun itself: a god who sees everything and drives his chariot across the sky each day. Nothing hidden escapes him, and mortals and gods alike swear oaths by his light.</p>
+<h3 id="the-chariot-of-the-sun">The Chariot of the Sun</h3>
+<p>He rises from Oceanus in the east, crosses the sky &#39;piercingly gazing from his golden helmet&#39;, and at evening drives down again to Ocean (HH 31.9–17). For the return journey east at night the poets gave him a golden cup — attested already in the lost epic <em>Titanomachy</em> and quoted from Stesichorus — or, in Mimnermus, a golden bed made by Hephaestus.</p>
+<h3 id="all-seeing-witness">All-Seeing Witness</h3>
+<p>The treaty-oath of the Iliad invokes &#39;Sun, who seest all things and hearest all things&#39; (Il. 3.276–277); oaths sworn in his name bind because he cannot be deceived. Plato builds the connection into philosophy: the sun is the offspring of the Good, the cause of sight and of all that is seen (Rep. 507c–509c).</p>
+<h3 id="revealer-of-secrets">Revealer of Secrets</h3>
+<p>He exposed Árēs&#39; affair with Aphrodítē to Hēphaistos (Od. 8.266–366), and in the Homeric <em>Hymn to Demeter</em> he alone had seen Hádēs carry off Persephonē, and told her mother (HH Dem. 69–87).</p>
+<h3 id="healer-and-life-giver">Healer and Life-Giver</h3>
+<p>His warmth ripens crops and sustains living bodies — &#39;the earth flourished when you shone forth&#39;, as a solar hymn of the Greek Magical Papyri puts it; his withdrawal is winter and death.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Rome read Hēlios as <strong>Sol</strong>, and late antiquity exalted him. The Greeks had already identified him with the Egyptian sun god Rꜥ — they called Rꜥ&#39;s cult city Iunu &#39;Heliopolis&#39;, the City of the Sun (Herodotus 2.3). In 274 CE the emperor Aurelian established <strong>Sol Invictus</strong> as a state cult at Rome; the calendar of 354 records the Sun&#39;s birthday festival on 25 December, a date widely discussed as a possible background to Christmas, though the connection remains debated among historians. The emperor Julian made Hēlios the centre of his pagan restoration: his <em>Hymn to King Helios</em> casts the visible sun as the mediator between the intelligible One and the world, the fullest surviving statement of Neoplatonic solar theology.</p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include <a href="/sites/apollon/">Apóllōn</a>, <a href="/sites/surya/">Sūrya</a>, <a href="/sites/dazhbog/">Dažbog</a>, <a href="/sites/huitzilopochtli/">Huitzilopōchtli</a>, <a href="/sites/ra/">Rꜥ</a>, and <a href="/sites/shamash/">Šamaš</a>, each linked through sun and light.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Hēlios&#39;s name survives wherever Greek became the language of science: heliocentrism, heliograph, heliotrope, aphelion — and the element <strong>helium</strong>, named by Norman Lockyer after the unknown yellow line detected in the sun&#39;s spectrum during the eclipse of 1868. His colossal bronze portrait, the Colossus of Rhodes, stood among the Seven Wonders of the ancient world. The Greeks themselves made him the first battleground between religion and astronomy: when Anaxagoras taught that the sun was a red-hot stone larger than the Peloponnese, he was prosecuted for impiety at Athens (Plutarch, Per. 32). Plato took the opposite path and made the sun the visible offspring of the Good, the pattern for every later solar symbolism from Sol Invictus&#39;s radiate crown to the Christian halo. The week still bears his mark: the Greeks named Sunday ἡμέρα Ἡλίου, the Day of the Sun. Restoring <em>Hēlios</em> restores the Greek name of the star that makes life possible.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Hēlios given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative and cultic evidence.</p>
+<ul>
+  <li> Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement. <a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Full text</a></li>
+  <li> Beekes, Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a href="https://brill.com/view/title/17858">Publisher</a></li>
+  <li> Pape-Benseler, Wörterbuch der griechischen Eigennamen, 3rd ed., 1863. <a href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ">Full text</a></li>
+  <li> Homer, Iliad 3.276–277; Odyssey 8.266–366, 12.127–402.</li>
+  <li> Hesiod, Theogony 371–374. <a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0130">Full text</a></li>
+  <li> Homeric Hymn 31, To Helios. <a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0138:hymn=31">Full text</a></li>
+  <li> Pindar, Olympian 7.</li>
+  <li> Ovid, Metamorphoses 1.747–2.400; 4.169–270.</li>
+  <li> Athenaeus, Deipnosophistae 11.469e–f.</li>
+  <li> Pliny the Elder, Natural History 34.41.</li>
+  <li> Julian, Oration IV: Hymn to King Helios.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Hēlios is the god of total visibility. He cannot be bargained with or hidden from; the Greeks built that knowledge into their most solemn institution, the oath — &#39;Sun, who seest all things and hearest all things&#39; (Il. 3.277). Plato turned the same fact into metaphysics: as the sun is to sight, so the Good is to knowledge — its offspring, and the condition of everything being seen at all (Rep. 508b–c).</p>
+<p>In an age of surveillance we have made our own Hēlios — satellites, cameras, data trails — but without the moral clarity the god represented. For the Greeks the sun&#39;s witness was sacred; for us, visibility is often exploitative. The restoration of his name is a reminder that light is not neutral: it reveals, but it also exposes, and what it sees cannot be undone.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Hēlios is classified as <strong>Tier 1</strong>: the original carries both stress and length, and only one valid Unicode restoration exists. The ASCII fallback <em>helios</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 6 characters of the name, the restoration adjusts 1: 1 mark of length (ē). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>hēlios.com</strong>, which the DNS carries in punycode form as xn--hlios-iza.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Hēlios; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Greek can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Myth, script, sound, cult, legacy, domain: the faces of Hēlios add up to a single argument — that a name is a record, and records deserve fidelity. The PÚNYCODEX restoration keeps that record in working order: the temple presents it, the Scholarly Edition footnotes it, the lexicon catalogs it, and the domain makes it addressable. <em>helios</em> will always exist as a fallback. But fallback is not identity. <strong>Hēlios</strong> is the name; everything else is a convenience.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/adamas/">Adámas</a></li>
   <li><a href="/sites/admetus/">Admētos</a></li>
   <li><a href="/sites/aegeus/">Aigeús</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0130">Hesiod, Theogony 371–374.</a></li>
   <li><a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Liddell-Scott-Jones Greek-English Lexicon, 9th ed., s.v. ἥλιος.</a></li>
   <li><a href="https://brill.com/view/title/17858">Beekes, Etymological Dictionary of Greek (Brill, 2010), s.v. ἥλιος.</a></li>
   <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0138:hymn=31">Homeric Hymn 31, To Helios, lines 9–17.</a></li>
+  <li><a href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ">Pape-Benseler, Wörterbuch der griechischen Eigennamen, 3rd ed., 1863.</a></li>
+  <li>Homer, Iliad 3.276–277 (the oath by the all-seeing Sun).</li>
+  <li>Pindar, Olympian 7.54–76 (the division of the earth and the choosing of Rhodes).</li>
+  <li>Liddell-Scott-Jones Greek-English Lexicon, 9th ed., s.v. ἥλιος.</li>
+  <li>Plato, Cratylus 409a–b (folk etymologies of hēlios).</li>
+  <li>Lexicon authorities for this entry: LSJ, Pape-Benseler, Beekes.</li>
 </ul>
-<h2>The Cultural Afterlife</h2>
-<p>Hēlios&#39;s name survives wherever Greek became the language of science: heliocentrism, heliograph, heliotrope, aphelion — and the element helium, named by Norman Lockyer after the unknown yellow line detected in the sun&#39;s spectrum during the eclipse of 1868. His colossal bronze portrait, the Colossus of Rhodes, stood among the Seven Wonders of the ancient world. The Greeks themselves made him the first battleground between religion and astronomy: when Anaxagoras taught that the sun was a red-hot stone larger than the Peloponnese, he was prosecuted for impiety at Athens (Plutarch, Per. 32). Plato took the opposite path and made the sun the visible offspring of the Good, the pattern for every later solar symbolism from Sol Invictus&#39;s radiate crown to...</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">greek</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,48 +170,203 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>15 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#epithets-cult-titles">Epithets &amp; Cult Titles</a></li>
+                <li><a href="#the-homeric-hymns">The Homeric Hymns</a></li>
+                <li><a href="#oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>How Níkē Got Its Accent Back</h1>
-<p>The ASCII form <em>nike</em> is missing something. Níkē restores the marks that the original language used to distinguish this name from a thousand others. The name is attested in Greek as Νίκη. Etymologically it means &quot;Victory, conquest&quot;. The reconstructed proto-form is neiḱ- (proto-indo-european, &quot;to be vigorous, to prevail&quot;). From νίκη &quot;victory&quot;, cognate with Latin vincere, English win. Cognate forms across related languages: - vincere (latin) — To conquer - win (english) — PGmc winnan The ASCII form nike survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Níkē recovers both the stress accent and the vowel length of the original directly in the address bar. The original carries both stress and vowel length and admits multiple historically valid spellings, so the temple presents both forms of...</p>
-<h2>The Missing Marks</h2>
-<p>Classified as <strong>Dual-Tier</strong>, this restoration carries the stress and length that standard ASCII discards. the Greek original carries both stress and length, and multiple historically valid Unicode spellings exist</p>
-<h2>Step by Step</h2>
-<p>The transformation from <em>nike</em> to <strong>Níkē</strong> happens one character at a time. Some letters stay the same; others gain accents, macrons, or entirely new shapes. The breakdown on the <a href="/sites/nike/">temple home page</a> shows exactly how.</p>
-<h2>Why Stress and Length Matter</h2>
-<p>In the source language, changing a stress or a vowel length can change a meaning. Names are especially sensitive because they are proper nouns: one spelling points to one entity. Níkē preserves that pointer in a way <em>nike</em> cannot.</p>
-<h2>The Restored Form</h2>
-<p>Níkē is now a domain. That simple fact turns a philological detail into a public demonstration. Anyone who types it participates in the restoration.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Níkē is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>How Níkē got its accent back</h1>
+<p>The ASCII form <em>nike</em> is missing something. <strong>Níkē</strong> restores the marks the source language used to distinguish this name from a thousand others — and those marks change how the name is read, pronounced, and understood. This post explains, with the full scholarly record behind it, what each restored mark preserves: the Greek evidence, the reconstructed sound, the myths the name carries, and the classification logic that separates Tier 1 restorations from Tier 2. By the end, the marks in Níkē will look less like ornaments and more like what they are — recovered evidence, pinned back in its proper place.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Níkē</li>
+  <li><strong>ASCII form:</strong> nike</li>
+  <li><strong>Meaning:</strong> &quot;Victory, conquest&quot;</li>
+  <li><strong>Domain of influence:</strong> Victory</li>
+  <li><strong>Pantheon:</strong> Greek</li>
+  <li><strong>Classification:</strong> Dual-Tier</li>
+  <li><strong>Original script:</strong> Νίκη (Greek)</li>
+  <li><strong>Live domain:</strong> níkē.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Níkē</strong> (<em>nike</em>) — The Winged Herald · Bringer of Triumph — belongs to the Greek tradition, where it is catalogued under the domain &quot;Victory&quot;. The name means &quot;Victory, conquest&quot;.</p>
+<p>Níkē is not merely a personification; she is <strong>the divine power of winning</strong>. She stands beside Athena, Zeús, and Athletes, crowning the victor with laurel or fillet. In a culture that made competition the organizing principle of politics, athletics, and warfare, Níkē was everywhere.</p>
+<p>PÚNYCODEX restores the name as <strong>Níkē</strong> and serves its temple at <a href="https://xn--nk-nja7m.com">níkē.com</a>. The original carries both stress and vowel length and admits multiple historically valid spellings, so the temple presents both forms of the pair as a dual-tier restoration. The plain ASCII form <em>nike</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Greek as <strong>Νίκη</strong>. Etymologically it means &quot;Victory, conquest&quot;.</p>
+<p>The reconstructed proto-form is <em>neiḱ-</em> (proto-indo-european, &quot;to be vigorous, to prevail&quot;). From νίκη &quot;victory&quot;, cognate with Latin vincere, English win.</p>
+<p>Cognate forms across related languages:</p>
+<ul>
+  <li><strong>vincere</strong> (latin) — To conquer</li>
+  <li><strong>win</strong> (english) — PGmc *winnan</li>
+</ul>
+<p>The ASCII form <em>nike</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Níkē</strong> recovers both the stress accent and the vowel length of the original directly in the address bar. The original carries both stress and vowel length and admits multiple historically valid spellings, so the temple presents both forms of the pair as a dual-tier restoration.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>n</strong> → <strong>N</strong> — Nu</li>
+  <li><strong>i</strong> → <strong>í</strong> — Acute on iota</li>
+  <li><strong>k</strong> → <strong>k</strong> — Kappa</li>
+  <li><strong>e</strong> → <strong>ē</strong> — Eta: long epsilon</li>
+</ul>
+<p>Attested and derived spellings of the name:</p>
+<ul>
+  <li><strong>Nikē</strong> — macron-only form: LSJ convention: length only, no acute</li>
+</ul>
+<p>The project holds the domain <strong>níkē.com</strong> (xn--nk-nja7m.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: From νίκη &quot;victory&quot;, cognate with Latin vincere, English win.</p>
+<p>The reconstructed proto-form is <em>*neiḱ-</em> (proto-indo-european), glossed as &quot;to be vigorous, to prevail&quot;.</p>
+<p>The reconstruction is classed as attested.</p>
+<p>Kindred forms recorded in the lexicon:</p>
+<ul>
+  <li><strong>vincere</strong> (latin) — To conquer</li>
+  <li><strong>win</strong> (english) — PGmc *winnan</li>
+</ul>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Greek as <strong>Νίκη</strong> — Greek alphabet (Classical / Attic), attested Ancient Greek, c. 8th century BCE – present, in Greece and the Greek-speaking Mediterranean. The script is written left-to-right.</p>
+<p>The scholarly transliteration is <em>Níkē</em> (Greek alphabet with polytonic accents), giving the normalized reading /ˈniːkɛː/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The Greek form Νίκη is written in the Classical Greek alphabet.</li>
+  <li>Letters with acute, grave, or circumflex accents preserve the pitch accent of Ancient Greek.</li>
+  <li>Macrons and omegas (η, ω) mark long vowels, a feature lost in the plain ASCII form.</li>
+  <li>The Unicode restoration Níkē encodes the scholarly spelling as a registrable domain name.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/ní.kɛː/</strong> — Attic Greek Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Ní-</strong> — Nu with acute on short iota — the name begins with a pitched cry of triumph.</li>
+  <li><strong>-kē</strong> — Kappa plus long eta — the final syllable sustains the victory.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;NEE-kay&#39; — the first syllable rises in pitch like a shout; the second is long and clear.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>PIE</strong> — *nik- &#39;to win, overcome&#39; — root of Greek νίκη and Latin vincere</li>
+  <li><strong>Greek</strong> — νικάω (nikaō), &#39;to conquer, to be victorious&#39;</li>
+  <li><strong>Sanskrit</strong> — ni-śa- &#39;to reach, attain&#39; — possible distant connection</li>
+</ul>
+<p>Níkē is dual-tier because the Greek Νίκη carries both stress (acute on the short ι) and length (long η), and because two historically defensible restorations exist: Níkē with acute stress and Nikē with macron-only length. Both forms are owned and both preserve the goddess&#39;s essential meaning: Victory itself.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Níkē has few independent myths because she is an attribute of victory rather than a narrative protagonist. But her presence is decisive: she appears at the moment when struggle becomes triumph.</p>
+<h3 id="nike-at-zeus-s-side-the-titanomachy">Níkē at Zeus&#39;s Side (The Titanomachy)</h3>
+<p>In the <em>Theogony</em> (383–403), Styx brings her children Zelos (Rivalry), Nike (Victory), Kratos (Power), and Bia (Force) to Zeús&#39;s side at the beginning of the Titanomachy. Níkē is therefore one of the first divine powers to align with the new Olympian order. Her presence guarantees that the war against the Titans will end in triumph.</p>
+<h3 id="athena-nike-the-acropolis">Athena Nike (The Acropolis)</h3>
+<p>On the Athenian Acropolis, Athena was worshipped as Athena Nike, &#39;Athena Victory.&#39; A small temple stood at the edge of the citadel, its frieze carving battles of Greeks against Persians, long read as the wars of Marathon. The cult fused Athens&#39;s patron goddess with the abstract power of winning, making military success a religious obligation. The temple&#39;s remains still stand, one of the most elegant buildings in Greece.</p>
+<h3 id="nike-apteros-the-wingless-victory">Níkē Apteros (The Wingless Victory)</h3>
+<p>The Athenians famously kept a statue of Níkē without wings in the city so that victory could never fly away from Athens. The temple of Níkē Apteros stood near the entrance to the Acropolis. This ritual immobilization of the goddess reveals the Greek anxiety that victory, like all good things, is fleeting unless bound by piety.</p>
+<h3 id="nike-in-hellenistic-and-roman-art-the-later-cult">Níkē in Hellenistic and Roman Art (The Later Cult)</h3>
+<p>After Alexander the Great — whose own gold staters set her on the reverse, wreath and ship&#39;s standard in hand — Níkē became the standard goddess of royal and imperial victory. She crowns conquerors on coins, floats above battle scenes, and inscribes trophies. The Romans adopted her as Victoria; her image appears on countless imperial monuments. The winged figure of Victory became one of the most durable symbols of triumph in Western art, eventually influencing the Christian angel.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>Every one of Níkē&#39;s attributes proclaims speed and bestowal. She is winged because victory arrives in an instant — and, at Athens, deliberately wingless so that it can never depart; wreath, fillet, and palm are the victor&#39;s gear she carries down from Zeús, the visible seal of triumph that Pindar&#39;s odes celebrate; the trophy and the libation bowl mark her as the power that crowns and the power that gives thanks.</p>
+<ul>
+  <li><strong>Wings</strong> — Speed and the swift arrival of victory</li>
+  <li><strong>Laurel wreath</strong> — The crown of the victor</li>
+  <li><strong>Palm branch</strong> — Peace and triumph</li>
+  <li><strong>Filleted trophy</strong> — The captured arms or athletic prize</li>
+  <li><strong>Flying drapery</strong> — Momentum and the moment of triumph</li>
+  <li><strong>Sandals of swiftness</strong> — The ability to outrun defeat</li>
+</ul>
+<p>Níkē is among the most instantly recognizable figures of Greek art: a <strong>winged young woman</strong>, long-robed, caught in the instant of alighting, her drapery pressed flat by flight. Her attributes mark triumph — the <strong>wreath</strong> and <strong>fillet</strong> for the victor&#39;s head, the <strong>palm branch</strong>, the <strong>trophy</strong> she decks with captured arms, the <strong>phiale</strong> of the victor&#39;s libation.</p>
+<p>The masterpieces fixed the type. The <strong>Nike of Paionios</strong> at Olympia (c. 420s BCE) descends on a tall triangular pillar; the Athenian Nike temple parapet shows her adjusting her sandal or leading a bull to sacrifice; and the Hellenistic <strong>Nike of Samothrace</strong>, planted on a ship&#39;s prow, became the emblem of victory in motion. On Attic red-figure she pours libations over altars or flies to crown athletes; on coins from Sicily to imperial Rome her flying figure became the most reproduced divine image of antiquity.</p>
+<h2 id="epithets-cult-titles">Epithets &amp; Cult Titles</h2>
+<p>As a nearly transparent personification, Níkē has almost no independent epithet tradition; her titles live in fusion with greater gods and in local cult.</p>
+<ul>
+  <li><strong>καλλίσφυρος (kallísphyros)</strong> — &#39;fair-ankled,&#39; the ornamental hexameter epithet Hesiod gives her at her birth in the halls of Styx (<em>Theogony</em> 384).</li>
+  <li><strong>Ἄπτερος (Ápteros)</strong> — &#39;Wingless,&#39; the paradox of her Athenian image: the Athenians, antiquarians explain, made Victory without wings so that she could never fly away from their city.</li>
+  <li><strong>Ἀθηνᾶ Νίκη (Athēnâ Níkē)</strong> — &#39;Athena Victory,&#39; the fused cult of the Acropolis bastion, where the city&#39;s goddess and the abstract power of winning shared one temple and one priestess.</li>
+</ul>
+<p>In the victory odes she is invoked more freely, but such phrases are lyric predicates, not fixed cult titles.</p>
+<h2 id="the-homeric-hymns">The Homeric Hymns</h2>
+<p>No Homeric Hymn addresses Níkē, and the reason is revealing: in Homer νίκη is still only a common noun — the victory men win in battle or games — not yet a goddess who can be invoked. The personified Níkē is a Hesiodic creation. At <em>Theogony</em> 383–388 she enters the world as daughter of the river Styx and the Titan Pallas, sister of Rivalry (Zêlos), Power (Krátos), and Force (Bía), the four powers Styx brought to Zeús on the eve of the Titan war; in gratitude he granted that they should dwell with him forever. Later hexameter keeps her at his side, and Pindar&#39;s epinician odes — though not hymns — give her the nearest thing to a liturgy, hailing victory as the crowning grace that seals toil.</p>
+<h2 id="oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</h2>
+<p>Níkē had no oracle; she was the answer, not the question. Her great cult seat was the <strong>Temple of Athena Nike</strong> on the south-west bastion of the Athenian Acropolis (c. 427–424 BCE), where the wingless image received the sacrifices of a city perpetually at war. At <strong>Olympia</strong> her presence was votive rather than oracular: the hovering <strong>Nike of Paionios</strong>, dedicated by the Messanians and Naupaktians for a victory over Sparta, descended on its tall pillar before the temple of Zeús. Elsewhere she enters sanctuaries on the arm of another god — crowning Athena at Athens, Zeús at Olympia — which is the pattern of her worship everywhere: Níkē is honoured together with the deity whose gift victory is.</p>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Her monuments are victory dedications rather than temples of her own. The Temple of Athena Nike on the south-west bastion of the Athenian Acropolis (c. 427–424 BCE), an amphiprostyle Ionic building associated with the architect Kallikratēs, housed the wingless wooden image; its frieze carved battles of Greeks against Persians, and the later parapet showed Nikai leading bulls to sacrifice and adjusting their sandals — the sandal-binding Nike is now in the Acropolis Museum (inv. 973). At Olympia the Messanians and Naupaktians dedicated the hovering Nike of Paionios of Mendē (c. 421 BCE), set on a tall triangular pillar before the temple of Zeús and recovered in the German excavations of 1875. In the great Panhellenic cult statues she was held in a greater god&#39;s hand: Pheidias&#39; Athena Parthenos carried a Nike four cubits high, and his Olympian Zeús a Victory of ivory and gold. The Hellenistic Nike of Samothrace (Louvre, Ma 2369), found in 1863 in the sanctuary of the Great Gods, stands on a ship&#39;s prow as victory descending on a fleet.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Níkē is not merely a personification; she is <strong>the divine power of winning</strong>. She stands beside Athena, Zeús, and Athletes, crowning the victor with laurel or fillet. In a culture that made competition the organizing principle of politics, athletics, and warfare, Níkē was everywhere.</p>
+<h3 id="military-victory">Military Victory</h3>
+<p>She descends with Zeús to turn the tide of battle; she crowns the conqueror.</p>
+<h3 id="athletic-triumph">Athletic Triumph</h3>
+<p>Every Panhellenic games ended with a victor crowned in her name; she is the glory of competition.</p>
+<h3 id="winged-messenger">Winged Messenger</h3>
+<p>She is often winged, swift as rumor, bringing news of victory across land and sea.</p>
+<h3 id="divine-attendant">Divine Attendant</h3>
+<p>She stands with Athena Nike on the Athenian Acropolis, the most famous victory cult in Greece.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Rome made her Victoria and enrolled her in the state cult: victorious generals owed her temples, and Augustus set the Tarentine statue of Victory on its altar in the rebuilt senate house, where she presided over every vote until Gratian removed the altar in 382 CE. The prefect Symmachus&#39; plea for its restoration — and Bishop Ambrose&#39;s rejoinder — became the classic document of the old gods&#39; retreat before the Christian empire. The winged figure herself survived the change of religion: her type fed the emerging iconography of the angel, and the Nike of Samothrace, raised above the Louvre staircase in the nineteenth century, became a secular emblem of triumph itself. The idea that victory can be personified, courted, and honoured runs unbroken from Hesiod — for whom she is Stýx&#39;s daughter, first of the powers to rally to Zeús — into the present.</p>
+<p>Within the PÚNYCODEX corpus her closest kin are [[zeus|Zeús]], at whose throne she dwells; [[athena|Athénā]], with whom she shared her greatest temple; and [[styx|Stýx]], her mother.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Níkē is perhaps the most widely recognized Greek goddess in the modern world. Her winged image has inspired countless marks of excellence, from athletic victory to artistic achievement. But her ancient importance was far deeper: she embodied the Greek belief that excellence deserves public recognition, that competition produces virtue, and that victory is a divine gift rather than a merely human achievement. The Temple of Athena Nike on the Acropolis is a monument to this ideal. Every medal, trophy, and laurel wreath descends from her cult. Restoring <em>Níkē</em> restores the name of the goddess who crowns the winner.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Níkē given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Full text</a></li>
+  <li> Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a href="https://brill.com/view/title/17858">Full text</a></li>
+  <li> Wörterbuch der griechischen Eigennamen, 3rd ed., 1863. <a href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ">Full text</a></li>
+  <li> Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE. <a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Full text</a></li>
+  <li> Pausanias, Description of Greece.</li>
+  <li> Homeric Hymn to Athena.</li>
+  <li> Mark, The Sanctuaries of Nike.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Níkē is the goddess of the decisive moment. She does not fight; she arrives when the fighting is done. She is not effort but its recognition, not struggle but its resolution. That is why the Greeks made her winged: victory is swift and can disappear just as quickly — the Athenians clipped her wings in cult so that she could not leave the city.</p>
+<p>The Greeks also knew that competition cuts both ways: Hesiod&#39;s two Strifes teach that the good Eris rouses even the idle to outwork their neighbour, so that potter vies with potter and bard with bard. Modern culture has often borrowed Níkē&#39;s image as a symbol of victory, but the ancient idea remains potent: that winning is not only permitted but sacred, that the victor deserves not envy but honour — what Pindar hailed as the crowning grace that seals toil. The restoration of her name is a reminder that excellence, when achieved, should be crowned.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Níkē is classified as <strong>Dual-Tier</strong>: the original carries both stress and length, and multiple historically valid Unicode spellings exist. The ASCII fallback <em>nike</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 4 characters of the name, the restoration adjusts 2: 1 mark of stress (í); 1 mark of length (ē). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>níkē.com</strong>, which the DNS carries in punycode form as xn--nk-nja7m.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Níkē; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Greek can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>The marks in <strong>Níkē</strong> were never lost; they were only waiting for a carrier that could hold them. Now that the carrier exists, the burden flips: every use of <em>nike</em> is a choice to leave evidence on the table. The PÚNYCODEX temple keeps the restored form in circulation — as a domain, a dataset entry, and a scholarly argument — so that the choice to use it stays easy. Accent by accent, macron by macron, that is how the original names come back: not with a single grand gesture, but with a spelling that finally works everywhere.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/gravitas/">Gravitas</a></li>
   <li><a href="/sites/griffin/">Grýps</a></li>
   <li><a href="/sites/hades/">Hádēs</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843.</a></li>
   <li><a href="https://brill.com/view/title/17858">Etymological Dictionary of Greek, 2 vols., Brill, 2010.</a></li>
   <li><a href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ">Wörterbuch der griechischen Eigennamen, 3rd ed., 1863.</a></li>
   <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE.</a></li>
+  <li>Hesiod, Theogony 383–403 (Níkē and her siblings at the side of Zeús).</li>
+  <li>Pausanias, Description of Greece 1.22.4 (Athena Nike on the Acropolis bastion).</li>
+  <li>Pausanias, Description of Greece 3.15.7 (the wingless type and its rationale).</li>
+  <li>Pindar, Olympian and Nemean Odes.</li>
+  <li>Lexicon authorities for this entry: LSJ, Pape-Benseler, Beekes.</li>
 </ul>
-<h2>The Cultural Afterlife</h2>
-<p>Níkē is perhaps the most widely recognized Greek goddess in the modern world. Her winged image has inspired countless marks of excellence, from athletic victory to artistic achievement. But her ancient importance was far deeper: she embodied the Greek belief that excellence deserves public recognition, that competition produces virtue, and that victory is a divine gift rather than a merely human achievement. The Temple of Athena Nike on the Acropolis is a monument to this ideal.^1 Every medal, trophy, and laurel wreath descends from her cult. Restoring Níkē restores the name of the goddess who crowns the winner.</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Níkē as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Greek to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Níkē through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/nike/">home page</a> offers the full name breakdown, the <a href="/sites/nike/lore/">lore page</a> explores the myth, and the <a href="/sites/nike/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Níkē do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
-<h2>A Note on the Address Bar</h2>
-<p>When you type Níkē, the browser performs an invisible conversion into Punycode so the global DNS can route the request. The user sees the original name; the machines see a compatible ASCII encoding. That duality is the engineering compromise that makes the restoration possible, and it is the reason every Unicode domain is both a technical milestone and a small act of cultural memory.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">greek</span><span class="blog-tag">Dual-Tier</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,35 +170,199 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-egyptian-pantheon">The Egyptian Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>From Hieroglyphs to Unicode: The Journey of Bꜣstt</h1>
-<p>Long before it was a domain, the name traveled through scripts. The name is preserved in Hieroglyphs as 𓎯𓏏𓏏𓁐 — Egyptian hieroglyphic, attested Old Kingdom – Late Antiquity, c. 2600 BCE – 400 CE, in Egypt. The script is written right-to-left / top-to-bottom. The scholarly transliteration is Bꜣstt (Egyptological conventional), giving the normalized reading Original vocalisation unknown; Egyptological /ˈbæstɛt/.. The rendering proceeds step by step: - The Egyptian name is written 𓎯𓏏𓏏𓁐 in hieroglyphs. - Hieroglyphs combine logograms, phonograms, and determinatives; the exact function of each sign depends on context. - Egyptian writing does not record vowels; the vocalised form is a modern convention reconstructed from Coptic and Greek evidence. - The Unicode restoration Bꜣstt uses Egyptological alef/ayin and... This post follows Bꜣstt from its earliest attestation to the address bar.</p>
-<h2>The Original Sign</h2>
-<p>The original script gives us <strong>𓎯𓏏𓏏𓁐</strong>. The name is preserved in Hieroglyphs as 𓎯𓏏𓏏𓁐 — Egyptian hieroglyphic, attested Old Kingdom – Late Antiquity, c. 2600 BCE – 400 CE, in Egypt. The script is written right-to-left / top-to-bottom. The scholarly transliteration is Bꜣstt (Egyptological conventional), giving the normalized reading Original vocalisation unknown; Egyptological /ˈbæstɛt/.. The rendering proceeds step by step: - The Egyptian name is written 𓎯𓏏𓏏𓁐 in hieroglyphs. - Hieroglyphs combine logograms, phonograms, and determinatives; the exact function of each sign depends on context. - Egyptian writing does not record vowels; the vocalised form is a modern convention reconstructed from Coptic and Greek evidence. - The Unicode restoration Bꜣstt uses Egyptological alef/ayin and...</p>
-<h2>The Scholarly Transliteration</h2>
-<p>The name is attested in Hieroglyphs as 𓎯𓏏𓏏𓁐. Etymologically it means &quot;She of the ointment jar (Egyptian bꜣstt)&quot;. The ASCII form bastet survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Bꜣstt recovers the full diacritic detail of the scholarly transliteration directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The letter-by-letter transformation runs: - b → B — Same - a → ꜣ — Alef: glottal stop - s → s — Same - t → t — Same - e → — — Dropped: vowel not written - t → t — Same The project holds the domain bꜣstt.com (xn--bstt-ge8o.com) as the... Scholars settled on Bꜣstt as the registrable restoration: faithful enough to be recognizable, precise enough to carry the marks that matter.</p>
-<h2>DNS as a Time Machine</h2>
-<p>Punycode lets the DNS carry non-ASCII characters without breaking older routers. To the user, the address bar shows Bꜣstt; to the infrastructure, it is an encoded xn-- string. The duality is invisible, but the result is revolutionary: a pre-digital name living inside a post-digital system.</p>
-<h2>Pronunciation</h2>
-<p>Scholars reconstruct the sound as <em>&#39;boo-ISS-tee&#39; — say &#39;boo&#39;, then a tiny catch before &#39;iss&#39;, ending with &#39;tee&#39; (the final t is often silent).</em>. Hearing the name in your own voice is one way to make the restoration personal.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Bꜣstt is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>From Hieroglyphs to Unicode: the journey of Bꜣstt</h1>
+<p>Long before it was a domain, this name traveled through scripts. <strong>Bꜣstt</strong> begins in Hieroglyphs, passes through scholarly transliteration, and ends — for now — inside the punycode machinery of the global DNS. Each stage of that journey preserves some information and loses some, and the craft of restoration is knowing exactly which marks matter. This post follows the name stage by stage: the original script, the reconstructed pronunciation, the mythological record, the material evidence, and finally the Unicode form that carries all of it into the address bar. Think of it as a biography of a name, told through its spelling.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Bꜣstt</li>
+  <li><strong>ASCII form:</strong> bastet</li>
+  <li><strong>Meaning:</strong> &quot;She of the ointment jar (Egyptian bꜣstt)&quot;</li>
+  <li><strong>Domain of influence:</strong> Home, Fertility, Cats</li>
+  <li><strong>Pantheon:</strong> Egyptian</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> 𓎯𓏏𓏏𓁐 (Hieroglyphs)</li>
+  <li><strong>Live domain:</strong> bꜣstt.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Bꜣstt</strong> (<em>bastet</em>) — Home, Fertility, Cats · She of the ointment jar (Egyptian bꜣstt) — belongs to the Egyptian tradition, where it is catalogued under the domain &quot;Home, Fertility, Cats&quot;. The name means &quot;She of the ointment jar (Egyptian bꜣstt)&quot;.</p>
+<p><strong>Bꜣstt</strong> begins as a lioness and ends as a cat. In the Old Kingdom she is a fierce daughter of Re, one of the raging eyes of the sun; by the Late Period she has become the benevolent lady of the home, her round face and upright ears copied by millions of household cats. The transformation is not a decline but an expansion: she learns to keep watch at the cradle as well as at the battlefield.</p>
+<p>Her name may mean &#39;she of the ointment jar&#39; (bꜣstt), linking her to perfumes, cosmetics, and the guarded substances of the bedroom. At her cult center, Per-Bastet — Greek Boubastis — pilgrims gathered for one of Egypt&#39;s most exuberant festivals: music, dance, wine, and the sacred procession of the goddess&#39;s barge.</p>
+<p>PÚNYCODEX restores the name as <strong>Bꜣstt</strong> and serves its temple at <a href="https://xn--bstt-ge8o.com">bꜣstt.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>bastet</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Hieroglyphs as <strong>𓎯𓏏𓏏𓁐</strong>. Etymologically it means &quot;She of the ointment jar (Egyptian bꜣstt)&quot;.</p>
+<p>The ASCII form <em>bastet</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Bꜣstt</strong> recovers the full diacritic detail of the scholarly transliteration directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>b</strong> → <strong>B</strong> — Same</li>
+  <li><strong>a</strong> → <strong>ꜣ</strong> — Alef: glottal stop</li>
+  <li><strong>s</strong> → <strong>s</strong> — Same</li>
+  <li><strong>t</strong> → <strong>t</strong> — Same</li>
+  <li><strong>e</strong> → <strong>—</strong> — Dropped: vowel not written</li>
+  <li><strong>t</strong> → <strong>t</strong> — Same</li>
+</ul>
+<p>The project holds the domain <strong>bꜣstt.com</strong> (xn--bstt-ge8o.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Hieroglyphs as <strong>𓎯𓏏𓏏𓁐</strong> — Egyptian hieroglyphic, attested Old Kingdom – Late Antiquity, c. 2600 BCE – 400 CE, in Egypt. The script is written right-to-left / top-to-bottom.</p>
+<p>The scholarly transliteration is <em>Bꜣstt</em> (Egyptological conventional), giving the normalized reading Original vocalisation unknown; Egyptological /ˈbæstɛt/..</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The Egyptian name is written 𓎯𓏏𓏏𓁐 in hieroglyphs.</li>
+  <li>Hieroglyphs combine logograms, phonograms, and determinatives; the exact function of each sign depends on context.</li>
+  <li>Egyptian writing does not record vowels; the vocalised form is a modern convention reconstructed from Coptic and Greek evidence.</li>
+  <li>The Unicode restoration Bꜣstt uses Egyptological alef/ayin and other registrable characters; the hieroglyphic form is not registrable in .com.</li>
+</ul>
+<p>The name is written b-ꜣ-s-t-t, often with an ointment-jar determinative (V30) that gives rise to the gloss &#39;she of the ointment jar.&#39; Allen reconstructs an early pronunciation close to buʔístit, with a glottal stop represented by the alef ꜣ (U+A723). The doubled t is orthographic; the final consonant is a feminine marker often silent in speech. Coptic writes ⲟⲩⲃⲁⲥⲧⲉ (Oubaste). The meaning of the root remains uncertain, and PÚNYCODEX preserves the historic spelling Bꜣstt as a Tier 2 restoration that signals the alef and the feminine ending.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/buˈʔistit/</strong> — Egyptological Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>B-</strong> — Voiced bilabial stop [b], as in English &#39;bone&#39;.</li>
+  <li><strong>-u-</strong> — Short rounded vowel in the first syllable.</li>
+  <li><strong>-ʔ-</strong> — Glottal stop [ʔ], the Egyptological alef (ꜣ, U+A723) that Allen reconstructs before the stressed syllable in the earliest form.</li>
+  <li><strong>-i-</strong> — Short close front vowel in the stressed syllable.</li>
+  <li><strong>-s-</strong> — Voiceless alveolar fricative [s], as in English &#39;see&#39;.</li>
+  <li><strong>-t</strong> — Voiceless alveolar stop [t]; the second -t marks the feminine suffix and was usually not pronounced in speech.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;boo-ISS-tee&#39; — say &#39;boo&#39;, then a tiny catch before &#39;iss&#39;, ending with &#39;tee&#39; (the final t is often silent).</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Coptic</strong> — ⲟⲩⲃⲁⲥⲧⲉ (Oubaste), /ʔuˈβastə/</li>
+  <li><strong>Greek</strong> — Βούβαστις (Boubastis), conflated with the city Per-Bastet</li>
+  <li><strong>Phoenician</strong> — 𐤀𐤁𐤎𐤕 (ʾbst) or 𐤁𐤎𐤕 (bst)</li>
+  <li><strong>Earlier Egyptian</strong> — Bast / Bꜣst, the shorter Old Kingdom form</li>
+</ul>
+<p>Allen (The Ancient Egyptian Language: A Historical Study, 2013, p. 74) reconstructs the earliest form as buʔístit or buʔístiat; by the first millennium the name had become *Ubaste and then Coptic ⲟⲩⲃⲁⲥⲧⲉ (Oubaste) /ʔuˈβastə/. The meaning of the name remains uncertain; the lexicon glosses it &#39;She of the ointment jar&#39;. The final -t is a feminine marker often silent in speech, and the ꜣ represents a glottal stop. PUNYCODEX uses the registrable alef ꜣ (U+A723); the double -tt- is orthographic. This is a Tier 2 restoration. Sources: Allen 2013, p. 74; Faulkner, A Concise Dictionary of Middle Egyptian, s.v. bꜣstt; Wörterbuch der ägyptischen Sprache III, s.v. bꜣstt; Hoch, Semitic Words in Egyptian Texts (1994), for the phonological background of Egyptian alef and feminine -t.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Bastet&#39;s myths are fewer than those of Isis or Horus, but her role in the solar cycle is vivid: she is the gentle dawn that follows the lioness&#39;s night.</p>
+<h3 id="the-eye-of-re-returns-solar-cycle">The Eye of Re Returns (Solar cycle)</h3>
+<p>In the mythology of the Distant Goddess, the solar eye — often in leonine form — leaves Egypt for Nubia in anger. Re sends Thoth or Shu to coax her back. When she returns, she is pacified as Bastet, the cat, and the festival of her homecoming is celebrated at Bubastis. The myth explains both the dangerous heat of the absent sun and the safety of its domesticated return.</p>
+<h3 id="bastet-and-apep-battle">Bastet and Apep (Battle)</h3>
+<p>As a daughter of Re, Bastet takes part in the nightly battle against Apep, the serpent of chaos. In her lioness form she rips at the enemy; in her cat form she watches the prow of the sun barque, guarding Re with sharp eyes.</p>
+<h3 id="the-pilgrimage-to-bubastis-festival">The Pilgrimage to Bubastis (Festival)</h3>
+<p>Herodotus (Histories 2.60) describes the festival at Boubastis: boats of pilgrims, men and women together, sang, clapped, and exposed themselves in ribald jest as they traveled upriver. At the temple, great sacrifices of wine and animals were offered, and revelers honored the goddess with music and dance.</p>
+<h3 id="the-gentle-healer-healing">The Gentle Healer (Healing)</h3>
+<p>Late Period and Greco-Roman amulets invoke Bastet against illness and the evil eye. Small bronze cats were deposited by the thousand in her temple precinct, votive bodies for a goddess who watched over the body&#39;s margins: birth, sleep, sexuality, and death.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography of Bꜣstt concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>Cat</strong> — Her later, domestic form; guardian of the home and hearth</li>
+  <li><strong>Lioness</strong> — Her older solar-warrior aspect as an eye of Re</li>
+  <li><strong>Sistrum</strong> — Music, trance, and the rattling sound that drives away evil</li>
+  <li><strong>Aegis and basket</strong> — The broad collar topped with a lioness head that her Late Period bronze figures carry, with the small basket of the cult participant</li>
+  <li><strong>Kittens</strong> — Bronze votive groups show her with a litter at her feet, turning fertility into statuary</li>
+  <li><strong>Ointment jar</strong> — Perfume, cosmetics, and the guarded substances of feminine space, and the determinative that writes her name</li>
+  <li><strong>Ankh</strong> — The life and fertility she grants to households</li>
+</ul>
+<ul>
+  <li><strong>Cat</strong> — Her later, domestic form; guardian of the home and hearth</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>The temple of Bastet at Tell Basta (Per-Bastet/Boubastis), excavated by Édouard Naville for the Egypt Exploration Fund in 1886–89, preserves the granite festival hall of Osorkon II with its sed-festival reliefs and has yielded statues, jewelry, and one of the largest animal cemeteries in Egypt: hundreds of thousands of mummified cats deposited as votives from the Late Period into Roman times. A second great center of her cult stood on the Saqqara escarpment: the Bubasteion, a Late Period to Ptolemaic temple raised above cat catacombs of its own. Bronze cat statuettes, often inlaid with gold earrings, are common in museum collections; examples come from Saqqara, Thebes, and Tanis. Reliefs in the Valley of the Kings show Bastet as a daughter of Re in the solar barque, keeping the older lioness alive beside the household cat.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p><strong>Bꜣstt</strong> begins as a lioness and ends as a cat. In the Old Kingdom she is a fierce daughter of Re, one of the raging eyes of the sun; by the Late Period she has become the benevolent lady of the home, her round face and upright ears copied by millions of household cats. The transformation is not a decline but an expansion: she learns to keep watch at the cradle as well as at the battlefield.</p>
+<p>Her name may mean &#39;she of the ointment jar&#39; (bꜣstt), linking her to perfumes, cosmetics, and the guarded substances of the bedroom. At her cult center, Per-Bastet — Greek Boubastis — pilgrims gathered for one of Egypt&#39;s most exuberant festivals: music, dance, wine, and the sacred procession of the goddess&#39;s barge.</p>
+<h3 id="the-cat">The Cat</h3>
+<p>Bastet&#39;s later animal form; the cat protects the home from vermin and evil, and embodies solar warmth.</p>
+<h3 id="the-lioness">The Lioness</h3>
+<p>Her older, fiercer aspect as a daughter of Re who fights the chaos serpent Apep.</p>
+<h3 id="music-and-ecstasy">Music and Ecstasy</h3>
+<p>Her festivals featured sistrums, drums, and dancing; she is a goddess of controlled revelry.</p>
+<h3 id="guardian-of-the-home">Guardian of the Home</h3>
+<p>Amulets of Bastet protected women in childbirth and children against malign forces.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Bastet overlaps with Sekhmet as the pacified form of the solar eye; one text&#39;s destroyer is another&#39;s house-cat. She was also identified with Hathor in her musical and erotic aspects, and with Isis as protector of the child Horus. Greeks equated her with Artemis, another virgin huntress with a fierce streak, and sometimes with Aphrodite because of her festivals&#39; sexual license. In Roman Egypt her cult spread alongside that of Isis, and her cat iconography influenced medieval European images of the cat as both demonic and protective. The Coptic name Oubaste preserves her sound long after her temples closed.</p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include [[babaluaye|Ọbalúayé]], [[coatlicue|Cōātlīcue]], [[dagan|Dāgan]], [[demeter|Dēmētēr]], [[gaia|Gaîa]], and [[ishtar|Ištar]], each linked through earth / mother / fertility.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Bastet is the presiding genius of the internet cat: her image underlies every meme of a cat guarding a household, every statue of a seated feline, every association of cats with mystery and female power. In modern Witchcraft and Kemetic practice she is invoked for home protection, fertility, and pleasure. Her antiquity also has a sobering modern history: in 1890 some 180,000 mummified cats from the cat cemetery at Speos Artemidos near Beni Hasan were auctioned in Liverpool, most of them ground into fertilizer — an episode that appalled and galvanized the scholarship from which the modern study of Egyptian animal cults, and Jaromir Malek&#39;s standard work on the cat in ancient Egypt, descend. Egyptologists study the vast cat necropolis at Bubastis as evidence of animal cult and early pet-keeping. Bastet reminds us that the divine can sit on a windowsill, purring, and still be a daughter of the sun.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Bꜣstt given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Allen, The Ancient Egyptian Language: A Historical Study (2013).</li>
+  <li> Faulkner, A Concise Dictionary of Middle Egyptian, s.v. bꜣstt.</li>
+  <li> Wörterbuch der ägyptischen Sprache III, s.v. bꜣstt.</li>
+  <li> Herodotus, Histories 2.60.</li>
+  <li> Lichtheim, Ancient Egyptian Literature, vol. 3.</li>
+  <li> Teeter, Religion and Ritual in Ancient Egypt.</li>
+  <li> Malek, The Cat in Ancient Egypt.</li>
+  <li> Book of the Heavenly Cow.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Bastet is the goddess of thresholds. She lives where the wild presses against the wall of the house: the cat who sleeps on the bed but still dreams of the hunt. Her mythology is the domestication of solar power — not its weakening, but its decision to protect something small.</p>
+<p>There is a wisdom in her later form that the earlier lioness could not teach. To guard a child, to keep watch through the night, to turn a corner of the home into a sanctuary — these are not lesser magics than tearing apart chaos. They are the magics that make chaos worth defeating. Bastet asks us to honor the fierce thing that has chosen to be gentle, and to remember that the claw and the purr belong to the same creature.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Bꜣstt is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>bastet</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 6 characters of the name, the restoration adjusts 2: 2 further adjustments (ꜣ, e). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>bastet</em> to <strong>Bꜣstt</strong>, one character at a time:</p>
+<ul>
+  <li><strong>b</strong> → <strong>B</strong> — Same</li>
+  <li><strong>a</strong> → <strong>ꜣ</strong> — Alef: glottal stop</li>
+  <li><strong>s</strong> → <strong>s</strong> — Same</li>
+  <li><strong>t</strong> → <strong>t</strong> — Same</li>
+  <li><strong>e</strong> → <strong>e</strong> — Dropped: vowel not written</li>
+  <li><strong>t</strong> → <strong>t</strong> — Same</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>bꜣstt.com</strong>, which the DNS carries in punycode form as xn--bstt-ge8o.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Bꜣstt; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Hieroglyphs can now be typed into any browser on earth.</p>
+<h2 id="the-egyptian-pantheon">The Egyptian Pantheon</h2>
+<p>Bꜣstt is one of 66 entries the PÚNYCODEX lexicon catalogues under the Egyptian pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Bꜣstt mean?</strong> The traditional gloss is &quot;She of the ointment jar (Egyptian bꜣstt).&quot;</p>
+<p><strong>Which tradition does Bꜣstt belong to?</strong> Bꜣstt is catalogued in the Egyptian pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Bꜣstt classified as Tier 2?</strong> Because the original preserves at least one philological feature that ASCII cannot encode — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Bꜣstt a working domain?</strong> Yes — bꜣstt.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for bꜣstt.com?</strong> The DNS encoding is xn--bstt-ge8o.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Every stage of the journey from Hieroglyphs to Unicode was an act of care: the scribe who first wrote the name, the lexicographer who glossed it, the engineer who taught the DNS to carry it. The PÚNYCODEX restoration is the latest stage, not the last word — the Scholarly Edition is revised as the evidence improves. What does not change is the principle: a name deserves to be written the way its own tradition wrote it. <strong>Bꜣstt</strong> in the address bar is that principle, made routable.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/renenutet/">Rnnwtt</a></li>
   <li><a href="/sites/serapis/">Serapis</a></li>
   <li><a href="/sites/set/">Stḫ</a></li>
 </ul>
-<h2>Further Reading</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.cambridge.org/">James P. Allen, Middle Egyptian: An Introduction to the Language and Culture of Hieroglyphs, Cambridge University Press, 2000.</a></li>
+  <li>Allen, The Ancient Egyptian Language: A Historical Study (2013).</li>
+  <li>Faulkner, A Concise Dictionary of Middle Egyptian, s.v. bꜣstt.</li>
+  <li>Wörterbuch der ägyptischen Sprache III, s.v. bꜣstt.</li>
+  <li>Malek, The Cat in Ancient Egypt (1993).</li>
+  <li>Lexicon authorities for this entry: Faulkner, Wb.</li>
 </ul>
-<h2>The Name in Context</h2>
-<p>Bꜣstt (bastet) — Home, Fertility, Cats · She of the ointment jar (Egyptian bꜣstt) — belongs to the Egyptian tradition, where it is catalogued under the domain &quot;Home, Fertility, Cats&quot;. The name means &quot;She of the ointment jar (Egyptian bꜣstt)&quot;. Bꜣstt begins as a lioness and ends as a cat. In the Old Kingdom she is a fierce daughter of Re, one of the raging eyes of the sun; by the Late Period she has become the benevolent lady of the home, her round face and upright ears copied by millions of household cats. The transformation is not a decline but an expansion: she learns to keep watch at the cradle as well as at the battlefield. Her name may mean &#39;she of the ointment jar&#39; (bꜣstt), linking her to perfumes, cosmetics, and the guarded substances of the...</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">egyptian</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

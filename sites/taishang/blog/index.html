@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,38 +170,206 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-chinese-pantheon">The Chinese Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#typing-taishang">Typing Tàishàng</a></li>
+                <li><a href="#sister-temples">Sister Temples</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>From Chinese characters to Unicode: The Journey of Tàishàng</h1>
-<p>Long before it was a domain, the name traveled through scripts. The name is preserved in Chinese characters as 太上 — Hanzi (Sino-Tibetan), a script tradition attested from the oracle bones (c. 1200 BCE) to the present; both graphs are identical in traditional and simplified forms. The script is written left-to-right in modern usage, top-to-bottom in traditional layout. The scholarly transliteration is Tàishàng (Hanyu Pinyin with tone marks), giving the normalized reading /tʰaɪ̯˥˩ ʂɑŋ˥˩/. The rendering proceeds step by step: - 太 &#39;utmost, supreme&#39; is 大 &#39;great&#39; — the drawing of a spread-limbed person — with one added stroke marking the superlative; early manuscripts commonly write the word with plain 大, as the Guodian text Tàiyī shēng shuǐ writes 太一 as 大一. - 上 &#39;above, on high&#39; is one of the script&#39;s pure ideographs:... This post follows Tàishàng from its earliest attestation to the address bar.</p>
-<h2>The Original Sign</h2>
-<p>The original script gives us <strong>太上</strong>. The name is preserved in Chinese characters as 太上 — Hanzi (Sino-Tibetan), a script tradition attested from the oracle bones (c. 1200 BCE) to the present; both graphs are identical in traditional and simplified forms. The script is written left-to-right in modern usage, top-to-bottom in traditional layout. The scholarly transliteration is Tàishàng (Hanyu Pinyin with tone marks), giving the normalized reading /tʰaɪ̯˥˩ ʂɑŋ˥˩/. The rendering proceeds step by step: - 太 &#39;utmost, supreme&#39; is 大 &#39;great&#39; — the drawing of a spread-limbed person — with one added stroke marking the superlative; early manuscripts commonly write the word with plain 大, as the Guodian text Tàiyī shēng shuǐ writes 太一 as 大一. - 上 &#39;above, on high&#39; is one of the script&#39;s pure ideographs:...</p>
-<h2>The Scholarly Transliteration</h2>
-<p>The name is attested in Chinese characters as 太上. Etymologically it means &quot;Supreme, great&quot;. The ASCII form taishang survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Tàishàng recovers the stress accent of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The letter-by-letter transformation runs: - t → T — Same, capitalized - a → à — Stress on a - i → i — Same - s → s — Same - h → h — Same - a → à — Stress on a - n → n — Same - g → g — Same The project holds the domain tàishàng.com (xn--tishng-itad.com)... Scholars settled on Tàishàng as the registrable restoration: faithful enough to be recognizable, precise enough to carry the marks that matter.</p>
-<h2>DNS as a Time Machine</h2>
-<p>Punycode lets the DNS carry non-ASCII characters without breaking older routers. To the user, the address bar shows Tàishàng; to the infrastructure, it is an encoded xn-- string. The duality is invisible, but the result is revolutionary: a pre-digital name living inside a post-digital system.</p>
-<h2>Pronunciation</h2>
-<p>Scholars reconstruct the sound as <em>TIE-SHUHNG — &#39;tai&#39; like &#39;tie&#39; with a sharp falling tone, &#39;shang&#39; with a retroflex &#39;sh&#39; and a falling tone.</em>. Hearing the name in your own voice is one way to make the restoration personal.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Tàishàng is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>From Chinese characters to Unicode: the journey of Tàishàng</h1>
+<p>Long before it was a domain, this name traveled through scripts. <strong>Tàishàng</strong> begins in Chinese characters, passes through scholarly transliteration, and ends — for now — inside the punycode machinery of the global DNS. Each stage of that journey preserves some information and loses some, and the craft of restoration is knowing exactly which marks matter. This post follows the name stage by stage: the original script, the reconstructed pronunciation, the mythological record, the material evidence, and finally the Unicode form that carries all of it into the address bar. Think of it as a biography of a name, told through its spelling.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Tàishàng</li>
+  <li><strong>ASCII form:</strong> taishang</li>
+  <li><strong>Meaning:</strong> &quot;Supreme, great&quot;</li>
+  <li><strong>Domain of influence:</strong> Supreme Lord, Dao</li>
+  <li><strong>Pantheon:</strong> Chinese</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Original script:</strong> 太上 (Chinese characters)</li>
+  <li><strong>Live domain:</strong> tàishàng.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Tàishàng</strong> (<em>taishang</em>) — Supreme Lord, Dao · Supreme, great — belongs to the Chinese tradition, where it is catalogued under the domain &quot;Supreme Lord, Dao&quot;. The name means &quot;Supreme, great&quot;.</p>
+<p><strong>Tàishàng</strong> names the supreme station in Daoist cosmology. In its fullest form, <em>Tàishàng Lǎojūn</em> (Supreme Lord Lao) is the deified Laozi, the legendary author of the <em>Dàodéjīng</em>, elevated into one of the Three Pure Ones who stand at the summit of the Daoist pantheon. Where the historical Laozi taught wordless wisdom, the celestial Tàishàng Lǎojūn dispenses scriptures, elixirs, and revelations.</p>
+<p>He is not a creator god in the Western sense. He is the personification of the Dao in its highest, most hidden aspect — the origin that cannot be named, named.</p>
+<p>PÚNYCODEX restores the name as <strong>Tàishàng</strong> and serves its temple at <a href="https://xn--tishng-itad.com">tàishàng.com</a>. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>taishang</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Chinese characters as <strong>太上</strong>. Etymologically it means &quot;Supreme, great&quot;.</p>
+<p>The ASCII form <em>taishang</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Tàishàng</strong> recovers the stress accent of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>t</strong> → <strong>T</strong> — Same, capitalized</li>
+  <li><strong>a</strong> → <strong>à</strong> — Stress on a</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+  <li><strong>s</strong> → <strong>s</strong> — Same</li>
+  <li><strong>h</strong> → <strong>h</strong> — Same</li>
+  <li><strong>a</strong> → <strong>à</strong> — Stress on a</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+  <li><strong>g</strong> → <strong>g</strong> — Same</li>
+</ul>
+<p>The project holds the domain <strong>tàishàng.com</strong> (xn--tishng-itad.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Chinese characters as <strong>太上</strong> — Hanzi (Sino-Tibetan), a script tradition attested from the oracle bones (c. 1200 BCE) to the present; both graphs are identical in traditional and simplified forms. The script is written left-to-right in modern usage, top-to-bottom in traditional layout.</p>
+<p>The scholarly transliteration is <em>Tàishàng</em> (Hanyu Pinyin with tone marks), giving the normalized reading /tʰaɪ̯˥˩ ʂɑŋ˥˩/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li><strong>太</strong> &#39;utmost, supreme&#39; is 大 &#39;great&#39; — the drawing of a spread-limbed person — with one added stroke marking the superlative; early manuscripts commonly write the word with plain 大, as the Guodian text <em>Tàiyī shēng shuǐ</em> writes 太一 as 大一.</li>
+  <li><strong>上</strong> &#39;above, on high&#39; is one of the script&#39;s pure ideographs: a short stroke set over a long baseline, &#39;that which is on top&#39;. The <em>Shuowen Jiezi</em> glosses it 高也 &#39;high&#39; and classes it as an indicative (指事) graph.</li>
+  <li>Hanyu Pinyin with tone marks preserves the Modern Standard Mandarin reading, Tàishàng (Tone 4 + Tone 4); the ASCII form <em>taishang</em> loses the tones.</li>
+  <li>The registrable Unicode restoration <strong>Tàishàng</strong> keeps the tone marks so the domain label remains pronounceable and unambiguous, while the temple&#39;s Original Script card displays the characters themselves.</li>
+</ul>
+<p>Baxter &amp; Sagart (2014) reconstruct the Old Chinese reading of 太 as *l̥a[t]-s, preserving a final consonant cluster that modern Mandarin has long since shed.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/tʰaɪ̯˥˩ ʂɑŋ˥˩/</strong> — Modern Standard Mandarin (Pinyin).</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>tài</strong> — Aspirated alveolar stop [tʰ], diphthong [aɪ̯], and Tone 4 (falling, ˥˩). Pinyin &#39;t&#39; before front vowels is aspirated [tʰ].</li>
+  <li><strong>shàng</strong> — Voiceless retroflex fricative [ʂ], open back vowel [ɑ] with velar nasal [ŋ], and Tone 4 (falling, ˥˩). Mandarin &#39;sh&#39; is a retroflex, the tongue curled back, not the English palato-alveolar &#39;sh&#39;.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: TIE-SHUHNG — &#39;tai&#39; like &#39;tie&#39; with a sharp falling tone, &#39;shang&#39; with a retroflex &#39;sh&#39; and a falling tone.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Traditional</strong> — 太上</li>
+  <li><strong>Full title</strong> — 太上老君 Tàishàng Lǎojūn, the deified Laozi and Lord of the Dao.</li>
+  <li><strong>Wade-Giles</strong> — t&#39;ai⁴-shang⁴</li>
+  <li><strong>Related terms</strong> — 道教 Dàojiào (Daoism); 三清 Sānqīng (Three Pure Ones)</li>
+</ul>
+<p>太上 means &#39;Supreme, Most Exalted.&#39; In Daoist theology it is the title of the deified Laozi as Tàishàng Lǎojūn, one of the Sānqīng (Three Pure Ones). The Modern Standard Mandarin reading, tài (Tone 4) + shàng (Tone 4), is recorded in the Unihan Database (kMandarin); the Pinyin restoration Tàishàng preserves both citation tones.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Tàishàng&#39;s mythology moves between history and cosmology: the shadowy philosopher Laozi becomes the celestial teacher who reveals the Dao to emperors, hermits, and alchemists.</p>
+<h3 id="laozi-leaves-the-pass-hagiography">Laozi Leaves the Pass (Hagiography)</h3>
+<p>According to tradition, Laozi grew weary of the Zhou court and rode west on a black ox. At the Hangu Pass the guard Yīn Xī recognised him and asked for a teaching. Laozi wrote the five thousand characters of the <em>Dàodéjīng</em>, then disappeared into the west. Later Daoism transformed this departure into an ascension: Laozi became Tàishàng Lǎojūn, the supreme immortal.</p>
+<h3 id="the-conversion-of-the-barbarians-revelation">The Conversion of the Barbarians (Revelation)</h3>
+<p>Medieval Daoist apocrypha claimed that Tàishàng Lǎojūn travelled west and transformed himself into the Buddha in order to convert the barbarians. The myth was a polemical attempt to place Daoism above Buddhism by making the Buddha a manifestation of Laozi. Though historically tendentious, it reveals the prestige Tàishàng held in medieval Chinese religion.</p>
+<h3 id="one-of-the-three-pure-ones-cosmology">One of the Three Pure Ones (Cosmology)</h3>
+<p>In formal Daoist theology, the Three Pure Ones (Sānqīng) personify the three stages of cosmic emanation. Tàishàng Lǎojūn corresponds to the third, the manifested Dao, the teacher who brings the formless principle into human language. Above him are YUánshǐ Tiānzūn and Língbǎo Tiānzūn, the even more primordial personifications of the Dao itself.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography of Tàishàng concentrates in a small set of recurring attributes, each a compressed statement about the deity. In the standard Ming-and-later image, Tàishàng Lǎojūn appears as a white-bearded elder enthroned in the Heaven of Great Clarity:</p>
+<ul>
+  <li><strong>Palm-leaf fan</strong> — The plain fan with which he stirs the alchemical fire; his constant attribute in painting and temple statuary.</li>
+  <li><strong>Eight-trigram furnace</strong> — The bāguà crucible in which elixirs are refined; in the <em>Journey to the West</em> Sun Wukong survives forty-nine days sealed inside it and emerges with fiery, golden eyes.</li>
+  <li><strong>Gourd of elixir</strong> — The bottle that holds the medicine of immortality and the hidden medicine of the Dao.</li>
+  <li><strong>Crane</strong> — Longevity and the celestial mount that carries the immortal to heaven.</li>
+  <li><strong>Tàijí disc</strong> — The supreme polarity from which yin and yang unfold, enthroned behind the Three Pure Ones.</li>
+</ul>
+<p>The <strong>ruyi sceptre</strong> that appears in some images is the shared badge of divine authority among the Sānqīng rather than his exclusive sign: among the Three Pure Ones it is Yuánshǐ Tiānzūn who characteristically holds the ruyi or a pearl, while Tàishàng Lǎojūn holds the fan.</p>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>The deification of Laozi is a documented process rather than a legendary blur. The oldest extant manuscripts of his book are the Guodian bamboo slips, excavated in 1993 from a Chu tomb closed around 300 BCE — three short bundles matching parts of the received <em>Dàodéjīng</em>; the Mawangdui silk texts (tomb sealed 168 BCE) give the full text twice, with the <em>Dé</em> half preceding the <em>Dào</em>. The imperial cult is epigraphic and dated: Han inscriptions already honour Lǎojūn, and in 666 CE the Táng emperor Gāozōng — whose house claimed Laozi (Lǐ Ěr) as its ancestor — granted him the title Xuányuán Huángdì 玄元皇帝, &#39;August Emperor of the Mysterious Origin&#39;. Temples dedicated to Tàishàng Lǎojūn survive across China and the diaspora: Lóuguāntái in the Zhōngnán mountains, traditionally the place where Laozi taught Yīn Xǐ, and the Qīngyáng Gōng in Chengdu are the best known.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p><strong>Tàishàng</strong> names the supreme station in Daoist cosmology. In its fullest form, <em>Tàishàng Lǎojūn</em> (Supreme Lord Lao) is the deified Laozi, the legendary author of the <em>Dàodéjīng</em>, elevated into one of the Three Pure Ones who stand at the summit of the Daoist pantheon. Where the historical Laozi taught wordless wisdom, the celestial Tàishàng Lǎojūn dispenses scriptures, elixirs, and revelations.</p>
+<p>He is not a creator god in the Western sense. He is the personification of the Dao in its highest, most hidden aspect — the origin that cannot be named, named.</p>
+<h3 id="the-dao-itself">The Dao Itself</h3>
+<p>He embodies the nameless source from which heaven and earth arise.</p>
+<h3 id="lord-of-scriptures">Lord of Scriptures</h3>
+<p>Revealer of the Dàodéjīng and countless Daoist texts and talismans.</p>
+<h3 id="alchemy-and-elixirs">Alchemy and Elixirs</h3>
+<p>Patron of internal and external alchemy, longevity, and the pursuit of immortality.</p>
+<h3 id="teacher-of-emperors">Teacher of Emperors</h3>
+<p>Legendary instructor of sage-kings and source of imperial legitimacy.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Tàishàng Lǎojūn is the Daoist answer to the question of how a philosophy becomes a religion. The historical Laozi, if he existed, was a thinker; Tàishàng Lǎojūn is a god. This transition mirrors the broader Chinese pattern of deifying sages, from Confucius to Guān Yǔ. Buddhism influenced the structure of his cult — the Three Pure Ones parallel Buddhist trikāya theology — while popular religion absorbed him into a vast pantheon of immortals, city gods, and celestial bureaucrats. In the West, Laozi is often read as a purely philosophical figure, but in Chinese temples he is honoured with incense, images, and prayers for longevity.</p>
+<p>Within the Chinese tradition, closely related names in the corpus include [[bagua|Bāguà]], [[long|Lóng]], [[taichi|Tàijí]], [[tian|Tiān]], [[tiandi|Tiāndì]], and [[wuxing|Wǔxíng]].</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Tàishàng&#39;s legacy is inseparable from the <em>Dàodéjīng</em>, one of the most translated books in world literature. As Tàishàng Lǎojūn, he presides over Daoist temples, alchemical traditions, and popular practices of longevity and exorcism. His image appears in countless paintings, statues, and New Year prints, often riding a crane or holding a ruyi. Modern Daoist movements, martial-arts lineages, and global wellness culture all claim some connection to Laozi, though the sage would likely smile at the irony. The name Tàishàng has also become an adjective of highest rank, applied to emperors, elders, and even video-game bosses.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Tàishàng given in this edition rests on the witnesses and reference works listed below. Lexica and reference databases secure the form and reading of the name; the literary and religious texts supply the narrative and theological evidence.</p>
+<ul>
+  <li> Laozi, Daodejing (Tao Te Ching).</li>
+  <li> Daozang (Daoist Canon).</li>
+  <li> Sima Qian, Shiji (Records of the Grand Historian), Laozi biography.</li>
+  <li> Laozi Xiang&#39;er zhu (Xiang&#39;er commentary on the Daodejing).</li>
+  <li> Taishang Ganying Pian (Treatise of the Most Exalted on Action and Response).</li>
+  <li> Laozi Huahu Jing (Scripture of the Conversion of the Barbarians).</li>
+  <li> Bokenkamp, Early Daoist Scriptures.</li>
+  <li> Kohn, Daoism and Chinese Culture.</li>
+  <li> Zürcher, The Buddhist Conquest of China.</li>
+  <li> Allan &amp; Williams (eds.), The Guodian Laozi (2000).</li>
+  <li> Pregadio, The Encyclopedia of Taoism.</li>
+  <li> Unihan Database (Unicode Consortium). <a href="https://www.unicode.org/charts/unihan.html">Full text</a></li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Tàishàng is the teaching that cannot be taught. The <em>Dàodéjīng</em> opens by saying that the Dao that can be spoken is not the eternal Dao, and yet the text goes on to speak of it for eighty-one brief chapters. Tàishàng Lǎojūn is the figure who resolves this paradox by embodying it: he is the sage who became a god by disappearing into the teaching he left behind.</p>
+<p>To sit with Tàishàng is to practice not-knowing. It is to recognise that the more names we give to the ultimate, the further we stray from it, and yet that naming is itself a kind of devotion. The gourd, the ruyi, the crane — these are not idols but reminders. The real Tàishàng is the silence between the words of the <em>Dàodéjīng</em>, the emptiness that makes the vessel useful.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Tàishàng is classified as <strong>Tier 1</strong>: the original carries both stress and length, and only one valid Unicode restoration exists. The ASCII fallback <em>taishang</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 8 characters of the name, the restoration adjusts 2: 2 marks of stress (à, à). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>taishang</em> to <strong>Tàishàng</strong>, one character at a time:</p>
+<ul>
+  <li><strong>t</strong> → <strong>T</strong> — Same, capitalized</li>
+  <li><strong>a</strong> → <strong>à</strong> — Stress on a</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+  <li><strong>s</strong> → <strong>s</strong> — Same</li>
+  <li><strong>h</strong> → <strong>h</strong> — Same</li>
+  <li><strong>a</strong> → <strong>à</strong> — Stress on a</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+  <li><strong>g</strong> → <strong>g</strong> — Same</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>tàishàng.com</strong>, which the DNS carries in punycode form as xn--tishng-itad.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Tàishàng; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Chinese characters can now be typed into any browser on earth.</p>
+<h2 id="the-chinese-pantheon">The Chinese Pantheon</h2>
+<p>Tàishàng is one of 43 entries the PÚNYCODEX lexicon catalogues under the Chinese pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Tàishàng mean?</strong> The traditional gloss is &quot;Supreme, great.&quot;</p>
+<p><strong>Which tradition does Tàishàng belong to?</strong> Tàishàng is catalogued in the Chinese pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Tàishàng classified as Tier 1?</strong> Because the original carries both stress and length, and only one valid Unicode restoration exists — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Tàishàng a working domain?</strong> Yes — tàishàng.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for tàishàng.com?</strong> The DNS encoding is xn--tishng-itad.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="typing-taishang">Typing Tàishàng</h2>
+<p>You do not need a special keyboard to use this restoration. The <a href="/type/">PÚNYCODEX Type Tool</a> converts the ASCII form <em>taishang</em> into <strong>Tàishàng</strong> as you type, and the browser extension offers the same conversion inside any text field. Copy the restored form, paste it into the address bar, and the DNS does the rest.</p>
+<h2 id="sister-temples">Sister Temples</h2>
+<p>Other temples in the Chinese pantheon include <a href="/sites/bodhidharma/">Bodhidharma</a>, and <a href="/sites/confucius/">Kǒngzǐ</a> — each with its own restoration story, its own scholarly record, and its own place in the lexicon.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Every stage of the journey from Chinese characters to Unicode was an act of care: the scribe who first wrote the name, the lexicographer who glossed it, the engineer who taught the DNS to carry it. The PÚNYCODEX restoration is the latest stage, not the last word — the Scholarly Edition is revised as the evidence improves. What does not change is the principle: a name deserves to be written the way its own tradition wrote it. <strong>Tàishàng</strong> in the address bar is that principle, made routable.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/tiandi/">Tiāndì</a></li>
   <li><a href="/sites/wuxing/">Wǔxíng</a></li>
   <li><a href="/sites/bingjilan/">Bīngjílán</a></li>
 </ul>
-<h2>Further Reading</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.unicode.org/charts/unihan.html">Unihan Database (Unicode Consortium), kMandarin readings for U+592A 太 and U+4E0A 上.</a></li>
   <li><a href="http://ocbaxtersagart.lsait.lsa.umich.edu/">Baxter &amp; Sagart, Old Chinese: A New Reconstruction (2014).</a></li>
   <li><a href="https://ctext.org/chun-qiu-zuo-zhuan">Zuozhuan (Chunqiu Zuozhuan), Duke Xiang 24.</a></li>
   <li><a href="https://ctext.org/dao-de-jing">Laozi, Daodejing, chapter 17.</a></li>
+  <li>Laozi, Daodejing (Tao Te Ching).</li>
+  <li>Daozang (Daoist Canon).</li>
+  <li>Sima Qian, Shiji (Records of the Grand Historian), Laozi biography.</li>
+  <li>Xu Shen, Shuowen Jiezi.</li>
+  <li>Lexicon authorities for this entry: Dao De Jing, Daoist Canon.</li>
 </ul>
-<h2>The Name in Context</h2>
-<p>Tàishàng (taishang) — Supreme Lord, Dao · Supreme, great — belongs to the Chinese tradition, where it is catalogued under the domain &quot;Supreme Lord, Dao&quot;. The name means &quot;Supreme, great&quot;. Tàishàng names the supreme station in Daoist cosmology. In its fullest form, Tàishàng Lǎojūn (Supreme Lord Lao) is the deified Laozi, the legendary author of the Dàodéjīng, elevated into one of the Three Pure Ones who stand at the summit of the Daoist pantheon. Where the historical Laozi taught wordless wisdom, the celestial Tàishàng Lǎojūn dispenses scriptures, elixirs, and revelations. He is not a creator god in the Western sense. He is the personification of the Dao in its highest, most hidden aspect — the origin that cannot be named, named. PÚNYCODEX restores...</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">chinese</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

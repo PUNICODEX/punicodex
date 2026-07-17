@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,34 +170,183 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>15 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#epithets-cult-titles">Epithets &amp; Cult Titles</a></li>
+                <li><a href="#the-homeric-hymns">The Homeric Hymns</a></li>
+                <li><a href="#oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>Why Ouranía Belongs in the Address Bar</h1>
-<p>Every address bar is a choice. When you type <strong>Ouranía</strong>, you are not typing a novelty; you are restoring a name. The plain ASCII form <em>ourania</em> is the leftover of a DNS that was built for English typewriters, not for the world&#39;s naming traditions. Ouranía (Greek Οὐρανία; ASCII ourania) is the Muse of astronomy in Greek tradition: one of the nine daughters of Zeus and Mnēmosýnē, named by Hesiod in the Theogony&#39;s catalogue of the Muses. Her name is simply the feminine of οὐράνιος, &#39;heavenly&#39; — the Muse who is the sky. Hesiod assigns the sisters no individual provinces; her specialization is a later systematization, most fully explained by Diodorus Siculus: men called her Ourania &#39;because those instructed by her she raises aloft to heaven&#39;, since imagination and thought lift the soul to heavenly heights. Plato had already paired her with Calliope as the Muses &#39;chiefly concerned with heaven and thought&#39;, the patrons of philosophers. In Roman and later art she is the Muse with the celestial globe,...</p>
-<h2>The Name the DNS Almost Forgot</h2>
-<p>The name is attested in Greek as Οὐρανία, the feminine of the adjective οὐράνιος, &#39;heavenly, of the sky&#39;, formed directly on οὐρανός, &#39;sky, heaven&#39; — the Muse&#39;s name is thus a title: &#39;the Heavenly One&#39;. Hesiod gives the epic form Οὐρανίη (Ouraníē) in the Muse catalogue. The deeper etymology of οὐρανός itself is disputed: the old comparison with Sanskrit Varuṇa is now generally abandoned, and Beekes treats the word as lacking any convincing Indo-European derivation, regarding a Pre-Greek origin as probable. The ASCII form ourania survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Ouranía recovers the acute accent on the iota directly in the... In scholarly terms, it belongs to the <strong>Tier 1</strong> class: the Greek original carries both stress and length, and only one valid Unicode restoration exists. That detail is not decorative; it is the difference between a label and a lived name.</p>
-<h2>From Greek to the Browser</h2>
-<p>The name is written in Greek as Οὐρανία. This original script is the form against which the ASCII fallback ourania and the PÚNYCODEX restoration Ouranía are measured: the restoration preserves its pitch accent of the written form, so that a reader typing the modern address still speaks the ancient name. The Greek name is Οὐρανία, the feminine form of Οὐρανός (&#39;Sky&#39;). The initial Oὐ- marks a smooth breathing before the vowel [u]; the acute accent on -ní- indicates the stress falls on the antepenult. The final -α is long in the nominative singular. PUNYCODEX writes Ouranía with the acute accent and the breathing implied, since domain registries reject the smooth breathing mark itself but accept the accented Latin transcription. The PÚNYCODEX temple does not invent a spelling; it recovers one. By registering the Unicode form, the project proves that the original script can survive inside the infrastructure of the modern web.</p>
-<h2>Why 2026 Still Needs This</h2>
-<p>In 2026, names are data. Search engines, AI training corpora, and localization teams all need authoritative forms. Ouranía is a small but concrete demonstration that philology and DNS can coexist. The <a href="/sites/ourania/scholars/">Scholarly Edition</a> preserves the argument; the blog makes it approachable.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Ouranía is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>Why Ouranía belongs in your address bar</h1>
+<p>Every address bar is a choice. When you type <strong>Ouranía</strong>, you are not typing a novelty; you are restoring a name that the early DNS, built for English typewriters, could not carry. The plain ASCII form <em>ourania</em> is a leftover of that constraint, not the name itself. This post is the long version of the restoration: where the name comes from, how the Greek tradition wrote it, how it is pronounced, what the myths and the material record preserve, and why its Unicode form now lives as a working domain. The claim throughout is simple — the original spelling is not decoration. It is the name.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Ouranía</li>
+  <li><strong>ASCII form:</strong> ourania</li>
+  <li><strong>Meaning:</strong> &quot;Heavenly&quot;</li>
+  <li><strong>Domain of influence:</strong> Astronomy</li>
+  <li><strong>Pantheon:</strong> Greek</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Original script:</strong> Οὐρανία (Greek)</li>
+  <li><strong>Live domain:</strong> ouranía.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Ouranía</strong> (Greek <strong>Οὐρανία</strong>; ASCII <em>ourania</em>) is the Muse of astronomy in Greek tradition: one of the nine daughters of Zeus and <a href="/sites/mnemosyne/">Mnēmosýnē</a>, named by Hesiod in the <em>Theogony</em>&#39;s catalogue of the Muses. Her name is simply the feminine of οὐράνιος, &#39;heavenly&#39; — the Muse who is the sky. Hesiod assigns the sisters no individual provinces; her specialization is a later systematization, most fully explained by Diodorus Siculus: men called her Ourania &#39;because those instructed by her she raises aloft to heaven&#39;, since imagination and thought lift the soul to heavenly heights. Plato had already paired her with Calliope as the Muses &#39;chiefly concerned with heaven and thought&#39;, the patrons of philosophers. In Roman and later art she is the Muse with the celestial globe, pointing at the sphere with a small rod. Latin poetry keeps her busy: she answers Ovid&#39;s question about the name of May in the <em>Fasti</em> and foretells a warrior&#39;s death by the position of the stars in Statius.</p>
+<p>PÚNYCODEX restores the name as <strong>Ouranía</strong> and serves this temple at <a href="https://xn--ourana-7va.com">ouranía.com</a>. The Greek original carries both the pitch accent (acute on the iota) and a long final vowel, and exactly one historically valid Unicode restoration exists; the name is therefore classified Tier 1. The plain ASCII form <em>ourania</em> is a convenience of the domain-name system, not an ancient spelling.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Greek as <strong>Οὐρανία</strong>, the feminine of the adjective οὐράνιος, &#39;heavenly, of the sky&#39;, formed directly on οὐρανός, &#39;sky, heaven&#39; — the Muse&#39;s name is thus a title: &#39;the Heavenly One&#39;. Hesiod gives the epic form <strong>Οὐρανίη</strong> (Ouraníē) in the Muse catalogue. The deeper etymology of οὐρανός itself is disputed: the old comparison with Sanskrit Varuṇa is now generally abandoned, and Beekes treats the word as lacking any convincing Indo-European derivation, regarding a Pre-Greek origin as probable.</p>
+<p>The ASCII form <em>ourania</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Ouranía</strong> recovers the acute accent on the iota directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>o</strong> → <strong>O</strong> — O uppercase</li>
+  <li><strong>u</strong> → <strong>u</strong> — u same</li>
+  <li><strong>r</strong> → <strong>r</strong> — r same</li>
+  <li><strong>a</strong> → <strong>a</strong> — a same</li>
+  <li><strong>n</strong> → <strong>n</strong> — n same</li>
+  <li><strong>i</strong> → <strong>í</strong> — Acute on i</li>
+  <li><strong>a</strong> → <strong>a</strong> — a same</li>
+</ul>
+<p>Attested and derived spellings of the name:</p>
+<ul>
+  <li><strong>Ourania</strong> — ASCII form: Plain ASCII form</li>
+</ul>
+<p>The project holds the domain <strong>ouranía.com</strong> (xn--ourana-7va.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is written in Greek as <strong>Οὐρανία</strong>. This original script is the form against which the ASCII fallback <em>ourania</em> and the PÚNYCODEX restoration <strong>Ouranía</strong> are measured: the restoration preserves its pitch accent of the written form, so that a reader typing the modern address still speaks the ancient name.</p>
+<p>The Greek name is Οὐρανία, the feminine form of Οὐρανός (&#39;Sky&#39;). The initial Oὐ- marks a smooth breathing before the vowel [u]; the acute accent on -ní- indicates the stress falls on the antepenult. The final -α is long in the nominative singular. PUNYCODEX writes Ouranía with the acute accent and the breathing implied, since domain registries reject the smooth breathing mark itself but accept the accented Latin transcription.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/u.ra.ní.aː/</strong> — Classical Attic values: close back [u] written with the digraph Οὐ, tapped [r], short accented iota, and a long final alpha [aː].</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Ou-</strong> — [u], a smooth rounded close back vowel; the initial digraph simply marks the sound [u].</li>
+  <li><strong>-ra-</strong> — Tapped or trilled [r] followed by open [a].</li>
+  <li><strong>-ní-</strong> — Acute stress on the antepenult; the i is short and sharp.</li>
+  <li><strong>-a</strong> — Final long [aː], giving the name its feminine nominative ending.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;oo-rah-NEE-ah&#39; — stress the third syllable and let the final &#39;ah&#39; lengthen slightly.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Greek</strong> — Οὐρανία, &#39;the heavenly one&#39;, feminine of Οὐρανός, Sky; Hesiod&#39;s epic spelling is Οὐρανίη.</li>
+  <li><strong>Latin</strong> — Urania, adopted directly into Roman poetry and astronomy.</li>
+  <li><strong>Modern use</strong> — Astronomical societies, observatories, and planetariums still bear her name.</li>
+</ul>
+<p>Ouranía is Tier 1: the Greek original has both acute stress and a long final vowel. The Roman spelling Urania drops the distinctive breathing and accent, making the PUNYCODEX form the fuller restoration.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Ouranía&#39;s mythology is quiet but persistent: she is less a protagonist than a presence, and what is told of her is the work of the sky-minded Muse.</p>
+<h3 id="birth-among-the-nine">Birth among the nine</h3>
+<p>Hesiod names her in the Muse catalogue — &#39;Kleio and Euterpe, Thaleia, Melpomene and Terpsikhore, and Erato and Polymnia and Ourania and Kalliope&#39; — born to Zeus and <a href="/sites/mnemosyne/">Mnēmosýnē</a> after nine nights in Pieria, when the year had come round. Apollodorus repeats the list and counts her seventh of the nine.</p>
+<h3 id="the-specialization">The specialization</h3>
+<p>Archaic epic assigns the sisters no separate arts; the division of provinces is a later systematization. Diodorus preserves the etymological version — she is Urania because she raises the instructed &#39;aloft to heaven&#39; — and Plato&#39;s <em>Phaedrus</em> already ranks her with Calliope as the Muse of heaven and thought.</p>
+<h3 id="mother-of-linos-and-hymenaios">Mother of Linos and Hymenaios</h3>
+<p>She is the mother of Linos, the archetypal bard mourned by singers: a Hesiodic fragment says &#39;Ourania bare Linos, a very lovely son&#39;, while Pausanias makes his father the mortal Amphimaros and shows his hero-shrine in the Muses&#39; grove on Helicon, and Hyginus gives him to Apollo. Pindar&#39;s dirges make her the mother of Hymenaios, the wedding-song god, over whom she laments; Catullus opens his wedding hymn by calling Hymen &#39;Urania&#39;s offspring&#39;.</p>
+<h3 id="the-namesake">The namesake</h3>
+<p>Plato&#39;s <em>Symposium</em> distinguishes Aphrodítē Ouranía, daughter of Ouranos, from Aphrodítē Pándēmos: the Muse shares her title with the goddess of heavenly love, and later writers must be read carefully to see which is meant.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>Ouranía&#39;s attributes are unusually well attested for a Muse, because the Roman period fixed her individual type; earlier lyric gives her poetic rather than figural ornaments.</p>
+<ul>
+  <li><strong>Celestial globe</strong> — her defining attribute from Roman art onward: she sits or stands before the sphere of the fixed stars; Nonnus still knows &#39;a revolving globe&#39; as her handiwork.</li>
+  <li><strong>Pointer or rod</strong> — the small staff with which she indicates the sphere, astronomy&#39;s teaching instrument turned into an emblem.</li>
+  <li><strong>Golden headband</strong> — Bacchylides calls her &#39;Urania with her golden headband&#39;, the lyric counterpart of a celestial diadem.</li>
+  <li><strong>Fine throne</strong> — Bacchylides again: &#39;fine-throned Urania&#39;, seated as she sends the poet his cargo of songs.</li>
+  <li><strong>Violet crown</strong> — worn by the sisterhood collectively in Bacchylides (&#39;the violet-crowned Muses&#39;), not by her alone.</li>
+</ul>
+<p>Ouranía is one of the few Muses with a stable individual type, though it crystallizes late. On Roman Muse sarcophagi and mosaics she is identified by the celestial globe at her feet and the rod or pointer with which she indicates the sphere — astronomy&#39;s instruments turned into attributes. In Greek art proper the sisters are rarely individuated: lyre- and flute-bearing maidens without labels, among whom any attempt to single out Ouranía is conjecture. The globe-and-pointer Urania of Roman art became canonical and passed almost unchanged into Renaissance allegory, which is why her image, alone among the Muses, still reads as &#39;astronomy&#39; at a glance.</p>
+<h2 id="epithets-cult-titles">Epithets &amp; Cult Titles</h2>
+<p>As a Muse without an independent cult, Ouranía has no ritual titles; her epithets are the poets&#39; ornaments, and they are unusually well documented in lyric:</p>
+<ul>
+  <li><strong>Οὐρανίη</strong> (<em>Ouraníē</em>) — the epic form of the name itself, &#39;the Heavenly One&#39;, as Hesiod gives it in the Muse catalogue.</li>
+  <li><strong>&#39;lyre-ruling&#39;</strong> — Bacchylides hails her as &#39;lyre-ruling Urania&#39;, mistress of the instrument of song.</li>
+  <li><strong>&#39;with the golden headband&#39;</strong> — Bacchylides again, pairing her diadem with the woven song sent to Hieron.</li>
+  <li><strong>&#39;song-ruling&#39;</strong> — the victory hymn is sung &#39;thanks to Nike and the hymn of song-ruling Urania&#39;.</li>
+  <li><strong>&#39;fine-throned&#39;</strong> — &#39;fine-throned Urania&#39; sends the poet his golden cargo-boat of songs from Pieria.</li>
+  <li><strong>&#39;next after Calliope&#39;</strong> — Plato&#39;s <em>Phaedrus</em> ranks the two together as the Muses &#39;chiefly concerned with heaven and thought&#39;, who hold the sweetest utterance.</li>
+  <li><strong>Muse of astronomy</strong> — her province in the later systematization of the sisters&#39; functions.</li>
+</ul>
+<p>The same adjective attaches to a greater goddess: Plato&#39;s <em>Symposium</em> distinguishes Aphrodítē Ouranía from Aphrodítē Pándēmos — a namesake of the Muse, not the Muse herself.</p>
+<h2 id="the-homeric-hymns">The Homeric Hymns</h2>
+<p>No hymn is addressed to Ouranía alone. The twenty-fifth Homeric Hymn, To the Muses and Apollo, invokes the sisterhood collectively — from the Muses and far-shooting Apollo come singers and lyre-players on earth — without singling her out. Her earliest naming is Hesiod&#39;s Theogony, where the catalogue of the nine daughters of Zeus and Mnēmosýnē includes Οὐρανίη alongside Kleio, Euterpe, Thaleia, and the rest. Homer never names individual Muses at all. Her specialization as Muse of astronomy is a later, Hellenistic and Roman systematization of the sisters&#39; provinces, not an archaic inheritance.</p>
+<h2 id="oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</h2>
+<p>No Muse possessed an oracle — prophecy belonged to Apollo — so Ouranía&#39;s cultic geography is the sisterhood&#39;s: the Valley of the Muses beneath Mount Helicon in Boeotia, whose grove, statues, and springs Pausanias describes, and Pieria beneath Olympus, where Hesiod sets the Muses&#39; birth. The Helicon valley held one monument of her own family: the hero-shrine of her son Linos, a figure carved on a small cave-like rock, honored with an annual sacrifice that preceded the sacrifice to the Muses themselves. At Thespiae below the valley the Muses received their own festival, the Mouseia, with contests in music and poetry known chiefly from Hellenistic victor inscriptions. A namesake caution is needed: sanctuaries labelled &#39;Ourania&#39; — such as the temple of Aphrodítē Ouranía at Athens, whose cult Pausanias traces back to the Assyrians — belong to the goddess, not the Muse; the shared title testifies only to the adjective&#39;s range.</p>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>No cult site or votive dedicated to Ouranía alone is attested; her material record is the sisterhood&#39;s. Its center is the Valley of the Muses below Mount Helicon, where Pausanias describes the grove, the statues of the Muses, and the springs, and where excavation has confirmed a sanctuary active from antiquity into the Roman period. Within that grove Pausanias saw the shrine of her son: a relief of Linos carved on a small cave-like rock, to whom the Thespians sacrificed as to a hero every year before they sacrificed to the Muses. Her individual image is a Roman-period phenomenon: mosaics from Cos and Trier give the nine Muses separate portraits, a mosaic from Elis shows their symbols, and Roman sarcophagi fix her type — the Muse seated before the celestial globe, rod in hand — catalogued in the LIMC. A caution is required for the material record as for the texts: temples of &#39;Ourania&#39;, such as the Athenian shrine whose cult Pausanias derives from the Assyrians, belong to Aphrodite, not the Muse.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Ouranía&#39;s province is the sky studied and the sky sung — Greek and Roman sources divide her work among four attested spheres.</p>
+<h3 id="muse-of-astronomy">Muse of astronomy</h3>
+<p>Diodorus Siculus explains her name from her function: those she instructs she &#39;raises aloft to heaven&#39;, for thought lifts men&#39;s souls to heavenly heights. In Statius she reads the future in the stars, having foretold the warrior Corymbus&#39;s death &#39;by the position of the stars&#39;, and Nonnus gives her a revolving globe, since she &#39;knew all the courses of the stars&#39;.</p>
+<h3 id="muse-of-heaven-and-thought">Muse of heaven and thought</h3>
+<p>Plato&#39;s <em>Phaedrus</em> pairs her with Calliope: of all the Muses these two are &#39;chiefly concerned with heaven and thought, divine as well as human&#39;, and they hold the philosophers&#39; music.</p>
+<h3 id="muse-of-the-victory-ode">Muse of the victory ode</h3>
+<p>The lyric poet Bacchylides invokes her as &#39;lyre-ruling&#39; and &#39;song-ruling&#39; Ourania, patroness of the epinician song he weaves for his patrons.</p>
+<h3 id="the-namesake-caution">The namesake caution</h3>
+<p>The title &#39;Ourania&#39; also belongs to a greater goddess — heavenly <a href="/sites/aphrodite/">Aphrodítē</a> — and honors paid to &#39;Ourania&#39; in cult usually mean the goddess, not the Muse.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Rome adopted her without translation: as <strong>Urania</strong> she appears in Catullus&#39;s wedding hymn as Hymen&#39;s mother, answers Ovid&#39;s inquiry into the name of May in the <em>Fasti</em>, and reads the stars for Statius in the <em>Thebaid</em> — Greek Muse and Latin astronomy merged without seam. The deeper syncretism attaches to her title rather than her person: Pausanias reports that the cult of the Heavenly goddess — Aphrodítē Ouranía — was founded first among the Assyrians, then taken up by the Paphians of Cyprus and the Phoenicians of Ascalon, an early Greek recognition that the Queen of Heaven was older in the East; this is the goddess, not the Muse, but the shared name carried the association. Christian-era reception deliberately baptized her: Milton opens the seventh book of <em>Paradise Lost</em> &#39;Descend from Heaven, Urania&#39;, then at once insists he means &#39;the meaning, not the name&#39; — a heavenly wisdom beyond the pagan Muse. The Orphic hymn to the Muses keeps her inside the sisterhood, calling her &#39;Ourania heavenly bright&#39;.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Ouranía is the Muse who survived the scientific revolution, because astronomy institutionalized her name. Tycho Brahe built his great island observatory on Hven in 1576 and called it Uraniborg, &#39;the castle of Urania&#39; — the first research institution of modern astronomy named for the Muse. When John Russell Hind discovered a main-belt asteroid in 1854 he registered it as 30 Urania, planting her in the sky she governs. Popular observatories followed: Berlin&#39;s Urania opened in 1888 and Vienna&#39;s Urania observatory in 1910, and the constellation card set <em>Urania&#39;s Mirror</em> (1825) taught the Georgian public its stars under her patronage. The persistence is not decorative: every observatory named Urania repeats the ancient conviction, stated for her by Diodorus, that studying the stars is a form of contemplation that lifts the soul toward heaven.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Ouranía given in this edition rests on the witnesses and reference works listed below. The epic and mythographic texts establish her identity and genealogy; Plato and Diodorus explain her province; the lexica secure the name.</p>
+<ul>
+  <li> Hesiod, Theogony 53–79, 915–917. <a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Full text</a></li>
+  <li> Plato, Phaedrus 259c–e; Symposium 180d–181c.</li>
+  <li> Diodorus Siculus, Library of History 4.7.1–4; Pseudo-Apollodorus, Bibliotheca 1.13.</li>
+  <li> Bacchylides, fragments 3, 5, 6, 16; Pindar, Dirges fr. 139; Hesiodic fragments (Homerica fr. 1, on Linos).</li>
+  <li> Catullus 61.2; Ovid, Fasti 5.55; Statius, Thebaid 8.548; Hyginus, Fabulae 161.</li>
+  <li> Pausanias, Description of Greece 1.14.7, 9.29.5, 9.29–31.</li>
+  <li> LSJ (Liddell–Scott–Jones), s.vv. οὐράνιος, οὐρανός; Beekes, Etymological Dictionary of Greek, s.v. οὐρανός.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Ouranía teaches an ancient discipline: look up. In an age of downward-glancing screens, her domain is a call to recalibrate. The stars do not need us, yet we have always needed them—for navigation, for calendar, for the sense that our small lives are part of a larger pattern.</p>
+<p>To invoke Ouranía is to refuse the split between art and science. The same wonder that named constellations also calculated orbits. The same reverence that composed hymns to the Muses also built the first telescopes. She is the patron of anyone who has ever looked at the night sky and felt, for a moment, that the universe makes sense.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Ouranía is classified as <strong>Tier 1</strong>: the original carries both stress and length, and only one valid Unicode restoration exists. The ASCII fallback <em>ourania</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 7 characters of the name, the restoration adjusts 1: 1 mark of stress (í). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>ouranía.com</strong>, which the DNS carries in punycode form as xn--ourana-7va.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Ouranía; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Greek can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Restoring <strong>Ouranía</strong> is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. Every section of this post — the script, the sound, the myths, the evidence — converges on the same point: the marks in Ouranía are information, and information deserves an address of its own. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier, and every visit to ouranía.com is a vote for the restored form.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/cocytus/">Kōkytós</a></li>
   <li><a href="/sites/coeus/">Koîos</a></li>
   <li><a href="/sites/creusa/">Creúsa</a></li>
 </ul>
-<h2>Read More</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Hesiod, Theogony 75–79 (the Muse catalogue).</a></li>
   <li><a href="https://www.theoi.com/Text/OrphicHymns2.html">Orphic Hymn 76, To the Muses.</a></li>
+  <li>Diodorus Siculus, Library of History 4.7.1–4.</li>
+  <li>Plato, Phaedrus 259c–e.</li>
+  <li>Lexicon Iconographicum Mythologiae Classicae (LIMC), s.v. &#39;Mousa/Mousai&#39; (Urania).</li>
+  <li>Ovid, Fasti 5.55.</li>
+  <li>Lexicon authorities for this entry: Hesiod, LSJ.</li>
 </ul>
-<h2>What the Sources Record</h2>
-<p>Ouranía&#39;s province is the sky studied and the sky sung — Greek and Roman sources divide her work among four attested spheres. ### Muse of astronomy Diodorus Siculus explains her name from her function: those she instructs she &#39;raises aloft to heaven&#39;, for thought lifts men&#39;s souls to heavenly heights. In Statius she reads the future in the stars, having foretold the warrior Corymbus&#39;s death &#39;by the position of the stars&#39;, and Nonnus gives her a revolving globe, since she &#39;knew all the courses of the stars&#39;. ### Muse of heaven and thought Plato&#39;s Phaedrus pairs her with Calliope: of all the Muses these two are &#39;chiefly concerned with heaven and thought, divine as well as human&#39;, and they hold the philosophers&#39; music. ### Muse of the victory ode The...</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">greek</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

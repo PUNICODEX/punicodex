@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,36 +170,194 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>16 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#epithets-cult-titles">Epithets &amp; Cult Titles</a></li>
+                <li><a href="#the-homeric-hymns">The Homeric Hymns</a></li>
+                <li><a href="#oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>Why Ártemis Belongs in the Address Bar</h1>
-<p>Every address bar is a choice. When you type <strong>Ártemis</strong>, you are not typing a novelty; you are restoring a name. The plain ASCII form <em>artemis</em> is the leftover of a DNS that was built for English typewriters, not for the world&#39;s naming traditions. Ártemis (artemis) — The Virgin Huntress · Lady of Wild Beasts — belongs to the Greek tradition, where it is catalogued under the domain &quot;Hunt, Wilderness, Moon&quot;. The name means &quot;Safe, unharmed (from ἀρτεμής)&quot;. Ártemis is Apóllōn&#39;s twin but his opposite. Where he imposes order, she preserves wildness. She is the huntress who protects the animals she kills, the virgin who oversees childbirth, the goddess of the liminal space between city and forest, child and adult, human and beast. PÚNYCODEX restores the name as Ártemis and serves its temple at ártemis.com. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form artemis survives as a modern convenience imposed by...</p>
-<h2>The Name the DNS Almost Forgot</h2>
-<p>The name is attested in Greek as Ἄρτεμις. Etymologically it means &quot;Safe, unharmed (from ἀρτεμής)&quot;. The reconstructed proto-form is h₂r-tem- (proto-indo-european, &quot;bear, great goddess&quot;). Possibly from ἄρκτος &quot;bear&quot; + suffix, or pre-Greek. Mistress of animals (potnia theron). The ASCII form artemis survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Ártemis recovers the stress accent of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The letter-by-letter transformation runs: - a → Á — Acute on alpha - r → r — Rho - t → t — Tau -... In scholarly terms, it belongs to the <strong>Tier 2</strong> class: the original preserves at least one philological feature that ASCII cannot encode. That detail is not decorative; it is the difference between a label and a lived name.</p>
-<h2>From Greek to the Browser</h2>
-<p>The name is preserved in Greek as Ἄρτεμις — Greek alphabet (Classical / Attic), attested Ancient Greek, c. 8th century BCE – present, in Greece and the Greek-speaking Mediterranean. The script is written left-to-right. The scholarly transliteration is Ártemis (Greek alphabet with polytonic accents), giving the normalized reading /ˈar.te.mis/. The rendering proceeds step by step: - The Greek form Ἄρτεμις is written in the Classical Greek alphabet. - Letters with acute, grave, or circumflex accents preserve the pitch accent of Ancient Greek. - Macrons and omegas (η, ω) mark long vowels, a feature lost in the plain ASCII form. - The Unicode restoration Ártemis encodes the scholarly spelling as a registrable domain name. The PÚNYCODEX temple does not invent a spelling; it recovers one. By registering the Unicode form, the project proves that the original script can survive inside the infrastructure of the modern web.</p>
-<h2>Why 2026 Still Needs This</h2>
-<p>In 2026, names are data. Search engines, AI training corpora, and localization teams all need authoritative forms. Ártemis is a small but concrete demonstration that philology and DNS can coexist. The <a href="/sites/artemis/scholars/">Scholarly Edition</a> preserves the argument; the blog makes it approachable.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Ártemis is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>Why Ártemis belongs in your address bar</h1>
+<p>Every address bar is a choice. When you type <strong>Ártemis</strong>, you are not typing a novelty; you are restoring a name that the early DNS, built for English typewriters, could not carry. The plain ASCII form <em>artemis</em> is a leftover of that constraint, not the name itself. This post is the long version of the restoration: where the name comes from, how the Greek tradition wrote it, how it is pronounced, what the myths and the material record preserve, and why its Unicode form now lives as a working domain. The claim throughout is simple — the original spelling is not decoration. It is the name.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Ártemis</li>
+  <li><strong>ASCII form:</strong> artemis</li>
+  <li><strong>Meaning:</strong> &quot;Safe, unharmed (from ἀρτεμής)&quot;</li>
+  <li><strong>Domain of influence:</strong> Hunt, Wilderness, Moon</li>
+  <li><strong>Pantheon:</strong> Greek</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> Ἄρτεμις (Greek)</li>
+  <li><strong>Live domain:</strong> ártemis.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Ártemis</strong> (<em>artemis</em>) — The Virgin Huntress · Lady of Wild Beasts — belongs to the Greek tradition, where it is catalogued under the domain &quot;Hunt, Wilderness, Moon&quot;. The name means &quot;Safe, unharmed (from ἀρτεμής)&quot;.</p>
+<p>Ártemis is Apóllōn&#39;s twin but his opposite. Where he imposes order, she preserves wildness. She is <strong>the huntress who protects the animals she kills</strong>, the virgin who oversees childbirth, the goddess of the liminal space between city and forest, child and adult, human and beast.</p>
+<p>PÚNYCODEX restores the name as <strong>Ártemis</strong> and serves its temple at <a href="https://xn--rtemis-ota.com">ártemis.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>artemis</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Greek as <strong>Ἄρτεμις</strong>. Etymologically it means &quot;Safe, unharmed (from ἀρτεμής)&quot;.</p>
+<p>The reconstructed proto-form is <em>h₂r-tem-</em> (proto-indo-european, &quot;bear, great goddess&quot;). Possibly from ἄρκτος &quot;bear&quot; + suffix, or pre-Greek. Mistress of animals (potnia theron).</p>
+<p>The ASCII form <em>artemis</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Ártemis</strong> recovers the stress accent of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>a</strong> → <strong>Á</strong> — Acute on alpha</li>
+  <li><strong>r</strong> → <strong>r</strong> — Rho</li>
+  <li><strong>t</strong> → <strong>t</strong> — Tau</li>
+  <li><strong>e</strong> → <strong>e</strong> — Short epsilon</li>
+  <li><strong>m</strong> → <strong>m</strong> — Mu</li>
+  <li><strong>i</strong> → <strong>i</strong> — Short iota</li>
+  <li><strong>s</strong> → <strong>s</strong> — Sigma</li>
+</ul>
+<p>The project holds the domain <strong>ártemis.com</strong> (xn--rtemis-ota.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: Possibly from ἄρκτος &quot;bear&quot; + suffix, or pre-Greek. Mistress of animals (potnia theron).</p>
+<p>The reconstructed proto-form is <em>*h₂r-tem-</em> (proto-indo-european), glossed as &quot;bear, great goddess&quot;.</p>
+<p>The reconstruction is classed as speculative.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Greek as <strong>Ἄρτεμις</strong> — Greek alphabet (Classical / Attic), attested Ancient Greek, c. 8th century BCE – present, in Greece and the Greek-speaking Mediterranean. The script is written left-to-right.</p>
+<p>The scholarly transliteration is <em>Ártemis</em> (Greek alphabet with polytonic accents), giving the normalized reading /ˈar.te.mis/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The Greek form Ἄρτεμις is written in the Classical Greek alphabet.</li>
+  <li>Letters with acute, grave, or circumflex accents preserve the pitch accent of Ancient Greek.</li>
+  <li>Macrons and omegas (η, ω) mark long vowels, a feature lost in the plain ASCII form.</li>
+  <li>The Unicode restoration Ártemis encodes the scholarly spelling as a registrable domain name.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/ár.te.mis/</strong> — Attic Greek Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Ár-</strong> — Short alpha with acute pitch plus rho — the name opens like a bowstring drawn back.</li>
+  <li><strong>-te-</strong> — Tau-epsilon, the crisp release of the arrow.</li>
+  <li><strong>-mis</strong> — Mu-iota-sigma, the final syllable that lands silently, like a hunter&#39;s footfall.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;AR-te-miss&#39; — the first syllable is sharp and high; the name is quick, like the arrow she looses.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Greek</strong> — ἄρτεμις (artemis), possibly related to ἀρτεμής &#39;safe and sound&#39; or ἄρταμις, a Lydian goddess</li>
+  <li><strong>Lydian</strong> — Artimuš, a goddess possibly borrowed into Greek Artemis</li>
+  <li><strong>PIE</strong> — no secure Indo-European etymology; Beekes argues for a Pre-Greek or Anatolian origin</li>
+</ul>
+<p>Ártemis is Tier 2 because the Greek Ἄρτεμις preserves stress (acute on the first alpha) but no long vowel. She is the most important single-tier Tier-2 deity in the Greek pantheon: her acute alone carries the entire prosodic signature of the huntress&#39;s cry.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Ártemis&#39;s myths are almost all about <strong>the protection of boundaries</strong> — between virgin and sexual, wild and civilized, mortal and divine. Those who cross them pay terribly.</p>
+<h3 id="born-on-ortygia-the-birth">Born on Ortygia (The Birth)</h3>
+<p>Ártemis was born to Lētō after the goddess wandered the earth under Hêra&#39;s curse. The Homeric Hymn to Apollo places her birth on Ortygia — Delos bore Apóllōn, and Ortygia Ártemis — and later tradition made her the elder twin, who then eased her own brother&#39;s delivery: the virgin goddess of childbirth from her first hour. The island that sheltered Apóllōn became one of the most sacred places in the Aegean, and her cult stood beside his there.</p>
+<h3 id="actaeon-torn-apart-the-hunter">Actaeon Torn Apart (The Hunter)</h3>
+<p>The hunter Actaeon stumbled upon Ártemis bathing with her nymphs. In punishment, she transformed him into a stag, and his own hounds tore him apart. Callimachus tells it as the price of an unwitting sight; Apollodorus records both that version and the harsher one in which Actaeon boasted himself the better hunter. The myth is a stark boundary marker: <strong>the wild goddess cannot be seen by the male gaze</strong>; all agree the penalty is absolute.</p>
+<h3 id="the-death-of-callisto-the-virgin">The Death of Callisto (The Virgin)</h3>
+<p>Callisto was a nymph sworn to Ártemis&#39;s virginity whom Zeús seduced in disguise. When her pregnancy was discovered, Ártemis — in some versions, at Hêra&#39;s prompting — transformed her into a bear. Her son Arcas nearly killed her, and Zeús placed them both in the sky as the constellations Ursa Major and Arctophylax. The myth dramatizes the impossibility of maintaining virginity in a world ruled by Zeús&#39;s desire.</p>
+<h3 id="iphigenia-at-aulis-the-sacrifice">Iphigenia at Aulis (The Sacrifice)</h3>
+<p>When the Greek fleet was becalmed at Aulis on its way to Troy, the seer Calchas declared that Ártemis demanded the sacrifice of Agamemnon&#39;s daughter Iphigenia. In some versions she dies; in others Ártemis substitutes a deer and carries Iphigenia to Tauris to serve as her priestess — the version Euripides stages, letting Iphigenia herself recount it. The story makes Ártemis both the demander of blood and the merciful rescuer — the double face of the hunt.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography of Ártemis concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>Bow and arrows</strong> — &#39;Artemis of the golden shafts, shooter of stags&#39;: the hunt and sudden, unpitying death.</li>
+  <li><strong>Deer</strong> — her sacred animal and the prey she protects; Callimachus has her yoke a team of golden-horned hinds to her chariot.</li>
+  <li><strong>Hunting dogs</strong> — her companions in the chase, a gift from Pan himself: two black-and-white, three red, one spotted.</li>
+  <li><strong>Bear</strong> — the animal of her Brauronian girls, the arktoi who &#39;played the bear&#39; in her Attic sanctuary before marriage.</li>
+  <li><strong>Torch</strong> — as Phosphoros, the light-bearer, she stands with a torch in each hand at the border of her lunar identity.</li>
+  <li><strong>Crescent moon</strong> — the later emblem of her identification with Selene.</li>
+</ul>
+<p>Ártemis the huntress is unmistakable: short maiden&#39;s chiton girt for running, bow and quiver, a deer or hound at her side — the type canonized in the &#39;Artemis of Versailles&#39; (Louvre), a Roman copy of a fourth-century Greek original, mid-stride as she draws an arrow. Attic vases give her set pieces: the death of Actaeon torn by his own hounds, the shooting of the Niobids, the hunt with her nymphs. As torch-bearer (Phosphoros) she stands with a torch in each hand, on the border of her lunar identity. The Ephesian Ártemis is a wholly different image: a stiff cult figure hung with rows of pendant objects variously interpreted as breasts or, in modern scholarship, as the scrota of sacrificed bulls, her skirt dense with animals — the Anatolian face of the goddess, kept deliberately archaic.</p>
+<h2 id="epithets-cult-titles">Epithets &amp; Cult Titles</h2>
+<ul>
+  <li><strong>ἰοχέαιρα</strong> (iocheaira) — &#39;she who showers arrows&#39; — Homer&#39;s formula for her in the Iliad.</li>
+  <li><strong>πότνια θηρῶν</strong> (potnia thērōn) — &#39;Mistress of Animals&#39; — Hēra&#39;s scornful but accurate address in Iliad 21, naming her oldest function.</li>
+  <li><strong>Ἀγροτέρα</strong> (Agrotera) — &#39;of the wild, of the hunt&#39; — paired with potnia thērōn in the same verse; cult title of her shrine at Agrae below the Acropolis.</li>
+  <li><strong>Λοχία</strong> (Lochia) — &#39;of childbirth&#39; — the virgin who eases labor, invoked by women in travail.</li>
+  <li><strong>Ὀρθία</strong> (Orthia) — the Spartan Artemis Orthia, mistress of the boys&#39; ordeal at her altar.</li>
+  <li><strong>Βραυρωνία</strong> (Brauronia) — &#39;of Brauron&#39; — the Attic cult where girls served as her &#39;bears&#39;.</li>
+</ul>
+<h2 id="the-homeric-hymns">The Homeric Hymns</h2>
+<p>Two hymns celebrate Ártemis. Hymn 27, twenty-two lines, gives her fullest archaic portrait: &#39;Artemis of the golden shafts, who cheers the hounds on, the revered maiden, shooter of stags, who delights in archery, own sister to [[apollon|Apóllōn]] of the golden sword.&#39; The poem follows her over the shadowed hills and windy heights, the mountains trembling and the sea resounding, until she unstrings her bow and goes to Delphi to lead the dance of the Muses and Graces. Hymn 9 is a six-line miniature to the same effect: the virgin who delights in arrows, watering her horses in the reedy Meles and driving her golden chariot through Smyrna to Claros, where her brother waits. Her birth is told in the Delian part of the Hymn to Apollo (Hymn 3), where Lētō bears the twins beneath the palm.</p>
+<h2 id="oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</h2>
+<p>Ártemis kept no oracle — prophecy was her brother&#39;s province — but her sanctuaries anchored the Greek rites of passage. Brauron, on the Attic coast, held the arkteia, where Athenian girls &#39;played the bear&#39; before marriage. Ephesus held her greatest temple, the marble Artemision counted among the Seven Wonders, seat of an Anatolian goddess in Greek dress. At Sparta, the sanctuary of Artemis Orthia, with its ancient xoanon said to have come from Tauris, presided over the whipping ordeal of the ephebes. Agrae, in the Ilissos valley below Athens, received the annual sacrifice of five hundred goats vowed to Artemis Agrotera before Marathon — a vow Xenophon records the Athenians still paying generations later.</p>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Ártemis&#39;s material record spans the Greek world. At Ephesus, the archaic Artemision — begun under Croesus, who dedicated most of its columns, and designed, Pliny says, by Chersiphron and his son Metagenes — was burned by Herostratus in 356 BCE and rebuilt to be counted among the Seven Wonders; one of Croesus&#39;s inscribed column drums is in the British Museum. At Brauron on the Attic coast, her sanctuary — temple, stoa, and sacred spring — held the image Iphigenia was said to have brought from Tauris and a Classical statue by Praxiteles; the Athenian arkteia was celebrated there. At Sparta, the sanctuary of Artemis Orthia, excavated by the British School at Athens in 1906–1910, produced the richest votive deposit in Laconia — thousands of lead figurines — around the ancient xoanon said to have come from Tauris, before which the ephebes were whipped. Delos kept her temple beside her brother&#39;s great sanctuary, honoring the island tradition of the twins&#39; birth.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Ártemis is Apóllōn&#39;s twin but his opposite. Where he imposes order, she preserves wildness. She is <strong>the huntress who protects the animals she kills</strong>, the virgin who oversees childbirth, the goddess of the liminal space between city and forest, child and adult, human and beast.</p>
+<h3 id="the-hunt">The Hunt</h3>
+<p>She ranges mountains and forests with her nymphs, bringing sudden death to prey and hunters alike; the hymn follows her over the shadowed hills until the mountains tremble and the sea resounds.</p>
+<h3 id="wilderness-and-liminal-space">Wilderness and Liminal Space</h3>
+<p>Marshes, groves, and mountain passes are hers — sixty dancing Oceanids and twenty Amnisian nymphs for her choir, hounds for her hunt, all gifts she asks of Zeús in Callimachus&#39;s hymn; she guards the boundary between the tamed and the untamed.</p>
+<h3 id="childbirth">Childbirth</h3>
+<p>As Lochia and Kourotrophos, she eases birth and protects the young — despite her own eternal virginity, for she was born first and so eased her own brother&#39;s delivery.</p>
+<h3 id="the-moon">The Moon</h3>
+<p>Later tradition identifies her with Selene; her silver bow becomes the crescent moon, and Roman poets hymn Diana as Luna in the same breath as Lucina and Trivia.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>The Romans identified Ártemis with Diana, a goddess of the hunt and the moon who was also mistress of the crossroads: Catullus hymns her in one breath as Luna, as Lucina aiding women in labor, and as &#39;potent Trivia.&#39; Diana&#39;s cult at Aricia, with its sacred grove and its priest-king, the Rex Nemorensis — &#39;who slew the slayer and shall himself be slain&#39; — became one of the most famous in Italy. In Hellenistic and Roman Egypt, Ártemis was syncretized with Bastet; Herodotus already reports her great festival at Bubastis under the Greek name Artemis. The crescent crown of the Virgin Mary in Byzantine and Renaissance art may owe something to the iconography of Ártemis-Diana. Modern Wicca and Neopaganism have made her one of the most widely invoked goddesses of feminine autonomy and wild nature.</p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include [[anat|ꜥAnat]] (hunt / wild), [[hekate|Hekátē]] (moon / lunar), [[selene|Selēnē]] (moon / lunar), and [[thoth|Ḏḥwty]] (moon / lunar).</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Ártemis is the archetype of independent, untamable feminine power. Her sanctuary at Ephesus was one of the Seven Wonders of the Ancient World; Antipater&#39;s epigram on the Wonders judges the Artemision the grandest of them all. The Brauronia, in which young Athenian girls served as &#39;bears&#39; in her sanctuary before marriage, was a central rite of female initiation, and Euripides closes the Iphigenia among the Taurians by ordaining her cult at Brauron and Halae forever. Renaissance courts adored her: the School of Fontainebleau&#39;s &#39;Diana the Huntress&#39; and the Louvre&#39;s &#39;Artemis of Versailles&#39; — a Roman copy of a fourth-century Greek original — fixed her image for modern Europe. In modern environmentalism, Ártemis is a patron of wilderness preservation and animal rights, and NASA&#39;s Artemis program, named for Apóllōn&#39;s twin, aims to return humans — this time including women — to the Moon. Her bow remains a symbol of focused, lethal skill. Restoring <em>Ártemis</em> restores the name of the goddess who refuses to be domesticated.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Ártemis given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Full text</a></li>
+  <li> Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a href="https://brill.com/view/title/17858">Full text</a></li>
+  <li> Wörterbuch der griechischen Eigennamen, 3rd ed., 1863. <a href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ">Full text</a></li>
+  <li> Homer, Iliad.</li>
+  <li> Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE. <a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Full text</a></li>
+  <li> Homeric Hymn to Artemis.</li>
+  <li> Euripides, Iphigenia among the Taurians.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Ártemis is the goddess of the untouched. Not the virginity of inexperience, but the virginity of self-possession. Euripides gives her most devoted worshipper, Hippolytus, a garland woven from an &#39;untouched meadow&#39; where the shepherd does not graze his flocks and the plow has never come — only reverence may enter there. She hunts not because she lacks feeling but because she has chosen a boundary and will kill to defend it. The forest is not her prison; it is her chosen territory.</p>
+<p>In a culture that constantly demands women&#39;s availability, Ártemis is radical. She is not available. She is not domestic. She is not safe. Yet the same Athens that honored her fierceness built her sanctuary into its own rites of growing up: at Brauron, the daughters of its citizens &#39;played the bear&#39; for her before marriage, passing for a season into her wild company and back. The restoration of her name is a small acknowledgment that the ancient world knew a feminine power that needed no relation to masculinity to be complete.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Ártemis is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>artemis</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 7 characters of the name, the restoration adjusts 1: 1 mark of stress (Á). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>ártemis.com</strong>, which the DNS carries in punycode form as xn--rtemis-ota.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Ártemis; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Greek can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Restoring <strong>Ártemis</strong> is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. Every section of this post — the script, the sound, the myths, the evidence — converges on the same point: the marks in Ártemis are information, and information deserves an address of its own. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier, and every visit to ártemis.com is a vote for the restored form.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/peleus/">Pēleus</a></li>
   <li><a href="/sites/persephone/">Persephonē</a></li>
   <li><a href="/sites/philoctetes/">Philoktētēs</a></li>
 </ul>
-<h2>Read More</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843.</a></li>
   <li><a href="https://brill.com/view/title/17858">Etymological Dictionary of Greek, 2 vols., Brill, 2010.</a></li>
   <li><a href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ">Wörterbuch der griechischen Eigennamen, 3rd ed., 1863.</a></li>
   <li><a href="https://www.nasa.gov/humans-in-space/artemis/">NASA, Artemis program.</a></li>
+  <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE.</a></li>
+  <li>Homeric Hymn 27 to Artemis.</li>
+  <li>Callimachus, Hymn to Artemis (Hymn 3).</li>
+  <li>Apollodorus, Library 1.4.1.</li>
+  <li>Catullus 34 (Diana as Luna, Lucina, and Trivia).</li>
+  <li>Lexicon authorities for this entry: LSJ, Pape-Benseler, Beekes.</li>
 </ul>
-<h2>What the Sources Record</h2>
-<p>Ártemis is Apóllōn&#39;s twin but his opposite. Where he imposes order, she preserves wildness. She is the huntress who protects the animals she kills, the virgin who oversees childbirth, the goddess of the liminal space between city and forest, child and adult, human and beast. ### The Hunt She ranges mountains and forests with her nymphs, bringing sudden death to prey and hunters alike; the hymn follows her over the shadowed hills until the mountains tremble and the sea resounds. ### Wilderness and Liminal Space Marshes, groves, and mountain passes are hers — sixty dancing Oceanids and twenty Amnisian nymphs for her choir, hounds for her hunt, all gifts she asks of Zeús in Callimachus&#39;s hymn; she guards the boundary between the tamed and the untamed....</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">greek</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,46 +170,206 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>13 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-greek-location-pantheon">The Greek Location Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#typing-athenai">Typing Athēnai</a></li>
+                <li><a href="#sister-temples">Sister Temples</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>The Name Athēnai and the World It Opens</h1>
-<p>A name is a door. Athēnai opens onto city of wisdom. Athēnai (athenai) — Of Athena — belongs to the Greek tradition, where it is catalogued under the domain &quot;City of Wisdom&quot;. The name means &quot;Of Athena&quot;. Athēnai is not merely a place on the map; it is the city that gave the West the vocabulary of citizenship, philosophy, and ordered public speech. Nestled between the Acropolis and the Piraeus, it was a polis whose gods, assemblies, and festivals turned a limestone outcrop into the symbolic home of wisdom. PÚNYCODEX restores the name as Athēnai and serves its temple at athēnai.com. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form athenai survives as a modern convenience imposed by the...</p>
-<h2>Domain and Meaning</h2>
-<p>The temple domain is <strong>City of Wisdom</strong>. The traditional meaning is &quot;Of Athena.&quot; Together, those two facts explain why the name mattered enough to be remembered for millennia.</p>
-<h2>The Mythic Landscape</h2>
-<p>Athenai is not merely a city; it is a mythic body shaped by gods, kings, and heroes. Its foundation stories explain why Athena&#39;s olive tree outranked Poseidon&#39;s salt spring, why its earliest kings were said to be born from the earth itself, and why the city became the seat of wisdom, craft, and collective rule. Myth is the memory of a civilization, and names are the hooks on which that memory hangs.</p>
-<h2>Modern Patterns</h2>
-<p>The <a href="/sites/athenai/patterns/">Patterns</a> page maps the industries and sister temples that share Athēnai&#39;s current. A name that once organized ritual now organizes search, advertising, and creative collaboration.</p>
-<h2>Join the Restoration</h2>
-<p>You can support the work through the <a href="/sites/athenai/patron/">Patron</a> wall, submit creative work, or simply share the address. Every visit to Athēnai is a vote for original scripts.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Athēnai is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>The name Athēnai and the world it opens</h1>
+<p>A name is a door. <strong>Athēnai</strong> opens onto an entire world: the domain of city of wisdom, a Greek Location tradition, and centuries of storytelling, worship, and scholarship. This post walks through that world room by room — the name and its roots, the original script, the sound of it, the myths, the symbols, the sites, the afterlife across cultures — and ends at the newest room of all: a Unicode domain that makes the whole structure addressable. <em>athenai</em> gets you to the same building, but only the restored form tells you why it was built.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Athēnai</li>
+  <li><strong>ASCII form:</strong> athenai</li>
+  <li><strong>Meaning:</strong> &quot;Of Athena&quot;</li>
+  <li><strong>Domain of influence:</strong> City of Wisdom</li>
+  <li><strong>Pantheon:</strong> Greek Location</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Original script:</strong> Ἀθῆναι (Greek)</li>
+  <li><strong>Live domain:</strong> athēnai.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Athēnai</strong> (<em>athenai</em>) — Of Athena — belongs to the Greek tradition, where it is catalogued under the domain &quot;City of Wisdom&quot;. The name means &quot;Of Athena&quot;.</p>
+<p><strong>Athēnai</strong> is not merely a place on the map; it is the city that gave the West the vocabulary of citizenship, philosophy, and ordered public speech. Nestled between the Acropolis and the Piraeus, it was a polis whose gods, assemblies, and festivals turned a limestone outcrop into the symbolic home of wisdom.</p>
+<p>PÚNYCODEX restores the name as <strong>Athēnai</strong> and serves its temple at <a href="https://xn--athnai-r3a.com">athēnai.com</a>. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>athenai</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Greek as <strong>Ἀθῆναι</strong>. Etymologically it means &quot;Of Athena&quot;.</p>
+<p>The reconstructed proto-form is <em>h₂erǵ-</em> (proto-indo-european, &quot;to shine, white&quot;). From the goddess Athena; the city named after its patron deity.</p>
+<p>The ASCII form <em>athenai</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Athēnai</strong> recovers the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>a</strong> → <strong>A</strong> — Alpha</li>
+  <li><strong>t</strong> → <strong>t</strong> — Tau</li>
+  <li><strong>h</strong> → <strong>h</strong> — Theta</li>
+  <li><strong>e</strong> → <strong>ē</strong> — Eta: long epsilon</li>
+  <li><strong>n</strong> → <strong>n</strong> — Nu</li>
+  <li><strong>a</strong> → <strong>a</strong> — Short alpha</li>
+  <li><strong>i</strong> → <strong>i</strong> — Short iota</li>
+</ul>
+<p>The project holds the domain <strong>athēnai.com</strong> (xn--athnai-r3a.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: From the goddess Athena; the city named after its patron deity.</p>
+<p>The reconstructed proto-form is <em>*h₂erǵ-</em> (proto-indo-european), glossed as &quot;to shine, white&quot;.</p>
+<p>The reconstruction is classed as attested.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Greek as <strong>Ἀθῆναι</strong> — Greek alphabet (Classical / Attic), attested Ancient Greek, c. 8th century BCE – present, in Greece and the Greek-speaking Mediterranean. The script is written left-to-right.</p>
+<p>The scholarly transliteration is <em>Athēnai</em> (Greek alphabet with polytonic accents), giving the normalized reading /atʰɛːˈnaɪ/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The Greek form Ἀθῆναι is written in the Classical Greek alphabet.</li>
+  <li>Letters with acute, grave, or circumflex accents preserve the pitch accent of Ancient Greek.</li>
+  <li>Macrons and omegas (η, ω) mark long vowels, a feature lost in the plain ASCII form.</li>
+  <li>The Unicode restoration Athēnai encodes the scholarly spelling as a registrable domain name.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/atʰɛ́ːnai/</strong> — Attic Greek Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>A-</strong> — Short alpha [a] with rough breathing [h], the open first syllable of the city&#39;s name.</li>
+  <li><strong>-thē-</strong> — Aspirated theta [tʰ] followed by long eta [ɛː] carrying the acute pitch stress; this length and stress make the name Tier 1.</li>
+  <li><strong>-nai</strong> — Nu [n] plus the diphthong alpha-iota [ai], the plural ending that marks the city as &#39;the place of Athena&#39;.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;ah-THAY-nahee&#39; — aspirate the theta like an English &#39;t-h&#39;, and hold the long vowel of the stressed syllable.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Greek</strong> — Ἀθήνη (Athḗnē), the goddess Athena, eponym of the city</li>
+  <li><strong>Mycenaean Greek</strong> — a-ta-na-po-ti-ni-ja (Linear B), &#39;Lady Athena&#39;, the earliest written attestation</li>
+  <li><strong>Doric Greek</strong> — Ἀθάνᾱ (Athā́nā), the long-alpha dialectal form preserved in some inscriptions</li>
+</ul>
+<p>Athēnai is Tier 1 because the Greek Ἀθῆναι preserves both stress (acute on the long eta) and length. The rough breathing on the initial alpha is implied by the spiritus asper in the original script.</p>
+<h2 id="mythology">Mythology</h2>
+<p><strong>Athenai</strong> is not merely a city; it is a mythic body shaped by gods, kings, and heroes. Its foundation stories explain why Athena&#39;s olive tree outranked Poseidon&#39;s salt spring, why its earliest kings were said to be born from the earth itself, and why the city became the seat of wisdom, craft, and collective rule.</p>
+<h3 id="the-contest-of-athena-and-poseidon-foundation">The Contest of Athena and Poseidon (Foundation)</h3>
+<p>Athena and Poseidon both desired to become patron of the city. Poseidon struck the Acropolis with his trident and produced a salt spring; Athena planted the first olive tree. King Cecrops judged the contest in Athena&#39;s favour, for the olive gave wood, oil, and food. Poseidon raged and flooded the Thriasian plain, but the city took Athena&#39;s name and her tree was honoured on the citadel.</p>
+<h3 id="cecrops-and-the-autochthonous-kings-kingship">Cecrops and the Autochthonous Kings (Kingship)</h3>
+<p>Cecrops, the first king of Athenai, was said to be born from the earth itself — half-man, half-snake. His successors, including Erechtheus, continued the claim that the Athenians were autochthonous, sprung from their own soil rather than imported by conquest. This myth of native origin supported the city&#39;s pride in equality and civic continuity.</p>
+<h3 id="erechtheus-and-the-war-for-attica-sacrifice">Erechtheus and the War for Attica (Sacrifice)</h3>
+<p>When Eumolpus and the Eleusinians threatened Attica, the oracle declared that Athenai would be saved only if King Erechtheus sacrificed one of his daughters. He did so, and the invaders were driven back. Erechtheus himself was destroyed by Poseidon&#39;s trident and was swallowed into the earth beside the temple of Athena, becoming a hero-chthonic power of the city.</p>
+<h3 id="theseus-and-the-synoikismos-unification">Theseus and the Synoikismos (Unification)</h3>
+<p>The hero Theseus unified the independent demes of Attica into a single political community centred on Athenai. This act, the <em>synoikismos</em>, transformed a cluster of villages into a city-state. In myth it mirrors the later democratic ideal: many parts voluntarily joined into one <em>polis</em> under the protection of Athena.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Athēnai concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>Olive tree</strong> — Athena&#39;s gift to the city, the source of wood, oil, and food, and the reason she won the contest with Poseidon</li>
+  <li><strong>Owl</strong> — Athena&#39;s nocturnal bird, minted on coins and adopted as a symbol of wisdom and the city itself</li>
+  <li><strong>Panathenaic peplos</strong> — The woven robe presented to Athena&#39;s statue every four years during the Great Panathenaia</li>
+  <li><strong>Gorgoneion and aegis</strong> — The snake-fringed goat-skin Athena wears over her chiton in the city&#39;s vase painting and cult statues</li>
+  <li><strong>Panathenaic prize amphora</strong> — The black-figure jars stamped with the striding Athena, filled with sacred olive oil for the festival victors</li>
+</ul>
+<ul>
+  <li><strong>Owl</strong> — Athena&#39;s nocturnal bird, minted on coins and adopted as a symbol of wisdom and the city itself</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>The Athenian Acropolis has yielded Mycenaean palace remains, Archaic korai, and the Periclean building program documented by the Acropolis Restoration Service. The Agora excavations of the American School of Classical Studies uncovered the Stoa of Attalos, the Bouleuterion, and the Tholos. Kerameikos preserves the Dipylon Gate and Demosion Sema, while the Long Walls and Piraeus harbor installations trace the city&#39;s maritime infrastructure. The American School&#39;s work in the agora has run continuously since 1931, one of the longest urban excavations in the Mediterranean, while the German Archaeological Institute has excavated the Kerameikos since 1913.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p><strong>Athēnai</strong> is not merely a place on the map; it is the city that gave the West the vocabulary of citizenship, philosophy, and ordered public speech. Nestled between the Acropolis and the Piraeus, it was a polis whose gods, assemblies, and festivals turned a limestone outcrop into the symbolic home of wisdom.</p>
+<h3 id="acropolis-and-parthenon">Acropolis and Parthenon</h3>
+<p>Athena&#39;s sacred rock, crowned by the Parthenon, the treasury of the Delian League and a temple to the maiden goddess.</p>
+<h3 id="owl-of-wisdom">Owl of Wisdom</h3>
+<p>Athena&#39;s bird, stamped on tetradrachms and carved into the city&#39;s identity, became an emblem of learning and vigilance.</p>
+<h3 id="agora-and-assembly">Agora and Assembly</h3>
+<p>The open square where citizens debated law, ostracized tyrants, and practiced the democracy that bore the city&#39;s name.</p>
+<h3 id="long-walls-and-fleet">Long Walls and Fleet</h3>
+<p>The fortified corridor to the Piraeus and the trireme fleet made Athēnai a maritime power and an imperial democracy.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Athēnai has been many cities in one.</p>
+<p>Roman visitors saw a Greek rival to be admired and plundered; the Roman forum at Athens and the Temple of Olympian Zeus testify to imperial cohabitation. Byzantine Athens shrank around the Parthenon, converted into a church to the Virgin. Under Ottoman rule the Acropolis became a mosque and a gunpowder magazine. The nineteenth-century Kingdom of Greece reclaimed the city as its capital, and modern archaeology — from Heinrich Schliemann to the ongoing Acropolis Restoration Project — has made Athēnai a global symbol of classical revival.</p>
+<p>Within the Greek tradition, closely related names in the corpus include [[aigyptos|Aígyptos]], [[asia|Asía]], [[atlantis|Atlantís]], [[delphoi|Delphoí]], [[europe|Eurṓpē]], and [[libye|Libyē]].</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Few city-names carry as much ideological weight as Athēnai.</p>
+<p>The city&#39;s invented traditions — democracy, tragedy, philosophy, rhetoric, and the ideal of the citizen — became the common property of later Europe and the Americas. Terms such as &#39;politics&#39;, &#39;acropolis&#39;, &#39;agora&#39;, and &#39;Areopagus&#39; still derive from Athenian institutions. Yet the legacy is double-edged: Athēnai also practiced slavery, excluded women and foreigners from citizenship, and built an empire. To invoke the city today is to inherit both its aspirations and its failures. Two of the world&#39;s words for schools are Athenian addresses: &#39;academy&#39; comes from the grove of Akademos where Plato taught, and &#39;lyceum&#39; from the sanctuary of Apollo Lykeios where Aristotle walked. New towns on other continents — Athens, Georgia, among them — took the name in conscious homage, and the modern Greek capital still bears it unchanged.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Athēnai given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Pausanias, Description of Greece.</li>
+  <li> Apollodorus, Bibliotheca.</li>
+  <li> Herodotus, Histories.</li>
+  <li> Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE. <a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Full text</a></li>
+  <li> Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Full text</a></li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>To contemplate Athēnai is to hold the idea of city of Wisdom in the mind and to ask what of it endures. The name means &quot;Of Athena&quot; — and a name that carries its meaning so openly invites meditation rather than mere recollection. The tradition remembers the name as of Athena.</p>
+<p>Sit with the restored form — Athēnai — and the diacritics themselves become the practice: each mark is a small act of attention, a refusal to let the plain ASCII form <em>athenai</em> stand in for the whole. What the tradition preserved in this name, the restoration asks the reader to preserve in turn. Even its grammar is plural — Ἀθῆναι, &#39;the Athenas&#39;, like Thēbai and Mykēnai: the city was conceived from the start as a community of settlements, not the monument of a solitary founder.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Athēnai is classified as <strong>Tier 1</strong>: the original carries both stress and length, and only one valid Unicode restoration exists. The ASCII fallback <em>athenai</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 7 characters of the name, the restoration adjusts 1: 1 mark of length (ē). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>athenai</em> to <strong>Athēnai</strong>, one character at a time:</p>
+<ul>
+  <li><strong>a</strong> → <strong>A</strong> — Alpha</li>
+  <li><strong>t</strong> → <strong>t</strong> — Tau</li>
+  <li><strong>h</strong> → <strong>h</strong> — Theta</li>
+  <li><strong>e</strong> → <strong>ē</strong> — Eta: long epsilon</li>
+  <li><strong>n</strong> → <strong>n</strong> — Nu</li>
+  <li><strong>a</strong> → <strong>a</strong> — Short alpha</li>
+  <li><strong>i</strong> → <strong>i</strong> — Short iota</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>athēnai.com</strong>, which the DNS carries in punycode form as xn--athnai-r3a.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Athēnai; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Greek can now be typed into any browser on earth.</p>
+<h2 id="the-greek-location-pantheon">The Greek Location Pantheon</h2>
+<p>Athēnai is one of 24 entries the PÚNYCODEX lexicon catalogues under the Greek Location pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Athēnai mean?</strong> The traditional gloss is &quot;Of Athena.&quot;</p>
+<p><strong>Which tradition does Athēnai belong to?</strong> Athēnai is catalogued in the Greek Location pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Athēnai classified as Tier 1?</strong> Because the original carries both stress and length, and only one valid Unicode restoration exists — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Athēnai a working domain?</strong> Yes — athēnai.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for athēnai.com?</strong> The DNS encoding is xn--athnai-r3a.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="typing-athenai">Typing Athēnai</h2>
+<p>You do not need a special keyboard to use this restoration. The <a href="/type/">PÚNYCODEX Type Tool</a> converts the ASCII form <em>athenai</em> into <strong>Athēnai</strong> as you type, and the browser extension offers the same conversion inside any text field. Copy the restored form, paste it into the address bar, and the DNS does the rest.</p>
+<h2 id="sister-temples">Sister Temples</h2>
+<p>Other temples in the Greek Location pantheon include <a href="/sites/europe/">Eurṓpē</a>, <a href="/sites/mykenai/">Mykēnai</a>, and <a href="/sites/thrake/">Thrákē</a> — each with its own restoration story, its own scholarly record, and its own place in the lexicon.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>A door only matters if people walk through it. <strong>athēnai.com</strong> is open, and everything behind it — the myths, the scholarship, the canvas, the patrons — hangs on the restored spelling. The PÚNYCODEX project bets that the web will make room for names as they were actually written, and Athēnai is one of its standing proofs. Visit, share, cite, type it yourself: each use is a small rehearsal for a web where no name has to hide its marks to be found.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/libye/">Libyē</a></li>
   <li><a href="/sites/olympos/">Ólympos</a></li>
   <li><a href="/sites/sikyon/">Sikyōn</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0160">Pausanias, Description of Greece 1.24-28 (the cults of the Acropolis).</a></li>
   <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE.</a></li>
   <li><a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843.</a></li>
   <li><a href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ">Wörterbuch der griechischen Eigennamen, 3rd ed., 1863.</a></li>
+  <li>Pausanias, Description of Greece.</li>
+  <li>Apollodorus, Bibliotheca.</li>
+  <li>Herodotus, Histories.</li>
+  <li>Homer A. Thompson and R. E. Wycherley, The Athenian Agora XIV: The Agora of Athens (1972).</li>
+  <li>Lexicon authorities for this entry: Pape-Benseler, Barrington.</li>
 </ul>
-<h2>The Name in Context</h2>
-<p>Athēnai (athenai) — Of Athena — belongs to the Greek tradition, where it is catalogued under the domain &quot;City of Wisdom&quot;. The name means &quot;Of Athena&quot;. Athēnai is not merely a place on the map; it is the city that gave the West the vocabulary of citizenship, philosophy, and ordered public speech. Nestled between the Acropolis and the Piraeus, it was a polis whose gods, assemblies, and festivals turned a limestone outcrop into the symbolic home of wisdom. PÚNYCODEX restores the name as Athēnai and serves its temple at athēnai.com. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form athenai survives as a modern convenience imposed by the...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Athēnai as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Greek to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Athēnai through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/athenai/">home page</a> offers the full name breakdown, the <a href="/sites/athenai/lore/">lore page</a> explores the myth, and the <a href="/sites/athenai/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Athēnai do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">greek-location</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

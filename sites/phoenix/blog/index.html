@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,45 +170,180 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#epithets-cult-titles">Epithets &amp; Cult Titles</a></li>
+                <li><a href="#the-homeric-hymns">The Homeric Hymns</a></li>
+                <li><a href="#oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>How Phoînix Got Its Accent Back</h1>
-<p>The ASCII form <em>phoenix</em> is missing something. Phoînix restores the marks that the original language used to distinguish this name from a thousand others. Φοῖνιξ is one Greek word with four senses, and the bird holds them all together: the crimson-purple dye of the Phoenician traders, the Phoenicians themselves, the date palm, and the fabulous bird. The Greeks heard the creature&#39;s name as their own color-word — its plumage is the purple-red of murex dye — and exploited the palm-pun for centuries: the same word names the tree in which the bird builds its death-nest. The word&#39;s own ultimate origin is disputed; the ancients derived the bird from the Phoenicians, and modern scholarship has not settled the question. The accent is the point of the restoration. On the diphthong οι Greek writes a circumflex — a single mark that records both the length of the diphthong and the falling pitch peak — and that is...</p>
-<h2>The Missing Marks</h2>
-<p>Classified as <strong>Tier 1</strong>, this restoration carries the stress and length that standard ASCII discards. the Greek original carries both stress and length, and only one valid Unicode restoration exists</p>
-<h2>Step by Step</h2>
-<p>The transformation from <em>phoenix</em> to <strong>Phoînix</strong> happens one character at a time. Some letters stay the same; others gain accents, macrons, or entirely new shapes. The breakdown on the <a href="/sites/phoenix/">temple home page</a> shows exactly how.</p>
-<h2>Why Stress and Length Matter</h2>
-<p>In the source language, changing a stress or a vowel length can change a meaning. Names are especially sensitive because they are proper nouns: one spelling points to one entity. Phoînix preserves that pointer in a way <em>phoenix</em> cannot.</p>
-<h2>The Restored Form</h2>
-<p>Phoînix is now a domain. That simple fact turns a philological detail into a public demonstration. Anyone who types it participates in the restoration.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Phoînix is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>How Phoînix got its accent back</h1>
+<p>The ASCII form <em>phoenix</em> is missing something. <strong>Phoînix</strong> restores the marks the source language used to distinguish this name from a thousand others — and those marks change how the name is read, pronounced, and understood. This post explains, with the full scholarly record behind it, what each restored mark preserves: the Greek evidence, the reconstructed sound, the myths the name carries, and the classification logic that separates Tier 1 restorations from Tier 2. By the end, the marks in Phoînix will look less like ornaments and more like what they are — recovered evidence, pinned back in its proper place.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Phoînix</li>
+  <li><strong>ASCII form:</strong> phoenix</li>
+  <li><strong>Meaning:</strong> &quot;Purple-red, Phoenician&quot;</li>
+  <li><strong>Domain of influence:</strong> Rebirth, Immortality</li>
+  <li><strong>Pantheon:</strong> Greek</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Original script:</strong> Φοῖνιξ (Greek)</li>
+  <li><strong>Live domain:</strong> phoînix.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Phoînix</strong> (<em>phoenix</em>) is the immortal bird of Greek and Roman legend: the solitary creature of Arabia and the sun-city of Heliopolis that burns on a nest of spices and rises renewed from its own ashes. The Greek word φοῖνιξ means &#39;purple-red&#39; — and also &#39;Phoenician&#39; and &#39;date palm&#39; — so the bird&#39;s very name is a knot of color, commerce, and the tree in which it dies.</p>
+<p>The first full account is Herodotus&#39;, reporting what Egyptian priests told him: once every five hundred years the sacred bird comes to Heliopolis bearing its father embalmed in an egg of myrrh — a story Herodotus repeats without endorsing, having seen the bird only in pictures. Behind the Greek bird stands the Egyptian <em>benu</em>, the solar heron of Heliopolis; Greek and Roman writers then completed the cycle that made the phoenix immortal: the pyre, the worm, and the self-reseeding life.</p>
+<p>PÚNYCODEX restores the name as <strong>Phoînix</strong> and serves this temple at <a href="https://xn--phonix-dwa.com">phoînix.com</a>. The Greek Φοῖνιξ carries both stress and length in a single sign — the circumflex on the diphthong οι — and exactly one historically valid Unicode restoration exists, so the name sits in Tier 1; the ASCII form <em>phoenix</em> is the modern fallback imposed by the early domain-name system.</p>
+<h2 id="the-name">The Name</h2>
+<p><strong>Φοῖνιξ</strong> is one Greek word with four senses, and the bird holds them all together: the crimson-purple dye of the Phoenician traders, the Phoenicians themselves, the date palm, and the fabulous bird. The Greeks heard the creature&#39;s name as their own color-word — its plumage is the purple-red of murex dye — and exploited the palm-pun for centuries: the same word names the tree in which the bird builds its death-nest. The word&#39;s own ultimate origin is disputed; the ancients derived the bird from the Phoenicians, and modern scholarship has not settled the question.</p>
+<p>The accent is the point of the restoration. On the diphthong οι Greek writes a circumflex — a single mark that records both the length of the diphthong and the falling pitch peak — and that is what <strong>Phoînix</strong> reproduces. The ASCII spelling <em>phoenix</em>, inherited through Latin <em>phoenix</em>, flattens both features away.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>p</strong> → <strong>P</strong> — P uppercase</li>
+  <li><strong>h</strong> → <strong>h</strong> — h same</li>
+  <li><strong>o</strong> → <strong>o</strong> — o same</li>
+  <li><strong>e</strong> → <strong>î</strong> — Circumflex on the diphthong&#39;s seat</li>
+  <li><strong>n</strong> → <strong>n</strong> — n same</li>
+  <li><strong>i</strong> → <strong>i</strong> — i same</li>
+  <li><strong>x</strong> → <strong>x</strong> — x same</li>
+</ul>
+<p>The project holds the domain <strong>phoînix.com</strong> (xn--phonix-dwa.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is written in Greek as <strong>Φοῖνιξ</strong>: phi, then omicron-iota bearing a circumflex, then nu, iota, and kappa-sigma. The circumflex is the whole argument of the restoration in one sign: Greek places it only on long vowels and diphthongs, where it records that the pitch rises and falls on a single lengthened syllable — so Φοῖνιξ carries stress and quantity together, the double prosodic feature that places the name in Tier 1. Classical inscriptions, which predate the accent system, show simply ΦΟΙΝΙΞ.</p>
+<p>This original script is the measure of both the ASCII fallback <em>phoenix</em> and the PÚNYCODEX restoration <strong>Phoînix</strong>: the restoration keeps the circumflex of the edited Greek, so that a reader typing the modern address still speaks the ancient name.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/pʰói̯.niks/</strong> — Attic Greek Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Ph-</strong> — Aspirated phi [pʰ], the breathy initial consonant.</li>
+  <li><strong>-oi-</strong> — Diphthong [oi], a rising sound that gives the name its bright color.</li>
+  <li><strong>-nix</strong> — Nu-iota-kappa-sigma; the same suffix appears in Greek ethnic names like Phoinix/Phoenician.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;FHOY-niks&#39; — begin with a breathy &#39;ph&#39;, glide through the diphthong, and end with a crisp &#39;-nix&#39;.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Greek</strong> — Φοῖνιξ (Phoînix), the mythical bird and the color purple-crimson</li>
+  <li><strong>Phoenician</strong> — The Greeks associated the bird&#39;s color with Phoenician purple dye</li>
+  <li><strong>Egyptian</strong> — The benu bird, a solar heron of Heliopolis, often seen as the phoenix&#39;s ancestor</li>
+</ul>
+<p>Phoînix is Tier 1 because the Greek Φοῖνιξ contains both stress (circumflex on the diphong οι) and length (the diphthong counts as long). The circumflex combines pitch and length in a single character.</p>
+<h2 id="mythology">Mythology</h2>
+<p>The phoenix is <strong>not a Greek native</strong>; it entered Greek literature from Egyptian and Near Eastern sources. But Greek and Roman writers gave it its enduring form: the solitary bird that is its own parent and child.</p>
+<h3 id="the-riddle-of-ages-hesiod-fr-304">The Riddle of Ages (Hesiod, fr. 304)</h3>
+<p>Greek hexameter meets the bird first as a unit of deep time: the chattering crow lives nine human generations, the stag four crows, the raven three stags, and the phoenix nine ravens — the longest rung on the ladder of mortal spans.</p>
+<h3 id="the-egyptian-report-herodotus-2-73">The Egyptian Report (Herodotus 2.73)</h3>
+<p>Herodotus passes on what the priests of Heliopolis told him: a sacred bird, red and gold and shaped like an eagle, comes from Arabia once every five hundred years, at its father&#39;s death, carrying the body embalmed in an egg of myrrh to the temple of the Sun. He adds the historian&#39;s caveat: he has not seen it, only pictures.</p>
+<h3 id="the-completed-cycle-ovid-pliny">The Completed Cycle (Ovid; Pliny)</h3>
+<p>Roman writers finish the story. Ovid&#39;s phoenix lives five hundred years, builds its nest in a lofty palm, dies on the spices, and is reborn from its own body — &#39;the one bird that renews itself and reseeds itself&#39;. Pliny, quoting the senator Manilius, adds the worm that grows from the remains, and records with a skeptic&#39;s relish that a phoenix displayed at Rome in 47 CE fooled nobody.</p>
+<h3 id="the-resurrection-early-christianity">The Resurrection (Early Christianity)</h3>
+<p>The fathers read the bird as nature&#39;s proof of the resurrection: Clement of Rome devotes a chapter to it, Tertullian deploys it against doubters, and an anonymous Latin poem, <em>De ave Phoenice</em> ascribed to Lactantius, gives the bird its own epic.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>Phoînix&#39;s attributes are the materials of its own death and return:</p>
+<ul>
+  <li><strong>Flame</strong> — the fire that ends one life and begins the next: not an enemy but the bird&#39;s chosen instrument of renewal.</li>
+  <li><strong>Palm tree</strong> — the death-nest&#39;s tree; the Greek φοῖνιξ names both palm and bird, and the artists lean on the pun.</li>
+  <li><strong>Spices and myrrh</strong> — cassia, frankincense, spikenard, cinnamon, and myrrh: the aromatics of the pyre, which are also the materials of embalming — the nest is already a tomb.</li>
+  <li><strong>Sun disk and radiate nimbus</strong> — the bird&#39;s solar allegiance, made explicit on Roman coins where the phoenix stands crowned with rays as the sign of the renewed age.</li>
+</ul>
+<p>The phoenix&#39;s image descends from the Egyptian benu, the solar heron of Heliopolis shown perched on the benben stone. Greek Archaic art largely ignored it; the bird&#39;s visual career is Roman. Imperial coinage from Hadrian onward puts the phoenix on reverses — often with a radiate nimbus — as a sign of <em>aeternitas</em> and the renewed age. Early Christian art then claims it: Clement of Rome had already cited the bird as proof of resurrection, and on sarcophagi and in apse mosaics the phoenix perches on a palm (the Greek φοῖνιξ puns on both), preaching without a single word — most splendidly in the sixth-century apse of Santi Cosma e Damiano in Rome, where it crowns the palm beside the returning Christ.</p>
+<h2 id="epithets-cult-titles">Epithets &amp; Cult Titles</h2>
+<p>A marvel has predicates, not cult epithets; the phoenix&#39;s descriptors are these:</p>
+<ul>
+  <li><strong>φοῖνιξ</strong> (phoînix) — &#39;purple-red&#39;; the name is itself the predicate, binding the bird to Phoenician dye and to the date palm, which shares the word.</li>
+  <li><strong>sacred bird of the sun</strong> — Herodotus&#39; Egyptian frame: the bird belongs to Heliopolis, the city of the sun.</li>
+  <li><strong>una</strong> — &#39;the only one&#39;; Ovid stresses that a single bird exists at a time, &#39;which renews itself and reseeds itself,&#39; its own parent and heir.</li>
+  <li>The nearest the phoenix came to a hymn is the early Christian poem <em>De ave Phoenice</em> ascribed to Lactantius, which praises the bird as nature&#39;s proof of resurrection.</li>
+</ul>
+<h2 id="the-homeric-hymns">The Homeric Hymns</h2>
+<p>No Homeric Hymn touches the phoenix, and Homer knows <em>Phoînix</em> only as a man&#39;s name — Achilles&#39; aged tutor in <em>Iliad</em> 9 — and as ordinary words for purple dye, the date palm, and the Phoenicians. The fabulous bird enters Greek hexameter through a fragment ascribed to Hesiod, the riddle of the generations: the chattering crow lives nine human lifetimes, the deer four crows, the raven three deer, and the phoenix nine ravens. The first full account is prose — Herodotus reporting Egyptian priests: the sacred bird comes to Heliopolis once in five hundred years, carrying its father embalmed in an egg of myrrh.</p>
+<h2 id="oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</h2>
+<p>The phoenix had no oracle and no cult: it was a marvel, not a power. Its sacred geography is borrowed — Herodotus ties it to Heliopolis, whose priests housed the story beside the temple of the sun, and to Arabia, from which the bird was said to fly to Egypt. Rome offers the nearest thing to attestation: Pliny records that a phoenix was displayed in the Comitium during the censorship of Claudius, and Tacitus soberly weighs the contested chronology of its appearances in Egypt under Tiberius — antiquarian debate in place of prophecy. Only Christian literature gives the bird a liturgy: the <em>Physiologus</em> has it announce its own death to the priest of Heliopolis, burn on the altar of the temple of the sun, and rise from the ashes on the third day.</p>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>No temple of the phoenix ever existed — the bird was a marvel, not a power — but its material record is rich on three continents. In Egypt the <em>benu</em> heron of Heliopolis, perched on the benben stone, supplied the ancestral image. Rome put the bird into the material language of power: from Hadrian onward the imperial mint struck phoenix reverses, often with a radiate nimbus, to proclaim <em>aeternitas</em> and the renewed age, and the figure passed onto mosaics and sarcophagi.</p>
+<p>Early Christian art completed the adoption: the phoenix perches on its palm in the sixth-century apse mosaic of Santi Cosma e Damiano in Rome — the Greek wordplay of palm and bird preaching resurrection without a word.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Phoînix&#39;s domains are time, fire, and the sun: everything about the bird is cyclical.</p>
+<h3 id="solar-bird">Solar Bird</h3>
+<p>It belongs to the east and to the sun: Herodotus&#39; priests house it at Heliopolis, the city of the sun-god, and later tradition makes it greet the dawn and turn toward the sun to kindle its own pyre.</p>
+<h3 id="pyre-of-renewal">Pyre of Renewal</h3>
+<p>At the end of its centuries it builds a nest of cassia, frankincense, and myrrh and is consumed; from the remains a small worm forms, grows wings, and becomes the bird again.</p>
+<h3 id="purple-and-gold">Purple and Gold</h3>
+<p>Its plumage is red shot with gold — the purple of Phoenician dye and the color of the sun it serves, eagle-like in shape and size by the earliest description.</p>
+<h3 id="cycle-of-ages">Cycle of Ages</h3>
+<p>Its returns mark the calendar of empires: Roman antiquarians debated the intervals between its appearances — five hundred years, or the Great Year of 1461 — and its coming was read as the opening of a new age.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>The scholarly consensus reads the Greek phoenix as a transformation of the Egyptian <strong>benu</strong>, the grey heron of Heliopolis linked to the sun-god Ra-Atum and to the benben stone of creation: the bird&#39;s solar address, its eastern home, and its tie to cyclical time are all Egyptian inheritance.</p>
+<p>Greek added the wordplay: φοῖνιξ bound the bird to Phoenician purple and to the date palm, and Rome added politics, striking the phoenix on coins as the emblem of <em>aeternitas</em> and the renewed <em>saeculum</em>. Christianity then performed the boldest identification of all, making the pagan bird a proof of resurrection and painting it in catacombs and apses; and the type travels further east, where the Arabic geographers know the fabulous ʿanqāʾ of the far islands — the same undying bird under another sky.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>The phoenix is among the most durable symbols in world culture, and its career is documented rather than merely felt. Elizabeth I of England took the bird as a personal emblem — the &#39;Phoenix&#39; portrait tradition sets a phoenix jewel on the unmarried queen, the self-renewing monarch who needs no succession. Shakespeare gave it an elegy, <em>The Phoenix and the Turtle</em>, mourning the bird and the turtle-dove as perfect union burned away.</p>
+<p>In the modern world it names cities: Phoenix, Arizona, was christened in 1868 for a settlement rising from the ruins of the vanished Hohokam canals — the myth used, consciously, as civic prophecy. And the idiom &#39;to rise from the ashes&#39; keeps the pyre lit in ordinary speech for nations, companies, and lives that begin again.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Phoînix given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, s.v. φοῖνιξ. <a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Full text</a></li>
+  <li> Herodotus, Histories 2.73.</li>
+  <li> Hesiod, fragment 304 Merkelbach–West (Plutarch, De defectu oraculorum 415c).</li>
+  <li> Ovid, Metamorphoses 15.391–407.</li>
+  <li> Pliny the Elder, Natural History 10.3–5.</li>
+  <li> Tacitus, Annals 6.28.</li>
+  <li> Clement of Rome, First Epistle to the Corinthians 25.</li>
+  <li> Tertullian, De resurrectione carnis 13.</li>
+  <li> [Lactantius], De ave Phoenice.</li>
+  <li> van den Broek, The Myth of the Phoenix according to Classical and Early Christian Traditions (1972).</li>
+  <li> Lexicon Iconographicum Mythologiae Classicae (LIMC), s.v. &#39;Phoinix&#39;.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Phoînix is the myth of second chances made literal. Unlike heroes who achieve one death and one glory, the phoenix dies and returns, again and again. It is therefore not a story of escape from mortality but of mortality transformed into continuity.</p>
+<p>This makes the phoenix both hopeful and lonely. It has no mate, no offspring, no lasting community; it is its own ancestor and heir. In that solitude there is a meditation on self-renewal: the work of becoming, burning, and becoming again. To invoke the phoenix is to trust that what fire takes, fire can also restore — but only if we let the old self be consumed.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Phoînix is classified as <strong>Tier 1</strong>: the original carries both stress and length, and only one valid Unicode restoration exists. The ASCII fallback <em>phoenix</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 7 characters of the name, the restoration adjusts 1: 1 further adjustment (î). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>phoînix.com</strong>, which the DNS carries in punycode form as xn--phonix-dwa.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Phoînix; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Greek can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>The marks in <strong>Phoînix</strong> were never lost; they were only waiting for a carrier that could hold them. Now that the carrier exists, the burden flips: every use of <em>phoenix</em> is a choice to leave evidence on the table. The PÚNYCODEX temple keeps the restored form in circulation — as a domain, a dataset entry, and a scholarly argument — so that the choice to use it stays easy. Accent by accent, macron by macron, that is how the original names come back: not with a single grand gesture, but with a spelling that finally works everywhere.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/ariadne/">Ariadnē</a></li>
   <li><a href="/sites/artemis/">Ártemis</a></li>
   <li><a href="/sites/asclepius/">Asklēpiós</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, s.v. φοῖνιξ.</a></li>
+  <li>Herodotus, Histories 2.73 (the phoenix of Heliopolis).</li>
+  <li>van den Broek, The Myth of the Phoenix according to Classical and Early Christian Traditions (1972).</li>
+  <li>Herodotus, Histories 2.73 (the bird of Heliopolis, red and gold).</li>
+  <li>Ovid, Metamorphoses 15.391–407; Pliny, Natural History 10.3–5 (the pyre and the worm).</li>
+  <li>Lexicon authorities for this entry: Herodotus, LSJ.</li>
 </ul>
-<h2>The Cultural Afterlife</h2>
-<p>The phoenix is among the most durable symbols in world culture, and its career is documented rather than merely felt. Elizabeth I of England took the bird as a personal emblem — the &#39;Phoenix&#39; portrait tradition sets a phoenix jewel on the unmarried queen, the self-renewing monarch who needs no succession. Shakespeare gave it an elegy, The Phoenix and the Turtle, mourning the bird and the turtle-dove as perfect union burned away. In the modern world it names cities: Phoenix, Arizona, was christened in 1868 for a settlement rising from the ruins of the vanished Hohokam canals — the myth used, consciously, as civic prophecy. And the idiom &#39;to rise from the ashes&#39; keeps the pyre lit in ordinary speech for nations, companies, and lives that begin again.</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Phoînix as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Greek to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Phoînix through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/phoenix/">home page</a> offers the full name breakdown, the <a href="/sites/phoenix/lore/">lore page</a> explores the myth, and the <a href="/sites/phoenix/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Phoînix do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
-<h2>A Note on the Address Bar</h2>
-<p>When you type Phoînix, the browser performs an invisible conversion into Punycode so the global DNS can route the request. The user sees the original name; the machines see a compatible ASCII encoding. That duality is the engineering compromise that makes the restoration possible, and it is the reason every Unicode domain is both a technical milestone and a small act of cultural memory.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">greek</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

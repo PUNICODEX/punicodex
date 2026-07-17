@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,43 +170,202 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#name-variations">Name Variations</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>Pronouncing Yām: A Guide for the Curious</h1>
-<p>Saying <strong>Yām</strong> out loud is harder than reading it on a screen, and more rewarding. Scholars reconstruct the sound as <em>YAHM — a long, open &#39;ah&#39; like &#39;father,&#39; preceded by a smooth y-glide and closed by a humming m.</em>.</p>
-<h2>The Reconstructed Sound</h2>
-<p>The name is attested in Ugaritic as 𐎊𐎎 (y-m), written in the alphabetic cuneiform of the Baꜥal Cycle tablets — the same two signs that write the ordinary word &quot;sea&quot; across hundreds of literary and administrative contexts. The god and the geography share one spelling; only the narrative role distinguishes Prince Sea from the water he rules. The reconstructed proto-form is yamm- (Proto-Semitic, &quot;sea, ocean&quot;). In Ugaritic myth Yām is the chaotic sea deity defeated by Baꜥal; in every other register the word means the sea itself. Cognate forms across related languages: - yām (Hebrew) — Sea in Biblical Hebrew (יָם) - yamm (Arabic) — Sea in Arabic The ASCII form yam survives only because the early domain-name system could not carry diacritics; it is a... The sounds preserved in Yām are not random; they follow rules that linguists have spent centuries recovering.</p>
-<h2>Sound by Sound</h2>
-<p>Etymologically, from proto-semitic <em>yamm- &quot;sea&quot;; cognate with hebrew yām יָם. in ugaritic myth yām is a chaotic sea deity defeated by baal. That points back to a reconstructed form like </em><em>yamm-</em>. Each segment locks into the next, so a small change in one place ripples through the whole name.</p>
-<h2>Kin Forms</h2>
-<p>Related spellings include Yammu. Names rarely have only one valid shape. The restoration chooses the form that best balances historical accuracy with the practical limits of DNS.</p>
-<h2>From Speech to Screen</h2>
-<p>Pronunciation and spelling converge in Unicode. Yām carries enough phonetic information to be read aloud by someone who knows the conventions, and enough visual distinctiveness to stand out in an address bar.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Yām is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>Pronouncing Yām: a guide for the curious</h1>
+<p>Saying <strong>Yām</strong> aloud is harder than reading it on a screen, and more rewarding. The restored spelling is a compressed pronunciation guide: every accent and macron is an instruction. This post unpacks those instructions — the reconstructed sound, the phoneme-by-phoneme record, the kindred forms in neighboring languages — and then zooms out to the full record around the name: its Ugaritic / Phoenician writing, its mythology, its cult, and its modern life as a Unicode domain. Whether you arrive as a linguist, a reader of myth, or a domainer, you will leave able to say the name the way the evidence suggests it was said — and able to type it the way it was written.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Yām</li>
+  <li><strong>ASCII form:</strong> yam</li>
+  <li><strong>Meaning:</strong> &quot;Sea; the deified primordial ocean in Ugaritic and Canaanite myth&quot;</li>
+  <li><strong>Domain of influence:</strong> Sea, Primordial Waters, Chaos</li>
+  <li><strong>Pantheon:</strong> Canaanite</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Live domain:</strong> yām.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Yām</strong> (<em>yam</em>) — Sea, Primordial Waters, Chaos — is the deified sea of Ugaritic myth, the primordial ocean personified as a god, catalogued in this edition under the domain &quot;Sea, Primordial Waters, Chaos.&quot; The name is simply the common Semitic word for &quot;sea&quot;: in the Baꜥal Cycle the geography itself stands up and claims the throne.</p>
+<p><strong>Yām</strong> is the deified sea of the Ugaritic Baal Cycle, the vast primordial water that claims kingship over the gods before Baal defeats him. He is not simply the Mediterranean; he is the dangerous, chaotic deep that threatens to overwhelm the ordered world of dry land and storm-fed fields. In Canaanite myth, the storm god&#39;s victory over Yām is the founding act that makes civilization possible.</p>
+<p>PÚNYCODEX restores the name as <strong>Yām</strong> and serves its temple at <a href="https://xn--ym-dla.com">yām.com</a>. The macron preserves the long ā of Proto-Semitic <em>yamm-</em> — the single prosodic feature that distinguishes the restoration, placing the name in Tier 2 — while the ASCII <em>yam</em> flattens the vowel and, in English, invites a confusion with the tuber that no amount of context fully cures.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Ugaritic as <strong>𐎊𐎎</strong> (y-m), written in the alphabetic cuneiform of the Baꜥal Cycle tablets — the same two signs that write the ordinary word &quot;sea&quot; across hundreds of literary and administrative contexts. The god and the geography share one spelling; only the narrative role distinguishes Prince Sea from the water he rules.</p>
+<p>The reconstructed proto-form is <em>yamm-</em> (Proto-Semitic, &quot;sea, ocean&quot;). In Ugaritic myth Yām is the chaotic sea deity defeated by Baꜥal; in every other register the word means the sea itself.</p>
+<p>Cognate forms across related languages:</p>
+<ul>
+  <li><strong>yām</strong> (Hebrew) — Sea in Biblical Hebrew (יָם)</li>
+  <li><strong>yamm</strong> (Arabic) — Sea in Arabic</li>
+</ul>
+<p>The ASCII form <em>yam</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Yām</strong> recovers the vowel length of the original directly in the address bar. The original preserves one prosodic feature — vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>y</strong> → <strong>Y</strong> — Same, capitalized</li>
+  <li><strong>a</strong> → <strong>ā</strong> — Macron: long a</li>
+  <li><strong>m</strong> → <strong>m</strong> — Same</li>
+</ul>
+<p>Attested and derived spellings of the name:</p>
+<ul>
+  <li><strong>Yammu</strong> — scholarly variant: Nominative case form in Ugaritic scholarly transliteration</li>
+</ul>
+<p>The project holds the domain <strong>yām.com</strong> (xn--ym-dla.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: From Proto-Semitic *yamm- &quot;sea&quot;; cognate with Hebrew yām יָם. In Ugaritic myth Yām is a chaotic sea deity defeated by Baal.</p>
+<p>The reconstructed proto-form is <em>*yamm-</em> (proto-semitic), glossed as &quot;sea, ocean&quot;.</p>
+<p>The reconstruction is classed as attested.</p>
+<p>Kindred forms recorded in the lexicon:</p>
+<ul>
+  <li><strong>yām</strong> (hebrew) — Sea in Biblical Hebrew</li>
+  <li><strong>yamm</strong> (arabic) — Sea in Arabic</li>
+</ul>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is attested in Ugaritic as <strong>𐎊𐎎</strong> (y-m) — the Northwest Semitic cuneiform alphabet of Late Bronze Age Ugarit (modern Ras Shamra, Syria), c. 1400–1200 BCE, written left-to-right. The same two signs write the common noun &quot;sea&quot; throughout the corpus; as a divine name the word appears in the Baꜥal Cycle (KTU 1.1–1.6), where Yām sends his embassy to Ēl&#39;s assembly.</p>
+<p>The scholarly transliteration is <em>Yām</em> — or <em>Yammu</em> with the nominative case ending — giving the normalized reading /jaːm/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The name is written 𐎊𐎎 in the Ugaritic cuneiform alphabet: yod plus mem, two signs for two consonants; Ugaritic records no vowels.</li>
+  <li>The long ā is reconstructed from Proto-Semitic <em>yamm-</em> and from the Hebrew cognate יָם (yām), and is marked with a macron.</li>
+  <li>The Unicode restoration Yām is registrable in .com; the Ugaritic cuneiform form is not supported in the .com IDN table.</li>
+</ul>
+<p>PUNYCODEX&#39;s original-scripts registry does not yet carry a sign-by-sign provenance entry for this name; the attestation above is stated from the standard text edition and translation.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/jaːm/</strong> — Ugaritic/Canaanite Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>y</strong> — Palatal approximant [j], the semivowel that opens the name</li>
+  <li><strong>ā</strong> — Long open front vowel [aː], marked with macron to preserve the length inferred from Proto-Semitic *yamm-</li>
+  <li><strong>m</strong> — Bilabial nasal [m], closing the syllable</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: YAHM — a long, open &#39;ah&#39; like &#39;father,&#39; preceded by a smooth y-glide and closed by a humming m.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Ugaritic</strong> — 𐎊𐎎 (ym), the sea&#39;s name in alphabetic cuneiform</li>
+  <li><strong>Hebrew</strong> — יָם (yām), &#39;sea&#39; in Biblical Hebrew</li>
+  <li><strong>Arabic</strong> — يَمّ (yamm), &#39;sea, ocean&#39;</li>
+  <li><strong>Ugaritic nominative</strong> — Yammu, the case-marked form in which the sea god is addressed in the Baal Cycle</li>
+</ul>
+<p>Yām is a Tier-2 macron restoration. The long ā is the single preserved non-English feature; there is no stress mark. The name is common Semitic for &#39;sea,&#39; personified in Ugaritic myth as a chaotic divine antagonist.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Yām&#39;s story is told in the Ugaritic Baal Cycle, where he plays the role of the chaos monster that the young storm god must defeat to establish his kingship. The myth is one of the oldest and most influential combat narratives in the ancient Near East, echoed in the Bible&#39;s Leviathan, Babylonian Tiamat, and Greek Typhon.</p>
+<h3 id="yam-demands-the-throne-baal-cycle">Yām Demands the Throne (Baal Cycle)</h3>
+<p>In KTU 1.2 i, Yām sends messengers to the divine assembly and demands that El, the high god, hand over Baal to be his slave. El is forced to agree, but Baal refuses to submit. Anat and Asherah intervene, and Baal prepares for war. The scene establishes Yām as the primordial claimant to universal rule, the arrogant sea who must be humbled before order can be secure.</p>
+<h3 id="the-battle-of-baal-and-yam-baal-cycle">The Battle of Baal and Yām (Baal Cycle)</h3>
+<p>KTU 1.2 iv describes the climactic combat. Kothar-wa-Ḫasīs forges two magical clubs for Baal, Yagrush and Aymur. Baal strikes Yām in the head and between the eyes, and the sea monster collapses. With Yām&#39;s defeat, Baal is proclaimed king and is finally granted a palace on the cosmic mountain Ṣaphon. The victory re-enacts the primal separation of sea and land.</p>
+<h3 id="yam-leviathan-and-rahab-biblical-echo">Yām, Leviathan, and Rahab (Biblical Echo)</h3>
+<p>The Hebrew Bible preserves echoes of the Canaanite sea-combat in passages such as Psalm 74:13–14 (God crushing the heads of Leviathan), Isaiah 27:1 (the sword against Leviathan), and Job 26:12 (God stirs up the sea, Rahab). These texts translate the older myth into monotheistic language: the sea monster becomes a symbol of chaos subdued by the one God.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>Yām is almost never pictured directly; his attributes are the instruments of his defeat and the titles of his claim:</p>
+<ul>
+  <li><strong>Cresting wave and flood</strong> — The uncontrollable power of the sea that he personifies; Israel&#39;s poets still set YHWH&#39;s majesty above the lifted floods (Psalm 93:3–4).</li>
+  <li><strong>The two clubs</strong> — Yagruš (&quot;Chaser&quot;) and Ayāmar (&quot;Driver&quot;), the magic weapons Kothar-wa-Ḫasīs fashions and names so that Baꜥal can strike him down (KTU 1.2 iv): his iconography survives chiefly as entries on the storm god&#39;s trophy list.</li>
+  <li><strong>Royal embassy</strong> — His characteristic scene is a court scene, not a battle-form: messengers who refuse to bow, demanding tribute and slaves in the assembly of Ēl (KTU 1.2 i).</li>
+  <li><strong>Titles of rule</strong> — <em>zbl ym</em>, &quot;Prince Sea,&quot; and <em>ṭpṭ nhr</em>, &quot;Judge River&quot;: the crown he claims is his true emblem, and losing it is the point of the myth.</li>
+</ul>
+<ul>
+  <li><strong>Seven-headed serpent or dragon</strong> — His combat form, parallel to Leviathan and Tiamat</li>
+  <li><strong>Net or muzzle</strong> — The binding weapons used by Anat and Baal to subdue him</li>
+  <li><strong>Lotus or conch</strong> — Maritime wealth and fertility that follow once the sea is brought under cosmic rule</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Yām&#39;s whole dossier is textual, and that is the finding. No temple, votive, or dedication to the Sea has been found at Ugarit or anywhere else: he was an antagonist to be mastered, not a patron to be thanked. His existence is anchored in the Baꜥal Cycle tablets (KTU 1.2), excavated in the high priest&#39;s library on the acropolis of Ras Shamra.</p>
+<p>The material context explains the myth&#39;s force. Ugarit was a harbor kingdom whose wealth came from the very sea the tablets demonize; its port at Minet el-Beida handled the Cyprus and Egypt trade, and the votive stone anchors deposited in [[baal|Baꜥal]]&#39;s temple thanked the god who kept the waters in their place. Levantine seals and ivories showing a smiting storm god above serpentine waters are the iconographic reflex of the same combat.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p><strong>Yām</strong> is the deified sea of the Ugaritic Baal Cycle, the vast primordial water that claims kingship over the gods before Baal defeats him. He is not simply the Mediterranean; he is the dangerous, chaotic deep that threatens to overwhelm the ordered world of dry land and storm-fed fields. In Canaanite myth, the storm god&#39;s victory over Yām is the founding act that makes civilization possible.</p>
+<h3 id="the-primordial-deep">The Primordial Deep</h3>
+<p>Yām represents the pre-creation waters that must be pushed back for land and life to appear.</p>
+<h3 id="prince-sea-judge-river">Prince Sea, Judge River</h3>
+<p>His standing titles <em>zbl ym</em>, &quot;Prince Sea,&quot; and <em>ṭpṭ nhr</em>, &quot;Judge River,&quot; style him a legitimate ruler: Ēl grants him the kingship, and his messengers demand that Baꜥal be handed over as a slave (KTU 1.1–1.2).</p>
+<h3 id="kin-to-the-dragon">Kin to the Dragon</h3>
+<p>His defeat passes into the serpent complex: [[anat|ꜥAnat]]&#39;s boast pairs his crushing with that of the twisting, seven-headed serpent (KTU 1.3 iii) — the very titles the Bible reuses for Leviathan and Rahab.</p>
+<h3 id="judge-of-the-waters">Judge of the Waters</h3>
+<p>His domain is the boundary between chaos and order, the sea that feeds and destroys.</p>
+<h3 id="rival-of-baal">Rival of Baal</h3>
+<p>He demands that El hand over the divine kingship, setting up the central combat of the Baal Cycle.</p>
+<h3 id="seven-headed-dragon">Seven-Headed Dragon</h3>
+<p>In battle Yām is a seven-headed sea monster, kin to the biblical Leviathan and Rahab.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Yām is closely related to the Babylonian Tiamat and the biblical Leviathan and Rahab. All three represent primordial watery chaos defeated by a younger storm or creator god. In Greek myth, the combat of Zeus against Typhon carries some of the same structure, though the genealogies differ. Yām also overlaps with the Egyptian Apophis as a force of chaos that must be ritually subdued. The sea itself remained a boundary zone in Canaanite religion: source of wealth, highway of trade, and home of the monster who would reclaim the land if the storm god slept.</p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include [[poseidon|Poseidôn]] (sea / water), [[apep|Ꜥpp]] (chaos / primordial / world serpent), [[aseratu|Ašeratu]] (sea / water), [[babaluaye|Ọbalúayé]] (sea / water), [[chaos|Cháos]] (chaos / primordial / world serpent), and [[ea|Ēa]] (sea / water).</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Yām&#39;s deepest legacy is a plot pattern. Hermann Gunkel named it <em>Chaoskampf</em> — the combat in which a young storm god defeats the primordial waters and founds cosmic order — and Yām is its oldest fully narrated West Semitic instance, elder brother to Marduk&#39;s defeat of [[tiamat|Tiāmat]] and ancestor of every biblical sea-subduing hymn (Psalms 74; 89; 93; Isaiah 51:9–10). The pattern ends inside the canon: Revelation 21:1 closes the story of the world with &quot;and the sea was no more,&quot; the final retirement of Yām&#39;s claim. In modern scholarship he remains the textbook case of myth converting geography — the Mediterranean outside Ugarit&#39;s harbor — into theology.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>Yām&#39;s dossier is concentrated rather than broad: KTU 1.1–1.2 narrate his claim, embassy, and defeat, and his titles <em>zbl ym</em> and <em>ṭpṭ nhr</em> recur through the rest of the cycle. Smith&#39;s commentary is the standard edition of those tablets; Wyatt supplies the complete English translation; Coogan and Smith&#39;s Stories from Ancient Canaan gives the accessible narrative. Day and Cross then trace the afterlife of the Sea in Israel&#39;s poetry, where the same vocabulary — sea, rivers, dragon — becomes the property of YHWH.</p>
+<ul>
+  <li> KTU 1.2 (Baal Cycle: Yām&#39;s demand and defeat).</li>
+  <li> Coogan, Stories from Ancient Canaan.</li>
+  <li> Smith, The Ugaritic Baal Cycle.</li>
+  <li> Wyatt, Religious Texts from Ugarit.</li>
+  <li> Day, Yahweh and the Gods and Goddesses of Canaan.</li>
+  <li> Hebrew Bible, Psalm 74:13–14; Isaiah 27:1; Job 26:12 (Leviathan and Rahab).</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Yām is the sea that cannot be owned, the chaos that lies just beyond the harbor wall. He reminds us that every civilization lives on land wrested from water, and that the boundary must be maintained: &quot;I placed the sand as a boundary for the sea,&quot; says Jeremiah&#39;s God, &quot;an everlasting barrier it cannot cross&quot; (Jeremiah 5:22), and Psalm 104:9 repeats the law — &quot;you set a boundary that they may not pass.&quot; The myth never claims the sea is evil; it claims the sea is stronger than its neighbors, and that order is a negotiated shoreline rather than a wall.</p>
+<p>In an era of rising seas and climate chaos, Yām returns not as myth but as warning: the primordial deep remembers what was taken from it, and only respectful stewardship keeps it at bay. To name Yām is to admit that the oldest antagonist in West Semitic literature was never defeated once and for all — only, like Baꜥal&#39;s kingship itself, renewed season by season.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Yām is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>yam</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 3 characters of the name, the restoration adjusts 1: 1 mark of length (ā). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="name-variations">Name Variations</h2>
+<p>The lexicon records 1 additional form of the name:</p>
+<ul>
+  <li><strong>Yammu</strong> (alt) — Nominative case form in Ugaritic scholarly transliteration</li>
+</ul>
+<p>The temple uses <strong>Yām</strong> as the primary form: it is the spelling that best balances philological accuracy with the practical limits of DNS.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>yam</em> to <strong>Yām</strong>, one character at a time:</p>
+<ul>
+  <li><strong>y</strong> → <strong>Y</strong> — Same, capitalized</li>
+  <li><strong>a</strong> → <strong>ā</strong> — Macron: long a</li>
+  <li><strong>m</strong> → <strong>m</strong> — Same</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>yām.com</strong>, which the DNS carries in punycode form as xn--ym-dla.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Yām; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Ugaritic / Phoenician can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Pronunciation turns out to be the heart of the matter. The marks in <strong>Yām</strong> are instructions for the voice, and a web that strips them is a web that mispronounces the past at scale. The restoration hands the instructions back: say it as the evidence suggests, type it as the tradition wrote it, and let the punycode machinery do the quiet translation in between. That is all the PÚNYCODEX project asks of the infrastructure — and everything it asks of you, the reader, is to use the whole name.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/anat/">ꜥAnat</a></li>
   <li><a href="/sites/david/">Dāwîḏ</a></li>
   <li><a href="/sites/noah/">Nōaḥ</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
-  <li><a href="https://www.britishmuseum.org/">Scholarly reference</a></li>
+  <li>Dietrich, Loretz &amp; Sanmartín (eds.), The Cuneiform Alphabetic Texts from Ugarit (KTU): KTU 1.2.</li>
+  <li>Coogan &amp; Smith, Stories from Ancient Canaan, 2nd ed., Westminster John Knox, 2012.</li>
+  <li>Smith, The Ugaritic Baal Cycle, vol. 1, Brill, 1994.</li>
+  <li>Dietrich, Loretz &amp; Sanmartín (eds.), The Cuneiform Alphabetic Texts from Ugarit (KTU): KTU 1.1–1.2.</li>
+  <li>Lexicon authorities for this entry: KTU, Coogan, De Moor.</li>
 </ul>
-<h2>What the Sources Record</h2>
-<p>Yām is the deified sea of the Ugaritic Baal Cycle, the vast primordial water that claims kingship over the gods before Baal defeats him. He is not simply the Mediterranean; he is the dangerous, chaotic deep that threatens to overwhelm the ordered world of dry land and storm-fed fields. In Canaanite myth, the storm god&#39;s victory over Yām is the founding act that makes civilization possible. ### The Primordial Deep Yām represents the pre-creation waters that must be pushed back for land and life to appear. ### Prince Sea, Judge River His standing titles zbl ym, &quot;Prince Sea,&quot; and ṭpṭ nhr, &quot;Judge River,&quot; style him a legitimate ruler: Ēl grants him the kingship, and his messengers demand that Baꜥal be handed over as a slave (KTU 1.1–1.2). ### Kin to the...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Yām as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Ugaritic / Phoenician to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Yām through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/yam/">home page</a> offers the full name breakdown, the <a href="/sites/yam/lore/">lore page</a> explores the myth, and the <a href="/sites/yam/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Yām do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">canaanite</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

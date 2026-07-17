@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,37 +170,183 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-polynesian-pantheon">The Polynesian Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#typing-tane">Typing Tāne</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>The Many Faces of Tāne</h1>
-<p>No important name has only one face. Tāne appears as a mythic character, a scholarly reconstruction, a cultural memory, and now a Unicode domain. Tāne (tane) — Forests, Birds, First Man · Man (from Proto-Polynesian tane) — belongs to the Polynesian tradition, where it is catalogued under the domain &quot;Forests, Birds, First Man&quot;. The name means &quot;Man (from Proto-Polynesian tane)&quot;. Tāne is the forest made conscious, the bird made ancestor, and the man made god. In Māori cosmology he is the child who separated earth and sky, the father of humankind who shaped the first woman from clay, and the lord of every tree and winged thing. He stands at the axis of nature and culture, the one who makes space for life by pushing upward. PÚNYCODEX restores the name as Tāne and serves its temple at tāne.com. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration...</p>
-<h2>In Myth</h2>
-<p>Tāne&#39;s myths are central to Māori cosmogony. He is the active principle of separation, the ancestor of humankind, and the culture hero who brings knowledge from the sky. The narratives are preserved in nineteenth-century written versions of oral tradition. The mythic face is the one most people meet first, and it is the reason the name survived.</p>
-<h2>Across Cultures</h2>
-<p>Tāne has cognates across Polynesia, including the Hawaiian Kāne, the Tahitian Tane, and the Tongan Tangaloa in overlapping roles as creator and sky-related deity. The precise distribution of attributes varies by island group. In Māori tradition, Tāne absorbed the forest and bird domains that other Polynesian cultures assigned to different figures. Contemporary Māori spirituality, environmentalism, and the arts frequently invoke Tāne-mahuta as a symbol of the living forest and indigenous ecological knowledge. Within the Polynesian tradition, closely related names in the corpus include [[kanaloa|Kānāloa]] and [[papatuanuku|Papatūānuku]]. Each culture kept what resonated and reshaped the rest.</p>
-<h2>In the Scholarly Record</h2>
-<p>Tāne is one of the most widely known Māori deities, and his modern cult has a physical centre: Tāne Mahuta, &#39;Lord of the Forest&#39;, a living kauri (Agathis australis) in Waipoua Forest, Northland — the largest known kauri by trunk volume, conventionally estimated at some two thousand years of age. The tree is both a major visitor destination and a functioning shrine; since the spread of kauri dieback disease (Phytophthora agathidicida) it has stood at the centre of one of New Zealand&#39;s most urgent conservation campaigns, protected by rāhui (customary prohibitions) and hygiene stations on the surrounding tracks. Beyond the forest, Tāne&#39;s image pervades carving, painting, dance, and environmental advocacy throughout Aotearoa. The separation of Rangi and... The Scholarly Edition collects those traces so readers can follow the argument from source to conclusion.</p>
-<h2>The Unicode Face</h2>
-<p>The newest face is digital. Tāne demonstrates that a name can be at once ancient and clickable, venerable and searchable. That is the face this blog exists to celebrate.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Tāne is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>The many faces of Tāne</h1>
+<p>No important name has only one face. <strong>Tāne</strong> appears as a figure of myth, a scholarly reconstruction, a piece of material culture, a memory carried across languages, and — most recently — a Unicode domain. This post looks at each face in turn: the name and its roots, the Polynesian transcription original, the reconstructed pronunciation, the mythological record, the symbols and sanctuaries, the cross-cultural afterlife, and the engineering that lets the restored spelling resolve in a browser. Taken together, those faces explain why <em>tane</em> was never going to be enough — and why the restored form is worth a domain of its own.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Tāne</li>
+  <li><strong>ASCII form:</strong> tane</li>
+  <li><strong>Meaning:</strong> &quot;Man (from Proto-Polynesian *tane)&quot;</li>
+  <li><strong>Domain of influence:</strong> Forests, Birds, First Man</li>
+  <li><strong>Pantheon:</strong> Polynesian</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Live domain:</strong> tāne.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Tāne</strong> (<em>tane</em>) — Forests, Birds, First Man · Man (from Proto-Polynesian <em>tane) — belongs to the Polynesian tradition, where it is catalogued under the domain &quot;Forests, Birds, First Man&quot;. The name means &quot;Man (from Proto-Polynesian </em>tane)&quot;.</p>
+<p>Tāne is the <strong>forest made conscious, the bird made ancestor, and the man made god</strong>. In Māori cosmology he is the child who separated earth and sky, the father of humankind who shaped the first woman from clay, and the lord of every tree and winged thing. He stands at the axis of nature and culture, the one who makes space for life by pushing upward.</p>
+<p>PÚNYCODEX restores the name as <strong>Tāne</strong> and serves its temple at <a href="https://xn--tne-1oa.com">tāne.com</a>. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>tane</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>No indigenous written attestation survives for this name; <strong>Tāne</strong> is a scholarly transliteration of the reconstructed spoken form. Etymologically the name means &quot;Man (from Proto-Polynesian *tane)&quot;.</p>
+<p>The reconstructed proto-form is <em>tane</em> (proto-polynesian, &quot;Man&quot;). Man (from Proto-Polynesian *tane)</p>
+<p>The ASCII form <em>tane</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Tāne</strong> recovers the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>t</strong> → <strong>T</strong> — Same</li>
+  <li><strong>a</strong> → <strong>ā</strong> — Macron: long /aː/</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+  <li><strong>e</strong> → <strong>e</strong> — Same</li>
+</ul>
+<p>The project holds the domain <strong>tāne.com</strong> (xn--tne-1oa.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: Man (from Proto-Polynesian *tane)</p>
+<p>The reconstructed proto-form is <em>*tane</em> (proto-polynesian), glossed as &quot;Man&quot;.</p>
+<p>The reconstruction is classed as attested.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>No indigenous writing system is securely attested for individual Polynesian names; pre-contact Māori was an oral culture whose archives were memory, recitation, carving, and weaving rather than text. The form <strong>Tāne</strong> is therefore a modern scholarly transliteration, not an attested ancient spelling — and its written history is fully documentable.</p>
+<p>Grey&#39;s <em>Polynesian Mythology</em> (1855), the first English printing of the separation myth, wrote the name without length marking, as <em>Tane</em>; the missionary orthography of Kendall&#39;s <em>A Korao no New Zealand</em> (1815) and Kendall and Lee&#39;s <em>A Grammar and Vocabulary of the Language of New Zealand</em> (1820) had fixed the consonant inventory but marked vowel quantity only erratically. Tregear&#39;s comparative dictionary (1891) records the word as a common noun — <em>tane</em>, &#39;man, male, husband&#39; — and the Proto-Polynesian pedigree is uncontroversial: the theonym is the ordinary word for &#39;man&#39; raised to divine status, with cognates across the Polynesian languages.</p>
+<p>The macron belongs to the twentieth-century standardization of written Māori: Bruce Biggs&#39;s school at the University of Auckland preferred doubled vowels (<em>Taane</em>), while the macron (tohutō) adopted by Te Taura Whiri i te Reo Māori (the Māori Language Commission, established 1987) became the national standard. <strong>Tāne</strong> with the macron thus encodes a single phonemic fact — the long /aː/ of the first syllable — in the orthography now official in Aotearoa. No mark is decorative.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/ˈtaː.ne/</strong> — Māori/Proto-Polynesian Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Tā-</strong> — Voiceless alveolar plosive [t] plus long open front [aː]; Māori t is unaspirated, and the macron marks vowel length.</li>
+  <li><strong>-ne</strong> — Alveolar nasal [n] plus close-mid front [e], a short final syllable.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;TAH-neh&#39; — hold the first vowel long, keep the t soft and unaspirated, and pronounce the final e as a clear &#39;eh.&#39;</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Māori</strong> — Tāne — from Proto-Polynesian *tane &#39;man, male, husband&#39;</li>
+  <li><strong>Proto-Polynesian</strong> — *tane, reconstructed word for &#39;man&#39; or &#39;male person&#39;</li>
+  <li><strong>Full title</strong> — Tāne-mahuta, Tāne-nui-a-Rangi, Tāne-te-waiora — &#39;Tāne of the forest,&#39; &#39;Great Tāne of the Sky,&#39; &#39;Tāne the life-giver&#39;</li>
+</ul>
+<p>Tāne is one of the simplest and oldest theonyms in the corpus: a Proto-Polynesian common noun for &#39;man&#39; or &#39;male&#39; elevated to divine status. The macron on ā marks the long vowel that distinguishes the name in Māori. Tier 1: the single long vowel is the distinctive prosodic feature preserved in the Unicode restoration.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Tāne&#39;s myths are central to Māori cosmogony. He is the active principle of separation, the ancestor of humankind, and the culture hero who brings knowledge from the sky. The narratives are preserved in nineteenth-century written versions of oral tradition.</p>
+<h3 id="the-separation-of-rangi-and-papa-creation-myth">The Separation of Rangi and Papa (Creation myth)</h3>
+<p>Born in the darkness between Ranginui and Papatūānuku, Tāne and his brothers longed for light and space. While Tū urged violence, Tāne turned onto his back and pressed his feet against Ranginui, pushing the sky upward. The parents were separated, and the world was born in the space between them. Ranginui wept tears of rain; Papatūānuku&#39;s mist rose to meet him. (Grey, Polynesian Mythology.)</p>
+<h3 id="the-making-of-hineahuone-origin-myth">The Making of Hineahuone (Origin myth)</h3>
+<p>Tāne sought to create a companion. He shaped Hineahuone, &#39;Earth-formed woman,&#39; from red clay at Kurawaka, the place where the earth&#39;s female essence was most concentrated. He breathed into her nostrils through the hongi, the pressing of noses, and she came to life. Their daughter was Hinetītama, who later became Hine-nui-te-pō, guardian of the underworld. (Best, Māori Religion and Mythology.)</p>
+<h3 id="the-ascent-for-the-baskets-of-knowledge-culture-hero-myth">The Ascent for the Baskets of Knowledge (Culture hero myth)</h3>
+<p>To bring wisdom to humankind, Tāne climbed through the twelve heavens, passing guardians and trials, until he reached the supreme realm of Io. There he obtained the three kete of knowledge: the kete of sacred rituals, the kete of memory and tradition, and the kete of spiritual understanding. His descent made human learning possible and established the priestly authority of those who guard the knowledge. (Smith, The Lore of the Whare-wananga.)</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Tāne concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>Kauri tree</strong> — The great forest tree most closely identified with Tāne-mahuta, the lord of the forest; kauri timber built the houses and canoes that carried Māori society.</li>
+  <li><strong>Birds and feathers</strong> — Creatures of the forest canopy and markers of sacred prestige; the tail feather of the huia was the highest-ranking personal ornament, reserved for chiefs, before the bird was hunted to extinction in the early twentieth century.</li>
+  <li><strong>Red clay (kōkōwai)</strong> — The red ochre from which Tāne shaped the first woman, Hineahuone; the same pigment anointed carvings, canoes, and the dead, keeping sacred red the colour of his craft in ritual practice.</li>
+  <li><strong>The three baskets of knowledge</strong> — The repositories of ritual, memory, and cosmic understanding brought down from the heavens.</li>
+</ul>
+<p>As with Papatūānuku, the set is non-figural: Tāne&#39;s presence is the standing forest itself rather than a cult image.</p>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>No temple, statue, or inscription of Tāne is attested: Māori theology located the god in living trees and birds rather than in cult images. The material record of his domain is nonetheless substantial, and its largest objects were cut from his own body.</p>
+<p>War canoes (waka taua) were each hollowed from a single kauri trunk; the surviving exemplar is <strong>Ngātokimatawhaorua</strong>, the 35-metre canoe built for the 1940 Treaty of Waitangi centenary and still launched at Waitangi each February. Carved meeting houses (wharenui) carried the forest into architecture: ridgepoles, posts, and the bird-like manaia figures of the bargeboards translate Tāne&#39;s canopy into structure, and the central post (pou tokomanawa), which physically holds ridge from floor, has been read as enacting the separation of earth and sky that is his charter myth. Kauri is also an archive in its own right: living and sub-fossil kauri yield a continuous tree-ring record of more than 4,500 years, now a primary Southern Hemisphere palaeoclimate proxy.</p>
+<p>The textual witnesses remain the nineteenth-century collections of Grey, Best, and Smith.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Tāne is the <strong>forest made conscious, the bird made ancestor, and the man made god</strong>. In Māori cosmology he is the child who separated earth and sky, the father of humankind who shaped the first woman from clay, and the lord of every tree and winged thing. He stands at the axis of nature and culture, the one who makes space for life by pushing upward.</p>
+<h3 id="separator-of-earth-and-sky">Separator of Earth and Sky</h3>
+<p>He pushed Ranginui upward with his legs, creating the space in which the world exists.</p>
+<h3 id="lord-of-forests-and-birds">Lord of Forests and Birds</h3>
+<p>Tāne-mahuta rules the trees and all creatures that live among them, especially birds.</p>
+<h3 id="creator-of-humankind">Creator of Humankind</h3>
+<p>He formed the first woman, Hineahuone, from red clay and breathed life into her nostrils.</p>
+<h3 id="seeker-of-knowledge">Seeker of Knowledge</h3>
+<p>He climbed through the twelve heavens to obtain the three baskets of knowledge for humankind.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Tāne has cognates across Polynesia, including the Hawaiian Kāne, the Tahitian Tane, and the Tongan Tangaloa in overlapping roles as creator and sky-related deity. The precise distribution of attributes varies by island group. In Māori tradition, Tāne absorbed the forest and bird domains that other Polynesian cultures assigned to different figures. Contemporary Māori spirituality, environmentalism, and the arts frequently invoke Tāne-mahuta as a symbol of the living forest and indigenous ecological knowledge.</p>
+<p>Within the Polynesian tradition, closely related names in the corpus include [[kanaloa|Kānāloa]] and [[papatuanuku|Papatūānuku]].</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Tāne is one of the most widely known Māori deities, and his modern cult has a physical centre: <strong>Tāne Mahuta</strong>, &#39;Lord of the Forest&#39;, a living kauri (<em>Agathis australis</em>) in Waipoua Forest, Northland — the largest known kauri by trunk volume, conventionally estimated at some two thousand years of age. The tree is both a major visitor destination and a functioning shrine; since the spread of kauri dieback disease (<em>Phytophthora agathidicida</em>) it has stood at the centre of one of New Zealand&#39;s most urgent conservation campaigns, protected by rāhui (customary prohibitions) and hygiene stations on the surrounding tracks.</p>
+<p>Beyond the forest, Tāne&#39;s image pervades carving, painting, dance, and environmental advocacy throughout Aotearoa. The separation of Rangi and Papa is taught in schools as a founding narrative, and his ascent for the three baskets of knowledge frames contemporary discussions of Māori education and intellectual sovereignty. In an age of deforestation and climate change he has become the emblem of the living forest.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Tāne given in this edition rests on the witnesses and reference works listed below. The record is doubly mediated: the primary narratives passed from Māori experts to nineteenth-century collectors, and the lexica and syntheses then codified those collections. Tregear&#39;s dictionary secures the form and meaning of the name; the narrative texts supply the mythology.</p>
+<ul>
+  <li> Grey, Sir George, <em>Polynesian Mythology</em> (1855) — first English-language printing of the separation of Rangi and Papa and the Tāne cycle.</li>
+  <li> Tregear, Edward, <em>The Maori-Polynesian Comparative Dictionary</em> (1891) — the lexical authority for <em>tane</em> &#39;man, male, husband&#39; and its Polynesian cognates.</li>
+  <li> Best, Elsdon, <em>Maori Religion and Mythology</em> (1924) — the fullest ethnographic account of Māori religion, including the Hineahuone tradition.</li>
+  <li> Smith, S. Percy, <em>The Lore of the Whare-wānanga</em> (1913–15) — priestly recitations of the whare wānanga schools, preserving the ascent for the baskets of knowledge.</li>
+  <li> Buck, Peter (Te Rangi Hiroa), <em>The Coming of the Maori</em> (1949) — the standard synthesis of Māori material culture, including the kauri timber industries.</li>
+  <li> Orbell, Margaret, <em>The Illustrated Encyclopedia of Māori Myth and Legend</em> (1995) — the modern literary-critical reference work.</li>
+  <li> Marsden, Māori, <em>The Woven Universe: Selected Writings of Rev. Māori Marsden</em>, ed. Te Ahukaramū Charles Royal (2003) — a Māori Anglican priest and scholar&#39;s own account of the Māori cosmos.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Tāne begins as a word for &#39;man&#39; and becomes the god who makes the world spacious enough to live in. That trajectory is itself a meditation on masculinity: not the masculinity of domination, but of upward pressure, of making room, of separating so that others can breathe. He does not kill his father; he lifts him. He does not abandon his mother; he stays beneath her, supporting life upon her body.</p>
+<p>The first woman is made of clay and animated by breath — a myth that echoes across many cultures but finds a particularly tactile form here. Tāne shapes, then he breathes. Knowledge is not innate; it must be climbed for, through successive heavens, with effort and guardianship. The name Tāne, short and long-voweled, holds all of this: the man who is also the forest, the ancestor who is also the sky.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Tāne is classified as <strong>Tier 1</strong>: the original carries both stress and length, and only one valid Unicode restoration exists. The ASCII fallback <em>tane</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 4 characters of the name, the restoration adjusts 1: 1 mark of length (ā). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>tane</em> to <strong>Tāne</strong>, one character at a time:</p>
+<ul>
+  <li><strong>t</strong> → <strong>T</strong> — Same</li>
+  <li><strong>a</strong> → <strong>ā</strong> — Macron: long /aː/</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+  <li><strong>e</strong> → <strong>e</strong> — Same</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>tāne.com</strong>, which the DNS carries in punycode form as xn--tne-1oa.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Tāne; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Polynesian transcription can now be typed into any browser on earth.</p>
+<h2 id="the-polynesian-pantheon">The Polynesian Pantheon</h2>
+<p>Tāne is one of 22 entries the PÚNYCODEX lexicon catalogues under the Polynesian pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Tāne mean?</strong> The traditional gloss is &quot;Man (from Proto-Polynesian *tane).&quot;</p>
+<p><strong>Which tradition does Tāne belong to?</strong> Tāne is catalogued in the Polynesian pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Tāne classified as Tier 1?</strong> Because the original carries both stress and length, and only one valid Unicode restoration exists — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Tāne a working domain?</strong> Yes — tāne.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for tāne.com?</strong> The DNS encoding is xn--tne-1oa.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="typing-tane">Typing Tāne</h2>
+<p>You do not need a special keyboard to use this restoration. The <a href="/type/">PÚNYCODEX Type Tool</a> converts the ASCII form <em>tane</em> into <strong>Tāne</strong> as you type, and the browser extension offers the same conversion inside any text field. Copy the restored form, paste it into the address bar, and the DNS does the rest.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Myth, script, sound, cult, legacy, domain: the faces of Tāne add up to a single argument — that a name is a record, and records deserve fidelity. The PÚNYCODEX restoration keeps that record in working order: the temple presents it, the Scholarly Edition footnotes it, the lexicon catalogs it, and the domain makes it addressable. <em>tane</em> will always exist as a fallback. But fallback is not identity. <strong>Tāne</strong> is the name; everything else is a convenience.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/poliahu/">Poliahu</a></li>
   <li><a href="/sites/tangaroa/">Tangaroa</a></li>
   <li><a href="/sites/hiiaka/">Hiiaka</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
-  <li><a href="https://www.te Papa.govt.nz/">Scholarly reference</a></li>
+  <li>Grey, Polynesian Mythology.</li>
+  <li>Tregear, The Maori-Polynesian Comparative Dictionary.</li>
+  <li>Best, Maori Religion and Mythology.</li>
+  <li>Grey, George, Polynesian Mythology (1855).</li>
+  <li>Lexicon authorities for this entry: Tregear.</li>
 </ul>
-<h2>The Cultural Afterlife</h2>
-<p>Tāne is one of the most widely known Māori deities, and his modern cult has a physical centre: Tāne Mahuta, &#39;Lord of the Forest&#39;, a living kauri (Agathis australis) in Waipoua Forest, Northland — the largest known kauri by trunk volume, conventionally estimated at some two thousand years of age. The tree is both a major visitor destination and a functioning shrine; since the spread of kauri dieback disease (Phytophthora agathidicida) it has stood at the centre of one of New Zealand&#39;s most urgent conservation campaigns, protected by rāhui (customary prohibitions) and hygiene stations on the surrounding tracks. Beyond the forest, Tāne&#39;s image pervades carving, painting, dance, and environmental advocacy throughout Aotearoa. The separation of Rangi and...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Tāne as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Polynesian transcription to the modern browser. Every visit to this temple is a small act of preservation.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">polynesian</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,38 +170,187 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>15 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#epithets-cult-titles">Epithets &amp; Cult Titles</a></li>
+                <li><a href="#the-homeric-hymns">The Homeric Hymns</a></li>
+                <li><a href="#oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>The Many Faces of Cháos</h1>
-<p>No important name has only one face. Cháos appears as a mythic character, a scholarly reconstruction, a cultural memory, and now a Unicode domain. Cháos (chaos — Greek Χάος) is the first principle of Hesiod&#39;s cosmogony, and it is not disorder. In Hesiod&#39;s Greek, Cháos is the yawning gap — the first thing to exist, the empty interval in which everything else could appear: &#39;verily at the first Cháos came to be, but next wide-bosomed Gaîa&#39; (Th. 116–117). Before Earth, before Sky, before the gods themselves, there was the opening. From Cháos come Érebos (Darkness) and Nyx (Night), whose union yields Aithḗr and Hēmera (Day) — a procession from gap to dark to light (Th. 123–125). Aristotle read the word as space itself, the precondition of place (Physics 4.1). PÚNYCODEX restores the name as Cháos and serves its temple at cháos.com. The Greek Χάος preserves one prosodic feature — the acute stress on...</p>
-<h2>In Myth</h2>
-<p>Cháos has no myths in the usual sense — no loves, no wars, no disguises. It is the stage before the drama. Yet its single appearance in the Theogony is the most important stage direction in Greek literature. The mythic face is the one most people meet first, and it is the reason the name survived.</p>
-<h2>Across Cultures</h2>
-<p>The Romans kept the Greek name but changed its nature. Ovid made Cháos the raw material of creation, a tangle of discordant elements awaiting the divine craftsman (Met. 1.5–20). Christian exegesis built a bridge between Greek cosmogony and biblical creation: the &#39;without form and void&#39; (tohu wabohu) of Genesis 1:2, which the Septuagint renders &#39;invisible and unformed&#39; (ἀόρατος καὶ ἀκατασκεύαστος), was read alongside the primordial gap. Gnostic literature reversed the valuation: in the Pistis Sophia, chaos is a region of the lower cosmos that the soul must traverse and escape — the gap become a prison. The closest native parallel is not Roman but Germanic: the Eddic Ginnungagap, the &#39;yawning gap&#39; before creation (Vǫluspá 3), preserves the same root... Each culture kept what resonated and reshaped the rest.</p>
-<h2>In the Scholarly Record</h2>
-<p>The modern word &#39;chaos&#39; is, ironically, a corruption of Cháos. Because of Ovid, it came to mean disorder, confusion, randomness — the opposite of Hesiod&#39;s ordered emptiness (Met. 1.7). In the twentieth century &#39;chaos theory&#39; gave the word a new technical meaning: deterministic systems so sensitive to initial conditions that they appear unpredictable — the science of Edward Lorenz&#39;s &#39;Deterministic Nonperiodic Flow&#39; (1963). This is closer to the Greek sense than everyday usage: a system with hidden structure, not mere noise. Artists, musicians, and writers still invoke Cháos as the fertile void, the blank page, the silence before the symphony — the necessary absence from which form is born. Restoring Cháos restores the gap that English lost. The Scholarly Edition collects those traces so readers can follow the argument from source to conclusion.</p>
-<h2>The Unicode Face</h2>
-<p>The newest face is digital. Cháos demonstrates that a name can be at once ancient and clickable, venerable and searchable. That is the face this blog exists to celebrate.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Cháos is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>The many faces of Cháos</h1>
+<p>No important name has only one face. <strong>Cháos</strong> appears as a figure of myth, a scholarly reconstruction, a piece of material culture, a memory carried across languages, and — most recently — a Unicode domain. This post looks at each face in turn: the name and its roots, the Greek original, the reconstructed pronunciation, the mythological record, the symbols and sanctuaries, the cross-cultural afterlife, and the engineering that lets the restored spelling resolve in a browser. Taken together, those faces explain why <em>chaos</em> was never going to be enough — and why the restored form is worth a domain of its own.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Cháos</li>
+  <li><strong>ASCII form:</strong> chaos</li>
+  <li><strong>Meaning:</strong> &quot;Gap, yawning void (from χάος)&quot;</li>
+  <li><strong>Domain of influence:</strong> The First Void</li>
+  <li><strong>Pantheon:</strong> Greek</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> Χάος (Greek)</li>
+  <li><strong>Live domain:</strong> cháos.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Cháos</strong> (<em>chaos</em> — Greek Χάος) is the first principle of Hesiod&#39;s cosmogony, and it is not disorder. In Hesiod&#39;s Greek, Cháos is the <strong>yawning gap</strong> — the first thing to exist, the empty interval in which everything else could appear: &#39;verily at the first Cháos came to be, but next wide-bosomed <a href="/sites/gaia/">Gaîa</a>&#39; (Th. 116–117). Before Earth, before Sky, before the gods themselves, there was the opening. From Cháos come Érebos (Darkness) and Nyx (Night), whose union yields Aithḗr and Hēmera (Day) — a procession from gap to dark to light (Th. 123–125). Aristotle read the word as space itself, the precondition of place (Physics 4.1).</p>
+<p>PÚNYCODEX restores the name as <strong>Cháos</strong> and serves its temple at <a href="https://xn--chos-6na.com">cháos.com</a>. The Greek Χάος preserves one prosodic feature — the acute stress on the first alpha — rather than both stress and length, which places the name in Tier 2. The plain ASCII form <em>chaos</em> is a modern fallback imposed by the early domain-name system, not an ancient spelling.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Greek as <strong>Χάος</strong>, a neuter noun meaning &#39;gap, chasm, yawning interval&#39;. It is built on the verb χαίνω, &#39;to gape, yawn open&#39;, and descends from the Indo-European root <em>ǵʰeh₂- with the same sense — the root that also gives Latin hiāre (&#39;to gape&#39;) and, in the Germanic branch, Old Norse gap and English yawn. The Hesiodic Cháos is therefore a </em>gape*: an opening, not a commotion. The modern sense &#39;disorder, confusion&#39; is a Latin inheritance, traceable to Ovid&#39;s &#39;rough, unordered mass&#39; (Met. 1.7), and postdates Hesiod by seven centuries.</p>
+<p>The restoration <strong>Cháos</strong> writes the acute accent of the original directly in the address bar; the digraph ch represents the single letter chi (χ). The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>c</strong> → <strong>C</strong> — Chi (digraph with h)</li>
+  <li><strong>h</strong> → <strong>h</strong> — Chi (digraph with c)</li>
+  <li><strong>a</strong> → <strong>á</strong> — Acute on alpha</li>
+  <li><strong>o</strong> → <strong>o</strong> — Omicron</li>
+  <li><strong>s</strong> → <strong>s</strong> — Sigma</li>
+</ul>
+<p>Because the Greek preserves only the stress and no long vowel or diphthong, the name is Tier 2 (accent-preserving); the ASCII <em>chaos</em> is the domain-name system&#39;s fallback, not an ancient spelling. The project holds the domain <strong>cháos.com</strong> (xn--chos-6na.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: Gap, yawning void (from χάος)</p>
+<p>The root gloss is &quot;Gap, yawning void.&quot;</p>
+<p>The reconstruction is classed as attested.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Greek as <strong>Χάος</strong> — Greek alphabet (Classical / Attic), attested Ancient Greek, c. 8th century BCE – present, in Greece and the Greek-speaking Mediterranean. The script is written left-to-right.</p>
+<p>The scholarly transliteration is <em>Cháos</em> (Greek alphabet with polytonic accents), giving the normalized reading /ˈkʰa.os/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The Greek form Χάος is written in the Classical Greek alphabet.</li>
+  <li>Letters with acute, grave, or circumflex accents preserve the pitch accent of Ancient Greek.</li>
+  <li>Macrons and omegas (η, ω) mark long vowels, a feature lost in the plain ASCII form.</li>
+  <li>The Unicode restoration Cháos encodes the scholarly spelling as a registrable domain name.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed Attic pronunciation of the name is <strong>/kʰá.os/</strong>: two syllables, the pitch peak on the first alpha, the initial chi an aspirated velar stop [kʰ] — not the [tʃ] of English &#39;church&#39;.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Ch-</strong> — aspirated chi [kʰ], a k released with breath.</li>
+  <li><strong>-á-</strong> — short alpha with the acute pitch accent.</li>
+  <li><strong>-os</strong> — short omicron plus voiceless sigma, the neuter nominative ending.</li>
+</ul>
+<p>For the modern speaker the closest approximation is &#39;KHAH-os&#39;, with the first vowel as in &#39;spa&#39;.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Greek χαίνω</strong> (<em>chainō</em>), &#39;to gape, yawn open&#39; — the verb behind the noun; beside it the cognate χάσμα (<em>chásma</em>), &#39;chasm&#39;.</li>
+  <li><strong>PIE *ǵʰeh₂-</strong> — &#39;yawn, gape&#39;: root of Greek χάος, Latin hiāre, Old Norse gap, English yawn.</li>
+  <li><strong>Old Norse Ginnungagap</strong> — the &#39;yawning gap&#39; of the Eddic cosmogony (Vǫluspá 3), an independent Germanic cousin of the same root-image.</li>
+</ul>
+<p>Cháos is Tier 2 because the Greek Χάος preserves only stress (acute on the first alpha), not length: there is no long vowel or diphthong. The accent marks the pitch peak of the primordial gap — a single prosodic feature, exactly what Tier 2 is designed to record.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Cháos has no myths in the usual sense — no loves, no wars, no disguises. It is the stage before the drama. Yet its single appearance in the <em>Theogony</em> is the most important stage direction in Greek literature.</p>
+<h3 id="first-of-all-chaos-theogony">First of All, Cháos (Theogony)</h3>
+<p>Hesiod opens the <em>Theogony</em> with the famous line: &#39;verily at the first Cháos came to be, but next wide-bosomed Gaia&#39; (Th. 116–117). The verb &#39;came to be&#39; (génet&#39;) matters: Cháos is not presented as eternal in the theological sense but as the first event — the first thing to arise from whatever precedes things. Aristotle read the line as physics: Hesiod made Cháos first because things must have somewhere to be — chaos as chōra, space (Physics 4.1, 208b27–33).</p>
+<h3 id="erebos-and-nyx-the-children">Érebos and Nyx (The Children)</h3>
+<p>From Cháos come Érebos (deep Darkness) and Nyx (Night); they are not created by an act of will but differentiate from the gap, and their union produces Aithḗr (bright upper air) and Hēmera (Day) — a symmetrical procession from gap to dark to light (Th. 123–125). Aristophanes parodies the scheme in the <em>Birds</em>, where the chorus recites a burlesque cosmogony beginning &#39;first were Cháos and Night and black Érebos and broad Tártaros&#39; (Birds 693–703) — proof that Hesiod&#39;s opening was common knowledge by the fifth century.</p>
+<h3 id="ovid-s-confused-mass-roman-reversal">Ovid&#39;s Confused Mass (Roman Reversal)</h3>
+<p>In Ovid&#39;s <em>Metamorphoses</em> (1.5–20), Cháos becomes a &#39;rough, unordered mass&#39; (<em>rudis indigestaque moles</em>) of conflicting elements — hot and cold, wet and dry, soft and hard — awaiting divine ordering. This Latin reinterpretation is the source of the modern English meaning &#39;disorder&#39;, and it is not what Hesiod meant.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>No symbols of Cháos are attested in ancient cult or art: the gap was never worshipped, and an opening has no attributes. What the texts attach to the name are conceptual images rather than emblems:</p>
+<ul>
+  <li><strong>The yawn itself</strong> — the etymological picture carried by the word, from χαίνω, &#39;to gape open&#39;.</li>
+  <li><strong>The interval or room (chōra)</strong> — Aristotle&#39;s reading of the gap as the space things require in order to be.</li>
+  <li><strong>Darkness and Night</strong> — Cháos&#39;s own offspring in the Theogony, Érebos and Nyx, the only &#39;attributes&#39; Hesiod allows it.</li>
+  <li><strong>The rough, unordered mass (<em>rudis indigestaque moles</em>)</strong> — Ovid&#39;s Roman reimagining, a tangle of warring elements awaiting the divine craftsman; the image behind every modern picture of &#39;chaos&#39;, and precisely not the Hesiodic gap.</li>
+</ul>
+<p>No secure iconographic type of Cháos exists in ancient art. Greek vase painters and sculptors personified <a href="/sites/gaia/">Gaîa</a>, Nyx, and even the monsters of <a href="/sites/tartaros/">Tártaros</a>, but never gave the gap a face or attribute: an absence cannot be rendered in the anthropomorphic grammar of Greek art. The one near-exception is conceptual rather than iconic: on Roman cosmological images the artist prefers the four elements or the figure of Aiōn, the personified cosmos — picturable substitutes for what Ovid had turned into a &#39;rough, unordered mass&#39;. Where Renaissance and modern illustrations depict &#39;Chaos&#39; as a roiling void of battling elements, they are visualizing Ovid&#39;s <em>moles</em> (Met. 1.5–20), not Hesiod&#39;s personified gap.</p>
+<h2 id="epithets-cult-titles">Epithets &amp; Cult Titles</h2>
+<p>Cháos was never worshipped or hymned, so no epithet tradition exists. The texts supply descriptive predicates instead.</p>
+<ul>
+  <li><strong>πρώτιστα (prṓtista)</strong> — &#39;first of all&#39;; Hesiod&#39;s ordering adverb in the opening line of the <em>Theogony</em>, marking Cháos as the first event of the cosmos (Th. 116).</li>
+  <li><strong>χάσμα (chásma)</strong> — &#39;chasm, yawning interval&#39;; the cognate noun that preserves the same root-image of the gape.</li>
+  <li><strong>χώρα (chōra)</strong> — &#39;space, room&#39;; Aristotle&#39;s interpretation of Hesiod&#39;s gap, the earliest physical reading of the name.</li>
+  <li><strong><em>rudis indigestaque moles</strong></em> — &#39;a rough, unordered mass&#39;; Ovid&#39;s Latin reinterpretation, source of the modern sense of &#39;chaos&#39; but not the Hesiodic meaning.</li>
+</ul>
+<h2 id="the-homeric-hymns">The Homeric Hymns</h2>
+<p>No Homeric Hymn to Cháos survives, and none could: a primordial gap offers no myth to narrate and no god to invoke — the hymns address deities who can be asked for favours, and Cháos gives nothing and asks nothing. Its sole archaic appearance is programmatic. Hesiod opens the <em>Theogony</em> with &#39;first of all Cháos came to be&#39;, then <a href="/sites/gaia/">Gaîa</a>, <a href="/sites/tartaros/">Tártaros</a>, and Érōs, and later derives Érebos and Nyx from it (Th. 116–125). Homer never personifies the word.</p>
+<p>What the hymn tradition could not supply, comedy and philosophy did. Aristophanes&#39; <em>Birds</em> opens its burlesque cosmogony with the same quartet — Cháos, Night, black Érebos, broad Tártaros (693–703) — treating Hesiod&#39;s opening as material a theatre audience would recognize. And Aristotle subsequently glossed χάος as chōra, &#39;space&#39;, the precondition of place, reading Hesiod&#39;s gap as a physical category (Physics 4.1). The Orphic Rhapsodies demoted it further, making Chronos the first principle and Cháos merely one of his products.</p>
+<h2 id="oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</h2>
+<p>Cháos had no oracle, altar, temple, or priesthood anywhere in the Greek world; cosmogonic abstractions of this order were objects of speculation, not worship, and no inscription records a dedication to it. Its nearest religious associations are indirect. Orphic cosmogonies reconfigure the Hesiodic opening with their own first principles: the Rhapsodies make Chronos the origin, and the Derveni papyrus (c. 340 BCE) — the carbonized commentary found in a Macedonian tomb in 1962 — allegorizes an Orphic theogony in which the gap is absorbed into a physical system. Roman poetry mapped the primordial gap onto underworld entrances such as Lake Avernus near Cumae, which literary tradition treated as a mouth of the lower world; Virgil&#39;s Sibyl leads Aeneas to its &#39;vast gaping&#39; cave (Aen. 6.237–242). A gap can be entered, in imagination; it cannot be consulted.</p>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>No altar, temple, image, or dedication to Cháos is attested anywhere in the Greek world; the concept never entered cult, and its &#39;archaeology&#39; is therefore literary geography. The ancients mapped the primordial gap onto real places only by way of the underworld. Lake Avernus near Cumae, in the volcanic Phlegraean Fields, was treated as a mouth of the lower world (Strabo 5.4.5), and Virgil&#39;s Sibyl points Aeneas to a cave there &#39;deep, huge with its vast gaping&#39; (<em>vasto... immanis hiatu</em>, Aen. 6.237–242) — the Latin <em>hiatus</em>, &#39;gaping&#39;, being the exact cognate of Greek χάος. The Phlegraean Fields themselves owed their name to the scorched battleground of gods and Giants. Beyond such identifications the gap left no trace in stone: an absence, by definition, builds nothing.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Cháos is not disorder. It is not noise, mess, or confusion. In Hesiod&#39;s Greek, Cháos is the yawning gap — the first thing to exist, the empty interval in which everything else could appear. Before Earth, before Sky, before the gods themselves, there was the opening (Th. 116–122).</p>
+<h3 id="the-yawning-gap">The Yawning Gap</h3>
+<p>The original meaning is spatial: a gape, a chasm, the interval before form — the word belongs with χαίνω, &#39;to yawn open&#39;, and χάσμα, &#39;chasm&#39;.</p>
+<h3 id="undifferentiated-potential">Undifferentiated Potential</h3>
+<p>Not empty nothing, but unformed room: the interval in which <a href="/sites/gaia/">Gaîa</a>, <a href="/sites/tartaros/">Tártaros</a>, and Érōs can subsequently &#39;come to be&#39;.</p>
+<h3 id="cosmic-layer">Cosmic Layer</h3>
+<p>The first stratum of Hesiod&#39;s procession, and itself a parent: from Cháos come Érebos and Nyx, from whom Aithḗr and Hēmera are born (Th. 123–125).</p>
+<h3 id="space-itself">Space Itself</h3>
+<p>Aristotle upgraded the gap into a physical category: Hesiod made Cháos first, he argues, because things must have somewhere (chōra) to be (Physics 4.1, 208b27–33).</p>
+<h3 id="the-threshold">The Threshold</h3>
+<p>The boundary between non-being and being; without Cháos, no cosmos has anywhere to stand.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>The Romans kept the Greek name but changed its nature. Ovid made Cháos the raw material of creation, a tangle of discordant elements awaiting the divine craftsman (Met. 1.5–20). Christian exegesis built a bridge between Greek cosmogony and biblical creation: the &#39;without form and void&#39; (<em>tohu wabohu</em>) of Genesis 1:2, which the Septuagint renders &#39;invisible and unformed&#39; (ἀόρατος καὶ ἀκατασκεύαστος), was read alongside the primordial gap. Gnostic literature reversed the valuation: in the <em>Pistis Sophia</em>, chaos is a region of the lower cosmos that the soul must traverse and escape — the gap become a prison. The closest native parallel is not Roman but Germanic: the Eddic Ginnungagap, the &#39;yawning gap&#39; before creation (Vǫluspá 3), preserves the same root and the same image without any borrowing.</p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include <a href="/sites/apep/">Ꜥpp</a>, <a href="/sites/jormungandr/">Jǫrmungandr</a>, <a href="/sites/leviathan/">Liwyāṯān</a>, <a href="/sites/tiamat/">Tiāmat</a>, <a href="/sites/typhon/">Typhōn</a>, and <a href="/sites/yam/">Yām</a>, each linked through chaos, the primordial, and the world serpent.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>The modern word &#39;chaos&#39; is, ironically, a corruption of Cháos. Because of Ovid, it came to mean disorder, confusion, randomness — the opposite of Hesiod&#39;s ordered emptiness (Met. 1.7). In the twentieth century &#39;chaos theory&#39; gave the word a new technical meaning: deterministic systems so sensitive to initial conditions that they appear unpredictable — the science of Edward Lorenz&#39;s &#39;Deterministic Nonperiodic Flow&#39; (1963). This is closer to the Greek sense than everyday usage: a system with hidden structure, not mere noise. Artists, musicians, and writers still invoke Cháos as the fertile void, the blank page, the silence before the symphony — the necessary absence from which form is born. Restoring <em>Cháos</em> restores the gap that English lost.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Cháos given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and philosophical texts supply the evidence for its career from cosmogony to concept.</p>
+<ul>
+  <li> Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement. <a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Full text</a></li>
+  <li> Beekes, Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a href="https://brill.com/view/title/17858">Publisher</a></li>
+  <li> Hesiod, Theogony 116–125. <a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0130">Full text</a></li>
+  <li> Aristophanes, Birds 693–703.</li>
+  <li> Aristotle, Physics 4.1, 208b27–33.</li>
+  <li> Ovid, Metamorphoses 1.5–20.</li>
+  <li> Virgil, Aeneid 6.237–242.</li>
+  <li> G. Betegh, The Derveni Papyrus: Cosmology, Theology and Interpretation (Cambridge University Press, 2004).</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Cháos is the hardest of the primordials to love because it offers nothing to hold. It is not a god you can picture, not a mountain you can visit, not a story you can retell. It is simply the gap. And yet every creation myth, every scientific account of the Big Bang, every meditation on the empty canvas begins here: with an opening that has room in it for something else.</p>
+<p>To name Cháos correctly is to resist the lazy equation of void with disorder. The Greek gap is not a mess; it is a <strong>precondition</strong>. It is the silence before the note, the darkness before the image, the space before the word. Without it, there is nowhere for the world to stand.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Cháos is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>chaos</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 5 characters of the name, the restoration adjusts 1: 1 mark of stress (á). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>cháos.com</strong>, which the DNS carries in punycode form as xn--chos-6na.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Cháos; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Greek can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Myth, script, sound, cult, legacy, domain: the faces of Cháos add up to a single argument — that a name is a record, and records deserve fidelity. The PÚNYCODEX restoration keeps that record in working order: the temple presents it, the Scholarly Edition footnotes it, the lexicon catalogs it, and the domain makes it addressable. <em>chaos</em> will always exist as a fallback. But fallback is not identity. <strong>Cháos</strong> is the name; everything else is a convenience.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/hermione/">Hermiónē</a></li>
   <li><a href="/sites/hestia/">Hestía</a></li>
   <li><a href="/sites/hippolytus/">Hippólutos</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0130">Hesiod, Theogony 116–125.</a></li>
   <li><a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Liddell-Scott-Jones Greek-English Lexicon, 9th ed., s.v. χάος, χαίνω.</a></li>
   <li><a href="https://brill.com/view/title/17858">Beekes, Etymological Dictionary of Greek (Brill, 2010), s.v. χάος (PIE ǵʰeh₂- &#39;yawn, gape&#39;).</a></li>
   <li><a href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ">Wörterbuch der griechischen Eigennamen, 3rd ed., 1863.</a></li>
+  <li>Aristotle, Physics 4.1, 208b27–33 (chaos as space, chōra).</li>
+  <li>Liddell-Scott-Jones Greek-English Lexicon, 9th ed., s.v. χάος.</li>
+  <li>Ovid, Metamorphoses 1.5–20.</li>
+  <li>Aristotle, Physics 4.1, 208b27–33.</li>
+  <li>Lexicon authorities for this entry: LSJ, Pape-Benseler, Beekes.</li>
 </ul>
-<h2>The Cultural Afterlife</h2>
-<p>The modern word &#39;chaos&#39; is, ironically, a corruption of Cháos. Because of Ovid, it came to mean disorder, confusion, randomness — the opposite of Hesiod&#39;s ordered emptiness (Met. 1.7). In the twentieth century &#39;chaos theory&#39; gave the word a new technical meaning: deterministic systems so sensitive to initial conditions that they appear unpredictable — the science of Edward Lorenz&#39;s &#39;Deterministic Nonperiodic Flow&#39; (1963). This is closer to the Greek sense than everyday usage: a system with hidden structure, not mere noise. Artists, musicians, and writers still invoke Cháos as the fertile void, the blank page, the silence before the symphony — the necessary absence from which form is born. Restoring Cháos restores the gap that English lost.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">greek</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

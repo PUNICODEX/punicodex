@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,38 +170,196 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-yoruba-pantheon">The Yoruba Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#typing-olodumare">Typing Olódùmarè</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>The Many Faces of Olódùmarè</h1>
-<p>No important name has only one face. Olódùmarè appears as a mythic character, a scholarly reconstruction, a cultural memory, and now a Unicode domain. Olódùmarè (olodumare) — Supreme Creator · Owner of the universe — belongs to the Yoruba tradition, where it is catalogued under the domain &quot;Supreme Creator&quot;. The name means &quot;Owner of the universe&quot;. Olódùmarè is the high god of Yoruba religion, the sole creator who owns heaven and earth and everything that breathes. Unlike the orishas, who mediate between humans and the sacred, Olódùmarè is remote, self-sufficient, and without need of offerings. He delegates: the orishas govern the world, but they do so on his behalf. He is the source of àṣàyàn (destiny) and the one before whom all orishas bow. In Yoruba theology he is not one god among many but the ground from which the many arise. PÚNYCODEX restores the name as Olódùmarè and serves its temple at...</p>
-<h2>In Myth</h2>
-<p>Olódùmarè&#39;s mythology is theology: it concerns the origin of the world, the distribution of destiny, and the hierarchy between the high god and the orishas. The mythic face is the one most people meet first, and it is the reason the name survived.</p>
-<h2>Across Cultures</h2>
-<p>Because Olódùmarè is a remote, imageless high god, he was easily mapped onto the Christian God by enslaved Yoruba people and their descendants. In Cuban Santería and Brazilian Candomblé, Olódumare is often identified with God the Father or with the transcendent Creator, while the orishas correspond to saints and angels. The theological structure — one high god above a host of intermediaries — made the Yoruba pantheon adaptable to monotheistic frameworks without losing its polytheistic texture. Within the Yoruba tradition, closely related names in the corpus include [[aganju|Aganjú]], [[babaluaye|Ọbalúayé]], [[eshu|Ẹṣu]], [[obatala|Ọbatálá]], [[orunmila|Ọrúnmìlà]], and [[oshun|Ọṣun]]. Each culture kept what resonated and reshaped the rest.</p>
-<h2>In the Scholarly Record</h2>
-<p>Olódùmarè remains the theological centre of Yoruba religion and its diaspora. The phrase &#39;Olódùmarè willing&#39; structures daily speech; the idea that destiny is chosen but not arbitrary shapes Yoruba ethics. In African philosophy and theology he anchors a long debate about how to classify Yoruba religion. Idowu read the tradition as &#39;diffused monotheism&#39; — one supreme being whose powers are delegated to the orishas — a thesis that made Olódùmarè the test case for African monotheism. Critics such as Okot p&#39;Bitek countered that the high-god vocabulary itself risks smuggling Christian categories into African material, so the debate over Olódùmarè is also a debate over the terms of comparison.^1 Beyond the academy the name circulates in reggae, Afrobeat,... The Scholarly Edition collects those traces so readers can follow the argument from source to conclusion.</p>
-<h2>The Unicode Face</h2>
-<p>The newest face is digital. Olódùmarè demonstrates that a name can be at once ancient and clickable, venerable and searchable. That is the face this blog exists to celebrate.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Olódùmarè is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>The many faces of Olódùmarè</h1>
+<p>No important name has only one face. <strong>Olódùmarè</strong> appears as a figure of myth, a scholarly reconstruction, a piece of material culture, a memory carried across languages, and — most recently — a Unicode domain. This post looks at each face in turn: the name and its roots, the Yoruba transcription original, the reconstructed pronunciation, the mythological record, the symbols and sanctuaries, the cross-cultural afterlife, and the engineering that lets the restored spelling resolve in a browser. Taken together, those faces explain why <em>olodumare</em> was never going to be enough — and why the restored form is worth a domain of its own.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Olódùmarè</li>
+  <li><strong>ASCII form:</strong> olodumare</li>
+  <li><strong>Meaning:</strong> &quot;Owner of the universe&quot;</li>
+  <li><strong>Domain of influence:</strong> Supreme Creator</li>
+  <li><strong>Pantheon:</strong> Yoruba</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Live domain:</strong> olódùmarè.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Olódùmarè</strong> (<em>olodumare</em>) — Supreme Creator · Owner of the universe — belongs to the Yoruba tradition, where it is catalogued under the domain &quot;Supreme Creator&quot;. The name means &quot;Owner of the universe&quot;.</p>
+<p><strong>Olódùmarè</strong> is the high god of Yoruba religion, the sole creator who owns heaven and earth and everything that breathes. Unlike the orishas, who mediate between humans and the sacred, Olódùmarè is remote, self-sufficient, and without need of offerings. He delegates: the orishas govern the world, but they do so on his behalf.</p>
+<p>He is the source of <em>àṣàyàn</em> (destiny) and the one before whom all orishas bow. In Yoruba theology he is not one god among many but the ground from which the many arise.</p>
+<p>PÚNYCODEX restores the name as <strong>Olódùmarè</strong> and serves its temple at <a href="https://xn--oldmar-8ua7frc.com">olódùmarè.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>olodumare</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>No indigenous written attestation survives for this name; <strong>Olódùmarè</strong> is a scholarly transliteration of the reconstructed spoken form. Etymologically the name means &quot;Owner of the universe&quot;.</p>
+<p>The ASCII form <em>olodumare</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Olódùmarè</strong> recovers the stress accent of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>o</strong> → <strong>O</strong> — Same, capitalized</li>
+  <li><strong>l</strong> → <strong>l</strong> — Same</li>
+  <li><strong>o</strong> → <strong>ó</strong> — Acute on o</li>
+  <li><strong>d</strong> → <strong>d</strong> — Same</li>
+  <li><strong>u</strong> → <strong>ù</strong> — Grave on u</li>
+  <li><strong>m</strong> → <strong>m</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+  <li><strong>r</strong> → <strong>r</strong> — Same</li>
+  <li><strong>e</strong> → <strong>è</strong> — Grave on e</li>
+</ul>
+<p>The project holds the domain <strong>olódùmarè.com</strong> (xn--oldmar-8ua7frc.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The Yoruba language had no phonetic writing system before the nineteenth century; its theology, including the name <strong>Olódùmarè</strong>, was transmitted orally — above all in the Ifá divination corpus memorised by diviners and in oríkì praise poetry. The first printed records of the language are mission vocabularies: John Raban&#39;s <em>A Vocabulary of the Eyo or Aku</em> (1830–1832), then Samuel Ajayi Crowther&#39;s <em>A Vocabulary of the Yoruba Language</em> (1843) and his <em>Grammar and Vocabulary of the Yoruba Language</em> (1852), followed by the Yoruba Bible translation and the newspaper <em>Ìwé Ìròhìn</em> (1859–1867).</p>
+<p>Modern standard Yoruba orthography, codified from Ayo Bamgbose&#39;s 1965 study and the 1966 Yoruba Orthography Committee, writes the Latin alphabet with sub-dots (<strong>ẹ, ọ, ṣ</strong>) distinguishing the open vowels [ɛ, ɔ] and the fricative [ʃ], plus acute and grave accents for high and low tone; the mid tone goes unmarked. <strong>Olódùmarè</strong> follows this convention exactly — ó high, ù and è low, the intervening a mid — so the written form is a faithful record of the spoken name rather than a speculative reconstruction.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/o.ló.dù.ma.rè/</strong> — Yoruba Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>O-</strong> — Close-mid back rounded vowel [o] with mid tone; the initial vowel is written without dot below in standard orthography.</li>
+  <li><strong>-ló-</strong> — Voiced alveolar lateral approximant [l] followed by close-mid back rounded vowel [o] with high tone.</li>
+  <li><strong>-dù-</strong> — Voiced alveolar stop [d] followed by close back rounded vowel [u] with low tone.</li>
+  <li><strong>-ma-</strong> — Voiced bilabial nasal [m] followed by open [a] with mid tone, left unmarked in writing.</li>
+  <li><strong>-rè</strong> — Voiced alveolar tap or trill [r] followed by mid front vowel [e] with low tone.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: oh-LOH-doo-ma-reh — mid &#39;oh&#39;, high &#39;LOH&#39;, low &#39;doo&#39;, mid &#39;ma&#39;, low &#39;reh&#39;; Yoruba is a tone language, so the melody, not stress, carries the pattern.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Yoruba</strong> — Olódùmarè, the Supreme Creator and owner of the universe.</li>
+  <li><strong>Lucumí</strong> — Olodumare, the remote high god who delegates the orishas.</li>
+  <li><strong>Related title</strong> — Olodumare is sometimes addressed as Olorun (&#39;Owner of Heaven&#39;).</li>
+</ul>
+<p>Olódùmarè is Tier 2: the acute accent on ó preserves the high tone, while the grave accents on ù and è preserve the low tones; the a carries the mid tone and is written unmarked. Tonal distinctions are crucial to Yoruba meaning but are not length marks.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Olódùmarè&#39;s mythology is theology: it concerns the origin of the world, the distribution of destiny, and the hierarchy between the high god and the orishas.</p>
+<h3 id="the-creation-of-the-world-cosmogony">The Creation of the World (Cosmogony)</h3>
+<p>Olódùmarè created the universe and then sent the orishas down to finish it. Ọbatalá shaped human bodies from clay, and Olódùmarè himself breathed life into them. The story preserves a strict division: the creator originates, the orishas administer, and humans receive both matter and spirit.</p>
+<h3 id="the-distribution-of-akunleyan-destiny">The Distribution of Àkúnlẹ̀yàn (Destiny)</h3>
+<p>Before birth, each soul kneels at the house of Àjàlá, the potter of heads (Àjàlá mọ̀pín), to choose an orí — a head, and with it a destiny; the tradition names the choice àkúnlẹ̀yàn, &#39;that which is chosen kneeling.&#39; Olódùmarè authorises the choices and gives each person the breath that makes the destiny live. Once chosen, destiny can be mitigated by sacrifice and wisdom but not abolished. Olódùmarè is the final guarantor of this contract.</p>
+<h3 id="why-the-high-god-is-remote-theodicy">Why the High God is Remote (Theodicy)</h3>
+<p>Yoruba tradition explains Olódùmarè&#39;s distance by saying that he is too pure and too great to be approached directly. Humans therefore relate to him through the orishas, who are his ministers. This does not diminish his supremacy; it structures it. Olódùmarè is the king who rules through a court of divine officials.</p>
+<h3 id="the-distribution-of-ayewo-destiny">The Distribution of Àyẹ̀wò (Destiny)</h3>
+<p>Before birth, each soul travels to the house of Àjàláyé, the potter of heads, to choose a destiny. Olódùmarè authorises the choices and gives each person the breath that makes the destiny live. Once chosen, destiny can be mitigated by sacrifice and wisdom but not abolished. Olódùmarè is the final guarantor of this contract.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Olódùmarè concentrates in a small set of recurring attributes, each a compressed statement about the name. Because doctrine denies him images, the set is cosmological rather than iconic — things seen in the sky, not things carved by hand:</p>
+<ul>
+  <li><strong>The sky (ọ̀run)</strong> — His visible throne; the firmament is his temple and his garment.</li>
+  <li><strong>The rainbow (ọ̀ṣùmàrè)</strong> — The serpent-arch that links heaven and earth, sometimes called his messenger; elsewhere in the corpus the rainbow power [[osumare|Ọ̀ṣùmàrè]] stands as an orisha in his own right.</li>
+  <li><strong>Cool wind and breath</strong> — The invisible life-force he breathes into the bodies shaped by [[obatala|Ọbatalá]].</li>
+  <li><strong>White light</strong> — Pure, imageless presence; Olódùmarè has no anthropomorphic cult statue.</li>
+</ul>
+<p>The absence of a cult image is itself the statement: a god who cannot be pictured cannot be managed, and the tradition leaves him exactly that free.</p>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>No dedicated cult of Olódùmarè is attested archaeologically. Idowu states the fact plainly: the high god has no temples, no images, and no appointed priesthood anywhere in Yorubaland — he is approached in open-air prayer, not at a shrine. The great Yoruba art corpora, including the naturalistic bronze and terracotta heads of Ife dated to roughly the twelfth–fifteenth centuries, depict rulers and orishas rather than the supreme being, whose transcendence resists representation.</p>
+<p>His material footprint is therefore textual rather than monumental: the oral Ifá corpus memorised by diviners, the cosmological vocabulary of ritual speech, and — in diaspora houses — the symbolic height reserved above the orishas on domestic altars, marked by the sky, a white cloth, or nothing at all.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p><strong>Olódùmarè</strong> is the high god of Yoruba religion, the sole creator who owns heaven and earth and everything that breathes. Unlike the orishas, who mediate between humans and the sacred, Olódùmarè is remote, self-sufficient, and without need of offerings. He delegates: the orishas govern the world, but they do so on his behalf.</p>
+<p>He is the source of <em>àṣàyàn</em> (destiny) and the one before whom all orishas bow. In Yoruba theology he is not one god among many but the ground from which the many arise.</p>
+<h3 id="supreme-creator">Supreme Creator</h3>
+<p>He alone creates ex nihilo; the orishas shape and govern what he has made.</p>
+<h3 id="destiny">Destiny</h3>
+<p>He assigns àkúnlẹ̀yàn, the destiny each soul kneels to choose before birth.</p>
+<h3 id="final-authority">Final Authority</h3>
+<p>No orisha can override his decree; even Ọrúnmìlà interprets rather than changes fate.</p>
+<h3 id="transcendence">Transcendence</h3>
+<p>He needs no temple image; he is worshipped through the sky, the sun, and the breath of life.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Because Olódùmarè is a remote, imageless high god, he was easily mapped onto the Christian God by enslaved Yoruba people and their descendants. In Cuban Santería and Brazilian Candomblé, Olódumare is often identified with God the Father or with the transcendent Creator, while the orishas correspond to saints and angels. The theological structure — one high god above a host of intermediaries — made the Yoruba pantheon adaptable to monotheistic frameworks without losing its polytheistic texture.</p>
+<p>Within the Yoruba tradition, closely related names in the corpus include [[aganju|Aganjú]], [[babaluaye|Ọbalúayé]], [[eshu|Ẹṣu]], [[obatala|Ọbatálá]], [[orunmila|Ọrúnmìlà]], and [[oshun|Ọṣun]].</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Olódùmarè remains the theological centre of Yoruba religion and its diaspora. The phrase &#39;Olódùmarè willing&#39; structures daily speech; the idea that destiny is chosen but not arbitrary shapes Yoruba ethics.</p>
+<p>In African philosophy and theology he anchors a long debate about how to classify Yoruba religion. Idowu read the tradition as &#39;diffused monotheism&#39; — one supreme being whose powers are delegated to the orishas — a thesis that made Olódùmarè the test case for African monotheism. Critics such as Okot p&#39;Bitek countered that the high-god vocabulary itself risks smuggling Christian categories into African material, so the debate over Olódùmarè is also a debate over the terms of comparison.</p>
+<p>Beyond the academy the name circulates in reggae, Afrobeat, and global spirituality as a name for the supreme source, a reminder that African theology has always had a place for the One beyond the many.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Olódùmarè given in this edition rests on the witnesses and reference works listed below. Idowu&#39;s monograph is the foundational modern study of the high god; the lexicographical and ethnographic works secure the form, meaning, and cultic context of the name.</p>
+<ul>
+  <li> Idowu, E. Bolaji, <em>Olódùmarè: God in Yoruba Belief</em>, Longmans, 1962 — the standard monograph on the Yoruba high god, his praise names, and his relation to the orishas. <a href="https://archive.org/details/olodumaregodinyo0000ebql">Full text</a></li>
+  <li> Bascom, William, <em>Ifa Divination: Communication Between Gods and Men in West Africa</em>, Indiana University Press, 1969 — field documentation of the divination system through which his decrees are consulted. <a href="https://archive.org/details/ifadivinationcom0000basc">Full text</a></li>
+  <li> Abraham, R. C., <em>Dictionary of Modern Yoruba</em>, University of London Press, 1958 — the lexical reference for orthography, tone, and gloss. <a href="https://archive.org/details/dictionaryofmode0000abra">Full text</a></li>
+  <li> Mason, John, <em>Four New World Yoruba Rituals</em>, Yoruba Theological Archministry — diaspora ritual practice.</li>
+  <li> Verger, Pierre, <em>Notes sur le Culte des Orisa et Vodun</em>, IFAN, Dakar, 1957 — classic ethnography of orisha and vodun cults in West Africa and Bahia.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Olódùmarè is the god who needs nothing. He does not eat sacrifices the way the orishas do; he does not possess dancers or demand festivals. He simply is — the owner of the universe, the breath in every body, the sky above every shrine. This makes him easy to overlook and impossible to escape.</p>
+<p>In a religious landscape full of colourful, approachable deities, Olódùmarè is the silence behind the drum. He asks us to distinguish between what we need and what we want, between the god who answers prayers and the source from which prayer itself arises. To remember him is to remember that the orishas, however powerful, are not ultimate. Something older owns even them.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Olódùmarè is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>olodumare</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 9 characters of the name, the restoration adjusts 3: 3 marks of stress (ó, ù, è). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>olodumare</em> to <strong>Olódùmarè</strong>, one character at a time:</p>
+<ul>
+  <li><strong>o</strong> → <strong>O</strong> — Same, capitalized</li>
+  <li><strong>l</strong> → <strong>l</strong> — Same</li>
+  <li><strong>o</strong> → <strong>ó</strong> — Acute on o</li>
+  <li><strong>d</strong> → <strong>d</strong> — Same</li>
+  <li><strong>u</strong> → <strong>ù</strong> — Grave on u</li>
+  <li><strong>m</strong> → <strong>m</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+  <li><strong>r</strong> → <strong>r</strong> — Same</li>
+  <li><strong>e</strong> → <strong>è</strong> — Grave on e</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>olódùmarè.com</strong>, which the DNS carries in punycode form as xn--oldmar-8ua7frc.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Olódùmarè; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Yoruba transcription can now be typed into any browser on earth.</p>
+<h2 id="the-yoruba-pantheon">The Yoruba Pantheon</h2>
+<p>Olódùmarè is one of 30 entries the PÚNYCODEX lexicon catalogues under the Yoruba pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Olódùmarè mean?</strong> The traditional gloss is &quot;Owner of the universe.&quot;</p>
+<p><strong>Which tradition does Olódùmarè belong to?</strong> Olódùmarè is catalogued in the Yoruba pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Olódùmarè classified as Tier 2?</strong> Because the original preserves at least one philological feature that ASCII cannot encode — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Olódùmarè a working domain?</strong> Yes — olódùmarè.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for olódùmarè.com?</strong> The DNS encoding is xn--oldmar-8ua7frc.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="typing-olodumare">Typing Olódùmarè</h2>
+<p>You do not need a special keyboard to use this restoration. The <a href="/type/">PÚNYCODEX Type Tool</a> converts the ASCII form <em>olodumare</em> into <strong>Olódùmarè</strong> as you type, and the browser extension offers the same conversion inside any text field. Copy the restored form, paste it into the address bar, and the DNS does the rest.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Myth, script, sound, cult, legacy, domain: the faces of Olódùmarè add up to a single argument — that a name is a record, and records deserve fidelity. The PÚNYCODEX restoration keeps that record in working order: the temple presents it, the Scholarly Edition footnotes it, the lexicon catalogs it, and the domain makes it addressable. <em>olodumare</em> will always exist as a fallback. But fallback is not identity. <strong>Olódùmarè</strong> is the name; everything else is a convenience.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/wandjina/">Wandjina</a></li>
   <li><a href="/sites/yurlungur/">Yurlungur</a></li>
   <li><a href="/sites/altjira/">Altjira</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://archive.org/details/agrammaryorubal00crowgoog">Crowther, A Grammar and Vocabulary of the Yoruba Language, Seeleys, 1852.</a></li>
   <li><a href="https://archive.org/details/dictionaryofmode0000abra">Abraham, Dictionary of Modern Yoruba, University of London Press, 1958.</a></li>
   <li><a href="https://archive.org/details/yorubaofsouthwes0000basc">Bascom, The Yoruba of Southwestern Nigeria, Holt, Rinehart and Winston, 1969.</a></li>
   <li><a href="https://archive.org/details/olodumaregodinyo0000ebql">Idowu, E. Bolaji, Olódùmarè: God in Yoruba Belief, Longmans, 1962.</a></li>
+  <li><a href="https://archive.org/details/ifadivinationcom0000basc">Bascom, William, Ifa Divination: Communication Between Gods and Men in West Africa, Indiana University Press, 1969.</a></li>
+  <li>Idowu, Olódùmarè: God in Yoruba Belief.</li>
+  <li>Bascom, Ifa Divination.</li>
+  <li>Abraham, Dictionary of Modern Yoruba.</li>
+  <li>Abimbola, Ifá: An Exposition of Ifá Literary Corpus, Oxford University Press, 1976.</li>
+  <li>Lexicon authorities for this entry: Abraham.</li>
 </ul>
-<h2>The Cultural Afterlife</h2>
-<p>Olódùmarè remains the theological centre of Yoruba religion and its diaspora. The phrase &#39;Olódùmarè willing&#39; structures daily speech; the idea that destiny is chosen but not arbitrary shapes Yoruba ethics. In African philosophy and theology he anchors a long debate about how to classify Yoruba religion. Idowu read the tradition as &#39;diffused monotheism&#39; — one supreme being whose powers are delegated to the orishas — a thesis that made Olódùmarè the test case for African monotheism. Critics such as Okot p&#39;Bitek countered that the high-god vocabulary itself risks smuggling Christian categories into African material, so the debate over Olódùmarè is also a debate over the terms of comparison.^1 Beyond the academy the name circulates in reggae, Afrobeat,...</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">yoruba</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

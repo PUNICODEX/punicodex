@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,40 +170,209 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>15 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#epithets-cult-titles">Epithets &amp; Cult Titles</a></li>
+                <li><a href="#the-homeric-hymns">The Homeric Hymns</a></li>
+                <li><a href="#oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>The Many Faces of Hēra</h1>
-<p>No important name has only one face. Hēra appears as a mythic character, a scholarly reconstruction, a cultural memory, and now a Unicode domain. Hēra (hera) — The Golden-Throned · Guardian of Marriage — belongs to the Greek tradition, where it is catalogued under the domain &quot;Marriage, Women, Queen of Gods&quot;. The name means &quot;Lady, mistress (possibly related to ἥρως)&quot;. Hēra is the queen of the gods by marriage, not birth. Her power is inseparable from her status as Zeús&#39;s wife, and her mythology is dominated by the defense of legitimate marriage and royal order against every challenge — especially her husband&#39;s infidelities. PÚNYCODEX restores the name as Hēra and serves its temple at hēra.com. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form hera survives as a modern...</p>
-<h2>In Myth</h2>
-<p>Hēra&#39;s myths are almost all variations on one theme: the wronged wife defending her throne . She cannot overthrow Zeús, but she can punish his lovers and their children with relentless ingenuity. The mythic face is the one most people meet first, and it is the reason the name survived.</p>
-<h2>Across Cultures</h2>
-<p>The Romans identified Hēra with Iuno, the queen of the Roman gods and protector of marriage. Iuno was central to the Roman state cult; every woman had a personal Iuno, just as every man had a personal Genius. In the Hellenistic east, Hēra was syncretized with Egyptian Isis and Phoenician Astarte as a supreme queen goddess. Her great sanctuaries at Argos and Samos were among the richest in Greece, and the Heraia festival at Olympia included athletic competitions for women. The very word &#39;hero&#39; is probably unrelated to her name, but the association has shaped her reception for centuries. Within the corpus, her closest kin are [[zeus|Zeús]], her brother and consort, and the children the Theogony assigns their union: [[ares|Árēs]], [[hebe|Hebe]], and... Each culture kept what resonated and reshaped the rest.</p>
-<h2>In the Scholarly Record</h2>
-<p>Hēra is the archetype of the queen consort — powerful because of her position, dangerous because of her pride. Her peacock remains a symbol of beauty and watchfulness; her jealousy has been a literary theme from Euripides to opera. The Argive Heraion, her massive sanctuary near Argos, dominated the plain and testified to her political importance; Argos claimed to be her favorite city. In modern feminist readings, Hēra has been reinterpreted as a figure of constrained power, a goddess whose authority is real but always mediated through marriage. Restoring Hēra restores the name of the goddess who made marriage a cosmic institution. The Scholarly Edition collects those traces so readers can follow the argument from source to conclusion.</p>
-<h2>The Unicode Face</h2>
-<p>The newest face is digital. Hēra demonstrates that a name can be at once ancient and clickable, venerable and searchable. That is the face this blog exists to celebrate.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Hēra is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>The many faces of Hēra</h1>
+<p>No important name has only one face. <strong>Hēra</strong> appears as a figure of myth, a scholarly reconstruction, a piece of material culture, a memory carried across languages, and — most recently — a Unicode domain. This post looks at each face in turn: the name and its roots, the Greek original, the reconstructed pronunciation, the mythological record, the symbols and sanctuaries, the cross-cultural afterlife, and the engineering that lets the restored spelling resolve in a browser. Taken together, those faces explain why <em>hera</em> was never going to be enough — and why the restored form is worth a domain of its own.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Hēra</li>
+  <li><strong>ASCII form:</strong> hera</li>
+  <li><strong>Meaning:</strong> &quot;Lady, mistress (possibly related to ἥρως)&quot;</li>
+  <li><strong>Domain of influence:</strong> Marriage, Women, Queen of Gods</li>
+  <li><strong>Pantheon:</strong> Greek</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Original script:</strong> Ἥρα (Greek)</li>
+  <li><strong>Live domain:</strong> hēra.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Hēra</strong> (<em>hera</em>) — The Golden-Throned · Guardian of Marriage — belongs to the Greek tradition, where it is catalogued under the domain &quot;Marriage, Women, Queen of Gods&quot;. The name means &quot;Lady, mistress (possibly related to ἥρως)&quot;.</p>
+<p>Hēra is the queen of the gods by marriage, not birth. Her power is inseparable from her status as Zeús&#39;s wife, and her mythology is dominated by <strong>the defense of legitimate marriage and royal order</strong> against every challenge — especially her husband&#39;s infidelities.</p>
+<p>PÚNYCODEX restores the name as <strong>Hēra</strong> and serves its temple at <a href="https://xn--hra-3qa.com">hēra.com</a>. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>hera</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Greek as <strong>Ἥρα</strong>. Etymologically it means &quot;Lady, mistress (possibly related to ἥρως)&quot;.</p>
+<p>The reconstructed proto-form is <em>h₂yéh₁r-</em> (proto-indo-european, &quot;year, season, mistress&quot;). Possibly from ἦρα &quot;season, year&quot;, cognate with Latin hōra. Queen of Olympus.</p>
+<p>Cognate forms across related languages:</p>
+<ul>
+  <li><strong>hōra</strong> (latin) — Hour, season</li>
+</ul>
+<p>The ASCII form <em>hera</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Hēra</strong> recovers the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>h</strong> → <strong>H</strong> — Rough breathing</li>
+  <li><strong>e</strong> → <strong>ē</strong> — Eta: long epsilon</li>
+  <li><strong>r</strong> → <strong>r</strong> — Rho</li>
+  <li><strong>a</strong> → <strong>a</strong> — Short alpha</li>
+</ul>
+<p>The project holds the domain <strong>hēra.com</strong> (xn--hra-3qa.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: Possibly from ἦρα &quot;season, year&quot;, cognate with Latin hōra. Queen of Olympus.</p>
+<p>The reconstructed proto-form is <em>*h₂yéh₁r-</em> (proto-indo-european), glossed as &quot;year, season, mistress&quot;.</p>
+<p>The reconstruction is classed as speculative.</p>
+<p>Kindred forms recorded in the lexicon:</p>
+<ul>
+  <li><strong>hōra</strong> (latin) — Hour, season</li>
+</ul>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Greek as <strong>Ἥρα</strong> — Greek alphabet (Classical / Attic), attested Ancient Greek, c. 8th century BCE – present, in Greece and the Greek-speaking Mediterranean. The script is written left-to-right.</p>
+<p>The scholarly transliteration is <em>Hēra</em> (Greek alphabet with polytonic accents), giving the normalized reading /hɛːˈra/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The Greek form Ἥρα is written in the Classical Greek alphabet.</li>
+  <li>Letters with acute, grave, or circumflex accents preserve the pitch accent of Ancient Greek.</li>
+  <li>Macrons and omegas (η, ω) mark long vowels, a feature lost in the plain ASCII form.</li>
+  <li>The Unicode restoration Hēra encodes the scholarly spelling as a registrable domain name.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/hɛ́.rā/</strong> — Attic Greek Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Hē-</strong> — Short epsilon with rough breathing, pitched high — the name exhales authority.</li>
+  <li><strong>-rā</strong> — Rho plus long alpha — the final syllable opens broadly, like a queen&#39;s gesture.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;HAY-rah&#39; — the first syllable is sharp and pitched; the final &#39;a&#39; is long and open.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>PIE</strong> — *yēro- &#39;year, season&#39; — Hēra as the goddess of the ritual year and legitimate season</li>
+  <li><strong>Mycenaean Greek</strong> — e-ra, attested in Linear B at Pylos (PY Tn 316)</li>
+  <li><strong>Sanskrit</strong> — yāra- &#39;year&#39; — possible distant cognate, though disputed</li>
+</ul>
+<p>Hēra is Tier 1 because the Greek Ἥρᾱ contains both stress (acute on the first epsilon) and length (long alpha with iota subscript). The Attic form Ἥρα loses the iota subscript in spelling but retains the long alpha in pronunciation.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Hēra&#39;s myths are almost all variations on one theme: <strong>the wronged wife defending her throne</strong>. She cannot overthrow Zeús, but she can punish his lovers and their children with relentless ingenuity.</p>
+<h3 id="the-sacred-wedding-of-zeus-and-hera-the-marriage">The Sacred Wedding of Zeús and Hēra (The Marriage)</h3>
+<p>Zeús and Hēra first lay together &#39;without their dear parents&#39; knowledge,&#39; as Zeús himself recalls in the Iliad&#39;s great seduction scene; Samos, which claimed to be her birthplace, kept her greatest sanctuary. Their union became the pattern of divine marriage, and the <em>hieros gamos</em> — the sacred wedding reenacted in ritual, as at Knossos, where the Cretans pointed out the place and repeated the rite — ensured fertility and cosmic order.</p>
+<h3 id="the-persecution-of-herakles-the-revenge">The Persecution of Hēraklēs (The Revenge)</h3>
+<p>Hēra hated Hēraklēs because he was the son of Zeús and the mortal Alcmene — living proof of her husband&#39;s infidelity. She held back his birth so that the weaker Eurystheus would rule him, sent serpents to kill him in his cradle, and drove him to the madness in which he killed his own children. Yet her persecution made him immortal: without Hēra&#39;s hatred, there is no Hēraklēs. The myth turns a queen&#39;s vengeance into the engine of heroism.</p>
+<h3 id="argos-panoptes-the-watchman">Argos Panoptês (The Watchman)</h3>
+<p>When Zeús loved the nymph Io, Hēra set the hundred-eyed Argos to watch over her. Hermês slew Argos at Zeús&#39;s command, and Hēra placed his eyes in the tail of the peacock. The peacock thus carries her unceasing vigilance; nothing escapes the queen&#39;s notice.</p>
+<h3 id="the-conspiracy-against-zeus-the-revolt">The Conspiracy against Zeús (The Revolt)</h3>
+<p>Hēra once joined Poseidôn and Athénā in a plot to bind Zeús; the rising failed only because Thétis summoned the hundred-handed Briareos to sit beside him, and the conspirators scattered. The Iliad preserves the episode in Achilles&#39; prayer to his mother. It hints at an older stratum in which Hēra was not merely the wronged wife but a power capable of challenging the kingship itself.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>Hēra&#39;s attributes are royal and bridal at once, and the fullest ancient description — Pausanias&#39;s account of Polykleitos&#39;s cult statue at the Argive Heraion — supplies half the list.</p>
+<ul>
+  <li><strong>Polos crown and veil</strong> — the tall crown and bridal veil of the queen; she is never shown young.</li>
+  <li><strong>Sceptre with the cuckoo</strong> — the bird whose shape Zeús took to woo her on Mount Thornax, perched on the sceptre of her Argive image.</li>
+  <li><strong>Pomegranate</strong> — the fruit of marriage and its hidden seeds, held in her hand in the same statue.</li>
+  <li><strong>Cow</strong> — her animal, above all at Argos; the Iliad&#39;s standing epithet for her is boōpis, &#39;ox-eyed.&#39;</li>
+  <li><strong>Peacock</strong> — the bird that carries the hundred eyes of her watchman Argos; a Hellenistic and Roman addition, fixed by Ovid, not an early Greek attribute.</li>
+  <li><strong>Lygos (chaste tree)</strong> — at Samos she was said to have been born beneath the lygos that grew in the Heraion, and the tree stayed bound to her cult.</li>
+</ul>
+<p>Hēra&#39;s image is the mature queen: fully draped, veiled like a bride, crowned with the <strong>polos</strong> or diadem, sceptre in hand. She is never young, never armed, never nude — majesty is her only costume.</p>
+<p>The defining description is Pausanias&#39;s account of Polykleitos&#39;s chryselephantine statue in the Argive Heraion: enthroned, her stephane worked with figures of the Graces and Seasons, a <strong>pomegranate</strong> in one hand and a <strong>sceptre</strong> in the other — with a <strong>cuckoo</strong> perched on the sceptre, the bird whose shape Zeús had taken to woo her.</p>
+<p>On vases she stands beside Zeús in the <strong>hieros gamos</strong> and the wedding procession of the gods; the peacock, carrying the hundred eyes of her watchman Argos, is a largely Hellenistic and Roman addition. Samian votive statues and the silver coinage of Argos keep her severe, frontal, and crowned to the end.</p>
+<h2 id="epithets-cult-titles">Epithets &amp; Cult Titles</h2>
+<p>Her titles are royal and pastoral at once — the ox-eyes of the Iliad and the marriage titles of the sanctuaries.</p>
+<ul>
+  <li><strong>Βοῶπις</strong> (<em>boōpis</em>) — &#39;ox-eyed,&#39; her most constant Homeric epithet, in the formula &#39;ox-eyed lady Hēra.&#39;</li>
+  <li><strong>Πότνια</strong> (<em>potnia</em>) — &#39;revered lady,&#39; the title that rides with boōpis; the word descends from Mycenaean Greek.</li>
+  <li><strong>Λευκώλενος</strong> (<em>leukōlenos</em>) — &#39;white-armed,&#39; her second standing Homeric epithet.</li>
+  <li><strong>Χρυσόθρονος</strong> (<em>chrusothronos</em>) — &#39;golden-throned,&#39; the first word of her hymn and a Homeric formula.</li>
+  <li><strong>Τελεια</strong> (<em>Teleia</em>) — &#39;the Fulfilled,&#39; her title as goddess of completed marriage; at Stymphalos she had three forms — Pais, Teleia, Chēra: girl, wife, and widow.</li>
+  <li><strong>Ἀργείη</strong> (<em>Argeia</em>) — &#39;the Argive,&#39; after the city whose great Heraion was her oldest and richest sanctuary.</li>
+</ul>
+<h2 id="the-homeric-hymns">The Homeric Hymns</h2>
+<p>Hēra has only a five-line hymn, the twelfth of the collection, but it is dense with titles: &#39;golden-throned Hēra, whom Rhea bore — immortal queen, supreme among goddesses in beauty, sister and wife of loud-thundering Zeús, whom all the blessed throughout high Olympus revere and honor even as Zeús who delights in thunder.&#39; Royalty, not narrative, is its entire content.</p>
+<p>Her archaic portraits are elsewhere. In <em>Iliad</em> 4 she names her three favorite cities — &#39;Argos and Sparta and Mycenae of the wide streets&#39; — and barters them for Troy&#39;s destruction (4.51–52). Hesiod lists her among the children of Kronos and Rhea (<em>Theogony</em> 453–458) and makes her the last and chief of Zeús&#39;s wives.</p>
+<h2 id="oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</h2>
+<p>Hēra kept no oracle; Greeks approached her as queen and bride, not prophetess. What she possessed instead was antiquity: her greatest sanctuaries are among the oldest monumental temples in Greece.</p>
+<ul>
+  <li><strong>The Argive Heraion</strong> — her sanctuary between Argos and Mykenai, in use from the eighth century BCE, home of Polykleitos&#39;s gold-and-ivory cult statue; its priestesses became a panhellenic time-frame through Hellanicus&#39;s <em>Priestesses of Hera at Argos</em>.</li>
+  <li><strong>The Samian Heraion</strong> — on the island that claimed her birth, with two of Greece&#39;s earliest colossal temples and rich Near Eastern votives.</li>
+  <li><strong>Olympia</strong> — the Heraion (c. 600 BCE), oldest temple in the Altis, where the Heraia footraces for unmarried women were held.</li>
+  <li><strong>Croton (Magna Graecia)</strong> — the sanctuary of Hera Lacinia on the Lacinian promontory, whose single standing column names modern Capo Colonna.</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Hēra&#39;s sanctuaries are among the oldest and richest in Greece, and the record is monumental. The <strong>Argive Heraion</strong>, her sanctuary between Argos and Mykenai, held an eighth-century temple that burned in 423 BCE through its priestess&#39;s negligence; its successor, designed by the Argive Eupolemos, housed Polykleitos&#39;s gold-and-ivory Hēra. The <strong>Samian Heraion</strong>, on the island that claimed her birth, produced two of the earliest colossal temples in the Greek world: Herodotus counts the great temple begun by Rhoikos among the three marvels of Samos. At <strong>Olympia</strong>, the Heraion of about 600 BCE is the oldest temple in the Altis; Pausanias describes its archaic fabric and the Heraia, the footraces for unmarried women run in her honor. In Magna Graecia, the sanctuary of <strong>Hēra Lakínia</strong> at Croton survives as the single standing column that names Capo Colonna — the temple where Hannibal later set up a bilingual record of his campaigns — while the small <strong>Heraion of Perachora</strong>, tucked into its cove opposite Corinth, shows how far into the Archaic period her cult reached.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Hēra is the queen of the gods by marriage, not birth. Her power is inseparable from her status as Zeús&#39;s wife, and her mythology is dominated by <strong>the defense of legitimate marriage and royal order</strong> against every challenge — especially her husband&#39;s infidelities.</p>
+<h3 id="marriage-and-fidelity">Marriage and Fidelity</h3>
+<p>Patron of the wedded state; the gamos, or sacred marriage, is her rite.</p>
+<h3 id="royal-sovereignty">Royal Sovereignty</h3>
+<p>Queen of gods and men; kingship legitimized through her partnership with Zeús.</p>
+<h3 id="childbirth">Childbirth</h3>
+<p>Eileithyia, goddess of childbirth, acts at her command; she protects women in labor.</p>
+<h3 id="the-peacock">The Peacock</h3>
+<p>The hundred-eyed Argos, her faithful watcher, set in the tail of her sacred bird.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>The Romans identified Hēra with Iuno, the queen of the Roman gods and protector of marriage. Iuno was central to the Roman state cult; every woman had a personal Iuno, just as every man had a personal Genius. In the Hellenistic east, Hēra was syncretized with Egyptian Isis and Phoenician Astarte as a supreme queen goddess. Her great sanctuaries at Argos and Samos were among the richest in Greece, and the Heraia festival at Olympia included athletic competitions for women. The very word &#39;hero&#39; is probably unrelated to her name, but the association has shaped her reception for centuries.</p>
+<p>Within the corpus, her closest kin are [[zeus|Zeús]], her brother and consort, and the children the Theogony assigns their union: [[ares|Árēs]], [[hebe|Hebe]], and [[eileithyia|Eileíthyia]] — together with [[hephaistos|Hēphaistos]], born to her alone, and [[herakles|Hēraklēs]], the stepson she persecuted into immortality.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Hēra is the archetype of the queen consort — powerful because of her position, dangerous because of her pride. Her peacock remains a symbol of beauty and watchfulness; her jealousy has been a literary theme from Euripides to opera. The Argive Heraion, her massive sanctuary near Argos, dominated the plain and testified to her political importance; Argos claimed to be her favorite city. In modern feminist readings, Hēra has been reinterpreted as a figure of constrained power, a goddess whose authority is real but always mediated through marriage. Restoring <em>Hēra</em> restores the name of the goddess who made marriage a cosmic institution.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Hēra given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Full text</a></li>
+  <li> Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a href="https://brill.com/view/title/17858">Full text</a></li>
+  <li> Wörterbuch der griechischen Eigennamen, 3rd ed., 1863. <a href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ">Full text</a></li>
+  <li> Homer, Iliad.</li>
+  <li> Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE. <a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Full text</a></li>
+  <li> Pausanias, Description of Greece.</li>
+  <li> Homeric Hymn to Hera.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Hēra is the goddess of the institution that survives passion. Her marriage to Zeús is not romantic; it is the pillar of cosmic order. Every affair threatens not just her dignity but the legitimacy of Olympus itself. That is why her vengeance is implacable: she is not merely jealous, she is defending the structure of things.</p>
+<p>The modern world has largely abandoned the idea that marriage is cosmic. Hēra&#39;s name therefore sounds archaic, even oppressive. But her deeper insight remains: some bonds must be defended, not because they are always happy, but because their collapse undoes everything built upon them. The restoration of her name is a reminder that sovereignty has always depended on loyalty.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Hēra is classified as <strong>Tier 1</strong>: the original carries both stress and length, and only one valid Unicode restoration exists. The ASCII fallback <em>hera</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 4 characters of the name, the restoration adjusts 1: 1 mark of length (ē). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>hēra.com</strong>, which the DNS carries in punycode form as xn--hra-3qa.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Hēra; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Greek can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Myth, script, sound, cult, legacy, domain: the faces of Hēra add up to a single argument — that a name is a record, and records deserve fidelity. The PÚNYCODEX restoration keeps that record in working order: the temple presents it, the Scholarly Edition footnotes it, the lexicon catalogs it, and the domain makes it addressable. <em>hera</em> will always exist as a fallback. But fallback is not identity. <strong>Hēra</strong> is the name; everything else is a convenience.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/pneuma/">Pneûma</a></li>
   <li><a href="/sites/pontos/">Póntos</a></li>
   <li><a href="/sites/psyche/">Psychḗ</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843.</a></li>
   <li><a href="https://brill.com/view/title/17858">Etymological Dictionary of Greek, 2 vols., Brill, 2010.</a></li>
   <li><a href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ">Wörterbuch der griechischen Eigennamen, 3rd ed., 1863.</a></li>
   <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0133">Homer, Iliad (boōpis).</a></li>
+  <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0028">Ovid, Metamorphoses 1.722–723 (the eyes in the peacock&#39;s tail).</a></li>
+  <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0126">Herodotus, Histories 3.60 (the works of the Samians).</a></li>
+  <li>Pausanias, Description of Greece 2.17.4 (Polykleitos&#39;s Hera at Argos).</li>
+  <li>Pausanias, Description of Greece 7.4.4 (the Samian lygos).</li>
+  <li>Homer, Iliad 14.295–296; Pausanias, Description of Greece 7.4.4; Diodorus Siculus, Library 5.72.4 (the reenacted wedding at Knossos).</li>
+  <li>Homer, Iliad 19.95–133 (the birth trick); Pindar, Nemean 1.33–72 (the serpents); Euripides, Heracles (the madness).</li>
+  <li>Lexicon authorities for this entry: LSJ, Pape-Benseler, Beekes.</li>
 </ul>
-<h2>The Cultural Afterlife</h2>
-<p>Hēra is the archetype of the queen consort — powerful because of her position, dangerous because of her pride. Her peacock remains a symbol of beauty and watchfulness; her jealousy has been a literary theme from Euripides to opera. The Argive Heraion, her massive sanctuary near Argos, dominated the plain and testified to her political importance; Argos claimed to be her favorite city. In modern feminist readings, Hēra has been reinterpreted as a figure of constrained power, a goddess whose authority is real but always mediated through marriage. Restoring Hēra restores the name of the goddess who made marriage a cosmic institution.</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Hēra as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Greek to the modern browser. Every visit to this temple is a small act of preservation.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">greek</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

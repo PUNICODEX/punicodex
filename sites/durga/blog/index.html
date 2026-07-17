@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,45 +170,187 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-sanskrit-pantheon">The Sanskrit Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#typing-durga">Typing Durgā</a></li>
+                <li><a href="#sister-temples">Sister Temples</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>How Durgā Got Its Accent Back</h1>
-<p>The ASCII form <em>durga</em> is missing something. Durgā restores the marks that the original language used to distinguish this name from a thousand others. The name is attested in Devanagari as दुर्गा (durgā). Durgā is the feminine of durga — &#39;difficult to approach or pass, inaccessible, impassable&#39; — built on the prefix dur-, &#39;hard, ill&#39;, and ga from the root √gam, &#39;to go&#39;: literally &#39;she who is hard to reach&#39;, hence the noun&#39;s senses &#39;a difficult passage, a stronghold, a fortress&#39;. Monier-Williams glosses the goddess as &#39;the inaccessible or terrific goddess&#39;, the daughter of Himavat and wife of Śiva — also called Umā and Pārvatī — and cites her litany in the Taittirīya Āraṇyaka; the etymological dictionary treats the word as a native Sanskrit formation, not a borrowing.^1 The ASCII form durga survives only because the early domain-name system could not carry diacritics; it is a technological...</p>
-<h2>The Missing Marks</h2>
-<p>Classified as <strong>Tier 1</strong>, this restoration carries the stress and length that standard ASCII discards. the Greek original carries both stress and length, and only one valid Unicode restoration exists</p>
-<h2>Step by Step</h2>
-<p>The transformation from <em>durga</em> to <strong>Durgā</strong> happens one character at a time. Some letters stay the same; others gain accents, macrons, or entirely new shapes. The breakdown on the <a href="/sites/durga/">temple home page</a> shows exactly how.</p>
-<h2>Why Stress and Length Matter</h2>
-<p>In the source language, changing a stress or a vowel length can change a meaning. Names are especially sensitive because they are proper nouns: one spelling points to one entity. Durgā preserves that pointer in a way <em>durga</em> cannot.</p>
-<h2>The Restored Form</h2>
-<p>Durgā is now a domain. That simple fact turns a philological detail into a public demonstration. Anyone who types it participates in the restoration.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Durgā is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>How Durgā got its accent back</h1>
+<p>The ASCII form <em>durga</em> is missing something. <strong>Durgā</strong> restores the marks the source language used to distinguish this name from a thousand others — and those marks change how the name is read, pronounced, and understood. This post explains, with the full scholarly record behind it, what each restored mark preserves: the Devanagari evidence, the reconstructed sound, the myths the name carries, and the classification logic that separates Tier 1 restorations from Tier 2. By the end, the marks in Durgā will look less like ornaments and more like what they are — recovered evidence, pinned back in its proper place.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Durgā</li>
+  <li><strong>ASCII form:</strong> durga</li>
+  <li><strong>Meaning:</strong> &quot;‘the inaccessible or terrific goddess’, N. of the daughter of Himavat and wife of Śiva (also called Umā, Pārvatī &amp;c., and mother of Kārttikeya and Gaṇeśa cf. pUjA), TĀr. x, 2&quot;</li>
+  <li><strong>Domain of influence:</strong> Protection, Strength, War</li>
+  <li><strong>Pantheon:</strong> Sanskrit</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Original script:</strong> दुर्गा (Devanagari)</li>
+  <li><strong>Live domain:</strong> durgā.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Durgā</strong> (Sanskrit दुर्गा; ASCII <em>durga</em>) is the warrior goddess of the Hindu tradition, born from the pooled radiance of the gods to kill the buffalo-demon Mahiṣa when none of them could. Her canonical scripture is the Devī-Māhātmya, the &#39;Glory of the Goddess&#39;, chapters 81–93 of the Mārkaṇḍeya Purāṇa, composed around the middle of the first millennium CE. Within the Sanskrit pantheon her domain is protection, strength, and war: she is at once the fortress that cannot be stormed and the mother who defends her children, the fierce aspect of the mountain-goddess [[parvati|Pārvatī]].</p>
+<p>The name states her nature. Durgā is the feminine of the adjective durga — &#39;difficult to approach, inaccessible, impassable&#39; — built on the prefix dur-, &#39;hard, ill&#39;, and ga from the root √gam, &#39;to go&#39;: literally &#39;she who is hard to reach&#39;, hence &#39;a difficult passage&#39; and &#39;fortress&#39;. Monier-Williams glosses the goddess as &#39;the inaccessible or terrific goddess&#39;, daughter of Himavat and wife of Śiva, and notes her early attestation in the Taittirīya Āraṇyaka.</p>
+<p>PÚNYCODEX restores the name as <strong>Durgā</strong> and serves its temple at <a href="https://xn--durg-tsa.com">durgā.com</a>. Exactly one historically valid Unicode restoration exists — the IAST form with the long final ā — which places the name in Tier 1. The plain ASCII <em>durga</em> is a modern convenience imposed by the early domain-name system, not an ancient spelling.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Devanagari as <strong>दुर्गा</strong> (durgā). Durgā is the feminine of durga — &#39;difficult to approach or pass, inaccessible, impassable&#39; — built on the prefix dur-, &#39;hard, ill&#39;, and ga from the root √gam, &#39;to go&#39;: literally &#39;she who is hard to reach&#39;, hence the noun&#39;s senses &#39;a difficult passage, a stronghold, a fortress&#39;. Monier-Williams glosses the goddess as &#39;the inaccessible or terrific goddess&#39;, the daughter of Himavat and wife of Śiva — also called Umā and Pārvatī — and cites her litany in the Taittirīya Āraṇyaka; the etymological dictionary treats the word as a native Sanskrit formation, not a borrowing.</p>
+<p>The ASCII form <em>durga</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Durgā</strong> recovers the long final vowel directly in the address bar: the feminine suffix is dīrgha ā, and without the macron the goddess&#39;s name collapses into the common noun&#39;s unmarked form. Exactly one historically valid Unicode restoration exists, which places the name in Tier 1; Sanskrit orthography marks quantity rather than stress, so the tiering here turns on vowel length alone.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>d</strong> → <strong>D</strong> — Same</li>
+  <li><strong>u</strong> → <strong>u</strong> — Short /u/</li>
+  <li><strong>r</strong> → <strong>r</strong> — Same</li>
+  <li><strong>g</strong> → <strong>g</strong> — Same</li>
+  <li><strong>a</strong> → <strong>ā</strong> — Macron: long /aː/</li>
+</ul>
+<p>The project holds the domain <strong>durgā.com</strong> (xn--durg-tsa.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Devanagari as <strong>दुर्गा</strong> — a Brahmic abugida written left-to-right, the script in which the Sanskrit corpus is conventionally printed.</p>
+<p>The scholarly transliteration is <em>Durgā</em> (IAST), giving the normalized reading /ˈd̪ʊr.ɡaː/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>Sanskrit Durgā is written in Devanagari as दुर्गा: द (da) with the short-u sign ु gives दु (du); र (ra) without a vowel joins ग (ga) as the conjunct र्ग (rga); and the long-ā sign ा lengthens the final vowel.</li>
+  <li>IAST transliteration maps each Devanagari vowel and consonant to a Latin equivalent.</li>
+  <li>Macrons mark long vowels (ā, ī, ū); dots beneath consonants mark retroflex articulation (ṭ, ḍ, ṇ, ṣ).</li>
+  <li>The Devanagari form is not used as the primary domain because Indic scripts are not in the .com IDN table.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/ˈd̪ʊr.ɡaː/</strong> — Sanskrit Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Dur-</strong> — Voiced dental stop [d̪] plus short close back rounded [ʊ], closed by the alveolar trill [r]; the prefix dur- means &#39;hard, ill, difficult to approach&#39;</li>
+  <li><strong>-gā</strong> — Voiced velar stop [ɡ] plus long open [aː]; the macron marks length, giving Tier-1 status</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;DOOR-gah&#39; — the first vowel is short and rounded like &#39;u&#39; in &#39;put&#39;; hold the final &#39;gah&#39; long.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Sanskrit</strong> — दुर्गा (durgā), &#39;the inaccessible, the fort, the difficult-to-approach goddess&#39;</li>
+  <li><strong>Epic and Purāṇic</strong> — Pārvatī, Umā, Caṇḍikā — the gentle mountain goddess in her fierce manifestation</li>
+  <li><strong>Bengali and Eastern</strong> — Durgā, the daughter of Himavat and Menā, wife of Śiva, mother of Kārttikeya and Gaṇeśa</li>
+</ul>
+<p>Durgā is Tier 1 because the final ā is long. The name means &#39;she who is difficult to approach&#39; or &#39;fortress,&#39; a fitting title for the goddess who destroys demons and protects her devotees.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Durgā&#39;s mythology reaches its classic form in the Devī-Māhātmya, the &#39;Glory of the Goddess&#39; embedded in the Mārkaṇḍeya Purāṇa. There she appears when the gods are defeated and the demons rule heaven, earth, and the underworld.</p>
+<h3 id="the-slaying-of-mahisasura-devi-mahatmya">The Slaying of Mahiṣāsura (Devī-Māhātmya)</h3>
+<p>The buffalo-demon Mahiṣāsura had conquered the gods through austerities and battle. Neither Brahmā, Viṣṇu, nor Śiva could defeat him alone. In desperation the gods released their combined energies, which took shape as a blazing woman with ten arms, each holding a weapon given by a god. She rode a lion into battle. For nine days and nights she fought Mahiṣāsura, who shifted between buffalo, lion, elephant, and warrior forms. Finally, as he charged her in buffalo form, she caught him by the mane, pinned him under her foot, and ran her trident through his neck. Heaven was restored, and the gods sang her praises as Mahiṣāsuramardinī, &#39;Slayer of Mahiṣāsura.&#39;</p>
+<h3 id="the-battle-against-sumbha-and-nisumbha-devi-mahatmya">The Battle Against Śumbha and Niśumbha (Devī-Māhātmya)</h3>
+<p>After Mahiṣāsura, the demon brothers Śumbha and Niśumbha rose to power and demanded that the goddess become their consort. Durgā refused, and from her body sprang Kālī and Caṇḍikā, fierce emanations who devastated the demonic armies. The battle tested not only her martial power but her absolute refusal to submit to any force that opposed dharma.</p>
+<h3 id="durga-as-parvati-s-wrath-puranic-narrative">Durgā as Pārvatī&#39;s Wrath (Purāṇic narrative)</h3>
+<p>In later Purāṇic stories, Durgā is identified as the fierce form of Pārvatī, the gentle mountain goddess. When demons threaten the cosmos, her peaceful aspect gives way to this warrior manifestation. This identity preserves the theological insight that the same goddess who nourishes as mother can destroy as protector; love and wrath are not opposed but complementary faces of the divine feminine.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Durgā concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>Lion or tiger</strong> — Her vehicle, representing strength, sovereignty, and the power to destroy evil</li>
+  <li><strong>Trident (triśūla)</strong> — Gift of Śiva, representing the three guṇas and the destruction of the threefold suffering</li>
+  <li><strong>Buffalo demon (Mahiṣāsura)</strong> — The ego and brute force she conquers; his decapitated form lies beneath her feet</li>
+  <li><strong>Ten weapons</strong> — The collective power of all the gods concentrated in her many arms</li>
+  <li><strong>Red garments and vermilion</strong> — The color of power, blood, and auspicious feminine energy</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Among the earliest certain images of Durgā are the Kushan-period Mahiṣāsuramardinī figures from Mathurā (first to third centuries CE), where the goddess stands upon the buffalo&#39;s severed head; the Gupta relief of Cave 6 at Udayagiri (early fifth century) gives the type its classical form. From the Gupta period onward her images become especially prominent in medieval temple sculpture across India, and the great Durgā temples of Bengal, Odisha, Rajasthan, and the Himalayas preserve elaborate iconographic programs of her battles. Bengal&#39;s Durgā Pūjā has produced a vast material culture of clay images (<em>pratimā</em>), decorated pandals, and ritual paraphernalia, some of which is now collected in museums. In Nepal, the Taleju temple in Kathmandu and the Durgā temples of the valley reflect her importance in Newar and royal cult.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p><strong>Durgā</strong> is the goddess who is beautiful because she is dangerous. Born from the combined radiance of the gods to defeat the buffalo-demon Mahiṣa, she rides a lion, wields ten weapons, and laughs in the face of cosmic chaos. Her name means &#39;the inaccessible&#39; or &#39;the fortress&#39;: she is hard for enemies to reach and impossible for devotees to lose.</p>
+<p>She is also Pārvatī in her fierce aspect, the mountain-goddess transformed into warrior-queen. Her mythology centers on the insight that divine compassion sometimes takes the form of decisive violence against those who threaten the worlds.</p>
+<h3 id="mahisasuramardini">Mahiṣāsuramardinī</h3>
+<p>She slays the buffalo-demon Mahiṣāsura after a nine-day battle, restoring the gods to heaven.</p>
+<h3 id="ten-armed-warrior">Ten-Armed Warrior</h3>
+<p>Each weapon she holds was given by a god, showing that the divine powers unite in her single form.</p>
+<h3 id="lion-vehicle">Lion Vehicle</h3>
+<p>She rides a lion or tiger, symbolizing sovereign power and the courage that destroys demonic pride.</p>
+<h3 id="divine-mother">Divine Mother</h3>
+<p>As Pārvatī she is wife of Śiva and mother of Gaṇeśa and Skanda; her wrath protects her children.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Durgā is inseparable from the wider Devī tradition and from Pārvatī, Kālī, Caṇḍikā, and the ten Mahāvidyās. In Bengal and Assam she is the central goddess of the autumn festival, while in South India she is worshipped as the victorious form of the Goddess. Tantric traditions see her as the supreme śakti, the active power from whom all gods derive their authority. The motif of the goddess defeating a buffalo-demon has been compared to ancient Near Eastern and Mediterranean images of the victorious goddess, though Durgā&#39;s specific iconography — ten arms, lion vehicle, weapons from all the gods — is a distinctively Indian synthesis. In Nepal she is worshipped as the protective deity of the kingdom, and her temples are among the most important in the Kathmandu Valley.</p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include [[kali|Kālī]] (war / destruction), [[anat|ꜥAnat]] (war / battle), [[ares|Árēs]] (war / battle), [[ashur|Aššur]] (war / battle), [[athena|Athénā]] (war / battle), and [[huitzilopochtli|Huitzilopōchtli]] (war / battle).</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Durgā is the heart of the autumn festival season in eastern and northeastern India, especially Durgā Pūjā in Bengal, which transforms cities into open-air art galleries and draws millions to the river for her immersion. In North India the same period is celebrated as Navarātrī and Rāma&#39;s victory over Rāvaṇa. Her image as Mahiṣāsuramardinī is one of the most recognizable in Hindu art, reproduced in temples, prints, textiles, and political posters. Feminist and nationalist movements alike have claimed her as a symbol of empowered womanhood and resistance to oppression. The name Durgā is widely given to girls, and her lion-riding, weapon-wielding form remains an enduring icon of divine female power.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Durgā given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Mārkaṇḍeya Purāṇa, Devī-Māhātmya (Mahiṣāsura, Śumbha, and Niśumbha episodes).</li>
+  <li> Śiva Purāṇa and Devībhāgavata Purāṇa.</li>
+  <li> Coburn, Encountering the Goddess: A Translation of the Devī-Māhātmya.</li>
+  <li> Kinsley, Hindu Goddesses: Visions of the Divine Feminine.</li>
+  <li> Monier-Williams, Sanskrit-English Dictionary (durgā).</li>
+  <li> Rodrigues, Ritual Worship of the Great Goddess.</li>
+  <li> McDaniel, Offering Flowers, Feeding Skulls: Popular Goddess Worship in West Bengal.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Durgā does not negotiate with evil. She confronts it directly, armed with the gifts of every god and the certainty that chaos must be met with force. This makes her uncomfortable for modern sensibilities trained to value dialogue over combat, but her mythology insists that some threats must be destroyed before conversation becomes possible.</p>
+<p>Yet her violence is never private or cruel. She fights on behalf of the gods, the cosmos, and her devotees; her wrath is the overflow of a protective love. To meditate on Durgā is to ask where in our own lives we need her clarity: the willingness to name the demon, pick up the weapon, and refuse to be conquered.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Durgā is classified as <strong>Tier 1</strong>: the original carries both stress and length, and only one valid Unicode restoration exists. The ASCII fallback <em>durga</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 5 characters of the name, the restoration adjusts 1: 1 mark of length (ā). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>durga</em> to <strong>Durgā</strong>, one character at a time:</p>
+<ul>
+  <li><strong>d</strong> → <strong>D</strong> — Same</li>
+  <li><strong>u</strong> → <strong>u</strong> — Short /u/</li>
+  <li><strong>r</strong> → <strong>r</strong> — Same</li>
+  <li><strong>g</strong> → <strong>g</strong> — Same</li>
+  <li><strong>a</strong> → <strong>ā</strong> — Macron: long /aː/</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>durgā.com</strong>, which the DNS carries in punycode form as xn--durg-tsa.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Durgā; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Devanagari can now be typed into any browser on earth.</p>
+<h2 id="the-sanskrit-pantheon">The Sanskrit Pantheon</h2>
+<p>Durgā is one of 88 entries the PÚNYCODEX lexicon catalogues under the Sanskrit pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Durgā mean?</strong> The traditional gloss is &quot;‘the inaccessible or terrific goddess’, N. of the daughter of Himavat and wife of Śiva (also called Umā, Pārvatī &amp;c., and mother of Kārttikeya and Gaṇeśa cf. pUjA), TĀr. x, 2.&quot;</p>
+<p><strong>Which tradition does Durgā belong to?</strong> Durgā is catalogued in the Sanskrit pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Durgā classified as Tier 1?</strong> Because the original carries both stress and length, and only one valid Unicode restoration exists — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Durgā a working domain?</strong> Yes — durgā.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for durgā.com?</strong> The DNS encoding is xn--durg-tsa.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="typing-durga">Typing Durgā</h2>
+<p>You do not need a special keyboard to use this restoration. The <a href="/type/">PÚNYCODEX Type Tool</a> converts the ASCII form <em>durga</em> into <strong>Durgā</strong> as you type, and the browser extension offers the same conversion inside any text field. Copy the restored form, paste it into the address bar, and the DNS does the rest.</p>
+<h2 id="sister-temples">Sister Temples</h2>
+<p>Other temples in the Sanskrit pantheon include <a href="/sites/atman/">Ātman</a>, <a href="/sites/bhima/">Bhīma</a>, and <a href="/sites/brahma/">Brahmā</a> — each with its own restoration story, its own scholarly record, and its own place in the lexicon.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>The marks in <strong>Durgā</strong> were never lost; they were only waiting for a carrier that could hold them. Now that the carrier exists, the burden flips: every use of <em>durga</em> is a choice to leave evidence on the table. The PÚNYCODEX temple keeps the restored form in circulation — as a domain, a dataset entry, and a scholarly argument — so that the choice to use it stays easy. Accent by accent, macron by macron, that is how the original names come back: not with a single grand gesture, but with a spelling that finally works everywhere.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/ravana/">Rāvaṇa</a></li>
   <li><a href="/sites/saraswati/">Sarasvatī</a></li>
   <li><a href="/sites/shiva/">Śiva</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
-  <li><a href="https://www.sanskrit-lexicon.uni-koeln.de/">Scholarly reference</a></li>
+  <li>Mārkaṇḍeya Purāṇa, chapters 81–93 (the Devī-Māhātmya).</li>
+  <li>Coburn, Encountering the Goddess: A Translation of the Devī-Māhātmya.</li>
+  <li>Monier-Williams, Sanskrit-English Dictionary (durga, durgā).</li>
+  <li>Mayrhofer, EWAia (durgā).</li>
+  <li>Lexicon authorities for this entry: MW, KEWA.</li>
 </ul>
-<h2>The Cultural Afterlife</h2>
-<p>Durgā is the heart of the autumn festival season in eastern and northeastern India, especially Durgā Pūjā in Bengal, which transforms cities into open-air art galleries and draws millions to the river for her immersion. In North India the same period is celebrated as Navarātrī and Rāma&#39;s victory over Rāvaṇa. Her image as Mahiṣāsuramardinī is one of the most recognizable in Hindu art, reproduced in temples, prints, textiles, and political posters. Feminist and nationalist movements alike have claimed her as a symbol of empowered womanhood and resistance to oppression. The name Durgā is widely given to girls, and her lion-riding, weapon-wielding form remains an enduring icon of divine female power.</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Durgā as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Devanagari to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Durgā through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/durga/">home page</a> offers the full name breakdown, the <a href="/sites/durga/lore/">lore page</a> explores the myth, and the <a href="/sites/durga/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Durgā do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
-<h2>A Note on the Address Bar</h2>
-<p>When you type Durgā, the browser performs an invisible conversion into Punycode so the global DNS can route the request. The user sees the original name; the machines see a compatible ASCII encoding. That duality is the engineering compromise that makes the restoration possible, and it is the reason every Unicode domain is both a technical milestone and a small act of cultural memory.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">sanskrit</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

@@ -12,7 +12,9 @@
     scarcityMessage: document.getElementById('scarcity-message'),
     soldOut: document.getElementById('patron-sold-out'),
     wall: document.getElementById('patron-wall'),
-    wallEmpty: document.getElementById('patron-wall-empty'),
+    wallState: document.getElementById('patron-wall-state'),
+    wallRetry: document.getElementById('patron-wall-retry'),
+    wallInvite: document.getElementById('patron-wall-invite'),
     form: document.getElementById('patron-form'),
     formError: document.getElementById('patron-form-error'),
     submit: document.getElementById('patron-submit'),
@@ -124,21 +126,46 @@
     return icons[platform] || '↗';
   }
 
-  function renderPlaque(slotNumber, patron) {
+  function renderPlaque(slotNumber, patron, isFirstAvailable) {
     const article = document.createElement('article');
     const isClaimed = !!patron;
     article.className = `patron-plaque ${isClaimed ? 'patron-plaque--claimed' : 'patron-plaque--available'}`;
     article.setAttribute('data-slot', String(slotNumber));
+    article.setAttribute('role', 'listitem');
 
     if (!isClaimed) {
-      article.addEventListener('click', () => {
+      if (isFirstAvailable) article.classList.add('patron-plaque--first');
+      article.setAttribute('tabindex', '0');
+      article.setAttribute(
+        'aria-label',
+        isFirstAvailable
+          ? 'Plaque 1 available — be the first patron of this temple'
+          : `Plaque ${slotNumber} available — reserve this plaque`
+      );
+      const activate = () => {
         document.getElementById('reserve')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        document.getElementById('patron-name')?.focus();
+        document.getElementById('patron-name')?.focus({ preventScroll: true });
+      };
+      article.addEventListener('click', activate);
+      article.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          activate();
+        }
       });
-      article.innerHTML = `
+      article.innerHTML = isFirstAvailable
+        ? `
         <span class="plaque-number">${String(slotNumber).padStart(2, '0')}</span>
         <div class="plaque-content">
-          <span class="plaque-available-icon">+</span>
+          <span class="plaque-available-icon" aria-hidden="true">✦</span>
+          <h3 class="plaque-name">Be the First Patron</h3>
+          <p class="plaque-title">Plaque № 1 awaits its patron</p>
+        </div>
+      `
+        : `
+        <span class="plaque-number">${String(slotNumber).padStart(2, '0')}</span>
+        <div class="plaque-content">
+          <span class="plaque-available-icon" aria-hidden="true">+</span>
           <h3 class="plaque-name">Available</h3>
           <p class="plaque-title">Reserve this plaque</p>
         </div>
@@ -193,27 +220,74 @@
     }
   }
 
+  function renderSkeletonPlaque(slotNumber) {
+    const article = document.createElement('article');
+    article.className = 'patron-plaque patron-plaque--skeleton';
+    article.setAttribute('data-slot', String(slotNumber));
+    article.setAttribute('aria-hidden', 'true');
+    article.innerHTML = `
+      <span class="plaque-number">${String(slotNumber).padStart(2, '0')}</span>
+      <div class="plaque-content">
+        <span class="skeleton-block skeleton-avatar"></span>
+        <span class="skeleton-block skeleton-line skeleton-line--wide"></span>
+        <span class="skeleton-block skeleton-line"></span>
+      </div>
+    `;
+    return article;
+  }
+
+  function showSkeleton() {
+    if (!els.wall) return;
+    els.wall.setAttribute('aria-busy', 'true');
+    els.wall.innerHTML = '';
+    for (let slot = 1; slot <= 20; slot += 1) {
+      els.wall.appendChild(renderSkeletonPlaque(slot));
+    }
+  }
+
+  function hideWallChrome() {
+    if (els.wallState) els.wallState.hidden = true;
+    if (els.wallInvite) els.wallInvite.hidden = true;
+  }
+
+  function showWallError() {
+    if (els.activeCount) els.activeCount.textContent = '—';
+    if (els.spotsRemaining) els.spotsRemaining.textContent = '—';
+    if (els.wall) {
+      els.wall.setAttribute('aria-busy', 'false');
+      els.wall.innerHTML = '';
+    }
+    if (els.wallInvite) els.wallInvite.hidden = true;
+    if (els.wallState) els.wallState.hidden = false;
+  }
+
   async function loadPatrons() {
     if (!templeId || !els.wall) return;
 
+    hideWallChrome();
+    showSkeleton();
+
     try {
       const res = await fetch(`${API_BASE}/api/patrons/${encodeURIComponent(templeId)}`);
-      if (!res.ok) throw new Error('Unable to load patrons');
+      if (!res.ok) throw new Error(`Unable to load patrons (HTTP ${res.status})`);
       const data = await res.json();
       const patrons = (data.patrons || []).slice(0, 20);
       const limit = Number(data.limit) || 20;
+      const activeCount = Number(data.activeCount) || 0;
 
+      els.wall.setAttribute('aria-busy', 'false');
       els.wall.innerHTML = '';
       for (let slot = 1; slot <= limit; slot += 1) {
         const patron = patrons[slot - 1] || null;
-        els.wall.appendChild(renderPlaque(slot, patron));
+        const isFirstAvailable = !patron && slot === activeCount + 1;
+        els.wall.appendChild(renderPlaque(slot, patron, isFirstAvailable));
       }
+
+      if (activeCount === 0 && els.wallInvite) els.wallInvite.hidden = false;
 
       updateLimitUI(data);
     } catch (err) {
-      if (els.activeCount) els.activeCount.textContent = '—';
-      if (els.spotsRemaining) els.spotsRemaining.textContent = '—';
-      if (els.wall) els.wall.innerHTML = `<p class="patron-form-error" style="text-align:center;">Unable to load patron wall. Please refresh the page.</p>`;
+      showWallError();
     }
   }
 
@@ -261,7 +335,11 @@
     hideSocialError();
 
     const tabs = els.socialTabs?.querySelectorAll('button');
-    tabs?.forEach((btn) => btn.classList.toggle('active', btn.dataset.platform === platform));
+    tabs?.forEach((btn) => {
+      const isActive = btn.dataset.platform === platform;
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-pressed', String(isActive));
+    });
     updatePreview();
   }
 
@@ -427,6 +505,7 @@
     setActivePlatform('x');
     updatePreview();
     if (els.form) els.form.addEventListener('submit', handleSubmit);
+    if (els.wallRetry) els.wallRetry.addEventListener('click', loadPatrons);
     loadPatrons();
     handleReturnFromStripe();
   }

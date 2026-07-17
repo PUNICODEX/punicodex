@@ -87,9 +87,17 @@ function error(res, code, message, options = {}) {
   res.status(statusCode).json(payload);
 }
 
+// In production, 500 responses must not leak internal error details (stack
+// fragments, SQL messages, file paths) to clients. The full error is always
+// logged server-side; the client receives a generic message.
+function isProduction() {
+  return process.env.NODE_ENV === 'production' || Boolean(process.env.VERCEL);
+}
+
 function handleApiError(res, err) {
   console.error('API v1 error:', err);
-  error(res, 'INTERNAL_ERROR', err.message || 'Internal server error', { status: 500 });
+  const message = isProduction() ? 'Internal server error' : err.message || 'Internal server error';
+  error(res, 'INTERNAL_ERROR', message, { status: 500 });
 }
 
 function withRequestId(req, res, next) {

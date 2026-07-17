@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,45 +170,190 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>Pronouncing Jötunheimr: A Guide for the Curious</h1>
-<p>Saying <strong>Jötunheimr</strong> out loud is harder than reading it on a screen, and more rewarding. Scholars reconstruct the sound as <em>&#39;YUR-tun-haymr&#39; — start with a &#39;y&#39; plus a tight, rounded &#39;ur&#39;, then &#39;tun&#39; and &#39;haymer&#39;.</em>.</p>
-<h2>The Reconstructed Sound</h2>
-<p>The name is rendered in Younger Futhark as ᛁᚢᛏᚢᚾᚼᛁᛘᚱ; the sixteen-rune futhark does not distinguish the hooked ǫ of the normalized spelling from any other rounded vowel, so the runic string cannot itself fix the vowel quality. Etymologically it is a transparent Old Norse compound meaning &#39;giant-home&#39;. The Proto-Germanic ancestor of the compound is etunaz + haimaz: etunaz &#39;the voracious one, giant&#39; (traditionally connected with the verb etan-, &#39;to eat&#39;) and haimaz &#39;home, village&#39;. In Old Norse the first element underwent breaking of e before the following u, giving jǫtunn; the homeland is named for its people. The ASCII form jotunheimr survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not... The sounds preserved in Jötunheimr are not random; they follow rules that linguists have spent centuries recovering.</p>
-<h2>Sound by Sound</h2>
-<p>Etymologically, pgmc <em>etunaz &quot;giant, eater&quot; + </em>haimaz &quot;home&quot;. the world of the giants. That points back to a reconstructed form like <em>*etunaz + </em>haimaz*. Each segment locks into the next, so a small change in one place ripples through the whole name.</p>
-<h2>Kin Forms</h2>
-<p>Names rarely have only one valid shape. The restoration chooses the form that best balances historical accuracy with the practical limits of DNS.</p>
-<h2>From Speech to Screen</h2>
-<p>Pronunciation and spelling converge in Unicode. Jötunheimr carries enough phonetic information to be read aloud by someone who knows the conventions, and enough visual distinctiveness to stand out in an address bar.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Jötunheimr is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>Pronouncing Jötunheimr: a guide for the curious</h1>
+<p>Saying <strong>Jötunheimr</strong> aloud is harder than reading it on a screen, and more rewarding. The restored spelling is a compressed pronunciation guide: every accent and macron is an instruction. This post unpacks those instructions — the reconstructed sound, the phoneme-by-phoneme record, the kindred forms in neighboring languages — and then zooms out to the full record around the name: its Younger Futhark writing, its mythology, its cult, and its modern life as a Unicode domain. Whether you arrive as a linguist, a reader of myth, or a domainer, you will leave able to say the name the way the evidence suggests it was said — and able to type it the way it was written.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Jötunheimr</li>
+  <li><strong>ASCII form:</strong> jotunheimr</li>
+  <li><strong>Meaning:</strong> &quot;Giant-home (from jötunn + heimr)&quot;</li>
+  <li><strong>Domain of influence:</strong> Land of the Giants</li>
+  <li><strong>Pantheon:</strong> Norse</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> ᛁᚢᛏᚢᚾᚼᛁᛘᚱ (Younger Futhark)</li>
+  <li><strong>Live domain:</strong> jötunheimr.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Jötunheimr</strong> (Old Norse <em>Jǫtunheimr</em>, &#39;giant-home&#39;, from <em>jǫtunn</em> &#39;giant&#39; + <em>heimr</em> &#39;home, world&#39;) is the wilderness-world of the jötnar, the primordial beings who precede and oppose the gods. The Eddic poems treat it as the narrative frontier: it is to Jötunheimr that Þórr travels in bridal dress to recover his hammer from Þrymr, there that Skírnir rides to win the giantess Gerðr, and there, in the iron-wood Járnviðr, that the monsters of the world&#39;s end are bred. Snorri gives the realm its structural role: the jötnar descend from the primordial Ymir, and the gods push them to the world&#39;s rim, so that Jötunheimr becomes the antithesis of Ásgarðr — the measured order of the gods set against ancestral chaos at the margins. Medieval Icelanders also mapped the name onto real wilderness, and nineteenth-century Norway revived it for the Jotunheimen massif.</p>
+<p>PÚNYCODEX restores the name as <strong>Jötunheimr</strong> and serves its temple at <a href="https://xn--jtunheimr-07a.com">jötunheimr.com</a>. The ö (normalized ǫ) records a distinct Old Norse vowel quality; no vowel in the compound is marked long or stressed, which places the name in Tier 2. The ASCII fallback <em>jotunheimr</em> is a convenience of the early domain-name system, not an ancient spelling.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is rendered in Younger Futhark as <strong>ᛁᚢᛏᚢᚾᚼᛁᛘᚱ</strong>; the sixteen-rune futhark does not distinguish the hooked ǫ of the normalized spelling from any other rounded vowel, so the runic string cannot itself fix the vowel quality. Etymologically it is a transparent Old Norse compound meaning &#39;giant-home&#39;.</p>
+<p>The Proto-Germanic ancestor of the compound is <em>etunaz + </em>haimaz: <em>etunaz &#39;the voracious one, giant&#39; (traditionally connected with the verb </em>etan-, &#39;to eat&#39;) and <em>haimaz &#39;home, village&#39;. In Old Norse the first element underwent breaking of </em>e before the following *u, giving jǫtunn; the homeland is named for its people.</p>
+<p>The ASCII form <em>jotunheimr</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Jötunheimr</strong> recovers the distinctive vowel letter of the scholarly transliteration directly in the address bar; since ö marks vowel quality rather than length or stress, the name is classed Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>j</strong> → <strong>J</strong> — Same</li>
+  <li><strong>o</strong> → <strong>ö</strong> — Hooked o (ǫ), printed with the modern umlaut</li>
+  <li><strong>t</strong> → <strong>t</strong> — Same</li>
+  <li><strong>u</strong> → <strong>u</strong> — Same</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+  <li><strong>h</strong> → <strong>h</strong> — Same</li>
+  <li><strong>e</strong> → <strong>e</strong> — Same</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+  <li><strong>m</strong> → <strong>m</strong> — Same</li>
+  <li><strong>r</strong> → <strong>r</strong> — Same</li>
+</ul>
+<p>The project holds the domain <strong>jötunheimr.com</strong> (xn--jtunheimr-07a.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: PGmc <em>etunaz &quot;giant, eater&quot; + </em>haimaz &quot;home&quot;. The world of the giants.</p>
+<p>The reconstructed proto-form is <em>*etunaz + </em>haimaz* (proto-indo-european), glossed as &quot;giant + home&quot;.</p>
+<p>The reconstruction is classed as attested.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Younger Futhark as <strong>ᛁᚢᛏᚢᚾᚼᛁᛘᚱ</strong> — Germanic runic, attested Viking Age, c. 800–1100 CE, in Scandinavia. The script is written left-to-right, top-to-bottom.</p>
+<p>The scholarly transliteration is <em>Jötunheimr</em> (normalized Old Norse), giving the normalized reading /ˈjœ.tyn.hɛi̯mr/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The Younger Futhark form ᛁᚢᛏᚢᚾᚼᛁᛘᚱ provides a Viking-Age runic attestation or normalized reconstruction.</li>
+  <li>Younger Futhark has only sixteen runes and does not distinguish short/long vowels or voiced/voiceless stops.</li>
+  <li>The normalized Old Norse form is based on 13th-century manuscript tradition (Poetic and Prose Eddas).</li>
+  <li>The Unicode restoration Jötunheimr requires only the vowel ö (normalized ǫ), which the .com registry admits through punycode (jötunheimr.com = xn--jtunheimr-07a.com).</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/ˈjɔtunːˌhɛi̯mr/</strong> — Old Norse Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Jö-</strong> — Palatal approximant [j] plus short open back rounded [ɔ]; the hooked ǫ arose by breaking of Proto-Germanic <em>e before a following </em>u (*etunaz &gt; jǫtunn)</li>
+  <li><strong>-tun-</strong> — Voiceless alveolar stop [t] plus short close back [u] and geminate alveolar nasal [nː]</li>
+  <li><strong>-heimr</strong> — Diphthong [ɛi̯] in heimr, &#39;home, world&#39;, with bilabial nasal [m] and tapped [r]</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;YUR-tun-haymr&#39; — start with a &#39;y&#39; plus a tight, rounded &#39;ur&#39;, then &#39;tun&#39; and &#39;haymer&#39;.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Old Norse</strong> — jötunn, the giant, &#39;eater&#39;, or &#39;other&#39; being whose homeland this is</li>
+  <li><strong>Old English</strong> — eoten, the Anglo-Saxon cognate for a giant or monstrous being</li>
+  <li><strong>Proto-Germanic</strong> — *etunaz, &#39;the voracious one&#39;, the reconstructed ancestor of jötunn</li>
+</ul>
+<p>Jötunheimr is Tier 2: the ö (normalized ǫ) marks a distinct Old Norse vowel quality, but no vowel in the compound carries a length or stress mark. The first element descends from Proto-Germanic *etunaz with a short root vowel, so the form&#39;s distinctiveness lies in its vowel quality, not its quantity.</p>
+<h2 id="mythology">Mythology</h2>
+<p><strong>Jötunheimr</strong> is the vast wilderness beyond the gods&#39; ordered world, homeland of the <em>jötnar</em>, the primordial beings whose power predates even the Æsir. Its forests, mountains, and frozen rivers contain the raw material from which the cosmos was built, for it was from the slain giant Ymir that Óðinn and his brothers shaped Miðgarðr. The realm is both a source of threat and of wisdom, a place where the gods travel in disguise to court knowledge, contest strength, or recover stolen treasures. Named strongholds such as Útgarðr, Þrymheimr, and the courts of Gymir mark the frontier where the measured world gives way to ancestral chaos. Medieval Icelanders located Jǫtunheimr in the mountainous interior of their island and in the wilds of Norway, turning the realm into a mirror of the human frontier. Saga heroes who ventured there returned with wisdom, brides, or cursed treasures; the giants&#39; land therefore functioned as both a physical wilderness and a narrative space where social boundaries could be tested.</p>
+<h3 id="the-tests-of-strength-at-utgar-r-gylfaginning">The Tests of Strength at Útgarðr (Gylfaginning)</h3>
+<p>Þórr journeys with Loki and his servants to the hall of Útgarða-Loki in Jötunheimr. There he is challenged to feats that mock his pride: he fails to empty a drinking horn whose other end lies in the sea, wrestles an old woman who is old age itself, and can only lift one paw of a great cat—because the cat is the Miðgarðsormr in disguise.</p>
+<p>When Útgarða-Loki reveals the illusions, Þórr has already demonstrated terrifying power without knowing it. The myth turns Jötunheimr into a hall of mirrors where the gods&#39; strength is refracted, magnified, and humbled at once. It also warns that the giants possess a cunning equal to any force the Æsir can bring.</p>
+<h3 id="the-theft-of-i-unn-s-apples-skaldskaparmal">The Theft of Iðunn&#39;s Apples (Skáldskaparmál)</h3>
+<p>The giant Þjazi, in the shape of an eagle, seizes Loki and extorts from him a promise to lure Iðunn out of Ásgarðr; the goddess is carried off to Jötunheimr with her apples of immortality, and without them the gods begin to age. Loki, who helped cause the theft, is forced to borrow Freyja&#39;s falcon coat to fly to Jötunheimr, turn Iðunn into a nut, and carry her back.</p>
+<p>Þjazi pursues in eagle form, but the gods kindle a fire at the walls of Ásgarðr that burns his feathers and kills him. The story shows Jötunheimr as a realm of predatory desire: its inhabitants want what the gods possess, and the boundary between the worlds must be actively defended by cunning and flame.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>Jötunheimr&#39;s iconography is the iconography of contest: the objects attached to the realm are things the gods must win, recover, or keep at bay.</p>
+<ul>
+  <li><strong>Hymir&#39;s cauldron</strong> — The mile-deep brewing kettle that Þórr carries off from Hymir&#39;s hall so Ægir can brew ale for the gods</li>
+  <li><strong>Mímir&#39;s well</strong> — The wisdom spring beneath the root of Yggdrasill that reaches to the frost giants, guarded by the jotunn Mímir</li>
+  <li><strong>Iron-wood (Járnviðr)</strong> — The forest in the east where the aged giantess breeds the brood of Fenrir</li>
+  <li><strong>Mjöllnir stolen</strong> — Þrymr hides Þórr&#39;s hammer &#39;eight leagues beneath the earth&#39; and demands Freyja as its ransom</li>
+  <li><strong>Frost-rimed mountain</strong> — The icy peaks that divide the giants&#39; land from the worlds of gods and men</li>
+</ul>
+<ul>
+  <li><strong>Giant&#39;s cauldron</strong> — The vast vessel from which Þórr fishes for Miðgarðsormr</li>
+  <li><strong>Mimir&#39;s well</strong> — The wisdom spring at the root of Yggdrasil, guarded by the jotunn Mímir</li>
+  <li><strong>Iron forest (Járnviðr)</strong> — The wilderness at the edge of Jötunheimr where monsters are bred</li>
+  <li><strong>Þrymr&#39;s hammer</strong> — The stolen Mjöllnir whose recovery brings the thunder-god into the giant&#39;s hall</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>The giants leave no temples, but they leave two kinds of stone. The first is iconographic: the tenth-century Hunnestad monument at Marsvinsholm in Scania (DR 282–286), a composite of runestones and picture stones, includes a large female figure with a wolf and snakes, usually interpreted as a giantess — the wolf-riding type Snorri describes in Hyrrokkin, the giantess who launches Baldr&#39;s funeral ship. The second is toponymic: the massif of Jotunheimen itself, named Jotunfjellene by the geologist B. M. Keilhau in 1820 and reshaped by A. O. Vinje in 1862, preserves the giant-land in the modern landscape, and the same instinct assigned giant-names to erratic boulders and highland valleys across Scandinavia. Beyond these, the jötnar are a textual race: skaldic kennings and runic memorial formulas keep them at the margins of the human world, never at its altars.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Jötunheimr is where the Eddas send their heroes to be tested: the realm supplies the gods&#39; greatest adversaries, their stolen treasures, and, not infrequently, their wives.</p>
+<h3 id="utgar-r-tests">Útgarðr Tests</h3>
+<p>Þórr journeyed to Útgarða-Loki&#39;s hall and failed feats that revealed the limits even of divine strength.</p>
+<h3 id="land-of-the-jotnar">Land of the Jötnar</h3>
+<p>Jötunheimr is the vast wilderness beyond the gods&#39; order, homeland of the primordial giants.</p>
+<h3 id="theft-of-i-unn">Theft of Iðunn</h3>
+<p>With Loki&#39;s coerced help, the giant Þjazi carried Iðunn and her apples of youth to Jötunheimr, and the gods began to age.</p>
+<h3 id="ymir-s-kin">Ymir&#39;s Kin</h3>
+<p>The jötnar descend from the slain giant whose body became the ordered cosmos, making them its chaotic kin.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>The giants of Jötunheimr underwent two great interpretive translations. The first was classical and biblical at once: medieval Norse learned writers rendered the giants of Latin tradition as jötnar — the Norwegian biblical compilation Stjórn turns the gigantes of Genesis 6 into jǫtnar, and Snorri&#39;s euhemerizing Prologue folds the Æsir into universal history as migrants from Troy, leaving the giants as the autochthons who were in the world before the gods arrived. The second translation was Anglo-Saxon: Beowulf lists <em>eotenas</em>, the Old English cognate of jötnar, among the monstrous progeny of Cain together with elves and orcs, baptizing the Germanic giant as an enemy of God from the first murder onward. Modern scholarship reads the mythic pattern itself as ideological: John McKinnell has shown how the Þórr-and-giant encounters dramatize the values of the farming society that told them, with the giants cast as the negative image of household order. Jötunheimr is thus never merely a landscape: it is the address assigned to whatever a culture defines as its outside.</p>
+<p>Within the Norse tradition, closely related names in the corpus include [[alfheimr|Álfheimr]], [[buri|Búri]], [[eggther|Eggþér]], [[helheimr|Helheimr]], [[jormungandr|Jǫrmungandr]], and [[midgardr|Miðgarðr]].</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Jötunheimr&#39;s afterlife is unusually geographical. In 1820 the geologist Baltazar Mathias Keilhau crossed the high massif of south-central Norway and named it Jotunfjellene, &#39;the giant mountains&#39;; in 1862 the poet and trekker Aasmund Olavsson Vinje reshaped the name as Jotunheimen, deliberately recalling the mythic giant-realm, and the area became a national park in 1980 — a medieval cosmological frontier written back onto the modern map. In global popular culture the realm is a fixed point of the Marvel universe, where Jotunheim appears as the frozen home of the Frost Giants and Loki&#39;s birthplace in <em>Thor</em> (2011) and its sequels, and it anchors the world-maps of the <em>God of War</em> series and of fantasy games generally. The word still does everyday work in Scandinavia — the industrial group Jotun, one of the region&#39;s largest companies, takes its name from the same root — and the restored Unicode form Jötunheimr keeps the Old Norse vowel visible against the ASCII flattening of &#39;Jotunheim&#39;.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Jötunheimr given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> The Poetic Edda (Þrymskviða, Skírnismál, Hymiskviða, Völuspá, Lokasenna); Snorri Sturluson, Prose Edda (Gylfaginning, Skáldskaparmál).</li>
+  <li> Simek, Rudolf. Dictionary of Northern Mythology, trans. Angela Hall. Cambridge: D. S. Brewer, 1993.</li>
+  <li> de Vries, Jan. Altnordisches etymologisches Wörterbuch. 2nd ed. Leiden: Brill, 1962.</li>
+  <li> Poetic Edda: Lokasenna (Loki&#39;s flyting among gods and giants at Ægir&#39;s hall).</li>
+  <li> McKinnell, John. Meeting the Other in Norse Myth and Legend. Cambridge: D. S. Brewer, 2005.</li>
+  <li> Beowulf, lines 107–114 (the eotenas among the kin of Cain).</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Every cosmology needs an outside, and Jötunheimr is the Norse outside given an address. The gods do not abolish the giants; they wall them off, marry them, rob them, and consult them, because the ordered world is made of giant material and ringed by giant kin. The name itself is a boundary drawn in language: on one side of the compound, <em>heimr</em>, the home; on the other, <em>jǫtunn</em>, the one who does not belong in it. That a modern nation wrote the same name across its highest mountains — Jotunheimen, the giant-home — suggests the boundary still feels natural: the wilderness is where the giants live, and they have not moved.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Jötunheimr is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>jotunheimr</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 10 characters of the name, the restoration adjusts 1: 1 further adjustment (ö). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>jotunheimr</em> to <strong>Jötunheimr</strong>, one character at a time:</p>
+<ul>
+  <li><strong>j</strong> → <strong>J</strong> — Same</li>
+  <li><strong>o</strong> → <strong>ö</strong> — O-umlaut</li>
+  <li><strong>t</strong> → <strong>t</strong> — Same</li>
+  <li><strong>u</strong> → <strong>u</strong> — Same</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+  <li><strong>h</strong> → <strong>h</strong> — Same</li>
+  <li><strong>e</strong> → <strong>e</strong> — Same</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+  <li><strong>m</strong> → <strong>m</strong> — Same</li>
+  <li><strong>r</strong> → <strong>r</strong> — Same</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>jötunheimr.com</strong>, which the DNS carries in punycode form as xn--jtunheimr-07a.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Jötunheimr; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Younger Futhark can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Pronunciation turns out to be the heart of the matter. The marks in <strong>Jötunheimr</strong> are instructions for the voice, and a web that strips them is a web that mispronounces the past at scale. The restoration hands the instructions back: say it as the evidence suggests, type it as the tradition wrote it, and let the punycode machinery do the quiet translation in between. That is all the PÚNYCODEX project asks of the infrastructure — and everything it asks of you, the reader, is to use the whole name.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/brynhildr/">Brynhildr</a></li>
   <li><a href="/sites/eir/">Eir</a></li>
   <li><a href="/sites/freyja/">Freyja</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
-  <li><a href="https://heimskringla.no/wiki/Main_Page">Scholarly reference</a></li>
+  <li>Poetic Edda (Þrymskviða, Skírnismál, Völuspá).</li>
+  <li>Snorri Sturluson, Edda, Gylfaginning; Simek, Rudolf. Dictionary of Northern Mythology, trans. Angela Hall. Cambridge: D. S. Brewer, 1993, s.v. jǫtunn, Jǫtunheimar.</li>
+  <li>Barnes, Michael P. Runes: A Handbook. Woodbridge: Boydell, 2012.</li>
+  <li>de Vries, Jan. Altnordisches etymologisches Wörterbuch. 2nd ed. Leiden: Brill, 1962, s.v. jǫtunn, heimr.</li>
+  <li>Lexicon authorities for this entry: Cleasby-Vigfusson, Zoëga.</li>
 </ul>
-<h2>What the Sources Record</h2>
-<p>Jötunheimr is where the Eddas send their heroes to be tested: the realm supplies the gods&#39; greatest adversaries, their stolen treasures, and, not infrequently, their wives. ### Útgarðr Tests Þórr journeyed to Útgarða-Loki&#39;s hall and failed feats that revealed the limits even of divine strength. ### Land of the Jötnar Jötunheimr is the vast wilderness beyond the gods&#39; order, homeland of the primordial giants. ### Theft of Iðunn With Loki&#39;s coerced help, the giant Þjazi carried Iðunn and her apples of youth to Jötunheimr, and the gods began to age. ### Ymir&#39;s Kin The jötnar descend from the slain giant whose body became the ordered cosmos, making them its chaotic kin.</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Jötunheimr as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Younger Futhark to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Jötunheimr through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/jotunheimr/">home page</a> offers the full name breakdown, the <a href="/sites/jotunheimr/lore/">lore page</a> explores the myth, and the <a href="/sites/jotunheimr/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Jötunheimr do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
-<h2>A Note on the Address Bar</h2>
-<p>When you type Jötunheimr, the browser performs an invisible conversion into Punycode so the global DNS can route the request. The user sees the original name; the machines see a compatible ASCII encoding. That duality is the engineering compromise that makes the restoration possible, and it is the reason every Unicode domain is both a technical milestone and a small act of cultural memory.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">norse</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

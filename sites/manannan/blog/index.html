@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,40 +170,175 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>16 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>The Hidden History Behind Manannán</h1>
-<p>Behind the modern ASCII <em>manannan</em> hides a longer story. The theonym is attested in Old and Middle Irish as Manannán, conventionally with the patronymic mac Lir, &#39;son of Lir&#39;. Lir is the genitive of ler, &#39;sea, ocean&#39;, itself a personification of the sea, so medieval and modern interpreters alike gloss the full name &#39;Manannán, son of the sea&#39;. The first element is generally derived from Manann/Manau, the Old Irish name of the Isle of Man, with the suffix -án; whether the god was named after the island or the island after the god was debated already in the medieval glossaries and remains unresolved. The Welsh cognate Manawydan fab Llŷr displays the same stem (Manaw-) and the same patronymic, though the precise historical relationship between the two figures — common inheritance or literary borrowing — is... That history reaches back through manuscripts, inscriptions, and oral traditions before it ever reached a keyboard.</p>
-<h2>Etymology</h2>
-<p>The deeper roots of Manannán are still debated among specialists.  The traditional gloss is &quot;Son of the sea (from Old Irish Manannán).&quot;</p>
-<h2>In Myth</h2>
-<p>Manannán moves through Irish myth like the tide: now distant, now suddenly present, always connected to the boundary between worlds. He is not a creator or a warrior king but a guardian of passages — between islands, between life and death, between the known and the hidden. These narratives are not dusty footnotes; they are the reason the name acquired its resonance.</p>
-<h2>Across Cultures</h2>
-<p>Manannán&#39;s closest counterpart is the Welsh Manawydan fab Llŷr, who appears in the Second and Third Branches of the Mabinogi as a patient, just, and sea-associated figure married to the goddess Rhiannon. Both names show the Common Celtic stem Manaw- and the same patronymic, &#39;son of Lir/Llŷr&#39;; whether the two figures descend from a shared Celtic deity or the name travelled between the two literatures is still debated. No continental equivalent is attested epigraphically: no Romano-Celtic altar can be securely read as addressed to him, so the comparison rests on the insular onomastic pair alone. Within the Gaelic world the figure was absorbed rather than replaced. Sanas Cormaic euhemerizes him as a master merchant of the Isle of Man and the best pilot... Names travel, adapt, and accumulate meanings. Tracking that travel is part of what makes the restoration worthwhile.</p>
-<h2>The Unicode Decision</h2>
-<p>Restoring Manannán is not an aesthetic choice. It is a decision to honor the name as attested rather than the name as flattened by ASCII. That choice is documented in the <a href="/sites/manannan/scholars/">Scholarly Edition</a> and defended by the sources below.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Manannán is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>The hidden history behind Manannán</h1>
+<p>Behind the modern ASCII form <em>manannan</em> hides a much longer story. <strong>Manannán</strong> reaches back through manuscripts, inscriptions, and oral tradition long before it ever touched a keyboard, and every mark in the restored spelling is a receipt from that journey. In what follows we trace the name from its Medieval Irish (Latin script) attestations through its mythology, its cult, its symbols, and its afterlife in other cultures — and we show how the PÚNYCODEX project turned that philological record into a Unicode domain that resolves today. The history was never lost. It was only waiting for the infrastructure to catch up.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Manannán</li>
+  <li><strong>ASCII form:</strong> manannan</li>
+  <li><strong>Meaning:</strong> &quot;Son of the sea (from Old Irish Manannán)&quot;</li>
+  <li><strong>Domain of influence:</strong> Sea, Otherworld, Mist</li>
+  <li><strong>Pantheon:</strong> Celtic</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> Manannán mac Lir (Medieval Irish (Latin script))</li>
+  <li><strong>Live domain:</strong> manannán.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Manannán mac Lir</strong> (Old Irish <em>Manannán</em>; <em>mac Lir</em>, &#39;son of Lir&#39;, the personified sea) is the principal sea deity of medieval Irish tradition and the ruler of the Otherworld islands — Emain Ablach (&#39;Region of Apple-trees&#39;), Mag Mell (&#39;Plain of Delights&#39;), and Tír Tairngire (&#39;Land of Promise&#39;) — that lie beyond the western wave. In the tale-complex of the Túatha Dé Danann he is numbered among that divine race, and after their defeat by the sons of Míl he becomes their over-king and apportions the sídhe (Otherworld mounds) among them. His earliest major appearance is in <em>Immram Brain maic Febail</em> (&#39;The Voyage of Bran&#39;, seventh or eighth century), where he drives his chariot across a sea that to him is a flowering plain and prophesies the birth of his son Mongán and the coming of Christ. The early glossary <em>Sanas Cormaic</em> euhemerizes him as a master merchant-pilot of the Isle of Man, the best pilot in the west of Europe, from whom the island took its name.</p>
+<p>Manannán is patron of voyagers, shape-shifter, and keeper of treasures — the horse Aonbharr, the boat Sguaba Tuinne, the sword Fragarach, and the concealing mist called féth fíada — and he figures as fosterer and provider of heroes, above all Lugh and Cormac mac Airt. PÚNYCODEX restores the name as <strong>Manannán</strong>, preserving the long final vowel of the Old Irish form; the temple stands at <a href="https://xn--manannn-mwa.com">manannán.com</a>, with the plain ASCII <em>manannan</em> retained only as the domain-name system&#39;s technical fallback.</p>
+<h2 id="the-name">The Name</h2>
+<p>The theonym is attested in Old and Middle Irish as <strong>Manannán</strong>, conventionally with the patronymic <em>mac Lir</em>, &#39;son of Lir&#39;. <em>Lir</em> is the genitive of <em>ler</em>, &#39;sea, ocean&#39;, itself a personification of the sea, so medieval and modern interpreters alike gloss the full name &#39;Manannán, son of the sea&#39;. The first element is generally derived from <em>Manann</em>/<em>Manau</em>, the Old Irish name of the Isle of Man, with the suffix <em>-án</em>; whether the god was named after the island or the island after the god was debated already in the medieval glossaries and remains unresolved. The Welsh cognate <em>Manawydan fab Llŷr</em> displays the same stem (<em>Manaw-</em>) and the same patronymic, though the precise historical relationship between the two figures — common inheritance or literary borrowing — is disputed.</p>
+<p>The ASCII form <em>manannan</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an attested spelling. The Unicode restoration <strong>Manannán</strong> recovers the long final vowel, written with the Irish acute (<em>síneadh fada</em>), directly in the address bar; in the modern pronunciation of the name that long á also carries the stress. Because the restored form preserves a single prosodic feature — the long vowel — rather than both stress and length as independent features, the name is classed Tier 2 in the PÚNYCODEX system.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>m</strong> → <strong>M</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+  <li><strong>a</strong> → <strong>á</strong> — Acute on a: stressed syllable</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+</ul>
+<p>The project holds the domain <strong>manannán.com</strong> (xn--manannn-mwa.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Medieval Irish (Latin script) as <strong>Manannán mac Lir</strong> — Old Irish / Middle Irish in Insular script, attested Old Irish, c. 7th–10th c. CE, in Ireland, Isle of Man, Scotland. The script is written left-to-right.</p>
+<p>The scholarly transliteration is <em>Manannán mac Lir</em> (Standard scholarly Old Irish orthography), giving the normalized reading /maˈnanˠaːn makʲ lʲeɾʲ/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>Old Irish was written in the Latin alphabet using Insular minuscule from the early medieval period.</li>
+  <li>The name appears in the Ulster Cycle and Mythological Cycle as Manannán mac Lir, &#39;son of Lir (the sea)&#39;.</li>
+  <li>The acute accent on the final á marks a long vowel in modern scholarly convention.</li>
+  <li>The Unicode restoration Manannán preserves the long vowel; the ASCII form flattens the name.</li>
+</ul>
+<p>Two cautions attach to the record: the etymology of the first element <em>Manann-</em> is debated — whether it derives from the Isle of Man or the island from the god is unresolved — and Insular script spelling varies across manuscripts.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/maˈnanˠən/</strong> — Old Irish Reconstruction. For the complete name with patronymic, the normalized scholarly reading is /maˈnanˠaːn makʲ lʲeɾʲ/, with the long á of the final syllable and the slender (palatalized) consonants of <em>mac Lir</em>.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>M-</strong> — Voiced bilabial nasal [m], as in English &#39;man&#39;.</li>
+  <li><strong>-a-</strong> — Short open front [a], the first unstressed syllable.</li>
+  <li><strong>-nan-</strong> — Alveolar nasal [n], short open front [a], and another [n]; the second syllable carries stress.</li>
+  <li><strong>-án</strong> — Long open front [aː] marked by acute, ending in alveolar nasal [n].</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;muh-NAH-nawn&#39; — stress the middle syllable, keep the first &#39;a&#39; short, and lengthen the stressed &#39;ah&#39; before the final &#39;n&#39;. The double n hints at a slender or velarized quality in medieval Irish.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Old Irish</strong> — Manannán mac Lir, &#39;Manannán son of Lir (the Sea)&#39;</li>
+  <li><strong>Manx</strong> — Mannan beg mac y Leir, the folk figure behind the Isle of Man&#39;s name</li>
+  <li><strong>Welsh</strong> — Manawydan fab Llŷr, his Brythonic counterpart in the Mabinogi</li>
+</ul>
+<p>Manannán is Tier 2: the acute on á marks stress and length on the final syllable, but the name has no additional long vowel or circumflex. The double n reflects the Old Irish spelling; the name is traditionally explained as &#39;son of the sea&#39; (mac Lir).</p>
+<h2 id="mythology">Mythology</h2>
+<p>Manannán moves through Irish myth like the tide: now distant, now suddenly present, always connected to the boundary between worlds. He is not a creator or a warrior king but a guardian of passages — between islands, between life and death, between the known and the hidden.</p>
+<h3 id="the-voyage-of-bran-immram-brain">The Voyage of Bran (Immram Brain)</h3>
+<p>In <em>Immram Brain maic Febail</em>, Manannán meets Bran&#39;s ship driving a chariot across the open sea. From the god&#39;s perspective the ocean is a plain of flowers — Mag Mell, the Plain of Delights — and the ships upon it are chariots. In the poem he sings he foretells that he himself will go to Ireland and beget a son, Mongán mac Fiachnai, and he prophesies the coming of Christ: the text makes him the poet of the threshold, the one who explains what mortals cannot yet see.</p>
+<h3 id="the-shrouded-island-lebor-gabala">The Shrouded Island (Lebor Gabála)</h3>
+<p>The <em>Lebor Gabála Érenn</em> (&#39;Book of Invasions&#39;) places Manannán among the Túatha Dé Danann as master of the féth fíada, the druidic mist with which the Otherworld island of Tír Tairngire is concealed from mortal eyes. Here he is less a sea god in the maritime sense than a deity of the invisible boundary between Ireland and the Otherworld.</p>
+<h3 id="over-king-of-the-tuatha-de-danann-altram-tige-da-medar">Over-King of the Túatha Dé Danann (Altram Tige Dá Medar)</h3>
+<p>In the late tale <em>Altram Tige Dá Medar</em>, set after the Milesian conquest, Bodb Derg is chosen king of the defeated Túatha Dé Danann and Manannán is made their over-king. He apportions the sídhe mounds among the divine race and grants them three protecting gifts: the Feast of Goibniu, which preserves them from age and decay; his swine, which return to life after being eaten; and the féth fíada that keeps their dwellings unseen.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Manannán concentrates in a small set of recurring attributes, each a compressed statement about the figure:</p>
+<ul>
+  <li><strong>Boat Sguaba Tuinne</strong> — The Wave-sweeper, a self-propelling currach that obeys its master&#39;s thought and needs neither sail nor oar; Manannán lends it to Lugh for the muster against the Fomorians in <em>Oidheadh Chloinne Tuireann</em>.</li>
+  <li><strong>Horse Aonbharr</strong> — &#39;Enbarr of the Flowing Mane&#39; in popular retelling, the steed that travels over land and sea alike; lent to Lugh with the boat.</li>
+  <li><strong>Sword Fragarach</strong> — &#39;The Answerer,&#39; a blade that pierces every armour and, laid at a man&#39;s throat, compels the truth; it passed from Manannán to Lugh and on into later heroic tradition.</li>
+  <li><strong>Cloak of mist</strong> — The féth fíada, the veil that hides the Otherworld from mortal eyes; in <em>Altram Tige Dá Medar</em> Manannán grants it to the Túatha Dé Danann as one of their three protecting gifts.</li>
+  <li><strong>Crane bag</strong> — His treasure-bag, made from the skin of Aoife after she was transformed into a crane, from which the treasures of the divine race are produced.</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>No archaeological record of a dedicated cult of Manannán is attested: no temple, votive assemblage, or inscription can be assigned to his worship. The evidence for his antiquity is onomastic and literary rather than monumental. The Isle of Man, recorded as <em>Monapia</em> by Pliny (Natural History 4.103) and as <em>Monaoida</em> by Ptolemy (Geography 2.2), preserves the Celtic <em>Manau</em> bound up with his name from the earliest tradition. The surviving ogham corpus, some four hundred stones of roughly the fourth to seventh centuries, records personal names in funerary and boundary formulae and yields no theonym — an epigraphic silence characteristic of Irish paganism, whose cult landscape is known through place-names and texts rather than altars. Votive deposition in Irish bogs, rivers, and lakes belongs to the broader ritual world in which a sea god&#39;s cult would have operated, but none of it names him.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Manannán mac Lir is the <strong>great sea god of Ireland and guardian of the Otherworld</strong>. He rules the waves, the weather, and the mist that separates the mortal island from the Land of Promise. A shape-shifter, navigator, and bestower of marvelous weapons, he appears in myth as helper, host, and boundary-keeper between this world and the next.</p>
+<h3 id="sea-lord">Sea Lord</h3>
+<p>He commands the waters around Ireland: in <em>Immram Brain</em> he drives his chariot across the open sea as though it were a level plain, and the glossary tradition euhemerizes him as the finest pilot in the west of Europe, skilled in the prognostication of weather.</p>
+<h3 id="otherworld-guardian">Otherworld Guardian</h3>
+<p>The mist that hides Tír Tairngire and the Isles of the Blessed is his cloak — the féth fíada, the druidic veil of concealment he later grants to the defeated Túatha Dé Danann together with their allotted sídhe.</p>
+<h3 id="treasure-giver">Treasure-Giver</h3>
+<p>He bestows weapons, cloaks, and horses on heroes who cross his path: the steed Aonbharr and the self-steering boat Sguaba Tuinne are lent to <a href="/sites/lugh/">Lugh</a> for the war against the Fomorians.</p>
+<h3 id="shape-shifter">Shape-Shifter</h3>
+<p>He moves between forms — rider on the wave, warrior at Cormac&#39;s Tara, stranger at the door — to test or aid mortals.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Manannán&#39;s closest counterpart is the Welsh <a href="/sites/manawydan/">Manawydan</a> fab Llŷr, who appears in the Second and Third Branches of the <em>Mabinogi</em> as a patient, just, and sea-associated figure married to the goddess Rhiannon. Both names show the Common Celtic stem <em>Manaw-</em> and the same patronymic, &#39;son of Lir/Llŷr&#39;; whether the two figures descend from a shared Celtic deity or the name travelled between the two literatures is still debated. No continental equivalent is attested epigraphically: no Romano-Celtic altar can be securely read as addressed to him, so the comparison rests on the insular onomastic pair alone.</p>
+<p>Within the Gaelic world the figure was absorbed rather than replaced. <em>Sanas Cormaic</em> euhemerizes him as a master merchant of the Isle of Man and the best pilot in the west of Europe, while Manx tradition makes Mannan beg mac y Leir the island&#39;s first king and namesake, a necromancer who kept his realm hidden under mists until Saint Patrick banished him.</p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include <a href="/sites/aseratu/">Ašeratu</a>, <a href="/sites/babaluaye/">Ọbalúayé</a>, <a href="/sites/ea/">Ēa</a>, <a href="/sites/njordr/">Njǫrðr</a>, <a href="/sites/pontos/">Póntos</a>, and <a href="/sites/poseidon/">Poseidôn</a>, each linked through the sea — analogies of function across traditions rather than historical identifications.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Manannán&#39;s deepest legacy is onomastic. The Isle of Man preserves the Celtic <em>Manau</em>/<em>Manann</em> from which medieval scholars derived his name — or which derived from him; the direction was debated already in the glossaries. In Ireland, Lough Corrib was Loch Oirbsen, &#39;the lake of Oirbsen&#39;, an alias of Manannán in the Dindsenchas tradition, where the lake is said to be named for him. Manx folklore kept him as Mannan beg mac y Leir, first king and namesake of the island, to whom an annual rent of rushes was paid on the summit of South Barrule at Midsummer; the early sixteenth-century Traditionary Ballad records his rule, his mist-magic, and his expulsion by Saint Patrick.</p>
+<p>The Celtic Revival restored him to literature through Lady Gregory&#39;s <em>Gods and Fighting Men</em> (1904), and modern imagination has made him a public figure again: a statue of Manannán mac Lir by sculptor John Darren Sutton stood at Gortmore on Binevenagh from 2013, was famously stolen in January 2015, and was replaced in 2016. Since 2009 the Isle of Man Steam Packet&#39;s fast ferry HSC <em>Manannan</em> has carried his name between Douglas and the Irish Sea ports — a working vessel named, in the company&#39;s own words, after the Celtic god of the sea.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Manannán given in this edition rests on the witnesses and reference works listed below. The lexica and etymological dictionaries secure the form and meaning of the name; the literary texts, glossaries, and editions supply the narrative evidence.</p>
+<ul>
+  <li> Immram Brain maic Febail (The Voyage of Bran), ed. Séamus Mac Mathúna (Tübingen: Niemeyer, 1985); diplomatic text at CELT.</li>
+  <li> Lebor Gabála Érenn (The Book of Invasions of Ireland), ed. &amp; trans. R.A.S. Macalister, Irish Texts Society (1938–56).</li>
+  <li> Altram Tige Dá Medar (The Fosterage of the House of the Two Milk-Vessels), ed. &amp; trans. Lilian Duncan, Ériu 11 (1932), 184–225.</li>
+  <li> Echtra Cormaic maic Airt, ed. &amp; trans. Whitley Stokes, &#39;The Irish Ordeals, Cormac&#39;s Adventure in the Land of Promise, and the Decision as to Cormac&#39;s Sword&#39;, Irische Texte III.1 (Leipzig, 1891), 183–229.</li>
+  <li> The Mabinogi, trans. Sioned Davies (Oxford: Oxford University Press, 2007).</li>
+  <li> Sanas Cormaic (Cormac&#39;s Glossary), ed. W. Stokes, trans. J. O&#39;Donovan (Calcutta, 1868), s.v. Manannán.</li>
+  <li> DIL — Dictionary of the Irish Language (Royal Irish Academy), s.vv. ler, Manannán.</li>
+  <li> Vendryes, J., Lexique étymologique de l&#39;irlandais ancien (Paris, 1959–).</li>
+  <li> MacKillop, James, Dictionary of Celtic Mythology (Oxford: Oxford University Press, 1998).</li>
+  <li> Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (Santa Barbara: ABC-CLIO, 2006).</li>
+  <li> Carey, John, &#39;The Location of the Otherworld in Irish Tradition&#39;, Éigse 19 (1982), 36–43.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Manannán is the god of the horizon. He does not rule the land; he rules the mist that hides the land beyond the land. His gifts — the boat that needs no oars, the horse that runs on water, the sword that cannot be refused — are all instruments of passage.</p>
+<p>To meet Manannán is to discover that what looked like an end is a door. The sea that separates Ireland from Tír na nÓg is the same sea that brings the fog, the fish, and the stranger. In the <em>Immram Brain</em> he crosses that sea in a chariot, because to him the ocean is a flowery plain; the image carries the whole discipline his figure embodies — trust the invisible road, accept the cloak of mist, and remember that every shore is someone else&#39;s threshold.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Manannán is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>manannan</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 8 characters of the name, the restoration adjusts 1: 1 mark of stress (á). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>manannán.com</strong>, which the DNS carries in punycode form as xn--manannn-mwa.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Manannán; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Medieval Irish (Latin script) can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>The story of Manannán did not end in antiquity; it changed medium. Names that survive for millennia do so because each generation finds a new carrier for them — clay, papyrus, print, and now DNS. The PÚNYCODEX restoration simply makes the carrier honest: the spelling that resolves is the spelling the evidence supports. If this post showed anything, it is that <em>manannan</em> and <strong>Manannán</strong> are not the same name with different styling. They are a summary and the text it summarizes. The web can now serve the text.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/matholwch/">Matholwch</a></li>
   <li><a href="/sites/midir/">Midir</a></li>
   <li><a href="/sites/morrigan/">Morrígan</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://celt.ucc.ie/published/G303028.html">Immram Brain maic Febail (The Voyage of Bran), ed. Séamus Mac Mathúna (Tübingen: Niemeyer, 1985).</a></li>
   <li><a href="https://dil.ie">DIL — Dictionary of the Irish Language (Royal Irish Academy), s.vv. ler, Manannán.</a></li>
   <li><a href="https://www.derryjournal.com/news/manannan-mac-lir-statue-by-game-of-thrones-sculptor-back-on-binevenagh-792092">Derry Journal, &#39;Manannan Mac Lir: Statue by Game of Thrones sculptor back on Binevenagh&#39; (27 February 2016).</a></li>
   <li><a href="https://www.navsource.net/archives/09/46/46532.htm">NavSource Naval History, HSC Manannan (ex-Joint Venture, IX-532) photo archive, Isle of Man Steam Packet Company.</a></li>
+  <li>Altram Tige Dá Medar (The Fosterage of the House of the Two Milk-Vessels), ed. &amp; trans. Lilian Duncan, Ériu 11 (1932), 184–225.</li>
+  <li>Sanas Cormaic (Cormac&#39;s Glossary), ed. W. Stokes, trans. J. O&#39;Donovan (Calcutta, 1868), s.v. Manannán.</li>
+  <li>MacKillop, James, Dictionary of Celtic Mythology (Oxford: Oxford University Press, 1998), s.v. Manannán mac Lir.</li>
+  <li>The Mabinogi, trans. Sioned Davies (Oxford: Oxford University Press, 2007), Second and Third Branches.</li>
+  <li>Lexicon authorities for this entry: Vendryes.</li>
 </ul>
-<h2>The Cultural Afterlife</h2>
-<p>Manannán&#39;s deepest legacy is onomastic. The Isle of Man preserves the Celtic Manau/Manann from which medieval scholars derived his name — or which derived from him; the direction was debated already in the glossaries. In Ireland, Lough Corrib was Loch Oirbsen, &#39;the lake of Oirbsen&#39;, an alias of Manannán in the Dindsenchas tradition, where the lake is said to be named for him. Manx folklore kept him as Mannan beg mac y Leir, first king and namesake of the island, to whom an annual rent of rushes was paid on the summit of South Barrule at Midsummer; the early sixteenth-century Traditionary Ballad records his rule, his mist-magic, and his expulsion by Saint Patrick. The Celtic Revival restored him to literature through Lady Gregory&#39;s Gods and Fighting...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Manannán as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Medieval Irish (Latin script) to the modern browser. Every visit to this temple is a small act of preservation.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">celtic</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

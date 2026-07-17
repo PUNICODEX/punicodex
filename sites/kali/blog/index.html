@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,35 +170,193 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-sanskrit-pantheon">The Sanskrit Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#typing-kali">Typing Kālī</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>From Devanagari to Unicode: The Journey of Kālī</h1>
-<p>Long before it was a domain, the name traveled through scripts. The name is written in Devanagari as काली. Devanagari is a Brahmic abugida — each consonant sign carries an inherent vowel — written left-to-right; it descends from Brāhmī through the Nāgarī scripts, is attested in inscriptions from about the 7th century CE, and is today the standard script of Sanskrit, Hindi, and Marathi. The scholarly transliteration is Kālī (IAST), giving the normalized reading /ˈkaː.liː/. The rendering proceeds step by step: - Sanskrit Kālī is written काली in Devanagari — akṣaras का (kā) and ली (lī). - IAST macrons mark both long vowels (ā, ī); plain ASCII kali loses this quantity. - The word is the feminine of kāla- (&#39;black, dark; time&#39;); the same root yields Kālā (&#39;the black one&#39;) and the Tantric name Kālikā (कालिका). - The... This post follows Kālī from its earliest attestation to the address bar.</p>
-<h2>The Original Sign</h2>
-<p>The original script gives us <strong>काली</strong>. The name is written in Devanagari as काली. Devanagari is a Brahmic abugida — each consonant sign carries an inherent vowel — written left-to-right; it descends from Brāhmī through the Nāgarī scripts, is attested in inscriptions from about the 7th century CE, and is today the standard script of Sanskrit, Hindi, and Marathi. The scholarly transliteration is Kālī (IAST), giving the normalized reading /ˈkaː.liː/. The rendering proceeds step by step: - Sanskrit Kālī is written काली in Devanagari — akṣaras का (kā) and ली (lī). - IAST macrons mark both long vowels (ā, ī); plain ASCII kali loses this quantity. - The word is the feminine of kāla- (&#39;black, dark; time&#39;); the same root yields Kālā (&#39;the black one&#39;) and the Tantric name Kālikā (कालिका). - The...</p>
-<h2>The Scholarly Transliteration</h2>
-<p>The name is attested in Devanagari as काली. It is the feminine of Sanskrit kāla- (&#39;black, dark; time&#39;): &#39;the black one&#39; — and, because kāla is also time, which devours all things, &#39;she of time&#39;, an interpretation the tradition itself embraces. The etymology of the base kāla- is itself uncertain; the traditional derivation from the verb kal- (&#39;to count, calculate&#39;) is folk etymology. The ASCII form kali survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Kālī recovers the vowel length of the original directly in the address bar. The restoration preserves the full vowel quantity of the Sanskrit original — long ā and long ī — and exactly one... Scholars settled on Kālī as the registrable restoration: faithful enough to be recognizable, precise enough to carry the marks that matter.</p>
-<h2>DNS as a Time Machine</h2>
-<p>Punycode lets the DNS carry non-ASCII characters without breaking older routers. To the user, the address bar shows Kālī; to the infrastructure, it is an encoded xn-- string. The duality is invisible, but the result is revolutionary: a pre-digital name living inside a post-digital system.</p>
-<h2>Pronunciation</h2>
-<p>Scholars reconstruct the sound as <em>&#39;KAH-lee&#39; — both vowels are long and clear, the first like the &#39;a&#39; in &#39;father&#39; held out, the second like &#39;lee&#39;.</em>. Hearing the name in your own voice is one way to make the restoration personal.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Kālī is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>From Devanagari to Unicode: the journey of Kālī</h1>
+<p>Long before it was a domain, this name traveled through scripts. <strong>Kālī</strong> begins in Devanagari, passes through scholarly transliteration, and ends — for now — inside the punycode machinery of the global DNS. Each stage of that journey preserves some information and loses some, and the craft of restoration is knowing exactly which marks matter. This post follows the name stage by stage: the original script, the reconstructed pronunciation, the mythological record, the material evidence, and finally the Unicode form that carries all of it into the address bar. Think of it as a biography of a name, told through its spelling.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Kālī</li>
+  <li><strong>ASCII form:</strong> kali</li>
+  <li><strong>Meaning:</strong> &quot;of Satyavatī, wife of king Śāntanu and mother of Vyāsa or Kṛṣṇadvaipāyana (after her marriage she had a son Vicitravīrya, whose widows were married by Kṛṣṇadvaipāyana&quot;</li>
+  <li><strong>Domain of influence:</strong> Time, Destruction, Empowerment</li>
+  <li><strong>Pantheon:</strong> Sanskrit</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Original script:</strong> काली (Devanagari)</li>
+  <li><strong>Live domain:</strong> Kālī.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Kālī</strong> (Sanskrit काली, feminine of kāla- &#39;black, dark; time&#39;: &#39;the black one&#39;) is the fierce goddess of the Śākta tradition — the dark form of the Devī who emerges on the battlefield to drink the blood of demons and, for her devotees above all in Bengal, the tender mother who grants liberation. She crystallizes as a goddess in the epic and early Śākta milieu and receives her classic charter in the Devī Māhātmya (c. 6th century CE), where she springs from the frowning brow of [[durga|Durgā]] to destroy the demon generals Caṇḍa and Muṇḍa and to lap up the blood of Raktavīja before it can seed new warriors. In Tantra she rises to supreme rank as the first of the ten Mahāvidyās — the power of time that devours all things — worshipped at cremation grounds and at the great pīṭhas of Kālīghāṭ and Dakṣiṇeśwar.</p>
+<p>PÚNYCODEX restores the name as <strong>Kālī</strong> and serves its temple at <a href="https://xn--kl-dla3o.com">Kālī.com</a>. The restoration preserves the full vowel quantity of the Sanskrit original — long ā and long ī — and exactly one historically valid Unicode form exists, which places the name in Tier 1. The plain ASCII form <em>kali</em> is a modern convenience of the early domain-name system, not an ancient spelling.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Devanagari as <strong>काली</strong>. It is the feminine of Sanskrit kāla- (&#39;black, dark; time&#39;): &#39;the black one&#39; — and, because kāla is also time, which devours all things, &#39;she of time&#39;, an interpretation the tradition itself embraces. The etymology of the base kāla- is itself uncertain; the traditional derivation from the verb kal- (&#39;to count, calculate&#39;) is folk etymology.</p>
+<p>The ASCII form <em>kali</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Kālī</strong> recovers the vowel length of the original directly in the address bar. The restoration preserves the full vowel quantity of the Sanskrit original — long ā and long ī — and exactly one historically valid Unicode form exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>k</strong> → <strong>K</strong> — Same</li>
+  <li><strong>a</strong> → <strong>ā</strong> — Macron: long /aː/</li>
+  <li><strong>l</strong> → <strong>l</strong> — Same</li>
+  <li><strong>i</strong> → <strong>ī</strong> — Macron: long /iː/</li>
+</ul>
+<p>The project holds the domain <strong>Kālī.com</strong> (xn--kl-dla3o.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: From Sanskrit kālī-, feminine of kāla- &#39;black, dark; time&#39;, meaning &#39;the black one&#39;; by folk etymology she is also &#39;Goddess of Time&#39;.</p>
+<p>The reconstruction is classed as attested.</p>
+<p>Kindred forms recorded in the lexicon:</p>
+<ul>
+  <li><strong>kāla-</strong> (sanskrit) — &#39;black, dark; time&#39; (MW, KEWA)</li>
+</ul>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is written in Devanagari as <strong>काली</strong>. Devanagari is a Brahmic abugida — each consonant sign carries an inherent vowel — written left-to-right; it descends from Brāhmī through the Nāgarī scripts, is attested in inscriptions from about the 7th century CE, and is today the standard script of Sanskrit, Hindi, and Marathi.</p>
+<p>The scholarly transliteration is <em>Kālī</em> (IAST), giving the normalized reading /ˈkaː.liː/. The rendering proceeds step by step:</p>
+<ul>
+  <li>Sanskrit Kālī is written काली in Devanagari — akṣaras का (kā) and ली (lī).</li>
+  <li>IAST macrons mark both long vowels (ā, ī); plain ASCII <em>kali</em> loses this quantity.</li>
+  <li>The word is the feminine of kāla- (&#39;black, dark; time&#39;); the same root yields Kālā (&#39;the black one&#39;) and the Tantric name Kālikā (कालिका).</li>
+  <li>The etymology of kāla- itself is uncertain; the derivation from kal- &#39;to count&#39; is traditional rather than demonstrable.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/kaː.liː/</strong> — Sanskrit/Vedic Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Kā-</strong> — Velar [k] followed by long, open [aː] — a dark, resonant syllable that can mean &#39;black&#39; or &#39;time&#39;.</li>
+  <li><strong>-lī</strong> — Lateral [l] plus long [iː], a feminine ending that transforms the root into a goddess.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;KAH-lee&#39; — both vowels are long and clear, the first like the &#39;a&#39; in &#39;father&#39; held out, the second like &#39;lee&#39;.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Sanskrit</strong> — काली (Kālī), feminine of kāla (&#39;black, dark, time&#39;) and kālā (&#39;the black one&#39;)</li>
+  <li><strong>Vedic root</strong> — kāla- is traditionally derived from the verb kal- (&#39;to count, calculate&#39;), linking Kālī to time&#39;s reckoning, though the etymology is uncertain</li>
+  <li><strong>Bengali/Tantric</strong> — Kālikā, Kālarātri — epithets that stress her blackness and her role as the night of time</li>
+</ul>
+<p>IAST Kālī uses a macron over both vowels to indicate length. The name is a feminine adjective: she is the Black One, the Time-One, the dark beyond gender. Devanagari काली is identical in form to the word for &#39;the feminine of time&#39;.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Kālī emerges most famously from the brow of the goddess Durgā in the course of the war against the demon-king Śumbha&#39;s armies, after the buffalo-demon Mahiṣāsura has already fallen. But her deepest myths are Tantric, centered on the Dakṣa sacrifice and the dismemberment of Satī, the first wife of Śiva.</p>
+<h3 id="from-the-brow-of-durga-birth">From the Brow of Durgā (Birth)</h3>
+<p>In the Devī Māhātmya, when the demon Raktavīja proves impossible to kill because each drop of his blood spawns a new warrior, Durgā manifests Kālī from her forehead. Kālī drinks the demon&#39;s blood and devours his clones, her tongue lapping every drop before it touches the earth. This is her first cosmic act: not rage for its own sake, but surgical ferocity against entropy.</p>
+<h3 id="the-daksa-yajna-and-sati-daksa">The Dakṣa Yajña and Satī (Dakṣa)</h3>
+<p>Satī, daughter of the proud king Dakṣa, immolates herself in protest after her father insults her husband Śiva. Śiva, mad with grief, dances the Tāṇḍava with her corpse upon his shoulder, threatening to unmake the cosmos. Viṣṇu intervenes, slicing Satī&#39;s body into fifty-one pieces that fall across the subcontinent and become the Śakti Pīṭhas, pilgrimage seats of the goddess. Kālī is the dark form of Śiva&#39;s grief and Śakti&#39;s unquenchable power.</p>
+<h3 id="tantric-symbolism-tantra">Tantric Symbolism (Tantra)</h3>
+<p>In Tantra, Kālī is the supreme reality beyond good and evil, purity and impurity. She is worshipped at cremation grounds, at midnight, and with offerings that break brahminical taboo. Her nakedness signifies transparency; her garland of skulls signifies the letters of sacred sound; her stance upon Śiva signifies that dynamic energy (śakti) is the motor of consciousness. To know Kālī is to stop fleeing death and to recognize it as the other face of birth.</p>
+<h3 id="colonial-reinterpretations-colonial">Colonial Reinterpretations (Colonial)</h3>
+<p>British missionaries and administrators of the nineteenth century frequently singled out Kālī worship as the most degraded and violent aspect of Hinduism, using her image to justify imperial &#39;civilizing&#39; missions. At the same time, Bengali nationalists and devotees such as Ramakrishna reclaimed her as the loving Mother — Kālī Mā — and revolutionary groups adopted her as the symbol of a wrathful motherland rising against foreign rule. She thus became a screen onto which both domination and resistance were projected.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Kālī concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>Black skin</strong> — The color of the void before creation and after destruction; the unmanifest beyond all forms.</li>
+  <li><strong>Garland of fifty skulls</strong> — The fifty letters of the Sanskrit alphabet, showing that she wears language itself as ornament.</li>
+  <li><strong>Severed head</strong> — The ego of the demon Raktavīja, or the ego of the practitioner; what must be sacrificed to see truly.</li>
+  <li><strong>Sword (khaḍga)</strong> — Discrimination that cuts through illusion.</li>
+  <li><strong>Tongue extended</strong> — The moment of shame and awakening; in Bengali tradition, she bites her tongue after stepping on Śiva.</li>
+  <li><strong>Standing on Śiva</strong> — Śakti active above Śiva passive; without her energy, the transcendent god is a corpse (śava).</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>The material record for Kālī proper is medieval, though her iconographic ancestry reaches the Gupta age: the emaciated, skull-garlanded Cāmuṇḍā of the mātṛkā panels — the goddess&#39;s fierce form in the Devī Māhātmya — is securely attested in sculpture from about the 6th century onward. Pāla- and Sena-period stone and terracotta images from Bengal and Bihar (10th–12th centuries) show the fully formed Kālī with protruding tongue, skull garland, and severed head, and Kerala&#39;s Bhadrakālī shrines preserve her southern liturgical line. Her modern monumental anchors are historical rather than archaeological: the Kālīghāṭ temple in Kolkata, whose present structure dates to 1809 on a site of much older sanctity, and the Dakṣiṇeśwar temple founded by Rani Rashmoni in 1855, where Ramakrishna served as priest.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Kālī is the most terrifying and most tender of Hindu goddesses. She appears when the boundary between life and death, order and chaos, becomes thin enough to see through. With black skin, a garland of skulls, and a tongue that laps blood, she is the raw form of <strong>śakti</strong> — the feminine power that creates by destroying and destroys by creating.</p>
+<h3 id="time-death">Time &amp; Death</h3>
+<p>As the feminine of kāla, she is time itself — the devourer of minutes, years, and egos.</p>
+<h3 id="destruction-of-ego">Destruction of Ego</h3>
+<p>Her sword severs the head of ignorance; her dance grinds the demon of ego beneath her feet.</p>
+<h3 id="empowerment">Empowerment</h3>
+<p>Especially for the marginalized, Kālī is the mother who grants ferocious courage against oppression.</p>
+<h3 id="tantric-transgression">Tantric Transgression</h3>
+<p>She stands outside conventional purity, teaching that the sacred includes what society rejects.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Kālī is inseparable from Durgā, Pārvatī, Satī, and the ten Mahāvidyās of Tantra; she is the fierce face of the same goddess who appears as the gentle Gaurī. In Buddhist Tantra, especially in Tibet, she echoes in fierce ḍākinīs and protectors such as Tārā in her wrathful forms. Southeast Asian goddess cults, from Cham Po Nagar to Javanese Durga, carry her shadow. The colonial and postcolonial West has appropriated her as a feminist and punk icon, often stripping away ritual context. Whether feared, loved, or misunderstood, Kālī remains the boundary where the sacred becomes unbearably real.</p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include [[durga|Durgā]] and [[sekhmet|Sḫmt]], each linked through war / destruction.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Kālī&#39;s image has traveled far beyond her temples. In Bengal, she is the household mother, worshipped at Kālīghāṭ and Dakṣiṇeśwar; in Kerala, she appears as Bhadrakālī in blood-offering rituals; in the diaspora, she is a symbol of South Asian identity and feminine power. Western occultists, from the Theosophists to modern Wiccans, have drawn on her iconography, sometimes with scholarly care and sometimes without. Film, comics, and protest art return to her again and again: the black-skinned woman with the sword, the tongue, the unblinking stare. Kālī endures because she refuses to be domesticated. She is the god who looks back.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Kālī given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Monier-Williams Sanskrit Dictionary. <a href="https://www.sanskrit-lexicon.uni-koeln.de/monier/index.html">Full text</a></li>
+  <li> Devī Māhātmya.</li>
+  <li> Śiva Purāṇa, Vāyu Purāṇa.</li>
+  <li> Kālī Tantra.</li>
+  <li> Rachel Fell McDermott, Encountering Kālī.</li>
+  <li> Kālikā Purāṇa (Dāruka episode and Bengal Śākta mythology).</li>
+  <li> Mahānirvāṇa Tantra 5.109–110 (Kālī as supreme deity).</li>
+  <li> Tantrarājatantra / Rudrayāmala Tantra (ten Mahāvidyās).</li>
+  <li> Brahmayāmala Tantra (early Kālī liturgy and iconography).</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Most of us spend our lives trying to keep Kālī out. We lock the door against death, shame, rage, and the parts of ourselves that do not fit the daylight world. Kālī is the one who kicks the door down. She is not cruel; she is honest. Time was always devouring us. The ego was always a borrowed costume. The blood she drinks is the blood of our pretending.</p>
+<p>And yet she is also the mother. Ramakrishna wept before her image with the love of a child. To approach Kālī is to discover that destruction and tenderness are not opposites. The skulls she wears are the syllables of every prayer ever spoken. The sword she carries is the clarity we avoid because it hurts. When she stands on Śiva, she is not dominating him; she is waking him. Without her dance, the lord of yoga is only sleep. With it, he is alive.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Kālī is classified as <strong>Tier 1</strong>: the original carries both stress and length, and only one valid Unicode restoration exists. The ASCII fallback <em>kali</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 4 characters of the name, the restoration adjusts 2: 2 marks of length (ā, ī). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>kali</em> to <strong>Kālī</strong>, one character at a time:</p>
+<ul>
+  <li><strong>k</strong> → <strong>K</strong> — Same</li>
+  <li><strong>a</strong> → <strong>ā</strong> — Macron: long a</li>
+  <li><strong>l</strong> → <strong>l</strong> — Same</li>
+  <li><strong>i</strong> → <strong>ī</strong> — Macron: long i</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>Kālī.com</strong>, which the DNS carries in punycode form as xn--kl-dla3o.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Kālī; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Devanagari can now be typed into any browser on earth.</p>
+<h2 id="the-sanskrit-pantheon">The Sanskrit Pantheon</h2>
+<p>Kālī is one of 88 entries the PÚNYCODEX lexicon catalogues under the Sanskrit pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Kālī mean?</strong> The traditional gloss is &quot;of Satyavatī, wife of king Śāntanu and mother of Vyāsa or Kṛṣṇadvaipāyana (after her marriage she had a son Vicitravīrya, whose widows were married by Kṛṣṇadvaipāyana.&quot;</p>
+<p><strong>Which tradition does Kālī belong to?</strong> Kālī is catalogued in the Sanskrit pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Kālī classified as Tier 1?</strong> Because the original carries both stress and length, and only one valid Unicode restoration exists — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Kālī a working domain?</strong> Yes — Kālī.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for Kālī.com?</strong> The DNS encoding is xn--kl-dla3o.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="typing-kali">Typing Kālī</h2>
+<p>You do not need a special keyboard to use this restoration. The <a href="/type/">PÚNYCODEX Type Tool</a> converts the ASCII form <em>kali</em> into <strong>Kālī</strong> as you type, and the browser extension offers the same conversion inside any text field. Copy the restored form, paste it into the address bar, and the DNS does the rest.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Every stage of the journey from Devanagari to Unicode was an act of care: the scribe who first wrote the name, the lexicographer who glossed it, the engineer who taught the DNS to carry it. The PÚNYCODEX restoration is the latest stage, not the last word — the Scholarly Edition is revised as the evidence improves. What does not change is the principle: a name deserves to be written the way its own tradition wrote it. <strong>Kālī</strong> in the address bar is that principle, made routable.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/yoni/">Yoni</a></li>
   <li><a href="/sites/atman/">Ātman</a></li>
   <li><a href="/sites/bhishma/">Bhīṣma</a></li>
 </ul>
-<h2>Further Reading</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.sanskrit-lexicon.uni-koeln.de/monier/index.html">Monier-Williams, M. A Sanskrit-English Dictionary. Oxford, 1899; s.v. kālī.</a></li>
+  <li>Mārkaṇḍeya Purāṇa, Devī Māhātmya 7–8 (emergence of Kālī; Caṇḍa-Muṇḍa and Raktavīja).</li>
+  <li>Kinsley, D., Hindu Goddesses (University of California Press, 1986), chapter on Kālī.</li>
+  <li>Mayrhofer, M., Etymologisches Wörterbuch des Altindoarischen (Heidelberg, 1986–2001); s.v. kāla.</li>
+  <li>Devī Māhātmya.</li>
+  <li>Lexicon authorities for this entry: MW, KEWA.</li>
 </ul>
-<h2>The Name in Context</h2>
-<p>Kālī (Sanskrit काली, feminine of kāla- &#39;black, dark; time&#39;: &#39;the black one&#39;) is the fierce goddess of the Śākta tradition — the dark form of the Devī who emerges on the battlefield to drink the blood of demons and, for her devotees above all in Bengal, the tender mother who grants liberation. She crystallizes as a goddess in the epic and early Śākta milieu and receives her classic charter in the Devī Māhātmya (c. 6th century CE), where she springs from the frowning brow of [[durga|Durgā]] to destroy the demon generals Caṇḍa and Muṇḍa and to lap up the blood of Raktavīja before it can seed new warriors. In Tantra she rises to supreme rank as the first of the ten Mahāvidyās — the power of time that devours all things — worshipped at cremation grounds...</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">sanskrit</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

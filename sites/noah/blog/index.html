@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,39 +170,164 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>Nōaḥ in 2026: Why Scholars Still Care</h1>
-<p>In 2026, names are treated as data points. Nōaḥ is a reminder that they are also cultural artifacts. Nōaḥ (Hebrew נֹחַ; English Noah) is the tenth patriarch from Adam and the survivor of the great flood: &#39;a righteous man, blameless in his generation&#39;, who walks with God (Genesis 6:9). At God&#39;s command he builds the ark of gopher wood, preserves his family and the animal kinds through the deluge, offers the sacrifice that ends the waters, and receives the rainbow covenant — the Bible&#39;s first explicit covenant, made with &#39;every living creature&#39; (Genesis 9:8–17). The postdiluvian story darkens: the first vineyard, drunkenness, and the curse of Canaan (Genesis 9:18–29). The name derives from the root n-w-ḥ, &#39;to rest&#39;; Lamech&#39;s naming speech puns instead on the similar-sounding n-ḥ-m, &#39;to comfort&#39;: &#39;Out of the ground that the LORD has cursed, this one... The question is not whether the name is old, but whether the digital world is old enough to hold it.</p>
-<h2>The Scholarly Argument</h2>
-<p>The name is attested in Biblical Hebrew as נֹחַ (Nōaḥ), pointed with a long holam and a furtive patah under the final ḥet. It derives from the middle-weak root n-w-ḥ, &#39;to rest, settle down&#39;, whose waw is absorbed into the long vowel (compare māweṯ, &#39;death&#39;). Lamech&#39;s naming speech, however, puns on the phonetically close root n-ḥ-m, &#39;to comfort, bring relief&#39;: &#39;Out of the ground that the LORD has cursed, this one shall bring us relief (yənaḥămēnû) from our work and from the painful toil of our hands&#39; (Genesis 5:29) — a popular etymology rather than a linguistic derivation. The flood narrative later activates the &#39;rest&#39; sense: the ark &#39;rested&#39; (wattānaḥ) upon the mountains of Ararat (Genesis 8:4). The English form Noah descends from the Septuagint&#39;s... The PÚNYCODEX Scholarly Edition collects these arguments in one place, with sources and revision history, so the claim can be inspected rather than merely asserted.</p>
-<h2>What the Accent Preserves</h2>
-<p>This entry is classified as <strong>Tier 2</strong>. the original preserves at least one philological feature that ASCII cannot encode Those marks are not ornaments; they are the coordinates that place the name inside a language.</p>
-<h2>A Living Edition</h2>
-<p>The <a href="/sites/noah/scholars/">Scholarly Edition</a> is not a static page. Verified contributors can improve it, and every change is attributed. That model turns a blog post like this one into an invitation to dig deeper.</p>
-<h2>Where to Learn More</h2>
+            <h1>Nōaḥ in 2026: why scholars still care</h1>
+<p>In 2026, names are treated as data points. <strong>Nōaḥ</strong> is a reminder that they are also cultural artifacts — and that the difference matters for search engines, AI training corpora, and anyone who types the name of a Canaanite figure into a browser. Scholars never stopped caring about the difference between <em>noah</em> and Nōaḥ; the web simply made that care actionable. What follows is the full scholarly picture — name, script, sound, myth, cult, and legacy — followed by the engineering compromise that lets a restored spelling live at a real address. The question is not whether the name is old. It is whether the digital world is old enough to hold it.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Nōaḥ</li>
+  <li><strong>ASCII form:</strong> noah</li>
+  <li><strong>Meaning:</strong> &quot;Builder of the ark&quot;</li>
+  <li><strong>Domain of influence:</strong> Patriarch, Survivor</li>
+  <li><strong>Pantheon:</strong> Canaanite</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> נֹחַ (Hebrew)</li>
+  <li><strong>Live domain:</strong> nōaḥ.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Nōaḥ</strong> (Hebrew נֹחַ; English <em>Noah</em>) is the tenth patriarch from Adam and the survivor of the great flood: &#39;a righteous man, blameless in his generation&#39;, who walks with God (Genesis 6:9). At God&#39;s command he builds the ark of gopher wood, preserves his family and the animal kinds through the deluge, offers the sacrifice that ends the waters, and receives the rainbow covenant — the Bible&#39;s first explicit covenant, made with &#39;every living creature&#39; (Genesis 9:8–17). The postdiluvian story darkens: the first vineyard, drunkenness, and the curse of Canaan (Genesis 9:18–29).</p>
+<p>The name derives from the root <em>n-w-ḥ</em>, &#39;to rest&#39;; Lamech&#39;s naming speech puns instead on the similar-sounding <em>n-ḥ-m</em>, &#39;to comfort&#39;: &#39;Out of the ground that the LORD has cursed, this one shall bring us relief from our work&#39; (Genesis 5:29). The narrative itself returns to the &#39;rest&#39; sense when the ark &#39;rests&#39; (wattānaḥ) on the mountains of Ararat (Genesis 8:4).</p>
+<p>PÚNYCODEX restores the name as <strong>Nōaḥ</strong>, transcribing the Tiberian Masoretic pointing: the macron marks the long <em>holam</em> [oː], and the dot under <strong>ḥ</strong> marks the ḥet, a voiceless pharyngeal fricative [ħ]. Because the restoration preserves vowel length but does not mark stress position, the name is classified Tier 2 (macron-preserving). The temple is served at <a href="https://xn--na-vra1560a.com">nōaḥ.com</a>; the ASCII form <em>noah</em>, descending from Greek Νῶε and Latin <em>Noe</em>, remains the fallback imposed by the early domain-name system.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Biblical Hebrew as <strong>נֹחַ</strong> (<em>Nōaḥ</em>), pointed with a long <em>holam</em> and a furtive <em>patah</em> under the final ḥet. It derives from the middle-weak root <em>n-w-ḥ</em>, &#39;to rest, settle down&#39;, whose waw is absorbed into the long vowel (compare <em>māweṯ</em>, &#39;death&#39;). Lamech&#39;s naming speech, however, puns on the phonetically close root <em>n-ḥ-m</em>, &#39;to comfort, bring relief&#39;: &#39;Out of the ground that the LORD has cursed, this one shall bring us relief (yənaḥămēnû) from our work and from the painful toil of our hands&#39; (Genesis 5:29) — a popular etymology rather than a linguistic derivation. The flood narrative later activates the &#39;rest&#39; sense: the ark &#39;rested&#39; (wattānaḥ) upon the mountains of Ararat (Genesis 8:4).</p>
+<p>The English form <em>Noah</em> descends from the Septuagint&#39;s Νῶε through Latin <em>Noe</em>, its final -h a visual gesture toward the Hebrew ḥet that English does not pronounce. PÚNYCODEX restores <strong>Nōaḥ</strong>: the macron on <strong>ō</strong> preserves the long holam, and the dot under <strong>ḥ</strong> marks the pharyngeal fricative. The restoration preserves vowel length but not stress position, which places the name in Tier 2 (macron-preserving).</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>n</strong> → <strong>N</strong> — Same, capitalized</li>
+  <li><strong>o</strong> → <strong>ō</strong> — Macron: long vowel</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+  <li><strong>h</strong> → <strong>ḥ</strong> — Voiceless pharyngeal fricative</li>
+</ul>
+<p>The project holds the domain <strong>nōaḥ.com</strong> (xn--na-vra1560a.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Hebrew as <strong>נֹחַ</strong>, written in the square Hebrew alphabet — a consonantal script (abjad) of twenty-two letters, adopted from Aramaic models in the Second Temple period and written right to left. The consonantal skeleton is נ-ח (<em>n-ḥ</em>): the middle-weak root <em>n-w-ḥ</em>, &#39;to rest&#39;, whose waw has been absorbed into the long vowel (compare <em>māweṯ</em>, &#39;death&#39;). The Masoretic pointing supplies a long <em>holam</em> [oː] with the nun and a furtive <em>patah</em> under the ḥet — an ultra-short [a] pronounced before, not after, the final guttural, a voiceless pharyngeal fricative [ħ].</p>
+<p>The scholarly transliteration is <em>Nōaḥ</em>, giving the reconstructed Tiberian reading /ˈnoːaħ/. The rendering proceeds step by step:</p>
+<ul>
+  <li>The name is written נֹחַ in the pointed Masoretic text (BHS): two consonants, two vowel signs.</li>
+  <li>The furtive patah is an epenthetic glide before the final pharyngeal, so the stress stays on the long <em>holam</em>: /ˈnoːaħ/, not /noːˈaħ/.</li>
+  <li>The transliteration marks the long vowel with a macron and the pharyngeal with an underdotted ḥ, following academic convention.</li>
+  <li>PÚNYCODEX adopts the registrable Latin form <strong>Nōaḥ</strong> as its restoration; the plain ASCII <em>noah</em> descends instead from the Septuagint&#39;s Νῶε through Latin <em>Noe</em>.</li>
+</ul>
+<p>The Hebrew vocalization is medieval in attestation but older in tradition: the consonants are Second Temple-era, while the points were fixed by the Tiberian Masoretes in the early medieval period, and the first-millennium BCE pronunciation of the name may have differed in detail.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/ˈnoːaħ/</strong> — Biblical Hebrew (Tiberian/Masoretic).</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>nō-</strong> — Alveolar nasal [n] followed by long [oː], the holam under נ.</li>
+  <li><strong>-aḥ</strong> — Short [a] from the furtive patah, pronounced before the final voiceless pharyngeal fricative [ħ] — Hebrew ḥet. Some traditions render ḥet as a uvular [χ].</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;NOH-ahkh&#39; — stress the first syllable and hold the &#39;o&#39;; the final syllable is a quick &#39;ah&#39; followed by a throaty &#39;kh&#39; as in Scottish &#39;loch&#39;.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Hebrew root</strong> — n-ḥ-m, &#39;to comfort, bring relief&#39; — the name is explained by the wordplay in Genesis 5:29</li>
+  <li><strong>Aramaic</strong> — נֹחַ (Nōaḥ), identical in the Targumim</li>
+  <li><strong>Arabic</strong> — Nūḥ (نُوح), the Qur&#39;anic flood survivor</li>
+</ul>
+<p>BHS points the name נֹחַ (Genesis 5:29). The patah under the final ḥet is a furtive patah (pataḥ ganuv): it is pronounced as a short [a] before the guttural, and the word stress remains on the long holam (hence &#39;NOH-ahkh&#39;, not &#39;no-AHKH&#39;). The ḥet is a voiceless pharyngeal fricative [ħ] in Tiberian, though Modern Hebrew merges it with [χ]. HALOT s.v. נֹחַ; TDOT s.v. Noah.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Nōaḥ&#39;s mythology is the <strong>rewriting of the world</strong>. The flood does not merely punish; it resets. After the waters, the same commands given to Adam — be fruitful, multiply, have dominion — are spoken again, as if creation itself has been given a second draft.</p>
+<h3 id="the-righteous-man-in-a-corrupt-age-genesis-6">The Righteous Man in a Corrupt Age (Genesis 6)</h3>
+<p>God sees that human wickedness is great on the earth and resolves to blot out living things. But Noah finds favor because he is righteous and blameless in his generation. He is commanded to build an ark and to bring into it pairs of every living creature, along with food for the journey. The story insists that survival is not accidental but selective: one household is chosen to carry the future.</p>
+<h3 id="the-flood-and-the-calm-genesis-7-8">The Flood and the Calm (Genesis 7–8)</h3>
+<p>The windows of heaven and the fountains of the great deep burst open. Rain falls for forty days and forty nights; the waters prevail for a hundred and fifty days, covering even the highest mountains. Every living thing outside the ark perishes. Then God remembers Noah, the waters recede, and the ark comes to rest on the mountains of Ararat. The world is washed clean, but it is also emptied.</p>
+<h3 id="the-birds-and-the-olive-leaf-genesis-8">The Birds and the Olive Leaf (Genesis 8)</h3>
+<p>Noah opens the window and sends out a raven, which goes to and fro until the waters dry up. Then he sends a dove; it finds no resting place and returns. A week later the dove returns with an olive leaf freshly plucked. The third time, the dove does not return. The sequence turns waiting into liturgy: each flight measures the slow return of a habitable world.</p>
+<h3 id="the-rainbow-and-the-new-order-genesis-9">The Rainbow and the New Order (Genesis 9)</h3>
+<p>After leaving the ark, Noah builds an altar and offers sacrifice. God smells the pleasing aroma and promises never again to curse the ground or destroy all life by flood, setting the rainbow as the sign of the covenant. New permissions and new prohibitions are given: humans may now eat meat, but not blood; murder demands reckoning because humankind is made in God&#39;s image.</p>
+<h3 id="the-drunkenness-and-the-curse-of-canaan-genesis-9">The Drunkenness and the Curse of Canaan (Genesis 9)</h3>
+<p>Noah plants a vineyard, drinks its wine, and lies uncovered in his tent. Ham sees his father&#39;s nakedness and tells his brothers; Shem and Japheth cover Noah without looking. On waking, Noah curses Canaan, Ham&#39;s son, and blesses Shem and Japheth. The passage has been misused to justify slavery and racial hierarchy, though the text knows nothing of modern race; it is an etiology of ethnic relationships in the ancient Levant.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Nōaḥ concentrates in a small set of recurring attributes, each a compressed statement about the story:</p>
+<ul>
+  <li><strong>Ark</strong> — The pitched vessel of gopher wood, three hundred cubits long (Genesis 6:14–15), that carries the seed of a renewed creation</li>
+  <li><strong>Dove</strong> — Released at seven-day intervals, it returns with a freshly plucked olive leaf (Genesis 8:8–12); in later Christian reading, a figure of the Holy Spirit</li>
+  <li><strong>Olive branch</strong> — The first green thing of the postdiluvian world, now the universal sign of peace</li>
+  <li><strong>Rainbow</strong> — The bow set in the clouds as the sign of the covenant between God and all flesh (Genesis 9:12–17)</li>
+  <li><strong>Wine</strong> — The yield of the first vineyard: agricultural renewal and the vulnerability that follows survival (Genesis 9:20–21)</li>
+  <li><strong>Raven</strong> — The first messenger, sent out before the dove, which flies &#39;to and fro until the waters were dried up&#39; (Genesis 8:7)</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>No archaeological evidence has been found for a global flood or for Noah&#39;s ark. Mesopotamian excavations at Ur, Kish, Uruk, and Shuruppak have revealed flood deposits dated to various periods, which may have fed the local traditions underlying the biblical and Mesopotamian flood narratives. The search for the &#39;mountains of Ararat&#39; has focused on Mount Ararat in eastern Turkey and the surrounding region, but no credible ark remains have been produced. The <em>Atrahasis</em> and <em>Gilgamesh</em> tablets from Nineveh and other Mesopotamian sites preserve the closest ancient parallels to the Genesis account.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Nōaḥ is the <strong>one just man in a generation drowned by its own violence</strong>. While the earth fills with corruption, he builds an impossible ship in an inland world, gathers every kind of creature, and rides out the collapse of everything he has known. His story is not only about water; it is about endurance, obedience, and the awkward mercy of being chosen to begin again.</p>
+<h3 id="the-ark">The Ark</h3>
+<p>A rectangular, pitched vessel of gopher wood, built to dimensions given in cubits and fitted for every kind of bird and beast (Genesis 6:14–16).</p>
+<h3 id="dove-and-olive-branch">Dove and Olive Branch</h3>
+<p>After the flood he sends out a raven and then a dove; the dove returns with an olive leaf, the first sign that the waters have subsided (Genesis 8:6–12).</p>
+<h3 id="the-rainbow-covenant">The Rainbow Covenant</h3>
+<p>God sets a bow in the clouds as a sign that the waters will never again destroy all flesh; the covenant is universal, including every living creature (Genesis 9:8–17).</p>
+<h3 id="vineyard-and-curse">Vineyard and Curse</h3>
+<p>Noah plants the first vineyard, becomes drunk, and curses Canaan while blessing Shem and Japheth — a dark postscript to the new world (Genesis 9:18–29).</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>The flood story is one of humanity&#39;s most widespread narratives, and Noah&#39;s parallels span three continents. In Mesopotamia, the <em>Atrahasis</em> epic and Tablet XI of the <em>Epic of Gilgamesh</em> tell how the gods — in Atrahasis, angered by human noise — send the flood, and how one warned man (Atrahasis; Utnapishtim) builds a boat, preserves the animals, and offers sacrifice to the gathered gods. Greek tradition gives Deucalion and Pyrrha, who survive Zeus&#39;s deluge in a chest and repopulate the earth by casting stones behind them. Hindu tradition remembers Manu, warned by a small fish — later identified as an avatar of Vishnu — who ties his ship to the fish&#39;s horn and rides out the waters. The Qur&#39;an recounts the prophet Nūḥ, whose ark saves the believers while his own son drowns. These parallels do not reduce Noah to a copy; they show how a single catastrophic memory — or archetype — was told and retold across the ancient world.</p>
+<p>Within the corpus, the closest parallel is the flood-hero cycle of <a href="/sites/gilgamesh/">Gilgameš</a>, whose eleventh tablet preserves the most elaborate ancient version of the deluge.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Nōaḥ has become the patron of <strong>second chances</strong>. The ark appears in countless children&#39;s books, nursery decorations, and films, often as a cheerful menagerie, though the original story is far darker. In Jewish tradition, the Noahide laws define a minimal moral covenant for all humanity. Environmental movements have claimed Noah as a symbol of stewardship over species. The rainbow, originally a warrior&#39;s bow hung upside down, has become an emblem of peace and, in recent centuries, of LGBTQ+ pride. From medieval mystery plays to modern Hollywood blockbusters, Noah remains the survivor everyone recognizes.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Nōaḥ given in this edition rests on the witnesses and reference works listed below. The lexica fix the name&#39;s derivation from n-w-ḥ, &#39;rest&#39;, and its popular etymology in Genesis 5:29; Genesis supplies the narrative; the Mesopotamian epics preserve the closest ancient parallels; and the Qur&#39;an gives the figure his fullest non-biblical afterlife.</p>
+<ul>
+  <li> HALOT s.v. נֹחַ — form and etymology of the name.</li>
+  <li> TDOT s.v. Noah — theological profile of the figure and the covenant.</li>
+  <li> Genesis 5:29–9:29 — the primary narrative: naming, flood, covenant, vineyard.</li>
+  <li> Atrahasis — the Old Babylonian flood epic (Lambert &amp; Millard edition).</li>
+  <li> Epic of Gilgamesh, Tablet XI — Utnapishtim&#39;s flood account.</li>
+  <li> Qur&#39;an, Surah 11 (Hud); Surah 23 (Al-Mu&#39;minun); Surah 71 (Nuh) — the Qur&#39;anic Nūḥ.</li>
+  <li> Day, Yahweh and the Gods and Goddesses of Canaan (2000) — the flood tradition&#39;s West Semitic context.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Nōaḥ is the man who saves the world and then gets drunk in it. The story does not flatter him: he is righteous, but he is also small, frightened, and morally complicated. His survival is an act of grace, not a reward for perfection. In that, he is a corrective to every culture that imagines salvation belongs to the strong or the pure.</p>
+<p>The ark is a floating library of everything that cannot be replaced. To enter it is to accept a terrible narrowing: the whole world must fit inside one family, one boat, one awkward covenant. Noah teaches that preservation often looks like confinement, and that the new world begins not with triumph but with nausea, grief, and a dove&#39;s uncertain flight. To remember him is to remember that we are all, in some sense, survivors of a flood we did not choose.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Nōaḥ is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>noah</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 4 characters of the name, the restoration adjusts 2: 1 mark of length (ō); 1 further adjustment (ḥ). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>nōaḥ.com</strong>, which the DNS carries in punycode form as xn--na-vra1560a.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Nōaḥ; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Hebrew can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>In 2026 the stakes are practical. Search indexes, language models, and localization pipelines all inherit whatever spelling the web normalizes — which means every Unicode domain is also a training signal. <strong>Nōaḥ</strong> teaches the machinery that the restored form exists, that it is used, and that it points to a real place. That is why a project built on philology ends up caring about DNS: the infrastructure decides which names the future sees. This restoration makes sure the future sees the whole name.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/solomon/">Šəlōmōh</a></li>
   <li><a href="/sites/asherah/">ꜥAsherah</a></li>
   <li><a href="/sites/el/">Ēl</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
-  <li><a href="https://www.britishmuseum.org/">Scholarly reference</a></li>
+  <li>Genesis 5:29–10:32 (primary Noah narrative).</li>
+  <li>HALOT s.v. נֹחַ.</li>
+  <li>Khan, The Tiberian Pronunciation Tradition of Biblical Hebrew (2020).</li>
+  <li>Biblia Hebraica Stuttgartensia (BHS), Genesis 5:29.</li>
+  <li>Lexicon authorities for this entry: Abraham.</li>
 </ul>
-<h2>What the Sources Record</h2>
-<p>Nōaḥ is the one just man in a generation drowned by its own violence. While the earth fills with corruption, he builds an impossible ship in an inland world, gathers every kind of creature, and rides out the collapse of everything he has known. His story is not only about water; it is about endurance, obedience, and the awkward mercy of being chosen to begin again. ### The Ark A rectangular, pitched vessel of gopher wood, built to dimensions given in cubits and fitted for every kind of bird and beast (Genesis 6:14–16). ### Dove and Olive Branch After the flood he sends out a raven and then a dove; the dove returns with an olive leaf, the first sign that the waters have subsided (Genesis 8:6–12). ### The Rainbow Covenant God sets a bow in the clouds...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Nōaḥ as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Hebrew to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Nōaḥ through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/noah/">home page</a> offers the full name breakdown, the <a href="/sites/noah/lore/">lore page</a> explores the myth, and the <a href="/sites/noah/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Nōaḥ do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">canaanite</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

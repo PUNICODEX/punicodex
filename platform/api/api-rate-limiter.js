@@ -21,6 +21,9 @@ const DEFAULT_TIER_LIMITS = {
   pro: { limit: 10000, windowMs: 24 * 60 * 60 * 1000 }, // 10,000/day
   enterprise: { limit: 100000, windowMs: 24 * 60 * 60 * 1000 }, // 100,000/day
   public: { limit: 10, windowMs: 60 * 1000 }, // 10/min for unauthenticated public endpoints
+  // Stricter bucket for unauthenticated endpoints that trigger outbound work
+  // (e.g. DNS availability checks) or enqueue crawl jobs.
+  'public-strict': { limit: 5, windowMs: 60 * 1000 }, // 5/min
 };
 
 class InMemoryRateLimiter {

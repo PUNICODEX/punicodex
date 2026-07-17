@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,37 +170,176 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>16 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>From Devanagari to Unicode: The Journey of Amitābha</h1>
-<p>Long before it was a domain, the name traveled through scripts. The name is preserved in Devanagari as अमिताभ — Brahmic abugida, attested Classical Sanskrit, c. 500 BCE – 500 CE, in India / Gandhāra. The script is written left-to-right. The scholarly transliteration is Amitābha (IAST), giving the normalized reading /ə.mɪˈtɑː.bʱə/. The rendering proceeds step by step: - Sanskrit Amitābha is written अमिताभ in Devanagari: अ (a) + मि (mi) + ता (tā) + भ (bha). - The compound is a-mita (&#39;unmeasured&#39;) + ābha (&#39;light, splendor&#39;), hence &#39;of unmeasured splendor, infinite light&#39;. - IAST encodes vowel length with the macron (ā) and aspiration with the digraph bh for the voiced aspirate [bʱ]. - The Unicode restoration Amitābha is registrable in .com; the Devanagari form is not supported in the .com IDN table. This post follows Amitābha from its earliest attestation to the address bar.</p>
-<h2>The Original Sign</h2>
-<p>The original script gives us <strong>अमिताभ</strong>. The name is preserved in Devanagari as अमिताभ — Brahmic abugida, attested Classical Sanskrit, c. 500 BCE – 500 CE, in India / Gandhāra. The script is written left-to-right. The scholarly transliteration is Amitābha (IAST), giving the normalized reading /ə.mɪˈtɑː.bʱə/. The rendering proceeds step by step: - Sanskrit Amitābha is written अमिताभ in Devanagari: अ (a) + मि (mi) + ता (tā) + भ (bha). - The compound is a-mita (&#39;unmeasured&#39;) + ābha (&#39;light, splendor&#39;), hence &#39;of unmeasured splendor, infinite light&#39;. - IAST encodes vowel length with the macron (ā) and aspiration with the digraph bh for the voiced aspirate [bʱ]. - The Unicode restoration Amitābha is registrable in .com; the Devanagari form is not supported in the .com IDN table.</p>
-<h2>The Scholarly Transliteration</h2>
-<p>The name is attested in Devanagari as अमिताभ (IAST amitābha; nominative singular amitābhaḥ). It is a bahuvrīhi compound — a possessive formation meaning &#39;whose X is Y&#39; — built from a-mita, &#39;unmeasured, boundless&#39; (the root mā, &#39;to measure,&#39; with the privative prefix a-), and ābha (feminine ābhā), &#39;light, splendour&#39;: literally, &#39;whose light is unmeasured.&#39; Monier-Williams records the adjective as an older Purāṇic epithet; in Buddhist Hybrid Sanskrit the name designates the Buddha of the western paradise Sukhāvatī and is used interchangeably with Amitāyus, &#39;Measureless Life.&#39; The ASCII form amitabha survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode... Scholars settled on Amitābha as the registrable restoration: faithful enough to be recognizable, precise enough to carry the marks that matter.</p>
-<h2>DNS as a Time Machine</h2>
-<p>Punycode lets the DNS carry non-ASCII characters without breaking older routers. To the user, the address bar shows Amitābha; to the infrastructure, it is an encoded xn-- string. The duality is invisible, but the result is revolutionary: a pre-digital name living inside a post-digital system.</p>
-<h2>Pronunciation</h2>
-<p>Scholars reconstruct the sound as <em>&#39;uh-MEE-tah-bhuh&#39; — the &#39;bh&#39; is aspirated like &#39;b-huh&#39; in one sound; the &#39;tā&#39; is held long.</em>. Hearing the name in your own voice is one way to make the restoration personal.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Amitābha is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>From Devanagari to Unicode: the journey of Amitābha</h1>
+<p>Long before it was a domain, this name traveled through scripts. <strong>Amitābha</strong> begins in Devanagari, passes through scholarly transliteration, and ends — for now — inside the punycode machinery of the global DNS. Each stage of that journey preserves some information and loses some, and the craft of restoration is knowing exactly which marks matter. This post follows the name stage by stage: the original script, the reconstructed pronunciation, the mythological record, the material evidence, and finally the Unicode form that carries all of it into the address bar. Think of it as a biography of a name, told through its spelling.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Amitābha</li>
+  <li><strong>ASCII form:</strong> amitabha</li>
+  <li><strong>Meaning:</strong> &quot;Of unmeasured splendour; infinite light; the Buddha of the Pure Land Sukhāvatī.&quot;</li>
+  <li><strong>Domain of influence:</strong> Infinite Light, Pure Land</li>
+  <li><strong>Pantheon:</strong> Buddhist</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Original script:</strong> अमिताभ (Devanagari)</li>
+  <li><strong>Live domain:</strong> amitābha.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Amitābha</strong> (Sanskrit अमिताभ, <em>amitābha</em>, &#39;Measureless Light&#39;) is the celestial Buddha who presides over Sukhāvatī, the &#39;Land of Bliss&#39; — the most widely venerated Buddha of East Asian Buddhism and the central figure of the Pure Land traditions. The word is older than the cult: Monier-Williams records <em>amitābha</em> as an adjective, &#39;of unmeasured splendour,&#39; applied in the plural to certain deities of the eighth Manvantara in the <em>Viṣṇu Purāṇa</em>; Buddhist usage turns it into a proper name, equivalent and interchangeable with Amitāyus, &#39;Measureless Life.&#39;</p>
+<p>According to the <em>Larger Sukhāvatīvyūha Sūtra</em>, the bodhisattva monk Dharmākara — in some recensions a king who abdicated his throne — resolved before the Buddha Lokeśvararāja to create the finest of all Buddha-fields. After five aeons of contemplation he pronounced a series of vows, forty-eight in the standard Chinese version, and upon their fulfilment became the Buddha Amitābha, whose land lies in the western direction and admits all beings who entrust themselves to him. This devotional economy — rebirth in Sukhāvatī through faith and recollection of the name, rather than through solitary meditative attainment — opened Buddhist soteriology to laypeople and became one of the most widespread forms of Buddhist practice in the world.</p>
+<p>PÚNYCODEX restores the name as <strong>Amitābha</strong> and serves its temple at <a href="https://xn--amitbha-v3a.com">amitābha.com</a>. The restoration preserves the long medial ā of the Sanskrit compound <em>a-mita-ābha</em>; it is the single historically valid Unicode form, which places the name in Tier 1. The plain ASCII <em>amitabha</em> is a modern convenience of the early domain-name system, not an attested ancient spelling.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Devanagari as <strong>अमिताभ</strong> (IAST <em>amitābha</em>; nominative singular <em>amitābhaḥ</em>). It is a <em>bahuvrīhi</em> compound — a possessive formation meaning &#39;whose X is Y&#39; — built from <em>a-mita</em>, &#39;unmeasured, boundless&#39; (the root <em>mā</em>, &#39;to measure,&#39; with the privative prefix <em>a-</em>), and <em>ābha</em> (feminine <em>ābhā</em>), &#39;light, splendour&#39;: literally, &#39;whose light is unmeasured.&#39; Monier-Williams records the adjective as an older Purāṇic epithet; in Buddhist Hybrid Sanskrit the name designates the Buddha of the western paradise Sukhāvatī and is used interchangeably with Amitāyus, &#39;Measureless Life.&#39;</p>
+<p>The ASCII form <em>amitabha</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Amitābha</strong> recovers the long ā of the compound directly in the address bar. Because the medial ā is long, exactly one historically valid restoration exists — the basis of the name&#39;s Tier 1 classification.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>a</strong> → <strong>A</strong> — Same, capitalized</li>
+  <li><strong>m</strong> → <strong>m</strong> — Same</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+  <li><strong>t</strong> → <strong>t</strong> — Same</li>
+  <li><strong>a</strong> → <strong>ā</strong> — Long vowel</li>
+  <li><strong>b</strong> → <strong>b</strong> — Same</li>
+  <li><strong>h</strong> → <strong>h</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+</ul>
+<p>The project holds the domain <strong>amitābha.com</strong> (xn--amitbha-v3a.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Devanagari as <strong>अमिताभ</strong> — Brahmic abugida, attested Classical Sanskrit, c. 500 BCE – 500 CE, in India / Gandhāra. The script is written left-to-right.</p>
+<p>The scholarly transliteration is <em>Amitābha</em> (IAST), giving the normalized reading /ə.mɪˈtɑː.bʱə/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>Sanskrit Amitābha is written अमिताभ in Devanagari: अ (a) + मि (mi) + ता (tā) + भ (bha).</li>
+  <li>The compound is a-mita (&#39;unmeasured&#39;) + ābha (&#39;light, splendor&#39;), hence &#39;of unmeasured splendor, infinite light&#39;.</li>
+  <li>IAST encodes vowel length with the macron (ā) and aspiration with the digraph bh for the voiced aspirate [bʱ].</li>
+  <li>The Unicode restoration Amitābha is registrable in .com; the Devanagari form is not supported in the .com IDN table.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/ə.ˈmɪ.taː.bʱə/</strong> — Sanskrit Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>A-</strong> — Short open vowel [ə], the privative prefix <em>a-</em>, &#39;without, un-&#39;</li>
+  <li><strong>-mi-</strong> — Short close front [ɪ] with voiced bilabial nasal [m]; from the root <em>mā</em>, &#39;to measure,&#39; so that <em>a-mita</em> means &#39;unmeasured, boundless&#39;</li>
+  <li><strong>-tā-</strong> — Long open [aː]; the first vowel of <em>ābha</em>, &#39;light, splendour,&#39; whose length the macron preserves</li>
+  <li><strong>-bha</strong> — Voiced aspirated bilabial stop [bʱ] with short [ə]; <em>bhā</em> is the Sanskrit root &#39;to shine&#39;</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;uh-MEE-tah-bhuh&#39; — the &#39;bh&#39; is aspirated like &#39;b-huh&#39; in one sound; the &#39;tā&#39; is held long.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Sanskrit</strong> — अमिताभ (amitābha), &#39;of unmeasured splendour, infinite light&#39;</li>
+  <li><strong>Prakrit</strong> — <em>Amidā&#39;a (or </em>Amidāha), the Middle Indo-Aryan form proposed as the source of the earliest Chinese transliterations</li>
+  <li><strong>Chinese</strong> — 阿彌陀佛 (modern standard Ēmítuófó, commonly Āmítuófó), &#39;the Buddha Amitābha,&#39; central to Pure Land devotion</li>
+  <li><strong>Japanese</strong> — Amida (Amida Butsu), whence the invocation <em>Namu Amida Butsu</em></li>
+  <li><strong>Tibetan</strong> — &#39;Od dpag med (Öpakmé), &#39;Immeasurable Light&#39;</li>
+</ul>
+<p>Amitābha is Tier 1 because the medial ā is long. The name is a standard Sanskrit bahuvrīhi compound: a-mita (&#39;unmeasured&#39;) + ābha (&#39;light, splendor&#39;). In East Asian Buddhism he is also known as Amitāyus, &#39;Infinite Life,&#39; the two names emphasizing light and longevity; Tibetan tradition, by contrast, distinguishes Amitābha from Amitāyus iconographically.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Amitābha&#39;s mythology is the story of a vow. In the <em>Larger Sukhāvatīvyūha Sūtra</em> the bodhisattva monk Dharmākara — in some recensions a king who abdicated after hearing the Buddha Lokeśvararāja — spent five aeons (<em>kalpas</em>) contemplating the qualities of all Buddha-fields, then pronounced a series of vows, forty-eight in the standard Chinese version, pledging not to accept Buddhahood unless every one was fulfilled.</p>
+<h3 id="the-eighteenth-vow-larger-sukhavativyuha-sutra">The Eighteenth Vow (Larger Sukhāvatīvyūha Sūtra)</h3>
+<p>The eighteenth vow, called the &#39;original&#39; or &#39;fundamental&#39; vow in East Asian Pure Land, is the foundation of the cult: beings of the ten directions who sincerely entrust themselves to him, desire birth in his land, and call him to mind even ten times will be reborn in Sukhāvatī — &#39;excluded, however, are those who commit the five grave offences and abuse the right Dharma.&#39; Pure Land interpreters, above all the Chinese master Shàndǎo, read the vow together with the Contemplation Sūtra, which closes the gap: even a person guilty of the five grave offences who, at the moment of death, sincerely calls the name ten times is received into a lotus bud in Sukhāvatī. Having fulfilled his vows, Dharmākara attained Buddhahood as Amitābha — the sūtra dates his enlightenment to ten aeons ago — and his land has welcomed beings from every direction since.</p>
+<h3 id="the-contemplation-of-sukhavati-amitayurdhyana-sutra">The Contemplation of Sukhāvatī (Amitāyurdhyāna Sūtra)</h3>
+<p>The <em>Amitāyurdhyāna Sūtra</em> is addressed to Queen Vaidehī, imprisoned by her son Ajātaśatru. In her despair she asks the Buddha to show her a land without sorrow; he teaches sixteen contemplations — the setting sun, the water of the west, lapis-lazuli ground, jewelled trees, and finally the vision of Amitābha enthroned between the bodhisattvas Avalokiteśvara and Mahāsthāmaprāpta.</p>
+<h3 id="amitabha-in-the-wider-sutra-literature">Amitābha in the wider sūtra literature</h3>
+<p>The <em>Saddharmapuṇḍarīka</em> (Lotus Sūtra) knows Amitābha&#39;s paradise: in the Medicine King chapter (chapter 23 of the Sanskrit text) a woman who receives the sūtra is promised rebirth in Sukhāvatī, the realm of the Tathāgata Amitāyus. The Larger Sūtra itself names Avalokiteśvara and Mahāsthāmaprāpta as Amitābha&#39;s two attendant bodhisattvas — the kernel of the later East Asian Amitābha triad.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography of Amitābha concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>Dhyāna mudrā</strong> — The seated meditation gesture, hands resting in the lap, the posture of the Great Buddha of Kamakura; standing images instead show the &#39;welcoming&#39; gesture (<em>raigō</em>), hands poised to escort the dying to Sukhāvatī.</li>
+  <li><strong>Red or crimson body</strong> — The colour of sunset, compassion, and the western direction; in the esoteric system of the five Buddha-families Amitābha heads the lotus (<em>padma</em>) family of the west.</li>
+  <li><strong>Lotus throne</strong> — Purity and the transcendence of ordinary existence; beings are born into Sukhāvatī fully formed upon lotus blossoms.</li>
+  <li><strong>Amitāyus vase</strong> — The vessel of the nectar of immortality held by his long-life form Amitāyus, especially in Himalayan art.</li>
+  <li><strong>Śrīvatsa on the chest</strong> — The auspicious mark of a Buddha&#39;s body, rendered in East Asia as a swastika and in Tibet as an endless knot, emblematic here of the boundless continuity of his vows.</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>The earliest epigraphic witness to the cult is the inscribed pedestal of a Buddha image from Govindnagar, Mathura, now in the Government Museum, Mathura. Dated to the twenty-sixth regnal year of the Kuṣāṇa king Huviṣka — the second century CE — it records the dedication of an image of &#39;the Blessed One, the Buddha Amitābha&#39; by a family of merchants, for the worship of all buddhas and the awakening of all beings; Gregory Schopen&#39;s study of the inscription remains the standard treatment. From Greater Gandhāra comes the celebrated second-to-third-century relief of &#39;Amitābha preaching in Sukhāvatī&#39; excavated at Muḥammad Nārī, now in the Government Museum and Art Gallery, Chandigarh.</p>
+<p>The cult&#39;s eastward trail is monumental. The earliest dated Amitābha image in China is a Longmen niche of 519 CE; the Mogao caves at Dunhuang preserve dozens of Tang-dynasty &#39;Western Pure Land&#39; transformation tableaux (<em>jìngtǔ biàn</em>); and in Japan the gilt-wood Amida of the Phoenix Hall at Byōdō-in (1053) and the bronze Great Buddha of Kamakura (c. 1252) testify to a further millennium of devotion.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p><strong>Amitābha</strong> is the Buddha whose light has no limit and whose compassion refuses no one. In Mahāyāna Buddhism, especially the Pure Land traditions of East Asia, he presides over Sukhāvatī, the Blissful Land, a paradise where rebirth guarantees progress toward Buddhahood. He did not attain this realm for himself alone; as the monk Dharmākara he made forty-eight vows, promising that anyone who called his name with sincere faith would be welcomed into his land.</p>
+<p>His cult transformed Buddhism from a primarily monastic path of self-cultivation into a devotional religion accessible to laypeople, sinners, and the spiritually exhausted. For many millions, the name Amitābha is itself the practice.</p>
+<h3 id="sukhavati">Sukhāvatī</h3>
+<p>The Pure Land of Bliss, a paradise of jewelled trees, lotus ponds, and ceaseless Dharma teaching, described in loving detail in the Smaller Sūtra.</p>
+<h3 id="the-forty-eight-vows">The Forty-Eight Vows</h3>
+<p>As Dharmākara he vowed that all beings — even, by the tradition&#39;s boldest reading, those with heavy karma — could be reborn in Sukhāvatī through faith and name-recitation.</p>
+<h3 id="nembutsu-nianfo">Nembutsu / Niànfó</h3>
+<p>The invocation of his name — &#39;Namo Amitābhāya,&#39; Chinese <em>Namo Amituofo,</em> Japanese <em>Namu Amida Butsu</em> — becomes the central practice of Pure Land devotion.</p>
+<h3 id="welcoming-descent">Welcoming Descent</h3>
+<p>At death he descends with his bodhisattva retinue to escort the faithful to Sukhāvatī, the <em>raigō</em> scene painted and meditated upon across East Asia.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Amitābha became the central Buddha of Pure Land devotion across East Asia under local renderings of the same Sanskrit name — Chinese Ēmítuófó (commonly Āmítuófó), Korean Amit&#39;a-bul, Japanese Amida, Vietnamese A Di Đà Phật — transmitted with his sūtras along the Silk Road from the Kuṣāṇa realm of Gandhāra, where the cult and the Amitābha triad first took artistic form. In China his attendant bodhisattva Avalokiteśvara was transformed into <a href="/sites/guanyin/">Guanyin</a>, the most beloved bodhisattva of the East Asian pantheon.</p>
+<p>In Japan the Tendai monk Hōnen (1133–1212) and his disciple Shinran (1173–1263) made exclusive reliance on Amida&#39;s vow an independent path. The <em>Tannishō</em>, the record of Shinran&#39;s sayings, teaches that the nembutsu saves &#39;even the good person, how much more the evil one&#39; (<em>akunin shōki</em>): birth in the Pure Land depends on Amida&#39;s Other-power (<em>tariki</em>), not on the practitioner&#39;s self-power (<em>jiriki</em>).</p>
+<p>In Tibetan Buddhism Amitābha is one of the Five Tathāgatas, heading the lotus family of the west, red in colour, with the seed-syllable hrīḥ; he is invoked in the <em>phowa</em> practice that transfers consciousness to Sukhāvatī at death, and the Panchen Lamas and Shamar Rinpoches are held to be his emanations. Tibetan lay devotion commonly reveres Amitābha, Avalokiteśvara, and Padmasambhava as three bodies of a single Buddha.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Pure Land devotion centred on Amitābha is one of the largest living forms of Buddhism. Recollection of the name (<em>niànfó</em> in Chinese, <em>nembutsu</em> in Japanese) is practised across the East Asian schools, and the Japanese denominations descended from Hōnen and Shinran — Jōdo-shū and Jōdo Shinshū — grew into the largest Buddhist tradition in Japan. The invocation itself became an icon: a celebrated Heian-period statue of the itinerant monk Kūya shows six small Amida figures issuing from his mouth, one for each syllable of <em>Namu Amida Butsu</em>.</p>
+<p>His images anchor some of East Asia&#39;s most visited monuments: the gilt-wood Amida of the Phoenix Hall at Byōdō-in, carved by the sculptor Jōchō in 1053, and the bronze Great Buddha of Kamakura at Kōtoku-in, cast about 1252, which is an Amida. The <em>raigō-zu</em> paintings of Amida descending with his bodhisattva retinue to meet the dying — among them the Japanese National Treasure &#39;Descent of Amida and the Twenty-five Bodhisattvas&#39; — belong to the canon of East Asian art. In the West, Zen and Tibetan Buddhism long received more scholarly attention, but the devotional Buddhism of Amitābha remains the everyday religion of households across East Asia.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Amitābha given in this edition rests on the witnesses and reference works listed below. The lexica secure the form and meaning of the name; the sūtras supply the narrative evidence; the modern studies cover the epigraphy, the Chinese transmission, the iconography, and the Japanese tradition.</p>
+<ul>
+  <li> Monier-Williams, Monier, A Sanskrit-English Dictionary (Oxford: Clarendon Press, 1899), s.v. amitābha.</li>
+  <li> Edgerton, Franklin, Buddhist Hybrid Sanskrit Grammar and Dictionary, vol. 2: Dictionary (New Haven: Yale University Press, 1953), s.v. amitābha.</li>
+  <li> Larger Sukhāvatīvyūha Sūtra — Sanskrit and Chinese versions in Gómez, Luis O., trans., The Land of Bliss: The Paradise of the Buddha of Measureless Light (Honolulu: University of Hawai&#39;i Press, 1996).</li>
+  <li> Smaller Sukhāvatīvyūha Sūtra — Chinese translations by Kumārajīva (T. 366) and Xuanzang (T. 367); English translation in Gómez 1996.</li>
+  <li> Amitāyurdhyāna Sūtra (Contemplation Sūtra, T. 365).</li>
+  <li> Kern, H., trans., Saddharma-Puṇḍarīka, or The Lotus of the True Law, Sacred Books of the East 21 (Oxford: Clarendon Press, 1884).</li>
+  <li> Schopen, Gregory, &#39;The Inscription on the Kuṣāṇ Image of Amitābha and the Character of the Early Mahāyāna in India,&#39; Journal of the International Association of Buddhist Studies 10 (1987).</li>
+  <li> Harrison, Paul, &#39;The Earliest Chinese Translations of Mahāyāna Buddhist Sūtras: Some Notes on the Works of Lokakṣema,&#39; Buddhist Studies Review 10 (1993).</li>
+  <li> Getty, Alice, The Gods of Northern Buddhism (Oxford: Clarendon Press, 1914).</li>
+  <li> Dobbins, James C., Jōdo Shinshū: Shin Buddhism in Medieval Japan (Bloomington: Indiana University Press, 1989).</li>
+  <li> Payne, Richard K., and Kenneth K. Tanaka, eds., Approaching the Land of Bliss: Religious Praxis in the Cult of Amitābha (Honolulu: University of Hawai&#39;i Press, 2004).</li>
+  <li> Buswell, Robert E., ed., Encyclopedia of Buddhism (New York: Macmillan Reference, 2004), s.v. &#39;Amitābha&#39; and &#39;Pure Land Buddhism.&#39;</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>In the Pure Land understanding, Amitābha is the Buddha who lowered the ladder. Where other paths ask the practitioner to climb by disciplined effort — &#39;self-power&#39; — his vow undertakes to lift any being who turns toward him in faith, a reliance the Japanese tradition calls &#39;Other-power&#39; (<em>tariki</em>). The practice that embodies this turn is deliberately minimal: recollecting the Buddha and calling his name, an exercise open to the old, the busy, the unlettered, and the morally burdened — precisely those whom monastic cultivation leaves out.</p>
+<p>Pure Land writers insist the name is no mere label but the form in which Amida&#39;s wisdom and compassion become present to ordinary beings; to say it is to admit limitation and to accept grace in the same breath. The light the name invokes is not earned; it simply shines, and the practice is the turning toward it.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Amitābha is classified as <strong>Tier 1</strong>: the original carries both stress and length, and only one valid Unicode restoration exists. The ASCII fallback <em>amitabha</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 8 characters of the name, the restoration adjusts 1: 1 mark of length (ā). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>amitābha.com</strong>, which the DNS carries in punycode form as xn--amitbha-v3a.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Amitābha; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Devanagari can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Every stage of the journey from Devanagari to Unicode was an act of care: the scribe who first wrote the name, the lexicographer who glossed it, the engineer who taught the DNS to carry it. The PÚNYCODEX restoration is the latest stage, not the last word — the Scholarly Edition is revised as the evidence improves. What does not change is the principle: a name deserves to be written the way its own tradition wrote it. <strong>Amitābha</strong> in the address bar is that principle, made routable.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/ratnasambhava/">Ratnasambhava</a></li>
   <li><a href="/sites/tara/">Tārā</a></li>
   <li><a href="/sites/vasubandhu/">Vasubandhu</a></li>
 </ul>
-<h2>Further Reading</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
-  <li><a href="https://www.buddhistdoor.net/">Scholarly reference</a></li>
+  <li>Buswell, Robert E., ed., Encyclopedia of Buddhism (New York: Macmillan Reference, 2004), s.v. &#39;Amitābha&#39; and &#39;Pure Land Buddhism&#39;.</li>
+  <li>Monier-Williams, Monier, A Sanskrit-English Dictionary (Oxford: Clarendon Press, 1899), s.v. amitābha.</li>
+  <li>Larger Sukhāvatīvyūha Sūtra, trans. Luis O. Gómez in The Land of Bliss (Honolulu: University of Hawai&#39;i Press, 1996).</li>
+  <li>Edgerton, Franklin, Buddhist Hybrid Sanskrit Grammar and Dictionary, vol. 2: Dictionary (New Haven: Yale University Press, 1953), s.v. amitābha.</li>
+  <li>Lexicon authorities for this entry: Sukhavati-vyuha, Buddhist texts.</li>
 </ul>
-<h2>The Name in Context</h2>
-<p>Amitābha (Sanskrit अमिताभ, amitābha, &#39;Measureless Light&#39;) is the celestial Buddha who presides over Sukhāvatī, the &#39;Land of Bliss&#39; — the most widely venerated Buddha of East Asian Buddhism and the central figure of the Pure Land traditions. The word is older than the cult: Monier-Williams records amitābha as an adjective, &#39;of unmeasured splendour,&#39; applied in the plural to certain deities of the eighth Manvantara in the Viṣṇu Purāṇa; Buddhist usage turns it into a proper name, equivalent and interchangeable with Amitāyus, &#39;Measureless Life.&#39; According to the Larger Sukhāvatīvyūha Sūtra, the bodhisattva monk Dharmākara — in some recensions a king who abdicated his throne — resolved before the Buddha Lokeśvararāja to create the finest of all...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Amitābha as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Devanagari to the modern browser. Every visit to this temple is a small act of preservation.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">buddhist</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

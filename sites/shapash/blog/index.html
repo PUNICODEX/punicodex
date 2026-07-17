@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,39 +170,198 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>The Hidden History Behind Šāpšu</h1>
-<p>Behind the modern ASCII <em>shapash</em> hides a longer story. The name is attested in Phoenician as 𐤔𐤐𐤔. Etymologically it means &quot;The sun&quot;. The ASCII form shapash survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Šāpšu recovers the vowel length of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The letter-by-letter transformation runs: - s → Š — Special character - h → — — Dropped - a → ā — Long vowel - p → p — Same - a → š — Special character - s → u — Special character - h → — — Dropped The project holds the domain šāpšu.com (xn--pu-cla79ac.com) as the canonical home of this name. That history reaches back through manuscripts, inscriptions, and oral traditions before it ever reached a keyboard.</p>
-<h2>Etymology</h2>
-<p>The deeper roots of Šāpšu are still debated among specialists.  The traditional gloss is &quot;The sun.&quot;</p>
-<h2>In Myth</h2>
-<p>Šāpshu&#39;s mythology is woven through the Baal Cycle and Ugaritic ritual texts. She does not fight like Anat or Baal; she illuminates, witnesses, and transmits divine will. Her descent into the underworld marks the boundary between day and night, life and death. These narratives are not dusty footnotes; they are the reason the name acquired its resonance.</p>
-<h2>Across Cultures</h2>
-<p>Šāpshu corresponds to the Mesopotamian Shamash and the later Aramaic/Achaemenid Mithra as a solar deity of justice and oath. She also overlaps with the Egyptian Hathor in her role as a cow or sun-goddess who guides the dead. In the Hebrew Bible, the common noun šemeš (&#39;sun&#39;) is never personified as a goddess, but the Ugaritic evidence shows that Northwest Semitic peoples once knew the sun as female. The winged sun disk of Phoenician and Israelite iconography may carry echoes of her protective radiance. Kindred figures in the PÚNYCODEX cross-tradition index include [[apollon|Apóllōn]], [[dazhbog|Dažbog]], [[helios|Hēlios]], [[huitzilopochtli|Huitzilopōchtli]], [[ra|Rꜥ]], and [[shamash|Šamaš]], each linked through sun / light. Names travel, adapt, and accumulate meanings. Tracking that travel is part of what makes the restoration worthwhile.</p>
-<h2>The Unicode Decision</h2>
-<p>Restoring Šāpšu is not an aesthetic choice. It is a decision to honor the name as attested rather than the name as flattened by ASCII. That choice is documented in the <a href="/sites/shapash/scholars/">Scholarly Edition</a> and defended by the sources below.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Šāpšu is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>The hidden history behind Šāpšu</h1>
+<p>Behind the modern ASCII form <em>shapash</em> hides a much longer story. <strong>Šāpšu</strong> reaches back through manuscripts, inscriptions, and oral tradition long before it ever touched a keyboard, and every mark in the restored spelling is a receipt from that journey. In what follows we trace the name from its Phoenician attestations through its mythology, its cult, its symbols, and its afterlife in other cultures — and we show how the PÚNYCODEX project turned that philological record into a Unicode domain that resolves today. The history was never lost. It was only waiting for the infrastructure to catch up.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Šāpšu</li>
+  <li><strong>ASCII form:</strong> shapash</li>
+  <li><strong>Meaning:</strong> &quot;The sun&quot;</li>
+  <li><strong>Domain of influence:</strong> Sun</li>
+  <li><strong>Pantheon:</strong> Phoenician</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> 𐤔𐤐𐤔 (Phoenician)</li>
+  <li><strong>Live domain:</strong> šāpšu.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Šāpšu</strong> (<em>shapash</em>) — Sun · The sun — belongs to the Phoenician tradition, where it is catalogued under the domain &quot;Sun&quot;. The name means &quot;The sun&quot;.</p>
+<p><strong>Šāpšu</strong> is the sun goddess of Ugarit and Phoenicia, the brilliant torch that travels across the sky and descends into the underworld at evening. Unlike the male sun gods of Egypt and Mesopotamia, Šāpshu is female — the &#39;luminary of the gods&#39; (<em>nrt ʾilm špš</em>) who sees everything and speaks with divine authority to gods and mortals alike. Her light exposes lies, guides the dead, and warms the fields of the Levant.</p>
+<p>PÚNYCODEX restores the name as <strong>Šāpšu</strong> and serves its temple at <a href="https://xn--pu-cla79ac.com">šāpšu.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>shapash</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Phoenician as <strong>𐤔𐤐𐤔</strong>. Etymologically it means &quot;The sun&quot;.</p>
+<p>The ASCII form <em>shapash</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Šāpšu</strong> recovers the vowel length of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>s</strong> → <strong>Š</strong> — Special character</li>
+  <li><strong>h</strong> → <strong>—</strong> — Dropped</li>
+  <li><strong>a</strong> → <strong>ā</strong> — Long vowel</li>
+  <li><strong>p</strong> → <strong>p</strong> — Same</li>
+  <li><strong>a</strong> → <strong>š</strong> — Special character</li>
+  <li><strong>s</strong> → <strong>u</strong> — Special character</li>
+  <li><strong>h</strong> → <strong>—</strong> — Dropped</li>
+</ul>
+<p>The project holds the domain <strong>šāpšu.com</strong> (xn--pu-cla79ac.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Phoenician as <strong>𐤔𐤐𐤔</strong> — Phoenician alphabet, attested Phoenician, c. 1050–800 BCE, in Levant / Mediterranean. The script is written right-to-left.</p>
+<p>The scholarly transliteration is <em>Šāpšu</em> (Phoenician linear alphabet), giving the normalized reading /ˈʃaːp.ʃu/.</p>
+<p>Sign by sign, the name runs:</p>
+<ul>
+  <li><strong>𐤔</strong> — <em>šīn</em> /š/ — voiceless postalveolar fricative, the &#39;sh&#39; of the Semitic alphabet</li>
+  <li><strong>𐤐</strong> — <em>pē</em> /p/ — voiceless bilabial stop</li>
+  <li><strong>𐤔</strong> — <em>šīn</em> /š/ — the second fricative of the stem</li>
+</ul>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>Phoenician writing records consonants only; the abjad spells š-p-š, and the vowels are supplied from the cognate noun traditions.</li>
+  <li>The lexeme is the common Semitic word for &#39;sun&#39;: Ugaritic writes špš in alphabetic cuneiform, while Iron Age Phoenician inscriptions also attest the form šmš — as in the Karatepe bilingual&#39;s šmš ʿlm, &#39;the eternal Sun&#39;. Hebrew šemeš and Akkadian šamšu preserve the same word with -m-.</li>
+  <li>The macron over <strong>ā</strong> marks the long vowel of the feminine noun; the final <strong>-u</strong> is the nominative case vowel of the divine name in Ugaritic-style vocalization.</li>
+  <li>The Unicode restoration Šāpšu is registrable in .com; the Phoenician script is not in the .com IDN table.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/ʃaːpˈʃuː/</strong> — Ugaritic/Phoenician Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Š</strong> — Voiceless postalveolar fricative [ʃ], like English &#39;sh&#39;</li>
+  <li><strong>ā</strong> — Long open vowel [aː] in the first syllable, marked with macron</li>
+  <li><strong>p</strong> — Voiceless bilabial plosive [p]</li>
+  <li><strong>š</strong> — Second voiceless postalveolar fricative [ʃ], forming the reduplicated element of the name</li>
+  <li><strong>u</strong> — Close back rounded vowel [u], the final syllable in the nominative form Šāpšu</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: SHAHPSHOO — the first syllable is long, and the name ends in a bright, rounded &#39;oo&#39; like &#39;shoe.&#39;</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Ugaritic</strong> — 𐎌𐎔𐎌 (špš), the sun goddess in alphabetic cuneiform</li>
+  <li><strong>Phoenician</strong> — 𐤔𐤐𐤔 (špš), invoked in inscriptions across the Phoenician world</li>
+  <li><strong>Hebrew</strong> — שֶׁמֶשׁ (šemeš), the common Semitic word for sun</li>
+</ul>
+<p>Šāpšu is a Tier-2 macron restoration. The long ā is the preserved non-English feature. The Ugaritic name is conventionally vocalized Šapšu or Šāpšu; the final u reflects the nominative case ending common in scholarly transliteration.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Šāpšu&#39;s mythology is woven through the Baꜥal Cycle and the ritual texts of Ugarit. She does not fight like ꜥAnat or rule like Ēl; she illuminates, searches, and bears witness. Because her course crosses the sky by day and the underworld by night, she is the one deity equally at home among the living and the dead.</p>
+<h3 id="the-search-for-the-dead-baal-ktu-1-6-iii-iv">The Search for the Dead Baal (KTU 1.6 iii–iv)</h3>
+<p>When Baꜥal lies dead in the realm of <a href="/sites/mot/">Mōt</a>, Ēl dreams that the heavens rain oil and the wadis run with honey — a sign that the storm-god lives. Through ꜥAnat he appeals to Šāpšu, the &#39;luminary of the gods&#39; (<em>nrt ʾilm špš</em>): the furrows of the fields have dried up, and Baꜥal must be found. Šāpšu ranges the parched countryside until the storm-god is restored, her light accomplishing what force of arms could not.</p>
+<h3 id="the-rebuke-of-mot-ktu-1-6-vi-22-29">The Rebuke of Mot (KTU 1.6 vi 22–29)</h3>
+<p>In the final duel, when Baꜥal and Mōt fight like bulls and stallions with neither prevailing, it is Šāpšu who ends the contest. She warns Mōt that the Bull Ēl his father will hear, and will overturn the throne of his kingship; Mōt is afraid and yields, and Baꜥal&#39;s rule stands — restored not by strength but by the goddess who sees and speaks.</p>
+<h3 id="the-closing-hymn-and-the-funerary-lamp-ktu-1-6-vi-42-54-1-161">The Closing Hymn and the Funerary Lamp (KTU 1.6 vi 42–54; 1.161)</h3>
+<p>The Baꜥal Cycle ends not with Baꜥal but with a hymn to Šāpšu: &#39;Šāpšu, you rule the Rephaim; Šāpšu, you rule the divine ones. The gods are your company; behold, the dead are your company.&#39; The royal funerary liturgy KTU 1.161 gives her the corresponding ritual role, escorting the dead king of Ugarit down to his rest among the Rapiʾūma, the deified ancestors.</p>
+<p>The Cycle&#39;s sun has a darker edge as well: in a much-debated passage (KTU 1.6 ii) the sun is called upon as the &#39;scorcher of the heavens&#39; in connection with Mōt&#39;s power — a reminder that the Levantine sun both ripens and kills.</p>
+<h3 id="sapshu-warns-baal-baal-cycle">Šāpshu Warns Baal (Baal Cycle)</h3>
+<p>In KTU 1.4, when Baal&#39;s enemies plot against him, Šāpshu sees their schemes and warns the storm god. Her all-seeing light makes her the divine intelligence network of the pantheon: nothing done in darkness escapes her. She is loyal to Baal and helps preserve the order he establishes after defeating Yām.</p>
+<h3 id="the-sun-s-descent-into-the-underworld-funerary-text">The Sun&#39;s Descent into the Underworld (Funerary Text)</h3>
+<p>Ugaritic and later Phoenician texts describe Šāpshu descending at evening to the land of the dead, lighting the way for the rpum (shades or ancestors). Her nightly journey links her to the Mesopotamian sun god Shamash and the Greek Helios, though she remains distinctively Levantine and female.</p>
+<h3 id="sapshu-the-judge-hymn">Šāpshu the Judge (Hymn)</h3>
+<p>A Ugaritic hymn invokes Šāpshu as the one who judges the case of the widow, the orphan, and the poor. Like the Babylonian Shamash, she is a divine guarantor of social justice because her light exposes wrongdoing. Kings and litigants alike are called to swear by her, knowing that she sees all.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>No cult statue of Šāpšu is known: her image is the sky itself, and the Levantine tradition rarely gave the sun a human face. The recurring motifs are these:</p>
+<ul>
+  <li><strong>Winged solar disk</strong> — the dominant sun-symbol of Iron Age glyptic, stamped on Phoenician and Israelite seals, scarabs, and jar-stamps; its outspread wings shade king and land beneath</li>
+  <li><strong>Torch or lamp</strong> — her standing Ugaritic title <em>nrt ʾilm špš</em>, &#39;Šāpšu, lamp of the gods&#39;, makes the sun the sanctuary-light of heaven</li>
+  <li><strong>Horses and chariot of the sun</strong> — the royal Judahite cult kept &#39;the horses of the sun&#39; and &#39;the chariots of the sun&#39; at the temple entrance until Josiah removed and burned them (2 Kings 23:11)</li>
+  <li><strong>The all-seeing eye</strong> — not an image but a function: because nothing escapes her light, treaties and curses call the sun as witness, as the Karatepe bilingual calls šmš ʿlm, &#39;the eternal Sun&#39;</li>
+</ul>
+<ul>
+  <li><strong>Solar disk with rays</strong> — The sun&#39;s body and the light that penetrates every hidden corner</li>
+  <li><strong>Upraised hand or winged sun</strong> — The protective solar presence common in Phoenician and Aramaean iconography</li>
+  <li><strong>Boat or chariot</strong> — The vehicle that carries her across the day sky and through the underworld at night</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>The textual witnesses are rich and the architectural ones absent. The alphabetic tablets of Ras Shamra preserve her titles, her speeches in the Baꜥal Cycle, the closing hymn of KTU 1.6, and the royal funerary liturgy KTU 1.161 in which she escorts the dead king; ritual texts assign her offerings. No temple dedicated to Šāpšu has been securely identified, at Ugarit or elsewhere — like the sun she embodies, her cult seems to have needed no house. Her emblem, the winged solar disk, is nonetheless among the most common motifs of Iron Age Levantine glyptic, stamped on seals, scarabs, and jar-handles from Phoenicia to Judah, and the top register of the tenth-century cult stand from Taanach sets a quadruped beneath a winged sun. Epigraphically, the Karatepe bilingual invokes šmš ʿlm, &#39;the eternal Sun&#39;, among the divine witnesses of its closing curse.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p><strong>Šāpšu</strong> is the sun goddess of Ugarit and Phoenicia, the brilliant torch that travels across the sky and descends into the underworld at evening. Unlike the male sun gods of Egypt and Mesopotamia, Šāpshu is female — the &#39;luminary of the gods&#39; (<em>nrt ʾilm špš</em>) who sees everything and speaks with divine authority to gods and mortals alike. Her light exposes lies, guides the dead, and warms the fields of the Levant.</p>
+<h3 id="the-solar-torch">The Solar Torch</h3>
+<p>She is called &#39;Šāpšu the Torch&#39; and &#39;the Luminary of the Gods&#39; in Ugaritic hymns.</p>
+<h3 id="all-seeing-eye">All-Seeing Eye</h3>
+<p>Her light reveals hidden crimes and exposes those who break oaths before the gods.</p>
+<h3 id="guide-of-the-dead">Guide of the Dead</h3>
+<p>She descends into the underworld and leads the shades of the dead to their rest.</p>
+<h3 id="messenger-of-el">Messenger of El</h3>
+<p>She carries the decrees of the high god across heaven, earth, and the realm below.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Šāpshu corresponds to the Mesopotamian Shamash and the later Aramaic/Achaemenid Mithra as a solar deity of justice and oath. She also overlaps with the Egyptian Hathor in her role as a cow or sun-goddess who guides the dead. In the Hebrew Bible, the common noun šemeš (&#39;sun&#39;) is never personified as a goddess, but the Ugaritic evidence shows that Northwest Semitic peoples once knew the sun as female. The winged sun disk of Phoenician and Israelite iconography may carry echoes of her protective radiance.</p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include [[apollon|Apóllōn]], [[dazhbog|Dažbog]], [[helios|Hēlios]], [[huitzilopochtli|Huitzilopōchtli]], [[ra|Rꜥ]], and [[shamash|Šamaš]], each linked through sun / light.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Her name survived by becoming a noun. Hebrew šemeš is simply &#39;the sun&#39; — grammatically feminine, like the Ugaritic goddess, but emptied of cult; the biblical polemics against sun worship are intelligible only because the cult existed, as Josiah&#39;s removal of the sun-horses and Ezekiel&#39;s vision of men bowing eastward at the temple attest. The imagery refused to stay buried: Malachi&#39;s promise of a &#39;sun of righteousness&#39; rising &#39;with healing in its wings&#39; (Malachi 4:2) — itself an heir of the winged solar disk — was read by the church fathers as a prophecy of Christ, carrying West Semitic solar theology into Christian liturgy and art.</p>
+<p>In modern scholarship Šāpšu has become a case study in the variety of ancient solar religion: she can appear as benevolent guide of the dead and, in the debated &#39;scorcher&#39; passages, as a dangerous drought-bringing power; and her unambiguously female gender — against the male suns of Egypt, Mesopotamia, and Greece — makes her a standard counterexample in the history of religion. Feminist scholarship and Neopagan practice have reclaimed her accordingly, as a figure of clarity and witness.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Šāpšu given in this edition rests on the witnesses and reference works listed below. The alphabetic corpus of Ugarit supplies the primary evidence — the Baꜥal Cycle, its closing hymn, the royal funerary liturgy KTU 1.161, and the ritual texts; the epigraphic corpora and the modern studies of Canaanite religion supply the framework in which that evidence is read.</p>
+<ul>
+  <li> KTU 1.4 and related Ugaritic texts (Šāpshu in the Baal Cycle).</li>
+  <li> Coogan, Stories from Ancient Canaan.</li>
+  <li> Smith, The Ugaritic Baal Cycle.</li>
+  <li> Wyatt, Religious Texts from Ugarit.</li>
+  <li> Pardee, Ritual and Cult at Ugarit (KTU 1.161 and the cultic texts).</li>
+  <li> CIS (Corpus Inscriptionum Semiticarum).</li>
+  <li> Day, Yahweh and the Gods and Goddesses of Canaan.</li>
+  <li> Wikander, Drought, Death, and the Sun in Ugarit and Ancient Israel.</li>
+  <li> Lipiński, Resheph: A Syro-Canaanite Deity.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Šāpshu is the light that makes accountability possible. She does not strike like lightning; she simply sees, and in seeing, exposes. In a world of misinformation and hidden agendas, she reminds us that transparency is a sacred value. To invoke her is to ask that our own actions stand up to the light — not because we fear punishment, but because we wish to live in truth.</p>
+<p>She is also the creature of the threshold. Every evening she descends among the dead, and every morning she returns with the day; the Ugaritic liturgies trusted her to guide kings into the company of the ancestors, and the Baꜥal Cycle ends by giving her rule over both the gods and the shades. To contemplate Šāpšu is to accept that clarity has a price: the same light that exposes lies also ripens the field and, in the parched season, burns it. Her fidelity is to the truth of things rather than to our comfort — which is precisely why the texts trust her to carry the dead home.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Šāpšu is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>shapash</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 7 characters of the name, the restoration adjusts 6: 1 mark of length (ā); 5 further adjustments (Š, h, š, u, h). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>shapash</em> to <strong>Šāpšu</strong>, one character at a time:</p>
+<ul>
+  <li><strong>s</strong> → <strong>Š</strong> — Special character</li>
+  <li><strong>h</strong> → <strong>h</strong> — Dropped</li>
+  <li><strong>a</strong> → <strong>ā</strong> — Long vowel</li>
+  <li><strong>p</strong> → <strong>p</strong> — Same</li>
+  <li><strong>a</strong> → <strong>š</strong> — Special character</li>
+  <li><strong>s</strong> → <strong>u</strong> — Special character</li>
+  <li><strong>h</strong> → <strong>h</strong> — Dropped</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>šāpšu.com</strong>, which the DNS carries in punycode form as xn--pu-cla79ac.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Šāpšu; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Phoenician can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>The story of Šāpšu did not end in antiquity; it changed medium. Names that survive for millennia do so because each generation finds a new carrier for them — clay, papyrus, print, and now DNS. The PÚNYCODEX restoration simply makes the carrier honest: the spelling that resolves is the spelling the evidence supports. If this post showed anything, it is that <em>shapash</em> and <strong>Šāpšu</strong> are not the same name with different styling. They are a summary and the text it summarizes. The web can now serve the text.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/dagan/">Dāgan</a></li>
   <li><a href="/sites/yammu/">Yammu</a></li>
   <li><a href="/sites/astartu/">Aštartu</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://aibl.fr/travaux/le-cabinet-du-corpus-inscriptionum-semiticarum/">Corpus Inscriptionum Semiticarum, Académie des Inscriptions et Belles-Lettres, Paris, 1881.</a></li>
+  <li>KTU 1.4 and related Ugaritic texts (Šāpshu in the Baal Cycle).</li>
+  <li>Coogan, Stories from Ancient Canaan.</li>
+  <li>Smith, The Ugaritic Baal Cycle.</li>
+  <li>KTU (Ugaritic texts: nrt ʾilm špš, &#39;Shapshu, lamp of the gods&#39;).</li>
+  <li>Lexicon authorities for this entry: Ugaritic texts, CIS.</li>
 </ul>
-<h2>The Cultural Afterlife</h2>
-<p>Her name survived by becoming a noun. Hebrew šemeš is simply &#39;the sun&#39; — grammatically feminine, like the Ugaritic goddess, but emptied of cult; the biblical polemics against sun worship are intelligible only because the cult existed, as Josiah&#39;s removal of the sun-horses and Ezekiel&#39;s vision of men bowing eastward at the temple attest. The imagery refused to stay buried: Malachi&#39;s promise of a &#39;sun of righteousness&#39; rising &#39;with healing in its wings&#39; (Malachi 4:2) — itself an heir of the winged solar disk — was read by the church fathers as a prophecy of Christ, carrying West Semitic solar theology into Christian liturgy and art. In modern scholarship Šāpšu has become a case study in the variety of ancient solar religion: she can appear as...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Šāpšu as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Phoenician to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Šāpšu through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">phoenician</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

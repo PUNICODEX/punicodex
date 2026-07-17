@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -20,7 +20,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf17">
     <link rel="stylesheet" href="../styles.css?v=perf4">
-    <link rel="stylesheet" href="patron.css?v=3">
+    <link rel="stylesheet" href="patron.css?v=4">
 </head>
 <body>
     <!-- Global Strip -->
@@ -116,10 +116,20 @@
                 <div class="patron-wall-header">
                     <p class="section-eyebrow">In Honor Of</p>
                     <h2 class="section-title">Twenty Plaques</h2>
-                    <p class="patron-wall-subtitle">Active patrons appear in gold. Available plaques await the next supporter.</p>
+                    <p class="patron-wall-subtitle">Claimed plaques are inscribed in gold. Open plaques await the next supporter.</p>
                 </div>
-                <div class="patron-wall" id="patron-wall">
+                <div class="patron-wall-invite" id="patron-wall-invite" hidden>
+                    <span class="patron-wall-invite-seal" aria-hidden="true">✦</span>
+                    <p class="patron-wall-invite-text">No plaques have been claimed yet — the first patron of this temple takes plaque №&nbsp;1.</p>
+                </div>
+                <div class="patron-wall" id="patron-wall" role="list" aria-label="Temple patron plaques">
                     <!-- Plaques injected here -->
+                </div>
+                <div class="patron-wall-state" id="patron-wall-state" role="status" hidden>
+                    <span class="patron-wall-state-icon" aria-hidden="true">✦</span>
+                    <p class="patron-wall-state-title">The patron wall is temporarily unavailable</p>
+                    <p class="patron-wall-state-body">The temple records could not be reached. Please check your connection and try again.</p>
+                    <button type="button" class="btn btn-primary patron-wall-retry" id="patron-wall-retry">Try Again</button>
                 </div>
             </div>
         </section>
@@ -174,14 +184,14 @@
 
                             <div class="patron-social-field">
                                 <label>Verified Social Link <span class="patron-field-hint">(optional)</span></label>
-                                <div class="patron-social-tabs" id="patron-social-tabs">
-                                    <button type="button" data-platform="x" class="active">X</button>
-                                    <button type="button" data-platform="instagram">Instagram</button>
-                                    <button type="button" data-platform="linkedin">LinkedIn</button>
-                                    <button type="button" data-platform="tiktok">TikTok</button>
-                                    <button type="button" data-platform="youtube">YouTube</button>
-                                    <button type="button" data-platform="github">GitHub</button>
-                                    <button type="button" data-platform="website">Website</button>
+                                <div class="patron-social-tabs" id="patron-social-tabs" role="group" aria-label="Social platform">
+                                    <button type="button" data-platform="x" class="active" aria-pressed="true">X</button>
+                                    <button type="button" data-platform="instagram" aria-pressed="false">Instagram</button>
+                                    <button type="button" data-platform="linkedin" aria-pressed="false">LinkedIn</button>
+                                    <button type="button" data-platform="tiktok" aria-pressed="false">TikTok</button>
+                                    <button type="button" data-platform="youtube" aria-pressed="false">YouTube</button>
+                                    <button type="button" data-platform="github" aria-pressed="false">GitHub</button>
+                                    <button type="button" data-platform="website" aria-pressed="false">Website</button>
                                 </div>
                                 <div class="patron-social-input-wrap">
                                     <span class="patron-social-prefix" id="patron-social-prefix">https://x.com/</span>
@@ -258,6 +268,6 @@
     </footer>
 
     <script src="/js/px-core.js?v=perf8"></script>
-    <script src="patron.js?v=3"></script>
+    <script src="patron.js?v=4"></script>
 </body>
 </html>

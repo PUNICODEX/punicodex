@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,48 +170,214 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>15 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#epithets-cult-titles">Epithets &amp; Cult Titles</a></li>
+                <li><a href="#the-homeric-hymns">The Homeric Hymns</a></li>
+                <li><a href="#oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>How Apóllōn Got Its Accent Back</h1>
-<p>The ASCII form <em>apollon</em> is missing something. Apóllōn restores the marks that the original language used to distinguish this name from a thousand others. The name is attested in Greek as Ἀπόλλων. Etymologically it means &quot;Possibly &#39;destroyer&#39; or &#39;purifier&#39; (from ἀπόλλυμι)&quot;. The reconstructed proto-form is h₂epél-yōn (proto-indo-european, &quot;destroyer, purifier&quot;). Uncertain; possibly from ἀπόλλυμι &quot;to destroy&quot;, or pre-Greek. Associated with Lycian god Apaliunas. Cognate forms across related languages: - Apaliunas (lycian) — Lycian god of the plague The ASCII form apollon survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Apóllōn recovers both the stress accent and the vowel length of the original directly in the address bar. The original carries both stress and vowel length and admits multiple...</p>
-<h2>The Missing Marks</h2>
-<p>Classified as <strong>Dual-Tier</strong>, this restoration carries the stress and length that standard ASCII discards. the Greek original carries both stress and length, and multiple historically valid Unicode spellings exist</p>
-<h2>Step by Step</h2>
-<p>The transformation from <em>apollon</em> to <strong>Apóllōn</strong> happens one character at a time. Some letters stay the same; others gain accents, macrons, or entirely new shapes. The breakdown on the <a href="/sites/apollon/">temple home page</a> shows exactly how.</p>
-<h2>Why Stress and Length Matter</h2>
-<p>In the source language, changing a stress or a vowel length can change a meaning. Names are especially sensitive because they are proper nouns: one spelling points to one entity. Apóllōn preserves that pointer in a way <em>apollon</em> cannot.</p>
-<h2>The Restored Form</h2>
-<p>Apóllōn is now a domain. That simple fact turns a philological detail into a public demonstration. Anyone who types it participates in the restoration.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Apóllōn is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>How Apóllōn got its accent back</h1>
+<p>The ASCII form <em>apollon</em> is missing something. <strong>Apóllōn</strong> restores the marks the source language used to distinguish this name from a thousand others — and those marks change how the name is read, pronounced, and understood. This post explains, with the full scholarly record behind it, what each restored mark preserves: the Greek evidence, the reconstructed sound, the myths the name carries, and the classification logic that separates Tier 1 restorations from Tier 2. By the end, the marks in Apóllōn will look less like ornaments and more like what they are — recovered evidence, pinned back in its proper place.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Apóllōn</li>
+  <li><strong>ASCII form:</strong> apollon</li>
+  <li><strong>Meaning:</strong> &quot;Possibly &#39;destroyer&#39; or &#39;purifier&#39; (from ἀπόλλυμι)&quot;</li>
+  <li><strong>Domain of influence:</strong> Light, Music, Prophecy</li>
+  <li><strong>Pantheon:</strong> Greek</li>
+  <li><strong>Classification:</strong> Dual-Tier</li>
+  <li><strong>Original script:</strong> Ἀπόλλων (Greek)</li>
+  <li><strong>Live domain:</strong> apóllōn.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Apóllōn</strong> (<em>apollon</em>) — The Shining One · Lord of the Lyre — belongs to the Greek tradition, where it is catalogued under the domain &quot;Light, Music, Prophecy&quot;. The name means &quot;Possibly &#39;destroyer&#39; or &#39;purifier&#39; (from ἀπόλλυμι)&quot;.</p>
+<p>Apóllōn is the most Greek of the gods: not a chthonic power or a primal element, but the <strong>embodiment of measured excellence</strong>. He is the archer whose arrows strike from unseen distance, the musician whose lyre imposes order on chaos, the prophet who speaks only what Zeus permits, and the healer whose touch can lift plague as surely as his arrows bring it.</p>
+<p>PÚNYCODEX restores the name as <strong>Apóllōn</strong> and serves its temple at <a href="https://xn--aplln-1ta64d.com">apóllōn.com</a>. The original carries both stress and vowel length and admits multiple historically valid spellings, so the temple presents both forms of the pair as a dual-tier restoration. The plain ASCII form <em>apollon</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Greek as <strong>Ἀπόλλων</strong>. Etymologically it means &quot;Possibly &#39;destroyer&#39; or &#39;purifier&#39; (from ἀπόλλυμι)&quot;.</p>
+<p>The reconstructed proto-form is <em>h₂epél-yōn</em> (proto-indo-european, &quot;destroyer, purifier&quot;). Uncertain; possibly from ἀπόλλυμι &quot;to destroy&quot;, or pre-Greek. Associated with Lycian god Apaliunas.</p>
+<p>Cognate forms across related languages:</p>
+<ul>
+  <li><strong>Apaliunas</strong> (lycian) — Lycian god of the plague</li>
+</ul>
+<p>The ASCII form <em>apollon</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Apóllōn</strong> recovers both the stress accent and the vowel length of the original directly in the address bar. The original carries both stress and vowel length and admits multiple historically valid spellings, so the temple presents both forms of the pair as a dual-tier restoration.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>a</strong> → <strong>A</strong> — Alpha</li>
+  <li><strong>p</strong> → <strong>p</strong> — Pi</li>
+  <li><strong>o</strong> → <strong>ó</strong> — Acute on omicron</li>
+  <li><strong>l</strong> → <strong>l</strong> — Lambda</li>
+  <li><strong>l</strong> → <strong>l</strong> — Lambda</li>
+  <li><strong>o</strong> → <strong>ō</strong> — Omega: long omicron</li>
+  <li><strong>n</strong> → <strong>n</strong> — Nu</li>
+</ul>
+<p>Attested and derived spellings of the name:</p>
+<ul>
+  <li><strong>Apṓllōn</strong> — ideal form: Stacked acute+macron on omicron: philologically ideal, untypeable on phones</li>
+  <li><strong>Apollōn</strong> — macron-only form: LSJ convention: length only, no stress mark</li>
+</ul>
+<p>The project holds the domain <strong>apóllōn.com</strong> (xn--aplln-1ta64d.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: Uncertain; possibly from ἀπόλλυμι &quot;to destroy&quot;, or pre-Greek. Associated with Lycian god Apaliunas.</p>
+<p>The reconstructed proto-form is <em>*h₂epél-yōn</em> (proto-indo-european), glossed as &quot;destroyer, purifier&quot;.</p>
+<p>The reconstruction is classed as disputed.</p>
+<p>Kindred forms recorded in the lexicon:</p>
+<ul>
+  <li><strong>Apaliunas</strong> (lycian) — Lycian god of the plague</li>
+</ul>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Greek as <strong>Ἀπόλλων</strong> — Greek alphabet (Classical / Attic), attested Ancient Greek, c. 8th century BCE – present, in Greece and the Greek-speaking Mediterranean. The script is written left-to-right.</p>
+<p>The scholarly transliteration is <em>Apóllōn</em> (Greek alphabet with polytonic accents), giving the normalized reading /aˈpol.lɔːn/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The Greek form Ἀπόλλων is written in the Classical Greek alphabet.</li>
+  <li>Letters with acute, grave, or circumflex accents preserve the pitch accent of Ancient Greek.</li>
+  <li>Macrons and omegas (η, ω) mark long vowels, a feature lost in the plain ASCII form.</li>
+  <li>The Unicode restoration Apóllōn encodes the scholarly spelling as a registrable domain name.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/a.pól.lɔːn/</strong> — Attic Greek Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>A-</strong> — Short alpha, smooth breathing — the name opens without roughness, like light arriving.</li>
+  <li><strong>-pól-</strong> — Pi plus acute on short omicron. The pitch peak falls on the second syllable, a rising call that carries across distance.</li>
+  <li><strong>-lōn</strong> — Lambda, long omega, nu. The long final vowel sustains and resolves the name like a held musical note.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;ah-POL-lone&#39; — stress the second syllable and hold the final &#39;o&#39; roughly twice as long as English allows.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Greek</strong> — ἀπόλλυμι (apollymi), &#39;to destroy, to put an end to&#39; — the traditional Greek etymology</li>
+  <li><strong>Lycian</strong> — Apaliunas, divine name attested in the Lycian script, possibly an Anatolian counterpart</li>
+  <li><strong>PIE</strong> — no secure Indo-European etymology; Beekes argues for a Pre-Greek origin</li>
+</ul>
+<p>Apóllōn is dual-tier because the Greek Ἀπόλλων carries both stress (acute on the second syllable) and length (omega in the final syllable), and because two historically defensible restorations exist: Apóllōn with acute stress and Apollōn with macron-only length. Both forms are owned and both are philologically legitimate.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Apóllōn&#39;s myths are unusually coherent because they consistently dramatize the same theme: <strong>the distance between divine perfection and mortal limitation</strong>. He is never ridiculous, but he is often terrifying.</p>
+<h3 id="born-on-the-wandering-island-the-birth">Born on the Wandering Island (The Birth)</h3>
+<p>Hêra, in jealousy, cursed Lētô so that no land fixed to the earth could give her shelter. All islands refused her — until Dêlos, a floating rock, offered itself. There Lētô clung to a palm tree and bore Apóllōn and his twin sister Artemis. Swans circled the island seven times, and light flooded the Aegean. Dêlos became fixed forever — <strong>the weight of divinity anchors what chaos cannot hold</strong>.</p>
+<h3 id="the-slayer-of-pytho-the-oracle">The Slayer of Pythô (The Oracle)</h3>
+<p>Apóllōn seized Delphoí by killing the she-dragon Pythôn who guarded the site. From her corpse the oracle took its name: Pythia. The Homeric <em>Hymn to Apollo</em> describes his journey from Delos to Delphi as a triumphal procession; every place he passes becomes Greek through recognition of his power.</p>
+<h3 id="marsyas-and-the-limits-of-hubris-the-mortal-cost">Marsyas and the Limits of Hubris (The Mortal Cost)</h3>
+<p>The satyr Marsyas found the aulos that Athena had discarded and challenged Apóllōn to a musical contest. The god won and flayed Marsyas alive for his presumption. The myth is brutal, but its logic is consistent: <strong>no mortal art can rival divine order</strong>, and to claim equality with a god is to invite destruction.</p>
+<h3 id="daphne-and-the-laurel-unrequited-love">Daphnê and the Laurel (Unrequited Love)</h3>
+<p>Pursued by Apóllōn, the nymph Daphnê prayed to her father the river-god Peneus and was transformed into a laurel tree. Apóllōn made the laurel his sacred plant, and it became the crown of poets, athletes, and conquerors. The myth turns loss into symbol: what cannot be possessed becomes the sign of achievement.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>His attributes divide between the bow and the lyre — far-striking death and ordering harmony — with the laurel and the Delphic tripod binding both to prophecy. Homer already gives him the bow whose plague-arrows strike from afar; the Homeric Hymn to Hermês tells how the lyre passed from its inventor to him; and laurel, raven, wolf, and swan cluster round the Delphic and Delian cults in the art of every period.</p>
+<ul>
+  <li><strong>Laurel wreath</strong> — Victory, poetic achievement, and the nymph Daphnê transformed to escape him</li>
+  <li><strong>Lyre</strong> — Cosmic harmony and the arts; the instrument he received from Hermês</li>
+  <li><strong>Bow and arrows</strong> — Far-reaching power: disease, death, and divine justice</li>
+  <li><strong>Tripod</strong> — The Delphic seat of prophecy</li>
+  <li><strong>Raven or swan</strong> — Solar bird and messenger; the swan circled Delos at his birth</li>
+  <li><strong>Wolf</strong> — His archaic epithet Lykeios connects him with wolves and perhaps with light</li>
+</ul>
+<p>Apóllōn is the defining image of the Greek kouros: a beardless, long-haired youth. The colossal marble Apollo dedicated by the Naxians on Dēlos (c. 600 BCE) fixed the monumental type. His attributes mark his provinces — bow and quiver, kithara or lyre, laurel branch, tripod and omphalos, raven, wolf, and dolphin. Classical masterpieces such as the Apollo Belvedere and Praxiteles&#39; <strong>Sauroktónos</strong> (the lizard-slayer leaning on a tree) set the canon of serene male beauty. On vases he sits on the Delphic tripod, contends with Marsyas, or joins Lētô and [[artemis|Ártemis]]; Sicilian Leontinoi put his laureate head on tetradrachms.</p>
+<h2 id="epithets-cult-titles">Epithets &amp; Cult Titles</h2>
+<p>Apóllōn carries one of the richest epithet stocks in Greek religion.</p>
+<ul>
+  <li><strong>Φοῖβος (Phoîbos)</strong> — &#39;the Bright, Shining One&#39;; Homer&#39;s constant companion-name for the god.</li>
+  <li><strong>ἑκηβόλος (hekēbólos)</strong> — &#39;far-shooting&#39;; of the bow that strikes from afar, from <em>Iliad</em> 1 onward.</li>
+  <li><strong>Πύθιος (Pýthios)</strong> — &#39;of Pythō&#39;; from the she-dragon slain at Delphi, his oracular title.</li>
+  <li><strong>Δελφίνιος (Delphínios)</strong> — &#39;of the dolphin&#39;; from the epiphany to the Cretan sailors, a cult title at Athens and across the Aegean.</li>
+  <li><strong>Λύκειος (Lýkeios)</strong> — &#39;wolf-god&#39; (or &#39;of Lycia&#39;); title of his ancient Argive sanctuary.</li>
+  <li><strong>Σμινθεύς (Smintheús)</strong> — &#39;lord of mice&#39; (or &#39;of Sminthe&#39;); Chryses&#39; invocation in <em>Iliad</em> 1.</li>
+</ul>
+<h2 id="the-homeric-hymns">The Homeric Hymns</h2>
+<p>Apóllōn receives the grandest hymn in the corpus. <strong>Hymn 3</strong> is composite. The <strong>Delian</strong> part narrates Lētô&#39;s wandering search for a birthplace, the birth beneath the palm on Dēlos, and the Ionian festival held in the god&#39;s honor; the <strong>Pythian</strong> part follows the newborn god to Krisa, his slaying of the she-dragon, and his seizure of a Cretan ship — he leaps aboard in dolphin form (hence Delphínios), installs the sailors as his priests, and declares that here his temple will give unerring counsel to mortals. The short <strong>Hymn 21</strong> invokes Phoibos: of him the swan sings, and the lyre answers. These hymns are the primary archaic sources for the birth myth and the Delphic foundation legend.</p>
+<h2 id="oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</h2>
+<p>Apóllōn is the oracular god par excellence; his sites anchor Greek prophecy.</p>
+<ul>
+  <li><strong>Delphi (Pythō)</strong> — the navel of the world; the Pythia on the tripod, the maxims &#39;Know thyself&#39; and &#39;Nothing in excess&#39;, seat of the Pythian Games.</li>
+  <li><strong>Didyma (Branchidai)</strong> — the great Ionian oracle near Milētos, famous for its archaic responses and its vast unfinished temple.</li>
+  <li><strong>Klaros</strong> — oracle of Apollo Klarios near Kolophōn, consulted by cities well into the Roman period.</li>
+  <li><strong>Dēlos</strong> — his birth-island, whose oracle the Homeric Hymn already celebrates.</li>
+  <li><strong>Abai</strong> — venerable Phokian oracle, one of those Kroisos consulted.</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>His sanctuaries are among the richest excavated in the Greek world. At Delphoí, on the terraces below Parnassos, the standing fourth-century temple replaced the Archaic one destroyed in the earthquake of 373 BCE; treasuries, theatre, and the stadium of the Pythian Games complete the sanctuary Pausanias walks through building by building, and which the French School at Athens has excavated since 1892. On Dēlos, his birth-island, the precinct held three successive temples of Apóllōn side by side, the colossal marble statue dedicated by the Naxians, and the Terrace of the Lions; Thucydides records the Athenian purification of the island and the refounded festival of 426 BCE. At Didyma near Milētos the colossal Hellenistic temple of the Branchidai — oracle court, tunnelled ramps, and a shrine never finished or roofed — was cleared by French and then German missions from the 1870s onward. At Bassai in Arkadia the stone temple of Apóllōn Epikoúrios, built by Iktinós, architect of the Parthenon, preserves the cult founded in thanks for deliverance from plague during the Peloponnesian War; its sculptured frieze is in the British Museum.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Apóllōn is the most Greek of the gods: not a chthonic power or a primal element, but the <strong>embodiment of measured excellence</strong>. He is the archer whose arrows strike from unseen distance, the musician whose lyre imposes order on chaos, the prophet who speaks only what Zeus permits, and the healer whose touch can lift plague as surely as his arrows bring it.</p>
+<h3 id="solar-radiance">Solar Radiance</h3>
+<p>The eye that sees all and the fire that nourishes; Apóllōn&#39;s chariot drives the sun across the sky, though Helios increasingly takes over this role in later poetry.</p>
+<h3 id="music-and-harmony">Music and Harmony</h3>
+<p>His lyre, won from Hermês, orders emotion itself; music, mathematics, and cosmic proportion fall under his patronage.</p>
+<h3 id="prophetic-sight">Prophetic Sight</h3>
+<p>At Delphoí, through the Pythia, he speaks in enigmatic verse; prophecy is not fortune-telling but the disciplined interpretation of divine will.</p>
+<h3 id="healer-and-purifier">Healer and Purifier</h3>
+<p>The same bow that sends plague can avert it; his epithets Alexikakos and Paiôn mark him as protector from evil and god of healing.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Apóllōn was one of the most widely exported Greek gods. In Egypt he was identified with Hôros — &quot;Horus, whom the Greeks call Apollo,&quot; in Herodotus&#39; phrase — in Italy he was adopted directly, without renaming, as Apollo, and in Anatolia he found a counterpart in Apaliunas, the divine name attested among the oath gods of the treaty between the Hittite king Muwatalli II and Alaksandu of Wilusa. The emperor Augustus made Apóllōn a patron of the Roman state, dedicating a magnificent temple on the Palatine beside his own house in 28 BCE. In Neoplatonism he became the principle of intellect and light; in Renaissance art he embodied the ideal male form. His most durable legacy is linguistic: &#39;Apollo&#39; still names the brightest, most ordered aspect of civilization, from the space program to the god of poetry.</p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include [[helios|Hēlios]], [[ra|Rꜥ]], [[dazhbog|Dažbog]], [[huitzilopochtli|Huitzilopōchtli]], [[shamash|Šamaš]], and [[shapash|Šāpšu]], each linked through sun / light.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Apóllōn never stopped shaping Western culture. The Pythian Games at Delphoí were one of the four great Panhellenic festivals; their musical and athletic contests set the model for later competitions. The Delphic maxims — &#39;Know thyself,&#39; &#39;Nothing in excess&#39; — were attributed to him, and Plato has the Seven Sages dedicate them at his temple as first-fruits of their wisdom. In art, the &#39;Apollo Belvedere&#39; became the canonical image of male beauty for centuries, above all through Winckelmann&#39;s praise. The name survives in NASA&#39;s Apollo program, in countless operas and symphonies, and in the very idea of the &#39;Apollonian&#39; as orderly, luminous, rational — set against the &#39;Dionysian&#39; by Nietzsche. To restore <em>Apóllōn</em> with its full Greek accents is to restore the original sound of this civilizing force.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Apóllōn given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Full text</a></li>
+  <li> Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a href="https://brill.com/view/title/17858">Full text</a></li>
+  <li> Wörterbuch der griechischen Eigennamen, 3rd ed., 1863. <a href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ">Full text</a></li>
+  <li> Homeric Hymn to Apollo.</li>
+  <li> Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE. <a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Full text</a></li>
+  <li> Aeschylus, Eumenides.</li>
+  <li> Plato, Republic.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Apóllōn is the god who makes distance felt. His arrows come from far away; his oracle speaks in riddles; his music imposes pattern on emotion from above. He is not the warm sun but the clear, hard light that reveals every flaw. That is why he is both healer and destroyer: the same clarity that diagnoses disease also pronounces sentence.</p>
+<p>In a digital age, Apóllōn&#39;s legacy is ambiguous. We have made machines that calculate, order, and predict with terrifying precision — Apollonian powers. Yet we have also learned that information without wisdom is a plague of arrows. The name <em>Apóllōn</em>, restored in Unicode, can remind us that light is not warmth, order is not kindness, and prophecy is not control.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Apóllōn is classified as <strong>Dual-Tier</strong>: the original carries both stress and length, and multiple historically valid Unicode spellings exist. The ASCII fallback <em>apollon</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 7 characters of the name, the restoration adjusts 2: 1 mark of stress (ó); 1 mark of length (ō). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>apóllōn.com</strong>, which the DNS carries in punycode form as xn--aplln-1ta64d.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Apóllōn; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Greek can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>The marks in <strong>Apóllōn</strong> were never lost; they were only waiting for a carrier that could hold them. Now that the carrier exists, the burden flips: every use of <em>apollon</em> is a choice to leave evidence on the table. The PÚNYCODEX temple keeps the restored form in circulation — as a domain, a dataset entry, and a scholarly argument — so that the choice to use it stays easy. Accent by accent, macron by macron, that is how the original names come back: not with a single grand gesture, but with a spelling that finally works everywhere.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/hyperion/">Hyperiōn</a></li>
   <li><a href="/sites/ismene/">Ismḗnē</a></li>
   <li><a href="/sites/khaos/">Khaos</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843.</a></li>
   <li><a href="https://brill.com/view/title/17858">Etymological Dictionary of Greek, 2 vols., Brill, 2010.</a></li>
   <li><a href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ">Wörterbuch der griechischen Eigennamen, 3rd ed., 1863.</a></li>
   <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE.</a></li>
+  <li>Homeric Hymn to Apollo (Hymn 3) — the bow, the lyre, and the prophetic foundation.</li>
+  <li>Homer, Iliad 1.43–52 and 1.472–474 (the plague-arrows and the healing paian).</li>
+  <li>Homer, Iliad 1.43–74 (the far-shooting bow).</li>
+  <li>Homeric Hymn to Hermes (Hymn 4), 418–512 (the gift of the lyre).</li>
+  <li>Lexicon authorities for this entry: LSJ, Pape-Benseler, Beekes.</li>
 </ul>
-<h2>The Cultural Afterlife</h2>
-<p>Apóllōn never stopped shaping Western culture. The Pythian Games at Delphoí were one of the four great Panhellenic festivals; their musical and athletic contests set the model for later competitions. The Delphic maxims — &#39;Know thyself,&#39; &#39;Nothing in excess&#39; — were attributed to him, and Plato has the Seven Sages dedicate them at his temple as first-fruits of their wisdom. In art, the &#39;Apollo Belvedere&#39; became the canonical image of male beauty for centuries, above all through Winckelmann&#39;s praise. The name survives in NASA&#39;s Apollo program, in countless operas and symphonies, and in the very idea of the &#39;Apollonian&#39; as orderly, luminous, rational — set against the &#39;Dionysian&#39; by Nietzsche. To restore Apóllōn with its full Greek accents is to restore...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Apóllōn as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Greek to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Apóllōn through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/apollon/">home page</a> offers the full name breakdown, the <a href="/sites/apollon/lore/">lore page</a> explores the myth, and the <a href="/sites/apollon/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Apóllōn do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
-<h2>A Note on the Address Bar</h2>
-<p>When you type Apóllōn, the browser performs an invisible conversion into Punycode so the global DNS can route the request. The user sees the original name; the machines see a compatible ASCII encoding. That duality is the engineering compromise that makes the restoration possible, and it is the reason every Unicode domain is both a technical milestone and a small act of cultural memory.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">greek</span><span class="blog-tag">Dual-Tier</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

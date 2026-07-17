@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,41 +170,191 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#name-variations">Name Variations</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>The Name Óðinn and the World It Opens</h1>
-<p>A name is a door. Óðinn opens onto wisdom, war, death, poetry. Óðinn (Old Norse Óðinn, from óðr &#39;fury, inspiration, poetry&#39; with the agent suffix -inn, &#39;the frenzied, the possessed&#39;) is the foremost god of the Norse pantheon: Allfather, god of wisdom, war, death, and poetry. His domains meet in a single obsession — knowledge bought at any price: he pledges an eye for a drink from Mímir&#39;s well, hangs nine nights on the windy tree to seize the runes, questions dead seeresses about a doom he knows he cannot escape, and steals the mead of poetry from the giant Suttungr. The name is pan-Germanic: Old English Wōden, Old High German Wuotan, and the weekday Wednesday (Wōdnesdæg) all continue Proto-Germanic Wōđanaz, whose initial w- North Germanic alone has dropped. PÚNYCODEX restores the name as Óðinn and serves its...</p>
-<h2>Domain and Meaning</h2>
-<p>The temple domain is <strong>Wisdom, War, Death, Poetry</strong>. The traditional meaning is &quot;Fury, possession (from *wōđanaz).&quot; Together, those two facts explain why the name mattered enough to be remembered for millennia.</p>
-<h2>The Mythic Landscape</h2>
-<p>Óðinn is the Allfather, a god of contradictions: warlord and poet, shaman and king, gallows-god and guest at the mead-feast. He wanders the nine worlds in a broad-brimmed hat, seeking wisdom whatever the cost. He gave one eye for a drink from Mímir&#39;s well, hung nine nights on the wind-wracked tree to seize the runes, and sends his valkyries to choose the slain for Valhöll. He is also the thief of the mead of poetry, outwitting the giant Suttungr to carry the fermented inspiration of the gods back to Ásgarðr in his belly. That mead, brewed from the blood of the wise Kvasir, made every poet who tasted it a vessel of divine utterance. His domain is not merely death but the power that knowledge, sacrifice, and inspired speech can wring from death.... Myth is the memory of a civilization, and names are the hooks on which that memory hangs.</p>
-<h2>Modern Patterns</h2>
-<p>The <a href="/sites/odinn/patterns/">Patterns</a> page maps the industries and sister temples that share Óðinn&#39;s current. A name that once organized ritual now organizes search, advertising, and creative collaboration.</p>
-<h2>Join the Restoration</h2>
-<p>You can support the work through the <a href="/sites/odinn/patron/">Patron</a> wall, submit creative work, or simply share the address. Every visit to Óðinn is a vote for original scripts.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Óðinn is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>The name Óðinn and the world it opens</h1>
+<p>A name is a door. <strong>Óðinn</strong> opens onto an entire world: the domain of wisdom, war, death, poetry, a Norse tradition, and centuries of storytelling, worship, and scholarship. This post walks through that world room by room — the name and its roots, the original script, the sound of it, the myths, the symbols, the sites, the afterlife across cultures — and ends at the newest room of all: a Unicode domain that makes the whole structure addressable. <em>odinn</em> gets you to the same building, but only the restored form tells you why it was built.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Óðinn</li>
+  <li><strong>ASCII form:</strong> odinn</li>
+  <li><strong>Meaning:</strong> &quot;Fury, possession (from *wōđanaz)&quot;</li>
+  <li><strong>Domain of influence:</strong> Wisdom, War, Death, Poetry</li>
+  <li><strong>Pantheon:</strong> Norse</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> ᚢᚦᛁᚾ (Younger Futhark)</li>
+  <li><strong>Live domain:</strong> óðinn.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Óðinn</strong> (Old Norse <em>Óðinn</em>, from <em>óðr</em> &#39;fury, inspiration, poetry&#39; with the agent suffix <em>-inn</em>, &#39;the frenzied, the possessed&#39;) is the foremost god of the Norse pantheon: Allfather, god of wisdom, war, death, and poetry. His domains meet in a single obsession — knowledge bought at any price: he pledges an eye for a drink from Mímir&#39;s well, hangs nine nights on the windy tree to seize the runes, questions dead seeresses about a doom he knows he cannot escape, and steals the mead of poetry from the giant Suttungr. The name is pan-Germanic: Old English Wōden, Old High German Wuotan, and the weekday Wednesday (Wōdnesdæg) all continue Proto-Germanic <em>Wōđanaz, whose initial </em>w- North Germanic alone has dropped.</p>
+<p>PÚNYCODEX restores the name as <strong>Óðinn</strong> and serves its temple at <a href="https://xn--inn-2mao.com">óðinn.com</a>. The acute accent marks the long, stressed first vowel; the second vowel is short, which places the name in Tier 2 (accent-preserving). The ASCII fallback <em>odinn</em> is a convenience of the early domain-name system, not an ancient spelling.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is rendered in Younger Futhark as <strong>ᚢᚦᛁᚾ</strong>; the sixteen-rune futhark does not distinguish long ó from short u, nor ð from þ, so the runic string underdetermines the normalized form. Etymologically it means &#39;the frenzied one, the possessed&#39;.</p>
+<p>The reconstructed Proto-Germanic ancestor is <em>Wōđanaz, &#39;the furious one&#39;, from </em>wōđ- &#39;fury, inspiration&#39; — a root whose cognates include Latin <em>vātēs</em> &#39;poet-seer&#39;. The Old Norse form arises by loss of the initial *w- and by the voicing of the dental fricative written ð.</p>
+<p>Cognate forms across related languages:</p>
+<ul>
+  <li><strong>Wōden</strong> (Old English) — Anglo-Saxon counterpart</li>
+  <li><strong>Wuotan</strong> (Old High German) — Continental Germanic counterpart</li>
+  <li><strong>Óðinn</strong> (Old Norse) — Norse form with eth</li>
+</ul>
+<p>The ASCII form <em>odinn</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Óðinn</strong> recovers the stress accent of the original directly in the address bar. The acute marks stress and length together on the first vowel; the second vowel is short, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>o</strong> → <strong>Ó</strong> — Acute on O</li>
+  <li><strong>d</strong> → <strong>ð</strong> — Eth: voiced dental fricative</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+</ul>
+<p>Attested and derived spellings of the name:</p>
+<ul>
+  <li><strong>Oðinn</strong> — ideal form: Eth variant: Oðinn (strict orthography)</li>
+</ul>
+<p>The project holds the domain <strong>óðinn.com</strong> (xn--inn-2mao.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: PGmc <em>Wōdanaz &quot;the furious one&quot;, from </em>wōđ- &quot;fury, inspiration&quot;. Cognate with Latin vātēs &quot;poet-seer&quot;.</p>
+<p>The reconstructed proto-form is <em>*Wōdanaz</em> (proto-indo-european), glossed as &quot;fury, possession, poetry&quot;.</p>
+<p>The reconstruction is classed as attested.</p>
+<p>Kindred forms recorded in the lexicon:</p>
+<ul>
+  <li><strong>Wōden</strong> (old-english) — Anglo-Saxon counterpart</li>
+  <li><strong>Wuotan</strong> (old-high-german) — Continental Germanic counterpart</li>
+  <li><strong>Óðinn</strong> (old-norse) — Norse form with eth</li>
+</ul>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Younger Futhark as <strong>ᚢᚦᛁᚾ</strong> — Germanic runic, attested Viking Age, c. 800–1100 CE, in Scandinavia. The script is written left-to-right, top-to-bottom.</p>
+<p>The scholarly transliteration is <em>Óðinn</em> (normalized Old Norse), giving the normalized reading /ˈoːðinː/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The Younger Futhark form ᚢᚦᛁᚾ provides a Viking-Age runic attestation or normalized reconstruction.</li>
+  <li>Younger Futhark has only sixteen runes and does not distinguish short/long vowels or voiced/voiceless stops.</li>
+  <li>The normalized Old Norse form is based on 13th-century manuscript tradition (Poetic and Prose Eddas).</li>
+  <li>The Unicode restoration Óðinn requires the accented vowel ó and the letter eth (ð), both admitted by the .com registry through punycode (óðinn.com = xn--inn-2mao.com).</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/ˈoːðinː/</strong> — Old Norse Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Ó-</strong> — Long back rounded [oː] with acute marking stress and length; the name derives from *Wōđanaz, &#39;the furious&#39;</li>
+  <li><strong>-ð-</strong> — Voiced dental fricative [ð], the eth; it continues Proto-Germanic *đ and gives the name its Norse colour</li>
+  <li><strong>-in-</strong> — Short close front [i] and alveolar nasal [n]; the participial/agent suffix</li>
+  <li><strong>-n</strong> — Final alveolar nasal [n], geminated in Old Norse orthography as nn</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;OH-thin&#39; — hold the first vowel long like &#39;awe&#39;, then a soft &#39;th&#39; as in &#39;this&#39;, and a crisp &#39;nin&#39;.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Old English</strong> — Wōden, the Anglo-Saxon name of the same god</li>
+  <li><strong>Old High German</strong> — Wuotan, the continental Germanic form</li>
+  <li><strong>Proto-Germanic</strong> — *Wōđanaz, &#39;the possessed, the furious one&#39;, ancestor of all Germanic Odin-names</li>
+</ul>
+<p>Óðinn is accent-preserving Tier 2: the acute on Ó marks stress and length on the first syllable, but the remaining vowels are short. The name descends from <em>Wōđanaz; the initial w- was lost throughout North Germanic, giving Óðinn rather than </em>Vóðinn.</p>
+<h2 id="mythology">Mythology</h2>
+<p><strong>Óðinn</strong> is the Allfather, a god of contradictions: warlord and poet, shaman and king, gallows-god and guest at the mead-feast. He wanders the nine worlds in a broad-brimmed hat, seeking wisdom whatever the cost. He gave one eye for a drink from Mímir&#39;s well, hung nine nights on the wind-wracked tree to seize the runes, and sends his valkyries to choose the slain for Valhöll. He is also the thief of the mead of poetry, outwitting the giant Suttungr to carry the fermented inspiration of the gods back to Ásgarðr in his belly. That mead, brewed from the blood of the wise Kvasir, made every poet who tasted it a vessel of divine utterance. His domain is not merely death but the power that knowledge, sacrifice, and inspired speech can wring from death. Óðinn&#39;s cult left traces in royal genealogies, skaldic verse, and place-names across Scandinavia and Anglo-Saxon England. Viking Age elites claimed descent from him, and poets invoked him before composition. After Christianization, his figure survived in folklore as the wandering old man, the leader of the Wild Hunt, and the namesake of Wednesday.</p>
+<h3 id="the-hanging-on-the-windy-tree-havamal">The Hanging on the Windy Tree (Hávamál)</h3>
+<p>In <em>Hávamál</em>, Óðinn speaks of a sacrifice &#39;to myself, to myself&#39;: he hung nine nights on a windy tree — the stanza does not name it, though tradition identifies it with Yggdrasill — pierced by a spear, given neither bread nor drinking horn. From that ordeal he seized the runes, the letters of power that carry knowledge, healing, and sorcery through the worlds.</p>
+<p>The passage is one of the most striking shamanic initiations in European literature. Óðinn does not receive wisdom as a gift; he wins it by dying in a controlled way, suspended between worlds. The gallows and the spear become his ritual tools, and the tree becomes the axis along which the initiate ascends.</p>
+<h3 id="the-seeress-s-vision-voluspa">The Seeress&#39;s Vision (Völuspá)</h3>
+<p>Óðinn summons a dead völva and compels her to answer his questions about the origins of the world and the coming doom. She tells him of the golden age of the gods, the first war in the world, the making of dwarfs and of the first humans, and finally of Ragnarǫk: the wolf Fenrir&#39;s release, the serpent&#39;s rising, the darkening of the sun, and the fall of the gods.</p>
+<p>The poem dramatizes Óðinn&#39;s defining obsession: he already knows much, yet he cannot stop seeking more. Even foreknowledge does not grant escape. The myth presents him as a king who pays for wisdom with the anxiety of certainty, a god who knows precisely how his reign will end.</p>
+<h3 id="the-hangim-of-yggdrasill-havamal">The Hangim of Yggdrasill (Hávamál)</h3>
+<p>In <em>Hávamál</em>, Óðinn speaks of a sacrifice &#39;to myself, to myself&#39;: he hung nine nights on the wind-wracked ash Yggdrasill, pierced by a spear, given neither bread nor drinking horn. From that ordeal he seized the runes, the letters of power that carry knowledge, healing, and sorcery through the worlds.</p>
+<p>The passage is one of the most striking shamanic initiations in European literature. Óðinn does not receive wisdom as a gift; he wins it by dying in a controlled way, suspended between worlds. The gallows and the spear become his ritual tools, and the tree becomes the axis along which the initiate ascends.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>Óðinn&#39;s iconography is the most stable of any Norse god: the same attributes recur from the Eddic poems to picture stones, helmet plaques, and small finds, each tied to one of his powers.</p>
+<ul>
+  <li><strong>Spear Gungnir</strong> — The never-missing weapon that Odin hurls at the start of battle</li>
+  <li><strong>Two ravens Huginn and Muninn</strong> — Thought and Memory, who fly across the worlds and report to his shoulder</li>
+  <li><strong>Valknut</strong> — The triple-knot associated with Odin&#39;s power to bind and release the slain</li>
+  <li><strong>Sleipnir</strong> — The eight-legged horse that carries Odin between worlds</li>
+  <li><strong>Mímir&#39;s severed head</strong> — The consulted source of hidden wisdom, kept by Odin at the well</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>The textual-archaeological anchor of Óðinn&#39;s cult is Adam of Bremen&#39;s account of the temple at Uppsala, written in the 1070s, where the god stands as Wodan — &#39;id est furor&#39;, &#39;that is, frenzy&#39; — between Þórr and Freyr. The imagery is older than the texts: the die-impressed Torslunda plates from Öland (sixth–seventh century), matrices for helmet plaques, include a weapon-dancer with one eye struck out beside a warrior in a wolf-skin, a pairing long read as Óðinn with his wolf-warriors; small silver figures of a spear-bearing, sometimes one-eyed god from sites such as Uppåkra and Lunda in Scania carry the same iconography into the Viking Age. The Rök runestone (Ög 136, ninth century), the longest runic inscription known, has been read in recent scholarship as meditating on Óðinn&#39;s Ragnarök preparations after the death of a son; valkyrie pendants from Scandinavian graves round out the picture of a god of chosen warriors.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Óðinn&#39;s domains are not a list but a system: war supplies the dead, death supplies the wisdom, and poetry carries both.</p>
+<h3 id="havamal-sacrifice">Hávamál Sacrifice</h3>
+<p>Óðinn hung nine nights on Yggdrasill, pierced by a spear, to seize the runes in an act of self-willed death.</p>
+<h3 id="mead-of-poetry">Mead of Poetry</h3>
+<p>He stole the fermented mead of inspiration from the giant Suttungr and carried it back to Ásgarðr in his belly.</p>
+<h3 id="valkyries">Valkyries</h3>
+<p>His shield-maidens choose the slain and bear the worthy to Valhöll, the hall of the battle-dead.</p>
+<h3 id="runes-and-revelation">Runes and Revelation</h3>
+<p>Óðinn&#39;s ceaseless quest for wisdom drives him to summon dead seeresses, bargain with Mímir, and read fate itself.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Óðinn underwent the fullest interpretatio romana of any Germanic god. Tacitus already reports that the Germans worship Mercury above all — <em>deorum maxime Mercurium colunt</em> — and when the Latin week was translated into the Germanic languages, dies Mercurii became Wōdnesdæg, &#39;Wōden&#39;s day&#39;, our Wednesday: the Roman guide of souls and patron of cunning mapped onto the Germanic god of the hanged and the hidden. Medieval learned tradition euhemerized him further: Saxo Grammaticus makes Othinus a wizard-king, and Snorri&#39;s <em>Ynglinga saga</em> turns him into a migrant warlord from Asia who conquers Sweden and founds its laws. Christianization then split his inheritance: the wandering, hooded Óðinn survived in folklore as leader of the wild hunt (Odens jakt), while the Church cast him as a demon — yet royal genealogies in both England and Scandinavia continued to claim descent from him centuries after conversion.</p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include [[hermes|Hermês]] (wisdom / psychopomp), [[zeus|Zeús]] (sky father / sovereign), [[ahuramazda|AhuraMazdā]] (wisdom / knowledge), [[anat|ꜥAnat]] (war / battle), [[ares|Árēs]] (war / battle), and [[ashur|Aššur]] (war / battle).</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Óðinn&#39;s afterlife is embedded in the week itself: Wednesday is Wōdnesdæg, &#39;Wōden&#39;s day&#39;, and the name survives in place-names across the Germanic world, from Odense (Óðinsvé, &#39;Óðinn&#39;s sanctuary&#39;) in Denmark to Onsala (Óðinssalr) in Sweden. The nineteenth century remade him on the largest scale: Wagner&#39;s Wotan, the conflicted god of the <em>Ring</em> cycle (premiered complete at Bayreuth in 1876), fixed the one-eyed wanderer in the European imagination, and Tolkien later described Gandalf as &#39;an Odinic wanderer&#39;. The twentieth and twenty-first centuries multiplied him: Anthony Hopkins&#39;s Odin in the Marvel films, Mr. Wednesday in Neil Gaiman&#39;s <em>American Gods</em> (2001), and the god&#39;s central place in Ásatrú, the modern heathen religion formally organized in Iceland since 1972. The restored form Óðinn — acute accent, eth, double n — keeps the Old Norse name distinct from all these avatars.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Óðinn given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> The Poetic Edda (Völuspá, Hávamál, Vafþrúðnismál, Grímnismál, Lokasenna); Snorri Sturluson, Prose Edda (Gylfaginning, Skáldskaparmál).</li>
+  <li> Simek, Rudolf. Dictionary of Northern Mythology, trans. Angela Hall. Cambridge: D. S. Brewer, 1993.</li>
+  <li> de Vries, Jan. Altnordisches etymologisches Wörterbuch. 2nd ed. Leiden: Brill, 1962.</li>
+  <li> Adam of Bremen, Gesta Hammaburgensis ecclesiae pontificum IV.26–27 (the temple at Uppsala).</li>
+  <li> Saxo Grammaticus, Gesta Danorum (Othinus as king of the gods and giver of laws).</li>
+  <li> Holmberg, Per, Bo Gräslund, Olof Sundqvist, and Henrik Williams. &#39;The Rök Runestone and the End of the World.&#39; Futhark 9–10 (2018–19).</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Óðinn&#39;s name is a diagnosis before it is a name: <em>óðr</em> is the state of being seized — by rage, by poetry, by the god himself — and <em>Óðinn</em> is the one who both embodies and bestows the seizure. A deity whose name means &#39;the possessed one&#39; tells you something the mythology then confirms at every turn: wisdom in the Norse world is not accumulated but won, in ordeals that cost an eye, a hanging, a hard bargain with the dead. The restoration of the acute accent on Ó is therefore not decoration: it marks the long vowel of the word for ecstasy itself, the root of every Wednesday and every Odense, still audible under two millennia of flattening.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Óðinn is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>odinn</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 5 characters of the name, the restoration adjusts 2: 1 mark of stress (Ó); 1 further adjustment (ð). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="name-variations">Name Variations</h2>
+<p>The lexicon records 1 additional form of the name:</p>
+<ul>
+  <li><strong>Oðinn</strong> (ideal) — Eth variant: Oðinn (strict orthography)</li>
+</ul>
+<p>The temple uses <strong>Óðinn</strong> as the primary form: it is the spelling that best balances philological accuracy with the practical limits of DNS.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>óðinn.com</strong>, which the DNS carries in punycode form as xn--inn-2mao.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Óðinn; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Younger Futhark can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>A door only matters if people walk through it. <strong>óðinn.com</strong> is open, and everything behind it — the myths, the scholarship, the canvas, the patrons — hangs on the restored spelling. The PÚNYCODEX project bets that the web will make room for names as they were actually written, and Óðinn is one of its standing proofs. Visit, share, cite, type it yourself: each use is a small rehearsal for a web where no name has to hide its marks to be found.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/angrboda/">Angrboða</a></li>
   <li><a href="/sites/bestla/">Bestla</a></li>
   <li><a href="/sites/draupnir/">Draupnir</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
-  <li><a href="https://heimskringla.no/wiki/Main_Page">Scholarly reference</a></li>
+  <li>Simek, Rudolf. Dictionary of Northern Mythology, trans. Angela Hall. Cambridge: D. S. Brewer, 1993, s.v. Óðinn.</li>
+  <li>de Vries, Jan. Altnordisches etymologisches Wörterbuch. 2nd ed. Leiden: Brill, 1962, s.v. Óðinn, óðr.</li>
+  <li>Barnes, Michael P. Runes: A Handbook. Woodbridge: Boydell, 2012.</li>
+  <li>Gordon, E. V. An Introduction to Old Norse. 2nd ed., rev. A. R. Taylor. Oxford: Clarendon Press, 1957.</li>
+  <li>Lexicon authorities for this entry: Cleasby-Vigfusson, Zoëga.</li>
 </ul>
-<h2>The Name in Context</h2>
-<p>Óðinn (Old Norse Óðinn, from óðr &#39;fury, inspiration, poetry&#39; with the agent suffix -inn, &#39;the frenzied, the possessed&#39;) is the foremost god of the Norse pantheon: Allfather, god of wisdom, war, death, and poetry. His domains meet in a single obsession — knowledge bought at any price: he pledges an eye for a drink from Mímir&#39;s well, hangs nine nights on the windy tree to seize the runes, questions dead seeresses about a doom he knows he cannot escape, and steals the mead of poetry from the giant Suttungr. The name is pan-Germanic: Old English Wōden, Old High German Wuotan, and the weekday Wednesday (Wōdnesdæg) all continue Proto-Germanic Wōđanaz, whose initial w- North Germanic alone has dropped. PÚNYCODEX restores the name as Óðinn and serves its...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Óðinn as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Younger Futhark to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Óðinn through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/odinn/">home page</a> offers the full name breakdown, the <a href="/sites/odinn/lore/">lore page</a> explores the myth, and the <a href="/sites/odinn/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">norse</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

@@ -1,4 +1,4 @@
-const { checkPublicRateLimit } = require('./api-rate-limiter');
+const { checkPublicRateLimit, checkRateLimit } = require('./api-rate-limiter');
 const { getClientIp } = require('./client-ip');
 
 /**
@@ -28,10 +28,16 @@ function createPublicRateLimit(endpointName) {
   };
 }
 
-async function checkPublicRateLimitByReq(req, res, endpointName) {
+/**
+ * Rate-limit helper for Vercel serverless handlers (no Express middleware).
+ * `options.tier` selects the limit bucket (see DEFAULT_TIER_LIMITS in
+ * api-rate-limiter.js); the default 'public' bucket allows 10 req/min per IP
+ * per endpoint. Use 'public-strict' for endpoints that trigger outbound work.
+ */
+async function checkPublicRateLimitByReq(req, res, endpointName, { tier = 'public' } = {}) {
   const ip = getClientIp(req);
   const key = `${endpointName}:${ip}`;
-  const result = await checkPublicRateLimit(key);
+  const result = await checkRateLimit(key, tier);
 
   res.setHeader('X-RateLimit-Limit', String(result.limit));
   res.setHeader('X-RateLimit-Remaining', String(result.remaining));

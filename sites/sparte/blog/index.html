@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,37 +170,200 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-greek-location-pantheon">The Greek Location Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#typing-sparte">Typing Spártē</a></li>
+                <li><a href="#sister-temples">Sister Temples</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>From Greek to Unicode: The Journey of Spártē</h1>
-<p>Long before it was a domain, the name traveled through scripts. The name is preserved in Greek as Σπάρτη — Greek alphabet (Classical / Attic), attested Ancient Greek, c. 8th century BCE – present, in Greece and the Greek-speaking Mediterranean. The script is written left-to-right. The scholarly transliteration is Spártē (Greek alphabet with polytonic accents), giving the normalized reading /ˈspar.tɛː/. The rendering proceeds step by step: - The Greek form Σπάρτη is written in the Classical Greek alphabet. - Letters with acute, grave, or circumflex accents preserve the pitch accent of Ancient Greek. - Macrons and omegas (η, ω) mark long vowels, a feature lost in the plain ASCII form. - The Unicode restoration Spártē encodes the scholarly spelling as a registrable domain name. This post follows Spártē from its earliest attestation to the address bar.</p>
-<h2>The Original Sign</h2>
-<p>The original script gives us <strong>Σπάρτη</strong>. The name is preserved in Greek as Σπάρτη — Greek alphabet (Classical / Attic), attested Ancient Greek, c. 8th century BCE – present, in Greece and the Greek-speaking Mediterranean. The script is written left-to-right. The scholarly transliteration is Spártē (Greek alphabet with polytonic accents), giving the normalized reading /ˈspar.tɛː/. The rendering proceeds step by step: - The Greek form Σπάρτη is written in the Classical Greek alphabet. - Letters with acute, grave, or circumflex accents preserve the pitch accent of Ancient Greek. - Macrons and omegas (η, ω) mark long vowels, a feature lost in the plain ASCII form. - The Unicode restoration Spártē encodes the scholarly spelling as a registrable domain name.</p>
-<h2>The Scholarly Transliteration</h2>
-<p>The name is attested in Greek as Σπάρτη. Etymologically it means &quot;Sown land (from σπείρω)&quot;. The reconstructed proto-form is speh₁- (proto-indo-european, &quot;to sow, to scatter&quot;). From σπείρω &quot;to sow&quot;. The sown land. The ASCII form sparte survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Spártē recovers both the stress accent and the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The letter-by-letter transformation runs: - s → S — Sigma - p → p — Pi - a → á — Acute on alpha - r → r — Rho... Scholars settled on Spártē as the registrable restoration: faithful enough to be recognizable, precise enough to carry the marks that matter.</p>
-<h2>DNS as a Time Machine</h2>
-<p>Punycode lets the DNS carry non-ASCII characters without breaking older routers. To the user, the address bar shows Spártē; to the infrastructure, it is an encoded xn-- string. The duality is invisible, but the result is revolutionary: a pre-digital name living inside a post-digital system.</p>
-<h2>Pronunciation</h2>
-<p>Scholars reconstruct the sound as <em>&#39;spar-TAY&#39; — roll the &#39;r&#39;, keep the first syllable light, and hold the final &#39;tay&#39; long.</em>. Hearing the name in your own voice is one way to make the restoration personal.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Spártē is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>From Greek to Unicode: the journey of Spártē</h1>
+<p>Long before it was a domain, this name traveled through scripts. <strong>Spártē</strong> begins in Greek, passes through scholarly transliteration, and ends — for now — inside the punycode machinery of the global DNS. Each stage of that journey preserves some information and loses some, and the craft of restoration is knowing exactly which marks matter. This post follows the name stage by stage: the original script, the reconstructed pronunciation, the mythological record, the material evidence, and finally the Unicode form that carries all of it into the address bar. Think of it as a biography of a name, told through its spelling.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Spártē</li>
+  <li><strong>ASCII form:</strong> sparte</li>
+  <li><strong>Meaning:</strong> &quot;Sown land (from σπείρω)&quot;</li>
+  <li><strong>Domain of influence:</strong> Warrior City</li>
+  <li><strong>Pantheon:</strong> Greek Location</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Original script:</strong> Σπάρτη (Greek)</li>
+  <li><strong>Live domain:</strong> spártē.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Spártē</strong> (<em>sparte</em>) is the chief city of Laconia in the southern Peloponnese — Homer&#39;s &#39;hollow Lacedaemon&#39; — and, in myth, the daughter of the river-god Eurotas, whose marriage to Lacedaemon gave city and territory their twin names.</p>
+<p>The traditional etymology derives the name from σπείρω, &#39;to sow&#39;: the sown land. A pre-Greek origin has also been suspected; ancient writers explain the name only by the eponymous heroine, the river-god&#39;s daughter.</p>
+<p>PÚNYCODEX restores the name as <strong>Spártē</strong> and serves its temple at <a href="https://xn--sprt-6na61a.com">spártē.com</a>. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>sparte</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Greek as <strong>Σπάρτη</strong>. Etymologically it means &quot;Sown land (from σπείρω)&quot;.</p>
+<p>The reconstructed proto-form is <em>speh₁-</em> (proto-indo-european, &quot;to sow, to scatter&quot;). From σπείρω &quot;to sow&quot;. The sown land.</p>
+<p>The ASCII form <em>sparte</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Spártē</strong> recovers both the stress accent and the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>s</strong> → <strong>S</strong> — Sigma</li>
+  <li><strong>p</strong> → <strong>p</strong> — Pi</li>
+  <li><strong>a</strong> → <strong>á</strong> — Acute on alpha</li>
+  <li><strong>r</strong> → <strong>r</strong> — Rho</li>
+  <li><strong>t</strong> → <strong>t</strong> — Tau</li>
+  <li><strong>e</strong> → <strong>ē</strong> — Eta: long epsilon</li>
+</ul>
+<p>The project holds the domain <strong>spártē.com</strong> (xn--sprt-6na61a.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: From σπείρω &quot;to sow&quot;. The sown land.</p>
+<p>The reconstructed proto-form is <em>*speh₁-</em> (proto-indo-european), glossed as &quot;to sow, to scatter&quot;.</p>
+<p>The reconstruction is classed as attested.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Greek as <strong>Σπάρτη</strong> — Greek alphabet (Classical / Attic), attested Ancient Greek, c. 8th century BCE – present, in Greece and the Greek-speaking Mediterranean. The script is written left-to-right.</p>
+<p>The scholarly transliteration is <em>Spártē</em> (Greek alphabet with polytonic accents), giving the normalized reading /ˈspar.tɛː/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The Greek form Σπάρτη is written in the Classical Greek alphabet.</li>
+  <li>Letters with acute, grave, or circumflex accents preserve the pitch accent of Ancient Greek.</li>
+  <li>Macrons and omegas (η, ω) mark long vowels, a feature lost in the plain ASCII form.</li>
+  <li>The Unicode restoration Spártē encodes the scholarly spelling as a registrable domain name.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/sparˈtɛː/</strong> — Ancient Greek Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Spar-</strong> — Voiceless alveolar fricative [s], bilabial stop [p], and trilled or tapped [r]; the cluster sp- is characteristic of Greek</li>
+  <li><strong>-tē</strong> — Voiceless alveolar stop [t] plus long close-mid front [ɛː], the Greek eta; the macron marks length, giving Tier-1 status</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;spar-TAY&#39; — roll the &#39;r&#39;, keep the first syllable light, and hold the final &#39;tay&#39; long.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Greek</strong> — σπείρω (speírō), &#39;to sow&#39;, the verb behind the traditional etymology &#39;sown land&#39;</li>
+  <li><strong>Latin</strong> — Sparta, the Roman form that dropped the long vowel mark</li>
+  <li><strong>Doric</strong> — Σπάρτα (Spárta), the local dialect form with final -a</li>
+</ul>
+<p>Spártē is Tier 1 because the final eta is long. The traditional etymology connects the name with σπείρω &#39;to sow&#39;, though some scholars suspect a pre-Greek origin. The acute on the first alpha marks stress; the eta carries length but no stress.</p>
+<h2 id="mythology">Mythology</h2>
+<p><strong>Spártē</strong> is the warrior city of the southern Peloponnese, but Greek myth gives it a human namesake as well. Sparta is the daughter of the river-god Eurotas and the wife of Lacedaemon, the son of Zeus; through her, the city receives both its name and its mythic charter. The Spartans themselves traced their institutions back to the legendary lawgiver Lycurgus, who was said to have received their constitution from Delphi.</p>
+<p>The city&#39;s military ethos left a deep mark on Greek literature. Tyrtaeus of Sparta composed marching songs and elegies that made civic death in battle the highest virtue, while Xenophon&#39;s <em>Constitution of the Lacedaemonians</em> marveled at the agoge, the state upbringing that shaped boys into soldiers. For all its austerity, Spartan myth also preserved a strong ritual current: the Gymnopaediae and Hyacinthia drew worshippers from across Laconia and kept Apollo and the dead hero Hyacinthus at the center of civic identity. Sparta&#39;s dual kingship, gerousia, and ephorate formed a constitution admired by philosophers from Herodotus to Polybius. Its austere civic ethic produced one of antiquity&#39;s most feared armies and one of its most controversial societies. The city&#39;s decline after Leuctra did not diminish its symbolic power; Sparta became shorthand for military discipline and civic sacrifice.</p>
+<h3 id="sparta-and-lacedaemon-foundation-myth">Sparta and Lacedaemon (Foundation Myth)</h3>
+<p>The river Eurotas had a daughter named Sparta, beautiful and vigorous. Lacedaemon, son of Zeus and Taygete, came to Laconia and married her, uniting two divine lineages. The land took her name, Sparta, while the wider region was called Lacedaemon after him. Their children, Amyclas and Eurydice, continued the royal line that would eventually produce the twin kingship for which historical Sparta was famous.</p>
+<p>This mythic marriage explains why the city and its territory bore different names in Greek usage. &#39;Sparta&#39; named the city proper, while &#39;Lacedaemon&#39; named the state and its people. The distinction survived into the classical period, when Spartans called themselves Lacedaemonians and their kings traced descent from Heracles through the house of Amyclas.</p>
+<h3 id="lycurgus-and-the-delphic-oracle-institutional-myth">Lycurgus and the Delphic Oracle (Institutional Myth)</h3>
+<p>The Spartans attributed their distinctive customs to Lycurgus, a semi-legendary lawgiver of the eighth or seventh century BCE. Herodotus and Xenophon report that Lycurgus traveled to Delphi and received the oracle&#39;s approval for his reforms. The Pythia called him &#39;more god than man&#39; and commanded the Spartans to obey whatever laws he proposed. From this divine mandate came the agoge, the common messes, the dual kingship, and the gerousia that shaped Spartan life for centuries.</p>
+<p>Whether Lycurgus was a historical individual or a symbolic figure, the myth made Sparta&#39;s constitution sacred. Its austerity was not mere preference but obedience to Apollo, and its warriors were the guardians of an order sanctified by the same oracle that advised kings and colonists across the Greek world.</p>
+<h3 id="sparta-in-the-trojan-war-heroic-tradition">Sparta in the Trojan War (Heroic Tradition)</h3>
+<p>When Paris abducted Helen, wife of the Spartan king Menelaus, he turned Sparta into the launching point of the Trojan War. Agamemnon gathered the Greek host at Aulis, but the expedition was justified by the wrong done to Menelaus in his own palace. Menelaus and Helen were buried, in later tradition, at Therapne near Sparta, and their shrine became a place of hero-cult.</p>
+<p>The Spartans also claimed the Dioscuri, Castor and Polydeuces, as native sons. These twin horsemen embodied the Spartan ideals of brotherhood and martial excellence, and their star-crowned caps became symbols of the city&#39;s divine protectors. Sparta&#39;s mythic identity was thus bound to Helen, the Dioscuri, and the war that defined Greek heroic memory.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Spártē concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>Lambda shield</strong> — The Spartan shield blazon, the first letter of Lacedaemon</li>
+  <li><strong>Doric column</strong> — The austere architectural order favoured in Laconia</li>
+  <li><strong>Helot&#39;s plough</strong> — The agricultural labour that supported the Spartan warrior class</li>
+  <li><strong>Spear and red cloak</strong> — The simple military kit of the Spartan citizen-soldier</li>
+  <li><strong>Eurotas river</strong> — The river that defined the Spartan valley and its identity</li>
+  <li><strong>Amyklaian throne</strong> — The carved monument of Bathykles at the Amyklaion, where Apollo and the hero Hyakinthos shared a sanctuary</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Sparta&#39;s remains are famously thin — Thucydides predicted as much — but three excavated sanctuaries anchor the name in stone. The sanctuary of Artemis Orthia, dug by the British School at Athens in 1906-1910, yielded the archaic ivory and lead votives and the altar around which the ephebic contests took place. The Amyklaion to the south, excavated by German archaeologists in 1925, preserves the precinct of Apollo and Hyakinthos with the remains of Bathykles&#39; decorated throne. On the low acropolis, the temple of Athena Chalkioikos — its bronze-plated interior described by Pausanias — and the Roman theater complete the known civic core.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p><strong>Spártē</strong> names both the Laconian city and the daughter of Eurotas who gave it her name; the aspects below are the institutions and festivals that defined the historical polis.</p>
+<h3 id="agoge">Agoge</h3>
+<p>The state upbringing shaped Spartan boys into soldiers through austerity, discipline, and collective endurance.</p>
+<h3 id="dual-kingship">Dual Kingship</h3>
+<p>Two royal lines descended from Heracles ruled jointly, balanced by the gerousia and ephors.</p>
+<h3 id="hyacinthia">Hyacinthia</h3>
+<p>The festival of Apollo and the dead hero Hyacinthus anchored Spartan civic identity in mourning and renewal.</p>
+<h3 id="thermopylae-legacy">Thermopylae Legacy</h3>
+<p>The stand of the Three Hundred made Sparta a byword for collective sacrifice in defense of Greece.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Sparta&#39;s afterlife among other peoples is a study in refraction rather than conquest. Rome did not annex Sparta&#39;s cults; it curated them. Under the empire the city became a living museum of its own legend: the diamastigōsis — the ritual flogging of ephebes at the altar of Artemis Orthia — was maintained and even elaborated as a spectacle for Roman visitors, and Pausanias records it still drawing crowds in the second century CE. The intellectual transplant ran deeper. The &#39;Spartan mirage&#39;, the idealized austerity outsiders projected onto the city from Xenophon and Plato onward, made Sparta a portable political metaphor — admired by Rousseau, quoted by founders of republics, and condemned in turn. Its ancient antithesis <a href="/sites/athenai/">Athēnai</a> travelled the same road, and the pairing of the two names still structures how the classical world is imagined.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p><strong>Spártē</strong> remains a byword for military discipline, austere virtue, and civic sacrifice, studied by generals and political theorists alike. Restoring <em>Spártē</em> in Unicode preserves the name&#39;s cultural specificity against the flattening force of plain ASCII, including the acute accent that marked the city&#39;s name in classical texts. Modern Sparta keeps the ancient name, and the surrounding region keeps the memory of laconic speech — the very word for terse utterance derives from Laconia, whose people cultivated brevity as a civic virtue and made their speech an expression of discipline. The restored accent is a small act of the same economy: one stroke, exactly placed, carrying the full weight of the classical name.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Spártē given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Homer. Iliad and Odyssey; Hesiod. Theogony and Works and Days.</li>
+  <li> Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li>
+  <li> Pausanias, Description of Greece Book 3 (the monuments of Sparta).</li>
+  <li> Strabo, Geography Book 8 (Laconia and Spartan institutions).</li>
+  <li> Diodorus Siculus, Bibliotheca historica (Spartan affairs and the Persian Wars).</li>
+  <li> Pindar, Pythian Odes (victory odes for Spartan athletes).</li>
+  <li> Tyrtaeus, Elegies (Spartan martial poems).</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p><strong>Spártē</strong> means, by the oldest etymology, &#39;sown land&#39; — cultivated ground, not yet a byword for barracks discipline. The tension between those two senses is the city&#39;s whole history: a place that prided itself on silence and endurance, and that bequeathed its name to every later ideal of austere citizenship. The acute on the alpha and the long final eta are the written form of that endurance — the name held steady, accent and length, from Homer to Pausanias. A city that built no walls taught the world that a name, like a phalanx, holds its ground by holding its form — and that its men are its letters.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Spártē is classified as <strong>Tier 1</strong>: the original carries both stress and length, and only one valid Unicode restoration exists. The ASCII fallback <em>sparte</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 6 characters of the name, the restoration adjusts 2: 1 mark of stress (á); 1 mark of length (ē). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>sparte</em> to <strong>Spártē</strong>, one character at a time:</p>
+<ul>
+  <li><strong>s</strong> → <strong>S</strong> — Sigma</li>
+  <li><strong>p</strong> → <strong>p</strong> — Pi</li>
+  <li><strong>a</strong> → <strong>á</strong> — Acute on alpha</li>
+  <li><strong>r</strong> → <strong>r</strong> — Rho</li>
+  <li><strong>t</strong> → <strong>t</strong> — Tau</li>
+  <li><strong>e</strong> → <strong>ē</strong> — Eta: long epsilon</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>spártē.com</strong>, which the DNS carries in punycode form as xn--sprt-6na61a.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Spártē; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Greek can now be typed into any browser on earth.</p>
+<h2 id="the-greek-location-pantheon">The Greek Location Pantheon</h2>
+<p>Spártē is one of 24 entries the PÚNYCODEX lexicon catalogues under the Greek Location pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Spártē mean?</strong> The traditional gloss is &quot;Sown land (from σπείρω).&quot;</p>
+<p><strong>Which tradition does Spártē belong to?</strong> Spártē is catalogued in the Greek Location pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Spártē classified as Tier 1?</strong> Because the original carries both stress and length, and only one valid Unicode restoration exists — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Spártē a working domain?</strong> Yes — spártē.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for spártē.com?</strong> The DNS encoding is xn--sprt-6na61a.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="typing-sparte">Typing Spártē</h2>
+<p>You do not need a special keyboard to use this restoration. The <a href="/type/">PÚNYCODEX Type Tool</a> converts the ASCII form <em>sparte</em> into <strong>Spártē</strong> as you type, and the browser extension offers the same conversion inside any text field. Copy the restored form, paste it into the address bar, and the DNS does the rest.</p>
+<h2 id="sister-temples">Sister Temples</h2>
+<p>Other temples in the Greek Location pantheon include <a href="/sites/thrake/">Thrákē</a>, and <a href="/sites/troia/">Troía</a> — each with its own restoration story, its own scholarly record, and its own place in the lexicon.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Every stage of the journey from Greek to Unicode was an act of care: the scribe who first wrote the name, the lexicographer who glossed it, the engineer who taught the DNS to carry it. The PÚNYCODEX restoration is the latest stage, not the last word — the Scholarly Edition is revised as the evidence improves. What does not change is the principle: a name deserves to be written the way its own tradition wrote it. <strong>Spártē</strong> in the address bar is that principle, made routable.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/krete/">Krḗtē</a></li>
   <li><a href="/sites/olympos/">Ólympos</a></li>
   <li><a href="/sites/thebai/">Thēbaí</a></li>
 </ul>
-<h2>Further Reading</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0134">Homer, Iliad 2.581 (&#39;hollow Lacedaemon&#39;).</a></li>
   <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0160">Pausanias, Description of Greece 3.1.1 (Sparta daughter of Eurotas, wife of Lacedaemon).</a></li>
   <li><a href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ">Wörterbuch der griechischen Eigennamen, 3rd ed., 1863.</a></li>
+  <li>Beekes, R. S. P. Etymological Dictionary of Greek, s.v. Σπάρτη. Leiden: Brill, 2010.</li>
+  <li>Homer. Iliad and Odyssey; Hesiod. Theogony and Works and Days.</li>
+  <li>Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li>
+  <li>Xenophon, Constitution of the Lacedaemonians; Pausanias, Description of Greece Book 3.</li>
+  <li>Lexicon authorities for this entry: Pape-Benseler, Barrington.</li>
 </ul>
-<h2>The Name in Context</h2>
-<p>Spártē (sparte) is the chief city of Laconia in the southern Peloponnese — Homer&#39;s &#39;hollow Lacedaemon&#39; — and, in myth, the daughter of the river-god Eurotas, whose marriage to Lacedaemon gave city and territory their twin names.^1 The traditional etymology derives the name from σπείρω, &#39;to sow&#39;: the sown land. A pre-Greek origin has also been suspected; ancient writers explain the name only by the eponymous heroine, the river-god&#39;s daughter. PÚNYCODEX restores the name as Spártē and serves its temple at spártē.com. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form sparte survives as a modern convenience imposed by the early...</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">greek-location</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

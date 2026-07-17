@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,45 +170,196 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>13 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-norse-pantheon">The Norse Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#typing-egg-er">Typing Eggþér</a></li>
+                <li><a href="#sister-temples">Sister Temples</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>The Name Eggþér and the World It Opens</h1>
-<p>A name is a door. Eggþér opens onto watchman, ragnarök herald. Eggþér (eggther) — Watchman, Ragnarök Herald · Sword guardian — belongs to the Norse tradition, where it is catalogued under the domain &quot;Watchman, Ragnarök Herald&quot;. The name means &quot;Sword guardian&quot;. Eggþér appears in the sources only once, but the moment is unforgettable. At Ragnarök, he sits on a mound and plays his harp, while the giantess guarding him joyfully proclaims the ruin of the gods. His music is the soundtrack of the world&#39;s end — a strange, pastoral prelude to annihilation. PÚNYCODEX restores the name as Eggþér and serves its temple at eggþér.com. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form eggther survives as a...</p>
-<h2>Domain and Meaning</h2>
-<p>The temple domain is <strong>Watchman, Ragnarök Herald</strong>. The traditional meaning is &quot;Sword guardian.&quot; Together, those two facts explain why the name mattered enough to be remembered for millennia.</p>
-<h2>The Mythic Landscape</h2>
-<p>Eggþér is one of the most enigmatic figures in Norse myth. He has no extended story, no family tree, no cult. Yet his single appearance in Völuspá makes him unforgettable: the herdsman on the mound, playing while the world ends. Myth is the memory of a civilization, and names are the hooks on which that memory hangs.</p>
-<h2>Modern Patterns</h2>
-<p>The <a href="/sites/eggther/patterns/">Patterns</a> page maps the industries and sister temples that share Eggþér&#39;s current. A name that once organized ritual now organizes search, advertising, and creative collaboration.</p>
-<h2>Join the Restoration</h2>
-<p>You can support the work through the <a href="/sites/eggther/patron/">Patron</a> wall, submit creative work, or simply share the address. Every visit to Eggþér is a vote for original scripts.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Eggþér is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>The name Eggþér and the world it opens</h1>
+<p>A name is a door. <strong>Eggþér</strong> opens onto an entire world: the domain of watchman, ragnarök herald, a Norse tradition, and centuries of storytelling, worship, and scholarship. This post walks through that world room by room — the name and its roots, the original script, the sound of it, the myths, the symbols, the sites, the afterlife across cultures — and ends at the newest room of all: a Unicode domain that makes the whole structure addressable. <em>eggther</em> gets you to the same building, but only the restored form tells you why it was built.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Eggþér</li>
+  <li><strong>ASCII form:</strong> eggther</li>
+  <li><strong>Meaning:</strong> &quot;Sword guardian&quot;</li>
+  <li><strong>Domain of influence:</strong> Watchman, Ragnarök Herald</li>
+  <li><strong>Pantheon:</strong> Norse</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Original script:</strong> ᛁᚴᚴᚦᛁᚱ (Younger Futhark)</li>
+  <li><strong>Live domain:</strong> eggþér.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Eggþér</strong> (<em>eggther</em>) — Watchman, Ragnarök Herald · Sword guardian — belongs to the Norse tradition, where it is catalogued under the domain &quot;Watchman, Ragnarök Herald&quot;. The name means &quot;Sword guardian&quot;.</p>
+<p>Eggþér appears in the sources only once, but the moment is unforgettable. <strong>At Ragnarök, he sits on a mound and plays his harp</strong>, while the giantess guarding him joyfully proclaims the ruin of the gods. His music is the soundtrack of the world&#39;s end — a strange, pastoral prelude to annihilation.</p>
+<p>PÚNYCODEX restores the name as <strong>Eggþér</strong> and serves its temple at <a href="https://xn--eggr-dpa9j.com">eggþér.com</a>. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>eggther</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is rendered in Younger Futhark as <strong>ᛁᚴᚴᚦᛁᚱ</strong>; the figure is known only from the manuscript tradition (Völuspá 42), so the runic form is a normalized reconstruction.</p>
+<p>The name&#39;s meaning is disputed. The first element may be <em>egg</em>, &#39;edge (of a blade)&#39;, yielding an &#39;edge-servant&#39; or swordsman, and the second has been connected with <em>þjónn</em>, &#39;servant&#39;; other scholars take the whole as a giant&#39;s name of unknown origin. The lexicon gloss &#39;sword guardian&#39; follows the first of these readings.</p>
+<p>The ASCII form <em>eggther</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Eggþér</strong> recovers the stress accent of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>e</strong> → <strong>E</strong> — Same</li>
+  <li><strong>g</strong> → <strong>g</strong> — Same</li>
+  <li><strong>g</strong> → <strong>g</strong> — Same</li>
+  <li><strong>t</strong> → <strong>þ</strong> — Thorn</li>
+  <li><strong>h</strong> → <strong>—</strong> — Not written</li>
+  <li><strong>e</strong> → <strong>é</strong> — Acute on e</li>
+  <li><strong>r</strong> → <strong>r</strong> — Same</li>
+</ul>
+<p>The project holds the domain <strong>eggþér.com</strong> (xn--eggr-dpa9j.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is rendered in Younger Futhark as <strong>ᛁᚴᚴᚦᛁᚱ</strong> (<em>ikkþir</em>) — Germanic runic, the epigraphic medium of Viking-Age Scandinavia, c. 800–1100 CE.</p>
+<p>The scholarly transliteration of the runic skeleton is <em>ikkþir</em>; the normalized Old Norse form is <em>Eggþér</em>, giving the reading /ˈeɡˌθɛːr/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>ᛁ (ís) writes both /i/ and /e/, so the runic <em>i</em> can stand for the e-vowels of both syllables.</li>
+  <li>ᚴ (kaun) writes /k/ and /g/ alike, and the doubled rune records the geminate gg.</li>
+  <li>ᚦ (þurs) writes both þ and ð.</li>
+  <li>The spelling ikkþir is a normalized phonetic reconstruction: Eggþér is a manuscript figure (Völuspá 42), and no runic attestation of the name exists or is expected.</li>
+</ul>
+<p>The Unicode restoration Eggþér uses the thorn (þ) and the accented é — both registrable in .com — to preserve the normalized spelling of the Codex Regius tradition.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/ˈeɡˌθɛːr/</strong> — Old Norse Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>E-</strong> — Short open-mid front unrounded vowel [ɛ], the stressed first syllable.</li>
+  <li><strong>-gg-</strong> — Long or geminated voiced velar stop [ɡː], written double in Old Norse.</li>
+  <li><strong>-þér</strong> — Voiceless dental fricative [θ] (thorn) plus long close-mid front [eː] with acute stress, ending in trilled [r].</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;EGG-thair&#39; — crisp &#39;egg&#39; with a held g, then the breathy &#39;th&#39; of &#39;thin&#39; and a long, stressed &#39;air&#39; ending in a light r.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Old Norse</strong> — Eggþér, the herdsman of the giantess who watches at Ragnarök</li>
+  <li><strong>Etymology (uncertain)</strong> — Possibly &#39;edge-servant&#39; or related to words for sword; the second element may connect to þjónn, &#39;servant&#39;</li>
+  <li><strong>Manuscript attestations</strong> — Völuspá 42 in the Codex Regius and Hauksbók recensions</li>
+</ul>
+<p>Eggþér is Tier 1: the acute on é marks both stress and length on the final syllable, while the geminate gg preserves consonant length. As a minor mythic figure, Eggþér has limited attestations; the reconstruction is based on normalized Old Norse phonology and the Eddic verse context.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Eggþér is one of the most enigmatic figures in Norse myth. He has no extended story, no family tree, no cult. Yet his single appearance in <em>Völuspá</em> makes him unforgettable: the herdsman on the mound, playing while the world ends.</p>
+<h3 id="the-herdsman-on-the-howe-voluspa-42">The Herdsman on the Howe (Völuspá 42)</h3>
+<p><em>Völuspá</em> 42 describes the scene: &#39;He sat on the mound and struck the harp, the giantess&#39;s herdsman, glad Eggþér; above him crowed, in the gallow-wood, the fair-red rooster who is called Fjalarr.&#39; The juxtaposition of music, animals, and apocalypse is haunting. Eggþér is not fighting; he is playing, as if the end of the cosmos were a pastoral occasion.</p>
+<h3 id="the-breaking-of-bonds-ragnarok-sequence">The Breaking of Bonds (Ragnarök sequence)</h3>
+<p>In the verses surrounding Eggþér&#39;s appearance, the wolf Garm breaks free before Gnipahellir, the sea crashes over the land, and the ship Naglfar is loosed from its moorings. Eggþér&#39;s harp sounds in the interval before the final battle, a moment of terrible calm. He is the herald whose music marks the transition from uneasy order to final chaos.</p>
+<h3 id="servant-or-swordsman-scholarly-debate">Servant or Swordsman? (Scholarly debate)</h3>
+<p>The meaning of Eggþér&#39;s name is disputed. Some scholars connect the first element to Old Norse <em>egg</em>, &#39;edge (of a sword),&#39; making him a &#39;sword-servant&#39; or warrior; others see a giant&#39;s name of uncertain origin. His role as herdsman (hirðir) suggests a pastoral figure drawn into the apocalyptic scene, perhaps symbolizing the natural world&#39;s complicity in the gods&#39; doom.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Eggþér concentrates in a small set of recurring attributes, all drawn from his single stanza and the verses around it:</p>
+<ul>
+  <li><strong>Harp</strong> — the instrument whose music accompanies the fall of the gods; he &#39;struck the harp&#39; as the portents begin (Völuspá 42).</li>
+  <li><strong>Grave-mound</strong> — his seat on the howe, a liminal place between living and dead; mounds were the customary watch-posts of herdsmen and the seats of the dead.</li>
+  <li><strong>The gallow-wood (galgviðr)</strong> — the tree above him in which the cock Fjalarr perches, a name that drags hanging and sacrifice into the pastoral scene (Völuspá 42).</li>
+  <li><strong>Sword or edge</strong> — if the name&#39;s first element is <em>egg</em>, &#39;edge (of a blade)&#39;, it hints at the blade that cuts the old world apart; the reading is disputed.</li>
+  <li><strong>The cocks of the doom</strong> — Fjalarr, &#39;fair-red&#39;, crows to the giants; Gullinkambi wakes the Æsir; a soot-red cock crows below the earth in the halls of Hel (Völuspá 42–43).</li>
+</ul>
+<ul>
+  <li><strong>Crimson cock Fjalarr</strong> — In the same Ragnarök sequence, the cock crows to the giants; Eggþér&#39;s music answers that alarm</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>No archaeological find can be linked to Eggþér, and none should be expected for a figure attested in a single stanza. His evidence is codicological: the Codex Regius of the Poetic Edda (GKS 2365 4to, c. 1270) and the Hauksbók compilation (AM 544 4to, assembled under Haukr Erlendsson in the early fourteenth century), whose scribes transmit the stanza with minor variation and place it differently within the poem&#39;s sequence. The mound on which he sits is nonetheless real archaeology: Scandinavia is covered with Bronze- and Iron-Age burial mounds, understood as boundary places where the dead remained present in the landscape. Mounds served as watch-posts for herdsmen and as seats of kingship and of necromantic &#39;sitting-out&#39; (útiseta); E. V. Gordon emphasized the royal and chieftainly associations of mound-sitting when commenting on the Eddic poems.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Eggþér appears in the sources only once, but the moment is unforgettable. <strong>At Ragnarök, he sits on a mound and plays his harp</strong>, while the giantess guarding him joyfully proclaims the ruin of the gods. His music is the soundtrack of the world&#39;s end — a strange, pastoral prelude to annihilation.</p>
+<h3 id="the-mound">The Mound</h3>
+<p>He sits on a grave-mound or howe, a liminal seat between living and dead.</p>
+<h3 id="the-harp">The Harp</h3>
+<p>His playing announces the final age; music becomes an omen of doom.</p>
+<h3 id="the-giantess-guardian">The Giantess Guardian</h3>
+<p>A female jotunn stands watch and laughs at the coming destruction.</p>
+<h3 id="ragnarok-herald">Ragnarök Herald</h3>
+<p>His presence signals that the doom of the gods has begun.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Eggþér has no clear counterpart outside Norse tradition. His closest relatives are other liminal apocalyptic figures: Heimdallr, who watches at the world&#39;s edge and will blow the Gjallarhorn; the giant Hrymr, who steers Naglfar; and the unnamed giantess who keeps watch on a howe. Some interpreters have compared him to the medieval figure of the Wild Huntsman or to death-herdsmen in Indo-European folklore — suggestive parallels, but no more than parallels. The scene in <em>Völuspá</em> may draw on older apocalyptic imagery shared with Christian and Near Eastern traditions, though the pastoral details are distinctively Norse.</p>
+<p>Within the Norse tradition, closely related names in the corpus include [[alfheimr|Álfheimr]], [[buri|Búri]], [[helheimr|Helheimr]], [[jormungandr|Jǫrmungandr]], [[jotunheimr|Jötunheimr]], and [[midgardr|Miðgarðr]].</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Eggþér&#39;s afterlife is confined almost entirely to the readership of <em>Völuspá</em> — but that readership is large. His stanza is one of the poem&#39;s most discussed: commentators from Neckel to Dronke have paused on the strangeness of music at the moment of collapse, and the manuscript&#39;s description of him as &#39;glad&#39; has set the terms of the debate over whether his playing is menace, ecstasy, or indifference. Beyond scholarship he surfaces occasionally in translations, illustrations, and Norse-inspired fiction and music as the harpist of the apocalypse — the figure modern artists reach for when the end of the world needs a soundtrack rather than a battle-cry. He has no cult to revive and no saga to retell: his legacy is a single scene, endlessly re-read.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Eggþér given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Poetic Edda: Völuspá 42 (Codex Regius and Hauksbók recensions).</li>
+  <li> Dronke, Ursula, The Poetic Edda, Volume II: Mythological Poems.</li>
+  <li> Cleasby &amp; Vigfusson, An Icelandic-English Dictionary (1874), s.v. egg, þér/þjónn.</li>
+  <li> Zoëga, A Concise Dictionary of Old Icelandic (1910).</li>
+  <li> Simek, Rudolf, Dictionary of Northern Mythology.</li>
+  <li> Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs.</li>
+  <li> de Vries, Jan, Altgermanische Religionsgeschichte.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Eggþér is the musician at the edge of the world. While gods and giants arm for the final battle, he sits on a mound and plays. His song is not a call to arms; it is an acknowledgment that the old order is finished and something else — even if that something is silence — is about to begin.</p>
+<p>In a culture obsessed with heroic action, Eggþér&#39;s passivity is striking. He does not choose sides; he bears witness. Perhaps that is his function: to remind us that not every response to catastrophe is combat. Some truths can only be told in music, at the boundary between what was and what will never be again.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Eggþér is classified as <strong>Tier 1</strong>: the original carries both stress and length, and only one valid Unicode restoration exists. The ASCII fallback <em>eggther</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 7 characters of the name, the restoration adjusts 3: 1 mark of stress (é); 2 further adjustments (þ, h). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>eggther</em> to <strong>Eggþér</strong>, one character at a time:</p>
+<ul>
+  <li><strong>e</strong> → <strong>E</strong> — Same</li>
+  <li><strong>g</strong> → <strong>g</strong> — Same</li>
+  <li><strong>g</strong> → <strong>g</strong> — Same</li>
+  <li><strong>t</strong> → <strong>þ</strong> — Thorn</li>
+  <li><strong>h</strong> → <strong>h</strong> — Not written</li>
+  <li><strong>e</strong> → <strong>é</strong> — Acute on e</li>
+  <li><strong>r</strong> → <strong>r</strong> — Same</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>eggþér.com</strong>, which the DNS carries in punycode form as xn--eggr-dpa9j.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Eggþér; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Younger Futhark can now be typed into any browser on earth.</p>
+<h2 id="the-norse-pantheon">The Norse Pantheon</h2>
+<p>Eggþér is one of 86 entries the PÚNYCODEX lexicon catalogues under the Norse pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Eggþér mean?</strong> The traditional gloss is &quot;Sword guardian.&quot;</p>
+<p><strong>Which tradition does Eggþér belong to?</strong> Eggþér is catalogued in the Norse pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Eggþér classified as Tier 1?</strong> Because the original carries both stress and length, and only one valid Unicode restoration exists — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Eggþér a working domain?</strong> Yes — eggþér.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for eggþér.com?</strong> The DNS encoding is xn--eggr-dpa9j.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="typing-egg-er">Typing Eggþér</h2>
+<p>You do not need a special keyboard to use this restoration. The <a href="/type/">PÚNYCODEX Type Tool</a> converts the ASCII form <em>eggther</em> into <strong>Eggþér</strong> as you type, and the browser extension offers the same conversion inside any text field. Copy the restored form, paste it into the address bar, and the DNS does the rest.</p>
+<h2 id="sister-temples">Sister Temples</h2>
+<p>Other temples in the Norse pantheon include <a href="/sites/uppsala/">Uppsala</a>, <a href="/sites/vali/">Váli</a>, and <a href="/sites/vidarr/">Víðarr</a> — each with its own restoration story, its own scholarly record, and its own place in the lexicon.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>A door only matters if people walk through it. <strong>eggþér.com</strong> is open, and everything behind it — the myths, the scholarship, the canvas, the patrons — hangs on the restored spelling. The PÚNYCODEX project bets that the web will make room for names as they were actually written, and Eggþér is one of its standing proofs. Visit, share, cite, type it yourself: each use is a small rehearsal for a web where no name has to hide its marks to be found.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/hati/">Hati</a></li>
   <li><a href="/sites/heimdallr/">Heimdallr</a></li>
   <li><a href="/sites/hel/">Hel</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
-  <li><a href="https://heimskringla.no/wiki/Main_Page">Scholarly reference</a></li>
+  <li>Poetic Edda: Völuspá 42 (Codex Regius and Hauksbók recensions).</li>
+  <li>Dronke, Ursula, The Poetic Edda, Volume II: Mythological Poems.</li>
+  <li>Cleasby &amp; Vigfusson, An Icelandic-English Dictionary (1874), s.v. egg, þér/þjónn.</li>
+  <li>Barnes, Michael P., Runes: A Handbook (Boydell, 2012).</li>
+  <li>Lexicon authorities for this entry: Cleasby-Vigfusson, Zoëga.</li>
 </ul>
-<h2>The Name in Context</h2>
-<p>Eggþér (eggther) — Watchman, Ragnarök Herald · Sword guardian — belongs to the Norse tradition, where it is catalogued under the domain &quot;Watchman, Ragnarök Herald&quot;. The name means &quot;Sword guardian&quot;. Eggþér appears in the sources only once, but the moment is unforgettable. At Ragnarök, he sits on a mound and plays his harp, while the giantess guarding him joyfully proclaims the ruin of the gods. His music is the soundtrack of the world&#39;s end — a strange, pastoral prelude to annihilation. PÚNYCODEX restores the name as Eggþér and serves its temple at eggþér.com. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form eggther survives as a...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Eggþér as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Younger Futhark to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Eggþér through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/eggther/">home page</a> offers the full name breakdown, the <a href="/sites/eggther/lore/">lore page</a> explores the myth, and the <a href="/sites/eggther/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Eggþér do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
-<h2>A Note on the Address Bar</h2>
-<p>When you type Eggþér, the browser performs an invisible conversion into Punycode so the global DNS can route the request. The user sees the original name; the machines see a compatible ASCII encoding. That duality is the engineering compromise that makes the restoration possible, and it is the reason every Unicode domain is both a technical milestone and a small act of cultural memory.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">norse</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

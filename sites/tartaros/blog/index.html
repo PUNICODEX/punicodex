@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,46 +170,190 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#epithets-cult-titles">Epithets &amp; Cult Titles</a></li>
+                <li><a href="#the-homeric-hymns">The Homeric Hymns</a></li>
+                <li><a href="#oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>The Name Tártaros and the World It Opens</h1>
-<p>A name is a door. Tártaros opens onto the primordial abyss. Tártaros (tartaros — Greek Τάρταρος) is the primordial Abyss of Greek cosmogony: the deepest place, named by Hesiod as the third power to arise after Cháos and Gaîa — &#39;dim Tartarus, in the depth of the broad-pathed earth&#39; (Th. 119). Homer gives it its fixed measure: as far beneath Hádēs as heaven is above the earth, with iron gates and a bronze threshold (Il. 8.13–16). It is not merely a dungeon; it is a cosmic depth, and once — with Gaia — a generative power, father of Typhōn (Th. 820–822). PÚNYCODEX restores the name as Tártaros and serves its temple at tártaros.com. The Greek Τάρταρος preserves one prosodic feature — the acute stress on the first alpha — rather than both stress and length, which places the name in Tier 2. The plain ASCII form...</p>
-<h2>Domain and Meaning</h2>
-<p>The temple domain is <strong>The Primordial Abyss</strong>. The traditional meaning is &quot;Deep place (from τάρταρος).&quot; Together, those two facts explain why the name mattered enough to be remembered for millennia.</p>
-<h2>The Mythic Landscape</h2>
-<p>Tártaros appears almost as soon as the world begins. It is the third primordial in Hesiod&#39;s list — gap, earth, abyss — and it remains the final destination for every cosmic rebel. Myth is the memory of a civilization, and names are the hooks on which that memory hangs.</p>
-<h2>Modern Patterns</h2>
-<p>The <a href="/sites/tartaros/patterns/">Patterns</a> page maps the industries and sister temples that share Tártaros&#39;s current. A name that once organized ritual now organizes search, advertising, and creative collaboration.</p>
-<h2>Join the Restoration</h2>
-<p>You can support the work through the <a href="/sites/tartaros/patron/">Patron</a> wall, submit creative work, or simply share the address. Every visit to Tártaros is a vote for original scripts.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Tártaros is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>The name Tártaros and the world it opens</h1>
+<p>A name is a door. <strong>Tártaros</strong> opens onto an entire world: the domain of the primordial abyss, a Greek tradition, and centuries of storytelling, worship, and scholarship. This post walks through that world room by room — the name and its roots, the original script, the sound of it, the myths, the symbols, the sites, the afterlife across cultures — and ends at the newest room of all: a Unicode domain that makes the whole structure addressable. <em>tartaros</em> gets you to the same building, but only the restored form tells you why it was built.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Tártaros</li>
+  <li><strong>ASCII form:</strong> tartaros</li>
+  <li><strong>Meaning:</strong> &quot;Deep place (from τάρταρος)&quot;</li>
+  <li><strong>Domain of influence:</strong> The Primordial Abyss</li>
+  <li><strong>Pantheon:</strong> Greek</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> Τάρταρος (Greek)</li>
+  <li><strong>Live domain:</strong> tártaros.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Tártaros</strong> (<em>tartaros</em> — Greek Τάρταρος) is the primordial Abyss of Greek cosmogony: the deepest place, named by Hesiod as the third power to arise after <a href="/sites/chaos/">Cháos</a> and <a href="/sites/gaia/">Gaîa</a> — &#39;dim Tartarus, in the depth of the broad-pathed earth&#39; (Th. 119). Homer gives it its fixed measure: as far beneath <a href="/sites/hades/">Hádēs</a> as heaven is above the earth, with iron gates and a bronze threshold (Il. 8.13–16). It is not merely a dungeon; it is a cosmic depth, and once — with Gaia — a generative power, father of Typhōn (Th. 820–822).</p>
+<p>PÚNYCODEX restores the name as <strong>Tártaros</strong> and serves its temple at <a href="https://xn--trtaros-hwa.com">tártaros.com</a>. The Greek Τάρταρος preserves one prosodic feature — the acute stress on the first alpha — rather than both stress and length, which places the name in Tier 2. The plain ASCII form <em>tartaros</em> is a modern fallback imposed by the early domain-name system, not an ancient spelling.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Greek as <strong>Τάρταρος</strong>, both a primordial being and the place he embodies: the deep beneath the underworld. Its etymology is obscure. Beekes regards the word as probably Pre-Greek — part of the substrate vocabulary of the Aegean, with no secure Indo-European cognate; the older attempts to connect it with roots meaning &#39;tremble&#39; or &#39;depth&#39; have found no acceptance.</p>
+<p>The restoration <strong>Tártaros</strong> writes the acute accent of the original directly in the address bar. The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>t</strong> → <strong>T</strong> — Tau</li>
+  <li><strong>a</strong> → <strong>á</strong> — Acute on alpha</li>
+  <li><strong>r</strong> → <strong>r</strong> — Rho</li>
+  <li><strong>t</strong> → <strong>t</strong> — Tau</li>
+  <li><strong>a</strong> → <strong>a</strong> — Alpha</li>
+  <li><strong>r</strong> → <strong>r</strong> — Rho</li>
+  <li><strong>o</strong> → <strong>o</strong> — Omicron</li>
+  <li><strong>s</strong> → <strong>s</strong> — Sigma</li>
+</ul>
+<p>Because the Greek preserves only the stress and no long vowel or diphthong, the name is Tier 2 (accent-preserving); the ASCII <em>tartaros</em> is the domain-name system&#39;s fallback. The project holds the domain <strong>tártaros.com</strong> (xn--trtaros-hwa.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: Deep place (from τάρταρος)</p>
+<p>The root gloss is &quot;Deep place.&quot;</p>
+<p>The reconstruction is classed as attested.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Greek as <strong>Τάρταρος</strong> — Greek alphabet (Classical / Attic), attested Ancient Greek, c. 8th century BCE – present, in Greece and the Greek-speaking Mediterranean. The script is written left-to-right.</p>
+<p>The scholarly transliteration is <em>Tártaros</em> (Greek alphabet with polytonic accents), giving the normalized reading /ˈtar.ta.ros/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The Greek form Τάρταρος is written in the Classical Greek alphabet.</li>
+  <li>Letters with acute, grave, or circumflex accents preserve the pitch accent of Ancient Greek.</li>
+  <li>Macrons and omegas (η, ω) mark long vowels, a feature lost in the plain ASCII form.</li>
+  <li>The Unicode restoration Tártaros encodes the scholarly spelling as a registrable domain name.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed Attic pronunciation of the name is <strong>/tár.ta.ros/</strong>: three syllables, acute pitch on the first, all vowels short.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Tá-</strong> — voiceless tau plus short alpha carrying the acute pitch accent.</li>
+  <li><strong>-rta-</strong> — rho, tau, alpha: the trilled-r cluster of the unaccented middle syllable.</li>
+  <li><strong>-ros</strong> — short omicron plus sigma, the masculine nominative ending.</li>
+</ul>
+<p>For the modern speaker the closest approximation is &#39;TAR-ta-ross&#39;, with the first syllable pitched higher, not louder.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Greek</strong> — the etymology is obscure; Beekes suggests a Pre-Greek substrate origin.</li>
+  <li><strong>PIE</strong> — no Indo-European root is securely attested; the word appears to predate the Greek language itself.</li>
+</ul>
+<p>Tártaros is Tier 2 because the Greek Τάρταρος preserves only stress (acute on the first alpha), not length. The first syllable carries the pitch peak of a name that denotes the deepest point of the cosmos; the absence of long vowels keeps the name short and abrupt — the acoustic opposite of the bright, sustained <a href="/sites/aither/">Aithḗr</a>.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Tártaros appears almost as soon as the world begins. It is the third primordial in Hesiod&#39;s list — gap, earth, abyss — and it remains the final destination of every cosmic rebel.</p>
+<h3 id="the-third-primordial-theogony">The Third Primordial (Theogony)</h3>
+<p>After <a href="/sites/chaos/">Cháos</a> and <a href="/sites/gaia/">Gaîa</a>, Hesiod names Tártaros: &#39;dim Tartarus, in the depth of the broad-pathed earth&#39; (Th. 119). It is both a place and a power, the body of the pit itself. Homer adds the famous measurement: Zeús threatens to hurl any disobedient god into &#39;murky Tártaros&#39;, far beneath the earth, &#39;where are the iron gates and the bronze threshold, as far below Hādēs as heaven is above earth&#39; (Il. 8.13–16).</p>
+<h3 id="the-titans-cast-down-the-prison">The Titans Cast Down (The Prison)</h3>
+<p>After the Titanomachy, Zeús shut the defeated Titans inside. Hesiod&#39;s set piece (Th. 713–745) gives the abyss a bronze wall, a threefold veil of night, bronze gates set by Poseidôn, and the Hundred-Handers as its guards; the Iliad already knows Iapetos and <a href="/sites/kronos/">Kronos</a> seated there, without sun and without wind (Il. 8.478–481).</p>
+<h3 id="tartaros-and-gaia-the-birth-of-typhon">Tártaros and Gaia (The Birth of Typhōn)</h3>
+<p>In Hesiod&#39;s genealogy the pit is also generative: Gaia lay with Tártaros &#39;in golden love&#39; and bore Typhōeus, her youngest child and the last challenger of Zeús (Th. 820–822); Apollodorus retails the same parentage for the hundred-headed monster (1.6.3).</p>
+<h3 id="sisyphos-tantalos-ixion-the-punished">Sísyphos, Tántalos, Ixíōn (The Punished)</h3>
+<p>In later tradition Tártaros became the place of punishment for mortal sinners: Plato&#39;s <em>Gorgias</em> myth makes it the destination of incurable souls (523a–527a), and Virgil&#39;s underworld shows Rhadamanthus judging the wicked amid the tortures of Tityos, Tántalos, and Ixíōn, in a chasm &#39;twice as deep as the view up to heavenly Olympus&#39; (Aen. 6.543–627). These images of eternal, futile labour shaped the later Christian picture of Hell.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>Tártaros has no cult and no images, but the poets arm the abyss with a precise furniture of depth and closure:</p>
+<ul>
+  <li><strong>Bronze anvil</strong> — Hesiod&#39;s instrument of measurement: nine days&#39; fall from heaven to earth, nine more from earth to Tártaros (Th. 720–725).</li>
+  <li><strong>Iron gates and bronze threshold</strong> — the Homeric seal of the pit into which Zeús vows to hurl the disobedient god (Il. 8.13–16).</li>
+  <li><strong>Triple night</strong> — the darkness wrapped threefold about the bronze wall of the abyss (Th. 726–727).</li>
+  <li><strong>Storm winds</strong> — the winds &#39;from Typhōeus&#39;, his son, that rage out of the depths to wreck ships (Th. 868–880).</li>
+  <li><strong>Fettered Titan</strong> — Iapetos and <a href="/sites/kronos/">Kronos</a> seated in the deep, &#39;rejoicing neither in the rays of the Sun nor in the winds&#39; (Il. 8.478–481).</li>
+</ul>
+<p>Tártaros himself has no iconographic type: Greek art never gave the abyss a body. He enters images only through his prisoners — the Titans and Giants struck down by Zeús, as on the north frieze of the Siphnian Treasury at Delphi (c. 525 BCE) and the Gigantomachy of the Great Altar of Pergamon, where the earth-born fall toward the depths while their mother Gaia rises to plead. South Italian vases of the fourth century BCE then develop the Tartarean landscape as such: the great Apulian underworld kraters of the Darius Painter&#39;s circle show the palace of <a href="/sites/hades/">Hádēs</a> and Persephonē, the Erinyes as ministers of justice, and the punished Sísyphos, Ixíōn, and Tántalos — the pictorial seed from which the medieval image of Hell would grow.</p>
+<h2 id="epithets-cult-titles">Epithets &amp; Cult Titles</h2>
+<p>Tártaros has no cult epithets; he appears in epic through formulaic descriptors, the same few adjectives in every poet.</p>
+<ul>
+  <li><strong>ἠερόεις (ēeróeis)</strong> — &#39;misty, murky&#39;; the standing epithet — &#39;murky Tártaros&#39; — in both Homer and Hesiod&#39;s catalogue of primordials (Il. 8.13; Th. 119).</li>
+  <li><strong>βαθύς (bathýs)</strong> — &#39;deep&#39;; the Iliad&#39;s &#39;deep Tártaros&#39;, where Iapetos and Kronos sit joyless, without sun or wind (Il. 8.478–481).</li>
+  <li><strong>μυχός (mychós)</strong> — &#39;innermost depth, recess&#39;; not an adjective but his Hesiodic address: &#39;in the depth (μυχῷ) of the broad-pathed earth&#39; (Th. 119).</li>
+</ul>
+<p>The Homeric measure — &#39;as far beneath Hādēs as heaven is above the earth&#39; — functions as his fixed definition.</p>
+<h2 id="the-homeric-hymns">The Homeric Hymns</h2>
+<p>No Homeric Hymn to Tártaros survives: an abyss cannot be hymned, only described. His earliest attestations are already cosmic in scale. Homer measures him — &#39;murky Tártaros&#39;, as far beneath Hādēs as heaven is above the earth, the pit into which Zeús vows to hurl any disobedient god; Iapetos and Kronos already sit there, without sun or wind (Il. 8.13–16, 8.478–481). Hesiod makes him the third primordial after <a href="/sites/chaos/">Cháos</a> and <a href="/sites/gaia/">Gaîa</a>, and later describes his bronze-fenced, night-wrapped abyss in detail — a bronze anvil falling nine days from earth would still not reach the bottom (Th. 119, 713–745). From his union with Gaia comes Typhōn, last challenger of Zeús (Th. 820–822). Philosophy finally moralized the pit: in Plato&#39;s <em>Gorgias</em> myth Tártaros receives the incurable souls, and Virgil&#39;s Rhadamanthus judges the wicked above a chasm &#39;twice as deep as Olympus is high&#39; (Aen. 6.577–579).</p>
+<h2 id="oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</h2>
+<p>No oracle, temple, or cult of Tártaros is attested in any Greek community; a cosmic pit is an object of fear, not of worship. His &#39;sites&#39; are literary and geological. Poets equated physical landscapes with his mouth — above all <strong>Etna</strong>, under which the conquered Typhōn lies belching fire, a Pindaric image the tragic stage inherited (P. 1.15–28; Aesch. PV 363–372). Philosophical eschatology, from Plato&#39;s <em>Gorgias</em> to the Orphic and Pythagorean traditions of the soul&#39;s journey, elaborated the pit as a place of judgement for the dead. Apulian funerary art places the punished mortals Ixíōn, Sísyphos, and Tántalos in a Tartarean zone beneath <a href="/sites/hades/">Hádēs</a>&#39; palace, but no pilgrim ever visited a shrine of Tártaros himself.</p>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Tártaros had no cult and so has no sanctuaries; his material record is the record of his prisoners. The Gigantomachy — the war that ended in the pit — was monumentalized on the north frieze of the Siphnian Treasury at Delphi (c. 525 BCE) and, at encyclopedic scale, on the Great Altar of Pergamon (c. 180–160 BCE), where the Giants writhe beneath the Olympians. The Greeks also mapped the abyss onto the living earth: Mount Etna was identified as the mountain piled upon the conquered Typhōn, whose heaving sends up the volcano&#39;s fire (Pindar, P. 1.15–28; Aeschylus, PV 363–372). On South Italian funerary vases of the fourth century BCE, finally, the Tartarean landscape takes pictorial form — the palace of Hádēs and Persephonē, the Erinyes, and the punished Sísyphos and Ixíōn — the seedbed of the medieval image of Hell.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Tártaros is the deepest place. It lies beneath <a href="/sites/hades/">Hádēs</a> as far as Hades lies beneath the earth, and the earth beneath the sky. It is not merely a dungeon; it is a cosmic depth, the inverted dome that balances the celestial dome above.</p>
+<h3 id="the-pit">The Pit</h3>
+<p>The bottommost gulf beneath the foundations of the world: a bronze anvil dropped from earth falls for nine days and nights before it strikes bottom on the tenth (Th. 720–725).</p>
+<h3 id="the-bronze-gates">The Bronze Gates</h3>
+<p>Hesiod gives the abyss a bronze wall with night poured around it in a triple fold, and bronze gates set there by <a href="/sites/poseidon/">Poseidôn</a>, with the Hundred-Handers posted as Zeús&#39;s trusty guards (Th. 726–735).</p>
+<h3 id="storm-and-darkness">Storm and Darkness</h3>
+<p>The murk is generative: from Typhōn, Tártaros&#39;s son by Gaia, issue the storm-winds that rage and wreck upon the sea (Th. 868–880).</p>
+<h3 id="divine-punishment">Divine Punishment</h3>
+<p>The place where the worst offenders receive eternal justice: first the Titans, in epic; then, in Plato&#39;s eschatology, the incurable souls of mortal sinners (Gorgias 523a–527a).</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>The Romans transliterated the name directly as <em>Tartarus</em> and made it the lowest region of the underworld, a place of torment distinct from the neutral <em>inferi</em>: in Virgil&#39;s <em>Aeneid</em> the wicked are judged by Rhadamanthus and cast into a Tartarus that &#39;yawns down twice as far as the view up to Olympus&#39; (Aen. 6.577–579). The word entered Christian scripture itself: the Greek of 2 Peter 2:4 says God &#39;cast the sinning angels into Tartarus&#39; (ταρταρώσας) — the only occurrence of the verb, and the moment the Hesiodic abyss became part of biblical eschatology. From there the word remained in theological vocabulary as a synonym for the deepest place of punishment.</p>
+<p>Within the Greek tradition, closely related names in the corpus include <a href="/sites/acheron/">Achérōn</a>, <a href="/sites/adamas/">Adámas</a>, <a href="/sites/aer/">Aḗr</a>, <a href="/sites/aither/">Aithḗr</a>, <a href="/sites/ananke/">Anánkē</a>, and <a href="/sites/andromeda/">Andromedē</a>.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Tártaros survives as the archetype of the inescapable prison. Video games, fantasy novels, and comic books use &#39;Tartarus&#39; for the deepest dungeon or the final level — the dungeon tower of <em>Persona 3</em> and the underworld of the <em>God of War</em> series are named for it. Astronomy has adopted the name for the abyss above ground: the International Astronomical Union approved <strong>Tartarus Dorsa</strong>, a range of blocky mountains on Pluto, in 2017. In theology the word became biblical Greek (2 Peter 2:4) and so passed into Christian vocabulary as a name for the deepest Hell. Through every borrowing the name keeps its original weight: not merely death, but the bottom of everything.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Tártaros given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement. <a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Full text</a></li>
+  <li> Beekes, Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a href="https://brill.com/view/title/17858">Publisher</a></li>
+  <li> Pape-Benseler, Wörterbuch der griechischen Eigennamen, 3rd ed., 1863. <a href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ">Full text</a></li>
+  <li> Hesiod, Theogony 119, 713–745, 820–822, 868–880. <a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0130">Full text</a></li>
+  <li> Homer, Iliad 8.13–16, 8.478–481.</li>
+  <li> Apollodorus, Library 1.6.3. <a href="https://www.perseus.tufts.edu/hopper/text?doc=Apollod.+1.6.3&amp;fromdoc=Perseus:text:1999.01.0022">Full text</a></li>
+  <li> Plato, Gorgias 523a–527a.</li>
+  <li> Virgil, Aeneid 6.543–627.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>There is a depth beneath death, and the Greeks named it Tártaros. It is not hell in the modern sense, because it holds gods as well as sinners — the Titans, Typhōn, and the most monstrous hybrids of earth and abyss. It is the cosmic landfill, the place where order stores what it cannot destroy but dare not release.</p>
+<p>Every culture has such a place: a pit, a dungeon, a black hole. Tártaros is the Greek version, measured with Homeric precision and built with bronze. To restore the accent on the first syllable is to hear the name as a falling thing — the sound of a stone dropped into a well so deep that it falls for nine days before it hits bottom.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Tártaros is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>tartaros</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 8 characters of the name, the restoration adjusts 1: 1 mark of stress (á). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>tártaros.com</strong>, which the DNS carries in punycode form as xn--trtaros-hwa.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Tártaros; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Greek can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>A door only matters if people walk through it. <strong>tártaros.com</strong> is open, and everything behind it — the myths, the scholarship, the canvas, the patrons — hangs on the restored spelling. The PÚNYCODEX project bets that the web will make room for names as they were actually written, and Tártaros is one of its standing proofs. Visit, share, cite, type it yourself: each use is a small rehearsal for a web where no name has to hide its marks to be found.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/ponos/">Pónos</a></li>
   <li><a href="/sites/praxis/">Prâxis</a></li>
   <li><a href="/sites/protesilaus/">Prōtesilaos</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0130">Hesiod, Theogony 119, 820–822.</a></li>
   <li><a href="https://brill.com/view/title/17858">Beekes, Etymological Dictionary of Greek (Brill, 2010), s.v. Τάρταρος.</a></li>
   <li><a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Liddell-Scott-Jones Greek-English Lexicon, 9th ed., s.v. Τάρταρος.</a></li>
   <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Apollod.+1.6.3&amp;fromdoc=Perseus:text:1999.01.0022">Apollodorus, Library 1.6.3.</a></li>
+  <li><a href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ">Pape-Benseler, Wörterbuch der griechischen Eigennamen, 3rd ed., 1863.</a></li>
+  <li>Homer, Iliad 8.13–16.</li>
+  <li>Liddell-Scott-Jones Greek-English Lexicon, 9th ed., s.v. Τάρταρος.</li>
+  <li>Plato, Gorgias 523a–527a (the eschatological myth).</li>
+  <li>Homer, Iliad 8.13–16, 8.478–481.</li>
+  <li>Lexicon authorities for this entry: LSJ, Pape-Benseler, Beekes.</li>
 </ul>
-<h2>The Name in Context</h2>
-<p>Tártaros (tartaros — Greek Τάρταρος) is the primordial Abyss of Greek cosmogony: the deepest place, named by Hesiod as the third power to arise after Cháos and Gaîa — &#39;dim Tartarus, in the depth of the broad-pathed earth&#39; (Th. 119). Homer gives it its fixed measure: as far beneath Hádēs as heaven is above the earth, with iron gates and a bronze threshold (Il. 8.13–16). It is not merely a dungeon; it is a cosmic depth, and once — with Gaia — a generative power, father of Typhōn (Th. 820–822). PÚNYCODEX restores the name as Tártaros and serves its temple at tártaros.com. The Greek Τάρταρος preserves one prosodic feature — the acute stress on the first alpha — rather than both stress and length, which places the name in Tier 2. The plain ASCII form...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Tártaros as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Greek to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Tártaros through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/tartaros/">home page</a> offers the full name breakdown, the <a href="/sites/tartaros/lore/">lore page</a> explores the myth, and the <a href="/sites/tartaros/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Tártaros do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">greek</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

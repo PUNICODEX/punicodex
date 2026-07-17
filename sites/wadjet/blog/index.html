@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,35 +170,200 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-egyptian-pantheon">The Egyptian Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#typing-w-dyt">Typing Wꜣḏyt</a></li>
+                <li><a href="#sister-temples">Sister Temples</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>From Hieroglyphs to Unicode: The Journey of Wꜣḏyt</h1>
-<p>Long before it was a domain, the name traveled through scripts. The name is preserved in Hieroglyphs as 𓇅𓏏𓆗 — Egyptian hieroglyphic, attested Old Kingdom – Late Antiquity, c. 2600 BCE – 400 CE, in Egypt. The script is written right-to-left / top-to-bottom. The scholarly transliteration is Wꜣḏyt (Egyptological conventional), giving the normalized reading Original vocalisation unknown; Egyptological /ˈwɑː.dʒɛt/.. The rendering proceeds step by step: - The Egyptian name is written 𓇅𓏏𓆗 in hieroglyphs. - Hieroglyphs combine logograms, phonograms, and determinatives; the exact function of each sign depends on context. - Egyptian writing does not record vowels; the vocalised form is a modern convention reconstructed from Coptic and Greek evidence. - The Unicode restoration Wꜣḏyt uses Egyptological alef/ayin and... This post follows Wꜣḏyt from its earliest attestation to the address bar.</p>
-<h2>The Original Sign</h2>
-<p>The original script gives us <strong>𓇅𓏏𓆗</strong>. The name is preserved in Hieroglyphs as 𓇅𓏏𓆗 — Egyptian hieroglyphic, attested Old Kingdom – Late Antiquity, c. 2600 BCE – 400 CE, in Egypt. The script is written right-to-left / top-to-bottom. The scholarly transliteration is Wꜣḏyt (Egyptological conventional), giving the normalized reading Original vocalisation unknown; Egyptological /ˈwɑː.dʒɛt/.. The rendering proceeds step by step: - The Egyptian name is written 𓇅𓏏𓆗 in hieroglyphs. - Hieroglyphs combine logograms, phonograms, and determinatives; the exact function of each sign depends on context. - Egyptian writing does not record vowels; the vocalised form is a modern convention reconstructed from Coptic and Greek evidence. - The Unicode restoration Wꜣḏyt uses Egyptological alef/ayin and...</p>
-<h2>The Scholarly Transliteration</h2>
-<p>The name is attested in Hieroglyphs as 𓇅𓏏𓆗. Etymologically it means &quot;The green one&quot;. The ASCII form wadjet survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Wꜣḏyt recovers the full diacritic detail of the scholarly transliteration directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The letter-by-letter transformation runs: - w → W — Same, capitalized - a → ꜣ — Special phonetic character - d → ḏ — D with dot: palatalized - j → y — Special phonetic character - e → t — Special phonetic character - t → — — Dropped: vowel not written The... Scholars settled on Wꜣḏyt as the registrable restoration: faithful enough to be recognizable, precise enough to carry the marks that matter.</p>
-<h2>DNS as a Time Machine</h2>
-<p>Punycode lets the DNS carry non-ASCII characters without breaking older routers. To the user, the address bar shows Wꜣḏyt; to the infrastructure, it is an encoded xn-- string. The duality is invisible, but the result is revolutionary: a pre-digital name living inside a post-digital system.</p>
-<h2>Pronunciation</h2>
-<p>Scholars reconstruct the sound as <em>&#39;WAD-jeet&#39; — start like &#39;wad&#39;, then &#39;jeet&#39; with a long &#39;ee&#39; and a crisp final t.</em>. Hearing the name in your own voice is one way to make the restoration personal.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Wꜣḏyt is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>From Hieroglyphs to Unicode: the journey of Wꜣḏyt</h1>
+<p>Long before it was a domain, this name traveled through scripts. <strong>Wꜣḏyt</strong> begins in Hieroglyphs, passes through scholarly transliteration, and ends — for now — inside the punycode machinery of the global DNS. Each stage of that journey preserves some information and loses some, and the craft of restoration is knowing exactly which marks matter. This post follows the name stage by stage: the original script, the reconstructed pronunciation, the mythological record, the material evidence, and finally the Unicode form that carries all of it into the address bar. Think of it as a biography of a name, told through its spelling.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Wꜣḏyt</li>
+  <li><strong>ASCII form:</strong> wadjet</li>
+  <li><strong>Meaning:</strong> &quot;The green one&quot;</li>
+  <li><strong>Domain of influence:</strong> Cobra, Protection, Lower Egypt</li>
+  <li><strong>Pantheon:</strong> Egyptian</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> 𓇅𓏏𓆗 (Hieroglyphs)</li>
+  <li><strong>Live domain:</strong> wꜣḏ.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Wꜣḏyt</strong> (<em>wadjet</em>) — Cobra, Protection, Lower Egypt · The green one — belongs to the Egyptian tradition, where it is catalogued under the domain &quot;Cobra, Protection, Lower Egypt&quot;. The name means &quot;The green one&quot;.</p>
+<p><strong>Wꜣḏyt</strong> is the cobra that rears from the king&#39;s brow. Patron goddess of Lower Egypt and protector of the living pharaoh, she strikes at enemies with flame and venom while shielding the land with her hooded vigilance. Her name means &#39;the green one&#39; or &#39;the flourishing one,&#39; the color of new growth, of malachite, and of the papyrus-filled Delta.</p>
+<p>She is one half of the <em>nbty</em>, the Two Ladies, paired with Nekhbet the vulture of Upper Egypt. Together they bind the Two Lands into one kingship. Without Wadjet, the red crown has no fangs; without her, the uraeus is only jewelry.</p>
+<p>PÚNYCODEX restores the name as <strong>Wꜣḏyt</strong> and serves its temple at <a href="https://xn--w-pmm1296d.com">wꜣḏ.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>wadjet</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Hieroglyphs as <strong>𓇅𓏏𓆗</strong>. Etymologically it means &quot;The green one&quot;.</p>
+<p>The ASCII form <em>wadjet</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Wꜣḏyt</strong> recovers the full diacritic detail of the scholarly transliteration directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>w</strong> → <strong>W</strong> — Same, capitalized</li>
+  <li><strong>a</strong> → <strong>ꜣ</strong> — Special phonetic character</li>
+  <li><strong>d</strong> → <strong>ḏ</strong> — D with dot: palatalized</li>
+  <li><strong>j</strong> → <strong>y</strong> — Special phonetic character</li>
+  <li><strong>e</strong> → <strong>t</strong> — Special phonetic character</li>
+  <li><strong>t</strong> → <strong>—</strong> — Dropped: vowel not written</li>
+</ul>
+<p>The project holds the domain <strong>wꜣḏ.com</strong> (xn--w-pmm1296d.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Hieroglyphs as <strong>𓇅𓏏𓆗</strong> — Egyptian hieroglyphic, attested Old Kingdom – Late Antiquity, c. 2600 BCE – 400 CE, in Egypt. The script is written right-to-left / top-to-bottom.</p>
+<p>The scholarly transliteration is <em>Wꜣḏyt</em> (Egyptological conventional), giving the normalized reading Original vocalisation unknown; Egyptological /ˈwɑː.dʒɛt/..</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The Egyptian name is written 𓇅𓏏𓆗 in hieroglyphs.</li>
+  <li>Hieroglyphs combine logograms, phonograms, and determinatives; the exact function of each sign depends on context.</li>
+  <li>Egyptian writing does not record vowels; the vocalised form is a modern convention reconstructed from Coptic and Greek evidence.</li>
+  <li>The Unicode restoration Wꜣḏyt uses Egyptological alef/ayin and other registrable characters; the hieroglyphic form is not registrable in .com.</li>
+</ul>
+<p>The name is written w-ꜣ-ḏ-y-t, derived from the root wꜣḏ, &#39;green, blue, fresh, flourishing.&#39; The ꜣ functions as a vowel carrier or glottal onset; the ḏ represents a palatal/ejective consonant in earlier Egyptian, later merging with /t/, represented in PÚNYCODEX by d-with-line-below (U+1E0F). Coptic preserves the root as ⲟⲩⲱⲧ/ⲟⲩⲉⲧ (ouōt/ouət), &#39;green.&#39; The registrable Wꜣḏyt restores the historic consonants while leaving the vowels, as always, to Egyptological reconstruction.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/waˈd͡ʒiːt/</strong> — Egyptological Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>W-</strong> — Labial-velar approximant [w], as in English &#39;we&#39;.</li>
+  <li><strong>-a-</strong> — Short open vowel; the alef ꜣ in the spelling colours or lengthens the vowel but is not pronounced as a separate consonant here.</li>
+  <li><strong>-d͡ʒ-</strong> — Voiced postalveolar affricate [d͡ʒ], the conventional Egyptological reading of ḏ (d-with-line-below, U+1E0F); Coptic evidence later points to a /t/ reflex, as in Coptic ⲟⲩⲱⲧ &#39;green&#39;.</li>
+  <li><strong>-iː-</strong> — Long close front vowel in the final syllable.</li>
+  <li><strong>-t</strong> — Voiceless alveolar stop [t]; the final -t is the feminine marker.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;WAD-jeet&#39; — start like &#39;wad&#39;, then &#39;jeet&#39; with a long &#39;ee&#39; and a crisp final t. The middle consonant may also be pronounced as a sharp emphatic &#39;t&#39; in stricter reconstructions.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Coptic</strong> — ⲟⲩⲱⲧ / ⲟⲩⲉⲧ (ouōt / ouət), &#39;green&#39;</li>
+  <li><strong>Greek</strong> — Οὐτώ (Uto) or Βουτώ (Buto), the Hellenized city/goddess name</li>
+  <li><strong>Egyptian epithet</strong> — wꜣḏ &#39;green, blue; fresh, flourishing&#39;</li>
+</ul>
+<p>The name Wꜣḏyt derives from the Egyptian word for &#39;green/blue&#39; (wꜣḏ), recorded in Wörterbuch der ägyptischen Sprache I, 263–268. Hieroglyphs write only the consonants w-ꜣ-ḏ-y-t; the vowels are uncertain. The ꜣ functions as a vowel carrier or glottal onset, and the ḏ (palatal/ejective in earlier Egyptian, later merging toward /t/) is represented in PUNYCODEX by the registrable d-with-line-below (U+1E0F). Because DNS registries vary in their acceptance of combining marks, the practical fallback is &#39;wadjet&#39;. This is a Tier 2 restoration. Sources: Allen, Middle Egyptian (2014); Faulkner, A Concise Dictionary of Middle Egyptian, s.v. wꜣḏ; Wörterbuch der ägyptischen Sprache I, s.v. wꜣḏ; Hoch, Semitic Words in Egyptian Texts (1994), on Egyptian ḏ in Semitic transcriptions.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Wadjet&#39;s mythology is woven into kingship from the first dynasties. She does not have a single epic cycle; she has a thousand crowns, amulets, and royal names.</p>
+<h3 id="the-two-ladies-kingship">The Two Ladies (Kingship)</h3>
+<p>From the First Dynasty, the royal titulary includes the name of the Two Ladies, Nekhbet and Wadjet. The vulture and the cobra together guard Upper and Lower Egypt; their union is the political theology of the unified kingdom. The earliest surviving depiction of the pair is the ebony label from the tomb of Neith-hotep at Naqada, dating to the reign of Aha.</p>
+<h3 id="nurse-of-the-divine-child-birth-of-horus">Nurse of the Divine Child (Birth of Horus)</h3>
+<p>In the Delta marshes, Wadjet protects the infant Horus and his mother Isis. She is the serpent in the reeds, the burning eye that no enemy can approach. Her connection to the young god tightens her bond with legitimate kingship.</p>
+<h3 id="the-distant-goddess-returns-the-eye-of-re">The Distant Goddess Returns (The Eye of Re)</h3>
+<p>Like Sekhmet, Tefnut, and Hathor, Wadjet can act as the solar eye that departs in rage and must be coaxed home. In her case the return is associated with the greening of the Delta and the restoration of royal order after disorder.</p>
+<h3 id="buto-and-the-oracle-temple">Buto and the Oracle (Temple)</h3>
+<p>Her ancient cult center was at Pe-Dep, Greek Buto, in the western Delta. There she was worshipped in a temple that also served as an oracle; the kings of the Delta and later rulers consulted her priests. The site remained a major religious center into the Late Period.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography of Wꜣḏyt concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>Uraeus cobra</strong> — The rearing serpent on crown and forehead, ready to strike the king&#39;s foes; the texts call her <em>iꜥrt</em>, &#39;the risen one&#39;</li>
+  <li><strong>Flame</strong> — The uraeus spits fire at the king&#39;s enemies; she is the burning eye of the sun on the royal brow</li>
+  <li><strong>Red Crown (Deshret)</strong> — The crown of Lower Egypt, guarded by Wadjet</li>
+  <li><strong>Winged cobra</strong> — Spread-winged uraei arch over temple doorways and naos shrines, extending her protection to sacred thresholds</li>
+  <li><strong>Wedjat eye</strong> — Wholeness, restoration, and the sound eye of Horus</li>
+  <li><strong>Papyrus column</strong> — The vegetation of the Delta and the flourishing green of her name</li>
+  <li><strong>Malachite</strong> — The green mineral associated with her color and with protective eye paint</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Wadjet&#39;s earliest evidence belongs to the very beginning of the dynastic record: the oldest surviving depiction of the Two Ladies, vulture and cobra together, is an ebony label from the tomb of Neith-hotep at Naqada, dating to the reign of Aha, and the &#39;Two Ladies&#39; (nbty) name enters the formal royal titulary by at least the reign of Semerkhet. Her temple at Buto (Tell el-Fara&#39;īn, ancient Pe and Dep) in the western Delta has been excavated by the German Archaeological Institute and Egyptian teams, revealing Late Period and Ptolemaic remains atop the much older foundations of one of Egypt&#39;s most ancient sanctuaries. Uraei in gold, faience, and stone crown royal statues and coffins from the Old Kingdom to the Ptolemaic era — the gold mask of Tutankhamun pairs her cobra with Nekhbet&#39;s vulture — and wedjat-eye amulets are found in virtually every Egyptian burial context.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p><strong>Wꜣḏyt</strong> is the cobra that rears from the king&#39;s brow. Patron goddess of Lower Egypt and protector of the living pharaoh, she strikes at enemies with flame and venom while shielding the land with her hooded vigilance. Her name means &#39;the green one&#39; or &#39;the flourishing one,&#39; the color of new growth, of malachite, and of the papyrus-filled Delta.</p>
+<p>She is one half of the <em>nbty</em>, the Two Ladies, paired with Nekhbet the vulture of Upper Egypt. Together they bind the Two Lands into one kingship. Without Wadjet, the red crown has no fangs; without her, the uraeus is only jewelry.</p>
+<h3 id="the-uraeus">The Uraeus</h3>
+<p>The rearing cobra (iꜥrt) on the royal crown; she spits fire at the king&#39;s enemies.</p>
+<h3 id="lady-of-lower-egypt">Lady of Lower Egypt</h3>
+<p>She protects the red crown and the Delta, embodying the sovereignty of the north.</p>
+<h3 id="the-wedjat-eye">The Wedjat Eye</h3>
+<p>The sound, restored eye of Horus — also called the Eye of Wadjet — is her gift of wholeness.</p>
+<h3 id="green-and-flourishing">Green and Flourishing</h3>
+<p>Her name links her to vegetation, malachite, fertility, and the fresh Delta silt.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Wadjet is inseparable from Nekhbet; the Two Ladies form a single institution of kingship. She merges with the solar eye and therefore with Hathor, Sekhmet, Tefnut, and Mut as the goddess who departs and returns. Her uraeus becomes the emblem of Egyptian royalty and passes into Hellenistic and Roman iconography as the serpent of sovereign power. Greek writers called her Buto and identified her city with Leto, mother of Apollo and Artemis, because both were protectors of divine children in reedy marshes. The Coptic name ⲟⲩⲱⲧ/ⲟⲩⲉⲧ preserves the root meaning &#39;green.&#39;</p>
+<p>Within the Egyptian tradition, closely related names in the corpus include [[ab|Ꜣb]], [[akh|Ꜣḫ]], [[amun|Ꜣmun]], [[ankh|ꜥnḫ]], [[apep|Ꜥpp]], and [[ba|Bꜣ]].</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>The uraeus never went out of style. It crowns the diadems of Ptolemaic queens, and when Tutankhamun&#39;s gold mask emerged in 1922 with the vulture of Nekhbet and the cobra of Wadjet rearing side by side from its brow, the Two Ladies&#39; guard over the king became the most familiar image of Egyptian royalty in the modern world. The Eye of Horus — the Wedjat — remains one of the most popular protective amulets ever devised, worn as jewelry and tattooed as a sign of wholeness; Egyptian scribes even used the eye&#39;s parts to notate grain-measure fractions, a correspondence the standard grammars record, though its antiquity has been questioned. In modern Egyptology, Wadjet is a reminder that the king&#39;s power was not abstract: it was a rearing cobra with real flames.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Wꜣḏyt given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Allen, Middle Egyptian (2014).</li>
+  <li> Faulkner, A Concise Dictionary of Middle Egyptian, s.v. wꜣḏ.</li>
+  <li> Wörterbuch der ägyptischen Sprache I, s.v. wꜣḏ.</li>
+  <li> Wilkinson, The Complete Gods and Goddesses of Ancient Egypt.</li>
+  <li> Herodotus, Histories 2.59, 2.63.</li>
+  <li> Book of the Dead, Spell 17.</li>
+  <li> Pyramid Texts, Utterance 473.</li>
+  <li> Teeter, Religion and Ritual in Ancient Egypt.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Wadjet is vigilance made beautiful. The cobra on the crown is not decoration; it is the land&#39;s immune system, a living warning that the king is protected by something older and faster than any army. She asks us to notice how much sovereignty depends on the threat of defense, and how much protection depends on patience.</p>
+<p>In her green aspect, Wadjet is also the color of return. The Delta after the inundation, the papyrus after the flood, the eye restored after injury — all these are her signatures. She teaches that protection and growth are not opposites. The same cobra that strikes the intruder also shelters the nest. To wear her image is to claim that the land and its people are worth both tenderness and venom.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Wꜣḏyt is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>wadjet</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 6 characters of the name, the restoration adjusts 5: 5 further adjustments (ꜣ, ḏ, y, t, t). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>wadjet</em> to <strong>Wꜣḏyt</strong>, one character at a time:</p>
+<ul>
+  <li><strong>w</strong> → <strong>W</strong> — Same, capitalized</li>
+  <li><strong>a</strong> → <strong>ꜣ</strong> — Special phonetic character</li>
+  <li><strong>d</strong> → <strong>ḏ</strong> — D with dot: palatalized</li>
+  <li><strong>j</strong> → <strong>y</strong> — Special phonetic character</li>
+  <li><strong>e</strong> → <strong>t</strong> — Special phonetic character</li>
+  <li><strong>t</strong> → <strong>t</strong> — Dropped: vowel not written</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>wꜣḏ.com</strong>, which the DNS carries in punycode form as xn--w-pmm1296d.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Wꜣḏyt; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Hieroglyphs can now be typed into any browser on earth.</p>
+<h2 id="the-egyptian-pantheon">The Egyptian Pantheon</h2>
+<p>Wꜣḏyt is one of 66 entries the PÚNYCODEX lexicon catalogues under the Egyptian pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Wꜣḏyt mean?</strong> The traditional gloss is &quot;The green one.&quot;</p>
+<p><strong>Which tradition does Wꜣḏyt belong to?</strong> Wꜣḏyt is catalogued in the Egyptian pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Wꜣḏyt classified as Tier 2?</strong> Because the original preserves at least one philological feature that ASCII cannot encode — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Wꜣḏyt a working domain?</strong> Yes — wꜣḏ.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for wꜣḏ.com?</strong> The DNS encoding is xn--w-pmm1296d.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="typing-w-dyt">Typing Wꜣḏyt</h2>
+<p>You do not need a special keyboard to use this restoration. The <a href="/type/">PÚNYCODEX Type Tool</a> converts the ASCII form <em>wadjet</em> into <strong>Wꜣḏyt</strong> as you type, and the browser extension offers the same conversion inside any text field. Copy the restored form, paste it into the address bar, and the DNS does the rest.</p>
+<h2 id="sister-temples">Sister Temples</h2>
+<p>Other temples in the Egyptian pantheon include <a href="/sites/sia/">sꜥ</a>, <a href="/sites/sobek/">Sbk</a>, and <a href="/sites/sokar/">Skr</a> — each with its own restoration story, its own scholarly record, and its own place in the lexicon.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Every stage of the journey from Hieroglyphs to Unicode was an act of care: the scribe who first wrote the name, the lexicographer who glossed it, the engineer who taught the DNS to carry it. The PÚNYCODEX restoration is the latest stage, not the last word — the Scholarly Edition is revised as the evidence improves. What does not change is the principle: a name deserves to be written the way its own tradition wrote it. <strong>Wꜣḏyt</strong> in the address bar is that principle, made routable.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/ma/">Mꜣ</a></li>
   <li><a href="/sites/mehetweret/">Mḥtwrt</a></li>
   <li><a href="/sites/nekhbet/">Nḫbt</a></li>
 </ul>
-<h2>Further Reading</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.cambridge.org/">James P. Allen, Middle Egyptian: An Introduction to the Language and Culture of Hieroglyphs, Cambridge University Press, 2000.</a></li>
+  <li>Allen, Middle Egyptian (2014).</li>
+  <li>Faulkner, A Concise Dictionary of Middle Egyptian, s.v. wꜣḏ.</li>
+  <li>Wörterbuch der ägyptischen Sprache I, s.v. wꜣḏ.</li>
+  <li>Wilkinson, Early Dynastic Egypt (1999).</li>
+  <li>Lexicon authorities for this entry: Faulkner, Wb.</li>
 </ul>
-<h2>The Name in Context</h2>
-<p>Wꜣḏyt (wadjet) — Cobra, Protection, Lower Egypt · The green one — belongs to the Egyptian tradition, where it is catalogued under the domain &quot;Cobra, Protection, Lower Egypt&quot;. The name means &quot;The green one&quot;. Wꜣḏyt is the cobra that rears from the king&#39;s brow. Patron goddess of Lower Egypt and protector of the living pharaoh, she strikes at enemies with flame and venom while shielding the land with her hooded vigilance. Her name means &#39;the green one&#39; or &#39;the flourishing one,&#39; the color of new growth, of malachite, and of the papyrus-filled Delta. She is one half of the nbty, the Two Ladies, paired with Nekhbet the vulture of Upper Egypt. Together they bind the Two Lands into one kingship. Without Wadjet, the red crown has no fangs; without her, the...</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">egyptian</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

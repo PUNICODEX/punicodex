@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,46 +170,203 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>16 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#epithets-cult-titles">Epithets &amp; Cult Titles</a></li>
+                <li><a href="#the-homeric-hymns">The Homeric Hymns</a></li>
+                <li><a href="#oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>How Hēraklēs Got Its Accent Back</h1>
-<p>The ASCII form <em>herakles</em> is missing something. Hēraklēs restores the marks that the original language used to distinguish this name from a thousand others. The name is attested in Greek as Ἡρακλῆς. Etymologically it means &quot;Glory of Hera (from Ἥρα + κλέος)&quot;. The ASCII form herakles survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Hēraklēs recovers the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The letter-by-letter transformation runs: - h → H — Rough breathing - e → ē — Eta: long epsilon - r → r — Rho - a → a — Short alpha - k → k — Kappa - l → l — Lambda - e → ē — Eta: long epsilon - s → s — Sigma The project holds the domain...</p>
-<h2>The Missing Marks</h2>
-<p>Classified as <strong>Tier 1</strong>, this restoration carries the stress and length that standard ASCII discards. the Greek original carries both stress and length, and only one valid Unicode restoration exists</p>
-<h2>Step by Step</h2>
-<p>The transformation from <em>herakles</em> to <strong>Hēraklēs</strong> happens one character at a time. Some letters stay the same; others gain accents, macrons, or entirely new shapes. The breakdown on the <a href="/sites/herakles/">temple home page</a> shows exactly how.</p>
-<h2>Why Stress and Length Matter</h2>
-<p>In the source language, changing a stress or a vowel length can change a meaning. Names are especially sensitive because they are proper nouns: one spelling points to one entity. Hēraklēs preserves that pointer in a way <em>herakles</em> cannot.</p>
-<h2>The Restored Form</h2>
-<p>Hēraklēs is now a domain. That simple fact turns a philological detail into a public demonstration. Anyone who types it participates in the restoration.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Hēraklēs is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>How Hēraklēs got its accent back</h1>
+<p>The ASCII form <em>herakles</em> is missing something. <strong>Hēraklēs</strong> restores the marks the source language used to distinguish this name from a thousand others — and those marks change how the name is read, pronounced, and understood. This post explains, with the full scholarly record behind it, what each restored mark preserves: the Greek evidence, the reconstructed sound, the myths the name carries, and the classification logic that separates Tier 1 restorations from Tier 2. By the end, the marks in Hēraklēs will look less like ornaments and more like what they are — recovered evidence, pinned back in its proper place.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Hēraklēs</li>
+  <li><strong>ASCII form:</strong> herakles</li>
+  <li><strong>Meaning:</strong> &quot;Glory of Hera (from Ἥρα + κλέος)&quot;</li>
+  <li><strong>Domain of influence:</strong> Strength, Labours, Heroism</li>
+  <li><strong>Pantheon:</strong> Greek</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Original script:</strong> Ἡρακλῆς (Greek)</li>
+  <li><strong>Live domain:</strong> hēraklēs.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Hēraklēs</strong> (<em>herakles</em>) — Strength, Labours, Heroism · Glory of Hera (from Ἥρα + κλέος) — belongs to the Greek tradition, where it is catalogued under the domain &quot;Strength, Labours, Heroism&quot;. The name means &quot;Glory of Hera (from Ἥρα + κλέος)&quot;.</p>
+<p>Hēraklēs is the <strong>greatest of Greek heroes</strong> and the only one to become a full Olympian god. His very name means &quot;Glory of Hera,&quot; yet Hera persecuted him from the cradle, driving him to madness and murder. His life is a sequence of impossible tasks performed under duress: the Twelve Labours, the conquest of monsters, the rescue of captives, and finally a death by fire that turned into immortality.</p>
+<p>PÚNYCODEX restores the name as <strong>Hēraklēs</strong> and serves its temple at <a href="https://xn--hrakls-p3ae.com">hēraklēs.com</a>. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>herakles</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Greek as <strong>Ἡρακλῆς</strong>. Etymologically it means &quot;Glory of Hera (from Ἥρα + κλέος)&quot;.</p>
+<p>The ASCII form <em>herakles</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Hēraklēs</strong> recovers the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>h</strong> → <strong>H</strong> — Rough breathing</li>
+  <li><strong>e</strong> → <strong>ē</strong> — Eta: long epsilon</li>
+  <li><strong>r</strong> → <strong>r</strong> — Rho</li>
+  <li><strong>a</strong> → <strong>a</strong> — Short alpha</li>
+  <li><strong>k</strong> → <strong>k</strong> — Kappa</li>
+  <li><strong>l</strong> → <strong>l</strong> — Lambda</li>
+  <li><strong>e</strong> → <strong>ē</strong> — Eta: long epsilon</li>
+  <li><strong>s</strong> → <strong>s</strong> — Sigma</li>
+</ul>
+<p>The project holds the domain <strong>hēraklēs.com</strong> (xn--hrakls-p3ae.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Greek as <strong>Ἡρακλῆς</strong> — Greek alphabet (Classical / Attic), attested Ancient Greek, c. 8th century BCE – present, in Greece and the Greek-speaking Mediterranean. The script is written left-to-right.</p>
+<p>The scholarly transliteration is <em>Hēraklēs</em> (Greek alphabet with polytonic accents), giving the normalized reading /hɛːˈra.klɛːs/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The Greek form Ἡρακλῆς is written in the Classical Greek alphabet.</li>
+  <li>Letters with acute, grave, or circumflex accents preserve the pitch accent of Ancient Greek.</li>
+  <li>Macrons and omegas (η, ω) mark long vowels, a feature lost in the plain ASCII form.</li>
+  <li>The Unicode restoration Hēraklēs encodes the scholarly spelling as a registrable domain name.</li>
+</ul>
+<p>The name is written in Greek as Ἡρακλῆς (Hēraklēs), composed of Ἥρᾱ (Hḗrā, &#39;Hera&#39;) and κλέος (kléos, &#39;glory&#39;). The registrable form <em>Hēraklēs</em> marks both long eta vowels with macrons and omits the final circumflex for DNS compatibility. The result preserves the two length features that make the name Tier 1 while remaining typeable as an internationalized domain label.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/hɛː.ra.klɛ̂ːs/</strong> — Classical Attic Greek Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Hē-</strong> — Rough breathing [h] plus long open-mid front eta [ɛː] — the &#39;Hera&#39; element, sustained and deep.</li>
+  <li><strong>-ra-</strong> — Short alpha with rolling alveolar rho, the link between the two halves of the name.</li>
+  <li><strong>-klēs</strong> — Kappa-lambda followed by long eta with circumflex [klɛ̂ːs], carrying both length and the falling pitch accent.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &quot;hay-RAH-KLAYS&quot; — first syllable deeper and longer than English &#39;hay&#39;; the final syllable is held and falls in pitch, like &#39;klays&#39; sung on a descending note.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Greek</strong> — Ἥρᾱ (Hḗrā), &#39;Hera&#39;</li>
+  <li><strong>Greek</strong> — κλέος (kléos), &#39;glory&#39;</li>
+  <li><strong>Latin</strong> — Herculēs, the Roman adaptation via Etruscan hercle</li>
+</ul>
+<p>Hēraklēs is Tier 1 because Classical Attic Ἡρακλῆς contains both length (long η in the first and final syllables) and stress (circumflex on the final -klēs). The registrable form Hēraklēs preserves length with macrons; the acute/circumflex is omitted because fully accented Greek letters are often untypeable and are not reliably registrable as IDN labels. Reconstruction follows Allen, Vox Graeca: The Pronunciation of Classical Greek, 3rd ed. (Cambridge, 1987); LSJ; and Beekes, Etymological Dictionary of Greek (Brill, 2010).</p>
+<h2 id="mythology">Mythology</h2>
+<p>Hēraklēs&#39;s mythology is enormous and contradictory, preserved in epic, lyric, tragedy, and handbook. What holds it together is the figure of a mortal strong enough to challenge gods and monsters, yet vulnerable enough to weep, rage, and die.</p>
+<h3 id="a-hero-foretold-theogony">A Hero Foretold (Theogony)</h3>
+<p>Hesiod already knows Hēraklēs as the hero who will settle the conflict between gods and Giants. In the <em>Theogony</em> (950–955), he appears as the son of Zeús and Alkmēnē, destined to bring order to a world still threatened by chthonic powers. His name, &quot;Glory of Hera,&quot; is an irony: the queen of the gods is his enemy long before she is reconciled.</p>
+<h3 id="the-lion-the-hydra-and-the-boar-the-labours">The Lion, the Hydra, and the Boar (The Labours)</h3>
+<p>The first labour required Hēraklēs to strangle the Nemean lion, whose hide no weapon could pierce; he wore its pelt ever after. The second pitted him against the Lernaean hydra, a many-headed water-serpent whose severed heads multiplied; Iolaos cauterized the stumps while Hēraklēs struck off the immortal head. The fourth labour brought the Erymanthian boar alive to Eurystheus, a comic image of the terrified king hiding in a storage jar.</p>
+<h3 id="kerberos-and-the-living-descent-the-underworld">Kerberos and the Living Descent (The Underworld)</h3>
+<p>The twelfth labour sent Hēraklēs into Hades to fetch Kerberos with no weapon but his hands. He met Theseus and Peirithoos bound in chairs of forgetfulness, and the ghost of Meleager, whose tale moved him to marry Deianeira. The journey proved that the strongest hero could enter death and return — a rehearsal for his own immortality.</p>
+<h3 id="the-death-of-herakles-tragedy">The Death of Hēraklēs (Tragedy)</h3>
+<p>In Sophocles&#39; <em>Women of Trachis</em>, Deianeira gives Hēraklēs a robe smeared with what she believes is a love-charm — the blood of the centaur Nessus, actually poisoned by the Hydra&#39;s blood. The robe eats his flesh. He orders a pyre on Mount Oeta and, in Euripides&#39; <em>Heracles</em>, is finally received by Athena and taken to Olympus. His death is the last labour; his apotheosis is its reward.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>Few ancient figures can be recognized by their attributes as instantly as Hēraklēs; the standard set is fixed already on sixth-century Attic vases.</p>
+<ul>
+  <li><strong>Club</strong> — the hero&#39;s signature weapon, a knotted club of wild olive. The fullest early description has him cut it himself on Mount Helicon (Theocritus, <em>Idyll</em> 25); Apollodorus (<em>Library</em> 2.4.11) instead places the cutting at Nemea, on the eve of the lion fight.</li>
+  <li><strong>Lion skin</strong> — the pelt of the Nemean lion, invulnerable to weapons, worn ever after his first labour with the beast&#39;s scalp drawn over his head as a hood (Apollodorus, <em>Library</em> 2.5.1).</li>
+  <li><strong>Bow and arrows</strong> — the gift of Apollo, their points later dipped in the Hydra&#39;s poison; a poisoned arrow that wounds the centaur Nessus sets his death in motion.</li>
+  <li><strong>Golden apples</strong> — the fruit of the Hesperides, retrieved in the eleventh labour and shown behind his back in Lysippos&#39; weary, leaning Herakles, the Farnese type.</li>
+  <li><strong>The Pillars</strong> — the straits at the western edge of the world, called the Pillars of Heracles already by Herodotus (2.44); the motto <em>non plus ultra</em> (&quot;nothing further beyond&quot;) attached to them is a post-antique, early modern addition, not an ancient inscription.</li>
+</ul>
+<p>Hēraklēs has the richest iconography of any Greek hero. His standard attributes are the club of wild olive, the impenetrable skin of the Nemean lion worn as a cloak with its scalp as a hood, and the bow given by Apollo; he is bearded, thick-necked, and built for labour rather than beauty. Attic black-figure vases of the sixth century BCE cover the whole cycle — the lion fight, the hydra with Iolaos and the crab, Kerberos led past Eurystheus cowering in his storage jar. The twelve labours were carved in the metopes of the temple of Zeus at Olympia (c. 460 BCE). In the fourth century Lysippos created the weary, leaning Herakles known from the Farnese copy — the hero at rest upon his club, the apples of the Hesperides behind his back. On the coinage of Thasos and of Alexander the Great his lion-scalped head became one of the most reproduced portraits of antiquity.</p>
+<h2 id="epithets-cult-titles">Epithets &amp; Cult Titles</h2>
+<p>Few Greek figures carry as many titles as Hēraklēs. The most secure:</p>
+<ul>
+  <li><strong>ἀλεξίκακος (Alexikakos)</strong> — &quot;averter of evil&quot;; his most widespread cult title, under which he protected houses, cities, and gymnasia; cults are attested from Attica to Arcadia (Pausanias, <em>Description of Greece</em>).</li>
+  <li><strong>καλλίνικος (Kallinikos)</strong> — &quot;of fair victory&quot;; an Attic title borne by dedications and herms, and familiar from comedy.</li>
+  <li><strong>λεοντόθυμος (Leontothymos)</strong> — &quot;lion-hearted&quot;; the traditional manuscript title of Homeric Hymn 15, compressing his nature into one compound.</li>
+  <li><strong>ἥρως θεός (hērōs theos)</strong> — &quot;hero-god&quot;; Pindar&#39;s celebrated oxymoron (<em>Nemean</em> 3) for the being who crossed from mortal to immortal.</li>
+  <li><strong>Διὸς υἱός (Dios huios)</strong> — &quot;son of Zeus&quot;; the standard hymnic and epic formula of his paternity.</li>
+</ul>
+<h2 id="the-homeric-hymns">The Homeric Hymns</h2>
+<p>Hēraklēs has his own Homeric Hymn: Hymn 15, &quot;To Heracles the Lion-hearted&quot; (Εἲς Ἡρακλέα λεοντόθυμον), nine lines long. It compresses the whole career into hymnic formulae: he is the son of Zeús, &quot;mightiest of men on earth,&quot; born of Alkmēnē at Thebes, who &quot;roamed over unmeasured stretches of land and sea at the bidding of King Eurystheus,&quot; who &quot;did many violent deeds and endured many&quot;; and now he &quot;dwells happily in the fair home of snowy Olympus and has slender-ankled Hebe for his wife.&quot; The hymn is essentially a summary of the labours-and-apotheosis pattern, closing with the standard request for favour and prosperity. The fuller hexameter treatment of his deeds is the pseudo-Hesiodic <em>Shield of Heracles</em>, which narrates his fight with the brigand Kyknos.</p>
+<h2 id="oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</h2>
+<p>Hēraklēs was a hero of cult rather than prophecy, but several sites tie him to oracular practice:</p>
+<ul>
+  <li><strong>Delphi</strong> — the Pythia assigned him his servitude to Eurystheus; when she later refused him an answer after the murder of Iphitos, he seized her tripod and wrestled Apollo for it — the struggle carved on the east pediment of the Siphnian Treasury at Delphi itself (c. 525 BCE).</li>
+  <li><strong>Bura in Achaea</strong> — Pausanias (7.25) records an oracle of Herakles Buraikos: the consultant prayed before the statue, threw four knucklebones, and read the answer from a tablet of combinations.</li>
+  <li><strong>Thebes</strong> — his birthplace and seat of the Herakleion; hero-cult rather than oracle, but the anchor of his worship.</li>
+  <li><strong>Olympia</strong> — in tradition the founder of the games; the twelve labours filled the metopes of the temple of Zeus, where athletes competed under his patronage.</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>The cult of Hēraklēs is among the most archaeologically documented of Greek hero-cults. Thebes claimed his birth: Pausanias (9.11) describes the Theban Herakleion with the hero&#39;s chamber, and the adjacent gymnasium and stadium of his nephew Iolaos, where the Herakleia games were held. Nemea preserves the sanctuary of Nemean Zeus and the stadium of the crown games whose aetiology lay in his first labour; Pausanias (2.15) reports the cave in the hills above the valley that local tradition showed as the lion&#39;s den. At Olympia the twelve labours filled the twelve metopes of the temple of Zeus (c. 460 BCE), the fullest sculptural cycle of his deeds to survive (Pausanias 5.10.9). Athens kept the gymnasium-sanctuary at Kynosarges, sacred to Herakles and frequented by the <em>nothoi</em>, those barred from full citizenship; it is known already to Herodotus (5.63) and later sheltered Diogenes the Cynic, who taught there (Diogenes Laertius 6.13). Mount Oeta, above the Malian Gulf, remained in tradition the place of his pyre and apotheosis, as Sophocles stages it in the <em>Women of Trachis</em>.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Hēraklēs is the <strong>greatest of Greek heroes</strong> and the only one to become a full Olympian god. His very name means &quot;Glory of Hera,&quot; yet Hera persecuted him from the cradle, driving him to madness and murder. His life is a sequence of impossible tasks performed under duress: the Twelve Labours, the conquest of monsters, the rescue of captives, and finally a death by fire that turned into immortality.</p>
+<h3 id="the-twelve-labours">The Twelve Labours</h3>
+<p>Imposed by Eurystheus at Hera&#39;s prompting: the Nemean lion, Lernaean hydra, Ceryneian hind, Erymanthian boar, Augean stables, Stymphalian birds, Cretan bull, mares of Diomedes, girdle of Hippolyta, cattle of Geryon, apples of the Hesperides, and Kerberos from Hades.</p>
+<h3 id="divine-strength">Divine Strength</h3>
+<p>Son of Zeús by Alkmēnē, he possesses strength beyond mortality from infancy; as a baby he strangled the serpents Hera sent against him.</p>
+<h3 id="madness-and-atonement">Madness and Atonement</h3>
+<p>Hera&#39;s frenzy made him kill his wife Megara and their children; the Delphic oracle sentenced him to serve Eurystheus, transforming violence into labour.</p>
+<h3 id="apotheosis">Apotheosis</h3>
+<p>Poisoned by the blood of the centaur Nessus, he mounted a funeral pyre on Mount Oeta; from the flames he ascended to Olympus and married Hebe.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>The Greeks themselves identified Hēraklēs with foreign heroes and gods. Herodotus (2.42–45) argues that the Greek Heracles is the youngest of three figures bearing the name: an Egyptian god, a Phoenician hero identified with Melqart, and the Greek son of Alcmene. The Phoenician Melqart of Tyre, worshipped from Spain to the Levant, was the closest parallel: a god of civic protection, colonization, and annual death-and-rebirth rituals. The Romans made him <em>Hercules</em> and emphasized his civilizing labors; his cult was among the earliest Greek imports to Italy. In Egypt he was sometimes identified with Khonsu or Heryshaf. Through Stoic and Cynic philosophy he became the model of virtuous endurance — the hero who chooses the difficult path of excellence.</p>
+<p>Within the Greek tradition, closely related names in the corpus include [[acheron|Achérōn]], [[adamas|Adámas]], [[aer|Aḗr]], [[aither|Aithḗr]], [[ananke|Anánkē]], and [[andromeda|Andromedē]].</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Hēraklēs never left Western culture. The Roman <em>Hercules</em> gave us the word <em>herculean</em>; his Twelve Labours remain the archetype of the heroic quest, reused from medieval romance to modern video games. The constellation Hercules still dominates the northern summer sky. Renaissance and Baroque artists painted his choice between Virtue and Vice; Disney and Marvel recast him as a family-friendly strongman. Bodybuilding culture, military units, and even NASA have claimed his name. More deeply, Hēraklēs is the type of the suffering hero whose glory is earned through pain — a figure who answers the ancient question of how a mortal can matter in a world ruled by gods.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Hēraklēs given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Full text</a></li>
+  <li> Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a href="https://brill.com/view/title/17858">Full text</a></li>
+  <li> Wörterbuch der griechischen Eigennamen, 3rd ed., 1863. <a href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ">Full text</a></li>
+  <li> Allen, Vox Graeca.</li>
+  <li> Homer, Iliad.</li>
+  <li> Homer, Odyssey.</li>
+  <li> Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE. <a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Full text</a></li>
+  <li> Hesiod, Shield of Heracles.</li>
+  <li> Pindar, Olympian Odes.</li>
+  <li> Bacchylides, Odes.</li>
+  <li> Sophocles, Women of Trachis.</li>
+  <li> Euripides, Heracles.</li>
+  <li> Apollodorus, Library.</li>
+  <li> Diodorus Siculus, Library of History.</li>
+  <li> Pausanias, Description of Greece.</li>
+  <li> Herodotus, Histories 2.42–45 (Egyptian, Phoenician, and Greek Heracles).</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Hēraklēs is the most human of the great heroes because his strength is inseparable from his wounds. He kills what he loves, serves a king he despises, and is destroyed by the very violence he survived. His name prophesies glory, but the glory comes only after a lifetime of labour. In this he is the Greek answer to the problem of suffering: not that pain is meaningless, but that it can be transformed into renown.</p>
+<p>The restoration of <em>Hēraklēs</em> is therefore fitting. His name contains the long vowels of endurance — the sustained η that opens and closes it — and the circumflex of a voice that falls only after it has risen. To say it correctly is to remember that glory is not given; it is wrestled from monsters, one labour at a time.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Hēraklēs is classified as <strong>Tier 1</strong>: the original carries both stress and length, and only one valid Unicode restoration exists. The ASCII fallback <em>herakles</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 8 characters of the name, the restoration adjusts 2: 2 marks of length (ē, ē). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>hēraklēs.com</strong>, which the DNS carries in punycode form as xn--hrakls-p3ae.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Hēraklēs; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Greek can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>The marks in <strong>Hēraklēs</strong> were never lost; they were only waiting for a carrier that could hold them. Now that the carrier exists, the burden flips: every use of <em>herakles</em> is a choice to leave evidence on the table. The PÚNYCODEX temple keeps the restored form in circulation — as a domain, a dataset entry, and a scholarly argument — so that the choice to use it stays easy. Accent by accent, macron by macron, that is how the original names come back: not with a single grand gesture, but with a spelling that finally works everywhere.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/khaos/">Khaos</a></li>
   <li><a href="/sites/kosmos/">Kósmos</a></li>
   <li><a href="/sites/lachesis/">Láchesis</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843.</a></li>
   <li><a href="https://brill.com/view/title/17858">Etymological Dictionary of Greek, 2 vols., Brill, 2010.</a></li>
   <li><a href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ">Wörterbuch der griechischen Eigennamen, 3rd ed., 1863.</a></li>
   <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE.</a></li>
+  <li>Lexicon Iconographicum Mythologiae Classicae (LIMC), s.v. Herakles.</li>
+  <li>Apollodorus, Library 2.4.11–2.5.12 (weapons, labours); Theocritus, Idyll 25.</li>
+  <li>Herodotus, Histories 2.44 (Pillars of Heracles).</li>
+  <li>Pausanias, Description of Greece 9.11 (Thebes); 2.15 (Nemea).</li>
+  <li>Lexicon authorities for this entry: LSJ, Pape-Benseler, Beekes.</li>
 </ul>
-<h2>The Cultural Afterlife</h2>
-<p>Hēraklēs never left Western culture. The Roman Hercules gave us the word herculean; his Twelve Labours remain the archetype of the heroic quest, reused from medieval romance to modern video games. The constellation Hercules still dominates the northern summer sky. Renaissance and Baroque artists painted his choice between Virtue and Vice; Disney and Marvel recast him as a family-friendly strongman. Bodybuilding culture, military units, and even NASA have claimed his name. More deeply, Hēraklēs is the type of the suffering hero whose glory is earned through pain — a figure who answers the ancient question of how a mortal can matter in a world ruled by gods.</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Hēraklēs as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Greek to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Hēraklēs through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/herakles/">home page</a> offers the full name breakdown, the <a href="/sites/herakles/lore/">lore page</a> explores the myth, and the <a href="/sites/herakles/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Hēraklēs do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">greek</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

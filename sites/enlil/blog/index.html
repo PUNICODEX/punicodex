@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,38 +170,196 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>15 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>The Many Faces of Enlīl</h1>
-<p>No important name has only one face. Enlīl appears as a mythic character, a scholarly reconstruction, a cultural memory, and now a Unicode domain. Enlīl (enlil) — from Sumerian en, &#39;lord&#39;, and líl, &#39;wind, air, spirit&#39; — is the chief god of the Sumerian pantheon, ruler of the atmosphere and of the space between heaven and earth. From his temple, the Ekur (&#39;Mountain House&#39;) at Nippur, he decrees the destinies of gods and kings; Sumerian rulers from Ur-Nammu onward treated kingship itself as his grant, and in the flood narratives of Atra-hasis and the Eridu Genesis it is his disturbed sleep that brings the deluge upon humankind. The name is written 𒂗𒇸 (EN.LÍL). Standard Assyriology transliterates it as Enlil, and the length of the second vowel is an open phonological question rather than a sign-given fact; the macron on Enlīl marks that question, not a canonical spelling. The temple therefore...</p>
-<h2>In Myth</h2>
-<p>Enlīl&#39;s myths are myths of sovereignty and consequence . He gives kingship, but he also sends the flood; he decrees fate, but he must bow to the assembly of the gods. His power is supreme within the Sumerian cosmos, yet it is not arbitrary — it is bound to the maintenance of order. The mythic face is the one most people meet first, and it is the reason the name survived.</p>
-<h2>Across Cultures</h2>
-<p>The Unicode form Enlīl is a reconstruction node: standard Assyriology writes Enlil, while the macron makes visible the open question of vowel length. The Akkadians called him Ellil and continued to venerate him as king of the gods well into the first millennium BCE. The Assyrians identified their national god Aššur with Enlīl, so that the king of Assyria ruled by Enlīl-Aššur&#39;s mandate. In Hittite and Hurrian sources, Enlīl&#39;s functions were distributed among Taru, Kumarbi, and Teššub. Later Greek and Roman writers had no direct equivalent: Zeus/Jupiter overlaps in sovereignty, but Enlīl&#39;s specific association with wind, air, and the mountain temple has no precise Mediterranean counterpart. Kindred figures in the PÚNYCODEX cross-tradition index... Each culture kept what resonated and reshaped the rest.</p>
-<h2>In the Scholarly Record</h2>
-<p>Enlīl&#39;s legacy is the idea of legitimate kingship as a sacred mandate. The doctrine that the ruler derives authority from the chief god of the pantheon influenced Israelite, Persian, and later Christian theories of monarchy. The Ekur at Nippur remained a symbolic center long after political power shifted to Babylon and Assyria. In modern fantasy, Enlīl often appears as the storm-king, the patriarchal sky-father whose breath is the wind. PÚNYCODEX keeps the macron not as a settled fact but as an invitation: every visitor is invited into the philological conversation. The name still means: the authority that fills the air. The Scholarly Edition collects those traces so readers can follow the argument from source to conclusion.</p>
-<h2>The Unicode Face</h2>
-<p>The newest face is digital. Enlīl demonstrates that a name can be at once ancient and clickable, venerable and searchable. That is the face this blog exists to celebrate.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Enlīl is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>The many faces of Enlīl</h1>
+<p>No important name has only one face. <strong>Enlīl</strong> appears as a figure of myth, a scholarly reconstruction, a piece of material culture, a memory carried across languages, and — most recently — a Unicode domain. This post looks at each face in turn: the name and its roots, the Cuneiform original, the reconstructed pronunciation, the mythological record, the symbols and sanctuaries, the cross-cultural afterlife, and the engineering that lets the restored spelling resolve in a browser. Taken together, those faces explain why <em>enlil</em> was never going to be enough — and why the restored form is worth a domain of its own.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Enlīl</li>
+  <li><strong>ASCII form:</strong> enlil</li>
+  <li><strong>Meaning:</strong> &quot;Reconstruction node for the Sumerian/Akkadian deity Enlil: the macron marks a discussable vowel length, not a canonical spelling claim.&quot;</li>
+  <li><strong>Domain of influence:</strong> Phonological Reconstruction, Wind, Air, Storms, Kingship</li>
+  <li><strong>Pantheon:</strong> Mesopotamian</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> 𒀭𒂗𒆤 (Cuneiform)</li>
+  <li><strong>Live domain:</strong> enlīl.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Enlīl</strong> (<em>enlil</em>) — from Sumerian <strong>en</strong>, &#39;lord&#39;, and <strong>líl</strong>, &#39;wind, air, spirit&#39; — is the chief god of the Sumerian pantheon, ruler of the atmosphere and of the space between heaven and earth. From his temple, the <strong>Ekur</strong> (&#39;Mountain House&#39;) at Nippur, he decrees the destinies of gods and kings; Sumerian rulers from Ur-Nammu onward treated kingship itself as his grant, and in the flood narratives of <em>Atra-hasis</em> and the <em>Eridu Genesis</em> it is his disturbed sleep that brings the deluge upon humankind.</p>
+<p>The name is written 𒂗𒇸 (EN.LÍL). Standard Assyriology transliterates it as <strong>Enlil</strong>, and the length of the second vowel is an open phonological question rather than a sign-given fact; the macron on <strong>Enlīl</strong> marks that question, not a canonical spelling. The temple therefore functions as a reconstruction node: the restored form keeps a live philological debate visible in the address bar.</p>
+<p>PÚNYCODEX serves the temple at <a href="https://xn--enll-sya.com">enlīl.com</a>. Because the name preserves one discussable prosodic feature — a reconstructed vowel length — rather than a canonical pairing of stress and length, it is classed Tier 2; the plain ASCII <em>enlil</em> is the fallback the early domain system imposed, not the restoration.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Cuneiform as <strong>𒀭𒂗𒆤</strong>. Etymologically it means &quot;Reconstruction node for the Sumerian/Akkadian deity Enlil: the macron marks a discussable vowel length, not a canonical spelling claim.&quot;.</p>
+<p>The reconstructed proto-form is <em>EN.LIL</em> (isolate, &quot;lord of the wind / air&quot;). Standard Assyriology transliterates the god as Enlil (𒀭𒂗𒇸). The Sumerian signs EN.LIL mean &#39;lord wind/air,&#39; and the Akkadian rendering is Ellil. The length of the second vowel is reconstructed from comparative and orthographic evidence, not explicitly encoded in the cuneiform; the macron on Enlīl is a pedagogical mark that makes that open question visible, not a claim of canonical spelling.</p>
+<p>Cognate forms across related languages:</p>
+<ul>
+  <li><strong>EN.LIL</strong> (Sumerian)</li>
+  <li><strong>Ellil</strong> (Akkadian)</li>
+</ul>
+<p>The ASCII form <em>enlil</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Enlīl</strong> recovers the vowel length of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>e</strong> → <strong>E</strong> — Same, capitalized</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+  <li><strong>l</strong> → <strong>l</strong> — Same</li>
+  <li><strong>i</strong> → <strong>ī</strong> — Macron: a visible question mark — the length of Enlil&#39;s second vowel is discussable, not certain</li>
+  <li><strong>l</strong> → <strong>l</strong> — Same</li>
+</ul>
+<p>Attested and derived spellings of the name:</p>
+<ul>
+  <li><strong>enlīl</strong> — owned form: Lowercase owned domain form</li>
+  <li><strong>Enlil</strong> — ASCII form: Standard unmarked Assyriological transliteration</li>
+  <li><strong>Ellil</strong> — scholarly variant: Akkadian variant reflecting late pronunciation</li>
+</ul>
+<p>The project holds the domain <strong>enlīl.com</strong> (xn--enll-sya.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: Standard Assyriology transliterates the god as Enlil (𒀭𒂗𒇸). The Sumerian signs EN.LIL mean &#39;lord wind/air,&#39; and the Akkadian rendering is Ellil. The length of the second vowel is reconstructed from comparative and orthographic evidence, not explicitly encoded in the cuneiform; the macron on Enlīl is a pedagogical mark that makes that open question visible, not a claim of canonical spelling.</p>
+<p>The reconstructed proto-form is <em>EN.LIL</em> (isolate), glossed as &quot;lord of the wind / air&quot;.</p>
+<p>The reconstruction is classed as disputed.</p>
+<p>Kindred forms recorded in the lexicon:</p>
+<ul>
+  <li><strong>EN.LIL</strong> (Sumerian) — variant</li>
+  <li><strong>Ellil</strong> (Akkadian) — variant</li>
+</ul>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Cuneiform as <strong>𒀭𒂗𒆤</strong> — Sumero-Akkadian cuneiform, attested Sumerian / Old Babylonian, c. 2600–1600 BCE, in Nippur, Mesopotamia. The script is written left-to-right / top-to-bottom.</p>
+<p>The scholarly transliteration is <em>Enlīl</em> (Sumerian logogram + Akkadian scholarly), giving the normalized reading /ɛnˈliːl/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The name is written as the Sumerogram EN.LÍL (𒂗𒆤), literally &#39;lord of the wind/air&#39;.</li>
+  <li>The divine determinative 𒀭 (dingir) marks the name as a deity; it is silent in pronunciation.</li>
+  <li>In Akkadian scholarly tradition the long vowel is marked with a macron: Enlīl.</li>
+  <li>Enlīl was the chief god of the Sumerian pantheon, dwelling in the Ekur temple at Nippur.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/enˈliːl/</strong> — Sumerian Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>En-</strong> — Short [e] plus nasal [n] — the Sumerian &#39;lord,&#39; here bearing the full weight of kingship.</li>
+  <li><strong>-līl</strong> — Long [iː] followed by lateral [l] — the Sumerian word for &#39;wind&#39; or &#39;air,&#39; the invisible element that fills heaven and earth.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;en-LEEL&#39; — the second syllable is drawn out, like a sustained breath across the plain.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Sumerian</strong> — 𒂗𒇸 (EN.LÍL), &#39;lord of the wind/air&#39; — the chief deity of the Sumerian pantheon</li>
+  <li><strong>Akkadian</strong> — Ellil, the Semitic rendering of the same theonym</li>
+  <li><strong>Cuneiform</strong> — 𒀭𒂗𒇸 (den-líl), with divine determinative</li>
+</ul>
+<p>Enlīl is Tier 2 because the macron on the second i does not record a canonical Greek-style stress or a universally agreed long vowel. It is a pedagogical mark: a visible question that invites discussion about how the name was pronounced in Sumerian and Akkadian. Standard Assyriology writes Enlil; the Unicode form Enlīl belongs to PÚNYCODEX&#39;s phonological reconstruction hub.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Enlīl&#39;s myths are myths of <strong>sovereignty and consequence</strong>. He gives kingship, but he also sends the flood; he decrees fate, but he must bow to the assembly of the gods. His power is supreme within the Sumerian cosmos, yet it is not arbitrary — it is bound to the maintenance of order.</p>
+<h3 id="enlil-and-ninlil-the-sacred-marriage">Enlīl and Ninlil (The Sacred Marriage)</h3>
+<p>The myth <em>Enlīl and Ninlil</em> tells how the young god was banished from Nippur for impregnating Ninlil by the canal. In the Underworld he meets her three times in disguise — as the gatekeeper, the river-man, and the ferryman — begetting three underworld deities: Nergal, Ninazu, and Enbilulu, substitutes who allow the moon-god Nanna, conceived first, to leave the realm of the dead. The story explains the origin of the netherworld gods and the theological necessity that even the king of the air must descend into darkness to generate its powers.</p>
+<h3 id="enlil-sends-the-deluge-the-flood">Enlīl Sends the Deluge (The Flood)</h3>
+<p>In <em>Atra-hasis</em>, the human race has grown too noisy and disturbed Enlīl&#39;s sleep. He persuades the divine council to send plague, drought, and finally a flood to wipe humankind out. Only Enki&#39;s covert warning to Atra-hasis preserves life. After the flood, Enlīl accepts the compromise by which humanity is given death, disease, and stillbirth to keep its numbers in check — a grim etiology of mortality.</p>
+<h3 id="enlil-and-the-decree-of-destinies">Enlīl and the Decree of Destinies</h3>
+<p>In <em>Enlil in the E-kur</em> and related hymnic texts, Enlīl is praised as the god who &#39;decrees destinies&#39; (<em>nam-tar</em>). The Sumerian king rules only because Enlīl has placed the crown upon his head; the city prospers only because Enlīl has confirmed its shepherd. Kings from Ur-Nammu to Hammurabi invoke Enlīl as the source of their legitimacy.</p>
+<h3 id="the-transfer-of-enlil-ship">The Transfer of Enlīl-ship</h3>
+<p>Enlīl never appears as a character in the Babylonian <em>Enuma Elish</em> — and that absence is the epic&#39;s argument. The poem transfers the office Nippur theology called <em>enlilūtu</em>, &#39;Enlīl-ship&#39; — supreme command and the decree of destinies — to Marduk of Babylon. Scholars accordingly read the composition as a Babylonian appropriation of the older Enlīl theology; the Assyrian recension, which substitutes Aššur for Marduk, shows the same machinery serving a different capital.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography of Enlīl gathers emblems of command rather than a fixed portrait; the hymns know him as &#39;great mountain&#39; and &#39;wind&#39; more than as a face:</p>
+<ul>
+  <li><strong>Horned crown</strong> — the tiered headdress of divinity; multiplied horns mark supreme rank, and the hymn <em>Enlil in the E-kur</em> pictures him &#39;adorning himself with the holy crown&#39;.</li>
+  <li><strong>Storm winds</strong> — the seven winds and destructive storms at his command; the storm is the instrument by which his decrees reach the world.</li>
+  <li><strong>Mountain</strong> — the Ekur as cosmic mountain, the <em>dur-an-ki</em>, &#39;bond of heaven and earth&#39;, that anchors the world&#39;s structure at Nippur.</li>
+  <li><strong>Bull</strong> — the &#39;great bull&#39; of Sumerian hymnody, figuring the irresistible strength and generative power of the king of gods.</li>
+  <li><strong>Scepter and crook</strong> — emblems of legitimate rule; the hymns style Enlīl the &#39;faithful shepherd of the teeming multitudes&#39;, making sovereignty a form of pastoral care.</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Enlīl&#39;s cult centre, the <strong>Ekur</strong> at Nippur (modern Nuffar, Iraq), was excavated by the University of Pennsylvania expeditions of 1889–1900 and again by the Oriental Institute of Chicago and Iraqi teams from 1948 onward. The ziggurat visible at the site is largely the work of Ur-Nammu of the Third Dynasty of Ur (c. 2100 BCE), raised over temple levels reaching back to the Early Dynastic period.</p>
+<p>The Nippur digs recovered tens of thousands of tablets — the core of the Sumerian literary corpus, including the <em>Enlil in the E-kur</em> and <em>Enlil and Ninlil</em> compositions — from the temple precinct and the adjoining scribal quarter known as Tablet Hill. No cult statue of Enlīl survives: his presence was the temple itself, the <em>dur-an-ki</em>, &#39;bond of heaven and earth&#39;.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>The name is written 𒂗𒇸. Standard Assyriology transliterates it as <strong>Enlil</strong>. But in the phonological grammar of Sumerian and Akkadian, the length of the second vowel remains an open question — and it is here, in the space between the written sign and the spoken sound, that this temple operates. This node of PÚNYCODEX is dedicated to the <strong>phonological reconstruction and didactic grammar</strong> of the ancient Near East: vowel length is marked not because it is certain, but because it is discussable — the macron is a question mark made visible.</p>
+<p>Enlīl is nevertheless the <strong>king of the Sumerian gods</strong>, the invisible sovereign whose breath is the wind and whose word is fate. He rules from the <strong>Ekur</strong>, the &#39;Mountain House&#39; at Nippur, the cosmic axis where heaven and earth meet. Storms are his messengers; kingship is his gift.</p>
+<h3 id="the-wind">The Wind</h3>
+<p>The air that animates the world and carries the voice of command across the Mesopotamian plain.</p>
+<h3 id="the-ekur">The Ekur</h3>
+<p>The &#39;Mountain House&#39; at Nippur, the temple that anchors cosmic order in physical space.</p>
+<h3 id="kingship">Kingship</h3>
+<p>The grantor of the me of kingship; no Sumerian city could rule without Enlīl&#39;s mandate.</p>
+<h3 id="storm-and-decree">Storm and Decree</h3>
+<p>The thunderous voice that pronounces destinies and sends the destructive storm when order is violated.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>The Unicode form <strong>Enlīl</strong> is a reconstruction node: standard Assyriology writes Enlil, while the macron makes visible the open question of vowel length. The Akkadians called him <em>Ellil</em> and continued to venerate him as king of the gods well into the first millennium BCE. The Assyrians identified their national god <em>Aššur</em> with Enlīl, so that the king of Assyria ruled by Enlīl-Aššur&#39;s mandate. In Hittite and Hurrian sources, Enlīl&#39;s functions were distributed among <em>Taru</em>, <em>Kumarbi</em>, and <em>Teššub</em>. Later Greek and Roman writers had no direct equivalent: Zeus/Jupiter overlaps in sovereignty, but Enlīl&#39;s specific association with wind, air, and the mountain temple has no precise Mediterranean counterpart.</p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include [[baal|Baꜥal]], [[oya|Ọya]], [[perkunas|Perkūnas]], [[shango|Ṣàngó]], [[thor|Þórr]], and [[trengtreng|Trengtreng]], each linked through thunder / storm sovereignty.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Enlīl&#39;s legacy is the idea of <strong>legitimate kingship as a sacred mandate</strong>. The doctrine that the ruler derives authority from the chief god of the pantheon influenced Israelite, Persian, and later Christian theories of monarchy. The Ekur at Nippur remained a symbolic center long after political power shifted to Babylon and Assyria. In modern fantasy, Enlīl often appears as the storm-king, the patriarchal sky-father whose breath is the wind. PÚNYCODEX keeps the macron not as a settled fact but as an invitation: every visitor is invited into the philological conversation. The name still means: <strong>the authority that fills the air.</strong></p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Enlīl given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Electronic Text Corpus of Sumerian Literature, Oxford Oriental Institute, 1998. <a href="https://etcsl.orinst.ox.ac.uk/">Full text</a></li>
+  <li> The Assyrian Dictionary of the Oriental Institute of the University of Chicago, 21 vols., Oriental Institute, Chicago (completed 2010), 1956. <a href="https://isac.uchicago.edu/research/publications/assyrian-dictionary-oriental-institute-university-chicago">Full text</a></li>
+  <li> Akkadisches Handwörterbuch, 3 vols., Harrassowitz, Wiesbaden (completed 1981), 1965.</li>
+  <li> Black &amp; Green, Gods, Demons and Symbols of Ancient Mesopotamia.</li>
+  <li> Jacobsen, The Treasures of Darkness.</li>
+  <li> Kramer, Sumerian Literary Texts from Nippur.</li>
+  <li> Lambert &amp; Millard, Atra-ḫasīs: The Babylonian Story of the Flood.</li>
+  <li> Enuma Elish: The Babylonian Epic of Creation, Standard Babylonian version, 1200 BCE. <a href="http://etana.org/node/581">Full text</a></li>
+  <li> Enlil in the E-kur (Enlil A), ETCSL c.4.05.1: the great hymn to Enlil, his city Nippur, and the Ekur. <a href="https://etcsl.orinst.ox.ac.uk/section4/tr4051.htm">Full text</a></li>
+  <li> Anzu Epic (Akkadian/Sumerian: Anzu steals the Tablet of Destinies from Enlil).</li>
+  <li> Enlil and Ninlil, ETCSL c.1.2.1: the god&#39;s banishment and the begetting of the underworld gods. <a href="https://etcsl.orinst.ox.ac.uk/section1/tr121.htm">Full text</a></li>
+  <li> Code of Hammurabi prologue (invokes Enlil as the source of kingship over the land).</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Enlīl is the god of atmosphere in its political sense: the medium through which command travels. A king&#39;s proclamation is heard because the air carries it; a storm arrives because the lord of the air sends it. This is not metaphor but Mesopotamian metaphysics: power is a physical force, and the god who rules the air rules the channel through which all other powers flow.</p>
+<p>To name Enlīl is to remember that sovereignty is never merely human. It is atmospheric — a condition of the shared medium in which all creatures breathe, speak, and obey. The Ekur, his mountain temple, was built not to dominate the landscape but to concentrate it: to make the invisible wind visible as authority. Every throne room is, in its way, a small Ekur. The macron on the second i is a small philological compass: it points to the distance between what the cuneiform records and what the voice once said, and it asks the reader to keep that distance open.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Enlīl is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>enlil</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 5 characters of the name, the restoration adjusts 1: 1 mark of length (ī). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>enlīl.com</strong>, which the DNS carries in punycode form as xn--enll-sya.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Enlīl; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Cuneiform can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Myth, script, sound, cult, legacy, domain: the faces of Enlīl add up to a single argument — that a name is a record, and records deserve fidelity. The PÚNYCODEX restoration keeps that record in working order: the temple presents it, the Scholarly Edition footnotes it, the lexicon catalogs it, and the domain makes it addressable. <em>enlil</em> will always exist as a fallback. But fallback is not identity. <strong>Enlīl</strong> is the name; everything else is a convenience.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/ninurta/">Ninurta</a></li>
   <li><a href="/sites/adad/">Adad</a></li>
   <li><a href="/sites/dumuzid/">Dumuzid</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://etcsl.orinst.ox.ac.uk/">Electronic Text Corpus of Sumerian Literature, Oxford Oriental Institute, 1998.</a></li>
   <li><a href="https://isac.uchicago.edu/research/publications/assyrian-dictionary-oriental-institute-university-chicago">The Assyrian Dictionary of the Oriental Institute of the University of Chicago, 21 vols., Oriental Institute, Chicago (completed 2010), 1956.</a></li>
   <li><a href="http://etana.org/node/581">Enuma Elish: The Babylonian Epic of Creation, Standard Babylonian version, 1200 BCE.</a></li>
   <li><a href="https://etcsl.orinst.ox.ac.uk/section4/tr4051.htm">Enlil in the E-kur (Enlil A), ETCSL c.4.05.1: the great hymn to Enlil, his city Nippur, and the Ekur.</a></li>
+  <li><a href="https://etcsl.orinst.ox.ac.uk/section1/tr121.htm">Enlil and Ninlil, ETCSL c.1.2.1: the god&#39;s banishment and the begetting of the underworld gods.</a></li>
+  <li>Akkadisches Handwörterbuch, 3 vols., Harrassowitz, Wiesbaden (completed 1981), 1965.</li>
+  <li>Black &amp; Green, Gods, Demons and Symbols of Ancient Mesopotamia.</li>
+  <li>Lambert &amp; Millard, Atra-ḫasīs: The Babylonian Story of the Flood.</li>
+  <li>Jacobsen, The Treasures of Darkness: A History of Mesopotamian Religion.</li>
+  <li>Lexicon authorities for this entry: CAD, AHw, Kramer, Jacobsen.</li>
 </ul>
-<h2>The Cultural Afterlife</h2>
-<p>Enlīl&#39;s legacy is the idea of legitimate kingship as a sacred mandate. The doctrine that the ruler derives authority from the chief god of the pantheon influenced Israelite, Persian, and later Christian theories of monarchy. The Ekur at Nippur remained a symbolic center long after political power shifted to Babylon and Assyria. In modern fantasy, Enlīl often appears as the storm-king, the patriarchal sky-father whose breath is the wind. PÚNYCODEX keeps the macron not as a settled fact but as an invitation: every visitor is invited into the philological conversation. The name still means: the authority that fills the air.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">mesopotamian</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

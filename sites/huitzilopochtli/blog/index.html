@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,33 +170,201 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-nahuatl-pantheon">The Nahuatl Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#typing-huitzilopochtli">Typing Huitzilopōchtli</a></li>
+                <li><a href="#sister-temples">Sister Temples</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>Why Huitzilopōchtli Belongs in the Address Bar</h1>
-<p>Every address bar is a choice. When you type <strong>Huitzilopōchtli</strong>, you are not typing a novelty; you are restoring a name. The plain ASCII form <em>huitzilopochtli</em> is the leftover of a DNS that was built for English typewriters, not for the world&#39;s naming traditions. Huitzilopōchtli (huitzilopochtli) — &quot;Left-handed hummingbird&quot; — is the tribal patron of the Mexica elevated to the rank of solar war god: the divine guide of the migration from Aztlān, the miraculous defender of his mother [[coatlicue|Cōātlīcue]] at Coatepec, and the hungry sun of Tenochtitlan&#39;s imperial cult. His name condenses his nature. Huitzilin, the hummingbird, is the form taken by dead warriors returned to earth; ōpōchtli, the left-hand side, denotes the south, the region of his celestial house. The god thus named &quot;hummingbird of the south&quot; was carried on the migration in a priest-borne bundle, spoke the command to leave Aztlān, and fixed the promised site of Tenochtitlan with the sign of the eagle on the nopal cactus. On the Templo Mayor...</p>
-<h2>The Name the DNS Almost Forgot</h2>
-<p>The name is a compound of huitzilin &quot;hummingbird&quot; and ōpōchtli &quot;the left-hand side&quot; — the left being the side of the south in Mexica directional symbolism — yielding &quot;Left-handed hummingbird,&quot; conventionally glossed &quot;hummingbird of the south.&quot; The precise force of the compound is debated: some interpreters stress the hummingbird as the soul-form of the dead warrior, others the left/south as the god&#39;s celestial quarter; the dictionary simply glosses the element ōpōchtli as &quot;left-hand side.&quot; The name is no scholarly coinage. It is attested in the earliest alphabetic records of Nahuatl — the Florentine Codex writes vitzilobuchtli, huitzilopochtli and similar variants in an orthography that does not mark vowel length — and in the migration pictorials,... In scholarly terms, it belongs to the <strong>Tier 2</strong> class: the original preserves at least one philological feature that ASCII cannot encode. That detail is not decorative; it is the difference between a label and a lived name.</p>
-<h2>From Nahuatl transcription to the Browser</h2>
-<p>Pre-conquest Nahua writing was logosyllabic: its signs denoted whole words and morphemes, sometimes reinforced by phonetic complements, but the system did not spell continuous phonetic text and had no device for vowel length. Within that system Huitzilopōchtli&#39;s name is conveyed by his image: in the migration pictorials — the Tira de la Peregrinación (Codex Boturini) and the Codex Azcatitlan — the god appears in human body wearing his hummingbird disguise, and it is the hummingbird logogram, not a phonetic spelling, that names him. The spelled record is colonial: Sahagún&#39;s scribes wrote the name in the Latin alphabet as vitzilobuchtli and similar forms. The form Huitzilopōchtli is therefore a modern scholarly transliteration that restores the... The PÚNYCODEX temple does not invent a spelling; it recovers one. By registering the Unicode form, the project proves that the original script can survive inside the infrastructure of the modern web.</p>
-<h2>Why 2026 Still Needs This</h2>
-<p>In 2026, names are data. Search engines, AI training corpora, and localization teams all need authoritative forms. Huitzilopōchtli is a small but concrete demonstration that philology and DNS can coexist. The <a href="/sites/huitzilopochtli/scholars/">Scholarly Edition</a> preserves the argument; the blog makes it approachable.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Huitzilopōchtli is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>Why Huitzilopōchtli belongs in your address bar</h1>
+<p>Every address bar is a choice. When you type <strong>Huitzilopōchtli</strong>, you are not typing a novelty; you are restoring a name that the early DNS, built for English typewriters, could not carry. The plain ASCII form <em>huitzilopochtli</em> is a leftover of that constraint, not the name itself. This post is the long version of the restoration: where the name comes from, how the Nahuatl transcription tradition wrote it, how it is pronounced, what the myths and the material record preserve, and why its Unicode form now lives as a working domain. The claim throughout is simple — the original spelling is not decoration. It is the name.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Huitzilopōchtli</li>
+  <li><strong>ASCII form:</strong> huitzilopochtli</li>
+  <li><strong>Meaning:</strong> &quot;Left-handed hummingbird&quot;</li>
+  <li><strong>Domain of influence:</strong> Sun, War, Hummingbird</li>
+  <li><strong>Pantheon:</strong> Nahuatl</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Live domain:</strong> huitzilopōchtli.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Huitzilopōchtli</strong> (<em>huitzilopochtli</em>) — &quot;Left-handed hummingbird&quot; — is the tribal patron of the Mexica elevated to the rank of solar war god: the divine guide of the migration from Aztlān, the miraculous defender of his mother [[coatlicue|Cōātlīcue]] at Coatepec, and the hungry sun of Tenochtitlan&#39;s imperial cult.</p>
+<p>His name condenses his nature. <em>Huitzilin</em>, the hummingbird, is the form taken by dead warriors returned to earth; <em>ōpōchtli</em>, the left-hand side, denotes the south, the region of his celestial house. The god thus named &quot;hummingbird of the south&quot; was carried on the migration in a priest-borne bundle, spoke the command to leave Aztlān, and fixed the promised site of Tenochtitlan with the sign of the eagle on the nopal cactus. On the Templo Mayor his southern shrine crowned the sacred precinct, and the festival calendar fed his daily battle against darkness with the hearts of captives — the theology that bound Mexica identity, warfare, and sacrifice into a single system.</p>
+<p>PÚNYCODEX restores the name as <strong>Huitzilopōchtli</strong>, preserving the lexical long vowel of <em>ōpōchtli</em> that sixteenth-century orthography left unmarked; carrying that single prosodic feature — vowel length — the name is classed Tier 2. The temple is served at <a href="https://xn--huitzilopchtli-esc.com">huitzilopōchtli.com</a>.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is a compound of <strong>huitzilin</strong> &quot;hummingbird&quot; and <strong>ōpōchtli</strong> &quot;the left-hand side&quot; — the left being the side of the south in Mexica directional symbolism — yielding &quot;Left-handed hummingbird,&quot; conventionally glossed &quot;hummingbird of the south.&quot; The precise force of the compound is debated: some interpreters stress the hummingbird as the soul-form of the dead warrior, others the left/south as the god&#39;s celestial quarter; the dictionary simply glosses the element ōpōchtli as &quot;left-hand side.&quot;</p>
+<p>The name is no scholarly coinage. It is attested in the earliest alphabetic records of Nahuatl — the <em>Florentine Codex</em> writes <em>vitzilobuchtli</em>, <em>huitzilopochtli</em> and similar variants in an orthography that does not mark vowel length — and in the migration pictorials, where the god is rendered by his hummingbird image. The macron of <strong>Huitzilopōchtli</strong> is the modern lexicographic restoration of the long ō of <em>ōpōchtli</em>; the plain ASCII form <em>huitzilopochtli</em> perpetuates the colonial spelling and survives in the domain-name system only because that system could not carry diacritics. Carrying a single prosodic feature (vowel length), the name is classed Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>h</strong> → <strong>H</strong> — Same</li>
+  <li><strong>u</strong> → <strong>u</strong> — Same</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+  <li><strong>t</strong> → <strong>t</strong> — Same</li>
+  <li><strong>z</strong> → <strong>z</strong> — Same</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+  <li><strong>l</strong> → <strong>l</strong> — Same</li>
+  <li><strong>o</strong> → <strong>o</strong> — Same</li>
+  <li><strong>p</strong> → <strong>p</strong> — Same</li>
+  <li><strong>o</strong> → <strong>ō</strong> — Macron on o</li>
+  <li><strong>c</strong> → <strong>c</strong> — Same</li>
+  <li><strong>h</strong> → <strong>h</strong> — Same</li>
+  <li><strong>t</strong> → <strong>t</strong> — Same</li>
+  <li><strong>l</strong> → <strong>l</strong> — Same</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+</ul>
+<p>The project holds the domain <strong>huitzilopōchtli.com</strong> (xn--huitzilopchtli-esc.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>Pre-conquest Nahua writing was logosyllabic: its signs denoted whole words and morphemes, sometimes reinforced by phonetic complements, but the system did not spell continuous phonetic text and had no device for vowel length. Within that system Huitzilopōchtli&#39;s name is conveyed by his image: in the migration pictorials — the Tira de la Peregrinación (Codex Boturini) and the Codex Azcatitlan — the god appears in human body wearing his hummingbird disguise, and it is the hummingbird logogram, not a phonetic spelling, that names him.</p>
+<p>The spelled record is colonial: Sahagún&#39;s scribes wrote the name in the Latin alphabet as <em>vitzilobuchtli</em> and similar forms. The form <strong>Huitzilopōchtli</strong> is therefore a modern scholarly transliteration that restores the attested long vowel of <em>ōpōchtli</em>; no mark in it is decorative.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/wi.t͡si.loˈpoːt͡ʃ.tɬi/</strong> — Classical Nahuatl Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Huitz-</strong> — Rounded [w] plus close front [i], then alveolar affricate [t͡s] — huitz- is the Nahuatl root for &#39;thorn&#39; and by extension &#39;hummingbird.&#39;</li>
+  <li><strong>-ilo-</strong> — Close front [i], alveolar lateral [l], and short [o]; a diminutive or honorific infix.</li>
+  <li><strong>-pōch-</strong> — Voiceless bilabial stop [p] plus long back rounded [oː] plus voiceless postalveolar affricate [t͡ʃ]; pōchtli means &#39;left&#39; or &#39;left-handed,&#39; also associated with the south.</li>
+  <li><strong>-tli</strong> — Lateral affricate [tɬ] plus close front [i], the absolute suffix closing the noun.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;weet-see-loh-POCH-tlee&#39; — the &#39;tz&#39; is &#39;ts,&#39; the &#39;ch&#39; is as in &#39;church,&#39; and the final -tli is one released sound.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Classical Nahuatl</strong> — Huitzilopōchtli — &#39;Left-Handed Hummingbird&#39; or &#39;Hummingbird of the South&#39;</li>
+  <li><strong>Etymology</strong> — huitzilin &#39;hummingbird&#39; + -o- + pōchtli &#39;left, left-hand side, south&#39;</li>
+  <li><strong>Titles</strong> — Ilhuicatl Tlalocan, &#39;the Blue Place&#39;; Tēcuhtli, &#39;Lord&#39;; Mexica patron</li>
+</ul>
+<p>The etymology is debated. The most widely accepted analysis takes huitzilin &#39;hummingbird&#39; + pōchtli &#39;left/south,&#39; with a possible interpretation of the hummingbird as the soul of the warrior returning from death. The macron on ō is the only vowel-length mark in the standard form, though the first i is sometimes reconstructed as short. Tier 2: the single macron preserves length in pōchtli.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Huitzilopōchtli&#39;s mythology is inseparable from the origin story of the Mexica people. He is the divine ancestor who led the migration, chose the site of Tenochtitlan, and defeated the lunar forces arrayed against his mother at Coatepec.</p>
+<h3 id="the-birth-at-coatepec-birth-myth">The Birth at Coatepec (Birth myth)</h3>
+<p>Cōātlīcue conceived Huitzilopōchtli when a ball of feathers fell into her lap while she swept on Coatepec, &#39;Serpent Mountain.&#39; Her daughter Coyolxāuhqui and the four hundred Centzōn Huītznāhua attacked their mother in rage. Huitzilopōchtli sprang from her womb fully armed, wielding the xiuhcoatl fire-serpent. He struck off Coyolxāuhqui&#39;s head and limbs and hurled her body down the mountain; the four hundred brothers he scattered into the sky as stars. The scene was reenacted in the Templo Mayor&#39;s ritual architecture. (Florentine Codex III.)</p>
+<h3 id="the-journey-from-aztlan-migration-myth">The Journey from Aztlān (Migration myth)</h3>
+<p>The Mexica left their ancestral home of Aztlān under Huitzilopōchtli&#39;s guidance. The god spoke through priests and signs, instructing the people to call themselves Mēxihcah and to search for an eagle perched on a cactus devouring a snake. That sign appeared on a small island in Lake Texcoco, and there Tenochtitlan was founded. (Anales de Cuauhtitlan; Crónica Mexicayotl.)</p>
+<h3 id="the-sun-s-daily-battle-solar-theology">The Sun&#39;s Daily Battle (Solar theology)</h3>
+<p>Huitzilopōchtli is identified with the sun that rises each morning after a night-long struggle through the underworld. To strengthen him for this battle, the Nahua offered the most precious food: human hearts. The warrior who died in battle or on the sacrificial stone joined Huitzilopōchtli in the sky for four years, then returned to earth as a hummingbird or butterfly.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Huitzilopōchtli concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>Hummingbird</strong> — The soul of the dead warrior and the swift, iridescent solar radiance of the god</li>
+  <li><strong>Xiuhcoatl fire-serpent</strong> — The flaming weapon Huitzilopōchtli wields against his sister Coyolxāuhqui</li>
+  <li><strong>Blue hummingbird helmet</strong> — The warrior regalia identifying the god in Mexica sculpture and pictorial manuscripts</li>
+  <li><strong>Templo Mayor</strong> — His shrine at the summit of the Great Temple, paired with Tlāloc&#39;s, marked the center of the Mexica cosmos</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Huitzilopōchtli&#39;s principal shrine was the southern half of the Templo Mayor in Tenochtitlan, its stairway rising beside Tlāloc&#39;s to form the double pyramid at the heart of the sacred precinct. The modern excavation of that monument began in February 1978, when electrical workers uncovered the great Coyolxāuhqui stone at the foot of his stairway — the dismembered sister of the Coatepec myth, laid where the god&#39;s victims fell — and the ensuing Proyecto Templo Mayor under Eduardo Matos Moctezuma exposed seven successive building phases with rich offering caches. The Calendar Stone (Piedra del Sol), although not exclusively solar in content, is popularly associated with his sun cult. Pictorial manuscripts such as the Codex Borbonicus, Codex Telleriano-Remensis, and Codex Azcatitlan preserve his migration myths and calendar festivals.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Huitzilopōchtli is the <strong>southern sun in his hummingbird form</strong>, the god who led the Mexica out of Aztlān and guided them to the island where Tenochtitlan would rise. He is the warrior&#39;s reward and the warrior&#39;s demand: the fallen soldier becomes a hummingbird in his paradise, but the sun itself requires human hearts to rise again. In him, tribal patronage, solar theology, and imperial militarism became inseparable.</p>
+<h3 id="the-sun-at-zenith">The Sun at Zenith</h3>
+<p>He is the sun in its rising and midday strength, the southern brilliance that drives away the stars.</p>
+<h3 id="war-and-the-warrior-s-death">War and the Warrior&#39;s Death</h3>
+<p>Dead warriors and women who died in childbirth accompanied him in the sky as hummingbirds.</p>
+<h3 id="tribal-guide">Tribal Guide</h3>
+<p>He appeared to the Mexica leaders in dreams and omens, directing the long migration to the promised land.</p>
+<h3 id="sacrificial-sustenance">Sacrificial Sustenance</h3>
+<p>The sun&#39;s daily battle against darkness required nourishers of blood and hearts; Huitzilopōchtli was the hungry sun itself.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Huitzilopōchtli has no close non-Nahua equivalent; he is a specifically Mexica tribal god elevated to solar supremacy. Within Mesoamerica he shares solar-warrior traits with the Maya sun god K&#39;inich Ajaw and with Mixtec and Zapotec martial deities. After the conquest, Spanish writers sometimes identified him with Hercules or with the Christian devil, a comparison shaped more by revulsion at human sacrifice than by theological correspondence. Modern nationalist movements have sometimes celebrated Huitzilopōchtli as a symbol of indigenous resistance, while other interpreters emphasize the imperial violence carried out in his name.</p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include [[anat|ꜥAnat]] (war / battle), [[apollon|Apóllōn]] (sun / light), [[ares|Árēs]] (war / battle), [[ashur|Aššur]] (war / battle), [[athena|Athénā]] (war / battle), and [[dazhbog|Dažbog]] (sun / light).</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Huitzilopōchtli remains one of the most recognizable figures of Aztec religion, embodied in the Templo Mayor and the Calendar Stone&#39;s central solar imagery. His most pervasive legacy is national: the eagle on the nopal cactus — the sign by which he marked the promised site of Tenochtitlan — stands today at the center of the Mexican flag and coat of arms, and the Aztlān of his migration myth gave its name to the Chicano movement&#39;s mythic homeland. In Mexico he appears in murals, coins, and museum branding as an emblem of Mexica identity and pre-Columbian grandeur, and the Museo del Templo Mayor, built around his excavated shrine, is effectively his monument. Critics and Indigenous scholars caution against romanticizing the militarized theology of his cult, even as archaeology continues to reveal the sophistication of the ritual city built in his honor.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Huitzilopōchtli given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Sahagún, Florentine Codex.</li>
+  <li> Anales de Cuauhtitlan.</li>
+  <li> Alvarado Tezozómoc, Crónica Mexicayotl.</li>
+  <li> Durán, Book of the Gods and Rites.</li>
+  <li> Karttunen, An Analytical Dictionary of Nahuatl.</li>
+  <li> Nicholson, &#39;Religion in Pre-Hispanic Central Mexico&#39;.</li>
+  <li> Carrasco, City of Sacrifice.</li>
+  <li> Matos Moctezuma, The Great Temple of the Aztecs.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Huitzilopōchtli is the sun as hungry deity, the warrior as ancestor, the nation as divine mission. His mythology binds together birth, migration, war, and sacrifice into a single imperial narrative. For the Mexica, to worship him was to be Mēxihcah; to die for him was to become light.</p>
+<p>Modern readers often recoil at the human sacrifice central to his cult. But Huitzilopōchtli also raises a question that every civilization faces: What does the community owe to the forces that sustain it? The Nahua answer was literal and terrible — hearts and blood. Our answers are usually more abstract but no less consequential. To name Huitzilopōchtli with the long ō restored is to keep the question alive in its most uncompromising form.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Huitzilopōchtli is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>huitzilopochtli</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 15 characters of the name, the restoration adjusts 1: 1 mark of length (ō). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>huitzilopochtli</em> to <strong>Huitzilopōchtli</strong>, one character at a time:</p>
+<ul>
+  <li><strong>h</strong> → <strong>H</strong> — Same</li>
+  <li><strong>u</strong> → <strong>u</strong> — Same</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+  <li><strong>t</strong> → <strong>t</strong> — Same</li>
+  <li><strong>z</strong> → <strong>z</strong> — Same</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+  <li><strong>l</strong> → <strong>l</strong> — Same</li>
+  <li><strong>o</strong> → <strong>o</strong> — Same</li>
+  <li><strong>p</strong> → <strong>p</strong> — Same</li>
+  <li><strong>o</strong> → <strong>ō</strong> — Macron on o</li>
+  <li><strong>c</strong> → <strong>c</strong> — Same</li>
+  <li><strong>h</strong> → <strong>h</strong> — Same</li>
+  <li><strong>t</strong> → <strong>t</strong> — Same</li>
+  <li><strong>l</strong> → <strong>l</strong> — Same</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>huitzilopōchtli.com</strong>, which the DNS carries in punycode form as xn--huitzilopchtli-esc.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Huitzilopōchtli; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Nahuatl transcription can now be typed into any browser on earth.</p>
+<h2 id="the-nahuatl-pantheon">The Nahuatl Pantheon</h2>
+<p>Huitzilopōchtli is one of 28 entries the PÚNYCODEX lexicon catalogues under the Nahuatl pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Huitzilopōchtli mean?</strong> The traditional gloss is &quot;Left-handed hummingbird.&quot;</p>
+<p><strong>Which tradition does Huitzilopōchtli belong to?</strong> Huitzilopōchtli is catalogued in the Nahuatl pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Huitzilopōchtli classified as Tier 2?</strong> Because the original preserves at least one philological feature that ASCII cannot encode — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Huitzilopōchtli a working domain?</strong> Yes — huitzilopōchtli.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for huitzilopōchtli.com?</strong> The DNS encoding is xn--huitzilopchtli-esc.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="typing-huitzilopochtli">Typing Huitzilopōchtli</h2>
+<p>You do not need a special keyboard to use this restoration. The <a href="/type/">PÚNYCODEX Type Tool</a> converts the ASCII form <em>huitzilopochtli</em> into <strong>Huitzilopōchtli</strong> as you type, and the browser extension offers the same conversion inside any text field. Copy the restored form, paste it into the address bar, and the DNS does the rest.</p>
+<h2 id="sister-temples">Sister Temples</h2>
+<p>Other temples in the Nahuatl pantheon include <a href="/sites/cihuacoatl/">Cihuacōātl</a>, <a href="/sites/citlalicue/">Citlālicue</a>, and <a href="/sites/coatlicue/">Cōātlīcue</a> — each with its own restoration story, its own scholarly record, and its own place in the lexicon.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Restoring <strong>Huitzilopōchtli</strong> is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. Every section of this post — the script, the sound, the myths, the evidence — converges on the same point: the marks in Huitzilopōchtli are information, and information deserves an address of its own. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier, and every visit to huitzilopōchtli.com is a vote for the restored form.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/omecihuatl/">Ōmecihuātl</a></li>
   <li><a href="/sites/tlaloc/">Tlāloc</a></li>
   <li><a href="/sites/xochipilli/">Xōchipilli</a></li>
 </ul>
-<h2>Read More</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://florentinecodex.getty.edu">Sahagún, Florentine Codex, Books 1–2 (The Gods; The Ceremonies).</a></li>
+  <li>Nicholson, &#39;Religion in Pre-Hispanic Central Mexico,&#39; Handbook of Middle American Indians, vol. 10 (1971).</li>
+  <li>Karttunen, An Analytical Dictionary of Nahuatl.</li>
+  <li>Alvarado Tezozómoc, Crónica Mexicayotl; Anales de Cuauhtitlan.</li>
+  <li>Sahagún, Florentine Codex.</li>
+  <li>Lexicon authorities for this entry: Karttunen.</li>
 </ul>
-<h2>What the Sources Record</h2>
-<p>Huitzilopōchtli is the southern sun in his hummingbird form, the god who led the Mexica out of Aztlān and guided them to the island where Tenochtitlan would rise. He is the warrior&#39;s reward and the warrior&#39;s demand: the fallen soldier becomes a hummingbird in his paradise, but the sun itself requires human hearts to rise again. In him, tribal patronage, solar theology, and imperial militarism became inseparable. ### The Sun at Zenith He is the sun in its rising and midday strength, the southern brilliance that drives away the stars. ### War and the Warrior&#39;s Death Dead warriors and women who died in childbirth accompanied him in the sky as hummingbirds. ### Tribal Guide He appeared to the Mexica leaders in dreams and omens, directing the long...</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">nahuatl</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

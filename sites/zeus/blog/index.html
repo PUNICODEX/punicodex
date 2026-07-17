@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,48 +170,204 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>15 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#epithets-cult-titles">Epithets &amp; Cult Titles</a></li>
+                <li><a href="#the-homeric-hymns">The Homeric Hymns</a></li>
+                <li><a href="#oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>How Zeús Got Its Accent Back</h1>
-<p>The ASCII form <em>zeus</em> is missing something. Zeús restores the marks that the original language used to distinguish this name from a thousand others. The name is attested in Greek as Ζεύς. Etymologically it means &quot;Bright, day (from Proto-Indo-European dyēus)&quot;. The reconstructed proto-form is dyēws (proto-indo-european, &quot;sky, day, bright&quot;). PIE dyēws &gt; Greek Ζεύς (Doric) &gt; Attic Zeus. The sky god par excellence. Cognate forms across related languages: - Iuppiter (latin) — From dyēws ph₂tḗr - Dyáuṣ (sanskrit) — Vedic sky god - Tīwaz (proto-germanic) — Germanic sky god; survives as English Tuesday The ASCII form zeus survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Zeús recovers the stress accent of the original directly in the address bar. The original carries both stress and vowel...</p>
-<h2>The Missing Marks</h2>
-<p>Classified as <strong>Tier 1</strong>, this restoration carries the stress and length that standard ASCII discards. the Greek original carries both stress and length, and only one valid Unicode restoration exists</p>
-<h2>Step by Step</h2>
-<p>The transformation from <em>zeus</em> to <strong>Zeús</strong> happens one character at a time. Some letters stay the same; others gain accents, macrons, or entirely new shapes. The breakdown on the <a href="/sites/zeus/">temple home page</a> shows exactly how.</p>
-<h2>Why Stress and Length Matter</h2>
-<p>In the source language, changing a stress or a vowel length can change a meaning. Names are especially sensitive because they are proper nouns: one spelling points to one entity. Zeús preserves that pointer in a way <em>zeus</em> cannot.</p>
-<h2>The Restored Form</h2>
-<p>Zeús is now a domain. That simple fact turns a philological detail into a public demonstration. Anyone who types it participates in the restoration.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Zeús is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>How Zeús got its accent back</h1>
+<p>The ASCII form <em>zeus</em> is missing something. <strong>Zeús</strong> restores the marks the source language used to distinguish this name from a thousand others — and those marks change how the name is read, pronounced, and understood. This post explains, with the full scholarly record behind it, what each restored mark preserves: the Greek evidence, the reconstructed sound, the myths the name carries, and the classification logic that separates Tier 1 restorations from Tier 2. By the end, the marks in Zeús will look less like ornaments and more like what they are — recovered evidence, pinned back in its proper place.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Zeús</li>
+  <li><strong>ASCII form:</strong> zeus</li>
+  <li><strong>Meaning:</strong> &quot;Bright, day (from Proto-Indo-European *dyēus)&quot;</li>
+  <li><strong>Domain of influence:</strong> Sky, Thunder, King of Gods</li>
+  <li><strong>Pantheon:</strong> Greek</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Original script:</strong> Ζεύς (Greek)</li>
+  <li><strong>Live domain:</strong> zeús.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Zeús</strong> (<em>zeus</em>) — Lord of the Sky · Wielder of the Thunderbolt — belongs to the Greek tradition, where it is catalogued under the domain &quot;Sky, Thunder, King of Gods&quot;. The name means &quot;Bright, day (from Proto-Indo-European *dyēus)&quot;.</p>
+<p>Zeús is not merely the king of the gods; he is <strong>the principle of cosmic and social order</strong>. His domain is the sky, his weapon the thunderbolt, his guarantee the oath. Every legitimate authority on earth — kingship, law, hospitality — traces its sanction to him.</p>
+<p>PÚNYCODEX restores the name as <strong>Zeús</strong> and serves its temple at <a href="https://xn--zes-9na.com">zeús.com</a>. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>zeus</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Greek as <strong>Ζεύς</strong>. Etymologically it means &quot;Bright, day (from Proto-Indo-European *dyēus)&quot;.</p>
+<p>The reconstructed proto-form is <em>dyēws</em> (proto-indo-european, &quot;sky, day, bright&quot;). PIE *dyēws &gt; Greek Ζεύς (Doric) &gt; Attic Zeus. The sky god par excellence.</p>
+<p>Cognate forms across related languages:</p>
+<ul>
+  <li><strong>Iuppiter</strong> (latin) — From *dyēws ph₂tḗr</li>
+  <li><strong>Dyáuṣ</strong> (sanskrit) — Vedic sky god</li>
+  <li><strong>*Tīwaz</strong> (proto-germanic) — Germanic sky god; survives as English Tuesday</li>
+</ul>
+<p>The ASCII form <em>zeus</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Zeús</strong> recovers the stress accent of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>z</strong> → <strong>Z</strong> — Zeta</li>
+  <li><strong>e</strong> → <strong>e</strong> — Epsilon</li>
+  <li><strong>u</strong> → <strong>ú</strong> — Acute on upsilon</li>
+  <li><strong>s</strong> → <strong>s</strong> — Sigma</li>
+</ul>
+<p>The project holds the domain <strong>zeús.com</strong> (xn--zes-9na.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: PIE *dyēws &gt; Greek Ζεύς (Doric) &gt; Attic Zeus. The sky god par excellence.</p>
+<p>The reconstructed proto-form is <em>*dyēws</em> (proto-indo-european), glossed as &quot;sky, day, bright&quot;.</p>
+<p>The reconstruction is classed as attested.</p>
+<p>Kindred forms recorded in the lexicon:</p>
+<ul>
+  <li><strong>Iuppiter</strong> (latin) — From *dyēws ph₂tḗr</li>
+  <li><strong>Dyáuṣ</strong> (sanskrit) — Vedic sky god</li>
+  <li><strong>*Tīwaz</strong> (proto-germanic) — Germanic sky god; survives as English Tuesday</li>
+</ul>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Greek as <strong>Ζεύς</strong> — Greek alphabet (Classical / Attic), attested Ancient Greek, c. 8th century BCE – present, in Greece and the Greek-speaking Mediterranean. The script is written left-to-right.</p>
+<p>The scholarly transliteration is <em>Zeús</em> (Latin with diacritics (standard scholarly)), giving the normalized reading /zděu̯s/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The Greek form Ζεύς is attested from Mycenaean di-we / Diwos and Homeric Greek.</li>
+  <li>The initial Ζ- in Attic represents the voiced affricate [zd], preserving the PIE cluster <em>dy- from </em>dyēws &#39;sky, god of the sky&#39;.</li>
+  <li>The diphthong ευ is long for accentual purposes and carries the acute accent, producing the single pitch peak Zeús.</li>
+  <li>The final -ς is the nominative singular ending of the archaic stem *dyēu-s.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/zděu̯s/</strong> — Attic Greek Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Zd-</strong> — Voiced affricate [zd] — the spelling Ζεύς preserves an archaic cluster, already simplified in some dialects.</li>
+  <li><strong>-eu-</strong> — Diphthong [eu], a bright gliding sound appropriate to the bright sky.</li>
+  <li><strong>-s</strong> — Final sigma; the nominative singular ending of an archaic stem *dyēu-s.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;ZDEWS&#39; — one syllable, beginning with a buzzing &#39;zd&#39; and ending in a sharp &#39;s&#39;, like the sound of distant thunder compressed into a name.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>PIE</strong> — *dyēws, &#39;sky, daylight, god of the sky&#39;</li>
+  <li><strong>Sanskrit</strong> — Dyáuṣ Pitā, the Vedic sky father</li>
+  <li><strong>Latin</strong> — Iuppiter, from *dyēws ph₂tḗr &#39;sky-father&#39;</li>
+  <li><strong>Germanic</strong> — *Tīwaz, giving English &#39;Tuesday&#39;</li>
+</ul>
+<p>Zeús is Tier 1 because the Greek Ζεύς contains both stress (acute on the diphthong ευ) and length (the diphthong itself counts as long for accentual purposes). The acute falls on the only syllable, making the name a single pitched peak — the sonic image of a thunderbolt.</p>
+<h2 id="mythology">Mythology</h2>
+<p>The mythology of Zeús is dominated by two great struggles: <strong>his overthrow of the Titans</strong> and <strong>his defense of cosmic order against every subsequent threat</strong>. He is the last son of Kronos, the only one not swallowed at birth.</p>
+<h3 id="hidden-in-a-cretan-cave-the-birth">Hidden in a Cretan Cave (The Birth)</h3>
+<p>Rheia, weary of seeing her children devoured by Kronos, hid the infant Zeús in a cave on Crete — identified by different traditions as Mount Ida or Mount Dikte — and gave Kronos a stone wrapped in swaddling clothes. The Kouretes drowned the baby&#39;s cries with their clashing weapons. This substitution of stone for god is the primal image of how order survives by cunning.</p>
+<h3 id="the-war-against-the-titans-the-titanomachy">The War Against the Titans (The Titanomachy)</h3>
+<p>When Zeús grew to strength, he freed his siblings from Kronos&#39;s belly and led them in a ten-year war against the Titans. The Cyclopes gave him thunder, the Hundred-Handers turned the tide, and the Titans were cast into Tartaros. Zeús then divided the cosmos with his brothers by lot: sky to Zeús, sea to Poseidôn, underworld to Hádês.</p>
+<h3 id="typhon-and-the-test-of-sovereignty-the-rebel">Typhôn and the Test of Sovereignty (The Rebel)</h3>
+<p>The monster Typhôn, born from Gaia&#39;s anger after the Titanomachy, challenged Zeús and — in the version Apollodorus preserves — briefly stripped him of his sinews before Hermês stole them back. Zeús recovered and buried the monster under Mount Etna, where Pindar places him, his flank pressed down by the volcano&#39;s weight. The myth asserts that even the most chaotic rebellion cannot finally unseat the sky king.</p>
+<h3 id="the-flood-and-the-pious-couple-the-mortal-world">The Flood and the Pious Couple (The Mortal World)</h3>
+<p>When Zeús decided to destroy the Bronze Age race for its hubris, he sent a great flood. Only Deukalion and Pyrrha survived in an ark and, on the instructions of Themis, repopulated the earth by casting stones behind them — the &#39;bones of Gaia.&#39; The myth gives Zeús both destructive and regenerative roles.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography of Zeús concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>Thunderbolt</strong> — forged by the Cyclopes and given to him in gratitude for their release; sovereign power and the sudden manifestation of divine will.</li>
+  <li><strong>Eagle</strong> — his bird and omen-bearer: when Priam prays for a sign before entering the Greek camp, Zeús sends his surest herald, the black eagle, sweeping across the city (Iliad 24.310–315).</li>
+  <li><strong>Oak</strong> — the sacred tree of Dodona, whose leaves carried his voice; Odysseus claims to have gone there &#39;to hear the will of Zeús from the high-leafed oak&#39; (Odyssey 14.327–328).</li>
+  <li><strong>Sceptre</strong> — kingship and legitimate rule; Agamemnon&#39;s scepter was made by Hēphaistos for Zeús himself before it passed down through the kings (Iliad 2.100–108).</li>
+  <li><strong>Aegis</strong> — the terror-striking storm-shield he shakes over the battle to rout armies (Iliad 17.593–596), often lent to Athénā.</li>
+  <li><strong>Nikē</strong> — the winged Victory who stood on the right hand of Phidias&#39;s colossus at Olympia.</li>
+</ul>
+<p>Zeús is the bearded king in majesty: enthroned, scepter in one hand, thunderbolt in the other, the eagle at his side or perched on the scepter&#39;s head. The type was fixed for antiquity by Phidias&#39;s chryselephantine colossus at Olympia (c. 435 BCE) — gold and ivory over a wooden frame, the god&#39;s head nearly touching the temple roof — counted among the Seven Wonders and copied on the coins of Elis. The standing thunderbolt-hurler survives in the Artemision bronze (c. 460 BCE), though the missing weapon leaves the Zeús–Poseidôn identification famously open. In vase painting his set pieces are the Gigantomachy, the birth of Athena, and the weighing of souls; later busts of the Otricoli type transmit the serene, heavy-lidded majesty of the Phidian ideal.</p>
+<h2 id="epithets-cult-titles">Epithets &amp; Cult Titles</h2>
+<ul>
+  <li><strong>νεφεληγερέτα</strong> (nephelēgereta) — &#39;cloud-gatherer&#39; — the Iliad&#39;s standing formula.</li>
+  <li><strong>τερπικέραυνος</strong> (terpikeraunos) — &#39;who delights in the thunderbolt&#39; — Homeric and Hesiodic.</li>
+  <li><strong>πατὴρ ἀνδρῶν τε θεῶν τε</strong> (patēr andrōn te theōn te) — &#39;father of gods and men&#39; — the formula that defines his Olympian rank.</li>
+  <li><strong>Ὀλύμπιος</strong> (Olympios) — &#39;Olympian&#39; — his panhellenic cult title, above all at Olympia.</li>
+  <li><strong>Ξένιος</strong> (Xenios) — &#39;of guests&#39; — protector of the guest-right on which the Odyssey&#39;s ethics rest; every stranger is &#39;from Zeús&#39;.</li>
+  <li><strong>Ἱκέσιος</strong> (Hikesios) — &#39;of suppliants&#39; — guardian of those who kneel for mercy.</li>
+  <li><strong>Σωτήρ</strong> (Sōtēr) — &#39;Savior&#39; — recipient of the third and final libation at every symposium.</li>
+</ul>
+<h2 id="the-homeric-hymns">The Homeric Hymns</h2>
+<p>Hymn 23, to Zeus, is the shortest of the corpus — four lines that nonetheless compress his essence: &#39;I will sing of Zeus, chiefest of gods and greatest, all-seeing, the lord of all, the fulfiller, who whispers words of counsel to Themis as she sits leaning close.&#39; The image is precise: sovereignty as deliberation with Order personified, not as force. The corpus otherwise leaves Zeús paradoxically unhymned — he is the premise of every hymn rather than its subject — but Hesiod supplies the deficiency: the proem of Works and Days (1–10) is itself a hymn to Zeús, &#39;through whom mortals are famed and unfamed, renowned and unrenowned, at the will of great Zeús.&#39; The Theogony&#39;s proem likewise ends its hymn to the Muses by naming him their father and the best of gods.</p>
+<h2 id="oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</h2>
+<p>Zeús kept the oldest oracle in the Greek world: Dodona in Epirus, where the god spoke through the rustling of his sacred oak and the Selloi, priests &#39;of unwashed feet who sleep upon the ground&#39; — invoked already in Iliad 16 as &#39;Zeús, king, Dodonaean, Pelasgian&#39;. The sanctuary&#39;s lead tablets, questions scratched by ordinary Greeks about marriage, travel, and children, are our fullest direct record of oracular consultation. Olympia also maintained prophetic seers of the Iamid and Clytiad families, reading Zeús&#39;s will in sacrificial entrails at the great altar. Beyond the sea, the oasis oracle of Zeús-Ammon at Siwa, consulted by Alexander, was the god&#39;s most famous overseas voice.</p>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Zeús&#39;s material record matches his rank. At Olympia, the great Doric temple (470–456 BCE) housed Phidias&#39;s chryselephantine colossus (c. 435 BCE) — gold and ivory over a wooden frame, its head nearly touching the roof — counted among the Seven Wonders and described in detail by Pausanias; the Altis around it hosted the games from their traditional foundation in 776 BCE. At Dodona in Epirus, the oracle of the oak — already &#39;Pelasgian Zeús&#39; to Achilles in the Iliad, and explained to Herodotus by its priestesses — has yielded hundreds of lead tablets scratched with the questions of ordinary Greeks, the fullest direct archive of ancient divination. On Mount Lykaion in Arcadia, his ash altar crowned the summit above a temenos into which, Pausanias reports, no creature casts a shadow. In Athens, the colossal Olympieion, begun by the Peisistratids in the sixth century BCE, was finished only by Hadrian — six centuries in the building, the largest temple of mainland Greece.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Zeús is not merely the king of the gods; he is <strong>the principle of cosmic and social order</strong>. His domain is the sky, his weapon the thunderbolt, his guarantee the oath. Every legitimate authority on earth — kingship, law, hospitality — traces its sanction to him.</p>
+<h3 id="celestial-king">Celestial King</h3>
+<p>Ruler of Olympus and arbiter of divine disputes; when the moment of decision comes, he lifts the golden scales and the lot sinks where it must.</p>
+<h3 id="thunderbolt">Thunderbolt</h3>
+<p>The weapon forged by the Cyclopes, given him in gratitude for their release from Tartaros; it strikes oath-breakers, hubristic mortals, and Titans alike.</p>
+<h3 id="divine-justice">Divine Justice</h3>
+<p>Protector of suppliants, guests, and kings; Themis and Díkē attend him — Order is his wife, Justice his daughter. &#39;Zeús is the avenger of suppliants and of guests,&#39; Odysseus warns the suitors, &#39;Zeús Xenios, who attends revered strangers.&#39;</p>
+<h3 id="fate-and-necessity">Fate and Necessity</h3>
+<p>Even Zeús cannot fully reverse Moira, but he directs its fulfillment through gods and oracles.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Roman religion identified Zeús directly with Iuppiter, importing his cult wholesale under the name Iuppiter Optimus Maximus. The equation was so natural that Greek and Roman worshippers often treated them as one god with two names. In later antiquity Zeús-Iuppiter was syncretized with Semitic Baal and Egyptian Amun as a supreme sky deity — Herodotus already reports that the Theban Zeús is Ammon, shown with a ram&#39;s face, and Alexander&#39;s pilgrimage to Siwa made Zeús-Ammon famous — and the Hellenistic ruler cult made him the divine father of kings. The planet Jupiter and the Latin weekday dies Iovis (French jeudi, Italian giovedì) preserve his Roman name, while the very words &#39;deus&#39; in Latin and &#39;divine&#39; in English descend from the same root as Zeús.</p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include [[odinn|Óðinn]] (sky father / sovereign), [[thor|Þórr]] (thunder sovereignty), [[baal|Baꜥal]] (thunder / storm sovereignty), [[enlil|Enlīl]] (thunder / storm sovereignty), [[oya|Ọya]] (thunder / storm sovereignty), and [[perkunas|Perkūnas]] (thunder / storm sovereignty).</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Zeús is the archetype of the father-god in Western imagination. The Olympian council, the thunderbolt-bearing king, and the mountain-top temple all derive from him. The Olympic Games were held in his honor at Olympia from 776 BCE onward; his colossal chryselephantine statue by Phidias was one of the Seven Wonders. In law and ethics, his protection of strangers and suppliants underpinned Greek ideas of human solidarity. Modern uses range from planetary names to operatic thunder effects to the phrase &#39;by Jove.&#39; Restoring <em>Zeús</em> with its acute accent restores the name&#39;s original pitch and dignity.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Zeús given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Full text</a></li>
+  <li> Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a href="https://brill.com/view/title/17858">Full text</a></li>
+  <li> Wörterbuch der griechischen Eigennamen, 3rd ed., 1863. <a href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ">Full text</a></li>
+  <li> Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE. <a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Full text</a></li>
+  <li> Homer, Iliad.</li>
+  <li> Aeschylus, Prometheus Bound.</li>
+  <li> Pindar, Olympian Odes.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Zeús is the god who says &#39;enough.&#39; Where other deities have passions, Zeús has authority. His mythology is almost devoid of the absurd or humiliating episodes that afflict other Olympians; even his erotic adventures are framed as cosmic necessities. This makes him remote, even cold — but also the necessary center without which the pantheon collapses into rival passions.</p>
+<p>In political terms, Zeús is the original model of legitimate sovereignty: not the strongest, but the one who guarantees the rules. His thunderbolt strikes the oath-breaker, not the weak. That is why every ancient city wanted his patronage, and why the idea of a single highest god — monotheism&#39;s distant ancestor — found in Zeús a ready image.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Zeús is classified as <strong>Tier 1</strong>: the original carries both stress and length, and only one valid Unicode restoration exists. The ASCII fallback <em>zeus</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 4 characters of the name, the restoration adjusts 1: 1 mark of stress (ú). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>zeús.com</strong>, which the DNS carries in punycode form as xn--zes-9na.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Zeús; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Greek can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>The marks in <strong>Zeús</strong> were never lost; they were only waiting for a carrier that could hold them. Now that the carrier exists, the burden flips: every use of <em>zeus</em> is a choice to leave evidence on the table. The PÚNYCODEX temple keeps the restored form in circulation — as a domain, a dataset entry, and a scholarly argument — so that the choice to use it stays easy. Accent by accent, macron by macron, that is how the original names come back: not with a single grand gesture, but with a spelling that finally works everywhere.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/chiron/">Chíron</a></li>
   <li><a href="/sites/circe/">Kírkē</a></li>
   <li><a href="/sites/clementia/">Clementia</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843.</a></li>
   <li><a href="https://brill.com/view/title/17858">Etymological Dictionary of Greek, 2 vols., Brill, 2010.</a></li>
   <li><a href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ">Wörterbuch der griechischen Eigennamen, 3rd ed., 1863.</a></li>
   <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE.</a></li>
+  <li>Hesiod, Theogony 139–146 and 501–506.</li>
+  <li>Hesiod, Theogony 901–906.</li>
+  <li>Homer, Odyssey 9.269–271.</li>
+  <li>Homer, Iliad 22.209–213 (the scales of Zeus).</li>
+  <li>Lexicon authorities for this entry: LSJ, Pape-Benseler, Beekes.</li>
 </ul>
-<h2>The Cultural Afterlife</h2>
-<p>Zeús is the archetype of the father-god in Western imagination. The Olympian council, the thunderbolt-bearing king, and the mountain-top temple all derive from him. The Olympic Games were held in his honor at Olympia from 776 BCE onward; his colossal chryselephantine statue by Phidias was one of the Seven Wonders. In law and ethics, his protection of strangers and suppliants underpinned Greek ideas of human solidarity. Modern uses range from planetary names to operatic thunder effects to the phrase &#39;by Jove.&#39; Restoring Zeús with its acute accent restores the name&#39;s original pitch and dignity.</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Zeús as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Greek to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Zeús through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/zeus/">home page</a> offers the full name breakdown, the <a href="/sites/zeus/lore/">lore page</a> explores the myth, and the <a href="/sites/zeus/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Zeús do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
-<h2>A Note on the Address Bar</h2>
-<p>When you type Zeús, the browser performs an invisible conversion into Punycode so the global DNS can route the request. The user sees the original name; the machines see a compatible ASCII encoding. That duality is the engineering compromise that makes the restoration possible, and it is the reason every Unicode domain is both a technical milestone and a small act of cultural memory.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">greek</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

@@ -12,6 +12,7 @@ const {
   getTimeline,
 } = require('../../platform/api/workspaces');
 const { getSessionToken, getOrCreateSession } = require('../../platform/api/search-v2');
+const { checkPublicRateLimitByReq } = require('../../platform/api/public-rate-limiter');
 const { handleError, setCors } = require('../_utils');
 
 module.exports = async (req, res) => {
@@ -41,6 +42,7 @@ module.exports = async (req, res) => {
     }
 
     if (req.method === 'POST') {
+      if (!(await checkPublicRateLimitByReq(req, res, 'workspace-write'))) return;
       const { action, name, payload, entryId, url, title, note, eventType, eventPayload } =
         req.body || {};
 
@@ -67,6 +69,7 @@ module.exports = async (req, res) => {
     }
 
     if (req.method === 'PATCH') {
+      if (!(await checkPublicRateLimitByReq(req, res, 'workspace-write'))) return;
       if (publicId) {
         const { name, payload } = req.body || {};
         const ws = updateWorkspace(publicId, session.token, name, payload);
@@ -81,6 +84,7 @@ module.exports = async (req, res) => {
     }
 
     if (req.method === 'DELETE') {
+      if (!(await checkPublicRateLimitByReq(req, res, 'workspace-write'))) return;
       if (publicId) {
         const ok = deleteWorkspace(publicId, session.token);
         if (!ok) return res.status(404).json({ error: 'Workspace not found or not owned' });

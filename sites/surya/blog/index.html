@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,37 +170,189 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-sanskrit-pantheon">The Sanskrit Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#typing-surya">Typing Sūrya</a></li>
+                <li><a href="#sister-temples">Sister Temples</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>The Many Faces of Sūrya</h1>
-<p>No important name has only one face. Sūrya appears as a mythic character, a scholarly reconstruction, a cultural memory, and now a Unicode domain. Sūrya (Sanskrit सूर्य; ASCII surya) is the sun and the sun-god of the Indian tradition — the one deity whose epiphany recurs at every dawn. The Ṛgveda hymns him as the all-seeing luminary whose chariot crosses the sky each day and whose rays drive off darkness, disease, and the hidden deeds of men. The same Veda calls him &#39;the eye of Mitra, Varuṇa, and Agni&#39; and &#39;the soul of all that moves and stands&#39;, and it distinguishes him from Savitṛ, the sun&#39;s impelling power: Sūrya is the visible disk itself.^2 Within the Sanskrit pantheon his domain is light, health, and cosmic sight. Where other Vedic gods receded into myth, Sūrya remained tangible — the daily witness of every act — and his cult produced some of the subcontinent&#39;s most ambitious temples,...</p>
-<h2>In Myth</h2>
-<p>Sūrya&#39;s mythology is woven through the Vedas, epics, and Purāṇas. He is both a natural force and a divine person, the father of heroes and the relentless witness whose presence makes ethics possible. The mythic face is the one most people meet first, and it is the reason the name survived.</p>
-<h2>Across Cultures</h2>
-<p>Sūrya was one of the few Vedic gods to retain and expand his worship into the medieval and modern periods, perhaps because the sun itself is impossible to demote. He absorbed Persian and Hellenistic solar imagery after the Indo-Greek and Kushan periods, and his iconography shows clear Greco-Roman influence in the boots, tunic, and royal attributes of classical Sūrya images. In Southeast Asia, the sun god appears in Cambodian and Javanese temple art, while in India the Saura tradition became one of the major religious streams. The Japanese Amaterasu, the Egyptian Rꜥ, and the Iranian Mithra are distant cousins in the broader ancient Near Eastern and Eurasian solar cult, though Sūrya&#39;s specific Vedic roots and his association with chariot, lotus, and... Each culture kept what resonated and reshaped the rest.</p>
-<h2>In the Scholarly Record</h2>
-<p>Sūrya remains central to Hindu daily life. The Gāyatrī mantra, addressed to Savitṛ, is recited by millions at dawn; sūrya namaskāra, the sun salutation, is practiced in yoga classes worldwide. Sun temples such as Konark in Odisha and Modhera in Gujarat stand as architectural masterpieces of solar worship, while the Jantar Mantar observatories in Jaipur and Delhi translate his movement into monumental geometry. In Ayurveda and traditional medicine, sunlight is a healing force, and the sun&#39;s position determines auspicious moments (muhūrta) for every important undertaking. The name Sūrya is common across South Asia, and the sun continues to symbolize clarity, justice, and vital energy in popular culture. The Scholarly Edition collects those traces so readers can follow the argument from source to conclusion.</p>
-<h2>The Unicode Face</h2>
-<p>The newest face is digital. Sūrya demonstrates that a name can be at once ancient and clickable, venerable and searchable. That is the face this blog exists to celebrate.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Sūrya is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>The many faces of Sūrya</h1>
+<p>No important name has only one face. <strong>Sūrya</strong> appears as a figure of myth, a scholarly reconstruction, a piece of material culture, a memory carried across languages, and — most recently — a Unicode domain. This post looks at each face in turn: the name and its roots, the Devanagari original, the reconstructed pronunciation, the mythological record, the symbols and sanctuaries, the cross-cultural afterlife, and the engineering that lets the restored spelling resolve in a browser. Taken together, those faces explain why <em>surya</em> was never going to be enough — and why the restored form is worth a domain of its own.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Sūrya</li>
+  <li><strong>ASCII form:</strong> surya</li>
+  <li><strong>Meaning:</strong> &quot;the sun or its deity (in the Veda the name Sūrya is generally distinguished from Savitṛ [q.v.], and denotes the most concrete of the solar gods, whose connection with the luminary&quot;</li>
+  <li><strong>Domain of influence:</strong> Sun, Light, Health</li>
+  <li><strong>Pantheon:</strong> Sanskrit</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Original script:</strong> सूर्य (Devanagari)</li>
+  <li><strong>Live domain:</strong> sūrya.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Sūrya</strong> (Sanskrit सूर्य; ASCII <em>surya</em>) is the sun and the sun-god of the Indian tradition — the one deity whose epiphany recurs at every dawn. The Ṛgveda hymns him as the all-seeing luminary whose chariot crosses the sky each day and whose rays drive off darkness, disease, and the hidden deeds of men. The same Veda calls him &#39;the eye of Mitra, Varuṇa, and Agni&#39; and &#39;the soul of all that moves and stands&#39;, and it distinguishes him from Savitṛ, the sun&#39;s impelling power: Sūrya is the visible disk itself.</p>
+<p>Within the Sanskrit pantheon his domain is light, health, and cosmic sight. Where other Vedic gods receded into myth, Sūrya remained tangible — the daily witness of every act — and his cult produced some of the subcontinent&#39;s most ambitious temples, from the chariot-shaped Sun Temple at Konark to the Modhera shrine, whose sanctum was aligned to the equinox sun, together with a ritual life that runs from the dawn sandhyā prayers to the sun-salutation liturgies of modern yoga.</p>
+<p>PÚNYCODEX restores the name as <strong>Sūrya</strong> and serves its temple at <a href="https://xn--srya-v7a.com">sūrya.com</a>. Exactly one historically valid Unicode restoration exists — the IAST form with the long ū — which places the name in Tier 1. The plain ASCII <em>surya</em> is a modern convenience imposed by the early domain-name system, not an ancient spelling.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Devanagari as <strong>सूर्य</strong> (sūrya). It is the common Sanskrit noun for the sun and, personified, the sun&#39;s deity; Monier-Williams notes that in the Veda the name Sūrya is generally distinguished from Savitṛ and denotes the most concrete of the solar gods. The word is old Indo-European inheritance: formed from svar, &#39;sun, light, heaven&#39;, with the suffix -ya, it belongs to the same family as Avestan hvar, Greek hḗlios, and Latin sōl.</p>
+<p>The ASCII form <em>surya</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Sūrya</strong> recovers the long ū of the first syllable directly in the address bar. Exactly one historically valid Unicode restoration exists, which places the name in Tier 1; Sanskrit orthography marks quantity rather than stress, so the tiering here turns on vowel length alone.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>s</strong> → <strong>S</strong> — Same</li>
+  <li><strong>u</strong> → <strong>ū</strong> — Macron: long /uː/</li>
+  <li><strong>r</strong> → <strong>r</strong> — Same</li>
+  <li><strong>y</strong> → <strong>y</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Short /a/</li>
+</ul>
+<p>The project holds the domain <strong>sūrya.com</strong> (xn--srya-v7a.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Devanagari as <strong>सूर्य</strong> — a Brahmic abugida written left-to-right, the script in which the Sanskrit corpus is conventionally printed.</p>
+<p>The scholarly transliteration is <em>Sūrya</em> (IAST), giving the normalized reading /ˈsuːr.jə/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>Sanskrit Sūrya is written in Devanagari as सूर्य: स (sa) with the long-ū sign ू gives सू (sū), and र (ra) without a vowel joins य (ya) as the conjunct र्य (rya).</li>
+  <li>IAST transliteration maps each Devanagari vowel and consonant to a Latin equivalent.</li>
+  <li>Macrons mark long vowels (ā, ī, ū); dots beneath consonants mark retroflex articulation (ṭ, ḍ, ṇ, ṣ).</li>
+  <li>The Devanagari form is not used as the primary domain because Indic scripts are not in the .com IDN table.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/ˈsuːr.jə/</strong> — Sanskrit Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Sū-</strong> — Voiceless alveolar sibilant [s] plus long close back rounded [uː]; the macron marks length, giving Tier-1 status</li>
+  <li><strong>-rya</strong> — Alveolar tap or trill [r] followed by palatal approximant [j] and short [a]; the -ya forms a light final syllable</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;SOO-ryuh&#39; — hold the first syllable long and bright, as in &#39;sue&#39; stretched out; the final &#39;yuh&#39; is quick.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Sanskrit</strong> — सूर्य (sūrya), the sun as deity, from the root svar, &#39;to shine&#39;</li>
+  <li><strong>Vedic</strong> — Savitṛ, the solar god of impulsion, often distinguished from the more concrete Sūrya</li>
+  <li><strong>Prakrit/Regional</strong> — Suraj, Sūra, the sun in medieval and modern Indic languages</li>
+</ul>
+<p>Sūrya is Tier 1 because the initial ū is long. In Vedic usage, Sūrya is the visible disk of the sun, while Savitṛ is the sun as the power that impels sacrifice and life.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Sūrya&#39;s mythology is woven through the Vedas, epics, and Purāṇas. He is both a natural force and a divine person, the father of heroes and the relentless witness whose presence makes ethics possible.</p>
+<h3 id="the-chariot-of-the-sun-rgveda">The Chariot of the Sun (Ṛgveda)</h3>
+<p>Ṛgveda 1.50 hymns Sūrya as the god who travels on a chariot yoked by the Aśvins, with swift horses and a golden seat. He is the eye of Mitra and Varuṇa, the spy of the whole world, the remover of darkness and the bringer of light. His rising is a daily renewal of cosmic law, and his rays are compared to arms stretched out over the earth.</p>
+<h3 id="surya-s-descent-as-sugriva-ramayana">Sūrya&#39;s Descent as Sugrīva (Rāmāyaṇa)</h3>
+<p>The monkey king Sugrīva, Rāma&#39;s ally in the war against Rāvaṇa, is born from Sūrya. This solar lineage gives him the speed, brightness, and royal dignity that make him indispensable to Rāma&#39;s campaign. It also reflects a broader pattern: Sūrya&#39;s children — Sugrīva, Yamarāja, the Aśvins, and Karṇa — are marked by energy, justice, or sacrifice.</p>
+<h3 id="karna-son-of-the-sun-mahabharata">Karṇa, Son of the Sun (Mahābhārata)</h3>
+<p>Karṇa, the tragic hero of the Mahābhārata, is Sūrya&#39;s son by the unwed Kuntī. Born with golden armor and earrings that made him invincible, he was abandoned by his mother and raised by a charioteer. His loyalty to the Kauravas, his generosity, and his eventual death at Arjuna&#39;s hands make him one of the most moving figures in the epic, a son of the sun destroyed by the very radiance that marked him.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Sūrya concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>Seven horses</strong> — The steeds of Sūrya&#39;s chariot, often identified with the seven days or the seven meters of Sanskrit verse</li>
+  <li><strong>Lotus</strong> — The sun rising from the lotus, a symbol of emergence, purity, and renewal</li>
+  <li><strong>Chariot and wheel (cakra)</strong> — The vehicle of the sun and the turning wheel of time and cosmic order</li>
+  <li><strong>Ruby and gold</strong> — The colors and materials associated with solar radiance and kingship</li>
+  <li><strong>The lotus of the heart (hṛdaya padma)</strong> — In yoga, the inner sun is visualized within the heart lotus, the source of vital energy</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Images of Sūrya are among the most widespread in Indian art, from Kushan-period statuary showing Greco-Roman influence to the colossal chariot temple at Konark (13th century CE). The sun temple at Modhera (Gujarat) and the Martand temple in Kashmir preserve elaborate sculptural programs of solar mythology. Copperplate inscriptions and land grants frequently invoke Sūrya, and his cult was particularly strong in Odisha, Gujarat, Rajasthan, and Kashmir. The Jantar Mantar observatories in Jaipur and Delhi, built by Jai Singh II in the 18th century, are late but spectacular expressions of the royal interest in solar measurement.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p><strong>Sūrya</strong> is the sun not merely as a heavenly body but as the all-seeing eye of the cosmos. In the Ṛgveda he rises on his chariot, drawn by seven horses, and crosses the sky as the witness of every deed. He is the healer who drives away disease, the king who traverses the realms, and the hidden friend who sees what mortals do in secret.</p>
+<p>His cult produced some of the most magnificent temples and rituals in South Asia, from the sandhya prayers performed at dawn and dusk to the great solar observatories of Jaipur and Delhi. Where other gods fade into myth, Sūrya remains tangible: every sunrise is his epiphany.</p>
+<h3 id="solar-chariot">Solar Chariot</h3>
+<p>He rides across heaven in a chariot drawn by seven horses, representing the days of the week or the colors of light.</p>
+<h3 id="healer-and-eye">Healer and Eye</h3>
+<p>The sun removes darkness literally and metaphorically; his gaze is health, truth, and moral witness.</p>
+<h3 id="sandhya-devotion">Sandhyā Devotion</h3>
+<p>Twice-daily prayers at sunrise and sunset align the worshipper with the sun&#39;s renewing passage.</p>
+<h3 id="father-of-time">Father of Time</h3>
+<p>The sun governs the year, the seasons, and the ritual calendar; his movement is the clock of dharma.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Sūrya was one of the few Vedic gods to retain and expand his worship into the medieval and modern periods, perhaps because the sun itself is impossible to demote. He absorbed Persian and Hellenistic solar imagery after the Indo-Greek and Kushan periods, and his iconography shows clear Greco-Roman influence in the boots, tunic, and royal attributes of classical Sūrya images. In Southeast Asia, the sun god appears in Cambodian and Javanese temple art, while in India the Saura tradition became one of the major religious streams. The Japanese Amaterasu, the Egyptian Rꜥ, and the Iranian Mithra are distant cousins in the broader ancient Near Eastern and Eurasian solar cult, though Sūrya&#39;s specific Vedic roots and his association with chariot, lotus, and healing mantras are distinctively Indic.</p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include [[helios|Hēlios]], [[apollon|Apóllōn]], [[dazhbog|Dažbog]], [[huitzilopochtli|Huitzilopōchtli]], [[ra|Rꜥ]], and [[shamash|Šamaš]], each linked through sun / light.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Sūrya remains central to Hindu daily life. The <em>Gāyatrī mantra</em>, addressed to Savitṛ, is recited by millions at dawn; <em>sūrya namaskāra</em>, the sun salutation, is practiced in yoga classes worldwide. Sun temples such as Konark in Odisha and Modhera in Gujarat stand as architectural masterpieces of solar worship, while the Jantar Mantar observatories in Jaipur and Delhi translate his movement into monumental geometry. In Ayurveda and traditional medicine, sunlight is a healing force, and the sun&#39;s position determines auspicious moments (<em>muhūrta</em>) for every important undertaking. The name Sūrya is common across South Asia, and the sun continues to symbolize clarity, justice, and vital energy in popular culture.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Sūrya given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Ṛgveda Saṃhitā 1.50, 1.115, 7.63 (Sūrya hymns).</li>
+  <li> Mahābhārata, Karṇa Parvan (birth and death of Karṇa).</li>
+  <li> Rāmāyaṇa, Kiṣkindhākāṇḍa (Sugrīva&#39;s alliance with Rāma).</li>
+  <li> Brahmāṇḍa Purāṇa and Sūrya Purāṇa.</li>
+  <li> Gonda, The Vedic God Mitra-Varuṇa and Sūrya.</li>
+  <li> Kramrisch, The Presence of Śiva (on solar iconography).</li>
+  <li> Williams, The Art of Gupta India: Empire and Province.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Sūrya teaches that witnessing is a form of love. The sun does not judge; it simply sees, and in seeing, it makes life possible. Every secret act is held in its light, every shadow defined by its presence.</p>
+<p>To worship Sūrya is to consent to be seen — not with shame but with the recognition that visibility is the condition of growth. The sun asks nothing in return but disciplined attention: the sandhya prayers at dawn and dusk, the alignment of breath with its rising and setting. In that attention, the cosmos becomes a ritual and the day itself a sacrament.</p>
+<p>The Ṛgveda&#39;s name for the sun is &#39;the soul of all that moves and stands&#39; (1.115.1); the meditation ends where the hymn begins — in the admission that life is lived by a light one did not make.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Sūrya is classified as <strong>Tier 1</strong>: the original carries both stress and length, and only one valid Unicode restoration exists. The ASCII fallback <em>surya</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 5 characters of the name, the restoration adjusts 1: 1 mark of length (ū). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>surya</em> to <strong>Sūrya</strong>, one character at a time:</p>
+<ul>
+  <li><strong>s</strong> → <strong>S</strong> — Same</li>
+  <li><strong>u</strong> → <strong>ū</strong> — Macron: long /uː/</li>
+  <li><strong>r</strong> → <strong>r</strong> — Same</li>
+  <li><strong>y</strong> → <strong>y</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Short /a/</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>sūrya.com</strong>, which the DNS carries in punycode form as xn--srya-v7a.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Sūrya; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Devanagari can now be typed into any browser on earth.</p>
+<h2 id="the-sanskrit-pantheon">The Sanskrit Pantheon</h2>
+<p>Sūrya is one of 88 entries the PÚNYCODEX lexicon catalogues under the Sanskrit pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Sūrya mean?</strong> The traditional gloss is &quot;the sun or its deity (in the Veda the name Sūrya is generally distinguished from Savitṛ [q.v.], and denotes the most concrete of the solar gods, whose connection with the luminary.&quot;</p>
+<p><strong>Which tradition does Sūrya belong to?</strong> Sūrya is catalogued in the Sanskrit pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Sūrya classified as Tier 1?</strong> Because the original carries both stress and length, and only one valid Unicode restoration exists — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Sūrya a working domain?</strong> Yes — sūrya.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for sūrya.com?</strong> The DNS encoding is xn--srya-v7a.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="typing-surya">Typing Sūrya</h2>
+<p>You do not need a special keyboard to use this restoration. The <a href="/type/">PÚNYCODEX Type Tool</a> converts the ASCII form <em>surya</em> into <strong>Sūrya</strong> as you type, and the browser extension offers the same conversion inside any text field. Copy the restored form, paste it into the address bar, and the DNS does the rest.</p>
+<h2 id="sister-temples">Sister Temples</h2>
+<p>Other temples in the Sanskrit pantheon include <a href="/sites/pushan/">Pūṣan</a>, <a href="/sites/rta/">Ṛta</a>, and <a href="/sites/shakti/">Śakti</a> — each with its own restoration story, its own scholarly record, and its own place in the lexicon.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Myth, script, sound, cult, legacy, domain: the faces of Sūrya add up to a single argument — that a name is a record, and records deserve fidelity. The PÚNYCODEX restoration keeps that record in working order: the temple presents it, the Scholarly Edition footnotes it, the lexicon catalogs it, and the domain makes it addressable. <em>surya</em> will always exist as a fallback. But fallback is not identity. <strong>Sūrya</strong> is the name; everything else is a convenience.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/shiva/">Śiva</a></li>
   <li><a href="/sites/shunya/">Śūnya</a></li>
   <li><a href="/sites/sita/">Sītā</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.sacred-texts.com/hin/rigveda/index.htm">Ṛgveda Saṃhitā 1.50 (the sun&#39;s chariot); English translation by R. T. H. Griffith.</a></li>
+  <li>Ṛgveda Saṃhitā 1.115.1 (the eye of Mitra, Varuṇa, and Agni; the soul of all that moves and stands).</li>
+  <li>Monier-Williams, Sanskrit-English Dictionary (sūrya, on the distinction from Savitṛ).</li>
+  <li>Michell, The Hindu Temple: An Introduction to Its Meaning and Forms (Konark and Modhera).</li>
+  <li>Monier-Williams, Sanskrit-English Dictionary (sūrya).</li>
+  <li>Lexicon authorities for this entry: MW, KEWA.</li>
 </ul>
-<h2>The Cultural Afterlife</h2>
-<p>Sūrya remains central to Hindu daily life. The Gāyatrī mantra, addressed to Savitṛ, is recited by millions at dawn; sūrya namaskāra, the sun salutation, is practiced in yoga classes worldwide. Sun temples such as Konark in Odisha and Modhera in Gujarat stand as architectural masterpieces of solar worship, while the Jantar Mantar observatories in Jaipur and Delhi translate his movement into monumental geometry. In Ayurveda and traditional medicine, sunlight is a healing force, and the sun&#39;s position determines auspicious moments (muhūrta) for every important undertaking. The name Sūrya is common across South Asia, and the sun continues to symbolize clarity, justice, and vital energy in popular culture.</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Sūrya as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Devanagari to the modern browser. Every visit to this temple is a small act of preservation.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">sanskrit</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

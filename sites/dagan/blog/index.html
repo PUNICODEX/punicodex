@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,34 +170,203 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-phoenician-pantheon">The Phoenician Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#typing-dagan">Typing Dāgan</a></li>
+                <li><a href="#sister-temples">Sister Temples</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>Why Dāgan Belongs in the Address Bar</h1>
-<p>Every address bar is a choice. When you type <strong>Dāgan</strong>, you are not typing a novelty; you are restoring a name. The plain ASCII form <em>dagan</em> is the leftover of a DNS that was built for English typewriters, not for the world&#39;s naming traditions. Dāgan (dagan) — Grain, Fertility · Grain — belongs to the Phoenician tradition, where it is catalogued under the domain &quot;Grain, Fertility&quot;. The name means &quot;Grain&quot;. Dāgan is the grain god of the ancient Levant, the divine power who fills the storehouses and makes the fields fertile. In Ugaritic myth he is the father of Baal and the patron of the agricultural cycle; in Philistine religion he is the national god whose temple Samson pulls down. His domain is not the storm on the mountain but the quiet miracle by which seed becomes bread. PÚNYCODEX restores the name as Dāgan and serves its temple at dāgan.com. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1....</p>
-<h2>The Name the DNS Almost Forgot</h2>
-<p>The name is attested in Phoenician as 𐤃𐤂𐤍. Etymologically it means &quot;Grain&quot;. The ASCII form dagan survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Dāgan recovers the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The letter-by-letter transformation runs: - d → D — Same, capitalized - a → ā — Long vowel - g → g — Same - a → a — Same - n → n — Same The project holds the domain dāgan.com (xn--dgan-qsa.com) as the canonical home of this name. In scholarly terms, it belongs to the <strong>Tier 1</strong> class: the Greek original carries both stress and length, and only one valid Unicode restoration exists. That detail is not decorative; it is the difference between a label and a lived name.</p>
-<h2>From Phoenician to the Browser</h2>
-<p>The name is preserved in Phoenician as 𐤃𐤂𐤍 — Phoenician alphabet, attested Phoenician, c. 1050–800 BCE, in Levant / Mediterranean. The script is written right-to-left. The scholarly transliteration is Dāgan (Phoenician linear alphabet), giving the normalized reading /ˈdaː.ɡan/. Sign by sign, the name runs: - 𐤃 — dālet /d/ — voiced alveolar stop; the &#39;door&#39; sign of the early alphabet - 𐤂 — gīmel /g/ — voiced velar stop - 𐤍 — nūn /n/ — alveolar nasal The rendering proceeds step by step: - Phoenician writing records consonants only; the abjad spells d-g-n, and the vowels of Dāgan are supplied from the fuller cuneiform and Hebrew traditions — Akkadian Dagan, Hebrew דָּגוֹן (Dāḡôn). - Ugaritic writes the same name 𐎄𐎂𐎐 (dgn) in alphabetic... The PÚNYCODEX temple does not invent a spelling; it recovers one. By registering the Unicode form, the project proves that the original script can survive inside the infrastructure of the modern web.</p>
-<h2>Why 2026 Still Needs This</h2>
-<p>In 2026, names are data. Search engines, AI training corpora, and localization teams all need authoritative forms. Dāgan is a small but concrete demonstration that philology and DNS can coexist. The <a href="/sites/dagan/scholars/">Scholarly Edition</a> preserves the argument; the blog makes it approachable.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Dāgan is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>Why Dāgan belongs in your address bar</h1>
+<p>Every address bar is a choice. When you type <strong>Dāgan</strong>, you are not typing a novelty; you are restoring a name that the early DNS, built for English typewriters, could not carry. The plain ASCII form <em>dagan</em> is a leftover of that constraint, not the name itself. This post is the long version of the restoration: where the name comes from, how the Phoenician tradition wrote it, how it is pronounced, what the myths and the material record preserve, and why its Unicode form now lives as a working domain. The claim throughout is simple — the original spelling is not decoration. It is the name.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Dāgan</li>
+  <li><strong>ASCII form:</strong> dagan</li>
+  <li><strong>Meaning:</strong> &quot;Grain&quot;</li>
+  <li><strong>Domain of influence:</strong> Grain, Fertility</li>
+  <li><strong>Pantheon:</strong> Phoenician</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Original script:</strong> 𐤃𐤂𐤍 (Phoenician)</li>
+  <li><strong>Live domain:</strong> dāgan.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Dāgan</strong> (<em>dagan</em>) — Grain, Fertility · Grain — belongs to the Phoenician tradition, where it is catalogued under the domain &quot;Grain, Fertility&quot;. The name means &quot;Grain&quot;.</p>
+<p><strong>Dāgan</strong> is the grain god of the ancient Levant, the divine power who fills the storehouses and makes the fields fertile. In Ugaritic myth he is the father of Baal and the patron of the agricultural cycle; in Philistine religion he is the national god whose temple Samson pulls down. His domain is not the storm on the mountain but the quiet miracle by which seed becomes bread.</p>
+<p>PÚNYCODEX restores the name as <strong>Dāgan</strong> and serves its temple at <a href="https://xn--dgan-qsa.com">dāgan.com</a>. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>dagan</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Phoenician as <strong>𐤃𐤂𐤍</strong>. Etymologically it means &quot;Grain&quot;.</p>
+<p>The ASCII form <em>dagan</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Dāgan</strong> recovers the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>d</strong> → <strong>D</strong> — Same, capitalized</li>
+  <li><strong>a</strong> → <strong>ā</strong> — Long vowel</li>
+  <li><strong>g</strong> → <strong>g</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+</ul>
+<p>The project holds the domain <strong>dāgan.com</strong> (xn--dgan-qsa.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Phoenician as <strong>𐤃𐤂𐤍</strong> — Phoenician alphabet, attested Phoenician, c. 1050–800 BCE, in Levant / Mediterranean. The script is written right-to-left.</p>
+<p>The scholarly transliteration is <em>Dāgan</em> (Phoenician linear alphabet), giving the normalized reading /ˈdaː.ɡan/.</p>
+<p>Sign by sign, the name runs:</p>
+<ul>
+  <li><strong>𐤃</strong> — <em>dālet</em> /d/ — voiced alveolar stop; the &#39;door&#39; sign of the early alphabet</li>
+  <li><strong>𐤂</strong> — <em>gīmel</em> /g/ — voiced velar stop</li>
+  <li><strong>𐤍</strong> — <em>nūn</em> /n/ — alveolar nasal</li>
+</ul>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>Phoenician writing records consonants only; the abjad spells d-g-n, and the vowels of <em>Dāgan</em> are supplied from the fuller cuneiform and Hebrew traditions — Akkadian Dagan, Hebrew דָּגוֹן (Dāḡôn).</li>
+  <li>Ugaritic writes the same name 𐎄𐎂𐎐 (dgn) in alphabetic cuneiform; a millennium and a half earlier, the third-millennium tablets of Ebla already honour dDa-gan of Tuttul in syllabic cuneiform.</li>
+  <li>The macron over <strong>ā</strong> marks the long vowel inferred from the cognate traditions.</li>
+  <li>The Unicode restoration Dāgan is registrable in .com; the Phoenician script is not in the .com IDN table.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/daːˈɡaːn/</strong> — Ugaritic/Phoenician Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>d</strong> — Voiced alveolar plosive [d], as in English &#39;dog&#39;</li>
+  <li><strong>ā</strong> — Long open front vowel [aː], marked with macron; the first syllable is long</li>
+  <li><strong>g</strong> — Voiced velar plosive [ɡ], as in English &#39;go&#39;</li>
+  <li><strong>a</strong> — Short open vowel [a], the unstressed final syllable</li>
+  <li><strong>n</strong> — Alveolar nasal [n], closing the name</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: DAH-ghan — both the first &#39;a&#39; is long like &#39;father,&#39; and the second &#39;a&#39; is short; stress falls on the long first syllable.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Ugaritic</strong> — 𐎄𐎂𐎐 (dgn), written in alphabetic cuneiform</li>
+  <li><strong>Akkadian</strong> — Dagan, attested in Mari and Mesopotamian sources</li>
+  <li><strong>Hebrew</strong> — דָּגוֹן (Dāḡôn), the Philistine god whose temple Samson destroys</li>
+  <li><strong>Phoenician</strong> — 𐤃𐤂𐤍 (dgn), invoked in inscriptions and personal names</li>
+</ul>
+<p>Dāgan is a Tier-1 restoration because the long vowel ā is preserved. The name is common Semitic but its precise etymology is uncertain; it has been connected with &#39;grain&#39; (Hebrew dāgān) and with &#39;fish&#39; (Hebrew dāḡ), though the former is more widely accepted for the Northwest Semitic grain god.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Dāgan is a father figure rather than a warrior. In the Ugaritic texts he receives offerings and grants blessings; in the Hebrew Bible he is a foreign god whose temple symbolizes Philistine power. His myths are few, but his cultural importance is immense: he is the god of the staple crop on which every Near Eastern society depended.</p>
+<h3 id="dagan-s-blessing-ugaritic-cult">Dāgan&#39;s Blessing (Ugaritic Cult)</h3>
+<p>Ugaritic ritual texts record sacrifices and offerings to Dāgan, especially at the time of planting and harvest. In KTU 1.12 and related texts, Baal is called &#39;son of Dāgan,&#39; and the grain god&#39;s favor is sought for the fertility of the land. Dāgan does not ride the clouds; he sits in his temple and receives the first fruits of the field.</p>
+<h3 id="samson-and-the-temple-of-dagon-hebrew-bible">Samson and the Temple of Dagon (Hebrew Bible)</h3>
+<p>Judges 16:23–30 describes the Philistine nobility gathering in the temple of Dagon at Gaza to offer a great sacrifice. They bring Samson to entertain them, but he prays for strength, seizes the two central pillars, and pulls the temple down upon himself and his captors. The story marks Dāgan/Dagon as the defeated god of Israel&#39;s enemies.</p>
+<h3 id="dagan-of-the-steppe-akkadian-sources">Dāgan of the Steppe (Akkadian Sources)</h3>
+<p>Mari archives from the eighteenth century BCE mention Dāgan as a god of the middle Euphrates and the steppe, receiving dedications from kings and nomads alike. His cult crossed the boundary between sedentary farmers and pastoral peoples, suggesting a deity of broad agricultural and territorial significance.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>Grain gods rarely need attributes beyond the crop itself, and Dāgan is no exception: no securely identified cult statue or standard of his survives, and his &#39;symbols&#39; are the implements and stores of the agricultural year.</p>
+<ul>
+  <li><strong>Sheaf of wheat or barley</strong> — the harvest that is his gift; Philo of Byblos preserves the memory that Dagon &#39;discovered grain&#39;</li>
+  <li><strong>The plough</strong> — the same tradition adds &#39;and the plough&#39;, earning him the Greek title Zeus Arotrios, &#39;Zeus of the plough&#39;</li>
+  <li><strong>Storehouse or granary</strong> — the surplus on which cities, armies, and temples depend</li>
+  <li><strong>The fish — a later error</strong> — medieval Jewish exegesis linked his name to Hebrew dāg, &#39;fish&#39;, producing the half-man, half-fish Dagon of Renaissance art; the older Northwest Semitic evidence knows no fish-god</li>
+</ul>
+<ul>
+  <li><strong>Plowed field</strong> — The cultivated land made fertile by his blessing</li>
+  <li><strong>Bull or ram</strong> — A symbol of agricultural potency and royal sacrifice</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Dāgan&#39;s cult is among the oldest archaeologically attested in the Semitic world. The third-millennium tablets of Ebla already honour dDa-gan as lord of Tuttul on the middle Euphrates, and a millennium later the archives of Mari (eighteenth century BCE) show Dāgan of Terqa receiving royal offerings and addressing King Zimri-Lim through his prophets. At Ugarit the god stands high in the god lists and offering texts, and of the two great temples excavated on the city&#39;s acropolis one is conventionally attributed to Baꜥal and the other to Dāgan — an attribution of scholarly convention rather than by inscription. For the Philistine cult the evidence is thinner: the Dagon temples of the biblical narratives at Gaza and Ashdod have not been located, and at Tel Miqne (Ekron), where a monumental temple complex and a seventh-century royal dedicatory inscription have come to light, the named deity is the goddess Ptgyh, not Dāgan.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p><strong>Dāgan</strong> is the grain god of the ancient Levant, the divine power who fills the storehouses and makes the fields fertile. In Ugaritic myth he is the father of Baal and the patron of the agricultural cycle; in Philistine religion he is the national god whose temple Samson pulls down. His domain is not the storm on the mountain but the quiet miracle by which seed becomes bread.</p>
+<h3 id="god-of-grain">God of Grain</h3>
+<p>His name and cult center on wheat, barley, and the harvest that sustains city and village alike.</p>
+<h3 id="father-of-baal">Father of Baal</h3>
+<p>In Ugaritic texts Dāgan is Baal&#39;s father, grounding the storm god&#39;s power in the agricultural cycle.</p>
+<h3 id="temple-at-ugarit">Temple at Ugarit</h3>
+<p>A major temple dedicated to Dāgan stood in the city of Ugarit, receiving royal offerings.</p>
+<h3 id="philistine-dagon">Philistine Dagon</h3>
+<p>Worshipped by the Philistines as a national god, his temple at Gaza is destroyed by Samson.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Dāgan&#39;s cult spread from Mesopotamia to the Levantine coast and was adopted by the Philistines after their settlement in Canaan. His name may underlie the Hebrew word for grain, dāgān, though some ancient interpreters connected him with fish (dāḡ), producing the tradition that Dagon was half-man, half-fish. This fish-god image became popular in medieval and early modern art but is not supported by the older Northwest Semitic evidence. In Ugarit, Dāgan was the father of Baal, linking agricultural and storm fertility in a single divine family.</p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include [[babaluaye|Ọbalúayé]], [[bastet|Bꜣstt]], [[coatlicue|Cōātlīcue]], [[demeter|Dēmētēr]], [[gaia|Gaîa]], and [[ishtar|Ištar]], each linked through earth / mother / fertility.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Dāgan&#39;s name outlived his cult twice over. First as a common noun: Hebrew dāgān, &#39;grain&#39;, is the everyday word of the threshing floor, and scholars still debate whether the god was named for the crop or the crop for the god; a minority position has even argued that Dāgan began as a storm deity rather than a grain god. Second as a place-name: Beth-Dagon, &#39;House of Dāgan&#39;, appears twice in Joshua&#39;s boundary lists (Joshua 15:41; 19:27), preserving shrines of the god inside Canaan itself.</p>
+<p>His modern image, though, descends from a mistake. Medieval commentators connected Dagon with dāg, &#39;fish&#39;; Renaissance art made him a merman; Milton fixed the portrait for English readers — &#39;Dagon his name, sea-monster, upward man / And downward fish&#39; (Paradise Lost 1.462–463) — and H. P. Lovecraft&#39;s story &#39;Dagon&#39; (published 1919) launched the tentacled sea-god of popular horror. Against this tradition, Assyriology has restored the historical figure: lord of Tuttul at third-millennium Ebla, patron of Mari, father of Baꜥal at Ugarit — one of the oldest high gods of the Semitic world, and a standing example of how an agricultural deity could become the national patron of an entire people.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Dāgan given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> KTU 1.12 and Ugaritic ritual texts (offerings to Dāgan).</li>
+  <li> Hebrew Bible, Judges 16:23–30 (Samson and the temple of Dagon).</li>
+  <li> Mari archives (Akkadian references to Dāgan).</li>
+  <li> CIS (Corpus Inscriptionum Semiticarum).</li>
+  <li> Coogan, Stories from Ancient Canaan.</li>
+  <li> Smith, God in Translation: Deities in Cross-Cultural Discourse in the Biblical World.</li>
+  <li> Schwemer, Die Wettergottgestalten Mesopotamiens und Nordsyriens im Zeitalter der Keilschriftkulturen.</li>
+  <li> Roberts, The Earliest Semitic Pantheon.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Dāgan is the god of the harvest, the silent partner in every loaf of bread. He asks us to notice that civilization rests on grass: wheat and barley tamed, sown, reaped, and ground. In a world of industrial food systems, Dāgan reminds us that fertility is not a commodity but a relationship between soil, seed, rain, and human labor. To remember him is to remember the sacredness of daily bread.</p>
+<p>His silence is the point. Dāgan has no epic: he fights no sea, descends to no underworld, storms no mountain. The tablets record offerings, not adventures — firstfruits at planting, sacrifices at harvest, and a father whose authority lies simply in having fathered the storm. The Canaanites put their loudest myths around Baꜥal and their quietest trust in Dāgan, because rain is dramatic and bread is not. A god whose mythology is the calendar asks for a different attention: not awe at the exceptional, but gratitude for the recurrent — the furrow, the storehouse, the daily loaf.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Dāgan is classified as <strong>Tier 1</strong>: the original carries both stress and length, and only one valid Unicode restoration exists. The ASCII fallback <em>dagan</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 5 characters of the name, the restoration adjusts 1: 1 mark of length (ā). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>dagan</em> to <strong>Dāgan</strong>, one character at a time:</p>
+<ul>
+  <li><strong>d</strong> → <strong>D</strong> — Same, capitalized</li>
+  <li><strong>a</strong> → <strong>ā</strong> — Long vowel</li>
+  <li><strong>g</strong> → <strong>g</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>dāgan.com</strong>, which the DNS carries in punycode form as xn--dgan-qsa.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Dāgan; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Phoenician can now be typed into any browser on earth.</p>
+<h2 id="the-phoenician-pantheon">The Phoenician Pantheon</h2>
+<p>Dāgan is one of 8 entries the PÚNYCODEX lexicon catalogues under the Phoenician pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Dāgan mean?</strong> The traditional gloss is &quot;Grain.&quot;</p>
+<p><strong>Which tradition does Dāgan belong to?</strong> Dāgan is catalogued in the Phoenician pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Dāgan classified as Tier 1?</strong> Because the original carries both stress and length, and only one valid Unicode restoration exists — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Dāgan a working domain?</strong> Yes — dāgan.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for dāgan.com?</strong> The DNS encoding is xn--dgan-qsa.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="typing-dagan">Typing Dāgan</h2>
+<p>You do not need a special keyboard to use this restoration. The <a href="/type/">PÚNYCODEX Type Tool</a> converts the ASCII form <em>dagan</em> into <strong>Dāgan</strong> as you type, and the browser extension offers the same conversion inside any text field. Copy the restored form, paste it into the address bar, and the DNS does the rest.</p>
+<h2 id="sister-temples">Sister Temples</h2>
+<p>Other temples in the Phoenician pantheon include <a href="/sites/kothar/">Kôṯaru</a>, and <a href="/sites/astart/">Aštart</a> — each with its own restoration story, its own scholarly record, and its own place in the lexicon.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Restoring <strong>Dāgan</strong> is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. Every section of this post — the script, the sound, the myths, the evidence — converges on the same point: the marks in Dāgan are information, and information deserves an address of its own. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier, and every visit to dāgan.com is a vote for the restored form.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/yammu/">Yammu</a></li>
   <li><a href="/sites/shapash/">Šāpšu</a></li>
   <li><a href="/sites/mot/">Mōt</a></li>
 </ul>
-<h2>Read More</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.tertullian.org/fathers/eusebius_pe_01_book1.htm">Eusebius, Praeparatio Evangelica 1.10 (Philo of Byblos: Dagon discovered grain and the plough; called Zeus Arotrios).</a></li>
   <li><a href="https://aibl.fr/travaux/le-cabinet-du-corpus-inscriptionum-semiticarum/">Corpus Inscriptionum Semiticarum, Académie des Inscriptions et Belles-Lettres, Paris, 1881.</a></li>
+  <li>KTU 1.12 and Ugaritic ritual texts (offerings to Dāgan).</li>
+  <li>Hebrew Bible, Judges 16:23–30 (Samson and the temple of Dagon).</li>
+  <li>Mari archives (Akkadian references to Dāgan).</li>
+  <li>Roberts, The Earliest Semitic Pantheon (the historical Dāgan).</li>
+  <li>Lexicon authorities for this entry: Ugaritic texts, CIS.</li>
 </ul>
-<h2>What the Sources Record</h2>
-<p>Dāgan is the grain god of the ancient Levant, the divine power who fills the storehouses and makes the fields fertile. In Ugaritic myth he is the father of Baal and the patron of the agricultural cycle; in Philistine religion he is the national god whose temple Samson pulls down. His domain is not the storm on the mountain but the quiet miracle by which seed becomes bread. ### God of Grain His name and cult center on wheat, barley, and the harvest that sustains city and village alike. ### Father of Baal In Ugaritic texts Dāgan is Baal&#39;s father, grounding the storm god&#39;s power in the agricultural cycle. ### Temple at Ugarit A major temple dedicated to Dāgan stood in the city of Ugarit, receiving royal offerings. ### Philistine Dagon Worshipped by the...</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">phoenician</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

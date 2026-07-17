@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,42 +170,195 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>15 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#epithets-cult-titles">Epithets &amp; Cult Titles</a></li>
+                <li><a href="#the-homeric-hymns">The Homeric Hymns</a></li>
+                <li><a href="#oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>Hermês in 2026: Why Scholars Still Care</h1>
-<p>In 2026, names are treated as data points. Hermês is a reminder that they are also cultural artifacts. Hermês (hermes) — The Soul-Guide · Lord of Boundaries — belongs to the Greek tradition, where it is catalogued under the domain &quot;Messengers, Commerce, Thieves&quot;. The name means &quot;Heap of stones, boundary marker&quot;. Hermês is the fastest, cleverest, and most adaptable of the gods. He moves between Olympus, earth, and the underworld; he protects travelers, merchants, thieves, and heralds. Where there is a boundary, there is Hermês. PÚNYCODEX restores the name as Hermês and serves its temple at hermēs.com. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form hermes survives as a modern convenience imposed by the early domain-name system; the... The question is not whether the name is old, but whether the digital world is old enough to hold it.</p>
-<h2>The Scholarly Argument</h2>
-<p>The name is attested in Greek as Ἑρμῆς. Etymologically it means &quot;Heap of stones, boundary marker&quot;. The reconstructed proto-form is ser- (proto-indo-european, &quot;to bind, to protect, boundary&quot;). From Ἑρμῆς, possibly from ἕρμα &quot;boundary stone&quot;. Psychopomp and messenger. The ASCII form hermes survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Hermês recovers the stress accent of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The letter-by-letter transformation runs: - h → H — Rough breathing - e → e —... The PÚNYCODEX Scholarly Edition collects these arguments in one place, with sources and revision history, so the claim can be inspected rather than merely asserted.</p>
-<h2>What the Accent Preserves</h2>
-<p>This entry is classified as <strong>Tier 1</strong>. the Greek original carries both stress and length, and only one valid Unicode restoration exists Those marks are not ornaments; they are the coordinates that place the name inside a language.</p>
-<h2>A Living Edition</h2>
-<p>The <a href="/sites/hermes/scholars/">Scholarly Edition</a> is not a static page. Verified contributors can improve it, and every change is attributed. That model turns a blog post like this one into an invitation to dig deeper.</p>
-<h2>Where to Learn More</h2>
+            <h1>Hermês in 2026: why scholars still care</h1>
+<p>In 2026, names are treated as data points. <strong>Hermês</strong> is a reminder that they are also cultural artifacts — and that the difference matters for search engines, AI training corpora, and anyone who types the name of a Greek figure into a browser. Scholars never stopped caring about the difference between <em>hermes</em> and Hermês; the web simply made that care actionable. What follows is the full scholarly picture — name, script, sound, myth, cult, and legacy — followed by the engineering compromise that lets a restored spelling live at a real address. The question is not whether the name is old. It is whether the digital world is old enough to hold it.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Hermês</li>
+  <li><strong>ASCII form:</strong> hermes</li>
+  <li><strong>Meaning:</strong> &quot;Heap of stones, boundary marker&quot;</li>
+  <li><strong>Domain of influence:</strong> Messengers, Commerce, Thieves</li>
+  <li><strong>Pantheon:</strong> Greek</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Original script:</strong> Ἑρμῆς (Greek)</li>
+  <li><strong>Live domain:</strong> hermēs.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Hermês</strong> (<em>hermes</em>) — The Soul-Guide · Lord of Boundaries — belongs to the Greek tradition, where it is catalogued under the domain &quot;Messengers, Commerce, Thieves&quot;. The name means &quot;Heap of stones, boundary marker&quot;.</p>
+<p>Hermês is the fastest, cleverest, and most adaptable of the gods. He moves between Olympus, earth, and the underworld; he protects travelers, merchants, thieves, and heralds. <strong>Where there is a boundary, there is Hermês</strong>.</p>
+<p>PÚNYCODEX restores the name as <strong>Hermês</strong> and serves its temple at <a href="https://xn--herms-lza.com">hermēs.com</a>. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>hermes</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Greek as <strong>Ἑρμῆς</strong>. Etymologically it means &quot;Heap of stones, boundary marker&quot;.</p>
+<p>The reconstructed proto-form is <em>ser-</em> (proto-indo-european, &quot;to bind, to protect, boundary&quot;). From Ἑρμῆς, possibly from ἕρμα &quot;boundary stone&quot;. Psychopomp and messenger.</p>
+<p>The ASCII form <em>hermes</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Hermês</strong> recovers the stress accent of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>h</strong> → <strong>H</strong> — Rough breathing</li>
+  <li><strong>e</strong> → <strong>e</strong> — Short epsilon</li>
+  <li><strong>r</strong> → <strong>r</strong> — Rho</li>
+  <li><strong>m</strong> → <strong>m</strong> — Mu</li>
+  <li><strong>e</strong> → <strong>ê</strong> — Circumflex: long eta with stress</li>
+  <li><strong>s</strong> → <strong>s</strong> — Sigma</li>
+</ul>
+<p>Attested and derived spellings of the name:</p>
+<ul>
+  <li><strong>Hermēs</strong> — macron-only form: LSJ convention: length only, no circumflex</li>
+</ul>
+<p>The project holds the domain <strong>hermēs.com</strong> (xn--herms-lza.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: From Ἑρμῆς, possibly from ἕρμα &quot;boundary stone&quot;. Psychopomp and messenger.</p>
+<p>The reconstructed proto-form is <em>*ser-</em> (proto-indo-european), glossed as &quot;to bind, to protect, boundary&quot;.</p>
+<p>The reconstruction is classed as speculative.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Greek as <strong>Ἑρμῆς</strong> — Greek alphabet (Classical / Attic), attested Ancient Greek, c. 8th century BCE – present, in Greece and the Greek-speaking Mediterranean. The script is written left-to-right.</p>
+<p>The scholarly transliteration is <em>Hermês</em> (Greek alphabet with polytonic accents), giving the normalized reading /herˈmɛːs/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The Greek form Ἑρμῆς is written in the Classical Greek alphabet.</li>
+  <li>Letters with acute, grave, or circumflex accents preserve the pitch accent of Ancient Greek.</li>
+  <li>Macrons and omegas (η, ω) mark long vowels, a feature lost in the plain ASCII form.</li>
+  <li>The Unicode restoration Hermês encodes the scholarly spelling as a registrable domain name.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/her.mɛːs/</strong> — Attic Greek Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Her-</strong> — Short epsilon with rough breathing followed by rho — the name begins with a rush, like a messenger arriving.</li>
+  <li><strong>-mēs</strong> — Mu plus long eta and sigma — the long vowel gives the name its final clarity.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;HER-mace&#39; — the first syllable is quick and breathy; the second is long and level.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Greek</strong> — ἕρμα (herma), &#39;heap of stones, boundary marker&#39; — the word behind herms and Hermês</li>
+  <li><strong>PIE</strong> — *ser-, &#39;to bind, put in order&#39; — possible root connecting Hermês to boundaries and order</li>
+</ul>
+<p>Hermês is Tier 1 because the Greek Ἑρμῆς carries stress and length on the same syllable: the circumflex on the long η marks the high falling pitch and the long vowel at once. The circumflex form Hermês is the ideal; Hermēs is the macron-only LSJ convention. The name&#39;s boundary-marker etymology suits the god of thresholds.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Hermês&#39;s myths are almost always about <strong>crossing boundaries and getting away with it</strong>. He is the divine child who outwits his older brother on the day of his birth.</p>
+<h3 id="born-in-a-cave-on-mount-cyllene-the-birth">Born in a Cave on Mount Cyllene (The Birth)</h3>
+<p>Hermês was born to Zeús and the nymph Maia in a remote Arcadian cave. By midday of his first day he had invented the lyre from a tortoise shell and slipped out to steal Apóllōn&#39;s cattle. He made them walk backward to confuse the tracks. When Apóllōn accused him, the infant denied everything with such charm that even the accusation became comic.</p>
+<h3 id="the-lyre-for-the-herd-the-reconciliation">The Lyre for the Herd (The Reconciliation)</h3>
+<p>Zeús ordered Hermês to return the cattle. Hermês played the lyre he had invented, and Apóllōn was so enchanted that he traded his whole herd for the instrument. Thus Hermês became the god of music (after Apóllōn), commerce, and negotiation. The myth makes theft the origin of trade: what is taken is returned as exchange.</p>
+<h3 id="guide-of-souls-the-psychopomp">Guide of Souls (The Psychopomp)</h3>
+<p>Hermês leads the dead to the underworld, earning the title Psychopompos, &#39;soul-guide.&#39; In the <em>Odyssey</em>, he gives Odysseus the herb moly to resist Circe&#39;s magic, and in the poem&#39;s final book he marshals the suitors&#39; shades with his golden wand and leads them gibbering down to the dead. He alone moves freely among gods, mortals, and the dead — the ultimate boundary-crosser.</p>
+<h3 id="fire-sticks-and-the-lyre-the-inventions">Fire-Sticks and the Lyre (The Inventions)</h3>
+<p>The hymn credits Hermês with inventing the lyre and the fire-sticks for kindling flame (Hymn 4.108–111); as the god of communication he stands behind every human system that turns noise into meaning.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography of Hermês concentrates in a small set of recurring attributes, each tied to a function of the god:</p>
+<ul>
+  <li><strong>Kerykeion (caduceus)</strong> — the herald&#39;s staff Apóllōn gives him at the hymn&#39;s settlement, &#39;a splendid wand of gold, three-branched,&#39; that keeps its bearer unscathed; later art entwines it with two serpents.</li>
+  <li><strong>Winged sandals</strong> — &#39;immortal, golden,&#39; they carry him &#39;over the waters of the sea and over the boundless land, swift as a blast of wind&#39; (Odyssey 5.44–46).</li>
+  <li><strong>Petasos</strong> — the broad-brimmed traveler&#39;s hat of the wayfaring god, worn over a short cloak in archaic and classical images.</li>
+  <li><strong>Lyre and tortoise</strong> — the instrument he invents on the day of his birth, stretching sheep-gut strings across a tortoise&#39;s shell (Hymn 4.32–61).</li>
+  <li><strong>Ram</strong> — carried on his shoulders as Kriophoros, the Ram-bearer who averted plague from Tanagra.</li>
+  <li><strong>Cockerel</strong> — a frequent companion at his side in Attic vase painting, greeting the dawn road.</li>
+</ul>
+<p>Two forms dominate his imagery. The archaic god is bearded and fully dressed: traveler&#39;s cloak and broad hat (petasos), winged sandals, and the kerykeion — the herald&#39;s staff later entwined with two snakes — often carrying a ram on his shoulders as Kriophoros, a type known from small bronzes and the votive sculpture of Arcadia and Boeotia. Classical art strips him to a youthful athlete: the Hermes of Praxiteles at Olympia (c. 340 BCE), leaning on a pillar with the infant Dionysos on his arm, fixed the languid, humane type that Roman images of Mercury — purse in hand — transmit. Unique to him is the herm itself: the squared pillar with bearded head and phallus that stood at every Athenian door and crossroad, the most common sacred image in the city.</p>
+<h2 id="epithets-cult-titles">Epithets &amp; Cult Titles</h2>
+<ul>
+  <li><strong>διάκτορος</strong> (diaktoros) — &#39;the guide, the go-between&#39; — formulaic in the Iliad and Odyssey, of uncertain etymology but firmly Homeric.</li>
+  <li><strong>ἀργειφόντης</strong> (Argeiphontes) — &#39;slayer of Argus&#39; — Homer&#39;s characteristic epithet, recalling the killing of the hundred-eyed guardian of Io.</li>
+  <li><strong>ἐριούνης</strong> (eriounes) — &#39;the helpful one, luck-bringer&#39; — applied in Iliad 24 when he escorts Priam to Achilles.</li>
+  <li><strong>χρυσόρραπις</strong> (chrysorrhapis) — &#39;of the golden wand&#39; — the wand with which he charms men&#39;s eyes, Odyssey 5.</li>
+  <li><strong>Κυλλήνιος</strong> (Kyllenios) — &#39;Cyllenian&#39; — from his Arcadian birthplace and cult mountain, Kyllene.</li>
+  <li><strong>ψυχοπομπός</strong> (psychopompos) — &#39;soul-guide&#39; — Odyssey 24, leading the shades of the suitors down to Hádēs.</li>
+</ul>
+<h2 id="the-homeric-hymns">The Homeric Hymns</h2>
+<p>The fourth Homeric Hymn, to Hermês, is the longest and most celebrated of the corpus: it narrates the god&#39;s birth to Maia in the cave of Cyllene, his invention of the lyre from a tortoise shell, the theft of [[apollon|Apóllōn]]&#39;s cattle driven backward to confuse the tracks, and the final settlement in which the lyre is traded for the herd and the caduceus. The hymn opens with the formula &quot;Muse, sing of Hermes, son of Zeus and Maia, lord of Cyllene and Arcadia rich in flocks, the luck-bringing messenger of the immortals,&quot; and closes by assigning him his spheres — exchange, heralds, prophecy through the bee-maidens, and the guidance of souls. A shorter companion, Hymn 18, repeats the birth notice in abbreviated form. The poem, usually dated to the late sixth century BCE, preserves the fullest archaic picture of the god.</p>
+<h2 id="oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</h2>
+<p>Hermês kept no oracle of Delphi&#39;s rank, but one genuine mantic cult is recorded: at Pharai in Achaia, the market oracle of Hermes Agoraios. The inquirer whispered a question into the god&#39;s ear at evening, paid and stopped his own ears, and took the first words overheard on leaving as the god&#39;s answer. His cult sites otherwise were civic and rustic rather than oracular: Mount Cyllene in Arcadia, his birthplace, with a temple of Hermes Kyllenios near Pheneos; Tanagra in Boeotia, where he was worshipped as Kriophoros, the Ram-bearer, credited with averting a plague by carrying a ram round the walls; and the herms of the Athenian Agora, where he presided as Hermes of the market — the statues whose mutilation in 415 BCE shocked the city on the eve of the Sicilian expedition.</p>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>The most characteristic material witnesses of Hermês are the herms themselves: squared stone shafts crowned with the god&#39;s bearded head and marked with male genitals, set at doorways, crossroads, and gymnasia throughout Athens. Their ubiquity is exactly what made the sacrilege of 415 BCE — the nocturnal mutilation of the herms on the eve of the Sicilian expedition — a civic trauma that Thucydides records as a political omen.</p>
+<p>The Hermes of Praxiteles, excavated in the temple of Hera at Olympia where Pausanias had seen it, is the most famous marble of the god: a fourth-century BCE original showing the youthful Hermês leaning on his cloak with the infant Diónysos on his arm, now in the Archaeological Museum of Olympia. At Pharai in Achaia stood the bronze Hermes Agoraios, a work of Euphranor, before which the market oracle was consulted; and the full-size Hermes of Andros, a Roman copy of a Praxitelean original of the later fourth century, preserves the contemplative wayfaring god.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Hermês is the fastest, cleverest, and most adaptable of the gods. He moves between Olympus, earth, and the underworld; he protects travelers, merchants, thieves, and heralds. <strong>Where there is a boundary, there is Hermês</strong>.</p>
+<h3 id="messenger-of-the-gods">Messenger of the Gods</h3>
+<p>He carries Zeús&#39;s commands — sent to guide Priam through the enemy camp in Iliad 24 — and leads the souls of the dead to Hádēs, as he leads the suitors&#39; shades down to the grave in the Odyssey&#39;s final book.</p>
+<h3 id="boundaries-and-thresholds">Boundaries and Thresholds</h3>
+<p>Herms — the squared pillars bearing his head — marked property lines, roads, and doorways; Athens kept them at every door, which is why their mutilation in 415 BCE shook the city.</p>
+<h3 id="commerce-and-exchange">Commerce and Exchange</h3>
+<p>Patron of merchants, markets, and honest — or clever — dealing; as Agoraios, &#39;of the market,&#39; he kept his bronze statue and his whispered oracle in the agora of Pharai.</p>
+<h3 id="trickster-and-thief">Trickster and Thief</h3>
+<p>On his first day he stole Apóllōn&#39;s cattle; his cunning is as divine as his duty.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>The Romans identified Hermês with Mercurius, the god of commerce and travel, whose name shares the root of merx, &#39;merchandise,&#39; and so gives us &#39;merchant&#39; and &#39;mercury.&#39; The planet Mercury, swift in its orbit, bears his name. In Egypt he was fused with Thoth, the ibis-headed god of writing and wisdom, producing the figure of Hermes Trismegistus, central to Hellenistic and Renaissance occultism. The caduceus, though often confused with the rod of Asclepius, remains a global symbol of diplomacy and medicine.</p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include [[odinn|Óðinn]] (wisdom / psychopomp), [[thoth|Ḏḥwty]] (messenger / travel / wisdom), [[eshu|Ẹṣu]] (messenger / travel / commerce), and [[iris|Íris]] (messenger / travel / commerce).</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Hermês is the god of everything that moves: messages, money, travelers, thieves, and souls. The herm was one of the most common religious objects in Athens; every doorway and road was under his protection. Plato made the name&#39;s link to speech explicit: in the Cratylus, Socrates derives Hermês from ἑρμηνεύειν, &#39;to interpret,&#39; casting the god as messenger, interpreter (ἑρμηνεύς), and subtle deceiver — a playful but telling ancient etymology from which the word &#39;hermeneutics&#39; descends. In philosophy and religion, Hermes Trismegistus became a founder of alchemy and Hermeticism; when Marsilio Ficino translated the Corpus Hermeticum into Latin in 1463 for Cosimo de&#39; Medici, the thrice-great Hermes entered the Renaissance as a primordial sage. Modern concepts of communication, commerce, and even the internet — a network of boundaries crossed at speed — would have seemed to the Greeks like the domain of Hermês. Restoring <em>Hermês</em> restores the name of the god who first made exchange possible.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Hermês given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Full text</a></li>
+  <li> Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a href="https://brill.com/view/title/17858">Full text</a></li>
+  <li> Wörterbuch der griechischen Eigennamen, 3rd ed., 1863. <a href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ">Full text</a></li>
+  <li> Homer, Iliad and Odyssey.</li>
+  <li> Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE. <a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Full text</a></li>
+  <li> Homeric Hymn to Hermes.</li>
+  <li> Corpus Hermeticum.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Hermês is the god of the in-between moment: the handshake, the border crossing, the message sent but not yet received. He is neither Olympian splendor nor chthonic dread but the quick intelligence that moves between them. The Greeks trusted him on roads because they knew that roads are dangerous, and danger requires a clever companion.</p>
+<p>Every time we send a message, make a trade, or cross a threshold, we repeat the gestures Hermês invented. The internet is his latest domain: a vast network of exchanges across boundaries, some honest, some thieving, all swift. The restoration of his name in Unicode is fitting: he would have approved of a script that lets any language travel instantly.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Hermês is classified as <strong>Tier 1</strong>: the original carries both stress and length, and only one valid Unicode restoration exists. The ASCII fallback <em>hermes</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 6 characters of the name, the restoration adjusts 1: 1 mark of stress (ê). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>hermēs.com</strong>, which the DNS carries in punycode form as xn--herms-lza.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Hermês; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Greek can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>In 2026 the stakes are practical. Search indexes, language models, and localization pipelines all inherit whatever spelling the web normalizes — which means every Unicode domain is also a training signal. <strong>Hermês</strong> teaches the machinery that the restored form exists, that it is used, and that it points to a real place. That is why a project built on philology ends up caring about DNS: the infrastructure decides which names the future sees. This restoration makes sure the future sees the whole name.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/hebe/">Hebe</a></li>
   <li><a href="/sites/hecuba/">Hekábē</a></li>
   <li><a href="/sites/helios/">Hēlios</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843.</a></li>
   <li><a href="https://brill.com/view/title/17858">Etymological Dictionary of Greek, 2 vols., Brill, 2010.</a></li>
   <li><a href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ">Wörterbuch der griechischen Eigennamen, 3rd ed., 1863.</a></li>
   <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE.</a></li>
+  <li>Homeric Hymn to Hermes (Hymn 4).</li>
+  <li>Homer, Iliad 24.334–338 and Odyssey 24.1–14.</li>
+  <li>Thucydides, History of the Peloponnesian War 6.27.</li>
+  <li>Pausanias, Description of Greece 7.22.2–3.</li>
+  <li>Lexicon authorities for this entry: LSJ, Pape-Benseler, Beekes.</li>
 </ul>
-<h2>What the Sources Record</h2>
-<p>Hermês is the fastest, cleverest, and most adaptable of the gods. He moves between Olympus, earth, and the underworld; he protects travelers, merchants, thieves, and heralds. Where there is a boundary, there is Hermês. ### Messenger of the Gods He carries Zeús&#39;s commands — sent to guide Priam through the enemy camp in Iliad 24 — and leads the souls of the dead to Hádēs, as he leads the suitors&#39; shades down to the grave in the Odyssey&#39;s final book. ### Boundaries and Thresholds Herms — the squared pillars bearing his head — marked property lines, roads, and doorways; Athens kept them at every door, which is why their mutilation in 415 BCE shook the city. ### Commerce and Exchange Patron of merchants, markets, and honest — or clever — dealing; as...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Hermês as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Greek to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Hermês through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/hermes/">home page</a> offers the full name breakdown, the <a href="/sites/hermes/lore/">lore page</a> explores the myth, and the <a href="/sites/hermes/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Hermês do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">greek</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

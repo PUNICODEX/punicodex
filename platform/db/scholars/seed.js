@@ -373,4 +373,4 @@ if (require.main === module) {
   }
 }
 
-module.exports = { seedScholarsFromManifests, republishScholarsFromManifests };
+module.exports = { seedScholarsFromManifests, republishScholarsFromManifests, ensureAdminIdentity };

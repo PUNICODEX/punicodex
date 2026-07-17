@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,46 +170,180 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>How Ragnarǫk Got Its Accent Back</h1>
-<p>The ASCII form <em>ragnarok</em> is missing something. Ragnarǫk restores the marks that the original language used to distinguish this name from a thousand others. The name is attested in the manuscripts of the Poetic and Prose Eddas as ragnarǫk (normalized spelling Ragnarǫk); the Younger Futhark rendering ᚱᛅᚴᚾᛅᚱᚢᚴ given here is a normalized reconstruction, since the word itself appears in no surviving runic inscription. Etymologically the compound is ragna, genitive plural of regin &#39;the gods, the ruling powers&#39;, plus rǫk &#39;fate, doom, course of events&#39;: &#39;the doom of the powers&#39;. A second medieval form, ragnarökkr — &#39;twilight of the gods&#39;, with røkkr &#39;darkness&#39; — is attested in Lokasenna 39 and became the standard modern gloss; Haraldur Bernharðsson has argued that the røkkr variant may in fact preserve the older reading, so the question of priority remains open. The ASCII form ragnarok survives only because...</p>
-<h2>The Missing Marks</h2>
-<p>Classified as <strong>Tier 2</strong>, this restoration carries the stress and length that standard ASCII discards. the original preserves at least one philological feature that ASCII cannot encode</p>
-<h2>Step by Step</h2>
-<p>The transformation from <em>ragnarok</em> to <strong>Ragnarǫk</strong> happens one character at a time. Some letters stay the same; others gain accents, macrons, or entirely new shapes. The breakdown on the <a href="/sites/ragnarok/">temple home page</a> shows exactly how.</p>
-<h2>Why Stress and Length Matter</h2>
-<p>In the source language, changing a stress or a vowel length can change a meaning. Names are especially sensitive because they are proper nouns: one spelling points to one entity. Ragnarǫk preserves that pointer in a way <em>ragnarok</em> cannot.</p>
-<h2>The Restored Form</h2>
-<p>Ragnarǫk is now a domain. That simple fact turns a philological detail into a public demonstration. Anyone who types it participates in the restoration.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Ragnarǫk is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>How Ragnarǫk got its accent back</h1>
+<p>The ASCII form <em>ragnarok</em> is missing something. <strong>Ragnarǫk</strong> restores the marks the source language used to distinguish this name from a thousand others — and those marks change how the name is read, pronounced, and understood. This post explains, with the full scholarly record behind it, what each restored mark preserves: the Younger Futhark evidence, the reconstructed sound, the myths the name carries, and the classification logic that separates Tier 1 restorations from Tier 2. By the end, the marks in Ragnarǫk will look less like ornaments and more like what they are — recovered evidence, pinned back in its proper place.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Ragnarǫk</li>
+  <li><strong>ASCII form:</strong> ragnarok</li>
+  <li><strong>Meaning:</strong> &quot;Twilight of the gods (from ragna + rǫk)&quot;</li>
+  <li><strong>Domain of influence:</strong> Doom of the Gods</li>
+  <li><strong>Pantheon:</strong> Norse</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> ᚱᛅᚴᚾᛅᚱᚢᚴ (Younger Futhark)</li>
+  <li><strong>Live domain:</strong> ragnarǫk.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Ragnarǫk</strong> (<em>ragnarok</em>) is the eschaton of Norse mythology: the foretold destruction and renewal of the cosmos, catalogued in this edition under the domain &quot;Doom of the Gods&quot;. The word is a compound of <em>ragna</em>, genitive plural of <em>regin</em> &#39;the gods, the ruling powers&#39;, and <em>rǫk</em> &#39;fate, course, doom&#39; — strictly &#39;the doom of the powers&#39;. The familiar gloss &#39;twilight of the gods&#39; belongs to the alternate medieval form <em>ragnarökkr</em> (with <em>røkkr</em>, &#39;darkness, twilight&#39;), the reading attested in <em>Lokasenna</em> and adopted by Snorri; whether <em>rǫk</em> or <em>røkkr</em> is the older second element is still debated.</p>
+<p>The myth is preserved chiefly in <em>Völuspá</em>, the seeress&#39;s prophecy that opens the Poetic Edda, and in Snorri Sturluson&#39;s <em>Gylfaginning</em> 51–53, which quotes the poem extensively and narrates both the doom and the renewal.</p>
+<p>PÚNYCODEX restores the name as <strong>Ragnarǫk</strong> and serves its temple at <a href="https://xn--ragnark-fnc.com">ragnarǫk.com</a>. The o-hook (ǫ) preserves the distinct Old Norse short rounded vowel, placing the name in Tier 2; the plain ASCII form <em>ragnarok</em> is a modern convenience of the domain-name system, not an ancient spelling.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in the manuscripts of the Poetic and Prose Eddas as <em>ragnarǫk</em> (normalized spelling <strong>Ragnarǫk</strong>); the Younger Futhark rendering <strong>ᚱᛅᚴᚾᛅᚱᚢᚴ</strong> given here is a normalized reconstruction, since the word itself appears in no surviving runic inscription.</p>
+<p>Etymologically the compound is <em>ragna</em>, genitive plural of <em>regin</em> &#39;the gods, the ruling powers&#39;, plus <em>rǫk</em> &#39;fate, doom, course of events&#39;: &#39;the doom of the powers&#39;. A second medieval form, <em>ragnarökkr</em> — &#39;twilight of the gods&#39;, with <em>røkkr</em> &#39;darkness&#39; — is attested in <em>Lokasenna</em> 39 and became the standard modern gloss; Haraldur Bernharðsson has argued that the <em>røkkr</em> variant may in fact preserve the older reading, so the question of priority remains open.</p>
+<p>The ASCII form <em>ragnarok</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Ragnarǫk</strong> recovers the o-hook of the normalized scholarly spelling directly in the address bar; the name preserves a single orthographic feature (the rounded ǫ) and no length or stress mark, which places it in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>r</strong> → <strong>R</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+  <li><strong>g</strong> → <strong>g</strong> — Same</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+  <li><strong>r</strong> → <strong>r</strong> — Same</li>
+  <li><strong>o</strong> → <strong>ǫ</strong> — O-hook: short /ɔ/ vowel</li>
+  <li><strong>k</strong> → <strong>k</strong> — Same</li>
+</ul>
+<p>The project holds the domain <strong>ragnarǫk.com</strong> (xn--ragnark-fnc.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: Old Norse ragnarǫk &quot;twilight of the gods&quot;. The final battle and renewal of the world.</p>
+<p>The reconstructed proto-form is <em>*ragna + </em>rōk-* (proto-indo-european), glossed as &quot;gods + twilight, destiny&quot;.</p>
+<p>The reconstruction is classed as attested.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is rendered in Younger Futhark as <strong>ᚱᛅᚴᚾᛅᚱᚢᚴ</strong> — Germanic runic, the epigraphic medium of Viking-Age Scandinavia, c. 800–1100 CE. The script is written left-to-right.</p>
+<p>The scholarly transliteration is <em>Ragnarǫk</em> (normalized Old Norse), giving the normalized reading /ˈraɣ.na.rɔk/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The Younger Futhark form ᚱᛅᚴᚾᛅᚱᚢᚴ is a normalized reconstruction; the word itself is unattested in the surviving runic corpus and is known from the thirteenth-century manuscript tradition (Poetic and Prose Eddas).</li>
+  <li>Younger Futhark has only sixteen runes and does not distinguish short/long vowels or voiced/voiceless stops, so the runic skeleton cannot encode the ǫ.</li>
+  <li>The normalized Old Norse form follows the manuscript orthography of the Codex Regius tradition.</li>
+  <li>The Unicode restoration Ragnarǫk uses the o-hook (ǫ), a letter registrable in .com, to preserve the medieval rounded vowel.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/ˈraɣ.naˌrɔk/</strong> — Old Norse Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Rag-</strong> — Voiced velar or uvular fricative [ɣ] after the vowel in ragna, the genitive plural of regin &#39;gods, powers&#39;</li>
+  <li><strong>-na-</strong> — Short [a] plus alveolar nasal [n], the genitive plural ending</li>
+  <li><strong>-rǫk</strong> — Short [ɔ] with o-hook (ǫ), the Old Norse rounded vowel; rǫk means &#39;fate, destiny, twilight&#39;</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;RAGH-na-rok&#39; — the middle consonant is a throaty &#39;gh&#39;, and the final vowel is a short, rounded &#39;o&#39; like &#39;hot&#39;.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Old Norse</strong> — rǫk, &#39;fate, course, end&#39;, the second element of the compound</li>
+  <li><strong>Old Norse</strong> — regin, &#39;gods, divine powers&#39;, the stem of the first element ragna</li>
+  <li><strong>Modern Icelandic</strong> — Ragnarök, the modern spelling with ö replacing the medieval ǫ</li>
+</ul>
+<p>Ragnarǫk is Tier 2: the o-hook (ǫ) preserves a distinct Old Norse rounded vowel, but there is no length or stress mark. The popular modern form Ragnarök normalises the ǫ to ö; both are registrable, but ǫ is the more conservative medieval spelling.</p>
+<h2 id="mythology">Mythology</h2>
+<p><strong>Ragnarǫk</strong> is the doom of the gods, the final destruction and renewal of the cosmos foretold in the <em>Poetic Edda</em> and elaborated by Snorri. It begins with fimbulvetr, three winters with no summer, followed by the breaking of bonds: the wolf Fenrir slips his chain, the serpent rises from the sea, and Loki steers a ship out of the east with the sons of Múspell aboard. The gods gather on Vígríðr, but even their courage cannot prevent the sun from darkening, the stars from falling, and the world-tree from trembling. Ragnarǫk is not pure annihilation; after the destruction, the earth rises again, green and fertile. Baldr and Hǫðr return, a human pair named Líf and Lífþrasir repopulate the world, and the sun&#39;s daughter takes her mother&#39;s place. The myth therefore encodes a Norse theology of cosmic renewal as well as ending.</p>
+<h3 id="the-battle-of-vigri-r-voluspa">The Battle of Vígríðr (Völuspá)</h3>
+<p>On the plain Vígríðr, the forces of chaos meet the Æsir in the last battle. Fenrir swallows Óðinn, who is avenged by his son Víðarr; Þórr slays the Miðgarðsormr but staggers nine paces and dies of its venom. Surtr&#39;s fire spreads across the world, and the earth sinks into the sea.</p>
+<p>The battle is not a simple victory of good over evil but the collapse of an entire cosmic order. Every pairing of enemies is also a pairing of fated kin: gods and giants are descended from the same primordial matter, and their mutual destruction clears the ground for whatever comes next.</p>
+<h3 id="the-renewal-gylfaginning">The Renewal (Gylfaginning)</h3>
+<p>After the fire subsides, the earth rises again from the sea, green and fertile. The surviving gods Hǫðr and Baldr return from Helheimr, and a few gods gather at Iðavöllr where Ásgarðr once stood. Two human beings, Líf and Lífþrasir, have hidden themselves in Hoddmímis holt and now emerge to repopulate the world.</p>
+<p>Ragnarǫk is therefore not only an ending but also a concealed beginning. The destruction is total, yet memory, seed, and divine lineage survive. The myth gives the Norse cosmos a cyclical dimension without softening the terror of the flame: the new world is born from the ashes of the old.</p>
+<h3 id="the-warning-signs-voluspa">The Warning Signs (Völuspá)</h3>
+<p>The doom does not arrive unannounced. First comes fimbulvetr, three successive winters with no summer between, severing the bonds of kinship. Then the wolf Sköll catches the sun and Hati the moon; the earth trembles, trees uproot, and the great chain Gleipnir strains as Fenrir wakes. Heimdallr, watchman of the gods, finally sounds Gjallarhorn, and the Æsir hold their last council before marching to Vígríðr.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography of Ragnarǫk is a set of portents and weapons, each anchored in a specific verse of the prophecy:</p>
+<ul>
+  <li><strong>Gjallarhorn</strong> — Heimdallr&#39;s horn, whose blast wakes the gods for their last council (Völuspá 46).</li>
+  <li><strong>Fenrir&#39;s jaws</strong> — the bound wolf breaks Gleipnir and swallows Óðinn, his gaping mouth spanning earth and sky (Gylfaginning 51).</li>
+  <li><strong>Mjǫllnir against the serpent</strong> — Þórr&#39;s hammer meets the Miðgarðsormr one last time; the god staggers back nine paces and dies of the venom (Völuspá 56).</li>
+  <li><strong>The world-ash in flames</strong> — Yggdrasil shudders and groans as the fire roars against heaven itself (Völuspá 47, 57).</li>
+  <li><strong>The renewed sun</strong> — the daughter of the slain sun rides her mother&#39;s path over the green world that rises from the sea (Vafþrúðnismál 47; Völuspá 59).</li>
+</ul>
+<ul>
+  <li><strong>Mjöllnir and Leviathan</strong> — The final blows exchanged by Þórr and Miðgarðsormr</li>
+  <li><strong>Dawn of the new sun</strong> — The reborn world rising after the flood and fire have passed</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>No inscription names the event, but the doom&#39;s imagery is carved across the Scandinavian and Insular stone record. The tenth-century Gosforth Cross in Cumbria places Víðarr rending the wolf&#39;s jaws and Þórr&#39;s fishing for the serpent beside the Crucifixion, the clearest surviving synthesis of pagan eschatology and Christian iconography. The Ledberg stone in Östergötland (Ög 181) shows a warrior&#39;s foot thrust into a beast&#39;s mouth, widely read as Óðinn devoured by Fenrir, and Thorwald&#39;s Cross on the Isle of Man gives the same scene an explicitly Christian frame. The ninth-century Rök runestone (Ög 136) does not narrate the myth, but a debated recent reading interprets its riddling references to the sun, the dead, and cosmic struggle as the anxieties of a generation that had lived through the dust-veil climate catastrophe of 536–550 — a historical &#39;fimbulwinter&#39; remembered on stone.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Ragnarǫk is not a place but an event-sequence: the structured collapse of the Norse cosmos and its aftermath. Snorri, following <em>Völuspá</em>, gives it a fixed dramaturgy of portents, battle, fire, and renewal.</p>
+<h3 id="fimbulvetr">Fimbulvetr</h3>
+<p>Three successive winters with no summer between them; battles ravage the world, oaths break, and &#39;brothers will fight and kill each other, cousins will destroy kinship&#39; before the end comes.</p>
+<h3 id="the-battle-of-vigri-r">The Battle of Vígríðr</h3>
+<p>On the final plain the paired enemies destroy one another: Fenrir swallows Óðinn and is torn open by Víðarr; Þórr slays the Miðgarðsormr and falls nine paces from the slain worm; Freyr meets Surtr, Týr the hound Garmr, and Heimdallr and Loki kill each other.</p>
+<h3 id="surtr-s-fire">Surtr&#39;s Fire</h3>
+<p>Surtr comes from the south with a sword whose light outshines the sun; at the end he casts fire over the whole earth, and heaven, earth, and the world-ash burn.</p>
+<h3 id="renewal">Renewal</h3>
+<p>The earth rises from the sea a second time, green; Baldr and Hǫðr return from Hel, and Líf and Lífþrasir emerge from Hoddmímis holt to repeople the world beneath the slain sun&#39;s daughter.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Ragnarǫk stands at the meeting point of pagan eschatology and Christian apocalypse, and the direction of influence has been debated for over a century. <em>Völuspá</em> survives only in Christian-era manuscripts (Codex Regius, c. 1270; Hauksbók, early fourteenth century), and scholars such as Sigurður Nordal and Ursula Dronke have read its destruction-and-renewal pattern against the Book of Revelation, while others defend a native Germanic eschatology assembled from older heroic and cosmogonic material. The monuments make the fusion visible: on the tenth-century Gosforth Cross in Cumbria, Víðarr rending the wolf&#39;s jaws is carved among Crucifixion panels, and on Thorwald&#39;s Cross at Kirk Andreas on the Isle of Man a spear-bearing figure with a raven on his shoulder, his foot thrust into a wolf&#39;s mouth, faces the Christian cross — pagan doom and Christian redemption cut into the same stone.</p>
+<p>Within the Norse tradition, closely related names in the corpus include [[alfheimr|Álfheimr]], [[buri|Búri]], [[eggther|Eggþér]], [[helheimr|Helheimr]], [[jormungandr|Jǫrmungandr]], and [[jotunheimr|Jötunheimr]].</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Few Norse words have travelled as far. The <em>ragnarökkr</em> reading, &#39;twilight of the gods&#39;, passed through nineteenth-century Romanticism into Wagner&#39;s <em>Götterdämmerung</em> (1876), the opera that fixed the myth in the modern imagination as the fiery fall of a corrupt order. In English the word now names any cataclysmic end — military, nuclear, ecological — and anchors a large afterlife in fantasy fiction, film, and games, usually stripped of the Eddic sequel in which the earth rises green again and Baldr returns. Modern Heathen and Ásatrú communities read the myth variously as prophecy, cyclical cosmology, or allegory. Restoring the medieval spelling <strong>Ragnarǫk</strong>, with the o-hook of the thirteenth-century manuscripts, keeps the word anchored to the Icelandic poems rather than to its modern apocalyptic shorthand.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Ragnarǫk given in this edition rests on the witnesses and reference works listed below. Lexica and etymological studies secure the form and meaning of the name; the Eddic poems and Snorri&#39;s prose supply the narrative evidence; the runological and art-historical literature documents the myth&#39;s material afterlife.</p>
+<ul>
+  <li> Poetic Edda, Völuspá, ed. Neckel–Kuhn; trans. Larrington, Oxford World&#39;s Classics (2014).</li>
+  <li> Snorri Sturluson, Edda, Gylfaginning 51–53, trans. Faulkes (Everyman / VSNR).</li>
+  <li> Poetic Edda, Vafþrúðnismál 44–51 (the survivors of the doom).</li>
+  <li> Poetic Edda, Lokasenna 39 (the alternate form ragnarökkr).</li>
+  <li> Bernharðsson, Haraldur, &#39;Old Icelandic ragnarök and ragnarökkr,&#39; in Verba Docenti (2007).</li>
+  <li> Cleasby &amp; Vigfusson, An Icelandic-English Dictionary (1874), s.v. ragnarök, ragnarökkr.</li>
+  <li> Simek, Rudolf, Dictionary of Northern Mythology (1993), s.v. Ragnarök.</li>
+  <li> Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford, 2001).</li>
+  <li> Holmberg, Gräslund, Sundqvist &amp; Williams, &#39;The Rök Runestone and the End of the World,&#39; Futhark 9–10 (2020).</li>
+  <li> Bailey, R. N. &amp; Cramp, R., Corpus of Anglo-Saxon Stone Sculpture, vol. II (Oxford, 1988).</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Ragnarǫk compresses a whole philosophy of history into a genitive and a noun of fate: the powers (<em>regin</em>) possess a <em>rǫk</em> — a course that runs, by its own logic, to its end. Nothing in the word itself promises renewal, yet the poems that speak it cannot stop at destruction; the seeress who watches the earth sink into the sea watches it rise again, green, in the same breath. To restore the o-hook is to hold the word at its medieval scale: not a generic apocalypse, but one particular, densely narrated end of one particular world — and, bound into the same syllables, the beginning of another.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Ragnarǫk is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>ragnarok</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 8 characters of the name, the restoration adjusts 1: 1 further adjustment (ǫ). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>ragnarǫk.com</strong>, which the DNS carries in punycode form as xn--ragnark-fnc.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Ragnarǫk; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Younger Futhark can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>The marks in <strong>Ragnarǫk</strong> were never lost; they were only waiting for a carrier that could hold them. Now that the carrier exists, the burden flips: every use of <em>ragnarok</em> is a choice to leave evidence on the table. The PÚNYCODEX temple keeps the restored form in circulation — as a domain, a dataset entry, and a scholarly argument — so that the choice to use it stays easy. Accent by accent, macron by macron, that is how the original names come back: not with a single grand gesture, but with a spelling that finally works everywhere.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/bestla/">Bestla</a></li>
   <li><a href="/sites/eggther/">Eggþér</a></li>
   <li><a href="/sites/freyr/">Freyr</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://sacred-texts.com/neu/poe/index.htm">Poetic Edda, Völuspá (the doom and the renewal), ed. Neckel–Kuhn; trans. Larrington, Oxford World&#39;s Classics (2014).</a></li>
   <li><a href="http://vsnrweb-publications.org.uk/EDDArestr.pdf">Snorri Sturluson, Edda, Gylfaginning 51–53, trans. Faulkes (the renewal; Baldr and Hǫðr; Líf and Lífþrasir).</a></li>
+  <li>Bernharðsson, Haraldur, &#39;Old Icelandic ragnarök and ragnarökkr,&#39; in Verba Docenti (2007); Simek, Dictionary of Northern Mythology, s.v. Ragnarök.</li>
+  <li>Cleasby &amp; Vigfusson, An Icelandic-English Dictionary (1874), s.v. ragnarök, ragnarökkr.</li>
+  <li>Cleasby &amp; Vigfusson, An Icelandic-English Dictionary (1874), s.v. ragnarök, regin, rök.</li>
+  <li>Gordon, E. V. &amp; Taylor, A. R., An Introduction to Old Norse, 2nd ed. (Oxford, 1957).</li>
+  <li>Lexicon authorities for this entry: Cleasby-Vigfusson, Zoëga.</li>
 </ul>
-<h2>The Cultural Afterlife</h2>
-<p>Few Norse words have travelled as far. The ragnarökkr reading, &#39;twilight of the gods&#39;, passed through nineteenth-century Romanticism into Wagner&#39;s Götterdämmerung (1876), the opera that fixed the myth in the modern imagination as the fiery fall of a corrupt order. In English the word now names any cataclysmic end — military, nuclear, ecological — and anchors a large afterlife in fantasy fiction, film, and games, usually stripped of the Eddic sequel in which the earth rises green again and Baldr returns. Modern Heathen and Ásatrú communities read the myth variously as prophecy, cyclical cosmology, or allegory. Restoring the medieval spelling Ragnarǫk, with the o-hook of the thirteenth-century manuscripts, keeps the word anchored to the Icelandic...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Ragnarǫk as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Younger Futhark to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Ragnarǫk through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/ragnarok/">home page</a> offers the full name breakdown, the <a href="/sites/ragnarok/lore/">lore page</a> explores the myth, and the <a href="/sites/ragnarok/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Ragnarǫk do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
-<h2>A Note on the Address Bar</h2>
-<p>When you type Ragnarǫk, the browser performs an invisible conversion into Punycode so the global DNS can route the request. The user sees the original name; the machines see a compatible ASCII encoding. That duality is the engineering compromise that makes the restoration possible, and it is the reason every Unicode domain is both a technical milestone and a small act of cultural memory.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">norse</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNYCODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js" defer></script>
+<!-- PUNYCODEX-ANALYTICS-END -->
+
+<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
+<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Admin Portal — Dashboard | PÚNYCODEX</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="portal.css">
+</head>
+<body data-page="dashboard" data-depth="0">
+    <a class="skip-link" href="#portal-main">Skip to content</a>
+    <div id="portal-header"></div>
+
+    <main id="portal-main" class="portal-main">
+        <div class="portal-page-head">
+            <h1>Dashboard</h1>
+            <p>Operational snapshot across applications, scholarly review, patrons, revenue, traffic, and the crawler.</p>
+            <p class="portal-updated" id="dash-updated"></p>
+        </div>
+
+        <section aria-label="Portal overview">
+            <div class="stat-grid" id="dash-stats">
+                <div class="state-block">Loading dashboard…</div>
+            </div>
+        </section>
+
+        <section class="panel" aria-label="Quick links">
+            <div class="panel-head">
+                <h2 class="panel-title">Queues</h2>
+            </div>
+            <div class="quick-links" id="dash-quick-links"></div>
+        </section>
+
+        <section class="panel" id="dash-ops" aria-label="Crawler operations" hidden>
+            <div class="panel-head">
+                <div>
+                    <h2 class="panel-title">Crawler Operations</h2>
+                    <p class="panel-sub">Live crawl triggers and index health. Actions run immediately.</p>
+                </div>
+                <button type="button" class="btn btn-secondary btn-sm" id="ops-refresh">Refresh</button>
+            </div>
+            <div class="stat-grid" id="ops-stats">
+                <div class="state-block">Loading crawler stats…</div>
+            </div>
+            <div class="portal-form-row">
+                <div class="field">
+                    <label for="ops-crawl-domain">Crawl a domain</label>
+                    <input type="text" id="ops-crawl-domain" placeholder="e.g. xn--zes-9na.com or zeús.com">
+                </div>
+                <button type="button" class="btn btn-primary" id="ops-crawl-btn">Crawl</button>
+                <button type="button" class="btn btn-secondary" id="ops-recrawl-btn">Re-crawl All</button>
+            </div>
+        </section>
+
+        <section class="panel" aria-label="Existing admin tools">
+            <div class="panel-head">
+                <div>
+                    <h2 class="panel-title">Existing Tools</h2>
+                    <p class="panel-sub">Legacy single-purpose dashboards. Your portal token works on all of them.</p>
+                </div>
+            </div>
+            <div class="quick-links">
+                <a class="quick-link" href="/platform/public/admin-api-keys.html">
+                    <div class="quick-link-title">API Keys</div>
+                    <div class="quick-link-desc">Issue, tier, and revoke Enterprise API keys.</div>
+                </a>
+                <a class="quick-link" href="/platform/public/admin-bookings.html">
+                    <div class="quick-link-title">Bookings</div>
+                    <div class="quick-link-desc">Ad-slot bookings, trials, and creative approvals.</div>
+                </a>
+                <a class="quick-link" href="/platform/public/admin-analytics.html">
+                    <div class="quick-link-title">Analytics</div>
+                    <div class="quick-link-desc">Traffic, sessions, and beacon analytics.</div>
+                </a>
+                <a class="quick-link" href="/platform/public/admin-authenticity.html">
+                    <div class="quick-link-title">Authenticity</div>
+                    <div class="quick-link-desc">Threat feed and brand-protection console.</div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <script src="portal.js"></script>
+    <script>
+    (function () {
+        function statCard(value, label, hint) {
+            return (
+                '<div class="stat-card"><div class="stat-card-value">' + value + '</div>' +
+                '<div class="stat-card-label">' + Portal.escapeHtml(label) + '</div>' +
+                (hint ? '<div class="stat-card-hint">' + Portal.escapeHtml(hint) + '</div>' : '') +
+                '</div>'
+            );
+        }
+
+        function renderDashboard(d) {
+            var grid = document.getElementById('dash-stats');
+            var traffic = d.traffic || {};
+            var revenue = d.revenue || {};
+            var patrons = d.patrons || {};
+            var applications = d.applications || {};
+            var scholars = d.scholars || {};
+            grid.innerHTML =
+                statCard(Portal.fmtNumber(applications.businessPending), 'Business Apps Pending', 'leasing queue') +
+                statCard(Portal.fmtNumber(applications.universityPending), 'University Apps Pending', 'scholars queue') +
+                statCard(Portal.fmtNumber(scholars.pendingEdits), 'Pending Edits', 'scholarly review') +
+                statCard(Portal.fmtNumber(scholars.pendingMedia), 'Pending Media', 'scholarly review') +
+                statCard(Portal.fmtNumber(patrons.active), 'Active Patrons', '') +
+                statCard('$' + Portal.escapeHtml(String(patrons.estimatedMrrDollars || '0.00')), 'Patron MRR', Portal.fmtNumber(patrons.estimatedMrrCents) + ' cents/mo') +
+                statCard('$' + Portal.escapeHtml(String(revenue.last30dDollars || '0.00')), 'Revenue · ' + (revenue.windowDays || 30) + 'd', Portal.fmtNumber(revenue.bookingsLast30d) + ' bookings') +
+                statCard(Portal.fmtNumber(traffic.requests), 'Requests · ' + (traffic.windowHours || 24) + 'h', '') +
+                statCard(Portal.fmtNumber(traffic.errorCount), 'Errors · ' + (traffic.windowHours || 24) + 'h', 'rate ' + (traffic.errorRate != null ? traffic.errorRate : 0)) +
+                statCard(Portal.fmtNumber(d.indexedSites), 'Indexed Sites', '');
+            document.getElementById('dash-updated').textContent = 'Snapshot generated ' + Portal.fmtDateTime(d.generatedAt);
+        }
+
+        function renderQuickLinks() {
+            var links = [
+                { href: 'applications/', title: 'Applications', desc: 'Approve business leases and university sponsorships.', permission: 'read' },
+                { href: 'patrons/', title: 'Patrons', desc: 'Patron roster, MRR, cancellations, and expiry.', permission: 'read' },
+                { href: 'scholars/', title: 'Scholars Review', desc: 'Pending scholarly edits and media uploads.', permission: 'read' },
+                { href: 'users/', title: 'Users', desc: 'Portal accounts, roles, and credential resets.', permission: 'users' },
+            ];
+            document.getElementById('dash-quick-links').innerHTML = links
+                .filter(function (l) { return Portal.can(l.permission); })
+                .map(function (l) {
+                    return (
+                        '<a class="quick-link" href="' + l.href + '">' +
+                        '<div class="quick-link-title">' + Portal.escapeHtml(l.title) + '</div>' +
+                        '<div class="quick-link-desc">' + Portal.escapeHtml(l.desc) + '</div></a>'
+                    );
+                })
+                .join('');
+        }
+
+        async function loadOpsStats() {
+            var grid = document.getElementById('ops-stats');
+            try {
+                var s = await Portal.api('/api/crawler/stats/');
+                var queue = s.queue || {};
+                grid.innerHTML =
+                    statCard(Portal.fmtNumber(s.total_sites), 'Total Indexed', '') +
+                    statCard(Portal.fmtNumber(s.active_sites), 'Active', '') +
+                    statCard(Portal.fmtNumber(s.pending_sites), 'Pending', '') +
+                    statCard(Portal.fmtNumber(s.error_sites), 'Errors', '') +
+                    statCard(Portal.fmtNumber(queue.pending), 'Queue Pending', '');
+            } catch (err) {
+                grid.innerHTML = '<div class="state-block error">' + Portal.escapeHtml(err.message) + '</div>';
+            }
+        }
+
+        async function init() {
+            var ctx = await Portal.initShell('dashboard');
+            if (!ctx) return;
+            renderQuickLinks();
+
+            try {
+                renderDashboard(await Portal.api('/api/admin/portal/dashboard/'));
+            } catch (err) {
+                document.getElementById('dash-stats').innerHTML =
+                    '<div class="state-block error">' + Portal.escapeHtml(err.message) + '</div>';
+            }
+
+            if (Portal.can('ops')) {
+                var opsPanel = document.getElementById('dash-ops');
+                opsPanel.hidden = false;
+                loadOpsStats();
+                document.getElementById('ops-refresh').addEventListener('click', loadOpsStats);
+
+                document.getElementById('ops-crawl-btn').addEventListener('click', async function () {
+                    var input = document.getElementById('ops-crawl-domain');
+                    var domain = input.value.trim();
+                    if (!domain) {
+                        Portal.toast('Enter a domain first', 'error');
+                        return;
+                    }
+                    var btn = this;
+                    btn.disabled = true;
+                    try {
+                        var data = await Portal.api('/api/crawl/', { method: 'POST', body: { domain: domain } });
+                        if (data.error) throw new Error(data.error);
+                        Portal.toast('Crawled: ' + (data.title || data.domain || domain) + ' (' + (data.status || 'done') + ')', 'success');
+                        input.value = '';
+                        loadOpsStats();
+                    } catch (err) {
+                        Portal.toast('Crawl failed: ' + err.message, 'error');
+                    } finally {
+                        btn.disabled = false;
+                    }
+                });
+
+                document.getElementById('ops-recrawl-btn').addEventListener('click', async function () {
+                    if (!window.confirm('Re-crawl all active sites now?')) return;
+                    var btn = this;
+                    btn.disabled = true;
+                    try {
+                        var data = await Portal.api('/api/crawl/recrawl/', { method: 'POST', body: {} });
+                        Portal.toast('Re-crawled ' + Portal.fmtNumber(data.total) + ' sites', 'success');
+                        loadOpsStats();
+                    } catch (err) {
+                        Portal.toast('Re-crawl failed: ' + err.message, 'error');
+                    } finally {
+                        btn.disabled = false;
+                    }
+                });
+            }
+        }
+
+        init();
+    })();
+    </script>
+
+<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+</body>
+</html>

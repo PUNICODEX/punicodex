@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNYCODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js" defer></script>
+<!-- PUNYCODEX-ANALYTICS-END -->
+
+<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
+<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Admin Portal — Users | PÚNYCODEX</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../portal.css">
+</head>
+<body data-page="users" data-depth="1">
+    <a class="skip-link" href="#portal-main">Skip to content</a>
+    <div id="portal-header"></div>
+
+    <main id="portal-main" class="portal-main">
+        <div class="portal-page-head">
+            <h1>Portal Users</h1>
+            <p>Admin accounts and roles. Disabling an account destroys its sessions immediately.</p>
+        </div>
+
+        <div id="users-forbidden" hidden>
+            <div class="panel">
+                <div class="state-block error">Forbidden — this section requires the superadmin role.</div>
+            </div>
+        </div>
+
+        <div id="users-app" hidden>
+            <section class="panel" aria-label="Create user">
+                <div class="panel-head">
+                    <div>
+                        <h2 class="panel-title">Create User</h2>
+                        <p class="panel-sub">Leave the password blank to generate a one-time temporary password.</p>
+                    </div>
+                </div>
+                <form id="create-form" class="portal-form-row" novalidate>
+                    <div class="field">
+                        <label for="create-email">Email</label>
+                        <input type="email" id="create-email" autocomplete="off" required>
+                    </div>
+                    <div class="field">
+                        <label for="create-name">Display Name</label>
+                        <input type="text" id="create-name" autocomplete="off">
+                    </div>
+                    <div class="field">
+                        <label for="create-role">Role</label>
+                        <select id="create-role">
+                            <option value="viewer">Viewer — read-only</option>
+                            <option value="ops">Ops — crawler operations</option>
+                            <option value="leasing">Leasing — bookings &amp; patrons</option>
+                            <option value="scholars">Scholars — scholarly review</option>
+                            <option value="superadmin">Superadmin — full access</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="create-password">Password (optional)</label>
+                        <input type="password" id="create-password" autocomplete="new-password" placeholder="Min. 8 characters">
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="create-submit">Create User</button>
+                </form>
+            </section>
+
+            <section class="panel" aria-label="User list">
+                <div class="panel-head">
+                    <h2 class="panel-title">Accounts</h2>
+                    <button type="button" class="btn btn-secondary btn-sm" id="users-refresh">Refresh</button>
+                </div>
+                <div id="users-table">
+                    <div class="state-block">Loading users…</div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="../portal.js"></script>
+    <script>
+    (function () {
+        function showTempPassword(title, email, tempPassword) {
+            Portal.openModal(
+                '<h2>' + Portal.escapeHtml(title) + '</h2>' +
+                '<p class="credential-warning">This password is shown exactly once. Copy it now and relay it to the user out-of-band.</p>' +
+                '<div class="credential-box"><dl>' +
+                '<dt>Account</dt><dd><code>' + Portal.escapeHtml(email) + '</code></dd>' +
+                '<dt>Temp Password</dt><dd><code>' + Portal.escapeHtml(tempPassword) + '</code></dd>' +
+                '</dl></div>' +
+                '<div class="modal-actions">' +
+                '<button type="button" class="btn btn-secondary" id="modal-close">Close</button>' +
+                '<button type="button" class="btn btn-primary" id="modal-copy">Copy Password</button>' +
+                '</div>',
+                title
+            );
+            document.getElementById('modal-close').addEventListener('click', Portal.closeModal);
+            document.getElementById('modal-copy').addEventListener('click', function () {
+                Portal.copyToClipboard(tempPassword, 'Temporary password');
+            });
+        }
+
+        function renderTable(users) {
+            var wrap = document.getElementById('users-table');
+            if (!users.length) {
+                wrap.innerHTML = '<div class="state-block">No portal users.</div>';
+                return;
+            }
+            var rows = users
+                .map(function (u) {
+                    var disabled = u.status !== 'active';
+                    var statusBtn = disabled
+                        ? '<button type="button" class="btn btn-sm btn-success" data-action="enable" data-id="' + u.id + '">Enable</button>'
+                        : '<button type="button" class="btn btn-sm btn-danger" data-action="disable" data-id="' + u.id + '">Disable</button>';
+                    return (
+                        '<tr>' +
+                        '<td><div class="cell-title">' + Portal.escapeHtml(u.email) + '</div></td>' +
+                        '<td>' + Portal.escapeHtml(u.displayName || '—') + '</td>' +
+                        '<td><span class="badge badge--gold">' + Portal.escapeHtml(u.role) + '</span></td>' +
+                        '<td>' + Portal.statusBadge(u.status) + '</td>' +
+                        '<td>' + (u.tempPassword ? '<span class="badge badge--pending">temp</span>' : '<span class="cell-sub">—</span>') + '</td>' +
+                        '<td>' + Portal.escapeHtml(Portal.fmtDateTime(u.lastLoginAt)) + '</td>' +
+                        '<td>' + Portal.escapeHtml(Portal.fmtDate(u.createdAt)) + '</td>' +
+                        '<td><div class="cell-actions">' +
+                        '<button type="button" class="btn btn-sm btn-secondary" data-action="edit" data-id="' + u.id + '">Edit</button>' +
+                        statusBtn +
+                        '<button type="button" class="btn btn-sm btn-secondary" data-action="reset" data-id="' + u.id + '">Reset PW</button>' +
+                        '</div></td>' +
+                        '</tr>'
+                    );
+                })
+                .join('');
+            wrap.innerHTML =
+                '<div class="table-wrap"><table class="portal-table">' +
+                '<thead><tr><th>Email</th><th>Name</th><th>Role</th><th>Status</th><th>Password</th><th>Last Login</th><th>Created</th><th>Actions</th></tr></thead>' +
+                '<tbody>' + rows + '</tbody></table></div>';
+        }
+
+        var cachedUsers = [];
+
+        async function load() {
+            document.getElementById('users-table').innerHTML = '<div class="state-block">Loading users…</div>';
+            try {
+                var data = await Portal.api('/api/admin/portal/users/');
+                cachedUsers = data.items || [];
+                renderTable(cachedUsers);
+            } catch (err) {
+                document.getElementById('users-table').innerHTML =
+                    '<div class="state-block error">' + Portal.escapeHtml(err.message) + '</div>';
+            }
+        }
+
+        function showEditModal(id) {
+            var u = cachedUsers.find(function (x) { return String(x.id) === String(id); });
+            if (!u) return;
+            var roles = ['viewer', 'ops', 'leasing', 'scholars', 'superadmin'];
+            var roleOptions = roles
+                .map(function (r) {
+                    return '<option value="' + r + '"' + (r === u.role ? ' selected' : '') + '>' + r + '</option>';
+                })
+                .join('');
+            Portal.openModal(
+                '<h2>Edit ' + Portal.escapeHtml(u.email) + '</h2>' +
+                '<div class="field"><label for="edit-name">Display Name</label>' +
+                '<input type="text" id="edit-name" value="' + Portal.escapeHtml(u.displayName || '') + '"></div>' +
+                '<div class="field"><label for="edit-role">Role</label>' +
+                '<select id="edit-role">' + roleOptions + '</select></div>' +
+                '<div class="field"><label for="edit-status">Status</label>' +
+                '<select id="edit-status">' +
+                '<option value="active"' + (u.status === 'active' ? ' selected' : '') + '>active</option>' +
+                '<option value="disabled"' + (u.status !== 'active' ? ' selected' : '') + '>disabled</option>' +
+                '</select></div>' +
+                '<div class="modal-actions">' +
+                '<button type="button" class="btn btn-secondary" id="modal-cancel">Cancel</button>' +
+                '<button type="button" class="btn btn-primary" id="modal-save">Save Changes</button>' +
+                '</div>',
+                'Edit user'
+            );
+            document.getElementById('modal-cancel').addEventListener('click', Portal.closeModal);
+            document.getElementById('modal-save').addEventListener('click', async function () {
+                var btn = this;
+                btn.disabled = true;
+                try {
+                    await Portal.api('/api/admin/portal/users/' + id + '/', {
+                        method: 'PATCH',
+                        body: {
+                            displayName: document.getElementById('edit-name').value.trim(),
+                            role: document.getElementById('edit-role').value,
+                            status: document.getElementById('edit-status').value,
+                        },
+                    });
+                    Portal.closeModal();
+                    Portal.toast('User updated', 'success');
+                    load();
+                } catch (err) {
+                    btn.disabled = false;
+                    Portal.toast('Update failed: ' + err.message, 'error');
+                }
+            });
+        }
+
+        async function disableUser(id) {
+            if (!window.confirm('Disable this account? Its sessions are destroyed immediately.')) return;
+            try {
+                await Portal.api('/api/admin/portal/users/' + id + '/disable/', { method: 'POST', body: {} });
+                Portal.toast('Account disabled', 'success');
+                load();
+            } catch (err) {
+                Portal.toast('Disable failed: ' + err.message, 'error');
+            }
+        }
+
+        async function enableUser(id) {
+            try {
+                await Portal.api('/api/admin/portal/users/' + id + '/', {
+                    method: 'PATCH',
+                    body: { status: 'active' },
+                });
+                Portal.toast('Account enabled', 'success');
+                load();
+            } catch (err) {
+                Portal.toast('Enable failed: ' + err.message, 'error');
+            }
+        }
+
+        async function resetPassword(id) {
+            var u = cachedUsers.find(function (x) { return String(x.id) === String(id); });
+            if (!window.confirm('Reset the password for ' + (u ? u.email : 'this account') + '? All existing sessions are destroyed.')) return;
+            try {
+                var data = await Portal.api('/api/admin/portal/users/' + id + '/reset-password/', {
+                    method: 'POST',
+                    body: {},
+                });
+                if (data.tempPassword) {
+                    showTempPassword('Password Reset', (data.user && data.user.email) || (u ? u.email : ''), data.tempPassword);
+                } else {
+                    Portal.toast('Password reset', 'success');
+                }
+                load();
+            } catch (err) {
+                Portal.toast('Reset failed: ' + err.message, 'error');
+            }
+        }
+
+        async function init() {
+            var ctx = await Portal.initShell('users');
+            if (!ctx) return;
+
+            if (!Portal.can('users')) {
+                document.getElementById('users-forbidden').hidden = false;
+                return;
+            }
+            document.getElementById('users-app').hidden = false;
+
+            document.getElementById('users-refresh').addEventListener('click', load);
+            document.getElementById('users-table').addEventListener('click', function (e) {
+                var btn = e.target.closest('button[data-action]');
+                if (!btn) return;
+                var id = btn.getAttribute('data-id');
+                var action = btn.getAttribute('data-action');
+                if (action === 'edit') showEditModal(id);
+                else if (action === 'disable') disableUser(id);
+                else if (action === 'enable') enableUser(id);
+                else if (action === 'reset') resetPassword(id);
+            });
+
+            document.getElementById('create-form').addEventListener('submit', async function (e) {
+                e.preventDefault();
+                var email = document.getElementById('create-email').value.trim();
+                var displayName = document.getElementById('create-name').value.trim();
+                var role = document.getElementById('create-role').value;
+                var password = document.getElementById('create-password').value;
+                if (!email) {
+                    Portal.toast('Email is required', 'error');
+                    return;
+                }
+                if (password && password.length < 8) {
+                    Portal.toast('Password must be at least 8 characters', 'error');
+                    return;
+                }
+                var btn = document.getElementById('create-submit');
+                btn.disabled = true;
+                try {
+                    var body = { email: email, role: role };
+                    if (displayName) body.displayName = displayName;
+                    if (password) body.password = password;
+                    var data = await Portal.api('/api/admin/portal/users/', { method: 'POST', body: body });
+                    document.getElementById('create-form').reset();
+                    if (data.tempPassword) {
+                        showTempPassword('User Created', (data.user && data.user.email) || email, data.tempPassword);
+                    } else {
+                        Portal.toast('User created', 'success');
+                    }
+                    load();
+                } catch (err) {
+                    Portal.toast('Create failed: ' + err.message, 'error');
+                } finally {
+                    btn.disabled = false;
+                }
+            });
+
+            load();
+        }
+
+        init();
+    })();
+    </script>
+
+<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+</body>
+</html>

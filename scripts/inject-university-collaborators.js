@@ -18,8 +18,8 @@ const HEAD_MARKER_END = '<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->';
 const BODY_MARKER_START = '<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-BODY-START -->';
 const BODY_MARKER_END = '<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-BODY-END -->';
 
-const CSS_PATH = '/css/university-collaborators.css';
-const JS_PATH = '/js/university-collaborators.js';
+const CSS_PATH = '/css/university-collaborators.css?v=2';
+const JS_PATH = '/js/university-collaborators.js?v=2';
 
 function buildHeadSnippet() {
   return `\n${HEAD_MARKER_START}\n<link rel="stylesheet" href="${CSS_PATH}">\n<script src="${JS_PATH}" defer></script>\n${HEAD_MARKER_END}\n`;
@@ -91,8 +91,14 @@ function withRetry(fn, attempts = 3, delayMs = 50) {
 function injectIntoFile(filePath, headSnippet, bodySnippet) {
   const html = withRetry(() => fs.readFileSync(filePath, 'utf8'));
 
-  // Already present and consistent — nothing to do.
-  if (html.includes(HEAD_MARKER_START) && html.includes(BODY_MARKER_START)) {
+  // Already present and consistent (same marker block AND current versioned
+  // asset URLs) — nothing to do. Older snippet versions are re-injected below.
+  if (
+    html.includes(HEAD_MARKER_START) &&
+    html.includes(BODY_MARKER_START) &&
+    html.includes(`href="${CSS_PATH}"`) &&
+    html.includes(`src="${JS_PATH}"`)
+  ) {
     return true;
   }
 

@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,38 +170,190 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>The Hidden History Behind Vāc</h1>
-<p>Behind the modern ASCII <em>vac</em> hides a longer story. The name is attested in Devanagari as वाच्. It is the ordinary Sanskrit noun vāc, &quot;speech, voice&quot;; Monier-Williams records her personification in various manners — as Vāc Āmbhṛṇī of Ṛgveda 10.125 and as the voice of the middle sphere in the Nirukta tradition. The reconstructed proto-form is u̯ēkʷ-s (proto-indo-european, &quot;speech, voice&quot;). From Vedic vāc- &#39;speech, voice&#39;, continuing Proto-Indo-European u̯ēkʷ-s &#39;speech, voice&#39;, reflected in Latin vōx and Greek ἔπος. Cognate forms across related languages: - vōx (latin) — &#39;voice&#39; (Lewis-Short) - ἔπος (greek) — &#39;word, speech&#39; (LSJ) The ASCII form vac survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode... That history reaches back through manuscripts, inscriptions, and oral traditions before it ever reached a keyboard.</p>
-<h2>Etymology</h2>
-<p>From Vedic vāc- &#39;speech, voice&#39;, continuing Proto-Indo-European <em>u̯ēkʷ-s &#39;speech, voice&#39;, reflected in Latin vōx and Greek ἔπος. Reconstructed proto-forms such as </em><em>u̯ēkʷ-s</em> give linguists a ladder back toward the name&#39;s earliest sound. The traditional gloss is &quot;Speech personified (in various manners or forms, e.g. as Vāc Āmbhṛṇī in RV. x, 125; as the voice of the middle sphere in Naigh. &amp; Nir.; in the Veda she is also represented as.&quot;</p>
-<h2>In Myth</h2>
-<p>The mythology of Vāc is the mythology of language becoming power . In the Ṛgveda she is already a goddess; in the Brāhmaṇas she becomes the consort of the creator; in the Purāṇas her identity is absorbed into Sarasvatī, but her Vedic hymns remain among the most astonishing claims for the sacredness of speech ever composed. These narratives are not dusty footnotes; they are the reason the name acquired its resonance.</p>
-<h2>Across Cultures</h2>
-<p>Vāc is the Vedic counterpart of a pan-Indo-European reverence for the spoken word. Her root wekʷ- connects her to Latin vōx, English voice, and the whole family of &quot;vocal&quot; words across the West. Within India, she is absorbed into Sarasvatī, just as Sarasvatī herself absorbs the river goddess of the same name. In tantric and later Hindu traditions, the power of speech becomes vāc-śakti, the creative energy that manifests thought into form. Buddhist philosophy debates the status of vāc — is speech ultimately real, or a conventional designation? — and the term survives in Pali and Sanskrit grammatical literature. Vāc is thus both a specific Vedic goddess and a persistent theory: that the world is, in some sense, made of words. Within the Sanskrit... Names travel, adapt, and accumulate meanings. Tracking that travel is part of what makes the restoration worthwhile.</p>
-<h2>The Unicode Decision</h2>
-<p>Restoring Vāc is not an aesthetic choice. It is a decision to honor the name as attested rather than the name as flattened by ASCII. That choice is documented in the <a href="/sites/vac/scholars/">Scholarly Edition</a> and defended by the sources below.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Vāc is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>The hidden history behind Vāc</h1>
+<p>Behind the modern ASCII form <em>vac</em> hides a much longer story. <strong>Vāc</strong> reaches back through manuscripts, inscriptions, and oral tradition long before it ever touched a keyboard, and every mark in the restored spelling is a receipt from that journey. In what follows we trace the name from its Devanagari attestations through its mythology, its cult, its symbols, and its afterlife in other cultures — and we show how the PÚNYCODEX project turned that philological record into a Unicode domain that resolves today. The history was never lost. It was only waiting for the infrastructure to catch up.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Vāc</li>
+  <li><strong>ASCII form:</strong> vac</li>
+  <li><strong>Meaning:</strong> &quot;Speech personified (in various manners or forms, e.g. as Vāc Āmbhṛṇī in RV. x, 125; as the voice of the middle sphere in Naigh. &amp; Nir.; in the Veda she is also represented as&quot;</li>
+  <li><strong>Domain of influence:</strong> Speech, Voice, Sacred Word</li>
+  <li><strong>Pantheon:</strong> Sanskrit</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> वाच् (Devanagari)</li>
+  <li><strong>Live domain:</strong> vāc.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Vāc</strong> (<em>vac</em>) — Speech, Voice, Sacred Word · Speech personified; the Vedic goddess of speech and sound, precursor to Sarasvatī. — belongs to the Sanskrit tradition, where it is catalogued under the domain &quot;Speech, Voice, Sacred Word&quot;. The Sanskrit noun <em>vāc</em> means &quot;speech, voice, word&quot;; Monier-Williams records her personification in the Veda in various forms, above all as Vāc Āmbhṛṇī, the seer who speaks Ṛgveda 10.125.</p>
+<p>Vāc is not just &quot;voice.&quot; In Vedic India, she is the <strong>divine power of speech</strong> by which the gods create, the poets see, and the ritual comes alive. She is the word that precedes the world: before anything is, it must be named. To the theologians of the Brāhmaṇas, Vāc is the mother of the Vedas, the consort of Prajāpati, and the creative energy that turns silence into cosmos. She is the precursor of Sarasvatī, the river-goddess of wisdom and art.</p>
+<p>PÚNYCODEX restores the name as <strong>Vāc</strong> and serves its temple at <a href="https://xn--vc-dla.com">vāc.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>vac</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Devanagari as <strong>वाच्</strong>. It is the ordinary Sanskrit noun <em>vāc</em>, &quot;speech, voice&quot;; Monier-Williams records her personification in various manners — as Vāc Āmbhṛṇī of Ṛgveda 10.125 and as the voice of the middle sphere in the Nirukta tradition.</p>
+<p>The reconstructed proto-form is <em>u̯ēkʷ-s</em> (proto-indo-european, &quot;speech, voice&quot;). From Vedic vāc- &#39;speech, voice&#39;, continuing Proto-Indo-European *u̯ēkʷ-s &#39;speech, voice&#39;, reflected in Latin vōx and Greek ἔπος.</p>
+<p>Cognate forms across related languages:</p>
+<ul>
+  <li><strong>vōx</strong> (latin) — &#39;voice&#39; (Lewis-Short)</li>
+  <li><strong>ἔπος</strong> (greek) — &#39;word, speech&#39; (LSJ)</li>
+</ul>
+<p>The ASCII form <em>vac</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Vāc</strong> recovers the vowel length of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>v</strong> → <strong>V</strong> — Same</li>
+  <li><strong>a</strong> → <strong>ā</strong> — Macron: long a</li>
+  <li><strong>c</strong> → <strong>c</strong> — Same</li>
+</ul>
+<p>The project holds the domain <strong>vāc.com</strong> (xn--vc-dla.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: From Vedic vāc- &#39;speech, voice&#39;, continuing Proto-Indo-European *u̯ēkʷ-s &#39;speech, voice&#39;, reflected in Latin vōx and Greek ἔπος.</p>
+<p>The reconstructed proto-form is <em>*u̯ēkʷ-s</em> (proto-indo-european), glossed as &quot;speech, voice&quot;.</p>
+<p>The reconstruction is classed as attested.</p>
+<p>Kindred forms recorded in the lexicon:</p>
+<ul>
+  <li><strong>vōx</strong> (latin) — &#39;voice&#39; (Lewis-Short)</li>
+  <li><strong>ἔπος</strong> (greek) — &#39;word, speech&#39; (LSJ)</li>
+</ul>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Devanagari as <strong>वाच्</strong> — Brahmic abugida, attested Vedic – present, c. 1500 BCE –, in South Asia. The script is written left-to-right.</p>
+<p>The scholarly transliteration is <em>Vāc</em> (IAST), giving the normalized reading /ˈʋaːtʃ/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>Sanskrit Vāc is written वाच् in Devanagari.</li>
+  <li>Each aksara combines a consonant with an inherent or explicit vowel.</li>
+  <li>IAST diacritics preserve length, retroflexion, and aspiration lost in plain ASCII.</li>
+  <li>The Devanagari form is not used as the primary domain because Indic scripts are not in the .com IDN table.</li>
+</ul>
+<p>The Devanagari form is <strong>वाच्</strong> (v-ā-c + virāma). IAST <em>Vāc</em> marks the long vowel ā with a macron; the dot beneath the c would be used for a retroflex consonant, but here the plain c represents the palatal affricate च. The virāma on च् signals the consonant is final, so the name is pronounced as a single closed syllable, /ʋaːtʃ/.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/ʋaːtʃ/</strong> — Vedic Sanskrit Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>V-</strong> — Labiodental approximant [ʋ], softer than English v; the lips almost meet but do not buzz.</li>
+  <li><strong>-ā-</strong> — Long open back vowel [aː], held roughly twice the length of short a; the macron is the vowel&#39;s length, not stress.</li>
+  <li><strong>-c</strong> — Voiceless palatal affricate [tɕ] or [tʃ], like English &quot;ch&quot; but more forward on the palate; the virāma marks that no vowel follows.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &quot;VAHCH&quot; — one long syllable, like &quot;watch&quot; but with the vowel drawn out and a crisper final &quot;ch.&quot;</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>PIE</strong> — *wekʷ- (&quot;to speak&quot;) — the root behind Latin vox, vocāre; English voice, vocabulary</li>
+  <li><strong>Latin</strong> — vōx, vōcis, &quot;voice, call, word&quot;</li>
+  <li><strong>Avestan</strong> — vāc, &quot;word, speech&quot; — the cognate in the sister Iranian tradition</li>
+  <li><strong>Sanskrit derivatives</strong> — vācaka (speaker), vācya (to be spoken), vāṇī (eloquence, voice)</li>
+</ul>
+<p>Vāc is Tier 2 because the registrable form Vāc preserves the long ā (macron) but carries no stress mark. Vedic Sanskrit was pitch-accented, but the position of the accent in Vāc is not normally encoded in transliteration. The virāma on the Devanagari च् indicates the consonant is final, making the name a single closed syllable: vāc.</p>
+<h2 id="mythology">Mythology</h2>
+<p>The mythology of Vāc is the mythology of <strong>language becoming power</strong>. In the Ṛgveda she is already a goddess; in the Brāhmaṇas she becomes the consort of the creator; in the Purāṇas her identity is absorbed into Sarasvatī, but her Vedic hymns remain among the most astonishing claims for the sacredness of speech ever composed.</p>
+<h3 id="the-devi-sukta-i-am-the-queen-of-the-universe-rgveda">The Devi Sukta: I Am the Queen of the Universe (Ṛgveda)</h3>
+<p>Ṛgveda 10.125 is Vāc&#39;s great hymn. She declares: &quot;I am the queen, the gatherer of treasures, the first among those worthy of sacrifice. The gods have set me in many places, so that I dwell in many forms.&quot; She animates the atmosphere, the earth, and the heavens; she is the power by which the sun gives light and the soma-press flows. This is not metaphor: for the Vedic poet, speech is a cosmic force as real as fire or wind.</p>
+<h3 id="prajapati-and-the-creation-by-speech-brahmana">Prajāpati and the Creation by Speech (Brāhmaṇa)</h3>
+<p>In the Śatapatha Brāhmaṇa, Prajāpati desires to create. He utters the syllables &quot;Bhūr, Bhuvaḥ, Svaḥ&quot; — earth, atmosphere, heaven — and Vāc is the power that makes the utterance real. She is both his daughter and his consort, the female principle that completes the creator. The myth dramatizes a deep Vedic intuition: creation is not by hand but by word, and the word needs a speaker and a power of articulation.</p>
+<h3 id="the-hotr-and-the-power-of-correct-recitation-ritual">The Hotṛ and the Power of Correct Recitation (Ritual)</h3>
+<p>Every Vedic sacrifice depends on the hotṛ, the priest who recites. His voice is not his own; it is the vehicle of Vāc. A mistake in accent, a wrong syllable, could break the ritual and endanger the cosmos. The science of phonetics — śikṣā — developed to protect Vāc from human error. In this sense, grammar is theology: to speak correctly is to keep the world in order.</p>
+<h3 id="from-vac-to-sarasvati-syncretism">From Vāc to Sarasvatī (Syncretism)</h3>
+<p>By the late Vedic and epic periods, Vāc is increasingly identified with Sarasvatī, the river goddess who becomes the goddess of learning, music, and eloquence. The name Vāc never fully disappears — it remains in philosophical vocabulary — but its mythic role is carried forward by Sarasvatī. What begins as the raw power of speech becomes the refined goddess of culture and art.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>Vāc&#39;s attributes are few, because her essence is sound rather than form; each figures speech under a different aspect:</p>
+<ul>
+  <li><strong>The tongue (jihvā)</strong> — Her seat in the human body: the organ through which the goddess passes from silence into sound.</li>
+  <li><strong>The milch-cow (dhenu)</strong> — In the Brāhmaṇas Vāc is figured as a cow, lowing for her calf and yielding the milk of song, meter, and oblation — speech as the nourishment of the sacrifice.</li>
+  <li><strong>Flowing water</strong> — Speech runs like a river and joins heaven and earth; her later identity, Sarasvatī, is itself the name of the Vedic river.</li>
+  <li><strong>The vīṇā</strong> — Borrowed from Sarasvatī&#39;s mature iconography: music as structured, measured speech.</li>
+  <li><strong>The book (Veda)</strong> — The revealed text of which she is mother and source, carried in Sarasvatī&#39;s hand in post-Vedic images.</li>
+</ul>
+<p>The first two emblems are Vedic; the last three belong to her second life as Sarasvatī — the iconography itself records the fusion.</p>
+<ul>
+  <li><strong>The veena</strong> — Borrowed from her later form Sarasvatī — music as structured, beautiful speech.</li>
+  <li><strong>The lotus book</strong> — The Vedas as the revealed text of which Vāc is the source.</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Vāc has no temple archaeology in the ordinary sense: no Vedic-period image of her is known, and her cult was always liturgical rather than iconic. Her material record is the Ṛgveda itself — a text fixed not by inscription but by an oral transmission so exact that UNESCO proclaimed the tradition of Vedic chanting a Masterpiece of the Oral and Intangible Heritage of Humanity (2003; inscribed on the Representative List in 2008). The earliest surviving manuscripts of the Saṃhitā — birch-bark and paper copies from Kashmir and Nepal — reach back only to the later medieval centuries; institutions such as the Bhandarkar Oriental Research Institute in Pune preserve the great Devanāgarī copies of the 15th–19th centuries.</p>
+<p>Her geological echo is the Sarasvatī: the dried Ghaggar-Hakra palaeochannel traced past Kalibangan, Bhirrana, and Rakhigarhi records the river whose name her later form bears, though the identification of the Vedic river with this channel remains debated among archaeologists.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Vāc is not just &quot;voice.&quot; In Vedic India, she is the <strong>divine power of speech</strong> by which the gods create, the poets see, and the ritual comes alive. She is the word that precedes the world: before anything is, it must be named. To the theologians of the Brāhmaṇas, Vāc is the mother of the Vedas, the consort of Prajāpati, and the creative energy that turns silence into cosmos. She is the precursor of Sarasvatī, the river-goddess of wisdom and art.</p>
+<h3 id="sacred-speech">Sacred Speech</h3>
+<p>Vāc is the power that makes mantra effective; the right word, rightly spoken, is a creative act.</p>
+<h3 id="the-flowing-river">The Flowing River</h3>
+<p>Speech flows like water; Vāc is associated with rivers, streams, and the Sarasvatī herself.</p>
+<h3 id="the-book-of-knowledge">The Book of Knowledge</h3>
+<p>As the mother of the Vedas, Vāc is the source of revealed wisdom and scholarly learning.</p>
+<h3 id="creative-word">Creative Word</h3>
+<p>Prajāpati creates by uttering &quot;Bhūr, Bhuvaḥ, Svaḥ&quot; — Vāc is the energy that turns the utterance into reality.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Vāc is the Vedic counterpart of a pan-Indo-European reverence for the spoken word. Her root *wekʷ- connects her to Latin vōx, English voice, and the whole family of &quot;vocal&quot; words across the West. Within India, she is absorbed into Sarasvatī, just as Sarasvatī herself absorbs the river goddess of the same name. In tantric and later Hindu traditions, the power of speech becomes vāc-śakti, the creative energy that manifests thought into form. Buddhist philosophy debates the status of vāc — is speech ultimately real, or a conventional designation? — and the term survives in Pali and Sanskrit grammatical literature. Vāc is thus both a specific Vedic goddess and a persistent theory: that the world is, in some sense, made of words.</p>
+<p>Within the Sanskrit tradition, closely related names in the corpus include [[durga|Durgā]], [[ganesha|Gaṇeśa]], [[kali|Kālī]], [[lakshmi|Lakṣmī]], [[nirmata|Nirmātā]], and [[om|Oṃ]].</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Vāc&#39;s legacy is the sanctity of speech in Indian civilization. The Vedas are not merely old poems; they are believed to be the very breath of Vāc, eternal and unauthored. Grammar (vyākaraṇa), phonetics (śikṣā), and ritual science (kalpa) all developed to preserve her purity. The idea that a correctly pronounced mantra has real power — that sound can protect, heal, or create — flows from Vāc into Hindu, Buddhist, and Jain practice. In modern India, Sarasvatī is worshipped by students and artists, but the Vedic hymn to Vāc remains the theological foundation: &quot;I move with the Rudras, with the Vasus, with the Ādityas...&quot; (ṚV 10.125). The concept also echoes in Western thought: the opening of John&#39;s Gospel, &quot;In the beginning was the Word,&quot; has often been compared to Vedic Vāc. Speech, in both traditions, is not an afterthought but the first creative act.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Vāc given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Monier-Williams Sanskrit-English Dictionary.</li>
+  <li> Macdonell, Sanskrit Grammar for Students.</li>
+  <li> Ṛgveda 10.125 (Devi Sukta).</li>
+  <li> Śatapatha Brāhmaṇa.</li>
+  <li> Mayrhofer, EWAia.</li>
+  <li> Gonda, The Vision of the Vedic Poets.</li>
+  <li> Ṛgveda Saṃhitā 10.71 (birth and distribution of speech among humankind).</li>
+  <li> Ṛgveda Saṃhitā 1.164 (Vāc as the milch-cow and Sarasvatī).</li>
+  <li> Bṛhadāraṇyaka Upaniṣad 4.1.2 (Vāc as queen of the senses).</li>
+  <li> Maitrāyaṇīya Upaniṣad 6.22 (Vāc and the realization of Brahman).</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Vāc teaches that words are not cheap. In a culture saturated with noise, the Vedic idea that speech is a goddess feels almost impossible. But that is precisely the point: every word either participates in order or adds to the lie. Vāc is not freedom of speech in the modern sense; she is responsibility of speech — the demand that what we say correspond to what is real, that our utterances build rather than damage.</p>
+<p>The poet who composed Ṛgveda 10.125 heard speech as a presence larger than himself. He was not the owner of his words; he was their vehicle. That is why the Vedic tradition insists on exact recitation: the word must be passed on unchanged, because the word is alive. To speak with care, to listen with attention, to refuse the easy lie — these are small acts, but in the theology of Vāc they are cosmic acts. Every true sentence is a sacrifice; every honest conversation feeds the fire of the world.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Vāc is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>vac</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 3 characters of the name, the restoration adjusts 1: 1 mark of length (ā). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>vāc.com</strong>, which the DNS carries in punycode form as xn--vc-dla.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Vāc; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Devanagari can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>The story of Vāc did not end in antiquity; it changed medium. Names that survive for millennia do so because each generation finds a new carrier for them — clay, papyrus, print, and now DNS. The PÚNYCODEX restoration simply makes the carrier honest: the spelling that resolves is the spelling the evidence supports. If this post showed anything, it is that <em>vac</em> and <strong>Vāc</strong> are not the same name with different styling. They are a summary and the text it summarizes. The web can now serve the text.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/savitri/">Sāvitrī</a></li>
   <li><a href="/sites/shakti/">Śakti</a></li>
   <li><a href="/sites/shiva/">Śiva</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.sanskrit-lexicon.uni-koeln.de/">Arthur A. Macdonell, A Sanskrit-English Dictionary, Oxford; Cologne Digital Sanskrit Dictionaries, 1893.</a></li>
   <li><a href="https://sacred-texts.com/hin/rigveda/">Ṛgveda Saṃhitā, Translated by Ralph T. H. Griffith, 1500 BCE.</a></li>
+  <li>Monier-Williams Sanskrit-English Dictionary.</li>
+  <li>Macdonell, A. A., Vedic Mythology (1897), on Vāc.</li>
+  <li>Ṛgveda 10.125 (Devi Sukta).</li>
+  <li>Macdonell, Sanskrit Grammar for Students.</li>
+  <li>Lexicon authorities for this entry: Ṛgveda, Monier-Williams, Macdonell.</li>
 </ul>
-<h2>The Cultural Afterlife</h2>
-<p>Vāc&#39;s legacy is the sanctity of speech in Indian civilization. The Vedas are not merely old poems; they are believed to be the very breath of Vāc, eternal and unauthored. Grammar (vyākaraṇa), phonetics (śikṣā), and ritual science (kalpa) all developed to preserve her purity. The idea that a correctly pronounced mantra has real power — that sound can protect, heal, or create — flows from Vāc into Hindu, Buddhist, and Jain practice. In modern India, Sarasvatī is worshipped by students and artists, but the Vedic hymn to Vāc remains the theological foundation: &quot;I move with the Rudras, with the Vasus, with the Ādityas...&quot; (ṚV 10.125). The concept also echoes in Western thought: the opening of John&#39;s Gospel, &quot;In the beginning was the Word,&quot; has often been...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Vāc as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Devanagari to the modern browser. Every visit to this temple is a small act of preservation.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">sanskrit</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

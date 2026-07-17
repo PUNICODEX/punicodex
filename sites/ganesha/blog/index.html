@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,35 +170,206 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-sanskrit-pantheon">The Sanskrit Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#typing-ganesa">Typing Gaṇeśa</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>From Devanagari to Unicode: The Journey of Gaṇeśa</h1>
-<p>Long before it was a domain, the name traveled through scripts. The name is written in Devanagari as गणेश. Devanagari is a Brahmic abugida — each consonant sign carries an inherent vowel — written left-to-right; it descends from Brāhmī through the Nāgarī scripts, is attested in inscriptions from about the 7th century CE, and is today the standard script of Sanskrit, Hindi, and Marathi. The scholarly transliteration is Gaṇeśa (IAST), giving the normalized reading /ɡəˈɳeːɕə/. The rendering proceeds step by step: - Sanskrit Gaṇeśa is written गणेश in Devanagari — akṣaras ग (ga), णे (ṇe), श (śa). - IAST diacritics preserve retroflexion and sibilant quality lost in plain ASCII: the dot beneath ṇ marks the retroflex nasal, ś the palatal sibilant. - The vowel e is inherently long in Sanskrit, descending from the earlier... This post follows Gaṇeśa from its earliest attestation to the address bar.</p>
-<h2>The Original Sign</h2>
-<p>The original script gives us <strong>गणेश</strong>. The name is written in Devanagari as गणेश. Devanagari is a Brahmic abugida — each consonant sign carries an inherent vowel — written left-to-right; it descends from Brāhmī through the Nāgarī scripts, is attested in inscriptions from about the 7th century CE, and is today the standard script of Sanskrit, Hindi, and Marathi. The scholarly transliteration is Gaṇeśa (IAST), giving the normalized reading /ɡəˈɳeːɕə/. The rendering proceeds step by step: - Sanskrit Gaṇeśa is written गणेश in Devanagari — akṣaras ग (ga), णे (ṇe), श (śa). - IAST diacritics preserve retroflexion and sibilant quality lost in plain ASCII: the dot beneath ṇ marks the retroflex nasal, ś the palatal sibilant. - The vowel e is inherently long in Sanskrit, descending from the earlier...</p>
-<h2>The Scholarly Transliteration</h2>
-<p>The name is attested in Devanagari as गणेश. Etymologically it means &quot;Lord of the gaṇas (from गणेश)&quot;. Sanskrit tatpuruṣa compound of gaṇa- &#39;host, troop&#39; and īśa- &#39;lord&#39;, meaning &#39;Lord of the Hosts&#39;. Cognate forms across related languages: - gaṇa- (sanskrit) — &#39;host, troop&#39; (MW, KEWA) - īśa- (sanskrit) — &#39;lord, master&#39; (MW, KEWA) The ASCII form ganesha survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Gaṇeśa recovers the full diacritic detail of the scholarly transliteration directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The... Scholars settled on Gaṇeśa as the registrable restoration: faithful enough to be recognizable, precise enough to carry the marks that matter.</p>
-<h2>DNS as a Time Machine</h2>
-<p>Punycode lets the DNS carry non-ASCII characters without breaking older routers. To the user, the address bar shows Gaṇeśa; to the infrastructure, it is an encoded xn-- string. The duality is invisible, but the result is revolutionary: a pre-digital name living inside a post-digital system.</p>
-<h2>Pronunciation</h2>
-<p>Scholars reconstruct the sound as <em>&#39;guh-NAH-shuh&#39; — say the second syllable with a bright, held &#39;ay&#39; sound and a soft, tongue-tip n.</em>. Hearing the name in your own voice is one way to make the restoration personal.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Gaṇeśa is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>From Devanagari to Unicode: the journey of Gaṇeśa</h1>
+<p>Long before it was a domain, this name traveled through scripts. <strong>Gaṇeśa</strong> begins in Devanagari, passes through scholarly transliteration, and ends — for now — inside the punycode machinery of the global DNS. Each stage of that journey preserves some information and loses some, and the craft of restoration is knowing exactly which marks matter. This post follows the name stage by stage: the original script, the reconstructed pronunciation, the mythological record, the material evidence, and finally the Unicode form that carries all of it into the address bar. Think of it as a biography of a name, told through its spelling.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Gaṇeśa</li>
+  <li><strong>ASCII form:</strong> ganesha</li>
+  <li><strong>Meaning:</strong> &quot;Lord of the gaṇas (from गणेश)&quot;</li>
+  <li><strong>Domain of influence:</strong> Wisdom, Beginnings, Obstacle-Removal</li>
+  <li><strong>Pantheon:</strong> Sanskrit</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> गणेश (Devanagari)</li>
+  <li><strong>Live domain:</strong> Gaṇeśa.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Gaṇeśa</strong> (Sanskrit गणेश, from gaṇa- &#39;host, troop&#39; + īśa- &#39;lord&#39;: &#39;lord of the hosts&#39;) is the elephant-headed god of beginnings and the remover of obstacles, son of [[shiva|Śiva]] and Pārvatī, invoked at the head of every rite, journey, and new undertaking in the Hindu world. His cult is comparatively late — the Ṛgveda knows the compound <em>gaṇapati</em> only as an epithet of other gods — but by the Gupta age his images are firmly established, and the medieval Gāṇapatya sect eventually elevated him to the status of supreme deity. As Vighneśvara, &#39;lord of obstacles&#39;, he both places and removes the impediments that cluster at every threshold; as Gaṇapati he commands the gaṇas, the unruly spirit-hosts of his father&#39;s retinue.</p>
+<p>PÚNYCODEX restores the name as <strong>Gaṇeśa</strong> and serves its temple at <a href="https://xn--gaea-n5a6355b.com">Gaṇeśa.com</a>. The retroflex ṇ and palatal ś recover the phonology of the Sanskrit original; because Sanskrit accentuation is pitch-based and unwritten, the restoration carries this single phonological layer and the name sits in Tier 2. The ASCII form <em>ganesha</em> is a modern convention of the early domain-name system, not an ancient spelling.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Devanagari as <strong>गणेश</strong>. Etymologically it means &quot;Lord of the gaṇas (from गणेश)&quot;.</p>
+<p>Sanskrit tatpuruṣa compound of gaṇa- &#39;host, troop&#39; and īśa- &#39;lord&#39;, meaning &#39;Lord of the Hosts&#39;.</p>
+<p>Cognate forms across related languages:</p>
+<ul>
+  <li><strong>gaṇa-</strong> (sanskrit) — &#39;host, troop&#39; (MW, KEWA)</li>
+  <li><strong>īśa-</strong> (sanskrit) — &#39;lord, master&#39; (MW, KEWA)</li>
+</ul>
+<p>The ASCII form <em>ganesha</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Gaṇeśa</strong> recovers the full diacritic detail of the scholarly transliteration directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>g</strong> → <strong>G</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Short /a/</li>
+  <li><strong>n</strong> → <strong>ṇ</strong> — N-dot-under: retroflex /ɳ/</li>
+  <li><strong>e</strong> → <strong>e</strong> — Short /e/</li>
+  <li><strong>s</strong> → <strong>ś</strong> — S-acute: palatal /ɕ/</li>
+  <li><strong>h</strong> → <strong>—</strong> — Dropped: digraph simplified</li>
+  <li><strong>a</strong> → <strong>a</strong> — Short /a/</li>
+</ul>
+<p>The project holds the domain <strong>Gaṇeśa.com</strong> (xn--gaea-n5a6355b.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: Sanskrit tatpuruṣa compound of gaṇa- &#39;host, troop&#39; and īśa- &#39;lord&#39;, meaning &#39;Lord of the Hosts&#39;.</p>
+<p>The reconstruction is classed as attested.</p>
+<p>Kindred forms recorded in the lexicon:</p>
+<ul>
+  <li><strong>gaṇa-</strong> (sanskrit) — &#39;host, troop&#39; (MW, KEWA)</li>
+  <li><strong>īśa-</strong> (sanskrit) — &#39;lord, master&#39; (MW, KEWA)</li>
+</ul>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is written in Devanagari as <strong>गणेश</strong>. Devanagari is a Brahmic abugida — each consonant sign carries an inherent vowel — written left-to-right; it descends from Brāhmī through the Nāgarī scripts, is attested in inscriptions from about the 7th century CE, and is today the standard script of Sanskrit, Hindi, and Marathi.</p>
+<p>The scholarly transliteration is <em>Gaṇeśa</em> (IAST), giving the normalized reading /ɡəˈɳeːɕə/. The rendering proceeds step by step:</p>
+<ul>
+  <li>Sanskrit Gaṇeśa is written गणेश in Devanagari — akṣaras ग (ga), णे (ṇe), श (śa).</li>
+  <li>IAST diacritics preserve retroflexion and sibilant quality lost in plain ASCII: the dot beneath ṇ marks the retroflex nasal, ś the palatal sibilant.</li>
+  <li>The vowel e is inherently long in Sanskrit, descending from the earlier diphthong *ai.</li>
+  <li>The name is a tatpuruṣa compound of gaṇa- (&#39;host, troop&#39;) and īśa- (&#39;lord, master&#39;); the older form Gaṇapati (गणपति), already an epithet in Vedic texts, is built on the same root.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/ɡɐ.ɳeː.ʂɐ/</strong> — Sanskrit/Vedic Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Ga-</strong> — Initial velar [ɡ] followed by short, open [ɐ] — the soft ground from which the name rises.</li>
+  <li><strong>-ṇe-</strong> — Retroflex nasal [ɳ] plus long [eː], a resonant, elevated syllable that distinguishes Gaṇeśa from common gana.</li>
+  <li><strong>-śa</strong> — Palatal sibilant [ʂ] (or [ɕ] in some traditions) plus short [ɐ] — the śakti of sound and auspiciousness.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;guh-NAH-shuh&#39; — say the second syllable with a bright, held &#39;ay&#39; sound and a soft, tongue-tip n.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Sanskrit</strong> — गणेश (Gaṇeśa), from gaṇa (&#39;troop, host, category&#39;) + īśa (&#39;lord, master&#39;)</li>
+  <li><strong>Vedic root</strong> — gaṇ- appears already in the Ṛgveda for divine hosts; īśa is the sovereign power behind a thing</li>
+  <li><strong>Tamil/Marathi kin</strong> — Pillaiyar / Gaṇapati — the same figure refracted through regional phonology and devotion</li>
+</ul>
+<p>The IAST form Gaṇeśa marks the retroflex ṇ and the palatal ś. The acute-looking mark above the e is a macron in scholarly usage, indicating the long vowel ē that Sanskrit inherits from the diphthong ai. Devanagari गणेश is the everyday script of worship.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Gaṇeśa&#39;s myths are among the most beloved in South Asia, weaving together domestic drama, divine error, and comic redemption. He is the son of Pārvatī — and, by adoption or blood, of Śiva — and his stories revolve around the tensions of belonging, authority, and transformation.</p>
+<h3 id="born-of-turmeric-and-devotion-birth">Born of Turmeric and Devotion (Birth)</h3>
+<p>In the best-known account, Pārvatī fashions a boy from turmeric paste (<em>haridrā</em>) to guard her door while she bathes. When Śiva returns and is refused entry, he strikes off the boy&#39;s head in rage. Pārvatī&#39;s grief is so terrible that Śiva promises to restore him. His servants (<em>gaṇas</em>) are sent to fetch the head of the first creature they find sleeping with its head to the north; they return with an elephant&#39;s head, which Śiva affixes to the boy&#39;s body. Thus Gaṇeśa is reborn as the elephant-faced lord, his new head signifying wisdom, memory, and royal dignity.</p>
+<h3 id="the-elephant-head-head">The Elephant Head (Head)</h3>
+<p>The elephant head is never treated as deformity. It is a gift: elephants in South Asia symbolize strength without malice, the power to clear forests, and the memory that never forgets. The head also makes Gaṇeśa immediately recognizable across languages and regions, a god whose very face is a teaching.</p>
+<h3 id="the-mouse-as-mount-vahana">The Mouse as Mount (Vāhana)</h3>
+<p>The mouse, called Muṣika or Muṣikavāhana, begins as a demon, Muṣikasura, who is subdued by Gaṇeśa. Rather than destroy him, Gaṇeśa makes him his vehicle. The symbolism is precise: the mouse represents desire, ego, and the gnawing restlessness of the mind. Gaṇeśa rides it to show that wisdom does not kill instinct but directs it. The immense god on the tiny mount is one of Hinduism&#39;s most vivid images of mastery.</p>
+<h3 id="the-scribe-of-the-mahabharata-scribe">The Scribe of the Mahābhārata (Scribe)</h3>
+<p>The sage Vyāsa asks Gaṇeśa to transcribe the vast epic as he dictates it without pause. Gaṇeśa agrees on the condition that Vyāsa never falter. To keep writing, Gaṇeśa breaks off one of his own tusks to use as a stylus when his pen fails. The broken tusk thus becomes a symbol of total dedication to sacred knowledge.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Gaṇeśa concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>Elephant head</strong> — Wisdom, memory, and the ability to uproot obstacles; the head was given by Śiva after Gaṇeśa&#39;s first birth.</li>
+  <li><strong>Broken tusk</strong> — Sacrifice for the sake of scripture; Gaṇeśa is said to have used it as a stylus to write the Mahābhārata.</li>
+  <li><strong>Mouse vāhana</strong> — Desire and ego brought under control; the tiny mount shows that wisdom governs even the most restless impulses.</li>
+  <li><strong>Modaka sweet</strong> — The rewards of spiritual practice — sweet, but earned through discipline.</li>
+  <li><strong>Axe (paraśu)</strong> — The power to sever attachment and cut away the roots of obstacle.</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>The material record for Gaṇeśa begins remarkably late given his later popularity: no pre-Gupta image of the elephant-headed god is securely identified, though several earlier elephant-headed yakṣa-type figures have been claimed — none conclusively — as forerunners. The earliest firmly dated Gaṇeśa is the rock-cut figure at the Udayagiri caves near Vidisha (Madhya Pradesh), carved beside Cave 6 in the reign of Chandragupta II and anchored by an inscription of the Gupta year 82 (401 CE). Fifth- and sixth-century images follow at Bhumara and Nachna, and Gupta terracottas from Ahichchhatra and Rajghat carried the icon across the Gangetic plain; the medieval cave temples at Ellora and Elephanta and the Chalukya caves at Badami preserve early monumental versions. Khmer and Cham art then transmitted the image to Southeast Asia, where stone Gaṇeśas from Cambodia and Vietnam attest an exported cult from the pre-Angkorian period onward.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Gaṇeśa is the doorway-god of the Hindu pantheon. No ritual, wedding, venture, or text is properly begun until he has been honored, for he holds the keys to <strong>vighna</strong> — the obstacles that cluster at every threshold. Yet he is more than a divine doorman: he is the patron of learning, the scribe of epic poetry, and the sovereign of the gaṇas, the unruly hosts who serve Śiva.</p>
+<h3 id="wisdom-learning">Wisdom &amp; Learning</h3>
+<p>Gaṇeśa is buddhi-siddhi, the lord of discernment; students invoke him before examinations and scholars before writing.</p>
+<h3 id="beginnings-thresholds">Beginnings &amp; Thresholds</h3>
+<p>Every new undertaking — a house, a book, a marriage — begins with Gaṇapati pūjā, sealing the threshold against ill fortune.</p>
+<h3 id="obstacle-removal">Obstacle-Removal</h3>
+<p>As Vighneśvara he both places and removes obstacles; his axe cuts through the inner and outer impediments to dharma.</p>
+<h3 id="lord-of-the-ganas">Lord of the Gaṇas</h3>
+<p>He commands the divine hosts, transforming chaos into ordered retinue; his sovereignty is over categories themselves.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Gaṇeśa has absorbed and been absorbed by countless regional deities. In Jainism, he appears as a yakṣa and remover of obstacles; in Buddhism, especially in Tibet and Nepal, he is adopted as a protector and wealth-bestower under names such as Vināyaka. Southeast Asian kingdoms — Champa, Khmer, Javanese — carried his cult across the Indian Ocean, where he merged with local guardian spirits. In Maharashtra, he becomes the people&#39;s god during Gaṇeśa Caturthī; in Tamil country, he is Pillaiyar, the noble child. Even his mother-centric origin story balances the fierce, world-renouncing Śiva with the domestic, creative power of Pārvatī, making Gaṇeśa a bridge between ascetic and household religion.</p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include [[shiva|Śiva]] (divine father / son), [[thoth|Ḏḥwty]] (wisdom / writing), [[ahuramazda|AhuraMazdā]] (wisdom / knowledge), [[athena|Athénā]] (wisdom / knowledge), [[odinn|Óðinn]] (wisdom / knowledge), and [[orunmila|Ọrúnmìlà]] (wisdom / knowledge).</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Gaṇeśa is arguably the most universally recognized Hindu deity in the world. His image opens businesses, books, films, and computer screens; his mantra, <em>Oṃ Gaṃ Gaṇapataye Namaḥ</em>, is chanted at inaugurations from Mumbai to Silicon Valley. The annual Gaṇeśa Caturthī transforms cities into rivers of song and procession, culminating in the immersion of clay images. In modern India, he has become a symbol of cultural unity and environmental awareness, with devotees increasingly returning his idols to biodegradable forms. From comic books to corporate logos, Gaṇeśa endures as the friendly face of the divine — the god who removes obstacles because he has already overcome the greatest one: being different.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Gaṇeśa given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Monier-Williams Sanskrit Dictionary. <a href="https://www.sanskrit-lexicon.uni-koeln.de/monier/index.html">Full text</a></li>
+  <li> Śiva Purāṇa, Rudra Saṃhitā (birth narrative).</li>
+  <li> Gaṇeśa Purāṇa (Gāṇapatya sectarian compendium).</li>
+  <li> Mahābhārata, Ādi Parvan (scribe episode).</li>
+  <li> Padma Purāṇa.</li>
+  <li> Ṛgveda Saṃhitā 2.23.1 (gaṇapati as epithet of Brahmaṇaspati).</li>
+  <li> Gaṇapati Atharvaśīrṣa (Gaṇeśa identified with Brahman).</li>
+  <li> Matsya Purāṇa (birth narrative of Gaṇeśa).</li>
+  <li> Skanda Purāṇa, Kāśīkhaṇḍa (Vināyaka at Kāśī).</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>To meditate on Gaṇeśa is to meditate on thresholds. Every doorway is a decision: to enter or to turn back, to speak or to remain silent, to begin or to postpone. Gaṇeśa sits at that edge, his large ears listening to the unspoken fear, his small eyes focused on the single task ahead. The obstacle is rarely what it appears. More often it is the tremor of the mind before action — the mouse of doubt scratching at the foundations.</p>
+<p>His elephant head teaches memory: remember what you have already survived. His broken tusk teaches sacrifice: every great work costs something. His mouse teaches discipline: the smallest impulse, once governed, becomes a vehicle. Beginnings are sacred because they are rehearsals of freedom. Gaṇeśa does not promise that the path will be easy; he promises that the path can be taken.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Gaṇeśa is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>ganesha</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 7 characters of the name, the restoration adjusts 3: 3 further adjustments (ṇ, ś, h). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>ganesha</em> to <strong>Gaṇeśa</strong>, one character at a time:</p>
+<ul>
+  <li><strong>g</strong> → <strong>G</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Short /a/</li>
+  <li><strong>n</strong> → <strong>ṇ</strong> — N-dot-under: retroflex /ɳ/</li>
+  <li><strong>e</strong> → <strong>e</strong> — Short /e/</li>
+  <li><strong>s</strong> → <strong>ś</strong> — S-acute: palatal /ɕ/</li>
+  <li><strong>h</strong> → <strong>h</strong> — Dropped: digraph simplified</li>
+  <li><strong>a</strong> → <strong>a</strong> — Short /a/</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>Gaṇeśa.com</strong>, which the DNS carries in punycode form as xn--gaea-n5a6355b.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Gaṇeśa; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Devanagari can now be typed into any browser on earth.</p>
+<h2 id="the-sanskrit-pantheon">The Sanskrit Pantheon</h2>
+<p>Gaṇeśa is one of 88 entries the PÚNYCODEX lexicon catalogues under the Sanskrit pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Gaṇeśa mean?</strong> The traditional gloss is &quot;Lord of the gaṇas (from गणेश).&quot;</p>
+<p><strong>Which tradition does Gaṇeśa belong to?</strong> Gaṇeśa is catalogued in the Sanskrit pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Gaṇeśa classified as Tier 2?</strong> Because the original preserves at least one philological feature that ASCII cannot encode — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Gaṇeśa a working domain?</strong> Yes — Gaṇeśa.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for Gaṇeśa.com?</strong> The DNS encoding is xn--gaea-n5a6355b.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="typing-ganesa">Typing Gaṇeśa</h2>
+<p>You do not need a special keyboard to use this restoration. The <a href="/type/">PÚNYCODEX Type Tool</a> converts the ASCII form <em>ganesha</em> into <strong>Gaṇeśa</strong> as you type, and the browser extension offers the same conversion inside any text field. Copy the restored form, paste it into the address bar, and the DNS does the rest.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Every stage of the journey from Devanagari to Unicode was an act of care: the scribe who first wrote the name, the lexicographer who glossed it, the engineer who taught the DNS to carry it. The PÚNYCODEX restoration is the latest stage, not the last word — the Scholarly Edition is revised as the evidence improves. What does not change is the principle: a name deserves to be written the way its own tradition wrote it. <strong>Gaṇeśa</strong> in the address bar is that principle, made routable.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/tantra/">Tantra</a></li>
   <li><a href="/sites/vac/">Vāc</a></li>
   <li><a href="/sites/vashistha/">Vasiṣṭha</a></li>
 </ul>
-<h2>Further Reading</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.sanskrit-lexicon.uni-koeln.de/monier/index.html">Monier-Williams, M. A Sanskrit-English Dictionary. Oxford, 1899; s.v. gaṇeśa.</a></li>
+  <li>Courtright, P. B., Gaṇeśa: Lord of Obstacles, Lord of Beginnings (Oxford University Press, 1985).</li>
+  <li>Śiva Purāṇa, Rudra Saṃhitā (birth of Gaṇeśa and his appointment as lord of the gaṇas).</li>
+  <li>Śiva Purāṇa.</li>
+  <li>Gaṇeśa Purāṇa.</li>
+  <li>Lexicon authorities for this entry: MW, KEWA.</li>
 </ul>
-<h2>The Name in Context</h2>
-<p>Gaṇeśa (Sanskrit गणेश, from gaṇa- &#39;host, troop&#39; + īśa- &#39;lord&#39;: &#39;lord of the hosts&#39;) is the elephant-headed god of beginnings and the remover of obstacles, son of [[shiva|Śiva]] and Pārvatī, invoked at the head of every rite, journey, and new undertaking in the Hindu world. His cult is comparatively late — the Ṛgveda knows the compound gaṇapati only as an epithet of other gods — but by the Gupta age his images are firmly established, and the medieval Gāṇapatya sect eventually elevated him to the status of supreme deity. As Vighneśvara, &#39;lord of obstacles&#39;, he both places and removes the impediments that cluster at every threshold; as Gaṇapati he commands the gaṇas, the unruly spirit-hosts of his father&#39;s retinue. PÚNYCODEX restores the name as Gaṇeśa...</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">sanskrit</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

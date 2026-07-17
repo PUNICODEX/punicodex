@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,42 +170,197 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#name-variations">Name Variations</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-chinese-pantheon">The Chinese Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#typing-tian">Typing Tiān</a></li>
+                <li><a href="#sister-temples">Sister Temples</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>The Hidden History Behind Tiān</h1>
-<p>Behind the modern ASCII <em>tian</em> hides a longer story. The name is attested in Chinese characters as 天. Etymologically it means &quot;The supreme celestial force and moral order of the cosmos&quot;. The ASCII form tian survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Tiān restores the high-level first tone of the Mandarin reading directly in the address bar. The restoration preserves a single prosodic feature — the tone carried by the macron — which places the name in Tier 2. The letter-by-letter transformation runs: - t → T — Same, capitalized - i → i — Same - a → ā — Macron: first tone - n → n — Same Attested and derived spellings of the name: - Tian — ASCII form: Plain ASCII form The project holds... That history reaches back through manuscripts, inscriptions, and oral traditions before it ever reached a keyboard.</p>
-<h2>Etymology</h2>
-<p>The deeper roots of Tiān are still debated among specialists.  The traditional gloss is &quot;The supreme celestial force and moral order of the cosmos.&quot;</p>
-<h2>In Myth</h2>
-<p>The mythology of Tiān is inseparable from the history of Chinese kingship. It is less a corpus of stories than a cosmology: Heaven speaks through weather, dynasty, and the virtue of the ruler. These narratives are not dusty footnotes; they are the reason the name acquired its resonance.</p>
-<h2>Across Cultures</h2>
-<p>Tiān absorbed and was absorbed by later traditions. Confucians spoke of Tiān as moral destiny; Daoists located it within a larger cosmos of qi and the Dao; Chinese Buddhists translated the Sanskrit deva with Tiān. Jesuit missionaries of the late Ming identified the Christian God with Tiānzhǔ 天主, &#39;Lord of Heaven&#39;, sparking centuries of debate about whether Heaven was a personal deity or an impersonal order. Within the Chinese tradition, closely related names in the corpus include [[bagua|Bāguà]], [[long|Lóng]], [[taichi|Tàijí]], [[taishang|Tàishàng]], [[tiandi|Tiāndì]], and [[wuxing|Wǔxíng]]. Names travel, adapt, and accumulate meanings. Tracking that travel is part of what makes the restoration worthwhile.</p>
-<h2>The Unicode Decision</h2>
-<p>Restoring Tiān is not an aesthetic choice. It is a decision to honor the name as attested rather than the name as flattened by ASCII. That choice is documented in the <a href="/sites/tian/scholars/">Scholarly Edition</a> and defended by the sources below.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Tiān is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>The hidden history behind Tiān</h1>
+<p>Behind the modern ASCII form <em>tian</em> hides a much longer story. <strong>Tiān</strong> reaches back through manuscripts, inscriptions, and oral tradition long before it ever touched a keyboard, and every mark in the restored spelling is a receipt from that journey. In what follows we trace the name from its Chinese characters attestations through its mythology, its cult, its symbols, and its afterlife in other cultures — and we show how the PÚNYCODEX project turned that philological record into a Unicode domain that resolves today. The history was never lost. It was only waiting for the infrastructure to catch up.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Tiān</li>
+  <li><strong>ASCII form:</strong> tian</li>
+  <li><strong>Meaning:</strong> &quot;The supreme celestial force and moral order of the cosmos&quot;</li>
+  <li><strong>Domain of influence:</strong> Heaven, Sky, Cosmic Order</li>
+  <li><strong>Pantheon:</strong> Chinese</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> 天 (Chinese characters)</li>
+  <li><strong>Live domain:</strong> tiān.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Tiān</strong> (<em>tian</em>) — Heaven, Sky, Cosmic Order · The supreme celestial force and moral order of the cosmos — belongs to the Chinese tradition, where it is catalogued under the domain &quot;Heaven, Sky, Cosmic Order&quot;. The name means &quot;The supreme celestial force and moral order of the cosmos&quot;.</p>
+<p>Tiān 天 is not a creator god in the Western sense. It is <strong>Heaven as supreme moral authority</strong>: the sky that watches, judges, and withdraws its favour from unworthy kings. From the Shang oracle bones to the Temple of Heaven, Tiān binds political legitimacy to cosmic virtue.</p>
+<p>PÚNYCODEX restores the name as <strong>Tiān</strong> and serves its temple at <a href="https://xn--tin-2oa.com">tiān.com</a>. The restoration preserves a single prosodic feature — the high-level first tone marked by the macron — which places the name in Tier 2. The plain ASCII form <em>tian</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Chinese characters as <strong>天</strong>. Etymologically it means &quot;The supreme celestial force and moral order of the cosmos&quot;.</p>
+<p>The ASCII form <em>tian</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Tiān</strong> restores the high-level first tone of the Mandarin reading directly in the address bar. The restoration preserves a single prosodic feature — the tone carried by the macron — which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>t</strong> → <strong>T</strong> — Same, capitalized</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+  <li><strong>a</strong> → <strong>ā</strong> — Macron: first tone</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+</ul>
+<p>Attested and derived spellings of the name:</p>
+<ul>
+  <li><strong>Tian</strong> — ASCII form: Plain ASCII form</li>
+</ul>
+<p>The project holds the domain <strong>tiān.com</strong> (xn--tin-2oa.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is written in Chinese characters as <strong>天</strong>. This original script is the form against which the ASCII fallback <em>tian</em> and the PÚNYCODEX restoration <strong>Tiān</strong> are measured: the restoration carries the high-level first tone of the Mandarin reading, so that a reader typing the modern address still speaks the name with its tone intact.</p>
+<p>The <em>Shuōwén Jiězì</em> analyses 天 as 一 &#39;one&#39; over 大 &#39;great&#39; — &#39;the summit, the highest, above which there is nothing&#39; — while palaeography reads the graph older still: oracle-bone forms draw a frontal human figure with the head enlarged into a block or dome, the sky written as what stands above a man. The word was written in a variety of Zhōu forms before the Qín standardisation; the modern character is the Clerical- and Regular-script descendant. PÚNYCODEX uses the Pinyin form <strong>Tiān</strong> with a macron to mark the first tone, since 天 itself cannot be registered as a domain string.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/tʰjɛn˥/</strong> — Modern Standard Chinese / Old Chinese Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>tʰ-</strong> — Aspirated voiceless alveolar stop, like English &#39;t&#39; with a puff of air.</li>
+  <li><strong>-j-</strong> — Palatal glide; the tongue rises toward the hard palate after the initial.</li>
+  <li><strong>-ɛ-</strong> — Open-mid front vowel, close to &#39;eh&#39; in &#39;bed&#39;.</li>
+  <li><strong>-n</strong> — Alveolar nasal, soft &#39;n&#39; closing the syllable.</li>
+  <li><strong>˥</strong> — High level tone (Mandarin first tone), rendered here by the macron over the vowel.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;tyehn&#39; — say &#39;t-yeh-n&#39; in one crisp syllable, on a high, level pitch like a sustained musical note.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Chinese</strong> — 天 (Tiān), the oldest attested graph for Heaven; oracle-bone forms show a person or a dome above.</li>
+  <li><strong>Old Chinese</strong> — Reconstructed <em>qʰl&#39;iːn or </em>l̥ˤi[n], debated; the word links sky, supreme deity, and the ritual centre.</li>
+  <li><strong>Sino-Japanese</strong> — 天 (ten), as in tennō 天皇, &#39;Heavenly Sovereign&#39;.</li>
+</ul>
+<p>Tiān is Tier 2: the macron preserves Mandarin first tone, but the name carries neither the Greek stress mark nor a vowel-length mark that would make it Tier 1. The registrable form uses the standard Pinyin macron.</p>
+<h2 id="mythology">Mythology</h2>
+<p>The mythology of Tiān is inseparable from the history of Chinese kingship. It is less a corpus of stories than a cosmology: Heaven speaks through weather, dynasty, and the virtue of the ruler.</p>
+<h3 id="from-shangdi-to-tian-cosmogony">From Shàngdì to Tiān (Cosmogony)</h3>
+<p>In Shang times the supreme power was Shàngdì 上帝, the high ancestor-deity above. The Zhou, after overthrowing the Shang, reframed supreme authority as Tiān 天, &#39;Heaven&#39;, making the king the &#39;Son of Heaven&#39; (tiānzǐ 天子). This theological shift turned victory into moral verdict: the Zhou ruled because Heaven&#39;s Mandate (tiānmìng 天命) had passed from the dissolute Shang.</p>
+<h3 id="the-duke-of-zhou-and-the-mandate-history">The Duke of Zhou and the Mandate (History)</h3>
+<p>The Duke of Zhou, regent for the young King Cheng, is credited with formulating the Mandate of Heaven as a check on arbitrary power. Rebellion, eclipse, and natural disaster were read as warnings from Heaven; ritual reform and moral renewal could restore the Mandate. The idea endured for three millennia.</p>
+<h3 id="the-border-sacrifice-ritual">The Border Sacrifice (Ritual)</h3>
+<p>At the winter solstice the emperor performed the jiànjì 郊祭, the border sacrifice, at the Temple of Heaven in Beijing. Alone before the circular Altar of Heaven, he offered jade, silk, and a bull, renewing the covenant between the Son of Heaven and the sky. The rite was the hinge of the imperial year.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The signs of Tiān are astronomical and ritual rather than anthropomorphic; Heaven has no face, only a station:</p>
+<ul>
+  <li><strong>Azure Dragon</strong> — The eastern palace of the partitioned sky: in Han astronomy the eastern quadrant, the Cānglóng or Azure Dragon, governed spring and the rising yang, and its stars timed the agricultural and ritual year.</li>
+  <li><strong>Jade disk (bì 璧)</strong> — The ritual jade of Heaven: the <em>Zhōulǐ</em> prescribes &#39;with the azure bì one renders service to Heaven, with the yellow cóng to Earth&#39;, matching the round disc to the round sky and the square tube to the square earth.</li>
+  <li><strong>North celestial pole</strong> — The still pivot of the turning sky, the astral seat of Tiān: Confucius makes the pole star the image of rule by virtue, &#39;which keeps its place while all the stars turn toward it&#39;.</li>
+  <li><strong>Sacrificial bull</strong> — The supreme offering of the suburban or &#39;border&#39; sacrifice (jiāo 郊): the <em>Lǐjì</em> chapter &#39;Jiāotèshēng&#39; prescribes a single red calf for the suburban service to Heaven at the winter solstice.</li>
+</ul>
+<ul>
+  <li><strong>Jade disk (bi 璧)</strong> — Ritual object offered to Heaven, the circular sky matching the square earth.</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>The material record of Tiān is epigraphic before it is architectural. Western Zhōu bronze inscriptions invoke Heaven and its Mandate directly: the <strong>Hé zūn</strong> 何尊 records King Wǔ&#39;s announcement to Heaven of his intent to dwell in &#39;these central states&#39; — the earliest epigraphic occurrence of the phrase <em>zhōngguó</em> 中國 — and the <strong>Dà Yú dǐng</strong> 大盂鼎 states the doctrine outright, that illustrious King Wén &#39;received the great Mandate of Heaven&#39;. The oracle bones of the preceding Shāng, by contrast, sacrifice to <strong>Dì</strong> 帝 and <strong>Shàngdì</strong> 上帝 rather than to Tiān, which is why the rise of Heaven as supreme power is dated to the Zhōu conquest. The monumental record culminates in Beijing: the <strong>Temple of Heaven</strong> complex, first built in 1420 under the Yǒnglè emperor together with the Forbidden City, given its present name in 1534 and its present form under Qiánlóng, preserves the Circular Mound Altar on which the solstice rite was performed into the twentieth century.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Tiān 天 is not a creator god in the Western sense. It is <strong>Heaven as supreme moral authority</strong>: the sky that watches, judges, and withdraws its favour from unworthy kings. From the Shang oracle bones to the Temple of Heaven, Tiān binds political legitimacy to cosmic virtue.</p>
+<h3 id="pole-star">Pole Star</h3>
+<p>The unmoving axis around which the heavens revolve; Tiān dwells at the northern celestial pivot.</p>
+<h3 id="mandate-of-heaven">Mandate of Heaven</h3>
+<p>Political legitimacy granted only to virtuous rulers; famine, flood, or defeat signal its loss.</p>
+<h3 id="high-di">High Di</h3>
+<p>Successor to the Shang supreme deity Shàngdì 上帝, the celestial ancestor who receives royal sacrifice.</p>
+<h3 id="ritual-centre">Ritual Centre</h3>
+<p>The Temple of Heaven in Beijing, where the emperor prayed as the Son of Heaven for cosmic harmony.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Tiān absorbed and was absorbed by later traditions. Confucians spoke of Tiān as moral destiny; Daoists located it within a larger cosmos of qi and the Dao; Chinese Buddhists translated the Sanskrit deva with Tiān. Jesuit missionaries of the late Ming identified the Christian God with Tiānzhǔ 天主, &#39;Lord of Heaven&#39;, sparking centuries of debate about whether Heaven was a personal deity or an impersonal order.</p>
+<p>Within the Chinese tradition, closely related names in the corpus include [[bagua|Bāguà]], [[long|Lóng]], [[taichi|Tàijí]], [[taishang|Tàishàng]], [[tiandi|Tiāndì]], and [[wuxing|Wǔxíng]].</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>The Mandate of Heaven remained the master-frame of Chinese political legitimacy from the Zhōu conquest to the end of the empire: dynastic founders cited it, rebels invoked it, and even the revolutionaries of 1911 could read the fall of the Qīng as Heaven&#39;s verdict. The rite outlived the monarchy only briefly — Yuán Shìkǎi&#39;s winter-solstice ceremony at the Temple of Heaven in December 1914 was the last imperial-style attempt to renew the covenant, and the monarchist project behind it collapsed within two years. The Temple of Heaven complex, inscribed on the UNESCO World Heritage List in 1998, still stands as the idea&#39;s architectural signature. In contemporary political theory the classical compound <em>tiānxià</em> 天下 (&#39;all under Heaven&#39;) has been revived as a model of world order, most influentially in Zhào Tīngyáng&#39;s &#39;tianxia system&#39;. Modern Chinese, meanwhile, uses Tiān in dozens of compounds — tiānkōng 天空 (sky), tiānqì 天气 (weather), tiānxià 天下 (all under Heaven) — so thoroughly that the word is almost invisible, yet everywhere present.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Tiān given in this edition rests on the witnesses and reference works listed below. The primary evidence is the classical textual record — the ritual canon in which the Mandate was first articulated, the histories that record its performance, and the philosophers who argued its meaning — together with the modern study of its astronomical foundations.</p>
+<ul>
+  <li> <em>Shàngshū</em> 尚書 (Book of Documents), the canonical source of the Mandate doctrine, esp. the &#39;Announcement to the Prince of Kāng&#39; 康誥 and the &#39;Announcement of Shào&#39; 召誥. <a href="https://ctext.org/shang-shu">Full text</a></li>
+  <li> <em>Shǐjì</em> 史記 (Records of the Grand Historian), incl. the &#39;Treatise on the Fēng and Shàn Sacrifices&#39; 封禪書. <a href="https://ctext.org/shiji">Full text</a></li>
+  <li> <em>Yìjīng</em> 易經 (Book of Changes). <a href="https://ctext.org/yi-jing">Full text</a></li>
+  <li> Confucius, <em>Analects</em>, esp. 2.1 and 2.4. <a href="https://ctext.org/analects">Full text</a></li>
+  <li> Pankenier, David W. &#39;The Cosmo-Political Background of Heaven&#39;s Mandate&#39;. <em>Early China</em> 20 (1995): 121–176.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Tiān asks us to imagine authority without a face. Unlike Olympian gods who quarrel and love, Heaven is a judgement rendered in drought or rain, in the fall of a dynasty or the quiet order of the stars. To meditate on Tiān is to meditate on responsibility: the ruler is answerable not to human contract but to the moral structure of the cosmos itself.</p>
+<p>In an age of ecological crisis, Tiān also returns as a reminder that legitimacy is not merely human. A government that fouls the rivers and skies it claims to harmonise with has already, in the old language, lost the Mandate. The sky is still watching.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Tiān is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>tian</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 4 characters of the name, the restoration adjusts 1: 1 mark of length (ā). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="name-variations">Name Variations</h2>
+<p>The lexicon records 1 additional form of the name:</p>
+<ul>
+  <li><strong>Tian</strong> (ascii) — Plain ASCII form</li>
+</ul>
+<p>The temple uses <strong>Tiān</strong> as the primary form: it is the spelling that best balances philological accuracy with the practical limits of DNS.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>tian</em> to <strong>Tiān</strong>, one character at a time:</p>
+<ul>
+  <li><strong>t</strong> → <strong>T</strong> — Same, capitalized</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+  <li><strong>a</strong> → <strong>ā</strong> — Macron: first tone</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>tiān.com</strong>, which the DNS carries in punycode form as xn--tin-2oa.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Tiān; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Chinese characters can now be typed into any browser on earth.</p>
+<h2 id="the-chinese-pantheon">The Chinese Pantheon</h2>
+<p>Tiān is one of 43 entries the PÚNYCODEX lexicon catalogues under the Chinese pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Tiān mean?</strong> The traditional gloss is &quot;The supreme celestial force and moral order of the cosmos.&quot;</p>
+<p><strong>Which tradition does Tiān belong to?</strong> Tiān is catalogued in the Chinese pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Tiān classified as Tier 2?</strong> Because the original preserves at least one philological feature that ASCII cannot encode — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Tiān a working domain?</strong> Yes — tiān.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for tiān.com?</strong> The DNS encoding is xn--tin-2oa.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="typing-tian">Typing Tiān</h2>
+<p>You do not need a special keyboard to use this restoration. The <a href="/type/">PÚNYCODEX Type Tool</a> converts the ASCII form <em>tian</em> into <strong>Tiān</strong> as you type, and the browser extension offers the same conversion inside any text field. Copy the restored form, paste it into the address bar, and the DNS does the rest.</p>
+<h2 id="sister-temples">Sister Temples</h2>
+<p>Other temples in the Chinese pantheon include <a href="/sites/putuo/">Pǔtuó</a>, and <a href="/sites/sanzang/">Sānzàng</a> — each with its own restoration story, its own scholarly record, and its own place in the lexicon.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>The story of Tiān did not end in antiquity; it changed medium. Names that survive for millennia do so because each generation finds a new carrier for them — clay, papyrus, print, and now DNS. The PÚNYCODEX restoration simply makes the carrier honest: the spelling that resolves is the spelling the evidence supports. If this post showed anything, it is that <em>tian</em> and <strong>Tiān</strong> are not the same name with different styling. They are a summary and the text it summarizes. The web can now serve the text.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/shangqing/">Shàngqīng</a></li>
   <li><a href="/sites/shennong/">Shénnóng</a></li>
   <li><a href="/sites/sunwukong/">SūnWùkōng</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.unicode.org/charts/unihan.html">Unihan Database (Unicode Consortium), entry U+5929 天.</a></li>
   <li><a href="https://ctext.org/analects">Confucius, Analects 2.1.</a></li>
   <li><a href="https://whc.unesco.org/en/list/881">UNESCO World Heritage List, &#39;Temple of Heaven: an Imperial Sacrificial Altar in Beijing&#39; (inscribed 1998).</a></li>
   <li><a href="https://ctext.org/shang-shu">Shangshu 尚書 (Book of Documents).</a></li>
+  <li><a href="https://ctext.org/shiji">Shiji 史記 (Records of the Grand Historian).</a></li>
+  <li><a href="https://ctext.org/yi-jing">Yijing 易經 (Book of Changes).</a></li>
+  <li>Shangshu 尚書 (Book of Documents).</li>
+  <li>Shiji 史記 (Records of the Grand Historian).</li>
+  <li>I Ching / Yijing 易經.</li>
+  <li>Baxter &amp; Sagart, Old Chinese: A New Reconstruction (Oxford University Press, 2014).</li>
+  <li>Lexicon authorities for this entry: I Ching, Shiji, Chinese classics.</li>
 </ul>
-<h2>The Cultural Afterlife</h2>
-<p>The Mandate of Heaven remained the master-frame of Chinese political legitimacy from the Zhōu conquest to the end of the empire: dynastic founders cited it, rebels invoked it, and even the revolutionaries of 1911 could read the fall of the Qīng as Heaven&#39;s verdict. The rite outlived the monarchy only briefly — Yuán Shìkǎi&#39;s winter-solstice ceremony at the Temple of Heaven in December 1914 was the last imperial-style attempt to renew the covenant, and the monarchist project behind it collapsed within two years. The Temple of Heaven complex, inscribed on the UNESCO World Heritage List in 1998, still stands as the idea&#39;s architectural signature. In contemporary political theory the classical compound tiānxià 天下 (&#39;all under Heaven&#39;) has been revived as...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Tiān as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Chinese characters to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Tiān through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">chinese</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

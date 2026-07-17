@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,33 +170,169 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>Why Šamaš Belongs in the Address Bar</h1>
-<p>Every address bar is a choice. When you type <strong>Šamaš</strong>, you are not typing a novelty; you are restoring a name. The plain ASCII form <em>shamash</em> is the leftover of a DNS that was built for English typewriters, not for the world&#39;s naming traditions. Šamaš (shamash) is the Akkadian sun-god, catalogued in the lexicon under Sun, Justice, Law. He continues the Sumerian Utu — the two names are written with the same cuneiform sun-sign 𒌓 — and in the standard genealogy he is the son of the moon-god Sîn and the brother of Ištar. Šamaš is the sun that sees everything and therefore the god who cannot be bribed. In Mesopotamia he is both the physical light that rises over the eastern mountains and the moral light that exposes false weights, perjured testimony, and hidden crime. Kings receive their laws from him; judges take their oaths before him; travelers pray to him on the open road. No other solar deity in the ancient Near East is so explicitly a god of forensic justice. PÚNYCODEX restores the name...</p>
-<h2>The Name the DNS Almost Forgot</h2>
-<p>The name is attested in cuneiform as 𒀭𒌓 — the divine determinative followed by the sun-sign — and continues the common Semitic noun šamš-, &#39;sun&#39;: Akkadian speakers simply called the sun-god &#39;Sun,&#39; and Hebrew šemeš preserves the same word. The identical sign sequence writes the name of his Sumerian predecessor Utu, and scribal tradition treated the two names as equivalents from the third millennium onward. The ASCII form shamash survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Šamaš recovers the sibilant phonemes of the scholarly transliteration directly in the address bar. The name&#39;s two diacritics are consonantal — the carons on Š and... In scholarly terms, it belongs to the <strong>Tier 2</strong> class: the original preserves at least one philological feature that ASCII cannot encode. That detail is not decorative; it is the difference between a label and a lived name.</p>
-<h2>From Cuneiform to the Browser</h2>
-<p>The name is preserved in Sumero-Akkadian cuneiform as 𒀭𒌓, a script written left-to-right and top-to-bottom and attested for the sun-god from the third millennium through the Neo-Babylonian and Neo-Assyrian periods (c. 2600–600 BCE) across Mesopotamia. The scholarly transliteration is Šamaš, with the normalized reading /ˈʃa.maʃ/: two short a vowels, matching syllabic spellings such as ša-am-šu-um; vowel quantity is not contrastively marked in the standard citation form.^1 Sign by sign: - 𒀭 — dingir, the divine determinative: marks the name as a theonym and is not pronounced. - 𒌓 — the sign UD/UTU, &#39;sun, day&#39;: as a logogram it writes the sun-god, read Utu in Sumerian and Šamaš in Akkadian. The same sign sequence therefore writes two names:... The PÚNYCODEX temple does not invent a spelling; it recovers one. By registering the Unicode form, the project proves that the original script can survive inside the infrastructure of the modern web.</p>
-<h2>Why 2026 Still Needs This</h2>
-<p>In 2026, names are data. Search engines, AI training corpora, and localization teams all need authoritative forms. Šamaš is a small but concrete demonstration that philology and DNS can coexist. The <a href="/sites/shamash/scholars/">Scholarly Edition</a> preserves the argument; the blog makes it approachable.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Šamaš is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>Why Šamaš belongs in your address bar</h1>
+<p>Every address bar is a choice. When you type <strong>Šamaš</strong>, you are not typing a novelty; you are restoring a name that the early DNS, built for English typewriters, could not carry. The plain ASCII form <em>shamash</em> is a leftover of that constraint, not the name itself. This post is the long version of the restoration: where the name comes from, how the Cuneiform tradition wrote it, how it is pronounced, what the myths and the material record preserve, and why its Unicode form now lives as a working domain. The claim throughout is simple — the original spelling is not decoration. It is the name.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Šamaš</li>
+  <li><strong>ASCII form:</strong> shamash</li>
+  <li><strong>Meaning:</strong> &quot;Sun (Akkadian Šamaš)&quot;</li>
+  <li><strong>Domain of influence:</strong> Sun, Justice, Law</li>
+  <li><strong>Pantheon:</strong> Mesopotamian</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> 𒀭𒌓 (Cuneiform)</li>
+  <li><strong>Live domain:</strong> šamaš.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Šamaš</strong> (<em>shamash</em>) is the Akkadian sun-god, catalogued in the lexicon under Sun, Justice, Law. He continues the Sumerian Utu — the two names are written with the same cuneiform sun-sign 𒌓 — and in the standard genealogy he is the son of the moon-god Sîn and the brother of Ištar.</p>
+<p>Šamaš is the <strong>sun that sees everything</strong> and therefore the god who cannot be bribed. In Mesopotamia he is both the physical light that rises over the eastern mountains and the moral light that exposes false weights, perjured testimony, and hidden crime. Kings receive their laws from him; judges take their oaths before him; travelers pray to him on the open road. No other solar deity in the ancient Near East is so explicitly a god of forensic justice.</p>
+<p>PÚNYCODEX restores the name as <strong>Šamaš</strong> and serves its temple at <a href="https://xn--ama-zzad.com">šamaš.com</a>. The restoration&#39;s two carons mark the Akkadian sibilant [ʃ] that begins and ends the name — a consonantal, not a prosodic, diacritic; no stress or vowel-length feature is restored, so the name stands in Tier 2. The ASCII form <em>shamash</em> survives as a fallback imposed by early domain-name infrastructure; the restoration, not the fallback, is the philologically complete form.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in cuneiform as <strong>𒀭𒌓</strong> — the divine determinative followed by the sun-sign — and continues the common Semitic noun <em>šamš-</em>, &#39;sun&#39;: Akkadian speakers simply called the sun-god &#39;Sun,&#39; and Hebrew <em>šemeš</em> preserves the same word. The identical sign sequence writes the name of his Sumerian predecessor Utu, and scribal tradition treated the two names as equivalents from the third millennium onward.</p>
+<p>The ASCII form <em>shamash</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Šamaš</strong> recovers the sibilant phonemes of the scholarly transliteration directly in the address bar. The name&#39;s two diacritics are consonantal — the carons on <em>Š</em> and <em>š</em> — so no prosodic feature (stress or vowel length) is restored, and the name stands in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>s</strong> → <strong>Š</strong> — S-caron: voiceless postalveolar /ʃ/</li>
+  <li><strong>h</strong> → <strong>—</strong> — Dropped: digraph simplified</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+  <li><strong>m</strong> → <strong>m</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+  <li><strong>s</strong> → <strong>š</strong> — S-caron: voiceless postalveolar /ʃ/</li>
+  <li><strong>h</strong> → <strong>—</strong> — Dropped: not represented</li>
+</ul>
+<p>The project holds the domain <strong>šamaš.com</strong> (xn--ama-zzad.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Sumero-Akkadian cuneiform as <strong>𒀭𒌓</strong>, a script written left-to-right and top-to-bottom and attested for the sun-god from the third millennium through the Neo-Babylonian and Neo-Assyrian periods (c. 2600–600 BCE) across Mesopotamia.</p>
+<p>The scholarly transliteration is <em>Šamaš</em>, with the normalized reading /ˈʃa.maʃ/: two short <em>a</em> vowels, matching syllabic spellings such as <em>ša-am-šu-um</em>; vowel quantity is not contrastively marked in the standard citation form.</p>
+<p>Sign by sign:</p>
+<ul>
+  <li><strong>𒀭</strong> — <em>dingir</em>, the divine determinative: marks the name as a theonym and is not pronounced.</li>
+  <li><strong>𒌓</strong> — the sign UD/UTU, &#39;sun, day&#39;: as a logogram it writes the sun-god, read <em>Utu</em> in Sumerian and <em>Šamaš</em> in Akkadian.</li>
+</ul>
+<p>The same sign sequence therefore writes two names: Sumerian <strong>Utu</strong>, the earlier sun-god, and Akkadian <strong>Šamaš</strong>, whom scribes equated with him from the earliest god-lists onward. The caron on <em>š</em> marks the Akkadian voiceless postalveolar fricative [ʃ], the sound of English <em>sh</em>. The PÚNYCODEX restoration <strong>Šamaš</strong> reproduces the standard Assyriological citation form of the Akkadian theonym — the form the flagship domain represents — rather than the Sumerian reading Utu. The restoration is registrable as a .com domain; the cuneiform form is not supported in the .com IDN table.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/ˈʃa.maʃ/</strong> — Akkadian Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Ša-</strong> — Voiceless postalveolar fricative [ʃ] plus open [a]; stress falls on the first syllable.</li>
+  <li><strong>-maš</strong> — Bilabial nasal [m] plus open [a] plus voiceless postalveolar fricative [ʃ].</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;SHAH-mahsh&#39; — both sh sounds are like English &#39;ship&#39;; stress the first syllable.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Sumerian</strong> — 𒀭𒌓 (Utu / dUTU), the earlier sun god</li>
+  <li><strong>Akkadian</strong> — 𒀭𒌓 (Šamaš), written with the divine determinative and the sun-sign</li>
+  <li><strong>Ugaritic</strong> — 𐎘𐎔𐎘 (Šapšu), the local sun goddess</li>
+  <li><strong>Hebrew</strong> — שֶׁמֶשׁ (šemeš), &#39;sun&#39;</li>
+</ul>
+<p>Akkadian Šamaš continues the common Semitic root <em>šamš-</em> &#39;sun.&#39; The cuneiform writing 𒀭𒌓 joins the divine determinative (<em>dingir</em>) to the sun-sign, and syllabic spellings give <em>ša-am-šu-um</em>. The PÚNYCODEX form preserves the Akkadian sibilant š and the two short a-vowels. Tier 2: the caron on š marks a distinctive Akkadian phoneme, but the name has no Greek-style stress or reliably contrastive long vowel in the standard scholarly form.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Šamaš&#39;s myths are hymns, legal preludes, and royal testimonies rather than long narratives. His power is assumed, praised, and appealed to; his daily rising is the central miracle that needs no elaborate story to be authoritative.</p>
+<h3 id="the-great-hymn-to-samas-hymn">The Great Hymn to Šamaš (Hymn)</h3>
+<p>The most famous literary monument to Šamaš — at some two hundred lines the longest surviving Akkadian hymn addressed to a single god — opens by picturing him at dawn: &#39;You climb to the mountains surveying the earth; you suspend from the heavens the circle of the lands.&#39; The hymn insists that the god sees the wicked and the just impartially: the perjurer, the false merchant, the corrupt judge cannot hide. At the same time it praises Šamaš as the helper of the poor, the orphan, and the widow — the only court of appeal for those with no human patron.</p>
+<h3 id="hammurabi-before-the-sun-god-law-code">Hammurabi Before the Sun-God (Law Code)</h3>
+<p>The stele of Hammurabi&#39;s law code opens with a scene in which the Babylonian king stands before the seated Šamaš, who extends the rod and ring of just rule. The image is not decorative: it asserts that Babylonian law flows from the sun-god&#39;s justice, and the prologue declares that the great gods appointed Hammurabi &#39;to make justice appear in the land.&#39; The epilogue calls down curses on any future king who alters or disregards the laws — curses to be enforced by Šamaš himself.</p>
+<h3 id="samas-and-etana-epic">Šamaš and Etana (Epic)</h3>
+<p>In the <em>Epic of Etana</em>, the childless king of Kish prays to Šamaš for the plant of birth. The god directs him to an eagle lying captive in a pit — punished for breaking an oath sworn before Šamaš with the serpent — and the rescued bird bears the king on the perilous ascent toward the heaven of Anu. The story binds Šamaš not only to justice but to the life-giving power of the sun.</p>
+<h3 id="samas-in-the-gilgames-cycle-epic">Šamaš in the Gilgameš Cycle (Epic)</h3>
+<p>Šamaš is the heroes&#39; patron on the Cedar Forest journey: Gilgameš prays to him at dusk and receives the dreams that Enkidu interprets (Tablet IV), and Ninsun entrusts her son to the sun-god&#39;s protection (Tablet III). When the divine council later decrees that one of the two must die for the killing of Ḫumbaba and the Bull of Heaven, the sentence falls on Enkidu (Tablet VII); and it is Šamaš who answers from heaven when the stricken Enkidu curses the harlot who civilized him, turning the curse into a blessing.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Šamaš concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>Solar disc with serrated rays</strong> — The saw-toothed sun that cuts through darkness, lies, and night itself</li>
+  <li><strong>Winged sun disc</strong> — The sun&#39;s journey across the sky and its protective power over king and temple</li>
+  <li><strong>Scales</strong> — The balance of justice; honest merchants weighed goods before Šamaš</li>
+  <li><strong>Saw or serrated knife</strong> — The weapon that severs falsehood from truth, darkness from light</li>
+  <li><strong>Stairway or mountain</strong> — The eastern mountains from which Šamaš ascends each morning</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Šamaš&#39;s principal cult centres were the twin E-babbar (&#39;White House&#39;) temples at Sippar (modern Abu Habba) and Larsa (modern Senkereh). At Sippar, Hormuzd Rassam&#39;s excavations of 1880–81 uncovered the temple and its archives, including the celebrated Sun-god Tablet (British Museum 91000): King Nabû-apla-iddina (c. 888–855 BCE) is shown presented to the enthroned god, and the inscription records the refashioning of Šamaš&#39;s lost cult image; Nabopolassar and Nabonidus later added inscriptions, and Nabonidus reburied the tablet with copies in a clay box for future kings to find. The Sippar archives document a millennium of temple economy — prebends, offerings, land leases — and Iraqi excavations in the 1980s recovered a late first-millennium temple library with tablets still in place. At Larsa the E-babbar drew royal patronage from Rim-Sîn to Hammurabi and, centuries later, the restorations of Nabonidus, which record his search for ancient foundation deposits. The Louvre stele of Hammurabi, depicting the king before the seated sun-god, remains the cult&#39;s most famous visual document.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Šamaš is the <strong>sun that sees everything</strong> and therefore the god who cannot be bribed. In Mesopotamia he is both the physical light that rises over the eastern mountains and the moral light that exposes false weights, perjured testimony, and hidden crime. Kings receive their laws from him; judges take their oaths before him; travelers pray to him on the open road. No other solar deity in the ancient Near East is so explicitly a god of forensic justice.</p>
+<h3 id="the-all-seeing-sun">The All-Seeing Sun</h3>
+<p>Each dawn his rays sweep across the world like a judge&#39;s eye; nothing concealed escapes Šamaš.</p>
+<h3 id="divine-justice">Divine Justice</h3>
+<p>Hammurabi received his law code from Šamaš; the stele shows the king standing before the seated sun-god.</p>
+<h3 id="the-traveler-s-guardian">The Traveler&#39;s Guardian</h3>
+<p>Merchants, messengers, and the wrongly accused invoke him at roadsides; he protects the honest wayfarer.</p>
+<h3 id="divination-and-omen">Divination and Omen</h3>
+<p>The liver, the entrails, and the movements of the heavens are read under his patronage, for he reveals what is hidden.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Šamaš is the Akkadian continuation of the Sumerian sun-god <strong>Utu</strong>: the two names share the sun-sign 𒌓, Sumerian hymns to Utu feed directly into the Akkadian cult, and god-lists treat the names as equivalents. In his court stand the personifications <strong>Kittu</strong> (&#39;Truth&#39;) and <strong>Mīšaru</strong> (&#39;Justice&#39;), and in theological texts he is paired with his father Sîn, the moon, as the complementary witness of the night sky. West of the Euphrates the same root appears in Amorite personal names — the Babylonian royal name Samsu-iluna, son of Hammurabi, contains the element <em>samsu</em> (&#39;sun&#39;) — and Hebrew <em>šemeš</em> is the ordinary noun &#39;sun&#39;; the biblical corpus knows the sun&#39;s cult chiefly as something to be abolished, as when Josiah removes the horses and chariots dedicated to the sun from the Jerusalem temple (2 Kings 23:11). Greek and Roman interpreters equated him with <strong>Hēlios</strong> and <strong>Sol</strong>, and the winged solar iconography of his monuments fed later Iranian and Mithraic imagery.</p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include [[apollon|Apóllōn]] (sun / light), [[dazhbog|Dažbog]] (sun / light), [[helios|Hēlios]] (sun / light), [[huitzilopochtli|Huitzilopōchtli]] (sun / light), [[maat|Mꜣꜥt]] (justice / law / truth), and [[ra|Rꜥ]] (sun / light).</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Šamaš&#39;s most durable legacy is the image of <strong>justice as sunlight</strong> — law as something received from an impartial witness overhead. The stele of Hammurabi, now in the Louvre, fixed the composition of a king receiving his mandate from a seated god and remains the most reproduced image of law-giving from the ancient world. The biblical prophets converted the god into an attribute: Malachi&#39;s promise that &#39;the sun of righteousness shall rise with healing in its wings&#39; (Malachi 4:2) borrows the winged solar iconography of the ancient Near Eastern monuments, and the phrase seeded the later Christian image of Christ as <em>Sol Iustitiae</em>, the Sun of Justice. The common noun had its own afterlife as well: the Hebrew judge Samson bears a name built on <em>šemeš</em>, &#39;sun,&#39; and his story plays out in the same Sorek valley country as Beth-shemesh, &#39;House of the Sun.&#39; In modern legal and political symbolism — the scales, the rayed eye, the Enlightenment equation of light with reason — Šamaš&#39;s pattern persists long after his name was forgotten.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Šamaš given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Chicago Assyrian Dictionary (CAD), šamšu.</li>
+  <li> Electronic Text Corpus of Sumerian Literature (ETCSL).</li>
+  <li> Black &amp; Green, Gods, Demons and Symbols of Ancient Mesopotamia.</li>
+  <li> Jacobsen, The Treasures of Darkness.</li>
+  <li> George, House Most High: The Temples of Ancient Mesopotamia.</li>
+  <li> Great Hymn to Šamaš, ed. Lambert, Babylonian Wisdom Literature (1960), pp. 121–138.</li>
+  <li> Code of Hammurabi, stele prologue and epilogue.</li>
+  <li> Epic of Etana (Old Babylonian and Standard Babylonian recensions).</li>
+  <li> Epic of Gilgamesh, Tablets I, VII, XI.</li>
+  <li> Hebrew Bible, Genesis 1:14–19; Malachi 4:2 (solar imagery).</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Šamaš asks a question that every civilization must answer: what gives a law authority? Not force alone, since force is partial; not tradition alone, since tradition can be corrupt. The Mesopotamian answer is the sun itself — the one witness no bribe can reach, the one light that falls equally on palace and hovel. To invoke Šamaš is to appeal from human partiality to cosmic impartiality.</p>
+<p>There is something almost modern in this theology. The idea that justice should be transparent, visible, and available to the weak is not a recent invention; it was already old when Hammurabi had it carved in stone. Šamaš is the god who sees the orphan, the widow, and the traveler — the people most likely to fall through the cracks of human institutions. His rays are not merely warm; they are <strong>evidentiary</strong>. They make the hidden visible and then ask the community to act on what has been seen.</p>
+<p>To name him <em>Šamaš</em> is to remember that the sun is not neutral. It is a moral force, a daily summons to honesty. Every sunrise is a verdict waiting to be delivered on yesterday&#39;s secrets.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Šamaš is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>shamash</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 7 characters of the name, the restoration adjusts 4: 4 further adjustments (Š, h, š, h). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>šamaš.com</strong>, which the DNS carries in punycode form as xn--ama-zzad.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Šamaš; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Cuneiform can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Restoring <strong>Šamaš</strong> is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. Every section of this post — the script, the sound, the myths, the evidence — converges on the same point: the marks in Šamaš are information, and information deserves an address of its own. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier, and every visit to šamaš.com is a vote for the restored form.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/lahmu/">Lahmu</a></li>
   <li><a href="/sites/nergal/">Nergal</a></li>
   <li><a href="/sites/pazuzu/">Pazuzu</a></li>
 </ul>
-<h2>Read More</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://etcsl.orinst.ox.ac.uk/">Electronic Text Corpus of Sumerian Literature, Sumerian Flood Story (Eridu Genesis).</a></li>
+  <li>Black &amp; Green, Gods, Demons and Symbols of Ancient Mesopotamia.</li>
+  <li>Electronic Text Corpus of Sumerian Literature (ETCSL).</li>
+  <li>Chicago Assyrian Dictionary (CAD), s.v. šamšu.</li>
+  <li>Akkadisches Handwörterbuch (AHw), s.v. šamšu.</li>
+  <li>Lexicon authorities for this entry: CAD, AHw.</li>
 </ul>
-<h2>What the Sources Record</h2>
-<p>Šamaš is the sun that sees everything and therefore the god who cannot be bribed. In Mesopotamia he is both the physical light that rises over the eastern mountains and the moral light that exposes false weights, perjured testimony, and hidden crime. Kings receive their laws from him; judges take their oaths before him; travelers pray to him on the open road. No other solar deity in the ancient Near East is so explicitly a god of forensic justice. ### The All-Seeing Sun Each dawn his rays sweep across the world like a judge&#39;s eye; nothing concealed escapes Šamaš. ### Divine Justice Hammurabi received his law code from Šamaš; the stele shows the king standing before the seated sun-god. ### The Traveler&#39;s Guardian Merchants, messengers, and the...</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">mesopotamian</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

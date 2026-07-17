@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,34 +170,200 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#epithets-cult-titles">Epithets &amp; Cult Titles</a></li>
+                <li><a href="#the-homeric-hymns">The Homeric Hymns</a></li>
+                <li><a href="#oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-greek-pantheon">The Greek Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#typing-pyr">Typing Pŷr</a></li>
+                <li><a href="#sister-temples">Sister Temples</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>Why Pŷr Belongs in the Address Bar</h1>
-<p>Every address bar is a choice. When you type <strong>Pŷr</strong>, you are not typing a novelty; you are restoring a name. The plain ASCII form <em>pyr</em> is the leftover of a DNS that was built for English typewriters, not for the world&#39;s naming traditions. Pŷr (pyr) — Fire · Fire — belongs to the Greek tradition, where it is catalogued under the domain &quot;Fire&quot;. The name means &quot;Fire&quot;. Pŷr is the Greek word for fire, an element that transforms, purifies, destroys, and illuminates. For Heraclitus it is the very substance of becoming; for cult it is the medium through which mortals communicate with gods. PÚNYCODEX restores the name as Pŷr and serves its temple at pŷr.com. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form pyr survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
-<h2>The Name the DNS Almost Forgot</h2>
-<p>The name is attested in Greek as Πῦρ. Etymologically it means &quot;Fire&quot;. The ASCII form pyr survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Pŷr recovers the stress accent of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The letter-by-letter transformation runs: - p → P — P uppercase - y → ŷ — Acute on y - r → r — r same The project holds the domain pŷr.com (xn--pr-hva.com) as the canonical home of this name. In scholarly terms, it belongs to the <strong>Tier 1</strong> class: the Greek original carries both stress and length, and only one valid Unicode restoration exists. That detail is not decorative; it is the difference between a label and a lived name.</p>
-<h2>From Greek to the Browser</h2>
-<p>The name is written in Greek as Πῦρ, a monosyllabic neuter whose single vowel bears the circumflex over the long upsilon: /pŷːr/. The oblique stem is πυρ- (genitive πυρός), and the PÚNYCODEX restoration Pŷr reproduces the accent and quantity of the nominative against the ASCII fallback pyr. It is one of the oldest words in the language: from the reconstructed Proto-Indo-European péh₂ur̥, &#39;fire&#39;, a heteroclitic r/n-stem whose declensional alternation survives intact in Hittite paḫḫur (genitive paḫḫuenaš). Its cognates include English fire and German Feuer: the Greek word and the English word are a single inheritance. Greek keeps the element distinct from its manifestations: πῦρ is fire itself, φλόξ the flame it throws, and ἑστία the hearth that... The PÚNYCODEX temple does not invent a spelling; it recovers one. By registering the Unicode form, the project proves that the original script can survive inside the infrastructure of the modern web.</p>
-<h2>Why 2026 Still Needs This</h2>
-<p>In 2026, names are data. Search engines, AI training corpora, and localization teams all need authoritative forms. Pŷr is a small but concrete demonstration that philology and DNS can coexist. The <a href="/sites/pyr/scholars/">Scholarly Edition</a> preserves the argument; the blog makes it approachable.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Pŷr is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>Why Pŷr belongs in your address bar</h1>
+<p>Every address bar is a choice. When you type <strong>Pŷr</strong>, you are not typing a novelty; you are restoring a name that the early DNS, built for English typewriters, could not carry. The plain ASCII form <em>pyr</em> is a leftover of that constraint, not the name itself. This post is the long version of the restoration: where the name comes from, how the Greek tradition wrote it, how it is pronounced, what the myths and the material record preserve, and why its Unicode form now lives as a working domain. The claim throughout is simple — the original spelling is not decoration. It is the name.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Pŷr</li>
+  <li><strong>ASCII form:</strong> pyr</li>
+  <li><strong>Meaning:</strong> &quot;Fire&quot;</li>
+  <li><strong>Domain of influence:</strong> Fire</li>
+  <li><strong>Pantheon:</strong> Greek</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Original script:</strong> Πῦρ (Greek)</li>
+  <li><strong>Live domain:</strong> pŷr.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Pŷr</strong> (<em>pyr</em>) — Fire · Fire — belongs to the Greek tradition, where it is catalogued under the domain &quot;Fire&quot;. The name means &quot;Fire&quot;.</p>
+<p>Pŷr is the <strong>Greek word for fire</strong>, an element that transforms, purifies, destroys, and illuminates. For Heraclitus it is the very substance of becoming; for cult it is the medium through which mortals communicate with gods.</p>
+<p>PÚNYCODEX restores the name as <strong>Pŷr</strong> and serves its temple at <a href="https://xn--pr-hva.com">pŷr.com</a>. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>pyr</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Greek as <strong>Πῦρ</strong>. Etymologically it means &quot;Fire&quot;.</p>
+<p>The ASCII form <em>pyr</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Pŷr</strong> recovers the stress accent of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>p</strong> → <strong>P</strong> — P uppercase</li>
+  <li><strong>y</strong> → <strong>ŷ</strong> — Acute on y</li>
+  <li><strong>r</strong> → <strong>r</strong> — r same</li>
+</ul>
+<p>The project holds the domain <strong>pŷr.com</strong> (xn--pr-hva.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is written in Greek as <strong>Πῦρ</strong>, a monosyllabic neuter whose single vowel bears the circumflex over the long upsilon: /pŷːr/. The oblique stem is πυρ- (genitive πυρός), and the PÚNYCODEX restoration <strong>Pŷr</strong> reproduces the accent and quantity of the nominative against the ASCII fallback <em>pyr</em>.</p>
+<p>It is one of the oldest words in the language: from the reconstructed Proto-Indo-European <strong>péh₂ur̥</strong>, &#39;fire&#39;, a heteroclitic r/n-stem whose declensional alternation survives intact in Hittite <strong>paḫḫur</strong> (genitive paḫḫuenaš). Its cognates include English <em>fire</em> and German <em>Feuer</em>: the Greek word and the English word are a single inheritance.</p>
+<p>Greek keeps the element distinct from its manifestations: <strong>πῦρ</strong> is fire itself, <strong>φλόξ</strong> the flame it throws, and <strong>ἑστία</strong> the hearth that domesticates it.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/pŷːr/</strong> — Attic Greek Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Pŷr</strong> — Aspirated pi [p] plus long upsilon with acute/circumflex [ŷː], followed by rho. The whole word is one long, high-pitched syllable.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;PYOOR&#39; — one long, high-pitched syllable, like the sound of a flame catching.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Greek</strong> — πῦρ (pŷr), fire</li>
+  <li><strong>PIE</strong> — *péh₂ur, &#39;fire&#39;; cognate with English &#39;fire&#39; and Hittite pahhur</li>
+  <li><strong>English</strong> — fire, pyre, pyrotechnic, pyromania</li>
+</ul>
+<p>Pŷr is Tier 1 because the Greek πῦρ contains both length (υ) and stress (acute/circumflex) on the same syllable. It is one of the oldest and most culturally charged words in Greek.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Pŷr is <strong>elemental and mythic at once</strong>. It appears in the theft of fire by Prometheus, the forge of Hephaistos, and the philosophical cosmos of Heraclitus.</p>
+<h3 id="prometheus-steals-fire-hesiod-theogony">Prometheus Steals Fire (Hesiod, Theogony)</h3>
+<p>Prometheus deceived Zeus over the division of sacrifice and then stole fire from heaven, hiding it in a fennel stalk to give to mortals. Zeus punished him with the torment of the Caucasus and sent Pandora as a counter-gift. Fire is thus the stolen technology that makes civilization possible.</p>
+<h3 id="fire-as-cosmic-arche-heraclitus">Fire as Cosmic Arche (Heraclitus)</h3>
+<p>Heraclitus declared that &#39;all things are an exchange for fire, and fire for all things, as goods for gold and gold for goods.&#39; Fire is the measure of transformation; it is war and peace, hunger and satiety. The cosmos is &#39;an ever-living fire, kindling in measures and going out in measures.&#39;</p>
+<h3 id="fire-in-initiation-mystery-cult">Fire in Initiation (Mystery cult)</h3>
+<p>In mysteries at Eleusis and elsewhere, fire marked the boundary between the uninitiated and the initiated. Torches, lamps, and fire-walking symbolized purification, vision, and the soul&#39;s passage through darkness into light.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>Fire&#39;s emblems in Greek life are functional — the installations and instruments by which the element was worshipped, carried, and read.</p>
+<ul>
+  <li><strong>Altar flame</strong> — the point where offering becomes smoke for the gods; Hesiod&#39;s account of the division at Mekone fixes the practice: the gods receive the thigh-bones wrapped in glistening fat, burned upon the altars (Theogony 535–560).</li>
+  <li><strong>Hearth</strong> — fire at rest at the center of house and city, personified as the goddess Hestia; every prytaneion kept the common hearth of the polis.</li>
+  <li><strong>Torch</strong> — carried fire: Pausanias (1.30.2) describes the torch-race from the altar of Prometheus in the Academy, won by the first runner to reach the city with his torch still alight.</li>
+  <li><strong>Phoenix pyre</strong> — Herodotus (2.73) knows the bird but not the burning; the self-immolating pyre from which the phoenix rises renewed belongs to later tradition (Ovid, Metamorphoses 15.391–407).</li>
+</ul>
+<p>Pŷr is never personified in Greek art — no &#39;Fire&#39; figure stands in the pantheon of vase or sculpture — yet few elements are more painted. Attic vases teem with flames: altars spiking with fire in sacrifice scenes, torches at weddings and in the torch-race (lampadēdromia) of the Panathenaia, funeral pyres, and the fennel-stalk and torch of Promētheus among the satyrs. Fire&#39;s divine embodiment is instead [[hephaistos|Hēphaistos]], shown with forge and tongs, and its celestial weapon is the thunderbolt of [[zeus|Zeus]]. On Roman coinage the flaming altar (<em>ara</em>) becomes a standard reverse type, and Vesta&#39;s eternal fire at Rome keeps the element inside official imagery. The record is honest: an element everywhere, a person nowhere.</p>
+<ul>
+  <li><strong>Hearth (hestia)</strong> — The sacred fire at the center of home and city</li>
+</ul>
+<h2 id="epithets-cult-titles">Epithets &amp; Cult Titles</h2>
+<p>Fire&#39;s predicates in Greek are those of poetry and philosophy, not cult:</p>
+<ul>
+  <li><strong>πῦρ αἰθόμενον</strong> (<em>pŷr aithómenon</em>) — &#39;blazing fire&#39;: the standard Iliadic formula for beacon, pyre, and conflagration.</li>
+  <li><strong>πῦρ ἄκαμον / ἀκαμάτοιο πυρός</strong> — &#39;untiring fire&#39;: Homer&#39;s formula for the flame that does not weary (Iliad) and Hesiod&#39;s epithet for the stolen fire (Theogony 563).</li>
+  <li><strong>πυρὸς τηλεσκόπου αὐγή</strong> — &#39;the far-shining gleam of fire&#39;: Hesiod&#39;s phrase for what Prometheus hid in the fennel-stalk (Theogony 563).</li>
+  <li><strong>πῦρ ἀείζωον</strong> (<em>pŷr aeízōon</em>) — &#39;ever-living fire&#39;: Heraclitus&#39;s name for the cosmos itself, &#39;kindling in measures and going out in measures&#39; (DK 22 B30).</li>
+  <li><strong>ἱερὸν πῦρ</strong> — &#39;sacred fire&#39;: the standard sacrificial designation from tragedy onward, the flame that turns offering into communication.</li>
+</ul>
+<h2 id="the-homeric-hymns">The Homeric Hymns</h2>
+<p>No Homeric Hymn is addressed to Pŷr: fire was the medium of every sacrifice but the subject of no hymn. Its earliest attestations are Homeric formulas of battle and funeral — <strong>πῦρ αἰθόμενον</strong>, &#39;blazing fire&#39;, runs through the Iliad — and its mythic charter is Hesiod&#39;s. Theogony 561–569 narrates how [[prometheus|Promētheus]], &#39;having stolen the far-shining gleam of untiring fire in a hollow fennel-stalk&#39;, deceived Zeus and delivered fire to mortals; Works and Days 50–52 retells the theft. In hexameter poetry fire is thus the stolen technology at the origin of human life, and the agent receives the story that the element itself never could.</p>
+<h2 id="oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</h2>
+<p>Pŷr had no oracle of its own, yet no Greek oracle functioned without it: divination was read in flame. The color, movement, and smoke of the sacrificial fire were constant objects of mantic attention — the Iamid seers of Olympia traced their office to Iamos, established by Apollo &#39;on the highest of altars&#39; (Pindar, Olympian 6). The ash altar of Zeus at Olympia (Pausanias 5.13.8–11), built from the ashes of countless victims, and Delphi&#39;s undying fire — which Plutarch (Numa 9) numbers among the perpetual flames of antiquity — show the same bond between flame and revelation. In the city itself the Prytaneion of Athens kept the common hearth of the polis, from which colonies carried fire to new foundations.</p>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>No god of fire had a temple in Greece — the element itself was the cult object, and its archaeology is the archaeology of the altar. The most eloquent monument is the <strong>ash altar of Zeus at Olympia</strong>: a conical mound built entirely from the ashes and burned thigh-bones of centuries of sacrifice, which Pausanias describes in detail (5.13.8–11).</p>
+<p>Every sanctuary&#39;s altar left the same signature in the ground — layers of ash, calcined bone, and charcoal — by which Greek sacrifice is recognized in excavation; burnt-offering deposits remain the standard evidence for cult practice.</p>
+<p>The civic counterpart was the <strong>common hearth</strong>: the prytaneion of each city kept a perpetual fire sacred to Hestia, and colonists carried flame from the mother-city&#39;s hearth to found the new one — a practice that made fire the physical constitution of the polis.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Pŷr is the <strong>Greek word for fire</strong>, an element that transforms, purifies, destroys, and illuminates. For Heraclitus it is the very substance of becoming; for cult it is the medium through which mortals communicate with gods.</p>
+<h3 id="heraclitean-flux">Heraclitean Flux</h3>
+<p>Heraclitus made fire the arche: all things are an exchange for fire, and fire for all things.</p>
+<h3 id="sacrificial-flame">Sacrificial Flame</h3>
+<p>Greek worship centered on altars where fire carried offerings upward to the gods.</p>
+<h3 id="purification">Purification</h3>
+<p>Fire cleanses metals, bodies, and cities; it is both punishment and renewal.</p>
+<h3 id="light-in-darkness">Light in Darkness</h3>
+<p>The torch, the hearth, the beacon: fire as knowledge, safety, and communication.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Pŷr became one of the four Aristotelian elements and the Stoic active principle (pneuma/fire). In Christian symbolism it represented the Holy Spirit, judgment, and hellfire. Zoroastrianism elevated fire as the purest symbol of Ahura Mazda. The word survives in English through &#39;fire,&#39; &#39;pyre,&#39; and scientific terms like &#39;pyrotechnics&#39; and &#39;pyroclastic.&#39; Modern chemistry identifies fire as rapid oxidation, but the cultural symbolism remains ancient.</p>
+<p>Within the Greek tradition, closely related names in the corpus include [[acheron|Achérōn]], [[adamas|Adámas]], [[aer|Aḗr]], [[aither|Aithḗr]], [[ananke|Anánkē]], and [[andromeda|Andromedē]].</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>The Greek fire-theft became the West&#39;s parable of technology: Mary Shelley&#39;s Frankenstein; or, The Modern Prometheus (1818) made the stolen flame the standing emblem of every discovery that outruns its maker&#39;s wisdom.</p>
+<p>The element still carries its ritual charge. The modern Olympic flame consciously descends from the ancient sanctuary fires: a symbolic flame first burned in the stadium at the Amsterdam Games of 1928, and since Berlin 1936 the flame has been kindled at Olympia and carried in relay to the host city, a ceremony modeled on the ancient torch-races.</p>
+<p>English keeps the word in two registers: the plain inheritance <em>fire</em>, from the same Indo-European root, and the learned one — pyre, pyrotechnics, pyromania, pyroclastic, and empyrean, the &#39;fiery&#39; highest heaven (from Greek ἐμπύριος).</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Pŷr given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Full text</a></li>
+  <li> Beekes, Etymological Dictionary of Greek.</li>
+  <li> Heraclitus, fragments (DK 22 B30, B90).</li>
+  <li> Hesiod, Theogony and Works and Days.</li>
+  <li> Aeschylus, Prometheus Bound.</li>
+  <li> Aristotle, On the Heavens.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Pŷr is the most alive of the elements. Earth rests, water flows, air moves, but fire consumes and transforms. It is never the same from moment to moment; it is pure becoming. Heraclitus saw in it the logos of the universe.</p>
+<p>Fire also teaches danger and responsibility. Prometheus was punished not for discovering fire but for giving it away without regard for consequence. Every technology since has repeated that dilemma. To honor pŷr is to respect both its gift and its hunger — to use it without being consumed by it.</p>
+<p>Greek religion domesticated the wild element into hestía, the hearth: the same fire that devours forests and cities becomes, at the center of the house, the still point around which family and polis gather. Pŷr names both — the ungoverned process and the tamed center — and Greek wisdom lies in keeping the two apart.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Pŷr is classified as <strong>Tier 1</strong>: the original carries both stress and length, and only one valid Unicode restoration exists. The ASCII fallback <em>pyr</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 3 characters of the name, the restoration adjusts 1: 1 mark of stress (ŷ). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>pyr</em> to <strong>Pŷr</strong>, one character at a time:</p>
+<ul>
+  <li><strong>p</strong> → <strong>P</strong> — P uppercase</li>
+  <li><strong>y</strong> → <strong>ŷ</strong> — Acute on y</li>
+  <li><strong>r</strong> → <strong>r</strong> — r same</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>pŷr.com</strong>, which the DNS carries in punycode form as xn--pr-hva.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Pŷr; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Greek can now be typed into any browser on earth.</p>
+<h2 id="the-greek-pantheon">The Greek Pantheon</h2>
+<p>Pŷr is one of 263 entries the PÚNYCODEX lexicon catalogues under the Greek pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Pŷr mean?</strong> The traditional gloss is &quot;Fire.&quot;</p>
+<p><strong>Which tradition does Pŷr belong to?</strong> Pŷr is catalogued in the Greek pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Pŷr classified as Tier 1?</strong> Because the original carries both stress and length, and only one valid Unicode restoration exists — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Pŷr a working domain?</strong> Yes — pŷr.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for pŷr.com?</strong> The DNS encoding is xn--pr-hva.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="typing-pyr">Typing Pŷr</h2>
+<p>You do not need a special keyboard to use this restoration. The <a href="/type/">PÚNYCODEX Type Tool</a> converts the ASCII form <em>pyr</em> into <strong>Pŷr</strong> as you type, and the browser extension offers the same conversion inside any text field. Copy the restored form, paste it into the address bar, and the DNS does the rest.</p>
+<h2 id="sister-temples">Sister Temples</h2>
+<p>Other temples in the Greek pantheon include <a href="/sites/eos/">Ēōs</a>, <a href="/sites/ephiales/">Ephiálēs</a>, and <a href="/sites/epimetheus/">Epimētheus</a> — each with its own restoration story, its own scholarly record, and its own place in the lexicon.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Restoring <strong>Pŷr</strong> is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. Every section of this post — the script, the sound, the myths, the evidence — converges on the same point: the marks in Pŷr are information, and information deserves an address of its own. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier, and every visit to pŷr.com is a vote for the restored form.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/orestes/">Orestēs</a></li>
   <li><a href="/sites/orpheus/">Orpheus</a></li>
   <li><a href="/sites/ourania/">Ouranía</a></li>
 </ul>
-<h2>Read More</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843.</a></li>
   <li><a href="https://stillmed.olympic.org/media/Document%20Library/2015/08/12/18/45/30/The-Olympic-Torch-Relay.pdf">International Olympic Committee, &#39;The Olympic Torch Relay&#39; (Olympic flame history: Amsterdam 1928, Berlin 1936).</a></li>
+  <li>Beekes, Etymological Dictionary of Greek.</li>
+  <li>Heraclitus, fragments (DK 22 B30, B90).</li>
+  <li>Beekes, Etymological Dictionary of Greek, s.v. πῦρ.</li>
+  <li>Heraclitus, fragments (DK 22 B90).</li>
+  <li>Lexicon authorities for this entry: Heraclitus, LSJ.</li>
 </ul>
-<h2>What the Sources Record</h2>
-<p>Pŷr is the Greek word for fire, an element that transforms, purifies, destroys, and illuminates. For Heraclitus it is the very substance of becoming; for cult it is the medium through which mortals communicate with gods. ### Heraclitean Flux Heraclitus made fire the arche: all things are an exchange for fire, and fire for all things. ### Sacrificial Flame Greek worship centered on altars where fire carried offerings upward to the gods. ### Purification Fire cleanses metals, bodies, and cities; it is both punishment and renewal. ### Light in Darkness The torch, the hearth, the beacon: fire as knowledge, safety, and communication.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">greek</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

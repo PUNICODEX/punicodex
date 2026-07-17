@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,46 +170,206 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#name-variations">Name Variations</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-egyptian-pantheon">The Egyptian Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#typing-mun">Typing Ꜣmun</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>How Ꜣmun Got Its Accent Back</h1>
-<p>The ASCII form <em>amun</em> is missing something. Ꜣmun restores the marks that the original language used to distinguish this name from a thousand others. The name is attested in Hieroglyphs as 𓇋𓏠𓈖 — reed-leaf, the game-board sign used phonetically as mn, and the water-line — usually closed by the seated-god determinative. It means &#39;the Hidden One&#39;, from the root jmn &#39;to hide, be concealed&#39;. The ASCII form amun is a technological compromise imposed by the early domain-name system, not an ancient spelling. The Unicode restoration Ꜣmun recovers the full diacritic detail of the scholarly transliteration directly in the address bar; the vowels, which Egyptian writing omits, are reconstructed from Coptic Ⲁⲙⲟⲩⲛ and Greek Ἄμμων. The letter-by-letter transformation runs: - a → Ꜣ — Egyptological alef (Ꜣ): the initial reed-leaf consonant, read as alef in Demotic/vocalized tradition and supplied with the...</p>
-<h2>The Missing Marks</h2>
-<p>Classified as <strong>Tier 2</strong>, this restoration carries the stress and length that standard ASCII discards. the original preserves at least one philological feature that ASCII cannot encode</p>
-<h2>Step by Step</h2>
-<p>The transformation from <em>amun</em> to <strong>Ꜣmun</strong> happens one character at a time. Some letters stay the same; others gain accents, macrons, or entirely new shapes. The breakdown on the <a href="/sites/amun/">temple home page</a> shows exactly how.</p>
-<h2>Why Stress and Length Matter</h2>
-<p>In the source language, changing a stress or a vowel length can change a meaning. Names are especially sensitive because they are proper nouns: one spelling points to one entity. Ꜣmun preserves that pointer in a way <em>amun</em> cannot.</p>
-<h2>The Restored Form</h2>
-<p>Ꜣmun is now a domain. That simple fact turns a philological detail into a public demonstration. Anyone who types it participates in the restoration.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Ꜣmun is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>How Ꜣmun got its accent back</h1>
+<p>The ASCII form <em>amun</em> is missing something. <strong>Ꜣmun</strong> restores the marks the source language used to distinguish this name from a thousand others — and those marks change how the name is read, pronounced, and understood. This post explains, with the full scholarly record behind it, what each restored mark preserves: the Hieroglyphs evidence, the reconstructed sound, the myths the name carries, and the classification logic that separates Tier 1 restorations from Tier 2. By the end, the marks in Ꜣmun will look less like ornaments and more like what they are — recovered evidence, pinned back in its proper place.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Ꜣmun</li>
+  <li><strong>ASCII form:</strong> amun</li>
+  <li><strong>Meaning:</strong> &quot;Hidden One (Egyptian jmn; vocalized Ꜣmun)&quot;</li>
+  <li><strong>Domain of influence:</strong> Wind, Kingship, Thebes</li>
+  <li><strong>Pantheon:</strong> Egyptian</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> 𓇋𓏠𓈖 (Hieroglyphs)</li>
+  <li><strong>Live domain:</strong> ꜣmun.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Ꜣmun</strong> (<em>amun</em>) — &#39;the Hidden One&#39; — begins the record as a minor member of the Hermopolitan Ogdoad and ends it as king of the Egyptian pantheon: the steepest rise of any god in Egyptian religious history. The name derives from the root jmn, &#39;to hide, be concealed&#39;, so that the god is in effect a participle — hiddenness itself made divine. Where solar gods blaze in the sky, Amun moves in the wind, the temple shadow, and the oracle&#39;s whisper. New Kingdom theologians fused him with Ra as Amun-Ra, the invisible power within the visible sun, and the priesthood of his great temple at Karnak grew into an institution that at times rivalled the crown itself.</p>
+<p>PÚNYCODEX restores the name as <strong>Ꜣmun</strong> and serves its temple at <a href="https://xn--mun-lk3l.com">ꜣmun.com</a>. The restoration writes the Egyptological alef (Ꜣ, U+A722) for the weak initial consonant of j-m-n and supplies the vowels from Coptic Ⲁⲙⲟⲩⲛ and Greek Ἄμμων — a Tier 2 form that the ASCII fallback <em>amun</em> can only approximate.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Hieroglyphs as <strong>𓇋𓏠𓈖</strong> — reed-leaf, the game-board sign used phonetically as mn, and the water-line — usually closed by the seated-god determinative. It means &#39;the Hidden One&#39;, from the root jmn &#39;to hide, be concealed&#39;.</p>
+<p>The ASCII form <em>amun</em> is a technological compromise imposed by the early domain-name system, not an ancient spelling. The Unicode restoration <strong>Ꜣmun</strong> recovers the full diacritic detail of the scholarly transliteration directly in the address bar; the vowels, which Egyptian writing omits, are reconstructed from Coptic Ⲁⲙⲟⲩⲛ and Greek Ἄμμων.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>a</strong> → <strong>Ꜣ</strong> — Egyptological alef (Ꜣ): the initial reed-leaf consonant, read as alef in Demotic/vocalized tradition and supplied with the vowel a from Coptic Ⲁⲙⲟⲩⲛ / Greek Ἄμμων</li>
+  <li><strong>m</strong> → <strong>m</strong> — Same</li>
+  <li><strong>u</strong> → <strong>u</strong> — Vowel supplied from Coptic Ⲁⲙⲟⲩⲛ / Greek Ἄμμων; Egyptian writing does not record vowels</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+</ul>
+<p>Attested and derived spellings of the name:</p>
+<ul>
+  <li><strong>Jmn</strong> — scholarly variant: Egyptological consonantal skeleton (reed-leaf j-m-n)</li>
+  <li><strong>Amon</strong> — scholarly variant: Vocalized transliteration: Amon</li>
+  <li><strong>Amen</strong> — scholarly variant: Vocalized transliteration: Amen</li>
+</ul>
+<p>The project holds the domain <strong>ꜣmun.com</strong> (xn--mun-lk3l.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Hieroglyphs as <strong>𓇋𓏠𓈖</strong> — Egyptian hieroglyphic, attested c. 3200 BCE – 4th century CE in the Nile Valley; the script runs right-to-left, top-to-bottom, or multidirectionally.</p>
+<p>The scholarly transliteration is <em>Ꜣmun</em> (Egyptological). The original vocalisation is unrecorded; the conventional Egyptological reading /ˈaː.mʊn/ is reconstructed from later witnesses.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>Hieroglyphic spelling 𓇋𓏠𓈖 (reed-leaf, game-board sign mn, water-line)</li>
+  <li>The reed-leaf sign 𓇋 represents a weak initial consonant; Demotic and vocalized traditions read it as the alef ꜣ, giving ꜣ-m-n</li>
+  <li>Egyptian writing does not record vowels; the vocalized form Ꜣmun is reconstructed from Coptic Ⲁⲙⲟⲩⲛ and Greek Ἄμμων</li>
+  <li>The name means &#39;the hidden one&#39;</li>
+</ul>
+<p>PÚNYCODEX registers <strong>Ꜣmun</strong> as a Tier 2 vocalized restoration: the alef (U+A722) and the reconstructed vowels carry the scholarly record into the address bar, while the hieroglyphic form itself lies outside the .com IDN table.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/ʔaˈmuːn/</strong> — Egyptological Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Ꜣ</strong> — Egyptological alef or reed-leaf, representing a glottal stop [ʔ] or a weak consonantal onset; the initial sound of the name jmn</li>
+  <li><strong>m</strong> — Bilabial nasal [m]</li>
+  <li><strong>u</strong> — Close back rounded vowel [u], supplied from Coptic Ⲁⲙⲟⲩⲛ and Greek Ἄμμων</li>
+  <li><strong>n</strong> — Alveolar nasal [n], closing the root</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: ah-MOON — begin with a soft glottal catch, then a long &#39;moon&#39; without the final glide.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Egyptian hieroglyphs</strong> — 𓇋𓏠𓈖 (jmn), the hidden one, written with the reed-leaf, game-piece, and water signs</li>
+  <li><strong>Coptic</strong> — Ⲁⲙⲟⲩⲛ (Amoun), the post-Pharaonic reading that preserves the vowels</li>
+  <li><strong>Greek</strong> — Ἄμμων (Ammōn), the oracular god of Siwa known to Herodotus and Alexander</li>
+</ul>
+<p>Ꜣmun is a Tier-2 vocalized restoration. The initial Egyptological alef (Ꜣ) marks the consonant that Coptic and Greek sources vocalize as &#39;A&#39;. Egyptian hieroglyphs record only j-m-n; the vowels are reconstructed from later witnesses.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Amun&#39;s rise from provincial wind god to universal king is one of the great success stories of Egyptian religion. By the Middle Kingdom he is national; by the New Kingdom he is Amun-Ra, hidden lord of the cosmos; by the Late Period his oracles and priesthoods rival pharaonic power. His myths revolve around concealment, revelation, and the transmission of authority.</p>
+<h3 id="the-hidden-god-who-becomes-king-theban-theology">The Hidden God Who Becomes King (Theban Theology)</h3>
+<p>Amun began as one of several gods of the Hermopolitan Ogdoad, associated with the invisible air. When Thebes rose to political prominence in the Middle Kingdom, Amun rose with it. New Kingdom theologians proclaimed him &#39;King of the Gods,&#39; the unseen power whose will was revealed through oracles, processions, and the priesthood of Karnak. His hiddenness was not absence but the mark of a supreme being too vast to be fully known.</p>
+<h3 id="amun-and-the-distant-goddess-myth-of-the-eye">Amun and the Distant Goddess (Myth of the Eye)</h3>
+<p>In Theban versions of the widespread &#39;Distant Goddess&#39; myth, the angry solar eye — often identified with Mut or Tefnut — wanders far from Egypt in the form of a lioness or cat. Amun (or another male deity) persuades her to return, restoring cosmic order. The myth was dramatized in annual festivals that brought the gods&#39; images out of Karnak in procession.</p>
+<h3 id="alexander-at-siwa-historical-cult">Alexander at Siwa (Historical Cult)</h3>
+<p>When Alexander the Great visited the oracle of Amun at Siwa in 331 BCE, the priests hailed him as son of Amun. The episode sealed Alexander&#39;s claim to legitimate Egyptian kingship and linked Greek, Egyptian, and Near Eastern royal ideologies. It also made Amun-Zeus Ammon a figure of Mediterranean fame for centuries.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Ꜣmun concentrates in a small set of recurring attributes, each a compressed statement about the god:</p>
+<ul>
+  <li><strong>Two tall plumes</strong> — Amun&#39;s distinctive crown of parallel feathers, worn from the New Kingdom onward and carried over into the iconography of Amun-Ra; the plumes mark him out in every procession and temple relief.</li>
+  <li><strong>Ram with curved horns</strong> — His sacred animal at Thebes and in Nubia. Herodotus reports that the Thebans abstained from sacrificing sheep because their Zeus — Ammon — had once revealed himself to Heracles wrapped in a ram&#39;s fleece; the ram-headed criosphinxes lining the processional way into Karnak guard the god in this form.</li>
+  <li><strong>Goose</strong> — The &#39;Great Cackler&#39; of Theban creation theology, whose cry broke the primordial silence; in this aspect Amun is a creator older than the Ennead.</li>
+  <li><strong>Solar barque</strong> — As Amun-Ra, the hidden power steers the sun&#39;s barque through the hours of night, the wind inside the sail of the visible disk.</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Amun&#39;s principal sanctuary was Karnak — ancient Ipet-isut, &#39;the most select of places&#39; — a vast complex of pylons, courts, obelisks, and a sacred lake built up over more than a millennium from the Middle Kingdom onward; its axis of ten pylons reads like a table of contents of Egyptian kingship. The Luxor temple, ancient Ipet-resyt, formed the southern counterpart, linked to Karnak by a sphinx-lined processional way along which the god&#39;s image travelled at the annual Opet festival. His oracular temple at Siwa (Aghurmi) in the Libyan desert drew Greek and later Roman pilgrims. In Nubia the great Amun temple at Jebel Barkal (B 500) beside Napata, and later temples at Meroë, carried his cult as the state god of Kush into the first millennium CE.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p><strong>Ꜣmun</strong> begins as a local Theban wind god and ends as the king of the Egyptian pantheon, fused with Ra as Amun-Ra. His very name means &#39;Hidden One&#39;: he is the power that cannot be seen, the breath behind the storm, the unseen source of royal and cosmic authority. Where solar gods blaze in the sky, Amun moves in the air, the temple shadows, and the oracle&#39;s whisper.</p>
+<h3 id="lord-of-the-breath">Lord of the Breath</h3>
+<p>Amun&#39;s wind aspect links him to invisible force, royal fortune, and the breath that animates the cosmos.</p>
+<h3 id="karnak-and-thebes">Karnak and Thebes</h3>
+<p>The great temple complex at Karnak was his principal seat; each pharaoh added to its forest of pylons and obelisks.</p>
+<h3 id="amun-ra">Amun-Ra</h3>
+<p>Fused with the sun god, Amun becomes the hidden power within the visible disk, worshipped across Egypt.</p>
+<h3 id="the-oracle-of-siwa">The Oracle of Siwa</h3>
+<p>His desert oracle at Siwa was consulted by Greek colonists and famously by Alexander the Great.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Amun&#39;s greatest syncretism is Amun-Ra, the fusion of Theban invisibility with Heliopolitan solar power. He was also paired with Mut and [[khonsu|Ḫnsw]] as the Theban triad, and with [[min|Mnw]] as Amun-Min, an ithyphallic fertility god. Greeks identified him with Zeus under the name Zeus Ammon, and his oracle at Siwa drew visitors from across the Mediterranean. In Nubia and Kush, Amun remained a royal god long after Egypt&#39;s pharaonic decline, and the kings of Meroë claimed his patronage.</p>
+<p>Within the Egyptian tradition, closely related names in the corpus include [[ab|Ꜣb]], [[akh|Ꜣḫ]], [[ankh|ꜥnḫ]], [[apep|Ꜥpp]], [[ba|Bꜣ]], and [[bastet|Bꜣstt]].</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>The afterlife of the name is partly a study in false and true etymologies. Hebrew <em>Amen</em> is popularly traced to Amun; the standard lexica derive it instead from the Semitic root ʾ-m-n, &#39;to be firm, faithful&#39;, so the resemblance is a coincidence that later ages found irresistible. The Greek Ἄμμων gave the Western tradition two durable inheritances: the portraits of Alexander wearing the ram&#39;s horn of Ammon on the coinage of his successor Lysimachus, and <em>sal ammoniac</em> — the &#39;salt of Ammon&#39; said to be gathered near the temple of Ammon in Libya — from which modern chemistry takes the name <em>ammonia</em>. Karnak itself remains one of the largest religious complexes ever built, a stone register of three millennia of royal patronage, and in modern spirituality Amun persists as a god of hidden knowledge and unseen power.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Ꜣmun given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Faulkner, A Concise Dictionary of Middle Egyptian.</li>
+  <li> Wb, jmn (Erman &amp; Grapow).</li>
+  <li> Allen, Middle Egyptian: An Introduction to the Language and Culture of Hieroglyphs.</li>
+  <li> Assmann, Egyptian Solar Religion in the New Kingdom.</li>
+  <li> Baines, Fecundity Figures: Egyptian Personification and the Iconology of a Genre.</li>
+  <li> Herodotus, Histories 2.42 (on the oracle of Ammon).</li>
+  <li> Kuhlmann, Das Ammoneion: Archäologie, Geschichte und Kultpraxis des Orakels von Siwa (Mainz, 1988).</li>
+  <li> Morkot, The Black Pharaohs: Egypt&#39;s Nubian Rulers.</li>
+  <li> Wilkinson, The Complete Gods and Goddesses of Ancient Egypt (2003).</li>
+  <li> Wilkinson, The Complete Temples of Ancient Egypt (2000).</li>
+  <li> Blyth, Karnak: Evolution of a Temple (2006).</li>
+  <li> Zandee, De hymnen aan Amon van papyrus Leiden I 350 (1947).</li>
+  <li> Brown, Driver &amp; Briggs, A Hebrew and English Lexicon of the Old Testament, s.v. אָמֵן.</li>
+  <li> Mørkholm, Early Hellenistic Coinage (1991).</li>
+  <li> Oxford English Dictionary, s.v. &#39;ammonia&#39;.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Amun is the god of what moves without being seen: the wind, the breath, the hidden cause behind visible events. His very name is a participle — &#39;the Hidden One&#39; — and the great Theban hymns of the New Kingdom, above all the Leiden hymn cycle, dwell on exactly this paradox: a god whose power is everywhere confessed and whose nature is nowhere exhausted. In an age obsessed with surfaces, he asks attention for the invisible currents — economic, ecological, psychological — that shape our lives. To invoke Amun is to acknowledge that the most powerful forces are often the least visible, and that wisdom lies in learning to read what cannot be directly observed.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Ꜣmun is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>amun</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 4 characters of the name, the restoration adjusts 1: 1 further adjustment (Ꜣ). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="name-variations">Name Variations</h2>
+<p>The lexicon records 3 additional forms of the name:</p>
+<ul>
+  <li><strong>Jmn</strong> (alt) — Egyptological consonantal skeleton (reed-leaf j-m-n)</li>
+  <li><strong>Amon</strong> (alt) — Vocalized transliteration: Amon</li>
+  <li><strong>Amen</strong> (alt) — Vocalized transliteration: Amen</li>
+</ul>
+<p>The temple uses <strong>Ꜣmun</strong> as the primary form: it is the spelling that best balances philological accuracy with the practical limits of DNS.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>amun</em> to <strong>Ꜣmun</strong>, one character at a time:</p>
+<ul>
+  <li><strong>a</strong> → <strong>Ꜣ</strong> — Egyptological alef (Ꜣ): the initial reed-leaf consonant, read as alef in Demotic/vocalized tradition and supplied with the vowel a from Coptic Ⲁⲙⲟⲩⲛ / Greek Ἄμμων</li>
+  <li><strong>m</strong> → <strong>m</strong> — Same</li>
+  <li><strong>u</strong> → <strong>u</strong> — Vowel supplied from Coptic Ⲁⲙⲟⲩⲛ / Greek Ἄμμων; Egyptian writing does not record vowels</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>ꜣmun.com</strong>, which the DNS carries in punycode form as xn--mun-lk3l.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Ꜣmun; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Hieroglyphs can now be typed into any browser on earth.</p>
+<h2 id="the-egyptian-pantheon">The Egyptian Pantheon</h2>
+<p>Ꜣmun is one of 66 entries the PÚNYCODEX lexicon catalogues under the Egyptian pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Ꜣmun mean?</strong> The traditional gloss is &quot;Hidden One (Egyptian jmn; vocalized Ꜣmun).&quot;</p>
+<p><strong>Which tradition does Ꜣmun belong to?</strong> Ꜣmun is catalogued in the Egyptian pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Ꜣmun classified as Tier 2?</strong> Because the original preserves at least one philological feature that ASCII cannot encode — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Ꜣmun a working domain?</strong> Yes — ꜣmun.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for ꜣmun.com?</strong> The DNS encoding is xn--mun-lk3l.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="typing-mun">Typing Ꜣmun</h2>
+<p>You do not need a special keyboard to use this restoration. The <a href="/type/">PÚNYCODEX Type Tool</a> converts the ASCII form <em>amun</em> into <strong>Ꜣmun</strong> as you type, and the browser extension offers the same conversion inside any text field. Copy the restored form, paste it into the address bar, and the DNS does the rest.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>The marks in <strong>Ꜣmun</strong> were never lost; they were only waiting for a carrier that could hold them. Now that the carrier exists, the burden flips: every use of <em>amun</em> is a choice to leave evidence on the table. The PÚNYCODEX temple keeps the restored form in circulation — as a domain, a dataset entry, and a scholarly argument — so that the choice to use it stays easy. Accent by accent, macron by macron, that is how the original names come back: not with a single grand gesture, but with a spelling that finally works everywhere.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/hm/">Ḥm</a></li>
   <li><a href="/sites/khepri/">Ḫprj</a></li>
   <li><a href="/sites/maa/">Mꜥ</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.cambridge.org/">James P. Allen, Middle Egyptian: An Introduction to the Language and Culture of Hieroglyphs, Cambridge University Press, 2000.</a></li>
   <li><a href="https://tla.digital/lemma/26060">Wörterbuch der ägyptischen Sprache, lemma jmn, Erman-Grapow, De Gruyter / Hinrichs, 1926.</a></li>
+  <li>Wilkinson, The Complete Gods and Goddesses of Ancient Egypt (2003), s.v. Amun.</li>
+  <li>Faulkner, A Concise Dictionary of Middle Egyptian, s.v. jmn.</li>
+  <li>Assmann, Egyptian Solar Religion in the New Kingdom (1995).</li>
+  <li>Wb, jmn (Erman &amp; Grapow).</li>
+  <li>Lexicon authorities for this entry: Faulkner, Wb, jmn, Allen, Middle Egyptian.</li>
 </ul>
-<h2>The Cultural Afterlife</h2>
-<p>The afterlife of the name is partly a study in false and true etymologies. Hebrew Amen is popularly traced to Amun; the standard lexica derive it instead from the Semitic root ʾ-m-n, &#39;to be firm, faithful&#39;, so the resemblance is a coincidence that later ages found irresistible. The Greek Ἄμμων gave the Western tradition two durable inheritances: the portraits of Alexander wearing the ram&#39;s horn of Ammon on the coinage of his successor Lysimachus, and sal ammoniac — the &#39;salt of Ammon&#39; said to be gathered near the temple of Ammon in Libya — from which modern chemistry takes the name ammonia.^2 Karnak itself remains one of the largest religious complexes ever built, a stone register of three millennia of royal patronage, and in modern spirituality...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Ꜣmun as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Hieroglyphs to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Ꜣmun through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/amun/">home page</a> offers the full name breakdown, the <a href="/sites/amun/lore/">lore page</a> explores the myth, and the <a href="/sites/amun/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Ꜣmun do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
-<h2>A Note on the Address Bar</h2>
-<p>When you type Ꜣmun, the browser performs an invisible conversion into Punycode so the global DNS can route the request. The user sees the original name; the machines see a compatible ASCII encoding. That duality is the engineering compromise that makes the restoration possible, and it is the reason every Unicode domain is both a technical milestone and a small act of cultural memory.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">egyptian</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

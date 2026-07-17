@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,45 +170,187 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>15 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#epithets-cult-titles">Epithets &amp; Cult Titles</a></li>
+                <li><a href="#the-homeric-hymns">The Homeric Hymns</a></li>
+                <li><a href="#oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>The Name Érebos and the World It Opens</h1>
-<p>A name is a door. Érebos opens onto darkness. Érebos (erebus) — Darkness — belongs to the Greek tradition, where it is catalogued under the domain &quot;Darkness&quot;. The name means &quot;Darkness&quot;. Érebos is the personification of deep darkness, the shadow that fills the space between earth and Hades. Born directly from Cháos, he is the brother and consort of Nyx, and the father of Aithḗr and Hēméra. His name is both a place and a power: the darkness that the dead must cross, and the primordial shadow from which light first appears. PÚNYCODEX restores the name as Érebos and serves its temple at érebos.com. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form erebus survives as a modern convenience imposed by the early...</p>
-<h2>Domain and Meaning</h2>
-<p>The temple domain is <strong>Darkness</strong>. The traditional meaning is &quot;Darkness.&quot; Together, those two facts explain why the name mattered enough to be remembered for millennia.</p>
-<h2>The Mythic Landscape</h2>
-<p>Érebos has few independent myths because he is a condition rather than a character. Yet his appearances are foundational: he is born from Cháos, he fathers light, and he marks the boundary that every living thing must eventually cross. Myth is the memory of a civilization, and names are the hooks on which that memory hangs.</p>
-<h2>Modern Patterns</h2>
-<p>The <a href="/sites/erebus/patterns/">Patterns</a> page maps the industries and sister temples that share Érebos&#39;s current. A name that once organized ritual now organizes search, advertising, and creative collaboration.</p>
-<h2>Join the Restoration</h2>
-<p>You can support the work through the <a href="/sites/erebus/patron/">Patron</a> wall, submit creative work, or simply share the address. Every visit to Érebos is a vote for original scripts.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Érebos is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>The name Érebos and the world it opens</h1>
+<p>A name is a door. <strong>Érebos</strong> opens onto an entire world: the domain of darkness, a Greek tradition, and centuries of storytelling, worship, and scholarship. This post walks through that world room by room — the name and its roots, the original script, the sound of it, the myths, the symbols, the sites, the afterlife across cultures — and ends at the newest room of all: a Unicode domain that makes the whole structure addressable. <em>erebus</em> gets you to the same building, but only the restored form tells you why it was built.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Érebos</li>
+  <li><strong>ASCII form:</strong> erebus</li>
+  <li><strong>Meaning:</strong> &quot;Darkness&quot;</li>
+  <li><strong>Domain of influence:</strong> Darkness</li>
+  <li><strong>Pantheon:</strong> Greek</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> Ἔρεβος (Greek)</li>
+  <li><strong>Live domain:</strong> érebos.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Érebos</strong> (<em>erebus</em>) — Darkness — belongs to the Greek tradition, where it is catalogued under the domain &quot;Darkness&quot;. The name means &quot;Darkness&quot;.</p>
+<p>Érebos is the personification of deep darkness, the shadow that fills the space between earth and Hades. Born directly from Cháos, he is the brother and consort of Nyx, and the father of Aithḗr and Hēméra. <strong>His name is both a place and a power:</strong> the darkness that the dead must cross, and the primordial shadow from which light first appears.</p>
+<p>PÚNYCODEX restores the name as <strong>Érebos</strong> and serves its temple at <a href="https://xn--rebos-9ra.com">érebos.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>erebus</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Greek as <strong>Ἔρεβος</strong>. Etymologically it means &quot;Darkness&quot;.</p>
+<p>The ASCII form <em>erebus</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Érebos</strong> recovers the stress accent of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>e</strong> → <strong>É</strong> — Acute on e</li>
+  <li><strong>r</strong> → <strong>r</strong> — r same</li>
+  <li><strong>e</strong> → <strong>e</strong> — e same</li>
+  <li><strong>b</strong> → <strong>b</strong> — b same</li>
+  <li><strong>u</strong> → <strong>o</strong> — Special character</li>
+  <li><strong>s</strong> → <strong>s</strong> — s same</li>
+</ul>
+<p>The project holds the domain <strong>érebos.com</strong> (xn--rebos-9ra.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Greek as <strong>Ἔρεβος</strong> — Greek alphabet (Classical / Attic), attested Ancient Greek, c. 8th century BCE – present, in Greece and the Greek-speaking Mediterranean. The script is written left-to-right.</p>
+<p>The scholarly transliteration is <em>Érebos</em> (Greek alphabet with polytonic accents), giving the normalized reading /ˈe.re.bos/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The Greek form Ἔρεβος is written in the Classical Greek alphabet.</li>
+  <li>Letters with acute, grave, or circumflex accents preserve the pitch accent of Ancient Greek.</li>
+  <li>Macrons and omegas (η, ω) mark long vowels, a feature lost in the plain ASCII form.</li>
+  <li>The Unicode restoration Érebos encodes the scholarly spelling as a registrable domain name.</li>
+</ul>
+<p>The name is written in Greek as Ἔρεβος (Érebos), from the same Indo-European root that gives Sanskrit <em>rájas</em> and Old Norse <em>røkkr</em>. The registrable form <em>Érebos</em> retains the acute accent on the first epsilon, the single prosodic feature preserved in Classical Attic, which places the name in Tier 2. Classical Attic beta is pronounced as a voiced stop [b], so the registrable Latin <em>b</em> accurately represents the ancient sound.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/é.re.bos/</strong> — Classical Attic Greek Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>É-</strong> — Short epsilon with acute pitch stress [é], the rising note that names the darkness.</li>
+  <li><strong>-re-</strong> — Rolling rho followed by short epsilon [re], a quick descent between the two peaks.</li>
+  <li><strong>-bos</strong> — Voiced bilabial stop [b] plus short omicron and voiceless sigma [bos] — in Classical Attic, beta is still [b], not later [v].</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &quot;EH-reh-BOSS&quot; — first syllable pitched high like &#39;EH&#39;; second like &#39;reh&#39;; third like &#39;boss&#39; with a clear b.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>PIE</strong> — *h₁régʷos, the reconstructed root for darkness</li>
+  <li><strong>Sanskrit</strong> — रजस् (rájas), &#39;dimness, darkness, mist&#39;</li>
+  <li><strong>Old Norse</strong> — røkkr, &#39;twilight&#39;</li>
+  <li><strong>Old Armenian</strong> — երեկ (erek), &#39;evening&#39;</li>
+</ul>
+<p>Érebos is Tier 2 because Classical Attic Ἔρεβος preserves only stress (acute on the first epsilon), not length. There are no long vowels or diphthongs. The registrable form Érebos keeps the acute accent while remaining DNS-compatible. Note that Classical Attic beta is a voiced stop [b], as Allen reconstructs, not the fricative [v] of later Greek. Sources: Allen, Vox Graeca, 3rd ed. (Cambridge, 1987); LSJ; Beekes, Etymological Dictionary of Greek (Brill, 2010).</p>
+<h2 id="mythology">Mythology</h2>
+<p>Érebos has few independent myths because he is a condition rather than a character. Yet his appearances are foundational: he is born from Cháos, he fathers light, and he marks the boundary that every living thing must eventually cross.</p>
+<h3 id="the-second-primordial-theogony">The Second Primordial (Theogony)</h3>
+<p>Hesiod opens the cosmogony with Cháos, then Gaia, then Tártaros, and immediately adds that from Cháos were born Érebos and black Nyx (<em>Theogony</em> 116–123). The pairing is significant: darkness is inseparable from night, and both emerge directly from the primal gap. They are not creations of a higher god but original facts of the cosmos.</p>
+<h3 id="darkness-gives-birth-to-light-theogony">Darkness Gives Birth to Light (Theogony)</h3>
+<p>The next verse (124–125) states that Érebos and Nyx produced Aithḗr and Hēméra. It is one of the most elegant genealogies in Greek myth: the darkest union imaginable generates the bright upper air and the day. The pattern is not conquest but emergence — light is what darkness naturally becomes when it is paired with itself across time.</p>
+<h3 id="the-land-wrapped-in-mist-odyssey">The Land Wrapped in Mist (Odyssey)</h3>
+<p>In <em>Odyssey</em> 11, Odysseus sails to the boundaries of the world, to the land of the Cimmerians &quot;covered in mist and cloud,&quot; where the sun never shines and the paths of day and night lie close together. The dead gather to drink the blood of his sacrifice and speak from the darkness. This is the landscape of Érebos: not punishment, but the dim threshold where the living can still question the dead.</p>
+<h3 id="erebos-in-the-orphic-theogonies-orphic-tradition">Érebos in the Orphic Theogonies (Orphic tradition)</h3>
+<p>In the Orphic Rhapsodies, as Damascius reports, Chronos (Time) engenders Aithḗr, Cháos, and Érebos — darkness as one of the first three children of Time itself, part of the substratum from which Phanēs, the first creator-god, bursts into light. The Orphic gold tablets imagine the initiate&#39;s journey through darkness toward a meadow of memory, echoing the Hesiodic geography of Érebos as a region to be crossed rather than a power to be worshipped.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>Érebos has no attested attributes of his own — a darkness given properties would already have ceased to be itself — and ancient art never fixed an iconographic type for him. What the texts attach to his name are qualities rather than objects:</p>
+<ul>
+  <li><strong>Mist and cloud</strong> — the landscape of his Homeric country: the land of the Cimmerians, &#39;covered in mist and cloud,&#39; where the sun never looks down (<em>Odyssey</em> 11.13–19).</li>
+  <li><strong>The passage downward</strong> — the direction his name denotes: souls stream up &#39;out of Erebos&#39; (<em>Odyssey</em> 11.37), and one of the two rocks at Scylla&#39;s strait slants &#39;toward Erebos&#39; (<em>Odyssey</em> 12.81).</li>
+  <li><strong>Blackness by marriage</strong> — his only Hesiodic predicate is his consort: he is born together with &#39;black Night&#39; and fathers brightness upon her (<em>Theogony</em> 123–125).</li>
+  <li><strong>The darkness beneath</strong> — in later and Latin usage his name slides downward until it denotes the deepest gloom of the underworld, the shadow under the shadows.</li>
+</ul>
+<p>The black birds, veils, and ferry-boats sometimes attached to his name in modern occult and fantasy imagery have no ancient warrant.</p>
+<p>Érebos has no secure iconographic type in ancient art. Greek vase painters personified Night as a winged woman in dark drapery or as a charioteer with black horses, but her consort is nowhere given a recognizable body, attribute, or label; the <em>Lexicon Iconographicum Mythologiae Classicae</em> catalogues Nyx and the night sky but no Érebos. The dark passages of Roman underworld scenes — shadowy rivers and misty banks on funerary reliefs — evoke his geography without depicting him. In later European art &quot;Erebus&quot; survives only as a mood: ink-black backgrounds, volcanic gloom, and the Antarctic mountain that bears his name. The absence is fitting. A darkness that can be seen has already failed at being Érebos; the Greeks seem to have understood that the primordial shadow was best left unpainted.</p>
+<h2 id="epithets-cult-titles">Epithets &amp; Cult Titles</h2>
+<p>Érebos never acquired a fixed epithet system; he is almost always a place or a genealogical item, not an addressee of prayer, and no cult title is anywhere attested for him. The tradition instead attaches descriptive predicates:</p>
+<ul>
+  <li><strong>ἐκ Χάεος γενόμενος</strong> — &quot;born of Chaos&quot;; his entire Hesiodic identity (<em>Theogony</em> 123).</li>
+  <li><strong>consort of black Night</strong> — the pairing is formulaic, though it is Nyx who carries the adjective μέλαινα (&quot;black&quot;), lending him her darkness by association (<em>Theogony</em> 123).</li>
+  <li><strong>father of Aithḗr and Hēméra</strong> — his defining genealogical predicate (<em>Theogony</em> 124–125).</li>
+  <li><strong>the darkness beneath</strong> — in later usage Érebos shifts downward until it names the gloom under Tartarus itself; Latin poets such as Virgil (<em>Aeneid</em> 6) use <em>Erebus</em> simply as the underworld.</li>
+</ul>
+<h2 id="the-homeric-hymns">The Homeric Hymns</h2>
+<p>No Homeric Hymn to Érebos survives; even the Orphic corpus, which hymns abstractions as slight as Silence and Cloud, gives the darkness no hymn of its own — his consort Nyx receives one (Orphic Hymn 3, &quot;To Night&quot;), but he does not. His earliest attestations are Hesiodic: in the <em>Theogony</em> (123–125) Érebos is born from Cháos together with &quot;black Night&quot; and immediately begets Aithḗr and Hēméra upon her — darkness fathering brightness. Homer knows him chiefly as a place: in the <em>Odyssey</em> the souls of the dead stream up &quot;out of Erebos&quot; (11.37), and one of the two rocks at Scylla&#39;s strait slants down &quot;toward Erebos&quot; (12.81) — darkness as a direction of travel rather than a deity.</p>
+<h2 id="oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</h2>
+<p>No sanctuary or oracle of Érebos is known from any Greek site, inscription, or author; a personified darkness was not an object of cult. His cultic associations are all indirect. The closest is the Nekromanteion, the oracle of the dead on the river Acheron in Thesprotia (excavated near modern Ephyra), where consultants descended into lightless underground chambers to question the shades — a ritual architecture of Érebos rather than a temple of him; Herodotus (5.92) already tells how Periander of Corinth consulted the dead there. Homer&#39;s land of the Cimmerians, &quot;wrapped in mist and cloud,&quot; beside which Odysseus summons the dead (<em>Odyssey</em> 11), is the literary map of the same country. Offerings in Greek religion went to Night, to Hekate, or to the chthonic gods; Érebos remained the medium one passed through, not the power one addressed.</p>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>No sanctuary, altar, or votive of Érebos is known from any Greek site, inscription, or author; a personified darkness was not an object of cult, and his material record is consequently an indirect one. The closest architectural witness is the <strong>Nekromanteion</strong> near Ephyra in Thesprotia, the &#39;oracle of the dead&#39; on the river Acheron — excavated by Sotirios Dakaris in the 1950s–60s — where consultants descended into lightless underground chambers to question the shades; Herodotus already tells how Periander of Corinth consulted the dead Melissa there (5.92). This is the ritual architecture of Érebos rather than a temple of him: darkness as a medium to be passed through. The literary map of the same country is Homer&#39;s land of the Cimmerians, &#39;wrapped in mist and cloud,&#39; beside which Odysseus summons the dead (<em>Odyssey</em> 11). The <strong>Orphic gold tablets</strong> from Thessaly and Magna Graecia, buried with initiates, instruct the soul on its passage through the underworld&#39;s darkness toward the spring of Memory — again a geography of crossing, not a cult of the dark.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Érebos is the personification of deep darkness, the shadow that fills the space between earth and Hades. Born directly from Cháos, he is the brother and consort of Nyx, and the father of Aithḗr and Hēméra. <strong>His name is both a place and a power:</strong> the darkness that the dead must cross, and the primordial shadow from which light first appears.</p>
+<h3 id="primordial-darkness">Primordial Darkness</h3>
+<p>The second offspring of Cháos, older than the Titans, older than the Olympians — the original shadow.</p>
+<h3 id="the-passage-to-hades">The Passage to Hades</h3>
+<p>The shades of the dead rise from or through Érebos; Odysseus must sail to the edge of the world to reach it.</p>
+<h3 id="father-of-light">Father of Light</h3>
+<p>His union with Nyx produces Aithḗr, the bright upper air, and Hēméra, the day — darkness begetting radiance.</p>
+<h3 id="the-underworld-abyss">The Underworld Abyss</h3>
+<p>In later usage Érebos names the deepest darkness beneath Hades, a region of mist and forgetfulness.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>The Romans adopted the Greek name directly as <em>Erebus</em>, using it for the deepest part of the underworld. Virgil places the guilty dead in Tartarus and calls the surrounding darkness Erebus; Statius and later poets make it a synonym for the infernal depths. Christian writers — above all Milton in <em>Paradise Lost</em> — used Erebus as a classical name for Hell or its antechamber. In later esoteric traditions, Erebus became a name for the primal darkness from which manifestation arises, a concept with parallels in the biblical <em>tohu wa-bohu</em> (&#39;formless and void,&#39; Genesis 1:2) and in Neoplatonic accounts of the One beyond being.</p>
+<p>Within the corpus, his nearest kin are the figures of his own genealogy and geography: [[nyx|Nýx]], his sister and consort; [[chaos|Cháos]], his parent; his children [[aither|Aithḗr]] and [[hemera|Hēméra]]; and [[tartaros|Tártaros]], the abyss beneath the darkness to which his name later attached.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Érebos survives as the archetype of primordial darkness. The name was given to Mount Erebus, the active volcano on Ross Island in Antarctica, by James Clark Ross in 1841, after one of his ships. The <em>HMS Erebus</em> later became famous in the disastrous Franklin expedition of 1845, giving the name a permanent association with frozen oblivion. In fantasy and science fiction, &quot;Erebus&quot; names spaceships, demons, and dark dimensions; in horror, it invokes the original shadow. The word also appears in astronomy, gaming, and heavy metal. Few Greek names have traveled so far from their cosmogonic origin while keeping the same spelling.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Érebos given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Full text</a></li>
+  <li> Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a href="https://brill.com/view/title/17858">Full text</a></li>
+  <li> Allen, Vox Graeca.</li>
+  <li> Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE. <a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Full text</a></li>
+  <li> Homer, Odyssey.</li>
+  <li> Virgil, Aeneid.</li>
+  <li> Milton, Paradise Lost.</li>
+  <li> Orphic fragments.</li>
+  <li> West, The Orphic Poems.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Érebos is the darkness that is not evil. It is simply first. Before light, before form, before the gods begin their quarrels, there is the shadow that makes bright things visible. We moderns tend to moralize darkness — we call it ignorance, despair, or danger — but the Greek primordial is more neutral and more necessary. Without Érebos there is no contrast, no outline, no day.</p>
+<p>To restore the acute accent on Érebos is to hear the name as a rising note out of silence. It is the sound of darkness being named rather than feared. Every creation myth needs such a moment: the first word spoken into the void, the first recognition that absence is also a kind of presence.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Érebos is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>erebus</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 6 characters of the name, the restoration adjusts 2: 1 mark of stress (É); 1 further adjustment (o). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>érebos.com</strong>, which the DNS carries in punycode form as xn--rebos-9ra.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Érebos; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Greek can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>A door only matters if people walk through it. <strong>érebos.com</strong> is open, and everything behind it — the myths, the scholarship, the canvas, the patrons — hangs on the restored spelling. The PÚNYCODEX project bets that the web will make room for names as they were actually written, and Érebos is one of its standing proofs. Visit, share, cite, type it yourself: each use is a small rehearsal for a web where no name has to hide its marks to be found.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/hector/">Hektōr</a></li>
   <li><a href="/sites/hemera/">Hēméra</a></li>
   <li><a href="/sites/herakles/">Hēraklēs</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843.</a></li>
   <li><a href="https://brill.com/view/title/17858">Etymological Dictionary of Greek, 2 vols., Brill, 2010.</a></li>
   <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Hesiod, Theogony 123–125.</a></li>
+  <li>Allen, Vox Graeca.</li>
+  <li>Homer, Odyssey 11.13–19, 11.37; 12.81.</li>
+  <li>Homer, Odyssey 11 (the nekyia).</li>
+  <li>West, The Orphic Poems (1983), on the Rhapsodic theogony reported by Damascius.</li>
+  <li>Lexicon authorities for this entry: Hesiod, LSJ.</li>
 </ul>
-<h2>The Name in Context</h2>
-<p>Érebos (erebus) — Darkness — belongs to the Greek tradition, where it is catalogued under the domain &quot;Darkness&quot;. The name means &quot;Darkness&quot;. Érebos is the personification of deep darkness, the shadow that fills the space between earth and Hades. Born directly from Cháos, he is the brother and consort of Nyx, and the father of Aithḗr and Hēméra. His name is both a place and a power: the darkness that the dead must cross, and the primordial shadow from which light first appears. PÚNYCODEX restores the name as Érebos and serves its temple at érebos.com. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form erebus survives as a modern convenience imposed by the early...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Érebos as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Greek to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Érebos through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/erebus/">home page</a> offers the full name breakdown, the <a href="/sites/erebus/lore/">lore page</a> explores the myth, and the <a href="/sites/erebus/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Érebos do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">greek</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

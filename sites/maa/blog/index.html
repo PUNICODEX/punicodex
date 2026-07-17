@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,45 +170,186 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-egyptian-pantheon">The Egyptian Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>Pronouncing Mꜥ: A Guide for the Curious</h1>
-<p>Saying <strong>Mꜥ</strong> out loud is harder than reading it on a screen, and more rewarding. Scholars reconstruct the sound as <em>&#39;mah-ʿA&#39; — a gentle &#39;m&#39;, then a deep throaty &#39;ah&#39; like the Arabic ع; the final vowel is very light.</em>.</p>
-<h2>The Reconstructed Sound</h2>
-<p>The name is attested in Hieroglyphs as 𓌳𓂝 — the sickle sign (Gardiner U1), a phonogram with the value mꜥ, followed by the arm sign ꜥ (D36). The verb means &#39;to see, to perceive&#39;, and the hieroglyphic spelling records consonants only. Lexicographers distinguish two homophonous roots written alike: mꜣꜥ &#39;to see&#39; and mꜣꜥ &#39;to be straight, true&#39;, the latter the parent of mꜣꜥt (Maat). Egyptian usage played on their proximity — to see truly and to be true are neighbouring ideas — but the Wörterbuch lists them as separate lemmata, and identifying the two is a debated interpretation rather than a dictionary fact. The ASCII form maa survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient... The sounds preserved in Mꜥ are not random; they follow rules that linguists have spent centuries recovering.</p>
-<h2>Sound by Sound</h2>
-<p>Etymologically, from egyptian mꜣʿt &quot;truth, justice, cosmic order&quot;. the divine principle of harmony. That points back to a reconstructed form like <em>*mꜣʿ</em>. Each segment locks into the next, so a small change in one place ripples through the whole name.</p>
-<h2>Kin Forms</h2>
-<p>Names rarely have only one valid shape. The restoration chooses the form that best balances historical accuracy with the practical limits of DNS.</p>
-<h2>From Speech to Screen</h2>
-<p>Pronunciation and spelling converge in Unicode. Mꜥ carries enough phonetic information to be read aloud by someone who knows the conventions, and enough visual distinctiveness to stand out in an address bar.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Mꜥ is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>Pronouncing Mꜥ: a guide for the curious</h1>
+<p>Saying <strong>Mꜥ</strong> aloud is harder than reading it on a screen, and more rewarding. The restored spelling is a compressed pronunciation guide: every accent and macron is an instruction. This post unpacks those instructions — the reconstructed sound, the phoneme-by-phoneme record, the kindred forms in neighboring languages — and then zooms out to the full record around the name: its Hieroglyphs writing, its mythology, its cult, and its modern life as a Unicode domain. Whether you arrive as a linguist, a reader of myth, or a domainer, you will leave able to say the name the way the evidence suggests it was said — and able to type it the way it was written.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Mꜥ</li>
+  <li><strong>ASCII form:</strong> maa</li>
+  <li><strong>Meaning:</strong> &quot;To see, to perceive, to understand. A core verb root, extremely common in texts&quot;</li>
+  <li><strong>Domain of influence:</strong> Vision, Perception, Understanding</li>
+  <li><strong>Pantheon:</strong> Egyptian</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> 𓌳𓂝 (Hieroglyphs)</li>
+  <li><strong>Live domain:</strong> mꜥ.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Mꜥ</strong> (<em>maa</em>) is the Egyptian verb &#39;to see, to perceive&#39;, one of the most frequently attested roots of the language across three millennia of texts. Unlike the other entries of this edition, Mꜥ is not the name of a deity: no cult, temple, or icon of a god &#39;Maa&#39; is attested. Its temple here is dedicated to the word itself — the faculty of true perception that Egyptian ethics made the precondition of right action.</p>
+<p>In Egyptian, the boundary between seeing and knowing is porous: to <em>see</em> (mꜥ) a thing is to grasp it, and the root stands beside the homophonous mꜣꜥ &#39;to be straight, true&#39; that yields the noun mꜣꜥt (<a href="/sites/maat/">Maat</a>). Wisdom literature such as the Instruction of Ptahhotep makes cultivated perception the foundation of just speech and legitimate rule.</p>
+<p>PÚNYCODEX restores the form as <strong>Mꜥ</strong> and serves its temple at <a href="https://xn--m-2w3e.com">mꜥ.com</a>. The plain ASCII <em>maa</em> is a modern technological fallback, not an ancient spelling; the restoration keeps the ayin (ꜥ) of the consonantal skeleton, placing the name in Tier 2.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Hieroglyphs as <strong>𓌳𓂝</strong> — the sickle sign (Gardiner U1), a phonogram with the value mꜥ, followed by the arm sign ꜥ (D36). The verb means &#39;to see, to perceive&#39;, and the hieroglyphic spelling records consonants only.</p>
+<p>Lexicographers distinguish two homophonous roots written alike: mꜣꜥ &#39;to see&#39; and mꜣꜥ &#39;to be straight, true&#39;, the latter the parent of mꜣꜥt (<a href="/sites/maat/">Maat</a>). Egyptian usage played on their proximity — to see truly and to be true are neighbouring ideas — but the Wörterbuch lists them as separate lemmata, and identifying the two is a debated interpretation rather than a dictionary fact.</p>
+<p>The ASCII form <em>maa</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Mꜥ</strong> recovers the ayin of the scholarly transliteration directly in the address bar. The name preserves a single class of diacritic detail — its marked consonant — rather than both stress and vowel length, which places it in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>m</strong> → <strong>M</strong> — Same, capitalized</li>
+  <li><strong>a</strong> → <strong>ꜥ</strong> — Ayin: voiced pharyngeal</li>
+  <li><strong>a</strong> → <strong>—</strong> — Dropped: vowel not written</li>
+</ul>
+<p>The project holds the domain <strong>mꜥ.com</strong> (xn--m-2w3e.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: From Egyptian mꜣʿt &quot;truth, justice, cosmic order&quot;. The divine principle of harmony.</p>
+<p>The reconstructed proto-form is <em>*mꜣʿ</em> (proto-afro-asiatic), glossed as &quot;truth, justice, order&quot;.</p>
+<p>The reconstruction is classed as attested.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Hieroglyphs as <strong>𓌳𓂝</strong> — Egyptian hieroglyphic, attested from the Old Kingdom to Late Antiquity (c. 2600 BCE – 400 CE) in Egypt. The script is written right-to-left or top-to-bottom.</p>
+<p>The scholarly transliteration is <em>Mꜥ</em> (Egyptological convention). The original vocalisation is unknown; the conventional reading is /maːʕ/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The Egyptian name is written 𓌳𓂝 in hieroglyphs — the sickle sign (Gardiner U1), a phonogram of mꜥ, followed by the arm sign ꜥ (D36).</li>
+  <li>Hieroglyphs combine logograms, phonograms, and determinatives; the exact function of each sign depends on context.</li>
+  <li>Egyptian writing does not record vowels; the vocalised form is a modern convention reconstructed from Coptic and comparative evidence.</li>
+  <li>The Unicode restoration Mꜥ uses the Egyptological ayin and other registrable characters; the hieroglyphic form is not registrable in .com.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/maʕ/</strong> — Egyptological Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>m</strong> — Bilabial nasal [m], the first consonant of the root mꜥ &#39;to see&#39;</li>
+  <li><strong>ꜥ</strong> — Voiced pharyngeal fricative [ʕ], a deep tightening in the throat; the Egyptological ayin (ꜥ) marks this sound</li>
+  <li><strong>a</strong> — Short open vowel [a], supplied by convention; hieroglyphs record only m-ꜥ</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;mah-ʿA&#39; — a gentle &#39;m&#39;, then a deep throaty &#39;ah&#39; like the Arabic ع; the final vowel is very light.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Egyptian</strong> — mꜣꜥt (Maat), the abstract noun &#39;truth, justice, order&#39; from the kindred &#39;straightness&#39; root</li>
+  <li><strong>Coptic</strong> — ⲙⲉ (me), also ⲙⲏⲉ, &#39;truth, righteousness&#39;, the late Egyptian reflex of mꜣꜥt</li>
+  <li><strong>Semitic</strong> — Hebrew יָשָׁר (yāšār), &#39;straight, right&#39;, a semantic parallel to the &#39;straightness&#39; root rather than a proven cognate</li>
+</ul>
+<p>Egyptian Mꜥ is consonantal; the vowel is a modern Egyptological convenience. The Tier-2 form preserves the ayin (ꜥ), a distinctive Afro-Asiatic phoneme absent from English.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Mꜥ is the Egyptian root for seeing that becomes understanding. In a language where vision and knowledge are not cleanly separated, mꜥ names the act of perceiving truly: the eye that recognizes, the heart that grasps, the king who judges rightly. It stands beside the homophonous root mꜣꜥ &#39;to be straight, true&#39; — the parent of Maat, the goddess of cosmic order — and Egyptian thought deliberately let the two resonate: to “see” Maat is already to align oneself with truth. Mꜥ is therefore one of the most consequential roots in Egyptian thought, binding cognition, ethics, and royal authority into a single gesture of clear sight. In royal titulary, the king is the one who perceives Maat, the one whose senses align with cosmic order. Temple reliefs show him offering Maat to the gods, thereby renewing the world. This act of perception was not passive sight but judicial and ritual discernment, making Maa the divine faculty that justified rule and sustained creation.</p>
+<h3 id="the-heart-that-sees-instruction-of-ptahhotep">The Heart That Sees (Instruction of Ptahhotep)</h3>
+<p>The Middle Kingdom <em>Instruction of Ptahhotep</em>, attributed to a vizier of the Fifth Dynasty, is a manual for cultivating mꜥ in conduct. Its maxims advise the young official to listen, to reflect, and to “see” the good path before speaking. True speech, Ptahhotep insists, flows from a heart that has perceived Maat; false speech is the product of a clouded gaze. The text thus transforms mꜥ from a physical faculty into a moral discipline, the quality that distinguishes the wise man from the merely clever one.</p>
+<h3 id="speaking-truth-before-the-forty-two-judges-negative-confession">Speaking Truth Before the Forty-Two Judges (Negative Confession)</h3>
+<p>In <em>Book of the Dead</em> Spell 125, the deceased stands before the tribunal of the forty-two assessor gods and recites the Negative Confession, denying every conceivable sin. The rubric repeatedly invokes mꜣꜥ—“I have not done that which is not maat”—using the same root as Mꜥ to insist that the speaker perceived, understood, and avoided wrongdoing. The confession is not merely a list of denials; it is a performative claim that the deceased&#39;s heart has “seen” truth clearly enough to be weighed against the feather of Maat.</p>
+<p>When the scales balance, the deceased is declared mꜣꜥ-ḫrw, “true of voice,” a phrase built from the same root. This means that accurate perception has become effective speech: the one who truly sees can speak rightly before gods and never be turned back at the gates of the afterlife.</p>
+<h3 id="the-king-who-perceives-maat-royal-ideology">The King Who Perceives Maat (Royal Ideology)</h3>
+<p>Egyptian royal ritual identifies the pharaoh as the one whose eyes perceive mꜥ on behalf of the land. In the daily temple liturgy and during the Sed-festival, the king presents a small figure of Maat to the gods with the declaration that he has &#39;seen&#39; her—that is, perceived and enacted truth. This gesture is more than symbolism: it asserts that legitimate rule depends on the ruler&#39;s capacity for accurate perception, the same mꜥ that the gods exercise when they judge the cosmos. To see Maat rightly is to keep the world aligned with its own nature.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Mꜥ concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>Open eye (irt)</strong> — The seeing eye, the hieroglyphic and conceptual root of mꜣ &#39;to see, to perceive&#39;</li>
+  <li><strong>Maat feather</strong> — The ostrich feather of truth and straightness from the same mꜣʿ root</li>
+  <li><strong>Scribe&#39;s palette</strong> — The tool of Thoth, the perceptive god whose wisdom depends on mꜣ</li>
+  <li><strong>Sun-disk with rays</strong> — The solar eye that sees and knows all, an extension of divine perception</li>
+  <li><strong>Square plumb-line</strong> — The literal &#39;straightness&#39; that underlies the abstract sense of justice</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Honest accounting matters here: as a verb, mꜥ generated no statues, temples, or votive objects, and no archaeological assemblage can be assigned to it. The monuments of Maat belong to a different, though kindred, word.</p>
+<p>What the material record does show is the machinery of seeing and recording in which the verb lived: the eye hieroglyph (Gardiner D4, <em>irt</em>) is among the most common signs of the script, wedjat-eye amulets invoking the restored Eye of Horus are found in burials of every period, and the scribe&#39;s palette — the instrument of <a href="/sites/thoth/">Thoth</a>&#39;s perceptive craft — survives in wood, ivory, and faience from tombs across Egypt. The closest thing to an &#39;archaeology of mꜥ&#39; is the corpus of wisdom papyri, above all the Instruction of Ptahhotep preserved on Papyrus Prisse (Bibliothèque nationale de France), which taught officials to see before they spoke.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Mꜥ names the act of seeing that ripens into understanding; Egyptian thought made that act the root of royal judgment, ethical speech, and cosmic order.</p>
+<h3 id="true-perception">True Perception</h3>
+<p>Mꜥ names the act of seeing that becomes understanding, the eye that recognizes and the heart that grasps.</p>
+<h3 id="royal-discernment">Royal Discernment</h3>
+<p>The pharaoh is the one whose eyes perceive Maat; his judgment is a continuation of cosmic sight.</p>
+<h3 id="instruction-of-ptahhotep">Instruction of Ptahhotep</h3>
+<p>The maxims teach that true speech flows from a heart that has first perceived the good path.</p>
+<h3 id="from-sight-to-justice">From Sight to Justice</h3>
+<p>The same root moves from mꜥ, &quot;to see,&quot; to Maat, the straightness that holds the cosmos in order.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>A verb has no cult to merge: no syncretism of &#39;Maa&#39; with any other deity is attested, in Egypt or outside it, because the word never crystallised into a god. Egyptian religion could and did personify abstractions — <a href="/sites/sia/">Sia</a> &#39;Perception&#39; and Hu &#39;Authoritative Utterance&#39; are gods, and <a href="/sites/maat/">Maat</a> is the great example — but the seeing root mꜥ remained an ordinary verb even where its sense approached the divine faculty the king exercised when he &#39;perceived Maat&#39;.</p>
+<p>The productive comparisons are therefore lexical, not cultic: the Egyptian blurring of sight and insight has been compared with Greek <em>theōria</em> and <em>noein</em>, but those are modern scholarly analogies rather than ancient equations. Within this edition the word belongs with <a href="/sites/ab/">Ꜣb</a> (the heart that understands) and <a href="/sites/sia/">Sia</a> (perception deified).</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>The legacy of mꜥ is linguistic rather than monumental. As the ordinary Egyptian verb of seeing it saturates every genre of text from the Pyramid Texts to the demotic papyri, and its products still shape how Egyptologists read the civilisation: the verdict <em>mꜣꜥ-ḫrw</em> &#39;true of voice&#39;, the corpus&#39;s ancient title <em>prt m hrw</em> &#39;going forth by day&#39;, and the standard offering formulas all presuppose a mind that thinks through the eye.</p>
+<p>Modern languages have no single equivalent for a word that holds &#39;see&#39; and &#39;understand&#39; together, which is why translations split it between perception, recognition, and insight. Restoring the ayin in <em>Mꜥ</em> keeps visible the consonant that English cannot pronounce — a reminder that the concept itself resists English categories.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Mꜥ given in this edition rests on the witnesses and reference works listed below. The lexica and grammar secure the form and meaning of the root; the wisdom and funerary texts supply the evidence of usage.</p>
+<ul>
+  <li> Erman, A. &amp; Grapow, H. Wörterbuch der ägyptischen Sprache, vol. II, s.v. mꜣꜥ &#39;sehen&#39; and mꜣꜥ &#39;gerade sein&#39;.</li>
+  <li> Gardiner, A. Egyptian Grammar, 3rd ed. Oxford: Griffith Institute, 1957 (sign-list D4, U1, D36).</li>
+  <li> Lichtheim, M. Ancient Egyptian Literature, vol. I. Berkeley: University of California Press, 1973 (&#39;The Instruction of Ptahhotep&#39;).</li>
+  <li> Faulkner, R. O. The Ancient Egyptian Pyramid Texts. Oxford: Clarendon, 1969.</li>
+  <li> Faulkner, R. O. The Ancient Egyptian Coffin Texts. Warminster: Aris &amp; Phillips, 1973–1978.</li>
+  <li> Faulkner, R. O. (trans.); Andrews, C. (ed.). The Ancient Egyptian Book of the Dead. London: British Museum Press, 1985 (Spells 15 and 125).</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>To contemplate <strong>Mꜥ</strong> is to practise the discipline the word names: looking until seeing becomes understanding. Egyptian sages treated perception as a moral act — the heart that sees straight cannot speak crooked — and built a wisdom tradition on that sequence of eye, heart, and tongue.</p>
+<p>The restored form is itself a lesson in the same discipline. The ayin of <em>Mꜥ</em> is a sound English speakers do not make; it asks the eye to register that this is not &#39;maa&#39;, not a label to be skimmed, but a foreign act of attention compressed into two letters. The Pyramid Texts promised the dead king the recovery of sight after the blindness of death; the meditation ends where the Egyptians ended, with an eye that opens again.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Mꜥ is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>maa</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 3 characters of the name, the restoration adjusts 2: 2 further adjustments (ꜥ, a). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>maa</em> to <strong>Mꜥ</strong>, one character at a time:</p>
+<ul>
+  <li><strong>m</strong> → <strong>M</strong> — Same, capitalized</li>
+  <li><strong>a</strong> → <strong>ꜥ</strong> — Ayin: voiced pharyngeal</li>
+  <li><strong>a</strong> → <strong>a</strong> — Dropped: vowel not written</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>mꜥ.com</strong>, which the DNS carries in punycode form as xn--m-2w3e.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Mꜥ; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Hieroglyphs can now be typed into any browser on earth.</p>
+<h2 id="the-egyptian-pantheon">The Egyptian Pantheon</h2>
+<p>Mꜥ is one of 66 entries the PÚNYCODEX lexicon catalogues under the Egyptian pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Mꜥ mean?</strong> The traditional gloss is &quot;To see, to perceive, to understand. A core verb root, extremely common in texts.&quot;</p>
+<p><strong>Which tradition does Mꜥ belong to?</strong> Mꜥ is catalogued in the Egyptian pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Mꜥ classified as Tier 2?</strong> Because the original preserves at least one philological feature that ASCII cannot encode — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Mꜥ a working domain?</strong> Yes — mꜥ.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for mꜥ.com?</strong> The DNS encoding is xn--m-2w3e.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Pronunciation turns out to be the heart of the matter. The marks in <strong>Mꜥ</strong> are instructions for the voice, and a web that strips them is a web that mispronounces the past at scale. The restoration hands the instructions back: say it as the evidence suggests, type it as the tradition wrote it, and let the punycode machinery do the quiet translation in between. That is all the PÚNYCODEX project asks of the infrastructure — and everything it asks of you, the reader, is to use the whole name.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/isis/">Ꜣst</a></li>
   <li><a href="/sites/khnum/">Ḫnmw</a></li>
   <li><a href="/sites/maat/">Mꜣꜥt</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.cambridge.org/">James P. Allen, Middle Egyptian: An Introduction to the Language and Culture of Hieroglyphs, Cambridge University Press, 2000.</a></li>
+  <li>Erman, A. &amp; Grapow, H. Wörterbuch der ägyptischen Sprache, vol. II, s.v. mꜣꜥ &#39;sehen&#39;.</li>
+  <li>Lichtheim, M. Ancient Egyptian Literature, vol. I. Berkeley: University of California Press, 1973 (&#39;The Instruction of Ptahhotep&#39;).</li>
+  <li>Gardiner, A. Egyptian Grammar, 3rd ed. Oxford: Griffith Institute, 1957, sign-list U1, D36.</li>
+  <li>Erman, A. &amp; Grapow, H. Wörterbuch der ägyptischen Sprache, vol. II, s.v. mꜣꜥ &#39;sehen&#39; and mꜣꜥ &#39;gerade sein&#39;.</li>
+  <li>Lexicon authorities for this entry: Faulkner, Wb.</li>
 </ul>
-<h2>What the Sources Record</h2>
-<p>Mꜥ names the act of seeing that ripens into understanding; Egyptian thought made that act the root of royal judgment, ethical speech, and cosmic order. ### True Perception Mꜥ names the act of seeing that becomes understanding, the eye that recognizes and the heart that grasps. ### Royal Discernment The pharaoh is the one whose eyes perceive Maat; his judgment is a continuation of cosmic sight. ### Instruction of Ptahhotep The maxims teach that true speech flows from a heart that has first perceived the good path. ### From Sight to Justice The same root moves from mꜥ, &quot;to see,&quot; to Maat, the straightness that holds the cosmos in order.</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Mꜥ as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Hieroglyphs to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Mꜥ through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/maa/">home page</a> offers the full name breakdown, the <a href="/sites/maa/lore/">lore page</a> explores the myth, and the <a href="/sites/maa/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Mꜥ do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
-<h2>A Note on the Address Bar</h2>
-<p>When you type Mꜥ, the browser performs an invisible conversion into Punycode so the global DNS can route the request. The user sees the original name; the machines see a compatible ASCII encoding. That duality is the engineering compromise that makes the restoration possible, and it is the reason every Unicode domain is both a technical milestone and a small act of cultural memory.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">egyptian</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

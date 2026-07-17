@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,46 +170,201 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#epithets-cult-titles">Epithets &amp; Cult Titles</a></li>
+                <li><a href="#the-homeric-hymns">The Homeric Hymns</a></li>
+                <li><a href="#oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>Pronouncing Adámas: A Guide for the Curious</h1>
-<p>Saying <strong>Adámas</strong> out loud is harder than reading it on a screen, and more rewarding. Scholars reconstruct the sound as <em>&#39;ah-DAH-mahs&#39; — stress falls on the middle syllable, with a crisp final -s.</em>.</p>
-<h2>The Reconstructed Sound</h2>
-<p>The name is attested in Greek as ἀδάμας. Etymologically it means &quot;Unbreakable; the adamant; the hardest substance; origin of &quot;diamond&quot;&quot;. The reconstructed proto-form is n̥-dméh₂-​ (proto-indo-european, &quot;unbreakable, untamable&quot;). Privative ἀ- &quot;not&quot; + δάμ- (root of δαμάζω &quot;to tame, subdue&quot;). The word denotes anything unbreakable, especially hardened steel or diamond. Cognate forms across related languages: - domāre (latin) — To tame, from the same PIE root demh₂- - diamond (english) — Via Old French diamant and Vulgar Latin diamantem - adamant (english) — Direct borrowing of Greek adámas via Latin The ASCII form adamas survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient... The sounds preserved in Adámas are not random; they follow rules that linguists have spent centuries recovering.</p>
-<h2>Sound by Sound</h2>
-<p>Etymologically, privative ἀ- &quot;not&quot; + δάμ- (root of δαμάζω &quot;to tame, subdue&quot;). the word denotes anything unbreakable, especially hardened steel or diamond. That points back to a reconstructed form like <em>*n̥-dméh₂-​</em>. Each segment locks into the next, so a small change in one place ripples through the whole name.</p>
-<h2>Kin Forms</h2>
-<p>Related spellings include Adamas. Names rarely have only one valid shape. The restoration chooses the form that best balances historical accuracy with the practical limits of DNS.</p>
-<h2>From Speech to Screen</h2>
-<p>Pronunciation and spelling converge in Unicode. Adámas carries enough phonetic information to be read aloud by someone who knows the conventions, and enough visual distinctiveness to stand out in an address bar.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Adámas is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>Pronouncing Adámas: a guide for the curious</h1>
+<p>Saying <strong>Adámas</strong> aloud is harder than reading it on a screen, and more rewarding. The restored spelling is a compressed pronunciation guide: every accent and macron is an instruction. This post unpacks those instructions — the reconstructed sound, the phoneme-by-phoneme record, the kindred forms in neighboring languages — and then zooms out to the full record around the name: its Greek writing, its mythology, its cult, and its modern life as a Unicode domain. Whether you arrive as a linguist, a reader of myth, or a domainer, you will leave able to say the name the way the evidence suggests it was said — and able to type it the way it was written.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Adámas</li>
+  <li><strong>ASCII form:</strong> adamas</li>
+  <li><strong>Meaning:</strong> &quot;Unbreakable; the adamant; the hardest substance; origin of &quot;diamond&quot;&quot;</li>
+  <li><strong>Domain of influence:</strong> Gem, Concept, Invincibility</li>
+  <li><strong>Pantheon:</strong> Greek</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> ἀδάμας (Greek)</li>
+  <li><strong>Live domain:</strong> adámas.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Adámas</strong> (<em>adamas</em>) — Gem, Concept, Invincibility · Unbreakable; the adamant; the hardest substance; origin of &quot;diamond&quot; — belongs to the Greek tradition, where it is catalogued under the domain &quot;Gem, Concept, Invincibility&quot;. The name means &quot;Unbreakable; the adamant; the hardest substance; origin of &quot;diamond&quot;&quot;.</p>
+<p>Adámas is the Greek word for the <strong>hardest, most untamable substance</strong> — the adamant. In Homer it is the metal of chains that bind even gods; in later philosophy it becomes a metaphor for an unyielding soul. The word carries no cult of its own, yet it cuts across Greek literature as the image of absolute resistance.</p>
+<p>PÚNYCODEX restores the name as <strong>Adámas</strong> and serves its temple at <a href="https://xn--admas-yqa.com">adámas.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>adamas</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Greek as <strong>ἀδάμας</strong>. Etymologically it means &quot;Unbreakable; the adamant; the hardest substance; origin of &quot;diamond&quot;&quot;.</p>
+<p>The reconstructed proto-form is <em>n̥-dméh₂-​</em> (proto-indo-european, &quot;unbreakable, untamable&quot;). Privative ἀ- &quot;not&quot; + δάμ- (root of δαμάζω &quot;to tame, subdue&quot;). The word denotes anything unbreakable, especially hardened steel or diamond.</p>
+<p>Cognate forms across related languages:</p>
+<ul>
+  <li><strong>domāre</strong> (latin) — To tame, from the same PIE root *demh₂-</li>
+  <li><strong>diamond</strong> (english) — Via Old French diamant and Vulgar Latin *diamantem</li>
+  <li><strong>adamant</strong> (english) — Direct borrowing of Greek adámas via Latin</li>
+</ul>
+<p>The ASCII form <em>adamas</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Adámas</strong> recovers the stress accent of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>a</strong> → <strong>A</strong> — Same, capitalized</li>
+  <li><strong>d</strong> → <strong>d</strong> — Same</li>
+  <li><strong>a</strong> → <strong>á</strong> — Acute on alpha</li>
+  <li><strong>m</strong> → <strong>m</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+  <li><strong>s</strong> → <strong>s</strong> — Same</li>
+</ul>
+<p>Attested and derived spellings of the name:</p>
+<ul>
+  <li><strong>Adamas</strong> — ASCII form: Plain ASCII form used in English etymological discussion</li>
+</ul>
+<p>The project holds the domain <strong>adámas.com</strong> (xn--admas-yqa.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: Privative ἀ- &quot;not&quot; + δάμ- (root of δαμάζω &quot;to tame, subdue&quot;). The word denotes anything unbreakable, especially hardened steel or diamond.</p>
+<p>The reconstructed proto-form is <em>*n̥-dméh₂-​</em> (proto-indo-european), glossed as &quot;unbreakable, untamable&quot;.</p>
+<p>The reconstruction is classed as attested.</p>
+<p>Kindred forms recorded in the lexicon:</p>
+<ul>
+  <li><strong>domāre</strong> (latin) — To tame, from the same PIE root *demh₂-</li>
+  <li><strong>diamond</strong> (english) — Via Old French diamant and Vulgar Latin *diamantem</li>
+  <li><strong>adamant</strong> (english) — Direct borrowing of Greek adámas via Latin</li>
+</ul>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Greek as <strong>ἀδάμας</strong> — Greek alphabet (Classical / Attic), attested from archaic epic onward, in Greece and the Greek-speaking Mediterranean. The script is written left-to-right.</p>
+<p>The scholarly transliteration is <em>adámas</em> (Greek alphabet with polytonic accents), giving the normalized reading /a.dá.mas/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The Greek form ἀδάμας is written in the Classical Greek alphabet.</li>
+  <li>The acute accent on the second alpha preserves the pitch accent of Ancient Greek; the word carries no long vowel.</li>
+  <li>The Unicode restoration Adámas encodes that accented spelling directly as a registrable domain label, losing nothing of the ancient word.</li>
+</ul>
+<p>ἀδάμας is built from the privative prefix ἀ- (&quot;not&quot;) and the root δαμ- of δαμάζω (&quot;to tame, subdue&quot;), from the Indo-European root <em>demh₂- that also lies behind Latin </em>domāre*; the word thus names by definition &quot;the untamable one.&quot; Because its only prosodic feature is stress, the restoration marks the acute alone — the single feature that places Adámas in Tier 2.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/a.dá.mas/</strong> — Attic Greek Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>a-</strong> — Short alpha [a], unstressed first syllable in the adjective ἀδάμας.</li>
+  <li><strong>-dá-</strong> — Delta plus acute on short alpha [da] — the pitch peak of the word.</li>
+  <li><strong>-mas</strong> — Mu-alpha-sigma; the -ας ending marks a third-declension noun/adjective stem.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;ah-DAH-mahs&#39; — stress falls on the middle syllable, with a crisp final -s.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Greek</strong> — ἀδάμας (adámas), the hardest metal or substance, &#39;unbreakable&#39;</li>
+  <li><strong>Latin</strong> — adamās, borrowed as a precious stone and later &#39;diamond&#39;</li>
+  <li><strong>English</strong> — diamond, via Old French diamant and Vulgar Latin *diamantem</li>
+</ul>
+<p>Adámas is Tier 2 because the Greek ἀδάμας preserves the acute stress on the second syllable but lacks a long vowel. The word is not a deity but a material concept that became a philosophical emblem of invincibility.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Adámas appears in Greek myth not as a character but as a <strong>substance that binds, wounds, or armors the gods themselves</strong>. Its very hardness creates drama: what can hold an immortal must be stronger than the divine.</p>
+<h3 id="the-castration-of-ouranos-theogony">The Castration of Ouranos (Theogony)</h3>
+<p>Hesiod (<em>Theogony</em> 161–162) says Gaia &quot;created the race of grey adamant&quot; and from it made the great sickle with which Kronos wounded his father Ouranos. The tool is decisive: only a substance harder than sky can wound the sky. The blood that falls from the cut begets the Erinyes, the Giants, and the Meliai nymphs.</p>
+<h3 id="chains-that-hold-a-titan-prometheus-bound">Chains That Hold a Titan (Prometheus Bound)</h3>
+<p>In Aeschylus&#39;s <em>Prometheus Bound</em>, Hephaistos forges adamantine bonds to pin Prometheus to the Caucasus. The blacksmith laments that his own art must be turned against a kindred god; the chains symbolize the cruelty of Zeus&#39;s new order and the unyielding price of foresight.</p>
+<h3 id="adamantine-in-battle-iliad">Adamantine in Battle (Iliad)</h3>
+<p>Homer uses ἀδάμας and its compounds to describe obdurate things: the threshold of Hades, the will of a hero, the unbreakable nature of divine resolve. The word&#39;s poetic force lies in its superlative hardness — nothing yields, nothing forgives.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>Adámas is a substance, not a deity, so its &quot;attributes&quot; are the objects Greek literature makes of it; each is a device for staging absolute hardness.</p>
+<ul>
+  <li><strong>The great sickle of grey adamant</strong> — the weapon Gaia herself fashions to arm Kronos against Ouranos (Hesiod, <em>Theogony</em> 161–162): only a material harder than the sky can wound the sky.</li>
+  <li><strong>Adamantine bonds</strong> — the shackles Hephaistos rivets on Prometheus in the opening scene of Aeschylus&#39; play, &quot;fetters of adamantine bonds none can break&quot; (<em>Prometheus Bound</em> 6).</li>
+  <li><strong>The diamond</strong> — the stone later identified with the word: Pliny treats <em>adamas</em> as the hardest of gems (<em>Natural History</em> 37), and the medieval lapidary tradition made the identification permanent.</li>
+  <li><strong>The unyielding soul</strong> — the metaphorical emblem of later Greek philosophy, for whom the &quot;adamantine&quot; character is one no argument or terror can bend (Plato, <em>Republic</em>).</li>
+</ul>
+<p>Adámas is never personified in ancient art; there is no figure, male or female, that represents hardness. The substance appears only as depicted objects within other narratives: the curved sickle (harpē) that Kronos brandishes on gems and in later vase painting as he turns against Ouranos; the chains and wedges of the Prometheus scenes; the weapons of divine combat where &quot;adamantine&quot; is a painter&#39;s inference rather than a visible material. In medieval and Renaissance lapidary illustration the stone finally gets its portrait — faceted crystals labelled <em>adamas</em> — but these belong to the history of mineralogy, not to Greek cult art. The concept&#39;s true image is negative: whatever in a picture refuses to break.</p>
+<h2 id="epithets-cult-titles">Epithets &amp; Cult Titles</h2>
+<p>A material has no epithets in the cult sense, but ἀδάμας accumulated lexical predicates that do the same work:</p>
+<ul>
+  <li><strong>ἀδάμας</strong> — &quot;the untamed, unconquered one&quot;; privative ἀ- plus the root of δαμάζω, &quot;to subdue&quot; — the word is itself a definition.</li>
+  <li><strong>ἀδαμάντινος</strong> — &quot;adamantine&quot;; the adjectival form tragedy uses of bonds, chains, and unbreakable resolve (Aeschylus, <em>Prometheus Bound</em>).</li>
+  <li><strong>δρέπανον ἀδάμαντος</strong> — &quot;sickle of adamant&quot;; Hesiod&#39;s phrase for the weapon of Kronos (<em>Theogony</em> 161).</li>
+  <li><strong>adamas (Latin)</strong> — the loanword under which the stone entered Roman lapidaries and Pliny&#39;s gem book (<em>Natural History</em> 37).</li>
+  <li><strong>&quot;diamond&quot;</strong> — the medieval descendant, via Vulgar Latin <em>diamantem</em>, still carrying the sense &quot;unbreakable.&quot;</li>
+</ul>
+<h2 id="the-homeric-hymns">The Homeric Hymns</h2>
+<p>Adámas is a substance, not a god, and no Homeric Hymn — indeed no hymn at all — is addressed to it. Its career in hexameter begins as a material of the gods: the earliest certain attestation is Hesiod&#39;s <em>Theogony</em> (161), where Gaia creates the &quot;grey adamant&quot; and from it fashions the great sickle with which Kronos castrates Ouranos — a weapon harder than the sky it wounds. Thereafter the word runs through tragedy and philosophy: Aeschylus opens the <em>Prometheus Bound</em> with Hephaistos nailing the Titan to the rock in &quot;shackles of adamantine bonds that none can break,&quot; and by Plato&#39;s time ἀδαμάντινος had become a standard metaphor for an immovable soul. Hymnic language it never received; lapidary language it eventually became, passing through Latin <em>adamas</em> into the medieval word &quot;diamond.&quot;</p>
+<h2 id="oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</h2>
+<p>As a substance, Adámas had no oracle, sanctuary, or cult of any kind, and no ancient site is dedicated to it. Its associations are the landscapes of mythic punishment and craft: the Caucasus, where Aeschylus imagines [[prometheus|Promētheus]] fixed with adamantine bonds; the forge of Hephaistos, the only workshop where such a metal could be worked at all; and, in Hesiod, the womb of Gaia, which produces the adamant for the sickle. In the Roman period the word attaches to real mineralogy — Pliny discusses <em>adamas</em> among the hardest stones — and to the gem trade rather than to any holy place. Its &quot;cult site,&quot; if any, is the jeweller&#39;s bench.</p>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>No excavated object can be labelled &quot;adamant&quot;: the word names a superlative, not a mineral species, and antiquity never produced a specimen its authors could agree on. The likeliest real materials behind the early uses are the hardest stones the Greeks actually worked — emery, known to Theophrastus (<em>On Stones</em>) as the abrasive stone of Naxos, used for gem-cutting and marble-working, and corundum, which Pliny discusses beside <em>adamas</em> in his gem book (<em>Natural History</em> 37). Genuine diamonds reached the Mediterranean only in the Roman period through the Indian trade, too late to be the adamant of Homer and Hesiod. The word&#39;s archaeological footprint is therefore iconographic rather than lithic: the curved sickle of Kronos on gems and vase paintings, the chains and wedges of Prometheus scenes, and the forge of Hephaistos, where alone such a metal could be worked at all.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Adámas is the Greek word for the <strong>hardest, most untamable substance</strong> — the adamant. In Homer it is the metal of chains that bind even gods; in later philosophy it becomes a metaphor for an unyielding soul. The word carries no cult of its own, yet it cuts across Greek literature as the image of absolute resistance.</p>
+<h3 id="adamantine-substance">Adamantine Substance</h3>
+<p>The hardest material known to Greek poets; used for chains, weapons, and the unbreakable core of things.</p>
+<h3 id="bonds-of-the-gods">Bonds of the Gods</h3>
+<p>In Homer and tragedy, adamantine fetters hold Prometheus, Ares, and other immortals fast.</p>
+<h3 id="invincible-resolve">Invincible Resolve</h3>
+<p>Philosophers from Plato to the Stoics use adámas as an image of an unconquerable mind.</p>
+<h3 id="diamond-legacy">Diamond Legacy</h3>
+<p>The medieval and modern word &#39;diamond&#39; descends from this Greek root, preserving its brilliance and hardness.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>The Greek adámas traveled into Latin as a precious stone and, through medieval lapidaries, became the &#39;diamond.&#39; Christian writers borrowed its hardness as a symbol of unwavering faith and the invincible word of God. In alchemy and Renaissance emblem books, the diamond stood for constancy and the philosopher&#39;s indestructible stone. Modern materials science has returned the metaphor to its Greek root: diamond remains the hardest known natural material.</p>
+<p>Within the Greek tradition, closely related names in the corpus include [[acheron|Achérōn]], [[aer|Aḗr]], [[aither|Aithḗr]], [[ananke|Anánkē]], [[andromeda|Andromedē]], and [[aphrodite|Aphrodítē]].</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Every diamond carries a fragment of adámas in its name: Greek ἀδάμας passed into Latin as <em>adamas</em>, was reshaped in Vulgar Latin as \<em>diamantem</em>, and reached English through Old French <em>diamant</em> — while <em>adamant</em> itself survived as the learned doublet, so that one Greek word lives twice in the modern lexicon. The equation of hardness with permanence became proverbial: Milton chains the fallen Satan &quot;in adamantine chains and penal fire&quot; (<em>Paradise Lost</em> 1.48), and &quot;adamant&quot; remains the standing English idiom for an unbending will. Medieval Christian writers pressed the stone into moral service as an emblem of unwavering faith, and Renaissance emblem books made it the sign of constancy; modern materials science has confirmed the intuition at the root of the metaphor — diamond is the hardest naturally occurring substance known. The Greek concept survives not in cult but in language, as the ultimate measure of resistance.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Adámas given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Full text</a></li>
+  <li> Beekes, Etymological Dictionary of Greek.</li>
+  <li> Homer, Iliad.</li>
+  <li> Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE. <a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Full text</a></li>
+  <li> Aeschylus, Prometheus Bound.</li>
+  <li> Plato, Republic (adamantine soul).</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Adámas teaches that resistance has its own beauty. The adamant does not bend; it holds. In a world that often confuses flexibility with virtue, the concept reminds us that some things must not yield: integrity, memory, the truth. Yet adámas is also a warning. Chains of adamant bind Prometheus not because the Titan is wrong, but because power can harden against justice. The same substance that protects can imprison.</p>
+<p>To meditate on adámas is to ask: What in me should be unbreakable, and what has become merely brittle? The diamond catches light because it is hard; it also cuts because it cannot soften. The Greek word preserves both possibilities.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Adámas is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>adamas</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 6 characters of the name, the restoration adjusts 1: 1 mark of stress (á). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>adámas.com</strong>, which the DNS carries in punycode form as xn--admas-yqa.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Adámas; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Greek can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Pronunciation turns out to be the heart of the matter. The marks in <strong>Adámas</strong> are instructions for the voice, and a web that strips them is a web that mispronounces the past at scale. The restoration hands the instructions back: say it as the evidence suggests, type it as the tradition wrote it, and let the punycode machinery do the quiet translation in between. That is all the PÚNYCODEX project asks of the infrastructure — and everything it asks of you, the reader, is to use the whole name.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/ethos/">Éthos</a></li>
   <li><a href="/sites/europa/">Eurōpē</a></li>
   <li><a href="/sites/eurydice/">Eurydikē</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843.</a></li>
   <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Hesiod, Theogony 161–162.</a></li>
+  <li>Beekes, Etymological Dictionary of Greek.</li>
+  <li>Homer, Iliad.</li>
+  <li>Beekes, Etymological Dictionary of Greek, s.v. ἀδάμας.</li>
+  <li>Aeschylus, Prometheus Bound 6.</li>
+  <li>Lexicon authorities for this entry: LSJ, Beekes, Homer.</li>
 </ul>
-<h2>What the Sources Record</h2>
-<p>Adámas is the Greek word for the hardest, most untamable substance — the adamant. In Homer it is the metal of chains that bind even gods; in later philosophy it becomes a metaphor for an unyielding soul. The word carries no cult of its own, yet it cuts across Greek literature as the image of absolute resistance. ### Adamantine Substance The hardest material known to Greek poets; used for chains, weapons, and the unbreakable core of things. ### Bonds of the Gods In Homer and tragedy, adamantine fetters hold Prometheus, Ares, and other immortals fast. ### Invincible Resolve Philosophers from Plato to the Stoics use adámas as an image of an unconquerable mind. ### Diamond Legacy The medieval and modern word &#39;diamond&#39; descends from this Greek root,...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Adámas as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Greek to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Adámas through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/adamas/">home page</a> offers the full name breakdown, the <a href="/sites/adamas/lore/">lore page</a> explores the myth, and the <a href="/sites/adamas/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Adámas do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
-<h2>A Note on the Address Bar</h2>
-<p>When you type Adámas, the browser performs an invisible conversion into Punycode so the global DNS can route the request. The user sees the original name; the machines see a compatible ASCII encoding. That duality is the engineering compromise that makes the restoration possible, and it is the reason every Unicode domain is both a technical milestone and a small act of cultural memory.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">greek</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

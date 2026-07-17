@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,46 +170,180 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#epithets-cult-titles">Epithets &amp; Cult Titles</a></li>
+                <li><a href="#the-homeric-hymns">The Homeric Hymns</a></li>
+                <li><a href="#oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>Pronouncing Íris: A Guide for the Curious</h1>
-<p>Saying <strong>Íris</strong> out loud is harder than reading it on a screen, and more rewarding. Scholars reconstruct the sound as <em>&#39;EE-ris&#39; — a long, high-pitched first syllable and a quick second syllable, like the arc of a rainbow.</em>.</p>
-<h2>The Reconstructed Sound</h2>
-<p>ἶρις (feminine) is the Greek word for the rainbow — and, by extension, for any bright circlet of color: the lexicon records the halo around lights, the flower (the rainbow-colored flag), and the goddess in a single entry. The name is the thing: Greeks who looked up after rain saw the messenger in the sky itself. Plato offers antiquity&#39;s etymology: in the Cratylus Socrates derives Íris from εἴρειν, &#39;to speak, to tell&#39;, because she is the gods&#39; messenger — an ancient guess that fixes her function, if not her phonology. Modern etymologists have proposed a connection with the root weh₁i-, &#39;to bend, twist&#39;, which would name the bow&#39;s arc, but the word&#39;s prehistory remains unresolved and the dictionaries decline a verdict. The ASCII spelling iris drops... The sounds preserved in Íris are not random; they follow rules that linguists have spent centuries recovering.</p>
-<h2>Sound by Sound</h2>
-<p> Each segment locks into the next, so a small change in one place ripples through the whole name.</p>
-<h2>Kin Forms</h2>
-<p>Names rarely have only one valid shape. The restoration chooses the form that best balances historical accuracy with the practical limits of DNS.</p>
-<h2>From Speech to Screen</h2>
-<p>Pronunciation and spelling converge in Unicode. Íris carries enough phonetic information to be read aloud by someone who knows the conventions, and enough visual distinctiveness to stand out in an address bar.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Íris is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>Pronouncing Íris: a guide for the curious</h1>
+<p>Saying <strong>Íris</strong> aloud is harder than reading it on a screen, and more rewarding. The restored spelling is a compressed pronunciation guide: every accent and macron is an instruction. This post unpacks those instructions — the reconstructed sound, the phoneme-by-phoneme record, the kindred forms in neighboring languages — and then zooms out to the full record around the name: its Greek writing, its mythology, its cult, and its modern life as a Unicode domain. Whether you arrive as a linguist, a reader of myth, or a domainer, you will leave able to say the name the way the evidence suggests it was said — and able to type it the way it was written.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Íris</li>
+  <li><strong>ASCII form:</strong> iris</li>
+  <li><strong>Meaning:</strong> &quot;Rainbow&quot;</li>
+  <li><strong>Domain of influence:</strong> Rainbow, Messenger</li>
+  <li><strong>Pantheon:</strong> Greek</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> Ἶρις (Greek)</li>
+  <li><strong>Live domain:</strong> íris.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Íris</strong> (<em>iris</em>) is the Greek personification of the rainbow and, in the earliest epic, the standing messenger of the gods: in the <em>Iliad</em> it is she, not [[hermes|Hermês]], who carries the commands of Zeus between Olympus, earth, and sea. The name is the ordinary Greek noun ἶρις, &#39;rainbow&#39;, made goddess — the phenomenon itself doing the errands of heaven.</p>
+<p>Hesiod gives her a family and a duty. Daughter of Thaumas and the Oceanid Elektra, sister of the Harpies, she is &#39;wind-footed swift Iris&#39;; and when the gods swear their great oath, it is Iris who flies down in a golden pitcher to fetch the cold water of the [[styx|Stýx]], by which alone immortals can be bound.</p>
+<p>PÚNYCODEX restores the name as <strong>Íris</strong> and serves this temple at <a href="https://xn--ris-qma.com">íris.com</a>. The restoration carries the acute stress of the spoken name on its first syllable, placing it in Tier 2; the ASCII form <em>iris</em> is the modern fallback imposed by the early domain-name system.</p>
+<h2 id="the-name">The Name</h2>
+<p><strong>ἶρις</strong> (feminine) is the Greek word for the rainbow — and, by extension, for any bright circlet of color: the lexicon records the halo around lights, the flower (the rainbow-colored flag), and the goddess in a single entry. The name is the thing: Greeks who looked up after rain saw the messenger in the sky itself.</p>
+<p>Plato offers antiquity&#39;s etymology: in the <em>Cratylus</em> Socrates derives Íris from εἴρειν, &#39;to speak, to tell&#39;, because she is the gods&#39; messenger — an ancient guess that fixes her function, if not her phonology. Modern etymologists have proposed a connection with the root <em>weh₁i-</em>, &#39;to bend, twist&#39;, which would name the bow&#39;s arc, but the word&#39;s prehistory remains unresolved and the dictionaries decline a verdict.</p>
+<p>The ASCII spelling <em>iris</em> drops the accent; the PÚNYCODEX restoration <strong>Íris</strong> restores the acute on the initial iota. The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>i</strong> → <strong>Í</strong> — Acute on i</li>
+  <li><strong>r</strong> → <strong>r</strong> — r same</li>
+  <li><strong>i</strong> → <strong>i</strong> — i same</li>
+  <li><strong>s</strong> → <strong>s</strong> — s same</li>
+</ul>
+<p>The project holds the domain <strong>íris.com</strong> (xn--ris-qma.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is written in Greek as <strong>Ἶρις</strong>: capital iota with smooth breathing, then rho, iota, sigma. The smooth breathing is itself informative — the word begins with a pure vowel, with none of the aspiration that marks Ὕδρα or Ὕπνος — and lexica conventionally print the length of the initial iota as a circumflex (ἶρις). Accents and breathings are Alexandrian editorial signs; Classical inscriptions show simply ΙΡΙΣ.</p>
+<p>This original script is the measure of both the ASCII fallback <em>iris</em> and the PÚNYCODEX restoration <strong>Íris</strong>: the restoration marks the spoken name&#39;s pitch peak on its first syllable, so that a reader typing the modern address still speaks the ancient name.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/ǐː.ris/</strong> — Attic Greek Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Î-</strong> — Long iota with acute or circumflex [ǐː], the pitch peak of the name.</li>
+  <li><strong>-ris</strong> — Rho-iota-sigma; the name is short and bright, like the rainbow it names.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;EE-ris&#39; — a long, high-pitched first syllable and a quick second syllable, like the arc of a rainbow.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Greek</strong> — Ἶρις (Îris), the rainbow and its divine personification</li>
+  <li><strong>PIE</strong> — Root *weh₁i- &#39;to bend, twist&#39;; related to εἴρω and possibly Latin iris</li>
+</ul>
+<p>Íris is a Tier 2 restoration: it preserves one prosodic feature — the acute stress on the initial syllable — rather than both stress and length. The Attic Ἶρις is also heard with a long initial iota, which the longer transliteration Îris records beside the canonical Íris. She is the standing Olympian messenger of the Iliad, older in epic convention than Hermes.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Íris is a <strong>function more than a character</strong> in early epic: she goes where she is sent. Yet her errands are dramatic, and she occasionally shows judgment and pity.</p>
+<h3 id="birth-and-office-hesiod-theogony">Birth and Office (Hesiod, Theogony)</h3>
+<p>Thaumas and the Oceanid Elektra bore swift Iris and the Harpies, Aello and Okypete — the rainbow and the storm-winds as sisters. Hesiod also assigns her the gravest ritual duty in heaven: fetching the Styx water for the gods&#39; oath.</p>
+<h3 id="the-iliad-s-messenger">The Iliad&#39;s Messenger</h3>
+<p>Throughout the poem she carries divine will into the war: warning the Trojans in the shape of Polites, summoning Helen to the walls as Laodike, stopping Hera and Athena at Zeus&#39;s command, rebuking Poseidon, and bringing Thetis and Priam their separate instructions in Book 24.</p>
+<h3 id="iris-and-achilles-iliad-18">Iris and Achilles (Iliad 18)</h3>
+<p>When Patroklos falls and the battle rages over his body, Hera sends Iris — without Zeus&#39;s knowledge — to Achilles. She tells the unarmed hero simply to show himself at the ditch; he obeys, and his war-cry, wrapped in flame by Athena, routs the Trojans and saves the body. It is the poem&#39;s clearest case of a mortal heeding a divine messenger instantly.</p>
+<h3 id="the-winds-iliad-23">The Winds (Iliad 23)</h3>
+<p>When Patroklos&#39; pyre will not light, Achilles prays to Boreas and Zephyr; Iris overhears, flies to the winds&#39; feast, and bids them come blow the flames — a small scene that shows her office extending beyond Zeus&#39;s own errands.</p>
+<h3 id="the-hymn-to-delian-apollo">The Hymn to Delian Apollo</h3>
+<p>At Apollo&#39;s birth, Hera jealously detains Eileithyia, goddess of childbirth; the goddesses send Iris to fetch her, and with Eileithyia&#39;s arrival Leto delivers her son.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>Íris&#39;s attributes mark her as the official courier of heaven, and painters rely on them to tell her from Nike:</p>
+<ul>
+  <li><strong>Rainbow</strong> — not carried but embodied: she is the arc, and the arc is she.</li>
+  <li><strong>Golden wings</strong> — the <em>Iliad</em>&#39;s epithet for her (χρυσόπτερος), the radiant speed of her passage.</li>
+  <li><strong>Herald&#39;s staff (kerykeion)</strong> — the badge of the accredited messenger, shared with [[hermes|Hermês]] and the securest way ancient painters identify her — the attribute that separates her from Nike on the vases.</li>
+  <li><strong>Pitcher of Styx-water</strong> — the golden jug in which she carries the oath-water of the gods, her one solemn charge beyond mere messages.</li>
+</ul>
+<p>Íris appears in Attic black- and red-figure as a winged young woman in swift motion — the Archaic &#39;knielauf&#39; running pose — carrying a herald&#39;s staff (kerykeion) like [[hermes|Hermês]] and, at times, a pitcher for the Styx water. She crowds Trojan War scenes: addressing Priam, attending divine assemblies, speeding between Olympus and the plain. Inscriptions naming her on several vases let scholars calibrate the type: staff, wings, and running pose together are diagnostic. Without her attributes she can be nearly indistinguishable from Hermes, and painters rely on her staff and flight to fix her. Monumental sculpture largely passed her by; her image lives on vases.</p>
+<h2 id="epithets-cult-titles">Epithets &amp; Cult Titles</h2>
+<p>Íris&#39;s epithets celebrate speed and radiance, the two halves of her function:</p>
+<ul>
+  <li><strong>χρυσόπτερος</strong> (khrusópteros) — &#39;golden-winged&#39;; the Iliad&#39;s epithet for her radiant flight.</li>
+  <li><strong>ποδήνεμος ὠκέα</strong> (podḗnemos ōkéa) — &#39;wind-footed swift&#39;; Hesiod&#39;s formula for her in the Theogony.</li>
+  <li><strong>Θαύματος θυγάτηρ</strong> (Thaúmatos thugátēr) — &#39;daughter of Thaumas&#39;; Latin poets condense the patronymic into <em>Thaumantias</em>.</li>
+  <li><strong>bearer of the Styx water</strong> — no single-word title survives, but Hesiod fixes her by the function: she alone fetches the oath-water of the Styx for the gods.</li>
+  <li><strong>the common noun</strong> — unlike most divine names, hers never ceases to be the ordinary word: every ἶρις in the sky is the goddess passing.</li>
+</ul>
+<h2 id="the-homeric-hymns">The Homeric Hymns</h2>
+<p>No Homeric Hymn is addressed to Íris; her medium is epic itself, where she is the Iliad&#39;s standing messenger — once even taking mortal shape, that of Priam&#39;s son Polites, to warn the Trojans of the Achaean advance. The one hymn that does need her is the Hymn to Delian Apollo: at Apollo&#39;s birth the waiting goddesses dispatch her to fetch Eileithyia, whom Hera has jealously kept away, and only with her arrival can Leto deliver. Hesiod supplies her family: daughter of the sea-wonder Thaumas and the Oceanid Elektra, sister of the Harpies, &#39;wind-footed swift Iris.&#39; The same Theogony assigns her a ritual duty later tradition never forgets — when the gods swear their great oath, it is Iris who flies down to bring them water from the Styx.</p>
+<h2 id="oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</h2>
+<p>No oracle site, temple, or altar of Íris is securely attested: the messenger was honored, if at all, only within the cults of the greater Olympians she served. Her geography is elemental rather than architectural — the rainbow itself, Mount Ida, and above all the Styx, whose cold water she alone carries for the gods&#39; oath. That water had a real address: Pausanias describes the dreaded Arcadian Styx near Nonacris, the most feared oath-water in the Greek world, which was her recurring destination. In later literature she is attached to Hera&#39;s household; Aristophanes can still stage her as heaven&#39;s harassed courier in the <em>Birds</em>.</p>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>No temple, altar, or sanctuary of Íris is securely attested; her material record is painted, not built. In Attic black- and red-figure she is the winged young woman in the archaic running pose, kerykeion in hand, crowding Trojan War scenes and divine assemblies; painters distinguish her from Nike chiefly by the herald&#39;s staff and by context. Monumental sculpture largely passed her by.</p>
+<p>Her one numinous address is elemental. The [[styx|Stýx]], whose water she carries for the oath of the gods, was a real Arcadian waterfall: Pausanias describes the cliff of the Styx near Nonacris, whose stream was held to be death to drink and proof against every vessel — the most feared water in the Greek world.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Íris&#39;s domains are passage and proclamation: she exists in the moment a divine will crosses into the mortal world.</p>
+<h3 id="divine-messenger">Divine Messenger</h3>
+<p>In the <em>Iliad</em> she is heaven&#39;s courier — sent to Hector, to Poseidon, to Thetis, and to Priam; when disguises are needed she wears mortal shapes, appearing as Priam&#39;s son Polites and as Helen&#39;s sister-in-law Laodike.</p>
+<h3 id="the-rainbow">The Rainbow</h3>
+<p>Her body is the arc of color itself, the visible bridge between storm-cloud and sunlight, heaven and earth — the phenomenon the Greeks named before they named the goddess.</p>
+<h3 id="bearer-of-the-oath-water">Bearer of the Oath-Water</h3>
+<p>When the gods must swear, Zeus sends Iris with a golden pitcher to fetch the cold water of the Styx; the immortal who pours it falsely lies senseless for a year and is cut off from the gods for nine.</p>
+<h3 id="swift-flight">Swift Flight</h3>
+<p>Hesiod&#39;s formula is &#39;wind-footed swift Iris&#39;; Homer calls her golden-winged — speed and radiance are the two halves of her office.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Rome kept Íris as a poetic figure but built no cult around her: the messenger&#39;s work migrated to Mercury, the Roman Hermês, and Iris survived in Latin epic chiefly as Juno&#39;s courier. Virgil gives her three memorable errands — cutting the fatal lock from Dido&#39;s hair to release her soul, disguising herself as the Trojan woman Beroe to fire the ships, and spurring Turnus to war — all at Juno&#39;s command.</p>
+<p>Her own family supplied one later episode of note: in Apollonius&#39; <em>Argonautica</em> she swoops down to defend her sisters the Harpies from the pursuing Boreads, swearing by the Styx — her own element — that the pursuit must end. Later tradition absorbed the phenomenon rather than the goddess: the rainbow passed into Christian iconography as the sign of the covenant, while her name migrated into botany, anatomy, and optics.</p>
+<p>Among Greek figures her closest kin in function is [[hermes|Hermês]], who takes over the messenger&#39;s office in later epic and never gives it back.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Íris&#39;s afterlife is lexical and optical. Ancient botanists already used her name for the rainbow-colored flag-flower, and Linnaean taxonomy kept <em>Iris</em> as the genus; early modern anatomists borrowed the same word for the colored ring of the eye, whose many hues recalled the bow; and modern coinages — &#39;iridescent&#39;, the camera&#39;s iris diaphragm — continue the family.</p>
+<p>The rainbow itself she never lost. As the ancient sign of passage between realms, her arc still serves as the emblem of covenant, promise, and — in the modern pride flag — of diversity and welcome; the resonance is poetic rather than historical, but the Greeks would have recognized the idea: a bridge of color between worlds.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Íris given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, s.v. ἶρις. <a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Full text</a></li>
+  <li> Plato, Cratylus 408b.</li>
+  <li> Homer, Iliad, Books 2–3, 8, 11, 15, 18, 23, 24.</li>
+  <li> Hesiod, Theogony 265–269, 775–806 (Loeb Classical Library No. 57). <a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Full text</a></li>
+  <li> Homeric Hymn to Delian Apollo (no. 3), 102–114.</li>
+  <li> Apollonius Rhodius, Argonautica 2.286–300.</li>
+  <li> Aristophanes, Birds 1199–1261.</li>
+  <li> Virgil, Aeneid 4.693–705, 5.606–622, 9.1–24.</li>
+  <li> Pausanias, Description of Greece 8.17.6–18.5.</li>
+  <li> Lexicon Iconographicum Mythologiae Classicae (LIMC), s.v. &#39;Iris&#39;.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Iris is the god of the in-between. She does not belong to Olympus alone or to earth alone but to the arc that connects them. Her existence is relational: without sender and receiver, without storm and sunlight, there is no rainbow.</p>
+<p>That makes her a deity of communication at its most beautiful. A message from Iris is not merely information; it is color, light, and the promise that distant realms can touch. In an age of digital messaging, she reminds us that the medium can be as meaningful as the message — and that even a war summons can arrive on a bridge of light.</p>
+<p>Her other charge is solemn: she alone carries the Styx water, so that even the gods, when they swear, must swear by something colder and older than themselves. The messenger who connects realms is also the guarantor that a word, once sent, cannot be taken back.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Íris is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>iris</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 4 characters of the name, the restoration adjusts 1: 1 mark of stress (Í). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>íris.com</strong>, which the DNS carries in punycode form as xn--ris-qma.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Íris; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Greek can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Pronunciation turns out to be the heart of the matter. The marks in <strong>Íris</strong> are instructions for the voice, and a web that strips them is a web that mispronounces the past at scale. The restoration hands the instructions back: say it as the evidence suggests, type it as the tradition wrote it, and let the punycode machinery do the quiet translation in between. That is all the PÚNYCODEX project asks of the infrastructure — and everything it asks of you, the reader, is to use the whole name.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/diomedes/">Diomēdēs</a></li>
   <li><a href="/sites/dionysos/">Diónysos</a></li>
   <li><a href="/sites/doxa/">Dóxa</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, s.v. ἶρις.</a></li>
   <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Hesiod, Theogony 265–269 and 775–806 (Iris&#39;s birth; the oath-water of the Styx).</a></li>
+  <li>Plato, Cratylus 408b (Iris from εἴρειν).</li>
+  <li>Homer, Iliad, Books 2–3, 8, 15, 24 (Iris as messenger and in mortal disguise).</li>
+  <li>Homer, Iliad 8.398 and 11.185 (Iris golden-winged).</li>
+  <li>Lexicon Iconographicum Mythologiae Classicae (LIMC), s.v. &#39;Iris&#39;.</li>
+  <li>Lexicon authorities for this entry: Homer, LSJ.</li>
 </ul>
-<h2>What the Sources Record</h2>
-<p>Íris&#39;s domains are passage and proclamation: she exists in the moment a divine will crosses into the mortal world. ### Divine Messenger In the Iliad she is heaven&#39;s courier — sent to Hector, to Poseidon, to Thetis, and to Priam; when disguises are needed she wears mortal shapes, appearing as Priam&#39;s son Polites and as Helen&#39;s sister-in-law Laodike. ### The Rainbow Her body is the arc of color itself, the visible bridge between storm-cloud and sunlight, heaven and earth — the phenomenon the Greeks named before they named the goddess. ### Bearer of the Oath-Water When the gods must swear, Zeus sends Iris with a golden pitcher to fetch the cold water of the Styx; the immortal who pours it falsely lies senseless for a year and is cut off from the gods...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Íris as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Greek to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Íris through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/iris/">home page</a> offers the full name breakdown, the <a href="/sites/iris/lore/">lore page</a> explores the myth, and the <a href="/sites/iris/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Íris do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
-<h2>A Note on the Address Bar</h2>
-<p>When you type Íris, the browser performs an invisible conversion into Punycode so the global DNS can route the request. The user sees the original name; the machines see a compatible ASCII encoding. That duality is the engineering compromise that makes the restoration possible, and it is the reason every Unicode domain is both a technical milestone and a small act of cultural memory.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">greek</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

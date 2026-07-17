@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,37 +170,188 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#epithets-cult-titles">Epithets &amp; Cult Titles</a></li>
+                <li><a href="#the-homeric-hymns">The Homeric Hymns</a></li>
+                <li><a href="#oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-greek-pantheon">The Greek Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#typing-eos">Typing Ēōs</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>From Greek to Unicode: The Journey of Ēōs</h1>
-<p>Long before it was a domain, the name traveled through scripts. The name is written in Greek as Ἠώς. This original script is the form against which the ASCII fallback eos and the PÚNYCODEX restoration Ēōs are measured: the restoration preserves the vowel quantity of the written form, so that a reader typing the modern address still speaks the ancient name. The orthography records the word&#39;s sound history. The rough breathing and the first syllable&#39;s eta descend from an initial h₂e- in Proto-Indo-European, through an early Greek aw- preserved in the Aeolic dialect form αὔως; Attic-Ionic ἠώς shows the regular loss of the digamma and lengthening to ē. The acute accent falls on the long final omega. Neither breathing nor accent can be registered in a domain, so the restoration marks the two quantities — Ē and ō —... This post follows Ēōs from its earliest attestation to the address bar.</p>
-<h2>The Original Sign</h2>
-<p>The original script gives us <strong>Ἠώς</strong>. The name is written in Greek as Ἠώς. This original script is the form against which the ASCII fallback eos and the PÚNYCODEX restoration Ēōs are measured: the restoration preserves the vowel quantity of the written form, so that a reader typing the modern address still speaks the ancient name. The orthography records the word&#39;s sound history. The rough breathing and the first syllable&#39;s eta descend from an initial h₂e- in Proto-Indo-European, through an early Greek aw- preserved in the Aeolic dialect form αὔως; Attic-Ionic ἠώς shows the regular loss of the digamma and lengthening to ē. The acute accent falls on the long final omega. Neither breathing nor accent can be registered in a domain, so the restoration marks the two quantities — Ē and ō —...</p>
-<h2>The Scholarly Transliteration</h2>
-<p>The name is attested in Greek as Ἠώς. Etymologically it means &quot;Dawn (from ἠώς)&quot;. The ASCII form eos survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Ēōs recovers the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The letter-by-letter transformation runs: - e → Ē — Eta: long epsilon - o → ō — Omega: long omicron - s → s — Sigma The canonical temple for this name is served at eos.com. Scholars settled on Ēōs as the registrable restoration: faithful enough to be recognizable, precise enough to carry the marks that matter.</p>
-<h2>DNS as a Time Machine</h2>
-<p>Punycode lets the DNS carry non-ASCII characters without breaking older routers. To the user, the address bar shows Ēōs; to the infrastructure, it is an encoded xn-- string. The duality is invisible, but the result is revolutionary: a pre-digital name living inside a post-digital system.</p>
-<h2>Pronunciation</h2>
-<p>Scholars reconstruct the sound as <em>&#39;AY-ohss&#39; — two long syllables, the first level, the second pitched and sustained like the rising sun.</em>. Hearing the name in your own voice is one way to make the restoration personal.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Ēōs is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>From Greek to Unicode: the journey of Ēōs</h1>
+<p>Long before it was a domain, this name traveled through scripts. <strong>Ēōs</strong> begins in Greek, passes through scholarly transliteration, and ends — for now — inside the punycode machinery of the global DNS. Each stage of that journey preserves some information and loses some, and the craft of restoration is knowing exactly which marks matter. This post follows the name stage by stage: the original script, the reconstructed pronunciation, the mythological record, the material evidence, and finally the Unicode form that carries all of it into the address bar. Think of it as a biography of a name, told through its spelling.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Ēōs</li>
+  <li><strong>ASCII form:</strong> eos</li>
+  <li><strong>Meaning:</strong> &quot;Dawn (from ἠώς)&quot;</li>
+  <li><strong>Domain of influence:</strong> Dawn, Morning Red</li>
+  <li><strong>Pantheon:</strong> Greek</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Original script:</strong> Ἠώς (Greek)</li>
+  <li><strong>Live domain:</strong> eos.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Ēōs</strong> (<em>eos</em>) is the Greek goddess of the dawn, a Titaness whom Hesiod makes the daughter of Hyperiōn and Theía and the sister of Hēlios and Selēnē. In Homer she is less a character than a daily event: the formula &#39;when early-born, rosy-fingered Dawn appeared&#39; opens day after day of both epics, and <em>Iliad</em> 8 begins with saffron-robed Dawn spreading herself over all the earth. Her myths turn on love for mortals — Tithōnos, Képhalos, Oríōn — and on the grief of divine gifts wrongly asked, above all the immortal age she won for Tithōnos without immortal youth.</p>
+<p>PÚNYCODEX restores the name as <strong>Ēōs</strong> and serves this temple at <a href="https://eos.com">eos.com</a>. The Greek Ἠώς carries both vowel length (ē, ō) and pitch accent, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>eos</em> is a modern convenience of the domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Greek as <strong>Ἠώς</strong>. Etymologically it means &quot;Dawn (from ἠώς)&quot;.</p>
+<p>The ASCII form <em>eos</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Ēōs</strong> recovers the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>e</strong> → <strong>Ē</strong> — Eta: long epsilon</li>
+  <li><strong>o</strong> → <strong>ō</strong> — Omega: long omicron</li>
+  <li><strong>s</strong> → <strong>s</strong> — Sigma</li>
+</ul>
+<p>The canonical temple for this name is served at <strong>eos.com</strong>.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is written in Greek as <strong>Ἠώς</strong>. This original script is the form against which the ASCII fallback <em>eos</em> and the PÚNYCODEX restoration <strong>Ēōs</strong> are measured: the restoration preserves the vowel quantity of the written form, so that a reader typing the modern address still speaks the ancient name.</p>
+<p>The orthography records the word&#39;s sound history. The rough breathing and the first syllable&#39;s eta descend from an initial <em>h₂e-</em> in Proto-Indo-European, through an early Greek <em>aw-</em> preserved in the Aeolic dialect form αὔως; Attic-Ionic ἠώς shows the regular loss of the digamma and lengthening to ē. The acute accent falls on the long final omega. Neither breathing nor accent can be registered in a domain, so the restoration marks the two quantities — Ē and ō — and the project&#39;s punycode carries the rest.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/ɛː.ɔ̌ːs/</strong> — Homeric/Attic Greek Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Ē-</strong> — Long eta [ɛː], the first syllable drawn out like the first pale light.</li>
+  <li><strong>-ōs</strong> — Long omega with acute or circumflex [ɔ̌ːs], the pitch peak and the root meaning &#39;dawn&#39;.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;AY-ohss&#39; — two long syllables, the first level, the second pitched and sustained like the rising sun.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Greek</strong> — Ἠώς (Ēṓs), the goddess of dawn</li>
+  <li><strong>PIE</strong> — *h₂éws-ōs, &#39;dawn&#39;; cognate with Latin aurora and Sanskrit uṣás</li>
+  <li><strong>Latin</strong> — Aurora, the Roman dawn goddess</li>
+</ul>
+<p>Ēōs is Tier 1 because the Greek Ἠώς contains two long syllables, the second carrying the acute/circumflex. The name is one of the most securely reconstructed Indo-European divine names.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Ēōs is <strong>beautiful and inconsolable</strong>. Her myths turn on love for mortals and the tragedy of asking the gods for the wrong gift.</p>
+<h3 id="tithonos-and-the-cicada-homeric-hymn-to-aphrodite-218-238">Tithonos and the Cicada (Homeric Hymn to Aphrodite 218–238)</h3>
+<p>Ēōs loved the Trojan prince Tithonos and asked Zeus to grant him immortality. She forgot to ask for eternal youth. Tithonos aged endlessly, shrinking until he became a cicada, whose chirping is the sound of immortal old age. The myth is a meditation on the limits of divine gifts. Hesiod gives the union its one consolation: Eos bore Tithonos a son, Memnon, the bronze-armed king of the Aethiopians who died at Troy.</p>
+<h3 id="the-abduction-of-kephalos-hesiod-apollodorus">The Abduction of Kephalos (Hesiod; Apollodorus)</h3>
+<p>Ēōs abducted the handsome hunter Kephalos and bore him a son, Phaethon. In the later accounts she returns him to his wife Prokris, but the damage is done: the suspicion she planted unravels the marriage, and Kephalos kills Prokris in a tragic hunting accident.</p>
+<h3 id="dawn-over-troy-iliad">Dawn over Troy (Iliad)</h3>
+<p>Homer opens many books with the formula &#39;Dawn appeared, rosy-fingered.&#39; Ēōs is the daily return of possibility: every battle, every journey, every reconciliation begins with her light. Her presence is so regular it becomes sacred.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Ēōs concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>Saffron or rosy light</strong> — The color of the dawn sky and her garments; the Homeric epithets κροκόπεπλος and ῥοδοδάκτυλος fix both hues in verse.</li>
+  <li><strong>Wings or winged chariot</strong> — Her swift passage across the horizon, the form Attic vase-painters give her as she rises from the sea or seizes a mortal.</li>
+  <li><strong>The morning star</strong> — The last star visible as she rises; Greek names it ἑωσφόρος, &#39;dawn-bringer&#39;, the herald who precedes her.</li>
+  <li><strong>Tithonos turning into a cicada</strong> — The emblem of her failed request for his immortality without youth: the lover who dwindles to a voice.</li>
+</ul>
+<p>Ēōs is a favorite of Attic vase-painters: a winged woman in a saffron robe, driving a chariot up from the sea, or stooping to seize a beautiful mortal — the pursuit of Kephalos is a stock red-figure scene, and whole painters&#39; workshops take their modern names from her pursuit vases. Her most moving role is funerary. Hesiod already names Memnon as her son by Tithonos, and on Attic vases she bears his body from the battlefield at Troy, the dawn grieving its own child — the so-called &#39;Memnon pietà&#39; type that archaic and classical artists returned to for a century. Roman art continues the type as Aurora on sarcophagi and in celestial cycles; independent cult statues of her are not recorded.</p>
+<h2 id="epithets-cult-titles">Epithets &amp; Cult Titles</h2>
+<p>Ēōs owns some of the most beautiful epithets in Greek verse, each a compressed painting of first light:</p>
+<ul>
+  <li><strong>ῥοδοδάκτυλος</strong> (rhododáktulos) — &#39;rosy-fingered&#39;; the standing Homeric epithet, fixed in the sunrise formula that recurs throughout both epics.</li>
+  <li><strong>κροκόπεπλος</strong> (krokópeplos) — &#39;saffron-robed&#39;; <em>Iliad</em> 8 opens with Dawn in her golden-red gown spreading over all the earth.</li>
+  <li><strong>χρυσόθρονος</strong> (khrusóthronos) — &#39;golden-throned&#39;; Homer and the Hymn to Aphrodite alike seat her on gold.</li>
+  <li><strong>ἠριγένεια</strong> (ērigéneia) — &#39;early-born&#39;; the opening word of the stock sunrise line.</li>
+</ul>
+<p>The constancy of the set is itself evidence: dawn was the one divine apparition every Greek could count on daily, and epic froze her appearance into formula.</p>
+<h2 id="the-homeric-hymns">The Homeric Hymns</h2>
+<p>No Homeric Hymn is dedicated to Ēōs, but the Hymn to Aphrodite gives her its longest cautionary tale (lines 218–238): golden-throned Eos carried off Tithonos of Troy and won immortality for him from Zeus — forgetting to ask for ageless youth, so that he dwindles in endless age behind closed doors, his babbling voice the only thing that does not fail. Hesiod adds the sequel the Hymn omits: to Tithonos she bore Memnon, king of the Aethiopians, and to Kephalos the splendid Phaethon. Homer himself needs no hymn for her, because she is already liturgy: &#39;when early-born, rosy-fingered Dawn appeared&#39; opens day after day of both epics, the most repeated divine entrance in Greek poetry.</p>
+<h2 id="oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</h2>
+<p>No oracle and no securely attested temple of Ēōs is known from the Greek world: Pausanias catalogues thousands of cult sites and none is hers — dawn was honored in the day&#39;s own rituals rather than in shrines bearing her name. Her sites are mythic horizons. Homer has her rise &#39;from her bed beside proud Tithonos&#39; and from the streams of Ocean to bring light to gods and mortals, and the Odyssey&#39;s Calypso cites her passion for the hunter Orion, killed by the jealous gods, as proof that heaven grudges goddesses their mortal loves. Cultic attention to the diurnal lights flowed instead to her brother [[helios|Hēlios]], whose great sanctuary stood on Rhodes.</p>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>No major Panhellenic sanctuary was dedicated to Ēōs, and Pausanias, cataloguing thousands of cult sites, records none for her: the Greeks honored dawn in the day&#39;s own rituals rather than in shrines. Her material record is iconographic. Attic red-figure vases of the fifth century BCE show her as a winged woman rising from the sea, driving a chariot, departing the bed of Tithonos, or pursuing the hunter Kephalos; a second stock scene, the so-called &#39;Memnon pietà&#39;, shows her bearing the body of her son from the field at Troy. Roman art continued the type as Aurora on sarcophagi and in celestial cycles, where she heralds the sun-god&#39;s ascent. The absence of cult buildings against this wealth of images is itself the archaeological fact: a goddess of event, not of place.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Ēōs is the <strong>goddess of dawn</strong>, daughter of Hyperion and Theía, sister of Hēlios and Selēnē. Each morning she rises from the sea in a saffron robe and opens the gates of day, scattering light across the world.</p>
+<h3 id="bringer-of-day">Bringer of Day</h3>
+<p>She opens the gates of heaven so Hēlios can ride his chariot across the sky.</p>
+<h3 id="rose-fingered">Rose-Fingered</h3>
+<p>The standing Homeric epithet rhododáktylos describes the red light of early morning touching the world.</p>
+<h3 id="lover-of-mortals">Lover of Mortals</h3>
+<p>She abducted Tithonos, Kephalos, and Orion, loving mortals whose fates ended in grief.</p>
+<h3 id="saffron-robe">Saffron Robe</h3>
+<p>She wears the golden-red robe of morning light across sea and mountain: <em>Iliad</em> 8 opens with Dawn κροκόπεπλος spreading over all the earth.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>The Romans called her Aurora and kept most of her Greek iconography, so that the classical dawn in European poetry and painting is a Greco-Roman composite. Her deeper kinship is Indo-European: Sanskrit Uṣás and Lithuanian Aušrinė descend from the same PIE dawn-goddess (*h₂éws-ōs), one of the most securely reconstructed divine names in the family. Christian tradition later transformed her into the herald of the resurrection morning. Within the Greek corpus her immediate family are temples in their own right: her parents [[hyperion|Hyperiōn]] and [[theia|Theía]], and her siblings [[helios|Hēlios]] and [[selene|Selēnē]], the sun and moon between whom she opens every day.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Ēōs survives wherever a language reaches for first light. English poetry inherited &#39;rosy-fingered dawn&#39; from translations of Homer; geology took <strong>Eocene</strong>, coined by Charles Lyell from ἠώς and καινός, &#39;dawn of the recent&#39;, for the epoch when modern fauna first appears; chemistry took <strong>eosin</strong>, the rose-red dye named for the colors of daybreak. The parrot genus <em>Eos</em> (the red lories of Indonesia) still bears her name. In Rome she became Aurora, the form under which she entered Renaissance and Baroque art. Behind all these borrowings stands her sharpest myth: the failed gift to Tithonos remains one of mythology&#39;s clearest warnings — be careful what you ask for, even from the gods.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Ēōs given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Full text</a></li>
+  <li> Beekes, Etymological Dictionary of Greek.</li>
+  <li> Homer, Iliad and Odyssey.</li>
+  <li> Homeric Hymn to Aphrodite.</li>
+  <li> Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE. <a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Full text</a></li>
+  <li> Apollodorus, Bibliotheca.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Ēōs is persistence. She returns every morning whether we are ready or not. In that regularity there is mercy: no night is final, no darkness permanent. Yet she also carries the memory of Tithonos, the beloved who could not die and could not be young. Her dawn is therefore bittersweet.</p>
+<p>To wake with Ēōs is to accept the condition of time. We are granted new light but not new bodies. The goddess asks us to love the world as it is: luminous, temporary, and returning. Homer trusted that lesson enough to build his sunrise line into the skeleton of both epics, beginning the day of every journey and every battle with her name. Her restoration in Unicode is a daily affirmation that beginnings matter, even when we know how the day may end.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Ēōs is classified as <strong>Tier 1</strong>: the original carries both stress and length, and only one valid Unicode restoration exists. The ASCII fallback <em>eos</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 3 characters of the name, the restoration adjusts 2: 2 marks of length (Ē, ō). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>eos</em> to <strong>Ēōs</strong>, one character at a time:</p>
+<ul>
+  <li><strong>e</strong> → <strong>Ē</strong> — Eta: long epsilon</li>
+  <li><strong>o</strong> → <strong>ō</strong> — Omega: long omicron</li>
+  <li><strong>s</strong> → <strong>s</strong> — Sigma</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>eos.com</strong>, which the DNS carries in punycode form as eos.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Ēōs; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Greek can now be typed into any browser on earth.</p>
+<h2 id="the-greek-pantheon">The Greek Pantheon</h2>
+<p>Ēōs is one of 263 entries the PÚNYCODEX lexicon catalogues under the Greek pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Ēōs mean?</strong> The traditional gloss is &quot;Dawn (from ἠώς).&quot;</p>
+<p><strong>Which tradition does Ēōs belong to?</strong> Ēōs is catalogued in the Greek pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Ēōs classified as Tier 1?</strong> Because the original carries both stress and length, and only one valid Unicode restoration exists — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Ēōs a working domain?</strong> Yes — eos.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for eos.com?</strong> The DNS encoding is eos.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="typing-eos">Typing Ēōs</h2>
+<p>You do not need a special keyboard to use this restoration. The <a href="/type/">PÚNYCODEX Type Tool</a> converts the ASCII form <em>eos</em> into <strong>Ēōs</strong> as you type, and the browser extension offers the same conversion inside any text field. Copy the restored form, paste it into the address bar, and the DNS does the rest.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Every stage of the journey from Greek to Unicode was an act of care: the scribe who first wrote the name, the lexicographer who glossed it, the engineer who taught the DNS to carry it. The PÚNYCODEX restoration is the latest stage, not the last word — the Scholarly Edition is revised as the evidence improves. What does not change is the principle: a name deserves to be written the way its own tradition wrote it. <strong>Ēōs</strong> in the address bar is that principle, made routable.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/moirai/">Moirai</a></li>
   <li><a href="/sites/nemeanlion/">NemeanLéon</a></li>
   <li><a href="/sites/nike/">Níkē</a></li>
 </ul>
-<h2>Further Reading</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Hesiod, Theogony 371–372, 984–985 (Eos, daughter of Hyperion and Theia; mother of Memnon).</a></li>
   <li><a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843.</a></li>
   <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0022">Apollodorus, Bibliotheca 2.4.7 (Kephalos and Prokris).</a></li>
+  <li>Homer, Iliad 8.1 and the dawn formula (e.g. Iliad 24.695; Odyssey 2.1).</li>
+  <li>Homeric Hymn to Aphrodite 218–238 (Eos and Tithonos).</li>
+  <li>Beekes, Etymological Dictionary of Greek.</li>
+  <li>Beekes, Etymological Dictionary of Greek, s.v. ἠώς (PIE h₂éus-ōs; Aeolic αὔως).</li>
+  <li>Lexicon authorities for this entry: LSJ, Pape-Benseler, Beekes.</li>
 </ul>
-<h2>The Name in Context</h2>
-<p>Ēōs (eos) is the Greek goddess of the dawn, a Titaness whom Hesiod makes the daughter of Hyperiōn and Theía and the sister of Hēlios and Selēnē. In Homer she is less a character than a daily event: the formula &#39;when early-born, rosy-fingered Dawn appeared&#39; opens day after day of both epics, and Iliad 8 begins with saffron-robed Dawn spreading herself over all the earth. Her myths turn on love for mortals — Tithōnos, Képhalos, Oríōn — and on the grief of divine gifts wrongly asked, above all the immortal age she won for Tithōnos without immortal youth. PÚNYCODEX restores the name as Ēōs and serves this temple at eos.com. The Greek Ἠώς carries both vowel length (ē, ō) and pitch accent, and exactly one historically valid Unicode restoration exists,...</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">greek</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

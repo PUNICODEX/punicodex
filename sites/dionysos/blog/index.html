@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,47 +170,195 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>15 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#epithets-cult-titles">Epithets &amp; Cult Titles</a></li>
+                <li><a href="#the-homeric-hymns">The Homeric Hymns</a></li>
+                <li><a href="#oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>The Name Diónysos and the World It Opens</h1>
-<p>A name is a door. Diónysos opens onto wine, ecstasy, theatre. Diónysos (dionysos) — The Liberator · Twice-Born — is an Olympian of the Greek tradition, god of wine, ecstasy, and theatre, son of [[zeus|Zeús]] and the mortal Semelē. Ancient interpreters analyzed the name as Διός (&quot;of Zeús&quot;) + Νῦσα, the mythical mountain where the infant god was reared; modern etymology finds no secure Indo-European derivation for the second element, and Beekes judges the whole name probably Pre-Greek.^1 Diónysos is the god who arrives from outside. He comes with wine, with music, with the loss of the self that becomes discovery. He is the foreigner who is already inside you, the madness that heals, the drink that loosens tongues and boundaries alike. Where [[apollon|Apóllōn]] gives form, Diónysos dissolves it. The cult is older...</p>
-<h2>Domain and Meaning</h2>
-<p>The temple domain is <strong>Wine, Ecstasy, Theatre</strong>. The traditional meaning is &quot;God of Nysa (mountain of ecstasy).&quot; Together, those two facts explain why the name mattered enough to be remembered for millennia.</p>
-<h2>The Mythic Landscape</h2>
-<p>Diónysos is born twice, dies once, and comes back everywhere. His myths are stories of arrival — from the east, from the underworld, from the thigh of Zeus — and of the resistance he meets from those who fear losing control. Myth is the memory of a civilization, and names are the hooks on which that memory hangs.</p>
-<h2>Modern Patterns</h2>
-<p>The <a href="/sites/dionysos/patterns/">Patterns</a> page maps the industries and sister temples that share Diónysos&#39;s current. A name that once organized ritual now organizes search, advertising, and creative collaboration.</p>
-<h2>Join the Restoration</h2>
-<p>You can support the work through the <a href="/sites/dionysos/patron/">Patron</a> wall, submit creative work, or simply share the address. Every visit to Diónysos is a vote for original scripts.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Diónysos is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>The name Diónysos and the world it opens</h1>
+<p>A name is a door. <strong>Diónysos</strong> opens onto an entire world: the domain of wine, ecstasy, theatre, a Greek tradition, and centuries of storytelling, worship, and scholarship. This post walks through that world room by room — the name and its roots, the original script, the sound of it, the myths, the symbols, the sites, the afterlife across cultures — and ends at the newest room of all: a Unicode domain that makes the whole structure addressable. <em>dionysos</em> gets you to the same building, but only the restored form tells you why it was built.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Diónysos</li>
+  <li><strong>ASCII form:</strong> dionysos</li>
+  <li><strong>Meaning:</strong> &quot;God of Nysa (mountain of ecstasy)&quot;</li>
+  <li><strong>Domain of influence:</strong> Wine, Ecstasy, Theatre</li>
+  <li><strong>Pantheon:</strong> Greek</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> Διόνυσος (Greek)</li>
+  <li><strong>Live domain:</strong> diónysos.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Diónysos</strong> (<em>dionysos</em>) — The Liberator · Twice-Born — is an Olympian of the Greek tradition, god of wine, ecstasy, and theatre, son of [[zeus|Zeús]] and the mortal Semelē. Ancient interpreters analyzed the name as Διός (&quot;of Zeús&quot;) + Νῦσα, the mythical mountain where the infant god was reared; modern etymology finds no secure Indo-European derivation for the second element, and Beekes judges the whole name probably Pre-Greek.</p>
+<p>Diónysos is the god who arrives from outside. He comes with wine, with music, with the loss of the self that becomes discovery. He is the foreigner who is already inside you, the madness that heals, the drink that loosens tongues and boundaries alike. Where [[apollon|Apóllōn]] gives form, Diónysos <strong>dissolves it</strong>. The cult is older than the alphabet: the name already appears in Mycenaean Linear B as di-wo-nu-so, on tablets from Pylos and Khania, centuries before Homer.</p>
+<p>PÚNYCODEX restores the name as <strong>Diónysos</strong> and serves its temple at <a href="https://xn--dinysos-m0a.com">diónysos.com</a>. The original preserves one prosodic feature — stress, not vowel length — which places the name in Tier 2. The plain ASCII form <em>dionysos</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Greek as <strong>Διόνυσος</strong>. Etymologically it means &quot;God of Nysa (mountain of ecstasy)&quot;.</p>
+<p>Anciently analyzed as Διός (genitive of Ζεύς) + Νῦσα, a mythical mountain of ecstasy; the second element is of unknown, probably non-Greek origin.</p>
+<p>The ASCII form <em>dionysos</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Diónysos</strong> recovers the stress accent of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>d</strong> → <strong>D</strong> — Delta</li>
+  <li><strong>i</strong> → <strong>i</strong> — Short iota</li>
+  <li><strong>o</strong> → <strong>ó</strong> — Acute on omicron</li>
+  <li><strong>n</strong> → <strong>n</strong> — Nu</li>
+  <li><strong>y</strong> → <strong>y</strong> — Upsilon</li>
+  <li><strong>s</strong> → <strong>s</strong> — Sigma</li>
+  <li><strong>o</strong> → <strong>o</strong> — Short omicron</li>
+  <li><strong>s</strong> → <strong>s</strong> — Sigma</li>
+</ul>
+<p>The project holds the domain <strong>diónysos.com</strong> (xn--dinysos-m0a.com) as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: Anciently analyzed as Διός (genitive of Ζεύς) + Νῦσα, a mythical mountain of ecstasy; the second element is of unknown, probably non-Greek origin.</p>
+<p>The reconstruction is classed as disputed.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Greek as <strong>Διόνυσος</strong> — Greek alphabet (Classical / Attic), attested Ancient Greek, c. 8th century BCE – present, in Greece and the Greek-speaking Mediterranean. The script is written left-to-right.</p>
+<p>The scholarly transliteration is <em>Diónysos</em> (Greek alphabet with polytonic accents), giving the normalized reading /di.ó.ny.sos/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The Greek form Διόνυσος is written in the Classical Greek alphabet.</li>
+  <li>Letters with acute, grave, or circumflex accents preserve the pitch accent of Ancient Greek.</li>
+  <li>Macrons and omegas (η, ω) mark long vowels, a feature lost in the plain ASCII form.</li>
+  <li>The Unicode restoration Diónysos encodes the scholarly spelling as a registrable domain name.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/di.ˈó.ny.sos/</strong> — Attic Greek Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Di-</strong> — Short iota after delta — the first half of the name of Zeus (genitive Dios).</li>
+  <li><strong>-ó-</strong> — Short omicron with acute pitch stress; the name&#39;s prosodic peak.</li>
+  <li><strong>-ny-</strong> — Nu followed by front-rounded upsilon [y], the mysterious Nysa-element.</li>
+  <li><strong>-sos</strong> — Final sigma-omicron-sigma, a repeated sibilant like rustling vines.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &quot;dee-OH-nee-soss&quot; — but the &quot;y&quot; is like French &quot;u,&quot; and the second syllable carries the ancient pitch rise.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Mycenaean Greek</strong> — di-wo-nu-so (Linear B), the earliest attested form</li>
+  <li><strong>Greek</strong> — Διός (Dios), genitive of Zeus, plus Nysa, the mythical mountain</li>
+  <li><strong>Beekes</strong> — possibly Pre-Greek; the -nysos element lacks a clear Indo-European etymology</li>
+</ul>
+<p>Diónysos is Tier 2 because the Greek Διόνυσος preserves only stress (acute on the first omicron), not length. The upsilon remains short, and no macron appears in the standard restoration. The acute on ó marks the pitch peak of a name whose second element may come from beyond Greek itself.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Diónysos is born twice, dies once, and comes back everywhere. His myths are stories of arrival — from the east, from the underworld, from the thigh of Zeús — and of the resistance he meets from those who fear losing control.</p>
+<h3 id="fire-and-the-thigh-of-zeus-the-birth">Fire and the Thigh of Zeus (The Birth)</h3>
+<p>Semele, daughter of Cadmus, asked Zeus to reveal himself in his full divine glory. The sight killed her. Zeus snatched the unborn child from her womb and sewed it into his own thigh. Months later, Diónysos was born from Zeus&#39;s body — the &quot;twice-born&quot; god (Homeric Hymn 1; Apollodorus, Library 3.4.3).</p>
+<h3 id="pentheus-and-thebes-the-mortal-enemy">Pentheus and Thebes (The Mortal Enemy)</h3>
+<p>King Pentheus of Thebes refused to recognize the new god. He spied on the maenads and was torn limb from limb by his own mother and aunts, driven mad by Diónysos. Euripides&#39; <em>Bacchae</em> makes the lesson explicit: the god punishes not disbelief, but <strong>hubris</strong> — the arrogance of thinking oneself separate from the divine.</p>
+<h3 id="the-descent-and-the-return-the-underworld">The Descent and the Return (The Underworld)</h3>
+<p>Local cult remembered Diónysos as a god who crosses the boundary of death. At Lerna in the Argolid he was said to have gone down through the Alcyonian lake and led his mother Semele up from the dead; Hesiod already knows Ariadne, abandoned on Naxos, made immortal by Zeús. Aristophanes&#39; <em>Frogs</em> sends the god himself below to fetch a tragedian home. The god who dissolves the self is also the one who restores it, transformed.</p>
+<h3 id="the-journey-to-india-the-eastern-triumph">The Journey to India (The Eastern Triumph)</h3>
+<p>Hellenistic and Roman poets — especially Nonnus in the <em>Dionysiaca</em> — narrated Diónysos&#39;s triumphal campaign to India, converting peoples and spreading the vine. The &quot;Thiasos&quot; followed him: satyrs, maenads, panthers, and the old god Silenus.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>Diónysos&#39; attributes are among the most stable in Greek art and poetry, and the literary inventory is fixed early. The maenads of Euripides&#39; <em>Bacchae</em> go crowned with ivy and oak, thyrsos in hand, and the god is hailed in bull form; the Homeric Hymn already shows vine and ivy springing miraculously up the pirates&#39; mast; black-figure vase painting adds the deep kantharos and the leopard of his triumphal train.</p>
+<ul>
+  <li><strong>Thyrsus</strong> — Ecstasy, vegetation, and the piercing of ordinary consciousness</li>
+  <li><strong>Kantharos</strong> — The deep wine-cup of the mysteries</li>
+  <li><strong>Leopard</strong> — The god&#39;s triumphal chariot and untamed nature</li>
+  <li><strong>Ivy and vine</strong> — Persistence, intoxication, and the green world that reclaims ruins</li>
+  <li><strong>Bull</strong> — Sacrificial power and the animal vessel of the god</li>
+  <li><strong>Phallus</strong> — Fertility, comedy, and generative joy</li>
+</ul>
+<p>Archaic art shows a mature, bearded god, long-robed and ivy-crowned, kantharos in hand, at the head of his thiasos of satyrs and maenads — most memorably on Exekias&#39; cup in Munich (c. 530 BCE), where he reclines in a ship whose mast sprouts vine, ringed by dolphins. From the later fifth century BCE the type softens into the youthful, languid god of red-figure vases, with thyrsos, leopard skin, and torch. Classical sculpture fixed his standing types (the &#39;Sardanapalus&#39; type, ascribed to Praxiteles&#39; circle), Sicilian Naxos put his bearded head on its early tetradrachms, and Pompeii&#39;s Villa of the Mysteries fresco preserves the visual world of his rites.</p>
+<h2 id="epithets-cult-titles">Epithets &amp; Cult Titles</h2>
+<p>Diónysos accumulated an unusually rich stock of cult and poetic titles.</p>
+<ul>
+  <li><strong>Βάκχος (Bákkhos)</strong> — &#39;the ecstatic one&#39;; from the cry of his worshippers, standard from Herodotus to Euripides&#39; <em>Bacchae</em>.</li>
+  <li><strong>Βρόμιος (Brómios)</strong> — &#39;the Roaring One&#39;; of the drumbeat and the rout, frequent in tragedy and cult song.</li>
+  <li><strong>Διθύραμβος (Dithýrambos)</strong> — title tied to the dithyramb; folk-etymologized as &#39;he of the double door&#39;, the twice-born (Pindar; Plato, <em>Laws</em> 700b).</li>
+  <li><strong>Λυαῖος (Lyaîos)</strong> — &#39;the Loosener&#39;; god of release, attested in comedy and in Pausanias&#39; cult notices.</li>
+  <li><strong>Ἴακχος (Íakkhos)</strong> — mystic name of the Eleusinian Dionysos, whose procession Herodotus describes.</li>
+  <li><strong>Ὠμάδιος (Ōmádios)</strong> — &#39;the Raw-Eater&#39;; savage title attested for Chios, where Porphyry records a human sacrifice to the god.</li>
+</ul>
+<h2 id="the-homeric-hymns">The Homeric Hymns</h2>
+<p>Three hymns in the Homeric corpus address Diónysos. <strong>Hymn 1</strong>, surviving only in fragments, narrates the birth at Nýsa, Sémelē&#39;s death, and the sewing of the child into the thigh of Zeús. <strong>Hymn 7</strong> tells the famous pirate episode: Tyrrhenian sailors seize a beautiful youth, the bonds fall away of their own accord, wine streams over the deck, vine and ivy climb the mast, and the terrified crew leap into the sea transformed into dolphins. <strong>Hymn 26</strong>, a short piece, invokes him together with Íakkhos and his mountain nurses, the nymphs. Together the hymns fix the two poles of his myth: miraculous birth and dreadful epiphany to unbelievers.</p>
+<h2 id="oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</h2>
+<p>Diónysos held genuine oracular ground. Among the <strong>Bessi</strong> of Thrace, a priestess delivered oracles of Diónysos &#39;as at Delphi&#39;, the most prestigious shrine of that people. At <strong>Amphikleia</strong> in Phokis, entranced priests prophesied at a sanctuary of the god. At <strong>Delphi</strong> itself he was no guest but a co-resident: he presided over the winter months, his Thyiades danced on Parnassos, and Delphic tradition located his tomb beside the oracle of [[apollon|Apóllōn]]. Major non-oracular cult centers included <strong>Thebes</strong> (Diónysos Kadmeios) and <strong>Athens</strong> (the Eleuthereus sanctuary beside his theatre).</p>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>The cult&#39;s material record is richest where theatre and ecstasy met. At Athens the sanctuary of Diónysos Eleuthereús stood beside his theatre on the south slope of the Acropolis; Pausanias describes two temples and two cult images there, one of ivory and gold by Alkamenēs. The cult had come from Eleutherai on the Boiotian border: the old wooden image was carried thence to Athens, and Pausanias saw the copy still standing in its temple. At Thebes, the god&#39;s mythic birthplace, he was shown the relics of Diónysos Kadmeios — the heaven-fallen log that Polydōros plated with bronze, a bronze image by Onasimedēs, and an altar by the sons of Praxitelēs. At Delphoí the god was co-resident through the winter: every other year the Thyiades, Attic and Delphian women, climbed Parnassos to hold his orgies. And at Lerna in the Argolid, the Alcyonian lake was pointed out as the very place where he descended to bring Semelē up from the dead.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Diónysos is the god who arrives from outside. He comes with wine, with music, with the loss of the self that becomes discovery. He is the foreigner who is already inside you, the madness that heals, the drink that loosens tongues and boundaries alike. Where Apóllōn gives form, Diónysos <strong>dissolves it</strong>.</p>
+<h3 id="wine">Wine</h3>
+<p>The gift of the vine — intoxication, liberation, and the blood of the god in the cup.</p>
+<h3 id="theatre">Theatre</h3>
+<p>Tragedy and comedy were born in his festivals; the mask is his gift to civilization.</p>
+<h3 id="the-thyrsus">The Thyrsus</h3>
+<p>Fennel-rod tipped with pine cone — the wand of ecstatic procession and vegetative power.</p>
+<h3 id="the-bull-and-the-leopard">The Bull and the Leopard</h3>
+<p>His animal forms — the bull&#39;s strength and the leopard&#39;s untamed grace.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>The Romans knew the god as Bacchus, fused early with the old Italic Liber Pater, patron of wine and released constraint; his rites were widespread enough by the early second century BCE to provoke the senatorial crackdown of 186 BCE recorded by Livy. Egyptian priests equated him with Osiris — &quot;Osiris is, in the Greek language, Dionysus,&quot; Herodotus reports — a dying-and-rising vegetation god, though Osiris lacks the ecstatic and theatrical dimension. In Orphic theogony he is identified with Zagreus, the child of Zeús and Persephonē whom the Titans dismembered; Clement of Alexandria preserves the scandalous outline of the myth, which later Platonists read as an allegory of the soul&#39;s descent into multiplicity and return.</p>
+<p>Within the PÚNYCODEX corpus the closest kin are [[zeus|Zeús]], who carries the unborn god in his thigh; [[persephone|Persephonē]], named in Orphic tradition as the mother of Zagreus; [[demeter|Dēmētēr]], his fellow in the Eleusinian rites; and [[apollon|Apóllōn]], who yields him Delphoí for the winter months.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Diónysos gave the West theatre: at the Athenian City Dionysia, held each Elaphebolion in his sanctuary on the south slope of the Acropolis, the tragedies of Aischylos, Sophoklēs, and Euripides and the comedies of Aristophanes received their first performance before the god&#39;s image. Rome both embraced and feared him: the senatus consultum de Bacchanalibus of 186 BCE, which survives as a bronze inscription, restricted his cult after the scandal Livy narrates, yet Bacchic imagery filled Pompeian triclinia and the Villa of the Mysteries fresco. From his maenads come images of ecstatic female power; from his dismemberment and return, the archetype of the dying-and-rising god. Nietzsche made the &quot;Dionysian&quot; one half of his dialectic with the &quot;Apollonian&quot; in <em>The Birth of Tragedy</em> (1872), naming the irrational, self-dissolving force in art. Modern carnival, festival, and concert culture continues, in diluted form, the god&#39;s ancient claim that a city needs its licensed nights of dissolution.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Diónysos given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Full text</a></li>
+  <li> Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a href="https://brill.com/view/title/17858">Full text</a></li>
+  <li> Wörterbuch der griechischen Eigennamen, 3rd ed., 1863. <a href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ">Full text</a></li>
+  <li> Homeric Hymn to Dionysus.</li>
+  <li> Euripides, Bacchae.</li>
+  <li> Apollodorus, Library.</li>
+  <li> Orphic Hymns.</li>
+  <li> Nonnus, Dionysiaca.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Diónysos is the god you did not invite who becomes the reason the night is remembered. He is wine, but he is also everything that loosens the grip of the everyday self: music, dance, grief, laughter, the crowd becoming one body. His power is not in the temple but in the street, the theatre, the vineyard, the place where boundaries soften and something older than personality takes over.</p>
+<p>Yet Diónysos is not mere abandon. The <em>Bacchae</em> shows that to reject him is to be destroyed by him; to embrace him is to be remade. He is the pattern of initiation: the self must die, be scattered, and be reassembled. In that sense, Diónysos is the patron of every transformation that looks like madness on the way to becoming wisdom.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Diónysos is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>dionysos</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 8 characters of the name, the restoration adjusts 1: 1 mark of stress (ó). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>diónysos.com</strong>, which the DNS carries in punycode form as xn--dinysos-m0a.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Diónysos; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Greek can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>A door only matters if people walk through it. <strong>diónysos.com</strong> is open, and everything behind it — the myths, the scholarship, the canvas, the patrons — hangs on the restored spelling. The PÚNYCODEX project bets that the web will make room for names as they were actually written, and Diónysos is one of its standing proofs. Visit, share, cite, type it yourself: each use is a small rehearsal for a web where no name has to hide its marks to be found.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/orestes/">Orestēs</a></li>
   <li><a href="/sites/pan/">Pān</a></li>
   <li><a href="/sites/pelops/">Pélops</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843.</a></li>
   <li><a href="https://brill.com/view/title/17858">Etymological Dictionary of Greek, 2 vols., Brill, 2010.</a></li>
   <li><a href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ">Wörterbuch der griechischen Eigennamen, 3rd ed., 1863.</a></li>
+  <li>Euripides, Bacchae (the stranger-god, wine, ecstasy, and the punishment of unbelief).</li>
+  <li>Homeric Hymn to Dionysus 7 (the wine-miracles aboard the pirate ship).</li>
+  <li>Euripides, Bacchae (thyrsus, ivy, and the bull-epiphany, esp. lines 25, 105–113, 920–922).</li>
+  <li>Homeric Hymn to Dionysus 7.35–41 (vine and ivy at the mast).</li>
+  <li>Lexicon authorities for this entry: LSJ, Pape-Benseler, Beekes.</li>
 </ul>
-<h2>The Name in Context</h2>
-<p>Diónysos (dionysos) — The Liberator · Twice-Born — is an Olympian of the Greek tradition, god of wine, ecstasy, and theatre, son of [[zeus|Zeús]] and the mortal Semelē. Ancient interpreters analyzed the name as Διός (&quot;of Zeús&quot;) + Νῦσα, the mythical mountain where the infant god was reared; modern etymology finds no secure Indo-European derivation for the second element, and Beekes judges the whole name probably Pre-Greek.^1 Diónysos is the god who arrives from outside. He comes with wine, with music, with the loss of the self that becomes discovery. He is the foreigner who is already inside you, the madness that heals, the drink that loosens tongues and boundaries alike. Where [[apollon|Apóllōn]] gives form, Diónysos dissolves it. The cult is older...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Diónysos as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Greek to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Diónysos through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/dionysos/">home page</a> offers the full name breakdown, the <a href="/sites/dionysos/lore/">lore page</a> explores the myth, and the <a href="/sites/dionysos/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Diónysos do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
-<h2>A Note on the Address Bar</h2>
-<p>When you type Diónysos, the browser performs an invisible conversion into Punycode so the global DNS can route the request. The user sees the original name; the machines see a compatible ASCII encoding. That duality is the engineering compromise that makes the restoration possible, and it is the reason every Unicode domain is both a technical milestone and a small act of cultural memory.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">greek</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

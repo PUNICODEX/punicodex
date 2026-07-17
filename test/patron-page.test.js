@@ -141,6 +141,54 @@ test('patron JS renders exactly 20 plaques and supports social links', () => {
   assert.ok(/\bwebsite:\s*\{/.test(js), 'expected Website platform support');
 });
 
+test('patron wall has resilient loading, error, and empty states', () => {
+  const jsPath = path.join(__dirname, '..', 'templates', 'flagship', 'patron', 'patron.js');
+  const js = fs.readFileSync(jsPath, 'utf8');
+  // Loading skeleton while fetching.
+  assert.ok(js.includes('patron-plaque--skeleton'), 'expected skeleton plaque rendering');
+  assert.ok(js.includes('aria-busy'), 'expected aria-busy on the wall while loading');
+  // Inline error state with a retry that refetches (wall is never wiped to dead text).
+  assert.ok(js.includes('showWallError'), 'expected a dedicated wall error state');
+  assert.ok(js.includes('patron-wall-retry') || js.includes('wallRetry'), 'expected retry wiring');
+  // Dead #patron-wall-empty element was removed along with its reference.
+  assert.ok(!js.includes('patron-wall-empty'), 'expected no dead #patron-wall-empty reference');
+  // Empty success state gets an inviting first-patron treatment, not an error.
+  assert.ok(js.includes('patron-plaque--first'), 'expected first-patron plaque treatment');
+  assert.ok(js.includes('wallInvite'), 'expected empty-wall invitation wiring');
+
+  for (const id of ids) {
+    const $ = loadPatronPage(id);
+    const state = $('#patron-wall-state');
+    assert.strictEqual(state.length, 1, `${id}: expected #patron-wall-state`);
+    assert.ok(state.attr('hidden') !== undefined, `${id}: expected wall state hidden by default`);
+    assert.strictEqual($('#patron-wall-retry').length, 1, `${id}: expected retry button`);
+    assert.strictEqual($('#patron-wall-invite').length, 1, `${id}: expected empty-wall invite`);
+    assert.ok(
+      $('#patron-wall-invite').attr('hidden') !== undefined,
+      `${id}: expected invite hidden by default`
+    );
+    assert.strictEqual(
+      $('#patron-wall').attr('role'),
+      'list',
+      `${id}: expected wall to expose role=list`
+    );
+  }
+});
+
+test('patron social tabs expose pressed state for assistive tech', () => {
+  for (const id of ids) {
+    const $ = loadPatronPage(id);
+    const tabs = $('#patron-social-tabs button[data-platform]');
+    assert.ok(tabs.length >= 7, `${id}: expected social tabs`);
+    tabs.each((_, el) => {
+      assert.ok(
+        $(el).attr('aria-pressed') === 'true' || $(el).attr('aria-pressed') === 'false',
+        `${id}: expected aria-pressed on ${$(el).attr('data-platform')} tab`
+      );
+    });
+  }
+});
+
 test('every patron page advertises a flat $5/month price', () => {
   for (const id of ids) {
     const $ = loadPatronPage(id);

@@ -95,18 +95,36 @@ for (const id of BUILT_IDS) {
     assert.ok(ld.datePublished, 'JSON-LD missing datePublished');
     assert.ok(Array.isArray(ld.keywords), 'JSON-LD keywords should be an array');
 
-    // No placeholder text
+    // No placeholder text (TODO/TBD/FIXME are checked uppercase-only so real
+    // citations containing words like Spanish "todo" do not false-positive)
     assert.doesNotMatch(
       html,
-      /awaiting contribution|TODO|TBD|FIXME|lorem ipsum|\{\{/i,
+      /awaiting contribution|lorem ipsum|\{\{/i,
       'page contains placeholder text'
     );
+    assert.doesNotMatch(html, /\b(TODO|TBD|FIXME)\b/, 'page contains placeholder markers');
 
     // Body word count
     const bodyMatch = html.match(/<div class="blog-body reveal-up">([\s\S]*?)<\/div>/);
     assert.ok(bodyMatch, 'missing blog-body div');
     const wc = wordCount(bodyMatch[1]);
-    assert.ok(wc >= 700 && wc <= 950, `body word count ${wc} not in 700–950 range`);
+    assert.ok(wc >= 2400 && wc <= 4200, `body word count ${wc} not in 2400–4200 range`);
+
+    // In-article table of contents with working anchors
+    assert.match(html, /<nav class="blog-toc[^"]*"[^>]*>/, 'missing table of contents');
+    const tocItems = html.match(/<li><a href="#[^"]+">[^<]+<\/a><\/li>/g) || [];
+    assert.ok(tocItems.length >= 3, `expected at least 3 TOC entries, got ${tocItems.length}`);
+
+    // H2 sections carry slugged ids and end with Related Names, then Sources
+    const h2Texts = [...bodyMatch[1].matchAll(/<h2[^>]*>([\s\S]*?)<\/h2>/g)].map((m) =>
+      stripTags(m[1])
+    );
+    assert.ok(h2Texts.length >= 8, `expected at least 8 H2 sections, got ${h2Texts.length}`);
+    assert.deepEqual(
+      h2Texts.slice(-2),
+      ['Related Names', 'Sources'],
+      'Related Names and Sources must be the final two sections'
+    );
 
     // Internal links resolve to real lexicon ids
     const linkRe = /href="\/sites\/([^/]+)\//g;

@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,44 +170,189 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-egyptian-pantheon">The Egyptian Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>The Name ꜥnḫ and the World It Opens</h1>
-<p>A name is a door. ꜥnḫ opens onto symbol of life. ꜥnḫ (ankh) — Symbol of Life · Life; Egyptian ankh sign — belongs to the Egyptian tradition, where it is catalogued under the domain &quot;Symbol of Life&quot;. The name means &quot;Life; Egyptian ankh sign&quot;. The ꜥnḫ is not merely a symbol; in Egyptian thought it is the shape of life itself. A looped cross that seems to join sandal-strap, mirror, and pelvic girdle, it appears in the hands of every god and goddess who grants the king life, stability, and dominion. To be given the ankh is to be given breath, heartbeat, and the right to exist. Its written form, ꜥ-n-ḫ, means &quot;life,&quot; &quot;to live,&quot; &quot;alive,&quot; and, by extension, &quot;salvation.&quot; Gods hold it to the lips of the pharaoh; the dead receive it as a promise that the afterlife is not death but continued living. Few signs...</p>
-<h2>Domain and Meaning</h2>
-<p>The temple domain is <strong>Symbol of Life</strong>. The traditional meaning is &quot;Life; Egyptian ankh sign.&quot; Together, those two facts explain why the name mattered enough to be remembered for millennia.</p>
-<h2>The Mythic Landscape</h2>
-<p>The ankh has no single mythic biography because it is older than biography. It enters the cosmos at the moment the gods begin to give life, and it never leaves their hands. Myth is the memory of a civilization, and names are the hooks on which that memory hangs.</p>
-<h2>Modern Patterns</h2>
-<p>The <a href="/sites/ankh/patterns/">Patterns</a> page maps the industries and sister temples that share ꜥnḫ&#39;s current. A name that once organized ritual now organizes search, advertising, and creative collaboration.</p>
-<h2>Join the Restoration</h2>
-<p>You can support the work through the <a href="/sites/ankh/patron/">Patron</a> wall, submit creative work, or simply share the address. Every visit to ꜥnḫ is a vote for original scripts.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring ꜥnḫ is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>The name ꜥnḫ and the world it opens</h1>
+<p>A name is a door. <strong>ꜥnḫ</strong> opens onto an entire world: the domain of symbol of life, a Egyptian tradition, and centuries of storytelling, worship, and scholarship. This post walks through that world room by room — the name and its roots, the original script, the sound of it, the myths, the symbols, the sites, the afterlife across cultures — and ends at the newest room of all: a Unicode domain that makes the whole structure addressable. <em>ankh</em> gets you to the same building, but only the restored form tells you why it was built.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> ꜥnḫ</li>
+  <li><strong>ASCII form:</strong> ankh</li>
+  <li><strong>Meaning:</strong> &quot;Life; Egyptian ankh sign&quot;</li>
+  <li><strong>Domain of influence:</strong> Symbol of Life</li>
+  <li><strong>Pantheon:</strong> Egyptian</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> 𓋹 (Hieroglyphs)</li>
+  <li><strong>Live domain:</strong> ꜥnḫ.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>ꜥnḫ</strong> (<em>ankh</em>) — Symbol of Life · Life; Egyptian ankh sign — belongs to the Egyptian tradition, where it is catalogued under the domain &quot;Symbol of Life&quot;. The name means &quot;Life; Egyptian ankh sign&quot;.</p>
+<p>The <strong>ꜥnḫ</strong> is not merely a symbol; in Egyptian thought it is the shape of life itself. A looped cross that seems to join sandal-strap, mirror, and pelvic girdle, it appears in the hands of every god and goddess who grants the king life, stability, and dominion. To be given the ankh is to be given breath, heartbeat, and the right to exist.</p>
+<p>Its written form, ꜥ-n-ḫ, means &quot;life,&quot; &quot;to live,&quot; &quot;alive,&quot; and, by extension, &quot;salvation.&quot; Gods hold it to the lips of the pharaoh; the dead receive it as a promise that the afterlife is not death but continued living. Few signs in any writing system carry so much weight in so few strokes.</p>
+<p>PÚNYCODEX restores the name as <strong>ꜥnḫ</strong> and serves its temple at <a href="https://xn--n-bom2786d.com">ꜥnḫ.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>ankh</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Hieroglyphs as <strong>𓋹</strong>. Etymologically it means &quot;Life; Egyptian ankh sign&quot;.</p>
+<p>The ASCII form <em>ankh</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>ꜥnḫ</strong> recovers the full diacritic detail of the scholarly transliteration directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>a</strong> → <strong>ꜥ</strong> — Glottal stop ꜥ</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+  <li><strong>k</strong> → <strong>ḫ</strong> — Voiceless velar fricative ḫ</li>
+  <li><strong>h</strong> → <strong>—</strong> — Dropped: English placeholder</li>
+</ul>
+<p>The project holds the domain <strong>ꜥnḫ.com</strong> (xn--n-bom2786d.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Hieroglyphs as <strong>𓋹</strong> — Egyptian hieroglyphic, attested Old Kingdom – Late Antiquity, c. 2600 BCE – 400 CE, in Egypt. The script is written right-to-left / top-to-bottom.</p>
+<p>The scholarly transliteration is <em>ꜥnḫ</em> (Egyptological conventional), giving the normalized reading Original vocalisation unknown; Egyptological /ˈɑːn.x/..</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The Egyptian name is written 𓋹 in hieroglyphs.</li>
+  <li>Hieroglyphs combine logograms, phonograms, and determinatives; the exact function of each sign depends on context.</li>
+  <li>Egyptian writing does not record vowels; the vocalised form is a modern convention reconstructed from Coptic and Greek evidence.</li>
+  <li>The Unicode restoration ꜥnḫ uses Egyptological alef/ayin and other registrable characters; the hieroglyphic form is not registrable in .com.</li>
+</ul>
+<p>The word is written in hieroglyphs as ꜥ-n-ḫ (Gardiner S34, the ankh sign, often used as both phonogram and logogram). Egyptian script records consonants only; the vowels are reconstructed from Coptic ⲱⲛϩ and from Greek transcriptions. The ꜥ represents a voiced pharyngeal fricative for which standard Latin transcription has no registrable equivalent; PÚNYCODEX uses the Egyptological Ain (ꜥ, U+A724). The ḫ is a voiceless velar fricative, represented by h-breve (U+1E2B). Because hieroglyphs write the sign itself, the registrable form is unusually close to the original grapheme: the ankh on your screen is a lineal descendant of the sign held by Amun.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/ˈʕaːnax/</strong> — Egyptological Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Ꜥ-</strong> — Voiced pharyngeal fricative [ʕ], the Egyptological Ain (U+A724) used as a registrable stand-in for the original guttural; deeper than English &#39;a&#39; and pronounced far back in the throat.</li>
+  <li><strong>-aː-</strong> — Long open vowel reconstructed between the consonants; Egyptian hieroglyphs do not write vowels, and the quality is inferred from Coptic ⲱⲛϩ (ōnh) and from Semitic cognates.</li>
+  <li><strong>-n</strong> — Alveolar nasal [n], as in English &#39;no&#39;.</li>
+  <li><strong>-ḫ</strong> — Voiceless velar fricative [x], like the &#39;ch&#39; in Scottish &#39;loch&#39; or German &#39;Bach&#39;; Egyptology also allows a voiced [ɣ] in some periods.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;AH-nakh&#39; — say &#39;ah&#39; from the back of the throat, then &#39;nakh&#39; with the final consonant like Scottish &#39;loch&#39; (not a hard English k).</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Coptic</strong> — ⲱⲛϩ (ōnh), the late reflex meaning &#39;life, live&#39;</li>
+  <li><strong>Greek / Latin</strong> — crux ansata, the handled cross adopted by Coptic Christianity</li>
+  <li><strong>Egyptian derivative</strong> — sꜥnḫ, &#39;cause to live, nourish&#39;</li>
+</ul>
+<p>Hieroglyphic writing records only the consonants Ꜥ-n-ḫ; the vowels are reconstructed from Coptic ⲱⲛϩ and from comparative Semitic evidence. The Ꜥ is a voiced pharyngeal fricative and the ḫ is a voiceless velar fricative, neither of which English possesses. In the PUNYCODEX system the Egyptological Ain ꜥ (U+A724) serves as the only registrable DNS stand-in for the pharyngeal; this is a Tier 2 restoration that preserves a distinctive consonant but cannot encode vowel length or stress. Sources: Allen, Middle Egyptian (2014), pp. 18–19, 30; Faulkner, A Concise Dictionary of Middle Egyptian, s.v. ꜥnḫ; Wörterbuch der ägyptischen Sprache I, 170–171; Hoch, Semitic Words in Egyptian Texts (1994), on Egyptian–Semitic velar and pharyngeal correspondences.</p>
+<h2 id="mythology">Mythology</h2>
+<p>The ankh has no single mythic biography because it is older than biography. It enters the cosmos at the moment the gods begin to give life, and it never leaves their hands.</p>
+<h3 id="the-first-giving-of-life-cosmogony">The First Giving of Life (Cosmogony)</h3>
+<p>In Heliopolitan cosmogony, the creator Atum speaks or sneezes the first gods into being and then gives them life through the ankh. The sign appears in creation scenes as the instrument by which the sun-god Re enlivens the nostrils of the king and the gods. It is not a gift from one person to another but the medium of divine animation itself.</p>
+<h3 id="the-breath-of-the-king-temple-ritual">The Breath of the King (Temple ritual)</h3>
+<p>In the daily temple ritual, the cult statue is anointed, dressed, and offered the ankh — life itself — by the officiating priest. Reliefs at Karnak, Luxor, and Edfu show the king receiving the ankh from Amun, Mut, or Khonsu, a transaction that renews both royal and cosmic vitality.</p>
+<h3 id="the-ankh-in-the-duat-funerary-texts">The Ankh in the Duat (Funerary texts)</h3>
+<p>The Book of the Dead and the Book of Breathings promise the deceased that they will &#39;live again&#39; (sꜥnḫ) and breathe by means of the ankh. Spells equate the amulet with the heart&#39;s continued beating and the soul&#39;s freedom to move in the afterlife.</p>
+<h3 id="gods-at-the-nostrils-iconography">Gods at the Nostrils (Iconography)</h3>
+<p>The standard pose — a god holding an ankh to the king&#39;s nose — is one of the most common images in Egyptian art. It means that life is not earned but bestowed, a divine current that flows through the pharaoh to the land.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography of ꜥnḫ concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>Ankh hieroglyph</strong> — The looped cross itself (Gardiner S34), logogram and phonogram for &#39;life&#39;; what the sign depicts — a sandal strap is the classic guess — remains uncertain.</li>
+  <li><strong>Breath / nostril</strong> — The air of life that gods deliver by pressing the ankh to the nose, the standard &#39;given life&#39; gesture of temple relief</li>
+  <li><strong>Shen ring</strong> — Eternity; often paired with the ankh in royal name formulae and on cartouches</li>
+  <li><strong>Was scepter</strong> — Dominion and vitality, frequently held alongside the ankh in divine hands</li>
+  <li><strong>Djed pillar</strong> — Stability; together with the ankh and the was it forms the frieze of &#39;life, dominion, and stability&#39; repeated along temple walls and coffin sides as an endless blessing.</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>The ankh sign belongs to the earliest stratum of Egyptian writing: it is attested among the oldest hieroglyphs and is common on the seal impressions, labels, and monuments of the Early Dynastic period onward. Thereafter it is inescapable. Divine-birth reliefs — Hatshepsut&#39;s at Deir el-Bahari, Amenhotep III&#39;s at Luxor — show the gods presenting the newborn king with the ankh, and across temple walls the caption formula &#39;given life&#39; (<em>dỉ ꜥnḫ</em>) accompanies the gesture of a god pressing the sign to the royal nostrils. Thousands of ankh amulets in faience, wood, stone, and metal survive from New Kingdom tombs, including the Valley of the Kings and the burial of Tutankhamun, and the sign is painted on coffins, papyri, and tomb walls from Saqqara to Nubia. Its material afterlife continues in Christian Egypt, where Coptic tombstones adapt it as the crux ansata.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>The <strong>ꜥnḫ</strong> is not merely a symbol; in Egyptian thought it is the shape of life itself. A looped cross that seems to join sandal-strap, mirror, and pelvic girdle, it appears in the hands of every god and goddess who grants the king life, stability, and dominion. To be given the ankh is to be given breath, heartbeat, and the right to exist.</p>
+<p>Its written form, ꜥ-n-ḫ, means &quot;life,&quot; &quot;to live,&quot; &quot;alive,&quot; and, by extension, &quot;salvation.&quot; Gods hold it to the lips of the pharaoh; the dead receive it as a promise that the afterlife is not death but continued living. Few signs in any writing system carry so much weight in so few strokes.</p>
+<h3 id="the-sign-of-life">The Sign of Life</h3>
+<p>The looped cross (Gardiner S34) represents the breath and circulation that distinguish the living from the dead; it is offered in countless tomb and temple reliefs.</p>
+<h3 id="divine-gift">Divine Gift</h3>
+<p>Deities extend the ankh toward the king&#39;s nose, giving him the breath of life; the sign is both noun and verb, object and action.</p>
+<h3 id="amulet-and-passport">Amulet and Passport</h3>
+<p>Carved in faience, wood, or precious stone, ankh amulets protected the body and served as talismans for rebirth in the Duat.</p>
+<h3 id="eternity-in-time">Eternity in Time</h3>
+<p>The ankh transforms mortal life into an eternal recurrence: to die is to live again in the Field of Reeds.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>The ankh outlived pharaonic religion. Coptic Christians adopted it as the <em>crux ansata</em>, the &#39;handled cross,&#39; seeing in its loop the triumph of eternal life over death. Some early Christian writers interpreted the loop as a halo or the risen Christ. In the twentieth century the ankh became an emblem of Black identity, Afrofuturism, and Kemetic spirituality, often detached from its specific Egyptian context. It also entered fantasy fiction, gothic fashion, and popular occultism as a generic symbol of immortality — a remarkable afterlife for a sign that began on the lips of gods.</p>
+<p>Within the Egyptian tradition, closely related names in the corpus include [[ab|Ꜣb]], [[akh|Ꜣḫ]], [[amun|Ꜣmun]], [[apep|Ꜥpp]], [[ba|Bꜣ]], and [[bastet|Bꜣstt]].</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>No Egyptian sign is more widely recognized today. The ankh appears on jewelry, tattoos, album covers, and video-game inventory screens, usually as a token of life or undead persistence. In Coptic Christianity it survives as the <em>crux ansata</em>, the &#39;handled cross,&#39; adapted as a sign of resurrection. In the twentieth century it became an emblem of Black identity and of Kemetic and Afrocentric spirituality, reclaimed as an icon of Nile Valley civilization, and it entered gothic fashion and popular occultism as a generic mark of immortality. The sign has also outlived its own script in the digital world: Unicode encodes the ankh as ☥ (U+2625) and the original hieroglyph as 𓋹 (U+132F9, Egyptian Hieroglyph S034), so that a grapheme of the First Dynasty remains a live character in every modern font.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of ꜥnḫ given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Allen, Middle Egyptian (2014).</li>
+  <li> Faulkner, A Concise Dictionary of Middle Egyptian, s.v. ꜥnḫ.</li>
+  <li> Wörterbuch der ägyptischen Sprache I, s.v. ꜥnḫ.</li>
+  <li> Gardiner, Egyptian Grammar.</li>
+  <li> Hornung, The Ancient Egyptian Books of the Afterlife.</li>
+  <li> Pyramid Texts, Utterance 600.</li>
+  <li> Book of the Dead, Spell 17.</li>
+  <li> Book of Breathings.</li>
+  <li> Wilkinson, Reading Egyptian Art.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>The ankh is a quiet god. It does not speak, fight, or weep; it simply offers. In a culture obsessed with heroic narratives, a symbol whose whole theology is &#39;here, breathe&#39; can seem too simple. But that simplicity is its depth. The ankh reminds us that life is not a possession we secure through effort; it is a current we receive and pass on.</p>
+<p>Every time a deity in a temple relief presses the ankh to a king&#39;s nostrils, Egypt is teaching a physics of grace: existence flows from the divine into the human, from the human into the land, from the land into the memory of those who come after. To carry the ankh is to join that circulation. It is the oldest imaginable promise, written in three consonants and one elegant loop: you are alive, you can be alive again.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>ꜥnḫ is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>ankh</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 4 characters of the name, the restoration adjusts 3: 3 further adjustments (ꜥ, ḫ, h). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>ankh</em> to <strong>ꜥnḫ</strong>, one character at a time:</p>
+<ul>
+  <li><strong>a</strong> → <strong>ꜥ</strong> — Glottal stop ꜥ</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+  <li><strong>k</strong> → <strong>ḫ</strong> — Voiceless velar fricative ḫ</li>
+  <li><strong>h</strong> → <strong>h</strong> — Dropped: English placeholder</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>ꜥnḫ.com</strong>, which the DNS carries in punycode form as xn--n-bom2786d.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees ꜥnḫ; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Hieroglyphs can now be typed into any browser on earth.</p>
+<h2 id="the-egyptian-pantheon">The Egyptian Pantheon</h2>
+<p>ꜥnḫ is one of 66 entries the PÚNYCODEX lexicon catalogues under the Egyptian pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does ꜥnḫ mean?</strong> The traditional gloss is &quot;Life; Egyptian ankh sign.&quot;</p>
+<p><strong>Which tradition does ꜥnḫ belong to?</strong> ꜥnḫ is catalogued in the Egyptian pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is ꜥnḫ classified as Tier 2?</strong> Because the original preserves at least one philological feature that ASCII cannot encode — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is ꜥnḫ a working domain?</strong> Yes — ꜥnḫ.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for ꜥnḫ.com?</strong> The DNS encoding is xn--n-bom2786d.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>A door only matters if people walk through it. <strong>ꜥnḫ.com</strong> is open, and everything behind it — the myths, the scholarship, the canvas, the patrons — hangs on the restored spelling. The PÚNYCODEX project bets that the web will make room for names as they were actually written, and ꜥnḫ is one of its standing proofs. Visit, share, cite, type it yourself: each use is a small rehearsal for a web where no name has to hide its marks to be found.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/montu/">Mntw</a></li>
   <li><a href="/sites/nht/">Nḫt</a></li>
   <li><a href="/sites/osiris/">Wsjr</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.unicode.org/charts/PDF/U2600.pdf">The Unicode Standard, Miscellaneous Symbols chart (sign U+2625 ANKH).</a></li>
   <li><a href="https://www.cambridge.org/">James P. Allen, Middle Egyptian: An Introduction to the Language and Culture of Hieroglyphs, Cambridge University Press, 2000.</a></li>
+  <li>Allen, Middle Egyptian (2014).</li>
+  <li>Faulkner, A Concise Dictionary of Middle Egyptian, s.v. ꜥnḫ.</li>
+  <li>Wörterbuch der ägyptischen Sprache I, s.v. ꜥnḫ.</li>
+  <li>Wilkinson, Reading Egyptian Art: A Hieroglyphic Guide to Ancient Egyptian Painting and Sculpture (1992).</li>
+  <li>Lexicon authorities for this entry: Faulkner, Gardiner.</li>
 </ul>
-<h2>The Name in Context</h2>
-<p>ꜥnḫ (ankh) — Symbol of Life · Life; Egyptian ankh sign — belongs to the Egyptian tradition, where it is catalogued under the domain &quot;Symbol of Life&quot;. The name means &quot;Life; Egyptian ankh sign&quot;. The ꜥnḫ is not merely a symbol; in Egyptian thought it is the shape of life itself. A looped cross that seems to join sandal-strap, mirror, and pelvic girdle, it appears in the hands of every god and goddess who grants the king life, stability, and dominion. To be given the ankh is to be given breath, heartbeat, and the right to exist. Its written form, ꜥ-n-ḫ, means &quot;life,&quot; &quot;to live,&quot; &quot;alive,&quot; and, by extension, &quot;salvation.&quot; Gods hold it to the lips of the pharaoh; the dead receive it as a promise that the afterlife is not death but continued living. Few signs...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats ꜥnḫ as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Hieroglyphs to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes ꜥnḫ through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/ankh/">home page</a> offers the full name breakdown, the <a href="/sites/ankh/lore/">lore page</a> explores the myth, and the <a href="/sites/ankh/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like ꜥnḫ do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">egyptian</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

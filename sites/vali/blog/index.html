@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,37 +170,205 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#name-variations">Name Variations</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-norse-pantheon">The Norse Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>The Many Faces of Váli</h1>
-<p>No important name has only one face. Váli appears as a mythic character, a scholarly reconstruction, a cultural memory, and now a Unicode domain. Váli (vali) — Vengeance, Son of Odin · The chosen — belongs to the Norse tradition, where it is catalogued under the domain &quot;Vengeance, Son of Odin&quot;. The name is traditionally derived from valr, &#39;the slain&#39;, and val, &#39;choice&#39; — the one chosen for the task — though the formation is not fully resolved. Váli is the son of Óðinn by the giantess Rindr, born to avenge Baldr&#39;s death. One night old, he kills the blind Höðr, and he survives Ragnarök to inherit the new world. His life is compressed into a single mythic function: the necessary violence that follows an unforgivable killing. PÚNYCODEX restores the name as Váli and serves its temple at váli.com. The original preserves one prosodic feature — stress or vowel length — rather than both, which places...</p>
-<h2>In Myth</h2>
-<p>Váli appears briefly but decisively in the Norse corpus. His myths are episodes in the larger tragedy of Baldr and the doom of the gods. The mythic face is the one most people meet first, and it is the reason the name survived.</p>
-<h2>Across Cultures</h2>
-<p>Váli has no clear non-Germanic counterpart, but his function resembles the Indo-European avenger figure: a youthful warrior born to settle a blood-debt, closer to a ritual mechanism than to a personality. Within Germanic tradition his nearest kin are the other single-function sons of Óðinn — [[vidarr|Víðarr]] the silent avenger of Óðinn himself — figures whose names read as job descriptions and who attract no cult. He is sometimes confused with Váli, the son of Loki who is turned into a wolf in the binding story, a much less prominent figure whose name surfaces in Völuspá 34 in the Hauksbók redaction; the confusion is medieval, not modern. Within the Norse tradition, closely related names in the corpus include [[alfheimr|Álfheimr]], [[buri|Búri]],... Each culture kept what resonated and reshaped the rest.</p>
-<h2>In the Scholarly Record</h2>
-<p>Váli&#39;s afterlife flows almost entirely through the Baldr cycle. His fullest narrative was written not in Iceland but in Denmark: Saxo Grammaticus&#39;s Gesta Danorum (book III) retells him as Bous, the avenger Óðinn begets on the reluctant Rinda after a series of disguised wooings, and Saxo&#39;s account remains the most elaborate version of the story anywhere. Later reception is thin by comparison: the great nineteenth-century retellings and Wagner&#39;s Ring, which reshaped Norse material for the modern stage, found no place for a god whose whole life is one night and one killing, and modern novels, games, and screen adaptations of the Baldr tragedy rarely keep him. Where he does persist is in scholarship and in Heathen writing on the blood-debt theme — the... The Scholarly Edition collects those traces so readers can follow the argument from source to conclusion.</p>
-<h2>The Unicode Face</h2>
-<p>The newest face is digital. Váli demonstrates that a name can be at once ancient and clickable, venerable and searchable. That is the face this blog exists to celebrate.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Váli is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>The many faces of Váli</h1>
+<p>No important name has only one face. <strong>Váli</strong> appears as a figure of myth, a scholarly reconstruction, a piece of material culture, a memory carried across languages, and — most recently — a Unicode domain. This post looks at each face in turn: the name and its roots, the Younger Futhark original, the reconstructed pronunciation, the mythological record, the symbols and sanctuaries, the cross-cultural afterlife, and the engineering that lets the restored spelling resolve in a browser. Taken together, those faces explain why <em>vali</em> was never going to be enough — and why the restored form is worth a domain of its own.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Váli</li>
+  <li><strong>ASCII form:</strong> vali</li>
+  <li><strong>Meaning:</strong> &quot;The chosen&quot;</li>
+  <li><strong>Domain of influence:</strong> Vengeance, Son of Odin</li>
+  <li><strong>Pantheon:</strong> Norse</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> ᚢᛅᛚᛁ (Younger Futhark)</li>
+  <li><strong>Live domain:</strong> váli.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Váli</strong> (<em>vali</em>) — Vengeance, Son of Odin · The chosen — belongs to the Norse tradition, where it is catalogued under the domain &quot;Vengeance, Son of Odin&quot;. The name is traditionally derived from <em>valr</em>, &#39;the slain&#39;, and <em>val</em>, &#39;choice&#39; — the one chosen for the task — though the formation is not fully resolved.</p>
+<p>Váli is the <strong>son of Óðinn by the giantess Rindr, born to avenge Baldr&#39;s death</strong>. One night old, he kills the blind Höðr, and he survives Ragnarök to inherit the new world. His life is compressed into a single mythic function: the necessary violence that follows an unforgivable killing.</p>
+<p>PÚNYCODEX restores the name as <strong>Váli</strong> and serves its temple at <a href="https://xn--vli-ela.com">váli.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>vali</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Younger Futhark as <strong>ᚢᛅᛚᛁ</strong>. The handbooks generally connect it with <em>valr</em>, &#39;the slain&#39;, and <em>val</em>, &#39;choice&#39; — the same root that gives valkyrja (&#39;chooser of the slain&#39;) and Valhǫll — so that Váli is &#39;the chosen one&#39;, begotten for a chosen task; the exact formation, however, is debated and the etymology should not be treated as settled.</p>
+<p>The ASCII form <em>vali</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Váli</strong> recovers the stress accent of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>v</strong> → <strong>V</strong> — Same, capitalized</li>
+  <li><strong>a</strong> → <strong>á</strong> — Stress on a</li>
+  <li><strong>l</strong> → <strong>l</strong> — Same</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+</ul>
+<p>Attested and derived spellings of the name:</p>
+<ul>
+  <li><strong>Vali</strong> — ASCII form: Plain ASCII form</li>
+</ul>
+<p>The project holds the domain <strong>váli.com</strong> (xn--vli-ela.com) as the canonical home of this name. The sources also know a second, unrelated Váli — a son of [[loki|Loki]] — and distinguishing the two is a standing crux of the Baldr tradition.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Younger Futhark as <strong>ᚢᛅᛚᛁ</strong>.</p>
+<p>The scholarly transliteration is <em>uali</em>.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>ᚢ (úr) writes the rounded back vowels /u, o, ø, ǫ, y/ and /w/</li>
+  <li>ᛅ (ár) writes /a/, /á/ and /æ/</li>
+  <li>ᛚ (lögr) writes /l/</li>
+  <li>The spelling uali is a normalized phonetic reconstruction; Younger Futhark does not distinguish voiced/voiceless stops or separate short and long vowels</li>
+  <li>Initial /v/ continues Proto-Germanic *w-, represented by ᚢ (úr).</li>
+</ul>
+<p>Old Norse had no indigenous writing system before the Latin alphabet was adopted in the medieval period. Váli is written in the runic alphabet (Younger Futhark) as ᚢᛅᛚᛁ (u-a-l-i). The acute accent on á in modern editions marks a long vowel; in manuscripts the distinction between long and short vowels was not consistently written. PUNYCODEX uses the accented Latin form Váli as the registrable scholarly restoration.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/ˈwɑːli/</strong> — Old Norse Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>V-</strong> — Voiced labial-velar approximant [w], the Proto-Germanic sound preserved in Old Norse initial position.</li>
+  <li><strong>-á-</strong> — Long open back unrounded vowel [aː], marked by the acute accent in Old Norse.</li>
+  <li><strong>-li</strong> — Voiced alveolar lateral [l] plus short close front [i].</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;WAH-lee&#39; — begin with a &#39;w&#39; as in &#39;water&#39;, hold the &#39;ah&#39; long, and end with a light &#39;lee&#39;.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Old Norse</strong> — Váli, son of Óðinn and Rindr, avenger of Baldr.</li>
+  <li><strong>Proto-Germanic</strong> — *Wālīʀ, related to words for &#39;chosen&#39; or &#39;slayer&#39;.</li>
+  <li><strong>Note</strong> — Váli must be distinguished from Váli, son of [[loki|Loki]], who is turned into a wolf in the binding of Loki and whose name surfaces in Völuspá 34 in the Hauksbók redaction.</li>
+</ul>
+<p>Váli is Tier 2: the acute accent on á marks stress and length, but the name has only one such feature and no additional long vowel or circumflex. Old Norse tone accent is not registrable in the DNS root zone.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Váli appears briefly but decisively in the Norse corpus. His myths are episodes in the larger tragedy of [[baldr|Baldr]] and the doom of the gods.</p>
+<h3 id="born-for-vengeance-baldrs-draumar-voluspa">Born for Vengeance (Baldrs draumar / Völuspá)</h3>
+<p>After Baldr is slain, Óðinn learns from a roused seeress how the death will be answered: &#39;Rindr will bear Váli in the western halls; Óðinn&#39;s son will fight when one night old — he will neither wash his hands nor comb his hair until he bears Baldr&#39;s slayer to the pyre.&#39; Völuspá repeats the formula nearly verbatim. The tradition answers the killing not with the punishment of the blind Höðr by his own kin but with the begetting of a new son whose single act restores the balance — ritually necessary and morally ambiguous at once.</p>
+<h3 id="the-binding-of-loki-and-the-other-vali-prose-edda">The Binding of Loki — and the Other Váli (Prose Edda)</h3>
+<p>When [[loki|Loki]] is finally captured, the Æsir seize his sons Váli and Nari (or Narfi): Váli is changed into a wolf and tears his own brother apart, and the gods bind Loki with Narfi&#39;s entrails across three stones, where Skaði&#39;s snake drips venom and Sigyn holds her basin until Ragnarök. This wolf-Váli is Loki&#39;s son, not Óðinn&#39;s — yet Völuspá 34 speaks of fetters twisted from &#39;Váli&#39;s bonds&#39;, and the namesake confusion is therefore as old as the manuscripts. Óðinn&#39;s Váli plays no part in the binding.</p>
+<h3 id="after-ragnarok-vaf-ru-nismal-gylfaginning">After Ragnarök (Vafþrúðnismál / Gylfaginning)</h3>
+<p>Most of the gods perish in the final battle, but Váli is among the survivors: Vafþrúðnismál 51 has him dwell with [[vidarr|Víðarr]] in the gods&#39; sanctuaries when Surtr&#39;s fire is quenched, and Snorri&#39;s renewed world adds Baldr and [[hodr|Höðr]] returned reconciled from Hel — the avenger and his victim inheriting the same new earth. His function has been fulfilled; what remains is the quiet inheritance.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>No iconographic tradition is attested for Váli: no Viking-Age image can be identified with him, and the texts assign him no weapon or animal of his own. The motifs that genuinely attach to his story come from the Baldr cycle:</p>
+<ul>
+  <li><strong>Mistletoe</strong> — The seemingly harmless plant that killed [[baldr|Baldr]] and called Váli into being; in Snorri&#39;s account it is [[hodr|Höðr]] who shoots it with a bow, so the bow belongs to the victim&#39;s slayer, not to the avenger</li>
+  <li><strong>Unwashed hands, uncombed hair</strong> — The avenger&#39;s ritual state: the poems say Váli will neither wash his hands nor comb his hair until Baldr&#39;s slayer is on the pyre</li>
+  <li><strong>The new world</strong> — His inheritance after Ragnarök, when he dwells with [[vidarr|Víðarr]] in the gods&#39; sanctuaries</li>
+</ul>
+<p>Later depictions that arm Váli himself with a bow confuse him with Höðr or borrow from generic archer imagery; they have no medieval warrant.</p>
+<ul>
+  <li><strong>Bow</strong> — The weapon with which he avenges Baldr.</li>
+  <li><strong>Wolf</strong> — Váli is transformed into a wolf to tear his half-brother Narfi in some accounts.</li>
+  <li><strong>Bonds</strong> — The fetters made from Narfi&#39;s entrails, holding Loki until Ragnarök.</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>No monument, inscription, or artifact is assigned to Váli with certainty, and none is expected: a god whose whole narrative is a single night of vengeance had no cult, and cult is what leaves votives, place-names, and images. That absence should be read honestly — for a Norse name of this type the material record is expected to be thin, and the primary evidence remains the textual testimony gathered in the Scholarly Sources section.</p>
+<p>Were such evidence to surface, it would take recognizable forms: votive or dedicatory inscriptions naming ᚢᛅᛚᛁ, sanctuary or cult remains tied to vengeance, or iconography matching the Baldr cycle&#39;s traditional motifs (the mistletoe, the unwashed avenger). Each candidate would be weighed against the reconstructed form of the name before entering the scholarly record.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Váli is the <strong>son of Óðinn by the giantess Rindr, born to avenge Baldr&#39;s death</strong>. One night old, he kills the blind Höðr, and he survives Ragnarök to inherit the new world. His life is compressed into a single mythic function: the necessary violence that follows an unforgivable killing.</p>
+<h3 id="one-night-warrior">One-Night Warrior</h3>
+<p>Born to Rindr in the western halls, he fights when one night old to fulfil the vengeance.</p>
+<h3 id="slayer-of-ho-r">Slayer of Höðr</h3>
+<p>He kills the blind god who, tricked by [[loki|Loki]], shot the mistletoe at [[baldr|Baldr]].</p>
+<h3 id="son-of-rindr">Son of Rindr</h3>
+<p>Óðinn wins the reluctant Rindr for this one purpose; Saxo&#39;s account of the disguised wooing is the fullest version.</p>
+<h3 id="survivor-of-ragnarok">Survivor of Ragnarök</h3>
+<p>Unlike most gods, Váli lives through the twilight to inhabit the renewed earth with [[vidarr|Víðarr]].</p>
+<p>A second Váli, Loki&#39;s son, belongs to the binding of Loki; the two namesakes are frequently confused, and Völuspá&#39;s wording makes the confusion ancient.</p>
+<h3 id="one-day-warrior">One-Day Warrior</h3>
+<p>Born, armed, and grown to manhood in a single day to fulfil vengeance.</p>
+<h3 id="binder-of-loki">Binder of Loki</h3>
+<p>He helps capture Loki and uses the entrails of Loki&#39;s son Narfi as his bonds.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Váli has no clear non-Germanic counterpart, but his function resembles the Indo-European avenger figure: a youthful warrior born to settle a blood-debt, closer to a ritual mechanism than to a personality. Within Germanic tradition his nearest kin are the other single-function sons of Óðinn — [[vidarr|Víðarr]] the silent avenger of Óðinn himself — figures whose names read as job descriptions and who attract no cult. He is sometimes confused with Váli, the son of Loki who is turned into a wolf in the binding story, a much less prominent figure whose name surfaces in Völuspá 34 in the Hauksbók redaction; the confusion is medieval, not modern.</p>
+<p>Within the Norse tradition, closely related names in the corpus include [[alfheimr|Álfheimr]], [[buri|Búri]], [[eggther|Eggþér]], [[helheimr|Helheimr]], [[jormungandr|Jǫrmungandr]], and [[jotunheimr|Jötunheimr]].</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Váli&#39;s afterlife flows almost entirely through the Baldr cycle. His fullest narrative was written not in Iceland but in Denmark: Saxo Grammaticus&#39;s Gesta Danorum (book III) retells him as Bous, the avenger Óðinn begets on the reluctant Rinda after a series of disguised wooings, and Saxo&#39;s account remains the most elaborate version of the story anywhere. Later reception is thin by comparison: the great nineteenth-century retellings and Wagner&#39;s Ring, which reshaped Norse material for the modern stage, found no place for a god whose whole life is one night and one killing, and modern novels, games, and screen adaptations of the Baldr tragedy rarely keep him. Where he does persist is in scholarship and in Heathen writing on the blood-debt theme — the unwashed, uncombed avenger who may not return to ordinary life until the debt is paid remains one of the starkest ritual details in the corpus.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Váli given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Poetic Edda: Völuspá 32–35 (Váli&#39;s vengeance; the &#39;Váli&#39;s bonds&#39; crux).</li>
+  <li> Poetic Edda: Baldrs draumar 11 (Rindr bears Váli; one night old he avenges Baldr).</li>
+  <li> Poetic Edda: Vafþrúðnismál 51 (Váli among the survivors of Ragnarök).</li>
+  <li> Snorri Sturluson, Prose Edda: Gylfaginning (the Baldr cycle, the binding of Loki, and the renewed world).</li>
+  <li> Cleasby &amp; Vigfusson, An Icelandic-English Dictionary (1874), s.v. Váli, valr.</li>
+  <li> Simek, Rudolf, Dictionary of Northern Mythology, s.v. Váli.</li>
+  <li> Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Váli is the god of necessary violence. He does not choose his mission; he is born into it. His entire life—if one night can be called a life—is shaped by a crime committed before he existed. In this he is less a hero than a mechanism: the cosmic balance demanding blood for blood. The poems mark the cost on the body: he may not wash his hands or comb his hair until the work is done — vengeance as a state to be carried, not merely an act.</p>
+<p>Yet Váli also survives. After the twilight, after the binding and the battle, he walks in the new world. The old debts are paid, and the avenger is allowed a future. Perhaps that is the real meaning of his myth: vengeance cannot be escaped, but it can be survived.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Váli is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>vali</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 4 characters of the name, the restoration adjusts 1: 1 mark of stress (á). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="name-variations">Name Variations</h2>
+<p>The lexicon records 1 additional form of the name:</p>
+<ul>
+  <li><strong>Vali</strong> (ascii) — Plain ASCII form</li>
+</ul>
+<p>The temple uses <strong>Váli</strong> as the primary form: it is the spelling that best balances philological accuracy with the practical limits of DNS.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>vali</em> to <strong>Váli</strong>, one character at a time:</p>
+<ul>
+  <li><strong>v</strong> → <strong>V</strong> — Same, capitalized</li>
+  <li><strong>a</strong> → <strong>á</strong> — Stress on a</li>
+  <li><strong>l</strong> → <strong>l</strong> — Same</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>váli.com</strong>, which the DNS carries in punycode form as xn--vli-ela.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Váli; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Younger Futhark can now be typed into any browser on earth.</p>
+<h2 id="the-norse-pantheon">The Norse Pantheon</h2>
+<p>Váli is one of 86 entries the PÚNYCODEX lexicon catalogues under the Norse pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Váli mean?</strong> The traditional gloss is &quot;The chosen.&quot;</p>
+<p><strong>Which tradition does Váli belong to?</strong> Váli is catalogued in the Norse pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Váli classified as Tier 2?</strong> Because the original preserves at least one philological feature that ASCII cannot encode — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Váli a working domain?</strong> Yes — váli.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for váli.com?</strong> The DNS encoding is xn--vli-ela.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Myth, script, sound, cult, legacy, domain: the faces of Váli add up to a single argument — that a name is a record, and records deserve fidelity. The PÚNYCODEX restoration keeps that record in working order: the temple presents it, the Scholarly Edition footnotes it, the lexicon catalogs it, and the domain makes it addressable. <em>vali</em> will always exist as a fallback. But fallback is not identity. <strong>Váli</strong> is the name; everything else is a convenience.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/buri/">Búri</a></li>
   <li><a href="/sites/eggther/">Eggþér</a></li>
   <li><a href="/sites/fafnir/">Fáfnir</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://old-norse.net/">Cleasby &amp; Vigfusson, An Icelandic-English Dictionary, 2nd ed. with supplement, 1874.</a></li>
   <li><a href="https://sacred-texts.com/neu/poe/index.htm">Poetic Edda (Eddukvæði), ed. Neckel-Kuhn; trans. Carolyn Larrington, Oxford World&#39;s Classics (2014); Codex Regius c. 1270.</a></li>
   <li><a href="http://vsnrweb-publications.org.uk/EDDArestr.pdf">Snorri Sturluson, Prose Edda, trans. Anthony Faulkes, Everyman / Viking Society for Northern Research; composed c. 1220.</a></li>
+  <li>Cleasby &amp; Vigfusson, An Icelandic-English Dictionary (1874), s.v. Váli, valr, val.</li>
+  <li>Poetic Edda: Baldrs draumar 11 (Rindr bears Váli; one night old he avenges Baldr).</li>
+  <li>Snorri Sturluson, Prose Edda: Gylfaginning (Váli&#39;s birth, vengeance, and survival after Ragnarök).</li>
+  <li>Snorri Sturluson, Prose Edda: Gylfaginning (the two Vális: Óðinn&#39;s son and Loki&#39;s son).</li>
+  <li>Lexicon authorities for this entry: Poetic Edda, Cleasby-Vigfusson.</li>
 </ul>
-<h2>The Cultural Afterlife</h2>
-<p>Váli&#39;s afterlife flows almost entirely through the Baldr cycle. His fullest narrative was written not in Iceland but in Denmark: Saxo Grammaticus&#39;s Gesta Danorum (book III) retells him as Bous, the avenger Óðinn begets on the reluctant Rinda after a series of disguised wooings, and Saxo&#39;s account remains the most elaborate version of the story anywhere. Later reception is thin by comparison: the great nineteenth-century retellings and Wagner&#39;s Ring, which reshaped Norse material for the modern stage, found no place for a god whose whole life is one night and one killing, and modern novels, games, and screen adaptations of the Baldr tragedy rarely keep him. Where he does persist is in scholarship and in Heathen writing on the blood-debt theme — the...</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">norse</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

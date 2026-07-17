@@ -240,6 +240,9 @@ function validateInputLength(fields) {
 /**
  * Stricter rate limiter for the password login endpoint.
  * Tracks attempts by IP + email to slow down credential stuffing.
+ * Uses the Redis-backed `checkAsync` counter when REDIS_URL is configured so
+ * the limit holds across Vercel serverless instances; falls back to the
+ * per-process in-memory windows otherwise.
  */
 function createLoginRateLimit() {
   if (process.env.PUNYCODEX_SCHOLARS_DISABLE_RATE_LIMIT === '1') {
@@ -247,27 +250,31 @@ function createLoginRateLimit() {
       next();
     };
   }
-  return function loginRateLimitMiddleware(req, res, next) {
-    const ip = getClientIp(req);
-    const email = (req.body?.email || 'unknown').toLowerCase().trim();
-    const key = `${ip}:${email}`;
-    const result = loginLimiter.check(key);
+  return async function loginRateLimitMiddleware(req, res, next) {
+    try {
+      const ip = getClientIp(req);
+      const email = (req.body?.email || 'unknown').toLowerCase().trim();
+      const key = `${ip}:${email}`;
+      const result = await loginLimiter.checkAsync(key);
 
-    res.setHeader('X-RateLimit-Limit', String(result.limit));
-    res.setHeader('X-RateLimit-Remaining', String(result.remaining));
-    res.setHeader('X-RateLimit-Reset', String(Math.floor(result.resetAt / 1000)));
+      res.setHeader('X-RateLimit-Limit', String(result.limit));
+      res.setHeader('X-RateLimit-Remaining', String(result.remaining));
+      res.setHeader('X-RateLimit-Reset', String(Math.floor(result.resetAt / 1000)));
 
-    if (!result.allowed) {
-      const retryAfter = Math.ceil((result.resetAt - Date.now()) / 1000);
-      res.setHeader('Retry-After', String(retryAfter));
-      return res.status(429).json({
-        success: false,
-        error: 'Too many login attempts. Please slow down.',
-        retryAfter,
-      });
+      if (!result.allowed) {
+        const retryAfter = Math.ceil((result.resetAt - Date.now()) / 1000);
+        res.setHeader('Retry-After', String(retryAfter));
+        return res.status(429).json({
+          success: false,
+          error: 'Too many login attempts. Please slow down.',
+          retryAfter,
+        });
+      }
+
+      next();
+    } catch (err) {
+      next(err);
     }
-
-    next();
   };
 }
 

@@ -140,7 +140,7 @@ test('handleWebhook marks a booking as pending_upload after payment', async () =
 
 test('handleWebhook extends booking for renewal payments', async () => {
   const { id } = await createBooking({
-    slotId: getSlotId(__filename, 'nike', 1),
+    slotId: getSlotId(__filename, 'nike', 2),
     email: 'renewal@example.com',
     companyName: 'Renewal Co',
     leaseMonths: 1,

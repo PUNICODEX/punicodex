@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,45 +170,187 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>13 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-sanskrit-pantheon">The Sanskrit Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#typing-rama">Typing Rāma</a></li>
+                <li><a href="#sister-temples">Sister Temples</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>Pronouncing Rāma: A Guide for the Curious</h1>
-<p>Saying <strong>Rāma</strong> out loud is harder than reading it on a screen, and more rewarding. Scholars reconstruct the sound as <em>&#39;RAH-muh&#39; — roll or tap the &#39;r&#39;, hold the first syllable long, and let the second syllable relax.</em>.</p>
-<h2>The Reconstructed Sound</h2>
-<p>The name is attested in Devanagari as राम (rāma). Monier-Williams glosses the adjective rāma as &#39;pleasing, pleasant, charming, lovely, beautiful&#39; and &#39;dark, dark-coloured, black&#39;, from the root √ram, &#39;to delight, to be glad, to rest&#39;; as a masculine proper noun it names several figures — the epic Rāma Daśarathi foremost, but also Paraśurāma, &#39;Rāma with the axe&#39;, and Balarāma, &#39;Rāma the strong&#39;, the elder brother of Kṛṣṇa. Mayrhofer&#39;s etymological dictionary records both senses of the adjective under a single lemma. The ASCII form rama survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Rāma recovers the long initial vowel directly in the... The sounds preserved in Rāma are not random; they follow rules that linguists have spent centuries recovering.</p>
-<h2>Sound by Sound</h2>
-<p> Each segment locks into the next, so a small change in one place ripples through the whole name.</p>
-<h2>Kin Forms</h2>
-<p>Names rarely have only one valid shape. The restoration chooses the form that best balances historical accuracy with the practical limits of DNS.</p>
-<h2>From Speech to Screen</h2>
-<p>Pronunciation and spelling converge in Unicode. Rāma carries enough phonetic information to be read aloud by someone who knows the conventions, and enough visual distinctiveness to stand out in an address bar.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Rāma is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>Pronouncing Rāma: a guide for the curious</h1>
+<p>Saying <strong>Rāma</strong> aloud is harder than reading it on a screen, and more rewarding. The restored spelling is a compressed pronunciation guide: every accent and macron is an instruction. This post unpacks those instructions — the reconstructed sound, the phoneme-by-phoneme record, the kindred forms in neighboring languages — and then zooms out to the full record around the name: its Devanagari writing, its mythology, its cult, and its modern life as a Unicode domain. Whether you arrive as a linguist, a reader of myth, or a domainer, you will leave able to say the name the way the evidence suggests it was said — and able to type it the way it was written.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Rāma</li>
+  <li><strong>ASCII form:</strong> rama</li>
+  <li><strong>Meaning:</strong> &quot;of various mythical personages (in Veda two Rāmas are mentioned with the patr. Mārgaveya and Aupatasvini; another R˚s with the patr. Jāmadagnya [cf. below] is the supposed author&quot;</li>
+  <li><strong>Domain of influence:</strong> Virtue, Kingship, Avatar of Vishnu</li>
+  <li><strong>Pantheon:</strong> Sanskrit</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Original script:</strong> राम (Devanagari)</li>
+  <li><strong>Live domain:</strong> rāma.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Rāma</strong> (Sanskrit राम; ASCII <em>rama</em>) is the prince of Ayodhyā whose exile, war with the demon king Rāvaṇa, and restoration to the throne are narrated in Vālmīki&#39;s <em>Rāmāyaṇa</em>, composed in Sanskrit in the centuries around the middle of the first millennium BCE and retold in nearly every language of South and Southeast Asia. Purāṇic theology numbers him as the seventh avatāra — &#39;descent&#39; — of Viṣṇu: the form the god assumes to destroy Rāvaṇa and to re-establish dharma, the moral order of the world.</p>
+<p>Within the Sanskrit pantheon his domain is virtue and kingship. The tradition honours him as <em>maryādā puruṣottama</em>, &#39;the best of men within limits&#39; — the ruler who places law above family, desire, and life itself, and whose reign, <em>rāma-rājya</em>, became the standing Indian idiom for just government. The name is an ordinary adjective before it is a proper name: rāma, from the root √ram, &#39;to delight, to rest&#39;, means &#39;pleasing, charming&#39; and, secondarily, &#39;dark, dark-coloured&#39;. The Veda knows several lesser Rāmas — Mārgaveya, Aupatasvini, and Rāma Jāmadagnya (Paraśurāma) — before the epic son of Daśaratha eclipses them all.</p>
+<p>PÚNYCODEX restores the name as <strong>Rāma</strong> and serves its temple at <a href="https://xn--rma-1oa.com">rāma.com</a>. Exactly one historically valid Unicode restoration exists — the IAST form with the long initial ā — which places the name in Tier 1. The plain ASCII <em>rama</em> is a modern convenience imposed by the early domain-name system, not an ancient spelling.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Devanagari as <strong>राम</strong> (rāma). Monier-Williams glosses the adjective rāma as &#39;pleasing, pleasant, charming, lovely, beautiful&#39; and &#39;dark, dark-coloured, black&#39;, from the root √ram, &#39;to delight, to be glad, to rest&#39;; as a masculine proper noun it names several figures — the epic Rāma Daśarathi foremost, but also Paraśurāma, &#39;Rāma with the axe&#39;, and Balarāma, &#39;Rāma the strong&#39;, the elder brother of Kṛṣṇa. Mayrhofer&#39;s etymological dictionary records both senses of the adjective under a single lemma.</p>
+<p>The ASCII form <em>rama</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Rāma</strong> recovers the long initial vowel directly in the address bar: Sanskrit distinguishes short a from long ā, and the name&#39;s first syllable is heavy. Exactly one historically valid Unicode restoration exists, which places the name in Tier 1; Sanskrit orthography marks quantity rather than stress, so the tiering here turns on vowel length alone.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>r</strong> → <strong>R</strong> — Same</li>
+  <li><strong>a</strong> → <strong>ā</strong> — Macron: long /aː/</li>
+  <li><strong>m</strong> → <strong>m</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Short /a/</li>
+</ul>
+<p>The project holds the domain <strong>rāma.com</strong> (xn--rma-1oa.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Devanagari as <strong>राम</strong> — Brahmic abugida, attested Vedic – present, c. 1500 BCE –, in South Asia. The script is written left-to-right.</p>
+<p>The scholarly transliteration is <em>Rāma</em> (IAST), giving the normalized reading /ˈraː.mə/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>Sanskrit Rāma is written राम in Devanagari.</li>
+  <li>Each aksara combines a consonant with an inherent or explicit vowel.</li>
+  <li>IAST diacritics preserve length, retroflexion, and aspiration lost in plain ASCII.</li>
+  <li>The Devanagari form is not used as the primary domain because Indic scripts are not in the .com IDN table.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/ˈraː.mə/</strong> — Sanskrit Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Rā-</strong> — Voiced alveolar tap or trill [r] plus long open [aː]; the macron marks length, giving Tier-1 status</li>
+  <li><strong>-ma</strong> — Voiced bilabial nasal [m] plus short open [a]; the second syllable is light and unstressed</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;RAH-muh&#39; — roll or tap the &#39;r&#39;, hold the first syllable long, and let the second syllable relax.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Sanskrit</strong> — राम (rāma), &#39;pleasing, dark, beautiful&#39;; also the name of an earlier axe-wielding hero, Paraśurāma</li>
+  <li><strong>Pali/Prakrit</strong> — Rāma, the name preserved in Buddhist and Jain narratives about the ideal king</li>
+  <li><strong>Regional</strong> — Rām, Rāmcandra, Rāma the husband of Sītā and seventh avatāra of Viṣṇu</li>
+</ul>
+<p>Rāma is Tier 1 because the initial ā is long. The name is shared by several figures in Sanskrit literature, most famously the hero of the Rāmāyaṇa, but the Vedic Rāmas and Paraśurāma are distinct characters.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Rāma&#39;s mythology is anchored in Vālmīki&#39;s <em>Rāmāyaṇa</em> and retold across languages, religions, and centuries. It is a story of exile, fidelity, alliance, and the recovery of righteousness through suffering.</p>
+<h3 id="the-exile-ramayana-ayodhyakanda">The Exile (Rāmāyaṇa, Ayodhyākāṇḍa)</h3>
+<p>On the eve of Rāma&#39;s coronation, his stepmother Kaikeyī demands that her own son Bharata be crowned and that Rāma be banished for fourteen years. Rāma&#39;s father Daśaratha, bound by an old promise, is heartbroken. Rāma accepts the decree calmly, giving up throne, palace, and comfort without reproach. His wife Sītā and brother Lakṣmaṇa insist on accompanying him, and the three enter the forest as the kingdom weeps.</p>
+<h3 id="the-abduction-of-sita-ramayana-aranyakanda">The Abduction of Sītā (Rāmāyaṇa, Araṇyakāṇḍa)</h3>
+<p>In the forest of Pañcavaṭī, the demoness Śūrpaṇakhā desires Rāma and is mutilated by Lakṣmaṇa. Her brother Rāvaṇa, king of Laṅkā, avenges her by tricking Rāma away from the hermitage and carrying Sītā across the ocean in his aerial chariot. Rāma&#39;s grief and determination set in motion the great war that will end Rāvaṇa&#39;s reign.</p>
+<h3 id="the-bridge-and-the-battle-ramayana-yuddhakanda">The Bridge and the Battle (Rāmāyaṇa, Yuddhakāṇḍa)</h3>
+<p>Rāma allies with the exiled monkey king Sugrīva and the divine monkey Hanumān. Hanumān leaps to Laṅkā, finds Sītā, and burns the city with his flaming tail. The monkey army builds a causeway across the sea, and Rāma confronts Rāvaṇa in a battle that shakes the earth. After Rāvaṇa&#39;s death, Rāma rescues Sītā but tests her purity in fire before accepting her before the assembled armies.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Rāma concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>Bow and arrow (kodaṇḍa)</strong> — His weapons, inherited from the sage Viśvāmitra and the gods, symbols of a warrior bound by vow</li>
+  <li><strong>The blue complexion</strong> — His dark-blue skin marks him as an avatāra of Viṣṇu and the oceanic depth of his patience</li>
+  <li><strong>The forest (vana)</strong> — The place of exile where kingship is tested and refined away from palace comfort</li>
+  <li><strong>The bridge to Laṅkā</strong> — The causeway built by the monkey army, symbolizing collective devotion overcoming impossibility</li>
+  <li><strong>The throne of Ayodhyā</strong> — Rightful sovereignty restored after exile, war, and sacrifice</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Archaeological attestation of Rāma&#39;s cult is early and extensive. The epic becomes one of the most sculpted narrative programmes in Indian art: the Gupta-period Daśāvatāra temple at Deogarh (early sixth century CE) includes panels from the Rāmāyaṇa cycle, and medieval temples across the subcontinent carry the story on their walls. Epigraphic and royal evidence grows from the early medieval period onward; at Vijayanagara the Rāma cult reached its full political flowering, with kingship presented as righteous rule exercised in Rāma&#39;s name. The site venerated as Rāma&#39;s birthplace at Ayodhyā has drawn pilgrims for centuries and, since the demolition of the Bābrī Masjid in December 1992, has been the object of excavation, prolonged litigation, and the construction of a new Rāma temple whose consecration was performed in January 2024.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p><strong>Rāma</strong> is the prince who became the pattern of righteous kingship. In the Sanskrit tradition he is the seventh avatāra of Viṣṇu, descending to earth to destroy the demon Rāvaṇa and restore the rule of dharma. But he is also something rarer: a hero whose greatness lies not in battle fury but in obedience, sacrifice, and the willingness to suffer for the sake of duty.</p>
+<p>His story, told in Vālmīki&#39;s <em>Rāmāyaṇa</em>, has shaped Indian ideals of son, husband, brother, king, and warrior for more than two millennia. To name Rāma is to invoke an entire ethical universe.</p>
+<h3 id="dharma-raja">Dharma-Rāja</h3>
+<p>He is the king for whom law is not policy but personal discipline; even family feeling yields to righteousness.</p>
+<h3 id="maryada-purusottama">Maryādā Puruṣottama</h3>
+<p>&#39;The best of men within limits&#39; — he never transgresses the moral boundaries that define civilized life.</p>
+<h3 id="forest-exile">Forest Exile</h3>
+<p>He accepts fourteen years of banishment without protest, showing that a king&#39;s first obligation is to his word.</p>
+<h3 id="slayer-of-ravana">Slayer of Rāvaṇa</h3>
+<p>With the aid of monkeys, bears, and his brother Lakṣmaṇa, he crosses the sea to defeat the ten-headed demon.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Rāma&#39;s story migrated far beyond its Sanskrit origins. Tulsīdās&#39;s Hindi <em>Rāmcaritmānas</em> became the sacred text of millions in North India; Kampan&#39;s Tamil <em>Iramāvatāram</em> reshaped the epic for South Indian readers. Buddhist and Jain retellings reinterpret Rāma and Rāvaṇa in light of their own ethics. In Southeast Asia, the Rāmāyaṇa appears as the <em>Rāmakien</em> in Thailand, the <em>Reamker</em> in Cambodia, and the <em>Kakawin Rāmāyaṇa</em> in Java, with local variants that reveal the epic&#39;s extraordinary adaptability. In the modern period, Rāma has become a political and religious symbol in India, claimed by devotional movements, nationalist projects, and popular culture alike.</p>
+<p>Within the Sanskrit tradition, closely related names in the corpus include [[durga|Durgā]], [[ganesha|Gaṇeśa]], [[kali|Kālī]], [[lakshmi|Lakṣmī]], [[nirmata|Nirmātā]], and [[om|Oṃ]].</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Rāma&#39;s name is among the most cherished in South Asia. The greeting &#39;Rām Rām,&#39; the chanting of the <em>Rāma nāma</em>, and the observance of Rāma Navamī keep his memory present in daily life. The Rāmāyaṇa has been rendered in virtually every Indian language and performance medium: classical dance, shadow puppetry, television serials, comic books, and film. The 1987–88 television adaptation by Ramanand Sagar drew unprecedented audiences and reshaped popular devotion. The Unicode restoration <em>Rāma</em> preserves the long vowel that distinguishes the epic hero&#39;s name from the ordinary word for &#39;dark&#39; or &#39;beautiful&#39; and signals its Sanskrit dignity.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Rāma given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Vālmīki, Rāmāyaṇa (critical edition).</li>
+  <li> Tulsīdās, Rāmcaritmānas.</li>
+  <li> Kampan, Iramāvatāram.</li>
+  <li> Viṣṇu Purāṇa, Book 4 (Rāma as Viṣṇu&#39;s avatāra).</li>
+  <li> Goldman, The Rāmāyaṇa of Vālmīki (translation and annotation).</li>
+  <li> Lutgendorf, The Life of a Text: Performing the Rāmcaritmānas of Tulsidas.</li>
+  <li> Richman, ed., Many Rāmāyaṇas: The Diversity of a Narrative Tradition in South Asia.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Rāma is the hero who suffers duty rather than asserting will. At every turning point — exile, the loss of Sītā, the doubt of his people — he chooses the harder path because it is the right one. His perfection is not exciting; it is austere, even heartbreaking.</p>
+<p>That is precisely why the tradition calls him <em>maryādā puruṣottama</em>, the best of men within limits. Rāma teaches that freedom is not the absence of constraint but the beauty of choosing one&#39;s bonds. To love him is to accept that righteousness often costs more than we wish to pay.</p>
+<p>Tulsīdās closes the distance between the austere king and the devotee: in the <em>Rāmcaritmānas</em> the name rāma itself becomes a vessel of grace, declared greater even than the god who bears it, so that repeating it is held to carry the worshipper across the very saṃsāra that duty could not spare him.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Rāma is classified as <strong>Tier 1</strong>: the original carries both stress and length, and only one valid Unicode restoration exists. The ASCII fallback <em>rama</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 4 characters of the name, the restoration adjusts 1: 1 mark of length (ā). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>rama</em> to <strong>Rāma</strong>, one character at a time:</p>
+<ul>
+  <li><strong>r</strong> → <strong>R</strong> — Same</li>
+  <li><strong>a</strong> → <strong>ā</strong> — Macron: long /aː/</li>
+  <li><strong>m</strong> → <strong>m</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Short /a/</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>rāma.com</strong>, which the DNS carries in punycode form as xn--rma-1oa.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Rāma; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Devanagari can now be typed into any browser on earth.</p>
+<h2 id="the-sanskrit-pantheon">The Sanskrit Pantheon</h2>
+<p>Rāma is one of 88 entries the PÚNYCODEX lexicon catalogues under the Sanskrit pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Rāma mean?</strong> The traditional gloss is &quot;of various mythical personages (in Veda two Rāmas are mentioned with the patr. Mārgaveya and Aupatasvini; another R˚s with the patr. Jāmadagnya [cf. below] is the supposed author.&quot;</p>
+<p><strong>Which tradition does Rāma belong to?</strong> Rāma is catalogued in the Sanskrit pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Rāma classified as Tier 1?</strong> Because the original carries both stress and length, and only one valid Unicode restoration exists — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Rāma a working domain?</strong> Yes — rāma.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for rāma.com?</strong> The DNS encoding is xn--rma-1oa.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="typing-rama">Typing Rāma</h2>
+<p>You do not need a special keyboard to use this restoration. The <a href="/type/">PÚNYCODEX Type Tool</a> converts the ASCII form <em>rama</em> into <strong>Rāma</strong> as you type, and the browser extension offers the same conversion inside any text field. Copy the restored form, paste it into the address bar, and the DNS does the rest.</p>
+<h2 id="sister-temples">Sister Temples</h2>
+<p>Other temples in the Sanskrit pantheon include <a href="/sites/surya/">Sūrya</a>, <a href="/sites/tantra/">Tantra</a>, and <a href="/sites/tapas/">Tapas</a> — each with its own restoration story, its own scholarly record, and its own place in the lexicon.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Pronunciation turns out to be the heart of the matter. The marks in <strong>Rāma</strong> are instructions for the voice, and a web that strips them is a web that mispronounces the past at scale. The restoration hands the instructions back: say it as the evidence suggests, type it as the tradition wrote it, and let the punycode machinery do the quiet translation in between. That is all the PÚNYCODEX project asks of the infrastructure — and everything it asks of you, the reader, is to use the whole name.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/tvashtri/">Tvaṣṭṛ</a></li>
   <li><a href="/sites/varuna/">Varuṇa</a></li>
   <li><a href="/sites/yama/">Yama</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.sacred-texts.com/hin/rama/index.htm">Vālmīki, Rāmāyaṇa (critical edition); English verse translation by R. T. H. Griffith.</a></li>
+  <li>Viṣṇu Purāṇa, Book 4 (the Raghu line; Rāma as avatāra).</li>
+  <li>Tulsīdās, Rāmcaritmānas (the maryādā puruṣottama ideal).</li>
+  <li>Monier-Williams, Sanskrit-English Dictionary (rāma).</li>
+  <li>Mayrhofer, EWAia (rāma).</li>
+  <li>Lexicon authorities for this entry: MW, KEWA.</li>
 </ul>
-<h2>What the Sources Record</h2>
-<p>Rāma is the prince who became the pattern of righteous kingship. In the Sanskrit tradition he is the seventh avatāra of Viṣṇu, descending to earth to destroy the demon Rāvaṇa and restore the rule of dharma. But he is also something rarer: a hero whose greatness lies not in battle fury but in obedience, sacrifice, and the willingness to suffer for the sake of duty. His story, told in Vālmīki&#39;s Rāmāyaṇa, has shaped Indian ideals of son, husband, brother, king, and warrior for more than two millennia. To name Rāma is to invoke an entire ethical universe. ### Dharma-Rāja He is the king for whom law is not policy but personal discipline; even family feeling yields to righteousness. ### Maryādā Puruṣottama &#39;The best of men within limits&#39; — he never...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Rāma as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Devanagari to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Rāma through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/rama/">home page</a> offers the full name breakdown, the <a href="/sites/rama/lore/">lore page</a> explores the myth, and the <a href="/sites/rama/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Rāma do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
-<h2>A Note on the Address Bar</h2>
-<p>When you type Rāma, the browser performs an invisible conversion into Punycode so the global DNS can route the request. The user sees the original name; the machines see a compatible ASCII encoding. That duality is the engineering compromise that makes the restoration possible, and it is the reason every Unicode domain is both a technical milestone and a small act of cultural memory.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">sanskrit</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

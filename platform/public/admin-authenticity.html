@@ -6,12 +6,9 @@
 <!-- PUNYCODEX-ANALYTICS-END -->
 
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
-
-
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PÚNYCODEX Admin — Authenticity Threat Feed</title>
@@ -102,7 +99,10 @@
   <div id="admin-app" class="hidden">
     <header class="admin-header">
       <h1>Authenticity Threat Feed</h1>
-      <button id="logout-btn" class="btn btn-secondary" style="background:transparent;border:1px solid var(--gold-dim);color:var(--text);border-radius:8px;padding:0.5rem 1rem;cursor:pointer;">Logout</button>
+      <div style="display:flex;gap:0.75rem;align-items:center;">
+        <a href="/admin-portal/" style="color:var(--gold);text-decoration:none;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.06em;">Portal</a>
+        <button id="logout-btn" class="btn btn-secondary" style="background:transparent;border:1px solid var(--gold-dim);color:var(--text);border-radius:8px;padding:0.5rem 1rem;cursor:pointer;">Logout</button>
+      </div>
     </header>
     <main class="admin-main">
       <div class="toolbar">
@@ -251,8 +251,6 @@
       }
     })();
   </script>
-
-
 
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
 <div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>

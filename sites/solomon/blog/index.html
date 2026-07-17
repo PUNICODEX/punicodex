@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,33 +170,167 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>Why Šəlōmōh Belongs in the Address Bar</h1>
-<p>Every address bar is a choice. When you type <strong>Šəlōmōh</strong>, you are not typing a novelty; you are restoring a name. The plain ASCII form <em>solomon</em> is the leftover of a DNS that was built for English typewriters, not for the world&#39;s naming traditions. Šəlōmōh (Hebrew שְׁלֹמֹה; English Solomon) is the third king of Israel, son of David and Bathsheba, and the builder of the First Temple in Jerusalem. His forty-year reign (1 Kings 11:42) is remembered as Israel&#39;s golden age: the dream at Gibeon and the judgment between the two mothers (1 Kings 3), the building and dedication of the Temple (1 Kings 5–8), and the visit of the Queen of Sheba (1 Kings 10) — and then the turn, when foreign wives tilt his heart toward their gods and the kingdom moves toward division (1 Kings 11). Tradition ascribes Proverbs, Qohelet, and the Song of Songs to him. The name is associated with the root š-l-m, &#39;to be whole, complete, at peace&#39;; the Chronicler makes the pun explicit — &#39;his name shall be Solomon (Šəlōmōh), and...</p>
-<h2>The Name the DNS Almost Forgot</h2>
-<p>The name is attested in Biblical Hebrew as שְׁלֹמֹה (Šəlōmōh), pointed with a vocal shewa, two long holam vowels, and a silent final he serving as mater lectionis. It derives from the root š-l-m, &#39;to be whole, complete, at peace&#39;, and is variously parsed as &#39;his peace&#39; or as a nominal formation built on šālôm; the Chronicler exploits the resemblance directly — &#39;his name shall be Solomon (Šəlōmōh), and I will give peace (šālôm) and quiet to Israel in his days&#39; (1 Chronicles 22:9). The same child also receives the throne-name Jedidiah, &#39;beloved of the LORD&#39;, from the prophet Nathan (2 Samuel 12:25). The English form Solomon descends from the Septuagint&#39;s Σολομών through Latin Salomon and flattens all three Tiberian vowels. PÚNYCODEX restores Šəlōmōh:... In scholarly terms, it belongs to the <strong>Tier 2</strong> class: the original preserves at least one philological feature that ASCII cannot encode. That detail is not decorative; it is the difference between a label and a lived name.</p>
-<h2>From Hebrew to the Browser</h2>
-<p>The name is preserved in Hebrew as שְׁלֹמֹה, written in the square Hebrew alphabet — a consonantal script (abjad) of twenty-two letters, adopted from Aramaic models in the Second Temple period and written right to left. The consonantal skeleton is ש-ל-מ-ה (š-l-m-h): the root š-l-m, &#39;to be whole, at peace&#39;, closed by a silent he that serves as mater lectionis. The Masoretic pointing supplies a vocal shewa [ə] under the shin — vocal because it opens the word — and a long holam [oː] with both lamed and mem. The scholarly transliteration is Šəlōmōh, giving the reconstructed Tiberian reading /ʃəloːˈmoː(h)/. The rendering proceeds step by step: - The name is written שְׁלֹמֹה in the pointed Masoretic text (BHS): three root consonants plus the final mater.... The PÚNYCODEX temple does not invent a spelling; it recovers one. By registering the Unicode form, the project proves that the original script can survive inside the infrastructure of the modern web.</p>
-<h2>Why 2026 Still Needs This</h2>
-<p>In 2026, names are data. Search engines, AI training corpora, and localization teams all need authoritative forms. Šəlōmōh is a small but concrete demonstration that philology and DNS can coexist. The <a href="/sites/solomon/scholars/">Scholarly Edition</a> preserves the argument; the blog makes it approachable.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Šəlōmōh is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>Why Šəlōmōh belongs in your address bar</h1>
+<p>Every address bar is a choice. When you type <strong>Šəlōmōh</strong>, you are not typing a novelty; you are restoring a name that the early DNS, built for English typewriters, could not carry. The plain ASCII form <em>solomon</em> is a leftover of that constraint, not the name itself. This post is the long version of the restoration: where the name comes from, how the Hebrew tradition wrote it, how it is pronounced, what the myths and the material record preserve, and why its Unicode form now lives as a working domain. The claim throughout is simple — the original spelling is not decoration. It is the name.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Šəlōmōh</li>
+  <li><strong>ASCII form:</strong> solomon</li>
+  <li><strong>Meaning:</strong> &quot;Third king of Israel, builder of the Temple&quot;</li>
+  <li><strong>Domain of influence:</strong> King, Sage</li>
+  <li><strong>Pantheon:</strong> Canaanite</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> שְׁלֹמֹה (Hebrew)</li>
+  <li><strong>Live domain:</strong> šəlōmōh.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Šəlōmōh</strong> (Hebrew שְׁלֹמֹה; English <em>Solomon</em>) is the third king of Israel, son of David and Bathsheba, and the builder of the First Temple in Jerusalem. His forty-year reign (1 Kings 11:42) is remembered as Israel&#39;s golden age: the dream at Gibeon and the judgment between the two mothers (1 Kings 3), the building and dedication of the Temple (1 Kings 5–8), and the visit of the Queen of Sheba (1 Kings 10) — and then the turn, when foreign wives tilt his heart toward their gods and the kingdom moves toward division (1 Kings 11). Tradition ascribes Proverbs, Qohelet, and the Song of Songs to him.</p>
+<p>The name is associated with the root <em>š-l-m</em>, &#39;to be whole, complete, at peace&#39;; the Chronicler makes the pun explicit — &#39;his name shall be Solomon (Šəlōmōh), and I will give peace (šālôm) and quiet to Israel in his days&#39; (1 Chronicles 22:9). Nathan the prophet also names the child Jedidiah, &#39;beloved of the LORD&#39; (2 Samuel 12:25).</p>
+<p>PÚNYCODEX restores the name as <strong>Šəlōmōh</strong>, transcribing the Tiberian Masoretic pointing: the caron marks the shin [ʃ], the schwa records the vocal <em>shewa</em> at the word&#39;s head, and the macrons preserve the two long <em>holam</em> vowels [oː]. Because the restoration preserves vowel length but does not mark stress position, the name is classified Tier 2 (macron-preserving). The temple is served at <a href="https://xn--lmh-qxab0ju2f.com">šəlōmōh.com</a>; the ASCII form <em>solomon</em>, descending from Greek Σολομών and Latin <em>Salomon</em>, remains the fallback imposed by the early domain-name system.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Biblical Hebrew as <strong>שְׁלֹמֹה</strong> (<em>Šəlōmōh</em>), pointed with a vocal <em>shewa</em>, two long <em>holam</em> vowels, and a silent final <em>he</em> serving as mater lectionis. It derives from the root <em>š-l-m</em>, &#39;to be whole, complete, at peace&#39;, and is variously parsed as &#39;his peace&#39; or as a nominal formation built on <em>šālôm</em>; the Chronicler exploits the resemblance directly — &#39;his name shall be Solomon (Šəlōmōh), and I will give peace (šālôm) and quiet to Israel in his days&#39; (1 Chronicles 22:9). The same child also receives the throne-name Jedidiah, &#39;beloved of the LORD&#39;, from the prophet Nathan (2 Samuel 12:25).</p>
+<p>The English form <em>Solomon</em> descends from the Septuagint&#39;s Σολομών through Latin <em>Salomon</em> and flattens all three Tiberian vowels. PÚNYCODEX restores <strong>Šəlōmōh</strong>: the caron on <strong>Š</strong> marks the Hebrew shin (שׁ), the <strong>ə</strong> records the vocal shewa, and the macrons on <strong>ō</strong> preserve the two long holams. The restoration preserves vowel length but not stress position, which places the name in Tier 2 (macron-preserving).</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>s</strong> → <strong>Š</strong> — Same, capitalized and fricative</li>
+  <li><strong>o</strong> → <strong>ə</strong> — Schwa vowel</li>
+  <li><strong>l</strong> → <strong>l</strong> — Same</li>
+  <li><strong>o</strong> → <strong>ō</strong> — Macron: long vowel</li>
+  <li><strong>m</strong> → <strong>m</strong> — Same</li>
+  <li><strong>o</strong> → <strong>ō</strong> — Macron: long vowel</li>
+  <li><strong>n</strong> → <strong>h</strong> — Heh h</li>
+</ul>
+<p>The project holds the domain <strong>šəlōmōh.com</strong> (xn--lmh-qxab0ju2f.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Hebrew as <strong>שְׁלֹמֹה</strong>, written in the square Hebrew alphabet — a consonantal script (abjad) of twenty-two letters, adopted from Aramaic models in the Second Temple period and written right to left. The consonantal skeleton is ש-ל-מ-ה (<em>š-l-m-h</em>): the root <em>š-l-m</em>, &#39;to be whole, at peace&#39;, closed by a silent <em>he</em> that serves as mater lectionis. The Masoretic pointing supplies a vocal <em>shewa</em> [ə] under the shin — vocal because it opens the word — and a long <em>holam</em> [oː] with both lamed and mem.</p>
+<p>The scholarly transliteration is <em>Šəlōmōh</em>, giving the reconstructed Tiberian reading /ʃəloːˈmoː(h)/. The rendering proceeds step by step:</p>
+<ul>
+  <li>The name is written שְׁלֹמֹה in the pointed Masoretic text (BHS): three root consonants plus the final mater.</li>
+  <li>The initial shewa is vocal (<em>shewa naʿ</em>), giving the reduced vowel [ə]; the two holams are long [oː].</li>
+  <li>The transliteration marks the shin with a caron, the reduced vowel with a schwa, and the long vowels with macrons, following academic convention.</li>
+  <li>PÚNYCODEX adopts the registrable Latin form <strong>Šəlōmōh</strong> as its restoration; the plain ASCII <em>solomon</em> descends instead from the Septuagint&#39;s Σολομών through Latin <em>Salomon</em>.</li>
+</ul>
+<p>The Hebrew vocalization is medieval in attestation but older in tradition: the consonants are Second Temple-era, while the points were fixed by the Tiberian Masoretes in the early medieval period, and the first-millennium BCE pronunciation of the name may have differed in detail.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/ʃəloːˈmoː(h)/</strong> — Biblical Hebrew (Tiberian/Masoretic).</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>šə-</strong> — Voiceless postalveolar fricative [ʃ] — Hebrew shin, marked by the upper right dot — with a short vocal sheva [ə].</li>
+  <li><strong>-lō-</strong> — Lateral approximant [l] followed by long [oː], the holam under ל.</li>
+  <li><strong>-mō(h)</strong> — Bilabial nasal [m] plus long [oː], the holam under מ; the final ה is silent, a mater lectionis for the long vowel.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;shuh-LOH-moh&#39; — start with a quick &#39;shuh&#39;; both later &#39;o&#39; sounds are long and steady, like &#39;show&#39;.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Hebrew root</strong> — š-l-m, &#39;to be whole, complete, at peace&#39; — the name is a qal passive participle or noun form</li>
+  <li><strong>Aramaic</strong> — שְׁלֹמֹה (Šəlōmōh), as in the Targumim</li>
+  <li><strong>Arabic</strong> — Sulaymān (سُلَيْمَان), a distinct but etymologically related form from the same s-l-m root</li>
+</ul>
+<p>BHS points the name שְׁלֹמֹה (1 Kings 1:1). The initial shewa is vocal (šəwa naʿ) because it opens the word; the two holams are long [oː]. The final he is silent. Modern Israeli Hebrew flattens the vowels to [o] and often elides the shewa, but the Tiberian tradition distinguishes length. HALOT s.v. שְׁלֹמֹה; TDOT s.v. Solomon.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Šəlōmōh&#39;s mythology is the story of <strong>wisdom tested by excess</strong>. He begins with a prayer for understanding and ends with idolatrous shrines built for his foreign wives. His reign is Israel&#39;s golden age and its cautionary tale at once.</p>
+<h3 id="the-dream-at-gibeon-1-kings-3">The Dream at Gibeon (1 Kings 3)</h3>
+<p>When Solomon becomes king, God appears to him at Gibeon and offers whatever he asks. Solomon does not ask for riches or long life but for &#39;an understanding mind to govern your people.&#39; Pleased, God grants him wisdom and adds wealth and honor besides. The episode establishes Solomon as the archetype of the wise ruler.</p>
+<h3 id="the-judgment-of-the-two-mothers-1-kings-3">The Judgment of the Two Mothers (1 Kings 3)</h3>
+<p>Two women come before the king, each claiming to be the mother of a living infant. Solomon orders the child cut in two. One woman pleads for the baby&#39;s life even if it means giving him up; the other agrees to the division. Solomon gives the child to the one willing to lose him, recognizing true motherhood by self-sacrifice rather than claim.</p>
+<h3 id="the-building-and-dedication-of-the-temple-1-kings-6-8">The Building and Dedication of the Temple (1 Kings 6–8)</h3>
+<p>Solomon contracts with Hiram of Tyre for cedar and skilled workers. The Temple takes seven years to build: an outer court, a hekhal (sanctuary), and a debir (holy of holies) housing the ark. At the dedication, fire descends and the glory-cloud fills the house; Solomon kneels and prays that God will hear prayers directed toward this place, including the prayers of foreigners and exiles.</p>
+<h3 id="the-queen-of-sheba-1-kings-10">The Queen of Sheba (1 Kings 10)</h3>
+<p>The queen of Sheba journeys to Jerusalem with a caravan of spices, gold, and precious stones to test Solomon&#39;s wisdom with hard questions. She leaves astonished, praising both his insight and the God who blessed him. The encounter makes Solomon a figure of international prestige and marks the southern trade route as a channel of legend.</p>
+<h3 id="the-fall-and-the-divided-kingdom-1-kings-11">The Fall and the Divided Kingdom (1 Kings 11)</h3>
+<p>In his old age, Solomon&#39;s foreign wives turn his heart after their gods, and he builds high places for Chemosh, Milcom, and Astarte. YHWH tears the kingdom from his son, leaving only one tribe for David&#39;s sake. The golden age ends not in invasion but in internal apostasy, and the united monarchy dies with its builder.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Šəlōmōh concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>Temple</strong> — The fixed house of YHWH in Jerusalem, the center of Israelite cult and identity</li>
+  <li><strong>Seal / signet</strong> — The legendary ring that commanded demons and animals in later Jewish and Islamic folklore</li>
+  <li><strong>Scales</strong> — The instrument of his wise judgment and the balance of peace (šālôm)</li>
+  <li><strong>Peacock and gold</strong> — The exotic wealth of his international trade and the opulence of his court</li>
+  <li><strong>Crown</strong> — The throne of ivory overlaid with gold and the apex of Israelite royal power</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>The Temple Mount in Jerusalem, now the Haram al-Sharif, is the traditional site of Solomon&#39;s Temple, though no Iron Age remains have been excavated there for religious and political reasons. Monumental six-chambered gates at Megiddo, Hazor, and Gezer have been attributed by some to Solomon&#39;s building program, while others date them later to the Omride dynasty. The site of Khirbet Qeiyafa and the Stepped Stone Structure in the City of David are debated as evidence of an early Judahite state. Saba (Sheba) in modern Yemen, with its dam and inscriptions at Marib, confirms the existence of the South Arabian kingdom that the Queen of Sheba legend reflects.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Šəlōmōh is the <strong>king who turns peace into architecture</strong>. Son of David, he inherits a united kingdom and spends it on cedar, gold, and wisdom. His Temple in Jerusalem becomes the fixed center of Israelite worship; his judgment becomes proverbial; his trade fleets reach the edges of the known world. Yet his story ends in fracture: the kingdom he built splits the moment he dies.</p>
+<h3 id="the-temple">The Temple</h3>
+<p>A house of cedar, stone, and gold for the name of YHWH, built with Phoenician artisans and dedicated with fire and cloud (1 Kings 6–8).</p>
+<h3 id="wisdom-and-judgment">Wisdom and Judgment</h3>
+<p>His prayer at Gibeon asks for wisdom, and his famous verdict — to cut the disputed child in two — reveals the true mother (1 Kings 3).</p>
+<h3 id="fleet-and-trade">Fleet and Trade</h3>
+<p>A navy at Ezion-Geber and an alliance with Hiram of Tyre bring gold, silver, ivory, apes, and peacocks from Ophir (1 Kings 9–10).</p>
+<h3 id="proverbs-and-song">Proverbs and Song</h3>
+<p>Tradition ascribes to him the books of Proverbs, Ecclesiastes, and the Song of Songs — wisdom literature that ranges from proverb to eros to despair.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Solomon drifts from history into legend more readily than any other biblical king. Jewish aggadah makes him master of demons: in b. Gittin he captures Ashmedai, king of demons, and compels his service in building the Temple, and the late-antique Testament of Solomon gives him a seal-ring that commands the spirits. Islam&#39;s Sulaymān is a prophet who knows the speech of birds, commands the wind, and rules jinn and humans together; Surah 27 tells his exchange with the queen of Saba — Sheba — at length. Ethiopian tradition makes him, through that queen, the father of Menelik I and the founder of the Solomonic dynasty that Ethiopian emperors claimed into the twentieth century, as the Kebra Nagast narrates. Christianity keeps him as the type of the wise king and the builder whose Temple prefigures a spiritual house.</p>
+<p>Within the corpus, the figure most closely bound to his story is his father <a href="/sites/david/">Dāwîḏ</a>, whose wars win the peace in which Solomon builds and whose house the Temple anchors.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Šəlōmōh gave the world the idea of the <strong>wise king</strong> whose wealth is justified by understanding. The &#39;judgment of Solomon&#39; has entered legal and popular language as a decision that exposes truth by risking loss. The Temple he built remains the imagined heart of Jerusalem, mourned in Jewish liturgy and yearned for in apocalyptic expectation. His attributed writings — Proverbs, Ecclesiastes, Song of Songs — are among the most read books of the Bible, while the Seal of Solomon became a protective amulet across Jewish, Christian, and Islamic magic. In modern archaeology, Solomon is also a battleground: the dating of Iron Age monumental gates at Megiddo, Hazor, and Gezer is central to debates about the historicity and scale of his kingdom.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Šəlōmōh given in this edition rests on the witnesses and reference works listed below. The lexica secure the name&#39;s derivation from the root š-l-m; Kings and Chronicles supply the two biblical portraits of the reign; the wisdom books preserve the tradition of his authorship; and the modern works stake out the debate over the scale and historicity of the united monarchy.</p>
+<ul>
+  <li> HALOT s.v. שְׁלֹמֹה — form and etymology of the name.</li>
+  <li> TDOT s.v. Solomon — theological profile of the figure.</li>
+  <li> 1 Kings 1–11; 2 Chronicles 1–9 — the two biblical accounts of the reign.</li>
+  <li> Proverbs; Ecclesiastes; Song of Songs — the books ascribed to him.</li>
+  <li> Kitchen, On the Reliability of the Old Testament (2003) — the maximalist case for the united monarchy.</li>
+  <li> Finkelstein &amp; Silberman, The Bible Unearthed (2001) — the minimalist archaeological reading.</li>
+  <li> Kebra Nagast (Ethiopian tradition) — the Sheba–Menelik cycle and the Solomonic dynasty.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Šəlōmōh is the king who gets exactly what he asks for and then loses himself in what he does not need. His wisdom is real — it cuts through lies and builds a temple — but it cannot protect him from his own appetites. In that, he is a mirror for every culture that confuses accumulation with meaning.</p>
+<p>The Temple he builds is beautiful, yet its completion already contains the warning that no building can house the infinite. When the cloud fills the house, it is a sign not of possession but of presence that exceeds architecture. Solomon&#39;s legacy is therefore double: he is the builder of a house and the proof that houses, however splendid, cannot save the builder. To remember him is to ask what we are building, and whether our wisdom is strong enough to refuse what our power can take.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Šəlōmōh is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>solomon</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 7 characters of the name, the restoration adjusts 5: 2 marks of length (ō, ō); 3 further adjustments (Š, ə, h). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>šəlōmōh.com</strong>, which the DNS carries in punycode form as xn--lmh-qxab0ju2f.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Šəlōmōh; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Hebrew can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Restoring <strong>Šəlōmōh</strong> is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. Every section of this post — the script, the sound, the myths, the evidence — converges on the same point: the marks in Šəlōmōh are information, and information deserves an address of its own. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier, and every visit to šəlōmōh.com is a vote for the restored form.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/cain/">Qāyīn</a></li>
   <li><a href="/sites/moses/">Mōšeh</a></li>
   <li><a href="/sites/anat/">ꜥAnat</a></li>
 </ul>
-<h2>Read More</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
-  <li><a href="https://www.britishmuseum.org/">Scholarly reference</a></li>
+  <li>1 Kings 1–11; 2 Chronicles 1–9 (primary accounts of the reign).</li>
+  <li>HALOT s.v. שְׁלֹמֹה; 1 Chronicles 22:9; 2 Samuel 12:25.</li>
+  <li>Khan, The Tiberian Pronunciation Tradition of Biblical Hebrew (2020).</li>
+  <li>Biblia Hebraica Stuttgartensia (BHS), 1 Kings 1–11.</li>
+  <li>Lexicon authorities for this entry: Abraham.</li>
 </ul>
-<h2>What the Sources Record</h2>
-<p>Šəlōmōh is the king who turns peace into architecture. Son of David, he inherits a united kingdom and spends it on cedar, gold, and wisdom. His Temple in Jerusalem becomes the fixed center of Israelite worship; his judgment becomes proverbial; his trade fleets reach the edges of the known world. Yet his story ends in fracture: the kingdom he built splits the moment he dies. ### The Temple A house of cedar, stone, and gold for the name of YHWH, built with Phoenician artisans and dedicated with fire and cloud (1 Kings 6–8). ### Wisdom and Judgment His prayer at Gibeon asks for wisdom, and his famous verdict — to cut the disputed child in two — reveals the true mother (1 Kings 3). ### Fleet and Trade A navy at Ezion-Geber and an alliance with Hiram of...</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">canaanite</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,46 +170,186 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>15 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-taoist-pantheon">The Taoist Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>Pronouncing Lǎozǐ: A Guide for the Curious</h1>
-<p>Saying <strong>Lǎozǐ</strong> out loud is harder than reading it on a screen, and more rewarding. Scholars reconstruct the sound as <em>&#39;LAOW-dzuh&#39; — &#39;lao&#39; like &#39;loud&#39; without the final &#39;d&#39;, with a dipping tone (down then up); &#39;zi&#39; like &#39;dzuh&#39; with the same dipping tone.</em>.</p>
-<h2>The Reconstructed Sound</h2>
-<p>The name is written in Chinese characters as 老子: 老 lǎo &#39;old, venerable&#39; followed by 子 zǐ, the honorific suffix &#39;master&#39; borne by the classical teachers Kǒngzǐ (Confucius), Mèngzǐ, and Zhuāngzǐ. &#39;Lǎozǐ&#39; is therefore a title — &#39;the Old Master&#39; — not a personal name. The standard biography in Shǐjì 63 supplies the man behind it with a surname (Li), a personal name (Er), and a style (Dan), while the Zhuāngzǐ knows him as Lao Dan, &#39;Old Dan.&#39;^1 The ASCII form laozi survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Lǎozǐ restores the Hanyu Pinyin tone marks directly in the address bar — the caron (háček) of the third, falling-rising tone on both... The sounds preserved in Lǎozǐ are not random; they follow rules that linguists have spent centuries recovering.</p>
-<h2>Sound by Sound</h2>
-<p> Each segment locks into the next, so a small change in one place ripples through the whole name.</p>
-<h2>Kin Forms</h2>
-<p>Names rarely have only one valid shape. The restoration chooses the form that best balances historical accuracy with the practical limits of DNS.</p>
-<h2>From Speech to Screen</h2>
-<p>Pronunciation and spelling converge in Unicode. Lǎozǐ carries enough phonetic information to be read aloud by someone who knows the conventions, and enough visual distinctiveness to stand out in an address bar.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Lǎozǐ is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>Pronouncing Lǎozǐ: a guide for the curious</h1>
+<p>Saying <strong>Lǎozǐ</strong> aloud is harder than reading it on a screen, and more rewarding. The restored spelling is a compressed pronunciation guide: every accent and macron is an instruction. This post unpacks those instructions — the reconstructed sound, the phoneme-by-phoneme record, the kindred forms in neighboring languages — and then zooms out to the full record around the name: its Chinese characters writing, its mythology, its cult, and its modern life as a Unicode domain. Whether you arrive as a linguist, a reader of myth, or a domainer, you will leave able to say the name the way the evidence suggests it was said — and able to type it the way it was written.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Lǎozǐ</li>
+  <li><strong>ASCII form:</strong> laozi</li>
+  <li><strong>Meaning:</strong> &quot;Old master&quot;</li>
+  <li><strong>Domain of influence:</strong> Founder of Daoism, Sage</li>
+  <li><strong>Pantheon:</strong> Taoist</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> 老子 (Chinese characters)</li>
+  <li><strong>Live domain:</strong> lǎozǐ.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Lǎozǐ</strong> (<em>laozi</em>) — &#39;the Old Master&#39; — is the founding sage of the Daoist tradition and the name attached to the <em>Dàodé Jīng</em>, catalogued in the PÚNYCODEX corpus under the domain &#39;Founder of Daoism, Sage.&#39; The name is an honorific rather than a personal name; the standard biography identifies the man behind it as an archivist of the Zhou court surnamed Li.</p>
+<p>The figure behind the name is as elusive as the philosophy the text teaches. Whether he was a real archivist of the Zhou court, a constellation of early Daoist teachers, or a literary creation, Lǎozǐ gave classical Chinese thought its most radical statement: the way that can be told is not the eternal way.</p>
+<p>His teaching centers on <em>dào</em> (the way), <em>wúwéi</em> (non-coercive action), <em>zìrán</em> (spontaneity), and the return to an uncarved simplicity that precedes all names and schemes. The <em>Zhuangzi</em> already stages him, under the name Lao Dan, as a teacher consulted by Confucius — evidence that the legend is older than the standard biography.</p>
+<p>PÚNYCODEX restores the name as <strong>Lǎozǐ</strong> and serves its temple at <a href="https://xn--loz-hdbm.com">lǎozǐ.com</a>. The restoration preserves the Mandarin citation tones — the third (falling-rising) tone on both syllables — and because the word carries no vowel-length or stress distinctions, a tone-marked restoration of this kind is classified Tier 2 in the project&#39;s scheme. The plain ASCII form <em>laozi</em> survives as a modern convenience imposed by the early domain-name system; the tone-marked restoration, not the fallback, is the name&#39;s primary scholarly form.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is written in Chinese characters as <strong>老子</strong>: 老 <em>lǎo</em> &#39;old, venerable&#39; followed by 子 <em>zǐ</em>, the honorific suffix &#39;master&#39; borne by the classical teachers Kǒngzǐ (Confucius), Mèngzǐ, and Zhuāngzǐ. &#39;Lǎozǐ&#39; is therefore a title — &#39;the Old Master&#39; — not a personal name. The standard biography in <em>Shǐjì</em> 63 supplies the man behind it with a surname (Li), a personal name (Er), and a style (Dan), while the <em>Zhuāngzǐ</em> knows him as Lao Dan, &#39;Old Dan.&#39;</p>
+<p>The ASCII form <em>laozi</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Lǎozǐ</strong> restores the Hanyu Pinyin tone marks directly in the address bar — the caron (háček) of the third, falling-rising tone on both <em>ǎ</em> and <em>ǐ</em>. The name carries no vowel-length or stress distinctions, so a tone-marked restoration of this kind is classified Tier 2 in the project&#39;s scheme.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>l</strong> → <strong>L</strong> — Same, capitalized</li>
+  <li><strong>a</strong> → <strong>ǎ</strong> — Caron: third (falling-rising) tone</li>
+  <li><strong>o</strong> → <strong>o</strong> — Same</li>
+  <li><strong>z</strong> → <strong>z</strong> — Same</li>
+  <li><strong>i</strong> → <strong>ǐ</strong> — Caron: third (falling-rising) tone</li>
+</ul>
+<p>The project holds the domain <strong>lǎozǐ.com</strong> (xn--loz-hdbm.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is written in Chinese characters as <strong>老子</strong>, in the Hanzi script family (Sino-Tibetan), written left-to-right in modern usage and top-to-bottom in traditional layout. The graph 老 depicts an aged, long-haired figure leaning on a staff and means &#39;old, venerable&#39;; 子 pictures a swaddled infant and, as a suffix on the names of teachers, carries the honorific sense &#39;master.&#39;</p>
+<p>The scholarly transliteration is <em>Lǎozǐ</em> (Hanyu Pinyin with tone marks), in Wade-Giles <em>Lao Tzu</em>. The rendering proceeds step by step:</p>
+<ul>
+  <li>The name is written with the Chinese characters 老子.</li>
+  <li>Each character is a logogram that encodes meaning and historical pronunciation.</li>
+  <li>Hanyu Pinyin with tone marks preserves the Mandarin reading; the ASCII form loses tone.</li>
+  <li>The Unicode restoration Lǎozǐ is the registrable form because hanzi are outside the .com IDN table.</li>
+</ul>
+<p>The compound is the title under which the tradition&#39;s founding text circulated, and the manuscript record is unusually deep: the Guodian bamboo slips (c. 300 BCE) preserve the oldest portions of the text, and the two silk manuscripts from Mawangdui tomb three (sealed 168 BCE) transmit it whole, with the <em>De</em> half preceding the <em>Dào</em> half. The tone-marked restoration Lǎozǐ preserves the third tone of both syllables, which the ASCII fallback erases.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/laʊ̯˨˩ tsi˨˩/</strong> — Modern Standard Mandarin (Pinyin).</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Lǎo</strong> — Syllable with lateral approximant [l], diphthong [aʊ̯] (like &#39;ow&#39; in &#39;cow&#39;), and Tone 3 (falling-rising, ˨˩). The character 老 means &#39;old&#39;.</li>
+  <li><strong>zǐ</strong> — Syllable with unaspirated alveolo-palatal affricate [ts], high front vowel [i], and Tone 3 (falling-rising). The character 子 is an honorific &#39;master&#39; or &#39;venerable&#39;.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;LAOW-dzuh&#39; — &#39;lao&#39; like &#39;loud&#39; without the final &#39;d&#39;, with a dipping tone (down then up); &#39;zi&#39; like &#39;dzuh&#39; with the same dipping tone.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Traditional</strong> — 老子</li>
+  <li><strong>Wade-Giles</strong> — Lao Tzu</li>
+  <li><strong>Earlier name</strong> — Li Er (李耳), the personal name traditionally given to the sage</li>
+  <li><strong>Related title</strong> — Daode Tianzun (道德天尊), the deified Laozi of religious Daoism</li>
+</ul>
+<p>Lǎozǐ is Tier 2: the tone marks on both syllables preserve the Mandarin citation tones, but there are no length or stress marks. The name means &#39;Old Master,&#39; an honorific rather than a personal name. Whether Lǎozǐ was a historical figure, a composite, or a symbolic founder remains debated among scholars.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Lǎozǐ&#39;s mythology is inseparable from the biography invented for him by later tradition and from the enigmatic poems of the <em>Dàodé Jīng</em>. The sage is less a character in narrative than the voice of a teaching, but stories gathered around him to give that teaching a body.</p>
+<h3 id="the-departure-at-han-gu-guan-shiji">The Departure at Hán Gǔ Guān (Shiji)</h3>
+<p>Sīmǎ Qiān&#39;s <em>Shǐjì</em> records the most influential biography of Lǎozǐ. Weary of the Zhou court&#39;s decay, the old sage mounted a water buffalo and rode west toward the frontier. At Hán Gǔ Guān, the gatekeeper Yīn Xī recognized him and asked him to leave a record of his wisdom before disappearing into the wilderness. Lǎozǐ wrote the five thousand characters of the <em>Dàodé Jīng</em> and then passed beyond the pass, never to be seen again. The story turns the text into a gift given at the edge of the known world.</p>
+<h3 id="the-nameless-origin-daode-jing">The Nameless Origin (Dàodé Jīng)</h3>
+<p>The opening of the <em>Dàodé Jīng</em> is not a myth in the usual sense but a cosmogonic statement: &#39;The Dao that can be told is not the eternal Dao; the name that can be named is not the eternal name.&#39; From the nameless comes the origin of heaven and earth; from the named comes the mother of the ten thousand things. This framing dissolves the distinction between creator and creation, offering a process cosmology in which all things arise and return to the Dao.</p>
+<h3 id="the-deification-of-laozi-religious-daoism">The Deification of Lǎozǐ (Religious Daoism)</h3>
+<p>By the Han dynasty, Lǎozǐ had been transformed from philosopher to god. Worshipped as Tàishàng Lǎojūn, the Most High Lord Lao, he was identified as the eternal embodiment of the Dao who periodically descends to reveal saving teachings. The Táng imperial house claimed descent from him, and in religious Daoism he took his place as Dàodé Tiānzūn, one of the Three Pure Ones at the head of the pantheon. This apotheosis completed the journey from obscure archivist to cosmic savior.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Lǎozǐ concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>Ox or water buffalo</strong> — His legendary mount on which he rode westward out of China, leaving the Dàodé Jīng at the pass</li>
+  <li><strong>The empty circle</strong> — The Dao as void and source, the womb from which the ten thousand things emerge</li>
+  <li><strong>Water</strong> — The supreme image of wúwéi: soft, yielding, low, yet able to overcome the hard and strong</li>
+  <li><strong>The uncarved block (pǔ)</strong> — Primal simplicity; the state before social and linguistic differentiation</li>
+  <li><strong>The gate (guān)</strong> — Hán Gǔ Guān, the pass where Lǎozǐ is said to have composed the Dàodé Jīng at the request of Yīn Xī</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>The manuscript record of the <em>Dàodé Jīng</em> is the deepest of any early Chinese text. The Guodian tomb-one corpus (Jingmen, Hubei; closed c. 300 BCE) yielded three bundles of bamboo slips — conventionally Laozi A, B, and C — covering about a third of the received text, found together with the cosmogony <em>Taiyi sheng shui</em>. Mawangdui tomb three (sealed 168 BCE) preserved two complete silk copies, manuscripts A and B, in which the <em>De</em> half precedes the <em>Dào</em> half, reversing the received order. Pictorial stones of the Han, most famously at the Wu Liang shrine in Shandong (2nd century CE), depict the meeting of Confucius and Lǎozǐ — the earliest securely dated images of the sage, shown as an aged figure with a staff facing the younger master. Later Daoist temples preserve steles with imperial prefaces to the <em>Dàodé Jīng</em>, and the supposed site of Hán Gǔ Guān, where the <em>Shǐjì</em> says the book was written down for the gatekeeper Yīn Xī, remains a place of pilgrimage.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p><strong>Lǎozǐ</strong> is the legendary author of the <em>Dàodé Jīng</em>, the founding text of Daoism and one of the most translated books in world literature. His name means simply &#39;Old Master,&#39; and the figure behind it is as elusive as the philosophy he teaches. Whether he was a real archivist of the Zhou court, a constellation of early Daoist teachers, or a literary creation, Lǎozǐ gave classical Chinese thought its most radical statement: the way that can be told is not the eternal way.</p>
+<p>His teaching centers on <em>dào</em> (the way), <em>wúwéi</em> (non-coercive action), <em>zìrán</em> (spontaneity), and the return to an uncarved simplicity that precedes all names and schemes.</p>
+<h3 id="the-dao">The Dao</h3>
+<p>The unnamable source of all things; empty yet inexhaustible, it gives birth to heaven and earth.</p>
+<h3 id="wuwei">Wuwei</h3>
+<p>Acting without forced interference, like water that wears down stone by yielding.</p>
+<h3 id="uncarved-block">Uncarved Block</h3>
+<p>The pǔ, primal simplicity before society carves people into roles, names, and desires.</p>
+<h3 id="sage-ruler">Sage Ruler</h3>
+<p>The ideal leader governs by emptying hearts and filling bellies, keeping people simple and content.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Lǎozǐ and his text shaped not only Daoism but Chinese Buddhism, Confucianism, aesthetics, medicine, and statecraft. Early Chinese Buddhists used Daoist terms to translate Indian concepts, a process that permanently colored East Asian Buddhism. Neo-Confucian thinkers like Zhōu Dūnyí and Zhū Xī absorbed Daoist cosmology even while criticizing its quietism. In the modern West, Lǎozǐ became an icon of ecological thinking, anarchism, and mystical spirituality, though these readings often detach him from his political and ritual contexts. The <em>Dàodé Jīng</em> has been translated into more languages than any other Chinese text, making Lǎozǐ a global symbol of wisdom beyond words.</p>
+<p>Within the Daoist tradition, closely related names in the corpus include [[wuji|Wújí]] and [[yinyang|Yīnyáng]].</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Lǎozǐ&#39;s influence is woven into the texture of East Asian civilization. The <em>Dàodé Jīng</em> is studied, memorized, and quoted from childhood to old age; its aphorisms inform Chinese calligraphy, painting, martial arts, medicine, and governance. Daoist temples honor him as a deity, while scholars continue to debate the date, authorship, and meaning of his book. In the global marketplace of ideas, Lǎozǐ represents an alternative to Western activism and dualism: the sage who wins by yielding, who acts by not acting, and who finds power in emptiness. The Unicode restoration <em>Lǎozǐ</em> preserves the Mandarin tones that distinguish his name from the ordinary words for &#39;old&#39; and &#39;master.&#39;</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Lǎozǐ given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Lǎozǐ, Dàodé Jīng (received text; Mawangdui and Guodian manuscript versions). <a href="https://ctext.org/dao-de-jing">Full text</a></li>
+  <li> Sīmǎ Qiān, Shǐjì, chapter 63 (biography of Lǎozǐ).</li>
+  <li> Zhuāngzǐ (inner chapters, references to Lǎozǐ).</li>
+  <li> Lau, Lao Tzu: Tao Te Ching.</li>
+  <li> Henricks, Lao-tzu Te-tao Ching: A Translation Based on the Recently Discovered Ma-wang-tui Texts.</li>
+  <li> Kohn, Daoism and Chinese Culture.</li>
+  <li> Ames and Hall, Dao De Jing: A Philosophical Translation.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Lǎozǐ is the teacher of the vanishing point. His Dao is not a doctrine to grasp but a way to fall into, like water finding the lowest place. Every definition fails because definition itself is the act of carving what was whole.</p>
+<p>To read him is to be invited to do less, want less, and defend less. In a culture addicted to effort, Lǎozǐ proposes that the highest action resembles inaction, that the softest thing overcomes the hardest, and that the sage&#39;s power lies in being empty enough to receive the whole world.</p>
+<p>The text models the posture it recommends. &#39;The highest good is like water,&#39; says chapter 8, praising what benefits all things and does not contend; chapter 78 adds that nothing under heaven is softer or weaker than water, yet nothing surpasses it for attacking the hard and strong. The image of the uncarved block (<em>pǔ</em>) names what remains when carving stops: a simplicity not yet cut into tools, titles, and uses.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Lǎozǐ is classified as <strong>Tier 2</strong>: the original preserves at least one philological feature that ASCII cannot encode. The ASCII fallback <em>laozi</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 5 characters of the name, the restoration adjusts 2: 2 further adjustments (ǎ, ǐ). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>laozi</em> to <strong>Lǎozǐ</strong>, one character at a time:</p>
+<ul>
+  <li><strong>l</strong> → <strong>L</strong> — Same, capitalized</li>
+  <li><strong>a</strong> → <strong>ǎ</strong> — Special character</li>
+  <li><strong>o</strong> → <strong>o</strong> — Same</li>
+  <li><strong>z</strong> → <strong>z</strong> — Same</li>
+  <li><strong>i</strong> → <strong>ǐ</strong> — Special character</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>lǎozǐ.com</strong>, which the DNS carries in punycode form as xn--loz-hdbm.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Lǎozǐ; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Chinese characters can now be typed into any browser on earth.</p>
+<h2 id="the-taoist-pantheon">The Taoist Pantheon</h2>
+<p>Lǎozǐ is one of 12 entries the PÚNYCODEX lexicon catalogues under the Taoist pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Lǎozǐ mean?</strong> The traditional gloss is &quot;Old master.&quot;</p>
+<p><strong>Which tradition does Lǎozǐ belong to?</strong> Lǎozǐ is catalogued in the Taoist pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Lǎozǐ classified as Tier 2?</strong> Because the original preserves at least one philological feature that ASCII cannot encode — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Lǎozǐ a working domain?</strong> Yes — lǎozǐ.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for lǎozǐ.com?</strong> The DNS encoding is xn--loz-hdbm.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Pronunciation turns out to be the heart of the matter. The marks in <strong>Lǎozǐ</strong> are instructions for the voice, and a web that strips them is a web that mispronounces the past at scale. The restoration hands the instructions back: say it as the evidence suggests, type it as the tradition wrote it, and let the punycode machinery do the quiet translation in between. That is all the PÚNYCODEX project asks of the infrastructure — and everything it asks of you, the reader, is to use the whole name.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/zhuangzi/">Zhuāngzǐ</a></li>
   <li><a href="/sites/wuji/">Wújí</a></li>
   <li><a href="/sites/zhongliquan/">ZhōnglíQuán</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://ctext.org/dao-de-jing">Lǎozǐ, Dàodé Jīng, chapter 1.</a></li>
   <li><a href="https://ctext.org/zhuangzi">Zhuāngzǐ (dialogues between Confucius and Lao Dan, e.g. chapters 12, 13, 14).</a></li>
+  <li>Sīmǎ Qiān, Shǐjì, chapter 63 (biography of Lǎozǐ).</li>
+  <li>Sīmǎ Qiān, Shǐjì, chapter 63: &#39;surnamed Li, named Er, styled Dan.&#39;</li>
+  <li>Henricks, Lao-tzu Te-tao Ching: A Translation Based on the Recently Discovered Ma-wang-tui Texts (Ballantine, 1989).</li>
+  <li>Kohn, God of the Dao: Lord Lao in History and Myth (University of Michigan Center for Chinese Studies, 1998).</li>
+  <li>Lexicon authorities for this entry: Dao De Jing, Chinese classics.</li>
 </ul>
-<h2>What the Sources Record</h2>
-<p>Lǎozǐ is the legendary author of the Dàodé Jīng, the founding text of Daoism and one of the most translated books in world literature. His name means simply &#39;Old Master,&#39; and the figure behind it is as elusive as the philosophy he teaches. Whether he was a real archivist of the Zhou court, a constellation of early Daoist teachers, or a literary creation, Lǎozǐ gave classical Chinese thought its most radical statement: the way that can be told is not the eternal way. His teaching centers on dào (the way), wúwéi (non-coercive action), zìrán (spontaneity), and the return to an uncarved simplicity that precedes all names and schemes. ### The Dao The unnamable source of all things; empty yet inexhaustible, it gives birth to heaven and earth. ### Wuwei...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Lǎozǐ as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Chinese characters to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Lǎozǐ through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/laozi/">home page</a> offers the full name breakdown, the <a href="/sites/laozi/lore/">lore page</a> explores the myth, and the <a href="/sites/laozi/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Lǎozǐ do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
-<h2>A Note on the Address Bar</h2>
-<p>When you type Lǎozǐ, the browser performs an invisible conversion into Punycode so the global DNS can route the request. The user sees the original name; the machines see a compatible ASCII encoding. That duality is the engineering compromise that makes the restoration possible, and it is the reason every Unicode domain is both a technical milestone and a small act of cultural memory.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">taoist</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

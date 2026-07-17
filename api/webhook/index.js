@@ -1,5 +1,12 @@
 const { processWebhook } = require('../../platform/api/webhook-handler');
 const { handleError, setCors } = require('../_utils');
+const { getDb } = require('../../platform/db/connection');
+const { migrate: migratePatrons } = require('../../platform/db/migrate-patrons');
+
+// Idempotent: the Vercel SQLite database lives in ephemeral /tmp, so make sure
+// the patrons table exists before patron checkout.session.completed events are
+// applied (patron activation runs through platform/api/stripe.js handleWebhook).
+migratePatrons(getDb());
 
 function getRawBody(req) {
   return new Promise((resolve, reject) => {

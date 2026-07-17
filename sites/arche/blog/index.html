@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,45 +170,200 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#epithets-cult-titles">Epithets &amp; Cult Titles</a></li>
+                <li><a href="#the-homeric-hymns">The Homeric Hymns</a></li>
+                <li><a href="#oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-greek-pantheon">The Greek Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>How Archḗ Got Its Accent Back</h1>
-<p>The ASCII form <em>arche</em> is missing something. Archḗ restores the marks that the original language used to distinguish this name from a thousand others. The name is attested in Greek as Ἀρχή. Etymologically it means &quot;Beginning, origin, rule&quot;. The ASCII form arche survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Archḗ recovers both the stress accent and the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The letter-by-letter transformation runs: - a → A — A uppercase - r → r — r same - c → c — c same - h → h — h same - e → ḗ — Stress + length The project holds the domain archḗ.com (xn--arch-j64a.com) as the canonical home of this name.</p>
-<h2>The Missing Marks</h2>
-<p>Classified as <strong>Tier 1</strong>, this restoration carries the stress and length that standard ASCII discards. the Greek original carries both stress and length, and only one valid Unicode restoration exists</p>
-<h2>Step by Step</h2>
-<p>The transformation from <em>arche</em> to <strong>Archḗ</strong> happens one character at a time. Some letters stay the same; others gain accents, macrons, or entirely new shapes. The breakdown on the <a href="/sites/arche/">temple home page</a> shows exactly how.</p>
-<h2>Why Stress and Length Matter</h2>
-<p>In the source language, changing a stress or a vowel length can change a meaning. Names are especially sensitive because they are proper nouns: one spelling points to one entity. Archḗ preserves that pointer in a way <em>arche</em> cannot.</p>
-<h2>The Restored Form</h2>
-<p>Archḗ is now a domain. That simple fact turns a philological detail into a public demonstration. Anyone who types it participates in the restoration.</p>
-<h2>Why This Restoration Matters</h2>
-<p>Restoring Archḗ is part of a larger effort to make the web multilingual by default. The PÚNYCODEX project does not ask users to learn a new alphabet; it asks the infrastructure to respect the alphabets that already exist. A single Unicode domain is a small proof, but it is a proof that scales: every name restored makes the next one easier.</p>
-<h2>Related Names</h2>
+            <h1>How Archḗ got its accent back</h1>
+<p>The ASCII form <em>arche</em> is missing something. <strong>Archḗ</strong> restores the marks the source language used to distinguish this name from a thousand others — and those marks change how the name is read, pronounced, and understood. This post explains, with the full scholarly record behind it, what each restored mark preserves: the Greek evidence, the reconstructed sound, the myths the name carries, and the classification logic that separates Tier 1 restorations from Tier 2. By the end, the marks in Archḗ will look less like ornaments and more like what they are — recovered evidence, pinned back in its proper place.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Archḗ</li>
+  <li><strong>ASCII form:</strong> arche</li>
+  <li><strong>Meaning:</strong> &quot;Beginning, origin, rule&quot;</li>
+  <li><strong>Domain of influence:</strong> Origin, First Principle</li>
+  <li><strong>Pantheon:</strong> Greek</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Original script:</strong> Ἀρχή (Greek)</li>
+  <li><strong>Live domain:</strong> archḗ.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Archḗ</strong> (<em>arche</em>) — Origin, First Principle · Beginning, origin, rule — belongs to the Greek tradition, where it is catalogued under the domain &quot;Origin, First Principle&quot;. The name means &quot;Beginning, origin, rule&quot;.</p>
+<p>Arkhḗ is the <strong>Greek word for beginning, origin, and rule</strong>. For philosophers it names the first principle from which all things derive; for political thinkers it names legitimate authority. It is a concept so central that Western thought still builds on it.</p>
+<p>PÚNYCODEX restores the name as <strong>Archḗ</strong> and serves its temple at <a href="https://xn--arch-j64a.com">archḗ.com</a>. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>arche</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Greek as <strong>Ἀρχή</strong>. Etymologically it means &quot;Beginning, origin, rule&quot;.</p>
+<p>The ASCII form <em>arche</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Archḗ</strong> recovers both the stress accent and the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>a</strong> → <strong>A</strong> — A uppercase</li>
+  <li><strong>r</strong> → <strong>r</strong> — r same</li>
+  <li><strong>c</strong> → <strong>c</strong> — c same</li>
+  <li><strong>h</strong> → <strong>h</strong> — h same</li>
+  <li><strong>e</strong> → <strong>ḗ</strong> — Stress + length</li>
+</ul>
+<p>The project holds the domain <strong>archḗ.com</strong> (xn--arch-j64a.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is written in Greek as <strong>Ἀρχή</strong>, a first-declension feminine (genitive ἀρχῆς), accented with the acute on the final long eta — an oxytone, /ar.kʰɛ̌ː/ — which the PÚNYCODEX restoration <strong>Archḗ</strong> reproduces against the ASCII fallback <em>arche</em>.</p>
+<p>The noun stands beside the verb <strong>ἄρχω</strong>, &#39;to begin, to rule&#39;, and inherits its two senses whole: in classical usage ἀρχή means both the temporal beginning of a thing and political rule, office, or sovereignty. The doubleness is native to the word, not a later accretion, and the lexicon tracks it from Homer onward.</p>
+<p>Beyond Greek the trail ends: ἄρχω has no accepted Indo-European etymology — the comparative dictionaries record none and treat the verb&#39;s origin as unresolved.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/ar.kʰɛ̌ː/</strong> — Attic Greek Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Ar-</strong> — Alpha-rho, the unstressed opening of the word.</li>
+  <li><strong>-khḗ</strong> — Aspirated kappa with long eta and acute/circumflex [kʰɛ̌ː], the pitch peak and the core meaning &#39;beginning, rule, first principle&#39;.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;ar-KHAY&#39; — the second syllable is long, pitched high, and begins with a breathy &#39;kh&#39;.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Greek</strong> — ἀρχή (arkhḗ), beginning, origin, rule, first principle</li>
+  <li><strong>Verb</strong> — ἄρχω (árkhō), &#39;to begin, to rule&#39;</li>
+  <li><strong>English</strong> — archaic, archbishop, anarchy, hierarchy — all from the same root</li>
+</ul>
+<p>Arkhḗ is Tier 1 because the Greek ἀρχή contains both length (η) and stress (acute/circumflex) on the same syllable. The word is foundational for Greek philosophy, political theory, and theology.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Arkhḗ has <strong>no traditional mythology</strong>. Its stories are philosophical: the search by Greek thinkers for the first thing, the ruling thing, the thing from which everything else can be understood.</p>
+<h3 id="water-as-arche-thales">Water as Arche (Thales)</h3>
+<p>Thales of Miletus declared that water (hydōr) is the archē of all things. Living things need water; land floats on water; water can become solid, liquid, and vaporous. His claim launched Western philosophy by asking not what things are made of but what they come from.</p>
+<h3 id="the-boundless-anaximander">The Boundless (Anaximander)</h3>
+<p>Anaximander argued that the archē cannot be any one element like water, since opposites must be generated from something neutral. He called it the apeiron, the boundless or indefinite, from which all things arise and to which they return by necessity.</p>
+<h3 id="the-four-causes-aristotle">The Four Causes (Aristotle)</h3>
+<p>Aristotle organized the search for archē into four causes: material, formal, efficient, and final. To know a thing is to know its archai. This framework dominated Western science and metaphysics until the scientific revolution.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>A concept-word has no inherited iconography, and antiquity personified no &#39;Beginning&#39;: Archḗ never acquired the attributes a cult figure carries. The emblems below are modern glyphs compressing the word&#39;s double sense, with the nearest ancient analogues noted.</p>
+<ul>
+  <li><strong>Cornerstone</strong> — the first stone that fixes the position of every other: beginning as foundation, the sense Aristotle isolates when he defines the ἀρχή as that &#39;from which a thing first comes to be&#39; (Metaphysics 983b).</li>
+  <li><strong>Spring</strong> — origin as source: the image implicit in the Milesian question, the one source from which the many flow.</li>
+  <li><strong>Scepter</strong> — rule descending from primordial authority: the political pole of the word, the archon&#39;s office.</li>
+  <li><strong>Alpha</strong> — the first letter as the cipher of beginning, consecrated in Christian usage: &#39;I am the Alpha and the Omega, the beginning (ἀρχή) and the end&#39; (Revelation 21:6), the letters that flank the cross in early Christian and Byzantine art.</li>
+</ul>
+<p>No Greek image personifies Archḗ; the concept never acquired a face in ancient art. Its visual afterlife is alphabetic and Christian. Revelation&#39;s declaration &#39;I am the Alpha and the Omega, the beginning (archḗ) and the end&#39; (21:6; cf. 22:13) generated one of the most durable symbols of Christian art: the letters Α and Ω flanking the cross, the Chi-Rho, or the enthroned Christ on sarcophagi, in catacomb painting, and on Byzantine and medieval coinage. In that indirect sense archḗ became one of the most-depicted concepts of European art — but always as letters and light, never as a person. Classical antiquity offers no prototype: for the Greeks the principle of things was argued, not portrayed.</p>
+<ul>
+  <li><strong>Spring or source</strong> — The origin from which a river flows</li>
+</ul>
+<h2 id="epithets-cult-titles">Epithets &amp; Cult Titles</h2>
+<p>Archḗ has no epithets, because no one prayed to it; its predicates are the honorifics of philosophy and scripture:</p>
+<ul>
+  <li><strong>ἡ ἀρχὴ τῶν πάντων</strong> (<em>hē archḗ tôn pántōn</em>) — &#39;the principle of all things&#39;: Aristotle&#39;s formula for what Thales sought in water (Metaphysics 983b).</li>
+  <li><strong>τὸ ἄπειρον</strong> (<em>tò ápeiron</em>) — &#39;the boundless&#39;: Anaximander&#39;s name for the archḗ itself, the indefinite source of the opposites (DK 12 B1).</li>
+  <li><strong>ἐν ἀρχῇ</strong> (<em>en archêi</em>) — &#39;in the beginning&#39;: the opening of John&#39;s Gospel (John 1:1), which made archḗ the first word of Christian cosmology.</li>
+  <li><strong>ἡ ἀρχὴ καὶ τὸ τέλος</strong> — &#39;the beginning and the end&#39;: the divine self-predication of Revelation 21:6, completing the word&#39;s theological career.</li>
+</ul>
+<h2 id="the-homeric-hymns">The Homeric Hymns</h2>
+<p>No Homeric Hymn is addressed to Archḗ: a concept of origin and rule cannot be the addressee of cult song, and the hymnic corpus knows no personified &#39;Beginning&#39;. The word&#39;s earliest life is ordinary epic vocabulary — the verb <strong>ἄρχω</strong>, &#39;to begin, to rule&#39;, and its compounds are pervasive in Homer and Hesiod — but its transmutation into a technical term is the founding act of Greek philosophy. The Milesians asked what the ἀρχή of all things is: Aristotle (Metaphysics 983b) reports Thales&#39; answer, water, and preserves Anaximander&#39;s rival claim that the archḗ is the <strong>ἄπειρον</strong>, the boundless, from which coming-to-be arises for all things and into which destruction returns of necessity (DK 12 B1).</p>
+<h2 id="oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</h2>
+<p>Archḗ had no oracle or sanctuary: there was never a cult of the First Principle. Its &#39;sites&#39; are institutional and textual. In every Greek polis the <strong>ἀρχαί</strong> were the magistracies — the archons of Athens, the kings of Sparta, the kosmoi of Crete — so the agora and the council-house were the word&#39;s civic home. Philosophically, its sanctuaries were the schools: Miletus, where the question was first posed; Plato&#39;s Academy and Aristotle&#39;s Lyceum at Athens, where Metaphysics 983b codified the search; and later the Neoplatonic schools, for which archḗ named the supreme One. The word rules from texts and offices, not from temples.</p>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>No sanctuary, altar, or votive dedicated to Archḗ is attested: there was never a cult of the First Principle, and the absence is complete. The word&#39;s material trace is epigraphic and administrative rather than religious.</p>
+<p>Its most instructive monument is the <strong>Parian Marble</strong> (IG XII².5, 444), a chronicle inscribed on Paros in 264/3 BCE that dates the whole of Greek memory — from the reign of Cecrops to the chronicler&#39;s present — by the names of Athens&#39; kings and eponymous archons: Greek time itself is organized by ἀρχαί, each year named for the officer who &#39;begins&#39; it.</p>
+<p>Inscribed lists of Athenian archons preserve the same institution in stone, while the philosophical archḗ survives in the library rather than the soil: Anaximander&#39;s sentence on the boundless reaches us only through Simplicius&#39; sixth-century quotation (DK 12 B1). The concept&#39;s archaeology is textual transmission.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Arkhḗ is the <strong>Greek word for beginning, origin, and rule</strong>. For philosophers it names the first principle from which all things derive; for political thinkers it names legitimate authority. It is a concept so central that Western thought still builds on it.</p>
+<h3 id="first-principle">First Principle</h3>
+<p>For the Presocratics, the archē is water, air, fire, or the boundless from which all things come.</p>
+<h3 id="rule-and-authority">Rule and Authority</h3>
+<p>The same word means &#39;rule&#39; or &#39;office&#39;; origin and authority are inseparable in Greek.</p>
+<h3 id="cosmogonic-source">Cosmogonic Source</h3>
+<p>In Orphic and Neoplatonic thought, archē names the ultimate source of the cosmos.</p>
+<h3 id="foundation">Foundation</h3>
+<p>Every discipline seeks its archē: the axiom, cause, or origin from which it proceeds.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Latin received ἀρχή as <strong>principium</strong>, and through that translation the Greek concept passed into Roman philosophy, law, and Christian Latinity.</p>
+<p>Christian scripture made the word cosmic: John&#39;s Gospel opens <strong>ἐν ἀρχῇ ἦν ὁ λόγος</strong>, &#39;in the beginning was the Word&#39; (John 1:1), and Revelation seals the formula with &#39;the beginning and the end&#39; (21:6). The plural <strong>ἀρχαί</strong> simultaneously named the celestial &#39;principalities&#39; of Pauline cosmology (Colossians 1:16; Ephesians 6:12), the powers that rule the present age.</p>
+<p>Late antique philosophy absorbed the term as doctrine: Plotinus structures reality as three ἀρχαί — the One, Intellect, and Soul (Enneads 5.1) — and Neoplatonic systems thereafter speak of first principles by this word.</p>
+<p>The modern heirs are lexical and critical: monarch, anarchy, hierarchy, archive, archaeology. Derrida&#39;s Archive Fever (1995) reopens the word itself, reading archḗ as the doubled law of &#39;commencement and commandment&#39; that governs every archive.</p>
+<p>Within the Greek tradition, closely related names in the corpus include [[acheron|Achérōn]], [[adamas|Adámas]], [[aer|Aḗr]], [[aither|Aithḗr]], [[ananke|Anánkē]], and [[andromeda|Andromedē]].</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Archḗ survives most visibly in the lexicon: <strong>archaeology</strong> (&#39;the study of beginnings&#39;), <strong>architect</strong> (&#39;master builder&#39;), <strong>archive</strong>, <strong>archon</strong>, and the -archy family — monarchy, anarchy, hierarchy, oligarchy — all carry the root, splitting neatly along the word&#39;s two ancient senses of beginning and of rule.</p>
+<p>The concept still organizes how the West argues about legitimacy: authority is expected to derive from a valid beginning — a founding, a constitution, a first principle — and the counter-idea is equally Greek, since an-archy is simply archḗ negated. Derrida&#39;s Archive Fever (1995) made the point current, reading archḗ as at once &#39;commencement&#39; and &#39;commandment&#39;, and the arkheion — the archon&#39;s residence where official documents were kept — as the primal scene of every archive.</p>
+<p>To restore the name in Unicode is to restore the question from which Western philosophy begins: what comes first, and on what authority.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Archḗ given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Full text</a></li>
+  <li> Beekes, Etymological Dictionary of Greek.</li>
+  <li> Aristotle, Metaphysics.</li>
+  <li> Thales and Anaximander, fragments (DK).</li>
+  <li> Plato, Laws and Republic.</li>
+  <li> Kirk, Raven, and Schofield, The Presocratic Philosophers.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Arkhḗ is the question that never stops being asked. What comes first? What rules? What makes everything else possible? Every civilization answers differently — water, fire, air, God, energy, information — but the form of the question is Greek.</p>
+<p>The double meaning of archē — beginning and rule — is itself a wisdom. To begin something is to establish authority over it. The founder of a city, the first principle of a science, the opening sentence of a story: all are archai. The word thus invites us to examine our own beginnings, for they determine the shape of everything that follows.</p>
+<p>Every archive is an archḗ that outlived its archon. The Greeks filed their decrees in the arkheion, the magistrate&#39;s residence, and the word still governs how civilizations remember: what is preserved at the beginning determines what can be known at the end.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Archḗ is classified as <strong>Tier 1</strong>: the original carries both stress and length, and only one valid Unicode restoration exists. The ASCII fallback <em>arche</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 5 characters of the name, the restoration adjusts 1: 1 further adjustment (ḗ). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>arche</em> to <strong>Archḗ</strong>, one character at a time:</p>
+<ul>
+  <li><strong>a</strong> → <strong>A</strong> — A uppercase</li>
+  <li><strong>r</strong> → <strong>r</strong> — r same</li>
+  <li><strong>c</strong> → <strong>c</strong> — c same</li>
+  <li><strong>h</strong> → <strong>h</strong> — h same</li>
+  <li><strong>e</strong> → <strong>ḗ</strong> — Stress + length</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>archḗ.com</strong>, which the DNS carries in punycode form as xn--arch-j64a.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Archḗ; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Greek can now be typed into any browser on earth.</p>
+<h2 id="the-greek-pantheon">The Greek Pantheon</h2>
+<p>Archḗ is one of 263 entries the PÚNYCODEX lexicon catalogues under the Greek pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Archḗ mean?</strong> The traditional gloss is &quot;Beginning, origin, rule.&quot;</p>
+<p><strong>Which tradition does Archḗ belong to?</strong> Archḗ is catalogued in the Greek pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Archḗ classified as Tier 1?</strong> Because the original carries both stress and length, and only one valid Unicode restoration exists — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Archḗ a working domain?</strong> Yes — archḗ.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for archḗ.com?</strong> The DNS encoding is xn--arch-j64a.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>The marks in <strong>Archḗ</strong> were never lost; they were only waiting for a carrier that could hold them. Now that the carrier exists, the burden flips: every use of <em>arche</em> is a choice to leave evidence on the table. The PÚNYCODEX temple keeps the restored form in circulation — as a domain, a dataset entry, and a scholarly argument — so that the choice to use it stays easy. Accent by accent, macron by macron, that is how the original names come back: not with a single grand gesture, but with a spelling that finally works everywhere.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/hyperion/">Hyperiōn</a></li>
   <li><a href="/sites/iris/">Íris</a></li>
   <li><a href="/sites/kairos/">Kairós</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843.</a></li>
+  <li>Beekes, Etymological Dictionary of Greek.</li>
+  <li>Aristotle, Metaphysics.</li>
+  <li>Beekes, Etymological Dictionary of Greek, s.v. ἄρχω.</li>
+  <li>Aristotle, Metaphysics 983b (the search for the first archē).</li>
+  <li>Lexicon authorities for this entry: Anaximander, LSJ.</li>
 </ul>
-<h2>The Cultural Afterlife</h2>
-<p>Archḗ survives most visibly in the lexicon: archaeology (&#39;the study of beginnings&#39;), architect (&#39;master builder&#39;), archive, archon, and the -archy family — monarchy, anarchy, hierarchy, oligarchy — all carry the root, splitting neatly along the word&#39;s two ancient senses of beginning and of rule. The concept still organizes how the West argues about legitimacy: authority is expected to derive from a valid beginning — a founding, a constitution, a first principle — and the counter-idea is equally Greek, since an-archy is simply archḗ negated. Derrida&#39;s Archive Fever (1995) made the point current, reading archḗ as at once &#39;commencement&#39; and &#39;commandment&#39;, and the arkheion — the archon&#39;s residence where official documents were kept — as the primal scene...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Archḗ as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Greek to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Archḗ through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/arche/">home page</a> offers the full name breakdown, the <a href="/sites/arche/lore/">lore page</a> explores the myth, and the <a href="/sites/arche/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
-<h2>Why This Name Still Travels</h2>
-<p>Names like Archḗ do not retire. They resurface in translations, in adaptations, in brand names, and in scholarly debates because they still do useful cultural work. Keeping the original spelling alive in a domain is one way to make sure that work continues in the digital layer.</p>
-<h2>A Note on the Address Bar</h2>
-<p>When you type Archḗ, the browser performs an invisible conversion into Punycode so the global DNS can route the request. The user sees the original name; the machines see a compatible ASCII encoding. That duality is the engineering compromise that makes the restoration possible, and it is the reason every Unicode domain is both a technical milestone and a small act of cultural memory.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">greek</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>

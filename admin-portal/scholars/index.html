@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNYCODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js" defer></script>
+<!-- PUNYCODEX-ANALYTICS-END -->
+
+<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
+<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Admin Portal — Scholars Review | PÚNYCODEX</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../portal.css">
+</head>
+<body data-page="scholars" data-depth="1">
+    <a class="skip-link" href="#portal-main">Skip to content</a>
+    <div id="portal-header"></div>
+
+    <main id="portal-main" class="portal-main">
+        <div class="portal-page-head">
+            <h1>Scholars Review</h1>
+            <p>Pending scholarly edits and media uploads. Actions are recorded as the PÚNYCODEX Team curator with your portal account in the audit trail.</p>
+        </div>
+
+        <div class="queue-grid">
+            <section class="panel" aria-label="Pending edits">
+                <div class="panel-head">
+                    <h2 class="panel-title">Pending Edits</h2>
+                    <span class="badge badge--pending" id="edits-count">0</span>
+                </div>
+                <div id="edits-list">
+                    <div class="state-block">Loading edits…</div>
+                </div>
+            </section>
+
+            <section class="panel" aria-label="Pending media">
+                <div class="panel-head">
+                    <h2 class="panel-title">Pending Media</h2>
+                    <span class="badge badge--pending" id="media-count">0</span>
+                </div>
+                <div id="media-list">
+                    <div class="state-block">Loading media…</div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="../portal.js"></script>
+    <script>
+    (function () {
+        var canReview = false;
+
+        function renderEdits(edits) {
+            var list = document.getElementById('edits-list');
+            document.getElementById('edits-count').textContent = Portal.fmtNumber(edits.total);
+            var items = edits.items || [];
+            if (!items.length) {
+                list.innerHTML = '<div class="state-block">No pending edits. Queue clear.</div>';
+                return;
+            }
+            list.innerHTML = items
+                .map(function (e) {
+                    var actions = canReview
+                        ? '<button type="button" class="btn btn-sm btn-success" data-kind="edit" data-action="approve" data-id="' + e.id + '">Approve</button>' +
+                          '<button type="button" class="btn btn-sm btn-danger" data-kind="edit" data-action="reject" data-id="' + e.id + '">Reject</button>' +
+                          '<button type="button" class="btn btn-sm btn-secondary" data-kind="edit" data-action="needs_revision" data-id="' + e.id + '">Needs Revision</button>'
+                        : '';
+                    return (
+                        '<article class="queue-card">' +
+                        '<div class="queue-card-meta">' +
+                        '<span class="badge badge--gold">' + Portal.escapeHtml(e.entry_id || '—') + '</span>' +
+                        '<span class="badge badge--business">' + Portal.escapeHtml(e.section_label || e.section_key || '—') + '</span>' +
+                        '<span class="cell-sub">' + Portal.escapeHtml(Portal.fmtDateTime(e.created_at)) + '</span>' +
+                        '</div>' +
+                        '<div class="queue-card-title">' + Portal.escapeHtml(e.display_name || e.email || 'Unknown author') + '</div>' +
+                        '<div class="cell-sub">' + Portal.escapeHtml(e.email || '') + '</div>' +
+                        '<div class="queue-card-body">' + Portal.escapeHtml(e.proposed_body || '(empty body)') + '</div>' +
+                        (e.editor_notes ? '<div class="cell-sub">Editor notes: ' + Portal.escapeHtml(e.editor_notes) + '</div>' : '') +
+                        '<div class="queue-card-actions">' + actions + '</div>' +
+                        '</article>'
+                    );
+                })
+                .join('');
+        }
+
+        function renderMedia(media) {
+            var list = document.getElementById('media-list');
+            document.getElementById('media-count').textContent = Portal.fmtNumber(media.total);
+            var items = media.items || [];
+            if (!items.length) {
+                list.innerHTML = '<div class="state-block">No pending media. Queue clear.</div>';
+                return;
+            }
+            list.innerHTML = items
+                .map(function (m) {
+                    var actions = canReview
+                        ? '<button type="button" class="btn btn-sm btn-success" data-kind="media" data-action="approve" data-id="' + m.id + '">Approve</button>' +
+                          '<button type="button" class="btn btn-sm btn-danger" data-kind="media" data-action="reject" data-id="' + m.id + '">Reject</button>'
+                        : '';
+                    var size = m.size_bytes ? ' · ' + Math.round(m.size_bytes / 1024) + ' KB' : '';
+                    return (
+                        '<article class="queue-card">' +
+                        '<div class="queue-card-meta">' +
+                        '<span class="badge badge--business">' + Portal.escapeHtml(m.mime_type || 'file') + '</span>' +
+                        '<span class="cell-sub">' + Portal.escapeHtml(Portal.fmtDateTime(m.created_at)) + '</span>' +
+                        '</div>' +
+                        '<div class="queue-card-title">' + Portal.escapeHtml(m.filename || '—') + '</div>' +
+                        '<div class="cell-sub">' + Portal.escapeHtml(m.uploader_name || m.uploader_email || 'Unknown uploader') + size + '</div>' +
+                        (m.caption ? '<div class="cell-sub">Caption: ' + Portal.escapeHtml(m.caption) + '</div>' : '') +
+                        (m.license ? '<div class="cell-sub">License: ' + Portal.escapeHtml(m.license) + '</div>' : '') +
+                        '<div class="queue-card-body"><a href="' + Portal.escapeHtml(m.url || '#') + '" target="_blank" rel="noopener noreferrer" style="color:var(--portal-gold);word-break:break-all;">' + Portal.escapeHtml(m.url || '') + '</a></div>' +
+                        '<div class="queue-card-actions">' + actions + '</div>' +
+                        '</article>'
+                    );
+                })
+                .join('');
+        }
+
+        async function load() {
+            try {
+                var data = await Portal.api('/api/admin/portal/scholars/pending/?limit=100');
+                renderEdits(data.edits || { items: [], total: 0 });
+                renderMedia(data.media || { items: [], total: 0 });
+            } catch (err) {
+                var block = '<div class="state-block error">' + Portal.escapeHtml(err.message) + '</div>';
+                document.getElementById('edits-list').innerHTML = block;
+                document.getElementById('media-list').innerHTML = block;
+            }
+        }
+
+        function showDecisionModal(kind, id, action) {
+            var title = action === 'needs_revision' ? 'Request Revision' : action === 'reject' ? 'Reject' : 'Approve';
+            var withComment = kind === 'edit' && action !== 'approve';
+            Portal.openModal(
+                '<h2>' + title + ' ' + (kind === 'edit' ? 'Edit' : 'Media') + ' #' + id + '</h2>' +
+                (withComment
+                    ? '<div class="field"><label for="decision-comment">Comment (sent to the author)</label>' +
+                      '<textarea id="decision-comment" placeholder="What needs to change?"></textarea></div>'
+                    : '<p>Confirm this ' + title.toLowerCase() + ' action.</p>') +
+                '<div class="modal-actions">' +
+                '<button type="button" class="btn btn-secondary" id="modal-cancel">Cancel</button>' +
+                '<button type="button" class="btn ' + (action === 'approve' ? 'btn-success' : 'btn-danger') + '" id="modal-confirm">' + title + '</button>' +
+                '</div>',
+                title + ' ' + kind
+            );
+            document.getElementById('modal-cancel').addEventListener('click', Portal.closeModal);
+            document.getElementById('modal-confirm').addEventListener('click', async function () {
+                var btn = this;
+                btn.disabled = true;
+                var comment = withComment ? document.getElementById('decision-comment').value.trim() : '';
+                try {
+                    if (action === 'approve') {
+                        await Portal.api('/api/admin/portal/scholars/' + kind + '/' + id + '/approve/', {
+                            method: 'POST',
+                            body: comment ? { comment: comment } : {},
+                        });
+                    } else {
+                        await Portal.api('/api/admin/portal/scholars/' + kind + '/' + id + '/reject/', {
+                            method: 'POST',
+                            body: { comment: comment, status: action === 'needs_revision' ? 'needs_revision' : 'rejected' },
+                        });
+                    }
+                    Portal.closeModal();
+                    Portal.toast(title + ' recorded', 'success');
+                    load();
+                } catch (err) {
+                    btn.disabled = false;
+                    Portal.toast(title + ' failed: ' + err.message, 'error');
+                }
+            });
+        }
+
+        async function init() {
+            var ctx = await Portal.initShell('scholars');
+            if (!ctx) return;
+            canReview = Portal.can('scholars');
+
+            document.getElementById('portal-main').addEventListener('click', function (e) {
+                var btn = e.target.closest('button[data-action]');
+                if (!btn) return;
+                showDecisionModal(btn.getAttribute('data-kind'), btn.getAttribute('data-id'), btn.getAttribute('data-action'));
+            });
+
+            load();
+        }
+
+        init();
+    })();
+    </script>
+
+<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+</body>
+</html>

@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
 <!-- PUNYCODEX-ANALYTICS-START -->
@@ -41,8 +41,8 @@
             "@type": "Organization",
             "name": "PÚNYCODEX Team"
         },
-        "datePublished": "2026-07-16",
-        "dateModified": "2026-07-16",
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
         "publisher": {
             "@type": "Organization",
             "name": "PUNYCODEX",
@@ -60,16 +60,26 @@
     </script>
     
     <style>
-        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; }
-        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); margin: 2rem 0 1rem; line-height: 1.3; }
-        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); }
-        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
         .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
         .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
         .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
         .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
         .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
         .blog-meta-sep { opacity: 0.4; }
         .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
@@ -77,7 +87,7 @@
         .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
         .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
         .blog-cta a { color: var(--primary-bright, #f0d878); }
-        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
     </style>
 </head>
 <body>
@@ -160,40 +170,197 @@
         <div class="blog-meta reveal-up">
             <span>By PÚNYCODEX Team</span>
             <span class="blog-meta-sep">&middot;</span>
-            <time datetime="2026-07-16">2026-07-16</time>
+            <time datetime="2026-07-17">2026-07-17</time>
             <span class="blog-meta-sep">&middot;</span>
-            <span>4 min read</span>
+            <span>14 min read</span>
         </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-phoenician-pantheon">The Phoenician Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#typing-mot">Typing Mōt</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
         <div class="blog-body reveal-up">
-            <h1>Mōt in 2026: Why Scholars Still Care</h1>
-<p>In 2026, names are treated as data points. Mōt is a reminder that they are also cultural artifacts. Mōt (mot) — Death, Underworld · Death — belongs to the Phoenician tradition, where it is catalogued under the domain &quot;Death, Underworld&quot;. The name means &quot;Death&quot;. Mōt is the personified appetite of death in Canaanite myth — not a reaper with a scythe but a being whose throat is a chasm and whose jaws grind gods and mortals alike. In the Baꜥal Cycle he is the necessary opposite of the storm-god: where Baꜥal brings rain, Mōt brings the parched season when growth stops and the world turns to dust. PÚNYCODEX restores the name as Mōt and serves its temple at mōt.com. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form mot survives as a... The question is not whether the name is old, but whether the digital world is old enough to hold it.</p>
-<h2>The Scholarly Argument</h2>
-<p>The name is attested in Phoenician as 𐤌𐤕. Etymologically it means &quot;Death&quot;. The ASCII form mot survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration Mōt recovers the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The letter-by-letter transformation runs: - m → M — Same, capitalized - o → ō — Long vowel - t → t — Same The project holds the domain mōt.com (xn--mt-vra.com) as the canonical home of this name. The PÚNYCODEX Scholarly Edition collects these arguments in one place, with sources and revision history, so the claim can be inspected rather than merely asserted.</p>
-<h2>What the Accent Preserves</h2>
-<p>This entry is classified as <strong>Tier 1</strong>. the Greek original carries both stress and length, and only one valid Unicode restoration exists Those marks are not ornaments; they are the coordinates that place the name inside a language.</p>
-<h2>A Living Edition</h2>
-<p>The <a href="/sites/mot/scholars/">Scholarly Edition</a> is not a static page. Verified contributors can improve it, and every change is attributed. That model turns a blog post like this one into an invitation to dig deeper.</p>
-<h2>Where to Learn More</h2>
+            <h1>Mōt in 2026: why scholars still care</h1>
+<p>In 2026, names are treated as data points. <strong>Mōt</strong> is a reminder that they are also cultural artifacts — and that the difference matters for search engines, AI training corpora, and anyone who types the name of a Phoenician figure into a browser. Scholars never stopped caring about the difference between <em>mot</em> and Mōt; the web simply made that care actionable. What follows is the full scholarly picture — name, script, sound, myth, cult, and legacy — followed by the engineering compromise that lets a restored spelling live at a real address. The question is not whether the name is old. It is whether the digital world is old enough to hold it.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Mōt</li>
+  <li><strong>ASCII form:</strong> mot</li>
+  <li><strong>Meaning:</strong> &quot;Death&quot;</li>
+  <li><strong>Domain of influence:</strong> Death, Underworld</li>
+  <li><strong>Pantheon:</strong> Phoenician</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Original script:</strong> 𐤌𐤕 (Phoenician)</li>
+  <li><strong>Live domain:</strong> mōt.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Mōt</strong> (<em>mot</em>) — Death, Underworld · Death — belongs to the Phoenician tradition, where it is catalogued under the domain &quot;Death, Underworld&quot;. The name means &quot;Death&quot;.</p>
+<p>Mōt is the <strong>personified appetite of death</strong> in Canaanite myth — not a reaper with a scythe but a being whose throat is a chasm and whose jaws grind gods and mortals alike. In the Baꜥal Cycle he is the necessary opposite of the storm-god: where Baꜥal brings rain, Mōt brings the parched season when growth stops and the world turns to dust.</p>
+<p>PÚNYCODEX restores the name as <strong>Mōt</strong> and serves its temple at <a href="https://xn--mt-vra.com">mōt.com</a>. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>mot</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Phoenician as <strong>𐤌𐤕</strong>. Etymologically it means &quot;Death&quot;.</p>
+<p>The ASCII form <em>mot</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Mōt</strong> recovers the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>m</strong> → <strong>M</strong> — Same, capitalized</li>
+  <li><strong>o</strong> → <strong>ō</strong> — Long vowel</li>
+  <li><strong>t</strong> → <strong>t</strong> — Same</li>
+</ul>
+<p>The project holds the domain <strong>mōt.com</strong> (xn--mt-vra.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Phoenician as <strong>𐤌𐤕</strong> — Northwest Semitic abjad, attested Iron Age, c. 1050–800 BCE, in Levant. The script is written right-to-left.</p>
+<p>The scholarly transliteration is <em>Mōt</em> (Phoenician abjad), giving the normalized reading /ˈmoːt/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The name is written 𐤌𐤕 in the Phoenician abjad.</li>
+  <li>Phoenician writing records consonants only; vowels are supplied by modern scholars from cognate languages.</li>
+  <li>The final vowel markings in the transliteration are inferred from older Northwest Semitic case endings.</li>
+  <li>The Unicode restoration Mōt is registrable in .com; the Phoenician form is not in the .com IDN table.</li>
+</ul>
+<p>Ugaritic writes the name 𐎎𐎚 (m-t), Phoenician 𐤌𐤕 (m-t), and Hebrew מות (m-w-t). The macron over <strong>ō</strong> in Mōt marks a reconstructed long vowel; the actual quality differs by dialect (Phoenician mūt, Hebrew māwet), while Ugaritic mt is vowelless in writing. The name is the common Canaanite word for &#39;death,&#39; here personified as a god. Tier 1: the macron preserves a reconstructed long vowel.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/moːt/</strong> — Canaanite/Phoenician Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>m</strong> — Voiced bilabial nasal [m].</li>
+  <li><strong>ō</strong> — Long back-mid rounded vowel [oː]; the macron marks length only. The exact quality varies by dialect (Phoenician mūt, Hebrew māwet, Ugaritic mt is vowelless in writing).</li>
+  <li><strong>t</strong> — Voiceless alveolar stop [t], unaspirated.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: &#39;MOHT&#39; — one syllable with a long, drawn-out o (or oo) and a crisp final t.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Ugaritic</strong> — 𐎎𐎚 (mt), the personified Death of the Baal Cycle</li>
+  <li><strong>Phoenician</strong> — 𐤌𐤕 (mūt), the divine name in Philo of Byblos/Sanchuniathon</li>
+  <li><strong>Hebrew</strong> — מָוֶת (māweṯ), &#39;death&#39;</li>
+  <li><strong>Akkadian</strong> — 𒍗 (mūtu), the common noun for death</li>
+</ul>
+<p>The name is the Canaanite word for &#39;death.&#39; The macron on the registrable Mōt signals vowel length, not a fixed quality: Phoenician has mūt, Hebrew māwet, and Ugaritic mt gives no vowels. We follow the PUNYCODEX macron convention with /moːt/; hear a long low/back vowel rather than the short English &#39;o.&#39; Tier 1: the macron preserves a reconstructed long vowel. Sources: KTU, CIS/KAI, Smith The Ugaritic Baal Cycle, Day Yahweh and the Gods and Goddesses of Canaan.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Mōt&#39;s mythology is the dark season of the year made personal. His stories are preserved in the Baꜥal Cycle, where he confronts Baꜥal, kills him, and is in turn destroyed and reborn in a cycle that explains drought, death, and the return of fertility.</p>
+<h3 id="the-summons-the-baal-cycle">The Summons (The Baal Cycle)</h3>
+<p>In KTU 1.4 vii–viii, Mōt sends word to Baꜥal: because he was not invited to the storm-god&#39;s feast, he will feast on Baꜥal himself. His messengers describe a throat like a lion&#39;s, a gullet like a whale&#39;s, and an appetite that devours by the double handful. Baꜥal&#39;s own envoys are warned not to come too close, &#39;lest he make you like a lamb in his mouth&#39; (KTU 1.4 viii 17–20).</p>
+<h3 id="the-descent-and-death-the-baal-cycle">The Descent and Death (The Baal Cycle)</h3>
+<p>In KTU 1.5, Baꜥal submits. He descends into Mōt&#39;s mouth and dies. Ēl mourns on the ground, cutting himself with stones; the rains fail and the earth grows dry. Even the high god cannot reverse Mōt&#39;s claim — at least, not directly. The cosmos enters the season of death.</p>
+<h3 id="anat-s-harvest-the-baal-cycle">Anat&#39;s Harvest (The Baal Cycle)</h3>
+<p>In KTU 1.6 ii, ꜥAnat searches for Baꜥal, buries him on Mount Zaphon, then confronts Mōt. She seizes him, splits him with a sword, winnows him like grain, burns him with fire, grinds him under a millstone, and scatters him over a field. The act is agricultural as much as martial: death itself is threshed, ground, and sown away so that Baꜥal may return.</p>
+<h3 id="the-rematch-the-baal-cycle">The Rematch (The Baal Cycle)</h3>
+<p>Seven years later Mōt returns (KTU 1.6 vi). He and Baꜥal fight like bulls, serpents, and stallions, neither able to prevail. Finally the sun-goddess Shapash warns Mōt that Ēl will overturn his throne if he does not yield. Mōt submits, and Baꜥal&#39;s kingship is restored. The cycle is not a once-for-all victory but the turning of the seasons: death returns, and is pushed back again.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>Mōt has no iconography in the strict sense: no statue, seal, or relief from the ancient Levant can be assigned to him, and the Ugaritic offering lists never name him. His attributes are the images the Baꜥal Cycle itself supplies:</p>
+<ul>
+  <li><strong>The gaping mouth</strong> — &#39;one lip to the earth, one lip to the heavens, and a tongue to the stars&#39; (KTU 1.5 i 2–4); his throat is the underworld itself</li>
+  <li><strong>The lamb in the jaws</strong> — Baꜥal&#39;s envoys are warned to keep their distance, &#39;lest he make you like a lamb in his mouth&#39; (KTU 1.4 viii 17–20)</li>
+  <li><strong>Dust and parched earth</strong> — the landscape of his rule and the sign of his victory over Baꜥal</li>
+  <li><strong>Sword, sieve, fire, millstone</strong> — the agricultural implements with which ꜥAnat splits him, winnows him, burns him, grinds him, and sows him in the field (KTU 1.6 ii 31–35)</li>
+</ul>
+<ul>
+  <li><strong>Devouring mouth</strong> — His throat is the underworld itself; his jaws crush gods and mortals</li>
+  <li><strong>Dust and dry earth</strong> — The landscape of his kingdom and the sign of his victory over Baꜥal</li>
+  <li><strong>Sword and winnowing fan</strong> — The tools ꜥAnat uses to split, scatter, and destroy him</li>
+  <li><strong>Seven portions</strong> — The meal Mōt demands; he eats by double handfuls and drinks a river</li>
+  <li><strong>Desert wasteland</strong> — The parched country where death&#39;s rule is felt most keenly</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Mōt&#39;s entire record is literary. The Baꜥal Cycle tablets from Ras Shamra (KTU 1.4–1.6), copied in the fourteenth–thirteenth centuries BCE and signed in their colophon by the scribe Ilimilku, are the principal witnesses to his threats, his swallowing of Baꜥal, and his dismemberment by ꜥAnat. The negative evidence is equally telling: Mōt is absent from the Ugaritic god lists and offering lists, no temple or sanctuary of his has been identified, and no theophoric personal name invokes him — the element mt in Ugaritic names means &#39;man&#39; or &#39;warrior&#39;, not the god. West Semitic religion acknowledged Death as a cosmic force while refusing it a household cult. The only later Phoenician witness is literary as well: the Muth of Philo of Byblos&#39; Phoenician History, preserved in Greek excerpts by Eusebius of Caesarea.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Mōt is the <strong>personified appetite of death</strong> in Canaanite myth — not a reaper with a scythe but a being whose throat is a chasm and whose jaws grind gods and mortals alike. In the Baꜥal Cycle he is the necessary opposite of the storm-god: where Baꜥal brings rain, Mōt brings the parched season when growth stops and the world turns to dust.</p>
+<h3 id="personified-death">Personified Death</h3>
+<p>The name itself is the Canaanite word for death; in Ugaritic he is a god, not merely an abstraction.</p>
+<h3 id="insatiable-hunger">Insatiable Hunger</h3>
+<p>KTU 1.5 i describes a throat like a lion&#39;s, a gullet like a whale&#39;s, and an appetite that swallows armies.</p>
+<h3 id="seasonal-drought">Seasonal Drought</h3>
+<p>His victory over Baꜥal brings years of barrenness; his defeat restores the rains and the fertility of the land.</p>
+<h3 id="underworld-sovereign">Underworld Sovereign</h3>
+<p>He rules the arṣ, the land of death to which every living thing must eventually descend.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>The Hellenistic Phoenician account preserved by Eusebius of Caesarea — quoting Philo of Byblos, who summarized Sanchuniathon — makes Mōt (Muth) a son of El and Rhea, deified after death and identified by the Phoenicians with the Greek Thanatos and Pluto. A more speculative cosmogonic strand in the same tradition makes Mōt arise from primal mud or putrefaction, the source from which the seeds of creation emerge. In the Hebrew Bible the common noun <em>māwet</em> (&#39;death&#39;) sometimes appears almost personified, especially in Hosea 13:14, suggesting that the Canaanite figure lingered in Israelite imagination even where he was no longer worshipped.</p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include [[hades|Hádēs]], [[kanaloa|Kānāloa]], [[ker|Kēr]], [[persephone|Persephonē]], and [[thanatos|Thánatos]], each linked through underworld / death.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Mōt&#39;s name never died because it never needed a cult: Hebrew <em>māwet</em>, Phoenician <em>mūt</em>, and Arabic <em>mawt</em> are simply the everyday Semitic words for death, and the Ugaritic record suggests this was always so — Mōt appears in myth but not in the offering lists, a god everyone feared and no one worshipped. His afterlife is therefore literary. The personified Death of the prophets passes into Greek as Thanatos in the Septuagint, is taunted by Paul in Hosea&#39;s words (&#39;Where, O death, is your sting?&#39;, 1 Corinthians 15:55), rides the pale horse of Revelation 6:8, and is finally thrown into the lake of fire (Revelation 20:14) — the far end of the personification tradition that begins with Mōt&#39;s gaping mouth.</p>
+<p>Modern scholarship treats the Baꜥal–Mōt conflict as the classic test case for &#39;dying and rising&#39; mythology, usually as a warning against facile equations with later Christian narrative: the cycle is read today as a myth of the agricultural year, not of resurrection. In modern fantasy, games, and Neopagan reconstructions, Mōt appears as the Canaanite lord of the underworld — a reminder that every pantheon must make room for the figure who says, &#39;All feasting ends here.&#39;</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Mōt given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> KTU (Ugaritic texts).</li>
+  <li> Smith, The Ugaritic Baal Cycle.</li>
+  <li> Coogan, Stories from Ancient Canaan.</li>
+  <li> Day, Yahweh and the Gods and Goddesses of Canaan.</li>
+  <li> Eusebius, Praeparatio Evangelica (quoting Philo of Byblos/Sanchuniathon). <a href="https://www.tertullian.org/fathers/eusebius_pe_01_book1.htm">Full text</a></li>
+  <li> Hebrew Bible, Hosea 13:14 (personified death).</li>
+  <li> KTU 1.4 vii–viii (Mot&#39;s summons).</li>
+  <li> KTU 1.5 (Baal&#39;s descent into Mot).</li>
+  <li> KTU 1.6 (Anat defeats Mot; the rematch).</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Mōt is the god nobody wants to meet and nobody can avoid. He is not evil; he is <strong>hungry</strong>. His throat does not distinguish between good and bad, rich and poor, god and mortal. That is what makes him terrifying, and that is what makes him honest. Every other deity in the pantheon has favorites; Mōt has only appetite.</p>
+<p>Yet Mōt is also necessary. Without the dry season, the seed would rot. Without the limit of death, life would have no shape. The Canaanites did not deny him; they told stories about how to survive him — how a sister&#39;s rage, a sun-goddess&#39;s warning, and a storm&#39;s return could push death back into its season. Mōt teaches that mortality is not a punishment but a boundary, and that the boundary is what makes the feast possible.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Mōt is classified as <strong>Tier 1</strong>: the original carries both stress and length, and only one valid Unicode restoration exists. The ASCII fallback <em>mot</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 3 characters of the name, the restoration adjusts 1: 1 mark of length (ō). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>mot</em> to <strong>Mōt</strong>, one character at a time:</p>
+<ul>
+  <li><strong>m</strong> → <strong>M</strong> — Same, capitalized</li>
+  <li><strong>o</strong> → <strong>ō</strong> — Long vowel</li>
+  <li><strong>t</strong> → <strong>t</strong> — Same</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>mōt.com</strong>, which the DNS carries in punycode form as xn--mt-vra.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Mōt; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Phoenician can now be typed into any browser on earth.</p>
+<h2 id="the-phoenician-pantheon">The Phoenician Pantheon</h2>
+<p>Mōt is one of 8 entries the PÚNYCODEX lexicon catalogues under the Phoenician pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 895 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Mōt mean?</strong> The traditional gloss is &quot;Death.&quot;</p>
+<p><strong>Which tradition does Mōt belong to?</strong> Mōt is catalogued in the Phoenician pantheon of the PÚNYCODEX lexicon.</p>
+<p><strong>Why is Mōt classified as Tier 1?</strong> Because the original carries both stress and length, and only one valid Unicode restoration exists — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Mōt a working domain?</strong> Yes — mōt.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for mōt.com?</strong> The DNS encoding is xn--mt-vra.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="typing-mot">Typing Mōt</h2>
+<p>You do not need a special keyboard to use this restoration. The <a href="/type/">PÚNYCODEX Type Tool</a> converts the ASCII form <em>mot</em> into <strong>Mōt</strong> as you type, and the browser extension offers the same conversion inside any text field. Copy the restored form, paste it into the address bar, and the DNS does the rest.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>In 2026 the stakes are practical. Search indexes, language models, and localization pipelines all inherit whatever spelling the web normalizes — which means every Unicode domain is also a training signal. <strong>Mōt</strong> teaches the machinery that the restored form exists, that it is used, and that it points to a real place. That is why a project built on philology ends up caring about DNS: the infrastructure decides which names the future sees. This restoration makes sure the future sees the whole name.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PÚNYCODEX blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
 <ul>
   <li><a href="/sites/kothar/">Kôṯaru</a></li>
   <li><a href="/sites/astart/">Aštart</a></li>
   <li><a href="/sites/shapash/">Šāpšu</a></li>
 </ul>
-<h2>Sources</h2>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
 <ul>
   <li><a href="https://www.tertullian.org/fathers/eusebius_pe_01_book1.htm">Eusebius, Praeparatio Evangelica 1.10 (Philo of Byblos&#39; Muth).</a></li>
   <li><a href="https://aibl.fr/travaux/le-cabinet-du-corpus-inscriptionum-semiticarum/">Corpus Inscriptionum Semiticarum, Académie des Inscriptions et Belles-Lettres, Paris, 1881.</a></li>
   <li><a href="https://www.harrassowitz-verlag.de/titel_544.ahtml">Kanaanäische und Aramäische Inschriften, 3 vols., Harrassowitz, Wiesbaden (completed 1971), 1962.</a></li>
   <li><a href="https://www.ancientneareast.net/ugarit-ras-shamra/">Ugaritic Textual Corpus, Ras Shamra–Ugarit corpus (KTU / CUSAS), 1200 BCE.</a></li>
+  <li>KTU (Ugaritic texts).</li>
+  <li>Smith, The Ugaritic Baal Cycle.</li>
+  <li>Coogan, Stories from Ancient Canaan.</li>
+  <li>van der Toorn, Becking &amp; van der Horst (eds.), Dictionary of Deities and Demons in the Bible, s.v. &#39;Mot&#39; (absence from offering lists and theophoric names).</li>
+  <li>Lexicon authorities for this entry: Ugaritic texts, CIS.</li>
 </ul>
-<h2>What the Sources Record</h2>
-<p>Mōt is the personified appetite of death in Canaanite myth — not a reaper with a scythe but a being whose throat is a chasm and whose jaws grind gods and mortals alike. In the Baꜥal Cycle he is the necessary opposite of the storm-god: where Baꜥal brings rain, Mōt brings the parched season when growth stops and the world turns to dust. ### Personified Death The name itself is the Canaanite word for death; in Ugaritic he is a god, not merely an abstraction. ### Insatiable Hunger KTU 1.5 i describes a throat like a lion&#39;s, a gullet like a whale&#39;s, and an appetite that swallows armies. ### Seasonal Drought His victory over Baꜥal brings years of barrenness; his defeat restores the rains and the fertility of the land. ### Underworld Sovereign He rules the...</p>
-<h2>The PÚNYCODEX Angle</h2>
-<p>The PÚNYCODEX project treats Mōt as more than a curiosity. It is a proof that the domain-name system can carry the full weight of human naming, from Phoenician to the modern browser. Every visit to this temple is a small act of preservation.</p>
-<h2>For Developers and Linguists</h2>
-<p>The PÚNYCODEX dataset exposes Mōt through a versioned API, making the restoration usable by search engines, localization pipelines, and scholarly tools. Because the canonical sources are stored as structured JSON, every improvement flows automatically to the temple, the extension, and the mobile app.</p>
-<h2>Visit the Temple</h2>
-<p>If this post sparked your curiosity, the <a href="/sites/mot/">home page</a> offers the full name breakdown, the <a href="/sites/mot/lore/">lore page</a> explores the myth, and the <a href="/sites/mot/scholars/">Scholarly Edition</a> provides the footnotes. Each page is a doorway into the same restoration.</p>
         </div>
         <div class="blog-tags reveal-up" aria-label="Tags">
             <span class="blog-tag">phoenician</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>
