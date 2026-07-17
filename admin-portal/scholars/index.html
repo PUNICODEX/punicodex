@@ -5,10 +5,6 @@
 <script src="/js/analytics-beacon.js" defer></script>
 <!-- PUNICODEX-ANALYTICS-END -->
 
-<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
-<script src="/js/university-collaborators.js?v=2" defer></script>
-<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex,nofollow">
@@ -120,9 +116,9 @@
                 .join('');
         }
 
-        async function load() {
+        async function load(promise) {
             try {
-                var data = await Portal.api('/api/admin/portal/scholars/pending/?limit=100');
+                var data = await (promise || Portal.api('/api/admin/portal/scholars/pending/?limit=100'));
                 renderEdits(data.edits || { items: [], total: 0 });
                 renderMedia(data.media || { items: [], total: 0 });
             } catch (err) {
@@ -175,8 +171,14 @@
         }
 
         async function init() {
+            // Fire the queue fetch in parallel with the shell's /me round
+            // trip instead of waiting for the shell first.
+            var firstLoad = Portal.api('/api/admin/portal/scholars/pending/?limit=100');
             var ctx = await Portal.initShell('scholars');
-            if (!ctx) return;
+            if (!ctx) {
+                firstLoad.catch(function () {});
+                return;
+            }
             canReview = Portal.can('scholars');
 
             document.getElementById('portal-main').addEventListener('click', function (e) {
@@ -185,15 +187,11 @@
                 showDecisionModal(btn.getAttribute('data-kind'), btn.getAttribute('data-id'), btn.getAttribute('data-action'));
             });
 
-            load();
+            load(firstLoad);
         }
 
         init();
     })();
     </script>
-
-<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
-<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
-<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
 </body>
 </html>

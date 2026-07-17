@@ -13,7 +13,7 @@ const {
   parseIdParam,
   getRouteParam,
   portalAuth,
-  portalService,
+  getPortalService,
 } = require('../../../../_portal.js');
 
 module.exports = async (req, res) => {
@@ -34,7 +34,7 @@ module.exports = async (req, res) => {
     const id = parseIdParam(req);
     if (id == null) return res.status(400).json({ error: 'Invalid application id' });
 
-    return res.json(await portalService.approveApplication(kind, id, auth, req.body || {}));
+    return res.json(await getPortalService().approveApplication(kind, id, auth, req.body || {}));
   } catch (err) {
     sendError(res, err);
   }

@@ -5,10 +5,6 @@
 <script src="/js/analytics-beacon.js" defer></script>
 <!-- PUNICODEX-ANALYTICS-END -->
 
-<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
-<script src="/js/university-collaborators.js?v=2" defer></script>
-<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex,nofollow">
@@ -129,15 +125,19 @@
             document.getElementById('apps-next').disabled = items.length < data.limit;
         }
 
-        async function load() {
+        function fetchApplications() {
+            var params = new URLSearchParams();
+            if (state.kind) params.set('kind', state.kind);
+            if (state.status) params.set('status', state.status);
+            params.set('limit', String(PAGE_SIZE));
+            params.set('offset', String(state.offset));
+            return Portal.api('/api/admin/portal/applications/?' + params.toString());
+        }
+
+        async function load(promise) {
             document.getElementById('apps-table').innerHTML = '<div class="state-block">Loading applications…</div>';
             try {
-                var params = new URLSearchParams();
-                if (state.kind) params.set('kind', state.kind);
-                if (state.status) params.set('status', state.status);
-                params.set('limit', String(PAGE_SIZE));
-                params.set('offset', String(state.offset));
-                renderTable(await Portal.api('/api/admin/portal/applications/?' + params.toString()));
+                renderTable(await (promise || fetchApplications()));
             } catch (err) {
                 document.getElementById('apps-table').innerHTML =
                     '<div class="state-block error">' + Portal.escapeHtml(err.message) + '</div>';
@@ -241,8 +241,14 @@
         }
 
         async function init() {
+            // Fire the first page fetch in parallel with the shell's /me
+            // round trip instead of waiting for the shell first.
+            var firstLoad = fetchApplications();
             var ctx = await Portal.initShell('applications');
-            if (!ctx) return;
+            if (!ctx) {
+                firstLoad.catch(function () {});
+                return;
+            }
 
             document.getElementById('filter-apply').addEventListener('click', function () {
                 state.kind = document.getElementById('filter-kind').value;
@@ -267,15 +273,11 @@
                 else showRejectModal(kind, id);
             });
 
-            load();
+            load(firstLoad);
         }
 
         init();
     })();
     </script>
-
-<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
-<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
-<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
 </body>
 </html>

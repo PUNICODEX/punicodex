@@ -124,8 +124,11 @@ async function getRevenueStats(days = 30) {
   cutoff.setDate(cutoff.getDate() - days);
   const cutoffIso = cutoff.toISOString();
 
-  const daily = await all(
-    `
+  // Independent aggregates — run concurrently (each is a cross-region round
+  // trip on Postgres).
+  const [daily, totalRevenueRow, totalBookingsRow] = await Promise.all([
+    all(
+      `
       SELECT
         date(created_at) as day,
         COUNT(*) as bookings,
@@ -136,24 +139,23 @@ async function getRevenueStats(days = 30) {
       GROUP BY day
       ORDER BY day ASC
     `,
-    [cutoffIso]
-  );
-
-  const totalRevenueRow = await get(
-    `
+      [cutoffIso]
+    ),
+    get(
+      `
       SELECT COALESCE(SUM(amount_paid_cents), 0) as c
       FROM bookings
       WHERE status IN ('live', 'ended', 'approved')
     `
-  );
-
-  const totalBookingsRow = await get(
-    `
+    ),
+    get(
+      `
       SELECT COUNT(*) as c
       FROM bookings
       WHERE status IN ('live', 'ended', 'approved')
     `
-  );
+    ),
+  ]);
 
   const totalRevenue = totalRevenueRow?.c || 0;
   const totalBookings = totalBookingsRow?.c || 0;

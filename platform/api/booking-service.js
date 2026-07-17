@@ -259,7 +259,11 @@ async function applyBookingRequest({
 }
 
 async function sendVerification(email) {
-  if (!email?.includes('@')) throw new BookingError(400, 'Valid email required');
+  // Type guard: non-string emails either lack .includes() (numbers, booleans,
+  // objects → 500) or slip past it (arrays coerce into the SQL bind).
+  if (typeof email !== 'string' || !email.includes('@')) {
+    throw new BookingError(400, 'Valid email required');
+  }
 
   const code = crypto.randomInt(100000, 1000000).toString();
   const expires = new Date(Date.now() + 10 * 60 * 1000).toISOString();
@@ -279,6 +283,9 @@ async function sendVerification(email) {
 
 async function checkVerification(email, code) {
   if (!email || !code) throw new BookingError(400, 'Email and code required');
+  // Type guard: non-string emails (booleans, objects, arrays) throw
+  // driver-level bind errors at the SQL layer — reject before the DB call.
+  if (typeof email !== 'string') throw new BookingError(400, 'Email and code required');
 
   const row = await get('SELECT * FROM email_verifications WHERE email = $1', [email]);
   if (!row) {
@@ -440,7 +447,11 @@ async function renewBooking(token, extensionMonthsInput) {
 }
 
 async function recoverBookings(email) {
-  if (!email?.includes('@')) throw new BookingError(400, 'Valid email required');
+  // Same type guard as sendVerification: non-string emails must never reach
+  // .includes() or the SQL bind.
+  if (typeof email !== 'string' || !email.includes('@')) {
+    throw new BookingError(400, 'Valid email required');
+  }
   const bookings = await getBookingsByEmail(email);
   if (bookings.length === 0) {
     return { sent: true, message: 'If bookings exist for this email, a link has been sent.' };

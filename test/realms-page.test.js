@@ -50,4 +50,12 @@ assert.strictEqual(
 );
 assertions++;
 
+// The page carries a single, valid CollectionPage JSON-LD block.
+const ldBlocks = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
+assert.strictEqual(ldBlocks.length, 1, 'expected exactly one JSON-LD block on the realms page');
+const ld = JSON.parse(ldBlocks[0][1]);
+assert.strictEqual(ld['@type'], 'CollectionPage', 'realms JSON-LD must be a CollectionPage');
+assert.strictEqual(ld.url, 'https://punicodex.com/realms/', 'realms JSON-LD url mismatch');
+assertions += 3;
+
 console.log(`Realms Page Tests: ${assertions} assertions passed`);

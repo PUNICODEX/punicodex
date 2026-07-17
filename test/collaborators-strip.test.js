@@ -4,6 +4,9 @@
  * Guards the redesigned pre-footer collaborators strip:
  *  - the mount contract injected into public pages (id, role, aria-label,
  *    versioned css/js assets),
+ *  - placement: markers/mount present on public pages (homepage, temple
+ *    pages) and absent from admin surfaces (admin portal canonical + synced
+ *    copy, legacy admin-* dashboards, crawler admin page),
  *  - the empty state renders a single quiet invitation row (not four
  *    identical "Reserve Your Place" boxes),
  *  - addSponsor() re-renders real sponsor cards (monogram fallback, tier),
@@ -101,6 +104,60 @@ test('injector serves cache-busted asset URLs and stays idempotent', () => {
   assert.ok(
     src.includes('PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START'),
     'expected head marker for idempotent injection'
+  );
+});
+
+// ── Placement: public pages carry the strip, admin surfaces do not ──
+
+const STRIP_MARKERS = [
+  'PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START',
+  'PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START',
+  'id="university-collaborators-strip"',
+  '/css/university-collaborators.css',
+  '/js/university-collaborators.js',
+];
+
+function assertStripPresent(rel) {
+  const html = fs.readFileSync(path.join(root, rel), 'utf8');
+  for (const marker of STRIP_MARKERS) {
+    assert.ok(html.includes(marker), `${rel}: expected strip marker/asset ${marker}`);
+  }
+}
+
+function assertStripAbsent(rel) {
+  const html = fs.readFileSync(path.join(root, rel), 'utf8');
+  for (const marker of STRIP_MARKERS) {
+    assert.ok(!html.includes(marker), `${rel}: unexpected strip marker/asset ${marker}`);
+  }
+}
+
+test('strip markers and mount are present on representative public pages', () => {
+  assertStripPresent('index.html');
+  // A base (non-flagship) temple: flagship pages are fully rewritten by
+  // create-flagship --regenerate-all, so between that step and the injector
+  // step of npm run generate they transiently lack the strip.
+  assertStripPresent(path.join('sites', 'aaru', 'index.html'));
+});
+
+test('strip markers and mount are absent from admin surfaces', () => {
+  assertStripAbsent(path.join('platform', 'public', 'admin-portal', 'index.html'));
+  assertStripAbsent(path.join('admin-portal', 'index.html'));
+  assertStripAbsent(path.join('platform', 'public', 'admin-api-keys.html'));
+  assertStripAbsent('admin.html');
+});
+
+test('injector encodes the admin-surface exclusion list', () => {
+  const src = fs.readFileSync(INJECTOR_PATH, 'utf8');
+  assert.ok(src.includes('EXCLUDED_ADMIN_DIRS'), 'expected an admin dir exclusion list');
+  assert.ok(src.includes('admin-portal'), 'expected the admin portal dirs to be excluded');
+  assert.ok(
+    src.includes('platform/public/admin-') || src.includes('admin-[^/]+'),
+    'expected the legacy admin-* dashboards to be excluded'
+  );
+  assert.ok(src.includes('isExcludedAdminSurface'), 'expected an admin exclusion check');
+  assert.ok(
+    src.includes('stripFromFile'),
+    'expected excluded admin pages to be stripped, not just skipped'
   );
 });
 

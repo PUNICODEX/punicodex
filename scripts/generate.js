@@ -34,7 +34,6 @@ const scripts = [
   'platform/generate-unicode-dir-v2.js',
   'scripts/sync-shared-lexicon.js',
   'scripts/sync-shared-engine.js',
-  'scripts/convert-images-to-webp.js',
   'scripts/build-android-assets.js',
   'scripts/export-platform-lexicon.js',
   'scripts/generate-similarities.js',
@@ -48,6 +47,9 @@ const scripts = [
   'scripts/sync-public-copy.js',
   'scripts/generate-temples.js',
   'scripts/create-flagship.js --regenerate-all',
+  // Must run AFTER create-flagship: flagship regeneration rewrites pages with
+  // bare <img> markup, so the WebP/dimension enrichment only survives if applied last.
+  'scripts/convert-images-to-webp.js',
   'scripts/generate-scholars-taxonomy.js',
   'scripts/generate-scholars-content.js',
   'scripts/generate-scholars-manifests.js',

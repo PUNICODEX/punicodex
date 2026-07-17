@@ -9,7 +9,7 @@ const {
   sendError,
   parseLimitOffset,
   portalAuth,
-  portalService,
+  getPortalService,
 } = require('../../_portal.js');
 
 module.exports = async (req, res) => {
@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
     const auth = await portalAuth.requirePortal(req, res, 'read');
     if (!auth) return;
     const { limit } = parseLimitOffset(req);
-    return res.json(portalService.getScholarsPending({ limit }));
+    return res.json(getPortalService().getScholarsPending({ limit }));
   } catch (err) {
     sendError(res, err);
   }

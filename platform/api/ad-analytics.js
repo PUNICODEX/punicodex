@@ -107,7 +107,9 @@ async function trackViewability(token, visibleSeconds, visiblePercent, req, res)
 }
 
 async function getDashboard(token, res) {
-  if (!token) {
+  // Repeated query params arrive as an array; a non-string token would throw
+  // at the SQL bind (500). Reject with 400 instead.
+  if (!token || typeof token !== 'string') {
     return res.status(400).json({ error: 'token required' });
   }
   try {
@@ -118,7 +120,10 @@ async function getDashboard(token, res) {
     res.json(data);
   } catch (err) {
     console.error('Analytics dashboard error:', err);
-    res.status(500).json({ error: err.message });
+    // Match the production masking in api/_utils.js handleError: a 500 body
+    // must not serialize internal error details (SQL messages, paths).
+    const prod = process.env.NODE_ENV === 'production' || Boolean(process.env.VERCEL);
+    res.status(500).json({ error: prod ? 'Internal server error' : err.message });
   }
 }
 

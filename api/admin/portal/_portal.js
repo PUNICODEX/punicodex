@@ -5,7 +5,18 @@
 
 const { setCors, handleError, getRouteParam } = require('../../_utils.js');
 const portalAuth = require('../../../platform/api/admin-portal-auth.js');
-const portalService = require('../../../platform/api/admin-portal-service.js');
+
+// The portal service pulls in the whole composition layer (bookings,
+// scholars, patrons, observability) — far too heavy to load eagerly for the
+// auth-only routes (me/login/logout/users). Require it lazily on first use
+// so those routes stay cheap on serverless cold start.
+let portalService = null;
+function getPortalService() {
+  if (!portalService) {
+    portalService = require('../../../platform/api/admin-portal-service.js');
+  }
+  return portalService;
+}
 
 function setPortalCors(req, res) {
   setCors(req, res);
@@ -39,5 +50,5 @@ module.exports = {
   parseLimitOffset,
   getRouteParam,
   portalAuth,
-  portalService,
+  getPortalService,
 };

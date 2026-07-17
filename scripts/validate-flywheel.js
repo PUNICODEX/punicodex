@@ -701,7 +701,7 @@ if (!fs.existsSync(sitemapPath)) {
   addUrl('/terms/');
   addUrl('/terms/advertising/');
   addUrl('/privacy/');
-  addUrl('/404.html');
+  // Note: /404.html is intentionally NOT in the sitemap (error pages must not be indexed).
   for (const entry of lexicon) {
     addUrl(`/sites/${entry.id}/`);
     if (flagshipIds.has(entry.id)) {

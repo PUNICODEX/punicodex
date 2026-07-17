@@ -263,6 +263,51 @@ async function runTests() {
     assert.strictEqual(badEmail.status, 400);
   });
 
+  await test('malformed payload shapes return 4xx, never 5xx (auth-service type guards)', async () => {
+    // createUser: non-string email/displayName must not crash normalization
+    // or the SQL bind.
+    const numericEmail = await invoke(usersHandler, 'POST', '/api/admin/portal/users/', {
+      headers: adminHeader(superToken),
+      body: { email: 42, password: 'whatever-123', role: 'viewer' },
+    });
+    assert.strictEqual(numericEmail.status, 400);
+
+    const objectName = await invoke(usersHandler, 'POST', '/api/admin/portal/users/', {
+      headers: adminHeader(superToken),
+      body: {
+        email: 'guard@portal.test',
+        password: 'whatever-123',
+        role: 'viewer',
+        displayName: { name: 'x' },
+      },
+    });
+    assert.strictEqual(objectName.status, 201);
+    assert.strictEqual(objectName.body.user.displayName, null);
+
+    // updateUser: non-string displayName → 400 before the SQL bind.
+    const target = db()
+      .prepare('SELECT id FROM admin_users WHERE email = ?')
+      .get('ops@portal.test');
+    const patchName = await invoke(
+      userPatchHandler,
+      'PATCH',
+      `/api/admin/portal/users/${target.id}/`,
+      {
+        headers: adminHeader(superToken),
+        params: { id: String(target.id) },
+        body: { displayName: ['x'] },
+      }
+    );
+    assert.strictEqual(patchName.status, 400);
+
+    // changePassword: non-string currentPassword → 401, never a bcrypt 500.
+    const pwChange = await invoke(passwordHandler, 'POST', '/api/admin/portal/me/password/', {
+      headers: adminHeader(superToken),
+      body: { currentPassword: {}, newPassword: 'new-password-123' },
+    });
+    assert.strictEqual(pwChange.status, 401);
+  });
+
   await test('GET /users lists all portal users (superadmin)', async () => {
     const res = await invoke(usersHandler, 'GET', '/api/admin/portal/users/', {
       headers: adminHeader(superToken),

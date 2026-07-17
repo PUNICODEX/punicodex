@@ -31,11 +31,19 @@ const { logAction } = require('./admin-actions');
 const { generateTempPassword } = require('./admin-portal-auth');
 
 // Cold-start schema for every subsystem the portal touches. All migrations
-// are idempotent; safe to run on every serverless cold start.
-const db = getDb();
-migrateScholars(db);
-migrateQuality(db);
-migratePatrons(db);
+// are idempotent. Runs lazily before the first DB use (once per serverless
+// instance) instead of at require time, so importing this module — now
+// deferred by api/admin/portal/_portal.js until a data route is hit — stays
+// cheap.
+let serviceSchemaReady = false;
+function ensureServiceSchema() {
+  if (serviceSchemaReady) return;
+  const db = getDb();
+  migrateScholars(db);
+  migrateQuality(db);
+  migratePatrons(db);
+  serviceSchemaReady = true;
+}
 
 function portalError(status, message, code) {
   return Object.assign(new Error(message), { status, code });
@@ -45,13 +53,46 @@ function portalError(status, message, code) {
 // Dashboard
 // ─────────────────────────────────────────────────────────────
 
+// The dashboard aggregates a dozen queries across four subsystems (several
+// cross-region round trips on Postgres). Memoize the payload briefly so a
+// burst of portal page loads shares one snapshot; the payload carries
+// generatedAt, so consumers can always see the snapshot's age.
+const DASHBOARD_CACHE_TTL_MS = 45 * 1000;
+let dashboardCache = null; // { payload, cachedAt }
+
 async function getDashboard() {
+  ensureServiceSchema();
+  if (dashboardCache && Date.now() - dashboardCache.cachedAt < DASHBOARD_CACHE_TTL_MS) {
+    return dashboardCache.payload;
+  }
+
+  // Every aggregate is best-effort: a single failing source (a table that
+  // exists in only one driver, a transient upstream error) must not take the
+  // whole portal landing page down — the affected widget shows zeros instead.
+  const orFallback = (label, promise, fallback) =>
+    promise.catch((err) => {
+      console.warn(`[portal] dashboard source "${label}" degraded: ${err.message}`);
+      return fallback;
+    });
+
   const [pendingBusinessRow, revenue, metrics, health, patronStats] = await Promise.all([
-    get("SELECT COUNT(*) as c FROM bookings WHERE status = 'pending_application'"),
-    getRevenueStats(30),
-    getMetrics({ hours: 24 }),
-    getHealthSummary(),
-    patronService.getPatronStats(),
+    orFallback(
+      'pendingBusiness',
+      get("SELECT COUNT(*) as c FROM bookings WHERE status = 'pending_application'"),
+      null
+    ),
+    orFallback('revenue', getRevenueStats(30), { daily: [] }),
+    orFallback('metrics', getMetrics({ hours: 24 }), {
+      totalRequests: 0,
+      errorCount: 0,
+      errorRate: 0,
+    }),
+    orFallback('health', getHealthSummary(), { activeSites: 0 }),
+    orFallback('patronStats', patronService.getPatronStats(), {
+      active: 0,
+      estimatedMrrCents: 0,
+      estimatedMrrDollars: '0.00',
+    }),
   ]);
 
   const universityPending = dbApi.countSponsorshipApplications({ status: 'pending' });
@@ -61,7 +102,7 @@ async function getDashboard() {
   const revenue30dCents = revenue.daily.reduce((sum, d) => sum + d.revenueCents, 0);
   const bookings30d = revenue.daily.reduce((sum, d) => sum + d.bookings, 0);
 
-  return {
+  const payload = {
     generatedAt: new Date().toISOString(),
     applications: {
       businessPending: pendingBusinessRow?.c || 0,
@@ -90,6 +131,8 @@ async function getDashboard() {
     },
     indexedSites: health.activeSites,
   };
+  dashboardCache = { payload, cachedAt: Date.now() };
+  return payload;
 }
 
 // ─────────────────────────────────────────────────────────────
@@ -133,37 +176,46 @@ function toUniversityApplication(row) {
 }
 
 async function listApplications({ kind = null, status = null, limit = 100, offset = 0 } = {}) {
+  ensureServiceSchema();
   const businessStatus = status === 'pending' || !status ? 'pending_application' : status;
   const universityStatus = status || null;
 
-  let business = [];
+  // Business reads go through the async driver: fire the list and the
+  // pending-count queries up front so they overlap (two sequential
+  // cross-region round trips otherwise). The university side stays
+  // synchronous SQLite and runs while those are in flight.
+  const businessPromise =
+    !kind || kind === 'business'
+      ? all(
+          `SELECT b.*, s.name as slot_name
+           FROM bookings b
+           JOIN ad_slots s ON b.slot_id = s.id
+           WHERE b.status = $1
+           ORDER BY b.created_at DESC
+           LIMIT 500`,
+          [businessStatus]
+        )
+      : Promise.resolve([]);
+  const pendingBusinessPromise = get(
+    "SELECT COUNT(*) as c FROM bookings WHERE status = 'pending_application'"
+  );
+
   let university = [];
-  if (!kind || kind === 'business') {
-    business = (
-      await all(
-        `SELECT b.*, s.name as slot_name
-         FROM bookings b
-         JOIN ad_slots s ON b.slot_id = s.id
-         WHERE b.status = $1
-         ORDER BY b.created_at DESC
-         LIMIT 500`,
-        [businessStatus]
-      )
-    ).map(toBusinessApplication);
-  }
   if (!kind || kind === 'university') {
     university = dbApi
       .listSponsorshipApplications({ status: universityStatus, limit: 500, offset: 0 })
       .map(toUniversityApplication);
   }
 
+  const [businessRows, pendingBusinessRow] = await Promise.all([
+    businessPromise,
+    pendingBusinessPromise,
+  ]);
+  const business = businessRows.map(toBusinessApplication);
+
   const items = [...business, ...university]
     .sort((a, b) => String(b.createdAt).localeCompare(String(a.createdAt)))
     .slice(offset, offset + limit);
-
-  const pendingBusinessRow = await get(
-    "SELECT COUNT(*) as c FROM bookings WHERE status = 'pending_application'"
-  );
 
   return {
     items,
@@ -225,6 +277,7 @@ function uniqueInstitutionSlug(name) {
 }
 
 async function approveUniversityApplication(id, actor, { reviewComment } = {}) {
+  ensureServiceSchema();
   const application = dbApi.getSponsorshipApplicationById(Number(id));
   if (!application) throw portalError(404, 'Application not found');
   if (application.status !== 'pending') {
@@ -301,6 +354,7 @@ async function approveUniversityApplication(id, actor, { reviewComment } = {}) {
 }
 
 async function rejectUniversityApplication(id, actor, { reviewComment } = {}) {
+  ensureServiceSchema();
   const application = dbApi.getSponsorshipApplicationById(Number(id));
   if (!application) throw portalError(404, 'Application not found');
   if (application.status !== 'pending') {
@@ -348,6 +402,7 @@ async function rejectApplication(kind, id, actor, body = {}) {
 // ─────────────────────────────────────────────────────────────
 
 async function listPatronsAdmin({ temple, status, limit = 100, offset = 0 } = {}) {
+  ensureServiceSchema();
   if (status && !patronService.PATRON_ADMIN_STATUSES.includes(status)) {
     throw portalError(
       400,
@@ -362,6 +417,7 @@ async function listPatronsAdmin({ temple, status, limit = 100, offset = 0 } = {}
 }
 
 async function updatePatronStatus(id, status, actor) {
+  ensureServiceSchema();
   const updated = await patronService.setPatronStatus(id, status);
   if (!updated) throw portalError(404, 'Patron not found');
   await logAction({
@@ -378,6 +434,7 @@ async function updatePatronStatus(id, status, actor) {
 // ─────────────────────────────────────────────────────────────
 
 function getScholarsPending({ limit = 100 } = {}) {
+  ensureServiceSchema();
   const capped = Math.min(Math.max(Number(limit) || 100, 1), 500);
   return {
     edits: {
@@ -392,6 +449,7 @@ function getScholarsPending({ limit = 100 } = {}) {
 }
 
 function getTeamCurator() {
+  ensureServiceSchema();
   // The canonical "PuniCodex Team" curator identity used for machine-side
   // scholarly actions; the acting portal user is recorded in admin_actions.
   return ensureAdminIdentity(getDb()).user;
@@ -431,6 +489,7 @@ function notifyAuthorOfDecision(edit, section, temple, decision, comment) {
 }
 
 async function reviewScholarEdit(id, decision, actor, { comment = '' } = {}) {
+  ensureServiceSchema();
   const edit = dbApi.getEditById(Number(id));
   if (!edit) throw portalError(404, 'Edit not found');
   if (edit.status !== 'pending') throw portalError(400, 'Edit is not pending');
@@ -502,6 +561,7 @@ async function reviewScholarEdit(id, decision, actor, { comment = '' } = {}) {
 }
 
 async function reviewScholarMedia(id, decision, actor) {
+  ensureServiceSchema();
   const media = dbApi.getMediaById(Number(id));
   if (!media) throw portalError(404, 'Media not found');
   if (media.status !== 'pending') throw portalError(400, `Media has already been ${media.status}`);

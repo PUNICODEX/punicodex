@@ -83,6 +83,10 @@ const SUITES = [
   { name: 'Patron Contract Tests', cmd: 'node --test test/patron-contract.test.js' },
   { name: 'Collaborators Strip Tests', cmd: 'node test/collaborators-strip.test.js' },
   { name: 'Admin Portal Page Tests', cmd: 'node test/admin-portal-page.test.js' },
+  { name: 'Portal Endpoints Tests', cmd: 'node test/portal-endpoints.test.js', timeout: 60000 },
+  { name: 'API Fuzz Tests', cmd: 'node test/api-fuzz.test.js', timeout: 60000 },
+  { name: 'Analytics E2E Tests', cmd: 'node test/analytics-e2e.test.js' },
+  { name: 'Vercelignore Guard', cmd: 'node test/vercelignore-guard.test.js' },
   { name: 'Flagship Mobile Nav Tests', cmd: 'node test/flagship-mobile-nav.test.js' },
   { name: 'Realms Page Tests', cmd: 'node test/realms-page.test.js' },
   {

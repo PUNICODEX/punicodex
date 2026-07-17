@@ -11,6 +11,13 @@ const PRIORITY_MIN = 1;
 const PRIORITY_MAX = 10;
 const PRIORITY_DEFAULT = 5;
 
+// crawl_events enforces CHECK constraints on source and event_type
+// (platform/db/migrate-event-crawler.js). Validate against the same enums
+// before enqueueing so out-of-enum strings get a 400 instead of crashing the
+// INSERT with a 500.
+const SOURCE_ENUM = ['webhook', 'ct_log', 'dns_change', 'manual', 'scheduled'];
+const EVENT_TYPE_ENUM = ['discover', 'update', 'recrawl', 'spam_report'];
+
 function isNonEmptyString(value, maxLength) {
   return typeof value === 'string' && value.trim().length > 0 && value.length <= maxLength;
 }
@@ -47,6 +54,14 @@ module.exports = async (req, res) => {
       }
       if (eventType != null && !isNonEmptyString(eventType, 50)) {
         return res.status(400).json({ error: 'eventType must be a string' });
+      }
+      if (!SOURCE_ENUM.includes(source)) {
+        return res.status(400).json({ error: `source must be one of: ${SOURCE_ENUM.join(', ')}` });
+      }
+      if (eventType != null && !EVENT_TYPE_ENUM.includes(eventType)) {
+        return res
+          .status(400)
+          .json({ error: `eventType must be one of: ${EVENT_TYPE_ENUM.join(', ')}` });
       }
       const parsed = clampPriority(priority);
       if (parsed.error) return res.status(400).json({ error: parsed.error });

@@ -9,7 +9,7 @@ const {
   sendError,
   parseLimitOffset,
   portalAuth,
-  portalService,
+  getPortalService,
 } = require('../_portal.js');
 
 module.exports = async (req, res) => {
@@ -23,7 +23,7 @@ module.exports = async (req, res) => {
 
     const { temple, status } = req.query || {};
     const { limit, offset } = parseLimitOffset(req);
-    return res.json(await portalService.listPatronsAdmin({ temple, status, limit, offset }));
+    return res.json(await getPortalService().listPatronsAdmin({ temple, status, limit, offset }));
   } catch (err) {
     sendError(res, err);
   }

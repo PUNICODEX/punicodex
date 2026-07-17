@@ -234,4 +234,37 @@ test('getDashboard returns metrics for live booking', async () => {
   assert.ok(res.body.metrics);
 });
 
+// Runs last: drops analytics_events to force the internal-error branch.
+test('getDashboard 400s non-string tokens and masks 500 details in production', async () => {
+  const { token } = await makeLiveBooking('mask@example.com');
+
+  // Repeated query params arrive as an array — previously this crashed the
+  // SQL bind and leaked the driver error in a 500 body.
+  const arrRes = mockRes();
+  await getDashboard(['a', 'b'], arrRes);
+  assert.strictEqual(arrRes.statusCode, 400);
+  const objRes = mockRes();
+  await getDashboard({ t: 1 }, objRes);
+  assert.strictEqual(objRes.statusCode, 400);
+
+  const sabotage = new Database(getTestDbPath(__filename));
+  sabotage.prepare('DROP TABLE analytics_events').run();
+  sabotage.close();
+
+  const devRes = mockRes();
+  await getDashboard(token, devRes);
+  assert.strictEqual(devRes.statusCode, 500);
+  assert.notStrictEqual(devRes.body.error, 'Internal server error');
+
+  process.env.VERCEL = '1';
+  try {
+    const prodRes = mockRes();
+    await getDashboard(token, prodRes);
+    assert.strictEqual(prodRes.statusCode, 500);
+    assert.strictEqual(prodRes.body.error, 'Internal server error');
+  } finally {
+    delete process.env.VERCEL;
+  }
+});
+
 run();

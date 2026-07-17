@@ -1,186 +1,313 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>University Sponsorship — PUNICODEX</title>
-  <meta name="description" content="Partner with PuniCodex as a university collaborator. Reserve a logo slot, empower student scholars and creators, and support Unicode name restoration.">
+  <meta name="description" content="Partner with PuniCodex as a founding academic collaborator: site-wide sponsorship placement, Scholarly Edition mentoring, student creative marketplace, and department analytics.">
   <meta name="theme-color" content="#D4AF37">
   <meta name="color-scheme" content="dark">
   <link rel="canonical" href="https://punicodex.com/university-sponsorship/">
   <meta property="og:title" content="University Sponsorship — PUNICODEX">
-  <meta property="og:description" content="Reserve a university collaborator slot on PuniCodex and empower your students to contribute to scholarly restoration and creative materials.">
+  <meta property="og:description" content="Partner with PuniCodex as a founding academic collaborator: site-wide sponsorship placement, Scholarly Edition mentoring, student creative marketplace, and department analytics.">
   <meta property="og:url" content="https://punicodex.com/university-sponsorship/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="PUNICODEX">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="University Sponsorship — PUNICODEX">
-  <meta name="twitter:description" content="Reserve a university collaborator slot on PuniCodex and empower your students to contribute to scholarly restoration and creative materials.">
+  <meta name="twitter:description" content="Partner with PuniCodex as a founding academic collaborator: site-wide sponsorship placement, Scholarly Edition mentoring, student creative marketplace, and department analytics.">
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "University Sponsorship — PUNICODEX",
+    "description": "Partner with PuniCodex as a founding academic collaborator: site-wide sponsorship placement, Scholarly Edition mentoring, student creative marketplace, and department analytics.",
+    "url": "https://punicodex.com/university-sponsorship/",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "PUNICODEX",
+      "url": "https://punicodex.com"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What does university sponsorship cost?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Founding collaborator sponsorship starts at $999 per year per institution. Custom enterprise packages for multiple departments or campuses are available on request."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does our institution apply?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Submit the university sponsorship application at punicodex.com/scholars/apply/. A curator reviews every application, arranges an introductory call, and on approval provisions your institution and its administrator account with a one-time temporary password."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do our students get access?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Your institution's administrator provisions and revokes student credentials directly. Student work passes through the Scholarly Edition quality gate before publication, and access can be revoked at any time with immediate effect."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where does our institution's name appear?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In the Academic Collaborators strip rendered across the public site — the homepage and every temple page — with your name, monogram or logo, link, and tier label, and in the credits of the Scholarly Edition sections your students publish."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Who do we speak to before applying?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Email support@punicodex.com with the subject “University Collaborator Sponsorship”. The partnerships team typically replies within one business day."
+        }
+      }
+    ]
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0a0a0f;
-      --surface: #111118;
-      --surface-raised: #1a1a24;
-      --border: #2a2a3a;
-      --text: #e8e6f0;
-      --text-muted: #8a8599;
-      --accent: #D4AF37;
-      --accent-dim: rgba(212,175,55,0.15);
-      --font-body: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --us-bg: #0a0a0f;
+      --us-surface: #101017;
+      --us-border: rgba(240, 238, 246, 0.09);
+      --us-border-gold: rgba(212, 175, 55, 0.28);
+      --us-gold: #d4af37;
+      --us-text: #eceaf2;
+      --us-muted: #a5a1b0;
+      --us-serif: 'Cinzel', Georgia, 'Times New Roman', serif;
+      --us-body: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
-    * { margin:0; padding:0; box-sizing:border-box; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: var(--font-body);
-      background: var(--bg);
-      color: var(--text);
+      font-family: var(--us-body);
+      background: var(--us-bg);
+      color: var(--us-text);
       line-height: 1.7;
       font-size: 15px;
     }
-    a { color: var(--accent); text-decoration: none; }
+    a { color: var(--us-gold); text-decoration: none; }
     a:hover { text-decoration: underline; }
-    .container { max-width: 860px; margin: 0 auto; padding: calc(var(--nav-height, 72px) + 1.5rem) 1.5rem 4rem; }
-    .header {
-      text-align: center;
-      padding: 3.5rem 0 2.5rem;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 2.5rem;
-    }
-    .header h1 {
-      font-family: 'Cinzel', Georgia, serif;
-      font-size: clamp(1.9rem, 4vw, 2.8rem);
-      font-weight: 700;
-      letter-spacing: 0.03em;
-      color: var(--accent);
-      margin-bottom: 0.75rem;
-    }
-    .header p {
-      color: var(--text-muted);
-      font-size: 1rem;
-      max-width: 620px;
-      margin: 0 auto;
-    }
-    .eyebrow {
-      display: inline-block;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1rem;
-      padding: 0.25rem 0.7rem;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      background: var(--accent-dim);
+    a:focus-visible {
+      outline: 2px solid var(--us-gold);
+      outline-offset: 3px;
     }
 
-    .section {
-      background: var(--surface);
-      border: 1px solid var(--border);
+    .us-container {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: calc(var(--nav-height, 72px) + 1.5rem) 1.5rem 4.5rem;
+    }
+
+    /* Hero */
+    .us-hero {
+      text-align: center;
+      padding: 3.5rem 0 2.75rem;
+      border-bottom: 1px solid var(--us-border);
+      margin-bottom: 2.75rem;
+    }
+    .us-eyebrow {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.24em;
+      font-variant-caps: small-caps;
+      text-transform: lowercase;
+      color: var(--us-gold);
+      margin-bottom: 1rem;
+    }
+    .us-hero h1 {
+      font-family: var(--us-serif);
+      font-size: clamp(1.9rem, 4vw, 2.7rem);
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      color: var(--us-text);
+      line-height: 1.2;
+      margin-bottom: 1.1rem;
+    }
+    .us-hero h1::after {
+      content: '';
+      display: block;
+      width: 56px;
+      height: 1px;
+      margin: 1.1rem auto 0;
+      background: var(--us-border-gold);
+    }
+    .us-hero p {
+      color: var(--us-muted);
+      font-size: 1rem;
+      max-width: 640px;
+      margin: 0 auto 1.75rem;
+    }
+    .us-hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    /* Buttons */
+    .us-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--us-gold);
+      color: var(--us-bg);
+      padding: 0.85rem 1.9rem;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .us-button:hover { text-decoration: none; opacity: 0.92; }
+    .us-button:focus-visible {
+      outline: 2px solid var(--us-gold);
+      outline-offset: 3px;
+    }
+    .us-button-secondary {
+      background: transparent;
+      color: var(--us-gold);
+      border: 1px solid var(--us-border-gold);
+    }
+
+    /* Sections */
+    .us-section {
+      background: var(--us-surface);
+      border: 1px solid var(--us-border);
       border-radius: 12px;
       padding: 2rem;
       margin-bottom: 1.5rem;
     }
-    .section h2 {
-      font-family: 'Cinzel', Georgia, serif;
+    .us-section h2 {
+      font-family: var(--us-serif);
       font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--text);
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      color: var(--us-text);
       margin-bottom: 0.85rem;
     }
-    .section h3 {
-      font-size: 1rem;
+    .us-section h3 {
+      font-size: 0.95rem;
       font-weight: 700;
-      color: var(--text);
-      margin: 1.25rem 0 0.5rem;
+      color: var(--us-text);
+      margin: 0 0 0.35rem;
     }
-    .section p {
-      color: var(--text-muted);
+    .us-section p {
+      color: var(--us-muted);
       font-size: 0.95rem;
       margin-bottom: 0.75rem;
     }
-    .section ul, .section ol {
-      margin: 0.5rem 0 0.75rem 1.25rem;
-      color: var(--text-muted);
+    .us-section p:last-child { margin-bottom: 0; }
+    .us-section ol {
+      margin: 0.5rem 0 0 1.25rem;
+      color: var(--us-muted);
       font-size: 0.95rem;
     }
-    .section li { margin-bottom: 0.5rem; }
-    .section strong { color: var(--text); }
+    .us-section li { margin-bottom: 0.6rem; }
+    .us-section strong { color: var(--us-text); }
 
-    .benefit-grid {
+    /* Deliverables grid */
+    .us-deliverables {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-      margin-top: 1.25rem;
-    }
-    .benefit-card {
-      background: var(--surface-raised);
-      border: 1px solid var(--border);
+      gap: 1px;
+      background: var(--us-border);
+      border: 1px solid var(--us-border);
       border-radius: 10px;
-      padding: 1.25rem;
+      overflow: hidden;
+      margin-top: 1.25rem;
+      list-style: none;
     }
-    .benefit-card .icon {
-      font-size: 1.4rem;
-      margin-bottom: 0.5rem;
+    .us-deliverable {
+      background: var(--us-surface);
+      padding: 1.5rem 1.4rem;
     }
-    .benefit-card h4 {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 0.35rem;
+    .us-deliverable .us-deliverable-marker {
+      display: block;
+      font-family: var(--us-serif);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      color: var(--us-gold);
+      margin-bottom: 0.6rem;
     }
-    .benefit-card p {
-      font-size: 0.85rem;
+    .us-deliverable h3 {
+      font-size: 0.98rem;
+      margin-bottom: 0.4rem;
+    }
+    .us-deliverable p {
+      font-size: 0.88rem;
       margin: 0;
     }
 
-    .cta-box {
+    /* FAQ */
+    .us-faq-item {
+      padding: 1.1rem 0;
+      border-top: 1px solid var(--us-border);
+    }
+    .us-faq-item:first-of-type { border-top: 0; padding-top: 0.25rem; }
+    .us-faq-item p { margin: 0; }
+
+    /* CTA */
+    .us-cta {
       text-align: center;
-      background: linear-gradient(180deg, rgba(212,175,55,0.08), transparent);
-      border: 1px solid rgba(212,175,55,0.25);
+      border: 1px solid var(--us-border-gold);
       border-radius: 12px;
-      padding: 2.5rem 2rem;
-      margin: 2rem 0;
+      padding: 2.75rem 2rem;
+      margin: 2.25rem 0 1.5rem;
     }
-    .cta-box h2 {
-      font-family: 'Cinzel', Georgia, serif;
+    .us-cta h2 {
+      font-family: var(--us-serif);
       font-size: 1.4rem;
-      color: var(--accent);
-      margin-bottom: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      color: var(--us-gold);
+      margin-bottom: 0.85rem;
     }
-    .cta-box p {
-      color: var(--text-muted);
-      max-width: 520px;
-      margin: 0 auto 1.5rem;
+    .us-cta p {
+      color: var(--us-muted);
+      max-width: 540px;
+      margin: 0 auto 1.6rem;
     }
-    .cta-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--accent);
-      color: var(--bg);
-      padding: 0.9rem 2rem;
-      border-radius: 6px;
-      font-weight: 700;
-      font-size: 0.9rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-    .cta-button:hover { text-decoration: none; opacity: 0.92; }
-
-    .pricing-note {
-      text-align: center;
+    .us-cta-note {
       font-size: 0.85rem;
-      color: var(--text-muted);
-      margin-top: 1rem;
+      color: var(--us-muted);
+      margin: 1.1rem 0 0;
     }
 
-    @media (max-width: 600px) {
-      .container { padding: calc(var(--nav-height, 72px) + 0.5rem) 1rem 3rem; }
-      .benefit-grid { grid-template-columns: 1fr; }
-      .section { padding: 1.5rem; }
+    @media (max-width: 640px) {
+      .us-container { padding: calc(var(--nav-height, 72px) + 0.5rem) 1rem 3rem; }
+      .us-hero { padding: 2.5rem 0 2rem; }
+      .us-deliverables { grid-template-columns: 1fr; }
+      .us-section { padding: 1.5rem; }
+      .us-cta { padding: 2rem 1.25rem; }
+      .us-hero-actions { flex-direction: column; align-items: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .us-button { transition: none; }
     }
   </style>
   <link rel="stylesheet" href="/css/main.css?v=perf8">
@@ -245,68 +372,91 @@
         </div>
     </div>
 
-  <div class="container">
-    <header class="header">
-      <span class="eyebrow">For Universities & Academia</span>
+  <main class="us-container">
+    <header class="us-hero">
+      <span class="us-eyebrow">For Universities &amp; Academic Partners</span>
       <h1>University Sponsorship</h1>
-      <p>Reserve a featured collaborator slot for your institution and give your students a global stage for scholarly restoration, creative work, and digital humanities research.</p>
+      <p>PuniCodex restores the original Unicode names of the gods to the digital realm. Founding academic collaborators put their institution's name on that work — and their students behind it.</p>
+      <div class="us-hero-actions">
+        <a href="/scholars/apply/" class="us-button">Apply for Sponsorship <span aria-hidden="true">→</span></a>
+        <a href="mailto:support@punicodex.com?subject=University%20Collaborator%20Sponsorship" class="us-button us-button-secondary">Email the Partnerships Team</a>
+      </div>
     </header>
 
-    <div class="section">
-      <h2>What You Receive</h2>
-      <div class="benefit-grid">
-        <div class="benefit-card">
-          <div class="icon">🌐</div>
-          <h4>Global Visibility</h4>
-          <p>Your university logo appears on every PuniCodex page, from the homepage to all 900+ temple pages.</p>
-        </div>
-        <div class="benefit-card">
-          <div class="icon">🎓</div>
-          <h4>Student Scholars</h4>
-          <p>Your students can contribute to the Scholars archive, earning credit and building a public portfolio.</p>
-        </div>
-        <div class="benefit-card">
-          <div class="icon">🎨</div>
-          <h4>Creative Marketplace</h4>
-          <p>Student artwork, designs, and materials can be listed in the Creatives marketplace for sponsor licensing.</p>
-        </div>
-        <div class="benefit-card">
-          <div class="icon">📊</div>
-          <h4>Department Analytics</h4>
-          <p>Access dashboards showing student contributions, engagement, and the reach of your institution's work.</p>
-        </div>
-      </div>
-    </div>
+    <section class="us-section" aria-labelledby="us-deliverables-heading">
+      <h2 id="us-deliverables-heading">What a Founding Collaborator Receives</h2>
+      <p>One annual sponsorship, four concrete deliverables for your department:</p>
+      <ul class="us-deliverables">
+        <li class="us-deliverable">
+          <span class="us-deliverable-marker" aria-hidden="true">I.</span>
+          <h3>Sponsorship Strip Placement</h3>
+          <p>Your institution's name, monogram or logo, and link appear in the Academic Collaborators strip rendered across the public site — the homepage and every temple page — with a Founding Partner tier label.</p>
+        </li>
+        <li class="us-deliverable">
+          <span class="us-deliverable-marker" aria-hidden="true">II.</span>
+          <h3>Scholarly Edition Mentoring</h3>
+          <p>Provisioned student accounts let your students research and publish peer-reviewed sections on flagship temples under the Scholarly Edition's editorial quality gate — public, citable work with faculty mentorship credited.</p>
+        </li>
+        <li class="us-deliverable">
+          <span class="us-deliverable-marker" aria-hidden="true">III.</span>
+          <h3>Creative Marketplace</h3>
+          <p>Student artwork and design materials are listed — watermarked — in the Creatives marketplace, where sponsors and licensees can commission or license them.</p>
+        </li>
+        <li class="us-deliverable">
+          <span class="us-deliverable-marker" aria-hidden="true">IV.</span>
+          <h3>Department Analytics</h3>
+          <p>An institution dashboard shows what your students have contributed, review status, engagement, and the reach of your department's published work.</p>
+        </li>
+      </ul>
+    </section>
 
-    <div class="section">
-      <h2>How It Works</h2>
+    <section class="us-section" aria-labelledby="us-how-heading">
+      <h2 id="us-how-heading">How It Works</h2>
       <ol>
-        <li><strong>Reserve a slot.</strong> Contact us to secure one of the featured Academic Collaborator positions.</li>
-        <li><strong>Onboard your department.</strong> We create logins for selected students and faculty.</li>
-        <li><strong>Students contribute.</strong> Scholars add research; Creatives upload watermarked work.</li>
-        <li><strong>Your brand travels.</strong> Your logo appears across the platform as students publish.</li>
+        <li><strong>Apply.</strong> Submit the university sponsorship application; a curator reviews it and arranges an introductory call.</li>
+        <li><strong>Provision.</strong> On approval we create your institution and administrator account; your admin then provisions student and faculty credentials.</li>
+        <li><strong>Contribute.</strong> Scholars publish through the editorial quality gate; Creatives upload watermarked work to the marketplace.</li>
+        <li><strong>Be seen.</strong> Your institution appears in the collaborators strip and in the credits of every published contribution.</li>
       </ol>
-    </div>
+    </section>
 
-    <div class="section">
-      <h2>Who Should Partner</h2>
-      <p>This program is ideal for Classics, Ancient History, Religious Studies, Linguistics, Digital Humanities, Design, and Marketing departments looking to give students real-world, publishable experience on a public scholarly platform.</p>
-    </div>
+    <section class="us-section" aria-labelledby="us-who-heading">
+      <h2 id="us-who-heading">Who Should Partner</h2>
+      <p>Classics, Ancient History, Religious Studies, Linguistics, Digital Humanities, Design, and Marketing departments that want to give students real-world, publishable experience on a public scholarly platform.</p>
+    </section>
 
-    <div class="cta-box">
-      <h2>Reserve Your Collaborator Slot</h2>
-      <p>Slots are limited. Tell us about your department and we'll arrange a call to discuss onboarding, pricing, and student access.</p>
-      <a href="mailto:support@punicodex.com?subject=University%20Collaborator%20Sponsorship" class="cta-button">Request Information →</a>
-      <p class="pricing-note">Pricing starts at <strong>$999/year</strong> per institution. Custom enterprise packages available.</p>
-    </div>
+    <section class="us-section" aria-labelledby="us-faq-heading">
+      <h2 id="us-faq-heading">Frequently Asked Questions</h2>
+      <div class="us-faq-item">
+        <h3>What does university sponsorship cost?</h3>
+        <p>Founding collaborator sponsorship starts at <strong>$999 per year</strong> per institution. Custom enterprise packages for multiple departments or campuses are available on request.</p>
+      </div>
+      <div class="us-faq-item">
+        <h3>How does our institution apply?</h3>
+        <p>Submit the <a href="/scholars/apply/">university sponsorship application</a>. A curator reviews every application, arranges an introductory call, and on approval provisions your institution and its administrator account with a one-time temporary password.</p>
+      </div>
+      <div class="us-faq-item">
+        <h3>How do our students get access?</h3>
+        <p>Your institution's administrator provisions and revokes student credentials directly. Student work passes through the Scholarly Edition quality gate before publication, and access can be revoked at any time with immediate effect.</p>
+      </div>
+      <div class="us-faq-item">
+        <h3>Where does our institution's name appear?</h3>
+        <p>In the Academic Collaborators strip rendered across the public site — the homepage and every temple page — with your name, monogram or logo, link, and tier label, and in the credits of the Scholarly Edition sections your students publish.</p>
+      </div>
+      <div class="us-faq-item">
+        <h3>Who do we speak to before applying?</h3>
+        <p>Email <a href="mailto:support@punicodex.com?subject=University%20Collaborator%20Sponsorship">support@punicodex.com</a> with the subject <strong>University Collaborator Sponsorship</strong>. The partnerships team typically replies within one business day.</p>
+      </div>
+    </section>
 
-    <div class="section">
-      <h2>Questions?</h2>
-      <p>Email us directly at <a href="mailto:support@punicodex.com">support@punicodex.com</a> with the subject <strong>University Collaborator Sponsorship</strong>. We typically reply within one business day.</p>
-    </div>
-  </div>
+    <section class="us-cta" aria-labelledby="us-cta-heading">
+      <h2 id="us-cta-heading">Reserve Your Collaborator Slot</h2>
+      <p>Founding slots are limited. Apply today and we will arrange a call to discuss onboarding, pricing, and student access.</p>
+      <a href="/scholars/apply/" class="us-button">Apply for Sponsorship <span aria-hidden="true">→</span></a>
+      <p class="us-cta-note">Pricing starts at <strong>$999/year</strong> per institution. Custom enterprise packages available.</p>
+    </section>
+  </main>
 
-  
 
 
 <footer class="site-footer">

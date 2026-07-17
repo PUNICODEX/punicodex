@@ -47,8 +47,15 @@ const ROLE_PERMISSIONS = {
   viewer: ['read'],
 };
 
-// Cold-start schema: idempotent, safe on every serverless invocation.
-migrateAdminUsers(getDb());
+// Cold-start schema: idempotent. Runs lazily before the first DB use (once
+// per serverless instance) instead of at require time, so importing this
+// module stays cheap on cold start.
+let authSchemaReady = false;
+function ensureAuthSchema() {
+  if (authSchemaReady) return;
+  migrateAdminUsers(getDb());
+  authSchemaReady = true;
+}
 
 function roleCan(role, permission) {
   return (ROLE_PERMISSIONS[role] || []).includes(permission);
@@ -82,6 +89,7 @@ function generateTempPassword(length = 16) {
 // ─────────────────────────────────────────────────────────────
 
 async function countAdminUsers() {
+  ensureAuthSchema();
   const row = await get('SELECT COUNT(*) as c FROM admin_users');
   // Postgres returns COUNT(*) as a string; SQLite returns a number. Normalize
   // so strict comparisons (e.g. === 0) behave identically on both drivers.
@@ -89,10 +97,12 @@ async function countAdminUsers() {
 }
 
 async function getUserByEmail(email) {
+  ensureAuthSchema();
   return get('SELECT * FROM admin_users WHERE email = $1', [email]);
 }
 
 async function getUserById(id) {
+  ensureAuthSchema();
   return get('SELECT * FROM admin_users WHERE id = $1', [id]);
 }
 
@@ -101,6 +111,7 @@ async function getUserById(id) {
  * Never seeds a default/known password: without ADMIN_PASSWORD this skips.
  */
 async function bootstrap() {
+  ensureAuthSchema();
   const count = await countAdminUsers();
   if (count > 0) return { seeded: false, reason: 'already_provisioned' };
 
@@ -128,7 +139,45 @@ async function bootstrap() {
 // Sessions
 // ─────────────────────────────────────────────────────────────
 
+// Session resolution cache. Resolving a portal token costs a database round
+// trip on every request — with cross-region Postgres that is hundreds of
+// milliseconds per portal page. The resolved { user, role } is cached per
+// token hash for up to 30s.
+//
+// TRADE-OFF: this intentionally weakens immediate revocation by up to the
+// TTL. A session destroyed on ANOTHER warm instance (logout, password
+// change/reset, account disable) may keep authenticating here for ≤30s.
+// Every mutation path on THIS instance invalidates synchronously —
+// deleteSession, deleteSessionsForUser (which covers password change/reset
+// and account disable), and user-management updates — so same-instance
+// revocation stays immediate; the window only applies across
+// concurrently-warm instances.
+const SESSION_CACHE_TTL_MS = 30 * 1000;
+const SESSION_CACHE_MAX = 1000;
+const sessionCache = new Map(); // tokenHash → { user, role, userId, sessionExpiresAt, cachedAt }
+
+function cacheResolvedSession(tokenHash, row) {
+  if (sessionCache.size >= SESSION_CACHE_MAX) {
+    // Map iterates in insertion order: drop the oldest entry.
+    sessionCache.delete(sessionCache.keys().next().value);
+  }
+  sessionCache.set(tokenHash, {
+    user: sanitizeUser(row),
+    role: row.role,
+    userId: row.id,
+    sessionExpiresAt: row.expires_at || null,
+    cachedAt: Date.now(),
+  });
+}
+
+function invalidateSessionCacheForUser(userId) {
+  for (const [key, entry] of sessionCache) {
+    if (entry.userId === userId) sessionCache.delete(key);
+  }
+}
+
 async function createSession(userId) {
+  ensureAuthSchema();
   const token = crypto.randomBytes(32).toString('hex');
   const tokenHash = hashToken(token);
   const expiresAt = new Date(Date.now() + SESSION_TTL_MS).toISOString();
@@ -141,12 +190,16 @@ async function createSession(userId) {
 }
 
 async function deleteSession(token) {
+  ensureAuthSchema();
   const tokenHash = hashToken(token);
   await run('DELETE FROM admin_sessions WHERE token = $1', [tokenHash]);
+  sessionCache.delete(tokenHash);
 }
 
 async function deleteSessionsForUser(userId) {
+  ensureAuthSchema();
   await run('DELETE FROM admin_sessions WHERE admin_user_id = $1', [userId]);
+  invalidateSessionCacheForUser(userId);
 }
 
 /**
@@ -156,27 +209,43 @@ async function deleteSessionsForUser(userId) {
  */
 async function resolveUser(token) {
   if (!token || typeof token !== 'string') return null;
+  ensureAuthSchema();
   const tokenHash = hashToken(token);
-  const session = await get('SELECT * FROM admin_sessions WHERE token = $1', [tokenHash]);
-  if (!session) return null;
-  if (session.expires_at && new Date(session.expires_at) < new Date()) {
-    await deleteSession(token);
-    return null;
-  }
-  if (session.admin_user_id == null) return null;
 
-  const user = await getUserById(session.admin_user_id);
-  if (!user) {
+  const cached = sessionCache.get(tokenHash);
+  if (cached && Date.now() - cached.cachedAt < SESSION_CACHE_TTL_MS) {
+    if (cached.sessionExpiresAt && new Date(cached.sessionExpiresAt) < new Date()) {
+      sessionCache.delete(tokenHash);
+      await deleteSession(token);
+      return null;
+    }
+    return { user: cached.user, role: cached.role };
+  }
+
+  // One JOIN instead of sequential session-then-user queries: a single round
+  // trip per uncached request. Legacy sessions (admin_user_id NULL) and
+  // orphaned sessions simply match no row and resolve to null.
+  const row = await get(
+    `SELECT u.*, s.token, s.expires_at
+     FROM admin_sessions s
+     JOIN admin_users u ON u.id = s.admin_user_id
+     WHERE s.token = $1`,
+    [tokenHash]
+  );
+  if (!row) return null;
+  if (row.expires_at && new Date(row.expires_at) < new Date()) {
     await deleteSession(token);
     return null;
   }
-  // Immediate revocation: a disabled account loses access on the next request
-  // and all of its sessions are destroyed so they cannot be reused.
-  if (user.status !== 'active') {
-    await deleteSessionsForUser(user.id);
+  // Immediate revocation: a disabled account loses access on the next
+  // uncached request and all of its sessions are destroyed so they cannot
+  // be reused.
+  if (row.status !== 'active') {
+    await deleteSessionsForUser(row.id);
     return null;
   }
-  return { user: sanitizeUser(user), role: user.role };
+  cacheResolvedSession(tokenHash, row);
+  return { user: sanitizeUser(row), role: row.role };
 }
 
 /**
@@ -212,7 +281,15 @@ function getDummyHash() {
 }
 
 async function login(email, password) {
-  const normalized = (email || '').toLowerCase().trim();
+  ensureAuthSchema();
+  // Type guard: a truthy non-string email throws on .toLowerCase() and a
+  // truthy non-string password crashes bcrypt.compareSync — both surfaced as
+  // 500s. Reject them with the same invalid-credentials failure the route
+  // already maps to 401.
+  if (typeof email !== 'string' || typeof password !== 'string') {
+    return { success: false, code: 'invalid_credentials', message: 'Email and password required' };
+  }
+  const normalized = email.toLowerCase().trim();
   if (!normalized || !password) {
     return { success: false, code: 'invalid_credentials', message: 'Email and password required' };
   }
@@ -296,11 +373,13 @@ async function logout(token) {
 // ─────────────────────────────────────────────────────────────
 
 async function listUsers() {
+  ensureAuthSchema();
   const rows = await all('SELECT * FROM admin_users ORDER BY created_at ASC');
   return rows.map(sanitizeUser);
 }
 
 async function countActiveSuperadmins() {
+  ensureAuthSchema();
   const row = await get(
     "SELECT COUNT(*) as c FROM admin_users WHERE role = 'superadmin' AND status = 'active'"
   );
@@ -316,9 +395,13 @@ function validateRole(role) {
 }
 
 async function createUser({ email, password, displayName, role } = {}, actor) {
-  const normalized = (email || '').toLowerCase().trim();
+  ensureAuthSchema();
+  // Same type guard as login(): non-string truthy emails crash .toLowerCase(),
+  // and non-string display names crash the SQL bind below.
+  const normalized = typeof email === 'string' ? email.toLowerCase().trim() : '';
   if (!validateEmail(normalized)) throw portalError(400, 'A valid email is required');
   if (!validateRole(role)) throw portalError(400, `role must be one of: ${ROLES.join(', ')}`);
+  const safeDisplayName = typeof displayName === 'string' && displayName ? displayName : null;
 
   let tempPassword = null;
   let finalPassword = password;
@@ -336,7 +419,7 @@ async function createUser({ email, password, displayName, role } = {}, actor) {
     await run(
       `INSERT INTO admin_users (email, password_hash, display_name, role, status, temp_password)
        VALUES ($1, $2, $3, $4, 'active', $5)`,
-      [normalized, passwordHash, displayName || null, role, tempPassword ? 1 : 0]
+      [normalized, passwordHash, safeDisplayName, role, tempPassword ? 1 : 0]
     );
     row = await getUserByEmail(normalized);
   } catch (err) {
@@ -357,6 +440,7 @@ async function createUser({ email, password, displayName, role } = {}, actor) {
 }
 
 async function updateUser(id, { displayName, role, status } = {}, actor) {
+  ensureAuthSchema();
   const target = await getUserById(id);
   if (!target) throw portalError(404, 'User not found');
 
@@ -365,6 +449,10 @@ async function updateUser(id, { displayName, role, status } = {}, actor) {
   }
   if (status !== undefined && !['active', 'disabled'].includes(status)) {
     throw portalError(400, "status must be 'active' or 'disabled'");
+  }
+  // displayName is bound raw below — reject non-strings before the SQL bind.
+  if (displayName !== undefined && displayName !== null && typeof displayName !== 'string') {
+    throw portalError(400, 'displayName must be a string');
   }
 
   const actorId = actor?.user?.id ?? null;
@@ -399,6 +487,9 @@ async function updateUser(id, { displayName, role, status } = {}, actor) {
   if (status === 'disabled' && target.status !== 'disabled') {
     await deleteSessionsForUser(target.id);
   }
+  // Role/status/display changes must not be served from the session cache:
+  // drop the user's cached resolutions so the next request re-reads the row.
+  invalidateSessionCacheForUser(target.id);
 
   await logAction({
     adminUserId: actorId,
@@ -411,6 +502,7 @@ async function updateUser(id, { displayName, role, status } = {}, actor) {
 }
 
 async function disableUser(id, actor) {
+  ensureAuthSchema();
   const target = await getUserById(id);
   if (!target) throw portalError(404, 'User not found');
   if (actor?.user?.id === target.id) throw portalError(400, 'You cannot disable your own account');
@@ -435,6 +527,7 @@ async function disableUser(id, actor) {
 }
 
 async function resetPassword(id, actor) {
+  ensureAuthSchema();
   const target = await getUserById(id);
   if (!target) throw portalError(404, 'User not found');
 
@@ -460,9 +553,16 @@ async function resetPassword(id, actor) {
 }
 
 async function changePassword(userId, { currentPassword, newPassword } = {}) {
+  ensureAuthSchema();
   const target = await getUserById(userId);
   if (!target) throw portalError(404, 'User not found');
-  if (!currentPassword || !bcrypt.compareSync(currentPassword, target.password_hash)) {
+  // typeof guard first: a truthy non-string currentPassword crashes
+  // bcrypt.compareSync (500); treat it exactly like a wrong password (401).
+  if (
+    typeof currentPassword !== 'string' ||
+    !currentPassword ||
+    !bcrypt.compareSync(currentPassword, target.password_hash)
+  ) {
     throw portalError(401, 'Current password is incorrect');
   }
   if (typeof newPassword !== 'string' || newPassword.length < MIN_PASSWORD_LENGTH) {

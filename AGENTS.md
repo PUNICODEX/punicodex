@@ -256,20 +256,22 @@ mismatches it reports.
 
 1. Unicode directory (`platform/generate-unicode-dir-v2.js`)
 2. Shared lexicon/engine sync (`sync-shared-lexicon.js`, `sync-shared-engine.js`)
-3. Image WebP conversion (`convert-images-to-webp.js`)
-4. Android assets (`build-android-assets.js`)
-5. Platform lexicon export (`export-platform-lexicon.js`)
-6. Similarities + industry patterns (`generate-similarities.js`,
+3. Android assets (`build-android-assets.js`)
+4. Platform lexicon export (`export-platform-lexicon.js`)
+5. Similarities + industry patterns (`generate-similarities.js`,
    `generate-industry-patterns.js`)
-7. Owned entries (`generate-owned-entries.js`)
-8. Codex data export (`export-codex-data.js`)
-9. Original-script lookup (`build-original-script-lookup.js`)
-10. Lore catalog export (`export-lore-catalog.js`)
-11. Card set (`generate-cards.js`)
-12. Middleware domains (`sync-middleware-domains.js`)
-13. Public copy sync (`sync-public-copy.js`)
-14. Base temples (`generate-temples.js`)
-15. Flagship temples (`create-flagship.js --regenerate-all`)
+6. Owned entries (`generate-owned-entries.js`)
+7. Codex data export (`export-codex-data.js`)
+8. Original-script lookup (`build-original-script-lookup.js`)
+9. Lore catalog export (`export-lore-catalog.js`)
+10. Card set (`generate-cards.js`)
+11. Middleware domains (`sync-middleware-domains.js`)
+12. Public copy sync (`sync-public-copy.js`)
+13. Base temples (`generate-temples.js`)
+14. Flagship temples (`create-flagship.js --regenerate-all`)
+15. Image WebP conversion (`convert-images-to-webp.js`) — MUST run after
+    create-flagship, whose rewrite would otherwise strip the enriched
+    `<img>` attributes it adds
 16. Scholars taxonomy/content/manifests/pages (4 scripts)
 17. Blog content + pages + global index (3 scripts)
 18. Scholars portal sync (`sync-scholars-portal.js`) + admin portal sync

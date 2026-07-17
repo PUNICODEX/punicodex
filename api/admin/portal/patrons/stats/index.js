@@ -4,7 +4,7 @@
  * Aggregate patron metrics (counts by status, estimated MRR, active temples).
  */
 
-const { setPortalCors, sendError, portalAuth, portalService } = require('../../_portal.js');
+const { setPortalCors, sendError, portalAuth, getPortalService } = require('../../_portal.js');
 
 module.exports = async (req, res) => {
   setPortalCors(req, res);
@@ -14,7 +14,7 @@ module.exports = async (req, res) => {
   try {
     const auth = await portalAuth.requirePortal(req, res, 'read');
     if (!auth) return;
-    return res.json(await portalService.getPatronStats());
+    return res.json(await getPortalService().getPatronStats());
   } catch (err) {
     sendError(res, err);
   }

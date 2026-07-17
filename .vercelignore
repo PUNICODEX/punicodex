@@ -20,11 +20,10 @@ dist
 build
 
 # Dev / build-only directories (not needed in the production deployment)
-# NOTE: anchored to the ROOT scripts/ dir only — platform/scripts/ contains
-# runtime modules required by API services (trial-reminders, lease-expiry,
-# content-quality, quality-scorer) and must be deployed.
-docs/
-test/
+# NOTE: anchored to the ROOT dirs only — unanchored names would also exclude
+# runtime paths such as platform/scripts/ and api/v1/docs/.
+/docs/
+/test/
 /scripts/
 data/corpus/
 data/authoritative/

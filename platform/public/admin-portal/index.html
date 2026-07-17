@@ -5,10 +5,6 @@
 <script src="/js/analytics-beacon.js" defer></script>
 <!-- PUNICODEX-ANALYTICS-END -->
 
-<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
-<script src="/js/university-collaborators.js?v=2" defer></script>
-<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex,nofollow">
@@ -158,12 +154,18 @@
         }
 
         async function init() {
+            // Fire the dashboard fetch in parallel with the shell's /me round
+            // trip instead of waiting for the shell first.
+            var dataPromise = Portal.api('/api/admin/portal/dashboard/');
             var ctx = await Portal.initShell('dashboard');
-            if (!ctx) return;
+            if (!ctx) {
+                dataPromise.catch(function () {});
+                return;
+            }
             renderQuickLinks();
 
             try {
-                renderDashboard(await Portal.api('/api/admin/portal/dashboard/'));
+                renderDashboard(await dataPromise);
             } catch (err) {
                 document.getElementById('dash-stats').innerHTML =
                     '<div class="state-block error">' + Portal.escapeHtml(err.message) + '</div>';
@@ -217,9 +219,5 @@
         init();
     })();
     </script>
-
-<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
-<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
-<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
 </body>
 </html>

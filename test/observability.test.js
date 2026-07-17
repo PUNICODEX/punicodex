@@ -79,6 +79,28 @@ async function test(name, fn) {
   }
 }
 
+// Require a fresh copy of a module with selected dependencies stubbed through
+// the require cache, then restore the cache. Used to simulate Postgres-only
+// failure modes (e.g. SQLSTATE 42P01 unknown relation) that cannot occur
+// against the fully-migrated local SQLite test database.
+function requireFreshWithStubs(moduleRel, stubs) {
+  const target = require.resolve(moduleRel);
+  const saved = new Map();
+  for (const [rel, exports] of Object.entries(stubs)) {
+    const p = require.resolve(rel);
+    saved.set(p, require.cache[p]);
+    require.cache[p] = { id: p, filename: p, loaded: true, exports };
+  }
+  saved.set(target, require.cache[target]);
+  delete require.cache[target];
+  const mod = require(target);
+  for (const [p, orig] of saved) {
+    if (orig) require.cache[p] = orig;
+    else delete require.cache[p];
+  }
+  return mod;
+}
+
 async function runTests() {
   console.log('\n▸ Observability Tests\n');
 
@@ -113,6 +135,78 @@ async function runTests() {
     assert.ok(['healthy', 'degraded'].includes(result.status));
     assert.ok(result.database);
     assert.ok(typeof result.activeSites === 'number');
+  });
+
+  await test('getHealthSummary tolerates a missing indexed_sites relation (PG 42P01)', async () => {
+    // Regression: on the production Postgres the crawler tables are not
+    // provisioned; the indexed_sites probe threw 42P01 and 500'd the portal
+    // dashboard. The probe must degrade to activeSites = 0 instead.
+    const operationalStub = {
+      isPostgres: () => true,
+      get: (sql) => {
+        if (sql.includes('indexed_sites')) {
+          return Promise.reject(
+            Object.assign(new Error('relation "indexed_sites" does not exist'), {
+              code: '42P01',
+            })
+          );
+        }
+        return Promise.resolve({ requests: 3, unique_ips: 2 });
+      },
+      all: () => Promise.resolve([]),
+    };
+    const svc = requireFreshWithStubs('../platform/api/observability-service.js', {
+      '../platform/db/operational.js': operationalStub,
+    });
+    const summary = await svc.getHealthSummary();
+    assert.strictEqual(summary.activeSites, 0);
+    assert.strictEqual(summary.lastHour.requests, 3);
+
+    // A 42P01 on any OTHER relation must still propagate (no blanket swallow).
+    const strictStub = {
+      ...operationalStub,
+      get: () =>
+        Promise.reject(
+          Object.assign(new Error('relation "api_request_log" does not exist'), {
+            code: '42P01',
+          })
+        ),
+    };
+    const svc2 = requireFreshWithStubs('../platform/api/observability-service.js', {
+      '../platform/db/operational.js': strictStub,
+    });
+    await assert.rejects(() => svc2.getHealthSummary(), /api_request_log/);
+  });
+
+  await test('portal dashboard degrades to zeroed widgets when a source fails', async () => {
+    // Regression: one failing aggregate (missing relation on Postgres, a
+    // transient upstream error) must not 500 the whole portal landing page.
+    const svc = requireFreshWithStubs('../platform/api/admin-portal-service.js', {
+      '../platform/api/observability-service.js': {
+        getMetrics: () => Promise.reject(new Error('api_request_log unavailable')),
+        getHealthSummary: () =>
+          Promise.reject(
+            Object.assign(new Error('relation "indexed_sites" does not exist'), {
+              code: '42P01',
+            })
+          ),
+      },
+      '../platform/api/admin.js': {
+        getRevenueStats: () => Promise.reject(new Error('revenue unavailable')),
+      },
+      '../platform/api/patron-service.js': {
+        getPatronStats: () => Promise.reject(new Error('patrons unavailable')),
+      },
+    });
+    const dash = await svc.getDashboard();
+    assert.ok(dash.generatedAt);
+    assert.ok(typeof dash.applications.businessPending === 'number');
+    assert.strictEqual(dash.revenue.last30dCents, 0);
+    assert.strictEqual(dash.traffic.requests, 0);
+    assert.strictEqual(dash.traffic.errorCount, 0);
+    assert.strictEqual(dash.patrons.active, 0);
+    assert.strictEqual(dash.patrons.estimatedMrrDollars, '0.00');
+    assert.strictEqual(dash.indexedSites, 0);
   });
 
   await test('getRecentRequests returns recent log rows', async () => {

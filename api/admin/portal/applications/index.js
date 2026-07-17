@@ -11,7 +11,7 @@ const {
   sendError,
   parseLimitOffset,
   portalAuth,
-  portalService,
+  getPortalService,
 } = require('../_portal.js');
 
 module.exports = async (req, res) => {
@@ -29,7 +29,7 @@ module.exports = async (req, res) => {
     }
     const { limit, offset } = parseLimitOffset(req);
 
-    return res.json(await portalService.listApplications({ kind, status, limit, offset }));
+    return res.json(await getPortalService().listApplications({ kind, status, limit, offset }));
   } catch (err) {
     sendError(res, err);
   }

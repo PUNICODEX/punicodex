@@ -5,10 +5,6 @@
 <script src="/js/analytics-beacon.js" defer></script>
 <!-- PUNICODEX-ANALYTICS-END -->
 
-<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
-<script src="/js/university-collaborators.js?v=2" defer></script>
-<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex,nofollow">
@@ -140,10 +136,10 @@
 
         var cachedUsers = [];
 
-        async function load() {
+        async function load(promise) {
             document.getElementById('users-table').innerHTML = '<div class="state-block">Loading users…</div>';
             try {
-                var data = await Portal.api('/api/admin/portal/users/');
+                var data = await (promise || Portal.api('/api/admin/portal/users/'));
                 cachedUsers = data.items || [];
                 renderTable(cachedUsers);
             } catch (err) {
@@ -245,10 +241,18 @@
         }
 
         async function init() {
+            // Fire the user-list fetch in parallel with the shell's /me round
+            // trip. Roles without the 'users' permission get a 403 here,
+            // which is swallowed below when the forbidden block is shown.
+            var firstLoad = Portal.api('/api/admin/portal/users/');
             var ctx = await Portal.initShell('users');
-            if (!ctx) return;
+            if (!ctx) {
+                firstLoad.catch(function () {});
+                return;
+            }
 
             if (!Portal.can('users')) {
+                firstLoad.catch(function () {});
                 document.getElementById('users-forbidden').hidden = false;
                 return;
             }
@@ -301,15 +305,11 @@
                 }
             });
 
-            load();
+            load(firstLoad);
         }
 
         init();
     })();
     </script>
-
-<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
-<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
-<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
 </body>
 </html>

@@ -67,3 +67,47 @@ npx wrangler pages deploy . --project-name=helheimr --branch=main --commit-dirty
 2. Check if you deployed to `main`, not `master`
 3. Check `npx wrangler pages deployment list --project-name=punicodex` to confirm
 4. Cloudflare edge cache can lag ~30s; wait a moment then hard-refresh
+
+## Custom Domains
+
+- `punicodex.com` and `www.punicodex.com` are attached to the Vercel project and serve the live site.
+- `punycodex.com` is the legacy pre-rebrand domain; it 301-redirects to `punicodex.com`.
+- `www.punycodex.com` has no DNS record yet — add a CNAME pointing at Vercel when convenient so the legacy `www` subdomain also redirects.
+
+## Verifying analytics in production
+
+Every public page loads `/js/analytics-beacon.js`, which POSTs one anonymous
+page-view ping to `/api/analytics/collect/` (answered with `204`). To watch a
+real view appear:
+
+1. Open any page, e.g. `https://punicodex.com/sites/zeus/`.
+2. Open the Site Analytics dashboard — `/admin-portal/` → "Site Analytics"
+   (`/platform/public/admin-analytics.html`, login with `ADMIN_PASSWORD`) — or
+   query the API directly:
+
+   ```bash
+   TOKEN=$(curl -s -X POST https://punicodex.com/api/admin/login/ \
+     -H 'Content-Type: application/json' \
+     -d "{\"password\":\"$ADMIN_PASSWORD\"}" | jq -r .token)
+   curl -s "https://punicodex.com/api/analytics/overview/?days=1" \
+     -H "x-admin-token: $TOKEN"
+   ```
+
+   The new view shows up in `totals.humanViews`, in `topTemples` (as
+   `zeus`), and in today's `byDay` row. Bot traffic is counted separately
+   (`botViews`, `botCategories`) and never inflates human views or referrers.
+
+Set `REDIS_URL` in production so rollups are shared across serverless
+instances (40-day TTL). Without it each function instance keeps its own
+ephemeral SQLite copy in `/tmp`, so counts reset on cold start and differ
+between instances.
+
+What the beacon intentionally does NOT collect:
+
+- No cookies and no localStorage — the session id lives only in
+  `sessionStorage.px_sid` and dies with the tab.
+- No raw IPs or user agents — only truncated sha256 hashes, a coarse device
+  class, and a bot category are stored.
+- No cross-day tracking — session hashes rotate daily (`sha256(sid:day)`).
+- No query strings or fragments — paths are stripped before storage.
+- Nothing at all when the browser sends Do Not Track (`navigator.doNotTrack`).

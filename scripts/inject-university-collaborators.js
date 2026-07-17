@@ -133,6 +133,24 @@ function injectIntoFile(filePath, headSnippet, bodySnippet) {
 // these files are stripped instead of injected.
 const EXCLUDED_PAGES = new Set([path.join('university-sponsorship', 'index.html')]);
 
+// Admin surfaces must never carry the marketing strip: the unified admin
+// portal (canonical platform/public/admin-portal/ plus the generated root
+// admin-portal/ sync copy), the legacy admin-* dashboards under
+// platform/public, and the crawler admin pages. Any marked blocks found in
+// these files are stripped instead of injected.
+const EXCLUDED_ADMIN_DIRS = ['platform/public/admin-portal', 'admin-portal', 'platform/public/scholars/admin', 'scholars/admin'];
+const EXCLUDED_ADMIN_FILES = new Set(['admin.html', 'platform/public/admin.html']);
+
+function isExcludedAdminSurface(filePath) {
+  const rel = path.relative(ROOT, filePath).split(path.sep).join('/');
+  for (const dir of EXCLUDED_ADMIN_DIRS) {
+    if (rel === dir || rel.startsWith(`${dir}/`)) return true;
+  }
+  if (EXCLUDED_ADMIN_FILES.has(rel)) return true;
+  // Legacy admin-* dashboards (admin-api-keys.html, admin-bookings.html, …).
+  return /^platform\/public\/admin-[^/]+\.html$/.test(rel);
+}
+
 function stripFromFile(filePath) {
   const html = withRetry(() => fs.readFileSync(filePath, 'utf8'));
   let cleaned = removeMarkedBlock(html, HEAD_MARKER_START, HEAD_MARKER_END);
@@ -198,8 +216,56 @@ function main() {
 
   let injected = 0;
   let skipped = 0;
+  let stripped = 0;
+
+  // The generated root admin-portal/ copy is not part of the injection
+  // targets gathered above; strip any previously injected blocks explicitly.
+  const syncedPortalDir = path.join(ROOT, 'admin-portal');
+  if (fs.existsSync(syncedPortalDir)) {
+    walk(syncedPortalDir, (p) => {
+      try {
+        if (stripFromFile(p)) {
+          stripped++;
+          console.log(
+            `Stripped Academic Collaborators strip from admin page: ${path.relative(ROOT, p)}`
+          );
+        }
+      } catch (err) {
+        console.error(`Failed to strip ${p}:`, err.message);
+      }
+    });
+  }
+
+  // Same for the generated root scholars/admin copy: sync-scholars-portal
+  // re-copies the canonical tree BEFORE this injector runs, so the synced
+  // copy must be stripped on every run to stay deterministic.
+  const syncedScholarsAdminDir = path.join(ROOT, 'scholars', 'admin');
+  if (fs.existsSync(syncedScholarsAdminDir)) {
+    walk(syncedScholarsAdminDir, (p) => {
+      try {
+        if (stripFromFile(p)) {
+          stripped++;
+          console.log(
+            `Stripped Academic Collaborators strip from admin page: ${path.relative(ROOT, p)}`
+          );
+        }
+      } catch (err) {
+        console.error(`Failed to strip ${p}:`, err.message);
+      }
+    });
+  }
+
   for (const filePath of targets) {
     try {
+      if (isExcludedAdminSurface(filePath)) {
+        if (stripFromFile(filePath)) {
+          stripped++;
+          console.log(
+            `Stripped Academic Collaborators strip from admin page: ${path.relative(ROOT, filePath)}`
+          );
+        }
+        continue;
+      }
       const ok = injectIntoFile(filePath, headSnippet, bodySnippet);
       if (ok) injected++;
       else skipped++;
@@ -209,7 +275,9 @@ function main() {
     }
   }
 
-  console.log(`Injected Academic Collaborators strip into ${injected} HTML files (skipped ${skipped}).`);
+  console.log(
+    `Injected Academic Collaborators strip into ${injected} HTML files (skipped ${skipped}, stripped ${stripped} excluded files).`
+  );
 }
 
 main();

@@ -5,10 +5,6 @@
 <script src="/js/analytics-beacon.js" defer></script>
 <!-- PUNICODEX-ANALYTICS-END -->
 
-<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
-<script src="/js/university-collaborators.js?v=2" defer></script>
-<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex,nofollow">
@@ -140,24 +136,28 @@
             document.getElementById('patron-next').disabled = data.offset + items.length >= data.total;
         }
 
-        async function loadStats() {
+        function fetchPatrons() {
+            var params = new URLSearchParams();
+            if (state.temple) params.set('temple', state.temple);
+            if (state.status) params.set('status', state.status);
+            params.set('limit', String(PAGE_SIZE));
+            params.set('offset', String(state.offset));
+            return Portal.api('/api/admin/portal/patrons/?' + params.toString());
+        }
+
+        async function loadStats(promise) {
             try {
-                renderStats(await Portal.api('/api/admin/portal/patrons/stats/'));
+                renderStats(await (promise || Portal.api('/api/admin/portal/patrons/stats/')));
             } catch (err) {
                 document.getElementById('patron-stats').innerHTML =
                     '<div class="state-block error">' + Portal.escapeHtml(err.message) + '</div>';
             }
         }
 
-        async function load() {
+        async function load(promise) {
             document.getElementById('patron-table').innerHTML = '<div class="state-block">Loading patrons…</div>';
             try {
-                var params = new URLSearchParams();
-                if (state.temple) params.set('temple', state.temple);
-                if (state.status) params.set('status', state.status);
-                params.set('limit', String(PAGE_SIZE));
-                params.set('offset', String(state.offset));
-                renderTable(await Portal.api('/api/admin/portal/patrons/?' + params.toString()));
+                renderTable(await (promise || fetchPatrons()));
             } catch (err) {
                 document.getElementById('patron-table').innerHTML =
                     '<div class="state-block error">' + Portal.escapeHtml(err.message) + '</div>';
@@ -181,8 +181,16 @@
         }
 
         async function init() {
+            // Fire both data fetches in parallel with the shell's /me round
+            // trip instead of waiting for the shell first.
+            var statsPromise = Portal.api('/api/admin/portal/patrons/stats/');
+            var listPromise = fetchPatrons();
             var ctx = await Portal.initShell('patrons');
-            if (!ctx) return;
+            if (!ctx) {
+                statsPromise.catch(function () {});
+                listPromise.catch(function () {});
+                return;
+            }
 
             document.getElementById('filter-apply').addEventListener('click', function () {
                 state.temple = document.getElementById('filter-temple').value.trim();
@@ -204,16 +212,12 @@
                 setStatus(btn.getAttribute('data-id'), btn.getAttribute('data-action'));
             });
 
-            loadStats();
-            load();
+            loadStats(statsPromise);
+            load(listPromise);
         }
 
         init();
     })();
     </script>
-
-<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
-<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
-<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
 </body>
 </html>

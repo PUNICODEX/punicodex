@@ -83,6 +83,7 @@ const rootPages = [
   path.join('terms', 'advertising', 'index.html'),
   path.join('privacy', 'index.html'),
   path.join('blog', 'index.html'),
+  path.join('university-sponsorship', 'index.html'),
 ];
 for (const p of rootPages) {
   const full = path.join(ROOT, p);

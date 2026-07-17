@@ -9,44 +9,89 @@
 const operational = require('../db/operational.js');
 const { getDb: getSharedDb } = require('../db/connection.js');
 
-function getSqliteDateInterval(hours) {
-  return `datetime('now', '-${hours} hours')`;
-}
-
-function intervalSql(hours) {
-  // operational.js converts $1 to ? for SQLite; use a literal placeholder for the interval.
-  return `created_at >= ${getSqliteDateInterval(hours)}`;
+// Timestamps are written by the column default CURRENT_TIMESTAMP, which
+// stores 'YYYY-MM-DD HH:MM:SS' on SQLite and TIMESTAMPTZ on Postgres. The
+// cutoff is passed as a bound parameter (never interpolated SQLite
+// datetime(), which does not exist on Postgres) and formatted per driver:
+// - Postgres: ISO string, coerced to TIMESTAMPTZ.
+// - SQLite: space-separated 'YYYY-MM-DD HH:MM:SS' — an ISO 'T' separator
+//   would mis-sort lexicographically against CURRENT_TIMESTAMP values.
+function cutoffTimestamp(hours) {
+  const cutoff = new Date(Date.now() - hours * 60 * 60 * 1000);
+  if (operational.isPostgres()) return cutoff.toISOString();
+  return cutoff.toISOString().slice(0, 19).replace('T', ' ');
 }
 
 async function getMetrics(options = {}) {
   const hours = options.hours ?? 24;
+  const cutoff = cutoffTimestamp(hours);
 
-  const totalRow = await operational.get(
-    `SELECT COUNT(*) as total, AVG(duration_ms) as avg_duration FROM api_request_log WHERE ${intervalSql(hours)}`
-  );
-  const errorRow = await operational.get(
-    `SELECT COUNT(*) as errors FROM api_request_log WHERE status_code >= 400 AND ${intervalSql(hours)}`
-  );
-  const percentileRows = await operational.all(
-    `SELECT duration_ms FROM api_request_log WHERE ${intervalSql(hours)} AND duration_ms IS NOT NULL ORDER BY duration_ms`
-  );
-  const topPaths = await operational.all(
-    `SELECT path, COUNT(*) as requests, AVG(duration_ms) as avg_duration
-     FROM api_request_log
-     WHERE ${intervalSql(hours)}
-     GROUP BY path
-     ORDER BY requests DESC
-     LIMIT 10`
-  );
-  const statusCodes = await operational.all(
-    `SELECT status_code, COUNT(*) as count
-     FROM api_request_log
-     WHERE ${intervalSql(hours)}
-     GROUP BY status_code
-     ORDER BY count DESC`
-  );
+  // Percentiles on Postgres are computed in SQL (percentile_cont transfers a
+  // single row instead of every duration in the window — a cross-region
+  // full-table scan); SQLite keeps a bounded scan with the JS fallback.
+  const percentilePromise = operational.isPostgres()
+    ? operational.get(
+        `SELECT
+           percentile_cont(0.5) WITHIN GROUP (ORDER BY duration_ms) as p50,
+           percentile_cont(0.95) WITHIN GROUP (ORDER BY duration_ms) as p95,
+           percentile_cont(0.99) WITHIN GROUP (ORDER BY duration_ms) as p99
+         FROM api_request_log
+         WHERE created_at >= $1 AND duration_ms IS NOT NULL`,
+        [cutoff]
+      )
+    : operational.all(
+        `SELECT duration_ms FROM api_request_log
+         WHERE created_at >= $1 AND duration_ms IS NOT NULL
+         ORDER BY duration_ms
+         LIMIT 50000`,
+        [cutoff]
+      );
 
-  const durations = percentileRows.map((r) => r.duration_ms);
+  const [totalRow, errorRow, percentileResult, topPaths, statusCodes] = await Promise.all([
+    operational.get(
+      'SELECT COUNT(*) as total, AVG(duration_ms) as avg_duration FROM api_request_log WHERE created_at >= $1',
+      [cutoff]
+    ),
+    operational.get(
+      'SELECT COUNT(*) as errors FROM api_request_log WHERE status_code >= 400 AND created_at >= $1',
+      [cutoff]
+    ),
+    percentilePromise,
+    operational.all(
+      `SELECT path, COUNT(*) as requests, AVG(duration_ms) as avg_duration
+       FROM api_request_log
+       WHERE created_at >= $1
+       GROUP BY path
+       ORDER BY requests DESC
+       LIMIT 10`,
+      [cutoff]
+    ),
+    operational.all(
+      `SELECT status_code, COUNT(*) as count
+       FROM api_request_log
+       WHERE created_at >= $1
+       GROUP BY status_code
+       ORDER BY count DESC`,
+      [cutoff]
+    ),
+  ]);
+
+  let latencyPercentiles;
+  if (operational.isPostgres()) {
+    latencyPercentiles = {
+      p50: roundPercentile(percentileResult?.p50),
+      p95: roundPercentile(percentileResult?.p95),
+      p99: roundPercentile(percentileResult?.p99),
+    };
+  } else {
+    const durations = percentileResult.map((r) => r.duration_ms);
+    latencyPercentiles = {
+      p50: percentile(durations, 0.5),
+      p95: percentile(durations, 0.95),
+      p99: percentile(durations, 0.99),
+    };
+  }
+
   const total = totalRow?.total || 0;
   const errors = errorRow?.errors || 0;
 
@@ -58,11 +103,7 @@ async function getMetrics(options = {}) {
     averageDurationMs: totalRow?.avg_duration
       ? Number(Number(totalRow.avg_duration).toFixed(2))
       : 0,
-    latencyPercentiles: {
-      p50: percentile(durations, 0.5),
-      p95: percentile(durations, 0.95),
-      p99: percentile(durations, 0.99),
-    },
+    latencyPercentiles,
     topPaths: topPaths.map((r) => ({
       path: r.path,
       requests: r.requests,
@@ -78,13 +119,15 @@ async function getMetrics(options = {}) {
 async function getTopSearches(options = {}) {
   const limit = Math.min(Math.max(1, options.limit || 10), 100);
   const hours = options.hours ?? 24;
+  const cutoff = cutoffTimestamp(hours);
   const rows = await operational.all(
     `SELECT query, COUNT(*) as count, AVG(result_count) as avg_results
      FROM search_queries
-     WHERE timestamp >= ${getSqliteDateInterval(hours)}
+     WHERE timestamp >= $1
      GROUP BY query
      ORDER BY count DESC
-     LIMIT ${limit}`
+     LIMIT ${limit}`,
+    [cutoff]
   );
   return {
     windowHours: hours,
@@ -99,14 +142,16 @@ async function getTopSearches(options = {}) {
 async function getSlowEndpoints(options = {}) {
   const limit = Math.min(Math.max(1, options.limit || 10), 100);
   const hours = options.hours ?? 24;
+  const cutoff = cutoffTimestamp(hours);
   const rows = await operational.all(
     `SELECT path, AVG(duration_ms) as avg_duration, MAX(duration_ms) as max_duration, COUNT(*) as requests
      FROM api_request_log
-     WHERE ${intervalSql(hours)}
+     WHERE created_at >= $1
      GROUP BY path
      HAVING avg_duration > 0
      ORDER BY avg_duration DESC
-     LIMIT ${limit}`
+     LIMIT ${limit}`,
+    [cutoff]
   );
   return {
     windowHours: hours,
@@ -129,21 +174,33 @@ async function getHealthSummary() {
     dbHealthy = false;
   }
 
-  const lastHour = await operational.get(
-    `SELECT COUNT(*) as requests, COUNT(DISTINCT ip_hash) as unique_ips
-     FROM api_request_log
-     WHERE created_at >= ${getSqliteDateInterval(1)}`
-  );
-  const lastError = await operational.get(
-    `SELECT path, status_code, created_at
-     FROM api_request_log
-     WHERE status_code >= 500
-     ORDER BY created_at DESC
-     LIMIT 1`
-  );
-  const indexSize = await operational.get(
-    `SELECT COUNT(*) as sites FROM indexed_sites WHERE status = 'active'`
-  );
+  const cutoff = cutoffTimestamp(1);
+  const [lastHour, lastError, indexSize] = await Promise.all([
+    operational.get(
+      `SELECT COUNT(*) as requests, COUNT(DISTINCT ip_hash) as unique_ips
+       FROM api_request_log
+       WHERE created_at >= $1`,
+      [cutoff]
+    ),
+    operational.get(
+      `SELECT path, status_code, created_at
+       FROM api_request_log
+       WHERE status_code >= 500
+       ORDER BY created_at DESC
+       LIMIT 1`
+    ),
+    operational.get(`SELECT COUNT(*) as sites FROM indexed_sites WHERE status = 'active'`).catch(
+      (err) => {
+        // indexed_sites belongs to the crawler DB and is intentionally not part
+        // of the operational Postgres provisioning set (see
+        // platform/db/init-operational-postgres.js). On a Postgres-only deploy
+        // the relation is unknown (SQLSTATE 42P01) — report "no index here"
+        // instead of failing the whole health summary.
+        if (err && err.code === '42P01') return null;
+        throw err;
+      }
+    ),
+  ]);
 
   return {
     status: dbHealthy ? 'healthy' : 'degraded',
@@ -160,12 +217,14 @@ async function getHealthSummary() {
 async function getRecentRequests(options = {}) {
   const limit = Math.min(Math.max(1, options.limit || 50), 200);
   const hours = options.hours ?? 24;
+  const cutoff = cutoffTimestamp(hours);
   const rows = await operational.all(
     `SELECT request_id, method, path, status_code, duration_ms, ip_hash, created_at
      FROM api_request_log
-     WHERE ${intervalSql(hours)}
+     WHERE created_at >= $1
      ORDER BY created_at DESC
-     LIMIT ${limit}`
+     LIMIT ${limit}`,
+    [cutoff]
   );
   return {
     windowHours: hours,
@@ -177,6 +236,14 @@ function percentile(sortedValues, p) {
   if (!sortedValues || sortedValues.length === 0) return 0;
   const index = Math.ceil(sortedValues.length * p) - 1;
   return sortedValues[Math.max(0, index)];
+}
+
+function roundPercentile(value) {
+  // percentile_cont interpolates (fractional doubles) and returns null when
+  // the window is empty. Normalize to the numeric shape the JS fallback
+  // produces so both drivers return the same contract.
+  if (value == null) return 0;
+  return Number(Number(value).toFixed(2));
 }
 
 module.exports = {

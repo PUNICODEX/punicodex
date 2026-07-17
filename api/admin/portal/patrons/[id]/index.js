@@ -9,7 +9,7 @@ const {
   sendError,
   parseIdParam,
   portalAuth,
-  portalService,
+  getPortalService,
 } = require('../../_portal.js');
 
 module.exports = async (req, res) => {
@@ -25,7 +25,7 @@ module.exports = async (req, res) => {
     if (id == null) return res.status(400).json({ error: 'Invalid patron id' });
 
     const { status } = req.body || {};
-    const patron = await portalService.updatePatronStatus(id, status, auth);
+    const patron = await getPortalService().updatePatronStatus(id, status, auth);
     return res.json({ patron });
   } catch (err) {
     sendError(res, err);

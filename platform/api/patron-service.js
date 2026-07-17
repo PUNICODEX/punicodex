@@ -132,6 +132,7 @@ async function createPatronCheckoutRecord({
     ]
   );
 
+  invalidatePatronStatsCache();
   return { id, ...normalized };
 }
 
@@ -169,6 +170,7 @@ async function markPatronPaid(sessionId, stripeSubscriptionId, stripeCustomerId,
     [stripeSubscriptionId, stripeCustomerId, amountCents, row.id]
   );
 
+  invalidatePatronStatsCache();
   return getPatronById(row.id);
 }
 
@@ -179,6 +181,7 @@ async function cancelPatronBySubscriptionId(stripeSubscriptionId) {
      WHERE stripe_subscription_id = $1`,
     [stripeSubscriptionId]
   );
+  invalidatePatronStatsCache();
   return getPatronByStripeSubscriptionId(stripeSubscriptionId);
 }
 
@@ -231,20 +234,33 @@ async function countPatrons({ templeId = null, status = null } = {}) {
   return Number(row?.count ?? 0);
 }
 
+// Stats power both the admin portal dashboard and the patrons page, which
+// fetch them in parallel on every load. Memoize briefly so a burst shares
+// one set of aggregates instead of paying three round trips per request.
+// Every mutation below invalidates the cache, so same-instance reads stay
+// fresh after writes; cross-instance staleness is bounded by the TTL.
+const PATRON_STATS_CACHE_TTL_MS = 30 * 1000;
+let patronStatsCache = null; // { stats, cachedAt }
+
+function invalidatePatronStatsCache() {
+  patronStatsCache = null;
+}
+
 async function getPatronStats() {
-  const byStatus = await all(`SELECT status, COUNT(*) as count FROM patrons GROUP BY status`);
+  if (patronStatsCache && Date.now() - patronStatsCache.cachedAt < PATRON_STATS_CACHE_TTL_MS) {
+    return patronStatsCache.stats;
+  }
+  const [byStatus, mrrRow, templeRow] = await Promise.all([
+    all(`SELECT status, COUNT(*) as count FROM patrons GROUP BY status`),
+    get("SELECT COALESCE(SUM(amount_cents), 0) as mrr FROM patrons WHERE status = 'active'"),
+    get("SELECT COUNT(DISTINCT temple_id) as count FROM patrons WHERE status = 'active'"),
+  ]);
   const counts = { pending_payment: 0, active: 0, cancelled: 0, expired: 0 };
   for (const row of byStatus) {
     counts[row.status] = Number(row.count);
   }
-  const mrrRow = await get(
-    "SELECT COALESCE(SUM(amount_cents), 0) as mrr FROM patrons WHERE status = 'active'"
-  );
-  const templeRow = await get(
-    "SELECT COUNT(DISTINCT temple_id) as count FROM patrons WHERE status = 'active'"
-  );
   const mrrCents = Number(mrrRow?.mrr ?? 0);
-  return {
+  const stats = {
     total: counts.pending_payment + counts.active + counts.cancelled + counts.expired,
     pendingPayment: counts.pending_payment,
     active: counts.active,
@@ -255,6 +271,8 @@ async function getPatronStats() {
     estimatedMrrDollars: (mrrCents / 100).toFixed(2),
     limitPerTemple: PATRON_LIMIT_PER_TEMPLE,
   };
+  patronStatsCache = { stats, cachedAt: Date.now() };
+  return stats;
 }
 
 async function setPatronStatus(id, status) {
@@ -269,6 +287,7 @@ async function setPatronStatus(id, status) {
      WHERE id = $2`,
     [status, id]
   );
+  invalidatePatronStatsCache();
   return getPatronById(id);
 }
 
