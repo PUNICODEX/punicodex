@@ -946,8 +946,8 @@ export default function middleware(request) {
 
 
   // ─── 0b. Defensive domains ─────────────────────────────────────────
-  // punicodex.com (legacy brand) and www variants -> redirect to punicodex.com
-  const DEFENSIVE_DOMAINS = new Set(['punicodex.com', 'www.punicodex.com', 'www.punicodex.com']);
+  // punycodex.com (legacy brand) and www variants -> redirect to punicodex.com
+  const DEFENSIVE_DOMAINS = new Set(['punycodex.com', 'www.punycodex.com', 'www.punicodex.com']);
   if (DEFENSIVE_DOMAINS.has(host)) {
     url.hostname = 'punicodex.com';
     return new Response(null, {
