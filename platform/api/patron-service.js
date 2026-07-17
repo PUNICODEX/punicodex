@@ -228,14 +228,14 @@ async function countPatrons({ templeId = null, status = null } = {}) {
   }
   const where = conditions.length ? `WHERE ${conditions.join(' AND ')}` : '';
   const row = await get(`SELECT COUNT(*) as count FROM patrons ${where}`, params);
-  return row?.count || 0;
+  return Number(row?.count ?? 0);
 }
 
 async function getPatronStats() {
   const byStatus = await all(`SELECT status, COUNT(*) as count FROM patrons GROUP BY status`);
   const counts = { pending_payment: 0, active: 0, cancelled: 0, expired: 0 };
   for (const row of byStatus) {
-    counts[row.status] = row.count;
+    counts[row.status] = Number(row.count);
   }
   const mrrRow = await get(
     "SELECT COALESCE(SUM(amount_cents), 0) as mrr FROM patrons WHERE status = 'active'"
@@ -243,14 +243,14 @@ async function getPatronStats() {
   const templeRow = await get(
     "SELECT COUNT(DISTINCT temple_id) as count FROM patrons WHERE status = 'active'"
   );
-  const mrrCents = mrrRow?.mrr || 0;
+  const mrrCents = Number(mrrRow?.mrr ?? 0);
   return {
     total: counts.pending_payment + counts.active + counts.cancelled + counts.expired,
     pendingPayment: counts.pending_payment,
     active: counts.active,
     cancelled: counts.cancelled,
     expired: counts.expired,
-    activeTemples: templeRow?.count || 0,
+    activeTemples: Number(templeRow?.count ?? 0),
     estimatedMrrCents: mrrCents,
     estimatedMrrDollars: (mrrCents / 100).toFixed(2),
     limitPerTemple: PATRON_LIMIT_PER_TEMPLE,

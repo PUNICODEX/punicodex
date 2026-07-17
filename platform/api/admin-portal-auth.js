@@ -83,7 +83,9 @@ function generateTempPassword(length = 16) {
 
 async function countAdminUsers() {
   const row = await get('SELECT COUNT(*) as c FROM admin_users');
-  return row?.c || 0;
+  // Postgres returns COUNT(*) as a string; SQLite returns a number. Normalize
+  // so strict comparisons (e.g. === 0) behave identically on both drivers.
+  return Number(row?.c ?? 0);
 }
 
 async function getUserByEmail(email) {

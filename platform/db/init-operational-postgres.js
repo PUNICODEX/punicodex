@@ -157,6 +157,25 @@ async function main() {
     }
   }
 
+  // Column drift: operational tables created before later SQLite migrations
+  // added columns (skip-if-exists never backfills them). Apply the known
+  // idempotent additions so older Neon schemas converge with the current one.
+  const COLUMN_DRIFT = [
+    { table: 'admin_sessions', column: 'admin_user_id', definition: 'INTEGER' },
+    { table: 'admin_actions', column: 'admin_user_id', definition: 'INTEGER' },
+    { table: 'admin_actions', column: 'target', definition: 'TEXT' },
+    { table: 'admin_actions', column: 'meta', definition: 'TEXT' },
+  ];
+  for (const { table, column, definition } of COLUMN_DRIFT) {
+    await sql.query(`ALTER TABLE ${table} ADD COLUMN IF NOT EXISTS ${column} ${definition}`);
+  }
+  await sql.query(
+    'CREATE INDEX IF NOT EXISTS idx_admin_sessions_user ON admin_sessions(admin_user_id)'
+  );
+  await sql.query(
+    'CREATE INDEX IF NOT EXISTS idx_admin_actions_user ON admin_actions(admin_user_id)'
+  );
+
   // Seed ad_slots and bundle_members from SQLite
   console.log('Seeding ad_slots and bundle_members...');
   const slots = sqliteDb.prepare('SELECT * FROM ad_slots').all();
