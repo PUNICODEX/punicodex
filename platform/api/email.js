@@ -1,5 +1,6 @@
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const FROM_EMAIL = process.env.FROM_EMAIL || 'bookings@punicodex.com';
+const REPLY_TO_EMAIL = process.env.REPLY_TO_EMAIL || 'support@punicodex.com';
 const PLATFORM_URL = process.env.PLATFORM_URL || 'http://localhost:3456';
 
 function escapeHtml(text) {
@@ -27,8 +28,9 @@ async function sendEmail({ to, subject, html, text }) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: `Níkē Ads <${FROM_EMAIL}>`,
+        from: `PuniCodex <${FROM_EMAIL}>`,
         to: [to],
+        reply_to: REPLY_TO_EMAIL,
         subject,
         html,
         text: text || html.replace(/<[^>]*>/g, ''),
