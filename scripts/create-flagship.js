@@ -929,7 +929,7 @@ function replacePlaceholders(html, vars) {
 
 function buildHeroVisual(templeId, unicode, domain) {
   return `<div class="patron-mascot">
-    <picture><source srcset="assets/${templeId}_mascot.webp" type="image/webp"><img src="assets/${templeId}_mascot.png" alt="${unicode} — ${domain}" class="patron-mascot-img"></picture>
+    <picture><source srcset="assets/${templeId}_mascot.webp" type="image/webp"><img src="assets/${templeId}_mascot.png" alt="${unicode} — ${domain}" class="patron-mascot-img" fetchpriority="high" decoding="async"></picture>
 </div>`;
 }
 
@@ -1567,7 +1567,7 @@ function buildZeusFooter(entry, assetPrefix) {
 
 function buildHeroVisualExtended(entry, assetPrefix) {
   const mascot = `${assetPrefix}assets/${entry.id}_mascot`;
-  return `<picture><source srcset="${mascot}.webp" type="image/webp"><img src="${mascot}.png" alt="${entry.unicode} — ${entry.domain}" class="mascot-img"></picture>`;
+  return `<picture><source srcset="${mascot}.webp" type="image/webp"><img src="${mascot}.png" alt="${entry.unicode} — ${entry.domain}" class="mascot-img" fetchpriority="high" decoding="async"></picture>`;
 }
 
 function getUnicodeInfo(char) {

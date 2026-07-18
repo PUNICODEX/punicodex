@@ -120,11 +120,24 @@
       }
       if (!mobileMenu && !navLinks) return;
 
+      // Menus marked aria-hidden="true" (e.g. temple pages) must not expose
+      // focusable links while closed: keep aria-hidden and inert in sync with
+      // the open state so keyboard/AT users only reach an open menu.
+      const syncHiddenMenu = (open) => {
+        if (!mobileMenu || !mobileMenu.hasAttribute('aria-hidden')) return;
+        mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
+        mobileMenu.inert = !open;
+      };
+      if (mobileMenu && mobileMenu.hasAttribute('aria-hidden')) {
+        mobileMenu.inert = !mobileMenu.classList.contains('active');
+      }
+
       const closeMenu = () => {
         toggle.classList.remove('active');
         if (mobileMenu) mobileMenu.classList.remove('active');
         if (navLinks) navLinks.classList.remove('active');
         document.body.classList.remove('menu-open');
+        syncHiddenMenu(false);
       };
 
       toggle.addEventListener('click', (e) => {
@@ -135,6 +148,7 @@
         if (mobileMenu) mobileMenu.classList.toggle('active', active);
         if (navLinks) navLinks.classList.toggle('active', active);
         document.body.classList.toggle('menu-open', active);
+        syncHiddenMenu(active);
       });
 
       if (mobileMenu) {

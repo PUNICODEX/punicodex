@@ -31,7 +31,7 @@ const FOOTER = `    <footer class="site-footer">
                     <p class="footer-tagline">Restoring the original names of the gods to the digital realm.</p>
                 </div>
                 <div class="footer-column">
-                    <h4 class="footer-heading">Explore</h4>
+                    <h2 class="footer-heading">Explore</h2>
                     <a href="/pantheon/">Pantheon</a>
                     <a href="/realms/">Realms</a>
                     <a href="/lexicon/">Lexicon</a>
@@ -40,7 +40,7 @@ const FOOTER = `    <footer class="site-footer">
                     <a href="/search.html">Search</a>
                 </div>
                 <div class="footer-column">
-                    <h4 class="footer-heading">Resources</h4>
+                    <h2 class="footer-heading">Resources</h2>
                     <a href="/codex/">Codex</a>
                     <a href="/api/v1/docs/">API</a>
                     <a href="/appraise/">Appraise</a>
@@ -48,7 +48,7 @@ const FOOTER = `    <footer class="site-footer">
                     <a href="/oracle.html">Oracle</a>
                 </div>
                 <div class="footer-column">
-                    <h4 class="footer-heading">Connect</h4>
+                    <h2 class="footer-heading">Connect</h2>
                     <a href="/about/">About</a>
                     <a href="/contact/">Contact</a>
                     <a href="/privacy/">Privacy</a>

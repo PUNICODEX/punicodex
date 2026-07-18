@@ -38,7 +38,7 @@
   <header class="cn-header">
     <div class="cn-header-inner">
       <div class="cn-header-top">
-        <a href="/" class="cn-logo-row" aria-label="PUNICODEX home">
+        <a href="/" class="cn-logo-row">
           <picture><source srcset="/assets/brand/01-logos/punicodex-emblem-glyph-gold.webp" type="image/webp"><img class="cn-logo-glyph" src="/assets/brand/01-logos/punicodex-emblem-glyph-gold.png" alt="" width="1283" height="3544"></picture>
           <div>
             <picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-gold.webp" type="image/webp"><img class="cn-logo-wordmark" src="/assets/brand/01-logos/punicodex-wordmark-gold.png" alt="PuniCodex" width="440" height="46"></picture>
@@ -102,11 +102,11 @@
         <button class="filter-pill" data-filter="tier" data-value="dual">Dual</button>
         <button class="filter-pill" data-filter="tier" data-value="1">Tier 1</button>
         <button class="filter-pill" data-filter="tier" data-value="2">Tier 2</button>
-        <span class="filter-label" style="margin-left: auto;">Pantheon</span>
+        <label class="filter-label" style="margin-left: auto;" for="pantheonFilter">Pantheon</label>
         <select class="filter-select" id="pantheonFilter" onchange="setPantheon(this.value)">
           <option value="">All pantheons</option>
         </select>
-        <span class="filter-label">Sort</span>
+        <label class="filter-label" for="sortFilter">Sort</label>
         <select class="filter-select" id="sortFilter" onchange="setSort(this.value)">
           <option value="relevance">Relevance</option>
           <option value="alphabetical">A–Z</option>

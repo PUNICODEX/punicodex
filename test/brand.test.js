@@ -40,6 +40,24 @@
  *  (n) search.html badge/filter rows contain none of the enumerated emoji
  *      removed in this wave (⚙️🏛️👑🔒🔑🌐📑▶️⚡⚠️🏪🧠).
  *
+ * Perf/a11y verification wave (docs/perf-a11y-2026-07.md):
+ *  (o) every <img> in the brand-owned canonical files carries an alt
+ *      (decorative images use alt=""),
+ *  (p) the medallion/stamp pseudo-element overlays stay decorative —
+ *      empty content and pointer-events:none,
+ *  (q) temple mobile menus start aria-hidden + inert and px-core.js keeps
+ *      aria-hidden/inert in sync with the open state,
+ *  (r) footer column headings are h2 (no h1/h2→h4 skip) and the temple
+ *      takeover title is h2,
+ *  (s) the brand gold tokens used for text meet WCAG contrast on obsidian
+ *      (computed ratios, not vibes),
+ *  (t) the pantheon filter pills are styled with AA-passing colors and a
+ *      24px+ touch target (Lighthouse color-contrast/target-size fix),
+ *  (u) search.html filter selects have explicit labels and the logo link
+ *      takes its accessible name from its contents,
+ *  (v) the lexicon show-all toggle is a real <button> so aria-pressed is
+ *      legal and keyboard activation works.
+ *
  * Note: platform/public/scholars/index.html does not exist — the scholars
  * portal root is a directory of sub-pages — so the representative scholars
  * page asserted here is platform/public/scholars/login/index.html.
@@ -611,7 +629,14 @@ test('(m) terms and privacy pages reference the sealed tablet and kit card glyph
   ]) {
     assert.ok(terms.includes(glyph), `terms/index.html missing card glyph ${glyph}`);
   }
-  for (const entity of ['&#128;</div>', '&#128214;</div>', '&#9000;</div>', '&#128269;</div>', '&#128241;</div>', '&#127760;</div>']) {
+  for (const entity of [
+    '&#128;</div>',
+    '&#128214;</div>',
+    '&#9000;</div>',
+    '&#128269;</div>',
+    '&#128241;</div>',
+    '&#127760;</div>',
+  ]) {
     assert.ok(!terms.includes(entity), `terms/index.html still has emoji icon ${entity}`);
   }
 });
@@ -645,13 +670,158 @@ test('(n) no emoji remain in search.html badge/filter rows', () => {
     search.includes('"serp-badge flagship">Flagship</span>'),
     'flagship badge lost its label'
   );
+  assert.ok(search.includes('"lease-badge leased">Leased</span>'), 'leased badge lost its label');
+  assert.ok(search.includes('"unicode-badge">Unicode</span>'), 'unicode badge lost its label');
+});
+
+// ---- (o) alt coverage on every brand <img> ------------------------------------
+
+test('(o) every <img> in brand-owned canonical files has an alt attribute', () => {
+  const SCAN = [
+    ...ROOT_PAGES,
+    ...FLAGSHIP_TEMPLATES,
+    ...SCHOLARS_PAGES,
+    ...CLIENT_FILES,
+    'js/pantheon.js',
+    'js/home.js',
+    'platform/public/admin-portal/portal.js',
+    'scripts/create-flagship.js',
+    'scripts/generate-temples.js',
+    'scripts/fix-main-footers.js',
+    'scripts/fix-flagship-nav.js',
+  ];
+  for (const rel of SCAN) {
+    const content = read(rel);
+    for (const match of content.matchAll(/<img\b[^>]*>/g)) {
+      assert.ok(
+        /\balt=/.test(match[0]),
+        `${rel} has an <img> without alt: ${match[0].slice(0, 100)}`
+      );
+    }
+  }
+});
+
+// ---- (p) decorative overlays stay decorative ------------------------------------
+
+test('(p) medallion/stamp overlays have empty content and pointer-events:none', () => {
+  for (const rel of ['css/pantheon.css', 'css/home-v2.css']) {
+    const css = read(rel);
+    for (const sel of ['.card-portrait::after', '.archetype-card.unbuilt .card-portrait::before']) {
+      const i = css.indexOf(sel);
+      assert.ok(i !== -1, `${rel} missing the ${sel} rule`);
+      const rule = css.slice(i, css.indexOf('}', i));
+      assert.ok(
+        /content:\s*(''|"")/.test(rule),
+        `${rel} ${sel} must not render text via the content property`
+      );
+      assert.ok(rule.includes('pointer-events: none'), `${rel} ${sel} must be pointer-events:none`);
+    }
+  }
+});
+
+// ---- (q) temple mobile menu: aria-hidden + inert, synced by px-core -------------
+
+test('(q) temple mobile menus start inert and px-core syncs aria-hidden/inert', () => {
+  for (const rel of FLAGSHIP_TEMPLATES) {
+    assert.ok(
+      read(rel).includes('id="temple-mobile-menu" aria-hidden="true" inert'),
+      `${rel} mobile menu must start aria-hidden + inert so its links are unreachable while closed`
+    );
+  }
+  const px = read('js/px-core.js');
   assert.ok(
-    search.includes('"lease-badge leased">Leased</span>'),
-    'leased badge lost its label'
+    px.includes("mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true')"),
+    'js/px-core.js must toggle aria-hidden with the menu open state'
   );
   assert.ok(
-    search.includes('"unicode-badge">Unicode</span>'),
-    'unicode badge lost its label'
+    px.includes('mobileMenu.inert = !open'),
+    'js/px-core.js must toggle inert with the menu open state'
+  );
+});
+
+// ---- (r) heading order guards ----------------------------------------------------
+
+test('(r) footer column headings are h2 and the temple takeover title is h2', () => {
+  for (const rel of OWNED_FILES) {
+    assert.ok(
+      !read(rel).includes('<h4 class="footer-heading">'),
+      `${rel} still has an h4 footer heading (heading-level skip)`
+    );
+  }
+  assert.ok(
+    read('templates/flagship/index.html').includes('<h2 class="takeover-title">'),
+    'flagship index template takeover title must be h2 (h1 -> h3 skip otherwise)'
+  );
+});
+
+// ---- (s) brand gold contrast on obsidian (WCAG, computed) -------------------------
+
+test('(s) gold tokens used for text meet WCAG contrast on obsidian', () => {
+  const lum = (hex) => {
+    const c = hex.replace('#', '');
+    const ch = [0, 2, 4]
+      .map((i) => parseInt(c.substr(i, 2), 16) / 255)
+      .map((v) => (v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4));
+    return 0.2126 * ch[0] + 0.7152 * ch[1] + 0.0722 * ch[2];
+  };
+  const ratio = (fg, bg) => {
+    const hi = Math.max(lum(fg), lum(bg));
+    const lo = Math.min(lum(fg), lum(bg));
+    return (hi + 0.05) / (lo + 0.05);
+  };
+  // Normal-text tokens on --pc-obsidian #0A0A0C: AA requires >= 4.5:1.
+  assert.ok(ratio('#D4AF37', '#0A0A0C') >= 4.5, '--pc-gold must pass AA normal text');
+  assert.ok(ratio('#F5E3A8', '#0A0A0C') >= 4.5, '--pc-gold-highlight must pass AA normal text');
+  assert.ok(ratio('#C9A23F', '#0A0A0C') >= 4.5, '--pc-gold-mid must pass AA normal text');
+  // --pc-gold-deep only appears in the .pc-display gradient at display sizes
+  // (>= 36px): large text requires >= 3:1.
+  assert.ok(ratio('#8C6A22', '#0A0A0C') >= 3, '--pc-gold-deep must pass AA large text');
+});
+
+// ---- (t) pantheon filter pills: AA colors + 24px touch targets --------------------
+
+test('(t) pantheon filter pills are styled with passing colors and touch targets', () => {
+  const css = read('css/pantheon.css');
+  const i = css.indexOf('.filter-pill {');
+  assert.ok(i !== -1, 'css/pantheon.css missing the .filter-pill rule');
+  const rule = css.slice(i, css.indexOf('}', i));
+  assert.ok(
+    rule.includes('min-height: 32px'),
+    'filter pills must meet the 24px touch-target minimum'
+  );
+  assert.ok(
+    rule.includes('color: var(--text-secondary)'),
+    'filter pill text must use the AA-passing secondary token'
+  );
+  assert.ok(css.includes('.filter-pill.active'), 'missing the .filter-pill.active state');
+});
+
+// ---- (u) search.html select labels + logo accessible name --------------------------
+
+test('(u) search filter selects have explicit labels; logo name matches contents', () => {
+  const html = read('search.html');
+  assert.ok(
+    html.includes('for="pantheonFilter">Pantheon</label>'),
+    '#pantheonFilter needs an explicit label'
+  );
+  assert.ok(html.includes('for="sortFilter">Sort</label>'), '#sortFilter needs an explicit label');
+  assert.ok(
+    html.includes('<a href="/" class="cn-logo-row">'),
+    'cn-logo-row must take its accessible name from its contents (no overriding aria-label)'
+  );
+});
+
+// ---- (v) lexicon show-all toggle is a real button -----------------------------------
+
+test('(v) lexicon show-all toggle is a button so aria-pressed is allowed', () => {
+  const html = read('lexicon/index.html');
+  assert.ok(
+    html.includes('<button type="button" class="filter-toggle" id="filter-show-all"'),
+    'filter-show-all must be a <button type="button">'
+  );
+  assert.ok(
+    !html.includes('<label class="filter-toggle" id="filter-show-all"'),
+    'filter-show-all must not be a <label> (aria-pressed is not allowed on label)'
   );
 });
 

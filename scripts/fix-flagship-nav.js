@@ -68,7 +68,7 @@ const FOOTER_REPLACEMENT = `    <footer class="site-footer">
                     <p class="footer-tagline">Restoring the original names of the gods to the digital realm.</p>
                 </div>
                 <div class="footer-column">
-                    <h4 class="footer-heading">Explore</h4>
+                    <h2 class="footer-heading">Explore</h2>
                     <a href="https://punicodex.com/pantheon/">Pantheon</a>
                     <a href="https://punicodex.com/realms/">Realms</a>
                     <a href="https://punicodex.com/lexicon/">Lexicon</a>
@@ -77,7 +77,7 @@ const FOOTER_REPLACEMENT = `    <footer class="site-footer">
                     <a href="https://punicodex.com/search.html">Search</a>
                 </div>
                 <div class="footer-column">
-                    <h4 class="footer-heading">Resources</h4>
+                    <h2 class="footer-heading">Resources</h2>
                     <a href="https://punicodex.com/codex/">Codex</a>
                     <a href="https://punicodex.com/api/v1/docs/">API</a>
                     <a href="https://punicodex.com/appraise/">Appraise</a>
@@ -85,7 +85,7 @@ const FOOTER_REPLACEMENT = `    <footer class="site-footer">
                     <a href="https://punicodex.com/oracle.html">Oracle</a>
                 </div>
                 <div class="footer-column">
-                    <h4 class="footer-heading">Connect</h4>
+                    <h2 class="footer-heading">Connect</h2>
                     <a href="https://punicodex.com/about/">About</a>
                     <a href="https://punicodex.com/contact/">Contact</a>
                     <a href="https://punicodex.com/privacy/">Privacy</a>

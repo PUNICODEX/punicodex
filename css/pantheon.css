@@ -70,6 +70,71 @@
     -webkit-backdrop-filter: blur(12px);
 }
 
+/* Current filter bar markup (filter-bar > filter-row > filter-pills).
+   The legacy rules below cover the older lexicon-filters markup; these
+   style the pills the page actually renders. Colors keep AA contrast on
+   the obsidian background and pills meet the 24px touch-target minimum. */
+.filter-bar {
+    position: sticky;
+    top: var(--nav-height);
+    z-index: 100;
+    background: rgba(5, 5, 5, 0.95);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.08);
+    padding: 0.75rem 0;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.filter-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+}
+
+.filter-pills {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    flex: 1 1 auto;
+}
+
+.filter-pill {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    padding: 6px 14px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(212, 175, 55, 0.14);
+    border-radius: var(--radius-pill, 999px);
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-smooth);
+    white-space: nowrap;
+}
+
+.filter-pill:hover {
+    color: var(--gold);
+    border-color: rgba(212, 175, 55, 0.35);
+}
+
+.filter-pill:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+}
+
+.filter-pill.active {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--void);
+    font-weight: 600;
+}
+
 .filter-bar-modern {
     display: flex;
     align-items: center;
@@ -237,7 +302,7 @@
     display: flex;
     gap: var(--space-5);
     font-size: 13px;
-    color: var(--text-dim);
+    color: var(--text-secondary);
     letter-spacing: 0.02em;
 }
 
