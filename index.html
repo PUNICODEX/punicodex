@@ -155,18 +155,14 @@
     </div>
 
     <!-- --- HERO SECTION --- -->
-    <section class="hero pc-atmosphere" id="hero">
-        <video class="hero-bg-video" muted loop playsinline preload="none" poster="/assets/brand/13-page-visuals/home/celestial-knot-hero.webp" aria-hidden="true" tabindex="-1">
-            <source src="/assets/brand/13-page-visuals/home/celestial-knot-loop.mp4" type="video/mp4">
-        </video>
+    <section class="hero" id="hero">
+        <canvas id="orrery" aria-hidden="true"></canvas>
         <div class="hero-vignette"></div>
-        <div class="hero-content hero-grid">
+        <div class="hero-content">
             <div class="hero-copy">
-                <div class="hero-symbol reveal-scale">
-                    <picture><source srcset="/assets/brand/01-logos/punicodex-emblem-gold.webp" type="image/webp"><img class="hero-emblem" src="/assets/brand/01-logos/punicodex-emblem-gold.png" alt="" width="320" height="320"></picture>
-                </div>
+                <p class="hero-kicker reveal-up">The Unicode Pantheon</p>
                 <h1 class="display-xl text-center reveal-up">PUNICODEX</h1>
-                <p class="hero-tagline reveal-up">THE UNICODE PANTHEON</p>
+                <div class="hero-rule reveal-up" aria-hidden="true"></div>
                 <p class="hero-subtitle body-lg text-center reveal-up">
                     895 temples. 22 pantheons. One mission: restore the original Unicode names of myth, place, and sacred tradition to the digital realm.
                 </p>
@@ -175,10 +171,6 @@
                     <a href="/tiers/" class="btn btn-outline btn-lg"><span>Learn the Tiers</span></a>
                 </div>
             </div>
-            <picture class="hero-knot-wrap">
-                <source srcset="/assets/brand/13-page-visuals/home/celestial-knot-hero.webp" type="image/webp">
-                <img class="pc-art pc-art--float hero-knot" src="/assets/brand/13-page-visuals/home/celestial-knot-hero.png" alt="The Celestial Knot — a golden trefoil: one continuous name, impossible to reduce to ASCII" width="1280" height="880" fetchpriority="high" decoding="async">
-            </picture>
         </div>
         <div class="scroll-indicator">
             <div class="scroll-line"></div>
@@ -297,7 +289,7 @@
                 </div>
                 <div class="origin-stats reveal-up">
                     <div class="stat-card">
-                        <span class="stat-number" data-count="894">0</span>
+                        <span class="stat-number" data-count="895">0</span>
                         <span class="stat-label">Temples Built</span>
                     </div>
                     <div class="stat-card">
@@ -305,11 +297,11 @@
                         <span class="stat-label">Pantheons</span>
                     </div>
                     <div class="stat-card">
-                        <span class="stat-number" data-count="173">0</span>
+                        <span class="stat-number" data-count="196">0</span>
                         <span class="stat-label">Flagships</span>
                     </div>
                     <div class="stat-card">
-                        <span class="stat-number" data-count="171">0</span>
+                        <span class="stat-number" data-count="206">0</span>
                         <span class="stat-label">Domains Owned</span>
                     </div>
                 </div>
@@ -324,10 +316,24 @@
         <div class="ambient-particles"></div>
         <div class="container">
             <div class="section-header reveal-up">
-                <picture>
-                    <source srcset="/assets/brand/13-page-visuals/home/celestial-knot-square.webp" type="image/webp">
-                    <img class="codex-knot" src="/assets/brand/13-page-visuals/home/celestial-knot-square.png" alt="" width="840" height="840" loading="lazy" decoding="async">
-                </picture>
+                <svg class="script-seal" viewBox="0 0 200 200" width="120" height="120" aria-hidden="true">
+                    <circle cx="100" cy="100" r="96" fill="none" stroke="#D4AF37" stroke-opacity="0.45" stroke-width="1"/>
+                    <circle cx="100" cy="100" r="72" fill="none" stroke="#D4AF37" stroke-opacity="0.25" stroke-width="1"/>
+                    <ellipse cx="100" cy="100" rx="88" ry="32" fill="none" stroke="#D4AF37" stroke-opacity="0.3" stroke-width="1" transform="rotate(-28 100 100)"/>
+                    <ellipse cx="100" cy="100" rx="88" ry="32" fill="none" stroke="#D4AF37" stroke-opacity="0.18" stroke-width="1" transform="rotate(34 100 100)"/>
+                    <g font-family="Cormorant Garamond, serif" font-size="14" fill="#D4AF37" text-anchor="middle">
+                        <text x="100" y="22">Ω</text>
+                        <text x="155" y="45">ᛟ</text>
+                        <text x="178" y="100">𒀭</text>
+                        <text x="155" y="155">𓂀</text>
+                        <text x="100" y="178">ॐ</text>
+                        <text x="45" y="155">神</text>
+                        <text x="22" y="100">א</text>
+                        <text x="45" y="45">ע</text>
+                    </g>
+                    <rect x="96.5" y="96.5" width="7" height="7" transform="rotate(45 100 100)" fill="none" stroke="#D4AF37" stroke-width="1"/>
+                    <circle cx="100" cy="100" r="1.6" fill="#D4AF37"/>
+                </svg>
                 <p class="section-eyebrow">Chronicles</p>
                 <h2 class="section-title display-lg">THE CODEX</h2>
                 <p class="section-subtitle body-lg">
@@ -413,10 +419,29 @@
     <section class="section-cta" id="cta">
         <div class="cta-rule"></div>
         <div class="container">
-            <picture>
-                <source srcset="/assets/brand/13-page-visuals/home/celestial-knot-square.webp" type="image/webp">
-                <img class="pc-art cta-knot reveal-up" src="/assets/brand/13-page-visuals/home/celestial-knot-square.png" alt="The Celestial Knot — one continuous golden name" width="840" height="840" loading="lazy" decoding="async">
-            </picture>
+            <svg class="script-seal script-seal--lg reveal-up" viewBox="0 0 200 200" width="220" height="220" aria-hidden="true">
+                <circle cx="100" cy="100" r="96" fill="none" stroke="#D4AF37" stroke-opacity="0.5" stroke-width="1"/>
+                <circle cx="100" cy="100" r="72" fill="none" stroke="#D4AF37" stroke-opacity="0.28" stroke-width="1"/>
+                <circle cx="100" cy="100" r="52" fill="none" stroke="#D4AF37" stroke-opacity="0.16" stroke-width="1"/>
+                <ellipse cx="100" cy="100" rx="88" ry="32" fill="none" stroke="#D4AF37" stroke-opacity="0.34" stroke-width="1" transform="rotate(-28 100 100)"/>
+                <ellipse cx="100" cy="100" rx="88" ry="32" fill="none" stroke="#D4AF37" stroke-opacity="0.2" stroke-width="1" transform="rotate(34 100 100)"/>
+                <g font-family="Cormorant Garamond, serif" font-size="15" fill="#D4AF37" text-anchor="middle">
+                    <text x="100" y="22">Ω</text>
+                    <text x="139" y="31">ᛟ</text>
+                    <text x="169" y="61">𒀭</text>
+                    <text x="178" y="100">𓂀</text>
+                    <text x="169" y="139">ॐ</text>
+                    <text x="139" y="169">神</text>
+                    <text x="100" y="178">א</text>
+                    <text x="61" y="169">ע</text>
+                    <text x="31" y="139">ᚠ</text>
+                    <text x="22" y="100">龍</text>
+                    <text x="31" y="61">ศ</text>
+                    <text x="61" y="31">அ</text>
+                </g>
+                <rect x="95.5" y="95.5" width="9" height="9" transform="rotate(45 100 100)" fill="none" stroke="#D4AF37" stroke-width="1"/>
+                <circle cx="100" cy="100" r="2" fill="#D4AF37"/>
+            </svg>
             <h2 class="display-lg text-center reveal-up">OWN A PIECE OF THE PANTHEON</h2>
             <p class="body-lg text-center reveal-up">
                 The gods have returned. Their names are restored. Their temples are open.
@@ -479,7 +504,8 @@
     <script src="/js/original-script-lookup.js?v=3" defer></script>
     <script src="/js/px-core.js?v=perf8" defer></script>
     <script src="/js/main.js?v=perf8" defer></script>
-    <script src="/js/home.js?v=perf15" defer></script>
+    <script src="/js/home.js?v=perf16" defer></script>
+    <script src="/js/home-orrery.js?v=1" defer></script>
 
 </body>
 </html>
