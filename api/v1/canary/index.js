@@ -7,10 +7,15 @@
  */
 
 const { createApiHandler } = require('../../../platform/api/api-handler.js');
+const { error } = require('../../../platform/api/api-response.js');
 const { createCanaryPayload } = require('../../../platform/api/license-headers.js');
 
 module.exports = createApiHandler(
   async (req, res) => {
+    if (req.method !== 'GET') {
+      error(res, 'METHOD_NOT_ALLOWED', 'Only GET is allowed.', { status: 405 });
+      return;
+    }
     const requestId = res.locals?.requestId || 'unknown';
     // Log the access for audit purposes. In production this should feed SIEM or
     // an alert channel (e.g. webhook, email). Here we write to stderr so it is

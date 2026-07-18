@@ -5,11 +5,15 @@
  */
 
 const { createApiHandler } = require('../../../platform/api/api-handler.js');
-const { success } = require('../../../platform/api/api-response.js');
+const { success, error } = require('../../../platform/api/api-response.js');
 const { generateTransparencyReport } = require('../../../platform/api/transparency-service.js');
 const { migrateRegulatory } = require('../../../platform/db/migrate-regulatory.js');
 
-module.exports = createApiHandler(async (_req, res) => {
+module.exports = createApiHandler(async (req, res) => {
+  if (req.method !== 'GET') {
+    error(res, 'METHOD_NOT_ALLOWED', 'Only GET is allowed.', { status: 405 });
+    return;
+  }
   migrateRegulatory();
   success(res, generateTransparencyReport());
 });

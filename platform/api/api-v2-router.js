@@ -148,7 +148,7 @@ async function handleNameSubresource(_req, res, id, subresource) {
       result = namesService.getSite(id);
       break;
     case 'slots':
-      result = namesService.getSlots(id);
+      result = await namesService.getSlots(id);
       break;
     case 'lore':
       result = namesService.getLore(id);
@@ -512,6 +512,8 @@ function getOpenApiSpec() {
       '/api/v2/authenticity/report': { POST: 'Report a suspicious input' },
       '/api/v2/policy': { GET: 'Get default/tenant policy' },
       '/api/v2/policy/evaluate': { POST: 'Evaluate input against policy' },
+      '/api/v2/similarities/relationships': { GET: 'List similarity relationship types' },
+      '/api/v2/threat-feed/stream': { GET: 'Live threat feed (Server-Sent Events)' },
       '/api/v2/tenants/{tenantId}/users': { GET: 'List tenant users', POST: 'Add tenant user' },
       '/api/v2/tenants/{tenantId}/users/{userId}/role': { PATCH: 'Change user role' },
       '/api/v2/tenants/{tenantId}/audit': { GET: 'Query audit logs' },
@@ -555,6 +557,10 @@ async function route(req, res) {
       error(res, 'NOT_FOUND', 'Tenant id required.', { status: 404 });
       return;
     }
+
+    // Governance handlers read Express-style req.params; supply them from the
+    // catch-all slug so the same handlers work under the v2 router.
+    req.params = { ...(req.params || {}), tenantId: identifier, userId: deepSlug3 };
 
     if (subresource === 'users') {
       if (deepSlug3 === undefined) {

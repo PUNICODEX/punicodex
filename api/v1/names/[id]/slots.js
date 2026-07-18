@@ -26,7 +26,7 @@ module.exports = createApiHandler(async (req, res) => {
     return;
   }
 
-  const slots = namesService.getSlots(id);
+  const slots = await namesService.getSlots(id);
   if (slots === null) {
     error(res, 'NOT_FOUND', `No entry found for id: ${id}`, { status: 404 });
     return;

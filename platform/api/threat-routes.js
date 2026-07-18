@@ -5,6 +5,7 @@
  */
 
 const { getDb } = require('../db/connection.js');
+const { success, error } = require('./api-response.js');
 const { migrateThreatGraph, ingestEvent } = require('./threat-stream.js');
 const { clusterSpoof, reclusterOpen, autoPromoteClusters } = require('./clustering.js');
 const { computeReputation, rescoreAll } = require('./reputation-model.js');
@@ -56,10 +57,8 @@ function handleThreatFeedList(req, res) {
     )
     .all(params);
 
-  res.json({
-    success: true,
-    data: items,
-    meta: { total, limit, offset },
+  success(res, items, {
+    meta: { total, limit, offset, pagination: { total, limit, offset } },
   });
 }
 
@@ -84,10 +83,7 @@ function handleThreatFeedStats(_req, res) {
     )
     .all();
 
-  res.json({
-    success: true,
-    data: { byStatus, bySource, byCluster },
-  });
+  success(res, { byStatus, bySource, byCluster });
 }
 
 function handleThreatFeedIngest(req, res) {
@@ -96,10 +92,7 @@ function handleThreatFeedIngest(req, res) {
 
   const event = req.body;
   if (!event?.input) {
-    res.status(400).json({
-      success: false,
-      error: { code: 'VALIDATION_ERROR', message: 'event.input is required' },
-    });
+    error(res, 'VALIDATION_ERROR', 'event.input is required', { status: 400 });
     return;
   }
 
@@ -117,14 +110,15 @@ function handleThreatFeedIngest(req, res) {
     id: result.relationship.id,
   });
 
-  res.status(201).json({
-    success: true,
-    data: {
+  success(
+    res,
+    {
       relationship: result.relationship,
       cluster,
       reputationScore,
     },
-  });
+    { status: 201 }
+  );
 }
 
 function handleThreatFeedClusterReview(req, res) {
@@ -135,10 +129,7 @@ function handleThreatFeedClusterReview(req, res) {
   const { status } = req.body || {};
   const validStatuses = ['open', 'reviewing', 'blocked', 'false_positive'];
   if (Number.isNaN(clusterId) || !validStatuses.includes(status)) {
-    res.status(400).json({
-      success: false,
-      error: { code: 'VALIDATION_ERROR', message: 'clusterId and valid status required' },
-    });
+    error(res, 'VALIDATION_ERROR', 'clusterId and valid status required', { status: 400 });
     return;
   }
 
@@ -159,7 +150,7 @@ function handleThreatFeedClusterReview(req, res) {
   }
 
   const cluster = db.prepare('SELECT * FROM clusters WHERE id = @id').get({ id: clusterId });
-  res.json({ success: true, data: cluster });
+  success(res, cluster);
 }
 
 function handleThreatFeedCampaigns(req, res) {
@@ -183,9 +174,7 @@ function handleThreatFeedCampaigns(req, res) {
     )
     .all({ identityId, since });
 
-  res.json({
-    success: true,
-    data: items,
+  success(res, items, {
     meta: { identityId, days },
   });
 }
@@ -224,10 +213,7 @@ function handleThreatNightly(_req, res) {
   const rescored = rescoreAll(db);
   const promoted = autoPromoteClusters(db, 5);
 
-  res.json({
-    success: true,
-    data: { reclustered: reclustered.length, rescored: rescored.length, promoted },
-  });
+  success(res, { reclustered: reclustered.length, rescored: rescored.length, promoted });
 }
 
 module.exports = {

@@ -327,6 +327,53 @@ async function runTests() {
     assert.ok(body.data.every((d) => d.appraisal?.currency === 'USD'));
   });
 
+  // Consistency-audit regressions (see docs/api/api-audit-2026-07.md)
+  await test('GET /api/v2/names/zeus/slots returns slot inventory', async () => {
+    const { status, body } = await invoke('GET', '/api/v2/names/zeus/slots');
+    assert.strictEqual(status, 200);
+    assertEnvelope(body);
+    assert.strictEqual(body.data.id, 'zeus');
+    assert.ok(Array.isArray(body.data.slots), 'slots must be an array');
+  });
+
+  await test('GET /api/v2/similarities/relationships lists relationship types', async () => {
+    const { status, body } = await invoke('GET', '/api/v2/similarities/relationships');
+    assert.strictEqual(status, 200);
+    assertEnvelope(body);
+    assert.ok(Array.isArray(body.data), 'data must be an array');
+    assert.ok(body.meta.count > 0, 'must include count meta');
+  });
+
+  await test('GET /api/v2/tenants/:tenantId/users without auth returns 401, not 500', async () => {
+    const { status, body } = await invoke('GET', '/api/v2/tenants/acme/users');
+    assert.strictEqual(status, 401);
+    assert.strictEqual(body.success, false);
+    assert.strictEqual(body.error.code, 'UNAUTHORIZED');
+    assert.strictEqual(body.meta.version, 'v2');
+  });
+
+  await test('POST /api/v2/tenants/:tenantId/users without auth returns 401, not 500', async () => {
+    const { status, body } = await invoke('POST', '/api/v2/tenants/acme/users', {
+      body: { email: 'analyst@example.com', role: 'viewer' },
+    });
+    assert.strictEqual(status, 401);
+    assert.strictEqual(body.error.code, 'UNAUTHORIZED');
+  });
+
+  await test('GET /api/v2/tenants/:tenantId/audit without auth returns 401, not 500', async () => {
+    const { status, body } = await invoke('GET', '/api/v2/tenants/acme/audit');
+    assert.strictEqual(status, 401);
+    assert.strictEqual(body.error.code, 'UNAUTHORIZED');
+  });
+
+  await test('POST /api/v2/tenants/:tenantId/retention/purge without auth returns 401, not 500', async () => {
+    const { status, body } = await invoke('POST', '/api/v2/tenants/acme/retention/purge', {
+      body: { retentionDays: 90 },
+    });
+    assert.strictEqual(status, 401);
+    assert.strictEqual(body.error.code, 'UNAUTHORIZED');
+  });
+
   console.log(`\nAPI v2: ${passed} passed, ${failed} failed`);
   if (failed > 0) process.exit(1);
 }

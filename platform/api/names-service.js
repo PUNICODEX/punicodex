@@ -379,10 +379,10 @@ function getSite(id) {
   };
 }
 
-function getSlots(id) {
+async function getSlots(id) {
   const entry = entriesById.get(id);
   if (!entry) return null;
-  const slots = bookings.getSlots(id);
+  const slots = await bookings.getSlots(id);
   return {
     id,
     siteSlug: id,

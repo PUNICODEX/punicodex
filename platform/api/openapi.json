@@ -84,6 +84,79 @@
         }
       }
     },
+    "/authenticity": {
+      "get": {
+        "summary": "Endpoint map for the Authenticity API",
+        "operationId": "authenticityIndex",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/AuthenticityIndexResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          }
+        }
+      }
+    },
+    "/authenticity/abuse-report": {
+      "post": {
+        "summary": "Submit a third-party abuse report (requires API key with abuse:write scope)",
+        "operationId": "authenticityAbuseReport",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "domain": {
+                    "type": "string"
+                  },
+                  "category": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "evidence": {
+                    "type": "string"
+                  },
+                  "reporter_contact": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "domain",
+                  "category"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/AbuseReportResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          }
+        }
+      }
+    },
     "/authenticity/check": {
       "get": {
         "summary": "Classify a name, domain, or URL for authenticity",
@@ -200,6 +273,61 @@
           },
           "400": {
             "$ref": "#/components/responses/ValidationError"
+          }
+        }
+      }
+    },
+    "/authenticity/report/{id}/pdf": {
+      "get": {
+        "summary": "Download a forensics PDF evidence package",
+        "description": "Generates a deterministic PDF report for the input. The {id} path parameter is accepted for stable URLs; the classified input is supplied via the input query parameter.",
+        "operationId": "authenticityReportPdf",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "input",
+            "in": "query",
+            "required": true,
+            "description": "The name, domain, or URL to report on.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "required": false,
+            "description": "Classification mode: auto, term, domain, or url.",
+            "schema": {
+              "type": "string",
+              "default": "auto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "PDF evidence package",
+            "content": {
+              "application/pdf": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
           }
         }
       }
@@ -373,6 +501,23 @@
           },
           "400": {
             "$ref": "#/components/responses/ValidationError"
+          }
+        }
+      }
+    },
+    "/connections/taxonomy": {
+      "get": {
+        "summary": "Get the Connections concept taxonomy",
+        "operationId": "getConnectionsTaxonomy",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ConnectionsTaxonomyResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
           }
         }
       }
@@ -585,6 +730,74 @@
         }
       }
     },
+    "/names/{id}/graph": {
+      "get": {
+        "summary": "Get ego-network similarity graph around an entry",
+        "operationId": "getNameGraph",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PathId"
+          },
+          {
+            "name": "depth",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 2,
+              "default": 1
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "maximum": 200,
+              "default": 80
+            }
+          },
+          {
+            "name": "minStrength",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 3,
+              "default": 1
+            }
+          },
+          {
+            "name": "relationship",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/NameGraphResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          }
+        }
+      }
+    },
     "/names/{id}/lore": {
       "get": {
         "summary": "Get flagship narrative lore",
@@ -683,6 +896,64 @@
         }
       }
     },
+    "/names/{id}/similarities": {
+      "get": {
+        "summary": "List cross-cultural similarity edges for an entry",
+        "operationId": "getNameSimilarities",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PathId"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "maximum": 200,
+              "default": 50
+            }
+          },
+          {
+            "name": "minStrength",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 3,
+              "default": 1
+            }
+          },
+          {
+            "name": "relationship",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/NameSimilaritiesResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          }
+        }
+      }
+    },
     "/names/{id}/site": {
       "get": {
         "summary": "Get live indexed site metadata",
@@ -770,6 +1041,87 @@
         }
       }
     },
+    "/policy": {
+      "get": {
+        "summary": "Get the default/tenant authenticity policy",
+        "operationId": "getPolicy",
+        "parameters": [
+          {
+            "name": "tenant",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "default"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/PolicyResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          }
+        }
+      }
+    },
+    "/policy/evaluate": {
+      "post": {
+        "summary": "Evaluate an input against an authenticity policy",
+        "operationId": "evaluatePolicy",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "input": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string",
+                    "default": "auto"
+                  },
+                  "policy": {
+                    "type": "object"
+                  },
+                  "tenantId": {
+                    "type": "string"
+                  },
+                  "allowlist": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "blocklist": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "input"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/PolicyEvaluateResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          }
+        }
+      }
+    },
     "/similarities": {
       "get": {
         "summary": "Get full cross-cultural similarity graph",
@@ -780,6 +1132,239 @@
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          }
+        }
+      }
+    },
+    "/similarities/relationships": {
+      "get": {
+        "summary": "List distinct relationship types in the similarity graph",
+        "operationId": "listSimilarityRelationships",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/SimilarityRelationshipsResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          }
+        }
+      }
+    },
+    "/threat-feed": {
+      "get": {
+        "summary": "List threat feed events",
+        "operationId": "listThreatFeed",
+        "parameters": [
+          {
+            "name": "target_identity_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "source",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cluster_id",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/QueryLimit"
+          },
+          {
+            "$ref": "#/components/parameters/QueryOffset"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ThreatFeedListResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          }
+        }
+      }
+    },
+    "/threat-feed/campaigns/{identityId}": {
+      "get": {
+        "summary": "List recent events impersonating an identity",
+        "operationId": "getThreatFeedCampaigns",
+        "parameters": [
+          {
+            "name": "identityId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "days",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 365,
+              "default": 30
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ThreatFeedCampaignsResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          }
+        }
+      }
+    },
+    "/threat-feed/cluster/{clusterId}/review": {
+      "post": {
+        "summary": "Update the review status of a threat cluster (requires API key with threat:write scope)",
+        "operationId": "reviewThreatCluster",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "clusterId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "open",
+                      "reviewing",
+                      "blocked",
+                      "false_positive"
+                    ]
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ThreatFeedClusterReviewResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          }
+        }
+      }
+    },
+    "/threat-feed/ingest": {
+      "post": {
+        "summary": "Ingest a threat event (requires API key with threat:write scope)",
+        "operationId": "ingestThreatEvent",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "input": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "source": {
+                    "type": "string"
+                  },
+                  "targetIdentityId": {
+                    "type": "string"
+                  },
+                  "discoveredAt": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                },
+                "required": [
+                  "input"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "$ref": "#/components/responses/ThreatFeedIngestResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          }
+        }
+      }
+    },
+    "/threat-feed/stats": {
+      "get": {
+        "summary": "Aggregated threat feed counts",
+        "operationId": "getThreatFeedStats",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ThreatFeedStatsResponse"
           },
           "429": {
             "$ref": "#/components/responses/RateLimitError"
@@ -798,6 +1383,20 @@
         }
       }
     },
+    "/transparency-report": {
+      "get": {
+        "summary": "Get the public quarterly transparency report",
+        "operationId": "getTransparencyReport",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/TransparencyReportResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          }
+        }
+      }
+    },
     "/version": {
       "get": {
         "summary": "Get current dataset version and counts",
@@ -811,6 +1410,13 @@
     }
   },
   "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "API key passed as `Authorization: Bearer <key>`. Read endpoints also work keyless at the free tier."
+      }
+    },
     "parameters": {
       "PathId": {
         "name": "id",
@@ -1509,6 +2115,166 @@
       },
       "VersionResponse": {
         "description": "Dataset version and canonical source hashes",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
+      },
+      "AuthenticityIndexResponse": {
+        "description": "Authenticity API endpoint map",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
+      },
+      "AbuseReportResponse": {
+        "description": "Acknowledgement of an abuse report",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
+      },
+      "ConnectionsTaxonomyResponse": {
+        "description": "Connections concept taxonomy",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
+      },
+      "NameSimilaritiesResponse": {
+        "description": "Cross-cultural similarity edges for one entry",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
+      },
+      "NameGraphResponse": {
+        "description": "Ego-network similarity graph around one entry",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
+      },
+      "SimilarityRelationshipsResponse": {
+        "description": "Relationship types present in the similarity graph",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
+      },
+      "PolicyResponse": {
+        "description": "Authenticity policy document",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
+      },
+      "PolicyEvaluateResponse": {
+        "description": "Policy evaluation result",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
+      },
+      "ThreatFeedListResponse": {
+        "description": "Paginated threat feed events",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
+      },
+      "ThreatFeedStatsResponse": {
+        "description": "Aggregated threat feed counts",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
+      },
+      "ThreatFeedIngestResponse": {
+        "description": "Ingested threat event with cluster and reputation score",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
+      },
+      "ThreatFeedCampaignsResponse": {
+        "description": "Threat events impersonating an identity",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
+      },
+      "ThreatFeedClusterReviewResponse": {
+        "description": "Updated threat cluster",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
+      },
+      "TransparencyReportResponse": {
+        "description": "Quarterly transparency report",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
+      },
+      "Unauthorized": {
+        "description": "Missing or invalid API key",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
+      },
+      "Forbidden": {
+        "description": "API key lacks the required scope",
         "content": {
           "application/json": {
             "schema": {

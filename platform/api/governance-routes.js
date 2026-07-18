@@ -8,6 +8,7 @@
 const { Router } = require('express');
 const crypto = require('node:crypto');
 const { all, run, get, insert } = require('../db/operational.js');
+const { error } = require('./api-response.js');
 const rbac = require('./rbac.js');
 const auditLog = require('./audit-log.js');
 const retention = require('./retention.js');
@@ -98,23 +99,47 @@ async function requireAuditAccess(auth, tenantId) {
   throw new rbac.UnauthorizedError('Audit access required');
 }
 
-async function listUsers(req, res) {
+// Shared authorization preamble for every governance handler. Returns the
+// authenticated caller, or null after sending an error response. Maps the
+// service-layer UnauthorizedError to a 401/403 in the standard error
+// envelope instead of letting it escape as a 500.
+async function authorize(req, res, check) {
   const auth = await authenticate(req);
-  await requireTenantAdminPlus(auth, req.params.tenantId);
+  if (!auth) {
+    error(res, 'UNAUTHORIZED', 'Authentication required.', { status: 401 });
+    return null;
+  }
+  try {
+    await check(auth, req.params.tenantId);
+  } catch (err) {
+    if (err instanceof rbac.UnauthorizedError) {
+      error(res, 'FORBIDDEN', err.message, { status: 403 });
+      return null;
+    }
+    throw err;
+  }
+  return auth;
+}
+
+async function listUsers(req, res) {
+  const auth = await authorize(req, res, requireTenantAdminPlus);
+  if (!auth) return;
   const users = await rbac.listTenantUsers(dbLike, req.params.tenantId);
   res.json({ users });
 }
 
 async function addUser(req, res) {
-  const auth = await authenticate(req);
-  await requireTenantAdminPlus(auth, req.params.tenantId);
+  const auth = await authorize(req, res, requireTenantAdminPlus);
+  if (!auth) return;
 
   const { email, role = 'viewer' } = req.body || {};
   if (!email?.includes('@')) {
-    return res.status(400).json({ error: 'Valid email required' });
+    error(res, 'VALIDATION_ERROR', 'Valid email required', { status: 400 });
+    return;
   }
   if (!VALID_USER_ROLES.has(role)) {
-    return res.status(400).json({ error: 'Invalid role' });
+    error(res, 'VALIDATION_ERROR', 'Invalid role', { status: 400 });
+    return;
   }
 
   const tenantId = req.params.tenantId;
@@ -141,28 +166,32 @@ async function addUser(req, res) {
     res.status(201).json({ id, tenantId, role, status: 'active' });
   } catch (err) {
     if (err.message?.includes('UNIQUE constraint failed')) {
-      return res.status(409).json({ error: 'User already exists in tenant' });
+      error(res, 'CONFLICT', 'User already exists in tenant', { status: 409 });
+      return;
     }
     throw err;
   }
 }
 
 async function changeRole(req, res) {
-  const auth = await authenticate(req);
-  await requireTenantAdminPlus(auth, req.params.tenantId);
+  const auth = await authorize(req, res, requireTenantAdminPlus);
+  if (!auth) return;
 
   const { role } = req.body || {};
   const userId = parseInt(req.params.userId, 10);
   if (Number.isNaN(userId)) {
-    return res.status(400).json({ error: 'Invalid user id' });
+    error(res, 'VALIDATION_ERROR', 'Invalid user id', { status: 400 });
+    return;
   }
   if (!VALID_USER_ROLES.has(role)) {
-    return res.status(400).json({ error: 'Invalid role' });
+    error(res, 'VALIDATION_ERROR', 'Invalid role', { status: 400 });
+    return;
   }
 
   const ok = await rbac.assignRole(dbLike, userId, role);
   if (!ok) {
-    return res.status(404).json({ error: 'User not found' });
+    error(res, 'NOT_FOUND', 'User not found', { status: 404 });
+    return;
   }
 
   await auditLog.appendAuditLog(dbLike, {
@@ -179,8 +208,8 @@ async function changeRole(req, res) {
 }
 
 async function queryAudit(req, res) {
-  const auth = await authenticate(req);
-  await requireAuditAccess(auth, req.params.tenantId);
+  const auth = await authorize(req, res, requireAuditAccess);
+  if (!auth) return;
 
   const result = await auditLog.queryAuditLogs(dbLike, {
     tenant_id: req.params.tenantId,
@@ -195,12 +224,13 @@ async function queryAudit(req, res) {
 }
 
 async function exportAudit(req, res) {
-  const auth = await authenticate(req);
-  await requireAuditAccess(auth, req.params.tenantId);
+  const auth = await authorize(req, res, requireAuditAccess);
+  if (!auth) return;
 
   const format = req.query.format || 'json';
   if (!['json', 'csv', 'cef'].includes(format)) {
-    return res.status(400).json({ error: 'format must be json, csv, or cef' });
+    error(res, 'VALIDATION_ERROR', 'format must be json, csv, or cef', { status: 400 });
+    return;
   }
 
   const data = await auditLog.exportAuditLogs(dbLike, req.params.tenantId, format);
@@ -214,20 +244,21 @@ async function exportAudit(req, res) {
 }
 
 async function verifyAudit(req, res) {
-  const auth = await authenticate(req);
-  await requireAuditAccess(auth, req.params.tenantId);
+  const auth = await authorize(req, res, requireAuditAccess);
+  if (!auth) return;
 
   const result = await auditLog.verifyAuditChain(dbLike, req.params.tenantId);
   res.json(result);
 }
 
 async function purgeRetention(req, res) {
-  const auth = await authenticate(req);
-  await requireTenantAdminPlus(auth, req.params.tenantId);
+  const auth = await authorize(req, res, requireTenantAdminPlus);
+  if (!auth) return;
 
   const days = parseInt(req.body?.retentionDays || '90', 10);
   if (!Number.isFinite(days) || days < 1) {
-    return res.status(400).json({ error: 'retentionDays must be >= 1' });
+    error(res, 'VALIDATION_ERROR', 'retentionDays must be >= 1', { status: 400 });
+    return;
   }
 
   const result = await retention.purgeExpiredRawInputs(dbLike, days);

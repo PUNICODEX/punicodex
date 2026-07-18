@@ -609,6 +609,84 @@ async function runTests() {
     assert.ok(body.data.similaritiesCount >= 0, 'similaritiesCount must be non-negative');
   });
 
+  // Consistency-audit regressions (see docs/api/api-audit-2026-07.md)
+  const nameSlots = require('../api/v1/names/[id]/slots.js');
+  const authenticityIndex = require('../api/v1/authenticity/index.js');
+  const transparencyReport = require('../api/v1/transparency-report/index.js');
+  const canary = require('../api/v1/canary/index.js');
+  const threatFeed = require('../api/v1/threat-feed/index.js');
+  const threatFeedStats = require('../api/v1/threat-feed/stats/index.js');
+  const threatFeedIngest = require('../api/v1/threat-feed/ingest/index.js');
+
+  await test('GET /api/v1/names/:id/slots returns slot inventory', async () => {
+    const { status, body } = await invoke(nameSlots, 'GET', '/api/v1/names/zeus/slots', {
+      params: { id: 'zeus' },
+    });
+    assert.strictEqual(status, 200);
+    assertEnvelope(body);
+    assert.strictEqual(body.data.id, 'zeus');
+    assert.ok(Array.isArray(body.data.slots), 'slots must be an array');
+  });
+
+  await test('GET /api/v1/names/:id/slots returns 404 for unknown id', async () => {
+    const { status, body } = await invoke(nameSlots, 'GET', '/api/v1/names/notarealid/slots', {
+      params: { id: 'notarealid' },
+    });
+    assert.strictEqual(status, 404);
+    assert.strictEqual(body.error.code, 'NOT_FOUND');
+  });
+
+  await test('GET /api/v1/authenticity uses the standard envelope', async () => {
+    const { status, body } = await invoke(authenticityIndex, 'GET', '/api/v1/authenticity');
+    assert.strictEqual(status, 200);
+    assertEnvelope(body);
+    assert.strictEqual(body.data.service, 'PuniCodex Authenticity API');
+    assert.ok(Array.isArray(body.data.endpoints), 'must list endpoints');
+  });
+
+  await test('GET /api/v1/transparency-report returns envelope, POST is 405', async () => {
+    const { status, body } = await invoke(transparencyReport, 'GET', '/api/v1/transparency-report');
+    assert.strictEqual(status, 200);
+    assertEnvelope(body);
+
+    const rejected = await invoke(transparencyReport, 'POST', '/api/v1/transparency-report');
+    assert.strictEqual(rejected.status, 405);
+    assert.strictEqual(rejected.body.error.code, 'METHOD_NOT_ALLOWED');
+  });
+
+  await test('GET /api/v1/canary returns honeypot payload, POST is 405', async () => {
+    const { status, body } = await invoke(canary, 'GET', '/api/v1/canary');
+    assert.strictEqual(status, 200);
+    assert.strictEqual(body.data.id, '__canary__');
+
+    const rejected = await invoke(canary, 'POST', '/api/v1/canary');
+    assert.strictEqual(rejected.status, 405);
+    assert.strictEqual(rejected.body.error.code, 'METHOD_NOT_ALLOWED');
+  });
+
+  await test('GET /api/v1/threat-feed uses the standard envelope', async () => {
+    const { status, body } = await invoke(threatFeed, 'GET', '/api/v1/threat-feed?limit=5');
+    assert.strictEqual(status, 200);
+    assertEnvelope(body);
+    assert.ok(Array.isArray(body.data), 'data must be an array');
+    assert.ok(body.meta.pagination, 'must include pagination meta');
+  });
+
+  await test('GET /api/v1/threat-feed/stats uses the standard envelope', async () => {
+    const { status, body } = await invoke(threatFeedStats, 'GET', '/api/v1/threat-feed/stats');
+    assert.strictEqual(status, 200);
+    assertEnvelope(body);
+    assert.ok(Array.isArray(body.data.byStatus), 'must include byStatus');
+  });
+
+  await test('POST /api/v1/threat-feed/ingest without a key returns 401', async () => {
+    const { status, body } = await invoke(threatFeedIngest, 'POST', '/api/v1/threat-feed/ingest', {
+      body: { input: 'fake-zeus.example.com' },
+    });
+    assert.strictEqual(status, 401);
+    assert.strictEqual(body.error.code, 'UNAUTHORIZED');
+  });
+
   console.log(`\n  ${passed} passed, ${failed} failed`);
   process.exit(failed > 0 ? 1 : 0);
 }
