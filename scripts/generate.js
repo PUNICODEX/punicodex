@@ -65,6 +65,10 @@ const scripts = [
   'scripts/sync-interstitial.js',
   'scripts/sync-mobile-menu.js',
   'scripts/update-data-version.js',
+  // Writes data/corpus/entries.jsonl + manifest.json. MUST run before the
+  // corpus generators below, several of which read entries.jsonl — running it
+  // after them makes corpus content lag one generate behind canonical changes.
+  'scripts/export-model-corpus.js',
   'scripts/generate-synthetic-qa.js',
   'scripts/generate-safety-corpus.js',
   'scripts/generate-dialogue-corpus.js',
@@ -79,7 +83,6 @@ const scripts = [
   'scripts/generate-scientific-analogies-corpus.js',
   'scripts/generate-pretrain-corpus.js',
   'scripts/generate-unified-corpus.js',
-  'scripts/export-model-corpus.js',
   'scripts/generate-eval-benchmark.js',
   'scripts/generate-data-card.js',
 ];

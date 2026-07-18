@@ -19,7 +19,7 @@ This corpus is the foundational training and evaluation data for a specialized A
 | safety-examples.jsonl | 41,481 | 26.21 MB | Adversarial safety examples (Phase 2). |
 | dialogue-examples.jsonl | 3,042 | 2.06 MB | Multi-turn conversation examples (Phase 3). |
 | tool-use-examples.jsonl | 4,475 | 9.52 MB | Function-calling / tool-use examples (Phase 4). |
-| multimodal-examples.jsonl | 1,757 | 820.9 KB | Vision-language pairs for mascots, logomarks, scripts (Phase 5). |
+| multimodal-examples.jsonl | 1,757 | 821.0 KB | Vision-language pairs for mascots, logomarks, scripts (Phase 5). |
 | preference-examples.jsonl | 3,618 | 1.97 MB | Chosen/rejected pairs for RLHF (Phase 6). |
 | reasoning-examples.jsonl | 3,501 | 1.97 MB | Chain-of-thought reasoning traces (Phase 7). |
 | benchmark.jsonl | 6,146 | 2.10 MB | Held-out evaluation benchmark with known answers (Phase 8). |

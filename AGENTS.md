@@ -281,10 +281,13 @@ mismatches it reports.
 21. University collaborator injection (`inject-university-collaborators.js`)
 22. Mobile menu sync (`sync-mobile-menu.js`)
 23. Data version (`update-data-version.js`)
-24. AI corpora (14 scripts: synthetic QA, safety, dialogue, tool-use,
+24. Model corpus export (`export-model-corpus.js`) — writes
+    `data/corpus/entries.jsonl` + manifest; MUST precede the AI corpora,
+    whose generators read `entries.jsonl` (otherwise corpus content lags one
+    generate behind canonical changes)
+25. AI corpora (14 scripts: synthetic QA, safety, dialogue, tool-use,
     multimodal, preference, reasoning, benchmark suite, mythology synthesis,
     oracle, symbolic, scientific analogies, pretrain, unified)
-25. Model corpus export (`export-model-corpus.js`)
 26. Eval benchmark (`generate-eval-benchmark.js`)
 27. Data card (`generate-data-card.js`)
 
