@@ -2300,6 +2300,7 @@ function generateHomePage(entry, palette, slotNames, templateDir, rentalTier = '
     PRIMARY: palette.primary,
     SECONDARY: palette.secondary,
     HERO_VIDEO_OR_MASCOT: buildHeroVisual(templeId, entry.unicode, entry.domain),
+    PANTHEON: entry.pantheon || 'greek',
     FOOTER: buildZeusFooter(entry, ''),
   };
   for (let i = 0; i < SLOT_TYPES.length; i++) {

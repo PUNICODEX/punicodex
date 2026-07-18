@@ -117,7 +117,7 @@
     <header class="patron-hero" id="hero">
         <div class="container">
             <div class="patron-hero-content reveal-up">
-                <picture><source srcset="/assets/brand/13-page-visuals/temple-template/portal-ring.webp" type="image/webp"><img src="/assets/brand/13-page-visuals/temple-template/portal-ring.png" alt="" width="1100" height="1100" loading="lazy" decoding="async" aria-hidden="true" style="position:absolute;left:50%;top:0;transform:translateX(-50%);width:clamp(240px,33vw,400px);height:auto;opacity:.8;z-index:-1;pointer-events:none;"></picture>
+                <canvas class="temple-halo" data-pantheon="{{PANTHEON}}" aria-hidden="true"></canvas>
                 {{HERO_VIDEO_OR_MASCOT}}
                 <p class="patron-eyebrow">PUNICODEX entry for</p>
                 <h1 class="patron-title">{{DOMAIN}}, <span class="patron-greek">{{UNICODE}}</span></h1>
@@ -613,6 +613,8 @@
     </div>
 
     <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/pc-fx-core.js" defer></script>
+    <script src="/js/pc-fx-halo.js" defer></script>
     
 
 <script>window.PUNICODEX_API_BASE = "";</script>

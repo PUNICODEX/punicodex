@@ -220,6 +220,19 @@
     position: relative;
     z-index: 1;
 }
+/* Procedural glyph halo (PC/FX) — the deity's own script orbiting behind
+   the mascot; replaces the static portal-ring image. */
+.temple-halo {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    width: clamp(300px, 40vw, 520px);
+    aspect-ratio: 1;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.9;
+}
 .patron-mascot {
     margin-bottom: 1.25rem;
     animation: mascot-float 6s ease-in-out infinite;
