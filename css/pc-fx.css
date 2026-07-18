@@ -1,12 +1,20 @@
 /* PuniCodex — PC/FX procedural scene frames.
    Shared frame styles for the canvas scenes (js/pc-fx-*.js, built on
    js/pc-fx-core.js) that replaced the 13-page-visuals kit renders on
-   /pantheon/, /codex/, /lexicon/, and /connections/. Each stage is a sized,
+   /pantheon/, /codex/, /lexicon/, /connections/ (wave A), /tiers/,
+   /type/, /about/, /appraise/ (wave B), /terms/, /privacy/, /404.html,
+   /university-sponsorship/, /contact/, /realms/, /scholars/apply/ (wave C),
+   and /authenticity/, /creatives/, /search.html, /store/ (wave D).
+   Each stage is a sized,
    aspect-locked wrapper; the scene canvas fills it (PCFX.createScene measures
    the canvas's parent, so the wrapper — never the canvas — carries the
    dimensions). Canvases are decorative: aria-hidden and pointer-events none.
    Sizes mirror the retired art classes (.pantheon-council, .codex-icosahedron,
-   .lexicon-mobius, .connections-hopf) so the surrounding layout is unchanged. */
+   .lexicon-mobius, .connections-hopf, .tier-ziggurat, .type-monolith,
+   .spark-eclipse, .appraise-balance, .terms-tablet/.privacy-tablet,
+   .error-column, .us-academy, .contact-beacon, .realms-bifrost, .apply-nib,
+   .checker-seal, .creatives-muse, .search-lens, .store-brilliant)
+   so the surrounding layout is unchanged. */
 
 .pc-fx-stage {
   position: relative;
@@ -43,5 +51,90 @@
 /* /connections/ — The Hopf Fibration */
 .pc-fx-hopf-stage {
   width: min(360px, 66vw);
+  margin-inline: auto;
+}
+
+/* /authenticity/ — The Cylinder Seal */
+.pc-fx-cylinder-stage {
+  width: min(280px, 60vw);
+  margin: 0 auto 32px;
+}
+
+/* /creatives/ — Muse Sparks */
+.pc-fx-muse-stage {
+  width: min(320px, 66vw);
+  margin-inline: auto;
+}
+
+/* /search.html — The Lens */
+.pc-fx-lens-stage {
+  width: min(300px, 60vw);
+  margin: 0 auto 1rem;
+}
+
+/* /store/ — The Golden Brilliant */
+.pc-fx-brilliant-stage {
+  width: min(380px, 68vw);
+  margin: 0 auto var(--space-4, 1.5rem);
+}
+
+/* /terms/ + /privacy/ — The Tablet (replaces the kit sealed tablet;
+   same 140px box the retired .terms-tablet / .privacy-tablet occupied) */
+.pc-fx-tablet-stage {
+  width: 140px;
+  margin: 0 auto 1rem;
+}
+
+/* /404.html — The Fallen Column (same box as the retired .error-column) */
+.pc-fx-column-stage {
+  width: min(380px, 72vw);
+  margin: 0 auto var(--space-3, 1rem);
+}
+
+/* /university-sponsorship/ — The Academy (same box as the retired .us-academy) */
+.pc-fx-academy-stage {
+  width: min(420px, 78vw);
+  margin: 0 auto 1.5rem;
+}
+
+/* /contact/ — The Beacon (same box as the retired .contact-beacon) */
+.pc-fx-beacon-stage {
+  width: min(200px, 50vw);
+  margin: 0 auto var(--space-3, 1rem);
+}
+
+/* /realms/ — The Bifröst Stair (same box as the retired .realms-bifrost) */
+.pc-fx-bifrost-stage {
+  width: min(400px, 70vw);
+  margin-inline: auto;
+}
+
+/* /scholars/apply/ — The Nib (same box as the retired .apply-nib) */
+.pc-fx-nib-stage {
+  width: min(320px, 62vw);
+  margin: 0 auto 1.25rem;
+}
+
+/* /tiers/ — The Triad Ziggurat (dimensions mirror the retired .tier-ziggurat) */
+.pc-fx-ziggurat-stage {
+  width: min(520px, 72vw);
+  margin: 0 auto var(--space-6, 64px);
+}
+
+/* /type/ — The Monolith (dimensions mirror the retired .type-monolith) */
+.pc-fx-monolith-stage {
+  width: min(330px, 70vw);
+  margin-inline: auto; /* centres inside the single-column mobile grid */
+}
+
+/* /about/ — The Eclipse (dimensions mirror the retired .spark-eclipse) */
+.pc-fx-eclipse-stage {
+  width: min(360px, 100%);
+  margin: 0 auto var(--space-4, 32px);
+}
+
+/* /appraise/ — The Golden Balance (dimensions mirror the retired .appraise-balance) */
+.pc-fx-balance-stage {
+  width: min(340px, 70vw);
   margin-inline: auto;
 }

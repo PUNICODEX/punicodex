@@ -18,6 +18,9 @@
   <link rel="stylesheet" href="/css/search-system.css">
   <link rel="stylesheet" href="/css/punicodex-tokens.css">
   <link rel="stylesheet" href="/css/brand-overrides.css">
+  <link rel="stylesheet" href="/css/pc-fx.css?v=1">
+  <script src="/js/pc-fx-core.js?v=1" defer></script>
+  <script src="/js/pc-fx-lens.js?v=1" defer></script>
   <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
@@ -146,10 +149,9 @@
 
   <section class="results" id="results">
     <div class="empty">
-      <picture>
-        <source srcset="/assets/brand/13-page-visuals/search/the-lens.webp" type="image/webp">
-        <img class="pc-art search-lens" src="/assets/brand/13-page-visuals/search/the-lens.png" alt="The Lens — a gold-rimmed obsidian lens: scrutiny over the Unicode namespace" width="600" height="600" loading="lazy" decoding="async">
-      </picture>
+      <div class="pc-fx-stage pc-fx-lens-stage" role="img" aria-label="The Lens — a gold-rimmed lens roaming a field of drifting glyphs: scrutiny over the Unicode namespace">
+        <canvas class="pc-fx-lens" aria-hidden="true"></canvas>
+      </div>
       <div class="empty-title">Search the Unicode Web</div>
       <div class="empty-sub">Find gods, domains, and sites across the Unicode namespace</div>
     </div>
@@ -314,14 +316,14 @@
       if (mode === 'web') {
         resultsEl.innerHTML = `
           <div class="empty">
-            <picture>
-              <source srcset="/assets/brand/13-page-visuals/search/the-lens.webp" type="image/webp">
-              <img class="pc-art search-lens" src="/assets/brand/13-page-visuals/search/the-lens.png" alt="The Lens — a gold-rimmed obsidian lens: scrutiny over the Unicode namespace" width="600" height="600" loading="lazy" decoding="async">
-            </picture>
+            <div class="pc-fx-stage pc-fx-lens-stage" role="img" aria-label="The Lens — a gold-rimmed lens roaming a field of drifting glyphs: scrutiny over the Unicode namespace">
+              <canvas class="pc-fx-lens" aria-hidden="true"></canvas>
+            </div>
             <div class="empty-title">Discover the Unicode Web</div>
             <div class="empty-sub">Search gods, myths, and curated domains across the Unicode namespace</div>
           </div>
         `;
+        if (window.PCFX && window.PCFX.initLens) window.PCFX.initLens(resultsEl);
       } else {
         resultsEl.innerHTML = `
           <div class="empty">

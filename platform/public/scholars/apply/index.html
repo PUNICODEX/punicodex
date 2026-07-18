@@ -16,6 +16,9 @@
     <meta name="description" content="Apply for university sponsorship of the PuniCodex Scholarly Edition. Give your students provisioned access to contribute to flagship temples under a scholarly quality gate.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf17">
+    <link rel="stylesheet" href="/css/pc-fx.css?v=1">
+    <script src="/js/pc-fx-core.js?v=1" defer></script>
+    <script src="/js/pc-fx-nib.js?v=1" defer></script>
 
     <style>
         :root {
@@ -363,10 +366,9 @@
 
     <header class="apply-hero">
         <div class="apply-eyebrow">PUNICODEX Scholarly Edition</div>
-        <picture>
-            <source srcset="/assets/brand/13-page-visuals/scholars/golden-nib.webp" type="image/webp">
-            <img class="apply-nib" src="/assets/brand/13-page-visuals/scholars/golden-nib.png" alt="The Golden Nib — the scholar's instrument, slit and breather hole cut true" width="640" height="640" fetchpriority="high" decoding="async">
-        </picture>
+        <div class="pc-fx-stage pc-fx-nib-stage" role="img" aria-label="The Nib — a calligraphy nib drawing an endless golden flourish, ink fading behind it">
+            <canvas class="pc-fx-nib" aria-hidden="true"></canvas>
+        </div>
         <h1 class="apply-title">Sponsor the Scholarly Edition</h1>
         <p class="apply-subtitle">A university sponsors PuniCodex; its departments receive provisioned student access to contribute to flagship temples under a scholarly quality gate. Approved student work is published with institutional attribution, and the university appears as an Academic Collaborator across the site.</p>
     </header>

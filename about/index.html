@@ -27,6 +27,9 @@
     <link rel="stylesheet" href="/css/about.css?v=perf8">
     <link rel="stylesheet" href="/css/punicodex-tokens.css">
     <link rel="stylesheet" href="/css/brand-overrides.css">
+    <link rel="stylesheet" href="/css/pc-fx.css?v=1">
+    <script src="/js/pc-fx-core.js?v=1" defer></script>
+    <script src="/js/pc-fx-eclipse.js?v=1" defer></script>
     <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
@@ -140,10 +143,9 @@
                     </div>
 
                     <aside class="about-sidebar">
-                        <picture>
-                            <source srcset="/assets/brand/13-page-visuals/about/the-spark-eclipse.webp" type="image/webp">
-                            <img class="pc-art spark-eclipse reveal-up" src="/assets/brand/13-page-visuals/about/the-spark-eclipse.png" alt="The Spark — an obsidian sphere eclipsing a ring of fire" width="720" height="720" loading="lazy" decoding="async">
-                        </picture>
+                        <div class="pc-fx-stage pc-fx-eclipse-stage reveal-up" role="img" aria-label="The Spark — an obsidian sphere eclipsing a ring of fire">
+                            <canvas class="pc-fx-eclipse" aria-hidden="true"></canvas>
+                        </div>
                         <div class="sidebar-card sidebar-card-numbers reveal-up">
                             <h4 class="label pc-kicker">By the Numbers</h4>
                             <div class="sidebar-stat"><span class="stat-num">$4,120</span><span class="stat-desc">Total Investment</span></div>

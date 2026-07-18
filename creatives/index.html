@@ -16,6 +16,9 @@
     <link rel="stylesheet" href="creatives.css?v=1">
     <link rel="stylesheet" href="/css/punicodex-tokens.css">
     <link rel="stylesheet" href="/css/brand-overrides.css">
+    <link rel="stylesheet" href="/css/pc-fx.css?v=1">
+    <script src="/js/pc-fx-core.js?v=1" defer></script>
+    <script src="/js/pc-fx-muse.js?v=1" defer></script>
     <style>
         /* Brand integration §4.13 — Muse Flame beside the masthead. */
         .creatives-hero-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: center; }
@@ -70,10 +73,9 @@
                         <a href="/scholars/creatives/index.html" class="creatives-btn">Creator Studio</a>
                     </div>
                 </div>
-                <picture>
-                    <source srcset="/assets/brand/13-page-visuals/creatives/muse-flame.webp" type="image/webp">
-                    <img class="pc-art creatives-muse" src="/assets/brand/13-page-visuals/creatives/muse-flame.png" alt="The Muse Flame — a twisted gold flame leaning into its own wind" width="640" height="640" fetchpriority="high" decoding="async">
-                </picture>
+                <div class="pc-fx-stage pc-fx-muse-stage" role="img" aria-label="Muse Sparks — a plume of glyph sparks rising from a flame">
+                    <canvas class="pc-fx-muse" aria-hidden="true"></canvas>
+                </div>
             </div>
         </section>
 

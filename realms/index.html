@@ -54,6 +54,12 @@
 
     <link rel="stylesheet" href="/css/brand-overrides.css">
 
+    <link rel="stylesheet" href="/css/pc-fx.css?v=1">
+
+    <script src="/js/pc-fx-core.js?v=1" defer></script>
+
+    <script src="/js/pc-fx-bifrost.js?v=1" defer></script>
+
     <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
 
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
@@ -204,13 +210,11 @@
 
             </div>
 
-            <picture>
+            <div class="pc-fx-stage pc-fx-bifrost-stage" role="img" aria-label="The Bifröst Stair — a luminous staircase of gold steps ascending into the void between worlds">
 
-                <source srcset="/assets/brand/13-page-visuals/realms/bifrost-stair.webp" type="image/webp">
+                <canvas class="pc-fx-bifrost" aria-hidden="true"></canvas>
 
-                <img class="pc-art pc-art--float realms-bifrost" src="/assets/brand/13-page-visuals/realms/bifrost-stair.png" alt="The Bifrost Stair — a helical stair of floating gold steps winding between worlds" width="800" height="800" fetchpriority="high" decoding="async">
-
-            </picture>
+            </div>
 
         </div>
 

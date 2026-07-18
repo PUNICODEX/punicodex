@@ -25,6 +25,9 @@
 
     <link rel="stylesheet" href="/css/main.css?v=perf8">
     <link rel="stylesheet" href="/css/privacy.css?v=perf9">
+    <link rel="stylesheet" href="/css/pc-fx.css?v=1">
+    <script src="/js/pc-fx-core.js?v=1" defer></script>
+    <script src="/js/pc-fx-tablet.js?v=1" defer></script>
     <style>
     /* Kit sealed tablet beside the page title (brand guide §LEGAL.1) */
     .privacy-tablet {
@@ -85,10 +88,10 @@
     <main class="page-privacy">
         <section class="page-hero">
             <div class="container">
-                <picture class="reveal-up">
-                  <source srcset="/assets/brand/13-page-visuals/legal/sealed-tablet.webp" type="image/webp">
-                  <img class="privacy-tablet" src="/assets/brand/13-page-visuals/legal/sealed-tablet.png" alt="The Sealed Tablet — an obsidian tablet with a gold wax seal" width="280" height="280" loading="lazy" decoding="async">
-                </picture>
+                <div class="pc-fx-stage pc-fx-tablet-stage reveal-up" role="img" aria-label="The Tablet — cuneiform wedges pressing into clay, row by row">
+                  <canvas class="pc-fx-tablet" aria-hidden="true"></canvas>
+                  <noscript><picture><source srcset="/assets/brand/13-page-visuals/legal/sealed-tablet.webp" type="image/webp"><img class="privacy-tablet" src="/assets/brand/13-page-visuals/legal/sealed-tablet.png" alt="The Sealed Tablet — an obsidian tablet with a gold wax seal" width="280" height="280" loading="lazy" decoding="async"></picture></noscript>
+                </div>
                 <h1 class="display-lg text-center reveal-up">Privacy Policy</h1>
                 <p class="body-lg text-center reveal-up">Effective June 6, 2026. Last updated June 6, 2026.</p>
             </div>

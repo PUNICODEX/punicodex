@@ -86,6 +86,9 @@
   </script>
 
   <link rel="stylesheet" href="/assets/fonts/fonts.css">
+  <link rel="stylesheet" href="/css/pc-fx.css?v=1">
+  <script src="/js/pc-fx-core.js?v=1" defer></script>
+  <script src="/js/pc-fx-academy.js?v=1" defer></script>
   <style>
     :root {
       --us-bg: #0a0a0f;
@@ -394,10 +397,9 @@
   <main class="us-container">
     <header class="us-hero">
       <span class="us-eyebrow">For Universities &amp; Academic Partners</span>
-      <picture>
-        <source srcset="/assets/brand/13-page-visuals/university-sponsorship/academy-temple.webp" type="image/webp">
-        <img class="pc-art us-academy" src="/assets/brand/13-page-visuals/university-sponsorship/academy-temple.png" alt="The Academy — four columns, architrave, pediment, and the restored mark: the institution in miniature" width="840" height="840" fetchpriority="high" decoding="async">
-      </picture>
+      <div class="pc-fx-stage pc-fx-academy-stage" role="img" aria-label="The Academy — a wireframe temple facade assembling itself: steps, six columns, architrave, pediment">
+        <canvas class="pc-fx-academy" aria-hidden="true"></canvas>
+      </div>
       <h1>University Sponsorship</h1>
       <p>PuniCodex restores the original Unicode names of the gods to the digital realm. Founding academic collaborators put their institution's name on that work — and their students behind it.</p>
       <div class="us-hero-actions">

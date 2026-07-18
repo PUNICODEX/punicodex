@@ -32,6 +32,9 @@
     <link rel="stylesheet" href="/css/main.css?v=perf8">
     <link rel="stylesheet" href="/css/punicodex-tokens.css">
     <link rel="stylesheet" href="/css/brand-overrides.css">
+    <link rel="stylesheet" href="/css/pc-fx.css?v=1">
+    <script src="/js/pc-fx-core.js?v=1" defer></script>
+    <script src="/js/pc-fx-balance.js?v=1" defer></script>
     <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
@@ -148,10 +151,9 @@
                     The first valuation model built for Unicode / IDN domain names. It anchors every name to its ASCII control value, then values the Unicode form at 10% of that anchor and applies transparent percentage boosts for canonical form, tier, scholarly sources, brand scarcity, safety, and TLD reality. The Unicode domain itself is never valued above its ASCII root; tenant revenue is reported separately.
                 </p>
             </div>
-            <picture>
-                <source srcset="/assets/brand/13-page-visuals/appraise/golden-balance.webp" type="image/webp">
-                <img class="pc-art appraise-balance reveal-up" src="/assets/brand/13-page-visuals/appraise/golden-balance.png" alt="The Golden Balance — pans level, the restored mark as its finial" width="680" height="680" fetchpriority="high" decoding="async">
-            </picture>
+            <div class="pc-fx-stage pc-fx-balance-stage reveal-up" role="img" aria-label="The Golden Balance — pans level, the restored mark as its finial">
+                <canvas class="pc-fx-balance" aria-hidden="true"></canvas>
+            </div>
         </div>
     </section>
 

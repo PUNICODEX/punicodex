@@ -30,6 +30,9 @@
     <link rel="stylesheet" href="/css/tiers.css?v=tier12">
     <link rel="stylesheet" href="/css/punicodex-tokens.css">
     <link rel="stylesheet" href="/css/brand-overrides.css">
+    <link rel="stylesheet" href="/css/pc-fx.css?v=1">
+    <script src="/js/pc-fx-core.js?v=1" defer></script>
+    <script src="/js/pc-fx-ziggurat.js?v=1" defer></script>
     <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
@@ -123,10 +126,12 @@
                 <p class="tier-hero-lead reveal-hero">
                     A simple philological rule: the more phonology the original language lets us recover, the richer the Unicode restoration. Greek names are ranked by whether they preserve <strong>stress</strong> and <strong>length</strong> — the two features ancient Greek used to distinguish words.
                 </p>
-                <picture>
-                    <source srcset="/assets/brand/13-page-visuals/tiers/triad-ziggurat.webp" type="image/webp">
-                    <img class="pc-art tier-ziggurat reveal-hero" src="/assets/brand/13-page-visuals/tiers/triad-ziggurat.png" alt="The Triad Ziggurat — three obsidian steps with gold cap plates: Tier 2 at the base, Tier 1 above, Dual-Tier at the summit" width="1040" height="1040" fetchpriority="high" decoding="async">
-                </picture>
+                <!-- Retired kit art (kept on disk, unreferenced by the layout;
+                     superseded by the PC/FX Triad Ziggurat scene):
+                     /assets/brand/13-page-visuals/tiers/triad-ziggurat.png -->
+                <div class="pc-fx-stage pc-fx-ziggurat-stage reveal-hero" role="img" aria-label="The Triad Ziggurat — three obsidian steps with gold cap plates: Tier 2 at the base, Tier 1 above, Dual-Tier at the summit">
+                    <canvas class="pc-fx-ziggurat" aria-hidden="true"></canvas>
+                </div>
                 <div class="tier-seal-row reveal-hero">
                     <figure class="tier-seal">
                         <picture><source srcset="/assets/brand/04-badges/punicodex-badge-dual-tier.webp" type="image/webp"><img src="/assets/brand/04-badges/punicodex-badge-dual-tier.png" alt="Dual-Tier seal" width="480" height="480" loading="lazy" decoding="async"></picture>
