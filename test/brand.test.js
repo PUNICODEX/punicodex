@@ -825,4 +825,49 @@ test('(v) lexicon show-all toggle is a button so aria-pressed is allowed', () =>
   );
 });
 
+// ---- (w) archetype mascot assets exist, are non-empty, and deploy (webp) -------------
+
+test('(w) every archetype mascotPath/mascotFallback resolves to a non-empty file', () => {
+  // Regression 2026-07-18: 55 entries pointed at .png masters, but production
+  // deploys WebP only (sites/**/*.png is vercelignored), so live grids fell
+  // into the empty-portrait error branch; apsu additionally had a zero-byte
+  // webp from a failed conversion. Mascots must exist, be non-empty, and use
+  // a production-served format.
+  const src = read('js/archetypes-v2.js');
+  const refs = [
+    ...src.matchAll(/mascotPath: "([^"]+)"/g),
+    ...src.matchAll(/mascotFallback: "([^"]+)"/g),
+  ];
+  assert.ok(refs.length >= 196, `expected >=196 mascot refs, found ${refs.length}`);
+  const seen = new Set();
+  for (const m of refs) {
+    const urlPath = m[1];
+    assert.ok(!urlPath.endsWith('.png'), `mascot ref must not be .png (not deployed): ${urlPath}`);
+    if (seen.has(urlPath)) continue;
+    seen.add(urlPath);
+    const rel = urlPath.replace(/^\//, '');
+    assert.ok(fs.existsSync(path.join(root, rel)), `missing mascot file: ${urlPath}`);
+    assert.ok(fs.statSync(path.join(root, rel)).size > 0, `zero-byte mascot file: ${urlPath}`);
+  }
+});
+
+// ---- (x) no zero-byte assets anywhere under sites/*/assets ----------------------------
+
+test('(x) no zero-byte files under sites/*/assets', () => {
+  const sitesDir = path.join(root, 'sites');
+  const offenders = [];
+  for (const entry of fs.readdirSync(sitesDir, { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue;
+    const assetsDir = path.join(sitesDir, entry.name, 'assets');
+    if (!fs.existsSync(assetsDir)) continue;
+    for (const f of fs.readdirSync(assetsDir)) {
+      const fp = path.join(assetsDir, f);
+      if (fs.statSync(fp).isFile() && fs.statSync(fp).size === 0) {
+        offenders.push(`${entry.name}/assets/${f}`);
+      }
+    }
+  }
+  assert.deepStrictEqual(offenders, [], `zero-byte assets: ${offenders.join(', ')}`);
+});
+
 run();
