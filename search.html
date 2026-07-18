@@ -14,9 +14,7 @@
   <title>PUNICODEX Search — The Unicode Web</title>
   <meta name="description" content="Search gods, myths, and curated Unicode domains across the PUNICODEX index.">
   <link rel="canonical" href="https://punicodex.com/search.html">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/fonts/fonts.css">
   <link rel="stylesheet" href="/css/search-system.css">
   <link rel="stylesheet" href="/css/punicodex-tokens.css">
   <link rel="stylesheet" href="/css/brand-overrides.css">
@@ -86,7 +84,7 @@
   <div class="filter-bar">
     <div class="filter-header">
       <span class="filter-label" style="margin:0">Filters</span>
-      <button class="filter-toggle" id="filterToggle" onclick="toggleFilters()">⚙️ Refine</button>
+      <button class="filter-toggle" id="filterToggle" onclick="toggleFilters()">Refine</button>
     </div>
     <div class="filter-panel" id="filterPanel">
       <div class="filter-row">
@@ -633,30 +631,30 @@
       }
 
       html += `<div class="serp-meta">`;
-      if (r.isFlagship) html += `<span class="serp-badge flagship">🏛️ Flagship</span>`;
+      if (r.isFlagship) html += `<span class="serp-badge flagship">Flagship</span>`;
       if (r.tier && r.tierLabel) html += `<span class="serp-badge ${tierClass}">${tierLabel}</span>`;
       if (r.pantheon) html += `<span class="serp-badge pantheon">${escapeHtml(r.pantheon)}</span>`;
       if (r.leaseStatus === 'flagship' || r.isFlagship) {
-        html += `<span class="lease-badge flagship">👑 Crown Jewel</span>`;
+        html += `<span class="lease-badge flagship">Crown Jewel</span>`;
       } else if (r.tenant && r.tenant.name) {
-        html += `<span class="lease-badge leased">🔒 Leased</span>`;
+        html += `<span class="lease-badge leased">Leased</span>`;
       } else if (r.leaseStatus === 'available') {
-        html += `<span class="lease-badge available">🔑 Available</span>`;
+        html += `<span class="lease-badge available">Available</span>`;
       }
-      if (r.isPunycode) html += `<span class="unicode-badge">🌐 Unicode</span>`;
-      if (r.sitemapEntries > 0) html += `<span class="serp-sitemap-badge">📑 ${r.sitemapEntries} pages</span>`;
-      if (r.ogVideo) html += `<span class="serp-sitemap-badge">▶️ Video</span>`;
+      if (r.isPunycode) html += `<span class="unicode-badge">Unicode</span>`;
+      if (r.sitemapEntries > 0) html += `<span class="serp-sitemap-badge">${r.sitemapEntries} pages</span>`;
+      if (r.ogVideo) html += `<span class="serp-sitemap-badge">Video</span>`;
       if (r.scoreBreakdown) {
-        html += `<span class="score-breakdown" tabindex="0" aria-label="Ranking signals">⚡ ${r.scoreBreakdown.total.toFixed(2)}${buildScoreTooltip(r.scoreBreakdown)}</span>`;
+        html += `<span class="score-breakdown" tabindex="0" aria-label="Ranking signals">${r.scoreBreakdown.total.toFixed(2)}${buildScoreTooltip(r.scoreBreakdown)}</span>`;
       }
       if (r.verdict && (r.severity === 'high' || r.severity === 'critical')) {
-        html += `<span class="serp-badge trust-warning">⚠️ ${escapeHtml(r.label || r.verdict)}</span>`;
+        html += `<span class="serp-badge trust-warning">${escapeHtml(r.label || r.verdict)}</span>`;
       }
       html += `</div>`;
 
       if (r.tenant && r.tenant.name) {
         html += `<div class="tenant-card">`;
-        html += `<span class="tenant-label">🏪 Tenant</span>`;
+        html += `<span class="tenant-label">Tenant</span>`;
         html += `<span class="tenant-name">${escapeHtml(r.tenant.name)}</span>`;
         if (r.tenant.category) html += `<span class="tenant-category">${escapeHtml(r.tenant.category)}</span>`;
         if (r.tenant.frontUrl) {
@@ -849,7 +847,7 @@
         if (knowledgePanel.tenant) {
           const t = knowledgePanel.tenant;
           html += `<div class="kp-tenant">`;
-          html += `<div class="kp-tenant-header"><span class="kp-tenant-label">${t.isFlagship ? '👑 Crown Jewel' : '🏪 Tenant'}</span></div>`;
+          html += `<div class="kp-tenant-header"><span class="kp-tenant-label">${t.isFlagship ? 'Crown Jewel' : 'Tenant'}</span></div>`;
           html += `<div class="kp-tenant-name">${escapeHtml(t.name)}${t.category ? ` — ${escapeHtml(t.category)}` : ''}</div>`;
           if (t.punycode) html += `<div class="kp-tenant-category">${escapeHtml(t.punycode)}</div>`;
           html += `<div class="kp-tenant-actions">`;
@@ -908,10 +906,10 @@
         html += `</div>`;
       }
 
-      const semanticBadge = data.isSemanticFallback ? `<span style="color:var(--cn-blue);margin-left:0.5rem;font-size:0.75rem">🧠 semantic match</span>` : '';
+      const semanticBadge = data.isSemanticFallback ? `<span style="color:var(--cn-blue);margin-left:0.5rem;font-size:0.75rem">semantic match</span>` : '';
       html += `<div class="result-count">About ${data.total || data.results.length} results (${data.timing}s)${semanticBadge}</div>`;
       if (data.queryTrust && (data.queryTrust.severity === 'high' || data.queryTrust.severity === 'critical')) {
-        html += `<div class="query-trust-banner query-trust-${data.queryTrust.severity}">⚠️ ${escapeHtml(data.queryTrust.label || data.queryTrust.verdict)} — ${escapeHtml(data.queryTrust.reason || '')}</div>`;
+        html += `<div class="query-trust-banner query-trust-${data.queryTrust.severity}">${escapeHtml(data.queryTrust.label || data.queryTrust.verdict)} — ${escapeHtml(data.queryTrust.reason || '')}</div>`;
       }
       html += `<div class="serp-results-list">`;
 
@@ -939,7 +937,7 @@
 
       if (data.availability && data.availability.length) {
         html += `<div class="availability-section">`;
-        html += `<div class="availability-title">🔑 Available for Registration</div>`;
+        html += `<div class="availability-title">Available for Registration</div>`;
         data.availability.forEach(avail => {
           const tierClass = avail.tier === 'dual' ? 'tier-dual' : avail.tier === '1' ? 'tier-1' : 'tier-2';
           const tierLabel = avail.tier === 'dual' ? 'Dual-Tier' : `Tier ${avail.tier}`;
@@ -979,7 +977,7 @@
       }
 
       if (countEl) {
-        const semanticBadge = data.isSemanticFallback ? `<span style="color:var(--cn-blue);margin-left:0.5rem;font-size:0.75rem">🧠 semantic match</span>` : '';
+        const semanticBadge = data.isSemanticFallback ? `<span style="color:var(--cn-blue);margin-left:0.5rem;font-size:0.75rem">semantic match</span>` : '';
         countEl.innerHTML = `About ${data.total || currentResults.length} results (${data.timing}s)${semanticBadge}`;
       }
 

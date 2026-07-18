@@ -30,6 +30,7 @@ const { getDb } = require('../db/connection');
 const { migrate: migrateAdminUsers } = require('../db/migrate-admin-users');
 const { hashToken } = require('./admin');
 const { logAction } = require('./admin-actions');
+const emailModule = require('./email');
 
 const SESSION_TTL_MS = 8 * 60 * 60 * 1000; // 8 hours (matches legacy admin sessions)
 const BCRYPT_ROUNDS = Number(process.env.PUNICODEX_BCRYPT_ROUNDS) || 12;
@@ -547,8 +548,12 @@ async function resetPassword(id, actor) {
     meta: { email: target.email, by: actor?.user?.email },
   });
 
-  // The temp password is returned exactly once so it can be relayed
-  // out-of-band (transactional email is not wired up).
+  // One-time credential, delivered by transactional email (fire-and-forget;
+  // a delivery failure never blocks the reset). The temp password is also
+  // returned exactly once as a fallback relay channel.
+  emailModule
+    .notifyAdminPasswordReset({ email: target.email, tempPassword })
+    .catch(() => {});
   return { user: sanitizeUser(await getUserById(id)), tempPassword };
 }
 

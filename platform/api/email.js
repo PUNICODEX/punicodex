@@ -455,6 +455,26 @@ async function notifyScholarsAccountProvisioned({
   });
 }
 
+async function notifyAdminPasswordReset({ email, tempPassword }) {
+  const loginUrl = `${PLATFORM_URL}/admin-portal/login/`;
+  return sendEmail({
+    to: email,
+    subject: 'Your PuniCodex admin portal password was reset',
+    html: `
+      <div style="font-family:system-ui,sans-serif;max-width:480px;margin:0 auto;color:#111;">
+        <h2 style="color:#d4af37;">PUNICODEX Admin Portal</h2>
+        <p>Hi,</p>
+        <p>An administrator has reset the password for this admin portal account. Sign in with this one-time temporary password:</p>
+        <div style="background:#f8f8f8;border-radius:8px;padding:1.5rem;text-align:center;margin:1.5rem 0;">
+          <span style="font-family:monospace;font-size:1.25rem;font-weight:700;letter-spacing:0.05em;color:#111;">${escapeHtml(tempPassword)}</span>
+        </div>
+        <p><a href="${escapeHtml(loginUrl)}" style="display:inline-block;background:#d4af37;color:#000;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600;">Sign In</a></p>
+        <p style="color:#666;font-size:0.85rem;">You will be asked to set a permanent password after signing in. All existing sessions were revoked. If you did not expect this reset, contact your portal administrator immediately.</p>
+      </div>
+    `,
+  });
+}
+
 module.exports = {
   sendEmail,
   notifyPaymentPending,
@@ -474,6 +494,7 @@ module.exports = {
   notifyCreativePurchaseReady,
   notifyPatronWelcome,
   notifyScholarsAccountProvisioned,
+  notifyAdminPasswordReset,
   getDashboardUrl,
   escapeHtml,
 };

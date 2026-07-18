@@ -90,6 +90,7 @@ const SUITES = [
   { name: 'API Fuzz Tests', cmd: 'node test/api-fuzz.test.js', timeout: 60000 },
   { name: 'Analytics E2E Tests', cmd: 'node test/analytics-e2e.test.js' },
   { name: 'Vercelignore Guard', cmd: 'node test/vercelignore-guard.test.js' },
+  { name: 'Vendored Libs Tests', cmd: 'node test/vendored-libs.test.js' },
   { name: 'Flagship Mobile Nav Tests', cmd: 'node test/flagship-mobile-nav.test.js' },
   { name: 'Realms Page Tests', cmd: 'node test/realms-page.test.js' },
   {
@@ -195,6 +196,7 @@ const SUITES = [
   { name: 'Safety Corpus Tests', cmd: 'node test/safety-corpus.test.js' },
   { name: 'AI Corpus Phases Tests', cmd: 'node test/ai-corpus-phases.test.js' },
   { name: 'Lighthouse Thresholds', cmd: 'node --test test/lighthouse.test.js' },
+  { name: 'Font Self-Hosting Tests', cmd: 'node test/fonts-selfhosted.test.js' },
   { name: 'Link Checker', cmd: 'node test/links.js' },
   { name: 'SEO Validator', cmd: 'node scripts/validate-seo.js' },
   { name: 'Philological Accuracy', cmd: 'node scripts/validate-accuracy.js' },

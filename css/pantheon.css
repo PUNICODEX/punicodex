@@ -419,3 +419,42 @@
         animation: none;
         background: rgba(255,255,255,0.03);
     }}
+
+/* ── Brand polish — kit medallion frame over every card portrait ──
+   Layers ON TOP of the mascot <img> (built cards) or the kit empty
+   portrait (unbuilt cards) — it never replaces the image. inset 0 keeps
+   it inside the circular, overflow-hidden portrait; pointer-events:none
+   keeps the card link fully clickable; the badge sits outside the
+   portrait so it is never covered. */
+.pantheon-grid-large .archetype-card .card-portrait {
+    box-shadow: var(--pc-ring-medallion), 0 0 20px rgba(212,175,55,0.1);
+}
+
+.pantheon-grid-large .archetype-card:hover .card-portrait {
+    box-shadow: var(--pc-ring-medallion), 0 0 30px rgba(212,175,55,0.25);
+}
+
+.pantheon-grid-large .archetype-card .card-portrait::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('/assets/brand/03-ornaments/punicodex-medallion-frame.webp') center / 100% 100% no-repeat;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* ── Brand polish — "Awaiting Restoration" stamp on unbuilt cards ──
+   Uses ::before (the medallion owns ::after). For unbuilt cards this
+   intentionally supersedes the skeleton-shimmer ::before above — their
+   portrait is the local kit empty portrait, so the shimmer never runs.
+   Specificity (0,3,1) beats every shimmer rule, loaded-state included. */
+.pantheon-grid-large .archetype-card.unbuilt .card-portrait::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('/assets/brand/08-seals-stamps/punicodex-stamp-awaiting-restoration.webp') center / 72% no-repeat;
+    opacity: 0.35;
+    animation: none;
+    pointer-events: none;
+    z-index: 2;
+}

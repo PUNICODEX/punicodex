@@ -21,12 +21,20 @@
     <meta property="og:image" content="https://punicodex.com/assets/brand/05-social/punicodex-og-image-1200x630.png">
     <meta property="og:url" content="https://punicodex.com/privacy/">
     <meta name="twitter:card" content="summary_large_image">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
 
     <link rel="stylesheet" href="/css/main.css?v=perf8">
     <link rel="stylesheet" href="/css/privacy.css?v=perf9">
+    <style>
+    /* Kit sealed tablet beside the page title (brand guide §LEGAL.1) */
+    .privacy-tablet {
+      width: 140px;
+      height: auto;
+      opacity: 0.85;
+      margin: 0 auto 1rem;
+      display: block;
+    }
+    </style>
     <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
@@ -77,6 +85,10 @@
     <main class="page-privacy">
         <section class="page-hero">
             <div class="container">
+                <picture class="reveal-up">
+                  <source srcset="/assets/brand/13-page-visuals/legal/sealed-tablet.webp" type="image/webp">
+                  <img class="privacy-tablet" src="/assets/brand/13-page-visuals/legal/sealed-tablet.png" alt="The Sealed Tablet — an obsidian tablet with a gold wax seal" width="280" height="280" loading="lazy" decoding="async">
+                </picture>
                 <h1 class="display-lg text-center reveal-up">Privacy Policy</h1>
                 <p class="body-lg text-center reveal-up">Effective June 6, 2026. Last updated June 6, 2026.</p>
             </div>

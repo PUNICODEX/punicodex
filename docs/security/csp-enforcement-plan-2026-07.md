@@ -211,9 +211,20 @@ tags need, in addition:
 Verify presence with `git grep -c googletagmanager -- '*.html'` after
 generation before touching the policy.
 
-## 7. Optional tightening fixes (not implemented)
+## 7. Optional tightening fixes
 
-Each removes a wart from the policy above; none is required for the flip.
+**Status 2026-07-18 (later pass): items 1–5 IMPLEMENTED.** Chart.js, D3,
+three.js, and swagger-ui-dist are vendored under `/vendor/` (with licenses +
+sha256 in `vendor/INTEGRITY.md`, guarded by `test/vendored-libs.test.js`);
+all six Google Fonts families are self-hosted under `assets/fonts/` (36
+woff2 + `fonts.css` with Google's unicode-range splitting preserved, guarded
+by `test/fonts-selfhosted.test.js`). The enforced policy in `vercel.json`
+therefore carries **no third-party hosts at all** — `script-src 'self'
+'unsafe-inline'`, `style-src 'self' 'unsafe-inline'`, `font-src 'self'
+data:`. Item 6 (inline boot scripts) and 7 (inline event handlers) remain
+open as the long-term path to dropping `'unsafe-inline'`.
+
+Original list (pre-implementation):
 
 1. **Vendor Chart.js** into `js/vendor/chart.umd.min.js` and update
    `templates/flagship/dashboard.html:10`, `platform/public/admin-bookings.html:12`,

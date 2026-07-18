@@ -999,6 +999,11 @@ own `manifest.json`, `package.json`, and biome coverage.
   `platform/api/admin-portal-auth.js`.
 - Security headers on every route via `vercel.json`; strict referrer policy,
   HSTS, Permissions-Policy, and a report-only CSP (soak before enforcing).
+- Webfonts are **self-hosted**: all pages load `/assets/fonts/fonts.css`
+  (committed, built once from Google Fonts on 2026-07-18; woff2 binaries in
+  `assets/fonts/`, unicode-range splitting preserved). Never re-add
+  `fonts.googleapis.com` / `fonts.gstatic.com` links or preconnects — the CSP
+  drops those hosts; regression suite: `test/fonts-selfhosted.test.js`.
 - Rate limiting on public APIs and Scholars (Redis when `REDIS_URL` set);
   public write endpoints (crawl events, gamification, agents, workspace) are
   all rate-limited. The 2026-07 security audit lives at

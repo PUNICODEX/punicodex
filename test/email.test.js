@@ -189,4 +189,44 @@ test('notifyScholarsAccountProvisioned sends temp password and login URL through
   }
 });
 
+test('notifyAdminPasswordReset sends temp password and admin-portal login URL through Resend', async () => {
+  const emailPath = require.resolve('../platform/api/email.js');
+  const originalFetch = globalThis.fetch;
+  const hadKey = 'RESEND_API_KEY' in process.env;
+  const priorKey = process.env.RESEND_API_KEY;
+
+  let captured = null;
+  globalThis.fetch = async (url, options) => {
+    captured = { url, options };
+    return { ok: true, json: async () => ({ id: 'resend-test-id' }) };
+  };
+
+  try {
+    process.env.RESEND_API_KEY = 'test-resend-key';
+    delete require.cache[emailPath];
+    const freshEmail = require(emailPath);
+
+    const result = await freshEmail.notifyAdminPasswordReset({
+      email: 'admin@portal.test',
+      tempPassword: 'tmp-reset-456',
+    });
+
+    assert.strictEqual(result.success, true);
+    const payload = JSON.parse(captured.options.body);
+    assert.deepStrictEqual(payload.to, ['admin@portal.test']);
+    assert.strictEqual(payload.subject, 'Your PuniCodex admin portal password was reset');
+    assert.ok(payload.html.includes('tmp-reset-456'), 'html body must contain the temp password');
+    assert.ok(
+      payload.html.includes('https://punicodex.com/admin-portal/login/'),
+      'html body must contain the admin portal login URL'
+    );
+    assert.ok(payload.text.includes('tmp-reset-456'), 'text body must contain the temp password');
+  } finally {
+    globalThis.fetch = originalFetch;
+    if (hadKey) process.env.RESEND_API_KEY = priorKey;
+    else delete process.env.RESEND_API_KEY;
+    delete require.cache[emailPath];
+  }
+});
+
 run();

@@ -23,6 +23,22 @@
  *  (h) every /assets/brand/ reference in the body-wave files exists on disk,
  *  (i) platform/public/admin-portal/portal.js has no `Ú</span>NYCODEX` remnant
  *      and renders the solid wordmark image instead.
+ * Deferred-polish wave (card overlays, legal pages, search emoji, codex
+ * mastheads):
+ *  (j) pantheon/home card portrait markup still renders mascot imgs for
+ *      built archetypes AND css/pantheon.css + css/home-v2.css carry the
+ *      medallion-frame ::after overlay rule with the --pc-ring-medallion
+ *      ring shadow,
+ *  (k) templates/flagship/gallery/index.html thumbs carry the same
+ *      medallion-frame overlay (.gallery-figure::after),
+ *  (l) the awaiting-restoration stamp rule exists for unbuilt cards
+ *      (.archetype-card.unbuilt .card-portrait::before at 35% opacity) —
+ *      a rule-presence guard: today's data has zero unbuilt archetypes,
+ *  (m) terms/, terms/data-use/, terms/advertising/ and privacy/ all
+ *      reference the sealed tablet, and the terms cards use kit glyphs
+ *      instead of the old emoji entities (guide §LEGAL.2),
+ *  (n) search.html badge/filter rows contain none of the enumerated emoji
+ *      removed in this wave (⚙️🏛️👑🔒🔑🌐📑▶️⚡⚠️🏪🧠).
  *
  * Note: platform/public/scholars/index.html does not exist — the scholars
  * portal root is a directory of sub-pages — so the representative scholars
@@ -455,6 +471,9 @@ const BODY_WAVE_FILES = [
   'platform/public/admin-portal/scholars/index.html',
   'platform/public/admin-portal/users/index.html',
   'templates/flagship/index.html',
+  'terms/advertising/index.html',
+  'privacy/index.html',
+  'templates/flagship/gallery/index.html',
 ];
 
 test('(h) every /assets/brand/ reference in body-wave files exists on disk', () => {
@@ -489,6 +508,150 @@ test('(i) admin portal renders the solid wordmark, not the Ú span', () => {
   assert.ok(
     portal.includes('/assets/brand/01-logos/punicodex-wordmark-gold-solid.png'),
     'portal.js does not reference the solid wordmark image'
+  );
+});
+
+// ---- (j) medallion-frame overlay on pantheon/home cards -----------------------
+
+test('(j) built cards still render mascot imgs AND the medallion overlay rule exists', () => {
+  // Mascot invariant: built archetypes render their mascot <img>; the kit
+  // empty portrait remains only the unbuilt/error fallback path.
+  const pantheon = read('js/pantheon.js');
+  assert.ok(
+    pantheon.includes('data-fallback="${a.mascotFallback || a.mascotPath}"'),
+    'js/pantheon.js no longer renders the mascot thumb img with mascotPath fallback'
+  );
+  assert.ok(
+    pantheon.includes('class="card-portrait-img"'),
+    'js/pantheon.js no longer tags the portrait img'
+  );
+  const home = read('js/home.js');
+  assert.ok(
+    home.includes('<img src="${a.mascotPath}"'),
+    'js/home.js no longer renders the mascotPath img for built archetypes'
+  );
+  // The medallion frame is a CSS ::after overlay ON TOP of the portrait —
+  // it never replaces the img. pointer-events:none keeps the card link
+  // clickable; the badge is outside the portrait so it is never covered.
+  const MEDALLION_RULE =
+    "background: url('/assets/brand/03-ornaments/punicodex-medallion-frame.webp') center / 100% 100% no-repeat;";
+  for (const rel of ['css/pantheon.css', 'css/home-v2.css']) {
+    const css = read(rel);
+    assert.ok(css.includes('.card-portrait::after'), `${rel} missing the medallion ::after rule`);
+    assert.ok(css.includes(MEDALLION_RULE), `${rel} missing the medallion-frame asset`);
+    assert.ok(
+      css.includes('var(--pc-ring-medallion)'),
+      `${rel} missing the --pc-ring-medallion ring shadow`
+    );
+  }
+});
+
+// ---- (k) gallery template thumb overlay ----------------------------------------
+
+test('(k) gallery template thumbs carry the medallion-frame overlay', () => {
+  const tpl = read('templates/flagship/gallery/index.html');
+  assert.ok(
+    tpl.includes('.gallery-figure::after'),
+    'gallery template missing the .gallery-figure::after thumb overlay rule'
+  );
+  assert.ok(
+    tpl.includes(
+      "background: url('/assets/brand/03-ornaments/punicodex-medallion-frame.webp') center / 100% 100% no-repeat;"
+    ),
+    'gallery template missing the medallion-frame asset on thumbs'
+  );
+  assert.ok(
+    tpl.includes('pointer-events: none;'),
+    'gallery thumb overlay must not block the lightbox click'
+  );
+});
+
+// ---- (l) awaiting-restoration stamp on unbuilt cards ----------------------------
+
+test('(l) unbuilt cards carry the awaiting-restoration stamp rule', () => {
+  // Rule-presence guard only: today's archetype data has zero unbuilt
+  // entries, so this proves the CSS rule ships, not a live visual.
+  for (const rel of ['css/pantheon.css', 'css/home-v2.css']) {
+    const css = read(rel);
+    assert.ok(
+      css.includes('.archetype-card.unbuilt .card-portrait::before'),
+      `${rel} missing the unbuilt stamp rule`
+    );
+    assert.ok(
+      css.includes('/assets/brand/08-seals-stamps/punicodex-stamp-awaiting-restoration.webp'),
+      `${rel} missing the stamp asset`
+    );
+    assert.ok(css.includes('opacity: 0.35'), `${rel} stamp must sit at ~35% opacity`);
+  }
+});
+
+// ---- (m) terms/privacy sealed tablet + kit card glyphs ---------------------------
+
+test('(m) terms and privacy pages reference the sealed tablet and kit card glyphs', () => {
+  for (const rel of [
+    'terms/index.html',
+    'terms/data-use/index.html',
+    'terms/advertising/index.html',
+    'privacy/index.html',
+  ]) {
+    assert.ok(
+      read(rel).includes('/assets/brand/13-page-visuals/legal/sealed-tablet.png'),
+      `${rel} missing the sealed tablet beside its title`
+    );
+  }
+  // Guide §LEGAL.2: the six terms cards use kit glyphs, not emoji entities.
+  const terms = read('terms/index.html');
+  for (const glyph of [
+    '/assets/brand/03-ornaments/punicodex-medallion-frame.png',
+    '/assets/brand/08-seals-stamps/punicodex-official-seal.png',
+    '/assets/brand/13-page-visuals/type/monolith-cursor.png',
+    '/assets/brand/13-page-visuals/search/the-lens.png',
+    '/assets/brand/13-page-visuals/api/api-lattice.png',
+    '/assets/brand/13-page-visuals/store/golden-brilliant.png',
+  ]) {
+    assert.ok(terms.includes(glyph), `terms/index.html missing card glyph ${glyph}`);
+  }
+  for (const entity of ['&#128;</div>', '&#128214;</div>', '&#9000;</div>', '&#128269;</div>', '&#128241;</div>', '&#127760;</div>']) {
+    assert.ok(!terms.includes(entity), `terms/index.html still has emoji icon ${entity}`);
+  }
+});
+
+// ---- (n) search.html badge/filter-row emoji purge ---------------------------------
+
+test('(n) no emoji remain in search.html badge/filter rows', () => {
+  const search = read('search.html');
+  // The enumerated badge/filter-row emoji removed in the polish wave.
+  const REMOVED = [
+    '⚙️ Refine', // filter toggle
+    '🏛️ Flagship', // serp-badge flagship
+    '👑 Crown Jewel', // lease-badge flagship + kp-tenant-label
+    '🔒 Leased', // lease-badge leased
+    '🔑 Available', // lease-badge available
+    '🌐 Unicode', // unicode-badge
+    '📑 ${r.sitemapEntries} pages', // serp-sitemap-badge
+    '▶️ Video', // serp-sitemap-badge video
+    '>⚡ ${r.scoreBreakdown', // score-breakdown badge
+    'trust-warning">⚠️ ', // trust-warning badge
+    '🏪 Tenant', // tenant-label + kp-tenant-label
+    '🧠 semantic match', // semantic fallback badge
+    'query-trust-${data.queryTrust.severity}">⚠️ ', // query trust banner
+  ];
+  for (const s of REMOVED) {
+    assert.ok(!search.includes(s), `search.html still has badge/filter-row emoji: ${s}`);
+  }
+  // The on-brand text treatments that replaced them still render.
+  assert.ok(search.includes('>Refine</button>'), 'filter toggle lost its label');
+  assert.ok(
+    search.includes('"serp-badge flagship">Flagship</span>'),
+    'flagship badge lost its label'
+  );
+  assert.ok(
+    search.includes('"lease-badge leased">Leased</span>'),
+    'leased badge lost its label'
+  );
+  assert.ok(
+    search.includes('"unicode-badge">Unicode</span>'),
+    'unicode badge lost its label'
   );
 });
 

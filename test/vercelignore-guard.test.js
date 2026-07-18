@@ -85,6 +85,22 @@ test('.vercelignore excludes nothing under api/ or platform/scripts/', () => {
   assert.deepStrictEqual(violations, [], violations.join('\n'));
 });
 
+test('.vercelignore does not exclude the vendored runtime assets (vendor/)', () => {
+  const lines = fs.readFileSync(path.join(ROOT, '.vercelignore'), 'utf8').split(/\r?\n/);
+  const patterns = parsePatterns(lines);
+  const vendorDirs = walk(path.join(ROOT, 'vendor'));
+  const violations = [];
+  for (const dir of [path.join(ROOT, 'vendor'), ...vendorDirs]) {
+    const rel = path.relative(ROOT, dir).split(path.sep).join('/');
+    for (const p of patterns) {
+      if (p.dirOnly && matches(p, rel, true)) {
+        violations.push(`${p.raw} excludes ${rel}`);
+      }
+    }
+  }
+  assert.deepStrictEqual(violations, [], violations.join('\n'));
+});
+
 let failed = 0;
 for (const { name, fn } of tests) {
   try {

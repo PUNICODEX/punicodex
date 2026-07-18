@@ -39,7 +39,7 @@ test('connections/index.html exists', () => {
 
 test('connections page includes D3 and required scripts', () => {
   const html = read('connections/index.html');
-  assert.ok(html.includes('d3js.org/d3.v7.min.js'), 'must load D3 v7');
+  assert.ok(html.includes('/vendor/d3/d3.v7.min.js'), 'must load vendored D3 v7');
   assert.ok(html.includes('/js/connections.js'), 'must load connections.js');
   assert.ok(html.includes('/css/connections.css'), 'must load connections.css');
 });

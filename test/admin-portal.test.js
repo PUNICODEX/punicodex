@@ -370,17 +370,34 @@ async function runTests() {
     const target = db()
       .prepare('SELECT id FROM admin_users WHERE email = ?')
       .get('temp@portal.test');
-    const res = await invoke(
-      userResetHandler,
-      'POST',
-      `/api/admin/portal/users/${target.id}/reset-password/`,
-      {
-        headers: adminHeader(superToken),
-        params: { id: String(target.id) },
-      }
-    );
+    // Spy the email seam: the reset must fire the transactional email with the
+    // same one-time temp password it returns (fire-and-forget).
+    const emailApi = require('../platform/api/email.js');
+    const originalNotify = emailApi.notifyAdminPasswordReset;
+    const emailed = [];
+    emailApi.notifyAdminPasswordReset = async (args) => {
+      emailed.push(args);
+      return { mocked: true };
+    };
+    let res;
+    try {
+      res = await invoke(
+        userResetHandler,
+        'POST',
+        `/api/admin/portal/users/${target.id}/reset-password/`,
+        {
+          headers: adminHeader(superToken),
+          params: { id: String(target.id) },
+        }
+      );
+    } finally {
+      emailApi.notifyAdminPasswordReset = originalNotify;
+    }
     assert.strictEqual(res.status, 200);
     assert.ok(res.body.tempPassword);
+    assert.strictEqual(emailed.length, 1);
+    assert.strictEqual(emailed[0].email, 'temp@portal.test');
+    assert.strictEqual(emailed[0].tempPassword, res.body.tempPassword);
 
     // The old temp password no longer works (hash replaced), the new one does.
     const oldLogin = await portalLogin('temp@portal.test', 'temp-password-obsolete');

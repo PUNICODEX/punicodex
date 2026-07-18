@@ -15,9 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dažbog — Gallery | Sun, Wealth, Giving | PUNICODEX</title>
     <meta name="description" content="A curated gallery of Dažbog, Sun, Wealth, Giving, through history.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf17">
     <link rel="stylesheet" href="../styles.css?v=perf4">
 
@@ -40,6 +38,20 @@
 .gallery-figure {
     cursor: zoom-in;
     margin: 0;
+    position: relative;
+    overflow: hidden;
+    display: block;
+}
+/* Brand polish — kit medallion frame layered over every gallery thumb.
+   Sits above the .gallery-img but never replaces it; pointer-events:none
+   keeps the figure's lightbox click/key handlers working. */
+.gallery-figure::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('/assets/brand/03-ornaments/punicodex-medallion-frame.webp') center / 100% 100% no-repeat;
+    pointer-events: none;
+    z-index: 2;
 }
 .gallery-lightbox {
     position: fixed;

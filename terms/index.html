@@ -25,9 +25,7 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Terms & Conditions — PUNICODEX">
   <meta name="twitter:description" content="Legal agreements, usage policies, and licensing terms for all PUNICODEX products and services.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/fonts/fonts.css">
   <style>
     :root {
       --bg: #0a0a0f;
@@ -109,15 +107,21 @@
     }
     .group-card:hover a { text-decoration: none; }
     .group-icon {
-      width: 44px;
-      height: 44px;
+      width: 56px;
+      height: 56px;
       border-radius: 10px;
       background: var(--surface-raised);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.25rem;
       flex-shrink: 0;
+    }
+    /* Kit glyphs replace the old emoji icons (brand guide §LEGAL.2) */
+    .group-icon img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      display: block;
     }
     .group-content { flex: 1; }
     .group-content h3 {
@@ -289,7 +293,7 @@
       <h2 style="font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:1rem;">Product-Specific Agreements</h2>
 
       <a href="/terms/advertising/" class="group-card">
-        <div class="group-icon">&#128;</div>
+        <div class="group-icon"><picture><source srcset="/assets/brand/03-ornaments/punicodex-medallion-frame.webp" type="image/webp"><img src="/assets/brand/03-ornaments/punicodex-medallion-frame.png" alt="" width="48" height="48" loading="lazy" decoding="async"></picture></div>
         <div class="group-content">
           <h3>Advertising Space Lease Agreement <span class="group-status status-live">Live</span></h3>
           <p>Terms for leasing advertising slots on PUNICODEX flagship temple pages. Covers pricing, view-based benchmarks, content standards, approval process, payment, and termination.</p>
@@ -302,7 +306,7 @@
       </a>
 
       <a href="/terms/data-use/" class="group-card">
-        <div class="group-icon">&#128214;</div>
+        <div class="group-icon"><picture><source srcset="/assets/brand/08-seals-stamps/punicodex-official-seal.webp" type="image/webp"><img src="/assets/brand/08-seals-stamps/punicodex-official-seal.png" alt="" width="48" height="48" loading="lazy" decoding="async"></picture></div>
         <div class="group-content">
           <h3>Data Use Policy <span class="group-status status-live">Live</span></h3>
           <p>Dataset licensing under CC BY 4.0, attribution requirements, API usage rules, and anti-scraping policy for the PUNICODEX lexicon and scholarly data.</p>
@@ -315,7 +319,7 @@
       </a>
 
       <div class="group-card" style="opacity:0.6;">
-        <div class="group-icon">&#9000;</div>
+        <div class="group-icon"><picture><source srcset="/assets/brand/13-page-visuals/type/monolith-cursor.webp" type="image/webp"><img src="/assets/brand/13-page-visuals/type/monolith-cursor.png" alt="" width="48" height="48" loading="lazy" decoding="async"></picture></div>
         <div class="group-content">
           <h3>Type Tool & Keyboard <span class="group-status status-soon">Coming Soon</span></h3>
           <p>Terms of use for the PUNICODEX Unicode type tool, keyboard extensions, and browser plugins. Covers licensing, redistribution, and acceptable use.</p>
@@ -328,7 +332,7 @@
       </div>
 
       <div class="group-card" style="opacity:0.6;">
-        <div class="group-icon">&#128269;</div>
+        <div class="group-icon"><picture><source srcset="/assets/brand/13-page-visuals/search/the-lens.webp" type="image/webp"><img src="/assets/brand/13-page-visuals/search/the-lens.png" alt="" width="48" height="48" loading="lazy" decoding="async"></picture></div>
         <div class="group-content">
           <h3>Search Engine <span class="group-status status-soon">Coming Soon</span></h3>
           <p>Terms for using the PUNICODEX search engine for Unicode domains. Covers query usage, API access, rate limits, and data usage.</p>
@@ -341,7 +345,7 @@
       </div>
 
       <div class="group-card" style="opacity:0.5;">
-        <div class="group-icon">&#128241;</div>
+        <div class="group-icon"><picture><source srcset="/assets/brand/13-page-visuals/api/api-lattice.webp" type="image/webp"><img src="/assets/brand/13-page-visuals/api/api-lattice.png" alt="" width="48" height="48" loading="lazy" decoding="async"></picture></div>
         <div class="group-content">
           <h3>Mobile App <span class="group-status status-planned">Planned</span></h3>
           <p>Terms for the PUNICODEX mobile application. Covers app store distribution, in-app purchases, and device permissions.</p>
@@ -354,7 +358,7 @@
       </div>
 
       <div class="group-card" style="opacity:0.5;">
-        <div class="group-icon">&#127760;</div>
+        <div class="group-icon"><picture><source srcset="/assets/brand/13-page-visuals/store/golden-brilliant.webp" type="image/webp"><img src="/assets/brand/13-page-visuals/store/golden-brilliant.png" alt="" width="48" height="48" loading="lazy" decoding="async"></picture></div>
         <div class="group-content">
           <h3>Domain Registry & Marketplace <span class="group-status status-planned">Planned</span></h3>
           <p>Terms for buying, selling, and transferring Unicode domains through the PUNICODEX marketplace. Covers escrow, disputes, and transfer fees.</p>

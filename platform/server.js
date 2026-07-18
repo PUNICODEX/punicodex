@@ -203,6 +203,9 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/mobile', express.static(path.join(__dirname, '..', 'mobile')));
 app.use('/i18n', express.static(path.join(__dirname, '..', 'i18n')));
+// Vendored third-party runtime libraries (see vendor/INTEGRITY.md) — served
+// statically on Vercel from the repo root; mirrored here for local dev.
+app.use('/vendor', express.static(path.join(__dirname, '..', 'vendor')));
 app.use('/favicons', express.static(path.join(__dirname, 'public', 'favicons')));
 app.use('/thumbnails', express.static(path.join(__dirname, 'public', 'thumbnails')));
 

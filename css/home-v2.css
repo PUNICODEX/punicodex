@@ -730,3 +730,39 @@
 .glow-orb.blue {
     background: radial-gradient(circle, rgba(65,105,225,0.2) 0%, transparent 70%);
 }
+
+/* ── Brand polish — kit medallion frame over every card portrait ──
+   Layers ON TOP of the mascot <img> (built cards) or the kit empty
+   portrait (unbuilt cards) — it never replaces the image. inset 0 keeps
+   it inside the circular, overflow-hidden portrait; pointer-events:none
+   keeps the card link fully clickable; the badge sits outside the
+   portrait so it is never covered. */
+.section-pantheon .archetype-card .card-portrait {
+    box-shadow: var(--pc-ring-medallion), 0 0 20px rgba(212,175,55,0.1);
+}
+
+.section-pantheon .archetype-card:hover .card-portrait {
+    box-shadow: var(--pc-ring-medallion), 0 0 30px rgba(212,175,55,0.25);
+}
+
+.section-pantheon .archetype-card .card-portrait::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('/assets/brand/03-ornaments/punicodex-medallion-frame.webp') center / 100% 100% no-repeat;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* ── Brand polish — "Awaiting Restoration" stamp on unbuilt cards ──
+   Uses ::before (the medallion owns ::after). Layered at low opacity
+   over the kit empty portrait rendered for unbuilt archetypes. */
+.section-pantheon .archetype-card.unbuilt .card-portrait::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('/assets/brand/08-seals-stamps/punicodex-stamp-awaiting-restoration.webp') center / 72% no-repeat;
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 2;
+}
