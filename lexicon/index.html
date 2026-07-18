@@ -50,6 +50,9 @@
     <link rel="stylesheet" href="/lexicon/css/lexicon.css?v=perf11">
     <link rel="stylesheet" href="/css/punicodex-tokens.css">
     <link rel="stylesheet" href="/css/brand-overrides.css">
+    <link rel="stylesheet" href="/css/pc-fx.css?v=1">
+    <script src="/js/pc-fx-core.js?v=1" defer></script>
+    <script src="/js/pc-fx-mobius.js?v=1" defer></script>
     <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
@@ -127,10 +130,9 @@
         <div class="lexicon-hero-content">
             <h1 class="lexicon-hero-title">The Lexicon</h1>
             <p class="lexicon-hero-subtitle">895 scholarly restorations across 22 pantheons. The default view shows only entries with a visible Unicode restoration or an owned domain.</p>
-            <picture>
-                <source srcset="/assets/brand/13-page-visuals/lexicon/mobius-ribbon.webp" type="image/webp">
-                <img class="pc-art lexicon-mobius" src="/assets/brand/13-page-visuals/lexicon/mobius-ribbon.png" alt="The Möbius Ribbon — 895 names on a single one-sided surface" width="680" height="680" fetchpriority="high" decoding="async">
-            </picture>
+            <div class="pc-fx-stage pc-fx-mobius-stage" role="img" aria-label="The Möbius Ribbon — glyphs flowing along a one-sided surface">
+                <canvas class="pc-fx-mobius" aria-hidden="true"></canvas>
+            </div>
             <div class="lexicon-stats">
                 <div class="lexicon-stat">
                     <span class="lexicon-stat-value">894</span>
