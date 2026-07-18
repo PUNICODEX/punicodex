@@ -18,6 +18,21 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/search-system.css">
+  <link rel="stylesheet" href="/css/punicodex-tokens.css">
+  <link rel="stylesheet" href="/css/brand-overrides.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+  <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+  <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+  <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+  <style>
+    /* Brand integration §4.13 — the Lens replaces the globe emoji empty state. */
+    .search-lens { width: min(300px, 60vw); margin: 0 auto 1rem; }
+    .empty-title { font-family: "Cormorant Garamond", Georgia, serif; text-transform: uppercase; letter-spacing: 0.18em; }
+    .oracle-icon img { display: block; }
+  </style>
 </head>
 <body class="cn-page">
   <div class="cn-ambient"></div>
@@ -26,9 +41,9 @@
     <div class="cn-header-inner">
       <div class="cn-header-top">
         <a href="/" class="cn-logo-row" aria-label="PUNICODEX home">
-          <div class="cn-logo-seal">P</div>
+          <picture><source srcset="/assets/brand/01-logos/punicodex-emblem-glyph-gold.webp" type="image/webp"><img class="cn-logo-glyph" src="/assets/brand/01-logos/punicodex-emblem-glyph-gold.png" alt="" width="1283" height="3544"></picture>
           <div>
-            <div class="cn-logo-text">PUNICODEX</div>
+            <picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-gold.webp" type="image/webp"><img class="cn-logo-wordmark" src="/assets/brand/01-logos/punicodex-wordmark-gold.png" alt="PuniCodex" width="440" height="46"></picture>
             <div class="cn-logo-sub">Curated Unicode Real Estate</div>
           </div>
         </a>
@@ -118,7 +133,7 @@
 
   <section class="oracle-panel" id="oraclePanel">
     <div class="oracle-header" onclick="toggleOracle()">
-      <span class="oracle-icon">🔮</span>
+      <span class="oracle-icon"><img src="/assets/brand/10-motion/punicodex-loader.svg" alt="" width="28" height="28"></span>
       <span class="oracle-title">Ask the Oracle</span>
       <span class="oracle-sub" id="oracleSub">AI-curated answer</span>
     </div>
@@ -133,7 +148,10 @@
 
   <section class="results" id="results">
     <div class="empty">
-      <div class="empty-icon">🌐</div>
+      <picture>
+        <source srcset="/assets/brand/13-page-visuals/search/the-lens.webp" type="image/webp">
+        <img class="pc-art search-lens" src="/assets/brand/13-page-visuals/search/the-lens.png" alt="The Lens — a gold-rimmed obsidian lens: scrutiny over the Unicode namespace" width="600" height="600" loading="lazy" decoding="async">
+      </picture>
       <div class="empty-title">Search the Unicode Web</div>
       <div class="empty-sub">Find gods, domains, and sites across the Unicode namespace</div>
     </div>
@@ -298,7 +316,10 @@
       if (mode === 'web') {
         resultsEl.innerHTML = `
           <div class="empty">
-            <div class="empty-icon">🌐</div>
+            <picture>
+              <source srcset="/assets/brand/13-page-visuals/search/the-lens.webp" type="image/webp">
+              <img class="pc-art search-lens" src="/assets/brand/13-page-visuals/search/the-lens.png" alt="The Lens — a gold-rimmed obsidian lens: scrutiny over the Unicode namespace" width="600" height="600" loading="lazy" decoding="async">
+            </picture>
             <div class="empty-title">Discover the Unicode Web</div>
             <div class="empty-sub">Search gods, myths, and curated domains across the Unicode namespace</div>
           </div>

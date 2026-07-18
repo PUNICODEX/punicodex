@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarly Edition — Department Admin | PUNICODEX</title>
+    <meta name="description" content="Department administration dashboard for the PuniCodex Scholarly Edition. Manage the students of your own department.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700&family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf17">
+
+    <style>
+        :root {
+            --inst-primary: #D4AF37;
+            --inst-primary-dim: #8B7355;
+            --inst-void: #0A0A0A;
+            --inst-void-raised: #111111;
+            --inst-white: #F5F5F5;
+            --inst-white-dim: #A0A0A0;
+            --inst-white-faint: rgba(255, 255, 255, 0.06);
+            --inst-success: #7fd67f;
+            --inst-danger: #ff7f7f;
+            --inst-warn: #f0d878;
+            --inst-info: #7fb8d6;
+            --inst-border: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            background: var(--inst-void);
+            color: var(--inst-white);
+            font-family: var(--font-body);
+            min-height: 100vh;
+        }
+
+        .global-strip {
+            background: rgba(0, 0, 0, 0.6);
+            border-bottom: 1px solid var(--inst-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(8px);
+        }
+
+        .global-strip-inner {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0.75rem clamp(1rem, 5vw, 3rem);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .global-brand {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            letter-spacing: 0.18em;
+            color: var(--inst-white);
+            text-decoration: none;
+        }
+
+        .global-links {
+            display: flex;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+        }
+
+        .global-links a {
+            color: var(--inst-white-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+
+        .global-links a:hover {
+            color: var(--inst-primary);
+        }
+
+        .institution-hero {
+            padding: 4rem 0 2.5rem;
+            text-align: center;
+            border-bottom: 1px solid var(--inst-border);
+        }
+
+        .institution-eyebrow {
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--inst-primary);
+            margin-bottom: 1rem;
+        }
+
+        .institution-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: var(--inst-white);
+            letter-spacing: 0.03em;
+            margin-bottom: 0.75rem;
+        }
+
+        .institution-subtitle {
+            color: var(--inst-white-dim);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .institution-container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 2.5rem clamp(1rem, 5vw, 3rem) 5rem;
+        }
+
+        .institution-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .institution-toolbar-info {
+            color: var(--inst-white-dim);
+            font-size: 0.95rem;
+        }
+
+        .institution-toolbar-info strong {
+            color: var(--inst-primary);
+        }
+
+        .institution-actions {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .institution-btn {
+            padding: 0.55rem 1rem;
+            border-radius: 6px;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid var(--inst-border);
+            background: transparent;
+            color: var(--inst-white);
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .institution-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .institution-btn.primary {
+            background: var(--inst-primary);
+            color: #000;
+            border-color: var(--inst-primary);
+        }
+
+        .institution-btn.primary:hover {
+            background: var(--inst-warn);
+            border-color: var(--inst-warn);
+        }
+
+        .institution-btn.danger {
+            background: rgba(255, 127, 127, 0.12);
+            color: var(--inst-danger);
+            border-color: rgba(255, 127, 127, 0.35);
+        }
+
+        .institution-btn.danger:hover {
+            background: rgba(255, 127, 127, 0.22);
+        }
+
+        .institution-btn.success {
+            background: rgba(127, 214, 127, 0.12);
+            color: var(--inst-success);
+            border-color: rgba(127, 214, 127, 0.35);
+        }
+
+        .institution-btn.success:hover {
+            background: rgba(127, 214, 127, 0.22);
+        }
+
+        .institution-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .stat-card {
+            background: var(--inst-void-raised);
+            border: 1px solid var(--inst-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-label {
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--inst-primary-dim);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--inst-primary);
+            letter-spacing: 0.03em;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--inst-primary);
+            margin: 2.5rem 0 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--inst-border);
+        }
+
+        .section-subtitle {
+            color: var(--inst-white-dim);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .card {
+            background: var(--inst-void-raised);
+            border: 1px solid var(--inst-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .card-field {
+            margin-bottom: 0.75rem;
+        }
+
+        .card-field:last-child {
+            margin-bottom: 0;
+        }
+
+        .card-field-label {
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--inst-primary-dim);
+            margin-bottom: 0.35rem;
+        }
+
+        .card-field-value {
+            color: var(--inst-white);
+            font-size: 1rem;
+        }
+
+        .allowlist-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .allowlist-pill {
+            font-size: 0.8rem;
+            padding: 0.3rem 0.65rem;
+            border-radius: 999px;
+            background: rgba(212, 175, 55, 0.12);
+            color: var(--inst-primary);
+        }
+
+        .allowlist-pill.empty {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--inst-white-dim);
+        }
+
+        .status-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.2rem 0.55rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--inst-white-dim);
+        }
+
+        .status-badge.active {
+            background: rgba(127, 214, 127, 0.12);
+            color: var(--inst-success);
+        }
+
+        .status-badge.pending {
+            background: rgba(240, 216, 120, 0.12);
+            color: var(--inst-warn);
+        }
+
+        .status-badge.disabled,
+        .status-badge.expired {
+            background: rgba(255, 127, 127, 0.12);
+            color: var(--inst-danger);
+        }
+
+        .role-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.2rem 0.5rem;
+            border-radius: 999px;
+            background: rgba(212, 175, 55, 0.12);
+            color: var(--inst-primary);
+            vertical-align: middle;
+        }
+
+        .members-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .members-table th,
+        .members-table td {
+            padding: 0.85rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--inst-border);
+        }
+
+        .members-table th {
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--inst-primary-dim);
+            font-weight: 600;
+        }
+
+        .members-table td {
+            color: var(--inst-white-dim);
+            font-size: 0.95rem;
+        }
+
+        .members-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .members-table .actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .members-table .actions .institution-btn {
+            padding: 0.35rem 0.65rem;
+            font-size: 0.65rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .form-field label {
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--inst-primary-dim);
+        }
+
+        .form-field input,
+        .form-field select {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--inst-border);
+            border-radius: 6px;
+            padding: 0.65rem 0.75rem;
+            color: var(--inst-white);
+            font-family: inherit;
+            font-size: 0.95rem;
+        }
+
+        .form-field input:focus,
+        .form-field select:focus {
+            outline: none;
+            border-color: var(--inst-primary);
+        }
+
+        .form-field input:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .form-hint {
+            font-size: 0.8rem;
+            color: var(--inst-white-dim);
+        }
+
+        .password-reveal {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .password-reveal-label {
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--inst-primary);
+            margin-bottom: 0.35rem;
+        }
+
+        .password-reveal-value {
+            font-family: var(--font-mono);
+            font-size: 1.25rem;
+            color: var(--inst-white);
+            word-break: break-all;
+        }
+
+        .password-reveal-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .message {
+            margin-top: 0.75rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .message.success {
+            color: var(--inst-success);
+        }
+
+        .message.error {
+            color: var(--inst-danger);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem 1rem;
+            border: 1px dashed var(--inst-border);
+            border-radius: 12px;
+            color: var(--inst-white-dim);
+        }
+
+        .login-box {
+            max-width: 420px;
+            margin: 4rem auto;
+            background: var(--inst-void-raised);
+            border: 1px solid var(--inst-border);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .login-box h2 {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            color: var(--inst-white);
+            margin-bottom: 0.75rem;
+        }
+
+        .login-box p {
+            color: var(--inst-white-dim);
+            margin-bottom: 1.25rem;
+            line-height: 1.6;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            text-align: left;
+        }
+
+        .login-form label {
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--inst-primary-dim);
+        }
+
+        .login-form input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--inst-border);
+            border-radius: 6px;
+            padding: 0.65rem 0.75rem;
+            color: var(--inst-white);
+            font-family: inherit;
+            font-size: 0.95rem;
+        }
+
+        .login-form input:focus {
+            outline: none;
+            border-color: var(--inst-primary);
+        }
+
+        .login-divider {
+            margin: 1.25rem 0;
+            border-top: 1px solid var(--inst-border);
+        }
+
+        .error-banner {
+            max-width: var(--container-max);
+            margin: 2rem auto 0;
+            padding: 0 clamp(1rem, 5vw, 3rem);
+            color: var(--inst-danger);
+            background: rgba(255, 127, 127, 0.08);
+            border: 1px solid rgba(255, 127, 127, 0.25);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        #password-toasts {
+            position: fixed;
+            top: 80px;
+            right: 1rem;
+            width: min(420px, calc(100vw - 2rem));
+            z-index: 200;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        #password-toasts .password-reveal {
+            margin-bottom: 0;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+        }
+
+        @media (max-width: 640px) {
+            .global-strip-inner {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .institution-toolbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .members-table {
+                display: block;
+                overflow-x: auto;
+            }
+
+            .password-reveal {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0C">
+</head>
+<body>
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="/" class="global-brand"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="130" height="14"></a>
+            <div class="global-links">
+                <a href="/pantheon/">Pantheon</a>
+                <a href="/lexicon/">Lexicon</a>
+                <a href="/type/">Type</a>
+                <a href="/search.html">Search</a>
+                <a href="/tiers/">Tiers</a>
+                <a href="/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <header class="institution-hero">
+        <div class="institution-eyebrow">PUNICODEX Scholarly Edition</div>
+        <h1 class="institution-title">Department Admin</h1>
+        <p class="institution-subtitle">Manage the students of your own department, reset their credentials, and follow their scholarly contributions.</p>
+    </header>
+
+    <main class="institution-container" id="app">
+        <noscript>
+            <div class="error-banner">This department dashboard requires JavaScript to communicate with the Scholarly Edition API.</div>
+        </noscript>
+    </main>
+
+    <div id="password-toasts"></div>
+
+    <script>
+    (function() {
+        const apiBase = '/api/v1/scholars/';
+        const container = document.getElementById('app');
+        const passwordToasts = document.getElementById('password-toasts');
+
+        function getSessionId() {
+            return localStorage.getItem('scholars_session') || '';
+        }
+
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+        }
+
+        function formatDate(iso) {
+            if (!iso) return '—';
+            const d = new Date(iso);
+            if (Number.isNaN(d.getTime())) return iso;
+            return d.toLocaleString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+
+        async function api(path, options = {}) {
+            const headers = {
+                'Content-Type': 'application/json',
+                ...(getSessionId() ? { 'x-scholars-session': getSessionId() } : {}),
+                ...(options.headers || {}),
+            };
+            const res = await fetch(apiBase + path, {
+                credentials: 'same-origin',
+                ...options,
+                headers,
+            });
+            const data = await res.json().catch(() => ({ success: false, error: 'Invalid response' }));
+            return { ok: res.ok, status: res.status, data };
+        }
+
+        function showGlobalError(message) {
+            container.innerHTML = `<div class="error-banner">${escapeHtml(message)}</div>`;
+        }
+
+        function setMessage(id, text, type) {
+            const el = document.getElementById(id);
+            if (!el) return;
+            el.textContent = text;
+            el.className = 'message ' + (type || '');
+        }
+
+        function clearMessage(id) {
+            setMessage(id, '', '');
+        }
+
+        function showPasswordToast(password) {
+            if (!passwordToasts) return;
+            const id = 'revealed-password-' + Date.now();
+            const wrapper = document.createElement('div');
+            wrapper.innerHTML = `
+                <div class="password-reveal" id="${id}">
+                    <div>
+                        <div class="password-reveal-label">One-time password</div>
+                        <div class="password-reveal-value">${escapeHtml(password)}</div>
+                    </div>
+                    <div class="password-reveal-actions">
+                        <button class="institution-btn" data-copy="${escapeHtml(password)}">Copy</button>
+                        <button class="institution-btn" data-dismiss="${id}">Dismiss</button>
+                    </div>
+                </div>
+            `;
+            const reveal = wrapper.firstElementChild;
+            reveal.querySelector('[data-copy]').addEventListener('click', (e) => {
+                const text = e.target.dataset.copy;
+                navigator.clipboard.writeText(text).then(() => {
+                    e.target.textContent = 'Copied';
+                    setTimeout(() => { e.target.textContent = 'Copy'; }, 1500);
+                }).catch(() => {});
+            });
+            reveal.querySelector('[data-dismiss]').addEventListener('click', () => reveal.remove());
+            passwordToasts.appendChild(reveal);
+        }
+
+        function renderLoginPrompt() {
+            container.innerHTML = `
+                <div class="login-box">
+                    <h2>Department Access Required</h2>
+                    <p>Sign in with your department admin email and password to manage the students of your department.</p>
+                    <form class="login-form" id="login-form">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" placeholder="you@university.edu" required>
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" placeholder="••••••••" required>
+                        <button type="submit" class="institution-btn primary">Sign In</button>
+                    </form>
+                    <div class="login-divider"></div>
+                    <form class="login-form" id="session-form">
+                        <label for="session-id">Or paste session ID</label>
+                        <input type="text" id="session-id" placeholder="scholars_session token" required>
+                        <button type="submit" class="institution-btn">Load Dashboard</button>
+                    </form>
+                    <div class="message" id="login-message"></div>
+                </div>
+            `;
+
+            document.getElementById('login-form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('login-email').value.trim();
+                const password = document.getElementById('login-password').value;
+                setMessage('login-message', 'Signing in…', '');
+                const { ok, data } = await api('/auth/login', {
+                    method: 'POST',
+                    body: JSON.stringify({ email, password }),
+                });
+                if (ok && data?.data?.token) {
+                    localStorage.setItem('scholars_session', data.data.token);
+                    window.location.reload();
+                } else {
+                    setMessage('login-message', data?.error || 'Sign in failed.', 'error');
+                }
+            });
+
+            document.getElementById('session-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const id = document.getElementById('session-id').value.trim();
+                if (id) {
+                    localStorage.setItem('scholars_session', id);
+                    window.location.reload();
+                }
+            });
+        }
+
+        function canAccessDashboard(user) {
+            if (!user) return false;
+            return user.role === 'dept_admin' || user.role === 'inst_admin' || user.role === 'curator';
+        }
+
+        function renderDepartmentCard(institution, department) {
+            const sponsorshipStatus = institution.sponsorship_status || 'pending';
+            const statusClass = sponsorshipStatus === 'active' ? 'active' : sponsorshipStatus === 'expired' ? 'expired' : 'pending';
+            const allowlist = Array.isArray(institution.department_allowlist) ? institution.department_allowlist : [];
+            const pills = allowlist.length
+                ? allowlist.map((d) => `<span class="allowlist-pill">${escapeHtml(d)}</span>`).join('')
+                : '<span class="allowlist-pill empty">No department restrictions</span>';
+
+            return `
+                <div class="card">
+                    <div class="card-grid">
+                        <div class="card-field">
+                            <div class="card-field-label">Institution</div>
+                            <div class="card-field-value">${escapeHtml(institution.name)}</div>
+                        </div>
+                        <div class="card-field">
+                            <div class="card-field-label">Your Department</div>
+                            <div class="card-field-value">${escapeHtml(department || 'All departments')}</div>
+                        </div>
+                        <div class="card-field">
+                            <div class="card-field-label">Sponsorship</div>
+                            <div class="card-field-value"><span class="status-badge ${statusClass}">${escapeHtml(sponsorshipStatus)}</span></div>
+                        </div>
+                        <div class="card-field">
+                            <div class="card-field-label">Expires</div>
+                            <div class="card-field-value">${formatDate(institution.sponsorship_expires_at)}</div>
+                        </div>
+                        <div class="card-field" style="grid-column: 1 / -1;">
+                            <div class="card-field-label">Department Allowlist</div>
+                            <div class="allowlist-pills">${pills}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderStats(stats) {
+            return `
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-label">Students</div>
+                        <div class="stat-value">${Number(stats.studentCount) || 0}</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Members</div>
+                        <div class="stat-value">${Number(stats.memberCount) || 0}</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Pending Edits</div>
+                        <div class="stat-value">${Number(stats.pending) || 0}</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Approved Edits</div>
+                        <div class="stat-value">${Number(stats.approved) || 0}</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function departmentFieldHtml(user, institution) {
+            if (user.role === 'dept_admin') {
+                return `<input type="text" id="student-department" value="${escapeHtml(user.department || '')}" disabled>`;
+            }
+            const allowlist = Array.isArray(institution.department_allowlist) ? institution.department_allowlist : [];
+            if (!allowlist.length) {
+                return `<input type="text" id="student-department" placeholder="Department">`;
+            }
+            const options = allowlist.map((d) => `<option value="${escapeHtml(d)}">${escapeHtml(d)}</option>`).join('');
+            return `
+                <select id="student-department">
+                    <option value="">Select department (optional)</option>
+                    ${options}
+                </select>
+            `;
+        }
+
+        function renderStudentsSection(user, students, institution) {
+            const rows = students.map((s) => {
+                const statusClass = s.account_status === 'active' ? 'active' : s.account_status === 'pending' ? 'pending' : 'disabled';
+                const toggleLabel = s.account_status === 'active' ? 'Disable' : 'Enable';
+                const toggleClass = s.account_status === 'active' ? 'danger' : 'success';
+                return `
+                    <tr data-student-id="${s.id}">
+                        <td>${escapeHtml(s.display_name || '—')}</td>
+                        <td>${escapeHtml(s.email)}</td>
+                        <td>${escapeHtml(s.department || '—')}</td>
+                        <td><span class="status-badge ${statusClass}">${escapeHtml(s.account_status)}</span></td>
+                        <td class="actions">
+                            <button class="institution-btn" data-action="reset-password" data-id="${s.id}">Reset Password</button>
+                            <button class="institution-btn ${toggleClass}" data-action="toggle-status" data-id="${s.id}" data-status="${s.account_status}">${toggleLabel}</button>
+                            <button class="institution-btn danger" data-action="delete" data-id="${s.id}">Delete</button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+
+            const scopeNote = user.role === 'dept_admin'
+                ? `New students are added to your department (<strong>${escapeHtml(user.department || '')}</strong>). Leave the password blank to generate one — it is also emailed to the student.`
+                : 'Leave the password blank to generate one — it is also emailed to the student.';
+
+            return `
+                <h2 class="section-title">Students</h2>
+                <div class="card">
+                    <p class="section-subtitle">${scopeNote}</p>
+                    <form id="add-student-form">
+                        <div class="form-grid">
+                            <div class="form-field">
+                                <label for="student-name">Name</label>
+                                <input type="text" id="student-name" placeholder="Full name" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="student-email">Email</label>
+                                <input type="email" id="student-email" placeholder="student@university.edu" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="student-department">Department</label>
+                                ${departmentFieldHtml(user, institution)}
+                            </div>
+                            <div class="form-field">
+                                <label for="student-password">Initial Password <span class="form-hint">(optional)</span></label>
+                                <input type="text" id="student-password" placeholder="Leave blank to generate" autocomplete="off">
+                            </div>
+                        </div>
+                        <button type="submit" class="institution-btn primary" id="add-student-btn">Add Student</button>
+                        <div class="message" id="add-student-message"></div>
+                    </form>
+                </div>
+
+                <div class="card" style="overflow-x: auto;">
+                    ${students.length ? `
+                        <table class="members-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Department</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>${rows}</tbody>
+                        </table>
+                    ` : '<div class="empty-state">No students in this department yet.</div>'}
+                </div>
+            `;
+        }
+
+        function renderDashboard(user, dashboard, students) {
+            const { institution, department, stats } = dashboard;
+            const institutionLink = user.role === 'dept_admin'
+                ? ''
+                : '<a href="../institution/index.html" class="institution-btn">Institution Dashboard</a>';
+
+            container.innerHTML = `
+                <div class="institution-toolbar">
+                    <div class="institution-toolbar-info">
+                        Signed in as <strong>${escapeHtml(user.email)}</strong>
+                        <span class="role-badge">${escapeHtml(user.role)}</span>
+                    </div>
+                    <div class="institution-actions">
+                        <a href="../review/index.html" class="institution-btn">Review Queue</a>
+                        ${institutionLink}
+                        <button class="institution-btn" id="refresh-btn">Refresh</button>
+                        <button class="institution-btn" id="logout-btn">Sign out</button>
+                    </div>
+                </div>
+
+                ${renderDepartmentCard(institution, department)}
+                ${renderStats(stats)}
+                ${renderStudentsSection(user, students, institution)}
+            `;
+
+            document.getElementById('logout-btn').addEventListener('click', async () => {
+                await api('/auth/logout', { method: 'POST' });
+                localStorage.removeItem('scholars_session');
+                window.location.reload();
+            });
+
+            document.getElementById('refresh-btn').addEventListener('click', () => {
+                loadDashboard();
+            });
+
+            bindStudentForm(user);
+            bindStudentActions();
+        }
+
+        function bindStudentForm(user) {
+            const form = document.getElementById('add-student-form');
+            if (!form) return;
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const btn = document.getElementById('add-student-btn');
+                btn.disabled = true;
+                clearMessage('add-student-message');
+
+                const displayName = document.getElementById('student-name').value.trim();
+                const email = document.getElementById('student-email').value.trim();
+                const department = document.getElementById('student-department').value.trim();
+                const password = document.getElementById('student-password').value;
+
+                const body = { displayName, email };
+                if (department) body.department = department;
+                if (password) body.password = password;
+
+                const { ok, data } = await api('/institution/students', {
+                    method: 'POST',
+                    body: JSON.stringify(body),
+                });
+
+                if (ok && data?.data?.tempPassword) {
+                    setMessage('add-student-message', 'Student added successfully. Their one-time password was also emailed to them.', 'success');
+                    showPasswordToast(data.data.tempPassword);
+                    form.reset();
+                    await loadDashboard();
+                } else {
+                    setMessage('add-student-message', data?.error || 'Failed to add student.', 'error');
+                }
+
+                btn.disabled = false;
+            });
+        }
+
+        function bindStudentActions() {
+            const table = document.querySelector('.members-table tbody');
+            if (!table) return;
+            table.addEventListener('click', async (e) => {
+                const btn = e.target.closest('button[data-action]');
+                if (!btn) return;
+                const id = Number(btn.dataset.id);
+                const action = btn.dataset.action;
+
+                if (action === 'reset-password') {
+                    if (!confirm('Reset this student’s password? They will need the new one-time password to sign in.')) return;
+                    btn.disabled = true;
+                    const { ok, data } = await api(`/institution/students/${id}/reset-password`, { method: 'POST' });
+                    if (ok && data?.data?.tempPassword) {
+                        showPasswordToast(data.data.tempPassword);
+                    } else {
+                        alert(data?.error || 'Password reset failed.');
+                    }
+                    btn.disabled = false;
+                    return;
+                }
+
+                if (action === 'toggle-status') {
+                    const currentStatus = btn.dataset.status;
+                    const nextStatus = currentStatus === 'active' ? 'disabled' : 'active';
+                    btn.disabled = true;
+                    const { ok, data } = await api(`/institution/students/${id}`, {
+                        method: 'PATCH',
+                        body: JSON.stringify({ accountStatus: nextStatus }),
+                    });
+                    if (ok) {
+                        await loadDashboard();
+                    } else {
+                        alert(data?.error || 'Status update failed.');
+                        btn.disabled = false;
+                    }
+                    return;
+                }
+
+                if (action === 'delete') {
+                    if (!confirm('Delete this student? Their account will be disabled.')) return;
+                    btn.disabled = true;
+                    const { ok, data } = await api(`/institution/students/${id}`, { method: 'DELETE' });
+                    if (ok) {
+                        await loadDashboard();
+                    } else {
+                        alert(data?.error || 'Delete failed.');
+                        btn.disabled = false;
+                    }
+                }
+            });
+        }
+
+        async function loadDashboard() {
+            container.innerHTML = '<div class="empty-state">Loading department dashboard…</div>';
+
+            const sessionRes = await api('/auth/session');
+            const user = sessionRes.data?.data?.user;
+
+            if (!sessionRes.ok || !user) {
+                localStorage.removeItem('scholars_session');
+                renderLoginPrompt();
+                return;
+            }
+
+            if (!canAccessDashboard(user)) {
+                showGlobalError(`Account ${user.email} has role "${user.role}". Department admin access is required.`);
+                return;
+            }
+
+            const dashboardRes = await api('/institution');
+            if (!dashboardRes.ok) {
+                showGlobalError(dashboardRes.data?.error || `Failed to load dashboard (HTTP ${dashboardRes.status}).`);
+                return;
+            }
+
+            const studentsRes = await api('/institution/students');
+            const students = studentsRes.ok ? (studentsRes.data?.data || []) : [];
+
+            // The session payload omits the department; the dashboard payload
+            // carries the caller's effective scope (null = institution-wide).
+            const scopedUser = { ...user, department: dashboardRes.data.data.department || user.department };
+
+            renderDashboard(scopedUser, dashboardRes.data.data, students);
+        }
+
+        async function init() {
+            if (!getSessionId()) {
+                renderLoginPrompt();
+                return;
+            }
+            await loadDashboard();
+        }
+
+        init();
+    })();
+    </script>
+</body>
+</html>

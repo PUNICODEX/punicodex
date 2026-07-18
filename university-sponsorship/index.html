@@ -128,6 +128,18 @@
       border-bottom: 1px solid var(--us-border);
       margin-bottom: 2.75rem;
     }
+    .us-academy {
+      width: min(420px, 78vw);
+      height: auto;
+      margin: 0 auto 1.5rem;
+      display: block;
+    }
+    .us-icon {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
     .us-eyebrow {
       display: block;
       font-size: 0.68rem;
@@ -311,12 +323,21 @@
     }
   </style>
   <link rel="stylesheet" href="/css/main.css?v=perf8">
+  <link rel="stylesheet" href="/css/punicodex-tokens.css">
+  <link rel="stylesheet" href="/css/brand-overrides.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+  <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+  <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+  <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
 </head>
 <body>
 
   <nav class="main-nav" id="main-nav">
     <div class="nav-inner">
-      <a href="/" class="nav-wordmark">P<span class="accent">U</span>NYCODEX</a>
+      <a href="/" class="nav-wordmark"><img src="/assets/brand/01-logos/punicodex-lockup-horizontal-gold.png" alt="PuniCodex — The Unicode Pantheon" width="240" height="52"></a>
       <div class="nav-links">
         <a href="/pantheon/" class="nav-link">Pantheon</a>
         <a href="/realms/" class="nav-link">Realms</a>
@@ -375,6 +396,10 @@
   <main class="us-container">
     <header class="us-hero">
       <span class="us-eyebrow">For Universities &amp; Academic Partners</span>
+      <picture>
+        <source srcset="/assets/brand/13-page-visuals/university-sponsorship/academy-temple.webp" type="image/webp">
+        <img class="pc-art us-academy" src="/assets/brand/13-page-visuals/university-sponsorship/academy-temple.png" alt="The Academy — four columns, architrave, pediment, and the restored mark: the institution in miniature" width="840" height="840" fetchpriority="high" decoding="async">
+      </picture>
       <h1>University Sponsorship</h1>
       <p>PuniCodex restores the original Unicode names of the gods to the digital realm. Founding academic collaborators put their institution's name on that work — and their students behind it.</p>
       <div class="us-hero-actions">
@@ -389,21 +414,25 @@
       <ul class="us-deliverables">
         <li class="us-deliverable">
           <span class="us-deliverable-marker" aria-hidden="true">I.</span>
+          <picture><source srcset="/assets/brand/13-page-visuals/university-sponsorship/icon-globe.webp" type="image/webp"><img class="us-icon" src="/assets/brand/13-page-visuals/university-sponsorship/icon-globe.png" alt="" width="256" height="256" loading="lazy" decoding="async"></picture>
           <h3>Sponsorship Strip Placement</h3>
           <p>Your institution's name, monogram or logo, and link appear in the Academic Collaborators strip rendered across the public site — the homepage and every temple page — with a Founding Partner tier label.</p>
         </li>
         <li class="us-deliverable">
           <span class="us-deliverable-marker" aria-hidden="true">II.</span>
+          <picture><source srcset="/assets/brand/13-page-visuals/university-sponsorship/icon-mortarboard.webp" type="image/webp"><img class="us-icon" src="/assets/brand/13-page-visuals/university-sponsorship/icon-mortarboard.png" alt="" width="256" height="256" loading="lazy" decoding="async"></picture>
           <h3>Scholarly Edition Mentoring</h3>
           <p>Provisioned student accounts let your students research and publish peer-reviewed sections on flagship temples under the Scholarly Edition's editorial quality gate — public, citable work with faculty mentorship credited.</p>
         </li>
         <li class="us-deliverable">
           <span class="us-deliverable-marker" aria-hidden="true">III.</span>
+          <picture><source srcset="/assets/brand/13-page-visuals/creatives/muse-flame.webp" type="image/webp"><img class="us-icon" src="/assets/brand/13-page-visuals/creatives/muse-flame.png" alt="" width="640" height="640" loading="lazy" decoding="async"></picture>
           <h3>Creative Marketplace</h3>
           <p>Student artwork and design materials are listed — watermarked — in the Creatives marketplace, where sponsors and licensees can commission or license them.</p>
         </li>
         <li class="us-deliverable">
           <span class="us-deliverable-marker" aria-hidden="true">IV.</span>
+          <picture><source srcset="/assets/brand/13-page-visuals/university-sponsorship/icon-barchart.webp" type="image/webp"><img class="us-icon" src="/assets/brand/13-page-visuals/university-sponsorship/icon-barchart.png" alt="" width="256" height="256" loading="lazy" decoding="async"></picture>
           <h3>Department Analytics</h3>
           <p>An institution dashboard shows what your students have contributed, review status, engagement, and the reach of your department's published work.</p>
         </li>
@@ -463,7 +492,7 @@
     <div class="container footer-container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="/" class="footer-wordmark">P<span class="accent">U</span>NYCODEX</a>
+          <a href="/" class="footer-wordmark"><img src="/assets/brand/01-logos/punicodex-lockup-stacked-gold.png" alt="PuniCodex — The Unicode Pantheon" width="300" height="187"></a>
           <p class="footer-tagline">Restoring the original names of the gods to the digital realm.</p>
         </div>
         <div class="footer-column">

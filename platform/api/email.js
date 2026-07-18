@@ -430,6 +430,31 @@ async function notifyPatronWelcome({ email, displayName, templeId }) {
   });
 }
 
+async function notifyScholarsAccountProvisioned({
+  email,
+  displayName,
+  institutionName,
+  tempPassword,
+}) {
+  const loginUrl = `${PLATFORM_URL}/scholars/login/`;
+  return sendEmail({
+    to: email,
+    subject: `Your PuniCodex Scholarly Edition account${institutionName ? ` — ${institutionName}` : ''}`,
+    html: `
+      <div style="font-family:system-ui,sans-serif;max-width:480px;margin:0 auto;color:#111;">
+        <h2 style="color:#d4af37;">PUNICODEX Scholarly Edition</h2>
+        <p>Hi ${escapeHtml(displayName || 'there')},</p>
+        <p>An account has been provisioned for you${institutionName ? ` under <strong>${escapeHtml(institutionName)}</strong>` : ''}. Sign in with this one-time temporary password:</p>
+        <div style="background:#f8f8f8;border-radius:8px;padding:1.5rem;text-align:center;margin:1.5rem 0;">
+          <span style="font-family:monospace;font-size:1.25rem;font-weight:700;letter-spacing:0.05em;color:#111;">${escapeHtml(tempPassword)}</span>
+        </div>
+        <p><a href="${escapeHtml(loginUrl)}" style="display:inline-block;background:#d4af37;color:#000;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600;">Sign In</a></p>
+        <p style="color:#666;font-size:0.85rem;">You will be asked to set a permanent password after signing in. If you did not expect this account, you can ignore this email.</p>
+      </div>
+    `,
+  });
+}
+
 module.exports = {
   sendEmail,
   notifyPaymentPending,
@@ -448,6 +473,7 @@ module.exports = {
   sendAnalyticsReport,
   notifyCreativePurchaseReady,
   notifyPatronWelcome,
+  notifyScholarsAccountProvisioned,
   getDashboardUrl,
   escapeHtml,
 };

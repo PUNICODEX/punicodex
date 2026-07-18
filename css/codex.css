@@ -1,10 +1,15 @@
 /* PUNICODEX - Codex Atlas Styles */
 .page-codex { padding-top: var(--nav-height); }
 .codex-hero { position: relative; padding: var(--space-8) 0 var(--space-6); overflow: hidden; background: radial-gradient(ellipse at center top, rgba(212, 175, 55, 0.08) 0%, transparent 60%), var(--void); }
-.codex-hero-sigil { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: var(--font-display); font-size: clamp(12rem, 35vw, 28rem); font-weight: 700; color: var(--primary); opacity: 0.04; pointer-events: none; user-select: none; animation: sigilPulse 8s ease-in-out infinite; }
-@keyframes sigilPulse { 0%, 100% { opacity: 0.03; transform: translate(-50%, -50%) scale(1); } 50% { opacity: 0.06; transform: translate(-50%, -50%) scale(1.03); } }
+.codex-hero-sigil { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: var(--font-display); font-size: clamp(12rem, 35vw, 28rem); font-weight: 700; color: var(--primary); opacity: 0.35; pointer-events: none; user-select: none; animation: sigilPulse 8s ease-in-out infinite; }
+@keyframes sigilPulse { 0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); } 50% { opacity: 0.38; transform: translate(-50%, -50%) scale(1.03); } }
 .codex-hero-eyebrow { font-family: var(--font-body); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--primary); text-align: center; margin-bottom: var(--space-3); }
-.codex-hero-title { text-align: center; margin-bottom: var(--space-3); }
+.codex-hero-title { text-align: center; margin-bottom: var(--space-3); position: relative; }
+/* Brand integration §4.13 — icosahedron crowns the masthead; the Ψ sigil (now
+   at aura strength, .35) becomes its backdrop. Camel wordmark masthead §4.1. */
+.codex-icosahedron { width: min(300px, 55vw); margin: 0 auto var(--space-4); }
+.codex-hero-wordmark { display: block; width: min(300px, 60vw); height: auto; margin: 0 auto var(--space-2); position: relative; }
+.codex-hero .container > * { position: relative; }
 .codex-hero-subtitle { max-width: 680px; margin: 0 auto var(--space-5); text-align: center; color: var(--text-secondary); }
 .codex-stats { display: flex; justify-content: center; gap: var(--space-6); flex-wrap: wrap; }
 .codex-stat { display: flex; flex-direction: column; align-items: center; gap: var(--space-1); min-width: 100px; }

@@ -448,7 +448,7 @@ function listUsersByInstitution(institutionId) {
     .all(institutionId);
 }
 
-function listStudentsByInstitution(institutionId, { status, accountStatus } = {}) {
+function listStudentsByInstitution(institutionId, { status, accountStatus, department } = {}) {
   const db = getDb();
   const conditions = ['u.institution_id = ?', "u.role = 'student'"];
   const params = [institutionId];
@@ -459,6 +459,10 @@ function listStudentsByInstitution(institutionId, { status, accountStatus } = {}
   if (accountStatus) {
     conditions.push('u.account_status = ?');
     params.push(accountStatus);
+  }
+  if (department) {
+    conditions.push('u.department = ?');
+    params.push(department);
   }
   const where = conditions.join(' AND ');
   return db
@@ -479,7 +483,7 @@ function countUsersByInstitution(institutionId) {
     .get(institutionId).count;
 }
 
-function countEditsByInstitution(institutionId, { status } = {}) {
+function countEditsByInstitution(institutionId, { status, department } = {}) {
   const db = getDb();
   let sql = `
     SELECT COUNT(*) AS count
@@ -492,19 +496,27 @@ function countEditsByInstitution(institutionId, { status } = {}) {
     sql += ' AND e.status = ?';
     params.push(status);
   }
+  if (department) {
+    sql += ' AND u.department = ?';
+    params.push(department);
+  }
   return db.prepare(sql).get(...params).count;
 }
 
-function countAttributedSectionsByInstitution(institutionId) {
+function countAttributedSectionsByInstitution(institutionId, { department } = {}) {
   const db = getDb();
-  return db
-    .prepare(`
+  let sql = `
     SELECT COUNT(DISTINCT s.id) AS count
     FROM scholars_sections s
     JOIN scholars_users u ON s.updated_by = u.id
     WHERE u.institution_id = ? AND s.status = 'published'
-  `)
-    .get(institutionId).count;
+  `;
+  const params = [institutionId];
+  if (department) {
+    sql += ' AND u.department = ?';
+    params.push(department);
+  }
+  return db.prepare(sql).get(...params).count;
 }
 
 // ─────────────────────────────────────────────────────────────

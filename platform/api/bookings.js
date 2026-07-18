@@ -49,7 +49,7 @@ function isUniqueViolation(err) {
 async function getSlots(siteSlug = null) {
   let query = `
     SELECT s.*,
-      b.status as booking_status, b.analytics_token, b.company_name, b.website_url, b.id as booking_id,
+      b.status as booking_status, b.public_id, b.company_name, b.website_url, b.id as booking_id,
       COALESCE(sc.creative_path, b.creative_path) as creative_path,
       COALESCE(sc.custom_heading, b.custom_heading) as custom_heading,
       COALESCE(sc.custom_subtitle, b.custom_subtitle) as custom_subtitle,
@@ -82,7 +82,7 @@ async function getBundleMembers(bundleSlotId) {
 
 async function getSlotBySlug(slug, siteSlug = null) {
   let query = `
-    SELECT s.*, b.status as booking_status, b.analytics_token, b.company_name, b.website_url
+    SELECT s.*, b.status as booking_status, b.public_id, b.company_name, b.website_url
     FROM ad_slots s
     LEFT JOIN bookings b ON s.current_booking_id = b.id
     WHERE s.slug = $1
@@ -116,6 +116,10 @@ async function createBooking({
 }) {
   return withSlotLock(slotId, async () => {
     const token = generateToken();
+    // Public tracking identifier for pixel/click/viewability. Safe to expose
+    // in slot payloads and temple pages; authorizes nothing else. The
+    // analytics_token above stays secret (management + dashboard credential).
+    const publicId = generateToken();
     let result;
 
     try {
@@ -128,8 +132,8 @@ async function createBooking({
 
         const bookingId = await insert(
           `
-              INSERT INTO bookings (slot_id, email, company_name, website_url, custom_heading, custom_subtitle, status, analytics_token, lease_months, trial_months, site_slug, admin_note)
-              VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
+              INSERT INTO bookings (slot_id, email, company_name, website_url, custom_heading, custom_subtitle, status, analytics_token, public_id, lease_months, trial_months, site_slug, admin_note)
+              VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
               RETURNING id
             `,
           [
@@ -141,6 +145,7 @@ async function createBooking({
             customSubtitle || null,
             status,
             token,
+            publicId,
             leaseMonths,
             trialMonths,
             siteSlug || 'nike',
@@ -148,7 +153,7 @@ async function createBooking({
           ]
         );
 
-        result = { id: bookingId, token };
+        result = { id: bookingId, token, publicId };
 
         const reserveSql = `
             UPDATE ad_slots
@@ -200,6 +205,20 @@ async function getBookingByToken(token) {
       WHERE b.analytics_token = $1
     `,
     [token]
+  );
+}
+
+// Lookup by the public tracking ID. Used only for write-only analytics event
+// recording; never expose the returned row's analytics_token in a payload.
+async function getBookingByPublicId(publicId) {
+  return get(
+    `
+      SELECT b.*, s.name as slot_name, s.slug as slot_slug, s.width, s.height, s.price_cents
+      FROM bookings b
+      JOIN ad_slots s ON b.slot_id = s.id
+      WHERE b.public_id = $1
+    `,
+    [publicId]
   );
 }
 
@@ -699,6 +718,7 @@ module.exports = {
   getSlotById,
   createBooking,
   getBookingByToken,
+  getBookingByPublicId,
   getBookingById,
   getBookingByStripeSession,
   updateBookingStripeSession,

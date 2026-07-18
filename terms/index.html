@@ -65,6 +65,13 @@
       color: var(--accent);
       margin-bottom: 0.5rem;
     }
+    .terms-tablet {
+      width: 140px;
+      height: auto;
+      opacity: 0.85;
+      margin: 0 auto 1rem;
+      display: block;
+    }
     .header p {
       color: var(--text-muted);
       font-size: 0.9rem;
@@ -200,12 +207,21 @@
     }
   </style>
   <link rel="stylesheet" href="/css/main.css?v=perf8">
+  <link rel="stylesheet" href="/css/punicodex-tokens.css">
+  <link rel="stylesheet" href="/css/brand-overrides.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+  <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+  <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+  <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
 </head>
 <body>
 
     <nav class="main-nav" id="main-nav">
         <div class="nav-inner">
-            <a href="/" class="nav-wordmark">P<span class="accent">U</span>NYCODEX</a>
+            <a href="/" class="nav-wordmark"><img src="/assets/brand/01-logos/punicodex-lockup-horizontal-gold.png" alt="PuniCodex — The Unicode Pantheon" width="240" height="52"></a>
             <div class="nav-links">
                 <a href="/pantheon/" class="nav-link">Pantheon</a>
                 <a href="/realms/" class="nav-link">Realms</a>
@@ -247,6 +263,10 @@
 
   <div class="container">
     <header class="header">
+      <picture>
+        <source srcset="/assets/brand/13-page-visuals/legal/sealed-tablet.webp" type="image/webp">
+        <img class="terms-tablet" src="/assets/brand/13-page-visuals/legal/sealed-tablet.png" alt="The Sealed Tablet — an obsidian tablet with a gold wax seal" width="280" height="280" loading="lazy" decoding="async">
+      </picture>
       <h1>Terms & Conditions</h1>
       <p>Legal agreements, usage policies, and licensing terms for all PUNICODEX products and services.</p>
       <span class="last-updated">Effective Date: June 11, 2026</span>
@@ -361,7 +381,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="/" class="footer-wordmark">P<span class="accent">U</span>NYCODEX</a>
+                    <a href="/" class="footer-wordmark"><img src="/assets/brand/01-logos/punicodex-lockup-stacked-gold.png" alt="PuniCodex — The Unicode Pantheon" width="300" height="187"></a>
                     <p class="footer-tagline">Restoring the original names of the gods to the digital realm.</p>
                 </div>
                 <div class="footer-column">

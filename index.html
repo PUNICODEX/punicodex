@@ -21,14 +21,14 @@
     <link rel="canonical" href="https://punicodex.com/">
     <meta property="og:title" content="PUNICODEX — The Unicode Pantheon">
     <meta property="og:description" content="Restoring the original Unicode names of myth, place, and sacred tradition to the digital realm.">
-    <meta property="og:image" content="https://punicodex.com/assets/images/og-default.webp">
+    <meta property="og:image" content="https://punicodex.com/assets/brand/05-social/punicodex-og-image-1200x630.png">
     <meta property="og:url" content="https://punicodex.com/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="PUNICODEX">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="PUNICODEX — The Unicode Pantheon">
     <meta name="twitter:description" content="Restoring the original names of the gods to the digital realm.">
-    <meta name="twitter:image" content="https://punicodex.com/assets/images/og-default.webp">
+    <meta name="twitter:image" content="https://punicodex.com/assets/brand/05-social/punicodex-og-image-1200x630.png">
 
     <!-- Preconnect & DNS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -46,19 +46,49 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="/css/main.css?v=perf8">
-    <link rel="stylesheet" href="/css/home-v2.css?v=perf9">
+    <link rel="stylesheet" href="/css/home-v2.css?v=perf10">
+    <link rel="stylesheet" href="/css/punicodex-tokens.css">
+    <link rel="stylesheet" href="/css/punicodex-motion.css">
+    <link rel="stylesheet" href="/css/brand-overrides.css">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%CE%A8%3C/text%3E%3C/svg%3E">
-    <link rel="apple-touch-icon" sizes="128x128" href="/assets/images/apple-touch-icon.png">
-    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
 </head>
 <body>
+
+    <!-- Session loader — first visit only, skipped for reduced-motion (plan §7.3) -->
+    <div class="pc-loader" id="pc-loader" hidden aria-hidden="true"><img src="/assets/brand/10-motion/punicodex-loader.svg" alt="" width="120" height="120"></div>
+    <script>
+        (function () {
+            try {
+                if (window.sessionStorage.getItem('pc-loader-seen')) return;
+                if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+                window.sessionStorage.setItem('pc-loader-seen', '1');
+                var loader = document.getElementById('pc-loader');
+                loader.hidden = false;
+                var done = false;
+                var finish = function () {
+                    if (done) return;
+                    done = true;
+                    loader.classList.add('is-done');
+                    setTimeout(function () { loader.remove(); }, 600);
+                };
+                window.addEventListener('load', finish);
+                setTimeout(finish, 4000);
+            } catch (e) { /* storage blocked — skip the loader */ }
+        })();
+    </script>
 
     <!-- --- NAVIGATION --- -->
     <nav class="main-nav" id="main-nav">
         <div class="nav-inner">
-            <a href="/" class="nav-wordmark">P<span class="accent">U</span>NYCODEX</a>
+            <a href="/" class="nav-wordmark"><picture><source srcset="/assets/brand/01-logos/punicodex-lockup-horizontal-gold.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-lockup-horizontal-gold.png" alt="PuniCodex — The Unicode Pantheon" width="520" height="113"></picture></a>
             <div class="nav-links">
                 <a href="/pantheon/" class="nav-link">Pantheon</a>
                 <a href="/lexicon/" class="nav-link">Lexicon</a>
@@ -128,27 +158,30 @@
     </div>
 
     <!-- --- HERO SECTION --- -->
-    <section class="hero" id="hero">
+    <section class="hero pc-atmosphere" id="hero">
+        <video class="hero-bg-video" muted loop playsinline preload="none" poster="/assets/brand/13-page-visuals/home/celestial-knot-hero.webp" aria-hidden="true" tabindex="-1">
+            <source src="/assets/brand/13-page-visuals/home/celestial-knot-loop.mp4" type="video/mp4">
+        </video>
         <div class="hero-vignette"></div>
-        <div class="hero-content">
-            <div class="hero-symbol reveal-scale">
-                <svg viewBox="0 0 100 100" class="psi-icon" aria-hidden="true">
-                    <path d="M50 5 L50 95 M50 25 Q25 25 20 50 Q25 75 50 75 Q75 75 80 50 Q75 25 50 25" 
-                          fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-                    <path d="M50 60 L50 80 M45 70 L55 70 M42 75 L58 75" 
-                          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <circle cx="50" cy="12" r="3.5" fill="currentColor"/>
-                </svg>
+        <div class="hero-content hero-grid">
+            <div class="hero-copy">
+                <div class="hero-symbol reveal-scale">
+                    <picture><source srcset="/assets/brand/01-logos/punicodex-emblem-gold.webp" type="image/webp"><img class="hero-emblem" src="/assets/brand/01-logos/punicodex-emblem-gold.png" alt="" width="320" height="320"></picture>
+                </div>
+                <h1 class="display-xl text-center reveal-up">PUNICODEX</h1>
+                <p class="hero-tagline reveal-up">THE UNICODE PANTHEON</p>
+                <p class="hero-subtitle body-lg text-center reveal-up">
+                    895 temples. 22 pantheons. One mission: restore the original Unicode names of myth, place, and sacred tradition to the digital realm.
+                </p>
+                <div class="hero-cta-row reveal-up">
+                    <a href="/pantheon/" class="btn btn-primary btn-lg"><span>Explore the Pantheon</span></a>
+                    <a href="/tiers/" class="btn btn-outline btn-lg"><span>Learn the Tiers</span></a>
+                </div>
             </div>
-            <h1 class="display-xl text-center reveal-up">PUNICODEX</h1>
-            <p class="hero-tagline reveal-up">THE UNICODE PANTHEON</p>
-            <p class="hero-subtitle body-lg text-center reveal-up">
-                895 temples. 22 pantheons. One mission: restore the original Unicode names of myth, place, and sacred tradition to the digital realm.
-            </p>
-            <div class="hero-cta-row reveal-up">
-                <a href="/pantheon/" class="btn btn-primary btn-lg"><span>Explore the Pantheon</span></a>
-                <a href="/tiers/" class="btn btn-outline btn-lg"><span>Learn the Tiers</span></a>
-            </div>
+            <picture class="hero-knot-wrap">
+                <source srcset="/assets/brand/13-page-visuals/home/celestial-knot-hero.webp" type="image/webp">
+                <img class="pc-art pc-art--float hero-knot" src="/assets/brand/13-page-visuals/home/celestial-knot-hero.png" alt="The Celestial Knot — a golden trefoil: one continuous name, impossible to reduce to ASCII" width="1280" height="880" fetchpriority="high" decoding="async">
+            </picture>
         </div>
         <div class="scroll-indicator">
             <div class="scroll-line"></div>
@@ -177,7 +210,7 @@
         </div>
     </section>
 
-    <div class="section-divider"></div>
+    <div class="section-divider pc-divider-strip"></div>
 
     <!-- --- TIER SYSTEM --- -->
     <section class="section-tiers" id="tiers">
@@ -243,7 +276,7 @@
         </div>
     </section>
 
-    <div class="section-divider"></div>
+    <div class="section-divider pc-divider-strip"></div>
 
     <!-- --- THE ORIGIN --- -->
     <section class="section-origin" id="origin">
@@ -287,13 +320,17 @@
         </div>
     </section>
 
-    <div class="section-divider"></div>
+    <div class="section-divider pc-divider-strip"></div>
 
     <!-- --- THE CODEX --- -->
     <section class="section-codex" id="codex">
         <div class="ambient-particles"></div>
         <div class="container">
             <div class="section-header reveal-up">
+                <picture>
+                    <source srcset="/assets/brand/13-page-visuals/home/celestial-knot-square.webp" type="image/webp">
+                    <img class="codex-knot" src="/assets/brand/13-page-visuals/home/celestial-knot-square.png" alt="" width="840" height="840" loading="lazy" decoding="async">
+                </picture>
                 <p class="section-eyebrow">Chronicles</p>
                 <h2 class="section-title display-lg">THE CODEX</h2>
                 <p class="section-subtitle body-lg">
@@ -356,7 +393,7 @@
         </div>
     </section>
 
-    <div class="section-divider"></div>
+    <div class="section-divider pc-divider-strip"></div>
 
     <!-- --- FOR DEVELOPERS --- -->
     <section class="section-cta" id="developers">
@@ -373,12 +410,16 @@
         <div class="cta-rule"></div>
     </section>
 
-    <div class="section-divider"></div>
+    <div class="section-divider pc-divider-strip"></div>
 
     <!-- --- CTA SECTION --- -->
     <section class="section-cta" id="cta">
         <div class="cta-rule"></div>
         <div class="container">
+            <picture>
+                <source srcset="/assets/brand/13-page-visuals/home/celestial-knot-square.webp" type="image/webp">
+                <img class="pc-art cta-knot reveal-up" src="/assets/brand/13-page-visuals/home/celestial-knot-square.png" alt="The Celestial Knot — one continuous golden name" width="840" height="840" loading="lazy" decoding="async">
+            </picture>
             <h2 class="display-lg text-center reveal-up">OWN A PIECE OF THE PANTHEON</h2>
             <p class="body-lg text-center reveal-up">
                 The gods have returned. Their names are restored. Their temples are open.
@@ -396,11 +437,12 @@
 <!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
 <div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
 <!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<div class="pc-keyband" aria-hidden="true"></div>
 <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="/" class="footer-wordmark">P<span class="accent">U</span>NYCODEX</a>
+                    <a href="/" class="footer-wordmark"><picture><source srcset="/assets/brand/01-logos/punicodex-lockup-stacked-gold.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-lockup-stacked-gold.png" alt="PuniCodex — The Unicode Pantheon" width="640" height="398"></picture></a>
                     <p class="footer-tagline">Restoring the original names of the gods to the digital realm.</p>
                 </div>
                 <div class="footer-column">
@@ -440,7 +482,7 @@
     <script src="/js/original-script-lookup.js?v=3" defer></script>
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/main.js?v=perf8" defer></script>
-    <script src="/js/home.js?v=perf14" defer></script>
+    <script src="/js/home.js?v=perf15" defer></script>
 
 </body>
 </html>

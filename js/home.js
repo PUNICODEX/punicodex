@@ -6,6 +6,11 @@
 (function () {
   'use strict';
 
+  // Kit placeholder art for unbuilt/failed portraits (brand integration §4.3) —
+  // a card must never degrade to a bare gold ring.
+  const EMPTY_PORTRAIT = '/assets/brand/03-ornaments/punicodex-empty-portrait.png';
+  const EMPTY_PORTRAIT_WEBP = '/assets/brand/03-ornaments/punicodex-empty-portrait.webp';
+
   // ═══════════════════════════════════════════════════════════
   // PANTHEON GRID RENDERING
   // ═══════════════════════════════════════════════════════════
@@ -64,10 +69,14 @@
             ? `<span class="card-script-name">${escapeHtml(scriptName)}</span>${escapeHtml(originalScript)}`
             : '<span class="card-script-name">Scholarly transliteration</span>';
 
+        const portraitHtml = !a.built
+          ? `<picture><source srcset="${EMPTY_PORTRAIT_WEBP}" type="image/webp"><img src="${EMPTY_PORTRAIT}" alt="" loading="lazy" /></picture>`
+          : `<img src="${a.mascotPath}" alt="${escapeHtml(a.name)} — ${escapeHtml(a.domain)}" loading="lazy" onerror="this.onerror=null;this.src='${EMPTY_PORTRAIT}';" />`;
+
         return `
           <${tag} ${hrefAttr} class="archetype-card reveal-up ${unbuiltClass}" style="--stagger-index:${index % 6}">
             <div class="card-portrait">
-              <img src="${a.mascotPath}" alt="${escapeHtml(a.name)} — ${escapeHtml(a.domain)}" loading="lazy" onerror="this.style.opacity='0'; this.parentElement.style.background='linear-gradient(90deg, rgba(255,255,255,0.02) 25%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.02) 75%)'; this.parentElement.style.backgroundSize='200% 100%'; this.parentElement.style.animation='skeletonShimmer 1.5s infinite';" />
+              ${portraitHtml}
             </div>
             <p class="card-name">${escapeHtml(a.name)}</p>
             <p class="card-greek">${scriptLabel}</p>
@@ -87,6 +96,29 @@
     document.addEventListener('DOMContentLoaded', renderPantheonGrid);
   } else {
     renderPantheonGrid();
+  }
+
+  // ═══════════════════════════════════════════════════════════
+  // HERO MOTION (progressive enhancement — brand integration §7.3)
+  // The loop only plays for no-preference users without saveData;
+  // everyone else keeps the static poster frame (nothing fetched).
+  // ═══════════════════════════════════════════════════════════
+
+  function initHeroMotion() {
+    const video = document.querySelector('.hero-bg-video');
+    if (!video) return;
+    const allowMotion = window.matchMedia('(prefers-reduced-motion: no-preference)').matches;
+    const saveData = !!(navigator.connection && navigator.connection.saveData);
+    if (!allowMotion || saveData) return;
+    video.setAttribute('autoplay', '');
+    const playPromise = video.play();
+    if (playPromise && typeof playPromise.catch === 'function') playPromise.catch(() => {});
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHeroMotion);
+  } else {
+    initHeroMotion();
   }
 
   // ═══════════════════════════════════════════════════════════

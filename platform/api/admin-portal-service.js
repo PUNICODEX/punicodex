@@ -29,6 +29,7 @@ const bookingAdmin = require('./admin-booking-service');
 const patronService = require('./patron-service');
 const { logAction } = require('./admin-actions');
 const { generateTempPassword } = require('./admin-portal-auth');
+const emailModule = require('./email');
 
 // Cold-start schema for every subsystem the portal touches. All migrations
 // are idempotent. Runs lazily before the first DB use (once per serverless
@@ -342,8 +343,20 @@ async function approveUniversityApplication(id, actor, { reviewComment } = {}) {
     meta: { kind: 'university', institutionId: created.institutionId, by: actor.user.email },
   });
 
-  // The temp password is shown to the approver exactly once so it can be
-  // relayed to the university out-of-band (email delivery is not wired up).
+  // Email the one-time temp password to the new institution admin.
+  // Fire-and-forget: a delivery failure must not fail the approval, and the
+  // password is still shown to the approver exactly once below.
+  emailModule
+    .notifyScholarsAccountProvisioned({
+      email: application.contact_email,
+      displayName: application.contact_name,
+      institutionName: application.institution_name,
+      tempPassword,
+    })
+    .catch(() => {});
+
+  // The temp password is shown to the approver exactly once as a fallback
+  // delivery channel alongside the provisioning email.
   return {
     approved: true,
     institutionId: created.institutionId,

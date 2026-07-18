@@ -27,7 +27,7 @@ const FOOTER = `    <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="/" class="footer-wordmark">P<span class="accent">U</span>NYCODEX</a>
+                    <a href="/" class="footer-wordmark"><img src="/assets/brand/01-logos/punicodex-lockup-stacked-gold.png" alt="PuniCodex — The Unicode Pantheon" width="300" height="187"></a>
                     <p class="footer-tagline">Restoring the original names of the gods to the digital realm.</p>
                 </div>
                 <div class="footer-column">

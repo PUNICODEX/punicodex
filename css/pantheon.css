@@ -18,6 +18,24 @@
     z-index: 0;
 }
 
+/* Brand integration §4.13 — Council of Twelve beside the masthead. */
+.pantheon-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+}
+
+.pantheon-council {
+    width: min(380px, 70vw);
+}
+
+@media (min-width: 900px) {
+    .pantheon-hero-grid {
+        grid-template-columns: 1.1fr 0.9fr;
+    }
+}
+
 .page-hero {
     padding: var(--space-8) 0 var(--space-5);
     text-align: center;

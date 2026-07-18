@@ -144,6 +144,11 @@ test('strip markers and mount are absent from admin surfaces', () => {
   assertStripAbsent(path.join('admin-portal', 'index.html'));
   assertStripAbsent(path.join('platform', 'public', 'admin-api-keys.html'));
   assertStripAbsent('admin.html');
+  // Scholars admin consoles (canonical + synced copies) are admin surfaces too.
+  assertStripAbsent(path.join('platform', 'public', 'scholars', 'admin', 'index.html'));
+  assertStripAbsent(path.join('scholars', 'admin', 'index.html'));
+  assertStripAbsent(path.join('platform', 'public', 'scholars', 'dept-admin', 'index.html'));
+  assertStripAbsent(path.join('scholars', 'dept-admin', 'index.html'));
 });
 
 test('injector encodes the admin-surface exclusion list', () => {

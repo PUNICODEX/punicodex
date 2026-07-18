@@ -201,9 +201,53 @@
     font-weight: 700;
     line-height: 1;
     letter-spacing: 0.06em;
-    color: var(--text-primary);
+    /* Gold gradient text comes from .pc-display (css/punicodex-tokens.css),
+       loaded after this sheet — brand integration §4.4/A6. */
     text-shadow: 0 0 80px rgba(212, 175, 55, 0.25);
     margin-bottom: var(--space-4);
+}
+
+/* Keep the page's own tracking when .pc-display applies its caps preset. */
+.tier-hero-title.pc-display {
+    letter-spacing: 0.06em;
+}
+
+/* The Triad Ziggurat — the page's altar (brand integration §4.13). */
+.tier-ziggurat {
+    width: min(520px, 72vw);
+    margin: 0 auto var(--space-6);
+}
+
+/* Tier seal row — the v2 badges replace the bare stat cards. */
+.tier-seal-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+    max-width: 780px;
+    margin: 0 auto var(--space-6);
+}
+
+.tier-seal {
+    margin: 0;
+    text-align: center;
+}
+
+.tier-seal img {
+    width: min(220px, 100%);
+    height: auto;
+    margin-inline: auto;
+    filter: drop-shadow(0 12px 30px rgba(0, 0, 0, 0.6))
+            drop-shadow(0 0 28px rgba(212, 175, 55, 0.18));
+}
+
+.tier-seal figcaption {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-top: var(--space-2);
 }
 
 .tier-hero-lead {
@@ -276,6 +320,9 @@
         grid-template-columns: 1fr;
         max-width: 280px;
     }
+    .tier-seal-row {
+        gap: var(--space-2);
+    }
     .tier-hero-actions {
         flex-direction: column;
         align-items: center;
@@ -323,6 +370,22 @@
 /* ─── Tier Cards Section ─── */
 .tier-cards-section {
     padding: var(--space-7) 0;
+    position: relative;
+}
+
+/* Kit tessellation band at a whisper of opacity (brand integration §4.9). */
+.tier-cards-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("/assets/brand/09-patterns/punicodex-tessellation-tile.png") repeat;
+    background-size: 320px;
+    opacity: 0.06;
+    pointer-events: none;
+}
+
+.tier-cards-section > .container {
+    position: relative;
 }
 
 .tier-cards-grid {

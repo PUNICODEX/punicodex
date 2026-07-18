@@ -153,7 +153,7 @@
     host.innerHTML =
       '<header class="portal-header">' +
       '<div class="portal-header-inner">' +
-      `<a class="portal-brand" href="${PREFIX}">P<span>Ú</span>NYCODEX <em>Admin Portal</em></a>` +
+      `<a class="portal-brand" href="${PREFIX}"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="130" height="14"> <em>Admin Portal</em></a>` +
       '<button type="button" class="portal-nav-toggle" id="portal-nav-toggle" aria-label="Toggle navigation" aria-expanded="false">' +
       '<span></span><span></span><span></span></button>' +
       '<nav class="portal-nav" id="portal-nav" aria-label="Portal sections">' +

@@ -73,6 +73,69 @@
     transform: translateZ(40px);
 }
 
+/* Kit emblem replaces the inline psi glyph (brand integration §4.1). */
+.hero-emblem {
+    width: 110px;
+    height: 110px;
+    margin: 0 auto;
+    filter: drop-shadow(0 0 24px rgba(212, 175, 55, 0.35));
+    transform: translateZ(40px);
+}
+
+/* Hero grid — copy left, Celestial Knot right (brand integration §4.13). */
+.hero-content.hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    gap: 2rem;
+    max-width: 1200px;
+}
+
+.hero-knot-wrap {
+    display: block;
+}
+
+.hero-knot {
+    width: 100%;
+}
+
+/* Muted hero background loop — gated by js/home.js (reduced-motion + saveData
+   keep the poster frame; plan §7.3). */
+.hero-bg-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.45;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Secondary knot accents (own-a-piece + codex band). */
+.cta-knot {
+    width: min(420px, 60vw);
+    opacity: 0.9;
+    margin-bottom: var(--space-4);
+}
+
+.codex-knot {
+    display: block;
+    width: 160px;
+    height: auto;
+    margin: 0 auto var(--space-3);
+}
+
+@media (max-width: 900px) {
+    .hero-content.hero-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    .hero-knot {
+        width: min(340px, 80vw);
+    }
+}
+
 .hero h1 {
     margin-bottom: var(--space-3);
     position: relative;

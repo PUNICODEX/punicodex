@@ -78,7 +78,7 @@ ${JSON.stringify({
     },
     primaryImageOfPage: {
         '@type': 'ImageObject',
-        url: 'https://punicodex.com/assets/images/og-default.svg',
+        url: 'https://punicodex.com/assets/brand/05-social/punicodex-og-image-1200x630.png',
     },
 }, null, 4)}
     </script>`;

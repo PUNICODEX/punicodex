@@ -67,10 +67,6 @@
             text-decoration: none;
         }
 
-        .global-brand span {
-            color: var(--apply-primary);
-        }
-
         .global-links {
             display: flex;
             gap: 1.25rem;
@@ -334,12 +330,28 @@
                 gap: 0.75rem;
             }
         }
+        /* Brand integration §4.13 — the Golden Nib, the scholar's instrument. */
+        .apply-nib {
+            width: min(320px, 62vw);
+            height: auto;
+            margin: 0 auto 1.25rem;
+            display: block;
+            filter: drop-shadow(0 30px 60px rgba(0, 0, 0, .65)) drop-shadow(0 0 42px rgba(212, 175, 55, .14));
+        }
     </style>
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0C">
 </head>
 <body>
     <div class="global-strip">
         <div class="global-strip-inner">
-            <a href="/" class="global-brand">P<span>U</span>NYCODEX</a>
+            <a href="/" class="global-brand"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="130" height="14"></a>
             <div class="global-links">
                 <a href="/pantheon/">Pantheon</a>
                 <a href="/lexicon/">Lexicon</a>
@@ -353,6 +365,10 @@
 
     <header class="apply-hero">
         <div class="apply-eyebrow">PUNICODEX Scholarly Edition</div>
+        <picture>
+            <source srcset="/assets/brand/13-page-visuals/scholars/golden-nib.webp" type="image/webp">
+            <img class="apply-nib" src="/assets/brand/13-page-visuals/scholars/golden-nib.png" alt="The Golden Nib — the scholar's instrument, slit and breather hole cut true" width="640" height="640" fetchpriority="high" decoding="async">
+        </picture>
         <h1 class="apply-title">Sponsor the Scholarly Edition</h1>
         <p class="apply-subtitle">A university sponsors PuniCodex; its departments receive provisioned student access to contribute to flagship temples under a scholarly quality gate. Approved student work is published with institutional attribution, and the university appears as an Academic Collaborator across the site.</p>
     </header>

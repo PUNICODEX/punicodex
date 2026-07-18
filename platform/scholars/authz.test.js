@@ -297,6 +297,164 @@ test('canManageInstitution rejects admin managing other institution', () => {
   assert.ok(!authz.canManageInstitution(admin, 999));
 });
 
+// ─── Department admin scoping ───
+
+test('isDepartmentAdmin recognizes dept_admin rank and above', () => {
+  assert.ok(authz.isDepartmentAdmin(buildUser({ role: 'dept_admin' })));
+  assert.ok(authz.isDepartmentAdmin(buildUser({ role: 'inst_admin' })));
+  assert.ok(authz.isDepartmentAdmin(buildUser({ role: 'curator' })));
+  assert.ok(!authz.isDepartmentAdmin(buildUser({ role: 'reviewer' })));
+  assert.ok(!authz.isDepartmentAdmin(buildUser({ role: 'student' })));
+});
+
+test('canManageStudent allows dept_admin managing student in own department', () => {
+  const admin = buildUser({
+    role: 'dept_admin',
+    institutionId: activeInstitutionId,
+    department: 'Classics',
+  });
+  const student = buildUser({
+    role: 'student',
+    institutionId: activeInstitutionId,
+    department: 'Classics',
+    id: 100,
+  });
+  assert.ok(authz.canManageStudent(admin, student));
+});
+
+test('canManageStudent rejects dept_admin managing student in another department', () => {
+  const admin = buildUser({
+    role: 'dept_admin',
+    institutionId: activeInstitutionId,
+    department: 'Classics',
+  });
+  const student = buildUser({
+    role: 'student',
+    institutionId: activeInstitutionId,
+    department: 'History',
+    id: 100,
+  });
+  assert.ok(!authz.canManageStudent(admin, student));
+});
+
+test('canManageStudent rejects dept_admin managing student in another institution', () => {
+  const admin = buildUser({
+    role: 'dept_admin',
+    institutionId: activeInstitutionId,
+    department: 'Classics',
+  });
+  const student = buildUser({
+    role: 'student',
+    institutionId: 999,
+    department: 'Classics',
+    id: 100,
+  });
+  assert.ok(!authz.canManageStudent(admin, student));
+});
+
+test('canManageStudent rejects dept_admin with no assigned department', () => {
+  const admin = buildUser({
+    role: 'dept_admin',
+    institutionId: activeInstitutionId,
+    department: null,
+  });
+  const student = buildUser({
+    role: 'student',
+    institutionId: activeInstitutionId,
+    department: 'Classics',
+    id: 100,
+  });
+  assert.ok(!authz.canManageStudent(admin, student));
+});
+
+test('canManageStudent rejects dept_admin managing a reviewer', () => {
+  const admin = buildUser({
+    role: 'dept_admin',
+    institutionId: activeInstitutionId,
+    department: 'Classics',
+  });
+  const reviewer = buildUser({
+    role: 'reviewer',
+    institutionId: activeInstitutionId,
+    department: 'Classics',
+    id: 100,
+  });
+  assert.ok(!authz.canManageStudent(admin, reviewer));
+});
+
+test('canManageStudent rejects disabled dept_admin', () => {
+  const admin = buildUser({
+    role: 'dept_admin',
+    institutionId: activeInstitutionId,
+    department: 'Classics',
+    accountStatus: 'disabled',
+  });
+  const student = buildUser({
+    role: 'student',
+    institutionId: activeInstitutionId,
+    department: 'Classics',
+    id: 100,
+  });
+  assert.ok(!authz.canManageStudent(admin, student));
+});
+
+test('canManageStudent still allows inst_admin managing students across departments', () => {
+  const admin = buildUser({
+    role: 'inst_admin',
+    institutionId: activeInstitutionId,
+    department: 'Classics',
+  });
+  const student = buildUser({
+    role: 'student',
+    institutionId: activeInstitutionId,
+    department: 'History',
+    id: 100,
+  });
+  assert.ok(authz.canManageStudent(admin, student));
+});
+
+test('requireDepartmentAdmin middleware allows dept_admin', () => {
+  const req = { user: buildUser({ role: 'dept_admin' }) };
+  const res = mockRes();
+  let called = false;
+  authz.requireDepartmentAdmin(req, res, () => {
+    called = true;
+  });
+  assert.ok(called);
+});
+
+test('requireDepartmentAdmin middleware allows inst_admin', () => {
+  const req = { user: buildUser({ role: 'inst_admin' }) };
+  const res = mockRes();
+  let called = false;
+  authz.requireDepartmentAdmin(req, res, () => {
+    called = true;
+  });
+  assert.ok(called);
+});
+
+test('requireDepartmentAdmin middleware rejects reviewer', () => {
+  const req = { user: buildUser({ role: 'reviewer' }) };
+  const res = mockRes();
+  let called = false;
+  authz.requireDepartmentAdmin(req, res, () => {
+    called = true;
+  });
+  assert.ok(!called);
+  assert.strictEqual(res.statusCode, 403);
+});
+
+test('requireDepartmentAdmin middleware rejects unauthenticated request', () => {
+  const req = {};
+  const res = mockRes();
+  let called = false;
+  authz.requireDepartmentAdmin(req, res, () => {
+    called = true;
+  });
+  assert.ok(!called);
+  assert.strictEqual(res.statusCode, 401);
+});
+
 // ─── Sponsorship expiry ───
 
 test('isActiveSponsorship accepts active sponsorship with no expiry', () => {

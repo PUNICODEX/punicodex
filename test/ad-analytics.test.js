@@ -5,6 +5,8 @@
  */
 
 const assert = require('node:assert');
+const fs = require('node:fs');
+const path = require('node:path');
 const Database = require('better-sqlite3');
 
 process.env.PLATFORM_URL = 'https://punicodex.com';
@@ -65,7 +67,7 @@ let nextAdSlotIndex = 0;
 
 async function makeLiveBooking(email = 'adtest@example.com') {
   const slotId = nikeSlotIds[nextAdSlotIndex++];
-  const { id, token } = await createBooking({
+  const { id, token, publicId } = await createBooking({
     slotId,
     email,
     companyName: 'Ad Test Co',
@@ -78,7 +80,7 @@ async function makeLiveBooking(email = 'adtest@example.com') {
   db.prepare("UPDATE bookings SET status = 'approved' WHERE id = ?").run(id);
   db.close();
   await goLive(id);
-  return { id, token };
+  return { id, token, publicId };
 }
 
 function countEvents(bookingId, eventType) {
@@ -126,8 +128,60 @@ test('isSafeRedirectUrl allows full same-origin URLs', () => {
   );
 });
 
-test('isSafeRedirectUrl allows external URLs', () => {
-  assert.strictEqual(isSafeRedirectUrl('https://example.com/ad', 'https://punicodex.com'), true);
+test('isSafeRedirectUrl allows owned and registrar allowlist hosts', () => {
+  for (const url of [
+    'https://punycodex.com/sites/zeus',
+    'https://www.punycodex.com/',
+    'https://www.punicodex.com/search',
+    'https://www.godaddy.com/domainsearch/find?domainToCheck=xn--nk-qla',
+    'https://www.namecheap.com/domains/registration/results/?domain=xn--nk-qla',
+    'https://porkbun.com/checkout/search?q=xn--nk-qla',
+    'https://www.dynadot.com/domain/search.html?domain=xn--nk-qla',
+    'https://spaceship.com/domains/?query=xn--nk-qla',
+  ]) {
+    assert.strictEqual(isSafeRedirectUrl(url, 'https://punicodex.com'), true, url);
+  }
+});
+
+test('isSafeRedirectUrl rejects unregistered external URLs', () => {
+  assert.strictEqual(isSafeRedirectUrl('https://evil.com/ad', 'https://punicodex.com'), false);
+  assert.strictEqual(isSafeRedirectUrl('https://example.com/ad', 'https://punicodex.com'), false);
+});
+
+test('isSafeRedirectUrl rejects protocol-relative and backslash URLs', () => {
+  assert.strictEqual(isSafeRedirectUrl('//evil.com', 'https://punicodex.com'), false);
+  assert.strictEqual(isSafeRedirectUrl('/\\evil.com', 'https://punicodex.com'), false);
+  assert.strictEqual(isSafeRedirectUrl('\\\\evil.com', 'https://punicodex.com'), false);
+});
+
+test('isSafeRedirectUrl rejects subdomain spoofs and encoded variants', () => {
+  assert.strictEqual(
+    isSafeRedirectUrl('https://punicodex.com.evil.com', 'https://punicodex.com'),
+    false
+  );
+  // %2e decodes to a dot inside the host: punicodex.com.evil.com
+  assert.strictEqual(
+    isSafeRedirectUrl('https://punicodex.com%2eevil.com', 'https://punicodex.com'),
+    false
+  );
+  // %2f scheme-relative smuggling does not parse as an allowlisted host
+  assert.strictEqual(isSafeRedirectUrl('https:%2f%2fevil.com', 'https://punicodex.com'), false);
+});
+
+test('isSafeRedirectUrl allows the booking registered website by origin', () => {
+  const registered = ['https://example.com/landing'];
+  assert.strictEqual(
+    isSafeRedirectUrl('https://example.com/landing', 'https://punicodex.com', registered),
+    true
+  );
+  assert.strictEqual(
+    isSafeRedirectUrl('https://example.com/other-path', 'https://punicodex.com', registered),
+    true
+  );
+  assert.strictEqual(
+    isSafeRedirectUrl('https://evil-example.com', 'https://punicodex.com', registered),
+    false
+  );
 });
 
 test('isSafeRedirectUrl rejects non-http protocols', () => {
@@ -155,10 +209,20 @@ test('trackPixel returns a 1x1 GIF for any token', async () => {
 });
 
 test('trackPixel records an impression for a live booking', async () => {
-  const { id, token } = await makeLiveBooking('pixel@example.com');
+  const { id, publicId } = await makeLiveBooking('pixel@example.com');
   const res = mockRes();
-  await trackPixel(token, mockReq({ headers: { 'user-agent': 'test-bot/1.0' } }), res);
+  await trackPixel(publicId, mockReq({ headers: { 'user-agent': 'test-bot/1.0' } }), res);
   assert.strictEqual(countEvents(id, 'impression'), 1);
+});
+
+// Token split (second-pass review finding 1): the private analytics_token is
+// a management credential and must no longer drive public tracking.
+test('trackPixel does not record events for the private analytics_token', async () => {
+  const { id, token } = await makeLiveBooking('pixel-secret@example.com');
+  const res = mockRes();
+  await trackPixel(token, mockReq(), res);
+  assert.strictEqual(res.statusCode, 200); // pixel still served
+  assert.strictEqual(countEvents(id, 'impression'), 0);
 });
 
 // Click tests
@@ -175,16 +239,35 @@ test('trackClick rejects unsafe non-http URLs', async () => {
 });
 
 test('trackClick records click and redirects for live booking', async () => {
-  const { id, token } = await makeLiveBooking('click@example.com');
+  const { id, publicId } = await makeLiveBooking('click@example.com');
   const res = mockRes();
   await trackClick(
-    token,
+    publicId,
     '/sites/zeus',
     mockReq({ headers: { referer: 'https://punicodex.com' } }),
     res
   );
   assert.strictEqual(res.redirectUrl, '/sites/zeus');
   assert.strictEqual(countEvents(id, 'click'), 1);
+});
+
+test('trackClick redirects to the booking registered website', async () => {
+  const { id, publicId } = await makeLiveBooking('click-registered@example.com');
+  const res = mockRes();
+  await trackClick(publicId, 'https://example.com/landing', mockReq(), res);
+  assert.strictEqual(res.redirectUrl, 'https://example.com/landing');
+  assert.strictEqual(countEvents(id, 'click'), 1);
+});
+
+test('trackClick rejects unregistered external URLs even with a valid token', async () => {
+  const { id, publicId } = await makeLiveBooking('click-evil@example.com');
+  for (const bad of ['https://evil.com', '//evil.com', 'https://example.com.evil.com']) {
+    const res = mockRes();
+    await trackClick(publicId, bad, mockReq(), res);
+    assert.strictEqual(res.statusCode, 400, bad);
+    assert.strictEqual(res.redirectUrl, undefined);
+  }
+  assert.strictEqual(countEvents(id, 'click'), 0);
 });
 
 // Viewability tests
@@ -204,12 +287,20 @@ test('trackViewability rejects below-threshold input', async () => {
 });
 
 test('trackViewability records viewable_impression for live booking', async () => {
-  const { id, token } = await makeLiveBooking('view@example.com');
+  const { id, publicId } = await makeLiveBooking('view@example.com');
   const res = mockRes();
-  await trackViewability(token, 2, 75, mockReq(), res);
+  await trackViewability(publicId, 2, 75, mockReq(), res);
   assert.strictEqual(res.statusCode, 200);
   assert.strictEqual(res.body.success, true);
   assert.strictEqual(countEvents(id, 'viewable_impression'), 1);
+});
+
+test('trackViewability does not record events for the private analytics_token', async () => {
+  const { id, token } = await makeLiveBooking('view-secret@example.com');
+  const res = mockRes();
+  await trackViewability(token, 2, 75, mockReq(), res);
+  assert.strictEqual(res.statusCode, 200);
+  assert.strictEqual(countEvents(id, 'viewable_impression'), 0);
 });
 
 // Dashboard tests
@@ -232,6 +323,21 @@ test('getDashboard returns metrics for live booking', async () => {
   assert.strictEqual(res.statusCode, 200);
   assert.ok(res.body.booking);
   assert.ok(res.body.metrics);
+});
+
+// Template regression (second-pass review finding 1): the shipped flagship
+// template must track ads with the public slot identifier only. The private
+// analytics_token may never be read from the public slots payload. (The
+// template still uses currentBooking.analytics_token — the tenant's own
+// management token returned by their authenticated booking flow — which is
+// the intended credential for upload/dashboard links.)
+test('flagship template tracks with slot.public_id, never slot.analytics_token', () => {
+  const src = fs.readFileSync(
+    path.join(__dirname, '..', 'templates', 'flagship', 'flagship.js'),
+    'utf8'
+  );
+  assert.ok(!src.includes('slot.analytics_token'), 'slot.analytics_token leaked in template');
+  assert.ok(src.includes('slot.public_id'), 'template must track with slot.public_id');
 });
 
 // Runs last: drops analytics_events to force the internal-error branch.

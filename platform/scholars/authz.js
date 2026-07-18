@@ -38,6 +38,10 @@ function isInstitutionAdmin(user) {
   return hasRole(user, 'inst_admin');
 }
 
+function isDepartmentAdmin(user) {
+  return hasRole(user, 'dept_admin');
+}
+
 function sameInstitution(user, otherInstitutionId) {
   if (!user?.institutionId) return false;
   return user.institutionId === otherInstitutionId;
@@ -161,8 +165,12 @@ function canManageInstitution(user, institutionId) {
 }
 
 /**
- * Check whether an institution admin can manage a student account.
- * Admins may manage only students within their own institution.
+ * Check whether an admin can manage a student account.
+ *
+ * Institution admins (and curators) may manage students within their own
+ * institution. Department admins may manage only students within their own
+ * institution AND their own department; a dept_admin without an assigned
+ * department manages nothing.
  *
  * `studentUser` may be a normalized user object (institutionId) or a raw DB
  * row (institution_id).
@@ -170,11 +178,15 @@ function canManageInstitution(user, institutionId) {
 function canManageStudent(admin, studentUser) {
   if (!admin || !studentUser) return false;
   if (!isActiveUser(admin)) return false;
-  if (!isInstitutionAdmin(admin)) return false;
+  if (!isDepartmentAdmin(admin)) return false;
   const studentInstitutionId = studentUser.institutionId ?? studentUser.institution_id;
   if (!sameInstitution(admin, studentInstitutionId)) return false;
   const studentRole = studentUser.role;
-  return ROLE_RANK[studentRole] <= ROLE_RANK.student;
+  if (ROLE_RANK[studentRole] > ROLE_RANK.student) return false;
+  if (!isInstitutionAdmin(admin)) {
+    if (!admin.department || admin.department !== (studentUser.department ?? null)) return false;
+  }
+  return true;
 }
 
 function canFreezeTemple(user) {
@@ -239,6 +251,14 @@ function requireInstitutionAdmin(req, res, next) {
   next();
 }
 
+function requireDepartmentAdmin(req, res, next) {
+  if (!req.user) return res.status(401).json({ error: 'Unauthorized' });
+  if (!isDepartmentAdmin(req.user)) {
+    return res.status(403).json({ error: 'Department admin access required' });
+  }
+  next();
+}
+
 module.exports = {
   ROLES,
   ROLE_RANK,
@@ -246,6 +266,7 @@ module.exports = {
   isCurator,
   isReviewerOrHigher,
   isInstitutionAdmin,
+  isDepartmentAdmin,
   sameInstitution,
   isActiveUser,
   isActiveSponsorship,
@@ -263,4 +284,5 @@ module.exports = {
   requireRole,
   requireCurator,
   requireInstitutionAdmin,
+  requireDepartmentAdmin,
 };

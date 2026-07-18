@@ -1,3 +1,10 @@
+> **SUPERSEDED — 2026-07-18.** This document describes the old PuniCodex visual
+> identity (the PŪNYCODEX wordmark and Ψ monogram era) and is retained for
+> historical reference only. The current brand system is defined by
+> `docs/brand/brand-integration-plan.md` and `docs/brand/BRAND_GUIDELINES.md`,
+> with served assets under `assets/brand/`. Do not use this document for new
+> design or implementation work.
+
 # PUNICODEX — Complete Visual Identity System
 ## Epic Anime/Manga Mythological Mascot Collection
 

@@ -1,0 +1,55 @@
+/* ============================================================
+   PuniCodex — Brand Overrides & Page-Art Helpers
+   Loaded LAST, after css/design-system.css → punicodex-tokens.css
+   (→ punicodex-motion.css where present). Body-content wave of the
+   2026-07-18 brand integration (docs/brand/brand-integration-plan.md
+   §6.6, §7 and 13-page-visuals/PLACEMENT-GUIDE "universal wiring").
+   ============================================================ */
+
+:root {
+  /* The kit's utilities assume Inter; the site's body face is Montserrat.
+     Override so .pc-* utilities reuse the already-loaded family instead of
+     pulling a third font download (plan §6.6). */
+  --pc-font-sans: "Montserrat", system-ui, -apple-system, sans-serif;
+}
+
+/* 3D page-art renders (assets/brand/13-page-visuals) floating over
+   obsidian with a warm floor glow. */
+.pc-art {
+  position: relative;
+  filter: drop-shadow(0 30px 60px rgba(0, 0, 0, .65))
+          drop-shadow(0 0 42px rgba(212, 175, 55, .14));
+}
+
+img.pc-art {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-inline: auto;
+}
+
+/* Slow museum float — hero art only; one moving object per viewport. */
+@keyframes pc-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-14px); }
+}
+.pc-art--float { animation: pc-float 7s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .pc-art--float { animation: none; }
+}
+
+/* `hidden` must win over the .pc-loader display:grid in punicodex-motion.css —
+   the session loader markup stays inert until the inline gate unhides it. */
+.pc-loader[hidden] { display: none; }
+
+/* Diamond-strip section divider (kit ornament) — upgrades a bare hairline.
+   Max one per viewport (brand guidelines ornament rule). */
+.pc-divider-strip {
+  height: 26px;
+  max-width: 480px;
+  margin: 3rem auto;
+  border: 0;
+  background: url("/assets/brand/03-ornaments/punicodex-divider-diamond.png") center / contain no-repeat;
+  opacity: .85;
+}

@@ -20,6 +20,8 @@ const {
   requireRole,
   requireCurator,
   requireInstitutionAdmin,
+  requireDepartmentAdmin,
+  isInstitutionAdmin,
   canSubmitEdit,
   canReviewEdit,
   canManageStudent,
@@ -110,6 +112,7 @@ const {
   delByPrefix: cacheDelByPrefix,
   cacheKey,
 } = require('./cache');
+const emailModule = require('../api/email');
 
 const router = express.Router();
 
@@ -171,6 +174,23 @@ function sanitizeUser(row) {
   const user = { ...row };
   delete user.password_hash;
   return user;
+}
+
+/**
+ * Resolve the department scope for institution-management endpoints.
+ *
+ * Institution admins and curators act institution-wide (`department: null`).
+ * Department admins are confined to their own department; a dept_admin with
+ * no assigned department gets a 400 and a `null` return (response already
+ * sent), since an unscoped dept_admin must not see institution-wide data.
+ */
+function resolveDepartmentScope(req, res) {
+  if (isInstitutionAdmin(req.user)) return { department: null };
+  if (!req.user.department) {
+    res.status(400).json(error('No department is associated with this account'));
+    return null;
+  }
+  return { department: req.user.department };
 }
 
 function notifyReviewersOfSubmission(edit, section, temple) {
@@ -950,30 +970,52 @@ router.get(
 router.get(
   '/institution',
   requireAuth,
-  requireInstitutionAdmin,
+  requireDepartmentAdmin,
   createScholarsRateLimit('institution:dashboard'),
   asyncHandler(async (req, res) => {
     const institutionId = req.user.institutionId;
     if (!institutionId) {
       return res.status(400).json(error('No institution is associated with this account'));
     }
+    const scope = resolveDepartmentScope(req, res);
+    if (!scope) return;
 
     const institution = getInstitutionById(institutionId);
     if (!institution) return res.status(404).json(error('Institution not found', 404));
 
+    const allUsers = listUsersByInstitution(institutionId);
+    const scopedUsers = scope.department
+      ? allUsers.filter((u) => u.department === scope.department)
+      : allUsers;
+    const scopedReviewers = scope.department
+      ? listReviewersForInstitution(institutionId).filter((u) => u.department === scope.department)
+      : listReviewersForInstitution(institutionId);
+
     const stats = {
-      memberCount: countUsersByInstitution(institutionId),
-      studentCount: listStudentsByInstitution(institutionId).length,
-      reviewerCount: listReviewersForInstitution(institutionId).length,
-      totalSubmitted: countEditsByInstitution(institutionId),
-      approved: countEditsByInstitution(institutionId, { status: 'approved' }),
-      pending: countEditsByInstitution(institutionId, { status: 'pending' }),
-      attributedSections: countAttributedSectionsByInstitution(institutionId),
+      memberCount: scope.department ? scopedUsers.length : countUsersByInstitution(institutionId),
+      studentCount: listStudentsByInstitution(institutionId, {
+        department: scope.department ?? undefined,
+      }).length,
+      reviewerCount: scopedReviewers.length,
+      totalSubmitted: countEditsByInstitution(institutionId, {
+        department: scope.department ?? undefined,
+      }),
+      approved: countEditsByInstitution(institutionId, {
+        status: 'approved',
+        department: scope.department ?? undefined,
+      }),
+      pending: countEditsByInstitution(institutionId, {
+        status: 'pending',
+        department: scope.department ?? undefined,
+      }),
+      attributedSections: countAttributedSectionsByInstitution(institutionId, {
+        department: scope.department ?? undefined,
+      }),
     };
 
-    const users = listUsersByInstitution(institutionId).map((u) => sanitizeUser(u));
+    const users = scopedUsers.map((u) => sanitizeUser(u));
 
-    res.json(success({ institution, stats, users }));
+    res.json(success({ institution, department: scope.department, stats, users }));
   })
 );
 
@@ -1003,12 +1045,16 @@ router.get(
 router.get(
   '/institution/students',
   requireAuth,
-  requireInstitutionAdmin,
+  requireDepartmentAdmin,
   createScholarsRateLimit('institution:students:list'),
   asyncHandler(async (req, res) => {
     const institutionId = req.user.institutionId;
     if (!institutionId) return res.status(400).json(error('No institution associated'));
-    const students = listStudentsByInstitution(institutionId).map((u) => sanitizeUser(u));
+    const scope = resolveDepartmentScope(req, res);
+    if (!scope) return;
+    const students = listStudentsByInstitution(institutionId, {
+      department: scope.department ?? undefined,
+    }).map((u) => sanitizeUser(u));
     res.json(success(students));
   })
 );
@@ -1016,7 +1062,7 @@ router.get(
 router.post(
   '/institution/students',
   requireAuth,
-  requireInstitutionAdmin,
+  requireDepartmentAdmin,
   createScholarsRateLimit('institution:students:create'),
   validateInputLength([
     { key: 'email', max: 254 },
@@ -1032,6 +1078,8 @@ router.post(
   asyncHandler(async (req, res) => {
     const institutionId = req.user.institutionId;
     if (!institutionId) return res.status(400).json(error('No institution associated'));
+    const scope = resolveDepartmentScope(req, res);
+    if (!scope) return;
 
     const { email, displayName, department, password } = req.body || {};
     if (!email || typeof email !== 'string' || !email.includes('@')) {
@@ -1045,10 +1093,17 @@ router.post(
           .json(error(`Password is too weak: ${passwordCheck.errors.join('; ')}`));
       }
     }
+    // Department admins can only provision students into their own department.
+    if (scope.department && department && department !== scope.department) {
+      return res
+        .status(403)
+        .json(error('Department admins can only add students to their own department'));
+    }
+    const effectiveDepartment = scope.department ?? department;
 
     const institution = getInstitutionById(institutionId);
     if (!institution) return res.status(404).json(error('Institution not found', 404));
-    if (department && !institution.department_allowlist.includes(department)) {
+    if (effectiveDepartment && !institution.department_allowlist.includes(effectiveDepartment)) {
       return res.status(400).json(error('Department is not in the institution allowlist'));
     }
 
@@ -1067,7 +1122,7 @@ router.post(
           institutionId,
           role: 'student',
           displayName,
-          department,
+          department: effectiveDepartment,
           passwordHash: hashPassword(tempPassword),
           accountStatus: 'active',
         });
@@ -1089,6 +1144,18 @@ router.post(
       details: { email: email.toLowerCase().trim(), institutionId },
       ipHash: null,
     });
+
+    // Email the one-time temp password to the student. Fire-and-forget: a
+    // delivery failure must not roll back the provisioned account, and the
+    // password is still shown to the admin exactly once below.
+    emailModule
+      .notifyScholarsAccountProvisioned({
+        email: normalizedEmail,
+        displayName,
+        institutionName: institution.name,
+        tempPassword,
+      })
+      .catch(() => {});
 
     res.status(201).json(
       success({
@@ -1156,7 +1223,7 @@ router.post(
 router.patch(
   '/institution/students/:id',
   requireAuth,
-  requireInstitutionAdmin,
+  requireDepartmentAdmin,
   createScholarsRateLimit('institution:students:update'),
   validateInputLength([
     { key: 'displayName', max: 200 },
@@ -1176,6 +1243,13 @@ router.patch(
     }
 
     const { displayName, department, accountStatus } = req.body || {};
+    // Moving a student between departments reshapes dept_admin scope, so only
+    // institution admins may do it.
+    if (department !== undefined && !isInstitutionAdmin(req.user)) {
+      return res
+        .status(403)
+        .json(error('Department admins cannot move students between departments'));
+    }
     if (department !== undefined) {
       const institution = getInstitutionById(req.user.institutionId);
       if (department && !institution.department_allowlist.includes(department)) {
@@ -1204,7 +1278,7 @@ router.patch(
 router.post(
   '/institution/students/:id/reset-password',
   requireAuth,
-  requireInstitutionAdmin,
+  requireDepartmentAdmin,
   createScholarsRateLimit('institution:students:reset-password', { tier: 'strict' }),
   auditLog('institution_student_password_reset', {
     getResourceType: () => 'user',
@@ -1232,6 +1306,18 @@ router.post(
       ipHash: null,
     });
 
+    // Email the new one-time temp password to the student (fire-and-forget;
+    // it is also shown to the admin exactly once below).
+    const institution = getInstitutionById(target.institution_id);
+    emailModule
+      .notifyScholarsAccountProvisioned({
+        email: target.email,
+        displayName: target.display_name,
+        institutionName: institution?.name,
+        tempPassword,
+      })
+      .catch(() => {});
+
     res.json(success({ reset: true, tempPassword }));
   })
 );
@@ -1239,7 +1325,7 @@ router.post(
 router.delete(
   '/institution/students/:id',
   requireAuth,
-  requireInstitutionAdmin,
+  requireDepartmentAdmin,
   createScholarsRateLimit('institution:students:delete'),
   auditLog('institution_student_disabled', {
     getResourceType: () => 'user',
@@ -2061,8 +2147,20 @@ router.post(
       createdInstitutionId: created.institutionId,
     });
 
-    // The temp password is shown to the curator exactly once so it can be
-    // relayed to the university out-of-band (email delivery is not wired up).
+    // Email the one-time temp password to the new institution admin.
+    // Fire-and-forget: a delivery failure must not fail the approval, and
+    // the password is still shown to the curator exactly once below.
+    emailModule
+      .notifyScholarsAccountProvisioned({
+        email: application.contact_email,
+        displayName: application.contact_name,
+        institutionName: application.institution_name,
+        tempPassword,
+      })
+      .catch(() => {});
+
+    // The temp password is shown to the curator exactly once as a fallback
+    // delivery channel alongside the provisioning email.
     res.json(
       success({
         approved: true,

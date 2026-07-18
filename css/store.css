@@ -10,6 +10,12 @@
     padding: var(--space-7) 0 var(--space-5);
 }
 
+/* The Golden Brilliant crowns the Reliquary (brand integration §4.13). */
+.store-brilliant {
+    width: min(380px, 68vw);
+    margin: 0 auto var(--space-4);
+}
+
 .page-hero p {
     max-width: 500px;
     margin: 0 auto;
@@ -114,6 +120,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+}
+
+/* Golden Brilliant backdrop at 45% replaces the emoji placeholders
+   (brand integration §4.13). */
+.product-placeholder::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("/assets/brand/13-page-visuals/store/golden-brilliant.webp") center / 65% no-repeat;
+    opacity: 0.45;
 }
 
 .product-icon {
@@ -144,7 +161,7 @@
 }
 
 .product-name {
-    font-family: var(--font-display);
+    font-family: 'Cormorant Garamond', Georgia, serif;
     font-size: 20px;
     color: var(--text-primary);
     padding: var(--space-3) var(--space-3) 0;

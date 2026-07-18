@@ -36,6 +36,9 @@ function collectHtml(dir) {
           '.backup',
           '.vercel',
           'templates',
+          // External brand-kit source material (untracked, read-only, never
+          // shipped) — its kit-internal snippet links are not site links.
+          'Kimi_Agent_punicodex扩展',
         ].includes(entry.name)
       )
         continue;

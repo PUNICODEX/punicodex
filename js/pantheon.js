@@ -6,6 +6,11 @@
 (function() {
     'use strict';
 
+    // Kit placeholder art for unbuilt/failed portraits (brand integration §4.3) —
+    // a card must never degrade to a bare gold ring.
+    const EMPTY_PORTRAIT = '/assets/brand/03-ornaments/punicodex-empty-portrait.png';
+    const EMPTY_PORTRAIT_WEBP = '/assets/brand/03-ornaments/punicodex-empty-portrait.webp';
+
     function escapeHtml(str) {
         if (str == null) return '';
         return String(str)
@@ -52,11 +57,16 @@
 
             const thumbPath = `/assets/images/mascots/thumbs/small/${a.id}_thumb.webp`;
             const loadingAttr = index < 8 ? 'loading="eager"' : 'loading="lazy"';
+            // Unbuilt temples have no mascot shoot yet — render the kit's empty
+            // portrait directly instead of round-tripping a 404 thumb.
+            const portraitHtml = !a.built
+                ? `<picture><source srcset="${EMPTY_PORTRAIT_WEBP}" type="image/webp"><img src="${EMPTY_PORTRAIT}" alt="" width="150" height="150" ${loadingAttr} decoding="async" class="card-portrait-img"></picture>`
+                : `<img src="${thumbPath}" alt="${a.name} — ${a.domain}" data-fallback="${a.mascotFallback || a.mascotPath}" width="150" height="150" ${loadingAttr} decoding="async" class="card-portrait-img">`;
 
             return `
                 <${tag} ${hrefAttr} class="archetype-card reveal-up ${unbuiltClass}" data-id="${a.id}" data-tier="${a.tier}" data-pantheon="${a.pantheon}" data-built="${a.built}" data-name="${(a.name || "").toLowerCase()}" data-greek="${(a.greek || "").toLowerCase()}" data-domain="${(a.domain || "").toLowerCase()}" style="--stagger-index:${index % 4}">
                     <div class="card-portrait">
-                        <img src="${thumbPath}" alt="${a.name} — ${a.domain}" data-fallback="${a.mascotFallback || a.mascotPath}" width="150" height="150" ${loadingAttr} decoding="async" class="card-portrait-img">
+                        ${portraitHtml}
                     </div>
                     <p class="card-name">${a.name}</p>
                     <p class="card-greek">${scriptLabel}</p>
@@ -88,13 +98,14 @@
     function handleImgError(img) {
         img.classList.remove('is-loading');
         const fallback = img.dataset.fallback;
-        // If the current src is already the fallback, give up and show skeleton.
+        // If the current src is already the fallback, settle on the kit's empty
+        // portrait so the card never renders as a bare ring.
         if (!fallback || img.src.endsWith(fallback)) {
-            img.classList.add('is-error');
-            img.style.opacity = '0';
-            img.style.display = 'none';
-            const portrait = img.closest('.card-portrait');
-            if (portrait) portrait.classList.add('is-skeleton');
+            if (!img.src.endsWith(EMPTY_PORTRAIT)) {
+                delete img.dataset.fallback;
+                img.src = EMPTY_PORTRAIT;
+                img.addEventListener('load', function() { this.classList.add('is-loaded'); }, { once: true });
+            }
             return;
         }
         // Try the fallback once (e.g. .png if .webp fails).

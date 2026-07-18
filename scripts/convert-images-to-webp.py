@@ -181,6 +181,15 @@ def scan_and_convert():
             if result:
                 converted.append(result)
 
+    # Brand kit assets (page visuals, ornaments, badges, seals) — plan §7.1
+    brand_dir = ROOT / "assets" / "brand"
+    if brand_dir.exists():
+        for ext in ("*.png", "*.jpg", "*.jpeg"):
+            for src in sorted(brand_dir.rglob(ext)):
+                result = convert_image(src)
+                if result:
+                    converted.append(result)
+
     # OG default SVG -> PNG/WebP
     converted.extend(render_og_default())
 

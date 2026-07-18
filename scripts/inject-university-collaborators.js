@@ -138,7 +138,14 @@ const EXCLUDED_PAGES = new Set([path.join('university-sponsorship', 'index.html'
 // admin-portal/ sync copy), the legacy admin-* dashboards under
 // platform/public, and the crawler admin pages. Any marked blocks found in
 // these files are stripped instead of injected.
-const EXCLUDED_ADMIN_DIRS = ['platform/public/admin-portal', 'admin-portal', 'platform/public/scholars/admin', 'scholars/admin'];
+const EXCLUDED_ADMIN_DIRS = [
+  'platform/public/admin-portal',
+  'admin-portal',
+  'platform/public/scholars/admin',
+  'scholars/admin',
+  'platform/public/scholars/dept-admin',
+  'scholars/dept-admin',
+];
 const EXCLUDED_ADMIN_FILES = new Set(['admin.html', 'platform/public/admin.html']);
 
 function isExcludedAdminSurface(filePath) {
@@ -236,23 +243,28 @@ function main() {
     });
   }
 
-  // Same for the generated root scholars/admin copy: sync-scholars-portal
-  // re-copies the canonical tree BEFORE this injector runs, so the synced
-  // copy must be stripped on every run to stay deterministic.
-  const syncedScholarsAdminDir = path.join(ROOT, 'scholars', 'admin');
-  if (fs.existsSync(syncedScholarsAdminDir)) {
-    walk(syncedScholarsAdminDir, (p) => {
-      try {
-        if (stripFromFile(p)) {
-          stripped++;
-          console.log(
-            `Stripped Academic Collaborators strip from admin page: ${path.relative(ROOT, p)}`
-          );
+  // Same for the generated root scholars/admin + scholars/dept-admin copies:
+  // sync-scholars-portal re-copies the canonical tree BEFORE this injector
+  // runs, so the synced copies must be stripped on every run to stay
+  // deterministic.
+  for (const syncedScholarsAdminDir of [
+    path.join(ROOT, 'scholars', 'admin'),
+    path.join(ROOT, 'scholars', 'dept-admin'),
+  ]) {
+    if (fs.existsSync(syncedScholarsAdminDir)) {
+      walk(syncedScholarsAdminDir, (p) => {
+        try {
+          if (stripFromFile(p)) {
+            stripped++;
+            console.log(
+              `Stripped Academic Collaborators strip from admin page: ${path.relative(ROOT, p)}`
+            );
+          }
+        } catch (err) {
+          console.error(`Failed to strip ${p}:`, err.message);
         }
-      } catch (err) {
-        console.error(`Failed to strip ${p}:`, err.message);
-      }
-    });
+      });
+    }
   }
 
   for (const filePath of targets) {

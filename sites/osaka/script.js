@@ -549,9 +549,11 @@ function updateSlotUI() {
     const hasOwnCreative = isBundleMember ? slot.has_slot_creative : !!slot.creative_path;
 
     if (slot.status === 'live' && hasOwnCreative) {
-      // LIVE: render actual creative with click tracking
-      const pixelUrl = `${API_BASE}/api/analytics/pixel.gif/?b=${slot.analytics_token}`;
-      const clickUrl = `${API_BASE}/api/analytics/click/?b=${slot.analytics_token}&url=${encodeURIComponent(slot.website_url || '#')}`;
+      // LIVE: render actual creative with click tracking. slot.public_id is a
+      // write-only tracking identifier; the secret management token is never
+      // shipped to the browser.
+      const pixelUrl = `${API_BASE}/api/analytics/pixel.gif/?b=${slot.public_id}`;
+      const clickUrl = `${API_BASE}/api/analytics/click/?b=${slot.public_id}&url=${encodeURIComponent(slot.website_url || '#')}`;
       frame.innerHTML = `
         <a href="${clickUrl}" target="_blank" rel="noopener" class="space-live-ad" style="display:block;width:100%;height:100%;position:relative;z-index:2;">
           <img src="${API_BASE}${slot.creative_path}" alt="${slot.company_name || 'Advertisement'}" style="width:100%;height:100%;object-fit:cover;display:block;">
@@ -566,7 +568,7 @@ function updateSlotUI() {
       }
 
       // Fire viewability beacon after 1s at ≥50% visibility
-      trackViewability(frame, slot.analytics_token);
+      trackViewability(frame, slot.public_id);
     } else if (slot.status !== 'available') {
       // RESERVED: hide button, show overlay inside frame
       const overlay = document.createElement('div');

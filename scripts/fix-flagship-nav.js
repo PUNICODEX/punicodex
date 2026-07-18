@@ -19,7 +19,7 @@ const ROOT = path.resolve(__dirname, '..');
 const NAV_REPLACEMENT = `    <!-- Global Nav -->
     <nav class="main-nav" id="main-nav">
         <div class="nav-inner">
-            <a href="https://punicodex.com/" class="nav-wordmark">P<span class="accent">U</span>NYCODEX</a>
+            <a href="https://punicodex.com/" class="nav-wordmark"><img src="/assets/brand/01-logos/punicodex-lockup-horizontal-gold.png" alt="PuniCodex — The Unicode Pantheon" width="240" height="52"></a>
             <div class="nav-links">
                 <a href="https://punicodex.com/pantheon/" class="nav-link">Pantheon</a>
                 <a href="https://punicodex.com/realms/" class="nav-link">Realms</a>
@@ -64,7 +64,7 @@ const FOOTER_REPLACEMENT = `    <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="https://punicodex.com/" class="footer-wordmark">P<span class="accent">U</span>NYCODEX</a>
+                    <a href="https://punicodex.com/" class="footer-wordmark"><img src="/assets/brand/01-logos/punicodex-lockup-stacked-gold.png" alt="PuniCodex — The Unicode Pantheon" width="300" height="187"></a>
                     <p class="footer-tagline">Restoring the original names of the gods to the digital realm.</p>
                 </div>
                 <div class="footer-column">

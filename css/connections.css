@@ -17,6 +17,24 @@
     border-bottom: 1px solid rgba(212, 175, 55, 0.08);
 }
 
+/* Brand integration §4.13 — Hopf Link beside the masthead. */
+.connections-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+}
+
+.connections-hopf {
+    width: min(360px, 66vw);
+}
+
+@media (min-width: 900px) {
+    .connections-hero-grid {
+        grid-template-columns: 1.1fr 0.9fr;
+    }
+}
+
 .connections-hero .section-eyebrow {
     color: var(--gold);
     letter-spacing: 0.25em;

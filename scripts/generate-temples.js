@@ -531,11 +531,11 @@ function generateTempleHTML(entry, related) {
     <meta property="og:url" content="${canonicalUrl}">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="PUNICODEX">
-    <meta property="og:image" content="https://punicodex.com/assets/images/og-default.svg">
+    <meta property="og:image" content="https://punicodex.com/assets/brand/05-social/punicodex-og-image-1200x630.png">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://punicodex.com/assets/images/og-default.svg">
+    <meta name="twitter:image" content="https://punicodex.com/assets/brand/05-social/punicodex-og-image-1200x630.png">
     <meta name="twitter:title" content="${escapeHtml(pageTitle)}">
     <meta name="twitter:description" content="${escapeHtml(pageDesc)}">
     
@@ -561,7 +561,7 @@ ${JSON.stringify(
     },
     primaryImageOfPage: {
       '@type': 'ImageObject',
-      url: 'https://punicodex.com/assets/images/og-default.svg',
+      url: 'https://punicodex.com/assets/brand/05-social/punicodex-og-image-1200x630.png',
     },
   },
   null,
@@ -581,6 +581,14 @@ ${JSON.stringify(
             --secondary: ${colors.secondary};
         }
     </style>
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0C">
 </head>
 <body>
     <!-- Particle Canvas -->
@@ -589,7 +597,7 @@ ${JSON.stringify(
     <!-- Global Strip -->
     <div class="global-strip">
         <div class="global-strip-inner">
-            <a href="https://punicodex.com/" class="global-brand">P<span>U</span>NYCODEX</a>
+            <a href="https://punicodex.com/" class="global-brand"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="130" height="14"></a>
             <div class="global-links">
                 <a href="https://punicodex.com/pantheon/">Pantheon</a>
                 <a href="https://punicodex.com/lexicon/">Lexicon</a>

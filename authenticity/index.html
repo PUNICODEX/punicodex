@@ -21,11 +21,20 @@
   <meta name="twitter:description" content="Detect homograph spoofs and mixed-script attacks against canonical Unicode names.">
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="/css/punicodex-tokens.css">
+  <link rel="stylesheet" href="/css/brand-overrides.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+  <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+  <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+  <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
 </head>
 <body data-api-endpoint="/api/v1/authenticity/check/">
   <nav class="main-nav" id="main-nav">
     <div class="nav-inner">
-      <a href="/" class="nav-wordmark">P<span class="accent">U</span>NYCODEX</a>
+      <a href="/" class="nav-wordmark"><picture><source srcset="/assets/brand/01-logos/punicodex-lockup-horizontal-gold.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-lockup-horizontal-gold.png" alt="PuniCodex — The Unicode Pantheon" width="520" height="113"></picture></a>
       <div class="nav-links">
         <a href="/pantheon/" class="nav-link">Pantheon</a>
         <a href="/realms/" class="nav-link">Realms</a>
@@ -90,6 +99,11 @@
       </p>
     </section>
 
+    <picture>
+      <source srcset="/assets/brand/13-page-visuals/authenticity/cylinder-seal.webp" type="image/webp">
+      <img class="pc-art checker-seal" src="/assets/brand/13-page-visuals/authenticity/cylinder-seal.png" alt="The Cylinder Seal — humanity's first authentication device" width="560" height="560" fetchpriority="high" decoding="async">
+    </picture>
+
     <section class="checker-card">
       <div class="mode-toggle">
         <button class="mode-btn active" data-mode="check" id="mode-check">Check</button>
@@ -151,7 +165,13 @@
         <ul id="verdict-recommendations" class="recommendations"></ul>
 
         <div id="canonical-match" class="canonical-match hidden">
-          <h3>Canonical Match</h3>
+          <div class="match-seal-row">
+            <picture>
+              <source srcset="/assets/brand/08-seals-stamps/punicodex-official-seal.webp" type="image/webp">
+              <img class="match-seal" src="/assets/brand/08-seals-stamps/punicodex-official-seal.png" alt="PuniCodex official seal — verified by the Codex" width="1000" height="1000" loading="lazy" decoding="async">
+            </picture>
+            <h3>Canonical Match</h3>
+          </div>
           <div class="match-grid">
             <div><span class="meta-key">ID</span><span id="match-id" class="meta-value"></span></div>
             <div><span class="meta-key">ASCII</span><span id="match-ascii" class="meta-value"></span></div>

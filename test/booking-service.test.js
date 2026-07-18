@@ -65,6 +65,8 @@ const {
   recoverBookings,
 } = require('../platform/api/booking-service.js');
 const { createBooking } = require('../platform/api/bookings.js');
+const { invoke } = require('./helpers/http.js');
+const slotsHandler = require('../api/slots/[[...slug]].js');
 const {
   getSlotId,
   getSlotSlug,
@@ -135,6 +137,73 @@ test('getSlot throws 404 for unknown slot', async () => {
     assert.ok(err instanceof BookingError);
     assert.strictEqual(err.status, 404);
   }
+});
+
+// Token split (second-pass review finding 1): public slot payloads expose a
+// write-only public_id for ad tracking and must never include the private
+// analytics_token management credential.
+test('GET /api/slots responses expose public_id, never analytics_token', async () => {
+  const token = await makeVerifiedEmail('slots-public-id@example.com');
+  const slotId = getSlotId(__filename, 'nike', 11);
+  const result = await createBookingRequest({
+    slotId,
+    email: 'slots-public-id@example.com',
+    companyName: 'Slots Co',
+    leaseMonths: 1,
+    trialMonths: 0,
+    verificationToken: token,
+  });
+
+  const listRes = await invoke(slotsHandler, 'GET', '/api/slots/?site=nike');
+  assert.strictEqual(listRes.status, 200);
+  const listBody = JSON.stringify(listRes.body);
+  assert.ok(!listBody.includes('analytics_token'), 'analytics_token key leaked in /api/slots');
+  assert.ok(!listBody.includes(result.token), 'private token value leaked in /api/slots');
+  const reserved = listRes.body.slots.find((s) => s.id === slotId);
+  assert.ok(reserved, 'reserved slot present in payload');
+  assert.ok(reserved.public_id, 'public tracking id exposed for slot display');
+  assert.notStrictEqual(reserved.public_id, result.token);
+
+  const slug = getSlotSlug(__filename, 'nike', 11);
+  const oneRes = await invoke(slotsHandler, 'GET', `/api/slots/${slug}/?site=nike`, {
+    params: { slug: [slug] },
+  });
+  assert.strictEqual(oneRes.status, 200);
+  const oneBody = JSON.stringify(oneRes.body);
+  assert.ok(!oneBody.includes('analytics_token'), 'analytics_token key leaked in /api/slots/:slug');
+  assert.ok(!oneBody.includes(result.token), 'private token value leaked in /api/slots/:slug');
+  assert.strictEqual(oneRes.body.public_id, reserved.public_id);
+});
+
+test('getSlot exposes public_id but never analytics_token', async () => {
+  const token = await makeVerifiedEmail('slot-public-id@example.com');
+  await createBookingRequest({
+    slotId: getSlotId(__filename, 'nike', 12),
+    email: 'slot-public-id@example.com',
+    companyName: 'Slot Co',
+    leaseMonths: 1,
+    trialMonths: 0,
+    verificationToken: token,
+  });
+  const slug = getSlotSlug(__filename, 'nike', 12);
+  const slot = await getSlot(slug, 'nike');
+  assert.ok(!('analytics_token' in slot));
+  assert.ok(slot.public_id);
+});
+
+test('createBooking returns distinct publicId and management token', async () => {
+  const result = await createBooking({
+    slotId: getSlotId(__filename, 'nike', 13),
+    email: 'token-split@example.com',
+    companyName: 'Split Co',
+    leaseMonths: 1,
+    trialMonths: 0,
+    siteSlug: 'nike',
+    status: 'pending_payment',
+  });
+  assert.ok(result.token);
+  assert.ok(result.publicId);
+  assert.notStrictEqual(result.publicId, result.token);
 });
 
 test('sendVerification rejects invalid email', async () => {

@@ -54,12 +54,42 @@
     top: calc(var(--nav-height) + var(--space-4));
 }
 
+/* The Spark eclipse — sits at the story's pivot (brand integration §4.13). */
+.spark-eclipse {
+    width: min(360px, 100%);
+    margin: 0 auto var(--space-4);
+}
+
 .sidebar-card {
     background: var(--surface);
     border: 1px solid var(--gold-dim);
     border-radius: var(--radius-lg);
     padding: var(--space-4);
     margin-bottom: var(--space-3);
+}
+
+/* "By the Numbers" — gold top-border (brand integration step 5.2). */
+.sidebar-card-numbers {
+    border-top: 2px solid var(--gold);
+}
+
+/* "Built By" — laurel of scholarship behind the card (brand §4.3). */
+.sidebar-card-laurel {
+    position: relative;
+    overflow: hidden;
+}
+
+.sidebar-card-laurel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("/assets/brand/03-ornaments/punicodex-laurel-wreath.png") center / min(280px, 80%) no-repeat;
+    opacity: 0.25;
+    pointer-events: none;
+}
+
+.sidebar-card-laurel > * {
+    position: relative;
 }
 
 .sidebar-card h4 {

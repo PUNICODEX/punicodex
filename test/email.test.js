@@ -12,6 +12,7 @@ const {
   escapeHtml,
   notifyPaymentPending,
   notifyRejected,
+  notifyScholarsAccountProvisioned,
   sendBookingConfirmation,
   sendDashboardLinks,
 } = require('../platform/api/email.js');
@@ -102,6 +103,90 @@ test('sendDashboardLinks escapes booking fields', async () => {
     ],
   });
   assert.strictEqual(result.mocked, true);
+});
+
+test('notifyScholarsAccountProvisioned escapes display and institution names', async () => {
+  const result = await notifyScholarsAccountProvisioned({
+    email: 'scholar@test.edu',
+    displayName: '<script>alert(1)</script>',
+    institutionName: '<b>Evil</b>',
+    tempPassword: 'tmp',
+  });
+  assert.strictEqual(result.mocked, true);
+});
+
+test('notifyScholarsAccountProvisioned logs and mocks when no RESEND_API_KEY is set', async () => {
+  const logged = [];
+  const originalLog = console.log;
+  console.log = (...args) => logged.push(args.join(' '));
+  let result;
+  try {
+    result = await notifyScholarsAccountProvisioned({
+      email: 'scholar@test.edu',
+      displayName: 'Scholar',
+      institutionName: 'Test University',
+      tempPassword: 'tmp-pass-123',
+    });
+  } finally {
+    console.log = originalLog;
+  }
+  assert.strictEqual(result.mocked, true);
+  assert.ok(logged.some((line) => line.includes('[EMAIL] No RESEND_API_KEY configured')));
+  assert.ok(logged.some((line) => line.includes('To: scholar@test.edu')));
+  assert.ok(
+    logged.some((line) =>
+      line.includes('Subject: Your PuniCodex Scholarly Edition account — Test University')
+    )
+  );
+});
+
+test('notifyScholarsAccountProvisioned sends temp password and login URL through Resend', async () => {
+  const emailPath = require.resolve('../platform/api/email.js');
+  const originalFetch = globalThis.fetch;
+  const hadKey = 'RESEND_API_KEY' in process.env;
+  const priorKey = process.env.RESEND_API_KEY;
+
+  let captured = null;
+  globalThis.fetch = async (url, options) => {
+    captured = { url, options };
+    return { ok: true, json: async () => ({ id: 'resend-test-id' }) };
+  };
+
+  try {
+    process.env.RESEND_API_KEY = 'test-resend-key';
+    delete require.cache[emailPath];
+    const freshEmail = require(emailPath);
+
+    const result = await freshEmail.notifyScholarsAccountProvisioned({
+      email: 'scholar@test.edu',
+      displayName: 'Scholar',
+      institutionName: 'Test University',
+      tempPassword: 'tmp-pass-123',
+    });
+
+    assert.strictEqual(result.success, true);
+    assert.strictEqual(result.id, 'resend-test-id');
+    assert.ok(captured, 'expected fetch to be called');
+    assert.strictEqual(captured.url, 'https://api.resend.com/emails');
+    assert.strictEqual(captured.options.headers.Authorization, 'Bearer test-resend-key');
+    const payload = JSON.parse(captured.options.body);
+    assert.deepStrictEqual(payload.to, ['scholar@test.edu']);
+    assert.strictEqual(
+      payload.subject,
+      'Your PuniCodex Scholarly Edition account — Test University'
+    );
+    assert.ok(payload.html.includes('tmp-pass-123'), 'html body must contain the temp password');
+    assert.ok(
+      payload.html.includes('https://punicodex.com/scholars/login/'),
+      'html body must contain the login URL'
+    );
+    assert.ok(payload.text.includes('tmp-pass-123'), 'text body must contain the temp password');
+  } finally {
+    globalThis.fetch = originalFetch;
+    if (hadKey) process.env.RESEND_API_KEY = priorKey;
+    else delete process.env.RESEND_API_KEY;
+    delete require.cache[emailPath];
+  }
 });
 
 run();

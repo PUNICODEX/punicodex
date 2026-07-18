@@ -18,8 +18,8 @@ in-process handlers. No dynamic scanning of the deployed site.
 
 | # | Severity | Finding | Status |
 |---|----------|---------|--------|
-| 1 | HIGH | Booking `analytics_token` (management + dashboard credential) is publicly exposed via `/api/slots` and temple page markup | **Open — reported** |
-| 2 | MED | `/api/analytics/click` is an open redirect | **Open — reported** |
+| 1 | HIGH | Booking `analytics_token` (management + dashboard credential) is publicly exposed via `/api/slots` and temple page markup | **Fixed 2026-07-18 (follow-up), with tests** |
+| 2 | MED | `/api/analytics/click` is an open redirect | **Fixed 2026-07-18 (follow-up), with tests** |
 | 3 | MED | Portal tokens of any role (incl. `viewer`) pass legacy `requireAdmin` and can call legacy admin mutations | Documented-accepted, residual risk |
 | 4 | MED | Five fuzz-confirmed 500-on-bad-shape crashes (portal login ×2, verify send/check, bookings recover, crawl events) | **Fixed in this pass, with tests** |
 | 5 | LOW | `/api/analytics/dashboard`: non-string token crashed the SQL bind; 500 body leaked `err.message` | **Fixed in this pass, with tests** |
@@ -28,9 +28,9 @@ in-process handlers. No dynamic scanning of the deployed site.
 | 8 | LOW | Dashboard/booking bearer tokens in URLs; no rotation; no rate limit on token-GET routes | Documented-accepted, residual risk |
 | 9 | LOW | Portal `viewer` role can read patron emails + Stripe customer IDs | Documented-accepted, residual risk |
 
-## Open findings (reported, not fixed in this pass)
+## Findings 1-2 — fixed in follow-up (2026-07-18, with regression tests)
 
-### 1 — HIGH: the booking management token is public for every live slot
+### 1 — HIGH: the booking management token is public for every live slot → FIXED
 
 `getSlots`/`getSlotBySlug` select `b.analytics_token`
 (`platform/api/bookings.js:52,85`) and the public, unauthenticated slot
@@ -55,7 +55,27 @@ half-fixed in this pass. **Recommendation:** issue a separate public
 recording) and keep `analytics_token` secret, emailed only; until then,
 treat the token as public and re-evaluate what it may authorize.
 
-### 2 — MED: open redirect in the click tracker
+**Fix (2026-07-18):** token split implemented as recommended. New nullable
+`bookings.public_id` column (unique index, 192-bit random, backfilled;
+`platform/db/migrate-booking-public-id.js`, idempotent, added to the
+`db-init` chain). `getSlots`/`getSlotBySlug` now select `b.public_id`
+instead of `b.analytics_token`, so no public payload carries the
+management token; `createBooking` mints both and returns
+`{ id, token, publicId }`. Pixel/click/viewability resolve bookings via
+the new `getBookingByPublicId` (write-only event recording);
+`templates/flagship/flagship.js` tracks with `slot.public_id`. The private
+`analytics_token` remains the management/dashboard credential (booking
+routes, `getDashboardMetrics`, emails, admin) and is never selected into
+slot payloads. Regression tests: "GET /api/slots responses expose
+public_id, never analytics_token", "getSlot exposes public_id but never
+analytics_token", "createBooking returns distinct publicId and management
+token" (`test/booking-service.test.js`); "trackPixel/trackViewability do
+not record events for the private analytics_token", "flagship template
+tracks with slot.public_id, never slot.analytics_token"
+(`test/ad-analytics.test.js`). Note: generated `sites/{id}/script.js`
+copies pick up `slot.public_id` on the next `npm run generate`.
+
+### 2 — MED: open redirect in the click tracker → FIXED
 
 `isSafeRedirectUrl` returns `true` for any valid http/https URL
 (`platform/api/ad-analytics.js:17-18`), and `trackClick` redirects even
@@ -65,6 +85,27 @@ from a first-party domain — a ready-made phishing redirector (CWE-601).
 **Recommendation:** resolve the booking by token and redirect only to its
 registered `website_url` (400 otherwise); the caller-supplied `url` should
 never be authoritative.
+
+**Fix (2026-07-18):** redirect targets are now restricted in
+`isSafeRedirectUrl` (`platform/api/ad-analytics.js`) to: (a) same-origin
+relative paths (`//host` protocol-relative and `/\host` backslash forms
+rejected), (b) an allowlist of owned hosts (punicodex.com, punycodex.com,
+www variants) and the registrar affiliate hosts already used by the
+project (www.godaddy.com, www.namecheap.com, porkbun.com, www.dynadot.com,
+spaceship.com — see `buildRegistrarLinks` in
+`platform/api/crawler-db.js`), and (c) the booked advertiser's own
+registered website matched by origin — bound server-side to the booking
+the public tracking ID resolves to (booking `website_url` plus per-slot
+creative overrides), per the recommendation; an allowlist-only approach
+would have 400'd every legitimate advertiser click-through since tenant
+sites are arbitrary external hosts. Everything else (evil.com, subdomain
+spoofs, `javascript:`, encoded `%2e`/`%2f` variants) gets 400.
+Regression tests: "isSafeRedirectUrl allows owned and registrar allowlist
+hosts", "rejects unregistered external URLs", "rejects protocol-relative
+and backslash URLs", "rejects subdomain spoofs and encoded variants",
+"allows the booking registered website by origin", "trackClick redirects
+to the booking registered website", "trackClick rejects unregistered
+external URLs even with a valid token" (`test/ad-analytics.test.js`).
 
 ## Fixed in this pass (with regression tests)
 
@@ -217,12 +258,12 @@ columns instead.
 
 ## Feature gaps worth building
 
-1. **Split the booking token** — public tracking ID for
-   pixel/click/viewability vs. a secret (rotatable) management token;
-   resolves finding 1 without weakening tracking.
-2. **Server-side click-target binding** — redirect `/api/analytics/click`
-   only to the booking's registered `website_url`; kills the open
-   redirect and click-URL tampering at once.
+1. ~~**Split the booking token**~~ — done 2026-07-18 (finding 1 fix):
+   public `public_id` for pixel/click/viewability vs. the secret management
+   `analytics_token`.
+2. ~~**Server-side click-target binding**~~ — done 2026-07-18 (finding 2
+   fix): click redirects limited to relative paths, owned/registrar
+   allowlist hosts, and the booking's registered website origin.
 3. **Transactional email wiring** — temp passwords and dashboard links are
    currently relayed out-of-band; the Resend path exists but unconfigured
    flows still log-and-drop.
@@ -244,4 +285,15 @@ node test/security-hardening.test.js     # passed
 node test/admin-portal.test.js           # all passed (incl. new malformed-shape test)
 node test/ad-analytics.test.js           # 18 passed, 0 failed (incl. new masking/shape test)
 npx biome format <changed files>         # clean
+```
+
+Follow-up verification for the findings 1-2 fixes, run 2026-07-18 against
+this tree (Windows, Node 22):
+
+```bash
+node platform/db/migrate-booking-public-id.js   # applied; second run idempotent
+node test/ad-analytics.test.js                  # 27 passed, 0 failed
+node test/booking-service.test.js               # 22 passed, 0 failed
+node test/portal-endpoints.test.js              # all tests passed
+npx biome format <changed files>                # clean
 ```

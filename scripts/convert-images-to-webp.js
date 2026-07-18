@@ -40,13 +40,28 @@ function writeFileWithRetry(filePath, data, encoding = 'utf8', retries = 5, dela
 function writeFileAtomic(filePath, data, encoding = 'utf8') {
   const tmpPath = `${filePath}.tmp.${process.pid}`;
   writeFileWithRetry(tmpPath, data, encoding);
-  try {
-    fs.renameSync(tmpPath, filePath);
-  } catch (err) {
+  // The rename is just as lock-prone on Windows (AV scanners grab the fresh
+  // .tmp file): retry with the same transient backoff as the write itself.
+  for (let attempt = 1; attempt <= 5; attempt++) {
     try {
-      fs.unlinkSync(tmpPath);
-    } catch {}
-    throw err;
+      fs.renameSync(tmpPath, filePath);
+      return;
+    } catch (err) {
+      const isTransient =
+        err.code === 'EBUSY' ||
+        err.code === 'EAGAIN' ||
+        err.code === 'UNKNOWN' ||
+        err.code === 'EPERM';
+      if (attempt === 5 || !isTransient) {
+        try {
+          fs.unlinkSync(tmpPath);
+        } catch {}
+        throw err;
+      }
+      const ms = 100 * attempt;
+      console.warn(`  transient rename error for ${filePath} (${err.code}), retrying in ${ms}ms...`);
+      Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
+    }
   }
 }
 
