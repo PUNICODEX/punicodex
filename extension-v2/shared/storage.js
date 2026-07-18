@@ -5,7 +5,7 @@
 const DEFAULTS = Object.freeze({
   enabled: true,
   warnings: true,
-  apiEndpoint: 'https://punicodex.com/api/v2/',
+  apiEndpoint: 'https://punicodex.com/api/v1',
   apiKey: '',
   defaultAction: 'warn',
   uiTheme: 'inline',

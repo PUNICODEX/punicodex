@@ -5,8 +5,7 @@
   "description": "Detect homograph spoofs, mixed-script names, and lookalike domains with the PuniCodex Authenticity API.",
   "permissions": [
     "storage",
-    "activeTab",
-    "scripting"
+    "activeTab"
   ],
   "host_permissions": [
     "https://*/*",
@@ -31,8 +30,7 @@
       "matches": ["<all_urls>"],
       "js": ["content/content.js"],
       "css": ["content/content.css"],
-      "run_at": "document_end",
-      "type": "module"
+      "run_at": "document_end"
     }
   ],
   "options_page": "options/options.html",

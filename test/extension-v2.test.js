@@ -251,4 +251,88 @@ test('handleMessage checkLink returns verdict', async () => {
   restoreFetch();
 });
 
+// API-down / offline behavior (fail-open contract)
+
+test('getApiBase strips trailing slashes and defaults to the v1 API', async () => {
+  globalThis.chrome = createMockChrome();
+  const { getApiBase } = await import('../extension-v2/background/background.js');
+  const { DEFAULTS } = await import('../extension-v2/shared/storage.js');
+  assert.strictEqual(
+    getApiBase({ apiEndpoint: 'https://x.example/api/' }),
+    'https://x.example/api'
+  );
+  assert.strictEqual(
+    getApiBase({ apiEndpoint: 'https://x.example/api///' }),
+    'https://x.example/api'
+  );
+  assert.ok(DEFAULTS.apiEndpoint.includes('/api/v1'));
+  assert.ok(!DEFAULTS.apiEndpoint.endsWith('/'));
+});
+
+test('checkUrl sends an AbortSignal so a hung API times out', async () => {
+  globalThis.chrome = createMockChrome();
+  let seenSignal = null;
+  mockFetch((_url, options) => {
+    seenSignal = options?.signal;
+    return { body: { data: { verdict: 'unknown', severity: 'none' } } };
+  });
+  const { checkUrl } = await import('../extension-v2/background/background.js');
+  await checkUrl('https://signal-test.example');
+  assert.ok(seenSignal instanceof AbortSignal);
+  restoreFetch();
+});
+
+test('checkUrl rejects on API 500 so callers can fail open', async () => {
+  globalThis.chrome = createMockChrome();
+  mockFetch(() => ({ ok: false, status: 500, text: 'server error' }));
+  const { checkUrl } = await import('../extension-v2/background/background.js');
+  await assert.rejects(() => checkUrl('https://api-500.example'), /API error 500/);
+  restoreFetch();
+});
+
+test('handleTabUpdate fails open when the API is unreachable', async () => {
+  const chromeMock = createMockChrome();
+  globalThis.chrome = chromeMock;
+  mockFetch(() => {
+    throw new TypeError('fetch failed');
+  });
+  const mod = await import('../extension-v2/background/background.js');
+  mod.handleTabUpdate(44, { status: 'complete' }, { url: 'https://offline.example', id: 44 });
+  await new Promise((r) => setTimeout(r, 20));
+  // No redirect to the interstitial and no banner: navigation proceeds untouched.
+  assert.strictEqual(chromeMock.tabs._updates.length, 0);
+  assert.strictEqual(chromeMock.tabs._sent.length, 0);
+  restoreFetch();
+});
+
+test('handleTabUpdate fails open on API 500', async () => {
+  const chromeMock = createMockChrome();
+  globalThis.chrome = chromeMock;
+  mockFetch(() => ({ ok: false, status: 500, text: 'server error' }));
+  const mod = await import('../extension-v2/background/background.js');
+  mod.handleTabUpdate(45, { status: 'complete' }, { url: 'https://api-down.example', id: 45 });
+  await new Promise((r) => setTimeout(r, 20));
+  assert.strictEqual(chromeMock.tabs._updates.length, 0);
+  assert.strictEqual(chromeMock.tabs._sent.length, 0);
+  restoreFetch();
+});
+
+test('handleMessage checkLink reports failure when the API is down', async () => {
+  const chromeMock = createMockChrome();
+  globalThis.chrome = chromeMock;
+  mockFetch(() => {
+    throw new TypeError('fetch failed');
+  });
+  const mod = await import('../extension-v2/background/background.js');
+  let response = null;
+  mod.handleMessage({ action: 'checkLink', url: 'https://down-link.example' }, {}, (res) => {
+    response = res;
+  });
+  await new Promise((r) => setTimeout(r, 20));
+  assert.ok(response);
+  assert.strictEqual(response.success, false);
+  assert.ok(response.error);
+  restoreFetch();
+});
+
 run();

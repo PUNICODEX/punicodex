@@ -321,7 +321,7 @@
                 return;
             }
             const url = new URL(tab.url);
-            const apiUrl = `https://punicodex.com/api/v2/authenticity/check/?input=${encodeURIComponent(url.href)}&type=url`;
+            const apiUrl = `https://punicodex.com/api/v1/authenticity/check?input=${encodeURIComponent(url.href)}&type=url`;
             const res = await fetch(apiUrl, { cache: 'no-store' });
             if (!res.ok) throw new Error('API unavailable');
             const payload = await res.json();

@@ -6,6 +6,7 @@ import { getAll, DEFAULTS } from '../shared/storage.js';
 import { evaluatePolicy, normalizePolicy } from '../shared/policy.js';
 
 const CACHE_TTL_MS = 5 * 60 * 1000;
+const FETCH_TIMEOUT_MS = 8000;
 const cache = new Map();
 
 function isCheckableUrl(url) {
@@ -17,9 +18,12 @@ function isCheckableUrl(url) {
   }
 }
 
+function getApiBase(settings) {
+  return String(settings.apiEndpoint || DEFAULTS.apiEndpoint).replace(/\/+$/, '');
+}
+
 function getApiUrl(settings, url) {
-  const base = settings.apiEndpoint || DEFAULTS.apiEndpoint;
-  return `${base}/authenticity/check?input=${encodeURIComponent(url)}&type=url`;
+  return `${getApiBase(settings)}/authenticity/check?input=${encodeURIComponent(url)}&type=url`;
 }
 
 function buildInterstitialUrl(tabUrl, verdict, settings) {
@@ -67,7 +71,14 @@ async function checkUrl(url) {
     headers.Authorization = `Bearer ${settings.apiKey}`;
   }
 
-  const response = await fetch(apiUrl, { method: 'GET', headers, cache: 'no-store' });
+  // Time out so a hung API fails open (navigation/check proceeds) instead of
+  // leaving the request pending forever; all callers treat a throw as fail-open.
+  const response = await fetch(apiUrl, {
+    method: 'GET',
+    headers,
+    cache: 'no-store',
+    signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
+  });
   if (!response.ok) {
     throw new Error(`API error ${response.status}`);
   }
@@ -148,8 +159,7 @@ function handleMessage(request, _sender, sendResponse) {
 
 async function reportVerdict({ input, type, comment }) {
   const settings = await getAll();
-  const base = settings.apiEndpoint || DEFAULTS.apiEndpoint;
-  const url = `${base}/authenticity/report`;
+  const url = `${getApiBase(settings)}/authenticity/report`;
   const headers = { 'Content-Type': 'application/json' };
   if (settings.apiKey) {
     headers.Authorization = `Bearer ${settings.apiKey}`;
@@ -159,6 +169,7 @@ async function reportVerdict({ input, type, comment }) {
     method: 'POST',
     headers,
     body: JSON.stringify({ input, type, comment: comment || '' }),
+    signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
   });
 
   const text = await response.text();
@@ -181,6 +192,7 @@ chrome.runtime.onMessage.addListener(handleMessage);
 
 export {
   isCheckableUrl,
+  getApiBase,
   getApiUrl,
   buildInterstitialUrl,
   decideActionFromSettings,

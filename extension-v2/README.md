@@ -4,12 +4,15 @@ Manifest V3 browser extension that integrates the PuniCodex Authenticity Checker
 
 ## Features
 
-- Checks every tab URL against the Authenticity API.
+- Checks every tab URL against the Authenticity API (`/api/v1/authenticity/check`).
 - Blocks high/critical threats by redirecting to the interstitial page.
 - Warns users with a dismissible top banner.
 - Highlights suspicious links on the page.
 - Manual name/domain/URL checker in the popup.
 - Configurable policy, allowlist, blocklist, and API endpoint.
+- **Fails open** when the API is unreachable, errors, or times out (8 s): an
+  outage never blocks navigation, banners, or popup checks — checks simply
+  skip until the next navigation or manual retry.
 
 ## Install (developer mode)
 

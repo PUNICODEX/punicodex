@@ -128,6 +128,7 @@ const SUITES = [
   { name: 'Glyph Renderer Tests', cmd: 'node test/glyph-renderer.test.js' },
   { name: 'Authenticity SDK JS Tests', cmd: 'node test/sdk-js.test.js' },
   { name: 'Authenticity Extension v2 Tests', cmd: 'node test/extension-v2.test.js' },
+  { name: 'Extensions Audit Tests', cmd: 'node test/extensions-audit.test.js' },
   { name: 'Policy Engine Tests', cmd: 'node test/policy-engine.test.js' },
   { name: 'RBAC Tests', cmd: 'node test/rbac.test.js' },
   { name: 'Audit Log Tests', cmd: 'node test/audit-log.test.js' },

@@ -11,6 +11,7 @@ chrome.runtime.onInstalled.addListener((details) => {
             showPreview: true,
             siteMode: 'all',
             siteList: [],
+            authenticityWarnings: true,
         });
         console.log('PuniCodex Type installed.');
     }
@@ -20,8 +21,27 @@ chrome.runtime.onInstalled.addListener((details) => {
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.action === 'getSettings') {
         chrome.storage.sync.get([
-            'enabled', 'pantheonFilter', 'inlineMode', 'showPreview', 'siteMode', 'siteList'
+            'enabled', 'pantheonFilter', 'inlineMode', 'showPreview', 'siteMode', 'siteList',
+            'authenticityWarnings'
         ]).then(sendResponse);
+        return true; // async response
+    }
+    if (request.action === 'checkAuthenticity') {
+        // Runs in the service worker: extension contexts with host permissions are
+        // CORS-exempt, unlike page-context fetches from the content script.
+        const apiUrl = `https://punicodex.com/api/v1/authenticity/check?input=${encodeURIComponent(request.url)}&type=url`;
+        fetch(apiUrl, { cache: 'no-store' })
+            .then(res => {
+                if (!res.ok) throw new Error('API unavailable');
+                return res.json();
+            })
+            .then(payload => {
+                const data = payload && payload.data ? payload.data : payload;
+                sendResponse({ success: true, data });
+            })
+            .catch(err => {
+                sendResponse({ success: false, error: err.message });
+            });
         return true; // async response
     }
     if (request.action === 'copyToClipboard') {

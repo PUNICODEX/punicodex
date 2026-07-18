@@ -57,7 +57,7 @@ async function checkManual() {
   elements.checkBtn.disabled = true;
   try {
     const settings = await getAll();
-    const base = settings.apiEndpoint || DEFAULTS.apiEndpoint;
+    const base = String(settings.apiEndpoint || DEFAULTS.apiEndpoint).replace(/\/+$/, '');
     const type = input.includes('://') || input.includes('.') ? 'url' : 'term';
     const url = `${base}/authenticity/check?input=${encodeURIComponent(input)}&type=${type}`;
     const headers = {};

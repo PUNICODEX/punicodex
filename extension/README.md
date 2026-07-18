@@ -4,7 +4,7 @@ Scholarly transliteration for classical names. Type `apollo` → Apóllōn.
 
 ## Features
 
-- **859 entries** across 21 pantheons (Greek, Norse, Egyptian, Sanskrit, Japanese, Nahuatl, Yoruba, and more)
+- **895 entries** across 22 pantheons (Greek, Norse, Egyptian, Sanskrit, Japanese, Nahuatl, Yoruba, and more)
 - **Inline autocomplete** on any website — type in any input field and see suggestions
 - **Popup lookup** — press `Ctrl+Shift+P` (Mac: `⌘+Shift+P`) for the full typing interface
 - **Source citations** — every entry cites standard references (LSJ, Faulkner, MW, etc.)
@@ -38,7 +38,8 @@ extension/
 │   └── options.js
 ├── shared/
 │   ├── engine.js          # Pure trie engine (shared with website)
-│   └── lexicon.js         # 859-entry scholarly lexicon
+│   ├── lexicon.js         # 895-entry scholarly lexicon
+│   └── lore-catalog.json  # Flagship lore snippets
 └── icons/
     └── icon{16,32,48,128}.png
 ```
@@ -47,7 +48,7 @@ extension/
 
 - **Content script** detects focused `<input>` and `<textarea>` fields, shows inline autocomplete dropdown
 - **Popup** provides the full typing interface with result card, sources, and copy-to-clipboard
-- **Background worker** handles settings persistence and clipboard API fallback
+- **Background worker** handles settings persistence, clipboard API fallback, and authenticity API checks (the content script does not fetch cross-origin itself)
 - **Engine** is pure JavaScript with no DOM dependencies — reusable across website and extension
 
 ## Keyboard Shortcuts

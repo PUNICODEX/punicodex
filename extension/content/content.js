@@ -13,6 +13,7 @@
     let settings = { enabled: true, pantheonFilter: 'all', inlineMode: true, showPreview: true, siteMode: 'all', siteList: [] };
     chrome.runtime.sendMessage({ action: 'getSettings' }, (response) => {
         if (response) settings = { ...settings, ...response };
+        checkPageAuthenticity();
     });
 
     // Domain matching
@@ -237,28 +238,32 @@
     window.addEventListener('scroll', hideDropdown, { passive: true });
     window.addEventListener('resize', hideDropdown);
 
-    // Authenticity warning banner for suspicious current-page domains
-    async function checkPageAuthenticity() {
+    // Authenticity warning banner for suspicious current-page domains.
+    // The check runs in the service worker: page-context fetches to the API are
+    // blocked by CORS on third-party origins, extension contexts are not.
+    function checkPageAuthenticity() {
         try {
             if (settings.authenticityWarnings === false) return;
-            const apiUrl = `https://punicodex.com/api/v2/authenticity/check/?input=${encodeURIComponent(window.location.href)}&type=url`;
-            const res = await fetch(apiUrl, { cache: 'no-store' });
-            if (!res.ok) return;
-            const payload = await res.json();
-            const data = payload && payload.data ? payload.data : payload;
-            if (!data || !data.severity) return;
-            if (data.severity !== 'high' && data.severity !== 'critical') return;
+            chrome.runtime.sendMessage(
+                { action: 'checkAuthenticity', url: window.location.href },
+                (response) => {
+                    try {
+                        if (!response || !response.success) return;
+                        const data = response.data;
+                        if (!data || !data.severity) return;
+                        if (data.severity !== 'high' && data.severity !== 'critical') return;
 
-            const banner = document.createElement('div');
-            banner.id = 'punicodex-authenticity-warning';
-            banner.textContent = `PuniCodex warning: ${data.label || data.verdict} — ${data.reason || ''}`;
-            document.body.appendChild(banner);
+                        const banner = document.createElement('div');
+                        banner.id = 'punicodex-authenticity-warning';
+                        banner.textContent = `PuniCodex warning: ${data.label || data.verdict} — ${data.reason || ''}`;
+                        document.body.appendChild(banner);
+                    } catch (_e) {
+                        // Rendering issues are non-fatal; warnings are advisory.
+                    }
+                }
+            );
         } catch (_e) {
-            // Network or CORS issues are expected on some pages; fail silently.
+            // Messaging unavailable (e.g. extension reloaded); fail silently.
         }
     }
-
-    checkPageAuthenticity();
-
-    console.log('PuniCodex Type content script loaded.');
 })();

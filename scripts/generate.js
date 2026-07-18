@@ -62,6 +62,7 @@ const scripts = [
   'scripts/inject-analytics.js',
   'scripts/inject-university-collaborators.js',
   'scripts/sync-admin-portal.js',
+  'scripts/sync-interstitial.js',
   'scripts/sync-mobile-menu.js',
   'scripts/update-data-version.js',
   'scripts/generate-synthetic-qa.js',
