@@ -217,6 +217,7 @@ function pantheonLabel(pantheon) {
       celtic: 'Celtic',
       mesopotamian: 'Mesopotamian',
       polynesian: 'Polynesian',
+      roman: 'Roman',
       japanese: 'Japanese',
       nahuatl: 'Nahuatl',
       yoruba: 'Yoruba',

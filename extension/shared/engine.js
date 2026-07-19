@@ -274,6 +274,7 @@ const PUNICODEX_ENGINE = {
         celtic: '🌿',
         mesopotamian: '🏛️',
         polynesian: '🌊',
+        roman: '🦅',
         japanese: '⛩️',
         nahuatl: '🐍',
         yoruba: '🥁',
