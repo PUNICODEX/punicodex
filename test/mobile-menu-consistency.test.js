@@ -133,13 +133,17 @@ test('creatives strip mirrors the flagship temple strip links', () => {
   }
 });
 
-test('realms local script toggles the mobile menu, not the hidden nav-links', () => {
+test('realms defers mobile toggling to px-core (no duplicate handler)', () => {
   const script = readPage(path.join('realms', 'script.js'));
-  assert.ok(script.includes('mobile-menu'), 'realms script references mobile-menu');
+  // 2026-07-18: realms/script.js had its own #nav-toggle handler that raced
+  // px-core's canonical one (open→close in a single click). The page script
+  // must leave toggling to px-core and keep no duplicate handler.
   assert.ok(
-    !/navLinks\.classList\.toggle\('active'\)/.test(script),
-    'realms no longer toggles the display:none nav-links'
+    !script.includes("getElementById('nav-toggle')") &&
+      !script.includes('getElementById("nav-toggle")'),
+    'realms script must not register its own #nav-toggle handler'
   );
+  assert.ok(script.includes('px-core'), 'realms script documents the px-core handoff');
 });
 
 console.log('Mobile menu consistency test module loaded.');

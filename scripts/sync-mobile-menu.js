@@ -39,6 +39,7 @@ const CANONICAL_MENU = `<div class="mobile-menu" id="mobile-menu">
             <span class="mobile-menu-title">Resources</span>
             <div class="mobile-menu-group">
                 <a href="/codex/">Codex</a>
+                <a href="/blog/">Blog</a>
                 <a href="/api/v1/docs/">API</a>
                 <a href="/appraise/">Appraise</a>
                 <a href="/store/">Store</a>
@@ -61,13 +62,16 @@ const TARGETS = [
   { page: 'index.html', active: null },
   { page: 'oracle.html', active: '/oracle.html' },
   { page: path.join('about', 'index.html'), active: '/about/' },
+  { page: path.join('about', 'authenticity.html'), active: null },
   { page: path.join('appraise', 'index.html'), active: '/appraise/' },
   { page: path.join('art', 'index.html'), active: null },
   { page: path.join('authenticity', 'index.html'), active: null },
   { page: path.join('codex', 'index.html'), active: '/codex/' },
   { page: path.join('connections', 'index.html'), active: '/connections/' },
   { page: path.join('contact', 'index.html'), active: '/contact/' },
+  { page: path.join('creatives', 'index.html'), active: null },
   { page: path.join('lexicon', 'index.html'), active: '/lexicon/' },
+  { page: path.join('lexicon', 'cognates.html'), active: '/lexicon/' },
   { page: path.join('pantheon', 'index.html'), active: '/pantheon/' },
   { page: path.join('realms', 'index.html'), active: '/realms/' },
   { page: path.join('store', 'index.html'), active: '/store/' },

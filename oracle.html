@@ -58,26 +58,38 @@
   <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
   <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
   <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <link rel="stylesheet" href="/css/nav-more.css?v=1">
+    <link rel="stylesheet" href="/css/mobile-menu.css?v=1">
 </head>
 <body>
 
   <!-- Navigation -->
   <nav class="main-nav" id="main-nav">
     <div class="nav-inner">
-      <a href="/" class="nav-wordmark"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-gold.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-gold.png" alt="PuniCodex" width="440" height="46"></picture></a>
-      <div class="nav-links" aria-label="Main">
-        <a href="/pantheon/" class="nav-link">Pantheon</a>
-        <a href="/realms/" class="nav-link">Realms</a>
-        <a href="/lexicon/" class="nav-link">Lexicon</a>
-        <a href="/type/" class="nav-link">Type</a>
-        <a href="/search.html" class="nav-link">Search</a>
-        <a href="/tiers/" class="nav-link">Tier System</a>
-        <a href="/oracle.html" class="nav-link active">Oracle</a>
-        <a href="/codex/" class="nav-link">Codex</a>
-        <a href="/store/" class="nav-link">Store</a>
-        <a href="/about/" class="nav-link">About</a>
-      </div>
-      <a href="/contact/" class="nav-cta">Contact</a>
+      <a href="/" class="nav-wordmark"><picture><source srcset="/assets/brand/01-logos/punicodex-lockup-horizontal-gold.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-lockup-horizontal-gold.png" alt="PuniCodex — The Unicode Pantheon" width="520" height="113"></picture></a>
+      <div class="nav-links">
+                <a href="/pantheon/" class="nav-link">Pantheon</a>
+                <a href="/realms/" class="nav-link">Realms</a>
+                <a href="/lexicon/" class="nav-link">Lexicon</a>
+                <a href="/connections/" class="nav-link">Connections</a>
+                <a href="/type/" class="nav-link">Type</a>
+                <a href="/search.html" class="nav-link">Search</a>
+                <div class="nav-more">
+                    <button class="nav-more-toggle" aria-haspopup="true" aria-expanded="false">More</button>
+                    <div class="nav-more-menu">
+                        <a href="/tiers/" class="nav-link">Tier System</a>
+                        <a href="/oracle.html" class="nav-link active" aria-current="page">Oracle</a>
+                        <a href="/codex/" class="nav-link">Codex</a>
+                        <a href="/blog/" class="nav-link">Blog</a>
+                        <a href="/api/v1/docs/" class="nav-link">API</a>
+                        <a href="/appraise/" class="nav-link">Appraise</a>
+                        <a href="/store/" class="nav-link">Store</a>
+                        <a href="/about/" class="nav-link">About</a>
+                        <a href="/contact/" class="nav-link">Contact</a>
+                    </div>
+                </div>
+            </div>
+      <a href="/pantheon/" class="nav-cta"><span>Enter</span></a>
       <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -108,6 +120,7 @@
             <span class="mobile-menu-title">Resources</span>
             <div class="mobile-menu-group">
                 <a href="/codex/">Codex</a>
+                <a href="/blog/">Blog</a>
                 <a href="/api/v1/docs/">API</a>
                 <a href="/appraise/">Appraise</a>
                 <a href="/store/">Store</a>
@@ -666,5 +679,6 @@
       fallback.style.opacity = '1';
     }
   </script>
+    <script src="/js/px-core.js?v=perf8" defer></script>
 </body>
 </html>

@@ -280,6 +280,13 @@ mismatches it reports.
 20. Analytics injection (`inject-analytics.js`)
 21. University collaborator injection (`inject-university-collaborators.js`)
 22. Mobile menu sync (`sync-mobile-menu.js`)
+23. Desktop nav sync (`sync-desktop-nav.js`) — canonical desktop nav
+    (6 primary links + 9-item More dropdown + Enter CTA) across all
+    non-temple root pages; `css/nav-more.css` + `css/mobile-menu.css`
+    carry the component styles for pages without `main.css`. Guarded by
+    `test/menu-consistency.test.js`. The blog index generator
+    (`generate-blog-index.js`) consumes the same canonical builders —
+    never fork the item list.
 23. Data version (`update-data-version.js`)
 24. Model corpus export (`export-model-corpus.js`) — writes
     `data/corpus/entries.jsonl` + manifest; MUST precede the AI corpora,

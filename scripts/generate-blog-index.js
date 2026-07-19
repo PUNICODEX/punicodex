@@ -23,6 +23,9 @@ const BLOG_DIR = path.join(ROOT, 'platform', 'blog', 'content');
 const OUT_DIR = path.join(ROOT, 'blog');
 
 const { LEXICON } = require(path.join(ROOT, 'type', 'js', 'lexicon.js'));
+// Canonical navigation (single source of truth — never fork the item list).
+const { fullNavHtml } = require('./sync-desktop-nav.js');
+const { menuForPage } = require('./sync-mobile-menu.js');
 
 const archetypeSrc = fs.readFileSync(path.join(ROOT, 'js', 'archetypes-v2.js'), 'utf8');
 const ARCHETYPES = vm.runInNewContext(
@@ -198,6 +201,8 @@ const html = `<!DOCTYPE html>
 
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf17">
+    <link rel="stylesheet" href="/css/nav-more.css?v=1">
+    <link rel="stylesheet" href="/css/mobile-menu.css?v=1">
     <meta name="theme-color" content="#050505">
     <meta name="color-scheme" content="dark">
     <style>
@@ -243,68 +248,11 @@ const html = `<!DOCTYPE html>
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="main-nav" id="main-nav">
-        <div class="nav-inner">
-            <a href="/" class="nav-logo">PUNICODEX</a>
-            <div class="nav-links">
-                <a href="/pantheon/" class="nav-link">Pantheon</a>
-                <a href="/realms/" class="nav-link">Realms</a>
-                <a href="/lexicon/" class="nav-link">Lexicon</a>
-                <a href="/blog/" class="nav-link active">Blog</a>
-                <a href="/type/" class="nav-link">Type</a>
-                <a href="/search.html" class="nav-link">Search</a>
-                <a href="/tiers/" class="nav-link">Tier System</a>
-                <a href="/codex/" class="nav-link">Codex</a>
-                <a href="/api/v1/docs/" class="nav-link">API</a>
-                <a href="/store/" class="nav-link">Store</a>
-                <a href="/about/" class="nav-link">About</a>
-                <a href="/contact/" class="nav-link">Contact</a>
-            </div>
-            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
-                <span></span><span></span><span></span>
-            </button>
-        </div>
-    </nav>
+    <!-- Navigation (canonical — built by scripts/sync-desktop-nav.js) -->
+    ${fullNavHtml('/blog/')}
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobile-menu">
-        <div class="mobile-menu-section">
-            <span class="mobile-menu-title">Explore</span>
-            <div class="mobile-menu-group">
-                <a href="/pantheon/">Pantheon</a>
-                <a href="/realms/">Realms</a>
-                <a href="/lexicon/">Lexicon</a>
-                <a href="/blog/" class="active">Blog</a>
-                <a href="/connections/">Connections</a>
-            </div>
-        </div>
-        <div class="mobile-menu-section">
-            <span class="mobile-menu-title">Tools</span>
-            <div class="mobile-menu-group">
-                <a href="/type/">Type</a>
-                <a href="/search.html">Search</a>
-                <a href="/tiers/">Tier System</a>
-                <a href="/oracle.html">Oracle</a>
-            </div>
-        </div>
-        <div class="mobile-menu-section">
-            <span class="mobile-menu-title">Resources</span>
-            <div class="mobile-menu-group">
-                <a href="/codex/">Codex</a>
-                <a href="/api/v1/docs/">API</a>
-                <a href="/appraise/">Appraise</a>
-                <a href="/store/">Store</a>
-            </div>
-        </div>
-        <div class="mobile-menu-section">
-            <span class="mobile-menu-title">About</span>
-            <div class="mobile-menu-group">
-                <a href="/about/">About</a>
-                <a href="/contact/">Contact</a>
-            </div>
-        </div>
-    </div>
+    <!-- Mobile Menu (canonical — built by scripts/sync-mobile-menu.js) -->
+    ${menuForPage('/blog/')}
 
     <!-- Hero -->
     <section class="blogi-hero">

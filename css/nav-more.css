@@ -1,0 +1,147 @@
+/* ═══════════════════════════════════════════════════════════
+   PuniCodex — Shared desktop-nav components (canonical menu)
+   The .nav-more dropdown, .nav-cta button, and aria-current
+   active state, extracted from main.css so pages that do not
+   load main.css (temple-base pages) still render the canonical
+   desktop nav correctly. Keep in sync with css/main.css.
+   ═══════════════════════════════════════════════════════════ */
+
+.nav-more {
+    position: relative;
+}
+
+.nav-more-toggle {
+    background: transparent;
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    border-radius: var(--radius-md, 8px);
+    color: var(--text-secondary, #a0a0a0);
+    font-family: var(--font-body, 'Lato', sans-serif);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.nav-more-toggle:hover,
+.nav-more-toggle[aria-expanded="true"] {
+    border-color: var(--gold, #d4af37);
+    color: var(--gold, #d4af37);
+}
+
+.nav-more-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 180px;
+    background: var(--surface-raised, #121216);
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    border-radius: var(--radius-md, 8px);
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition: all 0.2s ease;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+    z-index: 1011;
+}
+
+.nav-more:hover .nav-more-menu,
+.nav-more-toggle[aria-expanded="true"] + .nav-more-menu,
+.nav-more-menu:focus-within {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+}
+
+.nav-more-menu .nav-link {
+    padding: 8px 12px;
+    border-radius: var(--radius-sm, 4px);
+}
+
+.nav-more-menu .nav-link:hover {
+    background: var(--gold-dim, rgba(212, 175, 55, 0.12));
+}
+
+.nav-more-menu .nav-link::after {
+    display: none;
+}
+
+.nav-cta {
+    padding: 10px 22px;
+    border: 1px solid var(--gold, #d4af37);
+    border-radius: var(--radius-md, 8px);
+    font-family: var(--font-body, 'Lato', sans-serif);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--gold, #d4af37);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.nav-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gold, #d4af37);
+    transform: translateX(-101%);
+    transition: transform 0.3s ease;
+}
+
+.nav-cta:hover::before {
+    transform: translateX(0);
+}
+
+.nav-cta:hover {
+    color: var(--void, #050505);
+}
+
+.nav-cta span {
+    position: relative;
+    z-index: 1;
+}
+
+/* Canonical active-page state (aria-current="page" set by
+   scripts/sync-desktop-nav.js). Mirrors main.css .nav-link.active. */
+.nav-link[aria-current="page"] {
+    color: var(--gold, #d4af37);
+}
+
+.nav-link[aria-current="page"]::after {
+    width: 100%;
+    left: 0;
+}
+
+/* Canonical wordmark sizing — without this the 520px lockup renders at
+   natural size on non-main.css pages and shoves the nav off-canvas on
+   mobile. Mirrors main.css .nav-wordmark img. */
+.nav-wordmark img {
+    height: 44px;
+    width: auto;
+}
+
+.nav-wordmark {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 1;
+    min-width: 0;
+}
+
+.nav-toggle {
+    flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+    .nav-wordmark img {
+        height: 34px;
+    }
+}

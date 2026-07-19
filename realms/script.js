@@ -61,25 +61,7 @@
     }, { passive: true });
 
     /* ── Mobile Nav Toggle ────────────────────────────────────────────────── */
-    const navToggle = document.getElementById('nav-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    if (navToggle && mobileMenu) {
-        navToggle.addEventListener('click', () => {
-            const active = navToggle.classList.toggle('active');
-            mobileMenu.classList.toggle('active', active);
-            document.body.classList.toggle('menu-open', active);
-            document.body.style.overflow = active ? 'hidden' : '';
-        });
-
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navToggle.classList.remove('active');
-                mobileMenu.classList.remove('active');
-                document.body.classList.remove('menu-open');
-                document.body.style.overflow = '';
-            });
-        });
-    }
+    // Handled by /js/px-core.js (single canonical handler; a second toggle
+    // handler here double-toggles the menu open→closed in one click).
 
 })();
