@@ -33,8 +33,8 @@
     <!-- Preconnect & DNS -->
 
     <!-- Preload critical CSS -->
-    <link rel="preload" href="/css/main.css?v=perf8" as="style">
-    <link rel="preload" href="/css/home-v2.css?v=perf9" as="style">
+    <link rel="preload" href="/css/main.css?v=perf11" as="style">
+    <link rel="preload" href="/css/home-v2.css?v=perf11" as="style">
 
     <!-- Fonts -->
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
@@ -42,8 +42,8 @@
     <link rel="preload" href="/assets/fonts/montserrat-300-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="/css/main.css?v=perf8">
-    <link rel="stylesheet" href="/css/home-v2.css?v=perf10">
+    <link rel="stylesheet" href="/css/main.css?v=perf11">
+    <link rel="stylesheet" href="/css/home-v2.css?v=perf11">
     <link rel="stylesheet" href="/css/punicodex-tokens.css">
     <link rel="stylesheet" href="/css/punicodex-motion.css">
     <link rel="stylesheet" href="/css/brand-overrides.css">
@@ -59,28 +59,17 @@
 </head>
 <body>
 
-    <!-- Session loader — first visit only, skipped for reduced-motion (plan §7.3) -->
-    <div class="pc-loader" id="pc-loader" hidden aria-hidden="true"><img src="/assets/brand/10-motion/punicodex-loader.svg" alt="" width="120" height="120"></div>
-    <script>
-        (function () {
-            try {
-                if (window.sessionStorage.getItem('pc-loader-seen')) return;
-                if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-                window.sessionStorage.setItem('pc-loader-seen', '1');
-                var loader = document.getElementById('pc-loader');
-                loader.hidden = false;
-                var done = false;
-                var finish = function () {
-                    if (done) return;
-                    done = true;
-                    loader.classList.add('is-done');
-                    setTimeout(function () { loader.remove(); }, 600);
-                };
-                window.addEventListener('load', finish);
-                setTimeout(finish, 4000);
-            } catch (e) { /* storage blocked — skip the loader */ }
-        })();
-    </script>
+    <!-- The Convergence — first-visit boot sequence (js/home-boot.js).
+         Glyphs assemble into the armillary around the seal, then the veil
+         dissolves into the live hero orrery. Session-gated, reduced-motion
+         and PCFX-unavailable paths remove it instantly. -->
+    <div id="boot-veil" aria-hidden="true">
+        <canvas></canvas>
+        <div class="boot-core">
+            <img src="/assets/brand/10-motion/punicodex-loader.svg" alt="" width="120" height="120">
+            <div class="boot-caption">PUNICODEX<span>The Unicode Pantheon</span></div>
+        </div>
+    </div>
 
     <!-- --- NAVIGATION --- -->
     <nav class="main-nav" id="main-nav">
@@ -507,6 +496,8 @@
     <script src="/js/px-core.js?v=perf9" defer></script>
     <script src="/js/main.js?v=perf8" defer></script>
     <script src="/js/home.js?v=perf16" defer></script>
+    <script src="/js/pc-fx-core.js?v=1" defer></script>
+    <script src="/js/home-boot.js?v=1" defer></script>
     <script src="/js/home-orrery.js?v=1" defer></script>
 
 </body>
