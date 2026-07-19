@@ -26,6 +26,7 @@ const { LEXICON } = require(path.join(ROOT, 'type', 'js', 'lexicon.js'));
 // Canonical navigation (single source of truth — never fork the item list).
 const { fullNavHtml } = require('./sync-desktop-nav.js');
 const { menuForPage } = require('./sync-mobile-menu.js');
+const { writeFileWithRetry } = require('./write-file-retry.js');
 
 const archetypeSrc = fs.readFileSync(path.join(ROOT, 'js', 'archetypes-v2.js'), 'utf8');
 const ARCHETYPES = vm.runInNewContext(
@@ -364,7 +365,7 @@ ${cardsHtml}
         </div>
     </footer>
 
-    <script src="/js/px-core.js?v=perf8" defer></script>
+    <script src="/js/px-core.js?v=perf9" defer></script>
     <script src="/js/temple-base.js?v=perf17" defer></script>
     <script>
     (function () {
@@ -471,5 +472,5 @@ ${cardsHtml}
 `;
 
 fs.mkdirSync(OUT_DIR, { recursive: true });
-fs.writeFileSync(path.join(OUT_DIR, 'index.html'), html, 'utf8');
+writeFileWithRetry(path.join(OUT_DIR, 'index.html'), html, 'utf8');
 console.log(`Blog index: blog/index.html written (${total} posts, ${pantheonCount} pantheons)`);

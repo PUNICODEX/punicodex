@@ -24,6 +24,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { writeFileWithRetry } = require('./write-file-retry.js');
 
 const ROOT = path.join(__dirname, '..');
 
@@ -82,7 +83,7 @@ const TARGETS = [
   { page: path.join('university-sponsorship', 'index.html'), active: null },
 ];
 
-const WORDMARK = `<a href="/" class="nav-wordmark"><picture><source srcset="/assets/brand/01-logos/punicodex-lockup-horizontal-gold.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-lockup-horizontal-gold.png" alt="PuniCodex — The Unicode Pantheon" width="520" height="113"></picture></a>`;
+const WORDMARK = `<a href="/" class="nav-wordmark"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-camel-gold.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-camel-gold.png" alt="PuniCodex — The Unicode Pantheon" width="680" height="119"></picture></a>`;
 const CTA = `<a href="/pantheon/" class="nav-cta"><span>Enter</span></a>`;
 const TOGGLE = `<button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-controls="mobile-menu">
                 <span></span>
@@ -158,22 +159,30 @@ function syncPage(rel, { active, insertNav, chrome, replaceNav }) {
   if (!fs.existsSync(filePath)) return 'missing';
   let html = fs.readFileSync(filePath, 'utf8');
 
-  if (insertNav) {
+  if (insertNav && !/class="main-nav[^"]*"/.test(html)) {
     // Pages with no nav at all: insert the full canonical nav after <body>.
-    // (When the nav already exists we still fall through to the shared
-    // stylesheet/script ensures below.)
-    if (!/class="main-nav[^"]*"/.test(html)) {
-      const bodyMatch = html.match(/<body[^>]*>/i);
-      if (!bodyMatch) return 'no-body';
-      html = html.replace(bodyMatch[0], `${bodyMatch[0]}\n    ${fullNavHtml(active)}`);
+    const bodyMatch = html.match(/<body[^>]*>/i);
+    if (!bodyMatch) return 'no-body';
+    html = html.replace(bodyMatch[0], `${bodyMatch[0]}\n    ${fullNavHtml(active)}`);
+  } else if (insertNav || replaceNav) {
+    if (replaceNav) {
+      // Pages with a bespoke nav element: swap the whole element for canonical.
+      const navStart = html.indexOf('<nav');
+      if (navStart === -1) return 'no-nav';
+      const navEnd = findBalancedEnd(html, navStart, 'nav');
+      if (navEnd === -1) return 'unbalanced';
+      html = html.slice(0, navStart) + fullNavHtml(active) + html.slice(navEnd);
+    } else {
+      // insertNav pages whose nav now exists: run the standard normalization.
+      const wmMatch = html.match(/<a href="\/" class="nav-(?:wordmark|logo)">[\s\S]*?<\/a>/);
+      if (wmMatch) html = html.replace(wmMatch[0], WORDMARK);
+      const linksMatch = html.match(/<div class="nav-links"[^>]*>/);
+      if (!linksMatch) return 'no-nav-links';
+      const linksStart = linksMatch.index;
+      const linksEnd = findBalancedEnd(html, linksStart, 'div');
+      if (linksEnd === -1) return 'unbalanced';
+      html = html.slice(0, linksStart) + navLinksHtml(active) + html.slice(linksEnd);
     }
-  } else if (replaceNav) {
-    // Pages with a bespoke nav element: swap the whole element for canonical.
-    const navStart = html.indexOf('<nav');
-    if (navStart === -1) return 'no-nav';
-    const navEnd = findBalancedEnd(html, navStart, 'nav');
-    if (navEnd === -1) return 'unbalanced';
-    html = html.slice(0, navStart) + fullNavHtml(active) + html.slice(navEnd);
   } else if (chrome === 'search') {
     // Search pages keep their compact chrome but swap in the canonical links.
     const navOpen = html.indexOf('class="cn-global-nav"');
@@ -223,10 +232,10 @@ function syncPage(rel, { active, insertNav, chrome, replaceNav }) {
     if (html.includes('class="mobile-menu"')) html = ensureCssLink(html, '/css/mobile-menu.css?v=1');
   }
   if (!html.includes('/js/px-core.js')) {
-    html = ensureScript(html, '/js/px-core.js?v=perf8');
+    html = ensureScript(html, '/js/px-core.js?v=perf9');
   }
 
-  fs.writeFileSync(filePath, html, 'utf8');
+  writeFileWithRetry(filePath, html, 'utf8');
   return 'synced';
 }
 

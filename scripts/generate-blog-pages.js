@@ -14,6 +14,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
+const { writeFileWithRetry } = require('./write-file-retry.js');
 
 const ROOT = path.join(__dirname, '..');
 const BLOG_DIR = path.join(ROOT, 'platform', 'blog', 'content');
@@ -384,7 +385,7 @@ for (const id of BUILT_IDS) {
     html = html.split(`{{${key}}}`).join(value);
   }
 
-  fs.writeFileSync(path.join(outDir, 'index.html'), html, 'utf8');
+  writeFileWithRetry(path.join(outDir, 'index.html'), html, 'utf8');
   created++;
 }
 

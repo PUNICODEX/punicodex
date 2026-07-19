@@ -68,7 +68,7 @@ test('every target page has the wordmark lockup, Enter CTA, and nav toggle', () 
   for (const { page, chrome } of TARGETS) {
     if (chrome === 'search') continue; // search pages keep their compact chrome
     const html = read(page);
-    assert.ok(html.includes('punicodex-lockup-horizontal-gold'), `${page}: wordmark missing`);
+    assert.ok(html.includes('punicodex-wordmark-camel-gold'), `${page}: wordmark missing`);
     assert.ok(html.includes('class="nav-cta"'), `${page}: Enter CTA missing`);
     assert.ok(html.includes('id="nav-toggle"'), `${page}: nav toggle missing`);
   }

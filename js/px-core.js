@@ -140,6 +140,13 @@
         syncHiddenMenu(false);
       };
 
+      // Back-forward cache: navigating away with the menu open and returning
+      // via the browser back button restores the page WITH the menu open.
+      // Reset it whenever the page is shown from the bfcache.
+      window.addEventListener('pageshow', (e) => {
+        if (e.persisted) closeMenu();
+      });
+
       toggle.addEventListener('click', (e) => {
         e.preventDefault();
         // Stop any legacy per-page nav handlers from double-toggling the menu.

@@ -121,11 +121,12 @@
     left: 0;
 }
 
-/* Canonical wordmark sizing — without this the 520px lockup renders at
-   natural size on non-main.css pages and shoves the nav off-canvas on
-   mobile. Mirrors main.css .nav-wordmark img. */
+/* Canonical wordmark sizing — without this the image renders at natural
+   size on non-main.css pages and shoves the nav off-canvas on mobile.
+   The camel wordmark (680×119) is wider and shorter than the old lockup,
+   so it carries a slightly smaller display height. */
 .nav-wordmark img {
-    height: 44px;
+    height: 34px;
     width: auto;
 }
 
@@ -142,6 +143,6 @@
 
 @media (max-width: 640px) {
     .nav-wordmark img {
-        height: 34px;
+        height: 26px;
     }
 }
