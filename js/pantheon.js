@@ -60,8 +60,8 @@
             // Unbuilt temples have no mascot shoot yet — render the kit's empty
             // portrait directly instead of round-tripping a 404 thumb.
             const portraitHtml = !a.built
-                ? `<picture><source srcset="${EMPTY_PORTRAIT_WEBP}" type="image/webp"><img src="${EMPTY_PORTRAIT}" alt="" width="150" height="150" ${loadingAttr} decoding="async" class="card-portrait-img"></picture>`
-                : `<img src="${thumbPath}" alt="${a.name} — ${a.domain}" data-fallback="${a.mascotFallback || a.mascotPath}" width="150" height="150" ${loadingAttr} decoding="async" class="card-portrait-img">`;
+                ? `<picture><source srcset="${EMPTY_PORTRAIT_WEBP}" type="image/webp"><img src="${EMPTY_PORTRAIT}" alt="" width="120" height="120" ${loadingAttr} decoding="async" class="card-portrait-img"></picture>`
+                : `<img src="${thumbPath}" alt="${a.name} — ${a.domain}" data-fallback="${a.mascotFallback || a.mascotPath}" width="120" height="120" ${loadingAttr} decoding="async" class="card-portrait-img">`;
 
             return `
                 <${tag} ${hrefAttr} class="archetype-card reveal-up ${unbuiltClass}" data-id="${a.id}" data-tier="${a.tier}" data-pantheon="${a.pantheon}" data-built="${a.built}" data-name="${(a.name || "").toLowerCase()}" data-greek="${(a.greek || "").toLowerCase()}" data-domain="${(a.domain || "").toLowerCase()}" style="--stagger-index:${index % 4}">

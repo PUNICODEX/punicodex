@@ -23,7 +23,7 @@ except ImportError as e:
 ROOT = Path(__file__).resolve().parent.parent
 SOURCE_FILE = ROOT / "js" / "archetypes-v2.js"
 OUTPUT_DIR = ROOT / "assets" / "images" / "mascots" / "thumbs" / "small"
-MAX_SIZE = 160
+MAX_SIZE = 320
 WEBP_QUALITY = 85
 
 
@@ -85,7 +85,19 @@ def generate_thumb(entry):
             else:
                 im = im.convert("RGB")
 
-            im.thumbnail((MAX_SIZE, MAX_SIZE), Image.LANCZOS)
+            # Square cover-crop at MAX_SIZE, matching the cards'
+            # `object-fit: cover; object-position: center 12%` so the
+            # circle shows the same framing as the home-page portraits.
+            w, h = im.size
+            scale = MAX_SIZE / min(w, h)
+            im = im.resize(
+                (max(MAX_SIZE, round(w * scale)), max(MAX_SIZE, round(h * scale))),
+                Image.LANCZOS,
+            )
+            w2, h2 = im.size
+            left = (w2 - MAX_SIZE) // 2
+            top = int((h2 - MAX_SIZE) * 0.12)
+            im = im.crop((left, top, left + MAX_SIZE, top + MAX_SIZE))
 
             dst.parent.mkdir(parents=True, exist_ok=True)
             im.save(dst, "WEBP", quality=WEBP_QUALITY, method=6)
