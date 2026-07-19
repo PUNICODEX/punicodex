@@ -164,6 +164,10 @@ const QUERY_SAMPLES = {
   q: 'zeus',
   input: 'ares.com',
 };
+// Routes whose required query sample must be a full domain (not a bare name).
+const ROUTE_QUERY_OVERRIDES = {
+  '/appraise': { q: 'zeus.com' },
+};
 const BODY_FIELD_SAMPLES = {
   ids: ['zeus', 'thor'],
   queries: ['zeus'],
@@ -190,12 +194,13 @@ function pathParams(specPath) {
   return params;
 }
 
-function requiredQueryString(op) {
+function requiredQueryString(op, specPath) {
   const pairs = [];
+  const overrides = ROUTE_QUERY_OVERRIDES[specPath] || {};
   for (const p of op.parameters || []) {
     if (p.$ref) continue; // shared parameters are never required here
     if (p.in === 'query' && p.required) {
-      const value = QUERY_SAMPLES[p.name];
+      const value = overrides[p.name] ?? QUERY_SAMPLES[p.name];
       assert.ok(value !== undefined, `no sample value for required query '${p.name}'`);
       pairs.push(`${p.name}=${encodeURIComponent(value)}`);
     }
@@ -274,7 +279,7 @@ async function runTests() {
       const label = `${verb} /api/v1${specPath}`;
 
       await test(`v1 spec route responds: ${label}`, async () => {
-        const url = `/api/v1${substitutePath(specPath)}${verb === 'GET' ? requiredQueryString(op) : ''}`;
+        const url = `/api/v1${substitutePath(specPath)}${verb === 'GET' ? requiredQueryString(op, specPath) : ''}`;
         const { status, body } = await invokeV1(handler, verb, url, {
           params: pathParams(specPath),
           body: verb === 'GET' ? null : sampleBody(op),

@@ -485,27 +485,15 @@
         background: rgba(255,255,255,0.03);
     }}
 
-/* ── Brand polish — kit medallion frame over every card portrait ──
-   Layers ON TOP of the mascot <img> (built cards) or the kit empty
-   portrait (unbuilt cards) — it never replaces the image. inset 0 keeps
-   it inside the circular, overflow-hidden portrait; pointer-events:none
-   keeps the card link fully clickable; the badge sits outside the
-   portrait so it is never covered. */
+/* ── Card portrait ring — kept to the border glow only.
+   The kit medallion-frame overlay was removed 2026-07-19: it overlapped the
+   mascots. The portrait's own circular border + this ring shadow stay. */
 .pantheon-grid-large .archetype-card .card-portrait {
     box-shadow: var(--pc-ring-medallion), 0 0 20px rgba(212,175,55,0.1);
 }
 
 .pantheon-grid-large .archetype-card:hover .card-portrait {
     box-shadow: var(--pc-ring-medallion), 0 0 30px rgba(212,175,55,0.25);
-}
-
-.pantheon-grid-large .archetype-card .card-portrait::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: url('/assets/brand/03-ornaments/punicodex-medallion-frame.webp') center / 100% 100% no-repeat;
-    pointer-events: none;
-    z-index: 2;
 }
 
 /* ── Brand polish — "Awaiting Restoration" stamp on unbuilt cards ──

@@ -42,17 +42,8 @@
     overflow: hidden;
     display: block;
 }
-/* Brand polish — kit medallion frame layered over every gallery thumb.
-   Sits above the .gallery-img but never replaces it; pointer-events:none
-   keeps the figure's lightbox click/key handlers working. */
-.gallery-figure::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: url('/assets/brand/03-ornaments/punicodex-medallion-frame.webp') center / 100% 100% no-repeat;
-    pointer-events: none;
-    z-index: 2;
-}
+/* The kit medallion-frame overlay was removed 2026-07-19: it overlapped
+   the gallery images. */
 .gallery-lightbox {
     position: fixed;
     inset: 0;

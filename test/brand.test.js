@@ -529,9 +529,9 @@ test('(i) admin portal renders the solid wordmark, not the Ú span', () => {
   );
 });
 
-// ---- (j) medallion-frame overlay on pantheon/home cards -----------------------
+// ---- (j) card portraits: mascots intact, no medallion overlay ----------------
 
-test('(j) built cards still render mascot imgs AND the medallion overlay rule exists', () => {
+test('(j) built cards render mascot imgs and the medallion overlay is gone', () => {
   // Mascot invariant: built archetypes render their mascot <img>; the kit
   // empty portrait remains only the unbuilt/error fallback path.
   const pantheon = read('js/pantheon.js');
@@ -548,39 +548,26 @@ test('(j) built cards still render mascot imgs AND the medallion overlay rule ex
     home.includes('<img src="${a.mascotPath}"'),
     'js/home.js no longer renders the mascotPath img for built archetypes'
   );
-  // The medallion frame is a CSS ::after overlay ON TOP of the portrait —
-  // it never replaces the img. pointer-events:none keeps the card link
-  // clickable; the badge is outside the portrait so it is never covered.
-  const MEDALLION_RULE =
-    "background: url('/assets/brand/03-ornaments/punicodex-medallion-frame.webp') center / 100% 100% no-repeat;";
+  // 2026-07-19: the kit medallion-frame overlay was removed — it overlapped
+  // the mascots. The portrait's own circular border + ring shadow stay.
+  const MEDALLION_RULE = 'punicodex-medallion-frame';
   for (const rel of ['css/pantheon.css', 'css/home-v2.css']) {
     const css = read(rel);
-    assert.ok(css.includes('.card-portrait::after'), `${rel} missing the medallion ::after rule`);
-    assert.ok(css.includes(MEDALLION_RULE), `${rel} missing the medallion-frame asset`);
+    assert.ok(!css.includes(MEDALLION_RULE), `${rel} still overlays the medallion frame`);
     assert.ok(
       css.includes('var(--pc-ring-medallion)'),
-      `${rel} missing the --pc-ring-medallion ring shadow`
+      `${rel} must keep the outer ring shadow (circle border)`
     );
   }
 });
 
-// ---- (k) gallery template thumb overlay ----------------------------------------
+// ---- (k) gallery template: no medallion overlay on thumbs --------------------
 
-test('(k) gallery template thumbs carry the medallion-frame overlay', () => {
+test('(k) gallery template thumbs have no medallion-frame overlay', () => {
   const tpl = read('templates/flagship/gallery/index.html');
   assert.ok(
-    tpl.includes('.gallery-figure::after'),
-    'gallery template missing the .gallery-figure::after thumb overlay rule'
-  );
-  assert.ok(
-    tpl.includes(
-      "background: url('/assets/brand/03-ornaments/punicodex-medallion-frame.webp') center / 100% 100% no-repeat;"
-    ),
-    'gallery template missing the medallion-frame asset on thumbs'
-  );
-  assert.ok(
-    tpl.includes('pointer-events: none;'),
-    'gallery thumb overlay must not block the lightbox click'
+    !tpl.includes('punicodex-medallion-frame'),
+    'gallery template still overlays the medallion frame on thumbs'
   );
 });
 
@@ -703,10 +690,12 @@ test('(o) every <img> in brand-owned canonical files has an alt attribute', () =
 
 // ---- (p) decorative overlays stay decorative ------------------------------------
 
-test('(p) medallion/stamp overlays have empty content and pointer-events:none', () => {
+test('(p) remaining overlays stay decorative (empty content, pointer-events:none)', () => {
+  // The medallion ::after overlay was removed (it overlapped mascots); the
+  // only remaining pseudo-element overlay is the unbuilt-card stamp.
   for (const rel of ['css/pantheon.css', 'css/home-v2.css']) {
     const css = read(rel);
-    for (const sel of ['.card-portrait::after', '.archetype-card.unbuilt .card-portrait::before']) {
+    for (const sel of ['.archetype-card.unbuilt .card-portrait::before']) {
       const i = css.indexOf(sel);
       assert.ok(i !== -1, `${rel} missing the ${sel} rule`);
       const rule = css.slice(i, css.indexOf('}', i));
