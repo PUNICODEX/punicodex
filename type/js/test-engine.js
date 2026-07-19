@@ -482,6 +482,124 @@ test('All unicode values are unique', () => {
   });
 });
 
+section('Stacked-Diacritic Derivation');
+
+const { deriveStackedForm } = PUNICODEX_ENGINE;
+const entryById = (id) => LEXICON.find((e) => e.id === id);
+
+test('Athena derives Athḗnā from Ἀθήνᾶ (acute on long eta)', () => {
+  assert.strictEqual(deriveStackedForm(entryById('athena')), 'Athḗnā');
+});
+
+test('Hera derives Hḗra from Ἥρα (stress restored onto the long eta)', () => {
+  assert.strictEqual(deriveStackedForm(entryById('hera')), 'Hḗra');
+});
+
+test('Leto derives Lētṓ from Λητώ (acute on long omega)', () => {
+  assert.strictEqual(deriveStackedForm(entryById('leto')), 'Lētṓ');
+});
+
+test('Epeiros derives Ḗpeiros (precomposed capital stack)', () => {
+  assert.strictEqual(deriveStackedForm(entryById('epeiros')), 'Ḗpeiros');
+});
+
+test('Derived stacks are single precomposed NFC codepoints', () => {
+  const athena = deriveStackedForm(entryById('athena'));
+  assert.strictEqual(athena, athena.normalize('NFC'));
+  assert.ok(athena.includes('ḗ'), `expected precomposed ḗ U+1E17 in ${athena}`);
+  assert.ok(!athena.includes('̄'), `loose combining macron in ${athena}`);
+  const leto = deriveStackedForm(entryById('leto'));
+  assert.strictEqual(leto, leto.normalize('NFC'));
+  assert.ok(leto.includes('ṓ'), `expected precomposed ṓ U+1E53 in ${leto}`);
+});
+
+test('Apollo derives nothing — stress on short omicron, length on unstressed omega', () => {
+  assert.strictEqual(deriveStackedForm(entryById('apollon')), null);
+});
+
+test('Zeus derives nothing — the ευ diphthong is never macron-marked', () => {
+  assert.strictEqual(deriveStackedForm(entryById('zeus')), null);
+});
+
+test('Persephone derives nothing — stress and length on different syllables', () => {
+  assert.strictEqual(deriveStackedForm(entryById('persephone')), null);
+});
+
+test('Nike and Hekate derive nothing — acute on ι/α, length not orthographically marked', () => {
+  assert.strictEqual(deriveStackedForm(entryById('nike')), null);
+  assert.strictEqual(deriveStackedForm(entryById('hekate')), null);
+});
+
+test('Hermes and Poseidon derive nothing — circumflex already fuses length + stress', () => {
+  assert.strictEqual(deriveStackedForm(entryById('hermes')), null);
+  assert.strictEqual(deriveStackedForm(entryById('poseidon')), null);
+});
+
+test('Psyche derives nothing — the primary already carries the stack', () => {
+  assert.strictEqual(deriveStackedForm(entryById('psyche')), null);
+});
+
+test('Non-Greek entries derive nothing (no Greek accent logic on other scripts)', () => {
+  ['odinn', 'isis', 'ra', 'thor'].forEach((id) => {
+    const entry = entryById(id);
+    if (entry) assert.strictEqual(deriveStackedForm(entry), null, `${id} should not stack`);
+  });
+});
+
+test('Malformed entries derive nothing', () => {
+  assert.strictEqual(deriveStackedForm(null), null);
+  assert.strictEqual(deriveStackedForm({}), null);
+  assert.strictEqual(deriveStackedForm({ greek: '—', unicode: 'X' }), null);
+  assert.strictEqual(deriveStackedForm({ greek: 'Ἥρα' }), null);
+});
+
+test('Derived forms never duplicate the primary or an existing variant (whole lexicon)', () => {
+  LEXICON.forEach((entry) => {
+    const form = deriveStackedForm(entry);
+    if (!form) return;
+    const taken = new Set(
+      [entry.unicode, ...(entry.variants || []).map((v) => v.unicode)].map((s) => s.normalize('NFC'))
+    );
+    assert.ok(!taken.has(form), `${entry.id}: stacked form ${form} duplicates an existing form`);
+  });
+});
+
+test('Every derived form is NFC and contains a stacked vowel (whole lexicon)', () => {
+  let count = 0;
+  LEXICON.forEach((entry) => {
+    const form = deriveStackedForm(entry);
+    if (!form) return;
+    count++;
+    assert.strictEqual(form, form.normalize('NFC'), `${entry.id}: ${form} is not NFC`);
+    assert.notStrictEqual(form, entry.unicode, `${entry.id}: stacked form equals primary`);
+    let run = 0;
+    let hasStack = false;
+    for (const char of form.normalize('NFD')) {
+      const cp = char.codePointAt(0);
+      if (cp >= 0x0300 && cp <= 0x036f) {
+        run++;
+        if (run >= 2) hasStack = true;
+      } else {
+        run = 0;
+      }
+    }
+    assert.ok(hasStack, `${entry.id}: no stacked vowel in ${form}`);
+  });
+  assert.ok(count >= 20, `expected at least 20 derivable stacked forms, got ${count}`);
+});
+
+test('Type tool wires stacked chips into the copyable variant list (source-level)', () => {
+  const typeJs = fs.readFileSync(path.join(__dirname, 'type.js'), 'utf8');
+  assert.ok(typeJs.includes('deriveStackedForm'), 'type.js does not call deriveStackedForm');
+  assert.ok(typeJs.includes("type: 'stacked'"), 'type.js does not build the stacked chip');
+  assert.ok(
+    typeJs.includes("querySelectorAll('.variation-chip')") && typeJs.includes('btn.dataset.unicode'),
+    'generic variation-chip copy handler missing'
+  );
+  const typeCss = fs.readFileSync(path.join(__dirname, '..', 'css', 'type.css'), 'utf8');
+  assert.ok(typeCss.includes('.variation-stacked'), 'type.css lacks .variation-stacked styling');
+});
+
 section('Regression Tests');
 
 test('IME composition does not break trie (simulated)', () => {

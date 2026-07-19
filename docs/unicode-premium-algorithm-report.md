@@ -1,5 +1,12 @@
 # Unicode Premium Algorithm Design Report
 
+> **SUPERSEDED 2026-07-19 by `docs/appraisal-methodology.md` (model
+> `appraise-2.0.0`).** This document describes the pre-2.0 model, whose
+> 40–65% Unicode premium rates ($500K–$1.3M for Latin IDNs) had no
+> verifiable market basis and were removed. It is kept for historical
+> reference only — the current engine's constants and bands live in the
+> methodology doc above.
+
 > Research input for the PuniCodex appraisal engine. Focuses on the **Unicode premium layer** — the percentage of the ASCII control value that a Unicode / IDN form should capture.
 
 ## Current State

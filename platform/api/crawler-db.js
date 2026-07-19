@@ -289,15 +289,22 @@ async function searchWeb(q, options = {}) {
     filters.push(
       'AND (s.is_flagship = 1 OR s.tenant_name IS NOT NULL OR s.tenant_front_url IS NOT NULL)'
     );
+  } else if (type === 'gods') {
+    filters.push("AND COALESCE(e.pantheon, s.pantheon) != 'greek-location'");
+  } else if (type === 'locations') {
+    filters.push("AND COALESCE(e.pantheon, s.pantheon) = 'greek-location'");
   }
 
+  // The indexed_sites.pantheon/tier columns use the archetype taxonomy
+  // (olympian, chthonic, titan, …) which does not match the lexicon pantheon
+  // list the UI filters by. Prefer the canonical entry classification.
   if (pantheon) {
-    filters.push('AND s.pantheon = ?');
+    filters.push('AND COALESCE(e.pantheon, s.pantheon) = ?');
     params.push(pantheon);
   }
 
   if (tier) {
-    filters.push('AND s.tier = ?');
+    filters.push('AND COALESCE(e.tier, s.tier) = ?');
     params.push(tier);
   }
 
@@ -308,9 +315,9 @@ async function searchWeb(q, options = {}) {
   if (concept) {
     const conceptLike = `%${concept.toLowerCase()}%`;
     filters.push(
-      'AND (LOWER(s.archetype_signals) LIKE ? OR LOWER(s.tenant_category) LIKE ? OR LOWER(s.meta_keywords) LIKE ?)'
+      'AND (LOWER(s.archetype_signals) LIKE ? OR LOWER(s.tenant_category) LIKE ? OR LOWER(s.meta_keywords) LIKE ? OR LOWER(e.meaning) LIKE ? OR LOWER(e.domain) LIKE ? OR LOWER(s.title) LIKE ? OR LOWER(s.description) LIKE ?)'
     );
-    params.push(conceptLike, conceptLike, conceptLike);
+    params.push(conceptLike, conceptLike, conceptLike, conceptLike, conceptLike, conceptLike, conceptLike);
   }
 
   // Trust-tier filtering. Default 'safe' excludes unsafe + suspicious.

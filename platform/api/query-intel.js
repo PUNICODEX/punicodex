@@ -252,7 +252,8 @@ function relatedSearches(q, limit = 6) {
   const query = q.trim().toLowerCase();
   if (!query) return [];
 
-  const bestEntry = db
+  // Exact match first (ascii, unicode display form, or search key)…
+  let entry = db
     .prepare(
       `SELECT id, ascii, unicode, pantheon, tier, meaning
        FROM entries
@@ -262,7 +263,8 @@ function relatedSearches(q, limit = 6) {
     )
     .get(query, query, toSearchKey(query));
 
-  if (!bestEntry) {
+  if (!entry) {
+    // …then a prefix/substring fallback before giving up on the lexicon.
     const partial = db
       .prepare(
         `SELECT id, ascii, unicode, pantheon, tier, meaning
@@ -271,7 +273,7 @@ function relatedSearches(q, limit = 6) {
          ORDER BY tier = 'dual' DESC, tier = '1' DESC, has_flagship DESC
          LIMIT 1`
       )
-      .get(`%${query}%`, `%${query}%`, `%${toSearchKey(query)}%`);
+      .get(`${query}%`, `${query}%`, `${toSearchKey(query)}%`);
     if (!partial) {
       return db
         .prepare(
@@ -283,9 +285,9 @@ function relatedSearches(q, limit = 6) {
         )
         .all(limit);
     }
+    entry = partial;
   }
 
-  const entry = bestEntry;
   const related = [];
 
   const samePantheon = db

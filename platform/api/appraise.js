@@ -1,22 +1,30 @@
 /**
  * PuniCodex — Unicode Domain Appraisal Engine
  *
- * The first appraisal model built specifically for Unicode / IDN domain names.
- * It uses the plain-ASCII equivalent as a control value, then layers a
- * transparent Unicode premium on top. The premium is derived from the
- * PuniCodex flywheel data (tier, canonical form, original script, sources,
- * lore, availability, indexed sites, and safety signals) so every valuation
- * is explainable, self-validating, and protective.
+ * An appraisal model built specifically for Unicode / IDN domain names,
+ * calibrated to observed IDN aftermarket reality rather than to ASCII
+ * domain prices. It estimates the plain-ASCII equivalent as a control value,
+ * then values the Unicode form from IDN-market fundamentals with every
+ * multiplier bounded, stated, and capped.
  *
  * Model design principles
- *   1. ASCII control first. The ASCII wholesale value anchors the appraisal.
- *   2. Unicode is a thin market. Default liquidity discount is ~90%.
- *   3. Significance earns back the discount. A canonical, tier-1, culturally
- *      important name can recover most or all of the ASCII control value.
+ *   1. ASCII control first. The ASCII wholesale value anchors the appraisal
+ *      and caps the Unicode form (an IDN is never worth more than its ASCII
+ *      root).
+ *   2. Unicode is a thin market. Real IDN sales are modest: random
+ *      hand-registered Unicode domains trade at registration fee
+ *      ($10–$60); strong single-word .com IDNs reach low-to-mid four
+ *      figures. An explicit 50% liquidity discount is applied to every
+ *      Unicode valuation.
+ *   3. Quality is multiplicative but bounded. Semantic, tier, form,
+ *      development, and brand signals multiply a small IDN base value;
+ *      their product is capped (120×) and the final Unicode value is hard
+ *      capped at $10,000 absent verifiable market comps.
  *   4. Safety overrides everything. Spoofs, homographs, and unsafe patterns
  *      are valued at registration fee only and marked "avoid".
  *   5. Original script is secondary. A non-Latin original-script form is
- *      capped at 50% of the value of the primary transliteration.
+ *      worth 60% of the primary transliteration (form multipliers 1.2 vs
+ *      2.0 encode this ratio).
  *   6. TLD reality matters. IDN-friendly TLDs (.com, .net, .org) get the
  *      full model; non-IDN TLDs get a steep liquidity penalty.
  */
@@ -34,11 +42,51 @@ const { ARCHETYPES } = require('../../js/archetypes-v2.js');
 const { LEXICON } = require('../../type/js/lexicon.js');
 const { getOriginalScript } = require('../../type/js/original-scripts.js');
 
-const MODEL_VERSION = 'appraise-1.0.0';
+const MODEL_VERSION = 'appraise-2.0.0';
 const DATA_VERSION = getVersion().version || 'unknown';
 const BASE_REFERENCE_VALUE = 50_000; // USD for a perfect ASCII .com one-word 4-5 letter name
 const REGISTRATION_FEE_USD = 12;
 const MAX_BATCH_SIZE = 100;
+
+// Cap on the semantic multiplier for the ASCII control value. Dictionary /
+// deity .com names trade above the random-letter baseline, but the premium
+// is bounded: we allow at most 5× the base reference value from meaning.
+const SEMANTIC_MULTIPLIER_CAP = 5.0;
+
+// Unicode / IDN value model. Anchors (see docs/unicode-premium-algorithm-report.md):
+//   - random IDN ≈ registration fee ($10–$60)
+//   - strong single-word .com IDN ≈ low-to-mid four figures
+//   - five-figure outcomes need extraordinary evidence and are capped
+const IDN_BASE_VALUE_USD = {
+  com: 30, // ≈ 2× registration fee; .com is the only broadly liquid IDN TLD
+  net: 15,
+  org: 15,
+  idnDefault: 12, // other IDN-supporting TLDs ≈ registration fee
+  nonIdn: 8, // IDN form on a TLD that does not support IDN registration
+};
+const IDN_VALUE_CEILING_USD = 10_000; // hard cap for any Unicode appraisal
+const IDN_MULTIPLIER_STACK_CAP = 120; // max product of quality multipliers
+const IDN_LIQUIDITY_DISCOUNT = 0.5; // thin resale market: halve raw quality value
+const IDN_BRAND_CANONICAL_CAP = 4.5; // max brand-defensive premium multiplier
+
+// Tier restoration quality: dual-tier names preserve stress AND length and
+// are the strongest restorations; tier-1 preserves both features with a
+// single valid spelling; tier-2 preserves one feature.
+const TIER_IDN_MULTIPLIER = { dual: 2.5, 1: 2.0, 2: 1.3, none: 1.0 };
+
+// Canonical form is the strongest value signal. An owned, operated form
+// outsells an ideal scholarly restoration, which outsells an attested
+// variant; unrecognized forms are near-worthless. The original-script form
+// (1.2) is deliberately 60% of the ideal form (2.0) — see principle 5.
+const FORM_IDN_MULTIPLIER = {
+  owned: 3.0,
+  ideal: 2.0,
+  variant: 1.5,
+  'original-script': 1.2,
+  folded: 0.7,
+  ascii: 1.0,
+  unknown: 0.3,
+};
 
 // Aftermarket scarcity floors for clean ASCII .com names. These reflect the
 // hard supply constraint of short domains and current wholesale/retail reality.
@@ -106,11 +154,14 @@ const PREMIUM_BIGRAMS = new Set([
 ]);
 
 // Tenant / ad-revenue assumptions. A flagship temple page can lease ad slots;
-// the appraisal capitalizes a conservative stream of that income.
-const DEFAULT_FLAGSHIP_SLOT_MONTHLY_CENTS = 515_000; // ≈ full slot bundle
+// the appraisal capitalizes a conservative projection of that income: list
+// rates × a stated occupancy assumption × 12 months. Occupancy is deliberately
+// low (10–15%) because the inventory is unproven; this is a business
+// projection reported separately from the domain value, not intrinsic value.
+const DEFAULT_FLAGSHIP_SLOT_MONTHLY_CENTS = 300_000; // ≈ seeded flagship slot inventory ($3,000/mo)
 const TENANT_REVENUE_MONTHS = 12; // capitalize one year of bookings
-const TENANT_OCCUPANCY_DEFAULT = 0.5;
-const TENANT_OCCUPANCY_BRAND = 0.75;
+const TENANT_OCCUPANCY_DEFAULT = 0.1;
+const TENANT_OCCUPANCY_BRAND = 0.15;
 const BRAND_TENANT_MULTIPLIER = 1.5;
 
 // Global brands whose exact ASCII .com is effectively priceless and whose
@@ -128,7 +179,7 @@ const BRAND_SCARCITY_OVERRIDES = {
   tesla: { tier: 'mega', asciiValue: 1_500_000, canonicalShare: 0.3 },
   netflix: { tier: 'mega', asciiValue: 1_500_000, canonicalShare: 0.3 },
   paypal: { tier: 'major', asciiValue: 800_000, canonicalShare: 0.25 },
-  gaia: { tier: 'major', asciiValue: 1_500_000, canonicalShare: 0.25 },
+  gaia: { tier: 'major', asciiValue: 500_000, canonicalShare: 0.25 },
 };
 
 // Verified aftermarket comparables for specific names. When a name has a
@@ -139,6 +190,8 @@ const MARKET_COMP_OVERRIDES = {
 };
 
 // TLD liquidity table. Supports IDN registration is a hard gate for Unicode value.
+// maxValue caps the ASCII control estimate per TLD; weak-TLD caps are low
+// because even strong words on those TLDs have thin aftermarket demand.
 const TLD_LIQUIDITY = {
   com: { score: 1.0, supportsIdn: true, maxValue: 10_000_000 },
   net: { score: 0.28, supportsIdn: true, maxValue: 100_000 },
@@ -152,15 +205,15 @@ const TLD_LIQUIDITY = {
   ai: { score: 0.14, supportsIdn: false, maxValue: 45_000 },
   co: { score: 0.16, supportsIdn: false, maxValue: 50_000 },
   me: { score: 0.1, supportsIdn: false, maxValue: 30_000 },
-  de: { score: 0.05, supportsIdn: false, maxValue: 15_000 },
-  fr: { score: 0.05, supportsIdn: false, maxValue: 15_000 },
-  jp: { score: 0.06, supportsIdn: false, maxValue: 20_000 },
-  eu: { score: 0.04, supportsIdn: false, maxValue: 12_000 },
-  uk: { score: 0.06, supportsIdn: false, maxValue: 20_000 },
-  us: { score: 0.06, supportsIdn: false, maxValue: 20_000 },
+  de: { score: 0.05, supportsIdn: false, maxValue: 5_000 },
+  fr: { score: 0.05, supportsIdn: false, maxValue: 5_000 },
+  jp: { score: 0.06, supportsIdn: false, maxValue: 5_000 },
+  eu: { score: 0.04, supportsIdn: false, maxValue: 5_000 },
+  uk: { score: 0.06, supportsIdn: false, maxValue: 5_000 },
+  us: { score: 0.06, supportsIdn: false, maxValue: 5_000 },
   cn: { score: 0.08, supportsIdn: true, maxValue: 25_000 },
   ru: { score: 0.06, supportsIdn: true, maxValue: 18_000 },
-  default: { score: 0.08, supportsIdn: false, maxValue: 20_000 },
+  default: { score: 0.08, supportsIdn: false, maxValue: 2_000 },
 };
 
 const PANTHEON_WEIGHTS = {
@@ -187,25 +240,9 @@ const PANTHEON_WEIGHTS = {
   hittite: 0.55,
 };
 
-const TIER_BOOST = {
-  dual: 1.5,
-  1: 1.0,
-  2: 0.5,
-  none: 0,
-};
-
-const FORM_BOOST = {
-  owned: 2.5,
-  ideal: 2.0,
-  variant: 1.5,
-  'original-script': 1.0,
-  ascii: 0,
-  folded: 0.2,
-  unknown: -0.5,
-};
-
-const BASE_UNICODE_RATE = 0.1;
-const MAX_UNICODE_RATE = 0.65;
+// Premium 2-letter .com pairs (dictionary word, deity, common acronym) trade
+// at $1M+ — see docs/2letter-com-valuation-report.md.
+const MEANINGFUL_2L_FLOOR_USD = 1_000_000;
 
 // Build a lookup of owned/registrable domains per flagship archetype.
 const ownedDomainsById = new Map(
@@ -274,6 +311,36 @@ function lexicalQualityFactor(name) {
   return factor;
 }
 
+// Pronounceability: a .com is only an aftermarket asset if a buyer can say it.
+// Random consonant piles (qxyjvkz) have no end-user market and are worth
+// roughly the registration fee regardless of length, so the penalty can drive
+// the value down toward REGISTRATION_FEE_USD. Runs of 4+ consonants (y counts
+// as a consonant — 'y' alone cannot carry a pronounceable string) are the
+// objective signal, backed by the absence of any vowel.
+function pronounceabilityFactor(name) {
+  // Fold diacritics (ý→y, à→a, …) so accented vowels still count as vowels;
+  // non-letters are dropped. Acronyms (≤3 chars) are exempt — the scarcity
+  // market prices letter pairs/initials, not pronounceability (qx.com, x.com).
+  const cleaned = String(name || '')
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z]/g, '');
+  if (cleaned.length <= 3) return { factor: 1.0, note: null };
+  if (!cleaned) return { factor: 1.0, note: null };
+  const CONSONANTS = 'bcdfghjklmnpqrstvwxzy';
+  if (!/[aeiou]/.test(cleaned)) return { factor: 0.05, note: 'no vowels — unpronounceable' };
+  const run = cleaned.match(new RegExp(`[${CONSONANTS}]+`, 'g')) || [];
+  const longest = run.reduce((max, r) => Math.max(max, r.length), 0);
+  if (longest >= 5) return { factor: 0.1, note: `${longest}-consonant run — unpronounceable` };
+  if (longest === 4) return { factor: 0.5, note: '4-consonant cluster — hard to pronounce' };
+  return { factor: 1.0, note: null };
+}
+
+// Names that fail basic pronounceability AND have no lexical backing are
+// registration-fee assets, capped here so the formula cannot inflate them.
+const UNPRONOUNCEABLE_CAP_USD = 500;
+
 function brandRiskFactor(name, options = {}) {
   const brand = lookupBrand(name, options);
   if (!brand) return { factor: 1.0, brand: null };
@@ -305,7 +372,7 @@ function twoLetterQualityScore(name) {
 // undervalues truly scarce names (1-5 letter dictionary words, etc.), so this
 // floor applies to *all* clean .com names of 1-6 characters, not just names
 // already present in the PuniCodex lexicon.
-function intrinsicAsciiFloor(name, tld) {
+function intrinsicAsciiFloor(name, tld, entry) {
   if (tld !== 'com') return 0;
   const len = [...String(name || '')].length;
   const base = SCARCITY_FLOORS_USD.com[len];
@@ -313,7 +380,12 @@ function intrinsicAsciiFloor(name, tld) {
 
   if (len === 2) {
     const quality = twoLetterQualityScore(name);
-    return Math.round(base * quality.score);
+    let floor = base * quality.score;
+    // Premium pairs (dictionary word, deity, common acronym) trade at $1M+.
+    if (entry || PREMIUM_BIGRAMS.has(String(name || '').toLowerCase())) {
+      floor = Math.max(floor, MEANINGFUL_2L_FLOOR_USD);
+    }
+    return Math.round(floor);
   }
   return base;
 }
@@ -354,57 +426,44 @@ function isFlagshipLexiconEntry(entry) {
   return Boolean(entry && (entry.hasFlagship || entry.hasAdSite));
 }
 
-function asciiSignificanceFactor(entry) {
+// Semantic premium for the ASCII control value. A curated, culturally
+// significant name (dictionary word, deity) trades above the random-letter
+// baseline, but the premium is bounded: tier, attestation, flagship status,
+// lore, and pantheon reach add points onto a 1.0 base, capped at
+// SEMANTIC_MULTIPLIER_CAP. This replaces the former open-ended
+// significance × fame × developed stack, which double-counted the same
+// signals and could multiply the base by ~25×.
+function semanticMultiplier(entry) {
   if (!entry) return 1.0;
 
-  let factor = 1.0;
-  // Base premium for being a curated, culturally significant canonical name.
-  factor += 2.0;
-
-  if (entry.tier === 'dual') factor += 1.5;
-  else if (entry.tier === '1') factor += 1.0;
-  else if (entry.tier === '2') factor += 0.5;
+  const tierPoints = entry.tier === 'dual' ? 1.5 : entry.tier === '1' ? 1.0 : entry.tier === '2' ? 0.5 : 0;
 
   const sources = Array.isArray(entry.sources) ? entry.sources : [];
-  factor += Math.min(sources.length * 0.15, 0.75);
+  const sourcePoints = Math.min(sources.length * 0.15, 0.5);
 
-  if (isFlagshipLexiconEntry(entry)) factor += 1.0;
-  if (entry.lore) factor += 0.5;
-  if (entry.site) factor += 0.25;
+  const flagshipPoints = isFlagshipLexiconEntry(entry) ? 1.0 : 0;
+  const lorePoints = entry.lore ? 0.5 : 0;
 
   const pantheonWeight = PANTHEON_WEIGHTS[entry.pantheon] || 0.5;
-  factor += pantheonWeight * 0.75;
+  const pantheonPoints = pantheonWeight * 0.5;
 
-  return factor;
+  return Math.min(
+    1.0 + tierPoints + sourcePoints + flagshipPoints + lorePoints + pantheonPoints,
+    SEMANTIC_MULTIPLIER_CAP
+  );
 }
 
-// Short, culturally famous names (Zeus, Thor, Ra, etc.) trade far above the
-// baseline formula. This multiplier is applied to the formulaic ASCII value.
-function asciiFameMultiplier(entry, len) {
-  if (!entry || !isFlagshipLexiconEntry(entry)) return 1.0;
-
-  let score = 0;
-  const pantheonWeight = PANTHEON_WEIGHTS[entry.pantheon] || 0.5;
-  if (pantheonWeight >= 0.8) score += 1.0;
-
-  if (entry.tier === 'dual' || entry.tier === '1') score += 1.5;
-  else if (entry.tier === '2') score += 0.5;
-
-  const sources = Array.isArray(entry.sources) ? entry.sources : [];
-  if (sources.length >= 3) score += 1.0;
-  else if (sources.length >= 2) score += 0.5;
-
-  if (len <= 4) score += 1.0;
-  else if (len <= 5) score += 0.5;
-
-  if (entry.lore) score += 0.5;
-  if (entry.site) score += 0.25;
-
-  if (score >= 5.0) return 3.0;
-  if (score >= 4.0) return 2.5;
-  if (score >= 3.0) return 1.75;
-  if (score >= 2.0) return 1.25;
-  return 1.0;
+// Long, unattested ASCII names are worth registration fee, not a fraction of
+// the $50K one-word reference value. Without semantic content (no lexicon
+// entry, no brand proximity), value decays sharply past 8 characters.
+function obscurityDiscount(name, entry, brand) {
+  if (entry || brand) return 1.0;
+  const len = [...String(name || '')].length;
+  if (len <= 6) return 1.0;
+  if (len <= 8) return 0.4;
+  if (len <= 10) return 0.1;
+  if (len <= 12) return 0.03;
+  return 0.01;
 }
 
 function getAsciiLiveBoost(domain) {
@@ -425,14 +484,6 @@ function getAsciiLiveBoost(domain) {
   }
 }
 
-function asciiDevelopedComMultiplier(name, tld, entry) {
-  if (tld !== 'com' || !entry) return 1.0;
-  const cleanName = normalizeLabel(name);
-  if (cleanName !== normalizeLabel(entry.ascii)) return 1.0;
-  if (!isFlagshipLexiconEntry(entry)) return 1.0;
-  return 1.3;
-}
-
 function estimateAsciiValue(name, tld, entry = null, domain = null) {
   const info = getTldInfo(tld);
   const cleanName = String(name || '').toLowerCase();
@@ -440,10 +491,10 @@ function estimateAsciiValue(name, tld, entry = null, domain = null) {
 
   const lenFactor = lengthFactor(len);
   const qualityFactor = lexicalQualityFactor(cleanName);
-  const significanceFactor = asciiSignificanceFactor(entry);
-  const fameMultiplier = asciiFameMultiplier(entry, len);
+  const pronounce = pronounceabilityFactor(cleanName);
+  const semantic = semanticMultiplier(entry);
   const { factor: brandFactor, brand } = brandRiskFactor(cleanName);
-  const developedMultiplier = asciiDevelopedComMultiplier(name, tld, entry);
+  const obscurity = obscurityDiscount(cleanName, entry, brand);
   const liveBoost = domain ? getAsciiLiveBoost(domain) : { multiplier: 1.0, row: null };
   const shortPremium = shortNamePremiumMultiplier(cleanName, tld, entry);
 
@@ -452,15 +503,15 @@ function estimateAsciiValue(name, tld, entry = null, domain = null) {
     lenFactor *
     info.score *
     qualityFactor *
-    significanceFactor *
-    fameMultiplier *
+    pronounce.factor *
+    semantic *
     brandFactor *
-    developedMultiplier *
+    obscurity *
     liveBoost.multiplier *
     shortPremium.multiplier;
 
   // True aftermarket scarcity for short ASCII .com names.
-  const scarcityFloor = intrinsicAsciiFloor(cleanName, tld);
+  const scarcityFloor = intrinsicAsciiFloor(cleanName, tld, entry);
   value = Math.max(value, scarcityFloor);
 
   // Verified market comparables override the formula for specific names.
@@ -472,6 +523,10 @@ function estimateAsciiValue(name, tld, entry = null, domain = null) {
   }
 
   value = Math.max(value, REGISTRATION_FEE_USD);
+  // Unpronounceable names with no lexical backing are registration-fee assets.
+  if (!entry && pronounce.factor <= 0.1 && !appliedMarketComp) {
+    value = Math.min(value, UNPRONOUNCEABLE_CAP_USD);
+  }
   if (!appliedMarketComp) {
     value = Math.min(value, info.maxValue);
   }
@@ -489,14 +544,14 @@ function estimateAsciiValue(name, tld, entry = null, domain = null) {
       note: cleanName.includes('-') ? 'contains hyphen' : 'clean',
     },
     {
-      name: 'significance',
-      impact: significanceFactor,
-      note: entry ? 'canonically significant name' : 'not in lexicon',
+      name: 'pronounceability',
+      impact: pronounce.factor,
+      note: pronounce.note || 'pronounceable',
     },
     {
-      name: 'fame',
-      impact: fameMultiplier,
-      note: fameMultiplier > 1 ? 'globally recognizable canonical name' : 'standard',
+      name: 'semanticSignificance',
+      impact: semantic,
+      note: entry ? 'canonically significant name (capped at 5×)' : 'not in lexicon',
     },
     {
       name: 'brandRisk',
@@ -505,11 +560,11 @@ function estimateAsciiValue(name, tld, entry = null, domain = null) {
     },
   ];
 
-  if (developedMultiplier > 1.0) {
+  if (obscurity < 1.0) {
     factors.push({
-      name: 'developedCom',
-      impact: developedMultiplier,
-      note: 'canonical ASCII .com of a flagship name',
+      name: 'obscurityDiscount',
+      impact: obscurity,
+      note: 'unattested long name trades near registration fee',
     });
   }
 
@@ -752,65 +807,24 @@ function tenantRevenueValue(profile, brandScarcity, tldInfo) {
   };
 }
 
-function computeSignificanceBoost(profile) {
-  const { entry } = profile;
-  if (!entry) return { boost: 0, components: [] };
+// IDN baseline value by TLD: what a random, unattested Unicode domain on
+// this TLD is worth — roughly registration fee, with a modest premium on
+// .com, the only broadly liquid IDN TLD.
+function idnBaseValue(tld) {
+  const info = getTldInfo(tld);
+  if (tld === 'com') return IDN_BASE_VALUE_USD.com;
+  if (!info.supportsIdn) return IDN_BASE_VALUE_USD.nonIdn;
+  return IDN_BASE_VALUE_USD[tld] ?? IDN_BASE_VALUE_USD.idnDefault;
+}
 
-  const components = [];
-  let boost = 0;
-
-  const sources = Array.isArray(entry.sources) ? entry.sources : [];
-  const sourceBoost = Math.min(sources.length * 0.05, 0.3);
-  if (sourceBoost > 0) {
-    boost += sourceBoost;
-    components.push({
-      name: 'scholarlySources',
-      value: sourceBoost,
-      note: `${sources.length} cited`,
-    });
-  }
-
-  const loreBoost = entry.lore ? 0.3 : 0;
-  if (loreBoost > 0) {
-    boost += loreBoost;
-    components.push({ name: 'loreCatalog', value: loreBoost, note: 'flagship lore present' });
-  }
-
-  const flagshipBoost = entry.hasFlagship ? 0.5 : 0;
-  if (flagshipBoost > 0) {
-    boost += flagshipBoost;
-    components.push({
-      name: 'flagshipPresence',
-      value: flagshipBoost,
-      note: 'flagship domain owned',
-    });
-  }
-
-  const pantheonWeight = PANTHEON_WEIGHTS[entry.pantheon] || 0.5;
-  const pantheonBoost = pantheonWeight * 0.2;
-  boost += pantheonBoost;
-  components.push({ name: 'pantheonReach', value: pantheonBoost, note: entry.pantheon });
-
-  const meaningBoost = entry.meaning ? 0.1 : 0;
-  if (meaningBoost > 0) {
-    boost += meaningBoost;
-    components.push({ name: 'meaning', value: meaningBoost, note: 'defined' });
-  }
-
-  const availability = entry.availability?.status;
-  const availableBoost = availability === 'available' ? 0.1 : 0;
-  if (availableBoost > 0) {
-    boost += availableBoost;
-    components.push({ name: 'availability', value: availableBoost, note: 'available' });
-  }
-
-  const liveBoost = entry.site ? 0.2 : 0;
-  if (liveBoost > 0) {
-    boost += liveBoost;
-    components.push({ name: 'liveSite', value: liveBoost, note: 'indexed site' });
-  }
-
-  return { boost, components };
+// TLD liquidity for the Unicode form itself. .com captures the full quality
+// value; other IDN-supporting TLDs a fraction; TLDs without IDN registration
+// support make the Unicode form nearly worthless.
+function idnTldMultiplier(tld) {
+  const info = getTldInfo(tld);
+  if (tld === 'com') return 1.0;
+  if (!info.supportsIdn) return 0.1;
+  return Math.min(0.6, Math.max(0.3, info.score * 1.5));
 }
 
 function computeUnicodePremium(profile, _asciiValue, brandScarcity) {
@@ -822,17 +836,9 @@ function computeUnicodePremium(profile, _asciiValue, brandScarcity) {
       impact: 1.0,
       note: 'No Unicode characters; ASCII control value stands.',
     });
-    return {
-      baseRate: 1.0,
-      boost: 0,
-      effectiveRate: 1.0,
-      multiplier: 1.0,
-      discount: 0,
-      factors,
-    };
+    return { asciiOnly: true, value: null, factors };
   }
 
-  const info = getTldInfo(profile.tld);
   const safety = profile.classification || {};
   const recognizedForm = ['owned', 'ideal', 'variant', 'original-script'].includes(profile.form);
   const unsafeVerdicts = new Set([
@@ -854,122 +860,140 @@ function computeUnicodePremium(profile, _asciiValue, brandScarcity) {
         impact: 0,
         note: `${safety.verdict}: ${safety.reason}`,
       });
-      return {
-        baseRate: 0,
-        boost: 0,
-        effectiveRate: 0,
-        multiplier: 0,
-        discount: 1.0,
-        factors,
-        unsafe: true,
-      };
+      return { value: 0, unsafe: true, factors };
     }
   }
 
-  // Unicode domains start at 10% of the ASCII control value and earn percentage
-  // boosts based on how canonical, well-attested, and significant the name is.
-  let boost = 0;
+  // ── Quality multiplier stack ──────────────────────────────────────────
+  // Each factor is bounded and stated. The product is capped at
+  // IDN_MULTIPLIER_STACK_CAP so compounding cannot produce absurd values.
+  const { entry } = profile;
+  const stack = [];
 
-  factors.push({
-    name: 'unicodeBaseRate',
-    impact: BASE_UNICODE_RATE,
-    note: '10% of ASCII control value',
-  });
+  if (entry) {
+    stack.push({ name: 'lexiconAttestation', multiplier: 3.0, note: 'attested lexicon name' });
 
-  if (!info.supportsIdn) {
-    boost -= 0.7;
-    factors.push({
-      name: 'tldIdnPenalty',
-      impact: -0.7,
-      note: 'TLD does not support IDN registrations',
-    });
-  }
-
-  const formBoost = FORM_BOOST[profile.form] ?? FORM_BOOST.unknown;
-  boost += formBoost;
-  factors.push({
-    name: 'canonicalForm',
-    impact: formBoost,
-    note: profile.form,
-  });
-
-  const tier = profile.entry?.tier || 'none';
-  const tierBoost = TIER_BOOST[tier] ?? TIER_BOOST.none;
-  boost += tierBoost;
-  factors.push({
-    name: 'tier',
-    impact: tierBoost,
-    note: profile.entry?.tierLabel || tier,
-  });
-
-  const { boost: sigBoost, components } = computeSignificanceBoost(profile);
-  boost += sigBoost;
-  for (const c of components) {
-    factors.push({ name: c.name, impact: c.value, note: c.note });
-  }
-
-  if (brandScarcity && recognizedForm) {
-    // Canonical transliterations of famous brands receive a proportional lift
-    // based on the brand's canonical-share parameter.
-    const brandBoost = brandScarcity.canonicalShare * 10;
-    boost += brandBoost;
-    factors.push({
-      name: 'brandScarcity',
-      impact: brandBoost,
-      note: `canonical ${brandScarcity.brand.name || brandScarcity.brand.id}`,
-    });
-  }
-
-  if (!recognizedForm && safety.tier === 'unknown') {
-    boost -= 0.3;
-    factors.push({
-      name: 'unknownForm',
-      impact: -0.3,
-      note: 'not a recognized canonical form',
-    });
-  }
-
-  if (!profile.entry) {
-    const name = profile.asciiRoot;
-    const len = [...name].length;
-    if (len > 8) {
-      const lenPenalty = -0.3;
-      boost += lenPenalty;
-      factors.push({ name: 'length', impact: lenPenalty, note: `${len} chars` });
+    const tier = entry.tier || 'none';
+    const tierMultiplier = TIER_IDN_MULTIPLIER[tier] ?? TIER_IDN_MULTIPLIER.none;
+    if (tierMultiplier !== 1.0) {
+      stack.push({ name: 'tier', multiplier: tierMultiplier, note: entry.tierLabel || tier });
     }
-    const quality = lexicalQualityFactor(name);
-    if (quality < 1.0) {
-      const qualityPenalty = (1 - quality) * 0.5;
-      boost += qualityPenalty;
-      factors.push({ name: 'lexicalQuality', impact: qualityPenalty, note: 'noisy' });
+
+    if (isFlagshipLexiconEntry(entry)) {
+      stack.push({ name: 'flagshipDevelopment', multiplier: 2.0, note: 'owned & operated temple' });
     }
-  }
 
-  let effectiveRate = BASE_UNICODE_RATE * (1 + boost);
-
-  // Original-script cap: worth at most 50% of the corresponding transliteration.
-  if (profile.form === 'original-script' && profile.entry) {
-    const transliterationBoost = boost - FORM_BOOST['original-script'] + FORM_BOOST.ideal;
-    const transliterationRate = BASE_UNICODE_RATE * (1 + transliterationBoost);
-    const capped = transliterationRate * 0.5;
-    if (effectiveRate > capped) {
-      effectiveRate = capped;
-      factors.push({
-        name: 'originalScriptCap',
-        impact: effectiveRate,
-        note: 'capped at 50% of primary transliteration value',
+    const sources = Array.isArray(entry.sources) ? entry.sources : [];
+    const attestationDepth = 1 + Math.min(sources.length * 0.15, 0.5);
+    if (attestationDepth > 1.0) {
+      stack.push({
+        name: 'attestationDepth',
+        multiplier: attestationDepth,
+        note: `${sources.length} scholarly sources`,
       });
     }
+
+    const pantheonWeight = PANTHEON_WEIGHTS[entry.pantheon] || 0.5;
+    stack.push({
+      name: 'pantheonReach',
+      multiplier: 0.7 + pantheonWeight * 0.5,
+      note: entry.pantheon,
+    });
+
+    if (entry.availability?.status === 'available') {
+      stack.push({ name: 'availability', multiplier: 1.1, note: 'unregistered — acquirable' });
+    }
   }
 
-  effectiveRate = Math.min(Math.max(effectiveRate, 0), MAX_UNICODE_RATE);
+  // Canonical form is the strongest signal, for lexicon and non-lexicon names.
+  const formMultiplier = FORM_IDN_MULTIPLIER[profile.form] ?? FORM_IDN_MULTIPLIER.unknown;
+  stack.push({ name: 'canonicalForm', multiplier: formMultiplier, note: profile.form });
+
+  if (!entry) {
+    // Unattested names: length and noise penalties keep random IDNs at
+    // registration-fee level. Length is measured on the decoded Unicode
+    // label, never on the (longer) punycode form.
+    const name = profile.asciiRoot;
+    const len = [...String(profile.label || '')].length;
+    if (len > 15) {
+      stack.push({ name: 'length', multiplier: 0.25, note: `${len} chars` });
+    } else if (len > 8) {
+      stack.push({ name: 'length', multiplier: 0.5, note: `${len} chars` });
+    }
+    if (lexicalQualityFactor(name) < 1.0) {
+      stack.push({ name: 'lexicalNoise', multiplier: 0.5, note: 'digits/hyphens/noise' });
+    }
+  }
+
+  let stackProduct = 1.0;
+  for (const item of stack) stackProduct *= item.multiplier;
+  const stackCapped = stackProduct > IDN_MULTIPLIER_STACK_CAP;
+  const stackFinal = Math.min(stackProduct, IDN_MULTIPLIER_STACK_CAP);
+
+  const baseValue = idnBaseValue(profile.tld);
+  factors.push({
+    name: 'idnBaseValue',
+    impact: baseValue,
+    kind: 'currency',
+    note: `.${profile.tld || 'unknown'} IDN baseline`,
+  });
+  for (const item of stack) {
+    factors.push({ name: item.name, impact: item.multiplier, kind: 'multiplier', note: item.note });
+  }
+  if (stackCapped) {
+    factors.push({
+      name: 'multiplierStackCap',
+      impact: IDN_MULTIPLIER_STACK_CAP,
+      kind: 'multiplier',
+      note: `stack capped (raw ×${stackProduct.toFixed(1)})`,
+    });
+  }
+
+  // Brand-defensive demand is a distinct driver and is applied after the
+  // stack cap: the exact canonical transliteration of a famous brand is the
+  // one documented source of four-figure IDN sales. Bounded at
+  // IDN_BRAND_CANONICAL_CAP.
+  let brandMultiplier = 1.0;
+  if (brandScarcity && recognizedForm) {
+    brandMultiplier = Math.min(1 + brandScarcity.canonicalShare * 10, IDN_BRAND_CANONICAL_CAP);
+    factors.push({
+      name: 'brandCanonical',
+      impact: brandMultiplier,
+      kind: 'multiplier',
+      note: `canonical transliteration of ${brandScarcity.brand.name || brandScarcity.brand.id}`,
+    });
+  }
+
+  const tldMultiplier = idnTldMultiplier(profile.tld);
+  if (tldMultiplier < 1.0) {
+    factors.push({
+      name: 'tldIdnPenalty',
+      impact: tldMultiplier,
+      kind: 'multiplier',
+      note: getTldInfo(profile.tld).supportsIdn
+        ? `.${profile.tld} IDN liquidity`
+        : 'TLD does not support IDN registrations',
+    });
+  }
+
+  factors.push({
+    name: 'liquidityDiscount',
+    impact: IDN_LIQUIDITY_DISCOUNT,
+    kind: 'multiplier',
+    note: 'thin IDN resale market',
+  });
+
+  const value =
+    baseValue * stackFinal * brandMultiplier * tldMultiplier * IDN_LIQUIDITY_DISCOUNT;
 
   return {
-    baseRate: BASE_UNICODE_RATE,
-    boost,
-    effectiveRate,
-    multiplier: Number(effectiveRate.toFixed(4)),
-    discount: Number((1 - effectiveRate).toFixed(4)),
+    baseValue,
+    stack: Number(stackFinal.toFixed(2)),
+    stackCapped,
+    brandMultiplier,
+    tldMultiplier,
+    liquidityDiscount: IDN_LIQUIDITY_DISCOUNT,
+    value,
     factors,
   };
 }
@@ -1027,13 +1051,46 @@ function recommendation(profile, finalValue, unsafe) {
 }
 
 function confidenceScore(profile) {
-  if (!profile.entry) return 0.35;
+  if (!profile.entry) return 0.3;
   let score = 0.5;
-  if (profile.entry.availability?.status) score += 0.15;
-  if (profile.entry.tierExplanation) score += 0.15;
+  if (profile.entry.availability?.status) score += 0.1;
+  if (profile.entry.tierExplanation) score += 0.1;
   if (profile.entry.hasFlagship) score += 0.1;
   if (profile.form !== 'unknown') score += 0.1;
-  return Math.min(score, 0.98);
+  // Never claim >90% confidence: IDN comps are sparse and the market is thin.
+  return Math.min(score, 0.9);
+}
+
+// A registrable domain label: letters (any script), combining marks, digits,
+// and interior hyphens. This rejects emoji, punctuation, and other junk that
+// cannot be registered, instead of appraising it.
+const VALID_LABEL_RE = /^[\p{L}\p{M}\p{N}][\p{L}\p{M}\p{N}-]*$/u;
+
+function isAppraisableDomain(parsed) {
+  if (!parsed || parsed.isIp) return false;
+  if (!parsed.domain || !parsed.etld) return false;
+  const labels = parsed.decodedLabels.filter((label) => label && label.length > 0);
+  if (labels.length < 2) return false;
+  return labels.every((label) => VALID_LABEL_RE.test(label));
+}
+
+// Round to `digits` significant figures so ranges read as estimates,
+// not false-precision quotes.
+function roundToSignificant(n, digits = 2) {
+  if (!Number.isFinite(n) || n <= 0) return 0;
+  const magnitude = 10 ** Math.floor(Math.log10(n));
+  const step = magnitude / 10 ** (digits - 1);
+  return Math.round(n / step) * step;
+}
+
+// Estimated value range. Spread widens as confidence falls: ±20% at high
+// confidence, ±60% at the floor. Both endpoints are bounded below by the
+// registration fee.
+function valueRange(value, confidence) {
+  const spread = Math.min(0.6, Math.max(0.2, 0.75 - 0.5 * confidence));
+  const low = Math.max(REGISTRATION_FEE_USD, roundToSignificant(value * (1 - spread)));
+  const high = Math.max(low, roundToSignificant(value * (1 + spread)));
+  return { low, high, spread: Number(spread.toFixed(2)) };
 }
 
 function appraise(domain) {
@@ -1047,6 +1104,14 @@ function appraise(domain) {
   }
 
   const profile = getNameProfile(rawDomain);
+  if (!isAppraisableDomain(profile.parsed)) {
+    return {
+      domain: rawDomain,
+      error: 'INVALID_DOMAIN',
+      message: 'Input is not a valid, registrable domain name.',
+    };
+  }
+
   const info = getTldInfo(profile.tld);
   const ascii = estimateAsciiValue(profile.asciiRoot, profile.tld, profile.entry, rawDomain);
 
@@ -1086,40 +1151,33 @@ function appraise(domain) {
       ? tenantRevenueValue(profile, brandScarcity, info)
       : { value: 0, monthlyUsd: 0, occupancy: 0, brandMultiplier: 1, note: 'not eligible' };
 
-  // Pure domain value: Unicode names start at 10% of the ASCII control and earn
-  // percentage boosts for canonical form, tier, sources, brand scarcity, etc.
-  // The Unicode name itself is never valued above the ASCII control of the root.
+  // Pure domain value. Unicode forms are valued from IDN-market fundamentals
+  // (small TLD base × bounded multiplier stack × TLD and liquidity discounts),
+  // then hard-capped by the ASCII control value and the absolute IDN ceiling.
+  // ASCII forms stand at their control value. Trademark proximity suppresses
+  // unrecognized brand-like forms.
   let domainValue = profile.hasUnicode
-    ? asciiControlValue * premium.effectiveRate * tm.factor
+    ? premium.value * tm.factor
     : asciiControlValue * tm.factor;
-  domainValue = Math.min(domainValue, asciiControlValue);
-  domainValue = Math.max(domainValue, REGISTRATION_FEE_USD);
+  if (profile.hasUnicode) {
+    domainValue = Math.min(domainValue, asciiControlValue, IDN_VALUE_CEILING_USD);
+  } else {
+    domainValue = Math.min(domainValue, asciiControlValue);
+  }
+  domainValue = Math.round(Math.max(domainValue, REGISTRATION_FEE_USD));
 
-  // Total value includes separately reported tenant/ad revenue. That revenue is
-  // a business opportunity tied to the page, not an intrinsic domain-name value.
-  let totalValue = domainValue + tenant.value;
-  totalValue = Math.max(totalValue, REGISTRATION_FEE_USD);
-
-  // The domain value is already capped at the ASCII control. The total may
-  // include tenant revenue, but we still keep a sanity ceiling derived from
-  // brand scarcity or market comparables so the liquidity rating stays honest.
-  const marketCompCap = ascii.marketComp ? ascii.marketComp.marketplace * 1.2 : 0;
-  const brandCap = Math.max(
-    domainValue + tenant.value,
-    info.maxValue,
-    marketCompCap,
-    (brandScarcity ? brandScarcity.asciiValue : 0) * 1.5,
-    tenant.value * 2
-  );
-  totalValue = Math.min(totalValue, brandCap);
+  // Total value adds separately reported tenant/ad revenue: a conservative
+  // 12-month business projection tied to the page, not intrinsic domain value.
+  const totalValue = Math.round(Math.max(domainValue + tenant.value, REGISTRATION_FEE_USD));
 
   // The public-facing Unicode appraisal is the pure domain value.
   const unicodeValue = domainValue;
+  const shareOfControl = asciiControlValue > 0 ? unicodeValue / asciiControlValue : 0;
 
-  const rounded = Math.round(unicodeValue);
   const confidence = confidenceScore(profile);
-  const rec = recommendation(profile, rounded, unsafe);
-  const rating = liquidityRating(profile, rounded);
+  const range = valueRange(unicodeValue, confidence);
+  const rec = recommendation(profile, unicodeValue, unsafe);
+  const rating = liquidityRating(profile, unicodeValue);
 
   const scarcityFactor = bs.canonicalValue > 0 || bs.exactValue > 0 ? bs : null;
 
@@ -1151,10 +1209,11 @@ function appraise(domain) {
     appraisal: {
       currency: 'USD',
       asciiControlValue,
-      unicodeValue: rounded,
-      totalValue: Math.round(totalValue),
-      premiumMultiplier: Number(premium.multiplier.toFixed(4)),
-      discount: Number(premium.discount.toFixed(4)),
+      unicodeValue,
+      totalValue,
+      range,
+      premiumMultiplier: Number(shareOfControl.toFixed(4)),
+      discount: Number((1 - shareOfControl).toFixed(4)),
       brandScarcityValue: bs.exactValue || bs.canonicalValue || 0,
       tenantRevenueValue: tenant.value,
       liquidityRating: rating,
@@ -1166,9 +1225,13 @@ function appraise(domain) {
       unicode: premium.factors,
       unicodeSummary: profile.hasUnicode
         ? {
-            baseRate: premium.baseRate,
-            boost: premium.boost,
-            effectiveRate: premium.effectiveRate,
+            baseValue: premium.baseValue ?? 0,
+            multiplierStack: premium.stack ?? 0,
+            stackCapped: premium.stackCapped === true,
+            brandMultiplier: premium.brandMultiplier ?? 1,
+            tldMultiplier: premium.tldMultiplier ?? 1,
+            liquidityDiscount: premium.liquidityDiscount ?? IDN_LIQUIDITY_DISCOUNT,
+            shareOfControl: Number(shareOfControl.toFixed(4)),
           }
         : null,
       trademark: tm.brand
@@ -1203,6 +1266,9 @@ function appraise(domain) {
     model: {
       version: MODEL_VERSION,
       dataVersion: DATA_VERSION,
+      unicodeCeilingUsd: IDN_VALUE_CEILING_USD,
+      multiplierStackCap: IDN_MULTIPLIER_STACK_CAP,
+      liquidityDiscount: IDN_LIQUIDITY_DISCOUNT,
     },
   };
 
@@ -1229,4 +1295,7 @@ module.exports = {
   MODEL_VERSION,
   MAX_BATCH_SIZE,
   REGISTRATION_FEE_USD,
+  IDN_VALUE_CEILING_USD,
+  IDN_MULTIPLIER_STACK_CAP,
+  IDN_LIQUIDITY_DISCOUNT,
 };

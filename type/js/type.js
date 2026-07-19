@@ -426,11 +426,20 @@
             resultGreek.style.display = 'none';
         }
 
-        if (resultVariations && (entry.variants || (typeof StackedDiacritics !== 'undefined' && StackedDiacritics.hasStackedDiacritics(entry.unicode)))) {
-            const derivedTypes = ['owned', 'ideal', 'macron-only'];
+        const stackedForm = PUNICODEX_ENGINE.deriveStackedForm ? PUNICODEX_ENGINE.deriveStackedForm(entry) : null;
+        if (resultVariations && (entry.variants || stackedForm || (typeof StackedDiacritics !== 'undefined' && StackedDiacritics.hasStackedDiacritics(entry.unicode)))) {
+            const derivedTypes = ['owned', 'ideal', 'stacked', 'macron-only'];
             const scholarlyTypes = ['alt-stress', 'alt'];
             const derived = (entry.variants || []).filter(v => derivedTypes.includes(v.type));
             const scholarly = (entry.variants || []).filter(v => scholarlyTypes.includes(v.type) && Array.isArray(v.sources) && v.sources.length > 0);
+
+            if (stackedForm) {
+                derived.push({
+                    unicode: stackedForm,
+                    type: 'stacked',
+                    note: 'Canonical stacked form — macron (length) and acute (stress) fused on one vowel, exactly where the Greek original marks both. The fullest scholarly rendering; hard to type on phones and rarely registrable as a domain.',
+                });
+            }
 
             derived.sort((a, b) => derivedTypes.indexOf(a.type) - derivedTypes.indexOf(b.type));
             scholarly.sort((a, b) => scholarlyTypes.indexOf(a.type) - scholarlyTypes.indexOf(b.type));
@@ -447,7 +456,11 @@
                     html += `<button type="button" class="variation-chip variation-decomposed" data-unicode="${escapeHtml(StackedDiacritics.render(entry.unicode))}" title="Decomposed view of stacked diacritics">${StackedDiacritics.render(entry.unicode)}</button>`;
                 }
                 html += '</div>';
-                html += '<p class="result-variations-hint">Forms derived from the primary restoration: owned domain, ideal stacked marks, and standard macron convention.</p>';
+                html += '<p class="result-variations-hint">' +
+                    (stackedForm
+                        ? 'Forms derived from the primary restoration: owned domain, ideal stacked marks, and standard macron convention. The stacked form (e.g. ḗ, ṓ) fuses length and stress on a single vowel, exactly where the Greek original marks both — the fullest scholarly rendering, but hard to type on phones and rarely registrable as a domain.'
+                        : 'Forms derived from the primary restoration: owned domain, ideal stacked marks, and standard macron convention.') +
+                    '</p>';
                 html += '</div>';
             }
             if (scholarly.length > 0) {

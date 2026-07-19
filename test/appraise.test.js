@@ -71,30 +71,38 @@ async function runTests() {
   await test('appraise applies Unicode discount to unknown Unicode domain', () => {
     const result = appraise('mýràndöm-ünïcödé.com');
     assert.strictEqual(result.hasUnicode, true);
-    assert.ok(result.appraisal.discount > 0.5, 'should be heavily discounted');
+    assert.ok(result.appraisal.discount >= 0.5, 'should be heavily discounted');
     assert.ok(
       result.appraisal.unicodeValue < 1000,
       'unknown unicode name should be near registration fee'
     );
   });
 
-  await test('appraise values canonical dual-tier variant form highly', () => {
+  await test('appraise values canonical dual-tier variant form in a defensible band', () => {
     const result = appraise('apṓllōn.com');
     assert.strictEqual(result.lexiconMatch?.id, 'apollon');
     assert.strictEqual(result.lexiconMatch?.form, 'variant');
     assert.strictEqual(result.lexiconMatch?.variantType, 'ideal');
+    // The dual-tier variant is philologically real but not the owned form:
+    // worth roughly half the owned form, in the defensible IDN band.
     assert.ok(
-      result.appraisal.unicodeValue > 1000,
-      'variant dual-tier should recover meaningful value'
+      result.appraisal.unicodeValue >= 300 && result.appraisal.unicodeValue <= 10_000,
+      `variant dual-tier should hold defensible value (got ${result.appraisal.unicodeValue})`
     );
     assert.ok(result.appraisal.confidence > 0.5, 'confidence should be reasonable');
   });
 
-  await test('appraise values owned flagship domain at top of range', () => {
+  await test('appraise values owned flagship domain in the defensible IDN band', () => {
     const result = appraise('apóllōn.com');
     assert.strictEqual(result.lexiconMatch?.form, 'owned');
-    assert.ok(result.appraisal.unicodeValue > 1000);
-    assert.ok(result.appraisal.premiumMultiplier > 0.5);
+    // Premium owned IDN: low-to-mid four figures + tenant revenue — never a
+    // large fraction of the ASCII control (IDN liquidity is objectively thin).
+    assert.ok(result.appraisal.unicodeValue >= 500 && result.appraisal.unicodeValue <= 10_000);
+    assert.ok(
+      result.appraisal.premiumMultiplier < 0.05,
+      'an IDN is never worth more than a small fraction of its ASCII counterpart'
+    );
+    assert.ok(result.appraisal.tenantRevenueValue > 0, 'should include tenant revenue');
   });
 
   await test('appraise penalizes non-IDN TLD for Unicode name', () => {
@@ -128,18 +136,47 @@ async function runTests() {
     assert.ok(result.factors.brandScarcity, 'should surface brand scarcity factor');
   });
 
-  await test('appraise rewards canonical Unicode transliterations of famous brands', () => {
+  await test('appraise values canonical Unicode transliterations of famous brands defensibly', () => {
     const result = appraise('níkē.com');
     assert.strictEqual(result.lexiconMatch?.form, 'owned');
+    // The strongest possible IDN (owned, dual-tier, globally famous brand)
+    // approaches — but never exceeds — the $10k Unicode ceiling. Six-figure
+    // IDN claims are not defensible without verifiable market comps.
     assert.ok(
-      result.appraisal.unicodeValue >= 500_000,
-      'canonical transliteration of Nike should be worth hundreds of thousands'
+      result.appraisal.unicodeValue >= 3_000 && result.appraisal.unicodeValue <= 10_000,
+      `strongest IDN should approach but not exceed the ceiling (got ${result.appraisal.unicodeValue})`
     );
     assert.ok(
       result.factors.trademark?.premium,
       'trademark factor should be a premium, not a penalty'
     );
     assert.ok(result.appraisal.tenantRevenueValue > 0, 'should include tenant revenue');
+  });
+
+  await test('appraise prices random unpronounceable names near registration fee', () => {
+    const result = appraise('qxyjvkz.com');
+    // A consonant pile has no end-user market: the old formula's $10k was
+    // inflated; defensible value is registration-fee band.
+    assert.ok(
+      result.appraisal.asciiControlValue <= 500,
+      `unpronounceable junk should be near registration fee (got ${result.appraisal.asciiControlValue})`
+    );
+    assert.ok(
+      result.factors.ascii.some((f) => f.name === 'pronounceability' && f.impact <= 0.1) ||
+        result.factors.unicode.some((f) => f.name === 'pronounceability' && f.impact <= 0.1) ||
+        result.factors.some?.((f) => f.name === 'pronounceability'),
+      'pronounceability factor should be surfaced in the breakdown'
+    );
+  });
+
+  await test('appraise keeps premium ASCII in defensible real-world bands', () => {
+    // Anchor calibration: short dictionary .coms trade five-to-six figures.
+    const zeus = appraise('zeus.com');
+    assert.ok(zeus.appraisal.asciiControlValue >= 50_000 && zeus.appraisal.asciiControlValue <= 500_000);
+    const god = appraise('god.com');
+    assert.ok(god.appraisal.asciiControlValue >= 20_000 && god.appraisal.asciiControlValue <= 200_000);
+    const randomLong = appraise('verylongrandomname12345.com');
+    assert.ok(randomLong.appraisal.asciiControlValue < 100);
   });
 
   await test('appraise includes tenant revenue for flagship pages', () => {

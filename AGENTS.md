@@ -11,7 +11,7 @@ as it actually exists (data version `2.0.63`, July 2026).
 
 PuniCodex is a multi-platform product built around **Unicode (IDN) domain
 names** — domains containing accented/non-ASCII characters (e.g. `apóllōn.com`,
-punycode `xn--apolln-9ta6p.com`). It combines:
+punycode `xn--aplln-1ta64d.com`). It combines:
 
 - **A scholarly lexicon** of 895 mythological/linguistic name restorations
   across 22 pantheons (Greek, Norse, Egyptian, Hindu, Japanese, and more),
