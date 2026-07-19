@@ -85,6 +85,7 @@ const SUITES = [
   { name: 'Patron Contract Tests', cmd: 'node --test test/patron-contract.test.js' },
   { name: 'Collaborators Strip Tests', cmd: 'node test/collaborators-strip.test.js' },
   { name: 'Menu Consistency Tests', cmd: 'node test/menu-consistency.test.js' },
+  { name: 'Search Page Tests', cmd: 'node test/search-page.test.js' },
   { name: 'Brand Tests', cmd: 'node test/brand.test.js' },
   { name: 'Admin Portal Page Tests', cmd: 'node test/admin-portal-page.test.js' },
   { name: 'Portal Endpoints Tests', cmd: 'node test/portal-endpoints.test.js', timeout: 60000 },

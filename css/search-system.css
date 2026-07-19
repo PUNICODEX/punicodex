@@ -2458,6 +2458,60 @@
   background: rgba(255, 255, 255, 0.04);
 }
 
+/* Similar panel — inline lexicon similarity results (showSimilar). */
+.similar-panel {
+  margin-top: var(--cn-space-sm);
+  border: 1px solid var(--cn-border);
+  border-radius: var(--cn-radius-sm);
+  padding: 0.55rem 0.7rem;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.similar-title {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cn-text-muted);
+  margin-bottom: 0.35rem;
+}
+
+.similar-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  padding: 0.28rem 0;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.similar-item:last-child {
+  border-bottom: none;
+}
+
+.similar-item:hover .similar-name {
+  color: var(--cn-gold);
+}
+
+.similar-name {
+  font-family: var(--cn-font-display, 'Cinzel', serif);
+  color: var(--cn-text);
+  font-size: 0.95rem;
+}
+
+.similar-meta {
+  font-size: 0.72rem;
+  color: var(--cn-text-muted);
+}
+
+.similar-rel {
+  margin-left: auto;
+  font-size: 0.72rem;
+  color: var(--cn-text-muted);
+  font-style: italic;
+  text-align: right;
+}
+
 .serp-thumbnail-wrap {
   width: 120px;
   min-width: 120px;
