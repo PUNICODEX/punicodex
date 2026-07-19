@@ -15,6 +15,7 @@
     const PANTHEON_COLORS = {
         greek: '#4169E1',
         'greek-location': '#4169E1',
+        roman: '#B8860B',
         norse: '#C0C0C0',
         egyptian: '#1E3A5F',
         sanskrit: '#FF9933',

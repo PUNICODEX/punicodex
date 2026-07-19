@@ -44,7 +44,16 @@ function test(name, fn) {
 }
 
 const ids = getBaseTempleDirs();
-assert.ok(ids.length >= 700, `expected at least 700 base temples, found ${ids.length}`);
+// Expected base-temple count derives from the canonical flywheel: every
+// lexicon entry has a temple; every built archetype is a flagship (flagships
+// carry patron/ subpages, which getBaseTempleDirs excludes).
+const { LEXICON } = require('../type/js/lexicon.js');
+const { ARCHETYPES } = require('../js/archetypes-v2.js');
+const expectedBaseCount = LEXICON.length - ARCHETYPES.filter((a) => a.built).length;
+assert.ok(
+  ids.length >= expectedBaseCount,
+  `expected at least ${expectedBaseCount} base temples, found ${ids.length}`
+);
 
 console.log(`Base Temple Mobile Nav Tests — ${ids.length} temples`);
 

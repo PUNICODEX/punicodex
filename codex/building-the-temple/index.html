@@ -96,7 +96,7 @@
 
             <h2>The Source of Truth Problem</h2>
             <p>The first mistake was storing the same data in more than one place. We had a lexicon for the type tool, a separate catalog for temple generation, and a spreadsheet for domain ownership. When a single accent moved — when <code>Apóllōn</code> became <code>Apollōn</code>, for example — the change had to be chased through three files, two build scripts, and a middleware router.</p>
-            <p>The fix was ruthless canonicalization. Today the single source of truth for all 895 names is <code>type/js/lexicon.js</code>. Archetype data lives in <code>js/archetypes-v2.js</code>. Owned domains live in <code>platform/db/owned-domains.json</code>. Everything else — the extension lexicon, the mobile lexicon, the Android JSON assets, the middleware domain map, the browser renderer catalog — is generated.</p>
+            <p>The fix was ruthless canonicalization. Today the single source of truth for all 915 names is <code>type/js/lexicon.js</code>. Archetype data lives in <code>js/archetypes-v2.js</code>. Owned domains live in <code>platform/db/owned-domains.json</code>. Everything else — the extension lexicon, the mobile lexicon, the Android JSON assets, the middleware domain map, the browser renderer catalog — is generated.</p>
             <p>That generation is enforced by a divergence gate in CI: after tests pass, the pipeline runs <code>npm run generate</code> and fails if any generated file differs from what is committed. If the gate fails, you forgot to regenerate.</p>
 
             <h2>From Spreadsheet to Temple</h2>
@@ -118,7 +118,7 @@
 
             <h2>What We Learned</h2>
             <p>The most important lesson was philological, not technical. A diacritic is not decoration. The acute on <a href="/sites/apollon/">Apóllōn</a> is the difference between a rising pitch and a falling one. The macron on <code>Hēra</code> is the difference between a long vowel and a short one. These distinctions were alive in the mouths of ancient speakers, and they survive in the meters of tragedy and hymn.</p>
-            <p>Building a temple means respecting those distinctions even when the web would rather forget them. It means generating 721 base temples from one canonical lexicon while still hand-expanding 196 flagships. It means running a divergence gate so that no generated file ever drifts from its source. And it means welcoming visitors through the <a href="/pantheon/">Pantheon</a> with a name that sounds, once again, like itself.</p>
+            <p>Building a temple means respecting those distinctions even when the web would rather forget them. It means generating 680 base temples from one canonical lexicon while still hand-expanding 235 flagships. It means running a divergence gate so that no generated file ever drifts from its source. And it means welcoming visitors through the <a href="/pantheon/">Pantheon</a> with a name that sounds, once again, like itself.</p>
 
             <aside class="codex-article-cta">
                 <a href="/pantheon/" class="btn btn-primary"><span>Enter the Pantheon</span></a>

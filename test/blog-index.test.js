@@ -5,7 +5,7 @@
  *
  * Validates the generated root blog index (blog/index.html, produced by
  * scripts/generate-blog-index.js): SEO head, analytics markers, JSON-LD
- * CollectionPage + ItemList, the 196 statically baked cards, the embedded
+ * CollectionPage + ItemList, the statically baked cards, the embedded
  * JSON payload, sitemap coverage, and generator idempotency.
  *
  * Run: node --test test/blog-index.test.js
@@ -73,7 +73,10 @@ test('blog/index.html exists with a complete SEO head', () => {
   assert.ok(fs.existsSync(INDEX_PATH), 'expected blog/index.html to exist');
   const html = readIndex();
 
-  assert.match(html, /<title>Blog — 196 Unicode Restoration Essays \| PUNICODEX<\/title>/);
+  assert.match(
+    html,
+    new RegExp(`<title>Blog — ${BUILT_IDS.length} Unicode Restoration Essays \\| PUNICODEX</title>`)
+  );
   assert.match(html, /<meta name="description" content="[^"]+">/, 'missing meta description');
   assert.match(
     html,
@@ -103,8 +106,8 @@ test('analytics markers are present', () => {
   );
 });
 
-test('JSON-LD is a CollectionPage with an ItemList of exactly 196 items', () => {
-  assert.equal(BUILT_IDS.length, 196, 'expected exactly 196 built flagship archetypes');
+test(`JSON-LD is a CollectionPage with an ItemList of exactly ${BUILT_IDS.length} items`, () => {
+  assert.ok(BUILT_IDS.length > 0, 'expected built flagship archetypes');
   const ld = extractJsonLd(readIndex());
   assert.ok(ld, 'JSON-LD is missing or invalid');
   assert.equal(ld['@type'], 'CollectionPage');
@@ -113,9 +116,9 @@ test('JSON-LD is a CollectionPage with an ItemList of exactly 196 items', () => 
   const list = ld.mainEntity;
   assert.ok(list, 'JSON-LD missing mainEntity');
   assert.equal(list['@type'], 'ItemList');
-  assert.equal(list.numberOfItems, 196);
+  assert.equal(list.numberOfItems, BUILT_IDS.length);
   assert.ok(Array.isArray(list.itemListElement), 'ItemList missing itemListElement');
-  assert.equal(list.itemListElement.length, 196);
+  assert.equal(list.itemListElement.length, BUILT_IDS.length);
 
   const seen = new Set();
   for (const [i, item] of list.itemListElement.entries()) {
@@ -130,10 +133,14 @@ test('JSON-LD is a CollectionPage with an ItemList of exactly 196 items', () => 
   assert.deepEqual([...seen].sort(), BUILT_IDS, 'ItemList must cover every built flagship');
 });
 
-test('all 196 card hrefs resolve to built archetype blog pages on disk', () => {
+test(`all ${BUILT_IDS.length} card hrefs resolve to built archetype blog pages on disk`, () => {
   const html = readIndex();
   const hrefs = [...html.matchAll(/href="\/sites\/([^/]+)\/blog\/"/g)].map((m) => m[1]);
-  assert.equal(hrefs.length, 196, `expected 196 blog card hrefs, got ${hrefs.length}`);
+  assert.equal(
+    hrefs.length,
+    BUILT_IDS.length,
+    `expected ${BUILT_IDS.length} blog card hrefs, got ${hrefs.length}`
+  );
 
   const ids = [...new Set(hrefs)].sort();
   assert.deepEqual(ids, BUILT_IDS, 'card href ids must match the built archetype ids exactly');
@@ -144,10 +151,14 @@ test('all 196 card hrefs resolve to built archetype blog pages on disk', () => {
   }
 });
 
-test('embedded JSON payload covers all 196 posts with canonical field fidelity', () => {
+test(`embedded JSON payload covers all ${BUILT_IDS.length} posts with canonical field fidelity`, () => {
   const payload = extractPayload(readIndex());
   assert.ok(payload, 'embedded POSTS payload is missing or invalid');
-  assert.equal(payload.length, 196, `expected 196 payload entries, got ${payload.length}`);
+  assert.equal(
+    payload.length,
+    BUILT_IDS.length,
+    `expected ${BUILT_IDS.length} payload entries, got ${payload.length}`
+  );
 
   const payloadIds = payload.map((p) => p.id).sort();
   assert.deepEqual(payloadIds, BUILT_IDS, 'payload ids must match the built archetype ids');

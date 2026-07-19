@@ -62,6 +62,174 @@ const SCRIPTLESS_PANTHEONS = new Set([
 // ═════════════════════════════════════════════════════════════════════════════
 
 const ORIGINAL_SCRIPTS = {
+  anubis: {
+    originalScript: '𓇋𓈖𓊊𓅱',
+    scriptName: 'Hieroglyphs',
+    provenance: {
+      original: '𓇋𓈖𓊊𓅱',
+      transliteration: 'jnpw',
+      steps: [
+        'M17 reed (𓇋) = j',
+        'N35 ripple of water (𓈖) = n',
+        'O31 mouth and basket (𓊊) = p',
+        'G43 quail chick (𓅱) = w',
+        'jnpw is the jackal god of the necropolis, later Greek Ἄνουβις (Anubis)'
+      ],
+      sources: [
+        'Faulkner',
+        'Allen, Middle Egyptian',
+        'Gardiner'
+      ],
+    },
+  },
+  steh: {
+    originalScript: '𓋴𓏏𓐍',
+    scriptName: 'Hieroglyphs',
+    provenance: {
+      original: '𓋴𓏏𓐍',
+      transliteration: 'stḫ',
+      steps: [
+        'S29 folded cloth (𓋴) = s',
+        'X1 bread loaf (𓏏) = t',
+        'V28 wick of twisted flax (𓐍) = ḫ (cheth)',
+        'stḫ is the god of the desert and foreign lands, Greek Σήθ (Seth)'
+      ],
+      sources: [
+        'Faulkner',
+        'Allen, Middle Egyptian',
+        'Gardiner'
+      ],
+    },
+  },
+  seshat: {
+    originalScript: '𓋴𓈙𓄿𓏏',
+    scriptName: 'Hieroglyphs',
+    provenance: {
+      original: '𓋴𓈙𓄿𓏏',
+      transliteration: 'sšꜣt',
+      steps: [
+        'S29 folded cloth (𓋴) = s',
+        'Q1 hillside (𓈙) = š',
+        'G1 vulture (𓄿) = ꜣ',
+        'X1 bread loaf (𓏏) = t',
+        'sšꜣt is the goddess of writing and reckoning, "the female scribe"'
+      ],
+      sources: [
+        'Faulkner',
+        'Allen, Middle Egyptian',
+        'Gardiner'
+      ],
+    },
+  },
+  hp: {
+    originalScript: '𓎛𓊪',
+    scriptName: 'Hieroglyphs',
+    provenance: {
+      original: '𓎛𓊪',
+      transliteration: 'ḥp',
+      steps: [
+        '𓎛 twisted wick of plant fibre = ḥ',
+        'Q3 basket (𓊪) = p',
+        'ḥp is the consonantal skeleton of ḥꜥpj, the Nile inundation god'
+      ],
+      sources: [
+        'Faulkner',
+        'Gardiner'
+      ],
+    },
+  },
+  amsa: {
+    originalScript: 'अंश',
+    scriptName: 'Devanagari',
+    provenance: {
+      original: 'अंश',
+      transliteration: 'aṃśa',
+      steps: [
+        'अ = a',
+        'ं anusvāra = ṃ (nasal)',
+        'श = śa',
+        'aṃśa is one of the Ādityas, a solar portion or ray'
+      ],
+      sources: [
+        'Rigveda',
+        'Monier-Williams'
+      ],
+    },
+  },
+  daksa: {
+    originalScript: 'दक्ष',
+    scriptName: 'Devanagari',
+    provenance: {
+      original: 'दक्ष',
+      transliteration: 'dakṣa',
+      steps: [
+        'द = da',
+        'क = ka',
+        'ष = ṣa (retroflex)',
+        'dakṣa is the Prajāpati of ritual order and father of many gods'
+      ],
+      sources: [
+        'Rigveda',
+        'Monier-Williams'
+      ],
+    },
+  },
+  dhatr: {
+    originalScript: 'धातृ',
+    scriptName: 'Devanagari',
+    provenance: {
+      original: 'धातृ',
+      transliteration: 'dhātṛ',
+      steps: [
+        'ध = dha',
+        'आ = ā (long)',
+        'तृ = tṛ (vocalic ṛ)',
+        'dhātṛ is the Āditya of creation and ordinance, "the Establisher"'
+      ],
+      sources: [
+        'Rigveda',
+        'Monier-Williams'
+      ],
+    },
+  },
+  pusan: {
+    originalScript: 'पूषन्',
+    scriptName: 'Devanagari',
+    provenance: {
+      original: 'पूषन्',
+      transliteration: 'pūṣan',
+      steps: [
+        'प = pa',
+        'ू = ū (long)',
+        'ष = ṣa',
+        'न् = na',
+        'pūṣan is the Vedic solar god who protects travelers and herds'
+      ],
+      sources: [
+        'Rigveda',
+        'Monier-Williams'
+      ],
+    },
+  },
+  tvastr: {
+    originalScript: 'त्वष्टृ',
+    scriptName: 'Devanagari',
+    provenance: {
+      original: 'त्वष्टृ',
+      transliteration: 'tvaṣṭṛ',
+      steps: [
+        'त्व = tva',
+        'ष = ṣa',
+        'टृ = ṭṛ (vocalic ṛ)',
+        'tvaṣṭṛ is the divine craftsman who shapes the forms of the gods'
+      ],
+      sources: [
+        'Rigveda',
+        'Monier-Williams'
+      ],
+    },
+  },
+
   aaru: {
     originalScript: '𓂝𓄿𓂋𓅱',
     scriptName: 'Hieroglyphs',

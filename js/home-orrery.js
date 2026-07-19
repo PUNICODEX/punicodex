@@ -2,7 +2,7 @@
  * PuniCodex — The Orrery of Scripts (home hero)
  *
  * A procedurally rendered 3D celestial sphere built from the writing systems
- * of the 22 pantheons. ~400 glyphs ride a Fibonacci lattice on a hollow
+ * of the 23 pantheons. ~400 glyphs ride a Fibonacci lattice on a hollow
  * spherical shell around the wordmark; three armillary rings precess slowly.
  * Real 3D: rotation matrices + perspective divide, depth-sorted sprites,
  * z-graded alpha, pointer parallax.
@@ -39,6 +39,7 @@
     { font: 'serif', chars: 'அஆஇஈஉஊஎஏஐஒஓகசதநபமயரலவழளறன' }, // tamil
     { font: 'serif', chars: 'ᚁᚂᚃᚄᚅᚆᚇᚈᚉᚊᚋᚌᚍᚎᚏ' }, // ogham
     { font: 'serif', chars: '𐤀𐤁𐤂𐤃𐤄𐤅𐤆𐤇𐤈𐤉𐤊𐤋𐤌𐤍' }, // phoenician
+    { font: '"Cormorant Garamond", serif', chars: 'ĀĒĪŌŪāēīōūÁÉÍÓÚáéíóúÊÔêôḖṒ' }, // latin accents
   ];
 
   // Surrogates must be iterated with code points, not UTF-16 units.
@@ -139,10 +140,10 @@
     return particles;
   }
 
-  // ── The 22 signatures: one emblem glyph per pantheon tradition, riding
+  // ── The signatures: one emblem glyph per script tradition, riding
   // the prime ring like bright stars on an ecliptic. ───────────────────────
   const SIGNATURE_CHARS = [
-    'Ω', 'ᛟ', '𒀭', '𓂀', 'ॐ', 'א', 'ع', '神', 'あ', 'Я', 'Հ', 'ღ', 'ศ', 'ஓ', 'ᚏ', '𐤀',
+    'Ω', 'ᛟ', '𒀭', '𓂀', 'ॐ', 'א', 'ع', '神', 'あ', 'Я', 'Հ', 'ღ', 'ศ', 'ஓ', 'ᚏ', '𐤀', 'Ē',
   ];
 
   function buildSignatures() {
@@ -303,7 +304,7 @@
       ctx.stroke();
     }
 
-    // The 22 signatures on the prime ring — one bright glyph per tradition.
+    // The signatures on the prime ring — one bright glyph per tradition.
     if (signatures.length > 0) {
       const ring = RINGS[0];
       const spin = t * ring.speed * 8;

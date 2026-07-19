@@ -490,6 +490,18 @@ module.exports = {
               "label": "Chronicles & Historical Sources"
             }
           ]
+        },
+        "roman": {
+          "sections": [
+            {
+              "key": "epithets",
+              "label": "Epithets & Cognomina"
+            },
+            {
+              "key": "oracle-sites",
+              "label": "Sanctuaries & Cult Sites"
+            }
+          ]
         }
       }
     },

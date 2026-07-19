@@ -31,7 +31,7 @@ const FUNCTION_GROUPS = [
     ids: [
       'zeus', 'thor', 'indra', 'shango', 'perun', 'perkunas', 'raijin', 'illapa',
       'trengtreng', 'adad', 'baal', 'marduk', 'enlil', 'vajrapani', 'tawhirimatea',
-      'oya', 'ninurta', 'stribog', 'set', 'tarhunash',
+      'oya', 'ninurta', 'stribog', 'steh', 'tarhunash',
     ],
   },
   {
@@ -164,7 +164,7 @@ const FUNCTION_GROUPS = [
     note: 'Forces of chaos, primordial oceans, world-encircling serpents, and cosmic disorder.',
     ids: [
       'chaos', 'tiamat', 'ymir', 'apep', 'typhon', 'leviathan', 'jormungandr', 'nidhogg',
-      'yammu', 'angramainyu', 'set', 'loki', 'sunwukong', 'hati', 'yam',
+      'yammu', 'angramainyu', 'steh', 'loki', 'sunwukong', 'hati', 'yam',
     ],
   },
   {
@@ -173,7 +173,7 @@ const FUNCTION_GROUPS = [
     strength: 2,
     note: 'Deities of healing, medicine, herbal lore, and restorative magic.',
     ids: [
-      'asclepius', 'brigid', 'eir', 'diancecht', 'sukunahikona', 'gula', 'serket', 'paean',
+      'asklepios', 'brigid', 'eir', 'diancecht', 'sukunahikona', 'gula', 'serket', 'paean',
       'hygieia',
     ],
   },

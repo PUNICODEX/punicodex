@@ -15,6 +15,132 @@
 'use strict';
 
 const PRONUNCIATION_ATLAS = {
+  "achilleus": {
+    "ipa": "/a.kʰil.leús/",
+    "ipaLabel": "Scholarly reconstruction",
+    "approximation": "the Wrath and the Heel."
+  },
+  "asklepios": {
+    "ipa": "/a.skliː.pi.ós/",
+    "ipaLabel": "Scholarly reconstruction",
+    "approximation": "the Physician of the Gods."
+  },
+  "drakon": {
+    "ipa": "/drá.kɔːn/",
+    "ipaLabel": "Scholarly reconstruction",
+    "approximation": "the Sleepless Watcher."
+  },
+  "monokeros": {
+    "ipa": "/mo.nó.kɛː.rɔːs/",
+    "ipaLabel": "Scholarly reconstruction",
+    "approximation": "the Single Horn."
+  },
+  "pegasos": {
+    "ipa": "/pɛ̌ː.ɡa.sos/",
+    "ipaLabel": "Scholarly reconstruction",
+    "approximation": "the Winged Horse."
+  },
+  "tyche": {
+    "ipa": "/tý.kʰɛː/",
+    "ipaLabel": "Scholarly reconstruction",
+    "approximation": "the Turning of the Wheel."
+  },
+  "diana": {
+    "ipa": "/diˈaː.na/",
+    "ipaLabel": "Scholarly reconstruction",
+    "approximation": "the Huntress of the Moon."
+  },
+  "ianus": {
+    "ipa": "/ˈjaː.nus/",
+    "ipaLabel": "Scholarly reconstruction",
+    "approximation": "the God of Two Faces."
+  },
+  "iuno": {
+    "ipa": "/ˈjuː.noː/",
+    "ipaLabel": "Scholarly reconstruction",
+    "approximation": "the Queen of Heaven."
+  },
+  "iuppiter": {
+    "ipa": "/ˈjuːp.pi.ter/",
+    "ipaLabel": "Scholarly reconstruction",
+    "approximation": "the Father of the Sky."
+  },
+  "neptunus": {
+    "ipa": "/nepˈtuː.nus/",
+    "ipaLabel": "Scholarly reconstruction",
+    "approximation": "the Lord of Waters."
+  },
+  "vulcanus": {
+    "ipa": "/vulˈkaː.nus/",
+    "ipaLabel": "Scholarly reconstruction",
+    "approximation": "the Smith of the Gods."
+  },
+  "steh": {
+    "ipa": "/ˈsɛː.tɛx/",
+    "ipaLabel": "Scholarly reconstruction",
+    "approximation": "the Lord of the Red Land."
+  },
+  "hp": {
+    "ipa": "/ˈħaː.pi/",
+    "ipaLabel": "Scholarly reconstruction",
+    "approximation": "the Bringer of the Flood."
+  },
+  "amsa": {
+    "ipa": "/ɐmˈɕɐ/",
+    "ipaLabel": "Scholarly reconstruction",
+    "approximation": "the Portion of the Sun."
+  },
+  "daksa": {
+    "ipa": "/ˈd̪ɐk.ʂɐ/",
+    "ipaLabel": "Scholarly reconstruction",
+    "approximation": "the Father of Order."
+  },
+  "dhatr": {
+    "ipa": "/d̪ʱɑːˈt̪r̩/",
+    "ipaLabel": "Scholarly reconstruction",
+    "approximation": "the One Who Sets the World."
+  },
+  "pusan": {
+    "ipa": "/ˈpuː.ʂɐn/",
+    "ipaLabel": "Scholarly reconstruction",
+    "approximation": "the Guide of All Roads."
+  },
+  "tvastr": {
+    "ipa": "/ˈt̪ʋɐʂ.ʈr̩/",
+    "ipaLabel": "Scholarly reconstruction",
+    "approximation": "the Architect of the Gods."
+  },
+  "mengpo": {
+    "ipa": "/məŋ˥˩ pʰwo˧˥/",
+    "ipaLabel": "Scholarly reconstruction",
+    "approximation": "the Tea at the Bridge."
+  },
+  "pangu": {
+    "ipa": "/pʰa˧˥ ku˨˩˦/",
+    "ipaLabel": "Scholarly reconstruction",
+    "approximation": "the Giant Between Heaven and Earth."
+  },
+  "yanluo": {
+    "ipa": "/jɛn˧˥ lwo˧˥/",
+    "ipaLabel": "Scholarly reconstruction",
+    "approximation": "the Judge Below."
+  },
+  "honshu": {
+    "ipa": "/hon.ɕuː/",
+    "ipaLabel": "Scholarly reconstruction",
+    "approximation": "the Heart of the Islands."
+  },
+  "kyushu": {
+    "ipa": "/kjɯː.ɕɯː/",
+    "ipaLabel": "Scholarly reconstruction",
+    "approximation": "the Nine Provinces."
+  },
+  "tumatauenga": {
+    "ipa": "/tuː.ma.taʊ.ˈe.ŋa/",
+    "ipaLabel": "Scholarly reconstruction",
+    "approximation": "the Face of Battle."
+  },
+
   "apollon": {
     "ipa": "/a.pól.lɔːn/",
     "ipaLabel": "Attic Greek Reconstruction",
@@ -1584,7 +1710,7 @@ const PRONUNCIATION_ATLAS = {
     "audioPath": null,
     "note": "Broad IPA generated from the Unicode restoration Sbk; review recommended before promotion to canonical."
   },
-  "set": {
+  "steh": {
     "ipa": "/stʰ/",
     "ipaLabel": "Egyptological reconstruction",
     "phonemes": [],

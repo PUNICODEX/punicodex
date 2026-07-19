@@ -72,12 +72,26 @@ function pickFrom(arr, seed, count) {
   const out = [];
   let idx = seed % arr.length;
   const used = new Set();
+  const step = Math.max(1, seed % 7);
+  let misses = 0;
   while (out.length < count && used.size < arr.length) {
     if (!used.has(idx)) {
       out.push(arr[idx]);
       used.add(idx);
+      misses = 0;
+    } else if (++misses >= arr.length) {
+      // The stride can cycle over a residue class of already-used slots
+      // (e.g. step 5 on a pool of 5 never leaves the start index). A
+      // terminating walk never produces arr.length consecutive misses, so
+      // reaching one means the walk is stuck: fall back to a sequential
+      // scan for the next unused slot. Existing outputs are unaffected.
+      do {
+        idx = (idx + 1) % arr.length;
+      } while (used.has(idx));
+      misses = 0;
+      continue;
     }
-    idx = (idx + Math.max(1, seed % 7)) % arr.length;
+    idx = (idx + step) % arr.length;
   }
   return out;
 }

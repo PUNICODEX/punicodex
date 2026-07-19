@@ -38,6 +38,7 @@
     const PANTHEON_LABELS = {
         greek: 'Greek',
         'greek-location': 'Greek Locations',
+        roman: 'Roman',
         norse: 'Norse',
         egyptian: 'Egyptian',
         sanskrit: 'Sanskrit',

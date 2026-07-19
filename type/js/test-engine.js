@@ -334,21 +334,21 @@ test('Correct pantheon counts', () => {
   LEXICON.forEach((e) => {
     counts[e.pantheon] = (counts[e.pantheon] || 0) + 1;
   });
-  assert.strictEqual(counts.greek, 263, 'Greek count');
+  assert.strictEqual(counts.greek, 268, 'Greek count');
   assert.strictEqual(counts['greek-location'], 24, 'Greek-location count');
   assert.strictEqual(counts.norse, 86, 'Norse count');
-  assert.strictEqual(counts.egyptian, 66, 'Egyptian count');
-  assert.strictEqual(counts.sanskrit, 88, 'Sanskrit count');
+  assert.strictEqual(counts.egyptian, 67, 'Egyptian count');
+  assert.strictEqual(counts.sanskrit, 90, 'Sanskrit count');
   assert.strictEqual(counts.celtic, 47, 'Celtic count');
   assert.strictEqual(counts.mesopotamian, 30, 'Mesopotamian count');
-  assert.strictEqual(counts.polynesian, 22, 'Polynesian count');
-  assert.strictEqual(counts.japanese, 43, 'Japanese count');
+  assert.strictEqual(counts.polynesian, 23, 'Polynesian count');
+  assert.strictEqual(counts.japanese, 45, 'Japanese count');
   assert.strictEqual(counts.nahuatl, 28, 'Nahuatl count');
   assert.strictEqual(counts.yoruba, 30, 'Yoruba count');
   assert.strictEqual(counts.slavic, 21, 'Slavic count');
   assert.strictEqual(counts.zoroastrian, 18, 'Zoroastrian count');
   assert.strictEqual(counts.incan, 12, 'Incan count');
-  assert.strictEqual(counts.chinese, 43, 'Chinese count');
+  assert.strictEqual(counts.chinese, 46, 'Chinese count');
   assert.strictEqual(counts.buddhist, 21, 'Buddhist count');
   assert.strictEqual(counts.taoist, 12, 'Taoist count');
   assert.strictEqual(counts.korean, 12, 'Korean count');
@@ -356,6 +356,7 @@ test('Correct pantheon counts', () => {
   assert.strictEqual(counts.hittite, 8, 'Hittite count');
   assert.strictEqual(counts.canaanite, 12, 'Canaanite count');
   assert.strictEqual(counts.baltic, 1, 'Baltic count');
+  assert.strictEqual(counts.roman, 6, 'Roman count');
 });
 
 section('Unicode & Normalization');
@@ -558,7 +559,9 @@ test('Derived forms never duplicate the primary or an existing variant (whole le
     const form = deriveStackedForm(entry);
     if (!form) return;
     const taken = new Set(
-      [entry.unicode, ...(entry.variants || []).map((v) => v.unicode)].map((s) => s.normalize('NFC'))
+      [entry.unicode, ...(entry.variants || []).map((v) => v.unicode)].map((s) =>
+        s.normalize('NFC')
+      )
     );
     assert.ok(!taken.has(form), `${entry.id}: stacked form ${form} duplicates an existing form`);
   });
@@ -593,7 +596,8 @@ test('Type tool wires stacked chips into the copyable variant list (source-level
   assert.ok(typeJs.includes('deriveStackedForm'), 'type.js does not call deriveStackedForm');
   assert.ok(typeJs.includes("type: 'stacked'"), 'type.js does not build the stacked chip');
   assert.ok(
-    typeJs.includes("querySelectorAll('.variation-chip')") && typeJs.includes('btn.dataset.unicode'),
+    typeJs.includes("querySelectorAll('.variation-chip')") &&
+      typeJs.includes('btn.dataset.unicode'),
     'generic variation-chip copy handler missing'
   );
   const typeCss = fs.readFileSync(path.join(__dirname, '..', 'css', 'type.css'), 'utf8');

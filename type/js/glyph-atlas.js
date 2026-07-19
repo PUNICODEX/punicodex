@@ -1522,7 +1522,7 @@ const GLYPH_ATLAS = {
     "timePeriod": "c. 3200 BCE – 394 CE",
     "region": "Nile Valley"
   },
-  "set": {
+  "steh": {
     "scriptName": "Hieroglyphs",
     "codePoints": [
       "U+130EB"

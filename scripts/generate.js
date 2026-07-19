@@ -94,14 +94,23 @@ function run(script) {
   const scriptPath = path.join(root, parts[0]);
   const args = parts.slice(1);
   console.log(`\n▸ ${script}`);
-  const result = spawnSync(process.execPath, ['--max-old-space-size=8192', scriptPath, ...args], {
-    cwd: root,
-    stdio: 'inherit',
-  });
-  if (result.status !== 0) {
-    console.error(`\n✗ ${script} failed with exit code ${result.status}`);
-    process.exit(result.status || 1);
+  // Retry transient write failures: on Windows, AV/indexer locks on freshly
+  // written files intermittently fail a spawn with UNKNOWN(-4094). All
+  // generate scripts are idempotent, so a retry is always safe.
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    const result = spawnSync(process.execPath, ['--max-old-space-size=8192', scriptPath, ...args], {
+      cwd: root,
+      stdio: 'inherit',
+    });
+    if (result.status === 0) return;
+    console.error(`\n✗ ${script} failed with exit code ${result.status} (attempt ${attempt}/3)`);
+    if (attempt < 3) {
+      const wait = 1000 * attempt;
+      console.error(`  retrying in ${wait}ms (idempotent script)...`);
+      Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, wait);
+    }
   }
+  process.exit(1);
 }
 
 console.log('╔════════════════════════════════════════════════════════╗');

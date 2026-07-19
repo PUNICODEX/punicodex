@@ -3262,11 +3262,11 @@ const LEXICON = [
   {
     "id": "troia",
     "ascii": "troia",
-    "unicode": "Troía",
+    "unicode": "Troíā",
     "greek": "Τροία",
     "pantheon": "greek-location",
-    "tier": "2",
-    "tierLabel": "Tier 2",
+    "tier": "1",
+    "tierLabel": "Tier 1",
     "domain": "City of Priam",
     "meaning": "Unknown; possibly from Τρωός",
     "sources": [
@@ -3300,9 +3300,9 @@ const LEXICON = [
       },
       {
         "char": "a",
-        "to": "a",
-        "type": "same",
-        "note": "Short alpha"
+        "to": "ā",
+        "type": "length",
+        "note": "Long final alpha"
       }
     ]
   },
@@ -3521,7 +3521,7 @@ const LEXICON = [
   {
     "id": "delos",
     "ascii": "delos",
-    "unicode": "Dēlos",
+    "unicode": "Dêlos",
     "greek": "Δῆλος",
     "pantheon": "greek-location",
     "tier": "1",
@@ -3541,9 +3541,9 @@ const LEXICON = [
       },
       {
         "char": "e",
-        "to": "ē",
-        "type": "length",
-        "note": "Eta: long epsilon"
+        "to": "ê",
+        "type": "special",
+        "note": "Circumflex: stress and length in one mark"
       },
       {
         "char": "l",
@@ -5543,7 +5543,7 @@ const LEXICON = [
   {
     "id": "anubis",
     "ascii": "anubis",
-    "unicode": "Jnpw",
+    "unicode": "ꜣnpw",
     "greek": "—",
     "pantheon": "egyptian",
     "tier": "2",
@@ -5557,9 +5557,9 @@ const LEXICON = [
     "breakdown": [
       {
         "char": "a",
-        "to": "J",
+        "to": "ꜣ",
         "type": "special",
-        "note": "Alef: glottal stop"
+        "note": "Alef ꜣ: glottal stop"
       },
       {
         "char": "n",
@@ -6264,42 +6264,6 @@ const LEXICON = [
         "to": "k",
         "type": "same",
         "note": "Same"
-      }
-    ],
-    "variants": []
-  },
-  {
-    "id": "set",
-    "ascii": "set",
-    "unicode": "Stḫ",
-    "greek": "—",
-    "pantheon": "egyptian",
-    "tier": "2",
-    "tierLabel": "Tier 2",
-    "domain": "Chaos, Storms, Desert",
-    "meaning": "One who dazzles, pillar (Egyptian stḫ)",
-    "sources": [
-      "Faulkner",
-      "Wb"
-    ],
-    "breakdown": [
-      {
-        "char": "s",
-        "to": "S",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "e",
-        "to": "t",
-        "type": "special",
-        "note": "T: voiceless stop"
-      },
-      {
-        "char": "t",
-        "to": "ḫ",
-        "type": "special",
-        "note": "H-with-breve: voiceless velar fricative"
       }
     ],
     "variants": []
@@ -10127,7 +10091,7 @@ const LEXICON = [
   {
     "id": "ogun",
     "ascii": "ogun",
-    "unicode": "Ogun",
+    "unicode": "Ògún",
     "greek": "—",
     "pantheon": "yoruba",
     "tier": "2",
@@ -10140,9 +10104,9 @@ const LEXICON = [
     "breakdown": [
       {
         "char": "o",
-        "to": "O",
-        "type": "same",
-        "note": "Same"
+        "to": "Ò",
+        "type": "special",
+        "note": "Low tone (Yoruba)"
       },
       {
         "char": "g",
@@ -10152,9 +10116,9 @@ const LEXICON = [
       },
       {
         "char": "u",
-        "to": "u",
-        "type": "same",
-        "note": "Same"
+        "to": "ú",
+        "type": "special",
+        "note": "High tone (Yoruba)"
       },
       {
         "char": "n",
@@ -34857,77 +34821,6 @@ const LEXICON = [
     ]
   },
   {
-    "id": "asclepius",
-    "ascii": "asclepius",
-    "unicode": "Asklēpiós",
-    "greek": "Ἀσκληπιός",
-    "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
-    "domain": "Medicine, Healing",
-    "meaning": "To cut open",
-    "sources": [
-      "Homer",
-      "LSJ"
-    ],
-    "breakdown": [
-      {
-        "char": "a",
-        "to": "A",
-        "type": "same",
-        "note": "A uppercase"
-      },
-      {
-        "char": "s",
-        "to": "s",
-        "type": "same",
-        "note": "s same"
-      },
-      {
-        "char": "c",
-        "to": "k",
-        "type": "special",
-        "note": "Special character"
-      },
-      {
-        "char": "l",
-        "to": "l",
-        "type": "same",
-        "note": "l same"
-      },
-      {
-        "char": "e",
-        "to": "ē",
-        "type": "length",
-        "note": "Macron: long vowel"
-      },
-      {
-        "char": "p",
-        "to": "p",
-        "type": "same",
-        "note": "p same"
-      },
-      {
-        "char": "i",
-        "to": "i",
-        "type": "same",
-        "note": "i same"
-      },
-      {
-        "char": "u",
-        "to": "ó",
-        "type": "special",
-        "note": "Special character"
-      },
-      {
-        "char": "s",
-        "to": "s",
-        "type": "same",
-        "note": "s same"
-      }
-    ]
-  },
-  {
     "id": "eileithyia",
     "ascii": "eileithyia",
     "unicode": "Eileíthyia",
@@ -37862,136 +37755,6 @@ const LEXICON = [
     ]
   },
   {
-    "id": "tvashtri",
-    "ascii": "tvashtri",
-    "unicode": "Tvaṣṭṛ",
-    "greek": "—",
-    "pantheon": "sanskrit",
-    "tier": "2",
-    "tierLabel": "Tier 2",
-    "domain": "Divine Artificer",
-    "meaning": "‘creator of living beings’, the heavenly builder, N. of a god (called sukft, pARi, gaBasti, janiman, svapas, apasAm apastama, viSvarUpa &c., RV.; maker of divine implements",
-    "senses": [
-      {
-        "type": "etymology",
-        "text": "The carpenter"
-      }
-    ],
-    "sources": [
-      "MW",
-      "RV"
-    ],
-    "breakdown": [
-      {
-        "char": "t",
-        "to": "T",
-        "type": "same",
-        "note": "Same, capitalized"
-      },
-      {
-        "char": "v",
-        "to": "v",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "a",
-        "to": "a",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "s",
-        "to": "ṣ",
-        "type": "special",
-        "note": "S with dot: retroflex s"
-      },
-      {
-        "char": "h",
-        "to": "",
-        "type": "drop",
-        "note": "Dropped"
-      },
-      {
-        "char": "t",
-        "to": "ṭ",
-        "type": "special",
-        "note": "T with dot: retroflex t"
-      },
-      {
-        "char": "r",
-        "to": "ṛ",
-        "type": "special",
-        "note": "R with dot: vocalic r"
-      },
-      {
-        "char": "i",
-        "to": "",
-        "type": "drop",
-        "note": "Dropped"
-      }
-    ]
-  },
-  {
-    "id": "pushan",
-    "ascii": "pushan",
-    "unicode": "Pūṣan",
-    "greek": "—",
-    "pantheon": "sanskrit",
-    "tier": "2",
-    "tierLabel": "Tier 2",
-    "domain": "Prosperity, Journeys",
-    "meaning": "N. of a Vedic deity (originally connected with the sun, and therefore the surveyor of all things, and the conductor on journeys and on the way to the next world",
-    "senses": [
-      {
-        "type": "etymology",
-        "text": "The nourisher"
-      }
-    ],
-    "sources": [
-      "MW",
-      "RV"
-    ],
-    "breakdown": [
-      {
-        "char": "p",
-        "to": "P",
-        "type": "same",
-        "note": "Same, capitalized"
-      },
-      {
-        "char": "u",
-        "to": "ū",
-        "type": "length",
-        "note": "Long vowel"
-      },
-      {
-        "char": "s",
-        "to": "ṣ",
-        "type": "special",
-        "note": "S with dot: retroflex s"
-      },
-      {
-        "char": "h",
-        "to": "",
-        "type": "drop",
-        "note": "Dropped"
-      },
-      {
-        "char": "a",
-        "to": "a",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "n",
-        "to": "n",
-        "type": "same",
-        "note": "Same"
-      }
-    ]
-  },
-  {
     "id": "vishvakarman",
     "ascii": "vishvakarman",
     "unicode": "Viśvakarman",
@@ -38075,65 +37838,6 @@ const LEXICON = [
       {
         "char": "n",
         "to": "n",
-        "type": "same",
-        "note": "Same"
-      }
-    ]
-  },
-  {
-    "id": "daksha",
-    "ascii": "daksha",
-    "unicode": "Dakṣa",
-    "greek": "—",
-    "pantheon": "sanskrit",
-    "tier": "2",
-    "tierLabel": "Tier 2",
-    "domain": "Ritual, Creation",
-    "meaning": "of a son of Uśīnara, BhP. ix, 23, 2",
-    "senses": [
-      {
-        "type": "etymology",
-        "text": "Able, competent"
-      }
-    ],
-    "sources": [
-      "MW",
-      "Puranas"
-    ],
-    "breakdown": [
-      {
-        "char": "d",
-        "to": "D",
-        "type": "same",
-        "note": "Same, capitalized"
-      },
-      {
-        "char": "a",
-        "to": "a",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "k",
-        "to": "k",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "s",
-        "to": "ṣ",
-        "type": "special",
-        "note": "S with dot: retroflex s"
-      },
-      {
-        "char": "h",
-        "to": "",
-        "type": "drop",
-        "note": "Dropped"
-      },
-      {
-        "char": "a",
-        "to": "a",
         "type": "same",
         "note": "Same"
       }
@@ -39475,7 +39179,7 @@ const LEXICON = [
   {
     "id": "seshat",
     "ascii": "seshat",
-    "unicode": "Ssḥt",
+    "unicode": "Sšꜣt",
     "greek": "—",
     "pantheon": "egyptian",
     "tier": "2",
@@ -39495,15 +39199,15 @@ const LEXICON = [
       },
       {
         "char": "e",
-        "to": "s",
+        "to": "š",
         "type": "special",
-        "note": "Special phonetic character"
+        "note": "Sibilant š (palatal s)"
       },
       {
         "char": "s",
-        "to": "ḥ",
+        "to": "ꜣ",
         "type": "special",
-        "note": "H with dot: voiceless pharyngeal"
+        "note": "Alef ꜣ: glottal stop"
       },
       {
         "char": "h",
@@ -54302,6 +54006,571 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
+    ]
+  }
+,
+  {
+    "id": "achilleus",
+    "hasAdSite": true,
+    "ascii": "achilleus",
+    "unicode": "Achilleús",
+    "greek": "Ἀχιλλεύς",
+    "pantheon": "greek",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "War, Glory, Rage",
+    "meaning": "Possibly 'grief of the people' (from ἄχος + λαός), or a pre-Greek name",
+    "sources": ["LSJ", "Iliad", "Beekes"],
+    "variants": [],
+    "breakdown": [
+        { char: "a", to: "A", type: "same", note: "Same letter" },
+        { char: "c", to: "c", type: "same", note: "Same letter" },
+        { char: "h", to: "h", type: "same", note: "Same letter" },
+        { char: "i", to: "i", type: "same", note: "Same letter" },
+        { char: "l", to: "l", type: "same", note: "Same letter" },
+        { char: "l", to: "l", type: "same", note: "Same letter" },
+        { char: "e", to: "e", type: "same", note: "Same letter" },
+        { char: "u", to: "ú", type: "stress", note: "Stress mark (acute/tone)" },
+        { char: "s", to: "s", type: "same", note: "Same letter" }
+    ]
+  },
+  {
+    "id": "asklepios",
+    "hasAdSite": true,
+    "ascii": "asklepios",
+    "unicode": "Asklēpiós",
+    "greek": "Ἀσκληπιός",
+    "pantheon": "greek",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Medicine, Healing, Renewal",
+    "meaning": "Uncertain; possibly related to ἀσκαλαβώτης (lizard) or a pre-Greek healing root",
+    "sources": ["LSJ", "Homeric Hymns", "Pausanias"],
+    "variants": [
+      { "unicode": "Asklēpios", "type": "macron-only", "note": "LSJ convention: length only, no stress mark" }
+    ],
+    "breakdown": [
+        { char: "a", to: "A", type: "same", note: "Same letter" },
+        { char: "s", to: "s", type: "same", note: "Same letter" },
+        { char: "k", to: "k", type: "same", note: "Same letter" },
+        { char: "l", to: "l", type: "same", note: "Same letter" },
+        { char: "e", to: "ē", type: "length", note: "Macron marks the long vowel" },
+        { char: "p", to: "p", type: "same", note: "Same letter" },
+        { char: "i", to: "i", type: "same", note: "Same letter" },
+        { char: "o", to: "ó", type: "stress", note: "Stress mark (acute/tone)" },
+        { char: "s", to: "s", type: "same", note: "Same letter" }
+    ]
+  },
+  {
+    "id": "drakon",
+    "hasAdSite": true,
+    "ascii": "drakon",
+    "unicode": "Drákōn",
+    "greek": "Δράκων",
+    "pantheon": "greek",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Serpent, Guardian, Vigilance",
+    "meaning": "'The one who sees clearly' (from δέρκομαι, to see)",
+    "sources": ["LSJ", "Beekes", "Apollodorus"],
+    "variants": [
+      { "unicode": "Drakōn", "type": "macron-only", "note": "LSJ convention: length only, no stress mark" }
+    ],
+    "breakdown": [
+        { char: "d", to: "D", type: "same", note: "Same letter" },
+        { char: "r", to: "r", type: "same", note: "Same letter" },
+        { char: "a", to: "á", type: "stress", note: "Stress mark (acute/tone)" },
+        { char: "k", to: "k", type: "same", note: "Same letter" },
+        { char: "o", to: "ō", type: "length", note: "Macron marks the long vowel" },
+        { char: "n", to: "n", type: "same", note: "Same letter" }
+    ]
+  },
+  {
+    "id": "monokeros",
+    "hasAdSite": true,
+    "ascii": "monokeros",
+    "unicode": "Monókerōs",
+    "greek": "Μονόκερως",
+    "pantheon": "greek",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Purity, Rarity, Wonder",
+    "meaning": "'Single-horned' (from μόνος + κέρας)",
+    "sources": ["LSJ", "Ctesias", "Pliny"],
+    "variants": [
+      { "unicode": "Monokērōs", "type": "macron-only", "note": "LSJ convention: length only, no stress mark" }
+    ],
+    "breakdown": [
+        { char: "m", to: "M", type: "same", note: "Same letter" },
+        { char: "o", to: "o", type: "same", note: "Same letter" },
+        { char: "n", to: "n", type: "same", note: "Same letter" },
+        { char: "o", to: "ó", type: "stress", note: "Stress mark (acute/tone)" },
+        { char: "k", to: "k", type: "same", note: "Same letter" },
+        { char: "e", to: "e", type: "same", note: "Same letter" },
+        { char: "r", to: "r", type: "same", note: "Same letter" },
+        { char: "o", to: "ō", type: "length", note: "Macron marks the long vowel" },
+        { char: "s", to: "s", type: "same", note: "Same letter" }
+    ]
+  },
+  {
+    "id": "pegasos",
+    "hasAdSite": true,
+    "ascii": "pegasos",
+    "unicode": "Pḗgasos",
+    "greek": "Πήγασος",
+    "pantheon": "greek",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Flight, Inspiration, Freedom",
+    "meaning": "Possibly from πηγή (spring) or a pre-Greek name",
+    "sources": ["LSJ", "Hesiod", "Pindar"],
+    "variants": [
+      { "unicode": "Pēgasos", "type": "macron-only", "note": "LSJ convention: length only, no stress mark" }
+    ],
+    "breakdown": [
+        { char: "p", to: "P", type: "same", note: "Same letter" },
+        { char: "e", to: "ḗ", type: "dual", note: "Stacked macron + acute on one vowel" },
+        { char: "g", to: "g", type: "same", note: "Same letter" },
+        { char: "a", to: "a", type: "same", note: "Same letter" },
+        { char: "s", to: "s", type: "same", note: "Same letter" },
+        { char: "o", to: "o", type: "same", note: "Same letter" },
+        { char: "s", to: "s", type: "same", note: "Same letter" }
+    ]
+  },
+  {
+    "id": "tyche",
+    "hasAdSite": true,
+    "ascii": "tyche",
+    "unicode": "Týchē",
+    "greek": "Τύχη",
+    "pantheon": "greek",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Fortune, Chance, Turning",
+    "meaning": "'That which happens' (from τυγχάνω)",
+    "sources": ["LSJ", "Pausanias", "Polybius"],
+    "variants": [
+      { "unicode": "Tychē", "type": "macron-only", "note": "LSJ convention: length only, no stress mark" }
+    ],
+    "breakdown": [
+        { char: "t", to: "T", type: "same", note: "Same letter" },
+        { char: "y", to: "ý", type: "stress", note: "Stress mark (acute/tone)" },
+        { char: "c", to: "c", type: "same", note: "Same letter" },
+        { char: "h", to: "h", type: "same", note: "Same letter" },
+        { char: "e", to: "ē", type: "length", note: "Macron marks the long vowel" }
+    ]
+  },
+  {
+    "id": "diana",
+    "hasAdSite": true,
+    "ascii": "diana",
+    "unicode": "Diāna",
+    "greek": "—",
+    "pantheon": "roman",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Moon, Hunt, Wilderness",
+    "meaning": "'The bright one, goddess' (from the root *dyēu-, to shine)",
+    "sources": ["Lewis & Short", "Varro", "Horace"],
+    "variants": [],
+    "breakdown": [
+        { char: "d", to: "D", type: "same", note: "Same letter" },
+        { char: "i", to: "i", type: "same", note: "Same letter" },
+        { char: "a", to: "ā", type: "length", note: "Macron marks the long vowel" },
+        { char: "n", to: "n", type: "same", note: "Same letter" },
+        { char: "a", to: "a", type: "same", note: "Same letter" }
+    ]
+  },
+  {
+    "id": "ianus",
+    "hasAdSite": true,
+    "ascii": "ianus",
+    "unicode": "Iānus",
+    "greek": "—",
+    "pantheon": "roman",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Beginnings, Doors, Transitions",
+    "meaning": "'Passage, arched door' (from ianua)",
+    "sources": ["Lewis & Short", "Ovid", "Macrobius"],
+    "variants": [],
+    "breakdown": [
+        { char: "i", to: "I", type: "same", note: "Same letter" },
+        { char: "a", to: "ā", type: "length", note: "Macron marks the long vowel" },
+        { char: "n", to: "n", type: "same", note: "Same letter" },
+        { char: "u", to: "u", type: "same", note: "Same letter" },
+        { char: "s", to: "s", type: "same", note: "Same letter" }
+    ]
+  },
+  {
+    "id": "iuno",
+    "hasAdSite": true,
+    "ascii": "iuno",
+    "unicode": "Iūnō",
+    "greek": "—",
+    "pantheon": "roman",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Queenship, Marriage, Sky",
+    "meaning": "From the same root as Iuppiter, the bright sky",
+    "sources": ["Lewis & Short", "Virgil", "Ovid"],
+    "variants": [],
+    "breakdown": [
+        { char: "i", to: "I", type: "same", note: "Same letter" },
+        { char: "u", to: "ū", type: "length", note: "Macron marks the long vowel" },
+        { char: "n", to: "n", type: "same", note: "Same letter" },
+        { char: "o", to: "ō", type: "length", note: "Macron marks the long vowel" }
+    ]
+  },
+  {
+    "id": "iuppiter",
+    "hasAdSite": true,
+    "ascii": "iuppiter",
+    "unicode": "Iūppiter",
+    "greek": "—",
+    "pantheon": "roman",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Sky, Thunder, Sovereignty",
+    "meaning": "'Sky-father' (from *Dyēu-pater)",
+    "sources": ["Lewis & Short", "Ennius", "Virgil"],
+    "variants": [],
+    "breakdown": [
+        { char: "i", to: "I", type: "same", note: "Same letter" },
+        { char: "u", to: "ū", type: "length", note: "Macron marks the long vowel" },
+        { char: "p", to: "p", type: "same", note: "Same letter" },
+        { char: "p", to: "p", type: "same", note: "Same letter" },
+        { char: "i", to: "i", type: "same", note: "Same letter" },
+        { char: "t", to: "t", type: "same", note: "Same letter" },
+        { char: "e", to: "e", type: "same", note: "Same letter" },
+        { char: "r", to: "r", type: "same", note: "Same letter" }
+    ]
+  },
+  {
+    "id": "neptunus",
+    "hasAdSite": true,
+    "ascii": "neptunus",
+    "unicode": "Neptūnus",
+    "greek": "—",
+    "pantheon": "roman",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Sea, Horses, Earthquake",
+    "meaning": "Possibly related to nepos (descendant) or a pre-Roman water root",
+    "sources": ["Lewis & Short", "Varro", "Virgil"],
+    "variants": [],
+    "breakdown": [
+        { char: "n", to: "N", type: "same", note: "Same letter" },
+        { char: "e", to: "e", type: "same", note: "Same letter" },
+        { char: "p", to: "p", type: "same", note: "Same letter" },
+        { char: "t", to: "t", type: "same", note: "Same letter" },
+        { char: "u", to: "ū", type: "length", note: "Macron marks the long vowel" },
+        { char: "n", to: "n", type: "same", note: "Same letter" },
+        { char: "u", to: "u", type: "same", note: "Same letter" },
+        { char: "s", to: "s", type: "same", note: "Same letter" }
+    ]
+  },
+  {
+    "id": "vulcanus",
+    "hasAdSite": true,
+    "ascii": "vulcanus",
+    "unicode": "Vulcānus",
+    "greek": "—",
+    "pantheon": "roman",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Fire, Forge, Craft",
+    "meaning": "Possibly from fulgere (to flash) or a pre-Roman fire root",
+    "sources": ["Lewis & Short", "Virgil", "Ovid"],
+    "variants": [],
+    "breakdown": [
+        { char: "v", to: "V", type: "same", note: "Same letter" },
+        { char: "u", to: "u", type: "same", note: "Same letter" },
+        { char: "l", to: "l", type: "same", note: "Same letter" },
+        { char: "c", to: "c", type: "same", note: "Same letter" },
+        { char: "a", to: "ā", type: "length", note: "Macron marks the long vowel" },
+        { char: "n", to: "n", type: "same", note: "Same letter" },
+        { char: "u", to: "u", type: "same", note: "Same letter" },
+        { char: "s", to: "s", type: "same", note: "Same letter" }
+    ]
+  },
+  {
+    "id": "steh",
+    "hasAdSite": true,
+    "ascii": "steh",
+    "unicode": "Stḫ",
+    "greek": "—",
+    "pantheon": "egyptian",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Desert, Storm, Strength",
+    "meaning": "The god Seth/Setekh; etymology disputed, possibly \"the one who separates\"",
+    "sources": ["Faulkner", "Gardiner", "Te Velde"],
+    "variants": [],
+    "breakdown": [
+        { char: "s", to: "S", type: "same", note: "Same letter" },
+        { char: "t", to: "t", type: "same", note: "Same letter" },
+        { char: "e", to: "ḫ", type: "special", note: "Script-specific letter" },
+        { char: "h", to: "", type: "drop", note: "Dropped in the Unicode form" }
+    ]
+  },
+  {
+    "id": "hp",
+    "hasAdSite": true,
+    "ascii": "hp",
+    "unicode": "Ḥp",
+    "greek": "—",
+    "pantheon": "egyptian",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Nile, Inundation, Abundance",
+    "meaning": "The Nile flood god Hapi; from ḥꜥpj",
+    "sources": ["Faulkner", "Gardiner", "Bonneau"],
+    "variants": [],
+    "breakdown": [
+        { char: "h", to: "Ḥ", type: "special", note: "Script-specific diacritic" },
+        { char: "p", to: "p", type: "same", note: "Same letter" }
+    ]
+  },
+  {
+    "id": "amsa",
+    "hasAdSite": true,
+    "ascii": "amsa",
+    "unicode": "Aṃśa",
+    "greek": "—",
+    "pantheon": "sanskrit",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Share, Portion, Light",
+    "meaning": "'Portion, share' (from aṃśa), one of the twelve Ādityas",
+    "sources": ["Rigveda", "Monier-Williams", "Macdonell"],
+    "variants": [],
+    "breakdown": [
+        { char: "a", to: "A", type: "same", note: "Same letter" },
+        { char: "m", to: "ṃ", type: "special", note: "Script-specific diacritic" },
+        { char: "s", to: "ś", type: "stress", note: "Stress mark (acute/tone)" },
+        { char: "a", to: "a", type: "same", note: "Same letter" }
+    ]
+  },
+  {
+    "id": "daksa",
+    "hasAdSite": true,
+    "ascii": "daksa",
+    "unicode": "Dakṣa",
+    "greek": "—",
+    "pantheon": "sanskrit",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Skill, Creation, Order",
+    "meaning": "'The skilled, the able' (from dakṣa), a Prajāpati",
+    "sources": ["Rigveda", "Mahabharata", "Monier-Williams"],
+    "variants": [],
+    "breakdown": [
+        { char: "d", to: "D", type: "same", note: "Same letter" },
+        { char: "a", to: "a", type: "same", note: "Same letter" },
+        { char: "k", to: "k", type: "same", note: "Same letter" },
+        { char: "s", to: "ṣ", type: "special", note: "Script-specific diacritic" },
+        { char: "a", to: "a", type: "same", note: "Same letter" }
+    ]
+  },
+  {
+    "id": "dhatr",
+    "hasAdSite": true,
+    "ascii": "dhatr",
+    "unicode": "Dhātṛ",
+    "greek": "—",
+    "pantheon": "sanskrit",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Creation, Ordinance, Support",
+    "meaning": "'The Ordainer, the Establisher' (from dhā, to place), an Āditya",
+    "sources": ["Rigveda", "Monier-Williams", "Macdonell"],
+    "variants": [],
+    "breakdown": [
+        { char: "d", to: "D", type: "same", note: "Same letter" },
+        { char: "h", to: "h", type: "same", note: "Same letter" },
+        { char: "a", to: "ā", type: "length", note: "Macron marks the long vowel" },
+        { char: "t", to: "t", type: "same", note: "Same letter" },
+        { char: "r", to: "ṛ", type: "special", note: "Script-specific diacritic" }
+    ]
+  },
+  {
+    "id": "pusan",
+    "hasAdSite": true,
+    "ascii": "pusan",
+    "unicode": "Pūṣan",
+    "greek": "—",
+    "pantheon": "sanskrit",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Journeys, Nourishment, Roads",
+    "meaning": "'The Nourisher' (from puṣ, to thrive), Vedic solar guide of roads",
+    "sources": ["Rigveda", "Monier-Williams", "Macdonell"],
+    "variants": [],
+    "breakdown": [
+        { char: "p", to: "P", type: "same", note: "Same letter" },
+        { char: "u", to: "ū", type: "length", note: "Macron marks the long vowel" },
+        { char: "s", to: "ṣ", type: "special", note: "Script-specific diacritic" },
+        { char: "a", to: "a", type: "same", note: "Same letter" },
+        { char: "n", to: "n", type: "same", note: "Same letter" }
+    ]
+  },
+  {
+    "id": "tvastr",
+    "hasAdSite": true,
+    "ascii": "tvastr",
+    "unicode": "Tvaṣṭṛ",
+    "greek": "—",
+    "pantheon": "sanskrit",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Craft, Making, Form",
+    "meaning": "'The Fashioner, the Maker' (from tvaṣ, to form), the divine craftsman",
+    "sources": ["Rigveda", "Monier-Williams", "Macdonell"],
+    "variants": [],
+    "breakdown": [
+        { char: "t", to: "T", type: "same", note: "Same letter" },
+        { char: "v", to: "v", type: "same", note: "Same letter" },
+        { char: "a", to: "a", type: "same", note: "Same letter" },
+        { char: "s", to: "ṣ", type: "special", note: "Script-specific diacritic" },
+        { char: "t", to: "ṭ", type: "special", note: "Script-specific diacritic" },
+        { char: "r", to: "ṛ", type: "special", note: "Script-specific diacritic" }
+    ]
+  },
+  {
+    "id": "mengpo",
+    "hasAdSite": true,
+    "ascii": "mengpo",
+    "unicode": "Méngpó",
+    "greek": "—",
+    "pantheon": "chinese",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Forgetting, Passage, Tea",
+    "meaning": "'Old Lady Meng' (孟婆), the goddess who brews the tea of forgetfulness",
+    "sources": ["Journey to the West", "Chinese folk religion", "Werner"],
+    "variants": [],
+    "breakdown": [
+        { char: "m", to: "M", type: "same", note: "Same letter" },
+        { char: "e", to: "é", type: "stress", note: "Stress mark (acute/tone)" },
+        { char: "n", to: "n", type: "same", note: "Same letter" },
+        { char: "g", to: "g", type: "same", note: "Same letter" },
+        { char: "p", to: "p", type: "same", note: "Same letter" },
+        { char: "o", to: "ó", type: "stress", note: "Stress mark (acute/tone)" }
+    ]
+  },
+  {
+    "id": "pangu",
+    "hasAdSite": true,
+    "ascii": "pangu",
+    "unicode": "Pángǔ",
+    "greek": "—",
+    "pantheon": "chinese",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Creation, Separation, Foundation",
+    "meaning": "'Coiled antiquity' (盤古), the giant who split heaven from earth",
+    "sources": ["Sanguozhi", "Xu Zheng", "Birrell"],
+    "variants": [],
+    "breakdown": [
+        { char: "p", to: "P", type: "same", note: "Same letter" },
+        { char: "a", to: "á", type: "stress", note: "Stress mark (acute/tone)" },
+        { char: "n", to: "n", type: "same", note: "Same letter" },
+        { char: "g", to: "g", type: "same", note: "Same letter" },
+        { char: "u", to: "ǔ", type: "same", note: "" }
+    ]
+  },
+  {
+    "id": "yanluo",
+    "hasAdSite": true,
+    "ascii": "yanluo",
+    "unicode": "Yánluó",
+    "greek": "—",
+    "pantheon": "chinese",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Judgment, Underworld, Order",
+    "meaning": "'King Yan' (閻羅, from Yama), the judge of the dead",
+    "sources": ["Fengshen Yanyi", "Chinese Buddhist canon", "Teiser"],
+    "variants": [],
+    "breakdown": [
+        { char: "y", to: "Y", type: "same", note: "Same letter" },
+        { char: "a", to: "á", type: "stress", note: "Stress mark (acute/tone)" },
+        { char: "n", to: "n", type: "same", note: "Same letter" },
+        { char: "l", to: "l", type: "same", note: "Same letter" },
+        { char: "u", to: "u", type: "same", note: "Same letter" },
+        { char: "o", to: "ó", type: "stress", note: "Stress mark (acute/tone)" }
+    ]
+  },
+  {
+    "id": "honshu",
+    "hasAdSite": true,
+    "ascii": "honshu",
+    "unicode": "Honshū",
+    "greek": "—",
+    "pantheon": "japanese",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Center, Mainland, Heart",
+    "meaning": "'Main island' (本州)",
+    "sources": ["Nihon Shoki", "Kokugo dictionaries"],
+    "variants": [],
+    "breakdown": [
+        { char: "h", to: "H", type: "same", note: "Same letter" },
+        { char: "o", to: "o", type: "same", note: "Same letter" },
+        { char: "n", to: "n", type: "same", note: "Same letter" },
+        { char: "s", to: "s", type: "same", note: "Same letter" },
+        { char: "h", to: "h", type: "same", note: "Same letter" },
+        { char: "u", to: "ū", type: "length", note: "Macron marks the long vowel" }
+    ]
+  },
+  {
+    "id": "kyushu",
+    "hasAdSite": true,
+    "ascii": "kyushu",
+    "unicode": "Kyūshū",
+    "greek": "—",
+    "pantheon": "japanese",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "South, Volcanoes, Origins",
+    "meaning": "'Nine provinces' (九州)",
+    "sources": ["Nihon Shoki", "Kokugo dictionaries"],
+    "variants": [],
+    "breakdown": [
+        { char: "k", to: "K", type: "same", note: "Same letter" },
+        { char: "y", to: "y", type: "same", note: "Same letter" },
+        { char: "u", to: "ū", type: "length", note: "Macron marks the long vowel" },
+        { char: "s", to: "s", type: "same", note: "Same letter" },
+        { char: "h", to: "h", type: "same", note: "Same letter" },
+        { char: "u", to: "ū", type: "length", note: "Macron marks the long vowel" }
+    ]
+  },
+  {
+    "id": "tumatauenga",
+    "hasAdSite": true,
+    "ascii": "tumatauenga",
+    "unicode": "Tūmatauenga",
+    "greek": "—",
+    "pantheon": "polynesian",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "War, Humanity, Strength",
+    "meaning": "'The man of furious face' (tū + mata + ēngā), god of war and of humankind",
+    "sources": ["Grey, Polynesian Mythology", "Best", "Tregear"],
+    "variants": [],
+    "breakdown": [
+        { char: "t", to: "T", type: "same", note: "Same letter" },
+        { char: "u", to: "ū", type: "length", note: "Macron marks the long vowel" },
+        { char: "m", to: "m", type: "same", note: "Same letter" },
+        { char: "a", to: "a", type: "same", note: "Same letter" },
+        { char: "t", to: "t", type: "same", note: "Same letter" },
+        { char: "a", to: "a", type: "same", note: "Same letter" },
+        { char: "u", to: "u", type: "same", note: "Same letter" },
+        { char: "e", to: "e", type: "same", note: "Same letter" },
+        { char: "n", to: "n", type: "same", note: "Same letter" },
+        { char: "g", to: "g", type: "same", note: "Same letter" },
+        { char: "a", to: "a", type: "same", note: "Same letter" }
     ]
   }
 ];

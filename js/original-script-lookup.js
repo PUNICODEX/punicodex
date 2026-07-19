@@ -399,10 +399,6 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "originalScript": "𓃣",
     "scriptName": "Hieroglyphs"
   },
-  "set": {
-    "originalScript": "𓃫",
-    "scriptName": "Hieroglyphs"
-  },
   "rama": {
     "originalScript": "राम",
     "scriptName": "Devanagari"
@@ -1747,10 +1743,6 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "originalScript": "崑崙",
     "scriptName": "Chinese characters"
   },
-  "asclepius": {
-    "originalScript": "Ἀσκληπιός",
-    "scriptName": "Greek"
-  },
   "eileithyia": {
     "originalScript": "Εἰλείθυια",
     "scriptName": "Greek"
@@ -1935,20 +1927,8 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "originalScript": "सावित्री",
     "scriptName": "Devanagari"
   },
-  "tvashtri": {
-    "originalScript": "त्वष्टृ",
-    "scriptName": "Devanagari"
-  },
-  "pushan": {
-    "originalScript": "पूषन्",
-    "scriptName": "Devanagari"
-  },
   "vishvakarman": {
     "originalScript": "विश्वकर्मन्",
-    "scriptName": "Devanagari"
-  },
-  "daksha": {
-    "originalScript": "दक्ष",
     "scriptName": "Devanagari"
   },
   "bhrigu": {
@@ -2774,6 +2754,58 @@ const ORIGINAL_SCRIPT_LOOKUP = {
   "tian": {
     "originalScript": "天",
     "scriptName": "Chinese characters"
+  },
+  "achilleus": {
+    "originalScript": "Ἀχιλλεύς",
+    "scriptName": "Greek"
+  },
+  "asklepios": {
+    "originalScript": "Ἀσκληπιός",
+    "scriptName": "Greek"
+  },
+  "drakon": {
+    "originalScript": "Δράκων",
+    "scriptName": "Greek"
+  },
+  "monokeros": {
+    "originalScript": "Μονόκερως",
+    "scriptName": "Greek"
+  },
+  "pegasos": {
+    "originalScript": "Πήγασος",
+    "scriptName": "Greek"
+  },
+  "tyche": {
+    "originalScript": "Τύχη",
+    "scriptName": "Greek"
+  },
+  "steh": {
+    "originalScript": "𓋴𓏏𓐍",
+    "scriptName": "Hieroglyphs"
+  },
+  "hp": {
+    "originalScript": "𓎛𓊪",
+    "scriptName": "Hieroglyphs"
+  },
+  "amsa": {
+    "originalScript": "अंश",
+    "scriptName": "Devanagari"
+  },
+  "daksa": {
+    "originalScript": "दक्ष",
+    "scriptName": "Devanagari"
+  },
+  "dhatr": {
+    "originalScript": "धातृ",
+    "scriptName": "Devanagari"
+  },
+  "pusan": {
+    "originalScript": "पूषन्",
+    "scriptName": "Devanagari"
+  },
+  "tvastr": {
+    "originalScript": "त्वष्टृ",
+    "scriptName": "Devanagari"
   }
 };
 

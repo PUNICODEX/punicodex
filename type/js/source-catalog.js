@@ -4,6 +4,155 @@
  */
 
 const SOURCE_CATALOG = {
+    'Iliad': {
+        full: 'Homer, Iliad',
+        scope: 'Greek epic (Trojan War cycle)',
+        year: '-750',
+        edition: 'Oxford Classical Texts (Monro & Allen); Loeb',
+        url: 'https://www.perseus.tufts.edu/hopper/text?doc=Hom.+Il.'
+    },
+    'Homeric Hymns': {
+        full: 'Homeric Hymns',
+        scope: 'Greek cult hymns (6th c. BCE)',
+        year: '-550',
+        edition: 'Oxford Classical Texts (Allen); Loeb'
+    },
+    'Apollodorus': {
+        full: 'Apollodorus, Bibliotheca',
+        scope: 'Greek mythographic compendium (1st–2nd c. CE)',
+        year: '150',
+        edition: 'Loeb Classical Library (Frazer)'
+    },
+    'Ctesias': {
+        full: 'Ctesias of Knidos, Indika',
+        scope: 'Greek ethnography of India (fragments)',
+        year: '-398',
+        edition: 'Photius, Bibliotheca epitome; ed. Bigwood'
+    },
+    'Pliny': {
+        full: 'Pliny the Elder, Naturalis Historia',
+        scope: 'Roman encyclopedia (77 CE)',
+        year: '77',
+        edition: 'Loeb Classical Library'
+    },
+    'Polybius': {
+        full: 'Polybius, Histories',
+        scope: 'Greek history of Rome (2nd c. BCE)',
+        year: '-146',
+        edition: 'Loeb Classical Library (Paton)'
+    },
+    'Lewis & Short': {
+        full: 'Lewis & Short, A Latin Dictionary',
+        scope: 'Latin lexicon',
+        year: '1879',
+        edition: 'Oxford, Clarendon Press; Perseus digitization',
+        url: 'https://logeion.uchicago.edu/'
+    },
+    'Varro': {
+        full: 'Varro, De Lingua Latina / Antiquitates Rerum Divinarum',
+        scope: 'Roman antiquarian philology and religion',
+        year: '-45',
+        edition: 'Loeb Classical Library'
+    },
+    'Horace': {
+        full: 'Horace, Carmina / Opera',
+        scope: 'Roman lyric poetry',
+        year: '-23',
+        edition: 'Oxford Classical Texts; Loeb'
+    },
+    'Macrobius': {
+        full: 'Macrobius, Saturnalia',
+        scope: 'Late-antique Roman antiquarian miscellany',
+        year: '430',
+        edition: 'Loeb Classical Library (Kaster)'
+    },
+    'Ennius': {
+        full: 'Ennius, Annales',
+        scope: 'Early Roman epic (fragments)',
+        year: '-180',
+        edition: 'ed. Skutsch, The Annals of Q. Ennius (1985)'
+    },
+    'Te Velde': {
+        full: 'H. te Velde, Seth, God of Confusion',
+        scope: 'Egyptian religion monograph (Seth)',
+        year: '1967',
+        edition: 'Brill, Probleme der Ägyptologie 6'
+    },
+    'Bonneau': {
+        full: 'D. Bonneau, La Crue du Nil',
+        scope: 'Egyptian Nile flood cult study',
+        year: '1964',
+        edition: 'Librairie C. Klincksieck, Paris'
+    },
+    'Rigveda': {
+        full: 'Ṛgveda Saṃhitā',
+        scope: 'Vedic Sanskrit hymn collection',
+        year: '-1200',
+        edition: 'Aufrecht; van Nooten & Holland metric text; GRETIL',
+        url: 'https://gretil.sub.uni-goettingen.de/gretil.html'
+    },
+    'Chinese folk religion': {
+        full: 'Chinese folk religion (regional cults and underworld traditions)',
+        scope: 'Chinese vernacular religion',
+        year: 'ongoing',
+        edition: 'documented across temple and funerary practice'
+    },
+    'Werner': {
+        full: 'E. T. C. Werner, Myths and Legends of China',
+        scope: 'Chinese mythology compendium',
+        year: '1922',
+        edition: 'George G. Harrap & Co.; Project Gutenberg digitization'
+    },
+    'Sanguozhi': {
+        full: 'Chen Shou, Sanguozhi (Records of the Three Kingdoms)',
+        scope: 'Chinese dynastic history (3rd c.)',
+        year: '289',
+        edition: 'Zhonghua Shuju critical edition'
+    },
+    'Xu Zheng': {
+        full: 'Xu Zheng, Sanwu Liji (Historical Records of the Three Sovereigns and Five Emperors)',
+        scope: 'Chinese cosmogony source text (Pángǔ)',
+        year: '260',
+        edition: 'as preserved in later encyclopedias (Taiping Yulan)'
+    },
+    'Birrell': {
+        full: 'Anne Birrell, Chinese Mythology: An Introduction',
+        scope: 'Chinese mythology reference',
+        year: '1993',
+        edition: 'Johns Hopkins University Press'
+    },
+    'Grey, Polynesian Mythology': {
+        full: 'Sir George Grey, Polynesian Mythology',
+        scope: 'Māori and Polynesian tradition (English/Māori text)',
+        year: '1855',
+        edition: 'John Murray, London; New Zealand Electronic Text Centre',
+        url: 'https://nzetc.victoria.ac.nz/'
+    },
+    'Kokugo dictionaries': {
+        full: 'Kokugo dictionaries (Nihon Kokugo Daijiten / Kōjien / Daijisen)',
+        scope: 'Japanese national-language lexicography',
+        year: 'various',
+        edition: 'Shōgakukan / Sanseidō'
+    },
+    'Fengshen Yanyi': {
+        full: 'Fēngshén Yǎnyì (Investiture of the Gods)',
+        scope: 'Chinese Ming-dynasty mythological novel',
+        year: '1600',
+        edition: 'various; English abridgment as Creation of the Gods'
+    },
+    'Chinese Buddhist canon': {
+        full: 'Chinese Buddhist canon (Dàzàngjīng / Taishō Tripiṭaka)',
+        scope: 'East Asian Buddhist scriptural corpus',
+        year: '1924',
+        edition: 'Taishō Shinshū Daizōkyō (SAT digitization)'
+    },
+    'Teiser': {
+        full: 'Stephen F. Teiser, The Ghost Festival in Medieval China',
+        scope: 'Chinese underworld and afterlife studies',
+        year: '1988',
+        edition: 'Princeton University Press'
+    },
+
     'Abhidharmakośa': {
         full: 'Abhidharmakośabhāṣya (Treasury of Abhidharma)',
         scope: 'Sanskrit Buddhist scholastic text',

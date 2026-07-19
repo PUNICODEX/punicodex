@@ -112,6 +112,12 @@ function parseMiddleware() {
 
 function parseDbInitFlagshipIds() {
   const src = fs.readFileSync(PATHS.dbInit, 'utf8');
+  // init.js derives the set from js/archetypes-v2.js (see the comment there);
+  // fall back to the legacy literal array if one is present.
+  if (src.includes('ARCHETYPES.filter((a) => a.built)')) {
+    const { ARCHETYPES } = require(PATHS.archetypes);
+    return new Set(ARCHETYPES.filter((a) => a.built).map((a) => a.id));
+  }
   const match = src.match(/const flagshipIds = new Set\(\[([\s\S]*?)\]\);/);
   if (!match) throw new Error('Could not parse flagshipIds in platform/db/init.js');
   const ids = [];
