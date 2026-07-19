@@ -65,6 +65,7 @@ const scripts = [
   'scripts/sync-interstitial.js',
   'scripts/sync-mobile-menu.js',
   'scripts/sync-desktop-nav.js',
+  'scripts/sync-footer.js',
   'scripts/update-data-version.js',
   // Writes data/corpus/entries.jsonl + manifest.json. MUST run before the
   // corpus generators below, several of which read entries.jsonl — running it

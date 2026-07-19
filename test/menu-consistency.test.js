@@ -34,7 +34,7 @@ const read = (rel) => fs.readFileSync(path.join(root, rel), 'utf8');
 test('sync-desktop-nav covers every root navigation page (30 targets)', () => {
   assert.strictEqual(TARGETS.length, 30);
   assert.strictEqual(PRIMARY.length, 6);
-  assert.strictEqual(MORE.length, 9);
+  assert.strictEqual(MORE.length, 11);
 });
 
 test('every target page carries the canonical primary links in order', () => {

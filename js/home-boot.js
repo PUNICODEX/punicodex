@@ -16,16 +16,44 @@
   if (!veil) return;
 
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const seen = sessionStorage.getItem('pc-boot-seen');
+
+  // sessionStorage can throw on mobile (private browsing, tracking
+  // prevention). Storage blocked = behave like a returning visitor.
+  let seen = false;
+  try {
+    seen = !!window.sessionStorage.getItem('pc-boot-seen');
+  } catch (_e) {
+    seen = true;
+  }
   if (reduced || seen || !window.PCFX) {
     veil.remove();
     return;
   }
-  sessionStorage.setItem('pc-boot-seen', '1');
+  try {
+    window.sessionStorage.setItem('pc-boot-seen', '1');
+  } catch (_e) {
+    /* non-fatal */
+  }
+
+  // Register the failsafe BEFORE anything that can throw: no matter what
+  // happens below, the veil can never strand the visitor.
+  const failsafeId = setTimeout(() => {
+    if (document.body.contains(veil)) veil.remove();
+  }, 5000);
 
   const canvas = veil.querySelector('canvas');
+  if (!canvas || !canvas.getContext) {
+    veil.remove();
+    clearTimeout(failsafeId);
+    return;
+  }
   const PCFX = window.PCFX;
   const ctx = canvas.getContext('2d');
+  if (!ctx) {
+    veil.remove();
+    clearTimeout(failsafeId);
+    return;
+  }
   const DPR = Math.min(window.devicePixelRatio || 1, 2);
 
   // ── Scene: a small orrery assembling around the seal ────────────────────
@@ -175,7 +203,13 @@
   }
 
   function loop(now) {
-    drawFrame(now);
+    try {
+      drawFrame(now);
+    } catch (_e) {
+      // A rendering fault must never freeze the veil — dissolve now.
+      dissolve();
+      return;
+    }
     if ((now - start) / 1000 < HOLD_S + 1) {
       requestAnimationFrame(loop);
     }
@@ -185,13 +219,15 @@
   window.addEventListener('resize', resize);
   requestAnimationFrame(loop);
 
-  // Dissolve after the hold, then remove. Failsafe at 5s regardless.
+  // Dissolve after the hold, then remove. Tap anywhere to skip.
   function dissolve() {
+    if (!document.body.contains(veil)) return;
     veil.classList.add('done');
-    setTimeout(() => veil.remove(), 900);
+    setTimeout(() => {
+      if (document.body.contains(veil)) veil.remove();
+      clearTimeout(failsafeId);
+    }, 900);
   }
+  veil.addEventListener('pointerdown', dissolve, { once: true });
   setTimeout(dissolve, HOLD_S * 1000);
-  setTimeout(() => {
-    if (document.body.contains(veil)) veil.remove();
-  }, 5000);
 })();

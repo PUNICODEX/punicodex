@@ -40,6 +40,8 @@ const CANONICAL_MENU = `<div class="mobile-menu" id="mobile-menu">
             <div class="mobile-menu-group">
                 <a href="/codex/">Codex</a>
                 <a href="/blog/">Blog</a>
+                <a href="/creatives/">Creatives</a>
+                <a href="/scholars/">Scholars</a>
                 <a href="/api/v1/docs/">API</a>
                 <a href="/appraise/">Appraise</a>
                 <a href="/store/">Store</a>

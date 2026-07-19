@@ -1226,8 +1226,9 @@
 
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf17">
-    <link rel="stylesheet" href="/css/nav-more.css?v=1">
+    <link rel="stylesheet" href="/css/nav-more.css?v=2">
     <link rel="stylesheet" href="/css/mobile-menu.css?v=1">
+    <link rel="stylesheet" href="/css/footer.css?v=1">
     <meta name="theme-color" content="#050505">
     <meta name="color-scheme" content="dark">
     <style>
@@ -1291,6 +1292,8 @@
                         <a href="/oracle.html" class="nav-link">Oracle</a>
                         <a href="/codex/" class="nav-link">Codex</a>
                         <a href="/blog/" class="nav-link active" aria-current="page">Blog</a>
+                        <a href="/creatives/" class="nav-link">Creatives</a>
+                        <a href="/scholars/" class="nav-link">Scholars</a>
                         <a href="/api/v1/docs/" class="nav-link">API</a>
                         <a href="/appraise/" class="nav-link">Appraise</a>
                         <a href="/store/" class="nav-link">Store</a>
@@ -1333,6 +1336,8 @@
             <div class="mobile-menu-group">
                 <a href="/codex/">Codex</a>
                 <a href="/blog/" class="active">Blog</a>
+                <a href="/creatives/">Creatives</a>
+                <a href="/scholars/">Scholars</a>
                 <a href="/api/v1/docs/">API</a>
                 <a href="/appraise/">Appraise</a>
                 <a href="/store/">Store</a>
@@ -3597,31 +3602,45 @@
         <p class="blogi-empty" id="blogi-empty" hidden>No essays match those filters. <button type="button" class="blogi-reset" id="blogi-empty-reset">Clear filters</button></p>
     </section>
 
-    <!-- Footer -->
-    <footer class="main-footer">
+    <!-- Footer (canonical — built by scripts/sync-footer.js) -->
+    <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="/" class="footer-logo">PUNICODEX</a>
-                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
+                    <a href="/" class="footer-wordmark"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-camel-gold.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-camel-gold.png" alt="PuniCodex — The Unicode Pantheon" width="680" height="119"></picture></a>
+                    <p class="footer-tagline">Restoring the original names of the gods to the digital realm.</p>
                 </div>
-                <div class="footer-info">
-                    <div class="footer-block">
-                        <span class="footer-label">Essays</span>
-                        <span class="footer-value">196</span>
-                    </div>
-                    <div class="footer-block">
-                        <span class="footer-label">Pantheons</span>
-                        <span class="footer-value">20</span>
-                    </div>
-                    <div class="footer-block">
-                        <span class="footer-label">Tier 1</span>
-                        <span class="footer-value">74</span>
-                    </div>
+                <div class="footer-column">
+                    <h2 class="footer-heading">Explore</h2>
+                    <a href="/pantheon/">Pantheon</a>
+                    <a href="/realms/">Realms</a>
+                    <a href="/lexicon/">Lexicon</a>
+                    <a href="/connections/">Connections</a>
+                    <a href="/tiers/">Tier System</a>
+                    <a href="/type/">Type</a>
+                    <a href="/search.html">Search</a>
+                </div>
+                <div class="footer-column">
+                    <h2 class="footer-heading">Resources</h2>
+                    <a href="/codex/">Codex</a>
+                    <a href="/blog/">Blog</a>
+                    <a href="/creatives/">Creatives</a>
+                    <a href="/scholars/">Scholars</a>
+                    <a href="/api/v1/docs/">API</a>
+                    <a href="/appraise/">Appraise</a>
+                    <a href="/authenticity/">Authenticity</a>
+                    <a href="/oracle.html">Oracle</a>
+                </div>
+                <div class="footer-column">
+                    <h2 class="footer-heading">Connect</h2>
+                    <a href="/about/">About</a>
+                    <a href="/contact/">Contact</a>
+                    <a href="/privacy/">Privacy</a>
+                    <a href="/terms/">Terms</a>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
+                <p>© 2026 PuniCodex. All rites reserved.</p>
             </div>
         </div>
     </footer>

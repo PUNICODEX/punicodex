@@ -26,6 +26,7 @@ const { LEXICON } = require(path.join(ROOT, 'type', 'js', 'lexicon.js'));
 // Canonical navigation (single source of truth — never fork the item list).
 const { fullNavHtml } = require('./sync-desktop-nav.js');
 const { menuForPage } = require('./sync-mobile-menu.js');
+const { footerHtml } = require('./sync-footer.js');
 const { writeFileWithRetry } = require('./write-file-retry.js');
 
 const archetypeSrc = fs.readFileSync(path.join(ROOT, 'js', 'archetypes-v2.js'), 'utf8');
@@ -202,8 +203,9 @@ const html = `<!DOCTYPE html>
 
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf17">
-    <link rel="stylesheet" href="/css/nav-more.css?v=1">
+    <link rel="stylesheet" href="/css/nav-more.css?v=2">
     <link rel="stylesheet" href="/css/mobile-menu.css?v=1">
+    <link rel="stylesheet" href="/css/footer.css?v=1">
     <meta name="theme-color" content="#050505">
     <meta name="color-scheme" content="dark">
     <style>
@@ -336,34 +338,8 @@ ${cardsHtml}
         <p class="blogi-empty" id="blogi-empty" hidden>No essays match those filters. <button type="button" class="blogi-reset" id="blogi-empty-reset">Clear filters</button></p>
     </section>
 
-    <!-- Footer -->
-    <footer class="main-footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="/" class="footer-logo">PUNICODEX</a>
-                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
-                </div>
-                <div class="footer-info">
-                    <div class="footer-block">
-                        <span class="footer-label">Essays</span>
-                        <span class="footer-value">${total}</span>
-                    </div>
-                    <div class="footer-block">
-                        <span class="footer-label">Pantheons</span>
-                        <span class="footer-value">${pantheonCount}</span>
-                    </div>
-                    <div class="footer-block">
-                        <span class="footer-label">Tier 1</span>
-                        <span class="footer-value">${tierCounts[1]}</span>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
-            </div>
-        </div>
-    </footer>
+    <!-- Footer (canonical — built by scripts/sync-footer.js) -->
+    ${footerHtml()}
 
     <script src="/js/px-core.js?v=perf9" defer></script>
     <script src="/js/temple-base.js?v=perf17" defer></script>

@@ -41,6 +41,8 @@ const MORE = [
   ['/oracle.html', 'Oracle'],
   ['/codex/', 'Codex'],
   ['/blog/', 'Blog'],
+  ['/creatives/', 'Creatives'],
+  ['/scholars/', 'Scholars'],
   ['/api/v1/docs/', 'API'],
   ['/appraise/', 'Appraise'],
   ['/store/', 'Store'],
@@ -228,7 +230,10 @@ function syncPage(rel, { active, insertNav, chrome, replaceNav }) {
   // is absent; mobile-menu.css when the page carries the overlay without
   // main.css; px-core.js for dropdown/toggle behavior.
   if (!html.includes('/css/main.css')) {
-    html = ensureCssLink(html, '/css/nav-more.css?v=1');
+    // Normalize component-CSS versions (immutable-cached URLs must change
+    // when the files change), then ensure they're linked.
+    html = html.replace(/\/css\/nav-more\.css\?v=\d+/g, '/css/nav-more.css?v=2');
+    html = ensureCssLink(html, '/css/nav-more.css?v=2');
     if (html.includes('class="mobile-menu"')) html = ensureCssLink(html, '/css/mobile-menu.css?v=1');
   }
   if (!html.includes('/js/px-core.js')) {

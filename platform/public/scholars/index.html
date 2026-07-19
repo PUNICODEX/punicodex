@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=2">
+<script src="/js/university-collaborators.js?v=2" defer></script>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Scholarly Edition — PuniCodex Scholars</title>
+    <meta name="description" content="Browse every populated Scholarly Edition across the PuniCodex pantheon — 196 flagship temples with university-edited scholarly sections. Scroll, select, and contribute.">
+    <link rel="canonical" href="https://punicodex.com/scholars/">
+    <meta property="og:title" content="The Scholarly Edition — PuniCodex Scholars">
+    <meta property="og:description" content="196 temples. 22 pantheons. One scholarly corpus — browse every populated Scholarly Edition.">
+    <meta property="og:image" content="https://punicodex.com/assets/brand/05-social/punicodex-og-image-1200x630.png">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/main.css?v=perf11">
+    <link rel="stylesheet" href="/css/punicodex-tokens.css">
+    <link rel="stylesheet" href="/css/brand-overrides.css">
+    <link rel="stylesheet" href="/css/pc-fx.css?v=1">
+    <style>
+        :root { color-scheme: dark; }
+        body { background: var(--void); color: var(--text-primary); }
+        .scholars-hero {
+            position: relative;
+            min-height: 62vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 7rem 1.5rem 3rem;
+            overflow: hidden;
+        }
+        .scholars-hero .hero-canvas { position: absolute; inset: 0; pointer-events: none; }
+        .scholars-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 56% 44% at 50% 48%, rgba(5,5,8,0.55) 0%, transparent 75%);
+            pointer-events: none;
+        }
+        .scholars-hero > * { position: relative; z-index: 1; }
+        .hero-kicker {
+            font-size: 0.72rem; font-weight: 600; letter-spacing: 0.42em;
+            text-transform: uppercase; color: var(--gold); opacity: 0.9; margin-bottom: 1rem;
+        }
+        .scholars-hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 6vw, 4.2rem);
+            font-weight: 600; letter-spacing: 0.06em; color: var(--gold);
+            margin-bottom: 0.75rem;
+        }
+        .scholars-hero .hero-sub {
+            max-width: 620px; color: var(--text-secondary); font-size: 1.05rem; line-height: 1.65;
+        }
+        .hero-stats {
+            display: flex; gap: 2.5rem; margin-top: 2rem; flex-wrap: wrap; justify-content: center;
+        }
+        .hero-stat { text-align: center; }
+        .hero-stat .num {
+            display: block; font-family: var(--font-display); font-size: 1.8rem; color: var(--gold);
+        }
+        .hero-stat .lbl {
+            font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-secondary);
+        }
+        .browse-bar {
+            max-width: 1180px; margin: 0 auto; padding: 1rem 1.5rem;
+            display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center;
+        }
+        .browse-search {
+            flex: 1 1 260px;
+            background: var(--surface-raised); border: 1px solid rgba(212,175,55,0.18);
+            border-radius: 10px; color: var(--text-primary);
+            font-family: var(--font-body); font-size: 0.95rem; padding: 0.7rem 1rem;
+            outline: none;
+        }
+        .browse-search:focus { border-color: var(--gold); }
+        .pantheon-filter {
+            background: var(--surface-raised); border: 1px solid rgba(212,175,55,0.18);
+            border-radius: 10px; color: var(--text-primary); font-size: 0.9rem; padding: 0.7rem 0.8rem;
+        }
+        .editions-grid {
+            max-width: 1180px; margin: 0 auto; padding: 1rem 1.5rem 5rem;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem;
+        }
+        .edition-card {
+            background: var(--surface-raised); border: 1px solid rgba(212,175,55,0.12);
+            border-radius: 14px; padding: 1.1rem; display: flex; flex-direction: column;
+            align-items: center; text-align: center; gap: 0.4rem;
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+            text-decoration: none; color: inherit;
+        }
+        .edition-card:hover {
+            transform: translateY(-4px); border-color: rgba(212,175,55,0.45);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.45);
+        }
+        .edition-card .edition-mascot {
+            width: 96px; height: 96px; border-radius: 50%; object-fit: cover;
+            border: 1px solid rgba(212,175,55,0.3);
+            box-shadow: 0 0 18px rgba(212,175,55,0.18);
+        }
+        .edition-card .edition-name { font-family: var(--font-display); font-size: 1.05rem; color: var(--gold); }
+        .edition-card .edition-script { font-size: 0.8rem; color: var(--text-secondary); }
+        .edition-card .edition-pantheon {
+            font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-secondary);
+        }
+        .edition-card .edition-actions { display: flex; gap: 0.5rem; margin-top: 0.4rem; }
+        .edition-actions a, .edition-actions span {
+            font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em;
+            border: 1px solid rgba(212,175,55,0.3); border-radius: 7px;
+            padding: 0.3rem 0.65rem; color: var(--gold); text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        .edition-actions a:hover { background: var(--gold); color: var(--void); }
+        .edition-card .edition-tier {
+            font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+            color: rgba(212,175,55,0.75); border: 1px solid rgba(212,175,55,0.25);
+            padding: 0.15rem 0.5rem; border-radius: 999px;
+        }
+        .edition-card .edition-tier.dual { color: var(--gold); border-color: var(--gold); }
+        .portal-cta {
+            max-width: 1180px; margin: 0 auto 4rem; padding: 2rem 1.5rem; text-align: center;
+            border-top: 1px solid rgba(212,175,55,0.12);
+        }
+        .portal-cta p { color: var(--text-secondary); margin-bottom: 1.2rem; }
+        .no-results {
+            grid-column: 1 / -1; text-align: center; padding: 3rem 1rem; color: var(--text-secondary);
+        }
+        @media (max-width: 640px) {
+            .hero-stats { gap: 1.4rem; }
+            .editions-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="main-nav" id="main-nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-wordmark"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-camel-gold.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-camel-gold.png" alt="PuniCodex — The Unicode Pantheon" width="680" height="119"></picture></a>
+            <div class="nav-links">
+                <a href="/pantheon/" class="nav-link">Pantheon</a>
+                <a href="/realms/" class="nav-link">Realms</a>
+                <a href="/lexicon/" class="nav-link">Lexicon</a>
+                <a href="/connections/" class="nav-link">Connections</a>
+                <a href="/type/" class="nav-link">Type</a>
+                <a href="/search.html" class="nav-link">Search</a>
+                <div class="nav-more">
+                    <button class="nav-more-toggle" aria-haspopup="true" aria-expanded="false">More</button>
+                    <div class="nav-more-menu">
+                        <a href="/tiers/" class="nav-link">Tier System</a>
+                        <a href="/oracle.html" class="nav-link">Oracle</a>
+                        <a href="/codex/" class="nav-link">Codex</a>
+                        <a href="/blog/" class="nav-link">Blog</a>
+                        <a href="/creatives/" class="nav-link">Creatives</a>
+                        <a href="/scholars/" class="nav-link active" aria-current="page">Scholars</a>
+                        <a href="/api/v1/docs/" class="nav-link">API</a>
+                        <a href="/appraise/" class="nav-link">Appraise</a>
+                        <a href="/store/" class="nav-link">Store</a>
+                        <a href="/about/" class="nav-link">About</a>
+                        <a href="/contact/" class="nav-link">Contact</a>
+                    </div>
+                </div>
+            </div>
+            <a href="/pantheon/" class="nav-cta"><span>Enter</span></a>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-controls="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-section">
+            <span class="mobile-menu-title">Explore</span>
+            <div class="mobile-menu-group">
+                <a href="/pantheon/">Pantheon</a>
+                <a href="/realms/">Realms</a>
+                <a href="/lexicon/">Lexicon</a>
+                <a href="/connections/">Connections</a>
+            </div>
+        </div>
+        <div class="mobile-menu-section">
+            <span class="mobile-menu-title">Tools</span>
+            <div class="mobile-menu-group">
+                <a href="/type/">Type</a>
+                <a href="/search.html">Search</a>
+                <a href="/tiers/">Tier System</a>
+                <a href="/oracle.html">Oracle</a>
+            </div>
+        </div>
+        <div class="mobile-menu-section">
+            <span class="mobile-menu-title">Resources</span>
+            <div class="mobile-menu-group">
+                <a href="/codex/">Codex</a>
+                <a href="/blog/">Blog</a>
+                <a href="/creatives/">Creatives</a>
+                <a href="/scholars/" class="active">Scholars</a>
+                <a href="/api/v1/docs/">API</a>
+                <a href="/appraise/">Appraise</a>
+                <a href="/store/">Store</a>
+            </div>
+        </div>
+        <div class="mobile-menu-section">
+            <span class="mobile-menu-title">About</span>
+            <div class="mobile-menu-group">
+                <a href="/about/">About</a>
+                <a href="/contact/">Contact</a>
+            </div>
+        </div>
+    </div>
+
+    <header class="scholars-hero">
+        <canvas class="hero-canvas pc-fx-collegium" aria-hidden="true"></canvas>
+        <p class="hero-kicker">The Collegium</p>
+        <h1>THE SCHOLARLY EDITION</h1>
+        <p class="hero-sub">
+            University-edited scholarly sections layered onto every flagship temple.
+            Every star in this sphere is a populated edition — scroll, select, and contribute.
+        </p>
+        <div class="hero-stats">
+            <div class="hero-stat"><span class="num" id="stat-editions">196</span><span class="lbl">Editions</span></div>
+            <div class="hero-stat"><span class="num" id="stat-pantheons">22</span><span class="lbl">Pantheons</span></div>
+            <div class="hero-stat"><span class="num">7</span><span class="lbl">Sections each</span></div>
+        </div>
+    </header>
+
+    <main>
+        <div class="browse-bar">
+            <input type="text" class="browse-search" id="browse-search" placeholder="Search editions — Zeus, Þórr, Amaterasu…" aria-label="Search editions">
+            <select class="pantheon-filter" id="pantheon-filter" aria-label="Filter by pantheon">
+                <option value="">All pantheons</option>
+            </select>
+        </div>
+        <div class="editions-grid" id="editions-grid"></div>
+
+        <div class="portal-cta">
+            <p>Students and reviewers: sign in to the Scholarly Edition portal to edit sections, submit revisions, and track review.</p>
+            <div class="edition-actions" style="justify-content:center;">
+                <a href="/scholars/login/">Portal sign-in</a>
+                <a href="/scholars/apply/">University sponsorship</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="/js/archetypes-v2.js?v=74"></script>
+    <script src="/js/pc-fx-core.js?v=1" defer></script>
+    <script src="/js/pc-fx-collegium.js?v=1" defer></script>
+    <script src="/js/px-core.js?v=perf9" defer></script>
+    <script>
+    (function () {
+        'use strict';
+        const grid = document.getElementById('editions-grid');
+        const searchInput = document.getElementById('browse-search');
+        const pantheonFilter = document.getElementById('pantheon-filter');
+        const entries = (typeof ARCHETYPES !== 'undefined' ? ARCHETYPES : []).filter((a) => a.built);
+        document.getElementById('stat-editions').textContent = String(entries.length);
+        const pantheons = [...new Set(entries.map((a) => a.pantheon))].sort();
+        document.getElementById('stat-pantheons').textContent = String(pantheons.length);
+        for (const p of pantheons) {
+            const opt = document.createElement('option');
+            opt.value = p;
+            opt.textContent = p.charAt(0).toUpperCase() + p.slice(1);
+            pantheonFilter.appendChild(opt);
+        }
+
+        function tierBadge(a) {
+            if (a.tier === 'dual-tier' || a.tier === 'dual') return '<span class="edition-tier dual">Dual-Tier</span>';
+            if (a.tier === 'tier-1' || a.tier === '1') return '<span class="edition-tier">Tier 1</span>';
+            return '<span class="edition-tier">Tier 2</span>';
+        }
+        function esc(s) {
+            return String(s == null ? '' : s)
+                .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+        }
+
+        function cardHtml(a) {
+            const thumb = `/assets/images/mascots/thumbs/small/${a.id}_thumb.webp`;
+            const scholarsUrl = `/sites/${a.id}/scholars/`;
+            return `
+                <a class="edition-card" href="${scholarsUrl}">
+                    <img class="edition-mascot" src="${thumb}" alt="${esc(a.name)} mascot" loading="lazy" onerror="this.style.visibility='hidden'">
+                    <span class="edition-name">${esc(a.name)}</span>
+                    <span class="edition-script">${esc(a.greek || '')}</span>
+                    <span class="edition-pantheon">${esc(a.pantheon)}</span>
+                    ${tierBadge(a)}
+                    <span class="edition-actions">
+                        <span>Browse edition</span>
+                        <span>Edit</span>
+                    </span>
+                </a>`;
+        }
+
+        function render() {
+            const q = searchInput.value.trim().toLowerCase();
+            const p = pantheonFilter.value;
+            const filtered = entries.filter((a) => {
+                if (p && a.pantheon !== p) return false;
+                if (!q) return true;
+                return (
+                    (a.name || '').toLowerCase().includes(q) ||
+                    (a.greek || '').toLowerCase().includes(q) ||
+                    (a.domain || '').toLowerCase().includes(q) ||
+                    (a.id || '').toLowerCase().includes(q)
+                );
+            });
+            grid.innerHTML = filtered.length
+                ? filtered.map(cardHtml).join('')
+                : '<div class="no-results">No editions match — try a different name or pantheon.</div>';
+        }
+
+        let t;
+        searchInput.addEventListener('input', () => {
+            clearTimeout(t);
+            t = setTimeout(render, 150);
+        });
+        pantheonFilter.addEventListener('change', render);
+        render();
+    })();
+    </script>
+
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+</body>
+</html>
