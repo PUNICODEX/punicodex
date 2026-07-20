@@ -114,23 +114,13 @@ test('collaborators injector excludes the sponsorship page', () => {
   );
 });
 
-test('creatives strip mirrors the flagship temple strip links', () => {
+test('creatives uses the canonical main-nav, not the legacy global strip', () => {
+  // 2026-07-20: /creatives/ carried BOTH the canonical main-nav and the
+  // retired global-strip (a second, older menu stacked beneath it). The strip
+  // is a temple-only component; root pages must not render it.
   const html = readPage(path.join('creatives', 'index.html'));
-  const templeStripLinks = [
-    '/pantheon/',
-    '/lexicon/',
-    '/connections/',
-    '/type/',
-    '/search.html',
-    '/tiers/',
-    '/oracle.html',
-    '/about/',
-  ];
-  const linksMatch = html.match(/<div class="global-links"[^>]*>([\s\S]*?)<\/div>/);
-  assert.ok(linksMatch, 'creatives has a global-links strip');
-  for (const href of templeStripLinks) {
-    assert.ok(linksMatch[1].includes(`href="${href}"`), `creatives strip links to ${href}`);
-  }
+  assert.ok(!/class="global-strip"/.test(html), 'creatives has no legacy global-strip');
+  assert.ok(/class="main-nav"/.test(html), 'creatives has the canonical main-nav');
 });
 
 test('realms defers mobile toggling to px-core (no duplicate handler)', () => {

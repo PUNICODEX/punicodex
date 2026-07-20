@@ -18,8 +18,8 @@ const HEAD_MARKER_END = '<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->';
 const BODY_MARKER_START = '<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->';
 const BODY_MARKER_END = '<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->';
 
-const CSS_PATH = '/css/university-collaborators.css?v=2';
-const JS_PATH = '/js/university-collaborators.js?v=2';
+const CSS_PATH = '/css/university-collaborators.css?v=3';
+const JS_PATH = '/js/university-collaborators.js?v=3';
 
 function buildHeadSnippet() {
   return `\n${HEAD_MARKER_START}\n<link rel="stylesheet" href="${CSS_PATH}">\n<script src="${JS_PATH}" defer></script>\n${HEAD_MARKER_END}\n`;
@@ -133,6 +133,27 @@ function injectIntoFile(filePath, headSnippet, bodySnippet) {
 // these files are stripped instead of injected.
 const EXCLUDED_PAGES = new Set([path.join('university-sponsorship', 'index.html')]);
 
+// App surfaces that must never carry the marketing strip: search, the
+// browser shell, the game, the entry point, and the mobile PWA. Any marked
+// blocks found in these files are stripped instead of injected.
+const EXCLUDED_APP_PAGES = new Set([
+  'search.html',
+  'search-v2.html',
+  'browser.html',
+  'entry.html',
+]);
+const EXCLUDED_APP_DIRS = [path.join('game'), path.join('mobile')];
+
+function isExcludedAppSurface(filePath) {
+  const rel = path.relative(ROOT, filePath).split(path.sep).join('/');
+  if (EXCLUDED_APP_PAGES.has(rel)) return true;
+  for (const dir of EXCLUDED_APP_DIRS) {
+    if (rel === dir.split(path.sep).join('/') || rel.startsWith(`${dir.split(path.sep).join('/')}/`))
+      return true;
+  }
+  return false;
+}
+
 // Admin surfaces must never carry the marketing strip: the unified admin
 // portal (canonical platform/public/admin-portal/ plus the generated root
 // admin-portal/ sync copy), the legacy admin-* dashboards under
@@ -183,6 +204,12 @@ function main() {
 
   walk(path.join(ROOT, 'sites'), (p) => targets.push(p));
   walk(path.join(ROOT, 'platform', 'public'), (p) => targets.push(p));
+  // game/ and mobile/ are walked so the app-surface exclusion strips any
+  // previously injected blocks from them on every run (deterministic).
+  walk(path.join(ROOT, 'game'), (p) => targets.push(p));
+  if (fs.existsSync(path.join(ROOT, 'mobile'))) {
+    walk(path.join(ROOT, 'mobile'), (p) => targets.push(p));
+  }
 
   const rootPages = [
     'index.html',
@@ -269,11 +296,11 @@ function main() {
 
   for (const filePath of targets) {
     try {
-      if (isExcludedAdminSurface(filePath)) {
+      if (isExcludedAdminSurface(filePath) || isExcludedAppSurface(filePath)) {
         if (stripFromFile(filePath)) {
           stripped++;
           console.log(
-            `Stripped Academic Collaborators strip from admin page: ${path.relative(ROOT, filePath)}`
+            `Stripped Academic Collaborators strip from excluded page: ${path.relative(ROOT, filePath)}`
           );
         }
         continue;

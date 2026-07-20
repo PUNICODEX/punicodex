@@ -707,9 +707,9 @@ A name is dual-tier **if and only if** all of the following are true:
   least one long vowel (η, ω, long α/ι/υ, or long diphthong)
 - There are **MULTIPLE** historically valid Unicode spellings (alternate
   stress positions, alternate long-vowel interpretations, dialectal variation)
-- The ASCII fallback is **ALSO** historically legitimate (not merely modern English)
-- You **own** the domain variants
 - Each variant corresponds to a **real, attested, alternate restoration**
+- Both spellings are live as owned domain temples (a display fact that
+  follows from the philology, never a criterion of it)
 
 These temples **must** display two meta-badges (**Tier-1** + **Tier-2**), two
 name cards or an explicit dual-tier explanation, and footer **Dual-Tier Pair
@@ -718,18 +718,27 @@ name cards or an explicit dual-tier explanation, and footer **Dual-Tier Pair
 **Owned domains:** `apóllōn.com` + `apollōn.com`, `hekate.com` +
 `hekátē.com`, `nike.com` + `níkē.com`.
 
-### Single-Tier Tier-1 Names (13 total)
-**Zeus, Árēs, Aphrodítē, Athénā, Dēmētēr, Hēra, Hermês, Hēphaistos, Hestía,
-Poseidôn, Persephonē, Promētheus, Hádēs**
+### Single-Tier Tier-1 Names (mechanical rule, since 2026-07-20)
 
-A name is single-tier Tier-1 **if and only if**: the Greek original contains
-both stress and a long vowel; there is only one historically valid Unicode
-restoration; the ASCII fallback is not ancient canonical; and you do not own
-multiple canonical variants representing distinct spellings.
+A name is single-tier Tier-1 **if and only if** its restoration is
+mechanically verifiable as information-rich — no editorial judgment calls:
+
+- **Greek originals**: the Greek original contains **BOTH** stress
+  (acute/circumflex) **AND** at least one long vowel (η, ω, long α/ι/υ, or a
+  long diphthong; a circumflex counts as both features).
+- **All other traditions**: the Unicode restoration preserves at least one
+  distinctive feature the ASCII form loses — a diacritic (macron, acute,
+  tone, retroflex dot) **or** a distinctive letter (þ/ð/æ/œ/š/ḍ/ṭ/ḥ/ṛ/ꜣ/ꜥ).
+
+Tier assignment is computed from the canonical sources (see
+`tools/new-domains/reclassify-tiers.js` for the reference implementation);
+there are no exceptions and no editorial overrides beyond reviewed
+orthographic edge cases (currently only `asia`, whose final -ā is long by
+first-declension rule). Ownership, prominence, and ASCII-canonicity are
+**not** tier criteria — they are display facts, never rank facts.
 
 These temples display one **Tier-1** meta-badge, one Unicode Restoration
-card, footer **Tier-1**, and explanatory text citing that the Greek original
-has both stress and length.
+card, footer **Tier-1**, and explanatory text citing the features preserved.
 
 ### Single-Tier Tier-2 Names
 **Ártemis, Átlas, Diónysos, Médousa, Óðinn, Þórr, Kēr, etc.**
@@ -742,15 +751,16 @@ preserved.
 
 ### Key Distinction
 
-| Property | Dual-Tier (3) | Single-Tier Tier-1 (13) | Single-Tier Tier-2 |
-|----------|--------------|------------------------|--------------------|
-| Greek has both stress + length | ✔ | ✔ | ✘ |
+| Property | Dual-Tier (3) | Single-Tier Tier-1 | Single-Tier Tier-2 |
+|----------|--------------|--------------------|--------------------|
+| Greek has both stress + length | ✔ | ✔ (Greek) | ✘ |
+| Non-Greek: ≥1 distinctive feature vs ASCII | varies | ✔ | ✘ |
 | Multiple valid Unicode spellings | ✔ | ✘ | N/A |
-| ASCII fallback is ancient canonical | ✔ | ✘ | varies |
-| Owns multiple domain variants | ✔ | ✘ | varies |
+| Both spellings live as domains | ✔ | ✘ | varies |
 | Layout | Two badges, dual footer | One badge, single footer | One badge, single footer |
 
-**Never flatten the Big Three. Never dual-tier the single-tier names.**
+**Never flatten the Big Three. Never dual-tier the single-tier names.
+Ownership and prominence are display facts, never tier criteria.**
 
 ---
 

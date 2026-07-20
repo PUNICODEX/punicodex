@@ -275,9 +275,11 @@
     if (e.key === 'Escape' && !modal.hidden) closeModal();
   });
 
-  globalToggle.addEventListener('click', () => {
-    globalLinks.classList.toggle('open');
-  });
+  if (globalToggle && globalLinks) {
+    globalToggle.addEventListener('click', () => {
+      globalLinks.classList.toggle('open');
+    });
+  }
 
   if (sponsorshipForm) {
     sponsorshipForm.addEventListener('submit', async (e) => {

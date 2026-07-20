@@ -82,17 +82,27 @@
   }
 
   function buildInvitation() {
+    // Founding seats rendered as small clickable pills at the exact size the
+    // universities' own pills will occupy — same model as the temple
+    // sponsorship spaces: click a seat to claim it (apply + upload logo).
+    const seats = ['Your University', 'Your School', 'Your Department', 'Your Institution'];
     return `
-      <div class="uc-invite">
-        <p class="uc-invite-text">
-          We are inviting a small number of universities to become founding academic
-          collaborators — mentoring the student scholars and creators who restore
-          these names.
-        </p>
-        <a href="${SPONSORSHIP_URL}" class="uc-invite-link">
-          Learn about university sponsorship <span aria-hidden="true">→</span>
-        </a>
-      </div>
+      <ul class="uc-grid" role="list">
+        ${seats
+          .map(
+            (label) => `<li class="uc-grid-item">
+          <a href="${SPONSORSHIP_URL}" class="uc-card uc-card--placeholder" aria-label="${escapeHtml(label)} — claim this founding seat">
+            <span class="uc-card-monogram uc-card-monogram--open">+</span>
+            <p class="uc-card-name">${escapeHtml(label)}</p>
+            <p class="uc-card-tagline">Founding seat — apply</p>
+          </a>
+        </li>`
+          )
+          .join('')}
+      </ul>
+      <p class="uc-footnote">
+        <a href="${SPONSORSHIP_URL}">Learn about university sponsorship <span aria-hidden="true">→</span></a>
+      </p>
     `;
   }
 

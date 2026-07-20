@@ -51,6 +51,13 @@ html {
     overflow-x: hidden;
 }
 
+/* Global guard: HTML width/height attrs (injected for CLS) must never
+   stretch an image — any CSS width wins, height stays proportional.
+   Class rules with explicit heights still override this. */
+img {
+    height: auto;
+}
+
 body {
     font-family: var(--font-body);
     background: var(--void);

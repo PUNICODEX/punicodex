@@ -340,6 +340,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Farming, grain, food production, and agtech.',
     note: 'Harvest deities feed civilizations; grain gods and earth mothers are the founding brand of every food economy.',
     entries: [
+      { id: 'sita', weight: 1, why: 'Her name is the furrow; the Ṛgveda prays to her for crops.' },
       { id: 'hp', weight: 2, why: 'The flood that feeds; silt, season, and harvest as one god.' },
       { id: 'hokkaido', weight: 2, why: 'Japan’s breadbasket; a third of the nation’s food from the north island.' },
       { id: 'tumatauenga', weight: 1, why: 'Nets and digging-stick: the food arts won and given to man.' },
@@ -587,6 +588,8 @@ const INDUSTRY_GROUPS = [
     tagline: 'Religious institutions, faith media, and devotional services.',
     note: 'These figures anchor living practice today — temples still fill, scriptures still sell, and founders still define traditions.',
     entries: [
+      { id: 'saraswati', weight: 2 },
+      { id: 'sita', weight: 2 },
       { id: 'delos', weight: 1, why: 'The island that is a sanctuary entire; pilgrimage’s Aegean prototype.' },
       { id: 'guanyin', weight: 2, why: 'East Asia’s most invoked name; the bodhisattva of the universal vow.' },
       { id: 'moses', weight: 2 },
@@ -622,6 +625,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Books, journalism, and content platforms.',
     note: 'The ibis invented writing; speech became scripture; the media industry runs on what these figures created.',
     entries: [
+      { id: 'saraswati', weight: 1, why: 'Vāk, Speech itself; the goddess of libraries and letters.' },
       { id: 'pegasos', weight: 1, why: 'The Muses’ spring-maker; poetic inspiration in heraldic form.' },
       { id: 'seiren', weight: 1, why: 'The song that sells; enchantment as the first mass medium.' },
       { id: 'seshat', weight: 1, why: 'Mistress of the House of Books; the divine librarian.' },
@@ -639,6 +643,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Music, theatre, dance, and the performing arts.',
     note: 'The Muses’ lineage runs through these figures — song, dance, and theatre were invented as worship.',
     entries: [
+      { id: 'saraswati', weight: 2 },
       { id: 'seiren', weight: 2 },
       { id: 'pegasos', weight: 1, why: 'Hippocrene: the fountain every poet drinks from.' },
       { id: 'apollon', weight: 2, why: 'God of music; the lyre is his attribute.' },
@@ -876,6 +881,8 @@ const INDUSTRY_GROUPS = [
     tagline: 'Schools, universities, and research institutions.',
     note: 'Wisdom has patrons in every pantheon; knowledge work is the modern priesthood of these figures.',
     entries: [
+      { id: 'saraswati', weight: 2 },
+      { id: 'sita', weight: 1, why: 'The field-goddess of the Ṛgveda\'s ploughing hymns; patience as curriculum.' },
       { id: 'seshat', weight: 2 },
       { id: 'fuxi', weight: 2, why: 'The first teacher; nets, notes, and the reading of patterns.' },
       { id: 'dhatr', weight: 2, why: 'Dhātu: the root-elements of grammar; the structure of learning itself.' },
@@ -934,6 +941,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Genealogy, heritage research, and DNA ancestry.',
     note: 'Progenitors and patriarchs; the ancestry industry sells what these figures began.',
     entries: [
+      { id: 'sita', weight: 1, why: 'Mother of Lava and Kuśa; the Rāmāyaṇa\'s own lineage-mother.' },
       { id: 'daksa', weight: 2, why: 'Father of sixty daughters; the lineage-map of gods, beasts, and stars.' },
       { id: 'nuwa', weight: 1, why: 'The clay mother; humanity’s shared origin story.' },
       { id: 'buri', weight: 2, why: 'The first god, grandfather of Óðinn; the Norse family tree starts with him.' },
@@ -1051,6 +1059,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Weddings, childcare, and family services.',
     note: 'Marriage and childbirth have patronesses in every pantheon; the family economy is their household.',
     entries: [
+      { id: 'sita', weight: 2 },
       { id: 'iuno', weight: 2 },
       { id: 'hera', weight: 2, why: 'Marriage itself; the queen who sanctifies the union.' },
       { id: 'rhea', weight: 2, why: 'The mother of the gods; maternity enthroned.' },

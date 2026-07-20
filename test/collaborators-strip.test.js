@@ -7,7 +7,7 @@
  *  - placement: markers/mount present on public pages (homepage, temple
  *    pages) and absent from admin surfaces (admin portal canonical + synced
  *    copy, legacy admin-* dashboards, crawler admin page),
- *  - the empty state renders a single quiet invitation row (not four
+ *  - the empty state renders founding-seat pills at final card size (not four
  *    identical "Reserve Your Place" boxes),
  *  - addSponsor() re-renders real sponsor cards (monogram fallback, tier),
  *  - the redesign dropped the particle canvas and gold shimmer/marquee
@@ -94,11 +94,11 @@ test('injected pages keep the strip mount contract', () => {
 test('injector serves cache-busted asset URLs and stays idempotent', () => {
   const src = fs.readFileSync(INJECTOR_PATH, 'utf8');
   assert.ok(
-    src.includes("'/css/university-collaborators.css?v=2'"),
+    src.includes("'/css/university-collaborators.css?v=3'"),
     'expected ?v=2 cache-bust on the stylesheet URL'
   );
   assert.ok(
-    src.includes("'/js/university-collaborators.js?v=2'"),
+    src.includes("'/js/university-collaborators.js?v=3'"),
     'expected ?v=2 cache-bust on the script URL'
   );
   assert.ok(
@@ -168,26 +168,22 @@ test('injector encodes the admin-surface exclusion list', () => {
 
 // ── Rendered states ───────────────────────────────────────
 
-test('empty sponsor array renders a single invitation row', () => {
+test('empty sponsor array renders founding-seat pills', () => {
   const { mount } = loadStripModule();
   assert.ok(mount.innerHTML.length > 0, 'expected the strip to render');
-  assert.ok(
-    mount.innerHTML.includes('uc-invite'),
-    'expected the invitation row when no sponsors exist'
-  );
+  const seatCount = (mount.innerHTML.match(/uc-card--placeholder/g) || []).length;
+  assert.strictEqual(seatCount, 4, 'expected four founding-seat pills at final card size');
   assert.ok(
     mount.innerHTML.includes('/university-sponsorship/'),
-    'expected the invitation to link to /university-sponsorship/'
+    'expected the pills to link to /university-sponsorship/'
   );
   assert.ok(
-    !mount.innerHTML.includes('Reserve Your Place'),
-    'must not render the old "Reserve Your Place" filler boxes'
+    mount.innerHTML.includes('Learn about university sponsorship'),
+    'expected the learn-more link to remain'
   );
-  const inviteCount = (mount.innerHTML.match(/uc-invite-link/g) || []).length;
-  assert.strictEqual(inviteCount, 1, 'expected exactly one invitation link, not a grid of boxes');
   assert.ok(
-    !mount.innerHTML.includes('uc-grid'),
-    'expected no sponsor grid when the array is empty'
+    !mount.innerHTML.includes('We are inviting'),
+    'the retired invitation paragraph must not render'
   );
 });
 
@@ -225,8 +221,8 @@ test('addSponsor ignores invalid sponsors without breaking the strip', () => {
   api.addSponsor(null);
   api.addSponsor({ id: 'missing-name' });
   assert.ok(
-    mount.innerHTML.includes('uc-invite'),
-    'expected the invitation state to survive invalid addSponsor calls'
+    mount.innerHTML.includes('uc-card--placeholder'),
+    'expected the founding-seat pills to survive invalid addSponsor calls'
   );
 });
 

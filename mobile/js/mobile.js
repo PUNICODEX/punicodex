@@ -411,9 +411,21 @@
         }
 
         // Variants
-        if (entry.variants && entry.variants.length) {
-            const typeOrder = { ideal: 0, 'alt-stress': 1, 'macron-only': 2, ascii: 3 };
-            const sorted = [...entry.variants].sort((a, b) => {
+        const stackedForm =
+            typeof PUNICODEX_ENGINE !== 'undefined' && PUNICODEX_ENGINE.deriveStackedForm
+                ? PUNICODEX_ENGINE.deriveStackedForm(entry)
+                : null;
+        const displayVariants = [...(entry.variants || [])];
+        if (stackedForm) {
+            displayVariants.push({
+                unicode: stackedForm,
+                type: 'stacked',
+                note: 'Canonical stacked form — macron and acute fused on one vowel, exactly where the Greek original marks both.',
+            });
+        }
+        if (displayVariants.length) {
+            const typeOrder = { stacked: 0, ideal: 1, 'alt-stress': 2, 'macron-only': 3, ascii: 4 };
+            const sorted = [...displayVariants].sort((a, b) => {
                 const oa = typeOrder[a.type] ?? 99;
                 const ob = typeOrder[b.type] ?? 99;
                 return oa - ob;
@@ -424,9 +436,14 @@
                     <div class="detail-variants-grid">
                         ${sorted.map(v => {
                             const isIdeal = v.type === 'ideal';
-                            const badge = isIdeal ? '<span class="detail-variant-badge">★ Ideal</span>' : '';
+                            const isStacked = v.type === 'stacked';
+                            const badge = isStacked
+                                ? '<span class="detail-variant-badge">★ Stacked</span>'
+                                : isIdeal
+                                  ? '<span class="detail-variant-badge">★ Ideal</span>'
+                                  : '';
                             return `
-                                <div class="detail-variant-card ${isIdeal ? 'ideal' : ''}" data-variant="${esc(nfc(v.unicode))}">
+                                <div class="detail-variant-card ${isIdeal || isStacked ? 'ideal' : ''}" data-variant="${esc(nfc(v.unicode))}">
                                     <span class="detail-variant-unicode">${esc(nfc(v.unicode))}</span>
                                     <span class="detail-variant-meta">
                                         ${badge}
@@ -711,22 +728,39 @@
     }
 
     function renderVariants(entry) {
-        if (!entry.variants || entry.variants.length === 0) {
+        const stackedForm =
+            typeof PUNICODEX_ENGINE !== 'undefined' && PUNICODEX_ENGINE.deriveStackedForm
+                ? PUNICODEX_ENGINE.deriveStackedForm(entry)
+                : null;
+        const displayVariants = [...(entry.variants || [])];
+        if (stackedForm) {
+            displayVariants.push({
+                unicode: stackedForm,
+                type: 'stacked',
+                note: 'Canonical stacked form — macron and acute fused on one vowel, exactly where the Greek original marks both.',
+            });
+        }
+        if (displayVariants.length === 0) {
             resultVariants.innerHTML = '';
             return;
         }
-        // Sort: ideal first, then alt-stress, macron-only, ascii, others
-        const typeOrder = { ideal: 0, 'alt-stress': 1, 'macron-only': 2, ascii: 3 };
-        const sorted = [...entry.variants].sort((a, b) => {
+        // Sort: stacked first, then ideal, alt-stress, macron-only, ascii, others
+        const typeOrder = { stacked: 0, ideal: 1, 'alt-stress': 2, 'macron-only': 3, ascii: 4 };
+        const sorted = [...displayVariants].sort((a, b) => {
             const oa = typeOrder[a.type] ?? 99;
             const ob = typeOrder[b.type] ?? 99;
             return oa - ob;
         });
         resultVariants.innerHTML = sorted.map(v => {
             const isIdeal = v.type === 'ideal';
-            const badge = isIdeal ? '<span class="variant-ideal-badge">★ Ideal</span>' : '';
+            const isStacked = v.type === 'stacked';
+            const badge = isStacked
+                ? '<span class="variant-ideal-badge">★ Stacked</span>'
+                : isIdeal
+                  ? '<span class="variant-ideal-badge">★ Ideal</span>'
+                  : '';
             return `
-                <div class="variant-row ${isIdeal ? 'ideal' : ''}" data-variant="${esc(nfc(v.unicode))}">
+                <div class="variant-row ${isIdeal || isStacked ? 'ideal' : ''}" data-variant="${esc(nfc(v.unicode))}">
                     <span class="variant-unicode">${esc(nfc(v.unicode))}</span>
                     <span class="variant-meta">
                         ${badge}
