@@ -54773,6 +54773,34 @@ const LEXICON = [
     "domainUnicode": "ọba.com",
     "domainPunycode": "xn--oba-5ua.com",
     "hasAdSite": true
+  },
+  {
+    "id": "ashavahista",
+    "ascii": "ashavahista",
+    "unicode": "Ašavahišta",
+    "greek": "—",
+    "pantheon": "zoroastrian",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Truth, Righteousness, Fire",
+    "meaning": "\"Best Truth\" — the Amesha Spenta of cosmic order (Aša), guardian of the sacred fire and the moral law",
+    "sources": ["Gathas","Avesta","Rigveda","Cambridge"],
+    "breakdown": [
+      { "char": "a", "to": "A", "type": "same", "note": "Same, capitalized" },
+      { "char": "s", "to": "š", "type": "special", "note": "Sibilant š (palatal s)" },
+      { "char": "h", "to": "", "type": "drop", "note": "Fuses with s into š" },
+      { "char": "a", "to": "a", "type": "same", "note": "Same" },
+      { "char": "v", "to": "v", "type": "same", "note": "Same" },
+      { "char": "a", "to": "a", "type": "same", "note": "Same" },
+      { "char": "h", "to": "h", "type": "same", "note": "Same" },
+      { "char": "i", "to": "i", "type": "same", "note": "Same" },
+      { "char": "s", "to": "š", "type": "special", "note": "Sibilant š (palatal s)" },
+      { "char": "t", "to": "t", "type": "same", "note": "Same" },
+      { "char": "a", "to": "a", "type": "same", "note": "Same" }
+    ],
+    "domainUnicode": "ašavahišta.com",
+    "domainPunycode": "xn--aavahita-5wbf.com",
+    "hasAdSite": true
   }
 ];
 

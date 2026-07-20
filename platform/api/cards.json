@@ -10,15 +10,15 @@
     ],
     "spec": "docs/card-game-spec.md",
     "counts": {
-      "total": 1134,
-      "standard": 924,
-      "originalScript": 210,
-      "flagship": 252,
+      "total": 1136,
+      "standard": 925,
+      "originalScript": 211,
+      "flagship": 254,
       "byRarity": {
-        "legendary": 252,
-        "mythic": 210,
+        "legendary": 254,
+        "mythic": 211,
         "rare": 358,
-        "common": 212,
+        "common": 211,
         "uncommon": 102
       }
     }
@@ -30490,8 +30490,54 @@
       "tier": "2",
       "tierLabel": "Tier 2",
       "domain": "River of Hate, Oaths",
-      "rarity": "common",
-      "rarityOrder": 1,
+      "rarity": "legendary",
+      "rarityOrder": 5,
+      "cost": 10,
+      "power": 57,
+      "health": 63,
+      "speed": 6,
+      "ability": {
+        "id": "ability-styx",
+        "entryId": "styx",
+        "name": "Flowing Renewal",
+        "description": "Restore 4 health to your hero each turn while in play.",
+        "trigger": "passive",
+        "effect": {
+          "kind": "heal-hero-turn",
+          "amount": 4
+        }
+      },
+      "flavor": "Stýx's myths are about the one thing stronger than the gods: the word you cannot take back — and the water that enforces it.",
+      "flagship": true,
+      "ownedDomain": "stýx.com",
+      "art": {
+        "mascot": "/sites/styx/assets/styx_mascot.webp",
+        "logomark": "/sites/styx/assets/styx_logomark.webp",
+        "colors": {
+          "primary": "#1E3A4A",
+          "secondary": "#7FA8B8",
+          "glow": "rgba(30,58,74,0.35)"
+        },
+        "artist": null
+      }
+    },
+    {
+      "id": "styx-original-script",
+      "entryId": "styx",
+      "variant": "original-script",
+      "setId": "first-restoration",
+      "name": "Stýx",
+      "ascii": "styx",
+      "original": "Στύξ",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "2",
+      "tierLabel": "Tier 2",
+      "domain": "River of Hate, Oaths",
+      "rarity": "mythic",
+      "rarityOrder": 6,
       "cost": 4,
       "power": 57,
       "health": 63,
@@ -30507,15 +30553,20 @@
           "amount": 4
         }
       },
-      "flavor": "Hateful",
-      "flagship": false,
-      "ownedDomain": null,
+      "flavor": "Stýx's myths are about the one thing stronger than the gods: the word you cannot take back — and the water that enforces it.",
+      "flagship": true,
+      "ownedDomain": "stýx.com",
       "art": {
-        "mascot": null,
-        "logomark": null,
-        "colors": null,
+        "mascot": "/sites/styx/assets/styx_mascot.webp",
+        "logomark": "/sites/styx/assets/styx_logomark.webp",
+        "colors": {
+          "primary": "#1E3A4A",
+          "secondary": "#7FA8B8",
+          "glow": "rgba(30,58,74,0.35)"
+        },
         "artist": null
-      }
+      },
+      "foil": true
     },
     {
       "id": "lethe-standard",
@@ -50430,6 +50481,52 @@
           "primary": "#1F4A5C",
           "secondary": "#7FA8B8",
           "glow": "rgba(31, 74, 92, 0.35)"
+        },
+        "artist": null
+      }
+    },
+    {
+      "id": "ashavahista-standard",
+      "entryId": "ashavahista",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Ašavahišta",
+      "ascii": "ashavahista",
+      "original": "—",
+      "pantheon": "zoroastrian",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Truth, Righteousness, Fire",
+      "rarity": "legendary",
+      "rarityOrder": 5,
+      "cost": 10,
+      "power": 76,
+      "health": 59,
+      "speed": 6,
+      "ability": {
+        "id": "ability-ashavahista",
+        "entryId": "ashavahista",
+        "name": "Radiance",
+        "description": "Blind an enemy, halving its speed.",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "slow-enemy",
+          "target": "enemy-minion"
+        }
+      },
+      "flavor": "Ašavahišta's mythology is the Gathas' own theology: truth not as an idea but as an immortal who must be fed, fought for, and kept alight.",
+      "flagship": true,
+      "ownedDomain": "ašavahišta.com",
+      "art": {
+        "mascot": "/sites/ashavahista/assets/ashavahista_mascot.webp",
+        "logomark": "/sites/ashavahista/assets/ashavahista_logomark.webp",
+        "colors": {
+          "primary": "#C4622E",
+          "secondary": "#D4AF37",
+          "glow": "rgba(196,98,46,0.3)"
         },
         "artist": null
       }

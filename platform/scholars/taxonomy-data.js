@@ -362,16 +362,16 @@ module.exports = {
         "zoroastrian": {
           "sections": [
             {
-              "key": "avesta",
-              "label": "Avesta"
+              "key": "gathas",
+              "label": "The Gathas"
             },
             {
-              "key": "gathas",
-              "label": "Gathas"
+              "key": "avesta",
+              "label": "The Avesta"
             },
             {
               "key": "middle-persian",
-              "label": "Middle Persian Sources"
+              "label": "Middle Persian & Sasanian Texts"
             }
           ]
         },

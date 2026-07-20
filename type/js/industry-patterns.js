@@ -90,6 +90,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Geothermal plants, combustion, and industrial heat.',
     note: 'Fire and volcanic powers personify the stored heat of the earth and the controlled burn that still drives most of the grid.',
     entries: [
+      { id: 'ashavahista', weight: 1, why: 'The altar-flame; fire as the tester, not the destroyer.' },
       { id: 'xiuhtecuhtli', weight: 2 },
       { id: 'vulcanus', weight: 2 },
       { id: 'pyr', weight: 2 },
@@ -151,6 +152,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Water supply, irrigation, and watershed management.',
     note: 'Freshwater powers sustain cities and crops; rivers, abysses, and rain-bringers map directly onto the utility sector.',
     entries: [
+      { id: 'styx', weight: 1, why: 'The boundary stream; the underworlds own waterworks.' },
       { id: 'oba', weight: 2 },
       { id: 'ganga', weight: 2 },
       { id: 'yamuna', weight: 2 },
@@ -602,6 +604,8 @@ const INDUSTRY_GROUPS = [
     tagline: 'Religious institutions, faith media, and devotional services.',
     note: 'These figures anchor living practice today — temples still fill, scriptures still sell, and founders still define traditions.',
     entries: [
+      { id: 'ashavahista', weight: 2 },
+      { id: 'styx', weight: 1, why: 'The oath-water; the oldest contract cult in the West.' },
       { id: 'hanuman', weight: 2 },
       { id: 'guandi', weight: 2 },
       { id: 'mazu', weight: 2 },
@@ -756,6 +760,8 @@ const INDUSTRY_GROUPS = [
     tagline: 'Destinations, heritage tourism, and city branding.',
     note: 'Real cities, real ruins, and legendary destinations; the strongest place brands on earth are mythological names.',
     entries: [
+      { id: 'ashavahista', weight: 1, why: 'Takht-e Soleyman and the Yazd flame — fire-temple pilgrimage.' },
+      { id: 'styx', weight: 1, why: 'The Arcadian waterfall; the oath-cliff of Nonakris.' },
       { id: 'hanuman', weight: 1, why: 'Anjaneya hill, Karol Bagh colossus, and the Hanuman pilgrimage circuit.' },
       { id: 'mazu', weight: 2, why: 'The Dajia procession and Meizhou pilgrimage draw millions yearly.' },
       { id: 'kartikeya', weight: 2, why: 'Palani, Kataragama, Batu Caves — his hills are pilgrimage infrastructure.' },
@@ -857,6 +863,8 @@ const INDUSTRY_GROUPS = [
     tagline: 'Law, courts, and regulatory compliance.',
     note: 'Truth, oaths, and cosmic order; the law’s oldest symbols are divine persons.',
     entries: [
+      { id: 'styx', weight: 2, why: 'The river of the oath — the original binding agreement.' },
+      { id: 'ashavahista', weight: 1, why: 'Aša, the cosmic audit; truth as an institution.' },
       { id: 'sani', weight: 2, why: 'Karmas auditor; the slow court that never errs.' },
       { id: 'guandi', weight: 1, why: 'The enforcer of oaths; every contract sworn on his altar.' },
       { id: 'yanluo', weight: 2 },
@@ -951,6 +959,8 @@ const INDUSTRY_GROUPS = [
     tagline: 'Philosophy, ethics boards, and standards bodies.',
     note: 'First principles, necessity, and cosmic order; the concepts entire ethical frameworks are built from.',
     entries: [
+      { id: 'ashavahista', weight: 2, why: 'Good thought, good word, good deed — the oldest ethics syllabus.' },
+      { id: 'styx', weight: 1, why: 'The binding word; the philosophy of promises.' },
       { id: 'orpheus', weight: 1, why: 'The look back; arts oldest parable of limits.' },
       { id: 'orun', weight: 1, why: 'Destiny as contract; the orí doctrine.' },
       { id: 'phanes', weight: 2 },
