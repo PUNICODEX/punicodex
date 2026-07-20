@@ -55,7 +55,7 @@
                 ? `<span class="card-script-name">${escapeHtml(scriptName)}</span>${escapeHtml(originalScript)}`
                 : '<span class="card-script-name">Scholarly transliteration</span>';
 
-            const thumbPath = `/assets/images/mascots/thumbs/small/${a.id}_thumb.webp`;
+            const thumbPath = `/assets/images/mascots/thumbs/small/${a.id}_thumb.webp?v=75`;
             const loadingAttr = index < 8 ? 'loading="eager"' : 'loading="lazy"';
             // Unbuilt temples have no mascot shoot yet — render the kit's empty
             // portrait directly instead of round-tripping a 404 thumb.
@@ -176,8 +176,11 @@
         }
     }
 
-    // Filter pills
+    // Filter pills (the expander button is handled separately below)
+    const filterMore = document.getElementById('filter-more');
+    const pillsContainer = document.getElementById('filter-pills');
     filterPills.forEach(pill => {
+        if (pill === filterMore) return;
         pill.addEventListener('click', () => {
             filterPills.forEach(p => p.classList.remove('active'));
             pill.classList.add('active');
@@ -185,6 +188,15 @@
             applyFilter();
         });
     });
+
+    // Expander: reveal the extra pills on demand (mobile-first).
+    if (filterMore && pillsContainer) {
+        filterMore.addEventListener('click', () => {
+            const expanded = pillsContainer.classList.toggle('expanded');
+            filterMore.setAttribute('aria-expanded', String(expanded));
+            filterMore.textContent = expanded ? 'Fewer filters' : 'More filters';
+        });
+    }
 
     // Search
     if (searchInput) {
