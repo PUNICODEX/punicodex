@@ -2293,6 +2293,7 @@ function generateHomePage(entry, palette, slotNames, templateDir, rentalTier = '
     GREEK: getOriginalScript(entry) || '—',
     DOMAIN: entry.domain,
     MEANING: entry.meaning || '',
+    TAGLINE: entry.tagline || '',
     TIER_LABEL: entry.tierLabel || `Tier ${entry.tier}`,
     DOMAINS_TEXT: getDomainsText(entry),
     TEMPLE_ID: templeId,
@@ -2499,6 +2500,7 @@ function generateLorePage(entry, palette, loreSections, templateDir, catalog) {
     ORIGINAL_SCRIPT_PROVENANCE_SECTION: buildOriginalScriptProvenanceSection(entry),
     DOMAIN: entry.domain,
     MEANING: entry.meaning || '',
+    TAGLINE: entry.tagline || '',
     TIER_LABEL: entry.tierLabel || `Tier ${entry.tier}`,
     DOMAINS_TEXT: getDomainsText(entry),
     TEMPLE_ID: templeId,
@@ -2807,6 +2809,7 @@ function generateExtendedPage(entry, palette, templateDir, catalog) {
     GREEK: getOriginalScript(entry) || '—',
     DOMAIN: entry.domain,
     MEANING: entry.meaning || '',
+    TAGLINE: entry.tagline || '',
     TIER_LABEL: entry.tierLabel || `Tier ${entry.tier}`,
     DOMAINS_TEXT: getDomainsText(entry),
     TEMPLE_ID: templeId,
@@ -2912,6 +2915,9 @@ function createFlagship(templeId, options = {}) {
   if (!entry) throw new Error(`Lexicon entry not found: ${templeId}`);
   const ARCHETYPES = loadArchetypes();
   const archetype = ARCHETYPES.find((a) => a.id === templeId) || {};
+  // The tagline lives on the archetype, not the lexicon entry — merge it so
+  // templates can render the curated epithet via {{TAGLINE}}.
+  if (archetype.tagline && !entry.tagline) entry.tagline = archetype.tagline;
 
   const siteDir = path.join(SITES_DIR, templeId);
   if (!fs.existsSync(siteDir)) throw new Error(`Site directory not found: ${siteDir}`);
