@@ -1,113 +1,89 @@
-# PUNICODEX Deployment — DO NOT FUCK THIS UP
+# PUNICODEX Deployment Guide (Vercel)
 
-## Critical Rules
+Current production: Vercel project `punycodex-main` (team `hekaverse`).
+Static site + serverless functions in `api/` + edge `middleware.js`. No build step on Vercel — the deploy payload is the repo minus `.vercelignore`.
 
-### 1. Production Branch is `main`, NOT `master`
-- Cloudflare Pages serves `punicodex.com` from the **`main`** branch
-- `master` branch goes to **Preview** only
-- Always deploy with: `npx wrangler pages deploy . --project-name=punicodex --branch=main`
+---
 
-### 2. Cache Busting is MANDATORY
-- `_headers` sets `Cache-Control: public, max-age=31536000, immutable` on `.css`, `.js`, `.png`, `.svg`
-- **Every CSS/JS reference in HTML must use `?v=PERFX` query strings**
-- When you change CSS or JS, bump the version in ALL HTML files that reference it
-- Current version: `?v=perf7`
+## Why deploys used to take ~30 minutes — and what we did about it
 
-### 3. Pages that MUST have cache-bust on CSS/JS
-- Root pages: `index.html`, `404.html`
-- Section pages: `about/`, `contact/`, `codex/`, `store/`, `pantheon/`, `lexicon/`, `type/`, `realms/`, `tiers/`
-- All 260+ temple sites in `sites/{id}/`
-- Check with: `grep -r 'href="/css/[^"]*\.css"' --include='*.html' | grep -v '\?v='`
+The project is GB-scale: 252 flagship temples with multi-MB image assets, 915 temple pages, and several source-material folders that are not runtime code. The deploy payload is now controlled by `.vercelignore`, which excludes everything that is not served at runtime:
 
-### 4. Deployment Checklist
+- `extended flagship materials/` (3.2 GB of business source PNGs)
+- `branding/` (1.1 GB of per-deity brand kits — public brand assets live in `/assets/brand/`)
+- `docs/`, `tools/`, `android/`, `extension*/`, `data/corpus/`, `data/authoritative/`, `data/benchmarks/`
+- `Kimi_Agent_punicodex扩展/`, `session-debug/`
+- `sites/**/*.png` — temples ship WebP only (PNG fallbacks stay in the repo, never uploaded)
+
+**Vercel dedupes uploads by file hash** — unchanged files are never re-uploaded. A no-change production deploy now measures ~3 minutes end-to-end (measured 2026-07-20). The slow 30-minute runs were almost entirely *new content* uploads (batches of new temples/images), not re-uploads of the existing site.
+
+### What this means in practice
+
+| Change type | Cost | Why |
+|---|---|---|
+| Localized edit (one CSS/JS/HTML file) | ~3 min | Hash dedup skips everything else |
+| Content batch (new temples/images) | minutes–tens of minutes | Only the new files upload |
+| Full regenerate (no content change) | ~3 min | Byte-identical artifacts hash to the same values |
+
+There is no way to deploy a *subset* of a Vercel project — a project is one deployment unit. The win is keeping the payload lean (`.vercelignore`) and leaning on hash dedup, both of which are now in place. The only architecture that would make big batches cheap is moving immutable temple images to a separate asset host (R2/S3/another Vercel "assets" project) — a real refactor, listed under "Future" below.
+
+---
+
+## Deploy paths
+
+### Fast path — localized fixes (CSS/JS/HTML edits, no canonical-source changes)
+
+When you have only edited hand-maintained files and the flywheel is untouched:
+
 ```bash
-# 1. Commit everything
 git add -A && git commit -m "..."
 git push origin master
-git push origin master:main
-
-# 2. Deploy to PRODUCTION (main branch)
-# Set CLOUDFLARE_API_TOKEN in your environment before running
-npx wrangler pages deploy . --project-name=punicodex --branch=main
-
-# 3. Verify live site (not the preview URL)
-curl -s https://punicodex.com/ | head -5
+vercel deploy --prod --yes
+# alias to the primary domains
+D=$(vercel ls --yes | grep -o 'punycodex-main-[a-z0-9-]*\.vercel\.app' | head -1)
+for a in punicodex.com punycodex.com www.punicodex.com; do vercel alias "$D" "$a"; done
 ```
 
-### 5. Multi-Account Deployment (Norse sites: helheimr, muspellheimr)
-Wrangler caches the last-used `account_id` in `node_modules/.cache/wrangler/pages.json`.
-**You MUST delete this cache before switching accounts**, or wrangler will send requests
-to the wrong account and fail with `Authentication error [code: 10000]`.
+### Full path — canonical-source changes (lexicon, archetypes, lore, taxonomy, effects, industry patterns)
 
-```powershell
-# Main account (punicodex.com, hermes, nike, etc.)
-Get-Content .env | ForEach-Object { $k, $v = $_ -split '=', 2; [Environment]::SetEnvironmentVariable($k, $v, 'Process') }
-Remove-Item node_modules/.cache/wrangler/pages.json -Force -ErrorAction SilentlyContinue
-npx wrangler pages deploy . --project-name=hermes --branch=main --commit-dirty=true
+The flywheel demands regeneration and the full gate:
 
-# Second account (helheimr.com, muspellheimr.com)
-$env:CLOUDFLARE_API_TOKEN = $env:CLOUDFLARE_API_TOKEN_NORSE
-$env:CLOUDFLARE_ACCOUNT_ID = $env:CLOUDFLARE_ACCOUNT_ID_NORSE
-Remove-Item node_modules/.cache/wrangler/pages.json -Force -ErrorAction SilentlyContinue
-npx wrangler pages deploy . --project-name=helheimr --branch=main --commit-dirty=true
+```bash
+npm run generate        # regenerates all derived artifacts
+npm test                # 136 suites incl. the Divergence Gate
+git add -A && git commit -m "..."
+git push origin master
+vercel deploy --prod --yes
+# alias as above
 ```
 
-**Env var names in `.env`:**
-- Main account: `CLOUDFLARE_API_TOKEN_MAIN` / `CLOUDFLARE_ACCOUNT_ID_MAIN`
-- Norse account: `CLOUDFLARE_API_TOKEN_NORSE` / `CLOUDFLARE_ACCOUNT_ID_NORSE`
+Rules that keep the gate green:
 
-### 6. What NOT to do
-- ❌ Do NOT deploy to `--branch=master` and think it's live
-- ❌ Do NOT give the user `*.pages.dev` preview URLs as if they're the live site
-- ❌ Do NOT change CSS/JS without updating `?v=` query strings in HTML
-- ❌ Do NOT assume cache will invalidate itself — it won't
+- Never edit generated outputs by hand; edit canonical sources and re-run `npm run generate`.
+- `vercel.json` stays valid single-key JSON; domain routing lives in `middleware.js` (generated DOMAIN_MAP), never duplicated into `vercel.json` redirects.
+- Bump the `?v=perfXX` asset versions (and `archetypes-v2.js?v=NN`, thumbs `?v=NN`) whenever CSS/JS/thumbs change — those paths are cached immutable for a year.
 
-### 7. If Something Looks Broken on Live
-1. Check if the HTML references the right `?v=` version
-2. Check if you deployed to `main`, not `master`
-3. Check `npx wrangler pages deployment list --project-name=punicodex` to confirm
-4. Cloudflare edge cache can lag ~30s; wait a moment then hard-refresh
+### Mobile safety
 
-## Custom Domains
+HTML is `max-age=0, must-revalidate`, but `/css`, `/js`, `/assets` are immutable. Any visual fix to a cached file **requires** a version bump or users with warm caches never see it.
 
-- `punicodex.com` and `www.punicodex.com` are attached to the Vercel project and serve the live site.
-- `punycodex.com` is the legacy pre-rebrand domain; it 301-redirects to `punicodex.com`.
-- `www.punycodex.com` has no DNS record yet — add a CNAME pointing at Vercel when convenient so the legacy `www` subdomain also redirects.
+---
 
-## Verifying analytics in production
+## Future: true localized deploys (asset-host migration)
 
-Every public page loads `/js/analytics-beacon.js`, which POSTs one anonymous
-page-view ping to `/api/analytics/collect/` (answered with `204`). To watch a
-real view appear:
+The only honest path to sub-minute large deploys is moving immutable temple images off the monorepo deployment:
 
-1. Open any page, e.g. `https://punicodex.com/sites/zeus/`.
-2. Open the Site Analytics dashboard — `/admin-portal/` → "Site Analytics"
-   (`/platform/public/admin-analytics.html`, login with `ADMIN_PASSWORD`) — or
-   query the API directly:
+1. Host `sites/{id}/assets/` (webp mascots/logos) on a CDN (Cloudflare R2, S3+CloudFront, or a separate Vercel "assets" project).
+2. Point `mascotPath`/`logomarkPath` in `js/archetypes-v2.js` and the template asset URLs at the CDN domain.
+3. Main deploy drops to < 200 MB and finishes in ~1 minute regardless of temple count.
 
-   ```bash
-   TOKEN=$(curl -s -X POST https://punicodex.com/api/admin/login/ \
-     -H 'Content-Type: application/json' \
-     -d "{\"password\":\"$ADMIN_PASSWORD\"}" | jq -r .token)
-   curl -s "https://punicodex.com/api/analytics/overview/?days=1" \
-     -H "x-admin-token: $TOKEN"
-   ```
+Do this only with an explicit host decision — it changes public URLs and needs DNS/CDN setup. Not started; the current payload cuts solve the common case.
 
-   The new view shows up in `totals.humanViews`, in `topTemples` (as
-   `zeus`), and in today's `byDay` row. Bot traffic is counted separately
-   (`botViews`, `botCategories`) and never inflates human views or referrers.
+---
 
-Set `REDIS_URL` in production so rollups are shared across serverless
-instances (40-day TTL). Without it each function instance keeps its own
-ephemeral SQLite copy in `/tmp`, so counts reset on cold start and differ
-between instances.
+## Non-negotiables
 
-What the beacon intentionally does NOT collect:
-
-- No cookies and no localStorage — the session id lives only in
-  `sessionStorage.px_sid` and dies with the tab.
-- No raw IPs or user agents — only truncated sha256 hashes, a coarse device
-  class, and a bot category are stored.
-- No cross-day tracking — session hashes rotate daily (`sha256(sid:day)`).
-- No query strings or fragments — paths are stripped before storage.
-- Nothing at all when the browser sends Do Not Track (`navigator.doNotTrack`).
+- **Do not** commit secrets. Env vars live in Vercel (`STRIPE_*`, `RESEND_API_KEY`, `DATABASE_URL`, `REDIS_URL`, `ADMIN_*`, `CRON_SECRET`).
+- **Do not** push a broken flywheel: if `npm test` is red, do not deploy.
+- **Do not** deploy `extended flagship materials/`, `branding/`, `docs/`, `tools/`, `session-debug/` — they are excluded by `.vercelignore` on purpose.
+- HTML must always carry the analytics beacon marker block (auto-injected by `npm run generate`).
