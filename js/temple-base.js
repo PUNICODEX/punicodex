@@ -28,7 +28,11 @@
                 }
             });
         }, {
-            threshold: 0.1,
+            // threshold 0: reveal as soon as ANY part of the element enters.
+            // A 0.1 threshold can never be reached by elements taller than
+            // 10x the viewport (e.g. the 11kpx blog body) — they would stay
+            // invisible forever (the 2026-07 blog-blanking bug).
+            threshold: 0,
             rootMargin: '0px 0px -50px 0px'
         });
 
