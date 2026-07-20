@@ -680,3 +680,32 @@
 .glow-orb.blue {
     background: radial-gradient(circle, rgba(65,105,225,0.2) 0%, transparent 70%);
 }
+
+/* ── Mobile: 3-column compact cards (fits 390px neatly) ── */
+@media (max-width: 768px) {
+    .pantheon-grid-large {
+        gap: 8px;
+    }
+    .pantheon-grid-large .archetype-card {
+        padding: 10px 6px;
+    }
+    .pantheon-grid-large .archetype-card .card-portrait {
+        width: 78px;
+        height: 78px;
+    }
+    .pantheon-grid-large .archetype-card .card-name {
+        font-size: 14px;
+    }
+    .pantheon-grid-large .archetype-card .card-greek,
+    .pantheon-grid-large .archetype-card .card-domain,
+    .pantheon-grid-large .archetype-card .card-punycode {
+        font-size: 9px;
+    }
+    .section-pantheon .archetype-card {
+        padding: 10px 6px;
+    }
+    .section-pantheon .archetype-card .card-portrait {
+        width: 78px;
+        height: 78px;
+    }
+}

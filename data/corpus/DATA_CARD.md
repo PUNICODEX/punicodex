@@ -1,7 +1,7 @@
 # PuniCodex AI Training Corpus — Data Card
 
-**Data version:** 2.0.71  
-**Generated:** 2026-07-20T05:11:02.769Z  
+**Data version:** 2.0.72  
+**Generated:** 2026-07-20T10:25:04.633Z  
 **License:** CC BY 4.0 for dataset; ISC for software (see root LICENSE).
 
 ## Purpose
@@ -19,7 +19,7 @@ This corpus is the foundational training and evaluation data for a specialized A
 | safety-examples.jsonl | 42,710 | 26.97 MB | Adversarial safety examples (Phase 2). |
 | dialogue-examples.jsonl | 3,181 | 2.18 MB | Multi-turn conversation examples (Phase 3). |
 | tool-use-examples.jsonl | 4,620 | 9.83 MB | Function-calling / tool-use examples (Phase 4). |
-| multimodal-examples.jsonl | 1,876 | 882.9 KB | Vision-language pairs for mascots, logomarks, scripts (Phase 5). |
+| multimodal-examples.jsonl | 1,876 | 882.8 KB | Vision-language pairs for mascots, logomarks, scripts (Phase 5). |
 | preference-examples.jsonl | 3,730 | 2.04 MB | Chosen/rejected pairs for RLHF (Phase 6). |
 | reasoning-examples.jsonl | 3,599 | 2.02 MB | Chain-of-thought reasoning traces (Phase 7). |
 | benchmark.jsonl | 6,293 | 2.13 MB | Held-out evaluation benchmark with known answers (Phase 8). |
