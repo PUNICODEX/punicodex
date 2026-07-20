@@ -456,7 +456,7 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptName": "Devanagari"
   },
   "hanuman": {
-    "originalScript": "हनुमत्",
+    "originalScript": "हनुमान्",
     "scriptName": "Devanagari"
   },
   "manannan": {
@@ -2805,6 +2805,18 @@ const ORIGINAL_SCRIPT_LOOKUP = {
   },
   "tvastr": {
     "originalScript": "त्वष्टृ",
+    "scriptName": "Devanagari"
+  },
+  "guandi": {
+    "originalScript": "關帝",
+    "scriptName": "Chinese characters"
+  },
+  "gauri": {
+    "originalScript": "गौरी",
+    "scriptName": "Devanagari"
+  },
+  "sani": {
+    "originalScript": "शनि",
     "scriptName": "Devanagari"
   }
 };

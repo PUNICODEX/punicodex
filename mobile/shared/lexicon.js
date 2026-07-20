@@ -7123,11 +7123,11 @@ const LEXICON = [
   {
     "id": "hanuman",
     "ascii": "hanuman",
-    "unicode": "Hanumat",
+    "unicode": "Hanumān",
     "greek": "—",
     "pantheon": "sanskrit",
-    "tier": "2",
-    "tierLabel": "Tier 2",
+    "tier": "1",
+    "tierLabel": "Tier 1",
     "domain": "Devotion, Strength, Messenger",
     "meaning": "‘having (large) jaws’, N. of a monkeychief (one of the most celebrated of a host of semidivine monkeylike beings, who, according to R. i, 16, were created to become the allies of",
     "senses": [
@@ -7173,15 +7173,15 @@ const LEXICON = [
       },
       {
         "char": "a",
-        "to": "a",
-        "type": "same",
-        "note": "Short /a/"
+        "to": "ā",
+        "type": "length",
+        "note": "Long ā on final syllable"
       },
       {
         "char": "n",
-        "to": "t",
+        "to": "n",
         "type": "special",
-        "note": "T: final dental stop"
+        "note": "Long ā on final syllable"
       }
     ]
   },
@@ -13638,7 +13638,7 @@ const LEXICON = [
   {
     "id": "orpheus",
     "ascii": "orpheus",
-    "unicode": "Orpheus",
+    "unicode": "Orpheús",
     "greek": "Ὀρφεύς",
     "pantheon": "greek",
     "tier": "1",
@@ -13683,9 +13683,9 @@ const LEXICON = [
       },
       {
         "char": "u",
-        "to": "u",
-        "type": "same",
-        "note": "Same"
+        "to": "ú",
+        "type": "stress",
+        "note": "Acute on the final syllable"
       },
       {
         "char": "s",
@@ -54572,6 +54572,211 @@ const LEXICON = [
         { char: "g", to: "g", type: "same", note: "Same letter" },
         { char: "a", to: "a", type: "same", note: "Same letter" }
     ]
+  },
+  {
+    "id": "guandi",
+    "ascii": "guandi",
+    "unicode": "Guāndì",
+    "greek": "關帝",
+    "pantheon": "chinese",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "War, Loyalty, Protection",
+    "meaning": "\"Emperor Guan\" — the deified general Guān Yǔ, god of war, loyalty, and righteousness",
+        "breakdown": [
+      { "char": "g", "to": "G", "type": "same", "note": "Same" },
+      { "char": "u", "to": "u", "type": "same", "note": "Same" },
+      { "char": "a", "to": "ā", "type": "special", "note": "First tone (high level)" },
+      { "char": "n", "to": "n", "type": "same", "note": "Same" },
+      { "char": "d", "to": "d", "type": "same", "note": "Same" },
+      { "char": "i", "to": "ì", "type": "special", "note": "Falling fourth tone" }
+    ],
+"sources": ["Sanguozhi", "Chinese folk religion", "Birrell", "Chinese folklore", "Fengshen Yanyi", "Cambridge"],
+    "domainUnicode": "guāndì.com",
+    "domainPunycode": "xn--guand-eua.com",
+    "hasAdSite": true
+  },
+  {
+    "id": "gauri",
+    "ascii": "gauri",
+    "unicode": "Gaurī",
+    "greek": "गौरी",
+    "pantheon": "sanskrit",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Motherhood, Beauty, Austerity",
+    "meaning": "\"The Golden One\" — the radiant form of the Great Goddess, mother of the universe",
+        "breakdown": [
+      { "char": "g", "to": "G", "type": "same", "note": "Same" },
+      { "char": "a", "to": "a", "type": "same", "note": "Same" },
+      { "char": "u", "to": "u", "type": "same", "note": "Same" },
+      { "char": "r", "to": "r", "type": "same", "note": "Same" },
+      { "char": "i", "to": "ī", "type": "special", "note": "Long ī" }
+    ],
+"sources": ["Puranas", "Shiva Purana", "Devi Mahatmya", "Monier-Williams", "MW", "Cambridge"],
+    "domainUnicode": "gaurī.com",
+    "domainPunycode": "xn--gaur-rxa.com",
+    "hasAdSite": true
+  },
+  {
+    "id": "sani",
+    "ascii": "sani",
+    "unicode": "Śani",
+    "greek": "शनि",
+    "pantheon": "sanskrit",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Justice, Saturn, Karma",
+    "meaning": "\"The Slow One\" — Saturn as the lord of karma, justice, discipline, and time",
+        "breakdown": [
+      { "char": "s", "to": "Ś", "type": "special", "note": "Palatal ś (IAST)" },
+      { "char": "a", "to": "a", "type": "same", "note": "Same" },
+      { "char": "n", "to": "n", "type": "same", "note": "Same" },
+      { "char": "i", "to": "i", "type": "same", "note": "Same" }
+    ],
+"sources": ["Puranas", "Mahabharata", "Monier-Williams", "MW", "Brāhmaṇas", "Cambridge"],
+    "domainUnicode": "śani.com",
+    "domainPunycode": "xn--ani-9qa.com",
+    "hasAdSite": true
+  },
+  {
+    "id": "orun",
+    "ascii": "orun",
+    "unicode": "Ọrun",
+    "greek": "—",
+    "pantheon": "yoruba",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Sky, Heaven, Destiny",
+    "meaning": "\"Heaven\" — the sky-realm of the orisha, the divine order above the world",
+        "breakdown": [
+      { "char": "o", "to": "Ọ", "type": "special", "note": "Open-mid o with underdot" },
+      { "char": "r", "to": "r", "type": "same", "note": "Same" },
+      { "char": "u", "to": "u", "type": "same", "note": "Same" },
+      { "char": "n", "to": "n", "type": "same", "note": "Same" }
+    ],
+"sources": ["Idowu", "Bascom", "Abraham", "Folklore", "Cambridge", "Oxford"],
+    "domainUnicode": "ọrun.com",
+    "domainPunycode": "xn--run-9ua.com",
+    "hasAdSite": true
+  },
+  {
+    "id": "xiuhtecuhtli",
+    "ascii": "xiuhtecuhtli",
+    "unicode": "Xiuhtēcuhtli",
+    "greek": "—",
+    "pantheon": "nahuatl",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Fire, Time, Hearth",
+    "meaning": "\"Fire Lord\" — the Aztec fire god, lord of the hearth and of the year",
+        "breakdown": [
+      { "char": "x", "to": "X", "type": "same", "note": "Same" },
+      { "char": "i", "to": "i", "type": "same", "note": "Same" },
+      { "char": "u", "to": "u", "type": "same", "note": "Same" },
+      { "char": "h", "to": "h", "type": "same", "note": "Same" },
+      { "char": "t", "to": "t", "type": "same", "note": "Same" },
+      { "char": "e", "to": "ē", "type": "special", "note": "Long ē of tēcuhtli" },
+      { "char": "c", "to": "c", "type": "same", "note": "Same" },
+      { "char": "u", "to": "u", "type": "same", "note": "Same" },
+      { "char": "h", "to": "h", "type": "same", "note": "Same" },
+      { "char": "t", "to": "t", "type": "same", "note": "Same" },
+      { "char": "l", "to": "l", "type": "same", "note": "Same" },
+      { "char": "i", "to": "i", "type": "same", "note": "Same" }
+    ],
+"sources": ["Florentine Codex", "Sahagún", "Karttunen", "Nahuatl dictionary", "Cambridge"],
+    "domainUnicode": "xiuhtecuhtli.com",
+    "domainPunycode": "xiuhtecuhtli.com",
+    "hasAdSite": true
+  },
+  {
+    "id": "pluto",
+    "ascii": "pluto",
+    "unicode": "Plūtō",
+    "greek": "—",
+    "pantheon": "roman",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Underworld, Wealth, the Dead",
+    "meaning": "\"The Rich One\" — Roman lord of the underworld and of buried wealth",
+        "breakdown": [
+      { "char": "p", "to": "P", "type": "same", "note": "Same" },
+      { "char": "l", "to": "l", "type": "same", "note": "Same" },
+      { "char": "u", "to": "ū", "type": "special", "note": "Long ū" },
+      { "char": "t", "to": "t", "type": "same", "note": "Same" },
+      { "char": "o", "to": "ō", "type": "special", "note": "Long ō" }
+    ],
+"sources": ["Lewis & Short", "Varro", "Cicero", "Ovid", "Macrobius", "Cambridge"],
+    "domainUnicode": "plūtō.com",
+    "domainPunycode": "xn--plt-2ua.com",
+    "hasAdSite": true
+  },
+  {
+    "id": "ceres",
+    "ascii": "ceres",
+    "unicode": "Cerēs",
+    "greek": "—",
+    "pantheon": "roman",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Agriculture, Grain, Harvest",
+    "meaning": "Goddess of grain and growth — the source of the word \"cereal\"",
+        "breakdown": [
+      { "char": "c", "to": "C", "type": "same", "note": "Same" },
+      { "char": "e", "to": "e", "type": "same", "note": "Same" },
+      { "char": "r", "to": "r", "type": "same", "note": "Same" },
+      { "char": "e", "to": "ē", "type": "special", "note": "Long ē" },
+      { "char": "s", "to": "s", "type": "same", "note": "Same" }
+    ],
+"sources": ["Lewis & Short", "Varro", "Ovid", "Cicero", "Horace", "Cambridge"],
+    "domainUnicode": "cerēs.com",
+    "domainPunycode": "xn--cers-g8a.com",
+    "hasAdSite": true
+  },
+  {
+    "id": "mixcoatl",
+    "ascii": "mixcoatl",
+    "unicode": "Mixcōātl",
+    "greek": "—",
+    "pantheon": "nahuatl",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Clouds, Hunting, the Milky Way",
+    "meaning": "\"Cloud Serpent\" — god of the hunt, of clouds, and of the starry road",
+        "breakdown": [
+      { "char": "m", "to": "M", "type": "same", "note": "Same" },
+      { "char": "i", "to": "i", "type": "same", "note": "Same" },
+      { "char": "x", "to": "x", "type": "same", "note": "Same" },
+      { "char": "c", "to": "c", "type": "same", "note": "Same" },
+      { "char": "o", "to": "ō", "type": "special", "note": "Long ō of cōātl" },
+      { "char": "a", "to": "ā", "type": "length", "note": "Long ā of cōātl" },
+      { "char": "t", "to": "t", "type": "same", "note": "Same" },
+      { "char": "l", "to": "l", "type": "same", "note": "Same" }
+    ],
+"sources": ["Florentine Codex", "Sahagún", "Karttunen", "Nahuatl dictionary", "Cambridge"],
+    "domainUnicode": "mixcōātl.com",
+    "domainPunycode": "xn--mixcatl-01a.com",
+    "hasAdSite": true
+  },
+  {
+    "id": "oba",
+    "ascii": "oba",
+    "unicode": "Ọba",
+    "greek": "—",
+    "pantheon": "yoruba",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "River, Devotion, Sanctuary",
+    "meaning": "The river orisha Ọba — co-wife of the thunder god, lady of the sacred waters",
+        "breakdown": [
+      { "char": "o", "to": "Ọ", "type": "special", "note": "Open-mid o with underdot" },
+      { "char": "b", "to": "b", "type": "same", "note": "Same" },
+      { "char": "a", "to": "a", "type": "same", "note": "Same" }
+    ],
+"sources": ["Idowu", "Bascom", "Abraham", "Folklore", "Cambridge", "Oxford"],
+    "domainUnicode": "ọba.com",
+    "domainPunycode": "xn--oba-5ua.com",
+    "hasAdSite": true
   }
 ];
 

@@ -90,6 +90,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Geothermal plants, combustion, and industrial heat.',
     note: 'Fire and volcanic powers personify the stored heat of the earth and the controlled burn that still drives most of the grid.',
     entries: [
+      { id: 'xiuhtecuhtli', weight: 2 },
       { id: 'vulcanus', weight: 2 },
       { id: 'pyr', weight: 2 },
       { id: 'muspellheimr', weight: 2 },
@@ -150,6 +151,9 @@ const INDUSTRY_GROUPS = [
     tagline: 'Water supply, irrigation, and watershed management.',
     note: 'Freshwater powers sustain cities and crops; rivers, abysses, and rain-bringers map directly onto the utility sector.',
     entries: [
+      { id: 'oba', weight: 2 },
+      { id: 'ganga', weight: 2 },
+      { id: 'yamuna', weight: 2 },
       { id: 'neptunus', weight: 2 },
       { id: 'hp', weight: 2, why: 'The flood itself, metered by nilometers for three thousand years.' },
       { id: 'apsu', weight: 2 },
@@ -187,6 +191,8 @@ const INDUSTRY_GROUPS = [
     tagline: 'Space agencies, astronomy, and the orbital economy.',
     note: 'The space industry already names its missions after these figures — Apollo, Artemis, and Selene are flown programs, not metaphors.',
     entries: [
+      { id: 'mixcoatl', weight: 2, why: 'The Milky Way as his body; the star-road personified.' },
+      { id: 'sani', weight: 1, why: 'Saturn, his planet — the ringed auditor of the sky.' },
       { id: 'pangu', weight: 1, why: 'The cosmic egg and the separating sky; the creation narrative of celestial mechanics.' },
       { id: 'ourania', weight: 2, why: 'The Muse of Astronomy herself; the industry is her portfolio.' },
       { id: 'apollon', weight: 2, why: 'NASA’s Apollo program landed humans on the Moon under his name.' },
@@ -209,6 +215,8 @@ const INDUSTRY_GROUPS = [
     tagline: 'Defense contracting, security services, and strategic studies.',
     note: 'War gods and watchmen define the oldest security market; their strategies and warnings are still taught in war colleges.',
     entries: [
+      { id: 'guandi', weight: 2, why: 'The god of war himself — loyalty as the armys oath.' },
+      { id: 'kartikeya', weight: 2, why: 'The commander of the gods armies; the week-old general.' },
       { id: 'tumatauenga', weight: 2, why: 'Patron of Ngāti Tūmatauenga — the New Zealand Army bears his name.' },
       { id: 'achilleus', weight: 2 },
       { id: 'steh', weight: 2, why: 'The necessary strength posted at the prow; patron of the warrior line of pharaohs.' },
@@ -329,6 +337,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Extraction, minerals, and subterranean wealth.',
     note: 'The wealth of the underground belongs to the lords below; the Greeks called the underworld’s riches Plouton — Pluto — the root of “plutocrat”.',
     entries: [
+      { id: 'pluto', weight: 2, why: 'The Rich One below — ore, wealth, and the deep.' },
       { id: 'hades', weight: 2, why: 'Lord of the unseen wealth beneath the earth; mines are his treasury.' },
       { id: 'tlaltecuhtli', weight: 1, why: 'The earth lord whose body holds the ores.' },
     ],
@@ -340,6 +349,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Farming, grain, food production, and agtech.',
     note: 'Harvest deities feed civilizations; grain gods and earth mothers are the founding brand of every food economy.',
     entries: [
+      { id: 'ceres', weight: 2 },
       { id: 'sita', weight: 1, why: 'Her name is the furrow; the Ṛgveda prays to her for crops.' },
       { id: 'hp', weight: 2, why: 'The flood that feeds; silt, season, and harvest as one god.' },
       { id: 'hokkaido', weight: 2, why: 'Japan’s breadbasket; a third of the nation’s food from the north island.' },
@@ -385,6 +395,8 @@ const INDUSTRY_GROUPS = [
     tagline: 'Climate science, ecology, and sustainability consulting.',
     note: 'Earth personified is the sector’s founding insight — the Gaia hypothesis literally named planetary ecology after her.',
     entries: [
+      { id: 'mixcoatl', weight: 1, why: 'The cloud-serpent; weather as a living road.' },
+      { id: 'ceres', weight: 1, why: 'The field and its seasons; agriculture as stewardship.' },
       { id: 'hokkaido', weight: 1, why: 'Shiretoko’s intact ecosystem; the frontier turned sanctuary.' },
       { id: 'nuwa', weight: 1, why: 'Reed ashes against the flood; the first climate repair.' },
       { id: 'steh', weight: 1, why: 'Desert and storm; the harsh powers the land must be read with.' },
@@ -404,6 +416,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Fabrication, industrial craft, and robotics.',
     note: 'Smith gods and divine architects built the first automata — Hephaistos forged mechanical servants, the mythic root of robotics.',
     entries: [
+      { id: 'xiuhtecuhtli', weight: 1, why: 'The fire-drill and the forge; the hearth of all making.' },
       { id: 'vulcanus', weight: 2 },
       { id: 'tvastr', weight: 2, why: 'The divine smith; the vajra and the soma cup from his bench.' },
       { id: 'ogun', weight: 2, why: 'The iron master; every smithy and mechanics’ yard his chapel.' },
@@ -502,6 +515,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Therapy, emotional wellbeing, and mindfulness.',
     note: 'The heart weighed in the balance is the conscience examined in therapy — and the field’s own history was once named for a goddess: "mental hygiene".',
     entries: [
+      { id: 'hanuman', weight: 1, why: 'The name that ends fear; the most-appealed courage in India.' },
       { id: 'guanyin', weight: 2, why: 'The vow to hear every cry; the patron of listening as care.' },
       { id: 'mengpo', weight: 1, why: 'The mercy of forgetting; the folk answer to grief and trauma.' },
       { id: 'hygieia', weight: 2, why: 'The movement that named "mental hygiene" borrows her name; wellness is her cult.' },
@@ -588,6 +602,13 @@ const INDUSTRY_GROUPS = [
     tagline: 'Religious institutions, faith media, and devotional services.',
     note: 'These figures anchor living practice today — temples still fill, scriptures still sell, and founders still define traditions.',
     entries: [
+      { id: 'hanuman', weight: 2 },
+      { id: 'guandi', weight: 2 },
+      { id: 'mazu', weight: 2 },
+      { id: 'orun', weight: 2 },
+      { id: 'oba', weight: 2 },
+      { id: 'gauri', weight: 2 },
+      { id: 'kartikeya', weight: 2 },
       { id: 'saraswati', weight: 2 },
       { id: 'sita', weight: 2 },
       { id: 'delos', weight: 1, why: 'The island that is a sanctuary entire; pilgrimage’s Aegean prototype.' },
@@ -625,6 +646,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Books, journalism, and content platforms.',
     note: 'The ibis invented writing; speech became scripture; the media industry runs on what these figures created.',
     entries: [
+      { id: 'orun', weight: 1, why: 'The oral archive; scripture carried in memory.' },
       { id: 'saraswati', weight: 1, why: 'Vāk, Speech itself; the goddess of libraries and letters.' },
       { id: 'pegasos', weight: 1, why: 'The Muses’ spring-maker; poetic inspiration in heraldic form.' },
       { id: 'seiren', weight: 1, why: 'The song that sells; enchantment as the first mass medium.' },
@@ -643,6 +665,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Music, theatre, dance, and the performing arts.',
     note: 'The Muses’ lineage runs through these figures — song, dance, and theatre were invented as worship.',
     entries: [
+      { id: 'orpheus', weight: 2 },
       { id: 'saraswati', weight: 2 },
       { id: 'seiren', weight: 2 },
       { id: 'pegasos', weight: 1, why: 'Hippocrene: the fountain every poet drinks from.' },
@@ -661,6 +684,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Video games, streaming franchises, and fantasy worlds.',
     note: 'The entertainment industry already licenses these realms and monsters — Ragnarök, Midgard, and Tiamat are shipped titles, not references.',
     entries: [
+      { id: 'guandi', weight: 1, why: 'Dynasty Warriors made him a global gaming icon.' },
       { id: 'achilleus', weight: 1, why: 'Hero of the original war epic; the rage-and-glory archetype of combat IP.' },
       { id: 'drakon', weight: 1, why: 'Every fantasy dragon is his descendant, hoard and coil included.' },
       { id: 'tyche', weight: 1, why: 'Chance personified; the goddess of every dice roll and loot table.' },
@@ -697,6 +721,9 @@ const INDUSTRY_GROUPS = [
     tagline: 'Athletics, fitness brands, and competitive leagues.',
     note: 'Victory and strength are the industry’s entire product; one goddess’s name is on more shoes than any other word on earth.',
     entries: [
+      { id: 'hanuman', weight: 2, why: 'The wrestler-god; patron of gyms and the impossible lift.' },
+      { id: 'mixcoatl', weight: 1, why: 'The hunt; the oldest competitive pursuit.' },
+      { id: 'kartikeya', weight: 1, why: 'The young commander; speed, precision, the spear.' },
       { id: 'achilleus', weight: 2 },
       { id: 'tumatauenga', weight: 2, why: 'The haka is the world’s most famous pre-match ritual; the war-face is competition’s own.' },
       { id: 'diana', weight: 1, why: 'The huntress; the original archery and trail culture.' },
@@ -729,6 +756,10 @@ const INDUSTRY_GROUPS = [
     tagline: 'Destinations, heritage tourism, and city branding.',
     note: 'Real cities, real ruins, and legendary destinations; the strongest place brands on earth are mythological names.',
     entries: [
+      { id: 'hanuman', weight: 1, why: 'Anjaneya hill, Karol Bagh colossus, and the Hanuman pilgrimage circuit.' },
+      { id: 'mazu', weight: 2, why: 'The Dajia procession and Meizhou pilgrimage draw millions yearly.' },
+      { id: 'kartikeya', weight: 2, why: 'Palani, Kataragama, Batu Caves — his hills are pilgrimage infrastructure.' },
+      { id: 'oba', weight: 1, why: 'Her river and lake keep an active shrine-tourism.' },
       { id: 'delos', weight: 2 },
       { id: 'troia', weight: 2, why: 'The ruin that became a pilgrimage; the original heritage destination.' },
       { id: 'pusan', weight: 2, why: 'The guide of roads; every journey’s escort since the Ṛgveda.' },
@@ -786,6 +817,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Banking, investment, and commercial enterprise.',
     note: 'Wealth deities and merchant patrons; fortune has a name in every tradition and a temple in every port.',
     entries: [
+      { id: 'pluto', weight: 1, why: 'Plutus the giver; wealth from the earth personified.' },
       { id: 'tyche', weight: 2 },
       { id: 'amsa', weight: 2, why: 'The allotted share; equity and portion personified.' },
       { id: 'iuno', weight: 1, why: 'Moneta: the world’s word for money is her Capitoline title.' },
@@ -805,6 +837,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Insurance, assurance, and risk protection.',
     note: 'Preservation and protection are the product; the preserver of the universe is the industry’s perfect patron.',
     entries: [
+      { id: 'sani', weight: 2, why: 'Sade Sati is the oldest risk-model in continuous use.' },
       { id: 'atropos', weight: 2, why: 'The measured span; actuarial science is her liturgy secularized.' },
       { id: 'tyche', weight: 2, why: 'Risk itself enthroned; underwriting is the pricing of her wheel.' },
       { id: 'yanluo', weight: 1, why: 'The exact record and the final accounting; judgment as audit.' },
@@ -824,6 +857,8 @@ const INDUSTRY_GROUPS = [
     tagline: 'Law, courts, and regulatory compliance.',
     note: 'Truth, oaths, and cosmic order; the law’s oldest symbols are divine persons.',
     entries: [
+      { id: 'sani', weight: 2, why: 'Karmas auditor; the slow court that never errs.' },
+      { id: 'guandi', weight: 1, why: 'The enforcer of oaths; every contract sworn on his altar.' },
       { id: 'yanluo', weight: 2 },
       { id: 'iuppiter', weight: 2, why: 'Per Iovem Lapidem: every oath, treaty, and contract is sworn on his stone.' },
       { id: 'atropos', weight: 1, why: 'The verdict that cannot be appealed; finality personified.' },
@@ -849,6 +884,8 @@ const INDUSTRY_GROUPS = [
     tagline: 'Government, executive leadership, and statecraft.',
     note: 'Kingship was invented here; supreme gods and model kings are the case studies of every leadership curriculum.',
     entries: [
+      { id: 'guandi', weight: 2, why: 'The co-Sage of the empire; loyalty as governance.' },
+      { id: 'mazu', weight: 2, why: 'The sea has a government, and it is her temple network.' },
       { id: 'iuppiter', weight: 2 },
       { id: 'honshu', weight: 1, why: 'The island of capitals; every seat of Japanese power stands here.' },
       { id: 'daksa', weight: 1, why: 'The Prajāpati; order, procedure, and the cautionary tale of both.' },
@@ -881,6 +918,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Schools, universities, and research institutions.',
     note: 'Wisdom has patrons in every pantheon; knowledge work is the modern priesthood of these figures.',
     entries: [
+      { id: 'orun', weight: 1, why: 'Ifa and the odù — the oral university of heaven.' },
       { id: 'saraswati', weight: 2 },
       { id: 'sita', weight: 1, why: 'The field-goddess of the Ṛgveda\'s ploughing hymns; patience as curriculum.' },
       { id: 'seshat', weight: 2 },
@@ -913,6 +951,8 @@ const INDUSTRY_GROUPS = [
     tagline: 'Philosophy, ethics boards, and standards bodies.',
     note: 'First principles, necessity, and cosmic order; the concepts entire ethical frameworks are built from.',
     entries: [
+      { id: 'orpheus', weight: 1, why: 'The look back; arts oldest parable of limits.' },
+      { id: 'orun', weight: 1, why: 'Destiny as contract; the orí doctrine.' },
       { id: 'phanes', weight: 2 },
       { id: 'dhatr', weight: 2, why: 'Cosmic order as an act of establishment; the grammar of foundations.' },
       { id: 'hen', weight: 2, why: 'The One; Neoplatonism’s first principle.' },
@@ -972,6 +1012,8 @@ const INDUSTRY_GROUPS = [
     tagline: 'Emergency management, recovery, and business continuity.',
     note: 'Surviving the flood and rising from the ash; resilience is the industry’s word for what these figures did.',
     entries: [
+      { id: 'mazu', weight: 2, why: 'The storm-answerer; the seas own emergency line.' },
+      { id: 'ganga', weight: 1, why: 'The purifier; the river that restores.' },
       { id: 'nuwa', weight: 2, why: 'The five-colored stones; catastrophe answered with repair.' },
       { id: 'steh', weight: 2, why: 'The storm that also defends; chaos harnessed at the prow.' },
       { id: 'vulcanus', weight: 1, why: 'The fire bargained with; the bonfire of aversion as insurance rite.' },
@@ -988,6 +1030,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Funeral care, memorials, and legacy services.',
     note: 'The dead have lords and the living have duties; the underworld’s geography is the industry’s oldest map.',
     entries: [
+      { id: 'pluto', weight: 2, why: 'The underworld itself; the oldest address of the dead.' },
       { id: 'anubis', weight: 2 },
       { id: 'xolotl', weight: 2, why: 'The dog who swims the dead across; the oldest companion at the grave.' },
       { id: 'mengpo', weight: 2, why: 'The last station before rebirth; the underworld’s own memorial rite.' },
@@ -1012,6 +1055,8 @@ const INDUSTRY_GROUPS = [
     tagline: 'Watches, calendars, and time sciences.',
     note: 'Time has a Titan and day has a goddess; every chronograph carries the prefix of his name.',
     entries: [
+      { id: 'sani', weight: 2, why: 'The slow planet; 29.5 years of audit per orbit.' },
+      { id: 'xiuhtecuhtli', weight: 2, why: 'The 52-year New Fire cycle; time restarted by hand.' },
       { id: 'atropos', weight: 1, why: 'The thread’s measure; the calendar of a life.' },
       { id: 'ianus', weight: 1, why: 'January keeps his name; the year’s door is his.' },
       { id: 'amsa', weight: 1, why: 'The year’s twelve portions; the month as allotted share.' },

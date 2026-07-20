@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3">
+<script src="/js/university-collaborators.js?v=3" defer></script>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>From Chinese characters to Unicode: the journey of Māzǔ | Māzǔ Blog | PUNICODEX</title>
+    <meta name="description" content="From Chinese characters to Unicode: why Māzǔ is more than a domain name.">
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf19">
+    <link rel="stylesheet" href="../styles.css?v=perf19">
+    <link rel="canonical" href="https://punicodex.com/sites/mazu/blog/">
+    <meta property="og:title" content="From Chinese characters to Unicode: the journey of Māzǔ | Māzǔ Blog | PUNICODEX">
+    <meta property="og:description" content="From Chinese characters to Unicode: why Māzǔ is more than a domain name.">
+    <meta property="og:url" content="https://punicodex.com/sites/mazu/blog/">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="PUNICODEX">
+    <meta property="og:image" content="https://punicodex.com/sites/mazu/assets/mazu_mascot.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punicodex.com/sites/mazu/assets/mazu_mascot.webp">
+    <meta name="twitter:title" content="From Chinese characters to Unicode: the journey of Māzǔ | Māzǔ Blog | PUNICODEX">
+    <meta name="twitter:description" content="From Chinese characters to Unicode: why Māzǔ is more than a domain name.">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "From Chinese characters to Unicode: the journey of Māzǔ",
+        "description": "From Chinese characters to Unicode: why Māzǔ is more than a domain name.",
+        "author": {
+            "@type": "Organization",
+            "name": "PuniCodex Team"
+        },
+        "datePublished": "2026-07-20",
+        "dateModified": "2026-07-20",
+        "publisher": {
+            "@type": "Organization",
+            "name": "PUNICODEX",
+            "url": "https://punicodex.com"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://punicodex.com/sites/mazu/blog/"
+        },
+        "articleSection": "Blog",
+        "keywords": ["Māzǔ", "mazu", "chinese mythology", "Unicode domain", "original script", "PuniCodex", "IDN", "Chinese characters restoration"],
+        "url": "https://punicodex.com/sites/mazu/blog/",
+        "image": "https://punicodex.com/sites/mazu/assets/mazu_mascot.webp"
+    }
+    </script>
+    
+    <style>
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
+        .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
+        .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
+        .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
+        .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
+        .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
+        .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
+        .blog-meta-sep { opacity: 0.4; }
+        .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
+        .blog-tag { display: inline-flex; align-items: center; padding: 0.35rem 0.8rem; border-radius: 999px; border: 1px solid rgba(212,175,55,0.25); color: var(--primary, #d4af37); font-size: 0.8rem; }
+        .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
+        .blog-cta a { color: var(--primary-bright, #f0d878); }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0C">
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punicodex.com/" class="global-brand"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-gold-solid.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="560" height="58"></picture></a>
+            <div class="global-links">
+                <a href="https://punicodex.com/pantheon/">Pantheon</a>
+                <a href="https://punicodex.com/lexicon/">Lexicon</a>
+                <a href="https://punicodex.com/connections/">Connections</a>
+                <a href="https://punicodex.com/type/">Type</a>
+                <a href="https://punicodex.com/search.html">Search</a>
+                <a href="https://punicodex.com/tiers/">Tiers</a>
+                <a href="https://punicodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="mazu-canvas" data-effect="mazuCompass" data-primary="#D4AF37" data-secondary="#4169E1" aria-hidden="true"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/mazu_logolockup.webp" type="image/webp"><img src="../assets/mazu_logolockup.png" alt="Māzǔ" class="nav-logo-img" width="1536" height="1024"></picture>
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="../patterns/index.html" class="nav-link">Patterns</a>
+                <a href="./" class="nav-link active">Blog</a>
+                <a href="../scholars/index.html" class="nav-link">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="../patterns/index.html" class="nav-link">Patterns</a>
+        <a href="./" class="nav-link active">Blog</a>
+        <a href="../scholars/index.html" class="nav-link">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-eyebrow reveal-up">Māzǔ — Blog</p>
+                <h1 class="hero-title reveal-up">From Chinese characters to Unicode: the journey of Māzǔ</h1>
+                <p class="hero-subtitle reveal-up">Sea, Protection, Seafaring</p>
+                <div class="hero-meta reveal-up">
+                    <span class="meta-badge">Tier 1</span>
+                    <span class="meta-domain">māzǔ.com</span>
+                </div>
+            </div>
+            <div class="hero-mascot reveal-scale">
+                <picture><source srcset="../assets/mazu_mascot.webp" type="image/webp"><img src="../assets/mazu_mascot.png" alt="Māzǔ — Sea, Protection, Seafaring" class="mascot-img" width="1024" height="1536"></picture>
+                <div class="mascot-glow"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article -->
+    <article class="blog-article">
+        <div class="blog-meta reveal-up">
+            <span>By PuniCodex Team</span>
+            <span class="blog-meta-sep">&middot;</span>
+            <time datetime="2026-07-20">2026-07-20</time>
+            <span class="blog-meta-sep">&middot;</span>
+            <span>12 min read</span>
+        </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-chinese-pantheon">The Chinese Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#typing-mazu">Typing Māzǔ</a></li>
+                <li><a href="#sister-temples">Sister Temples</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
+        <div class="blog-body reveal-up">
+            <h1>From Chinese characters to Unicode: the journey of Māzǔ</h1>
+<p>Long before it was a domain, this name traveled through scripts. <strong>Māzǔ</strong> begins in Chinese characters, passes through scholarly transliteration, and ends — for now — inside the punycode machinery of the global DNS. Each stage of that journey preserves some information and loses some, and the craft of restoration is knowing exactly which marks matter. This post follows the name stage by stage: the original script, the reconstructed pronunciation, the mythological record, the material evidence, and finally the Unicode form that carries all of it into the address bar. Think of it as a biography of a name, told through its spelling.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Māzǔ</li>
+  <li><strong>ASCII form:</strong> mazu</li>
+  <li><strong>Meaning:</strong> &quot;Mother ancestor&quot;</li>
+  <li><strong>Domain of influence:</strong> Sea, Protection, Seafaring</li>
+  <li><strong>Pantheon:</strong> Chinese</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Original script:</strong> 媽祖 (Chinese characters)</li>
+  <li><strong>Live domain:</strong> māzǔ.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Māzǔ</strong> (<em>mazu</em>) — Sea, Protection, Seafaring · Mother ancestor — belongs to the Chinese tradition, where it is catalogued under the domain &quot;Sea, Protection, Seafaring&quot;. The name means &quot;Mother ancestor&quot;.</p>
+<p>Māzǔ is the most-worshipped sea goddess on earth: the fisherman&#39;s daughter who became the guardian of everyone who works the water, whose temples line every coast of the Chinese world, and whose red lanterns guide sailors home through a thousand years of storms.</p>
+<p>PuniCodex restores the name as <strong>Māzǔ</strong> and serves its temple at <a href="https://xn--mz-dla95f.com">māzǔ.com</a>. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>mazu</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Chinese characters as <strong>媽祖</strong>. Etymologically it means &quot;Mother ancestor&quot;.</p>
+<p>The ASCII form <em>mazu</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Māzǔ</strong> recovers the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>m</strong> → <strong>M</strong> — Same, capitalized</li>
+  <li><strong>a</strong> → <strong>ā</strong> — Long vowel</li>
+  <li><strong>z</strong> → <strong>z</strong> — Same</li>
+  <li><strong>u</strong> → <strong>ǔ</strong> — Special character</li>
+</ul>
+<p>The project holds the domain <strong>māzǔ.com</strong> (xn--mz-dla95f.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is written in Chinese characters as <strong>媽祖</strong>. This original script is the form against which the ASCII fallback <em>mazu</em> and the PuniCodex restoration <strong>Māzǔ</strong> are measured: the restoration preserves its vowel quantity of the written form, so that a reader typing the modern address still speaks the ancient name.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/má.tsù/</strong> — Standard Mandarin.</p>
+<p>For the modern speaker, the closest approximation is: MAH-tsoo — level tone, then a dip-and-rise.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Chinese</strong> — 媽祖</li>
+  <li><strong>Her title</strong> — Tiānhòu (天后)</li>
+  <li><strong>Cantonese</strong> — Tin Hau</li>
+  <li><strong>Owned form</strong> — Māzǔ</li>
+</ul>
+<p>Māzǔ 媽祖 — &quot;Maternal Ancestor&quot; — carries the first tone on mā and the dipping third tone on zǔ; the restoration keeps both tone marks. Her personal name was Lín Mòniáng (&quot;Silent Maiden&quot;), but the world prays to the title: Grandmother of the sea. The third tone on zǔ dips and rises — the small valley in the name that Mandarin speakers sing without noticing.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Māzǔ&#39;s myth is a life, not a legend: the historical Lín Mòniáng of 10th-century Meizhou, whose silence, visions, and early death became the sea&#39;s own religion.</p>
+<h3 id="the-silent-girl-of-meizhou-the-maiden">The Silent Girl of Meizhou (The Maiden)</h3>
+<p>Lín Mòniáng was born on Meizhou island in 960 CE, and tradition says she did not cry at birth — hence &quot;Silent Maiden.&quot; She learned to read the weather on her father&#39;s fishing boat, stood on the shore watching for lost sails, and was seen in dreams guiding drowning sailors home. Dead by twenty-eight, she rose, the fishermen said, straight to the sky on a cloud of incense — and the sea was never without her again.</p>
+<h3 id="from-daughter-to-empress-of-heaven-the-apotheosis">From Daughter to Empress of Heaven (The Apotheosis)</h3>
+<p>The dynasties out-titled each other: the Song made her Consort of Heaven, the Yuan made her Princess, the Ming made her Holy Mother, the Qing made her Tiānhòu — Empress of Heaven. The historical woman is buried in the titles: the fishing daughter became, by twelve centuries of gratitude, the highest-ranked goddess of the Chinese sea, outranking every god the bureaucracy could promote her past.</p>
+<h3 id="eyes-and-ears-of-the-sea-the-generals">Eyes and Ears of the Sea (The Generals)</h3>
+<p>Her two attendants are the myth of vigilance itself: Qiānlǐyǎn (&quot;thousand-mile eye&quot;) and Shùnfēng&#39;ěr (&quot;with-the-wind ear&quot;), the demon-generals she tamed to watch and listen for sailors in distress. Their horned, fierce statues flank her in every temple — the goddess&#39;s instruments: nothing that happens on her sea goes unseen or unheard.</p>
+<h3 id="the-island-procession-the-pilgrimage">The Island Procession (The Pilgrimage)</h3>
+<p>Her living myth is the Dajia Māzú pilgrimage: each year her statue walks 340 kilometers around Taiwan for nine days, and a million people walk with it — touch the palanquin, kneel as it passes, weep when it returns home. The largest annual religious procession in the Chinese world is not to a cathedral but after a fisherman&#39;s daughter, walking the roads she still guards.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Māzǔ concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>The red robe</strong> — Her temple color — protection worn bright against the grey sea</li>
+  <li><strong>The lantern</strong> — The guide-light of the storm-tossed</li>
+  <li><strong>The two generals</strong> — Sight and hearing deified — vigilance in both directions</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>The Meizhou Ancestral Temple on her home island — rebuilt repeatedly from the Song original, crowded with imperial plaques — is her Nazareth; the Dajia Jenn Lann Temple and Taipei&#39;s grand Tianhou temples are her living capitals. Macau&#39;s A-Ma Temple (15th c., older than the Portuguese) marks her oldest colonial-era shore, and the Mazu statues of the Taiwan Strait&#39;s temples document eight centuries of her iconography.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Māzǔ is the most-worshipped sea goddess on earth: the fisherman&#39;s daughter who became the guardian of everyone who works the water, whose temples line every coast of the Chinese world, and whose red lanterns guide sailors home through a thousand years of storms.</p>
+<h3 id="the-sailors-guardian">The Sailors&#39; Guardian</h3>
+<p>The goddess of everyone who goes to sea — the busiest answering voice on the water.</p>
+<h3 id="the-red-lantern">The Red Lantern</h3>
+<p>Her signal in the storm — the light sailors pray to see.</p>
+<h3 id="the-two-generals">The Two Generals</h3>
+<p>Qiānlǐyǎn and Shùnfēng&#39;ěr — her thousand-mile eyes and wind-sharp ears.</p>
+<h3 id="meizhou">Meizhou</h3>
+<p>Her island home off Fujian — the Nazareth of the sea-faith.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>She absorbs the coast&#39;s other sea-powers: associated with Guānyīn (who is sometimes her patron in the legends), honored in Daoist and Buddhist temples alike, and worshipped as Tin Hau in Hong Kong and A-Ma in Macau — whose very name, some say, comes from her (&quot;A-Ma-Gau,&quot; Bay of A-Ma). The diaspora carried her to every Chinese port from San Francisco to Sydney: wherever junks and container ships anchor, her shrine overlooks the harbor.</p>
+<p>Kindred figures in the PuniCodex cross-tradition index include [[aseratu|Ašeratu]], [[babaluaye|Ọbalúayé]], [[ea|Ēa]], [[manannan|Manannán]], [[njordr|Njǫrðr]], and [[pontos|Póntos]], each linked through sea / water.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Her temples number in the thousands — over 1,500 in Taiwan alone; her birthday (23rd of the 3rd lunar month) shuts down the island&#39;s coasts; her Dajia procession is a national institution watched by millions more online. Fishermen, sailors, the navy, and migrants all claim her: the goddess who was once a girl watching the sea is now the sea&#39;s own government, elected annually by the crowds who walk behind her statue.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Māzǔ given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Chinese folk religion (regional cults and underworld traditions), documented across temple and funerary practice, ongoing.</li>
+  <li> Chinese folklore, Oral and compiled folk tales, various.</li>
+  <li> Anne Birrell, Chinese Mythology: An Introduction, Johns Hopkins University Press, 1993.</li>
+  <li> Chinese Buddhist texts (Hanwen Canon), CBETA / Taishō Tripiṭaka, 400. <a href="https://www.cbeta.org/">Full text</a></li>
+  <li> Cambridge Ancient History, Multiple volumes, 1970. <a href="https://www.cambridge.org/core/series/cambridge-ancient-history/051D3B4F5F6D7E8E9F0A1B2C3D4E5F6A">Full text</a></li>
+  <li> Oxford Classical Dictionary, 4th ed., Oxford University Press, 2012. <a href="https://oxfordre.com/classics/">Full text</a></li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Māzǔ is the goddess of being watched for. Not of the sea — of the people on it: the daughter who never stopped standing on the shore. She asks the question every sailor, parent, and lighthouse-keeper knows: who is watching the water for you — and for whom, tonight, are you the lantern?</p>
+<p>Watch the procession and you see the whole theology: no priest lectures, no scripture is read — the statue simply walks, and a million people walk after it. The sea-faith never needed a doctrine; it needed a mother on the shore. Every year she makes the circuit, and every year the coast remembers that someone is watching the water.</p>
+<p>The two generals at her flanks are the liturgy in one image: see far, hear far. Everything else — the titles, the temples, the processions — is commentary.</p>
+<p>Her sea is the busiest water in human history — the straits that carried tea, silk, migrants, and war — and her temples face it still, unmoved by cargo schedules. The junks are gone; the lantern remains. Every container ship passing the Taiwan Strait sails through the parish of a fisherman&#39;s daughter, whether it knows it or not.</p>
+<p>She is proof that the largest religions are made of gratitude, not doctrine. Nobody was ever converted to Māzǔ. They were simply rescued, and remembered.</p>
+<p>The generals&#39; statues unsettle children and reassure sailors: ugliness conscripted into vigilance, the demons made watchmen. It is the sea&#39;s whole covenant in two figures — the dangers are not banished but put on guard duty. Her temples teach it without a single sermon: what you cannot calm, you can still set to watching.</p>
+<p>Her economy is miracles per capita, and her ledger is full: every coastal family keeps one — the grandfather guided home, the net that held, the storm that turned. Gratitude at that scale stops being sentiment and becomes infrastructure, the sea&#39;s own safety service, funded by incense, staffed by a daughter of Fujian, open every hour of every storm.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Māzǔ is classified as <strong>Tier 1</strong>: the original carries both stress and length, and only one valid Unicode restoration exists. The ASCII fallback <em>mazu</em> still resolves everywhere, but it is the restored form that carries the name&#39;s full information. Across the 4 characters of the name, the restoration adjusts 2: 1 mark of length (ā); 1 further adjustment (ǔ). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>mazu</em> to <strong>Māzǔ</strong>, one character at a time:</p>
+<ul>
+  <li><strong>m</strong> → <strong>M</strong> — Same, capitalized</li>
+  <li><strong>a</strong> → <strong>ā</strong> — Long vowel</li>
+  <li><strong>z</strong> → <strong>z</strong> — Same</li>
+  <li><strong>u</strong> → <strong>ǔ</strong> — Special character</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>māzǔ.com</strong>, which the DNS carries in punycode form as xn--mz-dla95f.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Māzǔ; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Chinese characters can now be typed into any browser on earth.</p>
+<h2 id="the-chinese-pantheon">The Chinese Pantheon</h2>
+<p>Māzǔ is one of 47 entries the PuniCodex lexicon catalogues under the Chinese pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition&#39;s major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 924 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Māzǔ mean?</strong> The traditional gloss is &quot;Mother ancestor.&quot;</p>
+<p><strong>Which tradition does Māzǔ belong to?</strong> Māzǔ is catalogued in the Chinese pantheon of the PuniCodex lexicon.</p>
+<p><strong>Why is Māzǔ classified as Tier 1?</strong> Because the original carries both stress and length, and only one valid Unicode restoration exists — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Māzǔ a working domain?</strong> Yes — māzǔ.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for māzǔ.com?</strong> The DNS encoding is xn--mz-dla95f.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="typing-mazu">Typing Māzǔ</h2>
+<p>You do not need a special keyboard to use this restoration. The <a href="/type/">PuniCodex Type Tool</a> converts the ASCII form <em>mazu</em> into <strong>Māzǔ</strong> as you type, and the browser extension offers the same conversion inside any text field. Copy the restored form, paste it into the address bar, and the DNS does the rest.</p>
+<h2 id="sister-temples">Sister Temples</h2>
+<p>Other temples in the Chinese pantheon include <a href="/sites/longwang/">Lóngwáng</a>, <a href="/sites/nuwa/">Nǚwā</a>, and <a href="/sites/sanzang/">Sānzàng</a> — each with its own restoration story, its own scholarly record, and its own place in the lexicon.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Every stage of the journey from Chinese characters to Unicode was an act of care: the scribe who first wrote the name, the lexicographer who glossed it, the engineer who taught the DNS to carry it. The PuniCodex restoration is the latest stage, not the last word — the Scholarly Edition is revised as the evidence improves. What does not change is the principle: a name deserves to be written the way its own tradition wrote it. <strong>Māzǔ</strong> in the address bar is that principle, made routable.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PuniCodex blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
+<ul>
+  <li><a href="/sites/nezha/">Nézhā</a></li>
+  <li><a href="/sites/qi/">Qì</a></li>
+  <li><a href="/sites/shennong/">Shénnóng</a></li>
+</ul>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
+<ul>
+  <li><a href="https://www.cbeta.org/">Chinese Buddhist texts (Hanwen Canon), CBETA / Taishō Tripiṭaka, 400.</a></li>
+  <li><a href="https://www.cambridge.org/core/series/cambridge-ancient-history/051D3B4F5F6D7E8E9F0A1B2C3D4E5F6A">Cambridge Ancient History, Multiple volumes, 1970.</a></li>
+  <li><a href="https://oxfordre.com/classics/">Oxford Classical Dictionary, 4th ed., Oxford University Press, 2012.</a></li>
+  <li>The Meizhou gazetteers; Lín genealogies; Tiānhòu temple steles.</li>
+  <li>The Tiānhòu liturgies; Daozang sea-goddess registers.</li>
+  <li>The Guānyīn-Māzǔ temple traditions; Chinese Buddhist guardian registers.</li>
+  <li>The Meizhou temple inscriptions; the Lín clan records.</li>
+  <li>Lexicon authorities for this entry: Chinese folklore, Daoist Canon.</li>
+</ul>
+        </div>
+        <div class="blog-tags reveal-up" aria-label="Tags">
+            <span class="blog-tag">chinese</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>
+        </div>
+        <aside class="blog-cta reveal-up">
+            <h2 class="blog-cta-title">Go deeper</h2>
+            <p>The Scholarly Edition for Māzǔ collects the sources, pronunciation, and revision history behind this restoration. <a href="../scholars/">Read the Scholarly Edition</a>.</p>
+        </aside>
+    </article>
+
+    
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="https://punicodex.com/" class="footer-logo">PUNICODEX</a>
+                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-block">
+                        <span class="footer-label">Owned Domains</span>
+                        <span class="footer-value">māzǔ.com</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Classification</span>
+                        <span class="footer-value">Tier 1</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Original Script</span>
+                        <span class="footer-value">媽祖</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-seal">
+                <picture><source srcset="../assets/mazu_logomark.webp" type="image/webp"><img src="../assets/mazu_logomark.png" alt="Māzǔ logomark" class="footer-logomark"></picture>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/px-core.js?v=perf19"></script>
+    <script src="/js/temple-base.js?v=perf19"></script>
+    <script src="../script.js?v=perf19"></script>
+</body>
+</html>

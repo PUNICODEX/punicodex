@@ -338,17 +338,17 @@ test('Correct pantheon counts', () => {
   assert.strictEqual(counts['greek-location'], 24, 'Greek-location count');
   assert.strictEqual(counts.norse, 86, 'Norse count');
   assert.strictEqual(counts.egyptian, 67, 'Egyptian count');
-  assert.strictEqual(counts.sanskrit, 90, 'Sanskrit count');
+  assert.strictEqual(counts.sanskrit, 92, 'Sanskrit count');
   assert.strictEqual(counts.celtic, 47, 'Celtic count');
   assert.strictEqual(counts.mesopotamian, 30, 'Mesopotamian count');
   assert.strictEqual(counts.polynesian, 23, 'Polynesian count');
   assert.strictEqual(counts.japanese, 45, 'Japanese count');
-  assert.strictEqual(counts.nahuatl, 28, 'Nahuatl count');
-  assert.strictEqual(counts.yoruba, 30, 'Yoruba count');
+  assert.strictEqual(counts.nahuatl, 30, 'Nahuatl count');
+  assert.strictEqual(counts.yoruba, 32, 'Yoruba count');
   assert.strictEqual(counts.slavic, 21, 'Slavic count');
   assert.strictEqual(counts.zoroastrian, 18, 'Zoroastrian count');
   assert.strictEqual(counts.incan, 12, 'Incan count');
-  assert.strictEqual(counts.chinese, 46, 'Chinese count');
+  assert.strictEqual(counts.chinese, 47, 'Chinese count');
   assert.strictEqual(counts.buddhist, 21, 'Buddhist count');
   assert.strictEqual(counts.taoist, 12, 'Taoist count');
   assert.strictEqual(counts.korean, 12, 'Korean count');
@@ -356,7 +356,7 @@ test('Correct pantheon counts', () => {
   assert.strictEqual(counts.hittite, 8, 'Hittite count');
   assert.strictEqual(counts.canaanite, 12, 'Canaanite count');
   assert.strictEqual(counts.baltic, 1, 'Baltic count');
-  assert.strictEqual(counts.roman, 6, 'Roman count');
+  assert.strictEqual(counts.roman, 8, 'Roman count');
 });
 
 section('Unicode & Normalization');
