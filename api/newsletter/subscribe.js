@@ -7,21 +7,26 @@
 
 const crypto = require('node:crypto');
 const { sendEmail } = require('../../platform/api/email.js');
+const { getDb } = require('../../platform/db/connection.js');
+const migrateNewsletter = require('../../platform/db/migrate-newsletter.js');
 
 const RATE_LIMIT = 4; // subscriptions per IP per hour
 const WINDOW_MS = 60 * 60 * 1000;
 const hits = new Map();
 
-let db = null;
-function getDb() {
-  if (!db) {
-    const Database = require('better-sqlite3');
-    const path = require('node:path');
-    const fs = require('node:fs');
-    const tmp = process.env.VERCEL ? '/tmp/punicodex.db' : path.join(__dirname, '..', '..', 'platform', 'db', 'punicodex.db');
-    fs.mkdirSync(path.dirname(tmp), { recursive: true });
-    db = new Database(tmp);
-    require('../../platform/db/migrate-newsletter.js')(db);
+// Shared connection (platform/db/connection.js copies the bundled DB to /tmp
+// on Vercel); migration is idempotent and runs once per cold start. Guarded
+// so a migration hiccup degrades the endpoint instead of breaking the require.
+let migrated = false;
+function ensureDb() {
+  const db = getDb();
+  if (!migrated) {
+    try {
+      migrateNewsletter(db);
+      migrated = true;
+    } catch (err) {
+      console.error('[newsletter] migration failed:', err.message);
+    }
   }
   return db;
 }
@@ -75,7 +80,7 @@ module.exports = async (req, res) => {
   const normalized = email.trim().toLowerCase();
   const ipHash = crypto.createHash('sha256').update(clientIp(req)).digest('hex').slice(0, 16);
 
-  const database = getDb();
+  const database = ensureDb();
   const existing = database
     .prepare('SELECT id FROM newsletter_subscribers WHERE email = ?')
     .get(normalized);
