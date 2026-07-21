@@ -502,6 +502,18 @@ module.exports = {
               "label": "Sanctuaries & Cult Sites"
             }
           ]
+        },
+        "mapuche": {
+          "sections": [
+            {
+              "key": "colonial-chronicles",
+              "label": "Colonial Chronicles"
+            },
+            {
+              "key": "archaeological-sites",
+              "label": "Archaeological Sites"
+            }
+          ]
         }
       }
     },

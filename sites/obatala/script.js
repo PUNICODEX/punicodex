@@ -947,7 +947,7 @@ handleReturnFromStripe();
   if (!modal || !grid) return;
 
   const templeId = 'obatala';
-  const siteName = 'Ọbatálá';
+  const siteName = 'Ọbàtálá';
   let selectedCents = 700;
 
   const els = {

@@ -1557,7 +1557,7 @@ handleReturnFromStripe();
   if (!modal || !grid) return;
 
   const templeId = 'athena';
-  const siteName = 'Athénā';
+  const siteName = 'Athēnâ';
   let selectedCents = 700;
 
   const els = {

@@ -65,6 +65,7 @@ const INDUSTRY_GROUPS = [
       { id: 'apollon', weight: 1, why: 'God of light whose brightness carried into solar branding.' },
       { id: 'theia', weight: 1, why: 'Titaness of sight and shining, mother of Helios himself.' },
       { id: 'aither', weight: 1, why: 'The bright upper air where sunlight is unfiltered.' },
+      { id: 'vairocana', weight: 2, why: 'The Great Sun (Japanese Dainichi); universal illumination is the pitch of the entire industry.' },
     ],
   },
   {
@@ -117,6 +118,7 @@ const INDUSTRY_GROUPS = [
       { id: 'trengtreng', weight: 2 },
       { id: 'tlaloc', weight: 1, why: 'Rain and lightning together; the agricultural forecast made divine.' },
       { id: 'steh', weight: 1, why: 'Lord of the desert storm and the chaos front.' },
+      { id: 'vajrapani', weight: 1, why: 'The thunderbolt in hand; the lightning-weapon inherited from Indra.' },
     ],
   },
   {
@@ -208,6 +210,7 @@ const INDUSTRY_GROUPS = [
       { id: 'ishtar', weight: 1, why: 'Venus as goddess; the planet carries her sign.' },
       { id: 'astart', weight: 1, why: 'Queen of heaven identified with Venus across the Levant.' },
       { id: 'tian', weight: 1, why: 'Heaven as cosmic order; the mandate above all programs.' },
+      { id: 'vairocana', weight: 1, why: 'The cosmos as his body; the universe-sized Buddha of the Avataṃsaka Sūtra.' },
     ],
   },
   {
@@ -244,6 +247,9 @@ const INDUSTRY_GROUPS = [
       { id: 'vali', weight: 1, why: 'Vengeance as doctrine; retribution personified.' },
       { id: 'rama', weight: 1, why: 'The righteous warrior-king of the Rāmāyaṇa.' },
       { id: 'tartaros', weight: 1, why: 'The prison that held the Titans; the logic of containment.' },
+      { id: 'hermod', weight: 1, why: 'The volunteer for the impossible errand; courage as the mission spec.' },
+      { id: 'cerberus', weight: 1, why: 'The warden of the dead; border security with three heads and one rule — none leave.' },
+      { id: 'vajrapani', weight: 2, why: 'The vajra-bearer; protection of the Dharma as a sworn security detail.' },
     ],
   },
   {
@@ -263,6 +269,8 @@ const INDUSTRY_GROUPS = [
       { id: 'apep', weight: 2, why: 'The eternal adversary who attacks every night; the archetypal advanced persistent threat.' },
       { id: 'eshu', weight: 1, why: 'The trickster at the crossroads; every penetration tester’s patron.' },
       { id: 'hermes', weight: 1, why: 'Patron of thieves; you defend against what you understand.' },
+      { id: 'cerberus', weight: 2, why: 'The three-headed watchdog at the gate; the perimeter that never sleeps.' },
+      { id: 'mara', weight: 2, why: 'The adversary who tests the awakened mind; temptation as the original red team.' },
     ],
   },
   {
@@ -299,6 +307,7 @@ const INDUSTRY_GROUPS = [
       { id: 'sia', weight: 2, why: 'Perception and intellect personified; machine perception’s Egyptian ancestor.' },
       { id: 'bagua', weight: 1, why: 'Eight trigrams encoding states of change; an ancient binary decision system.' },
       { id: 'python', weight: 1, why: 'The oracle’s serpent — and the language the AI industry runs on.' },
+      { id: 'manjushri', weight: 1, why: 'Transcendent wisdom (prajñā) personified; the patron of every knowledge engine.' },
     ],
   },
   {
@@ -316,6 +325,7 @@ const INDUSTRY_GROUPS = [
       { id: 'eshu', weight: 2, why: 'The divine messenger at the crossroads; routing personified.' },
       { id: 'vac', weight: 2, why: 'Speech and voice personified; every call is her sacrament.' },
       { id: 'atlas', weight: 1, why: 'He bears the world; the supply chain’s patient shoulder.' },
+      { id: 'hermod', weight: 2, why: 'The messenger who rode the nine-night road to Hel and back; the courier run made divine.' },
     ],
   },
   {
@@ -388,6 +398,7 @@ const INDUSTRY_GROUPS = [
       { id: 'tane', weight: 2, why: 'Lord of forests and birds; every canopy is his body.' },
       { id: 'aganju', weight: 2, why: 'The uninhabited wilderness; the volcano’s wild margin.' },
       { id: 'anat', weight: 1, why: 'War and the hunt together; the chase as sacred practice.' },
+      { id: 'ochosi', weight: 2, why: 'Lord of the forest hunt; the wildwood is his shrine and his range.' },
     ],
   },
   {
@@ -525,6 +536,7 @@ const INDUSTRY_GROUPS = [
       { id: 'sia', weight: 1, why: 'Perception and understanding personified; the mind itself riding in the solar barque.' },
       { id: 'jizo', weight: 1, why: 'Comforter of the grieving and protector in liminal states; Japan’s patron of consolation.' },
       { id: 'om', weight: 1, why: 'The meditative syllable at the center of the global mindfulness economy.' },
+      { id: 'mara', weight: 1, why: 'The voice of doubt and craving; the inner adversary every practice names.' },
     ],
   },
   {
@@ -561,6 +573,7 @@ const INDUSTRY_GROUPS = [
       { id: 'ka', weight: 2, why: 'The vital essence itself; “life energy” is the wellness industry’s core claim.' },
       { id: 'ba', weight: 1, why: 'Personality and soul; the self that self-care addresses.' },
       { id: 'akh', weight: 1, why: 'The transfigured, luminous self; transformation as a wellness promise.' },
+      { id: 'shakyamuni', weight: 2, why: 'The source of meditation; the mindfulness economy traces every breath to his seat under the tree.' },
     ],
   },
   {
@@ -641,6 +654,8 @@ const INDUSTRY_GROUPS = [
       { id: 'ahuramazda', weight: 2, why: 'The Wise Lord at the center of living Zoroastrian devotion.' },
       { id: 'rama', weight: 1, why: 'The avatar whose name is still sung in every temple.' },
       { id: 'el', weight: 1, why: 'The ancient Semitic god-name still embedded in living liturgy.' },
+      { id: 'radha', weight: 2, why: 'The heart of living bhakti; her name is sung first in Vraja.' },
+      { id: 'shakyamuni', weight: 2, why: 'The founder; the tradition begins under his tree.' },
     ],
   },
   {
@@ -660,6 +675,7 @@ const INDUSTRY_GROUPS = [
       { id: 'odinn', weight: 1, why: 'Poetry won at a price; the skald’s patron.' },
       { id: 'david', weight: 1, why: 'The psalmist; devotional publishing’s bestselling voice.' },
       { id: 'mnemosyne', weight: 1, why: 'Memory mother of the Muses; the archive behind every story.' },
+      { id: 'manjushri', weight: 1, why: 'The voice of the Perfection of Wisdom sūtras; a literature in one name.' },
     ],
   },
   {
@@ -679,6 +695,7 @@ const INDUSTRY_GROUPS = [
       { id: 'david', weight: 1, why: 'The harp-playing psalmist king.' },
       { id: 'mnemosyne', weight: 1, why: 'Mother of the Muses; every art form is her grandchild.' },
       { id: 'ourania', weight: 1, why: 'The heavenly Muse; inspiration for the art of the spheres.' },
+      { id: 'radha', weight: 1, why: 'The heroine of the Gītagovinda; twelve centuries of song, dance, and painting.' },
     ],
   },
   {
@@ -716,6 +733,8 @@ const INDUSTRY_GROUPS = [
       { id: 'olympos', weight: 1, why: 'The mountain of the gods; the ultimate setting.' },
       { id: 'manannan', weight: 1, why: 'The misty Otherworld; Celtic fantasy’s gateway.' },
       { id: 'kanaloa', weight: 1, why: 'Ocean and underworld together; Polynesian mythic depth.' },
+      { id: 'vajrapani', weight: 1, why: 'The thunderbolt guardian; a ready-made boss and power-up.' },
+      { id: 'mara', weight: 2, why: 'The tempter at the final gate; the archetypal endboss of the mind.' },
     ],
   },
   {
@@ -736,6 +755,7 @@ const INDUSTRY_GROUPS = [
       { id: 'nht', weight: 2, why: 'Strong, mighty, victorious; the competitive ideal in one root.' },
       { id: 'poseidon', weight: 1, why: 'Creator of horses; the equestrian economy’s founding father.' },
       { id: 'durga', weight: 1, why: 'Strength and protection; the warrior goddess of the arena.' },
+      { id: 'ochosi', weight: 1, why: 'The archer who never wastes an arrow; the hunt as precision discipline.' },
     ],
   },
   {
@@ -787,6 +807,8 @@ const INDUSTRY_GROUPS = [
       { id: 'sparte', weight: 1, why: 'The warrior city; heritage tourism with a laconic brand.' },
       { id: 'jizo', weight: 1, why: 'Protector of travelers; the pilgrim’s patron.' },
       { id: 'hermes', weight: 1, why: 'God of roads and travelers; every journey starts with him.' },
+      { id: 'hermod', weight: 1, why: 'The rider of the dark road; the journey there and back as sacred errand.' },
+      { id: 'ksitigarbha', weight: 1, why: 'Protector of travelers on the roads of the six realms; the roadside guardian.' },
     ],
   },
   {
@@ -814,6 +836,7 @@ const INDUSTRY_GROUPS = [
       { id: 'artemis', weight: 1, why: 'Potnia Theron, Mistress of Animals; the welfare of creatures is her ancient charge.' },
       { id: 'hekate', weight: 1, why: 'Attended by her sacred hounds at the crossroads; the dog is her animal.' },
       { id: 'sekhmet', weight: 1, why: 'The lioness to Bastet’s house cat; Egypt’s other great feline power.' },
+      { id: 'cerberus', weight: 1, why: 'The most famous hound in myth; the ancestor of every guard dog.' },
     ],
   },
   {
@@ -854,6 +877,7 @@ const INDUSTRY_GROUPS = [
       { id: 'medousa', weight: 1, why: 'The guardian face on the shield; apotropaic protection.' },
       { id: 'ker', weight: 1, why: 'Doom and fate; the actuary’s ancient counterpart.' },
       { id: 'noah', weight: 1, why: 'The ark; the original contingency plan.' },
+      { id: 'akshobhya', weight: 1, why: 'The Immovable One; protection that cannot be shaken.' },
     ],
   },
   {
@@ -883,6 +907,7 @@ const INDUSTRY_GROUPS = [
       { id: 'solomon', weight: 1, why: 'The judgment of Solomon is still the parable of wise adjudication.' },
       { id: 'vali', weight: 2, why: 'Vengeance as retributive justice; the balance restored.' },
       { id: 'helios', weight: 1, why: 'The witness of oaths; nothing hidden from the sun.' },
+      { id: 'ochosi', weight: 2, why: 'The orisha of justice; the single arrow that finds the truth and clears the accused.' },
     ],
   },
   {
@@ -950,6 +975,8 @@ const INDUSTRY_GROUPS = [
       { id: 'nirmata', weight: 1, why: 'The architect of creation; design knowledge.' },
       { id: 'solomon', weight: 1, why: 'The sage-king; proverbs as curriculum.' },
       { id: 'athenai', weight: 1, why: 'The city of wisdom; the academy’s hometown.' },
+      { id: 'shakyamuni', weight: 2, why: 'The teacher of the path; forty-five years of turning the wheel.' },
+      { id: 'manjushri', weight: 2, why: 'The bodhisattva of wisdom; his sword that cuts ignorance is the aim of every curriculum.' },
     ],
   },
   {
@@ -982,6 +1009,7 @@ const INDUSTRY_GROUPS = [
       { id: 'chaos', weight: 1, why: 'The gap before order; cosmogony’s first question.' },
       { id: 'he', weight: 1, why: 'She Who Is; the feminine principle of Neoplatonic thought.' },
       { id: 'ab', weight: 1, why: 'Conscience weighed; the seat of moral worth.' },
+      { id: 'vairocana', weight: 1, why: 'Indra\'s net; the interpenetration of all things as a framework.' },
     ],
   },
   {
@@ -1031,6 +1059,7 @@ const INDUSTRY_GROUPS = [
       { id: 'phoenix', weight: 2, why: 'Rebirth from the ashes; recovery as identity.' },
       { id: 'noah', weight: 2, why: 'The ark; preparedness that outlasts the flood.' },
       { id: 'shiva', weight: 1, why: 'Destruction as transformation; the rebuild after the fall.' },
+      { id: 'akshobhya', weight: 2, why: 'The Unshakable; the vow that no shock can move — continuity as doctrine.' },
     ],
   },
   {
@@ -1056,6 +1085,7 @@ const INDUSTRY_GROUPS = [
       { id: 'ker', weight: 2, why: 'Doom at the battlefield’s edge.' },
       { id: 'ba', weight: 2, why: 'The soul’s journey; personality beyond the tomb.' },
       { id: 'akh', weight: 2, why: 'The transfigured spirit; the afterlife’s highest form.' },
+      { id: 'ksitigarbha', weight: 2, why: 'The vow to empty the hells; the bodhisattva who attends the dead between lives.' },
     ],
   },
   {
@@ -1090,6 +1120,7 @@ const INDUSTRY_GROUPS = [
       { id: 'maa', weight: 2, why: 'To see and perceive; vision as a verb.' },
       { id: 'horus', weight: 1, why: 'The Eye of Horus; the most famous protective eye in history.' },
       { id: 'helios', weight: 1, why: 'The sun that sees all; surveillance’s oldest witness.' },
+      { id: 'akshobhya', weight: 1, why: 'Mirror-like wisdom; the mind as a flawless reflector.' },
     ],
   },
   {
@@ -1128,6 +1159,8 @@ const INDUSTRY_GROUPS = [
       { id: 'isis', weight: 1, why: 'Motherhood and throne; the mother who rebuilt her family.' },
       { id: 'parvati', weight: 2, why: 'The devoted wife and mother of the mountain.' },
       { id: 'persephone', weight: 1, why: 'Daughter and wife; the family at the center of the mystery.' },
+      { id: 'radha', weight: 1, why: 'The eternal consort; devotion as the model of the bond.' },
+      { id: 'ksitigarbha', weight: 1, why: 'Guardian of children; as Jizō he watches over the young at every roadside.' },
     ],
   },
   {

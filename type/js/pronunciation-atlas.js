@@ -4014,14 +4014,27 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Gḗras."
   },
   "cerberus": {
-    "ipa": "/kˈerberos/",
+    "ipa": "/ˈker.be.ros/",
     "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
+    "phonemes": [
+      {
+        "symbol": "Κ",
+        "desc": "Unaspirated voiceless velar stop [k]; Greek kappa, which Latin spelling renders as C."
+      },
+      {
+        "symbol": "έ",
+        "desc": "Short open [e] carrying the recessive accent; classical pitch on the first syllable, modern stress."
+      },
+      {
+        "symbol": "-ος",
+        "desc": "The Greek nominative ending -os, which Latin rewrites as -us (Cerberus)."
+      }
+    ],
+    "approximation": "KER-be-ros — three short syllables with the stress on the first; both 'r's lightly trilled, as in modern Greek.",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Kérberos."
+    "note": "Κέρβερος is reconstructed [ˈker.be.ros] with the recessive accent on the first syllable. Beekes (EDG s.v.) treats the name as Pre-Greek substrate, which explains the ancient variants (Κέρβελος alongside Κέρβερος); Hesiod, Theogony 310–312, is the earliest attestation. The restoration Kérberos keeps the Greek kappa as K and places the acute where the manuscripts accent it; the Latinized Cerberus hides both."
   },
   "hydra": {
     "ipa": "/hˈydra/",
@@ -4912,14 +4925,23 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Kārtikeya; review recommended before promotion to canonical."
   },
   "radha": {
-    "ipa": "/rˈaːdhaː/",
+    "ipa": "/ˈɾaː.dʱaː/",
     "ipaLabel": "Reconstructed Sanskrit",
-    "phonemes": [],
-    "approximation": null,
+    "phonemes": [
+      {
+        "symbol": "ā",
+        "desc": "Long open central vowel [aː], twice; the macrons mark length in both syllables."
+      },
+      {
+        "symbol": "dh",
+        "desc": "Voiced aspirated dental stop [dʱ]; a single breathy consonant, not d followed by h."
+      }
+    ],
+    "approximation": "RAH-dhah — both vowels long; the 'dh' is one breathy consonant, as in 'adhere' spoken quickly.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Rādhā; review recommended before promotion to canonical."
+    "note": "राधा (Rādhā) has two long ā vowels and the voiced aspirate dh [dʱ]. Monier-Williams s.v. rādhā — from √rādh 'to succeed, prosper', also the name of the nakṣatra Viśākhā. The restoration Rādhā marks both long vowels; the ASCII form Radha flattens the length and leaves the aspiration of dh unexplained."
   },
   "sati": {
     "ipa": "/satˈiː/",
@@ -5962,14 +5984,27 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Ọrúnmìlà; review recommended before promotion to canonical."
   },
   "ochosi": {
-    "ipa": "/osoosi/",
-    "ipaLabel": "Reconstructed from Unicode restoration",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/ɔ̀.ʃɔ́.ɔ̀.sì/",
+    "ipaLabel": "Standard Yoruba",
+    "phonemes": [
+      {
+        "symbol": "Ọ",
+        "desc": "Open-mid back rounded vowel [ɔ]; the dot below marks the open vowel against close [o]."
+      },
+      {
+        "symbol": "ṣ",
+        "desc": "Voiceless postalveolar fricative [ʃ]; Yoruba ṣ, heard as 'ch' in the Cuban form Ochosi."
+      },
+      {
+        "symbol": "ì",
+        "desc": "Final [i] with low tone; the grave accent marks the low register of the last syllable."
+      }
+    ],
+    "approximation": "aw-shAW-aw-see — four open syllables on low-high-low-low tones; only the second syllable rises.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Ọṣọọsì; review recommended before promotion to canonical."
+    "note": "Standard Yoruba orthography Ọ̀ṣọ́ọ̀sì carries the tones low-high-low-low on four open syllables, all with the open vowel [ɔ]. R.C. Abraham, Dictionary of Modern Yoruba s.v. The restoration Ọṣọọsì keeps the three dotted vowels and ṣ, marking the final low tone explicitly; the Cuban Ochosi and Brazilian Oxóssi record the same name through Spanish and Portuguese ears."
   },
   "osanyin": {
     "ipa": "/osanyin/",
@@ -7462,14 +7497,27 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Sága; review recommended before promotion to canonical."
   },
   "hermod": {
-    "ipa": "/hermˈod/",
+    "ipa": "/ˈhɛrˌmoːðr̩/",
     "ipaLabel": "Reconstructed Old Norse",
-    "phonemes": [],
-    "approximation": null,
+    "phonemes": [
+      {
+        "symbol": "ó",
+        "desc": "Long close-mid back rounded vowel [oː]; the acute marks vowel length, not stress."
+      },
+      {
+        "symbol": "ð",
+        "desc": "Voiced dental fricative [ð], as in English 'this'; the medial reflex of Proto-Germanic *d."
+      },
+      {
+        "symbol": "-r",
+        "desc": "Syllabic final [r̩], the Old Norse nominative ending of strong masculine nouns."
+      }
+    ],
+    "approximation": "HAIR-moth-ur — stress the first syllable; the 'ó' is a long 'o' as in 'oar', the 'ð' is the soft 'th' of 'this', and the final '-r' is a quick syllabic trill.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Hermód; review recommended before promotion to canonical."
+    "note": "Hermóðr is reconstructed [ˈhɛrˌmoːðr̩]: initial stress, long ó, medial ð (the spirant of Proto-Germanic *d), and a syllabic nominative -r. The name compounds her- 'war, army' with móðr 'mind, spirit, courage' — 'war-spirit'. Cleasby-Vigfusson s.v. Hermóðr; de Vries, Altnordisches etymologisches Wörterbuch s.v. The Younger Futhark attestation ᚼᛁᚱᛘᚢᚦᚱ keeps the medial -uð- the restoration Hermóðr renders as óð."
   },
   "magni": {
     "ipa": "/magni/",
@@ -8123,24 +8171,46 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Amitābha; review recommended before promotion to canonical."
   },
   "vairocana": {
-    "ipa": "/vairokana/",
+    "ipa": "/mə.ɦaː.ʋəi̯.ɾoː.tʃə.nə/",
     "ipaLabel": "Reconstructed Sanskrit",
-    "phonemes": [],
-    "approximation": null,
+    "phonemes": [
+      {
+        "symbol": "mahā",
+        "desc": "'Great': the long [aː] marked by the macron."
+      },
+      {
+        "symbol": "v",
+        "desc": "Labiodental approximant [ʋ], between English v and w."
+      },
+      {
+        "symbol": "c",
+        "desc": "Voiceless palatal affricate [tʃ]; Sanskrit c is always 'ch' as in 'church'."
+      }
+    ],
+    "approximation": "muh-hah-VAI-roh-chuh-nuh — 'vai' rhymes with 'eye'; the 'c' is 'ch' as in 'church'; the 'ro' is long.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Vairocana; review recommended before promotion to canonical."
+    "note": "महावैरोचन (Mahāvairocana), 'the Great Illuminator': mahā 'great' + vairocana 'shining forth', from vi-√ruc 'to shine'. Monier-Williams s.v. He is the central Buddha of the Avataṃsaka Sūtra and of Shingon, where Japanese Dainichi — 'Great Sun' — translates the name's sense. The restoration keeps the long ā of mahā; the short-form variant Vairocana is the scholarly commonplace."
   },
   "akshobhya": {
-    "ipa": "/aksobhya/",
+    "ipa": "/əkˈʂoː.bʱjə/",
     "ipaLabel": "Reconstructed Sanskrit",
-    "phonemes": [],
-    "approximation": null,
+    "phonemes": [
+      {
+        "symbol": "kṣ",
+        "desc": "The conjunct kṣa: [k] released into the voiceless retroflex sibilant [ʂ]."
+      },
+      {
+        "symbol": "bh",
+        "desc": "Voiced aspirated bilabial stop [bʱ]; one breathy consonant, not b followed by h."
+      }
+    ],
+    "approximation": "uk-SHOH-byuh — the 'ṣ' is a retroflex 'sh' with the tongue curled back; stress falls on the long 'ō'.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Akṣobhya; review recommended before promotion to canonical."
+    "note": "अक्षोभ्य (Akṣobhya), 'the Immovable': a- 'not' + √kṣubh 'to shake' + -ya. The kṣ ligature combines k with the retroflex ṣ, the feature ASCII dissolves into 'ksh'. Monier-Williams s.v. In Vajrayana he is the Buddha of the eastern pure land Abhirati and of mirror-like wisdom; the restoration keeps the ṣ that carries the root."
   },
   "ratnasambhava": {
     "ipa": "/ratnasambhava/",
@@ -8173,14 +8243,27 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Maitreya; review recommended before promotion to canonical."
   },
   "manjushri": {
-    "ipa": "/manjusrˈiː/",
+    "ipa": "/məɲ.dʑu.ˈɕɾiː/",
     "ipaLabel": "Reconstructed Sanskrit",
-    "phonemes": [],
-    "approximation": null,
+    "phonemes": [
+      {
+        "symbol": "ñ",
+        "desc": "Palatal nasal [ɲ], the 'ny' of 'canyon'; the tilde is its IAST sign."
+      },
+      {
+        "symbol": "ś",
+        "desc": "Voiceless alveolo-palatal sibilant [ɕ], a soft 'sh'."
+      },
+      {
+        "symbol": "ī",
+        "desc": "Long close front vowel [iː]; the macron marks the final length."
+      }
+    ],
+    "approximation": "mun-joo-SHREE — the 'ñ' is the 'ny' of 'canyon'; stress the final long 'ī'.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Mañjuśrī; review recommended before promotion to canonical."
+    "note": "मञ्जुश्री (Mañjuśrī), 'Gentle Glory': mañju 'gentle, beautiful' + śrī 'glory, auspiciousness'. Monier-Williams s.v. The palatal ñ and palatal ś are exactly the sounds the ASCII 'nj' and 'sh' gesture at without marking; the final ī is long. He is the bodhisattva of transcendent wisdom (prajñā)."
   },
   "samantabhadra": {
     "ipa": "/samantabhadra/",
@@ -8193,24 +8276,80 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Samantabhadra; review recommended before promotion to canonical."
   },
   "ksitigarbha": {
-    "ipa": "/ksitigarbha/",
+    "ipa": "/kʂi.ti.ˈɡəɾ.bʱə/",
     "ipaLabel": "Reconstructed Sanskrit",
-    "phonemes": [],
-    "approximation": null,
+    "phonemes": [
+      {
+        "symbol": "kṣ",
+        "desc": "The conjunct kṣa: [k] released into the voiceless retroflex sibilant [ʂ]."
+      },
+      {
+        "symbol": "bh",
+        "desc": "Voiced aspirated bilabial stop [bʱ]; one breathy consonant, not b followed by h."
+      }
+    ],
+    "approximation": "kshi-ti-GUR-bhuh — the opening 'kṣi' is a single cluster; 'bh' is one breathy consonant.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Kṣitigarbha; review recommended before promotion to canonical."
+    "note": "क्षितिगर्भ (Kṣitigarbha), 'Earth-store' or 'Earth-womb': kṣiti 'earth' + garbha 'womb, interior'. Monier-Williams s.v. The bodhisattva who vowed to remain until the hells are empty — Chinese Dìzàng, Japanese Jizō. The restoration keeps the kṣ ligature that ASCII spells out as 'ksh'."
   },
   "vajrapani": {
-    "ipa": "/vajrapˈaːni/",
+    "ipa": "/ʋədʑ.ɾə.ˈpaː.ɳi/",
     "ipaLabel": "Reconstructed Sanskrit",
-    "phonemes": [],
-    "approximation": null,
+    "phonemes": [
+      {
+        "symbol": "v",
+        "desc": "Labiodental approximant [ʋ], between English v and w."
+      },
+      {
+        "symbol": "ā",
+        "desc": "Long open central vowel [aː]; the macron marks the stressed length of pāṇi."
+      },
+      {
+        "symbol": "ṇ",
+        "desc": "Retroflex nasal [ɳ]; the dot below curls the tongue back."
+      }
+    ],
+    "approximation": "vuj-ruh-PAH-ni — the 'v' sits between v and w; the 'ṇ' is a retroflex n with the tongue curled back.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Vajrapāṇi; review recommended before promotion to canonical."
+    "note": "वज्रपाणि (Vajrapāṇi), 'vajra in hand': vajra 'thunderbolt, diamond' + pāṇi 'hand'. Monier-Williams s.v. — the name is first an epithet of Indra in the Brāhmaṇas and Mahābhārata before Buddhism made it the protector of the Dharma. The retroflex ṇ of pāṇi and the long ā are the features ASCII loses."
+  },
+  "shakyamuni": {
+    "ipa": "/ˈɕaː.kjə.mu.ni/",
+    "ipaLabel": "Reconstructed Sanskrit",
+    "phonemes": [
+      {
+        "symbol": "Ś",
+        "desc": "Voiceless alveolo-palatal sibilant [ɕ], a soft 'sh'; the acute is its IAST sign."
+      },
+      {
+        "symbol": "ā",
+        "desc": "Long open central vowel [aː]; the macron marks the length of the first syllable."
+      }
+    ],
+    "approximation": "SHAH-kyuh-moo-ni — the 'Ś' is a soft 'sh', the first 'a' is long, and the four syllables stay even.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "शाक्यमुनि (Śākyamuni), 'sage of the Śākya clan': śākya 'of the Śākyas', the Buddha's natal clan, + muni 'sage'. Monier-Williams s.v. The initial ś is the palatal sibilant the ASCII digraph 'sh' approximates, and the macron marks the long ā; the epithet is the standard Sanskrit title of the historical Buddha."
+  },
+  "mara": {
+    "ipa": "/ˈmaː.ɾə/",
+    "ipaLabel": "Reconstructed Sanskrit",
+    "phonemes": [
+      {
+        "symbol": "ā",
+        "desc": "Long open central vowel [aː]; the macron doubles the length of the first syllable."
+      }
+    ],
+    "approximation": "MAH-ruh — the first 'a' is held twice as long as the second.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "मार (Māra), 'death, the killer', from √mṛ 'to die'; the personification of death and desire who assailed the Buddha under the Bodhi tree. Monier-Williams s.v.; Pāli Māra is the same word. The macron on ā is the whole restoration — and the difference between the tempter and a common given name."
   },
   "tara": {
     "ipa": "/tˈaːraː/",

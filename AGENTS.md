@@ -727,8 +727,11 @@ mechanically verifiable as information-rich — no editorial judgment calls:
   (acute/circumflex) **AND** at least one long vowel (η, ω, long α/ι/υ, or a
   long diphthong; a circumflex counts as both features).
 - **All other traditions**: the Unicode restoration preserves at least one
-  distinctive feature the ASCII form loses — a diacritic (macron, acute,
-  tone, retroflex dot) **or** a distinctive letter (þ/ð/æ/œ/š/ḍ/ṭ/ḥ/ṛ/ꜣ/ꜥ).
+  distinctive feature the ASCII form loses — **any** preserved diacritic
+  (macron, acute, grave, tone, underdot, ogonek, caron, …, detected
+  structurally by NFD decomposition, never by a hand-enumerated list) **or** a
+  distinctive atomic letter (þ/ð/æ/œ/š/ḍ/ṭ/ḥ/ṛ/ꜣ/ꜥ, and atomic letters like
+  ǫ that carry no decomposition).
 
 Tier assignment is computed from the canonical sources (see
 `tools/new-domains/reclassify-tiers.js` for the reference implementation);
@@ -741,7 +744,7 @@ These temples display one **Tier-1** meta-badge, one Unicode Restoration
 card, footer **Tier-1**, and explanatory text citing the features preserved.
 
 ### Single-Tier Tier-2 Names
-**Ártemis, Átlas, Diónysos, Médousa, Óðinn, Þórr, Kēr, etc.**
+**Ártemis, Átlas, Diónysos, Hestía, Cháos, Baldr, Freyr, Fenrir, etc.**
 
 The Greek original contains only one feature (stress OR long vowel) or
 neither. Temples display one **Tier-2** meta-badge (with subtype label if
@@ -787,8 +790,10 @@ all attested forms; the temple displays them with explanation.
   on phones and may be unavailable as domains.
 - **Wrong accent position is worse than no accent.** `ápollōn` was scrapped in
   favor of plain `apollōn`.
-- **Recognizability matters.** Now that `athénā.com` is acquired, it is the
-  primary for Athena.
+- **Canonical beats recognizability when both are owned.** With `athēnâ.com`
+  acquired, the circumflexed canonical form (Ἀθηνᾶ, stress + length on the
+  contracted final alpha) is the primary for Athena; `athénā.com` remains a
+  live owned variant.
 
 ### Name Variations Sections
 

@@ -989,7 +989,7 @@ handleReturnFromStripe();
   if (!modal || !grid) return;
 
   const templeId = 'kanaloa';
-  const siteName = 'Kānāloa';
+  const siteName = 'Kanaloa';
   let selectedCents = 700;
 
   const els = {

@@ -1252,7 +1252,7 @@ handleReturnFromStripe();
   if (!modal || !grid) return;
 
   const templeId = 'sia';
-  const siteName = 'sꜥ';
+  const siteName = 'sjꜣ';
   let selectedCents = 700;
 
   const els = {

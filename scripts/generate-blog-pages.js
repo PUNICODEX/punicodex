@@ -363,6 +363,10 @@ for (const id of BUILT_IDS) {
     ASCII: escapeHtml(entry?.ascii || id),
     DOMAIN: escapeHtml(domain),
     TIER_LABEL: escapeHtml(tierLabel),
+    TIER_BADGES:
+      entry?.tier === 'dual'
+        ? '<span class="meta-badge">Tier-1</span> <span class="meta-badge">Tier-2</span>'
+        : `<span class="meta-badge">${escapeHtml(tierLabel)}</span>`,
     DOMAINS_TEXT: escapeHtml(home.domainsText),
     EFFECT: escapeHtml(home.effect),
     PRIMARY: escapeHtml(home.primary),

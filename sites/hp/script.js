@@ -903,7 +903,7 @@ handleReturnFromStripe();
   if (!modal || !grid) return;
 
   const templeId = 'hp';
-  const siteName = 'Ḥp';
+  const siteName = 'Ḥꜥpy';
   let selectedCents = 700;
 
   const els = {

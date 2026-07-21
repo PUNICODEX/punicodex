@@ -1355,7 +1355,7 @@ handleReturnFromStripe();
   if (!modal || !grid) return;
 
   const templeId = 'prometheus';
-  const siteName = 'Promētheus';
+  const siteName = 'Promētheús';
   let selectedCents = 700;
 
   const els = {

@@ -958,7 +958,7 @@ handleReturnFromStripe();
   if (!modal || !grid) return;
 
   const templeId = 'huitzilopochtli';
-  const siteName = 'Huitzilopōchtli';
+  const siteName = 'Huītzilōpōchtli';
   let selectedCents = 700;
 
   const els = {

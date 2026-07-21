@@ -32,7 +32,7 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptName": "Greek"
   },
   "athena": {
-    "originalScript": "Ἀθήνᾶ",
+    "originalScript": "Ἀθηνᾶ",
     "scriptName": "Greek"
   },
   "demeter": {
@@ -553,6 +553,14 @@ const ORIGINAL_SCRIPT_LOOKUP = {
   },
   "oshun": {
     "originalScript": "Ọ̀ṣun",
+    "scriptName": "Yoruba (modern Latin orthography)"
+  },
+  "eshu": {
+    "originalScript": "Ẹ̀ṣù",
+    "scriptName": "Yoruba (modern Latin orthography)"
+  },
+  "obatala": {
+    "originalScript": "Ọbàtálá",
     "scriptName": "Yoruba (modern Latin orthography)"
   },
   "dazhbog": {
@@ -1408,7 +1416,7 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptName": "Cuneiform"
   },
   "kartikeya": {
-    "originalScript": "कार्तिकेय",
+    "originalScript": "कार्त्तिकेय",
     "scriptName": "Devanagari"
   },
   "radha": {
@@ -1566,6 +1574,14 @@ const ORIGINAL_SCRIPT_LOOKUP = {
   "kagutsuchi": {
     "originalScript": "迦具土",
     "scriptName": "Japanese characters"
+  },
+  "orunmila": {
+    "originalScript": "Ọ̀rúnmìlà",
+    "scriptName": "Yoruba (modern Latin orthography)"
+  },
+  "ochosi": {
+    "originalScript": "Ọ̀ṣọ́ọ̀sì",
+    "scriptName": "Yoruba (modern Latin orthography)"
   },
   "spentamainyu": {
     "originalScript": "𐬯𐬞𐬆𐬥𐬙𐬀 𐬨𐬀𐬌𐬥𐬌𐬌𐬎",
@@ -1980,7 +1996,7 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptName": "Younger Futhark"
   },
   "hermod": {
-    "originalScript": "ᚼᛁᚱᛘᚢᛏ",
+    "originalScript": "ᚼᛁᚱᛘᚢᚦᚱ",
     "scriptName": "Younger Futhark"
   },
   "magni": {
@@ -2025,10 +2041,6 @@ const ORIGINAL_SCRIPT_LOOKUP = {
   },
   "nekhbet": {
     "originalScript": "𓇑𓃀𓏌𓏏𓅒",
-    "scriptName": "Hieroglyphs"
-  },
-  "hapy": {
-    "originalScript": "𓎛𓂝𓊪𓏭𓈘",
     "scriptName": "Hieroglyphs"
   },
   "seshat": {
@@ -2168,7 +2180,7 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptName": "Devanagari"
   },
   "vairocana": {
-    "originalScript": "वैरोचन",
+    "originalScript": "महावैरोचन",
     "scriptName": "Devanagari"
   },
   "akshobhya": {
@@ -2237,6 +2249,14 @@ const ORIGINAL_SCRIPT_LOOKUP = {
   },
   "nirvana": {
     "originalScript": "निर्वाण",
+    "scriptName": "Devanagari"
+  },
+  "shakyamuni": {
+    "originalScript": "शाक्यमुनि",
+    "scriptName": "Devanagari"
+  },
+  "mara": {
+    "originalScript": "मार",
     "scriptName": "Devanagari"
   },
   "laozi": {
@@ -2784,7 +2804,7 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptName": "Hieroglyphs"
   },
   "hp": {
-    "originalScript": "𓎛𓊪",
+    "originalScript": "𓎛𓂝𓊪𓏭𓈘",
     "scriptName": "Hieroglyphs"
   },
   "amsa": {
@@ -2818,6 +2838,10 @@ const ORIGINAL_SCRIPT_LOOKUP = {
   "sani": {
     "originalScript": "शनि",
     "scriptName": "Devanagari"
+  },
+  "oba": {
+    "originalScript": "Ọbà",
+    "scriptName": "Yoruba (modern Latin orthography)"
   }
 };
 

@@ -1010,7 +1010,7 @@ handleReturnFromStripe();
   if (!modal || !grid) return;
 
   const templeId = 'apep';
-  const siteName = 'Ꜥpp';
+  const siteName = 'ꜥꜣpp';
   let selectedCents = 700;
 
   const els = {

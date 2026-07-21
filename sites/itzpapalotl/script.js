@@ -1039,7 +1039,7 @@ handleReturnFromStripe();
   if (!modal || !grid) return;
 
   const templeId = 'itzpapalotl';
-  const siteName = 'Itzpapālōtl';
+  const siteName = 'Ītzpāpālōtl';
   let selectedCents = 700;
 
   const els = {

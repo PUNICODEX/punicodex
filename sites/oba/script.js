@@ -910,7 +910,7 @@ handleReturnFromStripe();
   if (!modal || !grid) return;
 
   const templeId = 'oba';
-  const siteName = 'Ọba';
+  const siteName = 'Ọbà';
   let selectedCents = 700;
 
   const els = {

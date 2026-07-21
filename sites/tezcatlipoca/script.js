@@ -902,7 +902,7 @@ handleReturnFromStripe();
   if (!modal || !grid) return;
 
   const templeId = 'tezcatlipoca';
-  const siteName = 'Tezcatlipōca';
+  const siteName = 'Tēzcatlīpōca';
   let selectedCents = 700;
 
   const els = {

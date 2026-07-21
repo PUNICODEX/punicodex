@@ -128,7 +128,7 @@ const GLYPH_ATLAS = {
       "U+03BD",
       "U+1FB6"
     ],
-    "specimen": "Ἀθήνᾶ",
+    "specimen": "Ἀθηνᾶ",
     "family": "Greek",
     "writingDirection": "LTR",
     "timePeriod": "c. 800 BCE – present",
@@ -7855,7 +7855,7 @@ const GLYPH_ATLAS = {
     "timePeriod": "c. 3200 BCE – 394 CE",
     "region": "Nile Valley"
   },
-  "hapy": {
+  "hp": {
     "scriptName": "Hieroglyphs",
     "codePoints": [
       "U+1339B",

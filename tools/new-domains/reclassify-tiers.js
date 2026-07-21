@@ -18,10 +18,19 @@ function greekFeats(g) {
   return { stress, long, count: (stress ? 1 : 0) + (long ? 1 : 0) };
 }
 const SPECIAL = /[ÞþÐðÆæŒœŠšŽžŁłĐđĦħƏəḌḍṬṭṢṣḤḥṚṛṜṝṆṇṂṃṄṅṠṡŚśŹźḪḫḶḷṔṕꜢꜣꜤꜥ]/;
-const MARKS = /[ĀĒĪŌŪāēīōūÁÉÍÓÚáéíóúÀÈÌÒÙàèìòùÂÊÎÔÛâêîôûĀ́ḖḖḮṒā́ḗṓÃÕãõṼṽ]/;
+// Structural detector: any preserved diacritic (found by NFD decomposition —
+// macron, acute, tone, underdot, ogonek, caron, …) or a distinctive atomic
+// letter from SPECIAL. Enumeration by hand always drifts; decomposition does not.
 function markCount(unicode) {
   let c = 0;
-  for (const ch of unicode.normalize('NFC')) if (MARKS.test(ch) || SPECIAL.test(ch)) c++;
+  for (const ch of unicode.normalize('NFC')) {
+    if (SPECIAL.test(ch)) {
+      c++;
+      continue;
+    }
+    const nfd = ch.normalize('NFD');
+    if (nfd.length > 1 && /[̀-ͯ]/.test(nfd)) c++;
+  }
   return c;
 }
 const DUAL = new Set(['apollon', 'hekate', 'nike']);

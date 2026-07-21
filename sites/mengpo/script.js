@@ -902,7 +902,7 @@ handleReturnFromStripe();
   if (!modal || !grid) return;
 
   const templeId = 'mengpo';
-  const siteName = 'Méngpó';
+  const siteName = 'Mèngpó';
   let selectedCents = 700;
 
   const els = {

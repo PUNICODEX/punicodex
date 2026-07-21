@@ -1014,7 +1014,7 @@ handleReturnFromStripe();
   if (!modal || !grid) return;
 
   const templeId = 'dagan';
-  const siteName = 'Dāgan';
+  const siteName = 'Dāgān';
   let selectedCents = 700;
 
   const els = {

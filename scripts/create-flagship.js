@@ -1069,8 +1069,16 @@ function getPunycodeExplainer(entry) {
   return `${ascii}.com \u2192 ${ascii}.com`;
 }
 
-function generateTierExplanation(entry) {
-  const source = originalScript(entry);
+// Dual-tier temples display both meta-badges (Tier-1 + Tier-2); every other
+// temple displays its single tier badge. Canonical doctrine, AGENTS.md.
+function tierBadgesHtml(entry) {
+  if (entry.tier === 'dual') {
+    return '<span class="meta-badge">Tier-1</span> <span class="meta-badge">Tier-2</span>';
+  }
+  return `<span class="meta-badge">${entry.tierLabel || `Tier ${entry.tier}`}</span>`;
+}
+
+function generateTierExplanation(entry) {  const source = originalScript(entry);
   const sourceLabel = isGreekEntry(entry) ? 'Greek original' : 'original form';
   if (isGreekEntry(entry)) {
     if (entry.tier === 'dual') {
@@ -1094,9 +1102,9 @@ function generateTierExplanation(entry) {
     return `The ${sourceLabel} <strong>${source}</strong> supports multiple historically valid Unicode restorations. Within the ${entry.pantheon} tradition, this makes it a <strong>dual-tier</strong> name.`;
   }
   if (entry.tier === '1') {
-    return `The ${sourceLabel} <strong>${source}</strong> has one canonical Unicode restoration that preserves its distinctive identity. Within the ${entry.pantheon} tradition, this makes it a <strong>single-tier Tier-1</strong> name.`;
+    return `The ${sourceLabel} <strong>${source}</strong> survives into Unicode with at least one distinctive feature intact — a diacritic or distinctive letter that ASCII erases. Within the ${entry.pantheon} tradition, this makes it a <strong>single-tier Tier-1</strong> name.`;
   }
-  return `The ${sourceLabel} <strong>${source}</strong> preserves a recognizable written identity in its Unicode restoration. Classified as <strong>${entry.tierLabel || 'Tier-2'}</strong> in the PUNICODEX tier system.`;
+  return `The ${sourceLabel} <strong>${source}</strong> needs no distinctive letters or diacritics its ASCII form would lose — the restoration is faithful without them. Classified as <strong>${entry.tierLabel || 'Tier-2'}</strong> in the PUNICODEX tier system.`;
 }
 
 function _tierGridValues(entry) {
@@ -1786,8 +1794,8 @@ function buildUnicodeBreakdownSection(entry) {
   }
   const tierNote =
     entry.tier === 'dual'
-      ? `The <strong>dual-tier</strong> nature of ${entry.unicode} arises because the original contains multiple independent scholarly restorations.`
-      : `The <strong>${entry.tierLabel || `Tier ${entry.tier}`}</strong> classification reflects which ancient features stress, length, or script are preserved in this restoration.`;
+      ? `The <strong>dual-tier</strong> nature of ${entry.unicode} arises because the original carries both stress and vowel length and history has handed down more than one defensible Unicode spelling — each variant is a real, attested restoration, and both live as owned domains.`
+      : `The <strong>${entry.tierLabel || `Tier ${entry.tier}`}</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.`;
   return `<section class="section section-pronunciation" id="unicode-breakdown">
     <div class="container">
         <div class="section-header reveal-up">
@@ -2295,6 +2303,7 @@ function generateHomePage(entry, palette, slotNames, templateDir, rentalTier = '
     MEANING: entry.meaning || '',
     TAGLINE: entry.tagline || '',
     TIER_LABEL: entry.tierLabel || `Tier ${entry.tier}`,
+    TIER_BADGES: tierBadgesHtml(entry),
     DOMAINS_TEXT: getDomainsText(entry),
     TEMPLE_ID: templeId,
     EFFECT: getCanvasEffect(entry),
@@ -2502,6 +2511,7 @@ function generateLorePage(entry, palette, loreSections, templateDir, catalog) {
     MEANING: entry.meaning || '',
     TAGLINE: entry.tagline || '',
     TIER_LABEL: entry.tierLabel || `Tier ${entry.tier}`,
+    TIER_BADGES: tierBadgesHtml(entry),
     DOMAINS_TEXT: getDomainsText(entry),
     TEMPLE_ID: templeId,
     EFFECT: getCanvasEffect(entry),
@@ -2646,6 +2656,7 @@ function generateGalleryPage(entry, palette, templateDir) {
     GREEK: getOriginalScript(entry) || '—',
     DOMAIN: entry.domain,
     TIER_LABEL: entry.tierLabel || `Tier ${entry.tier}`,
+    TIER_BADGES: tierBadgesHtml(entry),
     DOMAINS_TEXT: getDomainsText(entry),
     TEMPLE_ID: templeId,
     EFFECT: getCanvasEffect(entry),
@@ -2811,6 +2822,7 @@ function generateExtendedPage(entry, palette, templateDir, catalog) {
     MEANING: entry.meaning || '',
     TAGLINE: entry.tagline || '',
     TIER_LABEL: entry.tierLabel || `Tier ${entry.tier}`,
+    TIER_BADGES: tierBadgesHtml(entry),
     DOMAINS_TEXT: getDomainsText(entry),
     TEMPLE_ID: templeId,
     EFFECT: getCanvasEffect(entry),

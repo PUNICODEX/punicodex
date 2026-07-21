@@ -893,7 +893,7 @@ handleReturnFromStripe();
   if (!modal || !grid) return;
 
   const templeId = 'mot';
-  const siteName = 'Mōt';
+  const siteName = 'Mūt';
   let selectedCents = 700;
 
   const els = {

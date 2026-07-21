@@ -26,16 +26,12 @@ function getTierSubtype(entry) {
     const hasStress = /[áéíóúÁÉÍÓÚàèìòùÀÈÌÒÙâêîôûÂÊÎÔÛ]/.test(entry.unicode);
     const hasLength = /[āēīōūĀĒĪŌŪ]/.test(entry.unicode);
     if (entry.tier === 'dual') return 'Dual-Tier';
-    if (entry.tier === '1') {
-        if (hasStress && hasLength) return 'Tier-1 Full';
-        if (hasStress) return 'Tier-1 Accent-Preserving';
-        if (hasLength) return 'Tier-1 Macron-Preserving';
-        return 'Tier-1';
-    }
+    // Doctrine: Tier-1 has no subtypes; subtype labels exist only for Tier-2.
+    if (entry.tier === '1') return 'Tier-1';
     if (entry.tier === '2') {
         if (hasStress) return 'Tier-2 Accent-Preserving';
         if (hasLength) return 'Tier-2 Macron-Preserving';
-        return 'Tier-2 Basic';
+        return 'Tier-2';
     }
     return entry.tierLabel;
 }

@@ -956,7 +956,7 @@ handleReturnFromStripe();
   if (!modal || !grid) return;
 
   const templeId = 'eshu';
-  const siteName = 'Ẹṣu';
+  const siteName = 'Ẹṣù';
   let selectedCents = 700;
 
   const els = {

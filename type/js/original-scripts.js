@@ -1101,16 +1101,19 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   hermod: {
-    originalScript: 'ᚼᛁᚱᛘᚢᛏ',
+    originalScript: 'ᚼᛁᚱᛘᚢᚦᚱ',
     scriptName: 'Younger Futhark',
     provenance: {
-      original: 'ᚼᛁᚱᛘᚢᛏ',
-      transliteration: 'hirmut',
+      original: 'ᚼᛁᚱᛘᚢᚦᚱ',
+      transliteration: 'hirmuþr',
       steps: [
         'ᚼ (hagall) writes /h/',
         'ᛁ (ís) writes both /i/ and /e/',
         'ᚱ (reið) writes /r/',
-        'The spelling hirmut is a normalized phonetic reconstruction; Younger Futhark does not distinguish voiced/voiceless stops or separate short and long vowels'
+        'ᚢ (úr) writes the rounded back vowels /u, o, ø, ǫ, y/, including long ó',
+        'ᚦ (þurs) writes both þ and ð',
+        'final ᚱ writes the nominative ending -r',
+        'The spelling hirmuþr is a normalized phonetic reconstruction; Younger Futhark does not distinguish voiced/voiceless stops or separate short and long vowels'
       ],
       sources: [
         'Cleasby-Vigfusson',
@@ -1709,15 +1712,17 @@ const ORIGINAL_SCRIPTS = {
     },
   },
   sia: {
-    originalScript: '𓋴𓂝',
+    originalScript: '𓋴𓇌𓄿',
     scriptName: 'Hieroglyphs',
     provenance: {
-      original: '𓋴𓂝',
-      transliteration: 'sꜥ',
+      original: '𓋴𓇌𓄿',
+      transliteration: 'sjꜣ',
       steps: [
         'S29 folded cloth (𓋴) represents the uniliteral s',
-        'D36 forearm (𓂝) represents the uniliteral ꜥ (ayin)',
-        'Together sꜥ writes Sia, the personified perception/knowledge attested from the Pyramid Texts onward',
+        'M17 dual reed leaves (𓇌) write the glide y/j',
+        'G1 vulture (𓄿) represents the alef ꜣ',
+        'Together sjꜣ writes Sia, the personified perception/knowledge attested from the Pyramid Texts onward — Faulkner’s dictionary headword',
+        'An attested variant skeleton sꜥ (with the ayin forearm 𓂝) is preserved at sꜥ.com and noted here for completeness',
         'A god determinative may be added in fuller spellings'
       ],
       sources: [

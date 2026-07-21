@@ -55,7 +55,7 @@
                 ? `<span class="card-script-name">${escapeHtml(scriptName)}</span>${escapeHtml(originalScript)}`
                 : '<span class="card-script-name">Scholarly transliteration</span>';
 
-            const thumbPath = `/assets/images/mascots/thumbs/small/${a.id}_thumb.webp?v=76`;
+            const thumbPath = `/assets/images/mascots/thumbs/small/${a.id}_thumb.webp?v=77`;
             const loadingAttr = index < 8 ? 'loading="eager"' : 'loading="lazy"';
             // Unbuilt temples have no mascot shoot yet — render the kit's empty
             // portrait directly instead of round-tripping a 404 thumb.

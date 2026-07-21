@@ -171,6 +171,12 @@ const PANTHEON_COLORS = {
     primaryBright: '#F0D878',
     secondary: '#DC143C',
   },
+  mapuche: {
+    primary: '#8B9B7A',
+    primaryDim: '#5D6B50',
+    primaryBright: '#B8C8A5',
+    secondary: '#D4AF37',
+  },
   canaanite: {
     primary: '#8B4513',
     primaryDim: '#5D2E0C',
@@ -194,6 +200,7 @@ const PANTHEON_LABELS = {
   slavic: 'Slavic',
   zoroastrian: 'Zoroastrian',
   incan: 'Incan',
+  mapuche: 'Mapuche',
   canaanite: 'Canaanite',
 };
 
@@ -283,16 +290,13 @@ function getTierSubtype(entry) {
   const hasLength = /[āēīōūĀĒĪŌŪ]/.test(entry.unicode);
 
   if (entry.tier === 'dual') return 'Dual-Tier';
-  if (entry.tier === '1') {
-    if (hasStress && hasLength) return 'Tier-1 Full';
-    if (hasStress) return 'Tier-1 Accent-Preserving';
-    if (hasLength) return 'Tier-1 Macron-Preserving';
-    return 'Tier-1';
-  }
+  // Doctrine: Tier-1 has no subtypes. Subtype labels exist only for Tier-2
+  // (the single preserved feature is cited on the temple).
+  if (entry.tier === '1') return 'Tier-1';
   if (entry.tier === '2') {
     if (hasStress) return 'Tier-2 Accent-Preserving';
     if (hasLength) return 'Tier-2 Macron-Preserving';
-    return 'Tier-2 Basic';
+    return 'Tier-2';
   }
   return entry.tierLabel;
 }
@@ -320,29 +324,18 @@ function getTierExplanation(entry, subtype) {
   }
   if (entry.tier === '1') {
     const isGreek = entry.pantheon === 'greek' || entry.pantheon === 'greek-location';
-    const hasStress = /[áéíóúÁÉÍÓÚàèìòùÀÈÌÒÙâêîôûÂÊÎÔÛ]/.test(entry.unicode);
-    const hasLength = /[āēīōūĀĒĪŌŪ]/.test(entry.unicode);
 
     if (!isGreek) {
-      return `The ${pantheonLabel} name <strong>${original}</strong> is represented by its most canonical scholarly spelling. For non-Greek names, Tier-1 status reflects the definitive attested restoration rather than Greek-style stress/length features. This is the authoritative Unicode form — a <strong>single-tier Tier-1</strong> name.`;
+      return `The ${pantheonLabel} restoration <strong>${original}</strong> preserves at least one distinctive feature its ASCII form loses — a diacritic or a distinctive letter that marks the original phonology. This makes it a <strong>single-tier Tier-1</strong> name.`;
     }
-    if (hasStress && hasLength) {
-      return `The ${pantheonLabel} original <strong>${original}</strong> contains both stress AND at least one long vowel. However, there is only <strong>one</strong> historically valid Unicode restoration. The ASCII fallback is modern English, not ancient canonical. This is the full scholarly orthography — a <strong>single-tier Tier-1 Full</strong> name.`;
-    }
-    if (hasStress) {
-      return `The ${pantheonLabel} original <strong>${original}</strong> preserves stress (acute/circumflex) in its Unicode restoration. There is only <strong>one</strong> historically valid spelling with this feature preserved. This is classified as a <strong>single-tier Tier-1 Accent-Preserving</strong> name.`;
-    }
-    if (hasLength) {
-      return `The ${pantheonLabel} original <strong>${original}</strong> preserves vowel length (macron) in its Unicode restoration. There is only <strong>one</strong> historically valid spelling with this feature preserved. This is classified as a <strong>single-tier Tier-1 Macron-Preserving</strong> name.`;
-    }
-    return `The ${pantheonLabel} form <strong>${original}</strong> is classified as <strong>single-tier Tier-1</strong> in the PUNICODEX collection. The Unicode restoration represents the scholarly convention for this name.`;
+    return `The ${pantheonLabel} original <strong>${original}</strong> contains both stress AND at least one long vowel, and one historically dominant Unicode restoration exists. This is the full scholarly orthography — a <strong>single-tier Tier-1</strong> name.`;
   }
   if (entry.tier === '2') {
     if (isAsciiOnlyUnicode(entry)) {
       return `The ${pantheonLabel} name <strong>${original}</strong> is attested in the Latin alphabet. The Unicode restoration is identical to ASCII, so no diacritic or script recovery is needed. It is catalogued as a <strong>single-tier Tier-2</strong> name because the scholarly form carries no stress or length marks.`;
     }
-    if (subtype === 'Tier-2 Basic') {
-      return `The ${pantheonLabel} form <strong>${original}</strong> preserves neither stress nor length in this Unicode restoration. This makes it a <strong>single-tier Tier-2 Basic</strong> name — still a scholarly step above plain ASCII, but without the distinctive phonetic features that define higher tiers.`;
+    if (subtype === 'Tier-2') {
+      return `The ${pantheonLabel} form <strong>${original}</strong> preserves neither stress nor length in this Unicode restoration. This makes it a <strong>single-tier Tier-2</strong> name — a faithful scholarly form, without the distinctive phonetic features that define Tier-1.`;
     }
     const feature = subtype.includes('Accent')
       ? 'stress (acute accent)'
@@ -920,10 +913,10 @@ ${JSON.stringify(
                     <div class="tier-feature-value">${hasLength || hasBoth ? 'Preserved' : '—'}</div>
                     <div class="tier-feature-desc">${hasLength || hasBoth ? 'Macron (ō, ē, ā) marks long vowels from the original.' : 'Not present in this restoration.'}</div>
                 </div>
-                <div class="tier-feature-card ${hasBoth ? 'active' : 'inactive'} reveal-up" data-delay="200">
+                <div class="tier-feature-card ${entry.tier === 'dual' ? 'active' : 'inactive'} reveal-up" data-delay="200">
                     <div class="tier-feature-label">Dual Variant</div>
-                    <div class="tier-feature-value">${hasBoth ? 'Yes' : '—'}</div>
-                    <div class="tier-feature-desc">${hasBoth ? 'Both stress and length create multiple valid scholarly restorations.' : 'Only one valid Unicode restoration exists for this name.'}</div>
+                    <div class="tier-feature-value">${entry.tier === 'dual' ? 'Yes' : '—'}</div>
+                    <div class="tier-feature-desc">${entry.tier === 'dual' ? 'Multiple historically valid Unicode spellings exist — each a real, attested restoration.' : 'Only one valid Unicode restoration exists for this name.'}</div>
                 </div>
             </div>
         </div>

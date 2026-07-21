@@ -919,7 +919,7 @@ handleReturnFromStripe();
   if (!modal || !grid) return;
 
   const templeId = 'kartikeya';
-  const siteName = 'Kārtikeya';
+  const siteName = 'Kārttikeya';
   let selectedCents = 700;
 
   const els = {

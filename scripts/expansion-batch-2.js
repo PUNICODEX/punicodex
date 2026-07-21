@@ -140,7 +140,7 @@ const BATCH_DATA = [
   { id: 'nekhbet', ascii: 'nekhbet', unicode: 'Nḫbt', greek: '—', pantheon: 'egyptian', tier: '2', tierLabel: 'Tier 2', domain: 'Vulture, Protection, Upper Egypt', meaning: 'She of Nekheb', sources: ['Faulkner', 'Wb'] },
   { id: 'apep', ascii: 'apep', unicode: 'Ꜥpp', greek: '—', pantheon: 'egyptian', tier: '2', tierLabel: 'Tier 2', domain: 'Chaos, Serpent', meaning: 'The overthrown one', sources: ['Faulkner', 'Wb'] },
   { id: 'serqet', ascii: 'serqet', unicode: 'Srqt', greek: '—', pantheon: 'egyptian', tier: '2', tierLabel: 'Tier 2', domain: 'Scorpion, Protection', meaning: 'She who causes the throat to breathe', sources: ['Faulkner', 'Wb'] },
-  { id: 'hapy', ascii: 'hapy', unicode: 'Ḥꜥpy', greek: '—', pantheon: 'egyptian', tier: '2', tierLabel: 'Tier 2', domain: 'Nile Inundation, Fertility', meaning: 'The runner', sources: ['Faulkner', 'Wb'] },
+  { id: 'hp', ascii: 'hp', unicode: 'Ḥꜥpy', greek: '—', pantheon: 'egyptian', tier: '2', tierLabel: 'Tier 2', domain: 'Nile Inundation, Fertility', meaning: 'The runner', sources: ['Faulkner', 'Wb'] },
   { id: 'renenet', ascii: 'renenet', unicode: 'Rnnwtt', greek: '—', pantheon: 'egyptian', tier: '2', tierLabel: 'Tier 2', domain: 'Nursing, Harvest', meaning: 'The nourisher', sources: ['Faulkner', 'Wb'] },
   { id: 'seshat', ascii: 'seshat', unicode: 'Ssḥt', greek: '—', pantheon: 'egyptian', tier: '2', tierLabel: 'Tier 2', domain: 'Writing, Architecture', meaning: 'She who scrivens', sources: ['Faulkner', 'Wb'] },
   { id: 'mafdet', ascii: 'mafdet', unicode: 'Mꜣfdt', greek: '—', pantheon: 'egyptian', tier: '2', tierLabel: 'Tier 2', domain: 'Justice, Execution', meaning: 'The runner', sources: ['Faulkner', 'Wb'] },

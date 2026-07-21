@@ -2,7 +2,7 @@
  * PuniCodex — The Orrery of Scripts (home hero)
  *
  * A procedurally rendered 3D celestial sphere built from the writing systems
- * of the 23 pantheons. ~400 glyphs ride a Fibonacci lattice on a hollow
+ * of the 24 pantheons. ~400 glyphs ride a Fibonacci lattice on a hollow
  * spherical shell around the wordmark; three armillary rings precess slowly.
  * Real 3D: rotation matrices + perspective divide, depth-sorted sprites,
  * z-graded alpha, pointer parallax.

@@ -222,6 +222,7 @@ function main() {
     slavic: '#9B6B8F',
     zoroastrian: '#7D9B6B',
     incan: '#9B8B6B',
+    mapuche: '#8B9B7A',
     chinese: '#D4A5A5',
     taoist: '#A5A5D4',
     buddhist: '#A5D4A5',
@@ -375,6 +376,7 @@ function main() {
     slavic: 'The gods and spirits of Slavic pagan reconstruction.',
     zoroastrian: 'The divine beings of the Avesta and Zoroastrian tradition.',
     incan: 'The gods and huacas of the Inca and Andean religious world.',
+    mapuche: 'The spirits and serpent-powers of Mapuche tradition in south-central Chile and Argentina.',
     chinese: 'Deities, sages, and immortals of the Chinese religious landscape.',
     taoist: 'Taoist perfected beings, immortals, and cosmological figures.',
     buddhist: 'Buddhas, bodhisattvas, and protective figures across Buddhist canons.',
@@ -407,26 +409,27 @@ function main() {
       rules: [
         'Greek original contains both stress (acute/circumflex) and at least one long vowel.',
         'Multiple historically valid Unicode spellings are attested.',
-        'ASCII fallback is also historically legitimate.',
         'Each variant corresponds to a real, attested alternate restoration.',
+        'Both spellings are live as owned domain temples.',
       ],
       examples: ['apollon', 'hekate', 'nike'],
     },
     1: {
       label: 'Tier 1',
-      summary: 'Full scholarly orthography: stress + length, but only one historically valid restoration.',
+      summary: 'Full restoration: Greek names preserve both stress and length; other traditions keep at least one distinctive feature ASCII erases.',
       rules: [
-        'Greek original contains both stress and at least one long vowel.',
-        'Only one historically valid Unicode restoration exists.',
-        'ASCII fallback is a modern English homograph, not ancient canonical.',
+        'Greek: the original contains both stress (acute/circumflex) and at least one long vowel.',
+        'All other traditions: the Unicode form preserves ≥1 distinctive feature vs ASCII (any diacritic or a distinctive letter).',
+        'Only one historically dominant spelling exists (unlike Dual-Tier).',
       ],
-      examples: ['zeus', 'ares', 'aphrodite', 'athena', 'demeter', 'hera', 'hermes', 'hephaistos'],
+      examples: ['zeus', 'ares', 'aphrodite', 'athena', 'demeter', 'hera', 'hermes', 'hephaistos', 'odinn'],
     },
     2: {
       label: 'Tier 2',
-      summary: 'Preserves a single scholarly feature (stress or length) or neither.',
+      summary: 'Greek: one feature preserved (stress or length) or neither. Other traditions: no distinctive feature for ASCII to lose.',
       rules: [
         'Greek original contains only one feature (stress OR long vowel) or neither.',
+        'Non-Greek: the restoration needs no distinctive letters or diacritics.',
         'Still historically defensible and registrable as an IDN.',
       ],
       subtypes: {
@@ -434,7 +437,7 @@ function main() {
         'macron-preserving': 'Keeps vowel length but not stress.',
         'plain': 'Neither stress nor length is preserved; still a culturally meaningful name.',
       },
-      examples: ['artemis', 'atlas', 'dionysos', 'medousa'],
+      examples: ['artemis', 'atlas', 'dionysos', 'hestia'],
     },
   };
 

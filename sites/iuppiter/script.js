@@ -919,7 +919,7 @@ handleReturnFromStripe();
   if (!modal || !grid) return;
 
   const templeId = 'iuppiter';
-  const siteName = 'Iūppiter';
+  const siteName = 'Iūpiter';
   let selectedCents = 700;
 
   const els = {

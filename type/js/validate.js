@@ -85,6 +85,7 @@ const ALLOWED_PANTHEONS = [
   'slavic',
   'zoroastrian',
   'incan',
+  'mapuche',
   'chinese',
   'buddhist',
   'taoist',

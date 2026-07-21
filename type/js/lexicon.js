@@ -548,8 +548,8 @@ const LEXICON = [
     "id": "athena",
     "hasAdSite": true,
     "ascii": "athena",
-    "unicode": "Athénā",
-    "greek": "Ἀθήνᾶ",
+    "unicode": "Athēnâ",
+    "greek": "Ἀθηνᾶ",
     "pantheon": "greek",
     "tier": "1",
     "tierLabel": "Tier 1",
@@ -568,42 +568,12 @@ const LEXICON = [
       }
     ],
     "breakdown": [
-      {
-        "char": "a",
-        "to": "A",
-        "type": "same",
-        "note": "Alpha"
-      },
-      {
-        "char": "t",
-        "to": "t",
-        "type": "same",
-        "note": "Tau"
-      },
-      {
-        "char": "h",
-        "to": "h",
-        "type": "same",
-        "note": "Theta"
-      },
-      {
-        "char": "e",
-        "to": "é",
-        "type": "stress",
-        "note": "Acute on epsilon"
-      },
-      {
-        "char": "n",
-        "to": "n",
-        "type": "same",
-        "note": "Nu"
-      },
-      {
-        "char": "a",
-        "to": "ā",
-        "type": "length",
-        "note": "Long alpha with iota subscript"
-      }
+      { "char": "a", "to": "A", "type": "same", "note": "Same, capitalized" },
+      { "char": "t", "to": "t", "type": "same", "note": "Same" },
+      { "char": "h", "to": "h", "type": "same", "note": "Same" },
+      { "char": "e", "to": "ē", "type": "length", "note": "Macron: long eta" },
+      { "char": "n", "to": "n", "type": "same", "note": "Same" },
+      { "char": "a", "to": "â", "type": "stress", "note": "Circumflex: stress + length on the contracted final alpha (Ἀθηνᾶ)" }
     ],
     "etymology": {
       "protoForm": "*h₂erǵ-",
@@ -1155,7 +1125,7 @@ const LEXICON = [
     "id": "prometheus",
     "hasAdSite": true,
     "ascii": "prometheus",
-    "unicode": "Promētheus",
+    "unicode": "Promētheús",
     "greek": "Προμηθεύς",
     "pantheon": "greek",
     "tier": "1",
@@ -1169,66 +1139,16 @@ const LEXICON = [
     ],
     "variants": [],
     "breakdown": [
-      {
-        "char": "p",
-        "to": "P",
-        "type": "same",
-        "note": "Pi"
-      },
-      {
-        "char": "r",
-        "to": "r",
-        "type": "same",
-        "note": "Rho"
-      },
-      {
-        "char": "o",
-        "to": "o",
-        "type": "same",
-        "note": "Short omicron"
-      },
-      {
-        "char": "m",
-        "to": "m",
-        "type": "same",
-        "note": "Mu"
-      },
-      {
-        "char": "e",
-        "to": "ē",
-        "type": "length",
-        "note": "Eta: long epsilon"
-      },
-      {
-        "char": "t",
-        "to": "t",
-        "type": "same",
-        "note": "Tau"
-      },
-      {
-        "char": "h",
-        "to": "h",
-        "type": "same",
-        "note": "Theta"
-      },
-      {
-        "char": "e",
-        "to": "e",
-        "type": "same",
-        "note": "Short epsilon"
-      },
-      {
-        "char": "u",
-        "to": "u",
-        "type": "same",
-        "note": "Upsilon"
-      },
-      {
-        "char": "s",
-        "to": "s",
-        "type": "same",
-        "note": "Sigma"
-      }
+      { "char": "p", "to": "P", "type": "same", "note": "Same, capitalized" },
+      { "char": "r", "to": "r", "type": "same", "note": "Same" },
+      { "char": "o", "to": "o", "type": "same", "note": "Same" },
+      { "char": "m", "to": "m", "type": "same", "note": "Same" },
+      { "char": "e", "to": "ē", "type": "length", "note": "Macron: long eta" },
+      { "char": "t", "to": "t", "type": "same", "note": "Same" },
+      { "char": "h", "to": "h", "type": "same", "note": "Same" },
+      { "char": "e", "to": "e", "type": "same", "note": "Same" },
+      { "char": "u", "to": "ú", "type": "stress", "note": "Acute on the ultima (Προμηθεύς)" },
+      { "char": "s", "to": "s", "type": "same", "note": "Same" }
     ],
     "etymology": {
       "protoForm": "*pro-mēth₂-",
@@ -3962,8 +3882,8 @@ const LEXICON = [
     "unicode": "Valhǫll",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
+    "tier": "1",
+    "tierLabel": "Tier 1",
     "domain": "Hall of the Slain",
     "meaning": "Hall of the slain warriors",
     "sources": [
@@ -4022,8 +3942,8 @@ const LEXICON = [
     "unicode": "Ragnarǫk",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
+    "tier": "1",
+    "tierLabel": "Tier 1",
     "domain": "Doom of the Gods",
     "meaning": "Twilight of the gods (from ragna + rǫk)",
     "sources": [
@@ -4251,8 +4171,8 @@ const LEXICON = [
     "unicode": "Jötunheimr",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
+    "tier": "1",
+    "tierLabel": "Tier 1",
     "domain": "Land of the Giants",
     "meaning": "Giant-home (from jötunn + heimr)",
     "sources": [
@@ -4411,8 +4331,8 @@ const LEXICON = [
     "unicode": "Jǫrmungandr",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
+    "tier": "1",
+    "tierLabel": "Tier 1",
     "domain": "World Serpent",
     "meaning": "Huge monster (from jǫrmun + gandr)",
     "sources": [
@@ -4494,8 +4414,8 @@ const LEXICON = [
     "unicode": "Týr",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
+    "tier": "1",
+    "tierLabel": "Tier 1",
     "domain": "War, Law, Oaths",
     "meaning": "God (cognate with Greek Zeus, Latin Jove)",
     "sources": [
@@ -9168,7 +9088,7 @@ const LEXICON = [
   {
     "id": "tezcatlipoca",
     "ascii": "tezcatlipoca",
-    "unicode": "Tezcatlipōca",
+    "unicode": "Tēzcatlīpōca",
     "greek": "—",
     "pantheon": "nahuatl",
     "tier": "1",
@@ -9179,78 +9099,18 @@ const LEXICON = [
       "Karttunen"
     ],
     "breakdown": [
-      {
-        "char": "t",
-        "to": "T",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "e",
-        "to": "e",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "z",
-        "to": "z",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "c",
-        "to": "c",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "a",
-        "to": "a",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "t",
-        "to": "t",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "l",
-        "to": "l",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "i",
-        "to": "i",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "p",
-        "to": "p",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "o",
-        "to": "ō",
-        "type": "length",
-        "note": "Macron: long vowel"
-      },
-      {
-        "char": "c",
-        "to": "c",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "a",
-        "to": "a",
-        "type": "same",
-        "note": "Same"
-      }
+      { "char": "t", "to": "T", "type": "same", "note": "Same, capitalized" },
+      { "char": "e", "to": "ē", "type": "length", "note": "Macron: long /eː/" },
+      { "char": "z", "to": "z", "type": "same", "note": "Same" },
+      { "char": "c", "to": "c", "type": "same", "note": "Same" },
+      { "char": "a", "to": "a", "type": "same", "note": "Same" },
+      { "char": "t", "to": "t", "type": "same", "note": "Same" },
+      { "char": "l", "to": "l", "type": "same", "note": "Same" },
+      { "char": "i", "to": "ī", "type": "length", "note": "Macron: long /iː/" },
+      { "char": "p", "to": "p", "type": "same", "note": "Same" },
+      { "char": "o", "to": "ō", "type": "length", "note": "Macron: long /oː/" },
+      { "char": "c", "to": "c", "type": "same", "note": "Same" },
+      { "char": "a", "to": "a", "type": "same", "note": "Same" }
     ]
   },
   {
@@ -9650,7 +9510,7 @@ const LEXICON = [
   {
     "id": "huitzilopochtli",
     "ascii": "huitzilopochtli",
-    "unicode": "Huitzilopōchtli",
+    "unicode": "Huītzilōpōchtli",
     "greek": "—",
     "pantheon": "nahuatl",
     "tier": "1",
@@ -9661,96 +9521,21 @@ const LEXICON = [
       "Karttunen"
     ],
     "breakdown": [
-      {
-        "char": "h",
-        "to": "H",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "u",
-        "to": "u",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "i",
-        "to": "i",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "t",
-        "to": "t",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "z",
-        "to": "z",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "i",
-        "to": "i",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "l",
-        "to": "l",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "o",
-        "to": "o",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "p",
-        "to": "p",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "o",
-        "to": "ō",
-        "type": "length",
-        "note": "Macron on o"
-      },
-      {
-        "char": "c",
-        "to": "c",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "h",
-        "to": "h",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "t",
-        "to": "t",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "l",
-        "to": "l",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "i",
-        "to": "i",
-        "type": "same",
-        "note": "Same"
-      }
+      { "char": "h", "to": "H", "type": "same", "note": "Same, capitalized" },
+      { "char": "u", "to": "u", "type": "same", "note": "Same" },
+      { "char": "i", "to": "ī", "type": "length", "note": "Macron: long /iː/" },
+      { "char": "t", "to": "t", "type": "same", "note": "Same" },
+      { "char": "z", "to": "z", "type": "same", "note": "Same" },
+      { "char": "i", "to": "i", "type": "same", "note": "Same" },
+      { "char": "l", "to": "l", "type": "same", "note": "Same" },
+      { "char": "o", "to": "ō", "type": "length", "note": "Macron: long /oː/" },
+      { "char": "p", "to": "p", "type": "same", "note": "Same" },
+      { "char": "o", "to": "ō", "type": "length", "note": "Macron: long /oː/" },
+      { "char": "c", "to": "c", "type": "same", "note": "Same" },
+      { "char": "h", "to": "h", "type": "same", "note": "Same" },
+      { "char": "t", "to": "t", "type": "same", "note": "Same" },
+      { "char": "l", "to": "l", "type": "same", "note": "Same" },
+      { "char": "i", "to": "i", "type": "same", "note": "Same" }
     ]
   },
   {
@@ -9918,8 +9703,8 @@ const LEXICON = [
     "unicode": "Ọya",
     "greek": "—",
     "pantheon": "yoruba",
-    "tier": "2",
-    "tierLabel": "Tier 2",
+    "tier": "1",
+    "tierLabel": "Tier 1",
     "domain": "Wind, Storms, Change",
     "meaning": "She who tore",
     "sources": [
@@ -9948,6 +9733,14 @@ const LEXICON = [
   },
   {
     "id": "oshun",
+    "variants": [
+      {
+        "unicode": "Ọ̀ṣun",
+        "type": "alt",
+        "note": "Fully tone-marked dictionary form with the initial low tone (Abraham). Written Yoruba routinely omits tone marks.",
+        "sources": ["Abraham"]
+      }
+    ],
     "ascii": "oshun",
     "unicode": "Ọṣun",
     "greek": "—",
@@ -9998,8 +9791,8 @@ const LEXICON = [
     "unicode": "Yemọja",
     "greek": "—",
     "pantheon": "yoruba",
-    "tier": "2",
-    "tierLabel": "Tier 2",
+    "tier": "1",
+    "tierLabel": "Tier 1",
     "domain": "Ocean, Motherhood, Protection",
     "meaning": "Mother whose children are fish",
     "sources": [
@@ -10046,8 +9839,22 @@ const LEXICON = [
   },
   {
     "id": "eshu",
+    "variants": [
+      {
+        "unicode": "Ẹ̀ṣù",
+        "type": "alt",
+        "note": "Fully tone-marked dictionary form (Abraham). Written Yoruba routinely omits tone marks; the underdots are the obligatory phonemic marks.",
+        "sources": ["Abraham"]
+      },
+      {
+        "unicode": "Èṣù",
+        "type": "alt",
+        "note": "English/Wikipedia convention: tone-marked without underdots",
+        "sources": ["Abraham"]
+      }
+    ],
     "ascii": "eshu",
-    "unicode": "Ẹṣu",
+    "unicode": "Ẹṣù",
     "greek": "—",
     "pantheon": "yoruba",
     "tier": "1",
@@ -10058,30 +9865,10 @@ const LEXICON = [
       "Abraham"
     ],
     "breakdown": [
-      {
-        "char": "e",
-        "to": "Ẹ",
-        "type": "special",
-        "note": "E with dot below"
-      },
-      {
-        "char": "s",
-        "to": "ṣ",
-        "type": "special",
-        "note": "S with dot below"
-      },
-      {
-        "char": "h",
-        "to": "",
-        "type": "drop",
-        "note": "Not written"
-      },
-      {
-        "char": "u",
-        "to": "u",
-        "type": "same",
-        "note": "Same"
-      }
+      { "char": "e", "to": "Ẹ", "type": "special", "note": "E with dot below: open /ɛ/" },
+      { "char": "s", "to": "ṣ", "type": "special", "note": "S with dot below: /ʃ/" },
+      { "char": "h", "to": "", "type": "drop", "note": "Not written in Yoruba orthography" },
+      { "char": "u", "to": "ù", "type": "stress", "note": "Grave: low tone" }
     ]
   },
   {
@@ -10126,9 +9913,17 @@ const LEXICON = [
   },
   {
     "id": "obatala",
+    "variants": [
+      {
+        "unicode": "Ọbatálá",
+        "type": "owned",
+        "note": "Previous owned form; the current primary adds the low tone on ba (Ọbàtálá)",
+        "sources": ["Abraham"]
+      }
+    ],
     hasAdSite: true,
     "ascii": "obatala",
-    "unicode": "Ọbatálá",
+    "unicode": "Ọbàtálá",
     "greek": "—",
     "pantheon": "yoruba",
     "tier": "1",
@@ -10139,48 +9934,13 @@ const LEXICON = [
       "Abraham"
     ],
     "breakdown": [
-      {
-        "char": "o",
-        "to": "Ọ",
-        "type": "special",
-        "note": "O with dot below"
-      },
-      {
-        "char": "b",
-        "to": "b",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "a",
-        "to": "a",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "t",
-        "to": "t",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "a",
-        "to": "á",
-        "type": "stress",
-        "note": "Acute on a"
-      },
-      {
-        "char": "l",
-        "to": "l",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "a",
-        "to": "á",
-        "type": "stress",
-        "note": "Acute on a"
-      }
+      { "char": "o", "to": "Ọ", "type": "special", "note": "O with dot below: open /ɔ/" },
+      { "char": "b", "to": "b", "type": "same", "note": "Same" },
+      { "char": "a", "to": "à", "type": "stress", "note": "Grave: low tone" },
+      { "char": "t", "to": "t", "type": "same", "note": "Same" },
+      { "char": "a", "to": "á", "type": "stress", "note": "Acute: high tone" },
+      { "char": "l", "to": "l", "type": "same", "note": "Same" },
+      { "char": "a", "to": "á", "type": "stress", "note": "Acute: high tone" }
     ]
   },
   {
@@ -10317,8 +10077,8 @@ const LEXICON = [
     "unicode": "Černobog",
     "greek": "—",
     "pantheon": "slavic",
-    "tier": "2",
-    "tierLabel": "Tier 2",
+    "tier": "1",
+    "tierLabel": "Tier 1",
     "domain": "Darkness, Chaos, Evil",
     "meaning": "Black god",
     "sources": [
@@ -11746,7 +11506,7 @@ const LEXICON = [
   {
     "id": "apep",
     "ascii": "apep",
-    "unicode": "Ꜥpp",
+    "unicode": "ꜥꜣpp",
     "greek": "—",
     "pantheon": "egyptian",
     "tier": "1",
@@ -11758,30 +11518,10 @@ const LEXICON = [
       "Wb"
     ],
     "breakdown": [
-      {
-        "char": "a",
-        "to": "Ꜥ",
-        "type": "special",
-        "note": "Alef"
-      },
-      {
-        "char": "p",
-        "to": "p",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "e",
-        "to": "",
-        "type": "drop",
-        "note": "Vowel not written"
-      },
-      {
-        "char": "p",
-        "to": "p",
-        "type": "same",
-        "note": "Same"
-      }
+      { "char": "a", "to": "ꜥ", "type": "special", "note": "Egyptological ayin (𓂝)" },
+      { "char": "p", "to": "ꜣ", "type": "special", "note": "Egyptological alef (𓄿)" },
+      { "char": "e", "to": "p", "type": "special", "note": "Second p of the skeleton" },
+      { "char": "p", "to": "p", "type": "same", "note": "Same" }
     ]
   },
   {
@@ -11841,7 +11581,7 @@ const LEXICON = [
     "id": "sia",
     "hasAdSite": true,
     "ascii": "sia",
-    "unicode": "sꜥ",
+    "unicode": "sjꜣ",
     "greek": "—",
     "pantheon": "egyptian",
     "tier": "1",
@@ -11861,24 +11601,9 @@ const LEXICON = [
       "cognates": []
     },
     "breakdown": [
-      {
-        "char": "s",
-        "to": "s",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "i",
-        "to": "ꜥ",
-        "type": "special",
-        "note": "Ayin: voiced pharyngeal fricative"
-      },
-      {
-        "char": "a",
-        "to": "",
-        "type": "drop",
-        "note": "Not written"
-      }
+      { "char": "s", "to": "s", "type": "same", "note": "Same" },
+      { "char": "i", "to": "j", "type": "special", "note": "Yod-glide (dual reed leaves 𓇌)" },
+      { "char": "a", "to": "ꜣ", "type": "special", "note": "Egyptological alef (𓄿)" }
     ]
   },
   {
@@ -18703,7 +18428,7 @@ const LEXICON = [
         "char": "c",
         "to": "K",
         "type": "special",
-        "note": "Special character"
+        "note": "Greek kappa (Κ)"
       },
       {
         "char": "e",
@@ -18739,7 +18464,7 @@ const LEXICON = [
         "char": "u",
         "to": "o",
         "type": "special",
-        "note": "Special character"
+        "note": "Greek omicron (Latin -u- for Greek -ο-)"
       },
       {
         "char": "s",
@@ -18948,8 +18673,8 @@ const LEXICON = [
         "note": "Common English form"
       }
     ],
-    "ascii": "sphigx",
-    "unicode": "Sphigx",
+    "ascii": "sphinx",
+    "unicode": "Sphínx",
     "greek": "Σφίγξ",
     "pantheon": "greek",
     "tier": "2",
@@ -18961,42 +18686,12 @@ const LEXICON = [
       "LSJ"
     ],
     "breakdown": [
-      {
-        "char": "s",
-        "to": "S",
-        "type": "same",
-        "note": "S uppercase"
-      },
-      {
-        "char": "p",
-        "to": "p",
-        "type": "same",
-        "note": "p same"
-      },
-      {
-        "char": "h",
-        "to": "h",
-        "type": "same",
-        "note": "h same"
-      },
-      {
-        "char": "i",
-        "to": "i",
-        "type": "same",
-        "note": "i same"
-      },
-      {
-        "char": "g",
-        "to": "g",
-        "type": "same",
-        "note": "g same — restores Greek gamma [ŋg] cluster"
-      },
-      {
-        "char": "x",
-        "to": "x",
-        "type": "same",
-        "note": "x same"
-      }
+      { "char": "s", "to": "S", "type": "same", "note": "Same, capitalized" },
+      { "char": "p", "to": "p", "type": "same", "note": "Same" },
+      { "char": "h", "to": "h", "type": "same", "note": "Same" },
+      { "char": "i", "to": "í", "type": "stress", "note": "Acute on i (Σφίγξ)" },
+      { "char": "n", "to": "n", "type": "same", "note": "Same" },
+      { "char": "x", "to": "x", "type": "same", "note": "Same" }
     ]
   },
   {
@@ -23426,7 +23121,7 @@ const LEXICON = [
   {
     "id": "kartikeya",
     "ascii": "kartikeya",
-    "unicode": "Kārtikeya",
+    "unicode": "Kārttikeya",
     "greek": "—",
     "pantheon": "sanskrit",
     "tier": "1",
@@ -23458,9 +23153,9 @@ const LEXICON = [
       },
       {
         "char": "t",
-        "to": "t",
-        "type": "same",
-        "note": "Same"
+        "to": "tt",
+        "type": "merge",
+        "note": "Geminate tt of क्त (Kārttikeya)"
       },
       {
         "char": "i",
@@ -26885,17 +26580,17 @@ const LEXICON = [
     "hasAdSite": true,
     "variants": [
       {
-        "unicode": "Kanaloa",
-        "type": "ascii",
-        "note": "Plain ASCII form"
+        "unicode": "Kānāloa",
+        "type": "owned",
+        "note": "Owned stylized form with conventional long-vowel marks; Pukui & Elbert and UH Mānoa write Kanaloa without kahakō"
       }
     ],
     "ascii": "kanaloa",
-    "unicode": "Kānāloa",
+    "unicode": "Kanaloa",
     "greek": "—",
     "pantheon": "polynesian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
+    "tier": "2",
+    "tierLabel": "Tier 2",
     "domain": "Ocean, Underworld",
     "meaning": "Hawaiian god symbolized by the squid or by the octopus, typically associated with Kāne",
     "senses": [
@@ -26917,9 +26612,9 @@ const LEXICON = [
       },
       {
         "char": "a",
-        "to": "ā",
-        "type": "length",
-        "note": "Long vowel"
+        "to": "a",
+        "type": "same",
+        "note": "Same"
       },
       {
         "char": "n",
@@ -26929,9 +26624,9 @@ const LEXICON = [
       },
       {
         "char": "a",
-        "to": "ā",
-        "type": "length",
-        "note": "Long vowel"
+        "to": "a",
+        "type": "same",
+        "note": "Same"
       },
       {
         "char": "l",
@@ -29565,7 +29260,7 @@ const LEXICON = [
       }
     ],
     "ascii": "itzpapalotl",
-    "unicode": "Itzpapālōtl",
+    "unicode": "Ītzpāpālōtl",
     "greek": "—",
     "pantheon": "nahuatl",
     "tier": "1",
@@ -29577,72 +29272,17 @@ const LEXICON = [
       "Sahagún"
     ],
     "breakdown": [
-      {
-        "char": "i",
-        "to": "I",
-        "type": "same",
-        "note": "Same, capitalized"
-      },
-      {
-        "char": "t",
-        "to": "t",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "z",
-        "to": "z",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "p",
-        "to": "p",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "a",
-        "to": "a",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "p",
-        "to": "p",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "a",
-        "to": "ā",
-        "type": "length",
-        "note": "Long vowel"
-      },
-      {
-        "char": "l",
-        "to": "l",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "o",
-        "to": "ō",
-        "type": "length",
-        "note": "Long vowel"
-      },
-      {
-        "char": "t",
-        "to": "t",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "l",
-        "to": "l",
-        "type": "same",
-        "note": "Same"
-      }
+      { "char": "i", "to": "Ī", "type": "length", "note": "Macron: long /iː/" },
+      { "char": "t", "to": "t", "type": "same", "note": "Same" },
+      { "char": "z", "to": "z", "type": "same", "note": "Same" },
+      { "char": "p", "to": "p", "type": "same", "note": "Same" },
+      { "char": "a", "to": "ā", "type": "length", "note": "Macron: long /aː/" },
+      { "char": "p", "to": "p", "type": "same", "note": "Same" },
+      { "char": "a", "to": "ā", "type": "length", "note": "Macron: long /aː/" },
+      { "char": "l", "to": "l", "type": "same", "note": "Same" },
+      { "char": "o", "to": "ō", "type": "length", "note": "Macron: long /oː/" },
+      { "char": "t", "to": "t", "type": "same", "note": "Same" },
+      { "char": "l", "to": "l", "type": "same", "note": "Same" }
     ]
   },
   {
@@ -29878,6 +29518,14 @@ const LEXICON = [
   },
   {
     "id": "orunmila",
+    "variants": [
+      {
+        "unicode": "Ọ̀rúnmìlà",
+        "type": "alt",
+        "note": "Fully tone-marked dictionary form with the initial low tone (Abraham). Written Yoruba routinely omits tone marks.",
+        "sources": ["Abraham"]
+      }
+    ],
     "ascii": "orunmila",
     "unicode": "Ọrúnmìlà",
     "greek": "—",
@@ -29949,36 +29597,47 @@ const LEXICON = [
     "pantheon": "yoruba",
     "tier": "1",
     "tierLabel": "Tier 1",
-    "domain": "Hunting, Justice",
-    "meaning": "The sorcerer of the forest",
+    "domain": "Hunting, Forest, Justice",
+    "meaning": "The hunter — orisha of the hunt, the forest, and deliberate strategy (standard Yoruba Ọ̀ṣọ́ọ̀sì; Cuban Ochosi, Brazilian Oxóssi)",
     "sources": [
+      "Abraham",
       "Bascom",
       "Idowu"
+    ],
+    "variants": [
+      {
+        "unicode": "Ọ̀ṣọ́ọ̀sì",
+        "type": "alt",
+        "note": "Standard Yoruba orthography, fully tone-marked",
+        "sources": [
+          "Abraham"
+        ]
+      }
     ],
     "breakdown": [
       {
         "char": "o",
         "to": "Ọ",
         "type": "special",
-        "note": "Special character"
+        "note": "O with dot below: open /ɔ/"
       },
       {
         "char": "c",
         "to": "ṣ",
         "type": "special",
-        "note": "Special character"
+        "note": "S with dot below: /ʃ/ (Santería ch = Yoruba ṣ)"
       },
       {
         "char": "h",
         "to": "ọ",
         "type": "special",
-        "note": "Special character"
+        "note": "O with dot below: open /ɔ/"
       },
       {
         "char": "o",
         "to": "ọ",
         "type": "special",
-        "note": "Special character"
+        "note": "O with dot below: open /ɔ/"
       },
       {
         "char": "s",
@@ -29990,7 +29649,7 @@ const LEXICON = [
         "char": "i",
         "to": "ì",
         "type": "stress",
-        "note": "Stress on i"
+        "note": "Grave: low tone"
       }
     ]
   },
@@ -30115,7 +29774,7 @@ const LEXICON = [
     "pantheon": "yoruba",
     "tier": "1",
     "tierLabel": "Tier 1",
-    "domain": "Volcanoes, Wilderness",
+    "domain": "Wilderness, Earth, Diaspora Volcano",
     "meaning": "The uninhabited place",
     "sources": [
       "Bascom",
@@ -38510,7 +38169,7 @@ const LEXICON = [
   {
     "id": "hermod",
     "ascii": "hermod",
-    "unicode": "Hermód",
+    "unicode": "Hermóðr",
     "greek": "—",
     "pantheon": "norse",
     "tier": "1",
@@ -38549,14 +38208,14 @@ const LEXICON = [
       {
         "char": "o",
         "to": "ó",
-        "type": "stress",
-        "note": "Stress on o"
+        "type": "length",
+        "note": "Long ó (ON ó = /oː/)"
       },
       {
         "char": "d",
-        "to": "d",
-        "type": "same",
-        "note": "Same"
+        "to": "ðr",
+        "type": "special",
+        "note": "Eth (ð) + nominative -r"
       }
     ]
   },
@@ -38783,8 +38442,8 @@ const LEXICON = [
     "unicode": "Skǫll",
     "greek": "—",
     "pantheon": "norse",
-    "tier": "2",
-    "tierLabel": "Tier 2",
+    "tier": "1",
+    "tierLabel": "Tier 1",
     "domain": "Sun-Chaser, Devourer",
     "meaning": "The one who mocks",
     "sources": [
@@ -39128,47 +38787,6 @@ const LEXICON = [
         "to": "",
         "type": "drop",
         "note": "Dropped: vowel not written"
-      }
-    ]
-  },
-  {
-    "id": "hapy",
-    "ascii": "hapy",
-    "unicode": "Ḥꜥpy",
-    "greek": "—",
-    "pantheon": "egyptian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
-    "domain": "Nile Inundation, Fertility",
-    "meaning": "The runner",
-    "sources": [
-      "Faulkner",
-      "Wb"
-    ],
-    "breakdown": [
-      {
-        "char": "h",
-        "to": "Ḥ",
-        "type": "special",
-        "note": "H with dot: voiceless pharyngeal"
-      },
-      {
-        "char": "a",
-        "to": "ꜥ",
-        "type": "special",
-        "note": "Ayin: voiced pharyngeal"
-      },
-      {
-        "char": "p",
-        "to": "p",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "y",
-        "to": "y",
-        "type": "same",
-        "note": "Same"
       }
     ]
   },
@@ -42196,30 +41814,61 @@ const LEXICON = [
   },
   {
     "id": "vairocana",
-    "ascii": "vairocana",
-    "unicode": "Vairocana",
-    "greek": "—",
+    "ascii": "mahavairocana",
+    "unicode": "Mahāvairocana",
+    "greek": "महावैरोचन",
     "pantheon": "buddhist",
-    "tier": "2",
-    "tierLabel": "Tier 2",
+    "tier": "1",
+    "tierLabel": "Tier 1",
     "domain": "Universal Illumination, Cosmic Buddha",
-    "meaning": "of a son of the class of gods called Nīlakāyikas, Lalit.",
+    "meaning": "‘the Great Illuminator’, the cosmic Buddha at the centre of the Avataṃsaka Sūtra and the Shingon school (mahā ‘great’ + vairocana ‘shining forth’, from vi-√ruc ‘to shine’), MW.",
     "senses": [
       {
         "type": "etymology",
-        "text": "The illuminator"
+        "text": "Great Illuminator (from महा 'great' + वैरोचन 'shining forth')"
       }
     ],
     "sources": [
       "Avatamsaka Sutra",
       "Buddhist texts"
     ],
+    "variants": [
+      {
+        "unicode": "Vairocana",
+        "type": "ascii",
+        "note": "Common short form, widely used in scholarship"
+      }
+    ],
     "breakdown": [
       {
-        "char": "v",
-        "to": "V",
+        "char": "m",
+        "to": "M",
         "type": "same",
         "note": "Same, capitalized"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "h",
+        "to": "h",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "ā",
+        "type": "length",
+        "note": "Macron: long /aː/"
+      },
+      {
+        "char": "v",
+        "to": "v",
+        "type": "same",
+        "note": "Same"
       },
       {
         "char": "a",
@@ -43557,13 +43206,143 @@ const LEXICON = [
     ]
   },
   {
+    "id": "shakyamuni",
+    "ascii": "shakyamuni",
+    "unicode": "Śākyamuni",
+    "greek": "शाक्यमुनि",
+    "pantheon": "buddhist",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Enlightenment, Teaching, Historical Buddha",
+    "meaning": "‘sage of the Śākya clan’, epithet of the historical Buddha Siddhārtha Gautama, MW.",
+    "senses": [
+      {
+        "type": "etymology",
+        "text": "Sage of the Śākyas (from शाक्य 'of the Śākya clan' + मुनि 'sage')"
+      }
+    ],
+    "sources": [
+      "MW",
+      "Buddhist texts"
+    ],
+    "breakdown": [
+      {
+        "char": "s",
+        "to": "Ś",
+        "type": "special",
+        "note": "Ś: voiceless palatal sibilant /ɕ/"
+      },
+      {
+        "char": "h",
+        "to": "",
+        "type": "drop",
+        "note": "Part of ś digraph"
+      },
+      {
+        "char": "a",
+        "to": "ā",
+        "type": "length",
+        "note": "Macron: long /aː/"
+      },
+      {
+        "char": "k",
+        "to": "k",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "y",
+        "to": "y",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "m",
+        "to": "m",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "u",
+        "to": "u",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "i",
+        "to": "i",
+        "type": "same",
+        "note": "Same"
+      }
+    ]
+  },
+  {
+    "id": "mara",
+    "ascii": "mara",
+    "unicode": "Māra",
+    "greek": "मार",
+    "pantheon": "buddhist",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Death, Temptation, Illusion",
+    "meaning": "‘death, the tempter’, the personification of death and desire who assailed the Buddha under the Bodhi tree (from √mṛ ‘to die’), MW.",
+    "senses": [
+      {
+        "type": "etymology",
+        "text": "Death, the killer (from मार, √mṛ 'to die')"
+      }
+    ],
+    "sources": [
+      "MW",
+      "Buddhist texts"
+    ],
+    "breakdown": [
+      {
+        "char": "m",
+        "to": "M",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "a",
+        "to": "ā",
+        "type": "length",
+        "note": "Macron: long /aː/"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Same"
+      }
+    ]
+  },
+  {
     "id": "laozi",
     "ascii": "laozi",
     "unicode": "Lǎozǐ",
     "greek": "老子",
     "pantheon": "taoist",
-    "tier": "2",
-    "tierLabel": "Tier 2",
+    "tier": "1",
+    "tierLabel": "Tier 1",
     "domain": "Founder of Daoism, Sage",
     "meaning": "Old master",
     "sources": [
@@ -45297,7 +45076,7 @@ const LEXICON = [
   {
     "id": "mot",
     "ascii": "mot",
-    "unicode": "Mōt",
+    "unicode": "Mūt",
     "greek": "—",
     "pantheon": "phoenician",
     "tier": "1",
@@ -45309,24 +45088,9 @@ const LEXICON = [
       "CIS"
     ],
     "breakdown": [
-      {
-        "char": "m",
-        "to": "M",
-        "type": "same",
-        "note": "Same, capitalized"
-      },
-      {
-        "char": "o",
-        "to": "ō",
-        "type": "length",
-        "note": "Long vowel"
-      },
-      {
-        "char": "t",
-        "to": "t",
-        "type": "same",
-        "note": "Same"
-      }
+      { "char": "m", "to": "M", "type": "same", "note": "Same, capitalized" },
+      { "char": "o", "to": "ū", "type": "length", "note": "Macron: long /uː/ (Mūt)" },
+      { "char": "t", "to": "t", "type": "same", "note": "Same" }
     ]
   },
   {
@@ -45381,7 +45145,7 @@ const LEXICON = [
     "ascii": "shapash",
     "unicode": "Šāpšu",
     "greek": "—",
-    "pantheon": "phoenician",
+    "pantheon": "canaanite",
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Sun",
@@ -45491,7 +45255,7 @@ const LEXICON = [
   {
     "id": "dagan",
     "ascii": "dagan",
-    "unicode": "Dāgan",
+    "unicode": "Dāgān",
     "greek": "—",
     "pantheon": "phoenician",
     "tier": "1",
@@ -45503,36 +45267,11 @@ const LEXICON = [
       "CIS"
     ],
     "breakdown": [
-      {
-        "char": "d",
-        "to": "D",
-        "type": "same",
-        "note": "Same, capitalized"
-      },
-      {
-        "char": "a",
-        "to": "ā",
-        "type": "length",
-        "note": "Long vowel"
-      },
-      {
-        "char": "g",
-        "to": "g",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "a",
-        "to": "a",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "n",
-        "to": "n",
-        "type": "same",
-        "note": "Same"
-      }
+      { "char": "d", "to": "D", "type": "same", "note": "Same, capitalized" },
+      { "char": "a", "to": "ā", "type": "length", "note": "Macron: long /aː/" },
+      { "char": "g", "to": "g", "type": "same", "note": "Same" },
+      { "char": "a", "to": "ā", "type": "length", "note": "Macron: long /aː/ (Dāgān)" },
+      { "char": "n", "to": "n", "type": "same", "note": "Same" }
     ]
   },
   {
@@ -46114,8 +45853,8 @@ const LEXICON = [
     "unicode": "Kǒngzǐ",
     "greek": "孔子",
     "pantheon": "chinese",
-    "tier": "2",
-    "tierLabel": "Tier 2",
+    "tier": "1",
+    "tierLabel": "Tier 1",
     "domain": "Philosopher, Ethics, Society",
     "meaning": "Master Kong",
     "sources": [
@@ -51096,10 +50835,10 @@ const LEXICON = [
     "ascii": "trengtreng",
     "unicode": "Trengtreng",
     "greek": "—",
-    "pantheon": "incan",
+    "pantheon": "mapuche",
     "tier": "2",
     "tierLabel": "Tier 2",
-    "domain": "Thunder, War",
+    "domain": "Flood, Land-Shaping",
     "meaning": "Mapuche thunder and war god",
     "sources": [
       "Mapuche oral tradition"
@@ -54090,7 +53829,7 @@ const LEXICON = [
     "pantheon": "greek",
     "tier": "1",
     "tierLabel": "Tier 1",
-    "domain": "Purity, Rarity, Wonder",
+    "domain": "Rarity, Ferocity, Wonder",
     "meaning": "'Single-horned' (from μόνος + κέρας)",
     "sources": ["LSJ", "Ctesias", "Pliny"],
     "variants": [
@@ -54222,7 +53961,7 @@ const LEXICON = [
     "id": "iuppiter",
     "hasAdSite": true,
     "ascii": "iuppiter",
-    "unicode": "Iūppiter",
+    "unicode": "Iūpiter",
     "greek": "—",
     "pantheon": "roman",
     "tier": "1",
@@ -54232,14 +53971,14 @@ const LEXICON = [
     "sources": ["Lewis & Short", "Ennius", "Virgil"],
     "variants": [],
     "breakdown": [
-        { char: "i", to: "I", type: "same", note: "Same letter" },
-        { char: "u", to: "ū", type: "length", note: "Macron marks the long vowel" },
-        { char: "p", to: "p", type: "same", note: "Same letter" },
-        { char: "p", to: "p", type: "same", note: "Same letter" },
-        { char: "i", to: "i", type: "same", note: "Same letter" },
-        { char: "t", to: "t", type: "same", note: "Same letter" },
-        { char: "e", to: "e", type: "same", note: "Same letter" },
-        { char: "r", to: "r", type: "same", note: "Same letter" }
+      { "char": "i", "to": "I", "type": "same", "note": "Same, capitalized" },
+      { "char": "u", "to": "ū", "type": "length", "note": "Macron: long /uː/ (Iūpiter)" },
+      { "char": "p", "to": "p", "type": "same", "note": "Same" },
+      { "char": "p", "to": "", "type": "drop", "note": "Single-p spelling (Iūpiter, not Iuppiter)" },
+      { "char": "i", "to": "i", "type": "same", "note": "Same" },
+      { "char": "t", "to": "t", "type": "same", "note": "Same" },
+      { "char": "e", "to": "e", "type": "same", "note": "Same" },
+      { "char": "r", "to": "r", "type": "same", "note": "Same" }
     ]
   },
   {
@@ -54314,7 +54053,7 @@ const LEXICON = [
     "id": "hp",
     "hasAdSite": true,
     "ascii": "hp",
-    "unicode": "Ḥp",
+    "unicode": "Ḥꜥpy",
     "greek": "—",
     "pantheon": "egyptian",
     "tier": "1",
@@ -54324,8 +54063,8 @@ const LEXICON = [
     "sources": ["Faulkner", "Gardiner", "Bonneau"],
     "variants": [],
     "breakdown": [
-        { char: "h", to: "Ḥ", type: "special", note: "Script-specific diacritic" },
-        { char: "p", to: "p", type: "same", note: "Same letter" }
+      { "char": "h", "to": "Ḥ", "type": "special", "note": "Pharyngeal ḥ" },
+      { "char": "p", "to": "ꜥpy", "type": "merge", "note": "Ayin (ꜥ) + p + y — full skeleton ḥꜥpy" }
     ]
   },
   {
@@ -54437,7 +54176,7 @@ const LEXICON = [
     "id": "mengpo",
     "hasAdSite": true,
     "ascii": "mengpo",
-    "unicode": "Méngpó",
+    "unicode": "Mèngpó",
     "greek": "—",
     "pantheon": "chinese",
     "tier": "1",
@@ -54448,7 +54187,7 @@ const LEXICON = [
     "variants": [],
     "breakdown": [
         { char: "m", to: "M", type: "same", note: "Same letter" },
-        { char: "e", to: "é", type: "stress", note: "Stress mark (acute/tone)" },
+        { char: "e", to: "è", type: "stress", note: "Grave: falling (4th) tone" },
         { char: "n", to: "n", type: "same", note: "Same letter" },
         { char: "g", to: "g", type: "same", note: "Same letter" },
         { char: "p", to: "p", type: "same", note: "Same letter" },
@@ -54756,8 +54495,16 @@ const LEXICON = [
   },
   {
     "id": "oba",
+    "variants": [
+      {
+        "unicode": "Ọba",
+        "type": "owned",
+        "note": "Previous owned form; the current primary adds the final low tone (Ọbà)",
+        "sources": ["Abraham"]
+      }
+    ],
     "ascii": "oba",
-    "unicode": "Ọba",
+    "unicode": "Ọbà",
     "greek": "—",
     "pantheon": "yoruba",
     "tier": "1",
@@ -54765,9 +54512,9 @@ const LEXICON = [
     "domain": "River, Devotion, Sanctuary",
     "meaning": "The river orisha Ọba — co-wife of the thunder god, lady of the sacred waters",
         "breakdown": [
-      { "char": "o", "to": "Ọ", "type": "special", "note": "Open-mid o with underdot" },
+      { "char": "o", "to": "Ọ", "type": "special", "note": "O with dot below: open /ɔ/" },
       { "char": "b", "to": "b", "type": "same", "note": "Same" },
-      { "char": "a", "to": "a", "type": "same", "note": "Same" }
+      { "char": "a", "to": "à", "type": "stress", "note": "Grave: low tone" }
     ],
 "sources": ["Idowu", "Bascom", "Abraham", "Folklore", "Cambridge", "Oxford"],
     "domainUnicode": "ọba.com",

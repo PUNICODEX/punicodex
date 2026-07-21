@@ -337,7 +337,7 @@ test('Correct pantheon counts', () => {
   assert.strictEqual(counts.greek, 268, 'Greek count');
   assert.strictEqual(counts['greek-location'], 24, 'Greek-location count');
   assert.strictEqual(counts.norse, 86, 'Norse count');
-  assert.strictEqual(counts.egyptian, 67, 'Egyptian count');
+  assert.strictEqual(counts.egyptian, 66, 'Egyptian count');
   assert.strictEqual(counts.sanskrit, 92, 'Sanskrit count');
   assert.strictEqual(counts.celtic, 47, 'Celtic count');
   assert.strictEqual(counts.mesopotamian, 30, 'Mesopotamian count');
@@ -347,14 +347,15 @@ test('Correct pantheon counts', () => {
   assert.strictEqual(counts.yoruba, 32, 'Yoruba count');
   assert.strictEqual(counts.slavic, 21, 'Slavic count');
   assert.strictEqual(counts.zoroastrian, 19, 'Zoroastrian count');
-  assert.strictEqual(counts.incan, 12, 'Incan count');
+  assert.strictEqual(counts.incan, 11, 'Incan count');
   assert.strictEqual(counts.chinese, 47, 'Chinese count');
-  assert.strictEqual(counts.buddhist, 21, 'Buddhist count');
+  assert.strictEqual(counts.buddhist, 23, 'Buddhist count');
   assert.strictEqual(counts.taoist, 12, 'Taoist count');
   assert.strictEqual(counts.korean, 12, 'Korean count');
-  assert.strictEqual(counts.phoenician, 8, 'Phoenician count');
+  assert.strictEqual(counts.phoenician, 7, 'Phoenician count');
   assert.strictEqual(counts.hittite, 8, 'Hittite count');
-  assert.strictEqual(counts.canaanite, 12, 'Canaanite count');
+  assert.strictEqual(counts.canaanite, 13, 'Canaanite count');
+  assert.strictEqual(counts.mapuche, 1, 'Mapuche count');
   assert.strictEqual(counts.baltic, 1, 'Baltic count');
   assert.strictEqual(counts.roman, 8, 'Roman count');
 });
@@ -488,8 +489,8 @@ section('Stacked-Diacritic Derivation');
 const { deriveStackedForm } = PUNICODEX_ENGINE;
 const entryById = (id) => LEXICON.find((e) => e.id === id);
 
-test('Athena derives Athḗnā from Ἀθήνᾶ (acute on long eta)', () => {
-  assert.strictEqual(deriveStackedForm(entryById('athena')), 'Athḗnā');
+test('Athena derives nothing — Ἀθηνᾶ bears its circumflex on alpha, which has no precomposed stacked counterpart', () => {
+  assert.strictEqual(deriveStackedForm(entryById('athena')), null);
 });
 
 test('Hera derives Hḗra from Ἥρα (stress restored onto the long eta)', () => {
@@ -505,10 +506,10 @@ test('Epeiros derives Ḗpeiros (precomposed capital stack)', () => {
 });
 
 test('Derived stacks are single precomposed NFC codepoints', () => {
-  const athena = deriveStackedForm(entryById('athena'));
-  assert.strictEqual(athena, athena.normalize('NFC'));
-  assert.ok(athena.includes('ḗ'), `expected precomposed ḗ U+1E17 in ${athena}`);
-  assert.ok(!athena.includes('̄'), `loose combining macron in ${athena}`);
+  const hera = deriveStackedForm(entryById('hera'));
+  assert.strictEqual(hera, hera.normalize('NFC'));
+  assert.ok(hera.includes('ḗ'), `expected precomposed ḗ U+1E17 in ${hera}`);
+  assert.ok(!hera.includes('̄'), `loose combining macron in ${hera}`);
   const leto = deriveStackedForm(entryById('leto'));
   assert.strictEqual(leto, leto.normalize('NFC'));
   assert.ok(leto.includes('ṓ'), `expected precomposed ṓ U+1E53 in ${leto}`);

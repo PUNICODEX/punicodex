@@ -997,7 +997,7 @@ handleReturnFromStripe();
   if (!modal || !grid) return;
 
   const templeId = 'sphinx';
-  const siteName = 'Sphigx';
+  const siteName = 'Sphínx';
   let selectedCents = 700;
 
   const els = {

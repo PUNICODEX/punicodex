@@ -1,7 +1,7 @@
 /**
  * PuniCodex — Central Archetype Database
  * Handcrafted flagship temples only.
- * 196 handcrafted archetypes (196 built, 0 awaiting).
+ * 265 handcrafted archetypes (265 built, 0 awaiting).
  */
 
 const ARCHETYPES = [
@@ -92,20 +92,19 @@ const ARCHETYPES = [
         hasAdSite: true,
         darkPunchline: false
     },
-    {
+            {
         id: "athena",
-        rentalTier: "S",
-        name: "Athénā",
-        greek: "Ἀθήνᾶ",
+        name: "Athēnâ",
+        greek: "Ἀθηνᾶ",
         domain: "Goddess of Wisdom + War",
         tagline: "The Grey-Eyed Strategist · Patron of Athens",
         tier: "tier-1",
         tierDetail: "single-tier",
         pantheon: "olympian",
         folder: "athena",
-        domainUnicode: "athénā.com",
-        domainPunycode: "xn--athn-dpa9l.com",
-        domainAlt: ["athēnā.com"],
+        domainUnicode: "athēnâ.com",
+        domainPunycode: "xn--athn-eoa60a.com",
+        domainAlt: ["athēnā.com", "athénā.com"],
         colors: { primary: "#4169E1", secondary: "#87CEEB", glow: "rgba(65,105,225,0.3)" },
         mascotPath: "/sites/athena/assets/athena_mascot.webp",
         mascotFallback: "/sites/athena/assets/athena_mascot.webp",
@@ -439,10 +438,9 @@ const ARCHETYPES = [
         hasAdSite: true,
         darkPunchline: false
     },
-    {
+        {
         id: "prometheus",
-        rentalTier: "S",
-        name: "Promētheus",
+        name: "Promētheús",
         greek: "Προμηθεύς",
         domain: "The Fire-Bringer",
         tagline: "The Forethinker · Champion of Mortals",
@@ -450,8 +448,9 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "titan",
         folder: "prometheus",
-        domainUnicode: "promētheus.com",
-        domainPunycode: "xn--promtheus-ehb.com",
+        domainUnicode: "promētheús.com",
+        domainPunycode: "xn--promthes-u5a0w.com",
+        domainAlt: ["promētheus.com"],
         colors: { primary: "#FF4500", secondary: "#4169E1", glow: "rgba(255,69,0,0.3)" },
         mascotPath: "/sites/prometheus/assets/prometheus_mascot.webp",
         mascotFallback: "/sites/prometheus/assets/prometheus_mascot.webp",
@@ -682,7 +681,7 @@ const ARCHETYPES = [
         greek: "Jötunheimr",
         domain: "Land of the Giants",
         tagline: "The Land of Stone and Ice",
-        tier: "tier-2",
+        tier: "tier-1",
         tierDetail: "single-tier",
         pantheon: "norse",
         folder: "jotunheimr",
@@ -899,7 +898,7 @@ const ARCHETYPES = [
         greek: "Ragnarǫk",
         domain: "Doom of the Gods",
         tagline: "The Twilight of the Gods",
-        tier: "tier-2",
+        tier: "tier-1",
         tierDetail: "single-tier",
         pantheon: "norse",
         folder: "ragnarok",
@@ -936,10 +935,9 @@ const ARCHETYPES = [
         built: true,
         darkPunchline: false
     },
-    {
+            {
         id: "sia",
-        rentalTier: "C",
-        name: "Sꜥ",
+        name: "Sjꜣ",
         greek: "Sꜥ",
         domain: "Divine Archetype",
         tagline: "The Perception of the Divine",
@@ -947,9 +945,9 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "egyptian",
         folder: "sia",
-        domainUnicode: "sꜥ.com",
-        domainPunycode: "xn--s-2w3e.com",
-        domainAlt: [],
+        domainUnicode: "sjꜣ.com",
+        domainPunycode: "xn--sj-tq8h.com",
+        domainAlt: ["sꜣ.com"],
         colors: { primary: "#C9A227", secondary: "#1E3A5F", glow: "rgba(201,162,39,0.3)" },
         mascotPath: "/sites/sia/assets/sia_mascot.webp",
         mascotFallback: "/sites/sia/assets/sia_mascot.webp",
@@ -1024,20 +1022,18 @@ const ARCHETYPES = [
         hasAdSite: true,
         darkPunchline: false
     },
-    {
+        {
         id: "thor",
-        rentalTier: "S",
         name: "Þórr",
         greek: "Þórr",
         domain: "Thunder, Storms, Oak",
-        tagline: "The Thunder of the Oaks",
+        tagline: "The Warder of Miðgarðr",
         tier: "tier-1",
         tierDetail: "single-tier",
         pantheon: "norse",
         folder: "thor",
         domainUnicode: "þórr.com",
         domainPunycode: "xn--rr-4ja7b.com",
-        domainAlt: [],
         colors: { primary: "#4A90D9", secondary: "#8B0000", glow: "rgba(74,144,217,0.3)" },
         mascotPath: "/sites/thor/assets/thor_mascot.webp",
         mascotFallback: "/sites/thor/assets/thor_mascot.webp",
@@ -1244,9 +1240,8 @@ const ARCHETYPES = [
         hasAdSite: true,
         darkPunchline: false
     },
-    {
+        {
         id: "asherah",
-        rentalTier: "A",
         name: "ꜥAsherah",
         greek: "Ἀσερά",
         domain: "Mother Goddess, Lady of the Sea",
@@ -1257,7 +1252,7 @@ const ARCHETYPES = [
         folder: "asherah",
         domainUnicode: "ꜥasherah.com",
         domainPunycode: "xn--asherah-dv2z.com",
-        domainAlt: ["ʿasherah.com"],
+        domainAlt: ["ʿasherah.com", "aṯiratu.com"],
         colors: { primary: "#8B4513", secondary: "#D4AF37", glow: "rgba(139,69,19,0.3)" },
         mascotPath: "/sites/asherah/assets/asherah_mascot.webp",
         mascotFallback: "/sites/asherah/assets/asherah_mascot.webp",
@@ -1662,20 +1657,18 @@ const ARCHETYPES = [
         hasAdSite: true,
         darkPunchline: false
     },
-    {
+        {
         id: "trengtreng",
-        rentalTier: "B",
         name: "Trengtreng",
         greek: "—",
-        domain: "Thunder, War",
+        domain: "Flood, Land-Shaping",
         tagline: "The Thunder of the Mapuche",
         tier: "tier-2",
         tierDetail: "single-tier",
-        pantheon: "incan",
+        pantheon: "mapuche",
         folder: "trengtreng",
         domainUnicode: "trengtreng.com",
         domainPunycode: "trengtreng.com",
-        domainAlt: [],
         colors: { primary: "#B22222", secondary: "#FFD700", glow: "rgba(178,34,34,0.3)" },
         mascotPath: "/sites/trengtreng/assets/trengtreng_mascot.webp",
         mascotFallback: "/sites/trengtreng/assets/trengtreng_mascot.webp",
@@ -2018,7 +2011,7 @@ const ARCHETYPES = [
         greek: "—",
         domain: "War, Law, Oaths",
         tagline: "War, Law, Oaths · God (cognate with Greek Zeus, Latin Jove)",
-        tier: "tier-2",
+        tier: "tier-1",
         tierDetail: "single-tier",
         pantheon: "norse",
         folder: "tyr",
@@ -2040,7 +2033,7 @@ const ARCHETYPES = [
         greek: "—",
         domain: "Hall of the Slain",
         tagline: "Hall of the Slain · Hall of the slain warriors",
-        tier: "tier-2",
+        tier: "tier-1",
         tierDetail: "single-tier",
         pantheon: "norse",
         folder: "valholl",
@@ -2165,10 +2158,9 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "mot",
-        rentalTier: "A",
-        name: "Mōt",
+        name: "Mūt",
         greek: "—",
         domain: "Death, Underworld",
         tagline: "The God of the Last Sleep",
@@ -2176,8 +2168,9 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "phoenician",
         folder: "mot",
-        domainUnicode: "mōt.com",
-        domainPunycode: "xn--mt-vra.com",
+        domainUnicode: "mūt.com",
+        domainPunycode: "xn--mt-gua.com",
+        domainAlt: ["mōt.com"],
         colors: { primary: "#4B0082", secondary: "#A0A0A0", glow: "rgba(75,0,130,0.3)" },
         mascotPath: "/sites/mot/assets/mot_mascot.webp",
         mascotFallback: "/sites/mot/assets/mot_mascot.webp",
@@ -2777,9 +2770,9 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-                        {
+                            {
         id: "apep",
-        name: "Ꜥpp",
+        name: "ꜥꜣpp",
         greek: "—",
         domain: "Chaos, Darkness, Serpent",
         tagline: "The Serpent of Unmaking",
@@ -2787,8 +2780,9 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "egyptian",
         folder: "apep",
-        domainUnicode: "ꜥpp.com",
-        domainPunycode: "xn--pp-xq8h.com",
+        domainUnicode: "ꜥꜣpp.com",
+        domainPunycode: "xn--pp-rq8hha.com",
+        domainAlt: ["ꜥpp.com"],
         colors: { primary: "#D4AF37", secondary: "#1E3A5F", glow: "rgba(212,175,55,0.3)" },
         mascotPath: "/sites/apep/assets/apep_mascot.webp",
         mascotFallback: "/sites/apep/assets/apep_mascot.webp",
@@ -2819,9 +2813,9 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-                    {
+                        {
         id: "dagan",
-        name: "Dāgan",
+        name: "Dāgān",
         greek: "—",
         domain: "Grain, Fertility",
         tagline: "The Grain of the Two Rivers",
@@ -2829,8 +2823,9 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "phoenician",
         folder: "dagan",
-        domainUnicode: "dāgan.com",
-        domainPunycode: "xn--dgan-qsa.com",
+        domainUnicode: "dāgān.com",
+        domainPunycode: "xn--dgn-1oab.com",
+        domainAlt: ["dāgan.com"],
         colors: { primary: "#D4AF37", secondary: "#800080", glow: "rgba(212,175,55,0.3)" },
         mascotPath: "/sites/dagan/assets/dagan_mascot.webp",
         mascotFallback: "/sites/dagan/assets/dagan_mascot.webp",
@@ -3015,7 +3010,7 @@ const ARCHETYPES = [
         greek: "—",
         domain: "World Serpent",
         tagline: "The Serpent that Girds the World",
-        tier: "tier-2",
+        tier: "tier-1",
         tierDetail: "single-tier",
         pantheon: "norse",
         folder: "jormungandr",
@@ -3036,7 +3031,7 @@ const ARCHETYPES = [
         greek: "老子",
         domain: "Founder of Daoism, Sage",
         tagline: "The Old Master of the Way",
-        tier: "tier-2",
+        tier: "tier-1",
         tierDetail: "single-tier",
         pantheon: "taoist",
         folder: "laozi",
@@ -3261,7 +3256,7 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "shapash",
         name: "Šāpšu",
         greek: "—",
@@ -3269,7 +3264,7 @@ const ARCHETYPES = [
         tagline: "The Sun of the Canaanites",
         tier: "tier-1",
         tierDetail: "single-tier",
-        pantheon: "phoenician",
+        pantheon: "canaanite",
         folder: "shapash",
         domainUnicode: "šāpšu.com",
         domainPunycode: "xn--pu-cla79ac.com",
@@ -3345,7 +3340,7 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+            {
         id: "eos",
         name: "Ēōs",
         greek: "Ἠώς",
@@ -3355,8 +3350,9 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "greek",
         folder: "eos",
-        domainUnicode: "eos.com",
-        domainPunycode: "eos.com",
+        domainUnicode: "ēōs.com",
+        domainPunycode: "xn--s-oia8o.com",
+        domainAlt: ["eōs.com"],
         colors: { primary: "#FF7F50", secondary: "#FFB6C1", glow: "rgba(255,127,80,0.3)" },
         mascotPath: "/sites/eos/assets/eos_mascot.webp",
         mascotFallback: "/sites/eos/assets/eos_mascot.webp",
@@ -3366,7 +3362,7 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "xian",
         name: "Xiān",
         greek: "仙",
@@ -3376,8 +3372,8 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "chinese",
         folder: "xian",
-        domainUnicode: "xian.com",
-        domainPunycode: "xian.com",
+        domainUnicode: "xiān.com",
+        domainPunycode: "xn--xin-2oa.com",
         colors: { primary: "#DC143C", secondary: "#FFD700", glow: "rgba(220,20,60,0.3)" },
         mascotPath: "/sites/xian/assets/xian_mascot.webp",
         mascotFallback: "/sites/xian/assets/xian_mascot.webp",
@@ -3492,9 +3488,9 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "sphinx",
-        name: "Sphigx",
+        name: "Sphínx",
         greek: "Σφίγξ",
         domain: "Riddling Monster",
         tagline: "Riddling Monster · Strangler",
@@ -3502,14 +3498,12 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "greek",
         folder: "sphinx",
-        domainUnicode: "sphigx.com",
-        domainPunycode: "sphigx.com",
-        domainAlt: [],
+        domainUnicode: "sphínx.com",
+        domainPunycode: "xn--sphnx-1sa.com",
         colors: { primary: "#D2B48C", secondary: "#1E3A5F", glow: "rgba(210,180,140,0.3)" },
         mascotPath: "/sites/sphinx/assets/sphinx_mascot.webp",
         mascotFallback: "/sites/sphinx/assets/sphinx_mascot.webp",
         logomarkPath: "/sites/sphinx/assets/sphinx_logomark.webp",
-        logolockupPath: "/sites/sphinx/assets/sphinx_logolockup.png",
         built: true,
         hasAdSite: true,
         darkPunchline: false
@@ -3536,9 +3530,9 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "itzpapalotl",
-        name: "Itzpapālōtl",
+        name: "Ītzpāpālōtl",
         greek: "—",
         domain: "Obsidian Butterfly, Stars",
         tagline: "The Obsidian Butterfly",
@@ -3546,8 +3540,9 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "nahuatl",
         folder: "itzpapalotl",
-        domainUnicode: "itzpapālōtl.com",
-        domainPunycode: "xn--itzpapltl-bcb15f.com",
+        domainUnicode: "ītzpāpālōtl.com",
+        domainPunycode: "xn--tzppltl-u3ab82bvm.com",
+        domainAlt: ["itzpapālōtl.com"],
         colors: { primary: "#50C878", secondary: "#2F2F2F", glow: "rgba(80,200,120,0.3)" },
         mascotPath: "/sites/itzpapalotl/assets/itzpapalotl_mascot.webp",
         mascotFallback: "/sites/itzpapalotl/assets/itzpapalotl_mascot.webp",
@@ -3584,7 +3579,7 @@ const ARCHETYPES = [
         greek: "—",
         domain: "Wind, Storms, Change",
         tagline: "Wind, Storms, Change · She who tore",
-        tier: "tier-2",
+        tier: "tier-1",
         tierDetail: "single-tier",
         pantheon: "yoruba",
         folder: "oya",
@@ -3662,13 +3657,13 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "kanaloa",
-        name: "Kānāloa",
+        name: "Kanaloa",
         greek: "—",
         domain: "Ocean, Underworld",
         tagline: "The Deep of the Pacific",
-        tier: "tier-1",
+        tier: "tier-2",
         tierDetail: "single-tier",
         pantheon: "polynesian",
         folder: "kanaloa",
@@ -3767,12 +3762,12 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "aganju",
         name: "Aganjú",
         greek: "—",
-        domain: "Volcanoes, Wilderness",
-        tagline: "The Volcano of the Orisha",
+        domain: "Wilderness, Earth, Diaspora Volcano",
+        tagline: "The Wilderness of the Orisha",
         tier: "tier-1",
         tierDetail: "single-tier",
         pantheon: "yoruba",
@@ -3788,9 +3783,9 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "obatala",
-        name: "Ọbatálá",
+        name: "Ọbàtálá",
         greek: "—",
         domain: "Creation, Purity, Peace",
         tagline: "Creation, Purity, Peace · King of the white cloth",
@@ -3798,8 +3793,9 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "yoruba",
         folder: "obatala",
-        domainUnicode: "ọbatálá.com",
-        domainPunycode: "xn--batl-7nab8274c.com",
+        domainUnicode: "ọbàtálá.com",
+        domainPunycode: "xn--btl-9kagb8274c.com",
+        domainAlt: ["ọbatálá.com"],
         colors: { primary: "#D4AF37", secondary: "#4B0082", glow: "rgba(212,175,55,0.3)" },
         mascotPath: "/sites/obatala/assets/obatala_mascot.webp",
         mascotFallback: "/sites/obatala/assets/obatala_mascot.webp",
@@ -3809,7 +3805,7 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "orunmila",
         name: "Ọrúnmìlà",
         greek: "—",
@@ -3819,8 +3815,9 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "yoruba",
         folder: "orunmila",
-        domainUnicode: "ọrunmila.com",
-        domainPunycode: "xn--runmila-bx4c.com",
+        domainUnicode: "ọrúnmìlà.com",
+        domainPunycode: "xn--rnml-3na4exes761a.com",
+        domainAlt: ["ọrunmila.com"],
         colors: { primary: "#D4AF37", secondary: "#4B0082", glow: "rgba(212,175,55,0.3)" },
         mascotPath: "/sites/orunmila/assets/orunmila_mascot.webp",
         mascotFallback: "/sites/orunmila/assets/orunmila_mascot.webp",
@@ -3851,12 +3848,12 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "oshun",
         name: "Ọṣun",
         greek: "—",
         domain: "Love, Freshwater, Fertility",
-        tagline: "Love, Freshwater, Fertility · Sweet river",
+        tagline: "The Sweet River · Lady of Fresh Waters",
         tier: "tier-1",
         tierDetail: "single-tier",
         pantheon: "yoruba",
@@ -4082,9 +4079,9 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "huitzilopochtli",
-        name: "Huitzilopōchtli",
+        name: "Huītzilōpōchtli",
         greek: "—",
         domain: "Sun, War, Hummingbird",
         tagline: "The Hummingbird of the South",
@@ -4092,8 +4089,9 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "nahuatl",
         folder: "huitzilopochtli",
-        domainUnicode: "huitzilopōchtli.com",
-        domainPunycode: "xn--huitzilopchtli-esc.com",
+        domainUnicode: "huītzilōpōchtli.com",
+        domainPunycode: "xn--hutzilpchtli-u2b49bb.com",
+        domainAlt: ["huitzilopōchtli.com"],
         colors: { primary: "#50C878", secondary: "#2F2F2F", glow: "rgba(80,200,120,0.3)" },
         mascotPath: "/sites/huitzilopochtli/assets/huitzilopochtli_mascot.webp",
         mascotFallback: "/sites/huitzilopochtli/assets/huitzilopochtli_mascot.webp",
@@ -4103,12 +4101,12 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "durga",
         name: "Durgā",
         greek: "—",
         domain: "Protection, Strength, War",
-        tagline: "Protection, Strength, War · ‘the inaccessible or terrific goddess’, N. of the daughter of Himavat and wife of Śiva (also called Umā, Pārvatī &c., and mother of Kārttikeya and Gaṇeśa cf. pUjA), TĀr. x, 2",
+        tagline: "The Invincible · Slayer of the Buffalo-Demon",
         tier: "tier-1",
         tierDetail: "single-tier",
         pantheon: "sanskrit",
@@ -4124,9 +4122,9 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "eshu",
-        name: "Ẹṣu",
+        name: "Ẹṣù",
         greek: "—",
         domain: "Trickery, Crossroads, Messenger",
         tagline: "Trickery, Crossroads, Messenger · Divine trickster",
@@ -4134,8 +4132,9 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "yoruba",
         folder: "eshu",
-        domainUnicode: "ẹṣu.com",
-        domainPunycode: "xn--u-hrm7o.com",
+        domainUnicode: "ẹṣù.com",
+        domainPunycode: "xn--qda371mmha.com",
+        domainAlt: ["ẹṣu.com"],
         colors: { primary: "#D4AF37", secondary: "#4B0082", glow: "rgba(212,175,55,0.3)" },
         mascotPath: "/sites/eshu/assets/eshu_mascot.webp",
         mascotFallback: "/sites/eshu/assets/eshu_mascot.webp",
@@ -4334,12 +4333,11 @@ const ARCHETYPES = [
         hasAdSite: true,
         darkPunchline: false
     },
-    {
+        {
         id: "monokeros",
-        rentalTier: "A",
         name: "Monókerōs",
         greek: "Μονόκερως",
-        domain: "Purity, Rarity, Wonder",
+        domain: "Rarity, Ferocity, Wonder",
         tagline: "The One Horn",
         tier: "tier-1",
         tierDetail: "single-tier",
@@ -4523,10 +4521,9 @@ const ARCHETYPES = [
         hasAdSite: true,
         darkPunchline: false
     },
-    {
+        {
         id: "iuppiter",
-        rentalTier: "S",
-        name: "Iūppiter",
+        name: "Iūpiter",
         greek: "Iūppiter",
         domain: "Sky, Thunder, Sovereignty",
         tagline: "The Sky Father",
@@ -4534,8 +4531,8 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "roman",
         folder: "iuppiter",
-        domainUnicode: "iūppiter.com",
-        domainPunycode: "xn--ippiter-0sb.com",
+        domainUnicode: "iūpiter.com",
+        domainPunycode: "xn--ipiter-bmb.com",
         colors: { primary: "#FFD700", secondary: "#1E90FF", glow: "rgba(255,215,0,0.3)" },
         mascotPath: "/sites/iuppiter/assets/iuppiter_mascot.webp",
         mascotFallback: "/sites/iuppiter/assets/iuppiter_mascot.webp",
@@ -4649,10 +4646,9 @@ const ARCHETYPES = [
         hasAdSite: true,
         darkPunchline: false
     },
-    {
+        {
         id: "hp",
-        rentalTier: "A",
-        name: "Ḥp",
+        name: "Ḥꜥpy",
         greek: "—",
         domain: "Nile, Inundation, Abundance",
         tagline: "The Bringer of the Flood",
@@ -4660,8 +4656,9 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "egyptian",
         folder: "hp",
-        domainUnicode: "ḥp.com",
-        domainPunycode: "xn--p-xnm.com",
+        domainUnicode: "ḥꜥpy.com",
+        domainPunycode: "xn--py-rus6609e.com",
+        domainAlt: ["ḥp.com"],
         colors: { primary: "#1E90FF", secondary: "#3CB371", glow: "rgba(30,144,255,0.3)" },
         mascotPath: "/sites/hp/assets/hp_mascot.webp",
         mascotFallback: "/sites/hp/assets/hp_mascot.webp",
@@ -4817,10 +4814,9 @@ const ARCHETYPES = [
         hasAdSite: true,
         darkPunchline: false
     },
-    {
+            {
         id: "mengpo",
-        rentalTier: "B",
-        name: "Méngpó",
+        name: "Mèngpó",
         greek: "—",
         domain: "Forgetting, Passage, Tea",
         tagline: "The Tea of Oblivion",
@@ -4828,8 +4824,8 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "chinese",
         folder: "mengpo",
-        domainUnicode: "méngpó.com",
-        domainPunycode: "xn--mngp-bpa7d.com",
+        domainUnicode: "mèngpó.com",
+        domainPunycode: "xn--mngp-5oa3e.com",
         colors: { primary: "#8B4513", secondary: "#D4AF37", glow: "rgba(139,69,19,0.3)" },
         mascotPath: "/sites/mengpo/assets/mengpo_mascot.webp",
         mascotFallback: "/sites/mengpo/assets/mengpo_mascot.webp",
@@ -4964,10 +4960,9 @@ const ARCHETYPES = [
         hasAdSite: true,
         darkPunchline: false
     },
-    {
+        {
         id: "tezcatlipoca",
-        rentalTier: "A",
-        name: "Tezcatlipōca",
+        name: "Tēzcatlīpōca",
         greek: "—",
         domain: "Night, Sorcery, Kingship",
         tagline: "The Smoking Mirror",
@@ -4975,8 +4970,9 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "nahuatl",
         folder: "tezcatlipoca",
-        domainUnicode: "tezcatlipōca.com",
-        domainPunycode: "xn--tezcatlipca-t9b.com",
+        domainUnicode: "tēzcatlīpōca.com",
+        domainPunycode: "xn--tzcatlpca-bhb3yro.com",
+        domainAlt: ["tezcatlipōca.com", "tēzcatlīpohca.com"],
         colors: { primary: "#191970", secondary: "#D4AF37", glow: "rgba(25,25,112,0.4)" },
         mascotPath: "/sites/tezcatlipoca/assets/tezcatlipoca_mascot.webp",
         mascotFallback: "/sites/tezcatlipoca/assets/tezcatlipoca_mascot.webp",
@@ -5356,10 +5352,9 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "oba",
-        rentalTier: "B",
-        name: "Ọba",
+        name: "Ọbà",
         greek: "—",
         domain: "River, Devotion, Sanctuary",
         tagline: "River, Devotion, Sanctuary · The river orisha Ọba — co-wife of the thunder god, lady of the sacred waters",
@@ -5367,9 +5362,10 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "yoruba",
         folder: "oba",
-        domainUnicode: "ọba.com",
-        domainPunycode: "xn--ba-58s.com",
-        colors: {"primary": "#1F4A5C", "secondary": "#7FA8B8", "glow": "rgba(31, 74, 92, 0.35)"},
+        domainUnicode: "ọbà.com",
+        domainPunycode: "xn--b-sfa590u.com",
+        domainAlt: ["ọba.com"],
+        colors: { primary: "#1F4A5C", secondary: "#7FA8B8", glow: "rgba(31, 74, 92, 0.35)" },
         mascotPath: "/sites/oba/assets/oba_mascot.webp",
         mascotFallback: "/sites/oba/assets/oba_mascot.webp",
         logomarkPath: "/sites/oba/assets/oba_logomark.webp",
@@ -5400,10 +5396,9 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "kartikeya",
-        rentalTier: "S",
-        name: "Kārtikeya",
+        name: "Kārttikeya",
         greek: "—",
         domain: "War, Commander of Gods",
         tagline: "The Commander of the Gods",
@@ -5413,7 +5408,7 @@ const ARCHETYPES = [
         folder: "kartikeya",
         domainUnicode: "kārttikeya.com",
         domainPunycode: "xn--krttikeya-5bb.com",
-        colors: {"primary": "#8B1E1E", "secondary": "#C9A227", "glow": "rgba(139, 30, 30, 0.3)"},
+        colors: { primary: "#8B1E1E", secondary: "#C9A227", glow: "rgba(139, 30, 30, 0.3)" },
         mascotPath: "/sites/kartikeya/assets/kartikeya_mascot.webp",
         mascotFallback: "/sites/kartikeya/assets/kartikeya_mascot.webp",
         logomarkPath: "/sites/kartikeya/assets/kartikeya_logomark.webp",
@@ -5422,13 +5417,12 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "ashavahista",
-        rentalTier: "B",
         name: "Ašavahišta",
         greek: "—",
         domain: "Truth, Righteousness, Fire",
-        tagline: "Truth, Righteousness, Fire · \"Best Truth\" — the Amesha Spenta of cosmic order (Aša), guardian of the sacred fire and the moral law",
+        tagline: "The Best Truth · Keeper of the Sacred Fire",
         tier: "tier-1",
         tierDetail: "single-tier",
         pantheon: "zoroastrian",
@@ -5444,13 +5438,12 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "styx",
-        rentalTier: "B",
         name: "Stýx",
         greek: "Στύξ",
         domain: "River of Hate, Oaths",
-        tagline: "River of Hate, Oaths · Hateful",
+        tagline: "The River of Unbreakable Oaths",
         tier: "tier-2",
         tierDetail: "single-tier",
         pantheon: "greek",
@@ -5461,6 +5454,237 @@ const ARCHETYPES = [
         mascotPath: "/sites/styx/assets/styx_mascot.webp",
         mascotFallback: "/sites/styx/assets/styx_mascot.webp",
         logomarkPath: "/sites/styx/assets/styx_logomark.webp",
+        built: true,
+        hasAdSite: true,
+        darkPunchline: false
+    },
+
+        {
+        id: "hermod",
+        name: "Hermóðr",
+        greek: "—",
+        domain: "Messenger, Courage",
+        tagline: "Óðinn's Son · The Rider of the Nine Nights",
+        tier: "tier-1",
+        tierDetail: "single-tier",
+        pantheon: "norse",
+        folder: "hermod",
+        domainUnicode: "hermóðr.com",
+        domainPunycode: "xn--hermr-ltau.com",
+        colors: { primary: "#2E3B4A", secondary: "#8FA3B8", glow: "rgba(46,59,74,0.35)" },
+        mascotPath: "/sites/hermod/assets/hermod_mascot.webp",
+        mascotFallback: "/sites/hermod/assets/hermod_mascot.webp",
+        logomarkPath: "/sites/hermod/assets/hermod_logomark.webp",
+        built: true,
+        hasAdSite: true,
+        darkPunchline: false
+    },
+
+        {
+        id: "cerberus",
+        name: "Kérberos",
+        greek: "Κέρβερος",
+        domain: "Underworld Guardian",
+        tagline: "The Hound of Hades · Warden of the Dead",
+        tier: "tier-2",
+        tierDetail: "single-tier",
+        pantheon: "greek",
+        folder: "cerberus",
+        domainUnicode: "kérberos.com",
+        domainPunycode: "xn--krberos-bya.com",
+        colors: { primary: "#3D2B24", secondary: "#A87F6A", glow: "rgba(61,43,36,0.35)" },
+        mascotPath: "/sites/cerberus/assets/cerberus_mascot.webp",
+        mascotFallback: "/sites/cerberus/assets/cerberus_mascot.webp",
+        logomarkPath: "/sites/cerberus/assets/cerberus_logomark.webp",
+        built: true,
+        hasAdSite: true,
+        darkPunchline: false
+    },
+
+        {
+        id: "ochosi",
+        name: "Ọṣọọsì",
+        greek: "—",
+        domain: "Hunting, Forest, Justice",
+        tagline: "The Single Arrow · Lord of the Forest Hunt",
+        tier: "tier-1",
+        tierDetail: "single-tier",
+        pantheon: "yoruba",
+        folder: "ochosi",
+        domainUnicode: "ọṣọọsì.com",
+        domainPunycode: "xn--s-hga147tdmaba.com",
+        colors: { primary: "#1E4A2E", secondary: "#7FB88F", glow: "rgba(30,74,46,0.35)" },
+        mascotPath: "/sites/ochosi/assets/ochosi_mascot.webp",
+        mascotFallback: "/sites/ochosi/assets/ochosi_mascot.webp",
+        logomarkPath: "/sites/ochosi/assets/ochosi_logomark.webp",
+        built: true,
+        hasAdSite: true,
+        darkPunchline: false
+    },
+
+        {
+        id: "radha",
+        name: "Rādhā",
+        greek: "—",
+        domain: "Divine Love, Consort of Krishna",
+        tagline: "The Beloved of Vraja · Krishna's Eternal Heart",
+        tier: "tier-1",
+        tierDetail: "single-tier",
+        pantheon: "sanskrit",
+        folder: "radha",
+        domainUnicode: "rādhā.com",
+        domainPunycode: "xn--rdh-1oac.com",
+        colors: { primary: "#7A3B4A", secondary: "#D4A5B0", glow: "rgba(122,59,74,0.35)" },
+        mascotPath: "/sites/radha/assets/radha_mascot.webp",
+        mascotFallback: "/sites/radha/assets/radha_mascot.webp",
+        logomarkPath: "/sites/radha/assets/radha_logomark.webp",
+        built: true,
+        hasAdSite: true,
+        darkPunchline: false
+    },
+
+        {
+        id: "shakyamuni",
+        name: "Śākyamuni",
+        greek: "शाक्यमुनि",
+        domain: "Enlightenment, Teaching, Historical Buddha",
+        tagline: "Sage of the Śākyas · The Awakened One",
+        tier: "tier-1",
+        tierDetail: "single-tier",
+        pantheon: "buddhist",
+        folder: "shakyamuni",
+        domainUnicode: "śākyamuni.com",
+        domainPunycode: "xn--kyamuni-r3a32f.com",
+        colors: { primary: "#9A6A2E", secondary: "#E0C9A0", glow: "rgba(154,106,46,0.35)" },
+        mascotPath: "/sites/shakyamuni/assets/shakyamuni_mascot.webp",
+        mascotFallback: "/sites/shakyamuni/assets/shakyamuni_mascot.webp",
+        logomarkPath: "/sites/shakyamuni/assets/shakyamuni_logomark.webp",
+        built: true,
+        hasAdSite: true,
+        darkPunchline: false
+    },
+
+        {
+        id: "akshobhya",
+        name: "Akṣobhya",
+        greek: "—",
+        domain: "Immovable, East",
+        tagline: "The Unshakable · Mirror-Like Wisdom",
+        tier: "tier-1",
+        tierDetail: "single-tier",
+        pantheon: "buddhist",
+        folder: "akshobhya",
+        domainUnicode: "akṣobhya.com",
+        domainPunycode: "xn--akobhya-473c.com",
+        colors: { primary: "#1E3A5A", secondary: "#8FB8D8", glow: "rgba(30,58,90,0.35)" },
+        mascotPath: "/sites/akshobhya/assets/akshobhya_mascot.webp",
+        mascotFallback: "/sites/akshobhya/assets/akshobhya_mascot.webp",
+        logomarkPath: "/sites/akshobhya/assets/akshobhya_logomark.webp",
+        built: true,
+        hasAdSite: true,
+        darkPunchline: false
+    },
+
+        {
+        id: "vairocana",
+        name: "Mahāvairocana",
+        greek: "महावैरोचन",
+        domain: "Universal Illumination, Cosmic Buddha",
+        tagline: "The Great Sun · Light of the Cosmos",
+        tier: "tier-1",
+        tierDetail: "single-tier",
+        pantheon: "buddhist",
+        folder: "vairocana",
+        domainUnicode: "mahāvairocana.com",
+        domainPunycode: "xn--mahvairocana-9mb.com",
+        colors: { primary: "#8A7A2E", secondary: "#E8D9A0", glow: "rgba(138,122,46,0.35)" },
+        mascotPath: "/sites/vairocana/assets/vairocana_mascot.webp",
+        mascotFallback: "/sites/vairocana/assets/vairocana_mascot.webp",
+        logomarkPath: "/sites/vairocana/assets/vairocana_logomark.webp",
+        built: true,
+        hasAdSite: true,
+        darkPunchline: false
+    },
+
+        {
+        id: "manjushri",
+        name: "Mañjuśrī",
+        greek: "—",
+        domain: "Wisdom, Intellect",
+        tagline: "The Gentle Glory · Sword of Wisdom",
+        tier: "tier-1",
+        tierDetail: "single-tier",
+        pantheon: "buddhist",
+        folder: "manjushri",
+        domainUnicode: "mañjuśrī.com",
+        domainPunycode: "xn--majur-pta32bwm.com",
+        colors: { primary: "#8A4A1E", secondary: "#D8A87F", glow: "rgba(138,74,30,0.35)" },
+        mascotPath: "/sites/manjushri/assets/manjushri_mascot.webp",
+        mascotFallback: "/sites/manjushri/assets/manjushri_mascot.webp",
+        logomarkPath: "/sites/manjushri/assets/manjushri_logomark.webp",
+        built: true,
+        hasAdSite: true,
+        darkPunchline: false
+    },
+
+        {
+        id: "vajrapani",
+        name: "Vajrapāṇi",
+        greek: "—",
+        domain: "Thunderbolt Holder, Protection",
+        tagline: "The Vajra-Bearer · Lord of Secret Power",
+        tier: "tier-1",
+        tierDetail: "single-tier",
+        pantheon: "buddhist",
+        folder: "vajrapani",
+        domainUnicode: "vajrapāṇi.com",
+        domainPunycode: "xn--vajrapi-x3a0658d.com",
+        colors: { primary: "#1E2E4A", secondary: "#7F9AB8", glow: "rgba(30,46,74,0.35)" },
+        mascotPath: "/sites/vajrapani/assets/vajrapani_mascot.webp",
+        mascotFallback: "/sites/vajrapani/assets/vajrapani_mascot.webp",
+        logomarkPath: "/sites/vajrapani/assets/vajrapani_logomark.webp",
+        built: true,
+        hasAdSite: true,
+        darkPunchline: false
+    },
+
+        {
+        id: "ksitigarbha",
+        name: "Kṣitigarbha",
+        greek: "—",
+        domain: "Earth Womb, Savior of Hell Beings",
+        tagline: "The Earth-Womb · Vow to Empty the Hells",
+        tier: "tier-1",
+        tierDetail: "single-tier",
+        pantheon: "buddhist",
+        folder: "ksitigarbha",
+        domainUnicode: "kṣitigarbha.com",
+        domainPunycode: "xn--kitigarbha-wy2e.com",
+        colors: { primary: "#4A3B2E", secondary: "#B8A07F", glow: "rgba(74,59,46,0.35)" },
+        mascotPath: "/sites/ksitigarbha/assets/ksitigarbha_mascot.webp",
+        mascotFallback: "/sites/ksitigarbha/assets/ksitigarbha_mascot.webp",
+        logomarkPath: "/sites/ksitigarbha/assets/ksitigarbha_logomark.webp",
+        built: true,
+        hasAdSite: true,
+        darkPunchline: false
+    },
+
+        {
+        id: "mara",
+        name: "Māra",
+        greek: "मार",
+        domain: "Death, Temptation, Illusion",
+        tagline: "The Tempter · Lord of Death",
+        tier: "tier-1",
+        tierDetail: "single-tier",
+        pantheon: "buddhist",
+        folder: "mara",
+        domainUnicode: "māra.com",
+        domainPunycode: "xn--mra-1oa.com",
+        colors: { primary: "#3D1E2E", secondary: "#A87F95", glow: "rgba(61,30,46,0.35)" },
+        mascotPath: "/sites/mara/assets/mara_mascot.webp",
+        mascotFallback: "/sites/mara/assets/mara_mascot.webp",
+        logomarkPath: "/sites/mara/assets/mara_logomark.webp",
         built: true,
         hasAdSite: true,
         darkPunchline: false

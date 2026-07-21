@@ -482,10 +482,15 @@ function tierExplanation(data) {
   if (data.tier === 'dual') {
     return 'the original carries both stress and length, and multiple historically valid Unicode spellings exist';
   }
+  const isGreek = data.pantheon === 'greek' || data.pantheon === 'greek-location';
   if (data.tier === '1') {
-    return 'the original carries both stress and length, and only one valid Unicode restoration exists';
+    return isGreek
+      ? 'the original carries both stress and length, and only one valid Unicode restoration exists'
+      : 'the restoration preserves at least one distinctive feature — a diacritic or a distinctive letter — that the ASCII form loses';
   }
-  return 'the original preserves at least one philological feature that ASCII cannot encode';
+  return isGreek
+    ? 'the original carries only one of the two prosodic features — stress or vowel length — not both'
+    : 'the restoration needs no distinctive letters or diacritics its ASCII form would lose';
 }
 
 function atGlanceBlock(data) {

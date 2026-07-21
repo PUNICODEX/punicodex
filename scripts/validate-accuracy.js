@@ -133,7 +133,7 @@ section('Greek Pantheon Spot Checks');
 const SPOT_CHECKS = [
   { id: 'apollon', greek: 'Ἀπόλλων', expected: 'Apóllōn' },
   { id: 'zeus', greek: 'Ζεύς', expected: 'Zeús' },
-  { id: 'athena', greek: 'Ἀθήνᾶ', expected: 'Athénā' },
+  { id: 'athena', greek: 'Ἀθηνᾶ', expected: 'Athēnâ' },
   { id: 'poseidon', greek: 'Ποσειδῶν', expected: 'Poseidôn' },
   { id: 'aphrodite', greek: 'Ἀφροδίτη', expected: 'Aphrodítē' },
   { id: 'hermes', greek: 'Ἑρμῆς', expected: 'Hermês' },
@@ -143,7 +143,7 @@ const SPOT_CHECKS = [
   { id: 'hades', greek: 'Ἅιδης', expected: 'Hádēs' },
   { id: 'hephaistos', greek: 'Ἥφαιστος', expected: 'Hēphaistos' },
   { id: 'hestia', greek: 'Ἑστία', expected: 'Hestía' },
-  { id: 'prometheus', greek: 'Προμηθεύς', expected: 'Promētheus' },
+  { id: 'prometheus', greek: 'Προμηθεύς', expected: 'Promētheús' },
   { id: 'persephone', greek: 'Περσεφόνη', expected: 'Persephonē' },
   { id: 'nike', greek: 'Νίκη', expected: 'Níkē' },
   { id: 'hekate', greek: 'Ἑκάτη', expected: 'Hekátē' },

@@ -321,6 +321,10 @@ function generateScholarsPage(templeId, manifestOverride) {
     SECONDARY: palette.secondary,
     EFFECT: getEffect(templeId),
     TIER_LABEL: getTierLabel(entry),
+    TIER_BADGES:
+      entry.tier === 'dual'
+        ? '<span class="meta-badge">Tier-1</span> <span class="meta-badge">Tier-2</span>'
+        : `<span class="meta-badge">${getTierLabel(entry)}</span>`,
     DOMAINS_TEXT: getDomainsText(entry),
     PUNYCODE: getPunycodeExplainer(entry),
     EXTENDED_TAB: buildExtendedTab(),

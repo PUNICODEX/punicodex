@@ -145,7 +145,7 @@ const FUNCTION_GROUPS = [
       'gaia', 'geb', 'coatlicue', 'pachamama', 'prithvi', 'izanami', 'ruaumoko',
       'matzemlya', 'tlaltecuhtli', 'babaluaye', 'kishar', 'halmoni', 'rhea', 'demeter',
       'freyr', 'freyja', 'bastet', 'sobek', 'cernunnos', 'ishtar', 'inari', 'oshun',
-      'parvati', 'sita', 'gefjon', 'min', 'heqet', 'makemake', 'anahita', 'hapy', 'dagan',
+      'parvati', 'sita', 'gefjon', 'min', 'heqet', 'makemake', 'anahita', 'hp', 'dagan',
     ],
   },
   {
