@@ -7496,6 +7496,29 @@ const PRONUNCIATION_ATLAS = {
     "audioPath": null,
     "note": "Broad IPA generated from the Unicode restoration Sága; review recommended before promotion to canonical."
   },
+  "athiratu": {
+    "ipa": "/ʔaθ.i.ˈraː.tu/",
+    "ipaLabel": "Ugaritological normalization (KTU)",
+    "phonemes": [
+      {
+        "symbol": "ʾ",
+        "desc": "Glottal stop [ʔ], the ʾalep onset of the name; unwritten in Latin conventions."
+      },
+      {
+        "symbol": "ṯ",
+        "desc": "Voiceless interdental fricative [θ], as in English 'thin'; the Phoenician reflex shifts it to š (Ašeratu)."
+      },
+      {
+        "symbol": "ā",
+        "desc": "Long open back vowel [aː] in the stressed penultimate syllable."
+      }
+    ],
+    "approximation": "ah-thi-RAH-too — a soft glottal catch at the start, the 'th' of 'thin' in the middle, and a long, stressed 'RAH' before the final 'too'.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "ʾAṯiratu is normalized [ʔaθ.i.ˈraː.tu]: glottal ʾalep, interdental ṯ (Greek theta), stress on the long penultimate ā, final short -u. The shorter form ʾAṯirat drops the final vowel. From ʾaṯr 'place, sanctuary'; her sea-epithet rbt ʾaṯrt ym, 'the Great Lady who walks on the Sea', underlies the Greek-era reading as a sea-goddess (Philo's Ἀσερά). The interdental is the letter the domain keeps: ṯ survives into Phoenician only as š, which is why Ašeratu is the Phoenician form."
+  },
   "hermod": {
     "ipa": "/ˈhɛrˌmoːðr̩/",
     "ipaLabel": "Reconstructed Old Norse",

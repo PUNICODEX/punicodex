@@ -2635,6 +2635,10 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "originalScript": "𐤀𐤔𐤕𐤓𐤕",
     "scriptName": "Phoenician"
   },
+  "athiratu": {
+    "originalScript": "𐎀𐎘𐎗𐎚",
+    "scriptName": "Ugaritic cuneiform alphabet"
+  },
   "asherah": {
     "originalScript": "𐎀𐎘𐎗𐎚",
     "scriptName": "Ugaritic"

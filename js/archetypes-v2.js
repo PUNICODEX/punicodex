@@ -1,7 +1,7 @@
 /**
  * PuniCodex — Central Archetype Database
  * Handcrafted flagship temples only.
- * 265 handcrafted archetypes (265 built, 0 awaiting).
+ * 266 handcrafted archetypes (266 built, 0 awaiting).
  */
 
 const ARCHETYPES = [
@@ -1240,7 +1240,7 @@ const ARCHETYPES = [
         hasAdSite: true,
         darkPunchline: false
     },
-        {
+            {
         id: "asherah",
         name: "ꜥAsherah",
         greek: "Ἀσερά",
@@ -1252,7 +1252,7 @@ const ARCHETYPES = [
         folder: "asherah",
         domainUnicode: "ꜥasherah.com",
         domainPunycode: "xn--asherah-dv2z.com",
-        domainAlt: ["ʿasherah.com", "aṯiratu.com"],
+        domainAlt: ["ʿasherah.com"],
         colors: { primary: "#8B4513", secondary: "#D4AF37", glow: "rgba(139,69,19,0.3)" },
         mascotPath: "/sites/asherah/assets/asherah_mascot.webp",
         mascotFallback: "/sites/asherah/assets/asherah_mascot.webp",
@@ -5685,6 +5685,27 @@ const ARCHETYPES = [
         mascotPath: "/sites/mara/assets/mara_mascot.webp",
         mascotFallback: "/sites/mara/assets/mara_mascot.webp",
         logomarkPath: "/sites/mara/assets/mara_logomark.webp",
+        built: true,
+        hasAdSite: true,
+        darkPunchline: false
+    },
+
+        {
+        id: "athiratu",
+        name: "ʾAṯiratu",
+        greek: "𐎀𐎘𐎗𐎚",
+        domain: "Lady of the Sea, Mother of the Gods",
+        tagline: "The Lady of the Sea · Mother of the Gods",
+        tier: "tier-1",
+        tierDetail: "single-tier",
+        pantheon: "canaanite",
+        folder: "athiratu",
+        domainUnicode: "aṯiratu.com",
+        domainPunycode: "xn--airatu-w17b.com",
+        colors: { primary: "#1E3A5A", secondary: "#7FA8C8", glow: "rgba(30,58,90,0.35)" },
+        mascotPath: "/sites/athiratu/assets/athiratu_mascot.webp",
+        mascotFallback: "/sites/athiratu/assets/athiratu_mascot.webp",
+        logomarkPath: "/sites/athiratu/assets/athiratu_logomark.webp",
         built: true,
         hasAdSite: true,
         darkPunchline: false

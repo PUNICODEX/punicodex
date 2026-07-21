@@ -273,6 +273,7 @@ const CURATED_PAIRS = [
   { sourceId: 'loki', targetId: 'sunwukong', relationship: 'Trickster / shape-shifter', category: 'narrative-role', strength: 3, bidirectional: true, note: 'Norse and Chinese trickster culture heroes of chaotic cunning.' },
   { sourceId: 'typhon', targetId: 'tiamat', relationship: 'Chaos / monster', category: 'narrative-role', strength: 3, bidirectional: true, note: 'Greek and Babylonian dragon/serpent antagonists of cosmic order.' },
   { sourceId: 'gaia', targetId: 'pachamama', relationship: 'Earth mother', category: 'function', strength: 3, bidirectional: true, note: 'Greek and Incan personifications of the living Earth.' },
+  { sourceId: 'asherah', targetId: 'athiratu', relationship: 'Same goddess, two traditions', category: 'identity', strength: 3, bidirectional: true, note: 'The Ugaritic ʾAṯiratu and the biblical Asherah — one great mother of the gods under two names.' },
   { sourceId: 'anubis', targetId: 'hermes', relationship: 'Psychopomp', category: 'narrative-role', strength: 3, bidirectional: true, note: 'Egyptian and Greek guides of souls to the afterlife.' },
   { sourceId: 'brigid', targetId: 'agni', relationship: 'Fire / poetry / inspiration', category: 'function', strength: 3, bidirectional: true, note: 'Celtic and Vedic fire-linked deities of inspiration, hearth, and sacred flame.' },
 ];

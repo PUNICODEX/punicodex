@@ -50676,6 +50676,72 @@ const LEXICON = [
     ]
   },
   {
+    "id": "athiratu",
+    "ascii": "athiratu",
+    "unicode": "ʾAṯiratu",
+    "greek": "—",
+    "pantheon": "canaanite",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Lady of the Sea, Mother of the Gods",
+    "meaning": "‘Lady of the Sea’ — the Ugaritic mother of the gods (rbt ʾaṯrt ym), consort of ʾIlu and intercessor for Baʿlu, KTU",
+    "sources": [
+      "KTU",
+      "Coogan",
+      "Day"
+    ],
+    "breakdown": [
+      {
+        "char": "a",
+        "to": "ʾA",
+        "type": "special",
+        "note": "Glottal onset (ʾalep)"
+      },
+      {
+        "char": "t",
+        "to": "ṯ",
+        "type": "special",
+        "note": "Underdotted t: /θ/ (Ugaritic ṯ, Greek θ)"
+      },
+      {
+        "char": "h",
+        "to": "",
+        "type": "drop",
+        "note": "The h of the Latin convention, unwritten in Ugaritic"
+      },
+      {
+        "char": "i",
+        "to": "i",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "t",
+        "to": "t",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "u",
+        "to": "u",
+        "type": "same",
+        "note": "Same"
+      }
+    ]
+  },
+  {
     "id": "asherah",
     "hasAdSite": true,
     "ascii": "asherah",

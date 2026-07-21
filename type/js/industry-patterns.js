@@ -138,6 +138,7 @@ const INDUSTRY_GROUPS = [
       { id: 'kanaloa', weight: 2 },
       { id: 'yam', weight: 2 },
       { id: 'aseratu', weight: 2, why: 'She who treads on the sea — the maritime goddess of Phoenician sailors.' },
+      { id: 'athiratu', weight: 2, why: 'The Lady who walks on the Sea — the original maritime mother of the Canaanite coast.' },
       { id: 'atlantis', weight: 1, why: 'The drowned civilization; oceanic mystery as a destination brand.' },
       { id: 'tiamat', weight: 1, why: 'Primordial salt water; the chaos the first sailors had to master.' },
       { id: 'varuna', weight: 1, why: 'Lord of the oceans and the order that governs them.' },
@@ -619,6 +620,7 @@ const INDUSTRY_GROUPS = [
     entries: [
       { id: 'ashavahista', weight: 2 },
       { id: 'styx', weight: 1, why: 'The oath-water; the oldest contract cult in the West.' },
+      { id: 'athiratu', weight: 1, why: 'The mother of the gods; the matriarch every Canaanite cult answered to.' },
       { id: 'hanuman', weight: 2 },
       { id: 'guandi', weight: 2 },
       { id: 'mazu', weight: 2 },

@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3">
+<script src="/js/university-collaborators.js?v=3" defer></script>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ʾAṯiratu — Scholarly Edition | PUNICODEX</title>
+    <meta name="description" content="The Scholarly Edition of ʾAṯiratu: a living, university-curated reference on Lady of the Sea, Mother of the Gods. Editable by verified scholars, with full revision history and attribution.">
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf20">
+
+    <style>
+        .scholars-hero { min-height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: calc(var(--nav-height) + 4rem); padding-bottom: 3rem; position: relative; }
+        .scholars-hero-content { position: relative; z-index: 1; max-width: 900px; padding: 0 1.5rem; }
+        .scholars-eyebrow { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-title { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--white); letter-spacing: 0.03em; line-height: 1.1; margin-bottom: 1rem; }
+        .scholars-subtitle { font-size: clamp(1rem, 1.8vw, 1.25rem); color: var(--white-dim); max-width: 700px; margin: 0 auto 1.5rem; line-height: 1.7; }
+        .scholars-meta { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem; }
+        .scholars-toc { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; text-align: left; }
+        .scholars-toc-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-toc-list { columns: 2; column-gap: 2rem; list-style: none; padding: 0; margin: 0; }
+        .scholars-toc-list li { break-inside: avoid; margin-bottom: 0.5rem; }
+        .scholars-toc-list a { color: var(--white-dim); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
+        .scholars-toc-list a:hover { color: var(--primary); }
+        @media (max-width: 640px) { .scholars-toc-list { columns: 1; } }
+        @media (max-width: 768px) {
+            .scholars-hero { padding-top: calc(var(--nav-height) + 5rem); }
+            .scholars-title { font-size: clamp(1.75rem, 8vw, 2.5rem); word-break: break-word; }
+            .scholars-subtitle { font-size: 0.95rem; }
+            .scholars-section-header { flex-wrap: wrap; gap: 0.5rem; }
+            .scholars-section-status { margin-left: 0; }
+            .scholars-edit-btn { margin-left: 0; }
+            .scholars-toc { padding: 1rem; }
+        }
+
+        .scholars-section { padding: 4rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .scholars-section-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; }
+        .scholars-section-number { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.15em; color: var(--primary); }
+        .scholars-section-title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); color: var(--white); margin: 0; }
+        .scholars-section-status { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.25rem 0.6rem; border-radius: 999px; background: rgba(255,255,255,0.08); color: var(--white-dim); margin-left: auto; }
+        .scholars-section-status.empty { background: rgba(212,175,55,0.12); color: var(--primary); }
+        .scholars-section-body { color: var(--white-dim); line-height: 1.8; font-size: 1.05rem; }
+        .scholars-empty-state { background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.12); border-radius: 12px; padding: 2rem; text-align: center; }
+        .scholars-empty-state p { margin: 0 0 0.75rem; color: var(--white-dim); }
+        .scholars-empty-state .contribute-cta { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 600; }
+        .scholars-empty-state .contribute-cta:hover { text-decoration: underline; }
+
+        .scholars-attribution { background: rgba(255,255,255,0.03); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; }
+        .scholars-attribution-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-attribution-list { list-style: none; padding: 0; margin: 0; color: var(--white-dim); }
+        .scholars-attribution-list li { margin-bottom: 0.5rem; }
+
+        .scholars-edit-history { margin-top: 4rem; }
+
+        .scholars-edit-btn { margin-left: auto; background: transparent; border: 1px solid var(--primary); color: var(--primary); padding: 0.4rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, color 0.2s; }
+        .scholars-edit-btn:hover { background: var(--primary); color: #000; }
+        .scholars-editor { margin-top: 1.5rem; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.25rem; }
+        .scholars-editor label { display: block; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.5rem; }
+        .scholars-editor textarea { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 0.75rem; color: var(--white); font-family: inherit; font-size: 0.95rem; margin-bottom: 1rem; resize: vertical; }
+        .scholars-editor textarea:focus { outline: none; border-color: var(--primary); }
+        .scholars-editor-actions { display: flex; gap: 0.75rem; }
+        .scholars-editor-actions button { padding: 0.55rem 1rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; border: none; }
+        .scholars-editor-actions .submit-edit { background: var(--primary); color: #000; }
+        .scholars-editor-actions .cancel-edit { background: rgba(255,255,255,0.1); color: var(--white); }
+        .editor-message { margin-top: 0.75rem; font-size: 0.9rem; }
+        .editor-message.success { color: #7fd67f; }
+        .editor-message.error { color: #ff7f7f; }
+        .scholars-sources { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
+        .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
+        .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
+        .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
+        .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
+        .scholars-media-list { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.75rem; }
+        .scholars-media-thumb { width: 80px; height: 80px; object-fit: cover; border-radius: 6px; border: 1px solid rgba(255,255,255,0.12); }
+        .scholars-media-item { position: relative; }
+        .scholars-media-item .media-status { position: absolute; bottom: 4px; left: 4px; font-size: 0.6rem; text-transform: uppercase; padding: 0.1rem 0.35rem; border-radius: 4px; background: rgba(0,0,0,0.7); color: var(--primary); }
+        .upload-status { font-size: 0.85rem; margin-top: 0.5rem; }
+        .upload-status.success { color: #7fd67f; }
+        .upload-status.error { color: #ff7f7f; }
+        .scholars-history-list { display: flex; flex-direction: column; gap: 0.75rem; }
+        .scholars-history-item { background: rgba(255,255,255,0.03); border-radius: 8px; padding: 0.75rem 1rem; color: var(--white-dim); font-size: 0.95rem; }
+
+        .scholars-auth-banner {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .scholars-auth-banner.logged-in { border-color: rgba(212,175,55,0.2); }
+        .scholars-auth-message { color: var(--white-dim); font-size: 0.95rem; }
+        .scholars-auth-message strong { color: var(--primary); }
+        .scholars-auth-actions { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+        .scholars-auth-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .scholars-auth-btn:hover { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary:hover { background: var(--primary-bright); border-color: var(--primary-bright); }
+        .scholars-role-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.2rem 0.5rem;
+            border-radius: 999px;
+            background: rgba(212,175,55,0.12);
+            color: var(--primary);
+            vertical-align: middle;
+        }
+        .scholars-expired-note {
+            color: #ff7f7f;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+        @media (max-width: 640px) {
+            .scholars-auth-banner { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "name": "ʾAṯiratu — Scholarly Edition",
+    "headline": "ʾAṯiratu — Scholarly Edition",
+    "description": "University-curated scholarly reference for ʾAṯiratu (Lady of the Sea, Mother of the Gods).",
+    "url": "https://punicodex.com/sites/athiratu/scholars/",
+    "about": {
+        "@type": "Thing",
+        "name": "𐎀𐎘𐎗𐎚",
+        "alternateName": ["athiratu", "ʾAṯiratu"],
+        "description": "Lady of the Sea, Mother of the Gods"
+    },
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "PUNICODEX",
+        "url": "https://punicodex.com"
+    },
+    "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://punicodex.com/sites/athiratu/assets/athiratu_mascot.png"
+    }
+}
+    </script>
+
+    <link rel="canonical" href="https://punicodex.com/sites/athiratu/scholars/">
+
+    <meta property="og:title" content="ʾAṯiratu — Scholarly Edition | PUNICODEX">
+    <meta property="og:description" content="University-curated scholarly reference for ʾAṯiratu (Lady of the Sea, Mother of the Gods).">
+    <meta property="og:url" content="https://punicodex.com/sites/athiratu/scholars/">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="PUNICODEX">
+    <meta property="og:image" content="https://punicodex.com/sites/athiratu/assets/athiratu_mascot.webp">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punicodex.com/sites/athiratu/assets/athiratu_mascot.webp">
+    <meta name="twitter:title" content="ʾAṯiratu — Scholarly Edition | PUNICODEX">
+    <meta name="twitter:description" content="University-curated scholarly reference for ʾAṯiratu (Lady of the Sea, Mother of the Gods).">
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0C">
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punicodex.com/" class="global-brand"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-gold-solid.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="560" height="58"></picture></a>
+            <div class="global-links">
+                <a href="https://punicodex.com/pantheon/">Pantheon</a>
+                <a href="https://punicodex.com/lexicon/">Lexicon</a>
+                <a href="https://punicodex.com/connections/">Connections</a>
+                <a href="https://punicodex.com/type/">Type</a>
+                <a href="https://punicodex.com/search.html">Search</a>
+                <a href="https://punicodex.com/tiers/">Tiers</a>
+                <a href="https://punicodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="athiratu-canvas" data-effect="seamother-canvas" data-primary="#1E3A5A" data-secondary="#7FA8C8" aria-hidden="true"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/athiratu_logolockup.webp" type="image/webp"><img src="../assets/athiratu_logolockup.png" alt="ʾAṯiratu" class="nav-logo-img" width="1536" height="1024"></picture>
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="../patterns/index.html" class="nav-link">Patterns</a>
+                <a href="../blog/index.html" class="nav-link">Blog</a>
+                <a href="./" class="nav-link active">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="../patterns/index.html" class="nav-link">Patterns</a>
+        <a href="../blog/index.html" class="nav-link">Blog</a>
+        <a href="./" class="nav-link active">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <!-- Scholars Hero -->
+    <header class="scholars-hero" id="hero">
+        <div class="scholars-hero-content">
+            <p class="scholars-eyebrow reveal-up">PUNICODEX Scholarly Edition</p>
+            <h1 class="scholars-title reveal-up">ʾAṯiratu</h1>
+            <p class="scholars-subtitle reveal-up">Lady of the Sea, Mother of the Gods · A living, university-curated reference. Verified scholars contribute; every edit is attributed, reviewed, and preserved.</p>
+            <div class="scholars-meta reveal-up">
+                <span class="meta-badge">Tier-1</span>
+                <span class="meta-domain">ʾAṯiratu.com</span>
+            </div>
+            <nav class="scholars-toc reveal-up" aria-label="Scholarly sections">
+                <div class="scholars-toc-title">Table of Contents</div>
+                <ol class="scholars-toc-list">
+                    <li><a href="#overview">01 &mdash; Overview</a></li>
+<li><a href="#the-name">02 &mdash; The Name</a></li>
+<li><a href="#pronunciation">03 &mdash; Pronunciation</a></li>
+<li><a href="#original-script">04 &mdash; Original Script & Provenance</a></li>
+<li><a href="#domains">05 &mdash; Domains & Attributes</a></li>
+<li><a href="#symbols">06 &mdash; Symbols</a></li>
+<li><a href="#mythology">07 &mdash; Mythology</a></li>
+<li><a href="#syncretism">08 &mdash; Syncretism & Reception</a></li>
+<li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
+<li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
+<li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
+<li><a href="#ugaritic-tablets">12 &mdash; Ugaritic Tablets</a></li>
+<li><a href="#tanakh-references">13 &mdash; Tanakh References</a></li>
+<li><a href="#inscriptions">14 &mdash; Inscriptions & Seals</a></li>
+<li><a href="#meditation">15 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">16 &mdash; Edit History</a></li>
+<li><a href="#attribution">17 &mdash; Attribution</a></li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Scholarly Sections -->
+    <main class="container">
+        <section class="scholars-section" id="overview">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">01</span>
+        <h2 class="scholars-section-title">Overview</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
+        <p><strong>ʾAṯiratu</strong> (<em>athiratu</em>) — Lady of the Sea, Mother of the Gods · &quot;&#39;Lady of the Sea&#39; — the Ugaritic mother of the gods (rbt ʾaṯrt ym), consort of ʾIlu and intercessor for Baʿlu&quot; — belongs to the Canaanite tradition, where she is catalogued under the domain &quot;Lady of the Sea, Mother of the Gods&quot;. Her name is the first word of Ugarit&#39;s royal theology: qnyt ʾilm, &#39;Creatress of the Gods&#39;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p>ʾAṯiratu is the great mother of the Ugaritic pantheon — consort of the high god ʾIlu, mother of the divine council itself (&#39;the seventy sons of ʾAṯiratu&#39;), and the court&#39;s one reliable channel to its distant king. When the storm-god Baʿlu needs a palace, it is ʾAṯiratu who saddles her donkey, rides to ʾIlu&#39;s tent at the source of the rivers, and wins the decree (KTU 1.4 III–V); when Baʿlu lies dead, it is to her that ʾIlu turns to name a successor. Her great title rbt ʾaṯrt ym, &#39;the Great Lady who walks on the Sea&#39;, ties her to the Mediterranean that fed and feared the city of Ugarit, and the tablets style her qnyt ʾilm, &#39;creatress of the gods&#39;<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup>. She is the Ugaritic form of the figure the Hebrew Bible knows as [ꜥAsherah](/sites/asherah/) and the Phoenicians as [ʾAšeratu](/sites/aseratu/).<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup></p>
+<p>PuniCodex restores the name as <strong>ʾAṯiratu</strong> and serves its temple at <a class="scholars-ext" href="https://xn--airatu-w17b.com" rel="noopener noreferrer" target="_blank">aṯiratu.com</a>. The restoration preserves distinctive features the ASCII form loses — the glottal letter ʾ and, above all, the underdotted ṯ, the interdental consonant /θ/ that Ugaritic writes and Phoenician and Hebrew shifted to š — which places the name in Tier 1. The plain ASCII form <em>athiratu</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">KTU 1.4 and related Ugaritic texts (ʾAṯiratu in the Baal Cycle).</li><li id="src-overview-2">Coogan &amp; Smith, Stories from Ancient Canaan.</li><li id="src-overview-3">Day, Yahweh and the Gods and Goddesses of Canaan.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="the-name">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">02</span>
+        <h2 class="scholars-section-title">The Name</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
+        <p>The name is attested in Ugaritic as <strong>𐎀𐎘𐎗𐎚</strong> — four signs of alphabetic cuneiform, read a-ṯ-r-t and normalized ʾAṯiratu with the nominative case-vowel. Her full court style runs rbt ʾaṯrt ym, &#39;the Great Lady who walks on the Sea&#39;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The ASCII form <em>athiratu</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. Worse, the scholarly Latin convention &#39;Athirat&#39; inserts an h to hint at the ṯ — a letter no Ugaritic sign writes. The Unicode restoration <strong>ʾAṯiratu</strong> recovers the name&#39;s two distinctive features directly in the address bar: the glottal onset ʾ (ʾalep) and the underdotted ṯ, the voiceless interdental /θ/ that English preserves in &#39;thin&#39; and that Phoenician and Hebrew shifted to š — whence the sister forms Ašeratu and ʾĂšērāh. The restoration preserves distinctive features the ASCII form loses, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>a</strong> → <strong>ʾA</strong> — Glottal onset (ʾalep)</li><li><strong>t</strong> → <strong>ṯ</strong> — Underdotted t: /θ/ (Ugaritic ṯ, Greek θ)</li><li><strong>h</strong> → <strong>—</strong> — The h of the Latin convention, unwritten in Ugaritic</li><li><strong>i</strong> → <strong>i</strong> — Same</li><li><strong>r</strong> → <strong>r</strong> — Same</li><li><strong>a</strong> → <strong>a</strong> — Same</li><li><strong>t</strong> → <strong>t</strong> — Same</li><li><strong>u</strong> → <strong>u</strong> — Same</li></ul>
+<p>The project holds the domain <strong>aṯiratu.com</strong> (xn--airatu-w17b.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">KTU (Ugaritic texts: ʾaṯrt, rbt ʾaṯrt ym).</li><li id="src-the-name-2">Coogan &amp; Smith, Stories from Ancient Canaan.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="pronunciation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">03</span>
+        <h2 class="scholars-section-title">Pronunciation</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
+        <p>The reconstructed pronunciation of the name is <strong>/ʔaθ.i.ˈraː.tu/</strong> — Ugaritic Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>ʾ</strong> — Glottal stop [ʔ], the letter ʾalep: a catch in the throat before the first vowel, as in the Cockney &#39;bottle&#39;</li><li><strong>A</strong> — Short open vowel [a]</li><li><strong>ṯ</strong> — Voiceless interdental fricative [θ], the &#39;th&#39; of English &#39;thin&#39; — the sound this temple exists to keep</li><li><strong>i</strong> — Short close vowel [i]</li><li><strong>r</strong> — Tapped or trilled [r]</li><li><strong>ā</strong> — Long open vowel [aː], carrying the stress</li><li><strong>t</strong> — Voiceless dental stop [t]</li><li><strong>u</strong> — Close back vowel [u], the nominative case-ending of the divine name</li></ul>
+<p>For the modern speaker, the closest approximation is: ah-thi-RAH-too — the th is the soft interdental of &#39;thin&#39;, never the hard t-h of &#39;pot-house&#39;, and the stress and the long ā fall together on the third syllable.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Ugaritic</strong> — 𐎀𐎘𐎗𐎚 (ʾaṯrt), alphabetic cuneiform, four signs</li><li><strong>Phoenician</strong> — 𐤀𐤔𐤓𐤕 (ʾšrt, Ašeratu), the ṯ shifted to š</li><li><strong>Hebrew</strong> — אֲשֵׁרָה (ʾĂšērāh), the goddess and her cult object</li><li><strong>Greek</strong> — Ἀσερά, the form Philo of Byblos hands to Greek readers</li></ul>
+<p>ʾAṯiratu is a Tier-1 restoration: the underdotted ṯ is the preserved non-English feature, a distinctive letter the ASCII form erases. The interdental survived in Arabic (ث) but shifted to š across Phoenician and Hebrew, so that the same goddess is Ašeratu at Tyre and ʾĂšērāh in the Bible; only Ugaritic, her own archive, writes the ṯ.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">KTU (Ugaritic texts: ʾaṯrt); Day, Yahweh and the Gods and Goddesses of Canaan.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="original-script">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">04</span>
+        <h2 class="scholars-section-title">Original Script & Provenance</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
+        <p>The name is preserved in Ugaritic as <strong>𐎀𐎘𐎗𐎚</strong> — alphabetic cuneiform, attested Ugaritic, c. 1400–1190 BCE, at Ras Shamra (ancient Ugarit) on the Syrian coast. The script is written left-to-right, unusual among Semitic scripts, in wedge-impressed clay.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>ʾaṯrt</em> (with the normalized vocalization ʾAṯiratu), giving the reconstructed reading /ʔaθ.i.ˈraː.tu/.</p>
+<p>Sign by sign, the name runs:<sup class="scholars-cite"><a href="#src-original-script-2">[2]</a></sup></p>
+<ul class="scholars-list"><li><strong>𐎀</strong> — <em>ʾa</em> /ʔa/ — the first of Ugaritic&#39;s three vowel-bearing ʾalep signs, a glottal stop carrying the vowel a</li><li><strong>𐎘</strong> — <em>ṯ</em> /θ/ — the voiceless interdental fricative, the &#39;th&#39; of English &#39;thin&#39;; the sign this temple exists to keep</li><li><strong>𐎗</strong> — <em>r</em> /r/ — the trilled liquid of the stem</li><li><strong>𐎚</strong> — <em>t</em> /t/ — the feminine ending of the consonantal skeleton</li></ul>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>Ugaritic writes thirty cuneiform signs for consonants, plus three ʾalep signs that carry the vowels a, i, u; the name&#39;s skeleton a-ṯ-r-t is thus fully written, while the remaining vowels and the nominative case-vowel -u are supplied by the standard vocalization.<sup class="scholars-cite"><a href="#src-original-script-3">[3]</a></sup></li><li>The interdental ṯ survives in Arabic (ث) but shifted to š in Phoenician and Hebrew, producing the sister forms Ašeratu and ʾĂšērāh; only Ugaritic writes the consonant this restoration keeps.</li><li>The scholarly Latin convention &#39;Athirat&#39; signals the ṯ with an h that no Ugaritic sign writes; the Unicode restoration <strong>ʾAṯiratu</strong> marks it with the underdot instead, and the registrable domain aṯiratu.com carries the name in .com — the Ugaritic script itself is not in the .com IDN table.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">KTU (the alphabetic corpus of Ras Shamra).</li><li id="src-original-script-2">Schniedewind &amp; Hunt, A Primer on Ugaritic: Language, Culture and Literature.</li><li id="src-original-script-3">Daniels &amp; Bright (eds.), The World&#39;s Writing Systems (Ugaritic).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="domains">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">05</span>
+        <h2 class="scholars-section-title">Domains & Attributes</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
+        <p>ʾAṯiratu is the great mother of the Ugaritic pantheon: qnyt ʾilm, &#39;Creatress of the Gods&#39;, consort of the high god ʾIlu, and the one deity who can walk into his tent and change his mind. Her title rbt ʾaṯrt ym — &#39;the Great Lady who walks on the Sea&#39; — makes her sovereign of the waters that fed, and feared, the city of Ugarit.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Creatress of the Gods</h3>
+<p>qnyt ʾilm: the whole divine council are &#39;the seventy sons of ʾAṯiratu&#39; — and she names their kings.</p>
+<h3 class="scholars-h3">Lady of the Sea</h3>
+<p>rbt ʾaṯrt ym: she treads the Mediterranean that carried Ugarit&#39;s wealth, and her own servant is the divine fisherman.</p>
+<h3 class="scholars-h3">The Intercessor</h3>
+<p>When Baʿlu needs a palace, it is ʾAṯiratu who rides to ʾIlu&#39;s tent and wins the decree (KTU 1.4 III–V).</p>
+<h3 class="scholars-h3">Lamp of the Gods</h3>
+<p>qnyt ʾilm: the creatress of the gods — the mother whose presence illumines the court.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Coogan &amp; Smith, Stories from Ancient Canaan.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="symbols">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">06</span>
+        <h2 class="scholars-section-title">Symbols</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
+        <p>No cult statue of ʾAṯiratu is known from Ugarit: her image, like her power, is carried in titles and in the furniture of the queen mother&#39;s house. The recurring motifs are these:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>The sea</strong> — ym, the waters she treads and rules; her title rbt ʾaṯrt ym, &#39;the Great Lady who walks on the Sea&#39;, is the most famous line of Ugaritic theology<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></li><li><strong>The spindle</strong> — the queen mother&#39;s domestic sovereignty: weaving, nursing, and provisioning raised to cosmic office, the imagery that later clings to Asherah&#39;s cult<sup class="scholars-cite"><a href="#src-symbols-2">[2]</a></sup></li><li><strong>The saddled donkey</strong> — the beast her servant Qōdēšu-wa-ʾAmruru harnesses for the ride to ʾIlu&#39;s tent (KTU 1.4 iv): diplomacy&#39;s mount, and the picture every reader of the Baal Cycle keeps of her<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></li><li><strong>The lamp</strong> — her title qnyt ʾilm, &#39;creatress of the gods&#39;, makes her the mother of the divine household<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">KTU (Ugaritic texts: rbt ʾaṯrt ym; qnyt ʾilm; KTU 1.4 iv).</li><li id="src-symbols-2">Hadley, The Cult of Asherah in Ancient Israel and Judah.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="mythology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">07</span>
+        <h2 class="scholars-section-title">Mythology</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
+        <p>ʾAṯiratu rarely fights; she decides. Her scenes in the Ugaritic tablets show the queen mother at work — approached by the younger gods, saddling her donkey, speaking in the high god&#39;s tent, and settling what thunder cannot. The Baal Cycle and the Keret Epic are her principal witnesses.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">A Palace for Baʿlu (KTU 1.4 III–V)</h3>
+<p>The storm-god [Baʿlu](/sites/baal/) has defeated Yammu but has no house — and no standing — among the gods, and the high god [ʾIlu](/sites/el/) cannot be moved by force or flattery from below. The queen mother acts. She orders her servant Qōdēšu-wa-ʾAmruru to saddle her donkey, rides to the source of the two rivers, to the tent of ʾIlu, and prostrates herself; ʾIlu sees her coming and is glad. The banquet is spread, the request is made, and the decree is given: let a house be built for Baʿlu like the gods&#39;, and let Kôṯāru-wa-Ḫasīsu build it. Without her embassy the storm-god stays homeless.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Seventy Sons and the Succession (KTU 1.4 VI; 1.6 I)</h3>
+<p>The tablets call her qnyt ʾilm, &#39;Creatress of the Gods&#39;, and the pantheon itself &#39;the seventy sons of ʾAṯiratu&#39;. When Baʿlu lies dead in the realm of [Môtu](/sites/mot/), it is to her that ʾIlu turns: let one of your sons be made king. She names ʿAṯtaru the Radiant, who climbs Baʿlu&#39;s throne on Mount Ṣāpānu — and cannot fill it: his feet do not reach the footstool, his head does not reach the top, and he steps down. Even the succession is hers to attempt.<sup class="scholars-cite"><a href="#src-mythology-3">[3]</a></sup></p>
+<h3 class="scholars-h3">The Vow of King Keret (KTU 1.14–1.16)</h3>
+<p>The childless King Keret marches on Udum to win the bride Ḫurriyu, and on the road he stops at the shrine of &#39;ʾAṯiratu of the Tyrians and the goddess of the Sidonians&#39;. There he vows: if he brings the woman home, he will pay her measure in silver and gold. He wins the bride — and forgets the vow. Sickness follows, the land grieves, and the epic&#39;s third tablet turns on the queen mother&#39;s unpaid debt. Kings swear to her; she collects.<sup class="scholars-cite"><a href="#src-mythology-4">[4]</a></sup></p>
+<h3 class="scholars-h3">She Who Treads the Sea</h3>
+<p>Her great title rbt ʾaṯrt ym is read &#39;the Great Lady who walks on the Sea&#39; — and by some scholars, &#39;she who treads on the sea-dragon&#39;. Her servant is called dgy ʾaṯrt, &#39;fisherman of ʾAṯiratu&#39;, and rows her messages across the deep; and in the Keret Epic the royal heir is promised to &#39;suck the milk of ʾAṯiratu, the breasts of the Virgin [ʿAnatu](/sites/anat/)&#39; — the queen mother&#39;s milk legitimates a king of Ugarit.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">KTU 1.4 and 1.14–1.16 (the Baal Cycle and the Keret Epic).</li><li id="src-mythology-2">Coogan &amp; Smith, Stories from Ancient Canaan.</li><li id="src-mythology-3">Smith, The Ugaritic Baal Cycle, vol. 2 (KTU 1.6).</li><li id="src-mythology-4">Wyatt, Religious Texts from Ugarit (the Keret Epic).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="syncretism">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">08</span>
+        <h2 class="scholars-section-title">Syncretism & Reception</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
+        <p>West Semitic speakers carried her under shifted sounds. In Phoenician the interdental ṯ becomes š, and she is ʾAšeratu — the form Philo of Byblos hands to Greek readers as Ἀσερά.<sup class="scholars-cite"><a href="#src-syncretism-2">[2]</a></sup> In the Hebrew Bible she is ʾĂšērāh, Asherah, the most contested goddess of Israel and Judah: worshipped in the temple itself, cut down by reformers, and slowly flattened by polemic into a wooden pole planted beside the altar. Hittite tablets know her as Ašertu, consort of Elkunirša, and Egyptian religion of the empire age venerates a figure many scholars identify with her under the title Qudšu, &#39;Holiness&#39;. One figure, three scripts, a dozen polemics — the queen mother outlasted every alphabet that renamed her.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Kindred figures in the PuniCodex cross-tradition index include <a class="scholars-xlink" href="/sites/asherah/">ꜥAsherah</a>, <a class="scholars-xlink" href="/sites/aseratu/">ʾAšeratu</a>, <a class="scholars-xlink" href="/sites/el/">ʾIlu</a>, <a class="scholars-xlink" href="/sites/baal/">Baʿlu</a>, <a class="scholars-xlink" href="/sites/anat/">ʿAnatu</a>, and <a class="scholars-xlink" href="/sites/shapash/">Šāpšu</a>, each linked through the Ugaritic divine household.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Day, Yahweh and the Gods and Goddesses of Canaan.</li><li id="src-syncretism-2">Eusebius, Praeparatio Evangelica 1.10 (Philo of Byblos).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="cultural-legacy">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">09</span>
+        <h2 class="scholars-section-title">Cultural Legacy</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
+        <p>Her afterlife is an argument the Bible could not win. The Deuteronomists reduced her to the ʾăšērâ, a planted pole, yet the prophets&#39; fury is itself the evidence: four hundred prophets of Asherah eat at Jezebel&#39;s table (1 Kings 18:19), women bake cakes for the Queen of Heaven (Jeremiah 7:18), and Josiah must drag her image out of the temple to burn it at the Kidron (2 Kings 23:4–7).<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup> Twentieth-century archaeology turned the polemic into attestation — the painted pithoi of Kuntillet ʿAjrud bless a man &#39;by Yahweh of Samaria and his Asherah&#39;, and the Khirbet el-Qom tomb inscription names &#39;Yahweh and his Asherah&#39; together.<sup class="scholars-cite"><a href="#src-cultural-legacy-2">[2]</a></sup> Modern scholarship (Day, Hadley, Wiggins) has rebuilt the queen mother from those shards, and feminist theology has reclaimed her as the divine feminine edited out of the Western canon — and read back in.<sup class="scholars-cite"><a href="#src-cultural-legacy-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Hebrew Bible, 1 Kings 18:19; Jeremiah 7:18; 2 Kings 23:4–7 (the Asherah polemics).</li><li id="src-cultural-legacy-2">Meshel, Kuntillet ʿAjrud (Ḥorvat Teman): An Iron Age II Religious Site on the Judah-Sinai Border.</li><li id="src-cultural-legacy-3">Day, Yahweh and the Gods and Goddesses of Canaan; Hadley, The Cult of Asherah; Wiggins, A Reassessment of Asherah.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="archaeology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">10</span>
+        <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
+        <p>The tablets of Ras Shamra are her archive: the palace narrative of KTU 1.4, the succession scene of KTU 1.6, and Keret&#39;s vow at her Tyrian shrine were copied in the scribal school of ʾIlimilku in the fourteenth–thirteenth centuries BCE and buried when the city fell c. 1190 BCE.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup> No temple of ʾAṯiratu has been securely identified at Ugarit — the queen mother seems to have shared the acropolis cult of Baʿlu and ʾIlu — but her worship is stamped across the Iron Age Levant: the tree-and-lion iconography of the tenth-century Taanach cult stand and the hundreds of Judean pillar figurines are associated with her cult by many scholars.<sup class="scholars-cite"><a href="#src-archaeology-2">[2]</a></sup> The decisive finds are the painted pithoi of Kuntillet ʿAjrud (c. 800 BCE), with their blessing &#39;by Yahweh … and his Asherah&#39;, and the Khirbet el-Qom tomb inscription — the objects that made the biblical polemic an archaeological fact.<sup class="scholars-cite"><a href="#src-archaeology-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">KTU (the Ras Shamra tablets; the ʾIlimilku colophons).</li><li id="src-archaeology-2">Keel &amp; Uehlinger, Gods, Goddesses, and Images of God in Ancient Israel (Taanach; the pillar figurines).</li><li id="src-archaeology-3">Meshel, Kuntillet ʿAjrud (Ḥorvat Teman); the Khirbet el-Qom tomb inscription.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="scholarly-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">11</span>
+        <h2 class="scholars-section-title">Scholarly Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
+        <p>The account of ʾAṯiratu given in this edition rests on the witnesses and reference works listed below. The alphabetic corpus of Ugarit supplies the primary evidence — the Baal Cycle, the Keret Epic, and the god-lists; the inscriptional finds and the modern studies of Canaanite religion supply the framework in which that evidence is read.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> KTU 1.3–1.6 (the Baal Cycle) and KTU 1.14–1.16 (the Keret Epic).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Coogan &amp; Smith, Stories from Ancient Canaan.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Smith, The Ugaritic Baal Cycle.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Wyatt, Religious Texts from Ugarit.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Day, Yahweh and the Gods and Goddesses of Canaan.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Hadley, The Cult of Asherah in Ancient Israel and Judah.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Wiggins, A Reassessment of Asherah.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Smith, The Early History of God.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-9">[9]</a></sup> Eusebius, Praeparatio Evangelica 1.10 (Philo of Byblos).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">KTU 1.3–1.6 (the Baal Cycle) and KTU 1.14–1.16 (the Keret Epic).</li><li id="src-scholarly-sources-2">Coogan &amp; Smith, Stories from Ancient Canaan.</li><li id="src-scholarly-sources-3">Smith, The Ugaritic Baal Cycle.</li><li id="src-scholarly-sources-4">Wyatt, Religious Texts from Ugarit.</li><li id="src-scholarly-sources-5">Day, Yahweh and the Gods and Goddesses of Canaan.</li><li id="src-scholarly-sources-6">Hadley, The Cult of Asherah in Ancient Israel and Judah.</li><li id="src-scholarly-sources-7">Wiggins, A Reassessment of Asherah.</li><li id="src-scholarly-sources-8">Smith, The Early History of God.</li><li id="src-scholarly-sources-9">Eusebius, Praeparatio Evangelica 1.10 (Philo of Byblos).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="ugaritic-tablets">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Ugaritic Tablets</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The queen mother&#39;s archive is the alphabetic corpus of Ras Shamra. The Baal Cycle gives her the palace narrative (KTU 1.4 III–V), the banquet of &#39;the seventy sons of ʾAṯiratu&#39; (KTU 1.4 VI), and the succession scene of KTU 1.6 I, where ʾIlu asks her to name a king and she names ʿAṯtaru the Radiant. The Keret Epic (KTU 1.14–1.16) preserves her coastal cult-title &#39;ʾAṯiratu of the Tyrians&#39;, the king&#39;s vow at her shrine, and the promise that the royal heir will &#39;suck the milk of ʾAṯiratu&#39;.<sup class="scholars-cite"><a href="#src-ugaritic-tablets-1">[1]</a></sup> Her titles run through the corpus: qnyt ʾilm, &#39;Creatress of the Gods&#39;; rbt ʾaṯrt ym, &#39;the Great Lady who walks on the Sea&#39;; rbt ʾaṯrt ym, &#39;the Great Lady who walks on the Sea&#39;; and her servant Qōdēšu-wa-ʾAmruru bears the office dgy ʾaṯrt, &#39;fisherman of ʾAṯiratu&#39;. The tablets were copied in the school of ʾIlimilku and buried when Ugarit fell c. 1190 BCE.<sup class="scholars-cite"><a href="#src-ugaritic-tablets-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-ugaritic-tablets-1">KTU 1.4–1.6 (Baal Cycle); KTU 1.14–1.16 (Keret Epic: ʾaṯrt ṣrm, the vow, the suckling oracle).</li><li id="src-ugaritic-tablets-2">Wyatt, Religious Texts from Ugarit; Schniedewind &amp; Hunt, A Primer on Ugaritic.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="tanakh-references">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Tanakh References</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Hebrew Bible knows her as ʾĂšērāh — some forty occurrences, nearly all hostile. The Deuteronomic law forbids planting &#39;an asherah, any tree&#39;, beside the altar (Deuteronomy 16:21); Gideon cuts down his father&#39;s asherah (Judges 6:25–30); Asa deposes the queen mother Maacah for her image of Asherah (1 Kings 15:13); Elijah&#39;s contest counts &#39;the four hundred prophets of Asherah who eat at Jezebel&#39;s table&#39; (1 Kings 18:19); Manasseh sets her image in the temple (2 Kings 21:7) and Josiah burns it at the Kidron (2 Kings 23:4–7). Whether the biblical ʾăšērîm are the goddess herself or her wooden cult-object is the standing question of the scholarship.<sup class="scholars-cite"><a href="#src-tanakh-references-1">[1]</a></sup> The polemics are double-edged evidence: they prove the cult&#39;s reach from the palace to the village oven, and the women who bake cakes for the Queen of Heaven (Jeremiah 7:18; 44:15–19) testify to a devotion the text cannot extinguish.<sup class="scholars-cite"><a href="#src-tanakh-references-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-tanakh-references-1">Hebrew Bible, Deuteronomy 16:21; Judges 6:25–30; 1 Kings 15:13; 18:19; 2 Kings 21:7; 23:4–7.</li><li id="src-tanakh-references-2">Day, Yahweh and the Gods and Goddesses of Canaan; Hadley, The Cult of Asherah in Ancient Israel and Judah.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="inscriptions">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Inscriptions & Seals</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Beyond Ugarit, the epigraphic record carries her under every stage of the name. The Amarna letters preserve the theophoric name Abdi-Aširta, &#39;servant of Aširta&#39;, borne by the ruler of Amurru in the fourteenth century BCE — her name fossilized in a Canaanite chancellery. Hittite tablets know her as Ašertu, consort of Elkunirša, &#39;El creator of the earth&#39;; Egyptian texts of the empire age venerate a figure many scholars identify with her as Qudšu, &#39;Holiness&#39;.<sup class="scholars-cite"><a href="#src-inscriptions-1">[1]</a></sup> The Iron Age record is the famous one: the painted pithoi of Kuntillet ʿAjrud bless a man &#39;by Yahweh of Samaria (or Teman) and his Asherah&#39;, and the Khirbet el-Qom tomb inscription joins &#39;Yahweh and his Asherah&#39; in a blessing — whether the word names the goddess or her symbol is still argued. In Phoenician proper she is ʾšrt, Ašeratu, and Philo of Byblos renders her for Greek readers as Ἀσερά.<sup class="scholars-cite"><a href="#src-inscriptions-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-inscriptions-1">Moran, The Amarna Letters (Abdi-Aširta of Amurru); the Elkunirša myth (Hittite: Ašertu).</li><li id="src-inscriptions-2">Meshel, Kuntillet ʿAjrud (KH1–KH3); Khirbet el-Qom; Eusebius, Praeparatio Evangelica 1.10 (Philo of Byblos).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>ʾAṯiratu is the theology of the quiet word. The storm-god wins the battles; she wins the audience. Her power is the intercessor&#39;s power — the mother who saddles her own donkey, rides the length of the world to the high god&#39;s tent, and comes home with the decree in her hand.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p>
+<p>She asks the question every house and every institution answers daily: when the thunder fails, whose voice does the king still trust? To contemplate ʾAṯiratu is to remember that influence need not be loud to be absolute — and that the figures written out of the record are often the ones holding it together.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">KTU 1.4 (the intercession for Baʿlu).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Edit History</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
+        <div class="scholars-empty-state">
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
+        </div>
+    </div>
+</section>
+
+<section class="scholars-section" id="attribution">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
+        <h2 class="scholars-section-title">Attribution</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
+        <div class="scholars-empty-state">
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
+        </div>
+    </div>
+</section>
+    </main>
+
+
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<footer class="section footer-section">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-block">
+                <span class="footer-label">Unicode Restoration</span>
+                <span class="footer-value">ʾAṯiratu</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Original Script</span>
+                <span class="footer-value">𐎀𐎘𐎗𐎚</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Pantheon</span>
+                <span class="footer-value">canaanite</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Classification</span>
+                <span class="footer-value">Tier-1</span>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-credit">Part of the <a href="https://punicodex.com/">PUNICODEX</a> temple network.</p>
+            <p class="footer-legal">Scholarly Edition content is contributed under CC BY 4.0 and reviewed by PUNICODEX curators.</p>
+        </div>
+    </div>
+</footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/px-core.js?v=perf20"></script>
+    <script src="/js/temple-base.js?v=perf20"></script>
+    <script src="../script.js?v=perf20"></script>
+    <script>/**
+ * PuniCodex — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
+    <script>
+    (function() {
+        const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'athiratu';
+        const apiBase = '/api/v1/scholars/';
+        let currentUser = null;
+        let sessionExpired = false;
+
+        function getSessionId() {
+            return localStorage.getItem('scholars_session');
+        }
+
+        async function api(path, options = {}) {
+            const sessionId = getSessionId();
+            const res = await fetch(apiBase + path, {
+                ...options,
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(sessionId ? { 'x-scholars-session': sessionId } : {}),
+                    ...(options.headers || {}),
+                },
+            });
+            const data = await res.json().catch(() => ({ success: false, error: 'Invalid response' }));
+            if (res.status === 401 && getSessionId()) {
+                localStorage.removeItem('scholars_session');
+                currentUser = null;
+                sessionExpired = true;
+                renderAuthState();
+            }
+            return { ok: res.ok, status: res.status, data };
+        }
+
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+        }
+
+        function getLoginUrl() {
+            const redirect = encodeURIComponent(window.location.href);
+            return `/scholars/login/?redirect=${redirect}`;
+        }
+
+        async function loadSession() {
+            const { data } = await api('/auth/session');
+            currentUser = data?.data?.user || null;
+            if (currentUser) {
+                document.body.classList.add('scholars-logged-in');
+                document.body.dataset.scholarsRole = currentUser.role;
+            }
+            renderAuthState();
+        }
+
+        function renderAuthState() {
+            const existing = document.getElementById('scholars-auth-banner');
+            if (existing) existing.remove();
+
+            const main = document.querySelector('main.container');
+            if (!main) return;
+
+            const banner = document.createElement('div');
+            banner.id = 'scholars-auth-banner';
+            banner.className = 'scholars-auth-banner' + (currentUser ? ' logged-in' : '');
+
+            if (currentUser) {
+                const actions = [];
+                if (currentUser.role === 'curator') {
+                    actions.push('<a href="/scholars/admin/index.html" class="scholars-auth-btn">Curator Admin</a>');
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                } else if (currentUser.role === 'reviewer') {
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                }
+                if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                    actions.push('<a href="/scholars/institution/index.html" class="scholars-auth-btn">Institution Dashboard</a>');
+                    if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                        actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                    }
+                }
+                actions.push('<button type="button" class="scholars-auth-btn" id="scholars-sign-out">Sign Out</button>');
+
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        Signed in as <strong>${escapeHtml(currentUser.displayName || currentUser.email)}</strong>
+                        <span class="scholars-role-badge">${escapeHtml(currentUser.role)}</span>
+                        ${sessionExpired ? '<div class="scholars-expired-note">Your session expired. Please sign in again.</div>' : ''}
+                    </div>
+                    <div class="scholars-auth-actions">${actions.join('')}</div>
+                `;
+            } else {
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        ${sessionExpired ? '<strong>Session expired.</strong> Sign in again to propose edits.' : 'Sign in to propose scholarly edits to this temple.'}
+                    </div>
+                    <div class="scholars-auth-actions">
+                        <a href="${escapeHtml(getLoginUrl())}" class="scholars-auth-btn primary">Sign In</a>
+                    </div>
+                `;
+            }
+
+            main.insertBefore(banner, main.firstChild);
+
+            const signOutBtn = document.getElementById('scholars-sign-out');
+            if (signOutBtn) {
+                signOutBtn.addEventListener('click', async () => {
+                    await api('/auth/logout', { method: 'POST' });
+                    localStorage.removeItem('scholars_session');
+                    currentUser = null;
+                    sessionExpired = false;
+                    renderAuthState();
+                    document.querySelectorAll('.scholars-edit-btn').forEach((btn) => btn.remove());
+                });
+            }
+        }
+
+        function canProposeEdit() {
+            if (!currentUser) return false;
+            return ['student', 'reviewer', 'dept_admin', 'inst_admin', 'curator'].includes(currentUser.role);
+        }
+
+        function formatDate(iso) {
+            if (!iso) return '';
+            return new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+
+        async function loadTemple() {
+            const { ok, data } = await api(`/temples/${templeId}`);
+            if (!ok || !data?.data) return;
+            const temple = data.data;
+            const sections = temple.sections || [];
+            const contributors = new Map();
+
+            for (const section of sections) {
+                const el = document.getElementById(section.key);
+                if (!el) continue;
+                const statusEl = el.querySelector('.scholars-section-status');
+                const bodyEl = el.querySelector('.scholars-section-body');
+                if (statusEl) {
+                    statusEl.textContent = section.status === 'published'
+                        ? `Contributed by ${section.lastModifiedBy || 'PuniCodex Team'}`
+                        : 'Open for Contribution';
+                    statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
+                }
+                if (section.status === 'published' && section.body) {
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
+                    const history = await loadSectionHistory(section.id);
+                    if (history.length > 0) {
+                        const latest = history[0];
+                        const attr = latest.attribution || {};
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
+                        addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
+                    }
+                }
+                if (canProposeEdit()) {
+                    const editBtn = document.createElement('button');
+                    editBtn.className = 'scholars-edit-btn';
+                    editBtn.textContent = 'Propose Edit';
+                    editBtn.onclick = () => openEditor(section, el);
+                    const header = el.querySelector('.scholars-section-header');
+                    if (header) header.appendChild(editBtn);
+                }
+            }
+
+            renderAttribution(contributors);
+
+            document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (!currentUser) {
+                        window.location.href = getLoginUrl();
+                        return;
+                    }
+                    const sectionEl = link.closest('.scholars-section');
+                    if (!sectionEl) return;
+                    const section = sections.find((s) => s.key === sectionEl.id);
+                    if (section) openEditor(section, sectionEl);
+                });
+            });
+        }
+
+        async function loadSectionHistory(sectionId) {
+            const { ok, data } = await api(`/sections/${sectionId}/history?limit=20`);
+            if (!ok || !data?.data) return [];
+            return data.data;
+        }
+
+        function addHistoryEntries(section, history) {
+            const historySection = document.getElementById('edit-history');
+            if (!historySection) return;
+            const statusEl = historySection.querySelector('.scholars-section-status');
+            const bodyEl = historySection.querySelector('.scholars-section-body');
+            if (statusEl) {
+                statusEl.textContent = 'Revisions';
+                statusEl.className = 'scholars-section-status';
+            }
+            // Clear empty state on first populated section.
+            if (!historySection.dataset.initialized) {
+                bodyEl.innerHTML = '<div class="scholars-history-list"></div>';
+                historySection.dataset.initialized = 'true';
+            }
+            const list = historySection.querySelector('.scholars-history-list');
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const author = escapeHtml(h.display_name || h.email || 'Unknown');
+                const item = document.createElement('div');
+                item.className = 'scholars-history-item';
+                item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
+                list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
+            }
+        }
+
+        function openEditor(section, el) {
+            const existing = el.querySelector('.scholars-editor');
+            if (existing) return;
+            const editor = document.createElement('div');
+            editor.className = 'scholars-editor';
+            editor.innerHTML = `
+                <label>Scholarly content</label>
+                <textarea rows="8" placeholder="Write the ${escapeHtml(section.label)} section here. Cite sources.">${escapeHtml(section.body || '')}</textarea>
+                <label>Sources (one per line)</label>
+                <textarea rows="3" class="sources-input" placeholder="Author, Title, Year, URL/DOI">${escapeHtml((section.sources || []).map((s) => typeof s === 'string' ? s : s.citation || '').join('\n'))}</textarea>
+                <div class="scholars-media-upload">
+                    <label>Media attachments</label>
+                    <input type="file" accept="image/webp,image/png,image/jpeg" class="media-file-input">
+                    <button type="button" class="upload-media-btn" style="background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.2); padding: 0.45rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer;">Upload Image</button>
+                    <div class="upload-status"></div>
+                    <div class="scholars-media-list"></div>
+                </div>
+                <div class="scholars-editor-actions">
+                    <button class="submit-edit">Submit for Review</button>
+                    <button class="cancel-edit">Cancel</button>
+                </div>
+                <div class="editor-message"></div>
+            `;
+            el.appendChild(editor);
+
+            const uploadedMedia = [];
+            const mediaList = editor.querySelector('.scholars-media-list');
+            const uploadStatus = editor.querySelector('.upload-status');
+
+            function renderMediaItem(item) {
+                const div = document.createElement('div');
+                div.className = 'scholars-media-item';
+                div.innerHTML = `
+                    <img src="${escapeHtml(item.url)}" alt="" class="scholars-media-thumb">
+                    <span class="media-status">${escapeHtml(item.status)}</span>
+                `;
+                mediaList.appendChild(div);
+            }
+
+            editor.querySelector('.upload-media-btn').onclick = async () => {
+                const input = editor.querySelector('.media-file-input');
+                const file = input.files[0];
+                if (!file) {
+                    uploadStatus.textContent = 'Select an image first.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                if (!['image/webp', 'image/png', 'image/jpeg'].includes(file.type)) {
+                    uploadStatus.textContent = 'Only WebP, PNG, and JPEG images are allowed.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                uploadStatus.textContent = 'Uploading…';
+                uploadStatus.className = 'upload-status';
+                const reader = new FileReader();
+                reader.onload = async () => {
+                    const base64 = reader.result;
+                    const { ok, data } = await api('/media', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            data: base64,
+                            filename: file.name,
+                            mimeType: file.type,
+                        }),
+                    });
+                    if (ok && data?.data) {
+                        uploadStatus.textContent = 'Image uploaded and awaiting review.';
+                        uploadStatus.className = 'upload-status success';
+                        const item = { mediaId: data.data.mediaId, url: data.data.url, status: data.data.status };
+                        uploadedMedia.push(item);
+                        renderMediaItem(item);
+                        input.value = '';
+                    } else {
+                        uploadStatus.textContent = data?.error || 'Upload failed.';
+                        uploadStatus.className = 'upload-status error';
+                    }
+                };
+                reader.onerror = () => {
+                    uploadStatus.textContent = 'Could not read file.';
+                    uploadStatus.className = 'upload-status error';
+                };
+                reader.readAsDataURL(file);
+            };
+
+            editor.querySelector('.cancel-edit').onclick = () => editor.remove();
+            editor.querySelector('.submit-edit').onclick = async () => {
+                const body = editor.querySelector('textarea').value.trim();
+                const sourcesText = editor.querySelector('.sources-input').value.trim();
+                const sources = sourcesText ? sourcesText.split('\n').map((s) => s.trim()).filter(Boolean).map((citation) => ({ citation })) : [];
+                const { ok, data } = await api(`/temples/${templeId}/sections/${section.key}/edits`, {
+                    method: 'POST',
+                    body: JSON.stringify({ proposedBody: body, proposedSources: sources, proposedMedia: uploadedMedia }),
+                });
+                const msg = editor.querySelector('.editor-message');
+                if (ok) {
+                    msg.textContent = 'Edit submitted for review.';
+                    msg.className = 'editor-message success';
+                    setTimeout(() => editor.remove(), 1500);
+                } else if (data?.code === 401 || data?.error?.toLowerCase().includes('session') || data?.error?.toLowerCase().includes('unauthorized')) {
+                    msg.textContent = 'Your session expired. Redirecting to sign in…';
+                    msg.className = 'editor-message error';
+                    setTimeout(() => { window.location.href = getLoginUrl(); }, 1200);
+                } else {
+                    msg.textContent = data?.error || 'Failed to submit edit.';
+                    msg.className = 'editor-message error';
+                }
+            };
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadSession();
+            await loadTemple();
+        });
+    })();
+    </script>
+</body>
+</html>
