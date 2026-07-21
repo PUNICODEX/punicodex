@@ -9,6 +9,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { createCanvas, loadImage } = require('canvas');
 const { imageSize } = require('image-size');
+const { writeWebpSibling } = require('./image-webp');
 
 const UPLOADS_DIR = path.join(__dirname, '..', 'public', 'uploads', 'creatives');
 const MAX_FILE_BYTES = 8 * 1024 * 1024;
@@ -204,6 +205,11 @@ async function processCreativeUpload({ imageBase64, assetId, mimeType: requested
     path.join(assetDir, `${baseName}_thumb`),
     mimeType
   );
+
+  // WebP renditions of the displayed assets (original stays in its uploaded
+  // format — it is the downloadable master).
+  await writeWebpSibling(previewPath);
+  await writeWebpSibling(thumbnailPath);
 
   return {
     originalPath: `/uploads/creatives/${assetId}/${path.basename(originalPath)}`,

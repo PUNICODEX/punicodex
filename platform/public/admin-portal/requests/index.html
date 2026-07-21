@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Admin Portal — Tenant Requests | PuniCodex</title>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="../portal.css">
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+</head>
+<body data-page="requests" data-depth="1">
+    <a class="skip-link" href="#portal-main">Skip to content</a>
+    <div id="portal-header"></div>
+
+    <main id="portal-main" class="portal-main">
+        <div class="portal-page-head">
+            <h1>Tenant Requests</h1>
+            <p>Approval queue for sponsor creative swaps and patron social-link changes. Nothing applies until it is approved here.</p>
+        </div>
+
+        <section class="panel" aria-label="Request filters">
+            <div class="portal-form-row">
+                <div class="field">
+                    <label for="filter-status">Status</label>
+                    <select id="filter-status">
+                        <option value="pending">Pending</option>
+                        <option value="approved">Approved</option>
+                        <option value="rejected">Rejected</option>
+                    </select>
+                </div>
+                <button type="button" class="btn btn-primary" id="filter-apply">Apply</button>
+            </div>
+        </section>
+
+        <section class="panel" aria-label="Tenant change requests">
+            <div class="panel-head">
+                <h2 class="panel-title">Queue</h2>
+                <span class="field-hint" id="request-total"></span>
+            </div>
+            <div id="request-table">
+                <div class="state-block">Loading requests…</div>
+            </div>
+            <div class="portal-form-row" id="request-pager" style="margin-top:1rem;" hidden>
+                <button type="button" class="btn btn-secondary btn-sm" id="request-prev">← Previous</button>
+                <span class="field-hint" id="request-page-label"></span>
+                <button type="button" class="btn btn-secondary btn-sm" id="request-next">Next →</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="../portal.js"></script>
+    <script>
+    (function () {
+        var PAGE_SIZE = 50;
+        var state = { status: 'pending', offset: 0 };
+
+        function describeTarget(item) {
+            var t = item.target;
+            if (!t) return '<span class="cell-sub">target missing</span>';
+            if (item.targetKind === 'booking') {
+                return (
+                    '<div class="cell-title">' + Portal.escapeHtml(t.slot_name || ('Booking #' + t.id)) + '</div>' +
+                    '<div class="cell-sub">' + Portal.escapeHtml(t.site_slug || '') + ' · ' + Portal.escapeHtml(t.status || '') + '</div>'
+                );
+            }
+            return (
+                '<div class="cell-title">' + Portal.escapeHtml(t.display_name || ('Patron #' + t.id)) + '</div>' +
+                '<div class="cell-sub">' + Portal.escapeHtml(t.temple_id || '') + ' · ' + Portal.escapeHtml(t.status || '') + '</div>'
+            );
+        }
+
+        function describePayload(item) {
+            var p = item.payload || {};
+            if (item.type === 'image') {
+                var path = p.creativePath || '';
+                return (
+                    '<div class="cell-title">New creative</div>' +
+                    '<div class="cell-sub"><a href="' + Portal.escapeHtml(path) + '" target="_blank" rel="noopener">' + Portal.escapeHtml(p.originalName || path) + '</a></div>'
+                );
+            }
+            if (p.socialPlatform === null || p.socialUrl === null) {
+                return '<div class="cell-title">Remove social links</div><div class="cell-sub">clears platform + URL</div>';
+            }
+            return (
+                '<div class="cell-title">' + Portal.escapeHtml(p.socialPlatform || '') + '</div>' +
+                '<div class="cell-sub">' + Portal.escapeHtml(p.socialUrl || '') + '</div>'
+            );
+        }
+
+        function renderTable(data) {
+            var wrap = document.getElementById('request-table');
+            var items = data.items || [];
+            document.getElementById('request-total').textContent = Portal.fmtNumber(data.total) + ' requests';
+            if (!items.length) {
+                wrap.innerHTML = '<div class="state-block">No requests in this state.</div>';
+            } else {
+                var canReview = Portal.can('ops');
+                var rows = items
+                    .map(function (item) {
+                        var actions = '<span class="cell-sub">—</span>';
+                        if (canReview && item.status === 'pending') {
+                            actions =
+                                '<button type="button" class="btn btn-sm btn-primary" data-action="approve" data-id="' + item.id + '">Approve</button>' +
+                                '<button type="button" class="btn btn-sm btn-danger" data-action="reject" data-id="' + item.id + '">Reject</button>';
+                        }
+                        var reviewed = item.reviewedAt
+                            ? '<div class="cell-sub">reviewed ' + Portal.escapeHtml(Portal.fmtDateTime(item.reviewedAt)) + (item.reviewerNote ? ' — ' + Portal.escapeHtml(item.reviewerNote) : '') + '</div>'
+                            : '';
+                        return (
+                            '<tr>' +
+                            '<td>#' + item.id + '</td>' +
+                            '<td><div class="cell-title">' + Portal.escapeHtml(item.accountEmail || '') + '</div>' +
+                            '<div class="cell-sub">' + Portal.escapeHtml(Portal.fmtDateTime(item.createdAt)) + '</div></td>' +
+                            '<td><span class="badge badge--gold">' + Portal.escapeHtml(item.type.replace(/_/g, ' ')) + '</span></td>' +
+                            '<td>' + describeTarget(item) + '</td>' +
+                            '<td>' + describePayload(item) + '</td>' +
+                            '<td>' + Portal.statusBadge(item.status) + reviewed + '</td>' +
+                            '<td><div class="cell-actions">' + actions + '</div></td>' +
+                            '</tr>'
+                        );
+                    })
+                    .join('');
+                wrap.innerHTML =
+                    '<div class="table-wrap"><table class="portal-table">' +
+                    '<thead><tr><th>ID</th><th>Account</th><th>Type</th><th>Target</th><th>Change</th><th>Status</th><th>Actions</th></tr></thead>' +
+                    '<tbody>' + rows + '</tbody></table></div>';
+            }
+
+            var pager = document.getElementById('request-pager');
+            pager.hidden = false;
+            document.getElementById('request-page-label').textContent =
+                'Showing ' + (items.length ? data.offset + 1 : 0) + '–' + (data.offset + items.length) + ' of ' + Portal.fmtNumber(data.total);
+            document.getElementById('request-prev').disabled = data.offset <= 0;
+            document.getElementById('request-next').disabled = data.offset + items.length >= data.total;
+        }
+
+        function fetchRequests() {
+            var params = new URLSearchParams();
+            params.set('status', state.status);
+            params.set('limit', String(PAGE_SIZE));
+            params.set('offset', String(state.offset));
+            return Portal.api('/api/admin/portal/tenant-requests/?' + params.toString());
+        }
+
+        async function load(promise) {
+            document.getElementById('request-table').innerHTML = '<div class="state-block">Loading requests…</div>';
+            try {
+                renderTable(await (promise || fetchRequests()));
+            } catch (err) {
+                document.getElementById('request-table').innerHTML =
+                    '<div class="state-block error">' + Portal.escapeHtml(err.message) + '</div>';
+            }
+        }
+
+        async function review(id, action) {
+            var verb = action === 'approve' ? 'Approve' : 'Reject';
+            var note = window.prompt(verb + ' request #' + id + ' — reviewer note (optional):', '');
+            if (note === null) return;
+            try {
+                await Portal.api('/api/admin/portal/tenant-requests/' + id + '/' + action + '/', {
+                    method: 'POST',
+                    body: { note: note || undefined },
+                });
+                Portal.toast('Request ' + (action === 'approve' ? 'approved — change applied' : 'rejected'), 'success');
+                load();
+            } catch (err) {
+                Portal.toast(verb + ' failed: ' + err.message, 'error');
+            }
+        }
+
+        async function init() {
+            var listPromise = fetchRequests();
+            var ctx = await Portal.initShell('requests');
+            if (!ctx) {
+                listPromise.catch(function () {});
+                return;
+            }
+
+            document.getElementById('filter-apply').addEventListener('click', function () {
+                state.status = document.getElementById('filter-status').value;
+                state.offset = 0;
+                load();
+            });
+            document.getElementById('request-prev').addEventListener('click', function () {
+                state.offset = Math.max(0, state.offset - PAGE_SIZE);
+                load();
+            });
+            document.getElementById('request-next').addEventListener('click', function () {
+                state.offset += PAGE_SIZE;
+                load();
+            });
+            document.getElementById('request-table').addEventListener('click', function (e) {
+                var btn = e.target.closest('button[data-action]');
+                if (!btn) return;
+                review(btn.getAttribute('data-id'), btn.getAttribute('data-action'));
+            });
+
+            load(listPromise);
+        }
+
+        init();
+    })();
+    </script>
+</body>
+</html>

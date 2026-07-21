@@ -17,6 +17,7 @@ const {
 const { createBookingCheckoutSession, createRenewalCheckoutSession } = require('./stripe');
 const { createVerifiedSession, consumeVerifiedSession } = require('./verified-sessions');
 const { validateMeta } = require('./booking-validation');
+const { existingWebpFor } = require('./image-webp');
 const {
   sendVerificationCode: emailSendVerificationCode,
   sendBookingConfirmation,
@@ -321,6 +322,7 @@ async function getAllBookingsByToken(token) {
       custom_heading: b.custom_heading,
       custom_subtitle: b.custom_subtitle,
       creative_path: b.creative_path,
+      creative_webp_path: existingWebpFor(b.creative_path),
       company_name: b.company_name,
       created_at: b.created_at,
       is_bundle: b.is_bundle,

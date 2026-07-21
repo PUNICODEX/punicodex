@@ -1,0 +1,18 @@
+/* Strip-less page nav geometry — for pages that load temple-base.css but have
+ * no .global-strip element. temple-base reserves var(--global-strip-height)
+ * (54-56px) above the fixed nav and sizes --nav-height for temple mascot logos;
+ * on strip-less pages that leaves the nav floating 54px low with content
+ * scrolling above it, and the open mobile menu tucking under the nav box.
+ * Load AFTER temple-base.css. Affected: blog index, lexicon, cognates, creatives. */
+:root {
+  --global-strip-height: 0px;
+  --nav-height: 72px;
+}
+.main-nav {
+  top: 0;
+}
+@media (max-width: 768px) {
+  :root {
+    --nav-height: 72px;
+  }
+}

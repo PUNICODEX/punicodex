@@ -46,6 +46,14 @@
     {
       "source": "/api/patrons/:slug*",
       "destination": "/api/patrons/[[...slug]]"
+    },
+    {
+      "source": "/api/account/:slug*/",
+      "destination": "/api/account/[[...slug]]"
+    },
+    {
+      "source": "/api/account/:slug*",
+      "destination": "/api/account/[[...slug]]"
     }
   ],
   "crons": [

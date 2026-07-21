@@ -49,7 +49,15 @@ const {
 } = require('../db/scholars');
 const { processCreativeUpload } = require('./creative-watermark');
 const { moderateAsset } = require('./creative-moderation');
+const { existingWebpFor } = require('./image-webp');
 const { createCreativeCheckoutSession } = require('./stripe');
+const {
+  recordMerchConsent,
+  revokeMerchConsent,
+  listCreatorProductForAsset,
+  withdrawCreatorProduct,
+  getCreatorEarningsSummary,
+} = require('./creator-merch');
 
 const PLATFORM_FEE_PERCENT = 0.3;
 const CREATOR_PERCENT = 0.7;
@@ -85,7 +93,9 @@ function sanitizeAsset(asset) {
     licenseType: asset.license_type,
     priceCents: asset.price_cents,
     previewPath: asset.preview_path,
+    previewWebpPath: existingWebpFor(asset.preview_path),
     thumbnailPath: asset.thumbnail_path,
+    thumbnailWebpPath: existingWebpFor(asset.thumbnail_path),
     metadata: asset.metadata,
     tags: Array.isArray(asset.tags) ? asset.tags : [],
     creatorId: asset.creator_id,
@@ -173,6 +183,11 @@ router.get(
   requireAuth,
   asyncHandler(async (req, res) => {
     const dashboard = getCreativeDashboardForCreator(req.user.id);
+    dashboard.assets = dashboard.assets.map((a) => ({
+      ...a,
+      thumbnail_webp_path: existingWebpFor(a.thumbnail_path),
+      preview_webp_path: existingWebpFor(a.preview_path),
+    }));
     res.json(success(dashboard));
   })
 );
@@ -193,6 +208,23 @@ router.get(
     const institution = req.user.institutionId ? getInstitutionById(req.user.institutionId) : null;
     const allowlist = institution?.department_allowlist || [];
     res.json(success({ departments: allowlist }));
+  })
+);
+
+router.get(
+  '/merch/earnings',
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    res.json(success(getCreatorEarningsSummary(req.user.id)));
+  })
+);
+
+router.get(
+  '/payouts',
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const payouts = listCreativePayouts(req.user.id);
+    res.json(success({ payouts }));
   })
 );
 
@@ -238,8 +270,16 @@ router.post(
       return res.status(403).json(error('You do not have permission to submit creative assets'));
     }
 
-    const { title, description, department, inspirationEntryId, priceCents, tags, image } =
-      req.body || {};
+    const {
+      title,
+      description,
+      department,
+      inspirationEntryId,
+      priceCents,
+      tags,
+      image,
+      merchConsent,
+    } = req.body || {};
 
     if (!title || typeof title !== 'string' || title.length < 3 || title.length > 200) {
       return res.status(400).json(error('Title must be between 3 and 200 characters'));
@@ -312,7 +352,63 @@ router.post(
       setCreativeAssetTags(assetId, tags);
     }
 
+    // Merch consent is honored only here, after canSubmitCreative() has
+    // verified the account — the checkbox value alone is never trusted.
+    if (merchConsent === true) {
+      recordMerchConsent(assetId);
+    }
+
     res.status(201).json(success({ assetId, status: 'pending_review' }));
+  })
+);
+
+// ─────────────────────────────────────────────────────────────
+// Creator merch (consent, withdrawal, earnings)
+// ─────────────────────────────────────────────────────────────
+
+router.post(
+  '/:id/merch/opt-in',
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const asset = getCreativeAssetById(Number(req.params.id));
+    if (!asset) return res.status(404).json(error('Asset not found', 404));
+    if (req.user.id !== asset.creator_id) {
+      return res.status(403).json(error('Only the creator can consent to merch listing'));
+    }
+    // Consent is a legal opt-in: re-check the account is still a verified
+    // creative contributor rather than trusting the session alone.
+    const institution = req.user.institutionId ? getInstitutionById(req.user.institutionId) : null;
+    if (!canSubmitCreative(req.user, institution)) {
+      return res
+        .status(403)
+        .json(error('A verified student account is required for merch listing'));
+    }
+
+    withTransaction(() => {
+      recordMerchConsent(asset.id);
+      if (asset.status === 'approved') {
+        listCreatorProductForAsset(asset.id);
+      }
+    });
+    res.json(success({ merchConsent: true }));
+  })
+);
+
+router.post(
+  '/:id/merch/withdraw',
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const asset = getCreativeAssetById(Number(req.params.id));
+    if (!asset) return res.status(404).json(error('Asset not found', 404));
+    if (req.user.id !== asset.creator_id) {
+      return res.status(403).json(error('Only the creator can withdraw merch consent'));
+    }
+
+    withTransaction(() => {
+      revokeMerchConsent(asset.id);
+      withdrawCreatorProduct(asset.id);
+    });
+    res.json(success({ merchConsent: false, withdrawn: true }));
   })
 );
 
@@ -568,15 +664,6 @@ router.get(
 // ─────────────────────────────────────────────────────────────
 
 router.get(
-  '/payouts',
-  requireAuth,
-  asyncHandler(async (req, res) => {
-    const payouts = listCreativePayouts(req.user.id);
-    res.json(success({ payouts }));
-  })
-);
-
-router.get(
   '/institution/payouts',
   requireAuth,
   asyncHandler(async (req, res) => {
@@ -702,6 +789,10 @@ router.post(
         comment: comment || null,
       });
       updateCreativeAssetStatus(asset.id, finalStatus);
+      // A consented work is automatically listed as merch on approval.
+      if (decision === 'approved' && asset.merch_consent) {
+        listCreatorProductForAsset(asset.id);
+      }
     });
 
     res.json(success({ reviewed: true, decision, status: finalStatus }));

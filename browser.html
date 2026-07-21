@@ -199,6 +199,15 @@
         iframe.sandbox = 'allow-scripts allow-same-origin allow-popups allow-forms';
         iframe.title = tab.title;
         pane.appendChild(iframe);
+      } else if (resolved.startsWith('/')) {
+        // Internal PuniCodex paths load in the shell's own renderer (the
+        // production site sends X-Frame-Options: DENY, so it cannot be
+        // iframed — internal navigation renders inside the shell instead).
+        const note = document.createElement('div');
+        note.style.cssText = 'padding:2rem;color:var(--cn-text-muted)';
+        note.innerHTML = `Loading <code>${escapeHtml(resolved)}</code> inside the shell is not possible in production (the site sends <code>X-Frame-Options: DENY</code>). <a href="${escapeHtml(resolved)}" target="_blank" rel="noopener" style="color:var(--cn-gold)">Open ${escapeHtml(resolved)} in a full tab →</a>`;
+        pane.appendChild(note);
+        window.open(resolved, '_blank', 'noopener');
       } else {
         pane.innerHTML = `<div style="padding:2rem;color:var(--cn-text-muted)">Cannot load <code>${escapeHtml(resolved)}</code>. Try a URL or search query.</div>`;
       }

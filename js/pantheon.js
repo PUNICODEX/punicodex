@@ -119,6 +119,7 @@
         let visibleCount = 0;
         let builtCount = 0;
         let tier1Count = 0;
+        let dualCount = 0;
         let tier2Count = 0;
 
         allCards.forEach(card => {
@@ -153,6 +154,7 @@
                 if (archetype.built) builtCount++;
                 if (archetype.tier === 'tier-1') tier1Count++;
                 if (archetype.tier === 'tier-2') tier2Count++;
+                if (archetype.tier === 'dual-tier') dualCount++;
 
             }
         });
@@ -162,10 +164,12 @@
         const statBuilt = document.getElementById('stat-built');
         const statTier1 = document.getElementById('stat-tier1');
         const statTier2 = document.getElementById('stat-tier2');
+        const statDual = document.getElementById('stat-dual');
         if (statTotal) statTotal.textContent = visibleCount;
         if (statBuilt) statBuilt.textContent = builtCount;
         if (statTier1) statTier1.textContent = tier1Count;
         if (statTier2) statTier2.textContent = tier2Count;
+        if (statDual) statDual.textContent = dualCount;
 
 
         // Show/hide empty state

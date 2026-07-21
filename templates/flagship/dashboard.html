@@ -453,7 +453,7 @@
                     <div class="dash-section">
                         <h2>Creative Preview</h2>
                         <div class="dash-preview ${b.creative_path ? '' : 'placeholder'}">
-                            ${b.creative_path ? `<img src="${API_BASE}${b.creative_path}" alt="Creative">` : 'No creative uploaded'}
+                            ${b.creative_path ? pictureTag(b.creative_path, b.creative_webp_path, 'Creative') : 'No creative uploaded'}
                         </div>
                     </div>
 
@@ -465,13 +465,20 @@
             if (isEditable) initUploadHandlers();
         }
 
+        function pictureTag(path, webpPath, alt) {
+            const img = `<img src="${API_BASE}${path}" alt="${alt}">`;
+            return webpPath
+                ? `<picture><source type="image/webp" srcset="${API_BASE}${webpPath}">${img}</picture>`
+                : img;
+        }
+
         function renderBundleSlots(b) {
             const creativeMap = {};
             slotCreatives.forEach(c => { creativeMap[c.slot_id] = c; });
             const slotGrid = SLOT_DEFINITIONS.map(s => {
                 const sc = creativeMap[s.id];
                 const slotCreative = sc && sc.creative_path
-                    ? `<img src="${API_BASE}${sc.creative_path}" alt="${s.name}">`
+                    ? pictureTag(sc.creative_path, sc.creative_webp_path, s.name)
                     : '<div class="bundle-slot-creative placeholder">No creative</div>';
                 return `
                     <div class="bundle-slot">

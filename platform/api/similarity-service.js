@@ -34,6 +34,10 @@ function pantheonLabel(pantheon) {
       canaanite: 'Canaanite',
       phoenician: 'Phoenician',
       hittite: 'Hittite',
+      aboriginal: 'Aboriginal',
+      mapuche: 'Mapuche',
+      baltic: 'Baltic',
+      roman: 'Roman',
     }[pantheon] || pantheon
   );
 }

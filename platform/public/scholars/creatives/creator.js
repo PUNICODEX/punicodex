@@ -33,9 +33,11 @@
     const cards = assets
       .map((a) => {
         const thumb = a.thumbnailPath || a.previewPath;
+        const thumbWebp = a.thumbnailWebpPath || a.previewWebpPath;
+        const thumbImg = thumb ? `<img src="${escapeHtml(thumb)}" alt="" class="cre-asset-thumb" loading="lazy">` : '';
         return `
         <a href="/creatives/index.html?asset=${a.id}" class="cre-asset-card">
-          ${thumb ? `<img src="${escapeHtml(thumb)}" alt="" class="cre-asset-thumb" loading="lazy">` : '<div class="cre-asset-thumb" style="display:flex;align-items:center;justify-content:center;color:var(--cre-white-dim);">—</div>'}
+          ${thumb ? (thumbWebp ? `<picture><source type="image/webp" srcset="${escapeHtml(thumbWebp)}">${thumbImg}</picture>` : thumbImg) : '<div class="cre-asset-thumb" style="display:flex;align-items:center;justify-content:center;color:var(--cre-white-dim);">—</div>'}
           <div class="cre-asset-body">
             <div class="cre-asset-title">${escapeHtml(a.title)}</div>
             <div class="cre-asset-meta">${formatPrice(a.priceCents)}</div>

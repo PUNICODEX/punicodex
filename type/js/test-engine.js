@@ -344,7 +344,8 @@ test('Correct pantheon counts', () => {
   assert.strictEqual(counts.polynesian, 23, 'Polynesian count');
   assert.strictEqual(counts.japanese, 45, 'Japanese count');
   assert.strictEqual(counts.nahuatl, 30, 'Nahuatl count');
-  assert.strictEqual(counts.yoruba, 32, 'Yoruba count');
+  assert.strictEqual(counts.yoruba, 20, 'Yoruba count');
+  assert.strictEqual(counts.aboriginal, 12, 'Aboriginal count');
   assert.strictEqual(counts.slavic, 21, 'Slavic count');
   assert.strictEqual(counts.zoroastrian, 19, 'Zoroastrian count');
   assert.strictEqual(counts.incan, 11, 'Incan count');

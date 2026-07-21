@@ -161,10 +161,28 @@ const SOURCE_CATALOG = {
         url: 'https://gretil.sub.uni-goettingen.de/gretil/corpustei/transformations/html/sa_vasubandhu-abhidharmakoza.htm'
     },
     'Abraham': {
+        full: 'R. C. Abraham, Dictionary of Modern Yoruba',
+        scope: 'Yoruba lexicography',
+        year: '1958',
+        edition: 'University of London Press'
+    },
+    'Abraham-patriarch': {
         full: 'Abraham (biblical patriarch / Genesis narrative)',
         scope: 'Hebrew Bible / Abrahamic tradition',
         year: '-1000',
         edition: 'Book of Genesis'
+    },
+    'BDB': {
+        full: 'Brown, Driver & Briggs, A Hebrew and English Lexicon of the Old Testament',
+        scope: 'Hebrew lexicography',
+        year: '1906',
+        edition: 'Oxford: Clarendon Press'
+    },
+    'HALOT': {
+        full: 'Koehler & Baumgartner, Hebrew and Aramaic Lexicon of the Old Testament',
+        scope: 'Hebrew lexicography',
+        year: '1994–2000',
+        edition: 'Brill, 5 vols.'
     },
     'Acallam na Senórach': {
         full: 'Acallam na Senórach (The Colloquy of the Ancients)',
@@ -513,6 +531,12 @@ const SOURCE_CATALOG = {
         url: 'https://www2.kenyon.edu/Depts/Religion/Fac/Adler/Reln270/Daozang.htm'
     },
     'Day': {
+        full: 'John Day, Yahweh and the Gods and Goddesses of Canaan',
+        scope: 'Canaanite and Israelite religion',
+        year: '2000',
+        edition: 'JSOT Supplement Series 265, Sheffield Academic Press'
+    },
+    'Day-JohnV': {
         full: 'John V. Day, Indo-European Origins: The Anthropological Evidence',
         scope: 'Indo-European studies',
         year: '2001',
@@ -848,7 +872,7 @@ const SOURCE_CATALOG = {
     'LSJ': {
         full: 'Liddell-Scott-Jones Greek-English Lexicon',
         scope: 'Greek',
-        year: '1843',
+        year: '1940',
         edition: '9th ed. with 1996 supplement',
         url: 'https://www.perseus.tufts.edu/hopper/resolveform?type=exact&redirect=true&lang=greek'
     },
@@ -1192,6 +1216,12 @@ const SOURCE_CATALOG = {
         url: 'https://www.wisdomlib.org/hinduism/book/shiva-purana-english'
     },
     'Smith': {
+        full: 'Mark S. Smith, The Ugaritic Baal Cycle',
+        scope: 'Ugaritic studies',
+        year: '1994–2009',
+        edition: 'Brill, 2 vols.'
+    },
+    'Smith-William': {
         full: 'William Smith, Dictionary of Greek and Roman Biography and Mythology',
         scope: 'Classical biography and mythology',
         year: '1849',

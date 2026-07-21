@@ -3,6 +3,7 @@ const { insert, get, all, run, transaction } = require('../db/operational');
 const { getDb } = require('../db/connection');
 const { extractAndSave } = require('./keyword-extractor');
 const { isBotBasic } = require('./bot-detection');
+const { existingWebpFor } = require('./image-webp');
 
 function generateToken() {
   return crypto.randomBytes(24).toString('hex');
@@ -65,7 +66,8 @@ async function getSlots(siteSlug = null) {
     params.push(siteSlug);
   }
   query += ` ORDER BY s.sort_order`;
-  return all(query, params);
+  const rows = await all(query, params);
+  return rows.map((r) => ({ ...r, creative_webp_path: existingWebpFor(r.creative_path) }));
 }
 
 async function isBundleSlot(slotId) {
@@ -522,7 +524,7 @@ async function getSlotCreative(bookingId, slotId) {
 }
 
 async function getSlotCreatives(bookingId) {
-  return all(
+  const rows = await all(
     `
       SELECT sc.*, s.name as slot_name, s.width, s.height, s.slug as slot_slug
       FROM slot_creatives sc
@@ -531,6 +533,7 @@ async function getSlotCreatives(bookingId) {
     `,
     [bookingId]
   );
+  return rows.map((r) => ({ ...r, creative_webp_path: existingWebpFor(r.creative_path) }));
 }
 
 async function saveSlotCreative(bookingId, slotId, filePath, originalName) {
@@ -694,6 +697,7 @@ async function getDashboardMetrics(token) {
       website_url: booking.website_url,
       status: booking.status,
       creative_path: booking.creative_path,
+      creative_webp_path: existingWebpFor(booking.creative_path),
       started_at: booking.started_at,
       ends_at: booking.ends_at,
       created_at: booking.created_at,

@@ -1,8 +1,8 @@
-const sizeOf = require('image-size');
+const { imageSize } = require('image-size');
 
 function getImageDimensions(buffer) {
   try {
-    const result = sizeOf(buffer);
+    const result = imageSize(buffer);
     if (!result?.width || !result.height) {
       return { error: 'Could not determine image dimensions' };
     }

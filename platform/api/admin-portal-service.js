@@ -19,6 +19,9 @@ const { getDb } = require('../db/connection');
 const { migrate: migrateScholars } = require('../db/migrate-scholars');
 const { migrate: migrateQuality } = require('../db/migrate-scholars-quality');
 const { migrate: migratePatrons } = require('../db/migrate-patrons');
+const migrateNewsletter = require('../db/migrate-newsletter');
+const { migrate: migrateCreatorMerch } = require('../db/migrate-creator-merch');
+const creatorMerch = require('./creator-merch');
 const dbApi = require('../db/scholars');
 const { ensureAdminIdentity } = require('../db/scholars/seed');
 const { hashPassword } = require('../scholars/auth');
@@ -43,6 +46,8 @@ function ensureServiceSchema() {
   migrateScholars(db);
   migrateQuality(db);
   migratePatrons(db);
+  migrateNewsletter(db);
+  migrateCreatorMerch(db);
   serviceSchemaReady = true;
 }
 
@@ -615,6 +620,149 @@ async function rejectScholarItem(kind, id, actor, body = {}) {
   throw portalError(400, "kind must be 'edit' or 'media'");
 }
 
+// ─────────────────────────────────────────────────────────────
+// Newsletter subscribers (PII — list is read-gated, export is leasing-gated)
+// ─────────────────────────────────────────────────────────────
+
+async function listNewsletterSubscribers({ limit = 100, offset = 0 } = {}) {
+  ensureServiceSchema();
+  const [items, totalRow] = await Promise.all([
+    all(
+      `SELECT id, email, phone, source, subscribed_at
+       FROM newsletter_subscribers
+       ORDER BY subscribed_at DESC, id DESC
+       LIMIT $1 OFFSET $2`,
+      [limit, offset]
+    ),
+    get('SELECT COUNT(*) as c FROM newsletter_subscribers'),
+  ]);
+  return { items, total: Number(totalRow?.c ?? 0), limit, offset };
+}
+
+async function listAllNewsletterSubscribers() {
+  ensureServiceSchema();
+  return all(
+    `SELECT email, phone, source, subscribed_at
+     FROM newsletter_subscribers
+     ORDER BY subscribed_at ASC, id ASC`
+  );
+}
+
+/**
+ * Escape one CSV cell. Two concerns:
+ *  - structural: quote cells containing quotes/commas/newlines (RFC 4180).
+ *  - spreadsheet formula injection: a cell whose first character is
+ *    = + - @ is evaluated as a formula by Excel/Sheets. Phone numbers begin
+ *    with '+', so this is a real vector here — prefix such cells with a
+ *    single quote.
+ */
+function csvCell(value) {
+  let text = value == null ? '' : String(value);
+  if (/^[=+\-@]/.test(text)) text = `'${text}`;
+  if (/[",\r\n]/.test(text)) return `"${text.replace(/"/g, '""')}"`;
+  return text;
+}
+
+function newsletterSubscribersToCsv(rows) {
+  const header = 'email,phone,source,subscribed_at';
+  const lines = rows.map((row) =>
+    [csvCell(row.email), csvCell(row.phone), csvCell(row.source), csvCell(row.subscribed_at)].join(
+      ','
+    )
+  );
+  return [header, ...lines].join('\r\n');
+}
+
+// ─────────────────────────────────────────────────────────────
+// Creator merch oversight
+// ─────────────────────────────────────────────────────────────
+
+function getCreatorMerchOverview() {
+  ensureServiceSchema();
+  const db = getDb();
+  const products = db
+    .prepare(
+      `SELECT id, creative_asset_id, creator_id, creator_name, creator_university,
+              title, product_type, price_cents, base_cost_cents, status, created_at, updated_at
+       FROM creator_products
+       ORDER BY created_at DESC, id DESC
+       LIMIT 500`
+    )
+    .all();
+  // Ledger totals exclude refunded orders, matching the creator-side
+  // earnings math in creator-merch.js#getCreatorEarningsSummary.
+  const totalsRow = db
+    .prepare(
+      `SELECT COUNT(*) AS orders,
+              COALESCE(SUM(gross_cents), 0) AS gross_cents,
+              COALESCE(SUM(base_cents), 0) AS base_cents,
+              COALESCE(SUM(fees_cents), 0) AS fees_cents,
+              COALESCE(SUM(creator_share_cents), 0) AS creator_share_cents,
+              COALESCE(SUM(platform_share_cents), 0) AS platform_share_cents
+       FROM creator_order_ledger
+       WHERE status != 'refunded'`
+    )
+    .get();
+  const refundedRow = db
+    .prepare(
+      `SELECT COUNT(*) AS orders, COALESCE(SUM(gross_cents), 0) AS gross_cents
+       FROM creator_order_ledger
+       WHERE status = 'refunded'`
+    )
+    .get();
+  const statusCounts = { pending: 0, live: 0, withdrawn: 0 };
+  for (const row of db
+    .prepare('SELECT status, COUNT(*) AS c FROM creator_products GROUP BY status')
+    .all()) {
+    statusCounts[row.status] = row.c;
+  }
+  return {
+    products,
+    productCounts: statusCounts,
+    ledger: {
+      orders: totalsRow.orders,
+      grossCents: totalsRow.gross_cents,
+      baseCents: totalsRow.base_cents,
+      feesCents: totalsRow.fees_cents,
+      creatorShareCents: totalsRow.creator_share_cents,
+      platformShareCents: totalsRow.platform_share_cents,
+      refundedOrders: refundedRow.orders,
+      refundedGrossCents: refundedRow.gross_cents,
+    },
+  };
+}
+
+/**
+ * Force-withdraw a live product (admin takedown). Reuses the creator-merch
+ * module's withdrawal helper so the store catalog and the admin view can
+ * never diverge, and records the action in the admin audit trail.
+ */
+async function withdrawCreatorProductById(id, actor) {
+  ensureServiceSchema();
+  const db = getDb();
+  const product = db.prepare('SELECT * FROM creator_products WHERE id = ?').get(id);
+  if (!product) throw portalError(404, 'Product not found');
+  if (product.status !== 'live') {
+    throw portalError(400, `Product is not live (status: ${product.status})`);
+  }
+
+  creatorMerch.withdrawCreatorProduct(product.creative_asset_id);
+
+  await logAction({
+    adminUserId: actor.user.id,
+    action: 'portal.merch.withdraw',
+    target: `creator_product:${id}`,
+    meta: {
+      creativeAssetId: product.creative_asset_id,
+      title: product.title,
+      creator: product.creator_name,
+      by: actor.user.email,
+    },
+  });
+
+  return db.prepare('SELECT * FROM creator_products WHERE id = ?').get(id);
+}
+
 module.exports = {
   getDashboard,
   listApplications,
@@ -626,4 +774,9 @@ module.exports = {
   getScholarsPending,
   approveScholarItem,
   rejectScholarItem,
+  listNewsletterSubscribers,
+  listAllNewsletterSubscribers,
+  newsletterSubscribersToCsv,
+  getCreatorMerchOverview,
+  withdrawCreatorProductById,
 };

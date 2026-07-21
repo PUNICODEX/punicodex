@@ -34,7 +34,7 @@ function markCount(unicode) {
   return c;
 }
 const DUAL = new Set(['apollon', 'hekate', 'nike']);
-const KEEP_TIER1 = new Set(['asia']); // reviewed: Ἀσία final alpha is long (first declension)
+const KEEP_TIER1 = new Set(['asia', 'rhea', 'atlas']); // reviewed: long final -ᾱ (asia: first-declension rule; rhea: Ῥέᾱ per LSJ; atlas: Ἄτλᾱς, nom. sg. of -αντ- stems)
 
 function newTier(e) {
   if (DUAL.has(e.id)) return e.tier;

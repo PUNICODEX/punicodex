@@ -573,7 +573,7 @@ const ARCHETYPES = [
         greek: "Ἄτλας",
         domain: "The Titan of Endurance",
         tagline: "The World-Bearer · Guardian of the Western Edge",
-        tier: "tier-2",
+        tier: "tier-1",
         tierDetail: "single-tier",
         pantheon: "titan",
         folder: "atlas",
@@ -3193,9 +3193,9 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-                {
+                    {
         id: "theia",
-        name: "Theía",
+        name: "Théia",
         greek: "Θεία",
         domain: "Titaness of Sight",
         tagline: "The Sight that Sees the Light",
@@ -3205,6 +3205,7 @@ const ARCHETYPES = [
         folder: "theia",
         domainUnicode: "theía.com",
         domainPunycode: "xn--thea-xpa.com",
+        domainAlt: ["theía.com"],
         colors: { primary: "#FFD700", secondary: "#87CEEB", glow: "rgba(255,215,0,0.3)" },
         mascotPath: "/sites/theia/assets/theia_mascot.webp",
         mascotFallback: "/sites/theia/assets/theia_mascot.webp",
@@ -3938,7 +3939,7 @@ const ARCHETYPES = [
         greek: "Ῥέα",
         domain: "Motherhood, Fertility, Titans",
         tagline: "The Mother of the Gods",
-        tier: "tier-2",
+        tier: "tier-1",
         tierDetail: "single-tier",
         pantheon: "greek",
         folder: "rhea",

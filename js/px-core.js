@@ -134,6 +134,7 @@
 
       const closeMenu = () => {
         toggle.classList.remove('active');
+        toggle.setAttribute('aria-expanded', 'false');
         if (mobileMenu) mobileMenu.classList.remove('active');
         if (navLinks) navLinks.classList.remove('active');
         document.body.classList.remove('menu-open');
@@ -152,6 +153,7 @@
         // Stop any legacy per-page nav handlers from double-toggling the menu.
         e.stopImmediatePropagation();
         const active = toggle.classList.toggle('active');
+        toggle.setAttribute('aria-expanded', active ? 'true' : 'false');
         if (mobileMenu) mobileMenu.classList.toggle('active', active);
         if (navLinks) navLinks.classList.toggle('active', active);
         document.body.classList.toggle('menu-open', active);

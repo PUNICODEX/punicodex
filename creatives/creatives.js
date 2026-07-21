@@ -116,9 +116,12 @@
       card.setAttribute('tabindex', '0');
       card.setAttribute('role', 'button');
       card.setAttribute('aria-label', `View details for ${asset.title}`);
+      const cardThumb = asset.thumbnailPath || asset.previewPath;
+      const cardThumbWebp = asset.thumbnailWebpPath || asset.previewWebpPath;
+      const cardImg = `<img src="${escapeHtml(cardThumb)}" alt="${escapeHtml(asset.title)}" loading="lazy">`;
       card.innerHTML = `
         <div class="creatives-card-image">
-          <img src="${escapeHtml(asset.thumbnailPath || asset.previewPath)}" alt="${escapeHtml(asset.title)}" loading="lazy">
+          ${cardThumbWebp ? `<picture><source type="image/webp" srcset="${escapeHtml(cardThumbWebp)}">${cardImg}</picture>` : cardImg}
         </div>
         <div class="creatives-card-body">
           <h3 class="creatives-card-title">${escapeHtml(asset.title)}</h3>
@@ -150,8 +153,9 @@
   }
 
   async function openModal(asset) {
+    const previewImg = `<img class="creatives-modal-image" src="${escapeHtml(asset.previewPath)}" alt="${escapeHtml(asset.title)}">`;
     modalBody.innerHTML = `
-      <img class="creatives-modal-image" src="${escapeHtml(asset.previewPath)}" alt="${escapeHtml(asset.title)}">
+      ${asset.previewWebpPath ? `<picture><source type="image/webp" srcset="${escapeHtml(asset.previewWebpPath)}">${previewImg}</picture>` : previewImg}
       <h2 class="creatives-modal-title" id="modal-title">${escapeHtml(asset.title)}</h2>
       <div class="creatives-modal-meta">
         <span>${escapeHtml(asset.creatorName || 'Student creator')}</span>
@@ -372,11 +376,12 @@
         Your sponsorship pass is now active for <strong>${escapeHtml(data.email)}</strong>.
         Browse any asset and click <strong>License with Pass</strong> to download the unwatermarked original.
       </p>
-      <a href="#marketplace" class="creatives-btn primary" onclick="closeModal();">Browse Assets</a>
+      <a href="#marketplace" class="creatives-btn primary" data-close-modal>Browse Assets</a>
       <p class="creatives-modal-note">
         This pass supports student creators across every partner institution. Welcome to the program.
       </p>
     `;
+    modalBody.querySelector('[data-close-modal]').addEventListener('click', closeModal);
     modal.hidden = false;
     document.body.style.overflow = 'hidden';
   }

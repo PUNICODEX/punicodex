@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Admin Portal — Newsletter | PuniCodex</title>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="../portal.css">
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+</head>
+<body data-page="newsletter" data-depth="1">
+    <a class="skip-link" href="#portal-main">Skip to content</a>
+    <div id="portal-header"></div>
+
+    <main id="portal-main" class="portal-main">
+        <div class="portal-page-head">
+            <h1>Newsletter</h1>
+            <p>Unicode Herald subscribers — email, optional phone, signup source, and date. CSV export is restricted to the leasing role and above.</p>
+        </div>
+
+        <section aria-label="Subscriber statistics">
+            <div class="stat-grid" id="sub-stats">
+                <div class="state-block">Loading subscriber stats…</div>
+            </div>
+        </section>
+
+        <section class="panel" aria-label="Subscriber list">
+            <div class="panel-head">
+                <h2 class="panel-title">Subscribers</h2>
+                <div>
+                    <span class="field-hint" id="sub-total"></span>
+                    <button type="button" class="btn btn-secondary btn-sm" id="export-csv" hidden>Export CSV</button>
+                </div>
+            </div>
+            <div id="sub-table">
+                <div class="state-block">Loading subscribers…</div>
+            </div>
+            <div class="portal-form-row" id="sub-pager" style="margin-top:1rem;" hidden>
+                <button type="button" class="btn btn-secondary btn-sm" id="sub-prev">← Previous</button>
+                <span class="field-hint" id="sub-page-label"></span>
+                <button type="button" class="btn btn-secondary btn-sm" id="sub-next">Next →</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="../portal.js"></script>
+    <script>
+    (function () {
+        var PAGE_SIZE = 50;
+        var state = { offset: 0 };
+
+        function statCard(value, label, hint) {
+            return (
+                '<div class="stat-card"><div class="stat-card-value">' + value + '</div>' +
+                '<div class="stat-card-label">' + Portal.escapeHtml(label) + '</div>' +
+                (hint ? '<div class="stat-card-hint">' + Portal.escapeHtml(hint) + '</div>' : '') +
+                '</div>'
+            );
+        }
+
+        function renderStats(total) {
+            document.getElementById('sub-stats').innerHTML =
+                statCard(Portal.fmtNumber(total), 'Total Subscribers', 'all sources');
+        }
+
+        function renderTable(data) {
+            var wrap = document.getElementById('sub-table');
+            var items = data.items || [];
+            renderStats(data.total);
+            document.getElementById('sub-total').textContent = Portal.fmtNumber(data.total) + ' subscribers total';
+            if (!items.length) {
+                wrap.innerHTML = '<div class="state-block">No subscribers yet.</div>';
+            } else {
+                var rows = items
+                    .map(function (s) {
+                        return (
+                            '<tr>' +
+                            '<td><div class="cell-title">' + Portal.escapeHtml(s.email || '—') + '</div></td>' +
+                            '<td>' + Portal.escapeHtml(s.phone || '—') + '</td>' +
+                            '<td><span class="badge badge--business">' + Portal.escapeHtml(s.source || 'site') + '</span></td>' +
+                            '<td>' + Portal.escapeHtml(Portal.fmtDateTime(s.subscribed_at)) + '</td>' +
+                            '</tr>'
+                        );
+                    })
+                    .join('');
+                wrap.innerHTML =
+                    '<div class="table-wrap"><table class="portal-table">' +
+                    '<thead><tr><th>Email</th><th>Phone</th><th>Source</th><th>Subscribed</th></tr></thead>' +
+                    '<tbody>' + rows + '</tbody></table></div>';
+            }
+
+            var pager = document.getElementById('sub-pager');
+            pager.hidden = false;
+            document.getElementById('sub-page-label').textContent =
+                'Showing ' + (items.length ? data.offset + 1 : 0) + '–' + (data.offset + items.length) + ' of ' + Portal.fmtNumber(data.total);
+            document.getElementById('sub-prev').disabled = data.offset <= 0;
+            document.getElementById('sub-next').disabled = data.offset + items.length >= data.total;
+        }
+
+        function fetchSubscribers() {
+            var params = new URLSearchParams();
+            params.set('limit', String(PAGE_SIZE));
+            params.set('offset', String(state.offset));
+            return Portal.api('/api/admin/portal/newsletter/?' + params.toString());
+        }
+
+        async function load(promise) {
+            document.getElementById('sub-table').innerHTML = '<div class="state-block">Loading subscribers…</div>';
+            try {
+                renderTable(await (promise || fetchSubscribers()));
+            } catch (err) {
+                document.getElementById('sub-table').innerHTML =
+                    '<div class="state-block error">' + Portal.escapeHtml(err.message) + '</div>';
+                document.getElementById('sub-stats').innerHTML =
+                    '<div class="state-block error">' + Portal.escapeHtml(err.message) + '</div>';
+            }
+        }
+
+        // The CSV export is a file download, not JSON — fetch it raw with the
+        // portal token and save the blob client-side.
+        async function exportCsv() {
+            var btn = document.getElementById('export-csv');
+            btn.disabled = true;
+            try {
+                var res = await fetch(Portal.withTrailingSlash('/api/admin/portal/newsletter/export/'), {
+                    headers: { 'x-admin-token': Portal.getToken() },
+                });
+                if (res.status === 401) {
+                    Portal.redirectToLogin();
+                    return;
+                }
+                if (!res.ok) {
+                    var data = null;
+                    try { data = await res.json(); } catch (e) { data = null; }
+                    throw new Error((data && data.error) || 'Export failed (' + res.status + ')');
+                }
+                var blob = await res.blob();
+                var url = URL.createObjectURL(blob);
+                var a = document.createElement('a');
+                a.href = url;
+                a.download = 'newsletter-' + new Date().toISOString().slice(0, 10) + '.csv';
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                URL.revokeObjectURL(url);
+                Portal.toast('CSV exported', 'success');
+            } catch (err) {
+                Portal.toast(err.message, 'error');
+            } finally {
+                btn.disabled = false;
+            }
+        }
+
+        async function init() {
+            // Fire the first page fetch in parallel with the shell's /me
+            // round trip instead of waiting for the shell first.
+            var firstLoad = fetchSubscribers();
+            var ctx = await Portal.initShell('newsletter');
+            if (!ctx) {
+                firstLoad.catch(function () {});
+                return;
+            }
+
+            if (Portal.can('leasing')) {
+                var exportBtn = document.getElementById('export-csv');
+                exportBtn.hidden = false;
+                exportBtn.addEventListener('click', exportCsv);
+            }
+
+            document.getElementById('sub-prev').addEventListener('click', function () {
+                state.offset = Math.max(0, state.offset - PAGE_SIZE);
+                load();
+            });
+            document.getElementById('sub-next').addEventListener('click', function () {
+                state.offset += PAGE_SIZE;
+                load();
+            });
+
+            load(firstLoad);
+        }
+
+        init();
+    })();
+    </script>
+</body>
+</html>

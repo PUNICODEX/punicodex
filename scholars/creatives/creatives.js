@@ -143,6 +143,19 @@
             <p class="cre-asset-meta">PNG, JPG, or WebP. Max 5 MB.</p>
             <img id="asset-preview" class="cre-preview" hidden alt="Preview">
           </div>
+          <div class="cre-consent">
+            <label class="cre-consent-label" for="asset-merch-consent">
+              <input type="checkbox" id="asset-merch-consent">
+              <span>
+                <strong>List this work as PuniCodex merch.</strong> If approved, your work may be
+                printed on merchandise (posters first) and sold in the PuniCodex Store, credited as
+                &ldquo;Created by you &middot; your university&rdquo;. You earn
+                <strong>50% of the net margin</strong> on every sale (sale price minus print cost
+                and payment fees &mdash; about a quarter of the retail price). You can withdraw any
+                work at any time from your asset list below.
+              </span>
+            </label>
+          </div>
           <button type="submit" class="cre-btn primary" id="upload-btn">Submit for Review</button>
           <div class="cre-message" id="upload-message"></div>
         </form>
@@ -162,15 +175,25 @@
     const cards = assets
       .map((a) => {
         const thumb = a.thumbnail_path ? escapeHtml(a.thumbnail_path) : '';
+        const thumbWebp = a.thumbnail_webp_path ? escapeHtml(a.thumbnail_webp_path) : '';
+        const thumbImg = thumb ? `<img src="${thumb}" alt="" class="cre-asset-thumb" loading="lazy">` : '';
         return `
         <div class="cre-asset-card" data-asset-id="${a.id}">
-          ${thumb ? `<img src="${thumb}" alt="" class="cre-asset-thumb" loading="lazy">` : '<div class="cre-asset-thumb" style="display:flex;align-items:center;justify-content:center;color:var(--cre-white-dim);">—</div>'}
+          ${thumb ? (thumbWebp ? `<picture><source type="image/webp" srcset="${thumbWebp}">${thumbImg}</picture>` : thumbImg) : '<div class="cre-asset-thumb" style="display:flex;align-items:center;justify-content:center;color:var(--cre-white-dim);">—</div>'}
           <div class="cre-asset-body">
             <div class="cre-asset-title">${escapeHtml(a.title)}</div>
             <div class="cre-asset-meta">${escapeHtml(a.department || '—')} · ${formatCents(a.price_cents)}</div>
             <div class="cre-asset-meta">${formatDate(a.created_at)}</div>
             <span class="cre-status ${a.status}">${escapeHtml(a.status.replace('_', ' '))}</span>
+            ${a.merch_consent ? '<span class="cre-status approved">merch listed</span>' : ''}
             ${a.status === 'pending_review' ? `<div style="margin-top:0.75rem;"><button class="cre-btn danger" data-action="delist" data-id="${a.id}">Delist</button></div>` : ''}
+            <div style="margin-top:0.75rem;">
+              ${
+                a.merch_consent
+                  ? `<button class="cre-btn danger" data-action="merch-withdraw" data-id="${a.id}">Withdraw from merch</button>`
+                  : `<button class="cre-btn" data-action="merch-optin" data-id="${a.id}">List as merch</button>`
+              }
+            </div>
           </div>
         </div>
       `;
@@ -269,7 +292,43 @@
     `;
   }
 
-  function renderDashboard(departments = [], reviews = [], payouts = [], analytics = []) {
+  function renderMerch(merch) {
+    if (!merch) return '';
+    const products = merch.products || [];
+    const rows = products
+      .filter((p) => p.orders > 0 || p.status === 'live')
+      .map(
+        (p) => `
+      <div class="cre-payout-row">
+        <span class="cre-payout-amount">${formatCents(p.creator_share_cents)}</span>
+        <span class="cre-status ${p.status}">${escapeHtml(p.status)}</span>
+        <span class="cre-asset-meta">${escapeHtml(p.title)} · ${Number(p.orders)} sale${Number(p.orders) === 1 ? '' : 's'}</span>
+      </div>
+    `
+      )
+      .join('');
+
+    return `
+      <h2 class="cre-section-title">Merch Earnings</h2>
+      <div class="cre-card">
+        <div class="cre-payout-summary">
+          <div>
+            <div class="cre-payout-label">Merch Earnings (50% of net margin)</div>
+            <div class="cre-payout-value">${formatCents(merch.totalEarnedCents)}</div>
+          </div>
+        </div>
+        ${rows ? `<div class="cre-payout-list">${rows}</div>` : '<p class="cre-asset-meta">No merch sales yet. Earnings appear here once your listed works sell.</p>'}
+      </div>
+    `;
+  }
+
+  function renderDashboard(
+    departments = [],
+    reviews = [],
+    payouts = [],
+    analytics = [],
+    merch = null
+  ) {
     const summary = currentDashboard || { totalEarningsCents: 0, pendingEarningsCents: 0 };
     container.innerHTML = `
       ${renderToolbar()}
@@ -277,6 +336,7 @@
       ${renderAssetList()}
       ${renderReviews(reviews)}
       ${renderPayouts(payouts, summary)}
+      ${renderMerch(merch)}
       ${renderAnalytics(analytics)}
     `;
 
@@ -355,6 +415,7 @@
           inspirationEntryId:
             document.getElementById('asset-inspiration').value.trim() || undefined,
           image: imageBase64,
+          merchConsent: document.getElementById('asset-merch-consent').checked,
         };
 
         const { ok, data } = await api('/creatives', {
@@ -385,17 +446,46 @@
 
   function bindAssetActions() {
     container.addEventListener('click', async (e) => {
-      const btn = e.target.closest('button[data-action="delist"]');
+      const btn = e.target.closest('button[data-action]');
       if (!btn) return;
+      const action = btn.dataset.action;
       const id = Number(btn.dataset.id);
-      if (!confirm('Delist this asset? It will no longer be available for purchase.')) return;
-      btn.disabled = true;
-      const { ok, data } = await api(`/creatives/${id}`, { method: 'DELETE' });
-      if (ok && data?.success) {
-        await loadDashboard();
-      } else {
-        alert(data?.error || 'Delist failed.');
-        btn.disabled = false;
+
+      if (action === 'delist') {
+        if (!confirm('Delist this asset? It will no longer be available for purchase.')) return;
+        btn.disabled = true;
+        const { ok, data } = await api(`/creatives/${id}`, { method: 'DELETE' });
+        if (ok && data?.success) {
+          await loadDashboard();
+        } else {
+          alert(data?.error || 'Delist failed.');
+          btn.disabled = false;
+        }
+        return;
+      }
+
+      if (action === 'merch-withdraw') {
+        if (!confirm('Withdraw this work from the PuniCodex Store merch catalog?')) return;
+        btn.disabled = true;
+        const { ok, data } = await api(`/creatives/${id}/merch/withdraw`, { method: 'POST' });
+        if (ok && data?.success) {
+          await loadDashboard();
+        } else {
+          alert(data?.error || 'Withdrawal failed.');
+          btn.disabled = false;
+        }
+        return;
+      }
+
+      if (action === 'merch-optin') {
+        btn.disabled = true;
+        const { ok, data } = await api(`/creatives/${id}/merch/opt-in`, { method: 'POST' });
+        if (ok && data?.success) {
+          await loadDashboard();
+        } else {
+          alert(data?.error || 'Merch opt-in failed.');
+          btn.disabled = false;
+        }
       }
     });
   }
@@ -410,20 +500,23 @@
     }
     currentUser = user;
 
-    const [dashboardRes, departmentsRes, reviewsRes, payoutsRes, analyticsRes] = await Promise.all([
-      api('/creatives/dashboard'),
-      api('/creatives/departments'),
-      api('/creatives/reviews'),
-      api('/creatives/payouts'),
-      api('/creatives/analytics/creator'),
-    ]);
+    const [dashboardRes, departmentsRes, reviewsRes, payoutsRes, analyticsRes, merchRes] =
+      await Promise.all([
+        api('/creatives/dashboard'),
+        api('/creatives/departments'),
+        api('/creatives/reviews'),
+        api('/creatives/payouts'),
+        api('/creatives/analytics/creator'),
+        api('/creatives/merch/earnings'),
+      ]);
     currentDashboard = dashboardRes.ok ? dashboardRes.data.data : { assets: [] };
     const departments = departmentsRes.ok ? departmentsRes.data.data.departments : [];
     const reviews = reviewsRes.ok ? reviewsRes.data.data.reviews : [];
     const payouts = payoutsRes.ok ? payoutsRes.data.data.payouts : [];
     const analytics = analyticsRes.ok ? analyticsRes.data.data : null;
+    const merch = merchRes.ok ? merchRes.data.data : null;
 
-    renderDashboard(departments, reviews, payouts, analytics);
+    renderDashboard(departments, reviews, payouts, analytics, merch);
   }
 
   function bindGlobalNav() {

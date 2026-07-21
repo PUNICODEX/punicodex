@@ -674,9 +674,13 @@ function updateSlotUI() {
       // shipped to the browser.
       const pixelUrl = `${API_BASE}/api/analytics/pixel.gif/?b=${slot.public_id}`;
       const clickUrl = `${API_BASE}/api/analytics/click/?b=${slot.public_id}&url=${encodeURIComponent(slot.website_url || '#')}`;
+      const adImg = `<img src="${API_BASE}${slot.creative_path}" alt="${slot.company_name || 'Advertisement'}" style="width:100%;height:100%;object-fit:cover;display:block;">`;
+      const adMedia = slot.creative_webp_path
+        ? `<picture><source type="image/webp" srcset="${API_BASE}${slot.creative_webp_path}">${adImg}</picture>`
+        : adImg;
       frame.innerHTML = `
         <a href="${clickUrl}" target="_blank" rel="noopener" class="space-live-ad" style="display:block;width:100%;height:100%;position:relative;z-index:2;">
-          <img src="${API_BASE}${slot.creative_path}" alt="${slot.company_name || 'Advertisement'}" style="width:100%;height:100%;object-fit:cover;display:block;">
+          ${adMedia}
         </a>
         <img class="space-pixel" src="${pixelUrl}" width="1" height="1" style="position:absolute;opacity:0;pointer-events:none;" alt="">
       `;

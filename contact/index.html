@@ -131,7 +131,72 @@
                 <div class="contact-grid">
                     <div class="contact-form-wrapper reveal-up">
                         <h2 class="heading-lg mb-4">Send a Message</h2>
-                        <form class="contact-form" onsubmit="event.preventDefault(); PX.showToast('Message sent! We will respond as swiftly as Hermes.'); this.reset();">
+                        <form class="contact-form" id="contact-form">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" required placeholder="Your name">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required placeholder="your@email.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <select id="subject" name="subject">
+                                    <option>General Inquiry</option>
+                                    <option>Pantheon Question</option>
+                                    <option>Tier System Question</option>
+                                    <option>Collaboration</option>
+                                    <option>Press</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="6" required placeholder="Your message..."></textarea>
+                            </div>
+                            <div class="form-group" aria-hidden="true" style="position:absolute;left:-9999px;height:0;overflow:hidden;">
+                                <label for="_hp">Leave this empty</label>
+                                <input type="text" id="_hp" name="_hp" tabindex="-1" autocomplete="off">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg">Send Message</button>
+                        </form>
+                        <script>
+                        (function () {
+                            const form = document.getElementById('contact-form');
+                            const toast = (msg) =>
+                                window.PX && PX.showToast ? PX.showToast(msg) : alert(msg);
+                            form.addEventListener('submit', async (e) => {
+                                e.preventDefault();
+                                const btn = form.querySelector('button[type="submit"]');
+                                btn.disabled = true;
+                                try {
+                                    const res = await fetch('/api/contact/', {
+                                        method: 'POST',
+                                        headers: { 'Content-Type': 'application/json' },
+                                        body: JSON.stringify({
+                                            name: form.name.value,
+                                            email: form.email.value,
+                                            subject: form.subject.value,
+                                            message: form.message.value,
+                                            _hp: form._hp.value,
+                                        }),
+                                    });
+                                    const data = await res.json().catch(() => ({}));
+                                    if (!res.ok) {
+                                        toast(data.error || 'Something went wrong — please try again.');
+                                    } else {
+                                        toast('Message sent! We will respond as swiftly as Hermes.');
+                                        form.reset();
+                                    }
+                                } catch (err) {
+                                    toast('The network is down — write to us directly at punicodex@gmail.com.');
+                                } finally {
+                                    btn.disabled = false;
+                                }
+                            });
+                        })();
+                        </script>
                             <div class="form-group">
                                 <label for="name">Name</label>
                                 <input type="text" id="name" name="name" required placeholder="Your name">
@@ -160,6 +225,7 @@
                     </div>
 
                     <div class="contact-info reveal-up">
+                        <div data-newsletter="contact" style="margin-bottom:1.5rem"></div>
                         <h2 class="heading-lg mb-4">Direct Lines</h2>
                         <div class="info-item">
                             <span class="info-label">Email</span>
@@ -176,8 +242,8 @@
                         <div class="info-item">
                             <span class="info-label">Social</span>
                             <div class="info-socials">
-                                <a href="#" onclick="event.preventDefault(); PX.showToast('Coming soon')">GitHub</a>
-                                <a href="#" onclick="event.preventDefault(); PX.showToast('Coming soon')">Twitter / X</a>
+                                <a href="https://github.com/PUNYCODEX/punycodex" target="_blank" rel="noopener">GitHub</a>
+                                
                             </div>
                         </div>
                     </div>
@@ -235,5 +301,6 @@
 
     <script src="/js/px-core.js?v=perf20"></script>
     <script src="/js/main.js?v=perf20" defer></script>
+    <script src="/js/newsletter.js?v=1" defer></script>
 </body>
 </html>

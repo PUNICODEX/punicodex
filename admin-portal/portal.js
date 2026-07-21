@@ -26,6 +26,7 @@
       href: `${PREFIX}applications/`,
       permission: 'read',
     },
+    { id: 'requests', label: 'Requests', href: `${PREFIX}requests/`, permission: 'read' },
     { id: 'patrons', label: 'Patrons', href: `${PREFIX}patrons/`, permission: 'read' },
     {
       id: 'scholars',
@@ -33,6 +34,8 @@
       href: `${PREFIX}scholars/`,
       permission: 'read',
     },
+    { id: 'newsletter', label: 'Newsletter', href: `${PREFIX}newsletter/`, permission: 'read' },
+    { id: 'merch', label: 'Creator Merch', href: `${PREFIX}merch/`, permission: 'read' },
     { id: 'users', label: 'Users', href: `${PREFIX}users/`, permission: 'users' },
   ];
 

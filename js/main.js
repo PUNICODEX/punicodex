@@ -171,7 +171,7 @@
     // UTILITY FUNCTIONS
     // ═══════════════════════════════════════════════════════════
 
-    window.PX = {
+    window.PX = Object.assign(window.PX || {}, {
         debounce: function(fn, delay) {
             let timer;
             return function(...args) {
@@ -256,7 +256,7 @@
                 toast.style.opacity = '0';
             }, duration);
         }
-    };
+    });
 
     // ═══════════════════════════════════════════════════════════
     // SERVICE WORKER REGISTRATION

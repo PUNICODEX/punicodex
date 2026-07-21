@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PUNICODEX — Universal Unicode Search</title>
@@ -167,6 +171,17 @@
       return String(str).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
     }
 
+    // Safe for inline JS handler args: JSON-quoted, then HTML-escaped.
+    function jsArg(x) {
+      return escapeHtml(JSON.stringify(String(x)));
+    }
+
+    // Crawler-controlled URLs: http(s) only, HTML-escaped.
+    function safeUrl(u) {
+      const s = String(u || '');
+      return /^https?:\/\//i.test(s) ? escapeHtml(s) : '#';
+    }
+
     async function doSearch(append = false) {
       const q = qInput.value.trim();
       if (!q) return;
@@ -234,7 +249,7 @@
       });
 
       if (data.spellCorrection) {
-        spellEl.innerHTML = `Did you mean: <a onclick="searchFor('${escapeHtml(data.spellCorrection)}')">${escapeHtml(data.spellCorrection)}</a>?`;
+        spellEl.innerHTML = `Did you mean: <a onclick="searchFor(${jsArg(data.spellCorrection)})">${escapeHtml(data.spellCorrection)}</a>?`;
         spellEl.style.display = 'block';
       } else {
         spellEl.style.display = 'none';
@@ -331,7 +346,7 @@
         })
         .join('');
       const followUps = (oracle.followUps || [])
-        .map((f) => `<button class="cn-followup" onclick="searchFor('${escapeHtml(f)}')">${escapeHtml(f)}</button>`)
+        .map((f) => `<button class="cn-followup" onclick="searchFor(${jsArg(f)})">${escapeHtml(f)}</button>`)
         .join('');
       return `<div class="cn-card cn-panel-oracle">
         <div class="cn-card-accent"></div>
@@ -428,12 +443,12 @@
       let html = '';
       if (related.length) {
         html += `<h3 class="cn-section-title">Related</h3><div class="cn-chip-row" style="margin-bottom:1.5rem">${related.map(r =>
-          `<button class="cn-chip" onclick="searchFor('${escapeHtml(r.unicode || r.ascii)}')">${escapeHtml(r.unicode || r.ascii)}</button>`
+          `<button class="cn-chip" onclick="searchFor(${jsArg(r.unicode || r.ascii)})">${escapeHtml(r.unicode || r.ascii)}</button>`
         ).join('')}</div>`;
       }
       if (trending.length) {
         html += `<h3 class="cn-section-title">Trending</h3><div class="cn-chip-row">${trending.map(t =>
-          `<button class="cn-chip" onclick="searchFor('${escapeHtml(t.query)}')">${escapeHtml(t.query)}</button>`
+          `<button class="cn-chip" onclick="searchFor(${jsArg(t.query)})">${escapeHtml(t.query)}</button>`
         ).join('')}</div>`;
       }
       if (html) {

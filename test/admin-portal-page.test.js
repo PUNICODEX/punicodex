@@ -23,6 +23,8 @@ const PAGES = [
   'applications/index.html',
   'patrons/index.html',
   'scholars/index.html',
+  'newsletter/index.html',
+  'merch/index.html',
   'users/index.html',
 ];
 const ASSETS = ['portal.css', 'portal.js'];
@@ -54,6 +56,10 @@ const API_ROUTES = [
   '/api/admin/portal/scholars/pending/',
   '/api/admin/portal/scholars/:kind/:id/approve/',
   '/api/admin/portal/scholars/:kind/:id/reject/',
+  '/api/admin/portal/newsletter/',
+  '/api/admin/portal/newsletter/export/',
+  '/api/admin/portal/merch/',
+  '/api/admin/portal/merch/:id/withdraw/',
   '/api/crawler/stats/',
   '/api/crawl/',
   '/api/crawl/recrawl/',
@@ -252,6 +258,18 @@ test('role-based nav and action gating logic is present', () => {
     /id: 'users'[\s\S]{0,120}permission: 'users'/.test(shell),
     'expected Users nav item gated on the users permission'
   );
+  assert.ok(
+    /id: 'requests'[\s\S]{0,120}href: `\$\{PREFIX\}requests\/`/.test(shell),
+    'expected Requests nav item pointing at /admin-portal/requests/'
+  );
+  assert.ok(
+    /id: 'newsletter'[\s\S]{0,120}href: `\$\{PREFIX\}newsletter\/`/.test(shell),
+    'expected Newsletter nav item'
+  );
+  assert.ok(
+    /id: 'merch'[\s\S]{0,120}href: `\$\{PREFIX\}merch\/`/.test(shell),
+    'expected Creator Merch nav item'
+  );
   assert.ok(shell.includes('can(item.permission)'), 'expected nav filtering by permission');
   assert.ok(shell.includes('indexOf(permission)'), 'expected permission membership check');
   assert.ok(shell.includes('redirectToLogin'), 'expected auth guard redirect');
@@ -273,6 +291,14 @@ test('role-based nav and action gating logic is present', () => {
   assert.ok(
     readCanonical('scholars/index.html').includes("Portal.can('scholars')"),
     'scholars: expected scholars-gated actions'
+  );
+  assert.ok(
+    readCanonical('newsletter/index.html').includes("Portal.can('leasing')"),
+    'newsletter: expected leasing-gated CSV export'
+  );
+  assert.ok(
+    readCanonical('merch/index.html').includes("Portal.can('leasing')"),
+    'merch: expected leasing-gated withdraw action'
   );
   assert.ok(
     readCanonical('users/index.html').includes("Portal.can('users')"),

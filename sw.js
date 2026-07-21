@@ -66,6 +66,12 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
+  // API responses: never serve stale — always go to network.
+  if (url.pathname.startsWith('/api/')) {
+    event.respondWith(fetch(request));
+    return;
+  }
+
   // CSS/JS/Fonts/Images: stale-while-revalidate (instant, then update)
   event.respondWith(
     caches.match(request).then(cached => {

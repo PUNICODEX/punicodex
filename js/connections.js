@@ -29,6 +29,8 @@
     phoenician: '#800000',
     hittite: '#A0522D',
     baltic: '#00CED1',
+    aboriginal: '#D2691E',
+    mapuche: '#2E8B57',
   };
 
   const state = {

@@ -186,7 +186,7 @@
             <div class="hero-text">
                 <p class="hero-eyebrow reveal-up">Visual Legacy</p>
                 <h1 class="hero-title reveal-up">
-                    <span class="title-greek">𐤀𐤔𐤕𐤓𐤕</span>
+                    <span class="title-greek">𐤏𐤔𐤕𐤓𐤕</span>
                     <span class="title-divider"></span>
                     <span class="title-trans">Gallery</span>
                 </h1>
@@ -201,7 +201,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../assets/astart_mascot.webp" type="image/webp"><img src="../assets/astart_mascot.png" alt="Aštart — Love, War, Fertility, Venus" class="mascot-img" width="1024" height="1536"></picture>
+                <picture><source srcset="../assets/astart_mascot.webp" type="image/webp"><img src="../assets/astart_mascot.webp" alt="Aštart — Love, War, Fertility, Venus" class="mascot-img" width="1024" height="1536"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -261,12 +261,13 @@
                     </div>
                     <div class="footer-block">
                         <span class="footer-label">Original Script</span>
-                        <span class="footer-value">𐤀𐤔𐤕𐤓𐤕</span>
+                        <span class="footer-value">𐤏𐤔𐤕𐤓𐤕</span>
                     </div>
                 </div>
             </div>
+            <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/astart_logomark.webp" type="image/webp"><img src="../assets/astart_logomark.png" alt="Aštart logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/astart_logomark.webp" type="image/webp"><img src="../assets/astart_logomark.webp" alt="Aštart logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
@@ -298,8 +299,8 @@
   if (!lb || !img || !close) return;
   function open(src, caption) {
     img.src = src;
-    img.alt = caption || '';
-    cap.textContent = caption || '';
+    img.alt = caption ? caption.replace(/<[^>]*>/g, '') : '';
+    cap.innerHTML = caption || '';
     lb.classList.add('active');
     document.body.style.overflow = 'hidden';
     close.focus();
@@ -310,7 +311,15 @@
     document.body.style.overflow = '';
   }
   document.querySelectorAll('.gallery-figure[data-full-src]').forEach(item => {
+    item.setAttribute('tabindex', '0');
+    item.setAttribute('role', 'button');
     item.addEventListener('click', () => open(item.dataset.fullSrc, item.dataset.caption));
+    item.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        open(item.dataset.fullSrc, item.dataset.caption);
+      }
+    });
     item.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(item.dataset.fullSrc, item.dataset.caption); } });
   });
   close.addEventListener('click', closeLb);
@@ -318,5 +327,6 @@
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && lb.classList.contains('active')) closeLb(); });
 })();
 </script>
+    <script src="/js/newsletter.js?v=1" defer></script>
 </body>
 </html>

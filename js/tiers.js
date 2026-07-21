@@ -7,36 +7,6 @@
     'use strict';
 
     // ═══════════════════════════════════════════════════════════
-    // HERO COUNTERS
-    // ═══════════════════════════════════════════════════════════
-    function animateCounters() {
-        const counters = document.querySelectorAll('.stat-number[data-count]');
-        const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-        counters.forEach(el => {
-            const target = parseInt(el.dataset.count, 10);
-            if (Number.isNaN(target)) return;
-
-            if (reduced) {
-                el.textContent = target.toLocaleString();
-                return;
-            }
-
-            const duration = 1600;
-            const startTime = performance.now();
-
-            function update(currentTime) {
-                const elapsed = currentTime - startTime;
-                const progress = Math.min(elapsed / duration, 1);
-                const eased = 1 - Math.pow(1 - progress, 4);
-                el.textContent = Math.round(eased * target).toLocaleString();
-                if (progress < 1) requestAnimationFrame(update);
-            }
-            requestAnimationFrame(update);
-        });
-    }
-
-    // ═══════════════════════════════════════════════════════════
     // SCROLL REVEAL
     // ═══════════════════════════════════════════════════════════
     function initScrollReveal() {
@@ -236,7 +206,6 @@
     // INITIALIZATION
     // ═══════════════════════════════════════════════════════════
     function init() {
-        animateCounters();
         initScrollReveal();
         initConstellation();
         initConverter();

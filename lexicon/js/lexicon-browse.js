@@ -58,6 +58,9 @@
         korean: 'Korean',
         phoenician: 'Phoenician',
         hittite: 'Hittite',
+        aboriginal: 'Aboriginal',
+        mapuche: 'Mapuche',
+        baltic: 'Baltic',
     };
 
     // ─── Tier subtype helper (mirrors generator logic) ───

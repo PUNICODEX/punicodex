@@ -8,6 +8,38 @@ const { migrate: migratePatrons } = require('../../platform/db/migrate-patrons')
 // applied (patron activation runs through platform/api/stripe.js handleWebhook).
 migratePatrons(getDb());
 
+/**
+ * Tenant portal provisioning (additive): when a booking or patron activates,
+ * create-or-find the tenant account for the contact email and email the
+ * portal link (one-time set-password link on first use). Fire-and-forget —
+ * a provisioning or email failure must never fail the webhook.
+ */
+async function provisionTenantPortalAccount(result) {
+  try {
+    if (!result?.type) return;
+    let email = null;
+    let kind = null;
+    if (result.type === 'booking' && result.booking?.email) {
+      email = result.booking.email;
+      kind = 'sponsor';
+    } else if (result.type === 'patron' && result.patron?.email) {
+      email = result.patron.email;
+      kind = 'patron';
+    }
+    if (!email) return;
+
+    const tenantPortal = require('../../platform/api/tenant-portal');
+    const { notifyTenantAccountProvisioned } = require('../../platform/api/email');
+    const { token } = await tenantPortal.provisionTenantAccount(email, { kind });
+    const setPasswordUrl = token
+      ? `${process.env.PLATFORM_URL || 'http://localhost:3456'}/account/?token=${encodeURIComponent(token)}`
+      : null;
+    await notifyTenantAccountProvisioned({ email, kind, setPasswordUrl }).catch(() => {});
+  } catch (err) {
+    console.error('Tenant portal provisioning error:', err.message);
+  }
+}
+
 function getRawBody(req) {
   return new Promise((resolve, reject) => {
     const chunks = [];
@@ -29,7 +61,8 @@ module.exports = async (req, res) => {
     }
 
     const rawBody = await getRawBody(req);
-    await processWebhook(rawBody, signature);
+    const result = await processWebhook(rawBody, signature);
+    await provisionTenantPortalAccount(result);
 
     res.json({ received: true });
   } catch (err) {

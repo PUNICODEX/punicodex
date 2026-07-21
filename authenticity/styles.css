@@ -296,6 +296,7 @@
 
 .parts-table th,
 .parts-table td {
+  word-break: break-all;
   text-align: left;
   padding: 8px 10px;
   border-bottom: 1px solid rgba(212, 175, 55, 0.1);
@@ -414,71 +415,4 @@
   .check-input { width: 100%; }
 }
 
-/* Nav & Footer shared with the rest of the site */
-.global-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px 24px;
-  border-bottom: 1px solid var(--gold-dim);
-  background: var(--surface);
-}
 
-.nav-logo {
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  color: var(--gold);
-  text-decoration: none;
-  letter-spacing: 0.05em;
-}
-
-.nav-logo .accent {
-  color: var(--gold);
-}
-
-.nav-links {
-  display: flex;
-  gap: 18px;
-}
-
-.nav-links a {
-  color: var(--text-dim);
-  text-decoration: none;
-  font-size: 0.85rem;
-  transition: color 0.15s ease;
-}
-
-.nav-links a:hover {
-  color: var(--gold);
-}
-
-.site-footer {
-  border-top: 1px solid var(--gold-dim);
-  padding: 28px 20px;
-  text-align: center;
-  background: var(--surface);
-}
-
-.footer-links {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 18px;
-  margin-bottom: 12px;
-}
-
-.footer-links a {
-  color: var(--text-dim);
-  text-decoration: none;
-  font-size: 0.85rem;
-  transition: color 0.15s ease;
-}
-
-.footer-links a:hover {
-  color: var(--gold);
-}
-
-.copyright {
-  color: var(--text-dim);
-  font-size: 0.75rem;
-}

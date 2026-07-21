@@ -158,5 +158,18 @@ test('no page script double-handles the mobile toggle (open→close in one click
   }
 });
 
+test('temple-base.css hides desktop nav-links at mobile widths (cascade order)', () => {
+  // Regression 2026-07-21: the base `.nav-links{display:flex}` rule came AFTER
+  // the @media(max-width:768px) hide block with equal specificity, so the
+  // desktop link list rendered as an undismissable overlay on mobile
+  // (blog/creatives/lexicon/cognates phantom menu).
+  const css = read('css/temple-base.css');
+  const mediaBlock = css.match(/@media\s*\(max-width:\s*768px\)\s*\{[\s\S]*?\.base-nav-links,\s*\n?\s*\.main-nav \.nav-links\s*\{\s*display:\s*none/);
+  assert.ok(
+    mediaBlock,
+    'css/temple-base.css: the 768px media block must hide `.main-nav .nav-links` (specificity 0,2,0 beats the later base rule)'
+  );
+});
+
 console.log(`\nMenu Consistency: ${passed} passed, ${failed} failed`);
 if (failed > 0) process.exit(1);

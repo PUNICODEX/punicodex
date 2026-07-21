@@ -177,6 +177,12 @@ const PANTHEON_COLORS = {
     primaryBright: '#B8C8A5',
     secondary: '#D4AF37',
   },
+  aboriginal: {
+    primary: '#B8764A',
+    primaryDim: '#7A4A2E',
+    primaryBright: '#D8A070',
+    secondary: '#D4AF37',
+  },
   canaanite: {
     primary: '#8B4513',
     primaryDim: '#5D2E0C',
@@ -201,6 +207,7 @@ const PANTHEON_LABELS = {
   zoroastrian: 'Zoroastrian',
   incan: 'Incan',
   mapuche: 'Mapuche',
+  aboriginal: 'Aboriginal',
   canaanite: 'Canaanite',
 };
 
@@ -332,7 +339,12 @@ function getTierExplanation(entry, subtype) {
   }
   if (entry.tier === '2') {
     if (isAsciiOnlyUnicode(entry)) {
-      return `The ${pantheonLabel} name <strong>${original}</strong> is attested in the Latin alphabet. The Unicode restoration is identical to ASCII, so no diacritic or script recovery is needed. It is catalogued as a <strong>single-tier Tier-2</strong> name because the scholarly form carries no stress or length marks.`;
+      const originalScript = getOriginalScript(entry);
+      const hasNonLatinScript = originalScript && /[^\u0000-\u024F]/.test(originalScript);
+      const scriptNote = hasNonLatinScript
+        ? `The ${pantheonLabel} name <strong>${original}</strong> is attested in its original script (shown above) as well as in the Latin alphabet.`
+        : `The ${pantheonLabel} name <strong>${original}</strong> is attested in the Latin alphabet.`;
+      return `${scriptNote} The Unicode restoration is identical to ASCII, so no diacritic or script recovery is needed. It is catalogued as a <strong>single-tier Tier-2</strong> name because the scholarly form carries no stress or length marks.`;
     }
     if (subtype === 'Tier-2') {
       return `The ${pantheonLabel} form <strong>${original}</strong> preserves neither stress nor length in this Unicode restoration. This makes it a <strong>single-tier Tier-2</strong> name — a faithful scholarly form, without the distinctive phonetic features that define Tier-1.`;
@@ -459,6 +471,7 @@ function generateTempleHTML(entry, related) {
   const protoLabel = hasEtymology
     ? {
         'proto-indo-european': 'PIE',
+        'proto-germanic': 'PGmc',
         'proto-afro-asiatic': 'Afro-Asiatic',
         'proto-polynesian': 'Proto-Polynesian',
         'proto-uto-aztecan': 'Proto-Uto-Aztecan',
@@ -620,7 +633,7 @@ ${JSON.stringify(
         </div>
     </nav>
 
-    <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true" inert>
         <div class="mobile-menu-section">
             <span class="mobile-menu-title">Explore</span>
             <div class="mobile-menu-group">

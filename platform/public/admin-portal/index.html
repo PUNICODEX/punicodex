@@ -128,8 +128,11 @@
         function renderQuickLinks() {
             var links = [
                 { href: 'applications/', title: 'Applications', desc: 'Approve business leases and university sponsorships.', permission: 'read' },
+                { href: 'requests/', title: 'Requests', desc: 'Sponsor and patron self-service approval queue.', permission: 'read' },
                 { href: 'patrons/', title: 'Patrons', desc: 'Patron roster, MRR, cancellations, and expiry.', permission: 'read' },
                 { href: 'scholars/', title: 'Scholars Review', desc: 'Pending scholarly edits and media uploads.', permission: 'read' },
+                { href: 'newsletter/', title: 'Newsletter', desc: 'Herald subscribers and CSV export.', permission: 'read' },
+                { href: 'merch/', title: 'Creator Merch', desc: 'Product oversight, revenue split, and takedowns.', permission: 'read' },
                 { href: 'users/', title: 'Users', desc: 'Portal accounts, roles, and credential resets.', permission: 'users' },
             ];
             document.getElementById('dash-quick-links').innerHTML = links

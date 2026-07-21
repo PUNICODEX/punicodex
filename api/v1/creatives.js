@@ -7,11 +7,13 @@
 const express = require('express');
 const { getDb } = require('../../platform/db/connection');
 const { migrate: migrateCreatives } = require('../../platform/db/migrate-scholars-creatives');
+const { migrate: migrateCreatorMerch } = require('../../platform/db/migrate-creator-merch');
 const creativeRouter = require('../../platform/api/creative-marketplace');
 
 // Ensure creative marketplace tables exist before handling requests.
-// Idempotent migration; safe to run on every serverless cold start.
+// Idempotent migrations; safe to run on every serverless cold start.
 migrateCreatives(getDb());
+migrateCreatorMerch(getDb());
 
 const app = express();
 app.use(creativeRouter);

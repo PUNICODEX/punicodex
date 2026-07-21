@@ -244,6 +244,7 @@
     mayan: 'cjk', // visually dense block glyphs
     aztec: 'cjk',
     yoruba: 'latin',
+    aboriginal: 'latin',
     latin: { font: '"Cormorant Garamond", serif', chars: 'ABCDEFGHIKLMNOPQRSTVXYZ' },
   };
 

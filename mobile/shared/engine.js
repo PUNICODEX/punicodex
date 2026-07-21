@@ -288,6 +288,9 @@ const PUNICODEX_ENGINE = {
         phoenician: '🌅',
         hittite: '🦁',
         canaanite: '🌴',
+        aboriginal: '🪃',
+        mapuche: '🌋',
+        baltic: '🌲',
       }[pantheon] || '✦'
     );
   },

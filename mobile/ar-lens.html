@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>PUNICODEX AR Glyph Lens</title>
   <style>
     :root { --bg: #0a0a0f; --accent: #d4af37; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: system-ui, sans-serif; background: var(--bg); color: #fff; overflow: hidden; }
-    #camera { position: fixed; inset: 0; object-fit: cover; width: 100%; height: 100%; transform: scaleX(-1); }
+    #camera { position: fixed; inset: 0; object-fit: cover; width: 100%; height: 100%;  }
     #overlay { position: fixed; inset: 0; pointer-events: none; }
     .card {
       position: absolute; bottom: 2rem; left: 1rem; right: 1rem;
@@ -56,7 +56,7 @@
       // Placeholder: in a full implementation we'd run OCR/glyph detection here.
       // For now, simulate a match based on a random flagship entry.
       try {
-        const res = await fetch('/api/v1/names/?hasFlagship=true&limit=10');
+        const res = await fetch('/api/v1/names/?limit=10');
         const data = await res.json();
         const entries = data.entries || data.data || [];
         const entry = entries[Math.floor(Math.random() * entries.length)];

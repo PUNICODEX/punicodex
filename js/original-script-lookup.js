@@ -2632,7 +2632,7 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptName": "Hieroglyphs"
   },
   "astart": {
-    "originalScript": "𐤀𐤔𐤕𐤓𐤕",
+    "originalScript": "𐤏𐤔𐤕𐤓𐤕",
     "scriptName": "Phoenician"
   },
   "athiratu": {

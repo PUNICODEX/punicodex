@@ -1563,8 +1563,9 @@ function buildZeusFooter(entry, assetPrefix) {
                     </div>
                 </div>
             </div>
+            <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="${logomarkPath}.webp" type="image/webp"><img src="${logomarkPath}.png" alt="${entry.unicode} logomark" class="footer-logomark"></picture>
+                <picture><source srcset="${logomarkPath}.webp" type="image/webp"><img src="${logomarkPath}.webp" alt="${entry.unicode} logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>

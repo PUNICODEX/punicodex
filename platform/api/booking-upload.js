@@ -13,6 +13,7 @@ const {
   getBundleMembers,
 } = require('./bookings');
 const { validateCreativeDimensions } = require('./image-meta');
+const { writeWebpSibling, webpSiblingPath } = require('./image-webp');
 
 const UPLOADS_DIR = path.join(__dirname, 'public', 'uploads');
 
@@ -61,6 +62,7 @@ async function uploadBookingCreative(token, { image, filename }, { notifyAdminPe
   if (!fs.existsSync(slotDir)) fs.mkdirSync(slotDir, { recursive: true });
   const filePath = path.join(slotDir, safeName);
   fs.writeFileSync(filePath, parsed.buffer);
+  const webpWritten = await writeWebpSibling(filePath, parsed.buffer);
 
   const publicPath = `/uploads/${booking.id}/${safeName}`;
   await saveCreative(booking.id, publicPath, filename);
@@ -73,7 +75,10 @@ async function uploadBookingCreative(token, { image, filename }, { notifyAdminPe
     }).catch(() => {});
   }
 
-  return { status: 200, body: { success: true, path: publicPath } };
+  return {
+    status: 200,
+    body: { success: true, path: publicPath, webpPath: webpWritten ? webpSiblingPath(publicPath) : null },
+  };
 }
 
 async function uploadSlotCreative(token, slotId, { image, filename }) {
@@ -116,11 +121,15 @@ async function uploadSlotCreative(token, slotId, { image, filename }) {
   if (!fs.existsSync(slotDir)) fs.mkdirSync(slotDir, { recursive: true });
   const filePath = path.join(slotDir, safeName);
   fs.writeFileSync(filePath, parsed.buffer);
+  const webpWritten = await writeWebpSibling(filePath, parsed.buffer);
 
   const publicPath = `/uploads/${booking.id}/${slotId}/${safeName}`;
   await saveSlotCreative(booking.id, slotId, publicPath, filename);
 
-  return { status: 200, body: { success: true, path: publicPath } };
+  return {
+    status: 200,
+    body: { success: true, path: publicPath, webpPath: webpWritten ? webpSiblingPath(publicPath) : null },
+  };
 }
 
 module.exports = {

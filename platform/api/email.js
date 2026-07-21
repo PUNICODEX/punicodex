@@ -455,6 +455,51 @@ async function notifyScholarsAccountProvisioned({
   });
 }
 
+/**
+ * Tenant portal provisioning: a sponsor booking or patron subscription was
+ * activated for this email. When setPasswordUrl is present the account has
+ * no password yet and the email carries the one-time setup link; otherwise
+ * it simply points at the portal sign-in.
+ */
+async function notifyTenantAccountProvisioned({ email, kind, setPasswordUrl }) {
+  const portalUrl = `${PLATFORM_URL}/account/`;
+  const kindLabel = kind === 'patron' ? 'patron spot' : 'ad space';
+  const cta = setPasswordUrl
+    ? `<p>Set your password to open your portal:</p>
+        <p><a href="${escapeHtml(setPasswordUrl)}" style="display:inline-block;background:#d4af37;color:#000;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600;">Set Password &amp; Open Portal</a></p>
+        <p style="color:#666;font-size:0.85rem;">This setup link expires in 24 hours. If you did not expect this account, you can ignore this email.</p>`
+    : `<p><a href="${escapeHtml(portalUrl)}" style="display:inline-block;background:#d4af37;color:#000;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600;">Sign In to Your Portal</a></p>`;
+  return sendEmail({
+    to: email,
+    subject: 'Your PuniCodex account portal',
+    html: `
+      <div style="font-family:system-ui,sans-serif;max-width:480px;margin:0 auto;color:#111;">
+        <h2 style="color:#d4af37;">PUNICODEX — Your Account Portal</h2>
+        <p>Hi,</p>
+        <p>Your ${escapeHtml(kindLabel)} is active, and a self-service portal is ready for you. From the portal you can review your analytics and request changes to your ${escapeHtml(kindLabel)}.</p>
+        ${cta}
+      </div>
+    `,
+  });
+}
+
+async function notifyTenantPasswordReset({ email, token }) {
+  const resetUrl = `${PLATFORM_URL}/account/?token=${encodeURIComponent(token)}`;
+  return sendEmail({
+    to: email,
+    subject: 'Reset your PuniCodex portal password',
+    html: `
+      <div style="font-family:system-ui,sans-serif;max-width:480px;margin:0 auto;color:#111;">
+        <h2 style="color:#d4af37;">PUNICODEX — Password Reset</h2>
+        <p>Hi,</p>
+        <p>We received a request to reset the password for your account portal. Set a new password here:</p>
+        <p><a href="${escapeHtml(resetUrl)}" style="display:inline-block;background:#d4af37;color:#000;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600;">Set New Password</a></p>
+        <p style="color:#666;font-size:0.85rem;">This link expires in 24 hours and works once. If you did not request a reset, you can ignore this email.</p>
+      </div>
+    `,
+  });
+}
+
 async function notifyAdminPasswordReset({ email, tempPassword }) {
   const loginUrl = `${PLATFORM_URL}/admin-portal/login/`;
   return sendEmail({
@@ -495,6 +540,8 @@ module.exports = {
   notifyPatronWelcome,
   notifyScholarsAccountProvisioned,
   notifyAdminPasswordReset,
+  notifyTenantAccountProvisioned,
+  notifyTenantPasswordReset,
   getDashboardUrl,
   escapeHtml,
 };

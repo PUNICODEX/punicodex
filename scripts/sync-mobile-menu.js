@@ -61,6 +61,7 @@ const MENU_OPEN = '<div class="mobile-menu" id="mobile-menu">';
 // Non-temple navigation pages that carry the standard .mobile-menu overlay.
 // `active` marks the page's own link inside the menu (styled by main.css).
 const TARGETS = [
+  { page: '404.html', active: null },
   { page: 'index.html', active: null },
   { page: 'oracle.html', active: '/oracle.html' },
   { page: path.join('about', 'index.html'), active: '/about/' },

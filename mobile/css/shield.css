@@ -1,0 +1,125 @@
+/* PuniCodex Shield — page-specific styles (mobile/shield.html)
+ * The shared mobile.css carries no .hidden/.app-nav/.shield-* rules; this
+ * sheet supplies them. Loaded after mobile.css. */
+
+.hidden {
+  display: none !important;
+}
+
+.shield-main {
+  padding: 1rem 1rem calc(76px + env(safe-area-inset-bottom, 0px));
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.shield-hero {
+  text-align: center;
+  padding: 1.5rem 0 1rem;
+}
+
+.shield-checker {
+  margin: 1rem 0;
+}
+
+.shield-input-wrap {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.shield-input-wrap input {
+  flex: 1;
+  padding: 0.75rem 0.9rem;
+  font-size: 1rem;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  color: inherit;
+}
+
+.primary-btn {
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0a0a0a;
+  background: #d4af37;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.text-btn {
+  background: none;
+  border: none;
+  color: rgba(212, 175, 55, 0.85);
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  min-height: 44px;
+}
+
+.shield-result {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.severity-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.icon-btn {
+  background: none;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 8px;
+  color: inherit;
+  padding: 0.4rem 0.6rem;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+/* Fixed bottom app navigation (was unstyled: in-flow, full-width SVGs) */
+.app-nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: space-around;
+  padding: 0.4rem 0.5rem calc(0.4rem + env(safe-area-inset-bottom, 0px));
+  background: rgba(8, 8, 10, 0.96);
+  border-top: 1px solid rgba(212, 175, 55, 0.2);
+  backdrop-filter: blur(8px);
+  z-index: 100;
+}
+
+.app-nav .nav-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: none;
+  font-size: 0.72rem;
+  padding: 0.3rem 0.8rem;
+  min-height: 44px;
+}
+
+.app-nav .nav-btn.active,
+.app-nav .nav-btn[aria-current='page'] {
+  color: #d4af37;
+}
+
+.app-nav svg {
+  width: 22px;
+  height: 22px;
+}

@@ -130,80 +130,21 @@
 
         <section class="store-content">
             <div class="container">
-                <div class="store-tabs">
-                    <button class="store-tab active">All</button>
-                    <button class="store-tab">Apparel</button>
-                    <button class="store-tab">Art Prints</button>
-                    <button class="store-tab">Digital</button>
-                    <button class="store-tab">Relics</button>
+                <div class="store-tabs" role="tablist">
+                    <button class="store-tab active" data-filter="all">All</button>
+                    <button class="store-tab" data-filter="apparel">Apparel</button>
+                    <button class="store-tab" data-filter="art-prints">Art Prints</button>
+                    <button class="store-tab" data-filter="digital">Digital</button>
+                    <button class="store-tab" data-filter="relics">Relics</button>
                 </div>
 
-                <div class="product-grid">
-                    <div class="product-card reveal-up">
-                        <div class="product-image">
-                            <div class="product-placeholder">
-                                
-                            </div>
-                            <div class="product-overlay">Coming Soon</div>
-                        </div>
-                        <h3 class="product-name">Zeús Thunderbolt Tee</h3>
-                        <p class="product-price">$45.00</p>
-                    </div>
-                    <div class="product-card reveal-up">
-                        <div class="product-image">
-                            <div class="product-placeholder">
-                                
-                            </div>
-                            <div class="product-overlay">Coming Soon</div>
-                        </div>
-                        <h3 class="product-name">Hekate Torch Candle</h3>
-                        <p class="product-price">$32.00</p>
-                    </div>
-                    <div class="product-card reveal-up">
-                        <div class="product-image">
-                            <div class="product-placeholder">
-                                
-                            </div>
-                            <div class="product-overlay">Coming Soon</div>
-                        </div>
-                        <h3 class="product-name">Athena Owl Art Print</h3>
-                        <p class="product-price">$85.00</p>
-                    </div>
-                    <div class="product-card reveal-up">
-                        <div class="product-image">
-                            <div class="product-placeholder">
-                                
-                            </div>
-                            <div class="product-overlay">Coming Soon</div>
-                        </div>
-                        <h3 class="product-name">Áres War Cry Hoodie</h3>
-                        <p class="product-price">$68.00</p>
-                    </div>
-                    <div class="product-card reveal-up">
-                        <div class="product-image">
-                            <div class="product-placeholder">
-                                
-                            </div>
-                            <div class="product-overlay">Coming Soon</div>
-                        </div>
-                        <h3 class="product-name">Poseidon Trident Poster</h3>
-                        <p class="product-price">$55.00</p>
-                    </div>
-                    <div class="product-card reveal-up">
-                        <div class="product-image">
-                            <div class="product-placeholder">
-                                
-                            </div>
-                            <div class="product-overlay">Coming Soon</div>
-                        </div>
-                        <h3 class="product-name">Óðinn Raven Pin Set</h3>
-                        <p class="product-price">$24.00</p>
-                    </div>
+                <div class="store-grid" id="product-grid">
+                    <!-- Rendered from store/products.json by /js/store.js -->
                 </div>
 
                 <div class="store-cta reveal-up">
                     <h3 class="heading-md text-center">Be Notified When the Reliquary Opens</h3>
-                    <form class="newsletter-form" onsubmit="event.preventDefault(); PX.showToast('You will be notified when the store opens.'); this.reset();">
+                    <form class="newsletter-form" id="store-notify-form">
                         <input type="email" placeholder="your@email.com" required class="newsletter-input">
                         <button type="submit" class="btn btn-primary">Notify Me</button>
                     </form>
@@ -261,5 +202,6 @@
 
     <script src="/js/px-core.js?v=perf9"></script>
     <script src="/js/main.js?v=perf8" defer></script>
+    <script src="/js/store.js?v=1" defer></script>
 </body>
 </html>

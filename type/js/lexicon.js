@@ -1794,7 +1794,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Sun, Sight, Oaths",
-    "meaning": "Sun (from ἕλος)",
+    "meaning": "Sun (from PIE *seh₂wel-)",
     "sources": [
       "LSJ",
       "Pape-Benseler",
@@ -2273,8 +2273,8 @@ const LEXICON = [
     "unicode": "Átlas",
     "greek": "Ἄτλας",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
+    "tier": "1",
+    "tierLabel": "Tier 1",
     "domain": "Bearer of the Heavens",
     "meaning": "Enduring, suffering (from τλάω)",
     "sources": [
@@ -2564,8 +2564,8 @@ const LEXICON = [
     "unicode": "Rhéā",
     "greek": "Ῥέα",
     "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
+    "tier": "1",
+    "tierLabel": "Tier 1",
     "domain": "Motherhood, Fertility, Titans",
     "meaning": "Flow, ease (from ῥέω)",
     "sources": [
@@ -4157,7 +4157,7 @@ const LEXICON = [
     ],
     "etymology": {
       "protoForm": "*albaz + *haimaz",
-      "protoLanguage": "proto-indo-european",
+      "protoLanguage": "proto-germanic",
       "protoGloss": "elf + home",
       "derivation": "PGmc *albaz \"elf\" + *haimaz \"home\". The world of the light elves.",
       "certainty": "attested",
@@ -5465,7 +5465,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Mummification, Afterlife, Jackals",
-    "meaning": "He who is upon his sacred mountain",
+    "meaning": "Egyptian god of embalming and the necropolis; the name's etymology is uncertain (his epithet tpy-ḏw=f means He who is upon his mountain)",
     "sources": [
       "Faulkner",
       "Wb"
@@ -5698,8 +5698,8 @@ const LEXICON = [
     "meaning": "Hidden One (Egyptian jmn; vocalized Ꜣmun)",
     "sources": [
       "Faulkner",
-      "Wb, jmn",
-      "Allen, Middle Egyptian"
+      "Wb",
+      "Allen"
     ],
     "breakdown": [
       {
@@ -6193,7 +6193,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Virtue, Kingship, Avatar of Vishnu",
-    "meaning": "of various mythical personages (in Veda two Rāmas are mentioned with the patr. Mārgaveya and Aupatasvini; another R˚s with the patr. Jāmadagnya [cf. below] is the supposed author",
+    "meaning": "The beloved prince of Ayodhyā — hero of the Rāmāyaṇa and seventh avatāra of Viṣṇu (from √ram, to delight)",
     "senses": [
       {
         "type": "etymology",
@@ -6240,7 +6240,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Protection, Strength, War",
-    "meaning": "‘the inaccessible or terrific goddess’, N. of the daughter of Himavat and wife of Śiva (also called Umā, Pārvatī &c., and mother of Kārttikeya and Gaṇeśa cf. pUjA), TĀr. x, 2",
+    "meaning": "'the inaccessible or terrific goddess', N. of the daughter of Himavat and wife of Śiva (also called Umā, Pārvatī &c., and mother of Kārttikeya and Gaṇeśa)",
     "senses": [
       {
         "type": "etymology",
@@ -6367,7 +6367,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Preservation, Protection, Universe",
-    "meaning": "N. of one of the principal Hindū deities (in the later mythology regarded as ‘the preserver’, and with Brahmā ‘the creator’ and Śiva ‘the destroyer’, constituting the wellknown",
+    "meaning": "The Preserver — the principal Hindu deity who descends as avatāras to sustain cosmic order (from √viṣ, 'to pervade')",
     "senses": [
       {
         "type": "etymology",
@@ -6583,7 +6583,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Wealth, Fortune, Beauty",
-    "meaning": "of the goddess of fortune and beauty (frequently in the later mythology identified with Śrī and regarded as the wife of Viṣṇu or Nārāyaṇa; accord. to R. i, 45",
+    "meaning": "The goddess of fortune and beauty — Viṣṇu's consort, born from the churning of the ocean",
     "senses": [
       {
         "type": "etymology",
@@ -6648,7 +6648,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Knowledge, Music, Arts, Speech",
-    "meaning": "of the goddess of eloquence and learning (cf. above; she is opposed to Śrī or Lakṣmī [cf. Vikr. v, 24], and sometimes considered as the daughter and also wife of Brahmā",
+    "meaning": "The goddess of eloquence and learning — river of sacred speech (saras 'flowing water' + vatī 'possessing')",
     "senses": [
       {
         "type": "etymology",
@@ -6785,7 +6785,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Sun, Light, Health",
-    "meaning": "the sun or its deity (in the Veda the name Sūrya is generally distinguished from Savitṛ [q.v.], and denotes the most concrete of the solar gods, whose connection with the luminary",
+    "meaning": "The Sun — the Vedic solar deity who rides the one-wheeled chariot of seven mares",
     "senses": [
       {
         "type": "etymology",
@@ -7045,7 +7045,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Devotion, Strength, Messenger",
-    "meaning": "‘having (large) jaws’, N. of a monkeychief (one of the most celebrated of a host of semidivine monkeylike beings, who, according to R. i, 16, were created to become the allies of",
+    "meaning": "The Large-Jawed One — the monkey-god of devotion and strength, Rāma's peerless servant",
     "senses": [
       {
         "type": "etymology",
@@ -12323,7 +12323,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Cosmic Order, Oceans, Law",
-    "meaning": "‘Allenveloping Sky’, N. of an Āditya (in the Veda commonly associated with Mitra [q.v.] and presiding over the night as Mitra over the day, but often celebrated separately",
+    "meaning": "The All-Enveloping Sky — the Vedic Āditya of the waters and of ṛta, paired with Mitra",
     "senses": [
       {
         "type": "etymology",
@@ -12397,7 +12397,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Sacred River, Purification",
-    "meaning": "‘swiftgoer’, the river Ganges (personified and considered as the eldest daughter of Himavat and Menā, R. i, 36, 15; as the wife of Śāntanu and mother of Bhīṣma, MBh. i",
+    "meaning": "The river Ganges personified — eldest daughter of Himavat, brought from heaven by Bhagīratha's austerities",
     "senses": [
       {
         "type": "etymology",
@@ -12516,7 +12516,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Time, Destruction, Empowerment",
-    "meaning": "of Satyavatī, wife of king Śāntanu and mother of Vyāsa or Kṛṣṇadvaipāyana (after her marriage she had a son Vicitravīrya, whose widows were married by Kṛṣṇadvaipāyana",
+    "meaning": "The Black One — the fierce goddess of time and destruction, consort of Śiva (fem. of kāla)",
     "senses": [
       {
         "type": "etymology",
@@ -16005,7 +16005,7 @@ const LEXICON = [
   {
     "id": "theia",
     "ascii": "theia",
-    "unicode": "Theía",
+    "unicode": "Théia",
     "greek": "Θεία",
     "pantheon": "greek",
     "tier": "1",
@@ -16031,15 +16031,15 @@ const LEXICON = [
       },
       {
         "char": "e",
-        "to": "e",
-        "type": "same",
-        "note": "e same"
+        "to": "é",
+        "type": "stress",
+        "note": "Acute on the diphthong ει (Θεῖα)"
       },
       {
         "char": "i",
-        "to": "í",
-        "type": "stress",
-        "note": "Acute on i"
+        "to": "i",
+        "type": "same",
+        "note": "i same"
       },
       {
         "char": "a",
@@ -23206,7 +23206,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Divine Love, Consort of Krishna",
-    "meaning": "N. of the 21st Nakṣatra Viśākhā (containing 4 stars in the form of a curve supposed to be α, ι, ν Librae, and γ Scorpionis, cf. nakzatra), L.",
+    "meaning": "The beloved of Kṛṣṇa, chief of the gopīs (from √rādh, 'to succeed, accomplish')",
     "senses": [
       {
         "type": "etymology",
@@ -23267,7 +23267,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Marital Fidelity, First Wife of Shiva",
-    "meaning": "of the goddess Durgā or Umā (sometimes described as Truth personified or as a daughter of Dakṣa and wife of Bhava [Śiva], and sometimes represented as putting an end to herself by",
+    "meaning": "The True One — daughter of Dakṣa and first wife of Śiva, who immolated herself at her father's sacrifice",
     "senses": [
       {
         "type": "etymology",
@@ -30115,7 +30115,7 @@ const LEXICON = [
     "ascii": "baiame",
     "unicode": "Baiame",
     "greek": "—",
-    "pantheon": "yoruba",
+    "pantheon": "aboriginal",
     "tier": "2",
     "tierLabel": "Tier 2",
     "domain": "Sky Father, Creator",
@@ -30168,7 +30168,7 @@ const LEXICON = [
     "ascii": "bunjil",
     "unicode": "Bunjil",
     "greek": "—",
-    "pantheon": "yoruba",
+    "pantheon": "aboriginal",
     "tier": "2",
     "tierLabel": "Tier 2",
     "domain": "Creator Eaglehawk",
@@ -30221,7 +30221,7 @@ const LEXICON = [
     "ascii": "daramulum",
     "unicode": "Daramulum",
     "greek": "—",
-    "pantheon": "yoruba",
+    "pantheon": "aboriginal",
     "tier": "2",
     "tierLabel": "Tier 2",
     "domain": "Sky Hero, Son of Baiame",
@@ -30292,7 +30292,7 @@ const LEXICON = [
     "ascii": "altjira",
     "unicode": "Altjira",
     "greek": "—",
-    "pantheon": "yoruba",
+    "pantheon": "aboriginal",
     "tier": "2",
     "tierLabel": "Tier 2",
     "domain": "The Dreaming, Eternal",
@@ -30351,7 +30351,7 @@ const LEXICON = [
     "ascii": "ngalyod",
     "unicode": "Ngalyod",
     "greek": "—",
-    "pantheon": "yoruba",
+    "pantheon": "aboriginal",
     "tier": "2",
     "tierLabel": "Tier 2",
     "domain": "Rainbow Serpent",
@@ -30410,7 +30410,7 @@ const LEXICON = [
     "ascii": "wandjina",
     "unicode": "Wandjina",
     "greek": "—",
-    "pantheon": "yoruba",
+    "pantheon": "aboriginal",
     "tier": "2",
     "tierLabel": "Tier 2",
     "domain": "Cloud, Rain Spirits",
@@ -30475,7 +30475,7 @@ const LEXICON = [
     "ascii": "wawalag",
     "unicode": "Wawalag",
     "greek": "—",
-    "pantheon": "yoruba",
+    "pantheon": "aboriginal",
     "tier": "2",
     "tierLabel": "Tier 2",
     "domain": "Two Sisters, Creators",
@@ -30534,7 +30534,7 @@ const LEXICON = [
     "ascii": "yurlungur",
     "unicode": "Yurlungur",
     "greek": "—",
-    "pantheon": "yoruba",
+    "pantheon": "aboriginal",
     "tier": "2",
     "tierLabel": "Tier 2",
     "domain": "Copper Snake, Initiator",
@@ -30605,7 +30605,7 @@ const LEXICON = [
     "ascii": "tjinimin",
     "unicode": "Tjinimin",
     "greek": "—",
-    "pantheon": "yoruba",
+    "pantheon": "aboriginal",
     "tier": "2",
     "tierLabel": "Tier 2",
     "domain": "Trickster, Moth Man",
@@ -30670,7 +30670,7 @@ const LEXICON = [
     "ascii": "eingana",
     "unicode": "Eingana",
     "greek": "—",
-    "pantheon": "yoruba",
+    "pantheon": "aboriginal",
     "tier": "2",
     "tierLabel": "Tier 2",
     "domain": "Creator Mother Snake",
@@ -30729,7 +30729,7 @@ const LEXICON = [
     "ascii": "mamaragan",
     "unicode": "Mamaragan",
     "greek": "—",
-    "pantheon": "yoruba",
+    "pantheon": "aboriginal",
     "tier": "2",
     "tierLabel": "Tier 2",
     "domain": "Lightning Man",
@@ -30800,7 +30800,7 @@ const LEXICON = [
     "ascii": "gnowee",
     "unicode": "Gnowee",
     "greek": "—",
-    "pantheon": "yoruba",
+    "pantheon": "aboriginal",
     "tier": "2",
     "tierLabel": "Tier 2",
     "domain": "Sun Goddess",
@@ -41937,7 +41937,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Immovable, East",
-    "meaning": "N. of a Buddha of an author, an immense number, said by Buddhists to be 100 vivaras.",
+    "meaning": "The Unshakable — the immovable Buddha of the eastern pure land Abhirati (from a-√kṣubh)",
     "senses": [
       {
         "type": "etymology",
@@ -42453,7 +42453,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Earth Womb, Savior of Hell Beings",
-    "meaning": "N. of a Bodhisattva, Buddh.",
+    "meaning": "The Earth-Womb — bodhisattva of the great vow to empty the hells (kṣiti 'earth' + garbha 'womb')",
     "senses": [
       {
         "type": "etymology",
@@ -42542,7 +42542,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Thunderbolt Holder, Protection",
-    "meaning": "N. of Indra, ṢaḍvBr.; MBh. &c.",
+    "meaning": "The Vajra-Bearer — wielder of the thunderbolt, protector of the Buddha (vajra + pāṇi 'in the hand')",
     "senses": [
       {
         "type": "etymology",
@@ -47350,7 +47350,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Sacred River, Twin of Yama",
-    "meaning": "N. of a river commonly called the Jumnā (in Hariv. & MārkP. identified with Yamī q.v.; it rises in the Himālaya mountains among the Jumnotri peaks at an elevation of 10,849 feet",
+    "meaning": "The Twin River — daughter of Sūrya, twin of Yama, Kṛṣṇa's beloved water",
     "senses": [
       {
         "type": "etymology",
@@ -50028,10 +50028,10 @@ const LEXICON = [
       }
     ],
     "etymology": {
-      "protoForm": "*ʾb",
-      "protoLanguage": "proto-afro-asiatic",
-      "protoGloss": "father, ancestor",
-      "derivation": "From Egyptian and Semitic ʾb \"father, ancestor\". The heart of the deceased.",
+      "protoForm": "*libb-",
+      "protoLanguage": "proto-semitic",
+      "protoGloss": "heart",
+      "derivation": "Egyptian jb, the heart — seat of conscience and emotion; cognate with Semitic *libb- (Hebrew lēḇ, Arabic lubb). The Egyptian word is unrelated to ʾb, 'father'.",
       "certainty": "attested",
       "cognates": []
     }
@@ -50428,7 +50428,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Cosmic Order, Truth, Law",
-    "meaning": "m. N. of a Rudra, MBh.",
+    "meaning": "Cosmic order, truth — the Vedic principle of rightness that governs gods and nature (ṛta)",
     "senses": [
       {
         "type": "etymology",
@@ -51050,7 +51050,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Speech, Voice, Sacred Word",
-    "meaning": "Speech personified (in various manners or forms, e.g. as Vāc Āmbhṛṇī in RV. x, 125; as the voice of the middle sphere in Naigh. & Nir.; in the Veda she is also represented as",
+    "meaning": "Speech personified — the Vedic goddess of sacred utterance (Vāc)",
     "senses": [
       {
         "type": "etymology",
@@ -51418,7 +51418,7 @@ const LEXICON = [
     "domain": "Prophet, Lawgiver",
     "meaning": "Hebrew prophet and lawgiver",
     "sources": [
-      "Abraham"
+      "BDB"
     ],
     "breakdown": [
       {

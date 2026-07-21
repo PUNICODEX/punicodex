@@ -55,6 +55,7 @@ const SCRIPTLESS_PANTHEONS = new Set([
   'incan',
   'korean',
   'baltic',
+  'aboriginal',
 ]);
 
 // ═════════════════════════════════════════════════════════════════════════════

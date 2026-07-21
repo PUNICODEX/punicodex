@@ -304,14 +304,20 @@ function traditionLabel(entry) {
   return PANTHEON_LABELS[entry.pantheon] || entry.pantheon.charAt(0).toUpperCase() + entry.pantheon.slice(1);
 }
 
-function tierSentence(tier) {
+function tierSentence(tier, entry) {
   if (tier === 'dual-tier') {
     return 'The original carries both stress and vowel length and admits multiple historically valid spellings, so the temple presents both forms of the pair as a dual-tier restoration.';
   }
+  const isGreek =
+    entry && (entry.pantheon === 'greek' || entry.pantheon === 'greek-location');
   if (tier === 'tier-1') {
-    return 'The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.';
+    return isGreek
+      ? 'The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.'
+      : 'The restoration preserves at least one distinctive feature — a diacritic or a distinctive letter — that the ASCII form loses, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.';
   }
-  return 'The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.';
+  return isGreek
+    ? 'The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.'
+    : 'The restoration needs no distinctive letters or diacritics its ASCII form would lose, which places the name in Tier 2.';
 }
 
 function templeUrl(archetype) {
@@ -362,7 +368,7 @@ function buildOverview(ctx) {
     ? `[${archetype.domainUnicode}](${templeUrl(archetype)})`
     : `[its temple](${templeUrl(archetype)})`;
   paragraphs.push(
-    `PuniCodex restores the name as **${entry.unicode}** and serves its temple at ${domainLink}. ${tierSentence(archetype.tier)} The plain ASCII form *${entry.ascii}* survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete${cite(pickSource(pool, 2))}.`
+    `PuniCodex restores the name as **${entry.unicode}** and serves its temple at ${domainLink}. ${tierSentence(archetype.tier, entry)} The plain ASCII form *${entry.ascii}* survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete${cite(pickSource(pool, 2))}.`
   );
 
   return {
@@ -384,9 +390,33 @@ function buildTheName(ctx) {
       `The name is attested in ${ctx.scriptName} as **${ctx.originalScript}**. Etymologically it means "${entry.meaning}"${cite(pickSource(pool, 0))}.`
     );
   } else {
-    parts.push(
-      `No indigenous written attestation survives for this name; **${entry.unicode}** is a scholarly transliteration of the reconstructed spoken form. Etymologically the name means "${entry.meaning}"${cite(pickSource(pool, 0))}.`
-    );
+    const ATTESTED_FALLBACK = {
+      roman:
+        'The name is attested in the Latin record — inscriptions and literature are the native sources for Roman gods; the vowel quantities shown are editorial (L&S convention)',
+      nahuatl:
+        'The name is attested in the colonial alphabetic corpus and in logographic writing in the codices; the restoration uses the normalized scholarly orthography',
+      chinese:
+        'The name is attested in the character record; the restoration normalizes the scholarly romanization (pinyin with tone marks)',
+      taoist:
+        'The name is attested in the character record; the restoration normalizes the scholarly romanization (pinyin with tone marks)',
+      buddhist:
+        'The name is attested in the Indic manuscript traditions; the restoration normalizes the scholarly IAST romanization',
+      sanskrit:
+        'The name is attested in the Devanagari record; the restoration normalizes the scholarly IAST romanization',
+      yoruba:
+        'The name is attested in modern standard Yoruba orthography; tone marks are fully written in dictionaries and optional in everyday writing',
+      zoroastrian: 'The name is attested in the Avestan corpus',
+      polynesian:
+        'The name is attested in modern Polynesian orthographies; macron usage follows each tradition’s reference dictionaries',
+    };
+    const fallback = ATTESTED_FALLBACK[entry.pantheon];
+    if (fallback) {
+      parts.push(`${fallback}. Etymologically the name means "${entry.meaning}"${cite(pickSource(pool, 0))}.`);
+    } else {
+      parts.push(
+        `No indigenous written attestation survives for this name; **${entry.unicode}** is a scholarly transliteration of the reconstructed spoken form. Etymologically the name means "${entry.meaning}"${cite(pickSource(pool, 0))}.`
+      );
+    }
   }
 
   if (entry.etymology) {
@@ -427,7 +457,7 @@ function buildTheName(ctx) {
     featureSentence = 'the full diacritic detail of the scholarly transliteration';
   }
   parts.push(
-    `The ASCII form *${entry.ascii}* survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration **${entry.unicode}** recovers ${featureSentence} directly in the address bar. ${tierSentence(archetype.tier)}`
+    `The ASCII form *${entry.ascii}* survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration **${entry.unicode}** recovers ${featureSentence} directly in the address bar. ${tierSentence(archetype.tier, entry)}`
   );
 
   parts.push(

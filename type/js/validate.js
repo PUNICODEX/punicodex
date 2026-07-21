@@ -86,6 +86,7 @@ const ALLOWED_PANTHEONS = [
   'zoroastrian',
   'incan',
   'mapuche',
+  'aboriginal',
   'chinese',
   'buddhist',
   'taoist',
@@ -272,7 +273,7 @@ LEXICON.forEach((entry, i) => {
   // Etymology check (optional)
   const ALLOWED_PROTO_LANGUAGES = [
     'proto-indo-european',
-    'proto-indo-iranian',
+    'proto-indo-iranian', 'proto-germanic',
     'proto-afro-asiatic',
     'proto-semitic',
     'proto-polynesian',

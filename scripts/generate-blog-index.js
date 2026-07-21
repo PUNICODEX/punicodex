@@ -188,6 +188,8 @@ const html = `<!DOCTYPE html>
     <meta property="og:title" content="Blog — ${total} Unicode Restoration Essays | PUNICODEX">
     <meta property="og:description" content="Long-read essays on ${total} flagship Unicode restorations across ${pantheonCount} pantheons.">
     <meta property="og:url" content="https://punicodex.com/blog/">
+    <meta property="og:image" content="https://punicodex.com/assets/brand/05-social/punicodex-og-image-1200x630.png">
+    <meta name="twitter:image" content="https://punicodex.com/assets/brand/05-social/punicodex-og-image-1200x630.png">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="PUNICODEX">
 
@@ -202,7 +204,8 @@ const html = `<!DOCTYPE html>
     </script>
 
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
-    <link rel="stylesheet" href="/css/temple-base.css?v=perf17">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf20">
+    <link rel="stylesheet" href="/css/strip-less-nav.css?v=1">
     <link rel="stylesheet" href="/css/nav-more.css?v=2">
     <link rel="stylesheet" href="/css/mobile-menu.css?v=1">
     <link rel="stylesheet" href="/css/footer.css?v=1">
@@ -341,8 +344,8 @@ ${cardsHtml}
     <!-- Footer (canonical — built by scripts/sync-footer.js) -->
     ${footerHtml()}
 
-    <script src="/js/px-core.js?v=perf9" defer></script>
-    <script src="/js/temple-base.js?v=perf17" defer></script>
+    <script src="/js/px-core.js?v=perf20" defer></script>
+    <script src="/js/temple-base.js?v=perf20" defer></script>
     <script>
     (function () {
         'use strict';
@@ -443,6 +446,7 @@ ${cardsHtml}
         apply();
     })();
     </script>
+    <script src="/js/newsletter.js?v=1" defer></script>
 </body>
 </html>
 `;

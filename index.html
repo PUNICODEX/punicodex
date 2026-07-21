@@ -63,6 +63,7 @@
          Glyphs assemble into the armillary around the seal, then the veil
          dissolves into the live hero orrery. Session-gated, reduced-motion
          and PCFX-unavailable paths remove it instantly. -->
+    <noscript><style>#boot-veil{display:none!important}</style></noscript>
     <div id="boot-veil" aria-hidden="true">
         <canvas></canvas>
         <div class="boot-core">
@@ -198,7 +199,6 @@
 
     <!-- --- TIER SYSTEM --- -->
     <section class="section-tiers" id="tiers">
-        <div class="ambient-particles"></div>
         <div class="container">
             <div class="section-header reveal-up">
                 <p class="section-eyebrow">The Doctrine</p>
@@ -217,8 +217,8 @@
                         — Norse þ/ð, Sanskrit ś/Ś, Egyptian ꜥ/ḫ, Japanese ō. The highest orthography the language allows.
                     </p>
                     <div class="tier-examples">
-                        <span class="tier-example">Apóllōn</span>
-                        <span class="tier-example">Árēs</span>
+                        <span class="tier-example">Zeús</span>
+                        <span class="tier-example">Athénā</span>
                         <span class="tier-example">Þórr</span>
                         <span class="tier-example">Śiva</span>
                     </div>
@@ -232,10 +232,24 @@
                         Still authentic scholarly orthography; the standard convention in LSJ and Oxford.
                     </p>
                     <div class="tier-examples">
-                        <span class="tier-example">Zeús</span>
-                        <span class="tier-example">Hera</span>
-                        <span class="tier-example">Hermês</span>
-                        <span class="tier-example">Demeter</span>
+                        <span class="tier-example">Ártemis</span>
+                        <span class="tier-example">Átlas</span>
+                        <span class="tier-example">Diónysos</span>
+                        <span class="tier-example">Hestía</span>
+                    </div>
+                </div>
+                <div class="tier-card tier-dual-card reveal-up">
+                    <div class="tier-icon">&#x00B4; + &#x304; &#215; 2</div>
+                    <h3 class="tier-name">Dual-Tier</h3>
+                    <p class="tier-label">Multiple Valid Restorations</p>
+                    <p class="tier-desc body-md">
+                        The Greek original carries <strong>both stress and length</strong> and history has handed down 
+                        more than one defensible spelling. Each variant is a real restoration — and both live as owned domains.
+                    </p>
+                    <div class="tier-examples">
+                        <span class="tier-example">Apóllōn</span>
+                        <span class="tier-example">Hekátē</span>
+                        <span class="tier-example">Níkē</span>
                     </div>
                 </div>
                 <div class="tier-card tier-source-card reveal-up">
@@ -284,19 +298,19 @@
                 </div>
                 <div class="origin-stats reveal-up">
                     <div class="stat-card">
-                        <span class="stat-number" data-count="915">0</span>
+                        <span class="stat-number" data-count="927">0</span>
                         <span class="stat-label">Temples Built</span>
                     </div>
                     <div class="stat-card">
-                        <span class="stat-number" data-count="22">0</span>
+                        <span class="stat-number" data-count="24">0</span>
                         <span class="stat-label">Pantheons</span>
                     </div>
                     <div class="stat-card">
-                        <span class="stat-number" data-count="235">0</span>
+                        <span class="stat-number" data-count="266">0</span>
                         <span class="stat-label">Flagships</span>
                     </div>
                     <div class="stat-card">
-                        <span class="stat-number" data-count="206">0</span>
+                        <span class="stat-number" data-count="296">0</span>
                         <span class="stat-label">Domains Owned</span>
                     </div>
                 </div>
@@ -308,7 +322,7 @@
 
     <!-- --- THE CODEX --- -->
     <section class="section-codex" id="codex">
-        <div class="ambient-particles"></div>
+
         <div class="container">
             <div class="section-header reveal-up">
                 <svg class="script-seal" viewBox="0 0 200 200" width="120" height="120" aria-hidden="true">
@@ -336,7 +350,7 @@
                 </p>
             </div>
             <div class="codex-grid">
-                <article class="codex-card reveal-up">
+                <a href="/codex/why-greek-accents-matter/" class="codex-card reveal-up">
                     <div class="codex-image">
                         <div class="codex-image-placeholder" style="background: linear-gradient(135deg, #0d0d0d 0%, #1a1212 50%, #0d0d0d 100%);">
                             <span class="codex-image-icon">&#x00B4;</span>
@@ -351,8 +365,8 @@
                         The erasure of diacritics in ASCII domains is not a technical limitation — it is a cultural amnesia. 
                         When Apóllōn becomes "Apollo," something irreplaceable is lost.
                     </p>
-                </article>
-                <article class="codex-card reveal-up">
+                </a>
+                <a href="/codex/anatomy-of-a-punycode-domain/" class="codex-card reveal-up">
                     <div class="codex-image">
                         <div class="codex-image-placeholder" style="background: linear-gradient(135deg, #0d0d0d 0%, #12121a 50%, #0d0d0d 100%);">
                             <span class="codex-image-icon">xn--</span>
@@ -367,8 +381,8 @@
                         How does zeús.com become xn--zes-9na.com? A deep dive into the IDNA2008 algorithm, 
                         the difference between encoding and representation, and why browsers hide the truth.
                     </p>
-                </article>
-                <article class="codex-card reveal-up">
+                </a>
+                <a href="/codex/building-the-temple/" class="codex-card reveal-up">
                     <div class="codex-image">
                         <div class="codex-image-placeholder" style="background: linear-gradient(135deg, #0d0d0d 0%, #1a1a12 50%, #0d0d0d 100%);">
                             <span class="codex-image-icon">&#x03A8;</span>
@@ -380,10 +394,10 @@
                     </div>
                     <h3 class="codex-title">Building the Temple: A Technical Retrospective</h3>
                     <p class="codex-excerpt body-md">
-                        Hand-crafting 173 archetype temples taught us about canvas performance,
+                        Hand-crafting 266 archetype temples taught us about canvas performance,
                         the Greek pitch accent system, and the theological weight of a single diacritic.
                     </p>
-                </article>
+                </a>
             </div>
             <div class="text-center mt-6 reveal-up">
                 <a href="/codex/" class="btn btn-outline"><span>Browse the Codex &rarr;</span></a>
@@ -455,7 +469,8 @@
 <!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
 <div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
 <!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
-<footer class="site-footer">
+<div class="container" style="margin-bottom:2rem"><div data-newsletter="home"></div></div>
+    <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
@@ -507,5 +522,6 @@
     <script src="/js/home-boot.js?v=1" defer></script>
     <script src="/js/home-orrery.js?v=1" defer></script>
 
+    <script src="/js/newsletter.js?v=1" defer></script>
 </body>
 </html>

@@ -415,7 +415,7 @@
           <div class="empty">
             <div class="empty-icon">🔱</div>
             <div class="empty-title">Find a Domain</div>
-            <div class="empty-sub">Search the PUNICODEX lexicon of 850 Unicode domain names</div>
+            <div class="empty-sub">Search the PUNICODEX lexicon of 927 Unicode domain names</div>
           </div>
         `;
       }
@@ -715,7 +715,7 @@
         </div>
       `;
 
-      html += `<a href="${r.url}" target="_blank" rel="noopener" class="serp-title" onclick="trackClick('${escapeHtml(query)}', ${r.id}, ${index})">${escapeHtml(r.title || displayDomain)}</a>`;
+      html += `<a href="${safeUrl(r.url)}" target="_blank" rel="noopener" class="serp-title" onclick="trackClick(${jsArg(query)}, ${r.id}, ${index})">${escapeHtml(r.title || displayDomain)}</a>`;
 
       let snippet = r.snippet || r.description || 'No description available.';
       const datePrefix = r.publishedDate ? formatDate(r.publishedDate) + ' — ' : '';
@@ -764,7 +764,7 @@
         html += `<div class="serp-sitelinks">`;
         r.subPages.forEach(p => {
           const label = p.h1 || p.title || p.url;
-          html += `<a href="${p.url}" target="_blank" rel="noopener" class="serp-sitelink">${escapeHtml(label.substring(0, 35))}</a>`;
+          html += `<a href="${safeUrl(p.url)}" target="_blank" rel="noopener" class="serp-sitelink">${escapeHtml(label.substring(0, 35))}</a>`;
         });
         html += `</div>`;
       } else if (r.anchorTexts && r.anchorTexts.length > 0) {
@@ -780,7 +780,7 @@
 
       html += `
         <div class="serp-utilities">
-          <a href="${r.url}" target="_blank" rel="noopener" class="serp-utility">Visit ↗</a>
+          <a href="${safeUrl(r.url)}" target="_blank" rel="noopener" class="serp-utility">Visit ↗</a>
           ${r.lexiconEntryId ? `<a href="entry.html?id=${encodeURIComponent(r.lexiconEntryId)}" class="serp-utility">Lexicon Entry</a>` : ''}
           ${r.isFlagship && r.lexiconEntryId ? `<a href="/sites/${encodeURIComponent(r.lexiconEntryId)}/#spaces" class="serp-utility" style="color:var(--cn-gold);">Advertise here</a>` : ''}
           <button class="serp-utility" onclick="copyToClipboard('${escapeHtml(r.punycode)}')">Copy</button>
@@ -957,7 +957,7 @@
           html += `<div class="kp-related"><div class="kp-sites-title">Related</div><div class="kp-related-grid">`;
           knowledgePanel.related.forEach(r => {
             const label = r.unicode || r.ascii;
-            html += `<button class="kp-related-chip" onclick="searchFor('${escapeHtml(label)}')">${escapeHtml(label)}</button>`;
+            html += `<button class="kp-related-chip" onclick="searchFor(${jsArg(label)})">${escapeHtml(label)}</button>`;
           });
           html += `</div></div>`;
         }
@@ -973,7 +973,7 @@
             <div class="empty-sub">We're building the Unicode web index. Try a broader search.</div>
         `;
         if (didYouMean && didYouMean.length) {
-          html += `<div class="did-you-mean">Did you mean: ${didYouMean.map(s => `<button class="serp-utility" onclick="searchFor('${escapeHtml(s.text)}')" style="color:var(--cn-gold);font-weight:600">${escapeHtml(s.text)}</button>`).join(', ')}?</div>`;
+          html += `<div class="did-you-mean">Did you mean: ${didYouMean.map(s => `<button class="serp-utility" onclick="searchFor(${jsArg(s.text)})" style="color:var(--cn-gold);font-weight:600">${escapeHtml(s.text)}</button>`).join(', ')}?</div>`;
         }
         html += `
             <div class="build-cta">
@@ -988,7 +988,7 @@
       }
 
       if (didYouMean && didYouMean.length && didYouMean[0].text.toLowerCase() !== data.query.toLowerCase()) {
-        html += `<div class="did-you-mean">Did you mean: ${didYouMean.map(s => `<button class="serp-utility" onclick="searchFor('${escapeHtml(s.text)}')" style="color:var(--cn-gold);font-weight:600">${escapeHtml(s.text)}</button>`).join(', ')}?</div>`;
+        html += `<div class="did-you-mean">Did you mean: ${didYouMean.map(s => `<button class="serp-utility" onclick="searchFor(${jsArg(s.text)})" style="color:var(--cn-gold);font-weight:600">${escapeHtml(s.text)}</button>`).join(', ')}?</div>`;
       }
 
       if (paaQuestions && paaQuestions.length) {
@@ -1026,7 +1026,7 @@
           <div class="related-searches">
             <div class="related-title">Related Searches</div>
             <div class="related-grid">
-              ${related.map(r => `<button class="related-chip" onclick="searchFor('${escapeHtml(r.unicode || r.ascii)}')">${escapeHtml(r.unicode || r.ascii)}</button>`).join('')}
+              ${related.map(r => `<button class="related-chip" onclick="searchFor(${jsArg(r.unicode || r.ascii)})">${escapeHtml(r.unicode || r.ascii)}</button>`).join('')}
             </div>
           </div>
         `;
@@ -1128,9 +1128,10 @@
     }
 
     function toggleUnicodeOnly() {
-      currentOffset = 0;
-      searchWeb();
-    }
+            unicodeOnly = !unicodeOnly;
+            document.getElementById('unicode-toggle').classList.toggle('active', unicodeOnly);
+            triggerSearch();
+        }
 
     function togglePaa(el) {
       el.classList.toggle('expanded');
@@ -1333,6 +1334,17 @@
       const div = document.createElement('div');
       div.textContent = str;
       return div.innerHTML;
+    }
+
+    // Safe for inline JS handler args: JSON-quoted, then HTML-escaped.
+    function jsArg(x) {
+      return escapeHtml(JSON.stringify(String(x)));
+    }
+
+    // Crawler-controlled URLs: http(s) only, HTML-escaped.
+    function safeUrl(u) {
+      const s = String(u || '');
+      return /^https?:///i.test(s) ? escapeHtml(s) : '#';
     }
 
     function formatDate(isoString) {
