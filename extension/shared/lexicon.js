@@ -9091,6 +9091,14 @@ const LEXICON = [
   },
   {
     "id": "tezcatlipoca",
+    "variants": [
+      {
+        "unicode": "Tēzcatlīpohca",
+        "type": "alt",
+        "note": "Widespread Wikipedia rendering with short o; Karttunen and Andrews give the long ō of īpōca (to smoke), so Tēzcatlīpōca is primary",
+        "sources": ["Karttunen"]
+      }
+    ],
     "ascii": "tezcatlipoca",
     "unicode": "Tēzcatlīpōca",
     "greek": "—",
