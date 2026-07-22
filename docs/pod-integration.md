@@ -25,6 +25,17 @@ scripts/sync-printful-products.js  →  Printful API (phase 2 sync worker;
   `node scripts/sync-printful-products.js [--only <temple>] [--kinds ...]`
   to create real Printful products and write live `printfulProductId`s back
   into `store/products.json` (the generator preserves them on regeneration).
+  `--refresh` updates print files on already-synced products.
+- **Print masters:** temple PNG masters are excluded from the main deploy
+  (`.vercelignore: sites/**/*.png`) and served from a dedicated static
+  deployment (`punycodex-masters.vercel.app`, content: repo-local
+  `.masters/`). The sync worker assigns files to Printful by URL.
+- **Composites:** products whose design uses multiple materials in one
+  print area (sticker sheet, canvas, tote, mug wrap, notebook) use
+  pre-composited print files built by
+  `scripts/generate-merch-composites.js` (jimp, hermite upscaling).
+  Composite binaries are gitignored (5.3 GB, regenerable) but deployed
+  with the masters project.
 
 ## Phase 2 checklist
 

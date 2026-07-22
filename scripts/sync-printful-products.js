@@ -201,17 +201,55 @@ async function syncProduct(state, product, catalogList) {
   }
 }
 
+async function refreshProduct(state, product, catalogList) {
+  const kind = product.kind;
+  const catalogId = await resolveCatalogProduct(state, kind, catalogList);
+  const detail = await api('GET', `/store/products/${product.printfulProductId}`);
+  const existing = detail.sync_variants || [];
+
+  const byArea = new Map();
+  for (const pl of product.design.placements) byArea.set(pl.area, pl.asset);
+  const files = [];
+  for (const [area, assetKey] of byArea) {
+    const url = assetUrlFor(product, assetKey);
+    if (!url) throw new Error(`print master missing for ${product.id}: ${assetKey}`);
+    files.push({ type: area === 'back' ? 'back' : KIND_FRONT_FILE_TYPE[kind] || 'default', url });
+  }
+
+  const body = {
+    sync_product: { name: product.name, external_id: product.id },
+    sync_variants: existing.map((v) => ({
+      id: v.id,
+      variant_id: v.variant_id,
+      retail_price: product.price.toFixed(2),
+      files,
+      ...(KIND_OPTIONS[kind] ? { options: KIND_OPTIONS[kind] } : {}),
+    })),
+  };
+  try {
+    await api('PUT', `/store/products/${product.printfulProductId}`, body);
+  } catch (err) {
+    if (!/Incorrect file type/.test(err.message) || files.length < 2) throw err;
+    body.sync_variants = body.sync_variants.map((v) => ({ ...v, files: [files[0]] }));
+    await api('PUT', `/store/products/${product.printfulProductId}`, body);
+  }
+  return product.printfulProductId;
+}
+
 async function main() {
   const catalog = JSON.parse(fs.readFileSync(CATALOG_FILE, 'utf8'));
   const state = loadState();
+  const REFRESH = args.includes('--refresh');
 
-  let pending = catalog.products.filter((p) => !p.printfulProductId && !state.done[p.id]);
+  let pending = REFRESH
+    ? catalog.products.filter((p) => p.printfulProductId)
+    : catalog.products.filter((p) => !p.printfulProductId && !state.done[p.id]);
   if (ONLY) pending = pending.filter((p) => (p.temple || 'punicodex') === ONLY);
   if (KINDS) pending = pending.filter((p) => KINDS.includes(p.id.split('-').pop()));
   if (LIMIT) pending = pending.slice(0, LIMIT);
 
   console.log(
-    `Printful sync: ${pending.length} product(s) pending${ONLY ? ` (only ${ONLY})` : ''}${KINDS ? ` (kinds ${KINDS})` : ''}.`
+    `Printful sync: ${pending.length} product(s) ${REFRESH ? 'to refresh' : 'pending'}${ONLY ? ` (only ${ONLY})` : ''}${KINDS ? ` (kinds ${KINDS})` : ''}.`
   );
   if (DRY_RUN) {
     const byKind = {};
@@ -230,9 +268,11 @@ async function main() {
   let done = 0;
   for (const product of pending) {
     const kind = product.id.split('-').pop();
-    product.kind = kind; // used by syncProduct
+    product.kind = kind; // used by syncProduct/refreshProduct
     try {
-      const printfulId = await syncProduct(state, product, catalogList);
+      const printfulId = REFRESH
+        ? await refreshProduct(state, product, catalogList)
+        : await syncProduct(state, product, catalogList);
       product.printfulProductId = printfulId;
       state.done[product.id] = printfulId;
       saveState(state);
@@ -246,7 +286,7 @@ async function main() {
     }
   }
   flushCatalog(catalog);
-  console.log(`Done: ${done} product(s) synced, catalog updated.`);
+  console.log(`Done: ${done} product(s) ${REFRESH ? 'refreshed' : 'synced'}, catalog updated.`);
 }
 
 function flushCatalog(catalog) {

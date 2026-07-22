@@ -25,6 +25,12 @@ function templeAssets(a) {
     mascot: `${base}_mascot.webp`,
     logomark: `${base}_logomark.webp`,
     logolockup: `${base}_logolockup.webp`,
+    // Print-only composites (PNG masters; see generate-merch-composites.js)
+    compSticker: `${base}_comp-sticker.png`,
+    compCanvas: `${base}_comp-canvas.png`,
+    compTote: `${base}_comp-tote.png`,
+    compMug: `${base}_comp-mug.png`,
+    compNotebook: `${base}_comp-notebook.png`,
   };
 }
 
@@ -35,6 +41,8 @@ const HOUSE_ASSETS = {
   glyph: '/assets/brand/01-logos/punicodex-emblem-glyph-gold.webp',
   lockupH: '/assets/brand/01-logos/punicodex-lockup-horizontal-gold.webp',
   lockupS: '/assets/brand/01-logos/punicodex-lockup-stacked-gold.webp',
+  compSticker: '/assets/brand/01-logos/punicodex_comp-sticker.png',
+  compPoster: '/assets/brand/01-logos/punicodex_comp-poster.png',
 };
 
 // design.placements describes which material prints where — the sync worker
@@ -94,8 +102,7 @@ const LINES = [
     blurb: 'Gallery-wrapped canvas, 45×60 cm — the deity, sealed in the corner.',
     design: {
       placements: [
-        { area: 'front', asset: 'mascot', note: 'full-bleed mascot' },
-        { area: 'front', asset: 'logomark', note: 'small seal, lower corner' },
+        { area: 'front', asset: 'compCanvas', note: 'full-bleed mascot with corner seal (composite)' },
       ],
     },
   },
@@ -107,9 +114,7 @@ const LINES = [
     blurb: 'Three weatherproof vinyl seals — the deity, the mark, and the lockup.',
     design: {
       placements: [
-        { area: 'front', asset: 'mascot', note: 'die-cut mascot sticker' },
-        { area: 'front', asset: 'logomark', note: 'die-cut seal sticker' },
-        { area: 'front', asset: 'logolockup', note: 'die-cut lockup sticker' },
+        { area: 'front', asset: 'compSticker', note: 'deity + seal + lockup die-cuts on one sheet (composite)' },
       ],
     },
   },
@@ -131,8 +136,7 @@ const LINES = [
     blurb: '325 ml ceramic — the seal at your thumb, the deity facing the room.',
     design: {
       placements: [
-        { area: 'front', asset: 'logomark', note: 'seal, handle side' },
-        { area: 'back', asset: 'mascot', note: 'mascot, outward face' },
+        { area: 'front', asset: 'compMug', note: 'wrap: seal at handle, deity outward (composite)' },
       ],
     },
   },
@@ -154,8 +158,7 @@ const LINES = [
     blurb: 'Heavy canvas carry-all — the lockup large, the deity tagged below.',
     design: {
       placements: [
-        { area: 'front', asset: 'logolockup', note: 'lockup, large centre' },
-        { area: 'front', asset: 'mascot', note: 'small mascot, lower corner' },
+        { area: 'front', asset: 'compTote', note: 'lockup large with mascot tag (composite)' },
       ],
     },
   },
@@ -187,8 +190,7 @@ const LINES = [
     blurb: 'A5 dotted journal — lockup on the cover, the seal on the spine.',
     design: {
       placements: [
-        { area: 'front', asset: 'logolockup', note: 'cover lockup' },
-        { area: 'back', asset: 'logomark', note: 'small seal, back cover' },
+        { area: 'front', asset: 'compNotebook', note: 'cover lockup with seal footer (composite)' },
       ],
     },
   },
@@ -260,9 +262,7 @@ const HOUSE_LINES = [
     assets: HOUSE_ASSETS,
     design: {
       placements: [
-        { area: 'front', asset: 'wordmarkSolid', note: 'wordmark sticker' },
-        { area: 'front', asset: 'emblem', note: 'emblem sticker' },
-        { area: 'front', asset: 'glyph', note: 'glyph sticker' },
+        { area: 'front', asset: 'compSticker', note: 'wordmark + emblem + glyph on one sheet (composite)' },
       ],
     },
   },
@@ -275,8 +275,7 @@ const HOUSE_LINES = [
     assets: HOUSE_ASSETS,
     design: {
       placements: [
-        { area: 'front', asset: 'wordmarkSolid', note: 'wordmark, upper third' },
-        { area: 'front', asset: 'glyph', note: 'glyph, centred below' },
+        { area: 'front', asset: 'compPoster', note: 'wordmark over glyph (composite)' },
       ],
     },
   },
