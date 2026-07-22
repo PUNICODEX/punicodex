@@ -76,14 +76,10 @@ const files = execSync('git ls-files "*.html"', { encoding: 'utf8', cwd: ROOT })
   .filter((f) => !EXCLUDE.some((re) => re.test(f)));
 
 let injected = 0;
-for (const rel of files) {
-  const file = path.join(ROOT, rel);
-  let html;
-  try {
-    html = fs.readFileSync(file, 'utf8');
-  } catch {
-    continue;
-  }
+let pending = [];
+
+const processFile = (file) => {
+  const html = withRetry(() => fs.readFileSync(file, 'utf8'));
   const stripped = stripExisting(html);
   let out;
   if (stripped.includes('</head>')) {
@@ -95,5 +91,36 @@ for (const rel of files) {
     withRetry(() => fs.writeFileSync(file, out, 'utf8'));
     injected++;
   }
+};
+
+for (const rel of files) {
+  try {
+    processFile(path.join(ROOT, rel));
+  } catch {
+    pending.push(rel);
+  }
 }
-console.log(`Herald beacon: injected into ${injected} pages (${files.length} eligible).`);
+
+// Files locked by the OS (AV/indexer) during the main pass usually free up
+// by the time it finishes — sweep them in a few extra passes.
+for (let pass = 0; pass < 3 && pending.length > 0; pass++) {
+  const start = Date.now();
+  while (Date.now() - start < 500) {}
+  const retry = pending;
+  pending = [];
+  for (const rel of retry) {
+    try {
+      processFile(path.join(ROOT, rel));
+    } catch {
+      pending.push(rel);
+    }
+  }
+}
+
+for (const rel of pending) {
+  console.error(`Failed to inject herald beacon into ${rel}`);
+}
+console.log(
+  `Herald beacon: injected into ${injected} pages (${files.length} eligible, failed ${pending.length}).`
+);
+if (pending.length) process.exit(1);

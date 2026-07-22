@@ -68,7 +68,7 @@ function removeMarkedBlock(html, startMarker, endMarker) {
   return html;
 }
 
-function withRetry(fn, attempts = 3, delayMs = 50) {
+function withRetry(fn, attempts = 8, delayMs = 150) {
   let lastErr;
   for (let i = 0; i < attempts; i++) {
     try {
@@ -251,6 +251,7 @@ function main() {
   let injected = 0;
   let skipped = 0;
   let stripped = 0;
+  let pending = [];
 
   // The generated root admin-portal/ copy is not part of the injection
   // targets gathered above; strip any previously injected blocks explicitly.
@@ -294,29 +295,56 @@ function main() {
     }
   }
 
+  const processFile = (filePath) => {
+    if (isExcludedAdminSurface(filePath) || isExcludedAppSurface(filePath)) {
+      if (stripFromFile(filePath)) {
+        stripped++;
+        console.log(
+          `Stripped Academic Collaborators strip from excluded page: ${path.relative(ROOT, filePath)}`
+        );
+      }
+      return;
+    }
+    const ok = injectIntoFile(filePath, headSnippet, bodySnippet);
+    if (ok) injected++;
+    else skipped++;
+  };
+
   for (const filePath of targets) {
     try {
-      if (isExcludedAdminSurface(filePath) || isExcludedAppSurface(filePath)) {
-        if (stripFromFile(filePath)) {
-          stripped++;
-          console.log(
-            `Stripped Academic Collaborators strip from excluded page: ${path.relative(ROOT, filePath)}`
-          );
-        }
-        continue;
-      }
-      const ok = injectIntoFile(filePath, headSnippet, bodySnippet);
-      if (ok) injected++;
-      else skipped++;
-    } catch (err) {
-      console.error(`Failed to inject into ${filePath}:`, err.message);
-      skipped++;
+      processFile(filePath);
+    } catch {
+      pending.push(filePath);
     }
   }
 
+  // Files locked by the OS (AV/indexer) during the main pass usually free up
+  // by the time it finishes — sweep them in a few extra passes.
+  for (let pass = 0; pass < 3 && pending.length > 0; pass++) {
+    const start = Date.now();
+    while (Date.now() - start < 500) {}
+    const retry = pending;
+    pending = [];
+    for (const filePath of retry) {
+      try {
+        processFile(filePath);
+      } catch {
+        pending.push(filePath);
+      }
+    }
+  }
+
+  for (const filePath of pending) {
+    console.error(`Failed to inject into ${filePath}`);
+  }
+
   console.log(
-    `Injected Academic Collaborators strip into ${injected} HTML files (skipped ${skipped}, stripped ${stripped} excluded files).`
+    `Injected Academic Collaborators strip into ${injected} HTML files (skipped ${skipped}, stripped ${stripped} excluded files, failed ${pending.length}).`
   );
+
+  // A file that could not be read/written must not be silently left raw:
+  // exit non-zero so the pipeline retries instead of a half-injected tree.
+  if (pending.length) process.exit(1);
 }
 
 main();

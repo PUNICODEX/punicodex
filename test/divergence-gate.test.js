@@ -38,6 +38,29 @@ function run(cmd, opts = {}) {
   }).trim();
 }
 
+// Keep each `npm run generate` output for post-mortems: when the gate fails,
+// the first thing needed is the generate log of the offending run.
+const fs = require('node:fs');
+const os = require('node:os');
+let generateLogIndex = 0;
+function runGenerate() {
+  generateLogIndex += 1;
+  const logFile = path.join(os.tmpdir(), `punicodex-gate-generate-${process.pid}-${generateLogIndex}.log`);
+  try {
+    const out = run('npm run generate', { timeout: 2400000 });
+    fs.writeFileSync(logFile, out, 'utf8');
+  } catch (err) {
+    fs.writeFileSync(
+      logFile,
+      `${err.stdout || ''}\n${err.stderr || ''}\n${err.message}`,
+      'utf8'
+    );
+    err.message = `${err.message}\n(generate output saved to ${logFile})`;
+    throw err;
+  }
+  console.log(`  (generate output saved to ${logFile})`);
+}
+
 function gitStatusPorcelain() {
   // --porcelain=v1 is stable and machine-readable.
   return run('git status --porcelain=v1').split('\n').filter(Boolean);
@@ -89,7 +112,7 @@ test('npm run generate does not introduce new changes on a clean-ish tree', () =
 
   // 40 min: a full generate now takes ~22 min (46 scripts, ~3100 HTML pages);
   // the previous 15-min bound predates the current site size and flakes.
-  run('npm run generate', { timeout: 2400000 });
+  runGenerate();
 
   const afterFirst = parseStatus(gitStatusPorcelain());
   const newlyModified = setDiff(before.modified, afterFirst.modified);
@@ -123,7 +146,7 @@ test('generated artifacts are fully committed after npm run generate', () => {
 test('npm run generate is idempotent (second run produces zero diff)', () => {
   const afterFirst = parseStatus(gitStatusPorcelain());
 
-  run('npm run generate', { timeout: 2400000 });
+  runGenerate();
 
   const afterSecond = parseStatus(gitStatusPorcelain());
   const newlyModified = setDiff(afterFirst.modified, afterSecond.modified);
