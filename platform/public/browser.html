@@ -22,13 +22,14 @@
   </style>
 </head>
 <body class="cn-browser">
+    <h1 style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">PuniCodex Browser</h1>
   <div class="cn-browser-toolbar">
     <button class="cn-browser-btn" id="backBtn" title="Back">←</button>
     <button class="cn-browser-btn" id="forwardBtn" title="Forward">→</button>
     <button class="cn-browser-btn" id="reloadBtn" title="Reload">↻</button>
     <button class="cn-browser-btn" id="homeBtn" title="Home">⌂</button>
     <div class="cn-browser-omnibox-wrap">
-      <input type="text" class="cn-browser-omnibox" id="omnibox" placeholder="Search or enter address" autocomplete="off">
+      <input type="text" class="cn-browser-omnibox" id="omnibox" placeholder="Search or enter address" autocomplete="off" aria-label="Search or enter address">
     </div>
     <button class="cn-browser-btn" id="sidebarBtn" title="Toggle Scriptorium">☰</button>
     <button class="cn-browser-btn" id="paletteBtn" title="Command palette">⌘</button>
@@ -49,7 +50,7 @@
   <!-- Command palette -->
   <div class="cn-palette-overlay" id="paletteOverlay">
     <div class="cn-palette">
-      <input type="text" class="cn-palette-input" id="paletteInput" placeholder="Type a command, page, or name…" autocomplete="off">
+      <input type="text" class="cn-palette-input" id="paletteInput" placeholder="Type a command, page, or name…" autocomplete="off" aria-label="Command palette">
       <div class="cn-palette-results" id="paletteResults"></div>
     </div>
   </div>

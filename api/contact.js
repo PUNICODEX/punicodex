@@ -5,7 +5,7 @@
  * with honeypot spam filtering and per-IP fixed-window rate limiting.
  */
 
-const { sendEmail } = require('../../platform/api/email.js');
+const { sendEmail } = require('../platform/api/email.js');
 
 const CONTACT_TO = process.env.CONTACT_EMAIL || 'punicodex@gmail.com';
 const RATE_LIMIT = 5; // messages per IP per hour

@@ -140,6 +140,7 @@
   </style>
 </head>
 <body>
+    <h1 style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">PuniCodex Admin — Authenticity Users</h1>
   <header>
     <div class="logo">PUNICODEX</div>
     <nav class="nav">
@@ -160,11 +161,11 @@
     </div>
 
     <div class="form-row">
-      <select id="tenantSelect">
+      <select id="tenantSelect" aria-label="Select tenant">
         <option value="default">default</option>
       </select>
-      <input type="email" id="newUserEmail" placeholder="Email address">
-      <select id="newUserRole">
+      <input type="email" id="newUserEmail" placeholder="Email address" aria-label="New user email address">
+      <select id="newUserRole" aria-label="New user role">
         <option value="viewer">viewer</option>
         <option value="analyst">analyst</option>
         <option value="tenant_admin">tenant_admin</option>

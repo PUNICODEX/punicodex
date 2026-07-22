@@ -206,6 +206,7 @@
   </style>
 </head>
 <body>
+    <h1 style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">PuniCodex Admin</h1>
   <header>
     <div class="logo">PUNICODEX</div>
     <nav class="nav">
@@ -254,7 +255,7 @@
       Crawl Domain
     </div>
     <div class="crawl-box">
-      <input type="text" id="crawlInput" placeholder="Enter domain (e.g., xn--zes-9na.com or zeús.com)">
+      <input type="text" id="crawlInput" aria-label="Domain to crawl" placeholder="Enter domain (e.g., xn--zes-9na.com or zeús.com)">
       <button class="btn" onclick="crawlSingle()">Crawl</button>
       <button class="btn secondary" onclick="recrawlAll()">Re-crawl All</button>
     </div>
@@ -266,12 +267,12 @@
       Discovery & Queue
     </div>
     <div class="crawl-box">
-      <input type="text" id="discoverInput" placeholder="Add domains to queue (comma-separated)">
+      <input type="text" id="discoverInput" aria-label="Domains to add to queue" placeholder="Add domains to queue (comma-separated)">
       <button class="btn" onclick="addToQueue()">Add to Queue</button>
       <button class="btn secondary" onclick="processQueue()">Process Queue</button>
     </div>
     <div class="crawl-box" style="margin-top:0.5rem;">
-      <input type="text" id="bulkDiscoverInput" placeholder="Bulk discover (comma-separated domains)" style="flex:2">
+      <input type="text" id="bulkDiscoverInput" aria-label="Bulk discover domains" placeholder="Bulk discover (comma-separated domains)" style="flex:2">
       <button class="btn secondary" onclick="bulkDiscover()">Bulk Discover</button>
     </div>
   </div>
@@ -282,7 +283,7 @@
       Crawl Queue
     </div>
     <div class="filters-row">
-      <select id="queueStatusFilter" onchange="loadQueue()">
+      <select id="queueStatusFilter" aria-label="Filter queue by status" onchange="loadQueue()">
         <option value="">All Status</option>
         <option value="pending">Pending</option>
         <option value="crawling">Crawling</option>
@@ -303,14 +304,14 @@
       Indexed Sites
     </div>
     <div class="filters-row">
-      <select id="statusFilter" onchange="loadSites()">
+      <select id="statusFilter" aria-label="Filter sites by status" onchange="loadSites()">
         <option value="">All Status</option>
         <option value="active">Active</option>
         <option value="pending">Pending</option>
         <option value="error">Error</option>
         <option value="spam">Spam</option>
       </select>
-      <select id="pantheonFilter" onchange="loadSites()">
+      <select id="pantheonFilter" aria-label="Filter sites by pantheon" onchange="loadSites()">
         <option value="">All Pantheons</option>
       </select>
     </div>

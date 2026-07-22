@@ -32,6 +32,10 @@ const OPERATIONAL_TABLES = [
   'scholars_media',
   'scholars_notifications',
   'scholars_audit_log',
+  'tenant_accounts',
+  'tenant_sessions',
+  'tenant_tokens',
+  'tenant_change_requests',
 ];
 
 const sqliteTypeToPostgres = {
@@ -165,6 +169,7 @@ async function main() {
     { table: 'admin_actions', column: 'admin_user_id', definition: 'INTEGER' },
     { table: 'admin_actions', column: 'target', definition: 'TEXT' },
     { table: 'admin_actions', column: 'meta', definition: 'TEXT' },
+    { table: 'bookings', column: 'public_id', definition: 'TEXT' },
   ];
   for (const { table, column, definition } of COLUMN_DRIFT) {
     await sql.query(`ALTER TABLE ${table} ADD COLUMN IF NOT EXISTS ${column} ${definition}`);
@@ -175,6 +180,30 @@ async function main() {
   await sql.query(
     'CREATE INDEX IF NOT EXISTS idx_admin_actions_user ON admin_actions(admin_user_id)'
   );
+
+  // bookings.public_id backfill + unique index (mirrors migrate-booking-public-id;
+  // required by the getSlots query and the tracking pixel URLs).
+  await sql.query(
+    `UPDATE bookings SET public_id = substr(md5(random()::text) || md5(random()::text), 1, 48)
+     WHERE public_id IS NULL`
+  );
+  await sql.query(
+    'CREATE UNIQUE INDEX IF NOT EXISTS idx_bookings_public_id ON bookings(public_id)'
+  );
+
+  // Text primary keys that the schema translator cannot infer (it only maps
+  // INTEGER pks): tenant_sessions.token and tenant_tokens.token.
+  for (const table of ['tenant_sessions', 'tenant_tokens']) {
+    const hasPk = await sql.query(
+      `SELECT 1 FROM information_schema.table_constraints
+       WHERE table_name = $1 AND constraint_type = 'PRIMARY KEY'`,
+      [table]
+    );
+    if (hasPk.length === 0) {
+      await sql.query(`ALTER TABLE ${table} ADD PRIMARY KEY (token)`);
+      console.log(`  Added PRIMARY KEY on ${table}(token)`);
+    }
+  }
 
   // Seed ad_slots and bundle_members from SQLite
   console.log('Seeding ad_slots and bundle_members...');

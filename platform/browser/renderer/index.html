@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="browser.css">
 </head>
 <body>
+    <h1 style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">PuniCodex Browser</h1>
   <div class="browser-chrome">
     <!-- ═══════════════════════════════════════════════════════
          TITLEBAR — The seal of the vessel
@@ -28,7 +29,7 @@
       <!-- Inscription Field — the crown -->
       <div class="omnibox-container no-drag">
         <div class="trust-icon" id="trustIcon"></div>
-        <input type="text" class="omnibox" id="omnibox" placeholder="Inscribe a domain..." autocomplete="off" spellcheck="false">
+        <input type="text" class="omnibox" id="omnibox" placeholder="Inscribe a domain..." autocomplete="off" spellcheck="false" aria-label="Inscribe a domain or URL">
         <div class="url-display" id="urlDisplay"></div>
         <div class="omnibox-dropdown hidden" id="omniboxDropdown"></div>
       </div>
@@ -81,7 +82,7 @@
         <!-- Oracle: Catalog search -->
         <div class="oracle-panel" id="oraclePanel">
           <div class="oracle-search">
-            <input type="text" id="oracleInput" placeholder="Consult the Oracle..." autocomplete="off" spellcheck="false">
+            <input type="text" id="oracleInput" placeholder="Consult the Oracle..." autocomplete="off" spellcheck="false" aria-label="Consult the Oracle">
           </div>
           <div class="oracle-results" id="oracleResults"></div>
         </div>

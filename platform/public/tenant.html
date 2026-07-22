@@ -53,6 +53,7 @@
   </style>
 </head>
 <body>
+    <h1 style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">PuniCodex Tenant</h1>
   <header>
     <div class="header-inner">
       <a href="/" class="logo">PUNICODEX</a>
@@ -66,9 +67,9 @@
       <h3 style="font-family:var(--font-display);color:var(--accent);margin-bottom:0.75rem">Lease / Acquire Inquiry</h3>
       <form id="inquiryForm">
         <label>Email</label>
-        <input type="email" id="email" required>
+        <input type="email" id="email" aria-label="Email address" required>
         <label>Message</label>
-        <textarea id="message" rows="3" placeholder="Tell us about your intended use…"></textarea>
+        <textarea id="message" aria-label="Your message" rows="3" placeholder="Tell us about your intended use…"></textarea>
         <button type="submit">Send Inquiry</button>
       </form>
     </div>
@@ -83,14 +84,14 @@
       <div id="reviews"></div>
       <form id="reviewForm" style="margin-top:1rem">
         <div style="display:flex;gap:0.75rem">
-          <select id="rating">
+          <select id="rating" aria-label="Rating">
             <option value="5">★★★★★</option>
             <option value="4">★★★★</option>
             <option value="3">★★★</option>
             <option value="2">★★</option>
             <option value="1">★</option>
           </select>
-          <input type="text" id="reviewText" placeholder="Write a review…" style="flex:1">
+          <input type="text" id="reviewText" placeholder="Write a review…" style="flex:1" aria-label="Write a review">
           <button type="submit">Post</button>
         </div>
       </form>

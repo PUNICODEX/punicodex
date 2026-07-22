@@ -48,7 +48,7 @@
             flex-wrap: wrap;
             gap: 1rem;
         }
-        .dash-header h1 {
+        .dash-header h1, .dash-header .dash-page-title {
             font-family: 'Cinzel', serif;
             font-size: 1.3rem;
             color: var(--gold);
@@ -265,6 +265,7 @@
     </style>
 </head>
 <body>
+    <h1 class="sr-only" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden;">ōkeanós.com Sponsorship Dashboard</h1>
     <div id="app">
         <div class="dash-empty" style="text-align:center;padding:4rem 2rem;color:var(--text-muted);">
             <h2 style="font-family:'Cinzel',serif;color:var(--gold);margin-bottom:0.5rem;">Loading Dashboard...</h2>
@@ -278,14 +279,14 @@
             <h2 style="font-family:'Cinzel',serif;color:var(--gold);margin-bottom:0.5rem;">Edit <span id="slot-editor-name"></span></h2>
             <p id="slot-editor-dims" style="font-size:0.8rem;color:var(--text-muted);margin-bottom:1rem;"></p>
             <label class="dash-form-label">Heading <span style="text-transform:none;letter-spacing:0;font-weight:400;">(max 60 banner / 36 box)</span></label>
-            <input type="text" class="dash-input" id="slot-edit-heading" placeholder="Heading">
+            <input type="text" class="dash-input" id="slot-edit-heading" aria-label="Slot heading" placeholder="Heading">
             <label class="dash-form-label">Subtitle <span style="text-transform:none;letter-spacing:0;font-weight:400;">(max 100 banner / 60 box)</span></label>
-            <input type="text" class="dash-input" id="slot-edit-subtitle" placeholder="Subtitle">
+            <input type="text" class="dash-input" id="slot-edit-subtitle" aria-label="Slot subtitle" placeholder="Subtitle">
             <label class="dash-form-label">Destination URL</label>
-            <input type="url" class="dash-input" id="slot-edit-url" placeholder="https://yourbrand.com">
+            <input type="url" class="dash-input" id="slot-edit-url" aria-label="Slot link URL" placeholder="https://yourbrand.com">
             <label class="dash-form-label">New Creative</label>
             <div class="dash-upload-zone" id="slot-edit-upload-zone">
-                <input type="file" class="dash-upload-input" id="slot-edit-upload-input" accept="image/png,image/jpeg,image/webp">
+                <input type="file" class="dash-upload-input" id="slot-edit-upload-input" aria-label="Replace slot creative image" accept="image/png,image/jpeg,image/webp">
                 <div class="dash-upload-prompt">
                     <span class="dash-upload-icon">&#8679;</span>
                     <p>Drag & drop or click to upload</p>
@@ -401,7 +402,7 @@
             document.getElementById('app').innerHTML = `
                 <div class="dash-header">
                     <div>
-                        <h1>${b.company_name || 'Temple'} Dashboard</h1>
+                        <p class="dash-page-title">${b.company_name || 'Temple'} Dashboard</p>
                         <p>${b.slot_name} &middot; ${b.width}×${b.height}px &middot; https://ōkeanós.com</p>
                     </div>
                     <span class="dash-status ${statusClass}">${b.status.replace(/_/g, ' ').toUpperCase()}</span>
@@ -437,14 +438,14 @@
                         <h2>Edit Placement</h2>
                         <div class="dash-notice" id="dash-notice"></div>
                         <label class="dash-form-label">Heading <span style="text-transform:none;letter-spacing:0;font-weight:400;">(max 60 for banner, 36 for box)</span></label>
-                        <input type="text" class="dash-input" id="dash-heading" value="${escapeHtml(b.custom_heading || '')}" placeholder="Your brand heading">
+                        <input type="text" class="dash-input" id="dash-heading" aria-label="Brand heading" value="${escapeHtml(b.custom_heading || '')}" placeholder="Your brand heading">
                         <label class="dash-form-label">Subtitle <span style="text-transform:none;letter-spacing:0;font-weight:400;">(max 100 for banner, 60 for box)</span></label>
                         <input type="text" class="dash-input" id="dash-subtitle" value="${escapeHtml(b.custom_subtitle || '')}" placeholder="Tagline or description">
                         <label class="dash-form-label">Destination URL</label>
                         <input type="url" class="dash-input" id="dash-url" value="${escapeHtml(b.website_url || '')}" placeholder="https://yourbrand.com">
                         <label class="dash-form-label">New Creative</label>
                         <div class="dash-upload-zone" id="dash-upload-zone">
-                            <input type="file" class="dash-upload-input" id="dash-upload-input" accept="image/png,image/jpeg,image/webp">
+                            <input type="file" class="dash-upload-input" id="dash-upload-input" aria-label="Upload creative image" accept="image/png,image/jpeg,image/webp">
                             <div class="dash-upload-prompt">
                                 <span class="dash-upload-icon">&#8679;</span>
                                 <p>Drag & drop or click to swap creative</p>

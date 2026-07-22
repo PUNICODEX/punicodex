@@ -35,6 +35,7 @@
     <link rel="stylesheet" href="/css/footer.css?v=1">
 </head>
 <body class="cn-page">
+    <h1 style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">PuniCodex Search</h1>
   <div class="cn-ambient"></div>
 
   <header class="cn-header">
@@ -158,7 +159,7 @@
     </div>
     <div class="oracle-body" id="oracleBody" style="display:none">
       <div class="oracle-ask">
-        <input type="text" id="oracleInput" class="oracle-input" placeholder="Ask the Oracle a question…" autocomplete="off">
+        <input type="text" id="oracleInput" class="oracle-input" placeholder="Ask the Oracle a question…" autocomplete="off" aria-label="Ask the Oracle a question">
         <button class="oracle-submit" onclick="submitOracle()" type="button">Ask</button>
       </div>
       <div id="oracleAnswer"></div>

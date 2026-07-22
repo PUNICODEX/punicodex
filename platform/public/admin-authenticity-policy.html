@@ -122,6 +122,7 @@
   </style>
 </head>
 <body>
+    <h1 style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">PuniCodex Admin — Authenticity Policy</h1>
   <header>
     <div class="logo">PUNICODEX</div>
     <nav class="nav">
@@ -143,7 +144,7 @@
 
     <div class="panel">
       <h3>Tenant Policy JSON</h3>
-      <textarea id="policyJson">{
+      <textarea id="policyJson" aria-label="Policy JSON">{
   "tenantId": "default",
   "defaultAction": "warn",
   "severityActions": {
@@ -167,8 +168,8 @@
     <div class="panel">
       <h3>Test Input</h3>
       <div class="row">
-        <input type="text" id="testInput" placeholder="Domain, URL, or term to evaluate" value="xn--zes-9na.com">
-        <select id="testType">
+        <input type="text" id="testInput" placeholder="Domain, URL, or term to evaluate" value="xn--zes-9na.com" aria-label="Domain, URL, or term to evaluate">
+        <select id="testType" aria-label="Test input type">
           <option value="auto">auto</option>
           <option value="term">term</option>
           <option value="domain">domain</option>

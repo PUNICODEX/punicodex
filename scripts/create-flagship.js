@@ -17,6 +17,7 @@ const { spawnSync } = require('node:child_process');
 const cheerio = require('cheerio');
 const url = require('node:url');
 const { unicodeName } = require('unicode-name');
+const { autoLink } = require('./lib/crosslink.js');
 
 const ROOT = path.join(__dirname, '..');
 const TEMPLATE_DIR = path.join(ROOT, 'templates', 'flagship');
@@ -54,7 +55,7 @@ function applyBespokeCanvas(html, id, primary, secondary) {
   if (!canvasId) return html;
   return html.replace(
     /<canvas\s+id="[^"]*-canvas"\s+data-effect="[^"]*"\s+data-primary="[^"]*"\s+data-secondary="[^"]*"[^>]*><\/canvas>/g,
-    `<canvas id="${canvasId}" class="hero-canvas" data-primary="${primary}" data-secondary="${secondary}"></canvas>`
+    `<canvas id="${canvasId}" class="hero-canvas" data-primary="${primary}" data-secondary="${secondary}" aria-hidden="true"></canvas>`
   );
 }
 
@@ -3011,9 +3012,23 @@ function createFlagship(templeId, options = {}) {
     }
   }
 
+  // Prose-bearing pages: crosslink deity mentions to their temples (first
+  // mention per entry per page; the page's own entry is never self-linked).
+  const CROSSLINK_PATHS = new Set([
+    'index.html',
+    'lore/index.html',
+    'lore/extended/index.html',
+    'gallery/index.html',
+  ]);
+
   for (const [relativePath, content] of Object.entries(outputs)) {
     const outPath = path.join(siteDir, relativePath);
     fs.mkdirSync(path.dirname(outPath), { recursive: true });
+
+    const finalContent =
+      CROSSLINK_PATHS.has(relativePath) && relativePath.endsWith('.html')
+        ? autoLink(content, { selfId: templeId })
+        : content;
 
     // Preserve lore.json timestamp when the meaningful content has not changed
     // so that regeneration does not create spurious git diffs.
@@ -3034,7 +3049,7 @@ function createFlagship(templeId, options = {}) {
 
     // Atomic write to avoid transient Windows file-lock failures.
     const tmpPath = `${outPath}.tmp.${process.pid}`;
-    fs.writeFileSync(tmpPath, content, 'utf8');
+    fs.writeFileSync(tmpPath, finalContent, 'utf8');
     safeRenameSync(tmpPath, outPath);
   }
 

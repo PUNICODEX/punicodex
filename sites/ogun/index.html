@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
 <!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
 <link rel="stylesheet" href="/css/university-collaborators.css?v=3">
 <script src="/js/university-collaborators.js?v=3" defer></script>
@@ -16,7 +14,7 @@
     <title>Ògún — Iron, War, Labour | PUNICODEX</title>
     <meta name="description" content="Scholarly restoration of Ògún, the Iron, War, Labour. Explore original script, pronunciation, and Unicode orthography.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
-    <link rel="stylesheet" href="/css/temple-base.css?v=perf20">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
     <link rel="stylesheet" href="styles.css?v=perf20">
     <link rel="canonical" href="https://punicodex.com/sites/ogun/">
     <meta property="og:title" content="Ògún — Iron, War, Labour | PUNICODEX">
@@ -84,7 +82,7 @@
     </div>
 
     <!-- Ambient Canvas -->
-    <canvas id="iron-canvas" class="hero-canvas" data-primary="#D4AF37" data-secondary="#4B0082"></canvas>
+    <canvas id="iron-canvas" class="hero-canvas" data-primary="#D4AF37" data-secondary="#4B0082" aria-hidden="true"></canvas>
 
     <!-- Tab Navigation -->
     <nav class="main-nav tab-nav" id="tab-nav">
@@ -110,7 +108,7 @@
     </nav>
 
     <!-- Mobile Menu -->
-    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="./" class="nav-link active">Home</a>
         <a href="lore/index.html" class="nav-link">Lore</a>
         <a href="gallery/index.html" class="nav-link">Gallery</a>
@@ -149,7 +147,7 @@
     <section class="section spaces-section" id="spaces">
         <div class="container">
             <div class="spaces-layout reveal-up">
-                <p class="spaces-legend">Banners at 1200 × 400 px &middot; Boxes at 600 × 600 px &middot; Prices scale by temple tier</p>
+                <p class="spaces-legend">Banners at 1200 × 400 px · Boxes at 600 × 600 px · Prices scale by temple tier</p>
 
                 <!-- Row 1: Banner Iron Crown -->
                 <div class="space-row space-row--banner">
@@ -421,7 +419,7 @@
                         <span class="space-num">14</span>
                         <div class="space-info">
                             <span class="space-name">Full Page Takeover</span>
-                            <span class="space-dims">All 13 individual spots &middot; One unified campaign</span>
+                            <span class="space-dims">All 13 individual spots · One unified campaign</span>
                         </div>
                         <span class="space-exclusive">By Application Only</span>
                     </div>
@@ -484,7 +482,7 @@
     <div class="booking-modal" id="booking-modal" style="display:none;">
         <div class="booking-modal-backdrop"></div>
         <div class="booking-modal-panel">
-            <button type="button" class="booking-modal-close" id="booking-modal-close" aria-label="Close">&times;</button>
+            <button type="button" class="booking-modal-close" id="booking-modal-close" aria-label="Close">×</button>
 
             <!-- Step 1: Details -->
             <div class="booking-step" id="booking-step-1">
@@ -493,18 +491,18 @@
                 <div class="booking-form">
                     <div class="booking-error" id="booking-error" style="display:none;"></div>
                     <label class="booking-label">Email</label>
-                    <input type="email" class="booking-input" id="booking-email" placeholder="you@company.com" required>
+                    <input type="email" class="booking-input" id="booking-email" placeholder="you@company.com" aria-label="Email address" required="">
                     <label class="booking-label">Company Name</label>
-                    <input type="text" class="booking-input" id="booking-company" placeholder="Your Brand">
+                    <input type="text" class="booking-input" id="booking-company" placeholder="Your Brand" aria-label="Company or brand name">
                     <label class="booking-label">Website URL</label>
-                    <input type="url" class="booking-input" id="booking-website" placeholder="https://yourproject.com">
+                    <input type="url" class="booking-input" id="booking-website" placeholder="https://yourproject.com" aria-label="Website URL">
                     <label class="booking-label">Heading (replaces slot name) <span class="booking-char-limit" id="booking-heading-limit"></span></label>
-                    <input type="text" class="booking-input" id="booking-heading" placeholder="Your Brand Name">
+                    <input type="text" class="booking-input" id="booking-heading" placeholder="Your Brand Name" aria-label="Ad heading">
                     <p class="booking-char-count" id="booking-heading-count">0 / 0</p>
                     <label class="booking-label">Subtitle (replaces dimensions) <span class="booking-char-limit" id="booking-subtitle-limit"></span></label>
-                    <input type="text" class="booking-input" id="booking-subtitle" placeholder="Tagline or description">
+                    <input type="text" class="booking-input" id="booking-subtitle" placeholder="Tagline or description" aria-label="Ad tagline or description">
                     <p class="booking-char-count" id="booking-subtitle-count">0 / 0</p>
-                    <p class="booking-note" style="text-align:left;margin-top:0.25rem;">Leave both empty to hide the heading & subtitle entirely.</p>
+                    <p class="booking-note" style="text-align:left;margin-top:0.25rem;">Leave both empty to hide the heading &amp; subtitle entirely.</p>
                     <label class="booking-label">Lease Period</label>
                     <div class="booking-toggle" id="booking-lease-toggle">
                         <button type="button" class="booking-toggle-btn active" data-months="1" id="lease-monthly">Monthly</button>
@@ -519,7 +517,7 @@
 
                     <div class="booking-terms" style="margin:0.75rem 0 0.5rem;text-align:left;">
                         <label style="display:flex;align-items:flex-start;gap:0.5rem;cursor:pointer;font-size:0.78rem;color:var(--text-muted);line-height:1.4;">
-                            <input type="checkbox" id="booking-terms-check" style="width:16px;height:16px;margin-top:2px;accent-color:var(--classic-gold);flex-shrink:0;">
+                            <input type="checkbox" id="booking-terms-check" aria-label="Agree to the advertising terms" style="width:16px;height:16px;margin-top:2px;accent-color:var(--classic-gold);flex-shrink:0;">
                             <span>I have read and agree to the <a href="https://punicodex.com/terms/advertising/" target="_blank" style="color:var(--classic-gold);text-decoration:underline;">Advertising Space Lease Agreement</a>, including view-based pricing terms and content standards.</span>
                         </label>
                     </div>
@@ -535,7 +533,7 @@
                 <div class="booking-form">
                     <div class="booking-error" id="booking-apply-error" style="display:none;"></div>
                     <label class="booking-label">Campaign Note</label>
-                    <textarea class="booking-input" id="booking-application-note" rows="4" placeholder="Describe your project, goals, and why this archetype is a good fit..."></textarea>
+                    <textarea class="booking-input" id="booking-application-note" rows="4" aria-label="Application note" placeholder="Describe your project, goals, and why this archetype is a good fit..."></textarea>
                     <p class="booking-note" style="text-align:left;margin-top:0.25rem;">Full-Page Takeover applications are manually reviewed. We only approve sponsors whose content is relevant and appropriate.</p>
                     <button type="button" class="booking-submit" id="booking-submit-application">Submit Application</button>
                     <p class="booking-note">Applications are typically reviewed within 24–48 hours.</p>
@@ -548,8 +546,8 @@
                 <p class="booking-modal-subtitle">Enter the 6-digit code sent to <span id="booking-verify-email" style="color:var(--classic-gold);"></span></p>
                 <div class="booking-form">
                     <div class="booking-error" id="booking-verify-error" style="display:none;"></div>
-                    <input type="text" class="booking-input" id="booking-code" placeholder="123456" maxlength="6" style="text-align:center;letter-spacing:0.5em;font-size:1.2rem;font-family:monospace;">
-                    <button type="button" class="booking-submit" id="booking-verify-btn">Verify & Proceed to Payment</button>
+                    <input type="text" class="booking-input" id="booking-code" placeholder="123456" maxlength="6" aria-label="Verification code" style="text-align:center;letter-spacing:0.5em;font-size:1.2rem;font-family:monospace;">
+                    <button type="button" class="booking-submit" id="booking-verify-btn">Verify &amp; Proceed to Payment</button>
                     <button type="button" class="booking-submit booking-submit--secondary" id="booking-resend-code">Resend Code</button>
                 </div>
             </div>
@@ -559,11 +557,11 @@
                 <h3 class="booking-modal-title">Upload Your Creative <span style="font-size:0.65rem;font-weight:400;color:var(--text-muted);text-transform:none;letter-spacing:0;">(Optional)</span></h3>
                 <p class="booking-modal-subtitle" id="booking-upload-dims"></p>
                 <div class="booking-upload-zone" id="booking-upload-zone">
-                    <input type="file" class="booking-upload-input" id="booking-upload-input" accept="image/png,image/jpeg,image/webp">
+                    <input type="file" class="booking-upload-input" id="booking-upload-input" aria-label="Upload creative image" accept="image/png,image/jpeg,image/webp">
                     <div class="booking-upload-prompt">
-                        <span class="booking-upload-icon">&#8679;</span>
-                        <p>Drag & drop or click to upload</p>
-                        <p class="booking-upload-hint">PNG, JPG, or WebP &middot; Max 2MB</p>
+                        <span class="booking-upload-icon">⇧</span>
+                        <p>Drag &amp; drop or click to upload</p>
+                        <p class="booking-upload-hint">PNG, JPG, or WebP · Max 2MB</p>
                     </div>
                     <img class="booking-upload-preview" id="booking-upload-preview" style="display:none;" alt="Preview">
                 </div>
@@ -580,7 +578,7 @@
 
             <!-- Step 3: Pending -->
             <div class="booking-step" id="booking-step-3" style="display:none;">
-                <div class="booking-status-icon">&#10003;</div>
+                <div class="booking-status-icon">✓</div>
                 <h3 class="booking-modal-title">Under Review</h3>
                 <p class="booking-modal-subtitle">Your creative has been submitted. You'll receive an email once it's approved.</p>
                 <p class="booking-token-note">Dashboard: <a href="#" id="booking-dashboard-link" target="_blank">Open Analytics</a></p>
@@ -590,7 +588,7 @@
 
             <!-- Step 3b: Rejected -->
             <div class="booking-step" id="booking-step-rejected" style="display:none;">
-                <div class="booking-status-icon booking-status-icon--error">&#10007;</div>
+                <div class="booking-status-icon booking-status-icon--error">✗</div>
                 <h3 class="booking-modal-title">Needs Changes</h3>
                 <p class="booking-modal-subtitle" id="booking-reject-reason"></p>
                 <button type="button" class="booking-submit" id="booking-reupload">Re-upload Creative</button>
@@ -609,23 +607,23 @@
     <div class="booking-modal" id="my-bookings-modal" style="display:none;">
         <div class="booking-modal-backdrop" id="my-bookings-backdrop"></div>
         <div class="booking-modal-panel">
-            <button type="button" class="booking-modal-close" id="my-bookings-close" aria-label="Close">&times;</button>
+            <button type="button" class="booking-modal-close" id="my-bookings-close" aria-label="Close">×</button>
             <h3 class="booking-modal-title">My Bookings</h3>
             <p class="booking-modal-subtitle">Enter your email to see all your reservations.</p>
             <div id="my-bookings-step-email">
-                <input type="email" class="booking-input" id="my-bookings-email" placeholder="you@company.com">
+                <input type="email" class="booking-input" id="my-bookings-email" placeholder="you@company.com" aria-label="Email address to find your bookings">
                 <button type="button" class="booking-submit" id="my-bookings-submit" style="margin-top:0.75rem;">Send My Links</button>
             </div>
             <div id="my-bookings-step-sent" style="display:none;">
-                <div class="booking-status-icon">&#10003;</div>
+                <div class="booking-status-icon">✓</div>
                 <p class="booking-modal-subtitle" style="text-align:center;">Check your inbox for your dashboard links.</p>
             </div>
         </div>
     </div>
 
     <script src="/js/flagship-canvas.js"></script>
-    <script src="/js/pc-fx-core.js" defer></script>
-    <script src="/js/pc-fx-halo.js" defer></script>
+    <script src="/js/pc-fx-core.js" defer=""></script>
+    <script src="/js/pc-fx-halo.js" defer=""></script>
     
 
 <script>window.PUNICODEX_API_BASE = "";</script>
@@ -686,11 +684,12 @@
                 <picture><source srcset="assets/ogun_logomark.webp" type="image/webp"><img src="assets/ogun_logomark.webp" alt="Ògún logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
             </div>
             <div class="footer-bottom">
-                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
+                <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>
             </div>
         </div>
     </footer>
 
-    <script src="/js/newsletter.js?v=1" defer></script>
-</body>
-</html>
+    <script src="/js/newsletter.js?v=1" defer=""></script>
+
+
+</body></html>

@@ -7,7 +7,7 @@
     <title>Patrons — PUNICODEX Temple</title>
     <meta name="description" content="Become a patron of this PUNICODEX temple. Support the restoration of original Unicode names and be honored on the temple wall.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
-    <link rel="stylesheet" href="/css/temple-base.css?v=perf20">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
     <link rel="stylesheet" href="../styles.css?v=perf20">
     <link rel="stylesheet" href="patron.css?v=4">
     <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
@@ -153,22 +153,22 @@
                             <div class="patron-form-row">
                                 <div class="patron-field">
                                     <label for="patron-name">Display Name</label>
-                                    <input type="text" id="patron-name" name="displayName" maxlength="48" placeholder="Your name or alias" required>
+                                    <input type="text" id="patron-name" aria-label="Your name or alias" name="displayName" maxlength="48" placeholder="Your name or alias" required>
                                 </div>
                                 <div class="patron-field">
                                     <label for="patron-title-input">Title <span class="patron-field-hint">(optional)</span></label>
-                                    <input type="text" id="patron-title-input" name="title" maxlength="48" placeholder="e.g. Lexicon Keeper">
+                                    <input type="text" id="patron-title-input" aria-label="Patron title" name="title" maxlength="48" placeholder="e.g. Lexicon Keeper">
                                 </div>
                             </div>
 
                             <div class="patron-field">
                                 <label for="patron-email">Email</label>
-                                <input type="email" id="patron-email" name="email" maxlength="254" placeholder="you@example.com" required>
+                                <input type="email" id="patron-email" aria-label="Email address" name="email" maxlength="254" placeholder="you@example.com" required>
                             </div>
 
                             <div class="patron-field">
                                 <label for="patron-message">Subtext <span class="patron-field-hint">(optional, 120 chars)</span></label>
-                                <textarea id="patron-message" name="message" maxlength="120" rows="2" placeholder="A short dedication or motto to engrave beneath your name..."></textarea>
+                                <textarea id="patron-message" aria-label="Dedication message" name="message" maxlength="120" rows="2" placeholder="A short dedication or motto to engrave beneath your name..."></textarea>
                             </div>
 
                             <div class="patron-fixed-price">
@@ -192,7 +192,7 @@
                                 </div>
                                 <div class="patron-social-input-wrap">
                                     <span class="patron-social-prefix" id="patron-social-prefix">https://x.com/</span>
-                                    <input type="url" id="patron-social-url" name="socialUrl" maxlength="500" placeholder="yourhandle">
+                                    <input type="url" id="patron-social-url" aria-label="Social profile URL" name="socialUrl" maxlength="500" placeholder="yourhandle">
                                 </div>
                                 <p class="patron-social-help" id="patron-social-help">Your public profile URL on X.</p>
                                 <p class="patron-social-error" id="patron-social-error" hidden></p>

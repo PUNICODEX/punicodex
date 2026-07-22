@@ -2920,3 +2920,20 @@ a.source-badge {
 .mobile-menu.active a:nth-child(8) { transition-delay: 0.4s; }
 .mobile-menu.active a:nth-child(9) { transition-delay: 0.45s; }
 .mobile-menu.active a:nth-child(n+10) { transition-delay: 0.5s; }
+
+/* Crosslinks — deity mentions linked to their temples (scripts/lib/crosslink.js).
+   Bright gold + persistent underline so links read as links on dark prose. */
+a.crosslink {
+    color: var(--primary-bright, #F0D878);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+    text-decoration-color: rgba(240, 216, 120, 0.45);
+    transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+
+a.crosslink:hover,
+a.crosslink:focus-visible {
+    color: #ffffff;
+    text-decoration-color: #ffffff;
+}

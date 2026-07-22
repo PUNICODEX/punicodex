@@ -204,7 +204,7 @@ const html = `<!DOCTYPE html>
     </script>
 
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
-    <link rel="stylesheet" href="/css/temple-base.css?v=perf20">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
     <link rel="stylesheet" href="/css/strip-less-nav.css?v=1">
     <link rel="stylesheet" href="/css/nav-more.css?v=2">
     <link rel="stylesheet" href="/css/mobile-menu.css?v=1">

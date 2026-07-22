@@ -355,6 +355,7 @@
   </style>
 </head>
 <body class="cn-page">
+    <h1 style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">PuniCodex Search</h1>
   <div class="cn-ambient"></div>
 
   <header class="cn-search-header">
@@ -395,7 +396,7 @@
         </div>
         <div class="cn-filter-group">
           <span class="cn-filter-label">Pantheon</span>
-          <select id="pantheonFilter" class="cn-filter-select">
+          <select id="pantheonFilter" class="cn-filter-select" aria-label="Filter by pantheon">
             <option value="">All pantheons</option>
           </select>
         </div>
@@ -409,7 +410,7 @@
         </div>
         <div class="cn-filter-group" style="margin-left:auto;">
           <span class="cn-filter-label">Sort</span>
-          <select id="sortFilter" class="cn-filter-select">
+          <select id="sortFilter" class="cn-filter-select" aria-label="Sort results">
             <option value="relevance">Relevance</option>
             <option value="alphabetical">Alphabetical</option>
             <option value="tier">Tier</option>

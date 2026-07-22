@@ -136,6 +136,7 @@
   </style>
 </head>
 <body>
+    <h1 style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">PuniCodex Admin — Authenticity Audit</h1>
   <header>
     <div class="logo">PUNICODEX</div>
     <nav class="nav">
@@ -155,13 +156,13 @@
       Authenticity Audit Log
     </div>
     <div class="filters-row">
-      <select id="tenantSelect">
+      <select id="tenantSelect" aria-label="Select tenant">
         <option value="default">default</option>
       </select>
-      <input type="text" id="actionFilter" placeholder="Action">
-      <input type="text" id="resourceTypeFilter" placeholder="Resource type">
-      <input type="date" id="fromDate">
-      <input type="date" id="toDate">
+      <input type="text" id="actionFilter" placeholder="Action" aria-label="Filter by action">
+      <input type="text" id="resourceTypeFilter" placeholder="Resource type" aria-label="Filter by resource type">
+      <input type="date" id="fromDate" aria-label="From date">
+      <input type="date" id="toDate" aria-label="To date">
       <button class="btn" onclick="loadAudit()">Search</button>
       <button class="btn secondary" onclick="verifyChain()">Verify Chain</button>
       <button class="btn secondary" onclick="exportAudit('csv')">Export CSV</button>

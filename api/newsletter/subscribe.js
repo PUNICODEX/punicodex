@@ -70,14 +70,15 @@ module.exports = async (req, res) => {
   const { email, phone, source, _hp } = req.body || {};
   if (_hp) return res.status(200).json({ ok: true });
 
-  if (typeof email !== 'string' || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+  // Normalize before validating so pasted emails with stray whitespace pass.
+  const normalized = typeof email === 'string' ? email.trim().toLowerCase() : '';
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(normalized)) {
     return res.status(400).json({ error: 'Please provide a valid email address.' });
   }
   if (phone && (typeof phone !== 'string' || phone.replace(/[^\d+]/g, '').length < 7)) {
     return res.status(400).json({ error: 'That phone number looks incomplete — it is optional, so you can also leave it empty.' });
   }
 
-  const normalized = email.trim().toLowerCase();
   const ipHash = crypto.createHash('sha256').update(clientIp(req)).digest('hex').slice(0, 16);
 
   const database = ensureDb();
@@ -93,10 +94,13 @@ module.exports = async (req, res) => {
     .run(normalized, phone ? phone.trim().slice(0, 32) : null, (source || 'site').slice(0, 40), ipHash);
 
   const snippet = WELCOME_SNIPPETS[crypto.randomInt(WELCOME_SNIPPETS.length)];
-  await sendEmail({
-    to: normalized,
-    subject: 'Welcome to The Unicode Herald',
-    html: `
+  // Best-effort: the subscription is the primary action; a welcome-email
+  // failure must not fail the request (and the row is already inserted).
+  try {
+    await sendEmail({
+      to: normalized,
+      subject: 'Welcome to The Unicode Herald',
+      html: `
       <div style="font-family:Georgia,serif;color:#1a1a1a;max-width:560px">
         <h2 style="color:#8a6d1f">The Unicode Herald</h2>
         <p>You are on the list. Expect the quarterly Herald — temple news, scholarly features, and sponsor showcases — and nothing more. No spam, ever.</p>
@@ -106,8 +110,11 @@ module.exports = async (req, res) => {
         <p style="font-size:12px;color:#888">To unsubscribe, reply to this email with "unsubscribe" in the subject line.</p>
       </div>
     `,
-    text: `You are on the list for The Unicode Herald (quarterly, no spam).\n\n${snippet}\n\n— punicodex.com\n\nTo unsubscribe, reply with "unsubscribe".`,
-  });
+      text: `You are on the list for The Unicode Herald (quarterly, no spam).\n\n${snippet}\n\n— punicodex.com\n\nTo unsubscribe, reply with "unsubscribe".`,
+    });
+  } catch (err) {
+    console.error('[newsletter] welcome email failed:', err.message);
+  }
 
   return res.status(200).json({ ok: true });
 };

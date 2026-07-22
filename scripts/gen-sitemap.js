@@ -61,6 +61,25 @@ const mainPages = [
   { loc: '/terms/', priority: '0.4', changefreq: 'yearly' },
   { loc: '/terms/advertising/', priority: '0.4', changefreq: 'yearly' },
   { loc: '/privacy/', priority: '0.4', changefreq: 'yearly' },
+  { loc: '/herald/', priority: '0.7', changefreq: 'weekly' },
+  { loc: '/authenticity/', priority: '0.8', changefreq: 'weekly' },
+  { loc: '/art/', priority: '0.6', changefreq: 'monthly' },
+  { loc: '/game/', priority: '0.6', changefreq: 'monthly' },
+  { loc: '/connections/', priority: '0.6', changefreq: 'monthly' },
+  { loc: '/creatives/', priority: '0.6', changefreq: 'monthly' },
+  { loc: '/about/authenticity.html', priority: '0.6', changefreq: 'monthly' },
+  { loc: '/codex/anatomy-of-a-punycode-domain/', priority: '0.6', changefreq: 'monthly' },
+  { loc: '/codex/building-the-temple/', priority: '0.6', changefreq: 'monthly' },
+  { loc: '/codex/why-greek-accents-matter/', priority: '0.6', changefreq: 'monthly' },
+  { loc: '/scholars/', priority: '0.7', changefreq: 'weekly' },
+  { loc: '/scholars/search/', priority: '0.6', changefreq: 'monthly' },
+  { loc: '/scholars/analytics/', priority: '0.6', changefreq: 'monthly' },
+  { loc: '/scholars/creatives/', priority: '0.6', changefreq: 'monthly' },
+  { loc: '/oracle.html', priority: '0.6', changefreq: 'monthly' },
+  { loc: '/search-v2.html', priority: '0.7', changefreq: 'weekly' },
+  { loc: '/lexicon/cognates.html', priority: '0.6', changefreq: 'monthly' },
+  { loc: '/interstitial.html', priority: '0.3', changefreq: 'yearly' },
+  { loc: '/terms/data-use/', priority: '0.4', changefreq: 'yearly' },
 ];
 
 function escapeXml(str) {
@@ -95,6 +114,10 @@ for (const entry of LEXICON) {
     xml += urlEntry(`/sites/${entry.id}/lore/extended/`, '0.6', 'monthly');
     xml += urlEntry(`/sites/${entry.id}/gallery/`, '0.5', 'monthly');
     xml += urlEntry(`/sites/${entry.id}/blog/`, '0.6', 'monthly');
+    xml += urlEntry(`/sites/${entry.id}/patterns/`, '0.5', 'monthly');
+    xml += urlEntry(`/sites/${entry.id}/scholars/`, '0.7', 'monthly');
+    xml += urlEntry(`/sites/${entry.id}/creatives/`, '0.5', 'monthly');
+    xml += urlEntry(`/sites/${entry.id}/patron/`, '0.5', 'monthly');
   }
 }
 
@@ -102,5 +125,5 @@ xml += '</urlset>\n';
 
 writeFileWithRetry(path.join(ROOT, 'sitemap.xml'), xml, 'utf8');
 
-const urlCount = mainPages.length + LEXICON.length + flagshipIds.size * 4;
+const urlCount = mainPages.length + LEXICON.length + flagshipIds.size * 8;
 console.log(`Sitemap generated: ${urlCount} URLs`);

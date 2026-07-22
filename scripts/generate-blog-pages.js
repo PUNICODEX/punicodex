@@ -15,6 +15,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
 const { writeFileWithRetry } = require('./write-file-retry.js');
+const { autoLink } = require('./lib/crosslink.js');
 
 const ROOT = path.join(__dirname, '..');
 const BLOG_DIR = path.join(ROOT, 'platform', 'blog', 'content');
@@ -362,6 +363,7 @@ for (const id of BUILT_IDS) {
   let html = TEMPLATE;
 
   const rendered = mdToHtml(post.body);
+  rendered.html = autoLink(rendered.html, { selfId: id });
 
   const replacements = {
     TEMPLE_ID: id,

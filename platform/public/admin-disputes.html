@@ -97,8 +97,8 @@
 <body>
   <div id="login-screen" class="login-screen">
     <div class="login-box">
-      <h1>Admin Login</h1>
-      <input type="password" id="password" placeholder="Admin password">
+      <h2>Admin Login</h2>
+      <input type="password" id="password" aria-label="Admin password" placeholder="Admin password">
       <button id="login-btn">Sign In</button>
     </div>
   </div>
@@ -115,13 +115,13 @@
     </header>
     <main class="admin-main">
       <div class="toolbar">
-        <select id="filter-decision">
+        <select id="filter-decision" aria-label="Filter by decision">
           <option value="">All decisions</option>
           <option value="pending">Pending</option>
           <option value="confirmed">Confirmed</option>
           <option value="false-positive">False Positive</option>
         </select>
-        <input type="text" id="filter-identity" placeholder="Identity ID filter">
+        <input type="text" id="filter-identity" placeholder="Identity ID filter" aria-label="Filter by identity">
         <button id="refresh-btn">Refresh</button>
       </div>
       <div id="disputes-table-wrap">

@@ -35,6 +35,7 @@ const {
   renderMarkdown,
   renderSources,
 } = require(path.join(ROOT, 'platform', 'scholars', 'markdown.js'));
+const { autoLink } = require('./lib/crosslink.js');
 
 const MANIFESTS_DIR = path.join(ROOT, 'platform', 'scholars', 'manifests');
 
@@ -205,15 +206,16 @@ function buildTocItems(manifest) {
     .join('\n');
 }
 
-function buildSectionBodyHtml(section) {
+function buildSectionBodyHtml(section, templeId) {
   const published =
     section.status === 'published' &&
     typeof section.body === 'string' &&
     section.body.trim() !== '';
   if (published) {
     return (
-      renderMarkdown(section.body, { sectionKey: section.key }) +
-      renderSources(section.sources, { sectionKey: section.key })
+      autoLink(renderMarkdown(section.body, { sectionKey: section.key }), {
+        selfId: templeId,
+      }) + renderSources(section.sources, { sectionKey: section.key })
     );
   }
   if (META_SECTION_KEYS.has(section.key)) {
@@ -227,7 +229,7 @@ function buildSectionBodyHtml(section) {
         </div>`;
 }
 
-function buildSectionsHtml(manifest) {
+function buildSectionsHtml(manifest, templeId) {
   return manifest.sections
     .map((section, index) => {
       const num = String(index + 1).padStart(2, '0');
@@ -251,7 +253,7 @@ function buildSectionsHtml(manifest) {
     </div>
     <div class="scholars-section-body">
         ${purpose}
-        ${buildSectionBodyHtml(section)}
+        ${buildSectionBodyHtml(section, templeId)}
     </div>
 </section>`;
     })
@@ -330,7 +332,7 @@ function generateScholarsPage(templeId, manifestOverride) {
     EXTENDED_TAB: buildExtendedTab(),
     PATTERNS_TAB: buildPatternsTab(),
     TOC_ITEMS: buildTocItems(manifest),
-    SECTIONS_HTML: buildSectionsHtml(manifest),
+    SECTIONS_HTML: buildSectionsHtml(manifest, templeId),
     MARKDOWN_RENDERER_JS,
     FOOTER: buildFooter(templeId, getUnicode(entry), entry),
   };

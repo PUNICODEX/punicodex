@@ -86,8 +86,8 @@
 <body>
   <div id="login-screen" class="login-screen">
     <div class="login-box">
-      <h1>Admin Login</h1>
-      <input type="password" id="password" placeholder="Admin password">
+      <h2>Admin Login</h2>
+      <input type="password" id="password" aria-label="Admin password" placeholder="Admin password">
       <button id="login-btn">Sign In</button>
     </div>
   </div>
@@ -102,21 +102,21 @@
     </header>
     <main class="admin-main">
       <div class="toolbar">
-        <select id="filter-severity">
+        <select id="filter-severity" aria-label="Filter by severity">
           <option value="">All severities</option>
           <option value="critical">Critical</option>
           <option value="high">High</option>
           <option value="medium">Medium</option>
           <option value="low">Low</option>
         </select>
-        <select id="filter-verdict">
+        <select id="filter-verdict" aria-label="Filter by verdict">
           <option value="">All verdicts</option>
           <option value="homograph-spoof">Homograph spoof</option>
           <option value="mixed-script-spoof">Mixed-script spoof</option>
           <option value="lookalike-domain">Lookalike domain</option>
           <option value="unsafe">Unsafe</option>
         </select>
-        <input type="text" id="filter-source" placeholder="Source filter">
+        <input type="text" id="filter-source" placeholder="Source filter" aria-label="Filter by source">
         <button id="refresh-btn">Refresh</button>
       </div>
       <div id="spoofs-table-wrap">
