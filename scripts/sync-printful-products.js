@@ -41,22 +41,50 @@ function argValue(flag) {
   return i === -1 ? null : args[i + 1];
 }
 
-// kind → fragments matched (case-insensitive) against the Printful catalog.
-const KIND_CATALOG_FRAGMENTS = {
-  tee: ['bella+canvas 3001', 'unisex jersey short sleeve tee'],
-  hoodie: ['gildan 18500', 'unisex heavy blend hoodie'],
-  crewneck: ['gildan 18000', 'crewneck sweatshirt'],
-  print: ['enhanced matte paper poster'],
-  canvas: ['canvas'],
-  sticker: ['kiss-cut stickers'],
-  pin: ['enamel pin'],
-  mug: ['white glossy mug'],
-  tumbler: ['tumbler'],
-  tote: ['tote bag'],
-  phonecase: ['clear case for iphone'],
-  cap: ['distressed dad hat', 'dad hat'],
-  notebook: ['spiral notebook'],
+// kind → preferred Printful catalog product: verify by name fragment, fall
+// back to the known ID (names verified against the live catalog 2026-07).
+const KIND_CATALOG = {
+  tee: { id: 71, fragment: 'bella + canvas 3001' },
+  hoodie: { id: 294, fragment: 'bella + canvas 3719' },
+  crewneck: { id: 145, fragment: 'gildan 18000' },
+  print: { id: 268, fragment: 'enhanced matte paper poster (cm)' },
+  canvas: { id: 3, fragment: 'canvas (in)' },
+  sticker: { id: 505, fragment: 'kiss-cut sticker sheet' },
+  pin: { id: 660, fragment: 'set of pin buttons' },
+  mug: { id: 300, fragment: 'black glossy mug' },
+  tumbler: { id: 585, fragment: 'stainless steel tumbler' },
+  tote: { id: 641, fragment: 'cotton tote bag' },
+  phonecase: { id: 683, fragment: 'snap case for iphone' },
+  cap: { id: 638, fragment: 'adidas dad hat' },
+  notebook: { id: 474, fragment: 'spiral notebook' },
 };
+
+// Per-kind file type for the primary print area (embroidery products don't
+// accept "default") and extra sync-variant options (embroidery type +
+// thread colours — 1672 Old Gold, the house antique gold).
+const KIND_FRONT_FILE_TYPE = {
+  cap: 'embroidery_front',
+};
+const KIND_OPTIONS = {
+  cap: [
+    { id: 'embroidery_type', value: 'flat' },
+    { id: 'thread_colors', value: ['#A67843'] },
+  ],
+};
+
+// Print masters are reachable by URL: temple masters live on the dedicated
+// static masters deployment (2 GB of PNGs, kept out of the main site deploy);
+// house brand masters are already public on punicodex.com.
+const MASTERS_BASE = process.env.PRINTFUL_MASTERS_BASE || 'https://punycodex-masters.vercel.app';
+const SITE_BASE = 'https://punicodex.com';
+
+function assetUrlFor(product, assetKey) {
+  const webp = product.assets && product.assets[assetKey];
+  if (!webp) return null;
+  const png = webp.replace(/\.webp$/, '.png');
+  if (png.startsWith('/sites/')) return `${MASTERS_BASE}/${path.posix.basename(png)}`;
+  return `${SITE_BASE}${png}`;
+}
 
 function loadState() {
   try {
@@ -97,43 +125,26 @@ async function api(method, endpoint, body, attempt = 0) {
   return json.result;
 }
 
-// Resolve a products.json entry to its local print-master PNG path per asset.
-function assetFileFor(product, assetKey) {
-  const webp = product.assets && product.assets[assetKey];
-  if (!webp) return null;
-  const full = path.join(ROOT, webp.replace(/^\//, '').replace(/\.webp$/, '.png'));
-  return fs.existsSync(full) ? full : null;
-}
-
-async function uploadFile(state, absPath) {
-  if (state.uploadedFiles[absPath]) return state.uploadedFiles[absPath];
-  const base64 = fs.readFileSync(absPath).toString('base64');
-  const result = await api('POST', '/files', {
-    type: 'default',
-    filename: path.basename(absPath),
-    file: base64,
-  });
-  state.uploadedFiles[absPath] = result.id;
-  saveState(state);
-  return result.id;
-}
-
 async function resolveCatalogProduct(state, kind, catalogList) {
   if (state.catalog[kind]) return state.catalog[kind];
-  const fragments = KIND_CATALOG_FRAGMENTS[kind];
-  if (!fragments) throw new Error(`no catalog mapping for kind "${kind}"`);
-  const lower = catalogList.map((p) => ({ id: p.id, name: String(p.name).toLowerCase() }));
-  for (const frag of fragments) {
-    const hit = lower.find((p) => p.name.includes(frag));
-    if (hit) {
-      state.catalog[kind] = hit.id;
-      saveState(state);
-      return hit.id;
-    }
+  const mapping = KIND_CATALOG[kind];
+  if (!mapping) throw new Error(`no catalog mapping for kind "${kind}"`);
+  const lower = catalogList.map((p) => ({ id: p.id, name: String(p.title || p.name).toLowerCase() }));
+  const byName = lower.find((p) => p.name.includes(mapping.fragment));
+  const chosen = byName || lower.find((p) => p.id === mapping.id);
+  if (!chosen) {
+    throw new Error(
+      `catalog product for kind "${kind}" not found (fragment "${mapping.fragment}", id ${mapping.id})`
+    );
   }
-  throw new Error(
-    `no catalog product matched "${fragments.join('" / "')}" for kind "${kind}"`
-  );
+  if (!chosen.name.includes(mapping.fragment)) {
+    console.warn(
+      `  warn: kind "${kind}" resolved to "${chosen.name}" (id ${chosen.id}) — expected "${mapping.fragment}"`
+    );
+  }
+  state.catalog[kind] = chosen.id;
+  saveState(state);
+  return chosen.id;
 }
 
 async function pickVariants(catalogProductId, kind) {
@@ -149,8 +160,8 @@ async function pickVariants(catalogProductId, kind) {
 }
 
 async function syncProduct(state, product, catalogList) {
-  const catalogId = await resolveCatalogProduct(state, product.design.kind || product.kind, catalogList);
   const kind = product.kind;
+  const catalogId = await resolveCatalogProduct(state, kind, catalogList);
   const variants = await pickVariants(catalogId, kind);
 
   // Primary asset per area (composites logged as manual follow-up).
@@ -162,22 +173,32 @@ async function syncProduct(state, product, catalogList) {
 
   const files = [];
   for (const [area, assetKey] of byArea) {
-    const abs = assetFileFor(product, assetKey);
-    if (!abs) throw new Error(`print master missing for ${product.id}: ${assetKey}`);
-    const fileId = await uploadFile(state, abs);
-    files.push({ id: fileId, type: area === 'back' ? 'back' : 'front' });
+    const url = assetUrlFor(product, assetKey);
+    if (!url) throw new Error(`print master missing for ${product.id}: ${assetKey}`);
+    files.push({ type: area === 'back' ? 'back' : KIND_FRONT_FILE_TYPE[kind] || 'default', url });
   }
 
   const body = {
-    sync_product: { name: product.name },
+    sync_product: { name: product.name, external_id: product.id },
     sync_variants: variants.map((v) => ({
       variant_id: v.id,
       retail_price: product.price.toFixed(2),
       files,
+      ...(KIND_OPTIONS[kind] ? { options: KIND_OPTIONS[kind] } : {}),
     })),
   };
-  const created = await api('POST', '/store/products', body);
-  return created.id;
+  try {
+    const created = await api('POST', '/store/products', body);
+    return created.id;
+  } catch (err) {
+    // Some products (mugs, caps, phone cases, …) only accept a default
+    // print area — fall back to the primary asset alone.
+    if (!/Incorrect file type/.test(err.message) || files.length < 2) throw err;
+    console.log(`  ${product.id}: no back placement on this product — front asset only`);
+    body.sync_variants = body.sync_variants.map((v) => ({ ...v, files: [files[0]] }));
+    const created = await api('POST', '/store/products', body);
+    return created.id;
+  }
 }
 
 async function main() {
