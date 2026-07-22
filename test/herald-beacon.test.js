@@ -187,8 +187,12 @@ async function run() {
       await page.locator('.herald-beacon__seal').click();
       await page.locator('input[name="email"]').fill('herald.fan@example.com');
       await page.locator('input[name="phone"]').fill('+61 400 111 222');
+      const requestPromise = page.waitForRequest('**/api/newsletter/subscribe/**', {
+        timeout: 10000,
+      });
       await page.locator('.herald-beacon__submit').click();
-      await page.waitForTimeout(500);
+      await requestPromise;
+      await page.locator('.herald-beacon__success').first().waitFor({ timeout: 10000 });
       assert.ok(payload, 'request fired');
       assert.strictEqual(payload.email, 'herald.fan@example.com');
       assert.strictEqual(payload.phone, '+61 400 111 222');

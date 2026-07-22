@@ -252,6 +252,10 @@ const html = `<!DOCTYPE html>
         .blogi-empty { max-width: 1100px; margin: 0 auto; padding: 3rem 1.5rem 5rem; text-align: center; color: var(--white-dim, #e8e4dc); }
         @media (max-width: 640px) { .blogi-hero { padding-top: 7rem; } .blogi-grid { grid-template-columns: 1fr; } }
     </style>
+<!-- PUNICODEX-HERALD-BEACON-START -->
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1">
+<script src="/js/herald-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-HERALD-BEACON-END -->
 </head>
 <body>
     <!-- Navigation (canonical — built by scripts/sync-desktop-nav.js) -->
