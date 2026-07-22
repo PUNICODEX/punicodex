@@ -215,7 +215,9 @@ const SUITES = [
   {
     name: 'Divergence Gate',
     cmd: 'node test/divergence-gate.test.js',
-    timeout: 1800000,
+    // The gate runs `npm run generate` twice; a full generate is ~20-22 min
+    // on a Windows dev machine (46 scripts, ~3100 HTML pages).
+    timeout: 3600000,
   },
   {
     name: 'Brand Risk Language',
