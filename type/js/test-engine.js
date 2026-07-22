@@ -334,7 +334,7 @@ test('Correct pantheon counts', () => {
   LEXICON.forEach((e) => {
     counts[e.pantheon] = (counts[e.pantheon] || 0) + 1;
   });
-  assert.strictEqual(counts.greek, 268, 'Greek count');
+  assert.strictEqual(counts.greek, 263, 'Greek count');
   assert.strictEqual(counts['greek-location'], 24, 'Greek-location count');
   assert.strictEqual(counts.norse, 86, 'Norse count');
   assert.strictEqual(counts.egyptian, 66, 'Egyptian count');

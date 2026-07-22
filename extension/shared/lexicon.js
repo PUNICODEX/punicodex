@@ -1214,6 +1214,16 @@ const LEXICON = [
   },
   {
     "id": "chaos",
+    "variants": [
+      {
+        "unicode": "Khaos",
+        "type": "alt",
+        "note": "Transliterated form (kh for χ); the temple uses the Latinized Cháos.",
+        "sources": [
+          "LSJ"
+        ]
+      }
+    ],
     "hasAdSite": true,
     "ascii": "chaos",
     "unicode": "Cháos",
@@ -3035,6 +3045,16 @@ const LEXICON = [
   },
   {
     "id": "delphoi",
+    "variants": [
+      {
+        "unicode": "Delphí",
+        "type": "alt",
+        "note": "Alternate English accentuation of Δελφοί; the temple uses Delphoí.",
+        "sources": [
+          "Barrington"
+        ]
+      }
+    ],
     "hasAdSite": true,
     "ascii": "delphoi",
     "unicode": "Delphoí",
@@ -14825,60 +14845,6 @@ const LEXICON = [
     ]
   },
   {
-    "id": "europa",
-    "ascii": "europa",
-    "unicode": "Eurōpē",
-    "greek": "Εὐρώπη",
-    "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
-    "domain": "Princess, After Whom Europe is Named",
-    "meaning": "Wide-eyed, broad face",
-    "sources": [
-      "LSJ",
-      "Pape-Benseler",
-      "Beekes"
-    ],
-    "breakdown": [
-      {
-        "char": "e",
-        "to": "E",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "u",
-        "to": "u",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "r",
-        "to": "r",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "o",
-        "to": "ō",
-        "type": "length",
-        "note": "Macron: long omega"
-      },
-      {
-        "char": "p",
-        "to": "p",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "a",
-        "to": "ē",
-        "type": "length",
-        "note": "Macron: long eta"
-      }
-    ]
-  },
-  {
     "id": "ganymede",
     "ascii": "ganymede",
     "unicode": "Ganymēdēs",
@@ -16479,71 +16445,6 @@ const LEXICON = [
         "to": "n",
         "type": "same",
         "note": "n same"
-      },
-      {
-        "char": "e",
-        "to": "ē",
-        "type": "length",
-        "note": "Macron: long vowel"
-      },
-      {
-        "char": "s",
-        "to": "s",
-        "type": "same",
-        "note": "s same"
-      }
-    ]
-  },
-  {
-    "id": "achilles",
-    "ascii": "achilles",
-    "unicode": "Achillēs",
-    "greek": "Ἀχιλλεύς",
-    "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
-    "domain": "War, Heroism",
-    "meaning": "Pain of the people",
-    "sources": [
-      "Homer",
-      "LSJ"
-    ],
-    "breakdown": [
-      {
-        "char": "a",
-        "to": "A",
-        "type": "same",
-        "note": "A uppercase"
-      },
-      {
-        "char": "c",
-        "to": "c",
-        "type": "same",
-        "note": "c same"
-      },
-      {
-        "char": "h",
-        "to": "h",
-        "type": "same",
-        "note": "h same"
-      },
-      {
-        "char": "i",
-        "to": "i",
-        "type": "same",
-        "note": "i same"
-      },
-      {
-        "char": "l",
-        "to": "l",
-        "type": "same",
-        "note": "l same"
-      },
-      {
-        "char": "l",
-        "to": "l",
-        "type": "same",
-        "note": "l same"
       },
       {
         "char": "e",
@@ -18704,65 +18605,6 @@ const LEXICON = [
       { "char": "i", "to": "í", "type": "stress", "note": "Acute on i (Σφίγξ)" },
       { "char": "n", "to": "n", "type": "same", "note": "Same" },
       { "char": "x", "to": "x", "type": "same", "note": "Same" }
-    ]
-  },
-  {
-    "id": "pegasus",
-    "ascii": "pegasus",
-    "unicode": "Pégasos",
-    "greek": "Πήγασος",
-    "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
-    "domain": "Winged Horse",
-    "meaning": "From the spring",
-    "sources": [
-      "Hesiod",
-      "LSJ"
-    ],
-    "breakdown": [
-      {
-        "char": "p",
-        "to": "P",
-        "type": "same",
-        "note": "P uppercase"
-      },
-      {
-        "char": "e",
-        "to": "é",
-        "type": "stress",
-        "note": "Acute on e"
-      },
-      {
-        "char": "g",
-        "to": "g",
-        "type": "same",
-        "note": "g same"
-      },
-      {
-        "char": "a",
-        "to": "a",
-        "type": "same",
-        "note": "a same"
-      },
-      {
-        "char": "s",
-        "to": "s",
-        "type": "same",
-        "note": "s same"
-      },
-      {
-        "char": "u",
-        "to": "o",
-        "type": "special",
-        "note": "Special character"
-      },
-      {
-        "char": "s",
-        "to": "s",
-        "type": "same",
-        "note": "s same"
-      }
     ]
   },
   {
@@ -46715,59 +46557,6 @@ const LEXICON = [
     ]
   },
   {
-    "id": "delphi",
-    "ascii": "delphi",
-    "unicode": "Delphí",
-    "greek": "Δελφοί",
-    "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
-    "domain": "Oracle, Apollo, Navel of Earth",
-    "meaning": "Womb",
-    "sources": [
-      "Pausanias",
-      "LSJ"
-    ],
-    "breakdown": [
-      {
-        "char": "d",
-        "to": "D",
-        "type": "same",
-        "note": "D uppercase"
-      },
-      {
-        "char": "e",
-        "to": "e",
-        "type": "same",
-        "note": "e same"
-      },
-      {
-        "char": "l",
-        "to": "l",
-        "type": "same",
-        "note": "l same"
-      },
-      {
-        "char": "p",
-        "to": "p",
-        "type": "same",
-        "note": "p same"
-      },
-      {
-        "char": "h",
-        "to": "h",
-        "type": "same",
-        "note": "h same"
-      },
-      {
-        "char": "i",
-        "to": "í",
-        "type": "stress",
-        "note": "Acute on i"
-      }
-    ]
-  },
-  {
     "id": "olympia",
     "ascii": "olympia",
     "unicode": "Olympía",
@@ -50362,6 +50151,16 @@ const LEXICON = [
   },
   {
     "id": "europe",
+    "variants": [
+      {
+        "unicode": "Eurōpē",
+        "type": "alt",
+        "note": "Latin form Eurōpa; the temple uses the Greek Eurṓpē.",
+        "sources": [
+          "Lewis & Short"
+        ]
+      }
+    ],
     "hasAdSite": true,
     "ascii": "europe",
     "unicode": "Eurṓpē",
@@ -52326,85 +52125,6 @@ const LEXICON = [
     ]
   },
   {
-    "id": "khaos",
-    "ascii": "khaos",
-    "unicode": "Khaos",
-    "greek": "Χάος",
-    "pantheon": "greek",
-    "tier": "2",
-    "tierLabel": "Tier 2",
-    "domain": "Primordial Void, Chaos, Origin",
-    "meaning": "Chasm, yawning void; the first state of existence",
-    "sources": [
-      "LSJ",
-      "Hesiod",
-      "Beekes"
-    ],
-    "breakdown": [
-      {
-        "char": "k",
-        "to": "K",
-        "type": "same",
-        "note": "Same, capitalized"
-      },
-      {
-        "char": "h",
-        "to": "h",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "a",
-        "to": "a",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "o",
-        "to": "o",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "s",
-        "to": "s",
-        "type": "same",
-        "note": "Same"
-      }
-    ],
-    "etymology": {
-      "protoForm": "*ǵʰeh₂w-",
-      "protoLanguage": "proto-indo-european",
-      "protoGloss": "to gape, yawn",
-      "derivation": "From the root *ǵʰeh₂w- \"to yawn, gape\"; related to χαίνω \"to gape open.\" In Hesiod, Khaos is the first thing to come into existence.",
-      "certainty": "attested",
-      "cognates": [
-        {
-          "language": "english",
-          "form": "gap",
-          "relationship": "cognate",
-          "note": "From a Germanic root related to the same PIE *ǵʰeh₂w-"
-        },
-        {
-          "language": "english",
-          "form": "chaos",
-          "relationship": "derivative",
-          "note": "Borrowed via Latin from Greek Khaos"
-        }
-      ]
-    },
-    "senses": [
-      {
-        "type": "primary",
-        "text": "In Hesiod's Theogony, the primordial gap or void from which all else arises."
-      },
-      {
-        "type": "etymology",
-        "text": "The modern word \"chaos\" descends from this, though its meaning shifted from \"void\" to \"disorder.\""
-      }
-    ]
-  },
-  {
     "id": "narke",
     "ascii": "narke",
     "unicode": "Nárkē",
@@ -53834,7 +53554,16 @@ const LEXICON = [
     "domain": "War, Glory, Rage",
     "meaning": "Possibly 'grief of the people' (from ἄχος + λαός), or a pre-Greek name",
     "sources": ["LSJ", "Iliad", "Beekes"],
-    "variants": [],
+    "variants": [
+      {
+        "unicode": "Achillēs",
+        "type": "alt",
+        "note": "Latinized form (English Achilles); the temple uses the Greek Achilleús.",
+        "sources": [
+          "LSJ"
+        ]
+      }
+    ],
     "breakdown": [
         { char: "a", to: "A", type: "same", note: "Same letter" },
         { char: "c", to: "c", type: "same", note: "Same letter" },
@@ -53938,7 +53667,15 @@ const LEXICON = [
     "meaning": "Possibly from πηγή (spring) or a pre-Greek name",
     "sources": ["LSJ", "Hesiod", "Pindar"],
     "variants": [
-      { "unicode": "Pēgasos", "type": "macron-only", "note": "LSJ convention: length only, no stress mark" }
+      { "unicode": "Pēgasos", "type": "macron-only", "note": "LSJ convention: length only, no stress mark" },
+      {
+        "unicode": "Pégasos",
+        "type": "alt",
+        "note": "Latinized form Pegasus; the temple uses the Greek Pḗgasos.",
+        "sources": [
+          "LSJ"
+        ]
+      }
     ],
     "breakdown": [
         { char: "p", to: "P", type: "same", note: "Same letter" },

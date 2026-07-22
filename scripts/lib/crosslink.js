@@ -40,23 +40,22 @@ function capitalize(s) {
 }
 
 // Build the match table once: [{ id, form }] sorted longest-first so
-// overlapping names match the longest form first.
+// overlapping names match the longest form first. Entry variants (Latinized /
+// alternate forms registered on canonical entries) resolve to that entry.
 const MATCHES = [];
-for (const e of entries) {
-  if (e.unicode && e.unicode.length >= 2 && e.unicode !== e.ascii) {
-    // Diacritic/native-script forms always match. Plain ASCII "unicode" forms
-    // (capitalized spelling only) follow the same rules as ASCII mentions.
-    if (/[^\x00-\x7F]/.test(e.unicode)) {
-      MATCHES.push({ id: e.id, form: e.unicode });
-    }
+function pushForm(id, form, { asciiLike = false } = {}) {
+  if (!form || form.length < 2) return;
+  if (/[^\x00-\x7F]/.test(form)) {
+    MATCHES.push({ id, form });
+  } else if (asciiLike && form.length >= 4 && !AMBIGUOUS_ASCII.has(form.toLowerCase())) {
+    MATCHES.push({ id, form });
   }
-  if (
-    e.ascii &&
-    /^[a-z][a-z-]+$/.test(e.ascii) &&
-    e.ascii.length >= 4 &&
-    !AMBIGUOUS_ASCII.has(e.ascii)
-  ) {
-    MATCHES.push({ id: e.id, form: capitalize(e.ascii) });
+}
+for (const e of entries) {
+  if (e.unicode && e.unicode !== e.ascii) pushForm(e.id, e.unicode);
+  if (e.ascii && /^[a-z][a-z-]+$/.test(e.ascii)) pushForm(e.id, capitalize(e.ascii), { asciiLike: true });
+  for (const v of e.variants || []) {
+    if (v && typeof v.unicode === 'string') pushForm(e.id, v.unicode, { asciiLike: true });
   }
 }
 MATCHES.sort((a, b) => b.form.length - a.form.length);

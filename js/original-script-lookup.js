@@ -851,10 +851,6 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "originalScript": "Ἀριάδνη",
     "scriptName": "Greek"
   },
-  "europa": {
-    "originalScript": "Εὐρώπη",
-    "scriptName": "Greek"
-  },
   "ganymede": {
     "originalScript": "Γανυμήδης",
     "scriptName": "Greek"
@@ -961,10 +957,6 @@ const ORIGINAL_SCRIPT_LOOKUP = {
   },
   "phanes": {
     "originalScript": "Φάνης",
-    "scriptName": "Greek"
-  },
-  "achilles": {
-    "originalScript": "Ἀχιλλεύς",
     "scriptName": "Greek"
   },
   "odysseus": {
@@ -1113,10 +1105,6 @@ const ORIGINAL_SCRIPT_LOOKUP = {
   },
   "sphinx": {
     "originalScript": "Σφίγξ",
-    "scriptName": "Greek"
-  },
-  "pegasus": {
-    "originalScript": "Πήγασος",
     "scriptName": "Greek"
   },
   "seiren": {
@@ -2399,10 +2387,6 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "originalScript": "文殊",
     "scriptName": "Chinese characters"
   },
-  "delphi": {
-    "originalScript": "Δελφοί",
-    "scriptName": "Greek"
-  },
   "olympia": {
     "originalScript": "Ὀλυμπία",
     "scriptName": "Greek"
@@ -2721,10 +2705,6 @@ const ORIGINAL_SCRIPT_LOOKUP = {
   },
   "adamas": {
     "originalScript": "ἀδάμας",
-    "scriptName": "Greek"
-  },
-  "khaos": {
-    "originalScript": "Χάος",
     "scriptName": "Greek"
   },
   "narke": {

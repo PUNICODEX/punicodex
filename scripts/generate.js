@@ -64,6 +64,7 @@ const scripts = [
   'scripts/gen-sitemap.js',
   'scripts/inject-analytics.js',
   'scripts/inject-university-collaborators.js',
+  'scripts/inject-herald-beacon.js',
   'scripts/sync-admin-portal.js',
   'scripts/sync-interstitial.js',
   'scripts/sync-mobile-menu.js',

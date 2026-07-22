@@ -49,6 +49,10 @@ const CHECKS = [
   { path: '/api/v1/version/', status: 200, markers: ['"version"'], json: true },
   { path: '/api/newsletter/subscribe/', status: 405, markers: [] }, // GET refused
   { path: '/api/contact/', status: 405, markers: [] }, // GET refused
+  // Herald beacon assets
+  { path: '/js/herald-beacon.js', status: 200, markers: ['herald-beacon'] },
+  { path: '/css/herald-beacon.css', status: 200, markers: ['herald-beacon'], },
+  { path: '/pantheon/', status: 200, markers: ['PUNICODEX-HERALD-BEACON-START'] },
 ];
 
 let failed = 0;

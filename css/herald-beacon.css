@@ -1,0 +1,319 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   The Herald Beacon — persistent capture surface for The Unicode Herald.
+   First-visit only, dismissible, enterprise-grade. GPU-only motion; no CLS.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.herald-beacon {
+  --hb-void: #0a0a0a;
+  --hb-void-2: #111111;
+  --hb-gold: #d4af37;
+  --hb-gold-bright: #f0d878;
+  --hb-gold-dim: rgba(212, 175, 55, 0.35);
+  --hb-ivory: #f5f0e1;
+  --hb-dim: #a0a0a0;
+  --hb-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 990;
+  font-family: var(--font-body, 'Inter', system-ui, sans-serif);
+}
+
+/* ─── Seal ─── */
+.herald-beacon__seal {
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  padding: 0;
+  border: 2px solid var(--hb-gold);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, var(--hb-void-2), var(--hb-void) 70%);
+  cursor: pointer;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.6),
+    0 8px 28px rgba(0, 0, 0, 0.55),
+    0 0 18px var(--hb-gold-dim);
+  transition: transform 0.35s var(--hb-ease), box-shadow 0.35s var(--hb-ease);
+}
+
+.herald-beacon__seal:hover,
+.herald-beacon__seal:focus-visible {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.6),
+    0 12px 34px rgba(0, 0, 0, 0.6),
+    0 0 30px rgba(212, 175, 55, 0.55);
+  outline: none;
+}
+
+.herald-beacon__seal:focus-visible {
+  outline: 2px solid var(--hb-gold-bright);
+  outline-offset: 3px;
+}
+
+.herald-beacon__seal svg {
+  width: 30px;
+  height: 30px;
+  color: var(--hb-gold-bright);
+  transition: transform 0.35s var(--hb-ease);
+}
+
+/* Breathing ring — opacity/transform only */
+.herald-beacon__pulse {
+  position: absolute;
+  inset: -2px;
+  border: 2px solid var(--hb-gold);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: hb-pulse 3.2s var(--hb-ease) infinite;
+}
+
+@keyframes hb-pulse {
+  0% { transform: scale(1); opacity: 0.55; }
+  70% { transform: scale(1.55); opacity: 0; }
+  100% { transform: scale(1.55); opacity: 0; }
+}
+
+/* ─── Card ─── */
+.herald-beacon__card {
+  position: absolute;
+  bottom: 76px;
+  right: 0;
+  width: min(380px, calc(100vw - 48px));
+  background: linear-gradient(180deg, var(--hb-void-2), var(--hb-void) 60%);
+  border: 1px solid var(--hb-gold-dim);
+  border-radius: 14px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.65), 0 0 24px rgba(212, 175, 55, 0.08);
+  padding: 1.5rem 1.5rem 1.25rem;
+  opacity: 0;
+  transform: translateY(12px) scale(0.97);
+  transform-origin: bottom right;
+  pointer-events: none;
+  transition: opacity 0.3s var(--hb-ease), transform 0.3s var(--hb-ease);
+}
+
+.herald-beacon__card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.55), transparent 40%, transparent 70%, rgba(212, 175, 55, 0.25));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.herald-beacon--open .herald-beacon__card {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.herald-beacon--open .herald-beacon__pulse { display: none; }
+
+.herald-beacon__close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  color: var(--hb-dim);
+  font-size: 1.05rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.herald-beacon__close:hover,
+.herald-beacon__close:focus-visible {
+  color: var(--hb-gold-bright);
+  border-color: var(--hb-gold-dim);
+  outline: none;
+}
+
+.herald-beacon__kicker {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-display, 'Cinzel', serif);
+  font-size: 0.68rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--hb-gold);
+}
+
+.herald-beacon__title {
+  margin: 0 0 0.6rem;
+  font-family: var(--font-display, 'Cinzel', serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--hb-ivory);
+}
+
+.herald-beacon__pitch {
+  margin: 0 0 1.1rem;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--hb-dim);
+}
+
+.herald-beacon__pitch em {
+  color: var(--hb-gold-bright);
+  font-style: normal;
+}
+
+/* ─── Form ─── */
+.herald-beacon__form { display: grid; gap: 0.6rem; }
+
+.herald-beacon__field {
+  width: 100%;
+  padding: 0.72rem 0.85rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  border-radius: 8px;
+  color: var(--hb-ivory);
+  font-size: 0.92rem;
+  font-family: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.herald-beacon__field::placeholder { color: rgba(160, 160, 160, 0.6); }
+
+.herald-beacon__field:focus {
+  outline: none;
+  border-color: var(--hb-gold);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.16);
+}
+
+.herald-beacon__field[aria-invalid='true'] {
+  border-color: #c0392b;
+  box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.16);
+}
+
+.herald-beacon__optional {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(160, 160, 160, 0.65);
+}
+
+.herald-beacon__submit {
+  margin-top: 0.2rem;
+  padding: 0.78rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #e8c558, var(--hb-gold));
+  color: #14100a;
+  font-family: var(--font-display, 'Cinzel', serif);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.25s var(--hb-ease), box-shadow 0.25s var(--hb-ease), filter 0.2s;
+}
+
+.herald-beacon__submit:hover,
+.herald-beacon__submit:focus-visible {
+  transform: translateY(-1px);
+  filter: brightness(1.06);
+  box-shadow: 0 8px 22px rgba(212, 175, 55, 0.35);
+  outline: none;
+}
+
+.herald-beacon__submit:disabled {
+  opacity: 0.6;
+  cursor: default;
+  transform: none;
+  box-shadow: none;
+}
+
+.herald-beacon__micro {
+  margin: 0.35rem 0 0;
+  font-size: 0.72rem;
+  color: rgba(160, 160, 160, 0.6);
+  text-align: center;
+}
+
+.herald-beacon__error {
+  display: block;
+  font-size: 0.78rem;
+  color: #e08073;
+  min-height: 1em;
+}
+
+.herald-beacon__success {
+  text-align: center;
+  padding: 0.5rem 0 0.25rem;
+}
+
+.herald-beacon__success-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 0.7rem;
+  border: 1.5px solid var(--hb-gold);
+  border-radius: 50%;
+  color: var(--hb-gold-bright);
+  font-size: 1.2rem;
+}
+
+.herald-beacon__success p {
+  margin: 0.35rem 0;
+  font-size: 0.9rem;
+  color: var(--hb-ivory);
+  line-height: 1.5;
+}
+
+.herald-beacon__success .herald-beacon__snippet {
+  margin-top: 0.75rem;
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 0.82rem;
+  color: var(--hb-dim);
+  border-top: 1px solid var(--hb-gold-dim);
+  padding-top: 0.75rem;
+}
+
+/* Honeypot — invisible to humans, not to bots */
+.herald-beacon__hp {
+  position: absolute !important;
+  left: -10000px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* ─── Mobile: bottom sheet ─── */
+@media (max-width: 640px) {
+  .herald-beacon { bottom: 16px; right: 16px; }
+
+  .herald-beacon__card {
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    width: auto;
+    transform-origin: bottom center;
+    padding-bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* ─── Reduced motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  .herald-beacon__pulse { animation: none; display: none; }
+  .herald-beacon__seal,
+  .herald-beacon__card,
+  .herald-beacon__submit { transition: none; }
+}

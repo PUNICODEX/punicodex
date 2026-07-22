@@ -22,7 +22,12 @@ function getBaseTempleDirs() {
     .filter((d) => d.isDirectory())
     .map((d) => d.name)
     .filter((name) => fs.existsSync(path.join(SITES_DIR, name, 'index.html')))
-    .filter((name) => !fs.existsSync(path.join(SITES_DIR, name, 'patron', 'index.html')));
+    .filter((name) => !fs.existsSync(path.join(SITES_DIR, name, 'patron', 'index.html')))
+    .filter((name) => {
+      // Redirect stubs (deduped entries) are intentionally minimal pages.
+      const html = fs.readFileSync(path.join(SITES_DIR, name, 'index.html'), 'utf8');
+      return !html.includes('http-equiv="refresh"');
+    });
 }
 
 function loadHomePage(id) {
