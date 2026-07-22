@@ -243,6 +243,46 @@ async function createCreativeCheckoutSession({ purchaseId, email, assetTitle, am
   return { sessionUrl: session.url, sessionId: session.id };
 }
 
+async function createStoreCheckoutSession({ order, product }) {
+  const base = process.env.PLATFORM_URL || 'http://localhost:3456';
+  const session = await getStripe().checkout.sessions.create({
+    payment_method_types: ['card'],
+    line_items: [
+      {
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: product.name,
+            description:
+              order.variant_label && order.variant_label !== 'One size'
+                ? `PuniCodex merch — ${order.variant_label}`
+                : 'PuniCodex merch — printed on demand',
+          },
+          unit_amount: product.unitPriceCents,
+        },
+        quantity: order.quantity,
+      },
+    ],
+    mode: 'payment',
+    shipping_address_collection: { allowed_countries: ['US', 'GB', 'AU', 'CA', 'DE', 'FR', 'NZ'] },
+    success_url: `${base}/store/?order=${order.order_ref}&session_id={CHECKOUT_SESSION_ID}&paid=1`,
+    cancel_url: `${base}/store/?order=${order.order_ref}&canceled=1`,
+    customer_email: order.customer_email || undefined,
+    metadata: {
+      type: 'store_order',
+      order_ref: order.order_ref,
+    },
+    payment_intent_data: {
+      metadata: {
+        type: 'store_order',
+        order_ref: order.order_ref,
+      },
+    },
+  });
+
+  return { sessionUrl: session.url, sessionId: session.id };
+}
+
 async function handleWebhook(payload, signature) {
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
   if (!webhookSecret) {
@@ -293,6 +333,16 @@ async function handleWebhook(payload, signature) {
       );
       return { event: 'payment.success', type: 'creative_purchase', purchase };
     }
+    if (metadata.type === 'store_order') {
+      const { markStoreOrderPaid } = require('./store-orders');
+      const order = markStoreOrderPaid({
+        orderRef: metadata.order_ref,
+        stripeSessionId: session.id,
+        stripePaymentIntent: session.payment_intent,
+        session,
+      });
+      return { event: 'payment.success', type: 'store_order', order };
+    }
     const claim = await markClaimPaid(session.id, session.payment_intent);
     return { event: 'payment.success', type: 'claim', claim };
   }
@@ -314,6 +364,7 @@ module.exports = {
   createRenewalCheckoutSession,
   createCreativeCheckoutSession,
   createPatronCheckoutSession,
+  createStoreCheckoutSession,
   handleWebhook,
   PRICE_BASE,
   PRICE_PREMIUM,

@@ -44,6 +44,11 @@ async function processWebhook(rawBody, signature) {
     }
   }
 
+  if (result && result.type === 'store_order' && result.order) {
+    const { fulfillStoreOrder } = require('./store-fulfillment');
+    await fulfillStoreOrder(result.order).catch(() => {});
+  }
+
   return result;
 }
 

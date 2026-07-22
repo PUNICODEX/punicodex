@@ -62,8 +62,31 @@ scripts/sync-printful-products.js  →  Printful API (phase 2 sync worker;
 Margins fund the corpus (new domains + hosting). Review quarterly with the
 analytics reports promised to sponsors.
 
+## Phase 3 (live checkout)
+
+- `POST /api/store/checkout` (`api/store/checkout.js`) creates a Stripe
+  checkout session for any purchasable product (catalog POD entries with a
+  `printfulProductId`, or live creator merch `creator-{id}`). Rate-limited
+  with the stricter public bucket.
+- The Stripe webhook (`metadata.type === 'store_order'`) marks the order
+  paid, settles the creator 50/50 ledger for creator merch (idempotent on
+  `order_ref`), and fulfills inline: catalog POD → Printful order create +
+  confirm (`platform/api/printful-orders.js`), creator merch →
+  `fulfillment_queued` for operator fulfillment.
+- `/api/webhook/printful?token=…` receives `package_shipped` /
+  `order_failed` / `order_cancelled` and emails tracking
+  (`scripts/register-printful-webhook.js` registers it; token in
+  `PRINTFUL_WEBHOOK_TOKEN`).
+- `GET /api/store/orders?ref=…&session_id=…` powers the success-page
+  order banner; the Stripe session id is the bearer proof.
+- Order state lives in `store_orders` (`platform/db/migrate-store-orders.js`);
+  per-size sync-variant maps (`printfulVariants`) are backfilled by
+  `scripts/backfill-printful-variants.js` after the sync batch.
+
 ## Creatives tie-in
 
 The `/creatives/` marketplace already produces student-made temple designs.
-Phase 2 adds a "print this design" CTA on creatives cards, routing approved
-student work into the same POD pipeline with a royalty share for the student.
+Consented, approved works list as `creator-{id}` merch through the same
+checkout and settle 50% of net margin to the student via
+`creator_order_ledger` (see docs/creator-merch.md; payouts remain
+ledger-based until Stripe Connect).

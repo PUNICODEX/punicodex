@@ -53,6 +53,10 @@ const SUITES = [
     timeout: 60000,
   },
   { name: 'WebP Upload Pipeline Tests', cmd: 'node test/image-webp.test.js', timeout: 60000 },
+  { name: 'Store Orders Tests', cmd: 'node test/store-orders.test.js', timeout: 60000 },
+  { name: 'Store Checkout Tests', cmd: 'node test/store-checkout.test.js', timeout: 60000 },
+  { name: 'Store Webhook Tests', cmd: 'node test/store-webhook.test.js', timeout: 60000 },
+  { name: 'Printful Webhook Tests', cmd: 'node test/printful-webhook.test.js', timeout: 60000 },
   {
     name: 'Newsletter Subscribe Tests',
     cmd: 'node test/newsletter-subscribe.test.js',

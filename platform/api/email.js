@@ -414,6 +414,51 @@ async function sendAnalyticsReport({ email, booking, metrics }) {
   });
 }
 
+async function notifyStoreOrderConfirmation({ email, orderRef, productName, variantLabel, quantity, status }) {
+  const orderUrl = `${PLATFORM_URL}/store/?order=${encodeURIComponent(orderRef)}`;
+  const statusLine =
+    status === 'sent_to_fulfillment'
+      ? 'Your order is confirmed and already on its way to the print house.'
+      : status === 'fulfillment_queued'
+        ? 'Your order is confirmed — our studio prepares this handcrafted piece for printing.'
+        : 'Your order is confirmed. You will hear from us as it moves.';
+  return sendEmail({
+    to: email,
+    subject: `PuniCodex order ${orderRef} confirmed`,
+    html: `
+      <div style="font-family:system-ui,sans-serif;max-width:480px;margin:0 auto;color:#111;">
+        <h2 style="color:#d4af37;">PuniCodex — Order Confirmed</h2>
+        <p>Hi there,</p>
+        <p>${escapeHtml(statusLine)}</p>
+        <table style="width:100%;border-collapse:collapse;font-size:0.9rem;margin:1rem 0;">
+          <tr><td style="padding:6px;color:#666;">Order</td><td style="padding:6px;text-align:right;font-weight:600;">${escapeHtml(orderRef)}</td></tr>
+          <tr><td style="padding:6px;color:#666;">Item</td><td style="padding:6px;text-align:right;">${escapeHtml(productName)}</td></tr>
+          <tr><td style="padding:6px;color:#666;">Variant</td><td style="padding:6px;text-align:right;">${escapeHtml(variantLabel || 'One size')}</td></tr>
+          <tr><td style="padding:6px;color:#666;">Quantity</td><td style="padding:6px;text-align:right;">${escapeHtml(String(quantity))}</td></tr>
+        </table>
+        <p><a href="${escapeHtml(orderUrl)}" style="display:inline-block;background:#d4af37;color:#000;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600;">Track Order</a></p>
+        <p style="color:#666;font-size:13px;">We email you the moment your order ships, with tracking.</p>
+      </div>
+    `,
+  });
+}
+
+async function notifyStoreOrderShipped({ email, orderRef, productName, trackingUrl, carrier }) {
+  return sendEmail({
+    to: email,
+    subject: `Your PuniCodex order ${orderRef} has shipped`,
+    html: `
+      <div style="font-family:system-ui,sans-serif;max-width:480px;margin:0 auto;color:#111;">
+        <h2 style="color:#d4af37;">PuniCodex — Order Shipped</h2>
+        <p>Hi there,</p>
+        <p><strong>${escapeHtml(productName)}</strong> from order <strong>${escapeHtml(orderRef)}</strong> is on its way${carrier ? ` via ${escapeHtml(carrier)}` : ''}.</p>
+        ${trackingUrl ? `<p><a href="${escapeHtml(trackingUrl)}" style="display:inline-block;background:#d4af37;color:#000;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600;">Track Shipment</a></p>` : ''}
+        <p style="color:#666;font-size:13px;">May it carry the temple's presence into your home.</p>
+      </div>
+    `,
+  });
+}
+
 async function notifyPatronWelcome({ email, displayName, templeId }) {
   const templeUrl = `${PLATFORM_URL}/sites/${templeId}/`;
   return sendEmail({
@@ -538,6 +583,8 @@ module.exports = {
   sendAnalyticsReport,
   notifyCreativePurchaseReady,
   notifyPatronWelcome,
+  notifyStoreOrderConfirmation,
+  notifyStoreOrderShipped,
   notifyScholarsAccountProvisioned,
   notifyAdminPasswordReset,
   notifyTenantAccountProvisioned,
