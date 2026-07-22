@@ -34,34 +34,10 @@
     const sortSelect = document.getElementById('filter-sort');
 
 
-    // ─── Pantheon labels ───
-    const PANTHEON_LABELS = {
-        greek: 'Greek',
-        'greek-location': 'Greek Locations',
-        roman: 'Roman',
-        norse: 'Norse',
-        egyptian: 'Egyptian',
-        sanskrit: 'Sanskrit',
-        celtic: 'Celtic',
-        mesopotamian: 'Mesopotamian',
-        polynesian: 'Polynesian',
-        japanese: 'Japanese',
-        nahuatl: 'Nahuatl',
-        yoruba: 'Yoruba',
-        slavic: 'Slavic',
-        zoroastrian: 'Zoroastrian',
-        incan: 'Incan',
-        canaanite: 'Canaanite',
-        chinese: 'Chinese',
-        buddhist: 'Buddhist',
-        taoist: 'Taoist',
-        korean: 'Korean',
-        phoenician: 'Phoenician',
-        hittite: 'Hittite',
-        aboriginal: 'Aboriginal',
-        mapuche: 'Mapuche',
-        baltic: 'Baltic',
-    };
+    // ─── Pantheon labels (canonical: type/js/pantheon-meta.js global) ───
+    const PANTHEON_LABELS = Object.fromEntries(
+        Object.entries(PANTHEON_META).map(([id, meta]) => [id, meta.label])
+    );
 
     // ─── Tier subtype helper (mirrors generator logic) ───
     function getTierSubtype(entry) {

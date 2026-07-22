@@ -11,6 +11,9 @@ const path = require('node:path');
 const { domainToASCII } = require('node:url');
 
 const { LEXICON } = require('../type/js/lexicon.js');
+const { PANTHEON_META: META } = require('../type/js/pantheon-meta.js');
+const { wikidataUrlFor } = require('./lib/wikidata-links.js');
+const { autoLink } = require('./lib/crosslink.js');
 const { SOURCE_CATALOG } = require('../type/js/source-catalog.js');
 const {
   getOriginalScript,
@@ -191,25 +194,11 @@ const PANTHEON_COLORS = {
   },
 };
 
-const PANTHEON_LABELS = {
-  greek: 'Greek',
-  'greek-location': 'Greek',
-  norse: 'Old Norse',
-  egyptian: 'Egyptian',
-  sanskrit: 'Sanskrit',
-  celtic: 'Celtic',
-  mesopotamian: 'Mesopotamian',
-  polynesian: 'Polynesian',
-  japanese: 'Japanese',
-  nahuatl: 'Nahuatl',
-  yoruba: 'Yoruba',
-  slavic: 'Slavic',
-  zoroastrian: 'Zoroastrian',
-  incan: 'Incan',
-  mapuche: 'Mapuche',
-  aboriginal: 'Aboriginal',
-  canaanite: 'Canaanite',
-};
+// Canonical source: type/js/pantheon-meta.js. Temple prose uses proseLabel
+// where defined (Old Norse, Greek) and the generic label otherwise.
+const PANTHEON_LABELS = Object.fromEntries(
+  Object.entries(META).map(([id, m]) => [id, m.proseLabel || m.label])
+);
 
 // ─── Helpers ───
 
@@ -509,9 +498,19 @@ function generateTempleHTML(entry, related) {
   const pageTitle = domainStatus.isOwned
     ? `${hasOriginal ? `${originalScript} — ` : ''}${entry.unicode} | ${entry.domain} | PUNICODEX`
     : `${entry.unicode} — ${entry.meaning || entry.domain} | PUNICODEX`;
+  const hasStressForDesc = entry.breakdown.some((b) => b.type === 'stress');
+  const hasLengthForDesc = entry.breakdown.some((b) => b.type === 'length');
+  const distinctiveClause =
+    hasStressForDesc && hasLengthForDesc
+      ? 'The restoration records both the stress and the vowel length the ASCII form drops.'
+      : hasStressForDesc
+        ? 'The restoration records the stress the ASCII form drops.'
+        : hasLengthForDesc
+          ? 'The restoration records the vowel length the ASCII form drops.'
+          : '';
   const pageDesc = domainStatus.isOwned
-    ? `Discover ${entry.unicode}.com — the authentic Unicode domain for ${hasOriginal ? `${originalScript}, ` : ''}${entry.domain}. Scholarly orthography, Punycode encoding, and sources: ${entry.sources.join(', ')}.`
-    : `Scholarly profile of ${entry.unicode} — ${entry.meaning || entry.domain}. PUNICODEX documents the authentic Unicode orthography. Sources: ${entry.sources.join(', ')}.`;
+    ? `Discover ${entry.unicode}.com — the authentic Unicode domain for ${hasOriginal ? `${originalScript}, ` : ''}${entry.domain}. ${distinctiveClause} Scholarly orthography, Punycode encoding, and sources: ${entry.sources.join(', ')}.`.replace(/\s{2,}/g, ' ')
+    : `Scholarly profile of ${entry.unicode} — ${entry.meaning || entry.domain}. ${distinctiveClause} PUNICODEX documents the authentic Unicode orthography. Sources: ${entry.sources.join(', ')}.`.replace(/\s{2,}/g, ' ');
   const canonicalUrl = `https://punicodex.com/sites/${entry.id}/`;
 
   // Tier feature cards
@@ -537,11 +536,13 @@ function generateTempleHTML(entry, related) {
     <meta property="og:url" content="${canonicalUrl}">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="PUNICODEX">
-    <meta property="og:image" content="https://punicodex.com/assets/brand/05-social/punicodex-og-image-1200x630.png">
+    <meta property="og:image" content="https://punicodex.com/assets/og/${entry.id}.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://punicodex.com/assets/brand/05-social/punicodex-og-image-1200x630.png">
+    <meta name="twitter:image" content="https://punicodex.com/assets/og/${entry.id}.jpg">
     <meta name="twitter:title" content="${escapeHtml(pageTitle)}">
     <meta name="twitter:description" content="${escapeHtml(pageDesc)}">
     
@@ -559,15 +560,23 @@ ${JSON.stringify(
       name: hasOriginal ? originalScript : entry.unicode,
       alternateName: [entry.ascii, entry.unicode],
       description: entry.meaning,
+      ...(wikidataUrlFor(entry.id) ? { sameAs: [wikidataUrlFor(entry.id)] } : {}),
     },
-    isPartOf: {
-      '@type': 'WebSite',
-      name: 'PUNICODEX',
-      url: 'https://punicodex.com',
-    },
+    isPartOf: [
+      {
+        '@type': 'WebSite',
+        name: 'PUNICODEX',
+        url: 'https://punicodex.com',
+      },
+      {
+        '@type': 'Collection',
+        name: `${META[entry.pantheon]?.label || entry.pantheon} — PUNICODEX Lexicon`,
+        url: 'https://punicodex.com/pantheon/',
+      },
+    ],
     primaryImageOfPage: {
       '@type': 'ImageObject',
-      url: 'https://punicodex.com/assets/brand/05-social/punicodex-og-image-1200x630.png',
+      url: `https://punicodex.com/assets/og/${entry.id}.jpg`,
     },
   },
   null,
@@ -1129,7 +1138,8 @@ async function main() {
 
     try {
       const related = getRelatedEntries(entry, LEXICON);
-      const html = generateTempleHTML(entry, related);
+      // Crosslink deity mentions in the base-temple prose to their temples.
+      const html = autoLink(generateTempleHTML(entry, related), { selfId: entry.id });
 
       fs.mkdirSync(dir, { recursive: true });
       // Atomic write with retry: avoid Windows file-lock issues by writing to

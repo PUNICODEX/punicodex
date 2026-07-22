@@ -106,8 +106,9 @@ function transformWikilinks(html, { hrefFor = (id) => `/sites/${id}/` } = {}) {
 function autoLink(html, { selfId, hrefFor = (id) => `/sites/${id}/`, maxPerEntry = 1 } = {}) {
   const linkedCount = new Map();
   // Document mode for full pages (doctype/head intact), fragment mode for
-  // partial HTML (section bodies).
-  const isDocument = /^\s*<!doctype/i.test(html) || /^\s*<html[\s>]/i.test(html);
+  // partial HTML (section bodies). Templates may start with comments before
+  // the doctype, so scan the head of the document, not just its first char.
+  const isDocument = /<!doctype|<html[\s>]/i.test(html.slice(0, 1000));
   const $ = cheerio.load(html, { decodeEntities: false }, isDocument);
 
   function canLink(id) {
@@ -118,10 +119,12 @@ function autoLink(html, { selfId, hrefFor = (id) => `/sites/${id}/`, maxPerEntry
     .contents()
     .each((_, node) => {
       if (node.type !== 'text' || !node.data || !node.data.trim()) return;
-      // Skip ancestors: anchors/code/headings/related sections.
+      // Skip ancestors: anchors/code/headings/related sections. Note that in
+      // htmlparser2, <script> and <style> nodes have type 'script'/'style',
+      // not 'tag' — walk by node name, not type.
       let p = node.parent;
       let skip = false;
-      while (p && p.type === 'tag') {
+      while (p && p.name) {
         if (SKIP_TAGS.has(p.name) || /^h[1-6]$/.test(p.name)) {
           skip = true;
           break;

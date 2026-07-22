@@ -9,37 +9,12 @@ const { LEXICON } = require('../../type/js/lexicon.js');
 
 const entriesById = new Map(LEXICON.map((entry) => [entry.id, entry]));
 
+const { pantheonLabel: metaLabel } = require('../../type/js/pantheon-meta.js');
+
 function pantheonLabel(pantheon) {
+  // Canonical source: type/js/pantheon-meta.js. Never re-declare the map here.
   if (!pantheon) return null;
-  return (
-    {
-      greek: 'Greek',
-      'greek-location': 'Greek Location',
-      norse: 'Norse',
-      egyptian: 'Egyptian',
-      sanskrit: 'Sanskrit',
-      celtic: 'Celtic',
-      mesopotamian: 'Mesopotamian',
-      polynesian: 'Polynesian',
-      japanese: 'Japanese',
-      nahuatl: 'Nahuatl',
-      yoruba: 'Yoruba',
-      slavic: 'Slavic',
-      zoroastrian: 'Zoroastrian',
-      incan: 'Incan',
-      chinese: 'Chinese',
-      buddhist: 'Buddhist',
-      taoist: 'Taoist',
-      korean: 'Korean',
-      canaanite: 'Canaanite',
-      phoenician: 'Phoenician',
-      hittite: 'Hittite',
-      aboriginal: 'Aboriginal',
-      mapuche: 'Mapuche',
-      baltic: 'Baltic',
-      roman: 'Roman',
-    }[pantheon] || pantheon
-  );
+  return metaLabel(pantheon);
 }
 
 function loadGraph() {

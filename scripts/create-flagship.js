@@ -18,6 +18,8 @@ const cheerio = require('cheerio');
 const url = require('node:url');
 const { unicodeName } = require('unicode-name');
 const { autoLink } = require('./lib/crosslink.js');
+const { wikidataUrlFor } = require('./lib/wikidata-links.js');
+const { PANTHEON_META } = require('../type/js/pantheon-meta.js');
 
 const ROOT = path.join(__dirname, '..');
 const TEMPLATE_DIR = path.join(ROOT, 'templates', 'flagship');
@@ -2294,7 +2296,31 @@ function cleanSectionContent(html) {
   return inner.trim();
 }
 
-function generateHomePage(entry, palette, slotNames, templateDir, rentalTier = 'B') {
+function buildMetaDescription(entry, catalogEntry) {
+  // Lore-grade descriptions: the strongest opening of the cultural-legacy
+  // narrative when the catalog has one; otherwise the templated fallback.
+  if (catalogEntry?.culturalLegacy) {
+    const plain = catalogEntry.culturalLegacy
+      .replace(/<[^>]+>/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+    const sentences = plain.match(/[^.!?]+[.!?]/g) || [plain];
+    let desc = '';
+    for (const s of sentences) {
+      if ((desc + s).trim().length > 155) break;
+      desc = `${desc}${s.trim()} `;
+    }
+    desc = desc.trim();
+    if (desc.length >= 60) {
+      // Single quotes only: the description lives in a double-quoted HTML
+      // attribute AND inside a JSON-LD string — double quotes break both.
+      return desc.replace(/"/g, "'");
+    }
+  }
+  return `Scholarly restoration of ${entry.unicode}, the ${entry.domain}. Explore original script, pronunciation, and Unicode orthography.`;
+}
+
+function generateHomePage(entry, palette, slotNames, templateDir, rentalTier = 'B', catalogEntry = null) {
   let html = fs.readFileSync(path.join(templateDir, 'index.html'), 'utf8');
   const templeId = entry.id;
   const vars = {
@@ -2304,6 +2330,12 @@ function generateHomePage(entry, palette, slotNames, templateDir, rentalTier = '
     DOMAIN: entry.domain,
     MEANING: entry.meaning || '',
     TAGLINE: entry.tagline || '',
+    DESCRIPTION: buildMetaDescription(entry, catalogEntry),
+    SAME_AS_JSON: (() => {
+      const url = wikidataUrlFor(entry.id);
+      return url ? `,\n            "sameAs": ["${url}"]` : '';
+    })(),
+    PANTHEON_LABEL: PANTHEON_META[entry.pantheon]?.label || entry.pantheon,
     TIER_LABEL: entry.tierLabel || `Tier ${entry.tier}`,
     TIER_BADGES: tierBadgesHtml(entry),
     DOMAINS_TEXT: getDomainsText(entry),
@@ -2722,25 +2754,45 @@ function safeRenameSync(src, dest, retries = 5) {
   throw lastError;
 }
 
-function copyCreativesTemplate(siteDir, templateDir) {
+function substituteTempleVars(content, entry) {
+  return content
+    .split('{{TEMPLE_ID}}').join(entry.id)
+    .split('{{UNICODE}}').join(entry.unicode)
+    .split('{{ASCII}}').join(entry.ascii)
+    .split('{{DOMAIN}}').join(entry.domain || '');
+}
+
+function copyCreativesTemplate(siteDir, templateDir, entry) {
   const srcDir = path.join(templateDir, 'creatives');
   const destDir = path.join(siteDir, 'creatives');
   if (!fs.existsSync(srcDir)) return;
   fs.mkdirSync(destDir, { recursive: true });
-  for (const entry of fs.readdirSync(srcDir, { withFileTypes: true })) {
-    if (!entry.isFile()) continue;
-    safeCopyFileSync(path.join(srcDir, entry.name), path.join(destDir, entry.name));
+  for (const file of fs.readdirSync(srcDir, { withFileTypes: true })) {
+    if (!file.isFile()) continue;
+    const dest = path.join(destDir, file.name);
+    if (file.name.endsWith('.html')) {
+      const content = fs.readFileSync(path.join(srcDir, file.name), 'utf8');
+      fs.writeFileSync(dest, substituteTempleVars(content, entry), 'utf8');
+    } else {
+      safeCopyFileSync(path.join(srcDir, file.name), dest);
+    }
   }
 }
 
-function copyPatronTemplate(siteDir, templateDir) {
+function copyPatronTemplate(siteDir, templateDir, entry) {
   const srcDir = path.join(templateDir, 'patron');
   const destDir = path.join(siteDir, 'patron');
   if (!fs.existsSync(srcDir)) return;
   fs.mkdirSync(destDir, { recursive: true });
-  for (const entry of fs.readdirSync(srcDir, { withFileTypes: true })) {
-    if (!entry.isFile()) continue;
-    safeCopyFileSync(path.join(srcDir, entry.name), path.join(destDir, entry.name));
+  for (const file of fs.readdirSync(srcDir, { withFileTypes: true })) {
+    if (!file.isFile()) continue;
+    const dest = path.join(destDir, file.name);
+    if (file.name.endsWith('.html')) {
+      const content = fs.readFileSync(path.join(srcDir, file.name), 'utf8');
+      fs.writeFileSync(dest, substituteTempleVars(content, entry), 'utf8');
+    } else {
+      safeCopyFileSync(path.join(srcDir, file.name), dest);
+    }
   }
 }
 
@@ -2966,7 +3018,14 @@ function createFlagship(templeId, options = {}) {
   }
 
   const outputs = {
-    'index.html': generateHomePage(entry, palette, slotNames, TEMPLATE_DIR, archetype.rentalTier),
+    'index.html': generateHomePage(
+      entry,
+      palette,
+      slotNames,
+      TEMPLATE_DIR,
+      archetype.rentalTier,
+      catalog?.[entry.id]
+    ),
     'lore/index.html': generateLorePage(entry, palette, loreSections, TEMPLATE_DIR, catalog),
     'gallery/index.html': generateGalleryPage(entry, palette, TEMPLATE_DIR),
     'scholars/index.html': generateScholarsPage(templeId),
@@ -3053,8 +3112,8 @@ function createFlagship(templeId, options = {}) {
     safeRenameSync(tmpPath, outPath);
   }
 
-  copyCreativesTemplate(siteDir, TEMPLATE_DIR);
-  copyPatronTemplate(siteDir, TEMPLATE_DIR);
+  copyCreativesTemplate(siteDir, TEMPLATE_DIR, entry);
+  copyPatronTemplate(siteDir, TEMPLATE_DIR, entry);
   copyPatternsAssets(siteDir, TEMPLATE_DIR);
 
   console.log(`✓ ${templeId}: wrote ${Object.keys(outputs).length} files (backup: ${backupDir})`);

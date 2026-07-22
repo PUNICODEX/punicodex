@@ -264,35 +264,15 @@ const PUNICODEX_ENGINE = {
   },
 
   getPantheonEmoji(pantheon) {
-    return (
-      {
-        greek: '⚡',
-        'greek-location': '📍',
-        norse: '❄️',
-        egyptian: '☀️',
-        sanskrit: '🕉️',
-        celtic: '🌿',
-        mesopotamian: '🏛️',
-        polynesian: '🌊',
-        roman: '🦅',
-        japanese: '⛩️',
-        nahuatl: '🐍',
-        yoruba: '🥁',
-        slavic: '🔥',
-        zoroastrian: '☀️',
-        incan: '🦙',
-        chinese: '🐉',
-        buddhist: '☸️',
-        taoist: '☯️',
-        korean: '🇰🇷',
-        phoenician: '🌅',
-        hittite: '🦁',
-        canaanite: '🌴',
-        aboriginal: '🪃',
-        mapuche: '🌋',
-        baltic: '🌲',
-      }[pantheon] || '✦'
-    );
+    // Canonical source: type/js/pantheon-meta.js (browser global PANTHEON_META;
+    // Node require). Never re-declare the map here.
+    const meta =
+      typeof PANTHEON_META !== 'undefined'
+        ? PANTHEON_META
+        : typeof require !== 'undefined'
+          ? require('./pantheon-meta.js').PANTHEON_META
+          : {};
+    return meta[pantheon]?.emoji || '✦';
   },
 
   escapeHtml(text) {

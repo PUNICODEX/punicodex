@@ -224,27 +224,8 @@
             const matchIndex = entry.ascii.toLowerCase().indexOf(currentInput.toLowerCase());
             const before = entry.ascii.slice(0, matchIndex + currentInput.length);
             const after = entry.ascii.slice(matchIndex + currentInput.length);
-            const pantheonLabel = entry.pantheon === 'greek-location' ? '📍' :
-                entry.pantheon === 'greek' ? '⚡' :
-                entry.pantheon === 'norse' ? '❄️' :
-                entry.pantheon === 'egyptian' ? '☀️' :
-                entry.pantheon === 'sanskrit' ? '🕉️' :
-                entry.pantheon === 'celtic' ? '🌿' :
-                entry.pantheon === 'mesopotamian' ? '🏛️' :
-                entry.pantheon === 'polynesian' ? '🌊' :
-                entry.pantheon === 'japanese' ? '⛩️' :
-                entry.pantheon === 'nahuatl' ? '🐍' :
-                entry.pantheon === 'yoruba' ? '🥁' :
-                entry.pantheon === 'slavic' ? '🔥' :
-                entry.pantheon === 'zoroastrian' ? '☀️' :
-                entry.pantheon === 'incan' ? '🦙' :
-                entry.pantheon === 'chinese' ? '🐉' :
-                entry.pantheon === 'buddhist' ? '☸️' :
-                entry.pantheon === 'taoist' ? '☯️' :
-                entry.pantheon === 'korean' ? '🇰🇷' :
-                entry.pantheon === 'phoenician' ? '🌅' :
-                entry.pantheon === 'hittite' ? '🦁' :
-                entry.pantheon === 'canaanite' ? '🌴' : '✦';
+            // Canonical emoji source: type/js/pantheon-meta.js (browser global).
+            const pantheonLabel = PANTHEON_META[entry.pantheon]?.emoji || '✦';
             return `
                 <div class="completion-item" data-id="${entry.id}" id="completion-${i}" role="option" aria-selected="false">
                     <span class="completion-pantheon" aria-hidden="true">${pantheonLabel}</span>

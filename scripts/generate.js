@@ -47,6 +47,9 @@ const scripts = [
   'scripts/sync-public-copy.js',
   'scripts/generate-temples.js',
   'scripts/create-flagship.js --regenerate-all',
+  // Bakes 1200×630 OG share cards for every entry into assets/og/; templates
+  // reference them by convention (/assets/og/{id}.jpg).
+  'scripts/generate-og-images.js',
   // Must run AFTER create-flagship: flagship regeneration rewrites pages with
   // bare <img> markup, so the WebP/dimension enrichment only survives if applied last.
   'scripts/convert-images-to-webp.js',

@@ -70,33 +70,10 @@ const REQUIRED_FIELDS = [
   'sources',
   'breakdown',
 ];
-const ALLOWED_PANTHEONS = [
-  'greek',
-  'greek-location',
-  'norse',
-  'egyptian',
-  'sanskrit',
-  'celtic',
-  'mesopotamian',
-  'polynesian',
-  'japanese',
-  'nahuatl',
-  'yoruba',
-  'slavic',
-  'zoroastrian',
-  'incan',
-  'mapuche',
-  'aboriginal',
-  'chinese',
-  'buddhist',
-  'taoist',
-  'korean',
-  'phoenician',
-  'hittite',
-  'canaanite',
-  'baltic',
-  'roman',
-];
+// Canonical pantheon registry: type/js/pantheon-meta.js. Deriving the
+// allowed set from the meta map makes future pantheon additions one change.
+const { PANTHEON_META } = require('./pantheon-meta.js');
+const ALLOWED_PANTHEONS = Object.keys(PANTHEON_META);
 const ALLOWED_TIERS = ['dual', '1', '2'];
 const ASCII_REGEX = /^[a-z]+$/;
 

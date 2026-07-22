@@ -74,6 +74,16 @@ function run() {
     assert.ok(doc.includes('<p><a href="/sites/odinn/"'));
   });
 
+  test('never links inside <script> (JSON-LD) or <style> blocks', () => {
+    const out = autoLink(
+      '<!DOCTYPE html><html><body><script type="application/ld+json">{"d":"saving Zeus made"}</script><p>Zeus walks.</p><style>.zeus{color:red}</style></body></html>',
+      { selfId: 'rhea' }
+    );
+    assert.ok(out.includes('"saving Zeus made"'), 'JSON-LD text must stay untouched');
+    assert.ok(out.includes('.zeus{color:red}'), 'CSS must stay untouched');
+    assert.ok(out.includes('<p><a href="/sites/zeus/"'), 'prose still links');
+  });
+
   test('fragments are not wrapped in html/head/body', () => {
     const out = autoLink('<p>Þórr</p>', { selfId: null });
     assert.ok(!out.includes('<html'));

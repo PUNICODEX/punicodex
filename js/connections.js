@@ -6,32 +6,11 @@
       ? PX_CONNECTIONS_HELPERS
       : require('./connections-helpers.js');
 
-  const PANTHEON_COLORS = {
-    greek: '#D4AF37',
-    'greek-location': '#B8860B',
-    norse: '#87CEEB',
-    egyptian: '#228B22',
-    sanskrit: '#FF7F50',
-    celtic: '#32CD32',
-    mesopotamian: '#8B4513',
-    polynesian: '#20B2AA',
-    japanese: '#DC143C',
-    nahuatl: '#9ACD32',
-    yoruba: '#FFD700',
-    slavic: '#4682B4',
-    zoroastrian: '#FF4500',
-    incan: '#CD853F',
-    chinese: '#F08080',
-    buddhist: '#9932CC',
-    taoist: '#4169E1',
-    korean: '#FF69B4',
-    canaanite: '#800080',
-    phoenician: '#800000',
-    hittite: '#A0522D',
-    baltic: '#00CED1',
-    aboriginal: '#D2691E',
-    mapuche: '#2E8B57',
-  };
+  // Canonical source: type/js/pantheon-meta.js (loaded as a browser global
+  // before this script). Never re-declare the map here.
+  const PANTHEON_COLORS = Object.fromEntries(
+    Object.entries(PANTHEON_META).map(([id, meta]) => [id, meta.color])
+  );
 
   const state = {
     taxonomy: null,

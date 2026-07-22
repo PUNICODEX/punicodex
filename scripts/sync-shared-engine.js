@@ -18,7 +18,16 @@ const destinations = [
   path.join(root, 'mobile', 'shared', 'engine.js'),
 ];
 
+// The engine resolves pantheon emoji from the canonical meta module at
+// runtime (browser global / Node require), so the meta travels with it.
+const metaCanonical = path.join(root, 'type', 'js', 'pantheon-meta.js');
+const metaDestinations = [
+  path.join(root, 'extension', 'shared', 'pantheon-meta.js'),
+  path.join(root, 'mobile', 'shared', 'pantheon-meta.js'),
+];
+
 const content = fs.readFileSync(canonical, 'utf8');
+const metaContent = fs.readFileSync(metaCanonical, 'utf8');
 
 for (const dest of destinations) {
   // Unlink first so we never write through an existing hard link;
@@ -27,5 +36,13 @@ for (const dest of destinations) {
     fs.unlinkSync(dest);
   }
   fs.writeFileSync(dest, content, 'utf8');
+  console.log(`Synced ${path.relative(root, dest)}`);
+}
+
+for (const dest of metaDestinations) {
+  if (fs.existsSync(dest)) {
+    fs.unlinkSync(dest);
+  }
+  fs.writeFileSync(dest, metaContent, 'utf8');
   console.log(`Synced ${path.relative(root, dest)}`);
 }
