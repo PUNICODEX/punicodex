@@ -2,9 +2,16 @@
 /**
  * PuniCodex — POD product catalog generator.
  * Builds store/products.json from flagship archetypes: each temple gets a
- * small print-on-demand line (tee, art print, sticker) carrying its mascot.
+ * print-on-demand line carrying its three brand materials — the mascot
+ * (illustrated deity), the logomark (compact temple seal), and the
+ * logolockup (horizontal name lockup) — assigned per product by what
+ * actually reads well on the garment/object. A house line carries the
+ * PuniCodex brand itself.
+ *
  * Phase 1: links point at the temple + Printful storefront placeholders.
- * Phase 2 (API): sync real Printful product IDs via PRINTFUL_API_KEY.
+ * Phase 2 (API): sync real Printful product IDs via PRINTFUL_API_KEY
+ * (scripts/sync-printful-products.js). Synced printful* fields are
+ * preserved across regenerations.
  */
 const fs = require('node:fs');
 const path = require('node:path');
@@ -12,13 +19,62 @@ const path = require('node:path');
 const ROOT = path.join(__dirname, '..');
 const { ARCHETYPES } = require(path.join(ROOT, 'js', 'archetypes-v2.js'));
 
+function templeAssets(a) {
+  const base = `/sites/${a.id}/assets/${a.id}`;
+  return {
+    mascot: `${base}_mascot.webp`,
+    logomark: `${base}_logomark.webp`,
+    logolockup: `${base}_logolockup.webp`,
+  };
+}
+
+const HOUSE_ASSETS = {
+  wordmark: '/assets/brand/01-logos/punicodex-wordmark-camel-gold.webp',
+  wordmarkSolid: '/assets/brand/01-logos/punicodex-wordmark-gold-solid.webp',
+  emblem: '/assets/brand/01-logos/punicodex-emblem-gold.webp',
+  glyph: '/assets/brand/01-logos/punicodex-emblem-glyph-gold.webp',
+  lockupH: '/assets/brand/01-logos/punicodex-lockup-horizontal-gold.webp',
+  lockupS: '/assets/brand/01-logos/punicodex-lockup-stacked-gold.webp',
+};
+
+// design.placements describes which material prints where — the sync worker
+// maps `area` onto Printful placements (front/back/label).
 const LINES = [
   {
     kind: 'tee',
     category: 'apparel',
     name: (a) => `${a.name} Temple Tee`,
     price: 38.0,
-    blurb: 'Heavyweight organic cotton, temple gold on obsidian.',
+    blurb: 'Heavyweight organic cotton — the deity across the chest, the lockup riding the shoulders.',
+    design: {
+      placements: [
+        { area: 'front', asset: 'mascot', note: 'full mascot, centre chest' },
+        { area: 'back', asset: 'logolockup', note: 'lockup across the upper back' },
+      ],
+    },
+  },
+  {
+    kind: 'hoodie',
+    category: 'apparel',
+    name: (a) => `${a.name} Temple Hoodie`,
+    price: 58.0,
+    blurb: 'Pullover fleece — seal over the heart, the deity across the back.',
+    design: {
+      placements: [
+        { area: 'front', asset: 'logomark', note: 'left-chest seal' },
+        { area: 'back', asset: 'mascot', note: 'full mascot back print' },
+      ],
+    },
+  },
+  {
+    kind: 'crewneck',
+    category: 'apparel',
+    name: (a) => `${a.name} Temple Crewneck`,
+    price: 52.0,
+    blurb: 'Garment-dyed crewneck carrying the full name lockup.',
+    design: {
+      placements: [{ area: 'front', asset: 'logolockup', note: 'lockup, centre chest' }],
+    },
   },
   {
     kind: 'print',
@@ -26,36 +82,274 @@ const LINES = [
     name: (a) => `${a.name} Mascot Art Print`,
     price: 29.0,
     blurb: 'Museum-grade matte poster, 30×40 cm, ready to frame.',
+    design: {
+      placements: [{ area: 'front', asset: 'mascot', note: 'full-bleed mascot' }],
+    },
+  },
+  {
+    kind: 'canvas',
+    category: 'art-prints',
+    name: (a) => `${a.name} Mascot Canvas`,
+    price: 49.0,
+    blurb: 'Gallery-wrapped canvas, 45×60 cm — the deity, sealed in the corner.',
+    design: {
+      placements: [
+        { area: 'front', asset: 'mascot', note: 'full-bleed mascot' },
+        { area: 'front', asset: 'logomark', note: 'small seal, lower corner' },
+      ],
+    },
   },
   {
     kind: 'sticker',
     category: 'relics',
     name: (a) => `${a.name} Seal Sticker Set`,
     price: 9.0,
-    blurb: 'Three weatherproof vinyl seals of the temple mark.',
+    blurb: 'Three weatherproof vinyl seals — the deity, the mark, and the lockup.',
+    design: {
+      placements: [
+        { area: 'front', asset: 'mascot', note: 'die-cut mascot sticker' },
+        { area: 'front', asset: 'logomark', note: 'die-cut seal sticker' },
+        { area: 'front', asset: 'logolockup', note: 'die-cut lockup sticker' },
+      ],
+    },
+  },
+  {
+    kind: 'pin',
+    category: 'relics',
+    name: (a) => `${a.name} Seal Enamel Pin`,
+    price: 12.0,
+    blurb: 'Hard enamel pin of the temple mark, gold on obsidian.',
+    design: {
+      placements: [{ area: 'front', asset: 'logomark', note: 'seal only — reads at 25 mm' }],
+    },
+  },
+  {
+    kind: 'mug',
+    category: 'drinkware',
+    name: (a) => `${a.name} Temple Mug`,
+    price: 22.0,
+    blurb: '325 ml ceramic — the seal at your thumb, the deity facing the room.',
+    design: {
+      placements: [
+        { area: 'front', asset: 'logomark', note: 'seal, handle side' },
+        { area: 'back', asset: 'mascot', note: 'mascot, outward face' },
+      ],
+    },
+  },
+  {
+    kind: 'tumbler',
+    category: 'drinkware',
+    name: (a) => `${a.name} Temple Tumbler`,
+    price: 32.0,
+    blurb: 'Insulated 590 ml steel — the lockup wrapped vertical in gold.',
+    design: {
+      placements: [{ area: 'front', asset: 'logolockup', note: 'vertical lockup wrap' }],
+    },
+  },
+  {
+    kind: 'tote',
+    category: 'accessories',
+    name: (a) => `${a.name} Temple Tote`,
+    price: 26.0,
+    blurb: 'Heavy canvas carry-all — the lockup large, the deity tagged below.',
+    design: {
+      placements: [
+        { area: 'front', asset: 'logolockup', note: 'lockup, large centre' },
+        { area: 'front', asset: 'mascot', note: 'small mascot, lower corner' },
+      ],
+    },
+  },
+  {
+    kind: 'phonecase',
+    category: 'accessories',
+    name: (a) => `${a.name} Mascot Phone Case`,
+    price: 24.0,
+    blurb: 'Slim impact case — the deity, edge to edge.',
+    design: {
+      placements: [{ area: 'front', asset: 'mascot', note: 'edge-to-edge mascot' }],
+    },
+  },
+  {
+    kind: 'cap',
+    category: 'accessories',
+    name: (a) => `${a.name} Temple Cap`,
+    price: 28.0,
+    blurb: 'Six-panel dad cap, the temple mark embroidered in gold.',
+    design: {
+      placements: [{ area: 'front', asset: 'logomark', note: 'embroidered seal' }],
+    },
+  },
+  {
+    kind: 'notebook',
+    category: 'accessories',
+    name: (a) => `${a.name} Temple Notebook`,
+    price: 18.0,
+    blurb: 'A5 dotted journal — lockup on the cover, the seal on the spine.',
+    design: {
+      placements: [
+        { area: 'front', asset: 'logolockup', note: 'cover lockup' },
+        { area: 'back', asset: 'logomark', note: 'small seal, back cover' },
+      ],
+    },
+  },
+];
+
+// The house line — PuniCodex brand merch, not tied to a temple.
+const HOUSE_LINES = [
+  {
+    kind: 'tee',
+    category: 'apparel',
+    name: () => 'PuniCodex Wordmark Tee',
+    price: 34.0,
+    blurb: 'The camel-gold wordmark across the chest, the glyph at the nape.',
+    assets: HOUSE_ASSETS,
+    design: {
+      placements: [
+        { area: 'front', asset: 'wordmark', note: 'wordmark, centre chest' },
+        { area: 'back', asset: 'glyph', note: 'small glyph, upper back' },
+      ],
+    },
+  },
+  {
+    kind: 'hoodie',
+    category: 'apparel',
+    name: () => 'PuniCodex Obsidian Hoodie',
+    price: 56.0,
+    blurb: 'Emblem over the heart, the full lockup across the back.',
+    assets: HOUSE_ASSETS,
+    design: {
+      placements: [
+        { area: 'front', asset: 'emblem', note: 'left-chest emblem' },
+        { area: 'back', asset: 'lockupH', note: 'horizontal lockup back print' },
+      ],
+    },
+  },
+  {
+    kind: 'cap',
+    category: 'accessories',
+    name: () => 'PuniCodex Glyph Cap',
+    price: 26.0,
+    blurb: 'Six-panel cap, the gold glyph embroidered front and centre.',
+    assets: HOUSE_ASSETS,
+    design: { placements: [{ area: 'front', asset: 'glyph', note: 'embroidered glyph' }] },
+  },
+  {
+    kind: 'mug',
+    category: 'drinkware',
+    name: () => 'PuniCodex Lockup Mug',
+    price: 20.0,
+    blurb: '325 ml ceramic wrapped in the horizontal gold lockup.',
+    assets: HOUSE_ASSETS,
+    design: { placements: [{ area: 'front', asset: 'lockupH', note: 'lockup wrap' }] },
+  },
+  {
+    kind: 'tote',
+    category: 'accessories',
+    name: () => 'PuniCodex Stacked Tote',
+    price: 24.0,
+    blurb: 'Heavy canvas carry-all with the stacked gold lockup.',
+    assets: HOUSE_ASSETS,
+    design: { placements: [{ area: 'front', asset: 'lockupS', note: 'stacked lockup, centre' }] },
+  },
+  {
+    kind: 'sticker',
+    category: 'relics',
+    name: () => 'PuniCodex Brand Sticker Set',
+    price: 8.0,
+    blurb: 'Wordmark, emblem, and glyph — three die-cut vinyl seals of the house.',
+    assets: HOUSE_ASSETS,
+    design: {
+      placements: [
+        { area: 'front', asset: 'wordmarkSolid', note: 'wordmark sticker' },
+        { area: 'front', asset: 'emblem', note: 'emblem sticker' },
+        { area: 'front', asset: 'glyph', note: 'glyph sticker' },
+      ],
+    },
+  },
+  {
+    kind: 'print',
+    category: 'art-prints',
+    name: () => 'PuniCodex Pantheon Poster',
+    price: 24.0,
+    blurb: 'The solid wordmark over the glyph — the house creed, 30×40 cm.',
+    assets: HOUSE_ASSETS,
+    design: {
+      placements: [
+        { area: 'front', asset: 'wordmarkSolid', note: 'wordmark, upper third' },
+        { area: 'front', asset: 'glyph', note: 'glyph, centred below' },
+      ],
+    },
+  },
+  {
+    kind: 'notebook',
+    category: 'accessories',
+    name: () => 'PuniCodex Stacked Notebook',
+    price: 16.0,
+    blurb: 'A5 dotted journal with the stacked lockup in gold.',
+    assets: HOUSE_ASSETS,
+    design: { placements: [{ area: 'front', asset: 'lockupS', note: 'cover lockup' }] },
   },
 ];
 
 function main() {
+  const file = path.join(ROOT, 'store', 'products.json');
+
+  // Preserve phase-2 sync results (printful* fields) across regenerations.
+  const preserved = new Map();
+  try {
+    const prev = JSON.parse(fs.readFileSync(file, 'utf8'));
+    for (const p of prev.products || []) {
+      const sync = Object.fromEntries(
+        Object.entries(p).filter(([k]) => k.startsWith('printful') && p[k] != null)
+      );
+      if (Object.keys(sync).length) preserved.set(p.id, sync);
+    }
+  } catch {
+    // No readable previous file — first run.
+  }
+
   const products = [];
   for (const a of ARCHETYPES) {
     if (a.built === false) continue;
+    const assets = templeAssets(a);
     for (const line of LINES) {
+      const id = `${a.id}-${line.kind}`;
       products.push({
-        id: `${a.id}-${line.kind}`,
+        id,
         temple: a.id,
         name: line.name(a),
         category: line.category,
         price: line.price,
         blurb: line.blurb,
-        image: a.mascotPath,
+        image: assets[line.design.placements[0].asset],
+        assets,
         templeUrl: `/sites/${a.id}/`,
+        design: line.design,
         // Phase 1: no live checkout yet — the Printful storefront is wired in
         // phase 2 (see docs/pod-integration.md). Keep the field for the API.
         printfulProductId: null,
+        ...preserved.get(id),
       });
     }
   }
+  for (const line of HOUSE_LINES) {
+    const id = `punicodex-${line.kind}`;
+    products.push({
+      id,
+      temple: null,
+      name: line.name(),
+      category: line.category,
+      price: line.price,
+      blurb: line.blurb,
+      image: line.assets[line.design.placements[0].asset],
+      assets: line.assets,
+      templeUrl: null,
+      design: line.design,
+      printfulProductId: null,
+      ...preserved.get(id),
+    });
+  }
+
   const out = {
     generatedAt: new Date().toISOString(),
     provider: 'printful',
@@ -63,7 +357,6 @@ function main() {
     count: products.length,
     products,
   };
-  const file = path.join(ROOT, 'store', 'products.json');
   // Idempotency: when the product set is unchanged, keep the previous file
   // (and its generatedAt) byte-identical so `npm run generate` stays clean.
   try {

@@ -1,6 +1,8 @@
 # PuniCodex — Print-on-Demand Integration (Printful)
 
-**Status:** Phase 1 live (catalog rendered from `store/products.json`).
+**Status:** Phase 1 live (catalog rendered from `store/products.json` — 3,466
+products: 266 temples × 13 product types across apparel / art-prints /
+drinkware / accessories / relics, plus an 8-item PuniCodex house line).
 **Provider:** Printful — chosen for API quality, global fulfillment, no upfront cost, and a generous free tier.
 
 ## Architecture
@@ -8,14 +10,21 @@
 ```
 scripts/generate-pod-products.js   →  store/products.json  →  js/store.js (renderer)
         (reads js/archetypes-v2.js)      (canonical catalog)      (store/ page)
+scripts/sync-printful-products.js  →  Printful API (phase 2 sync worker;
+        resumable via session-debug/printful-sync-state.json)
 ```
 
-- **Phase 1 (current):** the catalog lists every flagship's tee / art print /
-  sticker set with its mascot. Products render on `/store/` with category tabs.
-  Checkout is not yet open — the notify form collects emails for the launch.
-- **Phase 2 (API):** set `PRINTFUL_API_KEY` in the Vercel env, then run the
-  sync worker below to create real Printful products and replace the
-  `printfulProductId: null` fields with live IDs and checkout URLs.
+- **Phase 1 (current):** the catalog lists each flagship's line (tee, hoodie,
+  crewneck, art print, canvas, sticker set, enamel pin, mug, tumbler, tote,
+  phone case, cap, notebook) built from the temple's three brand materials —
+  mascot, logomark, logolockup — with per-product `design.placements`
+  describing which material prints where. Products render on `/store/` with
+  category tabs. Checkout is not yet open — the notify form collects emails
+  for the launch.
+- **Phase 2 (API):** set `PRINTFUL_API_KEY` in the Vercel env, then run
+  `node scripts/sync-printful-products.js [--only <temple>] [--kinds ...]`
+  to create real Printful products and write live `printfulProductId`s back
+  into `store/products.json` (the generator preserves them on regeneration).
 
 ## Phase 2 checklist
 
