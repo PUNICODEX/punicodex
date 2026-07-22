@@ -63,7 +63,21 @@ function main() {
     count: products.length,
     products,
   };
-  fs.writeFileSync(path.join(ROOT, 'store', 'products.json'), `${JSON.stringify(out, null, 2)}\n`);
+  const file = path.join(ROOT, 'store', 'products.json');
+  // Idempotency: when the product set is unchanged, keep the previous file
+  // (and its generatedAt) byte-identical so `npm run generate` stays clean.
+  try {
+    const prev = JSON.parse(fs.readFileSync(file, 'utf8'));
+    const { generatedAt: _prevTs, ...prevRest } = prev;
+    const { generatedAt: _nextTs, ...nextRest } = out;
+    if (JSON.stringify(prevRest) === JSON.stringify(nextRest)) {
+      console.log(`POD products unchanged (${products.length}) — store/products.json left as-is`);
+      return;
+    }
+  } catch {
+    // No readable previous file — fall through and write fresh.
+  }
+  fs.writeFileSync(file, `${JSON.stringify(out, null, 2)}\n`);
   console.log(`Wrote ${products.length} POD products to store/products.json`);
 }
 
