@@ -2736,6 +2736,24 @@ function safeCopyFileSync(src, dest, retries = 10) {
   throw lastError;
 }
 
+function safeWriteFileSync(dest, data, encoding = 'utf8', retries = 10) {
+  let lastError;
+  for (let i = 0; i < retries; i++) {
+    try {
+      fs.writeFileSync(dest, data, encoding);
+      return;
+    } catch (err) {
+      lastError = err;
+      if (err.code === 'EPERM' || err.code === 'EBUSY' || err.code === 'UNKNOWN') {
+        sleepSync(100 * (i + 1));
+        continue;
+      }
+      throw err;
+    }
+  }
+  throw lastError;
+}
+
 function safeRenameSync(src, dest, retries = 5) {
   let lastError;
   for (let i = 0; i < retries; i++) {
@@ -2772,7 +2790,7 @@ function copyCreativesTemplate(siteDir, templateDir, entry) {
     const dest = path.join(destDir, file.name);
     if (file.name.endsWith('.html')) {
       const content = fs.readFileSync(path.join(srcDir, file.name), 'utf8');
-      fs.writeFileSync(dest, substituteTempleVars(content, entry), 'utf8');
+      safeWriteFileSync(dest, substituteTempleVars(content, entry), 'utf8');
     } else {
       safeCopyFileSync(path.join(srcDir, file.name), dest);
     }
@@ -2789,7 +2807,7 @@ function copyPatronTemplate(siteDir, templateDir, entry) {
     const dest = path.join(destDir, file.name);
     if (file.name.endsWith('.html')) {
       const content = fs.readFileSync(path.join(srcDir, file.name), 'utf8');
-      fs.writeFileSync(dest, substituteTempleVars(content, entry), 'utf8');
+      safeWriteFileSync(dest, substituteTempleVars(content, entry), 'utf8');
     } else {
       safeCopyFileSync(path.join(srcDir, file.name), dest);
     }
@@ -3108,7 +3126,7 @@ function createFlagship(templeId, options = {}) {
 
     // Atomic write to avoid transient Windows file-lock failures.
     const tmpPath = `${outPath}.tmp.${process.pid}`;
-    fs.writeFileSync(tmpPath, finalContent, 'utf8');
+    safeWriteFileSync(tmpPath, finalContent, 'utf8');
     safeRenameSync(tmpPath, outPath);
   }
 

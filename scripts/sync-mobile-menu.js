@@ -16,6 +16,23 @@ const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
 
+function withRetry(fn, attempts = 5, delayMs = 100) {
+  let lastErr;
+  for (let i = 0; i < attempts; i++) {
+    try {
+      return fn();
+    } catch (err) {
+      lastErr = err;
+      if (i < attempts - 1) {
+        // Windows file locks (AV/indexer) on freshly written files are transient.
+        const start = Date.now();
+        while (Date.now() - start < delayMs) {}
+      }
+    }
+  }
+  throw lastErr;
+}
+
 const CANONICAL_MENU = `<div class="mobile-menu" id="mobile-menu">
         <div class="mobile-menu-section">
             <span class="mobile-menu-title">Explore</span>
@@ -126,7 +143,7 @@ function syncFile(filePath, activeHref) {
     const eol = html.includes('\r\n') ? '\r\n' : '\n';
     const menu = expectedMenu.split('\n').join(eol);
     const next = `${html.slice(0, insertAt)}${eol}${eol}    ${menu}${html.slice(insertAt)}`;
-    fs.writeFileSync(filePath, next, 'utf8');
+    withRetry(() => fs.writeFileSync(filePath, next, 'utf8'));
     return 'inserted';
   }
 
@@ -140,7 +157,7 @@ function syncFile(filePath, activeHref) {
   if (current === expectedMenu) return 'unchanged';
 
   const next = html.slice(0, startIdx) + expectedMenu + html.slice(endIdx);
-  fs.writeFileSync(filePath, next, 'utf8');
+  withRetry(() => fs.writeFileSync(filePath, next, 'utf8'));
   return 'updated';
 }
 

@@ -53,6 +53,23 @@ function stripExisting(html) {
   return html.replace(re, '');
 }
 
+function withRetry(fn, attempts = 5, delayMs = 100) {
+  let lastErr;
+  for (let i = 0; i < attempts; i++) {
+    try {
+      return fn();
+    } catch (err) {
+      lastErr = err;
+      if (i < attempts - 1) {
+        // Windows file locks (AV/indexer) on freshly written files are transient.
+        const start = Date.now();
+        while (Date.now() - start < delayMs) {}
+      }
+    }
+  }
+  throw lastErr;
+}
+
 const files = execSync('git ls-files "*.html"', { encoding: 'utf8', cwd: ROOT })
   .split('\n')
   .filter(Boolean)
@@ -75,7 +92,7 @@ for (const rel of files) {
     out = `${INJECT}\n${stripped}`;
   }
   if (out !== html) {
-    fs.writeFileSync(file, out, 'utf8');
+    withRetry(() => fs.writeFileSync(file, out, 'utf8'));
     injected++;
   }
 }
