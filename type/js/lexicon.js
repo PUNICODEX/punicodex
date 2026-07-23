@@ -16522,6 +16522,147 @@ const LEXICON = [
     ]
   },
   {
+    "id": "iason",
+    "ascii": "iason",
+    "unicode": "Iásōn",
+    "greek": "Ἰάσων",
+    "pantheon": "greek",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Heroism, the Golden Fleece",
+    "meaning": "Healer",
+    "sources": [
+      "Apollonius",
+      "Pindar"
+    ],
+    "breakdown": [
+      {
+        "char": "i",
+        "to": "I",
+        "type": "same",
+        "note": "I uppercase"
+      },
+      {
+        "char": "a",
+        "to": "á",
+        "type": "stress",
+        "note": "Acute on a"
+      },
+      {
+        "char": "s",
+        "to": "s",
+        "type": "same",
+        "note": "s same"
+      },
+      {
+        "char": "o",
+        "to": "ō",
+        "type": "length",
+        "note": "Macron: long vowel"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "n same"
+      }
+    ]
+  },
+  {
+    "id": "argos",
+    "ascii": "argos",
+    "unicode": "Árgos",
+    "greek": "Ἄργος",
+    "pantheon": "greek",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Vigilance, Hera's Watcher",
+    "meaning": "Shining, swift",
+    "sources": [
+      "Apollodorus",
+      "Ovid"
+    ],
+    "breakdown": [
+      {
+        "char": "a",
+        "to": "Á",
+        "type": "stress",
+        "note": "Acute on a"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "r same"
+      },
+      {
+        "char": "g",
+        "to": "g",
+        "type": "same",
+        "note": "g same"
+      },
+      {
+        "char": "o",
+        "to": "o",
+        "type": "same",
+        "note": "o same"
+      },
+      {
+        "char": "s",
+        "to": "s",
+        "type": "same",
+        "note": "s same"
+      }
+    ]
+  },
+  {
+    "id": "midas",
+    "ascii": "midas",
+    "unicode": "Mídas",
+    "greek": "Μίδας",
+    "pantheon": "greek",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "King of Phrygia, the Golden Touch",
+    "meaning": "Phrygian royal name",
+    "sources": [
+      "Herodotus",
+      "Ovid"
+    ],
+    "breakdown": [
+      {
+        "char": "m",
+        "to": "M",
+        "type": "same",
+        "note": "M uppercase"
+      },
+      {
+        "char": "i",
+        "to": "í",
+        "type": "stress",
+        "note": "Acute on i"
+      },
+      {
+        "char": "d",
+        "to": "d",
+        "type": "same",
+        "note": "d same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "a same"
+      },
+      {
+        "char": "s",
+        "to": "s",
+        "type": "same",
+        "note": "s same"
+      }
+    ]
+  },
+  {
     "id": "menelaus",
     "ascii": "menelaus",
     "unicode": "Menélaos",

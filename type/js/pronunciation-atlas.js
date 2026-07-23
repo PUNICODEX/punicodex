@@ -625,6 +625,75 @@ const PRONUNCIATION_ATLAS = {
     "audioPath": null,
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Epimētheus."
   },
+  "iason": {
+    "ipa": "/i.áː.sɔːn/",
+    "ipaLabel": "Attic Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "I-",
+        "desc": "Short iota with smooth breathing — the name opens light and quick, without roughness."
+      },
+      {
+        "symbol": "-á-",
+        "desc": "Long alpha with acute pitch [áː] — the stressed peak of the name; the Ionic form Ἰήσων, with long eta, proves the vowel's length."
+      },
+      {
+        "symbol": "-sōn",
+        "desc": "Sigma followed by long omega [sɔːn] — the drawn-out final syllable that marks the name as long-voweled."
+      }
+    ],
+    "approximation": "'ih-AH-sone' — the second syllable is pitched higher and held; the final 'ō' is long and closed, nothing like the English 'sun'.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Iásōn is Tier 1 because the Greek Ἰάσων contains both stress (acute on the long alpha) and length (the long ᾱ and the final ω). The restoration keeps both: the acute on á and the macron on ō. The name derives from ἰάομαι, 'to heal' — the healer's name of the Argonaut captain. Reconstruction follows Allen, Vox Graeca; LSJ; and Beekes, Etymological Dictionary of Greek."
+  },
+  "argos": {
+    "ipa": "/ár.gos/",
+    "ipaLabel": "Attic Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Á-",
+        "desc": "Alpha with acute pitch [á] — a bright, open attack; the whole name flashes on its first syllable."
+      },
+      {
+        "symbol": "-r-",
+        "desc": "Rolled alveolar rho [r] — the quick turn at the name's center."
+      },
+      {
+        "symbol": "-gos",
+        "desc": "Voiced velar gamma with short omicron and final sigma [gos] — clipped, unlenited, watchful."
+      }
+    ],
+    "approximation": "'AR-goss' — two short syllables, stress forward, like a light snapping on.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Árgos is Tier 2 because the Greek Ἄργος carries only the acute stress; both vowels are short, so a single feature separates the restoration from ASCII. The entry is the giant Argos Panoptes, Hera's hundred-eyed watcher — from ἀργός, 'shining, swift'. Reconstruction follows Allen, Vox Graeca; LSJ; and Beekes, Etymological Dictionary of Greek."
+  },
+  "midas": {
+    "ipa": "/mí.das/",
+    "ipaLabel": "Attic Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Mí-",
+        "desc": "Bilabial nasal opening into acute-pitched iota [mí] — the name's single mark, pitched high."
+      },
+      {
+        "symbol": "-d-",
+        "desc": "Voiced dental stop [d] — plain and firm."
+      },
+      {
+        "symbol": "-as",
+        "desc": "Short alpha and final sigma [as] — the common ending of Anatolian royal names."
+      }
+    ],
+    "approximation": "'MEE-dass' — stress forward, the first syllable bright and the second clipped; the English 'MY-das' flattens both.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Mídas is Tier 2 because the Greek Μίδας carries only the acute stress; the vowels are short and no long vowel or diphthong is preserved. Behind the Greek form stands a genuine Phrygian royal name — Assyrian records know the same king as Mitâ of Muški. Reconstruction follows Allen, Vox Graeca; LSJ; and Beekes, Etymological Dictionary of Greek."
+  },
   "herakles": {
     "ipa": "/hɛː.ra.klɛ̂ːs/",
     "ipaLabel": "Classical Attic Greek Reconstruction",
