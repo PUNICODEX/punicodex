@@ -327,15 +327,18 @@ function renderStoreIndex(colls) {
     title: 'The Reliquary — Collections | PUNICODEX',
     description: `Print-on-demand relics of the Unicode Pantheon — ${colls.size} temple collections, each with its own line of apparel, prints, drinkware and relics.`,
     path: '/store/',
+    css: `.store-hero{text-align:center;padding:5.5rem 0 2.5rem}.store-hero .pc-fx-stage{margin:0 auto 1.5rem}.store-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.store-hero .tag{max-width:62ch;margin:0 auto}`,
   })}
+<link rel="stylesheet" href="/css/pc-fx.css?v=1">
 ${stripNav('store')}
 <div class="wrap">
-  <div class="hero" style="grid-template-columns:1fr;text-align:left">
-    <div>
-      <span class="pill">Orders Open</span>
-      <h1>THE RELIQUARY</h1>
-      <p class="tag">Sacred artifacts from the Pantheon, printed on demand. Every temple keeps a collection — choose one, and its whole line of apparel, prints, drinkware and relics opens to you.</p>
+  <div class="store-hero">
+    <div class="pc-fx-stage pc-fx-brilliant-stage" role="img" aria-label="The Golden Brilliant — a faceted gem cut in gold, its facets catching the light">
+      <canvas class="pc-fx-brilliant" aria-hidden="true"></canvas>
     </div>
+    <span class="pill">Orders Open</span>
+    <h1>THE RELIQUARY</h1>
+    <p class="tag">Sacred artifacts from the Pantheon, printed on demand. Every temple keeps a collection — choose one, and its whole line of apparel, prints, drinkware and relics opens to you.</p>
   </div>
   <div class="filters" id="filters">
     <input id="q" type="search" placeholder="Search the collections…" aria-label="Search collections">
@@ -345,6 +348,8 @@ ${stripNav('store')}
 ${cards}
   </div>
 </div>
+<script src="/js/pc-fx-core.js?v=1" defer></script>
+<script src="/js/pc-fx-brilliant.js?v=1" defer></script>
 <script>
 (function(){
   var q = document.getElementById('q');
