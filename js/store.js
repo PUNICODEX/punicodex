@@ -56,7 +56,7 @@
     }
 
     return `
-    <div class="product-card reveal-up" data-category="${escapeHtml(p.category)}">
+    <div class="product-card" data-category="${escapeHtml(p.category)}">
       <div class="product-image">
         ${imageTag}
         <div class="product-overlay">Print on demand</div>
