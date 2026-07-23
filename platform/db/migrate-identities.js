@@ -31,7 +31,8 @@ function loadLexicon() {
   const lexiconPath = path.join(__dirname, '..', '..', 'type', 'js', 'lexicon.js');
   const content = fs.readFileSync(lexiconPath, 'utf8');
   const wrapped = `${content}\nmodule.exports = LEXICON;`;
-  const tmpPath = path.join(__dirname, '_temp_lexicon.js');
+  // Per-process temp name: parallel test workers share this directory.
+  const tmpPath = path.join(__dirname, `_temp_lexicon_${process.pid}.js`);
   fs.writeFileSync(tmpPath, wrapped);
   const lexicon = require(tmpPath);
   fs.unlinkSync(tmpPath);

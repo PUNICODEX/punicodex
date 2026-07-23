@@ -81,7 +81,7 @@ module.exports = async (req, res) => {
       return res.json({ received: true, status: 'fulfillment_failed' });
     }
 
-    if (type === 'order_cancelled') {
+    if (type === 'order_cancelled' || type === 'order_canceled') {
       setStoreOrderStatus(order.id, 'cancelled');
       return res.json({ received: true, status: 'cancelled' });
     }

@@ -45,6 +45,18 @@ const HOUSE_ASSETS = {
   compPoster: '/assets/brand/01-logos/punicodex_comp-poster.png',
 };
 
+// Composites are print-only masters (gitignored from the main deploy); the
+// dedicated masters host serves them publicly for store card imagery.
+const MASTERS_BASE = 'https://punycodex-masters.vercel.app';
+
+function cardImage(assets, design) {
+  const primary = assets[design.placements[0].asset];
+  if (primary.endsWith('.png') && primary.includes('_comp-')) {
+    return `${MASTERS_BASE}/${primary.split('/').pop()}`;
+  }
+  return primary;
+}
+
 // design.placements describes which material prints where — the sync worker
 // maps `area` onto Printful placements (front/back/label).
 const LINES = [
@@ -320,7 +332,7 @@ function main() {
         category: line.category,
         price: line.price,
         blurb: line.blurb,
-        image: assets[line.design.placements[0].asset],
+        image: cardImage(assets, line.design),
         assets,
         templeUrl: `/sites/${a.id}/`,
         design: line.design,
@@ -340,7 +352,7 @@ function main() {
       category: line.category,
       price: line.price,
       blurb: line.blurb,
-      image: line.assets[line.design.placements[0].asset],
+      image: cardImage(line.assets, line.design),
       assets: line.assets,
       templeUrl: null,
       design: line.design,

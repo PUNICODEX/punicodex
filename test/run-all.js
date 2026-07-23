@@ -4,7 +4,7 @@
  * Run: node test/run-all.js
  */
 
-const { execSync } = require('node:child_process');
+const { execFile } = require('node:child_process');
 const path = require('node:path');
 
 const C = {
@@ -286,48 +286,101 @@ console.log(`${C.bold}╔══════════════════�
 console.log(`${C.bold}║     PuniCodex — Master Test Runner              ║${C.reset}`);
 console.log(`${C.bold}╚══════════════════════════════════════════════════╝${C.reset}`);
 
-for (const suite of SUITES) {
+// Sharded runner: suites that write the working tree run alone; everything
+// else runs in a small worker pool. Output is buffered per suite and printed
+// as each completes; the final summary keeps the original declaration order.
+const PARALLELISM = Number(process.env.PUNICODEX_TEST_PARALLELISM || 3);
+const SERIAL_SUITES = new Set([
+  'Divergence Gate', // runs npm run generate twice
+  'Generator Idempotency Tests', // runs generators that write artifacts
+  'Blog Index Tests', // runs generate-blog-index.js (writes blog/index.html)
+  'Herald Beacon Tests', // runs the beacon injector against the tree
+]);
+
+function runSuiteCmd(suite) {
+  return new Promise((resolve) => {
+    const [cmd, ...args] = suite.cmd.split(' ');
+    const child = execFile(
+      cmd,
+      args,
+      {
+        cwd: path.resolve(__dirname, '..'),
+        timeout: suite.timeout || 30000,
+        maxBuffer: 64 * 1024 * 1024,
+        killSignal: 'SIGTERM',
+      },
+      (error, stdout, stderr) => {
+        resolve({ suite, ok: !error, output: `${stdout || ''}${stderr || ''}` });
+      }
+    );
+    child.on('error', () => {});
+  });
+}
+
+function printSuiteResult({ suite, ok, output }) {
   console.log(`\n${C.cyan}▸ ${suite.name}${C.reset}`);
-  try {
-    const output = execSync(suite.cmd, {
-      cwd: path.resolve(__dirname, '..'),
-      encoding: 'utf8',
-      stdio: ['pipe', 'pipe', 'pipe'],
-      timeout: suite.timeout || 30000,
-    });
-    console.log(output.trimEnd());
-    results.push({ name: suite.name, ok: true });
-    // Try to extract pass count from output
-    const match = output.match(/(\d+) assertions passed|All (\d+) tests passed/);
-    if (match) {
-      totalPass += parseInt(match[1] || match[2], 10);
-    }
-  } catch (err) {
-    console.log(err.stdout ? err.stdout.toString().trimEnd() : '');
-    if (err.stderr) console.log(err.stderr.toString());
-    results.push({ name: suite.name, ok: false });
-    _totalFail++;
+  console.log(output.trimEnd());
+  results.push({ name: suite.name, ok });
+  if (!ok) _totalFail++;
+  const match = output.match(/(\d+) assertions passed|All (\d+) tests passed/);
+  if (match) {
+    totalPass += parseInt(match[1] || match[2], 10);
   }
 }
 
-console.log(`\n${'='.repeat(50)}`);
-console.log(`${C.bold}Results:${C.reset}`);
-results.forEach((r) => {
-  const icon = r.ok ? `${C.green}✓${C.reset}` : `${C.red}✗${C.reset}`;
-  console.log(`  ${icon} ${r.name}`);
-});
+async function main() {
+  // Serial suites run in declaration order at the very end, alone — but only
+  // after every parallel suite has finished touching the tree.
+  const serial = [];
+  const parallel = [];
+  for (const suite of SUITES) {
+    (SERIAL_SUITES.has(suite.name) ? serial : parallel).push(suite);
+  }
+  const queue = [...parallel];
 
-if (totalPass > 0) {
-  console.log(
-    `\n  ${C.dim}Total assertions passed:${C.reset} ${C.green}${totalPass.toLocaleString()}${C.reset}`
-  );
+  async function worker() {
+    for (;;) {
+      const suite = queue.shift();
+      if (!suite) return;
+      const result = await runSuiteCmd(suite);
+      printSuiteResult(result);
+    }
+  }
+
+  const workers = Array.from({ length: Math.max(1, PARALLELISM) }, () => worker());
+  await Promise.all(workers);
+
+  for (const suite of serial) {
+    printSuiteResult(await runSuiteCmd(suite));
+  }
+
+  console.log(`\n${'='.repeat(50)}`);
+  console.log(`${C.bold}Results:${C.reset}`);
+  // Print the summary in original declaration order, not completion order.
+  const byName = new Map(results.map((r) => [r.name, r]));
+  SUITES.forEach((suite) => {
+    const r = byName.get(suite.name) || { ok: false };
+    const icon = r.ok ? `${C.green}✓${C.reset}` : `${C.red}✗${C.reset}`;
+    console.log(`  ${icon} ${suite.name}`);
+  });
+
+  if (totalPass > 0) {
+    console.log(
+      `\n  ${C.dim}Total assertions passed:${C.reset} ${C.green}${totalPass.toLocaleString()}${C.reset}`
+    );
+  }
+
+  const allOk = results.every((r) => r.ok);
+  if (allOk) {
+    console.log(`\n  ${C.green}✓ All suites passed${C.reset}`);
+    process.exit(0);
+  } else {
+    console.log(`\n  ${C.red}✗ ${results.filter((r) => !r.ok).length} suite(s) failed${C.reset}`);
+    process.exit(1);
+  }
 }
 
-const allOk = results.every((r) => r.ok);
-if (allOk) {
-  console.log(`\n  ${C.green}✓ All suites passed${C.reset}`);
-  process.exit(0);
-} else {
-  console.log(`\n  ${C.red}✗ ${results.filter((r) => !r.ok).length} suite(s) failed${C.reset}`);
+main().catch((err) => {
+  console.error(err);
   process.exit(1);
-}
+});

@@ -31,7 +31,7 @@ async function main() {
     headers: { Authorization: `Bearer ${KEY}`, 'Content-Type': 'application/json' },
     body: JSON.stringify({
       url,
-      types: ['package_shipped', 'order_failed', 'order_cancelled'],
+      types: ['package_shipped', 'order_failed', 'order_canceled'],
     }),
   });
   const json = await res.json().catch(() => ({}));

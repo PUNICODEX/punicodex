@@ -123,6 +123,12 @@ function busyWait(ms) {
 function injectIntoFile(filePath) {
   let html = withRetry(() => fs.readFileSync(filePath, 'utf8'));
 
+  // Committed convention: temple pages (sites/) carry the university block
+  // before analytics; every other page carries analytics right after <head>.
+  const UC_END = '<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->';
+  const ucIdx = html.indexOf(UC_END);
+  const inSites = path.relative(ROOT, filePath).startsWith(`sites${path.sep}`);
+
   // Remove any previously injected snippet, plus adjacent newlines so blank
   // lines do not accumulate across repeated runs.
   const startIdx = html.indexOf(MARKER_START);
@@ -135,11 +141,21 @@ function injectIntoFile(filePath) {
     html = html.slice(0, removeStart) + '\n' + html.slice(removeEnd);
   }
 
-  // Inject immediately after <head>.
-  const headMatch = html.match(/<head[^>]*>/i);
-  if (!headMatch) return false;
-  const insertPos = headMatch.index + headMatch[0].length;
-  html = html.slice(0, insertPos) + snippet + html.slice(insertPos);
+  let snippetOut = snippet;
+  if (inSites && ucIdx !== -1) {
+    const ucIdx2 = html.indexOf(UC_END);
+    let insertPos = ucIdx2 + UC_END.length;
+    while (insertPos < html.length && html[insertPos] === '\n') insertPos++;
+    // Committed layout: exactly one blank line on each side of the block.
+    // slice ends at UC_END itself so the skipped newlines are not retained.
+    snippetOut = `\n\n${snippet.replace(/^\n+|\n+$/g, '')}\n\n`;
+    html = html.slice(0, ucIdx2 + UC_END.length) + snippetOut + html.slice(insertPos);
+  } else {
+    const headMatch = html.match(/<head[^>]*>/i);
+    if (!headMatch) return false;
+    const insertPos = headMatch.index + headMatch[0].length;
+    html = html.slice(0, insertPos) + snippetOut + html.slice(insertPos);
+  }
 
   withRetry(() => fs.writeFileSync(filePath, html, 'utf8'));
   return true;

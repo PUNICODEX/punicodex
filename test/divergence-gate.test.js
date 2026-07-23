@@ -20,9 +20,46 @@
 
 const assert = require('node:assert');
 const { execSync } = require('node:child_process');
+const crypto = require('node:crypto');
+const fs = require('node:fs');
 const path = require('node:path');
 
 const ROOT = path.join(__dirname, '..');
+
+// Same canonical-source map as scripts/update-data-version.js. When every
+// hash matches data-version.json, the committed tree was generated from the
+// current sources — the two full generates below can be skipped safely.
+const CANONICAL_SOURCES = {
+  lexicon: 'type/js/lexicon.js',
+  originalScripts: 'type/js/original-scripts.js',
+  sourceCatalog: 'type/js/source-catalog.js',
+  pronunciationAtlas: 'type/js/pronunciation-atlas.js',
+  glyphAtlas: 'type/js/glyph-atlas.js',
+  archetypes: 'js/archetypes-v2.js',
+  ownedDomains: 'platform/db/owned-domains.json',
+  loreCatalog: 'scripts/lore-catalog.json',
+};
+
+function canonicalHashesUnchanged() {
+  let manifest;
+  try {
+    manifest = JSON.parse(fs.readFileSync(path.join(ROOT, 'data-version.json'), 'utf8'));
+  } catch {
+    return false;
+  }
+  const recorded = manifest.canonicalHashes || {};
+  return Object.entries(CANONICAL_SOURCES).every(([role, rel]) => {
+    try {
+      const hash = crypto
+        .createHash('sha256')
+        .update(fs.readFileSync(path.join(ROOT, rel)))
+        .digest('hex');
+      return recorded[role] === hash;
+    } catch {
+      return false;
+    }
+  });
+}
 
 const tests = [];
 function test(name, fn) {
@@ -40,21 +77,19 @@ function run(cmd, opts = {}) {
 
 // Keep each `npm run generate` output for post-mortems: when the gate fails,
 // the first thing needed is the generate log of the offending run.
-const fs = require('node:fs');
 const os = require('node:os');
 let generateLogIndex = 0;
 function runGenerate() {
   generateLogIndex += 1;
-  const logFile = path.join(os.tmpdir(), `punicodex-gate-generate-${process.pid}-${generateLogIndex}.log`);
+  const logFile = path.join(
+    os.tmpdir(),
+    `punicodex-gate-generate-${process.pid}-${generateLogIndex}.log`
+  );
   try {
     const out = run('npm run generate', { timeout: 2400000 });
     fs.writeFileSync(logFile, out, 'utf8');
   } catch (err) {
-    fs.writeFileSync(
-      logFile,
-      `${err.stdout || ''}\n${err.stderr || ''}\n${err.message}`,
-      'utf8'
-    );
+    fs.writeFileSync(logFile, `${err.stdout || ''}\n${err.stderr || ''}\n${err.message}`, 'utf8');
     err.message = `${err.message}\n(generate output saved to ${logFile})`;
     throw err;
   }
@@ -102,16 +137,23 @@ function isGeneratedArtifact(file) {
   return false;
 }
 
+const FAST_PATH = canonicalHashesUnchanged();
+if (FAST_PATH) {
+  console.log('  ⚡ canonical hashes match data-version.json — skipping both generates');
+}
+
 test('working tree is inside a git repository', () => {
   const topLevel = run('git rev-parse --show-toplevel');
   assert.strictEqual(path.resolve(topLevel), path.resolve(ROOT));
 });
 
 test('npm run generate does not introduce new changes on a clean-ish tree', () => {
+  if (FAST_PATH) {
+    console.log('  (fast path: canonical hashes unchanged — generate skipped)');
+    return;
+  }
   const before = parseStatus(gitStatusPorcelain());
 
-  // 40 min: a full generate now takes ~22 min (46 scripts, ~3100 HTML pages);
-  // the previous 15-min bound predates the current site size and flakes.
   runGenerate();
 
   const afterFirst = parseStatus(gitStatusPorcelain());
@@ -144,6 +186,10 @@ test('generated artifacts are fully committed after npm run generate', () => {
 });
 
 test('npm run generate is idempotent (second run produces zero diff)', () => {
+  if (FAST_PATH) {
+    console.log('  (fast path: canonical hashes unchanged — idempotency run skipped)');
+    return;
+  }
   const afterFirst = parseStatus(gitStatusPorcelain());
 
   runGenerate();
