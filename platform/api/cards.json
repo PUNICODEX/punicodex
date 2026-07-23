@@ -10,14 +10,14 @@
     ],
     "spec": "docs/card-game-spec.md",
     "counts": {
-      "total": 1149,
-      "standard": 922,
-      "originalScript": 227,
-      "flagship": 266,
+      "total": 1156,
+      "standard": 924,
+      "originalScript": 232,
+      "flagship": 271,
       "byRarity": {
-        "legendary": 266,
-        "mythic": 227,
-        "rare": 350,
+        "legendary": 271,
+        "mythic": 232,
+        "rare": 347,
         "common": 207,
         "uncommon": 99
       }
@@ -11875,48 +11875,6 @@
       }
     },
     {
-      "id": "jason-standard",
-      "entryId": "jason",
-      "variant": "standard",
-      "setId": "first-restoration",
-      "name": "Iāsōn",
-      "ascii": "jason",
-      "original": "Ἰάσων",
-      "pantheon": "greek",
-      "category": "deity",
-      "categoryLabel": "Deity",
-      "categoryIcon": "✦",
-      "tier": "1",
-      "tierLabel": "Tier 1",
-      "domain": "Leader, Argonauts, Fleece",
-      "rarity": "rare",
-      "rarityOrder": 3,
-      "cost": 6,
-      "power": 80,
-      "health": 59,
-      "speed": 6,
-      "ability": {
-        "id": "ability-jason",
-        "entryId": "jason",
-        "name": "Divine Presence",
-        "description": "Grant your allies +1 power while in play.",
-        "trigger": "passive",
-        "effect": {
-          "kind": "aura-allies",
-          "power": 1
-        }
-      },
-      "flavor": "Healer",
-      "flagship": false,
-      "ownedDomain": null,
-      "art": {
-        "mascot": null,
-        "logomark": null,
-        "colors": null,
-        "artist": null
-      }
-    },
-    {
       "id": "peleus-standard",
       "entryId": "peleus",
       "variant": "standard",
@@ -17434,9 +17392,9 @@
       "tier": "1",
       "tierLabel": "Tier 1",
       "domain": "Cunning, Journey",
-      "rarity": "rare",
-      "rarityOrder": 3,
-      "cost": 7,
+      "rarity": "legendary",
+      "rarityOrder": 5,
+      "cost": 10,
       "power": 78,
       "health": 59,
       "speed": 7,
@@ -17459,15 +17417,355 @@
           ]
         }
       },
-      "flavor": "Hated, painful",
-      "flagship": false,
-      "ownedDomain": null,
+      "flavor": "The Odyssey is his biography, but his story begins in the Iliad and ends in prophecy.",
+      "flagship": true,
+      "ownedDomain": "odysseús.com",
       "art": {
-        "mascot": null,
-        "logomark": null,
-        "colors": null,
+        "mascot": "/sites/odysseus/assets/odysseus_mascot.webp",
+        "logomark": "/sites/odysseus/assets/odysseus_logomark.webp",
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#1D6F6F",
+          "glow": "rgba(212,175,55,0.3)"
+        },
         "artist": null
       }
+    },
+    {
+      "id": "odysseus-original-script",
+      "entryId": "odysseus",
+      "variant": "original-script",
+      "setId": "first-restoration",
+      "name": "Odysseús",
+      "ascii": "odysseus",
+      "original": "Ὀδυσσεύς",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Cunning, Journey",
+      "rarity": "mythic",
+      "rarityOrder": 6,
+      "cost": 3,
+      "power": 78,
+      "health": 59,
+      "speed": 7,
+      "ability": {
+        "id": "ability-odysseus",
+        "entryId": "odysseus",
+        "name": "Sleight",
+        "description": "Draw a card; this card may attack immediately.",
+        "trigger": "passive",
+        "effect": {
+          "kind": "combo",
+          "effects": [
+            {
+              "kind": "draw",
+              "count": 1
+            },
+            {
+              "kind": "charge"
+            }
+          ]
+        }
+      },
+      "flavor": "The Odyssey is his biography, but his story begins in the Iliad and ends in prophecy.",
+      "flagship": true,
+      "ownedDomain": "odysseús.com",
+      "art": {
+        "mascot": "/sites/odysseus/assets/odysseus_mascot.webp",
+        "logomark": "/sites/odysseus/assets/odysseus_logomark.webp",
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#1D6F6F",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      },
+      "foil": true
+    },
+    {
+      "id": "iason-standard",
+      "entryId": "iason",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Iásōn",
+      "ascii": "iason",
+      "original": "Ἰάσων",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Heroism, the Golden Fleece",
+      "rarity": "legendary",
+      "rarityOrder": 5,
+      "cost": 8,
+      "power": 76,
+      "health": 73,
+      "speed": 8,
+      "ability": {
+        "id": "ability-iason",
+        "entryId": "iason",
+        "name": "Divine Presence",
+        "description": "Grant your allies +1 power while in play.",
+        "trigger": "passive",
+        "effect": {
+          "kind": "aura-allies",
+          "power": 1
+        }
+      },
+      "flavor": "The myth of Iásōn is the myth of the quest itself: an unjust king, an impossible errand, a band of heroes, and a prize won by cunning and love rather than by strength alone.",
+      "flagship": true,
+      "ownedDomain": "iásōn.com",
+      "art": {
+        "mascot": "/sites/iason/assets/iason_mascot.webp",
+        "logomark": "/sites/iason/assets/iason_logomark.webp",
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#B08D57",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      }
+    },
+    {
+      "id": "iason-original-script",
+      "entryId": "iason",
+      "variant": "original-script",
+      "setId": "first-restoration",
+      "name": "Iásōn",
+      "ascii": "iason",
+      "original": "Ἰάσων",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Heroism, the Golden Fleece",
+      "rarity": "mythic",
+      "rarityOrder": 6,
+      "cost": 2,
+      "power": 76,
+      "health": 73,
+      "speed": 8,
+      "ability": {
+        "id": "ability-iason",
+        "entryId": "iason",
+        "name": "Divine Presence",
+        "description": "Grant your allies +1 power while in play.",
+        "trigger": "passive",
+        "effect": {
+          "kind": "aura-allies",
+          "power": 1
+        }
+      },
+      "flavor": "The myth of Iásōn is the myth of the quest itself: an unjust king, an impossible errand, a band of heroes, and a prize won by cunning and love rather than by strength alone.",
+      "flagship": true,
+      "ownedDomain": "iásōn.com",
+      "art": {
+        "mascot": "/sites/iason/assets/iason_mascot.webp",
+        "logomark": "/sites/iason/assets/iason_logomark.webp",
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#B08D57",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      },
+      "foil": true
+    },
+    {
+      "id": "argos-standard",
+      "entryId": "argos",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Árgos",
+      "ascii": "argos",
+      "original": "Ἄργος",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "2",
+      "tierLabel": "Tier 2",
+      "domain": "Vigilance, Hera's Watcher",
+      "rarity": "legendary",
+      "rarityOrder": 5,
+      "cost": 9,
+      "power": 62,
+      "health": 75,
+      "speed": 6,
+      "ability": {
+        "id": "ability-argos",
+        "entryId": "argos",
+        "name": "Divine Presence",
+        "description": "Grant your allies +1 power while in play.",
+        "trigger": "passive",
+        "effect": {
+          "kind": "aura-allies",
+          "power": 1
+        }
+      },
+      "flavor": "Árgos exists within a single great story — the wanderings of Io — but it is one of the oldest stories the Greeks told, already old when Homer gave Hermês the epithet Argeiphontēs, 'Slayer of Árgos'.",
+      "flagship": true,
+      "ownedDomain": "árgos.com",
+      "art": {
+        "mascot": "/sites/argos/assets/argos_mascot.webp",
+        "logomark": "/sites/argos/assets/argos_logomark.webp",
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#2E8B8B",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      }
+    },
+    {
+      "id": "argos-original-script",
+      "entryId": "argos",
+      "variant": "original-script",
+      "setId": "first-restoration",
+      "name": "Árgos",
+      "ascii": "argos",
+      "original": "Ἄργος",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "2",
+      "tierLabel": "Tier 2",
+      "domain": "Vigilance, Hera's Watcher",
+      "rarity": "mythic",
+      "rarityOrder": 6,
+      "cost": 2,
+      "power": 62,
+      "health": 75,
+      "speed": 6,
+      "ability": {
+        "id": "ability-argos",
+        "entryId": "argos",
+        "name": "Divine Presence",
+        "description": "Grant your allies +1 power while in play.",
+        "trigger": "passive",
+        "effect": {
+          "kind": "aura-allies",
+          "power": 1
+        }
+      },
+      "flavor": "Árgos exists within a single great story — the wanderings of Io — but it is one of the oldest stories the Greeks told, already old when Homer gave Hermês the epithet Argeiphontēs, 'Slayer of Árgos'.",
+      "flagship": true,
+      "ownedDomain": "árgos.com",
+      "art": {
+        "mascot": "/sites/argos/assets/argos_mascot.webp",
+        "logomark": "/sites/argos/assets/argos_logomark.webp",
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#2E8B8B",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      },
+      "foil": true
+    },
+    {
+      "id": "midas-standard",
+      "entryId": "midas",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Mídas",
+      "ascii": "midas",
+      "original": "Μίδας",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "2",
+      "tierLabel": "Tier 2",
+      "domain": "King of Phrygia, the Golden Touch",
+      "rarity": "legendary",
+      "rarityOrder": 5,
+      "cost": 9,
+      "power": 56,
+      "health": 82,
+      "speed": 7,
+      "ability": {
+        "id": "ability-midas",
+        "entryId": "midas",
+        "name": "Royal Mandate",
+        "description": "Grant your allies +2 power and +2 health.",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "buff-allies",
+          "power": 2,
+          "health": 2
+        }
+      },
+      "flavor": "The Greeks attached two great fables to Mídas — the touch and the ears — and one genuine history: the wealthy Phrygian king whose gifts reached Delphi and whose wars reached Assyria.",
+      "flagship": true,
+      "ownedDomain": "mídas.com",
+      "art": {
+        "mascot": "/sites/midas/assets/midas_mascot.webp",
+        "logomark": "/sites/midas/assets/midas_logomark.webp",
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#E8A817",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      }
+    },
+    {
+      "id": "midas-original-script",
+      "entryId": "midas",
+      "variant": "original-script",
+      "setId": "first-restoration",
+      "name": "Mídas",
+      "ascii": "midas",
+      "original": "Μίδας",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "2",
+      "tierLabel": "Tier 2",
+      "domain": "King of Phrygia, the Golden Touch",
+      "rarity": "mythic",
+      "rarityOrder": 6,
+      "cost": 3,
+      "power": 56,
+      "health": 82,
+      "speed": 7,
+      "ability": {
+        "id": "ability-midas",
+        "entryId": "midas",
+        "name": "Royal Mandate",
+        "description": "Grant your allies +2 power and +2 health.",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "buff-allies",
+          "power": 2,
+          "health": 2
+        }
+      },
+      "flavor": "The Greeks attached two great fables to Mídas — the touch and the ears — and one genuine history: the wealthy Phrygian king whose gifts reached Delphi and whose wars reached Assyria.",
+      "flagship": true,
+      "ownedDomain": "mídas.com",
+      "art": {
+        "mascot": "/sites/midas/assets/midas_mascot.webp",
+        "logomark": "/sites/midas/assets/midas_logomark.webp",
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#E8A817",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      },
+      "foil": true
     },
     {
       "id": "menelaus-standard",
@@ -22980,9 +23278,9 @@
       "tier": "1",
       "tierLabel": "Tier 1",
       "domain": "Hero, King of Uruk",
-      "rarity": "rare",
-      "rarityOrder": 3,
-      "cost": 6,
+      "rarity": "legendary",
+      "rarityOrder": 5,
+      "cost": 8,
       "power": 82,
       "health": 79,
       "speed": 5,
@@ -22998,15 +23296,67 @@
           "health": 2
         }
       },
-      "flavor": "The old man became young",
-      "flagship": false,
-      "ownedDomain": null,
+      "flavor": "The Standard Babylonian epic, 'He who saw the deep', runs from the streets of Uruk to the waters of death.",
+      "flagship": true,
+      "ownedDomain": "gilgameš.com",
       "art": {
-        "mascot": null,
-        "logomark": null,
-        "colors": null,
+        "mascot": "/sites/gilgamesh/assets/gilgamesh_mascot.webp",
+        "logomark": "/sites/gilgamesh/assets/gilgamesh_logomark.webp",
+        "colors": {
+          "primary": "#CD7F32",
+          "secondary": "#2E4E8F",
+          "glow": "rgba(205,127,50,0.3)"
+        },
         "artist": null
       }
+    },
+    {
+      "id": "gilgamesh-original-script",
+      "entryId": "gilgamesh",
+      "variant": "original-script",
+      "setId": "first-restoration",
+      "name": "Gilgameš",
+      "ascii": "gilgamesh",
+      "original": "𒄑𒂆𒈦",
+      "pantheon": "mesopotamian",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Hero, King of Uruk",
+      "rarity": "mythic",
+      "rarityOrder": 6,
+      "cost": 2,
+      "power": 82,
+      "health": 79,
+      "speed": 5,
+      "ability": {
+        "id": "ability-gilgamesh",
+        "entryId": "gilgamesh",
+        "name": "Royal Mandate",
+        "description": "Grant your allies +2 power and +2 health.",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "buff-allies",
+          "power": 2,
+          "health": 2
+        }
+      },
+      "flavor": "The Standard Babylonian epic, 'He who saw the deep', runs from the streets of Uruk to the waters of death.",
+      "flagship": true,
+      "ownedDomain": "gilgameš.com",
+      "art": {
+        "mascot": "/sites/gilgamesh/assets/gilgamesh_mascot.webp",
+        "logomark": "/sites/gilgamesh/assets/gilgamesh_logomark.webp",
+        "colors": {
+          "primary": "#CD7F32",
+          "secondary": "#2E4E8F",
+          "glow": "rgba(205,127,50,0.3)"
+        },
+        "artist": null
+      },
+      "foil": true
     },
     {
       "id": "enkidu-standard",

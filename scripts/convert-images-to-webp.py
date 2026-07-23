@@ -170,6 +170,10 @@ def scan_and_convert():
     if sites_dir.exists():
         for ext in ("*.png", "*.jpg", "*.jpeg"):
             for src in sorted(sites_dir.glob(f"*/assets/{ext}")):
+                # Merch composites are print-only masters (never referenced in
+                # HTML) — multi-GB canvases that must not be re-encoded here.
+                if "_comp-" in src.name:
+                    continue
                 result = convert_image(src)
                 if result:
                     converted.append(result)

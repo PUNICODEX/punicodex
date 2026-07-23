@@ -87,6 +87,10 @@ const files = [
   },
   {
     path: path.join(ROOT, 'pantheon', 'index.html'),
+    regexFallbacks: [
+      [/of \d+ archetypes/g, 'of __SYNC:archetype-count__ archetypes'],
+      [/ \d+ world archetypes/g, ' __SYNC:archetype-count__ world archetypes'],
+    ],
     fallbacks: {
       'of 54 archetypes': 'of __SYNC:archetype-count__ archetypes',
       'Pantheon of 54 archetypes': 'Pantheon of __SYNC:archetype-count__ archetypes',
@@ -139,6 +143,11 @@ for (const file of files) {
   // Apply fallbacks to inject markers where stale hard-coded values still exist.
   for (const [oldStr, newStr] of Object.entries(file.fallbacks || {})) {
     html = html.split(oldStr).join(newStr);
+  }
+  // Regex fallbacks normalize previously baked counts back to markers so
+  // numeric sync spots never go stale.
+  for (const [re, newStr] of file.regexFallbacks || []) {
+    html = html.replace(re, newStr);
   }
 
   // Replace all markers with current canonical values.

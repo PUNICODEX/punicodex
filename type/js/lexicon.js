@@ -10384,54 +10384,6 @@ const LEXICON = [
     ]
   },
   {
-    "id": "jason",
-    "ascii": "jason",
-    "unicode": "Iāsōn",
-    "greek": "Ἰάσων",
-    "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
-    "domain": "Leader, Argonauts, Fleece",
-    "meaning": "Healer",
-    "sources": [
-      "LSJ",
-      "Pape-Benseler",
-      "Beekes"
-    ],
-    "breakdown": [
-      {
-        "char": "j",
-        "to": "I",
-        "type": "same",
-        "note": "J→I in Greek"
-      },
-      {
-        "char": "a",
-        "to": "ā",
-        "type": "length",
-        "note": "Macron: long alpha"
-      },
-      {
-        "char": "s",
-        "to": "s",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "o",
-        "to": "ō",
-        "type": "length",
-        "note": "Macron: long omicron"
-      },
-      {
-        "char": "n",
-        "to": "n",
-        "type": "same",
-        "note": "Same"
-      }
-    ]
-  },
-  {
     "id": "peleus",
     "ascii": "peleus",
     "unicode": "Pēleus",
@@ -16565,6 +16517,18 @@ const LEXICON = [
         "to": "n",
         "type": "same",
         "note": "n same"
+      }
+    ],
+    "variants": [
+      {
+        "unicode": "Iāsōn",
+        "type": "macron-only",
+        "note": "Macron-only scholarly form (LSJ convention); the temple carries the full stress-marked restoration.",
+        "sources": [
+          "LSJ",
+          "Pape-Benseler",
+          "Beekes"
+        ]
       }
     ]
   },

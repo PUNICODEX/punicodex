@@ -567,10 +567,6 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "originalScript": "Дажбог",
     "scriptName": "Church Slavonic / East Slavic Cyrillic"
   },
-  "jason": {
-    "originalScript": "Ἰάσων",
-    "scriptName": "Greek"
-  },
   "peleus": {
     "originalScript": "Πηλεύς",
     "scriptName": "Greek"
@@ -961,6 +957,18 @@ const ORIGINAL_SCRIPT_LOOKUP = {
   },
   "odysseus": {
     "originalScript": "Ὀδυσσεύς",
+    "scriptName": "Greek"
+  },
+  "iason": {
+    "originalScript": "Ἰάσων",
+    "scriptName": "Greek"
+  },
+  "argos": {
+    "originalScript": "Ἄργος",
+    "scriptName": "Greek"
+  },
+  "midas": {
+    "originalScript": "Μίδας",
     "scriptName": "Greek"
   },
   "menelaus": {

@@ -10388,54 +10388,6 @@ const LEXICON = [
     ]
   },
   {
-    "id": "jason",
-    "ascii": "jason",
-    "unicode": "Iāsōn",
-    "greek": "Ἰάσων",
-    "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
-    "domain": "Leader, Argonauts, Fleece",
-    "meaning": "Healer",
-    "sources": [
-      "LSJ",
-      "Pape-Benseler",
-      "Beekes"
-    ],
-    "breakdown": [
-      {
-        "char": "j",
-        "to": "I",
-        "type": "same",
-        "note": "J→I in Greek"
-      },
-      {
-        "char": "a",
-        "to": "ā",
-        "type": "length",
-        "note": "Macron: long alpha"
-      },
-      {
-        "char": "s",
-        "to": "s",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "o",
-        "to": "ō",
-        "type": "length",
-        "note": "Macron: long omicron"
-      },
-      {
-        "char": "n",
-        "to": "n",
-        "type": "same",
-        "note": "Same"
-      }
-    ]
-  },
-  {
     "id": "peleus",
     "ascii": "peleus",
     "unicode": "Pēleus",
@@ -16516,6 +16468,159 @@ const LEXICON = [
         "to": "ú",
         "type": "stress",
         "note": "Acute on u"
+      },
+      {
+        "char": "s",
+        "to": "s",
+        "type": "same",
+        "note": "s same"
+      }
+    ]
+  },
+  {
+    "id": "iason",
+    "ascii": "iason",
+    "unicode": "Iásōn",
+    "greek": "Ἰάσων",
+    "pantheon": "greek",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Heroism, the Golden Fleece",
+    "meaning": "Healer",
+    "sources": [
+      "Apollonius",
+      "Pindar"
+    ],
+    "breakdown": [
+      {
+        "char": "i",
+        "to": "I",
+        "type": "same",
+        "note": "I uppercase"
+      },
+      {
+        "char": "a",
+        "to": "á",
+        "type": "stress",
+        "note": "Acute on a"
+      },
+      {
+        "char": "s",
+        "to": "s",
+        "type": "same",
+        "note": "s same"
+      },
+      {
+        "char": "o",
+        "to": "ō",
+        "type": "length",
+        "note": "Macron: long vowel"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "n same"
+      }
+    ],
+    "variants": [
+      {
+        "unicode": "Iāsōn",
+        "type": "macron-only",
+        "note": "Macron-only scholarly form (LSJ convention); the temple carries the full stress-marked restoration.",
+        "sources": [
+          "LSJ",
+          "Pape-Benseler",
+          "Beekes"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "argos",
+    "ascii": "argos",
+    "unicode": "Árgos",
+    "greek": "Ἄργος",
+    "pantheon": "greek",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Vigilance, Hera's Watcher",
+    "meaning": "Shining, swift",
+    "sources": [
+      "Apollodorus",
+      "Ovid"
+    ],
+    "breakdown": [
+      {
+        "char": "a",
+        "to": "Á",
+        "type": "stress",
+        "note": "Acute on a"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "r same"
+      },
+      {
+        "char": "g",
+        "to": "g",
+        "type": "same",
+        "note": "g same"
+      },
+      {
+        "char": "o",
+        "to": "o",
+        "type": "same",
+        "note": "o same"
+      },
+      {
+        "char": "s",
+        "to": "s",
+        "type": "same",
+        "note": "s same"
+      }
+    ]
+  },
+  {
+    "id": "midas",
+    "ascii": "midas",
+    "unicode": "Mídas",
+    "greek": "Μίδας",
+    "pantheon": "greek",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "King of Phrygia, the Golden Touch",
+    "meaning": "Phrygian royal name",
+    "sources": [
+      "Herodotus",
+      "Ovid"
+    ],
+    "breakdown": [
+      {
+        "char": "m",
+        "to": "M",
+        "type": "same",
+        "note": "M uppercase"
+      },
+      {
+        "char": "i",
+        "to": "í",
+        "type": "stress",
+        "note": "Acute on i"
+      },
+      {
+        "char": "d",
+        "to": "d",
+        "type": "same",
+        "note": "d same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "a same"
       },
       {
         "char": "s",
