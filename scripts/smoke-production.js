@@ -15,9 +15,9 @@ const BASE = (process.argv[2] || 'https://punicodex.com').replace(/\/$/, '');
 
 const CHECKS = [
   // Core pages
-  { path: '/', status: 200, markers: ['927', 'PUNICODEX'] },
-  { path: '/pantheon/', status: 200, markers: ['266'] },
-  { path: '/lexicon/', status: 200, markers: ['927'] },
+  { path: '/', status: 200, markers: ['924', 'PUNICODEX'] },
+  { path: '/pantheon/', status: 200, markers: ['271'] },
+  { path: '/lexicon/', status: 200, markers: ['924'] },
   { path: '/blog/', status: 200, markers: ['pantheon', 'scholarly'] },
   { path: '/herald/', status: 200, markers: ['Unicode Herald'] },
   { path: '/store/', status: 200, markers: ['product'] },
@@ -42,7 +42,7 @@ const CHECKS = [
   { path: '/sites/athena/', status: 200, markers: ['Athēnâ'] },
   { path: '/sites/sekhmet/lore/', status: 200, markers: ['Extended Lore'] },
   // API surface
-  { path: '/api/stats/', status: 200, markers: ['"total":927', '"flagships":266'], json: true },
+  { path: '/api/stats/', status: 200, markers: ['"total":924', '"flagships":271'], json: true },
   { path: '/api/slots/', status: 200, markers: ['"slots"'], json: true },
   { path: '/api/v1/pantheons/', status: 200, markers: ['"count":25'], json: true },
   { path: '/api/store/products/', status: 200, markers: ['"success":true'], json: true },

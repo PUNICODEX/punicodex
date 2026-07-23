@@ -63,6 +63,12 @@ function replaceAll(str, replacements) {
 const files = [
   {
     path: path.join(ROOT, 'index.html'),
+    regexFallbacks: [
+      [/\d+ temples[.,] \d+ pantheons/g, '__SYNC:temple-count__ temples. __SYNC:pantheon-count__ pantheons'],
+      [/\d+ temples consecrated/g, '__SYNC:temple-count__ temples consecrated'],
+      [/\d+ temples later/g, '__SYNC:temple-count__ temples later'],
+      [/data-count="\d+"/g, 'data-count="__SYNC:temple-count__"'],
+    ],
     fallbacks: {
       '74 temples. 21 pantheons. One mission': `__SYNC:temple-count__ temples. __SYNC:pantheon-count__ pantheons. One mission`,
       '<span class="gold-text">74 temples consecrated.</span>': '<span class="gold-text">__SYNC:temple-count__ temples consecrated.</span>',
@@ -98,6 +104,11 @@ const files = [
   },
   {
     path: path.join(ROOT, 'lexicon', 'index.html'),
+    regexFallbacks: [
+      [/Lexicon — \d+ Unicode (Domain )?Names/g, 'Lexicon — __SYNC:entry-count__ Unicode Names'],
+      [/all \d+ scholarly Unicode (domain )?names/gi, 'all __SYNC:entry-count__ scholarly Unicode names'],
+      [/across \d+ (traditions|pantheons)/g, 'across __SYNC:pantheon-count__ $1'],
+    ],
     fallbacks: {
       'Lexicon — 267 Unicode Domain Names': 'Lexicon — __SYNC:entry-count__ Unicode Names',
       'Browse all 267 scholarly Unicode domain names': 'Browse all __SYNC:entry-count__ scholarly Unicode names',
