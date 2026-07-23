@@ -121,9 +121,22 @@ for (const entry of LEXICON) {
   }
 }
 
+// Reliquary store pages: one collection + one product page per catalog item.
+const POD = JSON.parse(fs.readFileSync(path.join(ROOT, 'store', 'products.json'), 'utf8'));
+const storeCollectionIds = new Set();
+for (const product of POD.products) {
+  const templeId = product.temple || 'punicodex';
+  if (!storeCollectionIds.has(templeId)) {
+    storeCollectionIds.add(templeId);
+    xml += urlEntry(`/store/${templeId}/`, '0.6', 'weekly');
+  }
+  xml += urlEntry(`/store/${templeId}/${product.id.split('-').pop()}/`, '0.5', 'weekly');
+}
+
 xml += '</urlset>\n';
 
 writeFileWithRetry(path.join(ROOT, 'sitemap.xml'), xml, 'utf8');
 
-const urlCount = mainPages.length + LEXICON.length + flagshipIds.size * 8;
+const urlCount =
+  mainPages.length + LEXICON.length + flagshipIds.size * 8 + storeCollectionIds.size + POD.count;
 console.log(`Sitemap generated: ${urlCount} URLs`);

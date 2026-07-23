@@ -71,6 +71,13 @@ const scripts = [
   'scripts/sync-desktop-nav.js',
   'scripts/sync-footer.js',
   'scripts/generate-pod-products.js',
+  // Store pages (collections/collection/product) consume products.json and
+  // must run after it; the injectors then re-run (idempotent) so the fresh
+  // pages also receive analytics, collaborators, and beacon blocks.
+  'scripts/generate-store-pages.js',
+  'scripts/inject-analytics.js',
+  'scripts/inject-university-collaborators.js',
+  'scripts/inject-herald-beacon.js',
   'scripts/update-data-version.js',
   // Writes data/corpus/entries.jsonl + manifest.json. MUST run before the
   // corpus generators below, several of which read entries.jsonl — running it

@@ -1,50 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- PUNICODEX-ANALYTICS-START -->
-<script src="/js/analytics-beacon.js" defer></script>
-<!-- PUNICODEX-ANALYTICS-END -->
-
 <!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
 <link rel="stylesheet" href="/css/university-collaborators.css?v=3">
 <script src="/js/university-collaborators.js?v=3" defer></script>
 <!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
-    <meta charset="UTF-8">
-    <meta name="google" content="notranslate">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#050505">
-    <title>The Reliquary — PuniCodex</title>
-    <meta name="description" content="Sacred artifacts from the Unicode Pantheon. Apparel, art prints, and digital collectibles inspired by the restored archetypes.">
-    <link rel="canonical" href="https://punicodex.com/store/">
-    <meta property="og:title" content="The Reliquary — PuniCodex">
-    <meta property="og:description" content="Sacred artifacts from the Unicode Pantheon.">
-    <meta property="og:image" content="https://punicodex.com/assets/brand/05-social/punicodex-og-image-1200x630.png">
-    <meta property="og:url" content="https://punicodex.com/store/">
-    <meta name="twitter:card" content="summary_large_image">
-    <link rel="stylesheet" href="/assets/fonts/fonts.css">
 
-    <link rel="stylesheet" href="/css/main.css?v=perf12">
-    <link rel="stylesheet" href="/css/store.css?v=perf8">
-    <link rel="stylesheet" href="/css/punicodex-tokens.css">
-    <link rel="stylesheet" href="/css/pc-fx.css?v=1">
-    <script src="/js/pc-fx-core.js?v=1" defer></script>
-    <script src="/js/pc-fx-brilliant.js?v=1" defer></script>
-    <link rel="stylesheet" href="/css/brand-overrides.css">
-    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
-    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
-    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
-    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
-    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google" content="notranslate">
+<title>The Reliquary — Collections | PUNICODEX</title>
+<meta name="description" content="Print-on-demand relics of the Unicode Pantheon — 272 temple collections, each with its own line of apparel, prints, drinkware and relics.">
+<link rel="canonical" href="https://punicodex.com/store/">
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
+<link rel="stylesheet" href="/css/main.css?v=perf12">
+<style>
+:root{--obsidian:#0A0A0C;--gold:#D4AF37;--gold-bright:#F0D878;--ink:#E8E4DC;--dim:#9a948a;--line:rgba(212,175,55,.18);--card:#121216}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--obsidian);color:var(--ink);font-family:'Spectral',Georgia,serif;line-height:1.6}
+h1,h2,h3,.display{font-family:'Cinzel',serif;color:var(--gold)}
+a{color:var(--gold);text-decoration:none}
+a:hover{color:var(--gold-bright)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 1.25rem}
+.crumbs{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);padding:1.25rem 0 0}
+.crumbs a{color:var(--dim)}
+.crumbs a:hover{color:var(--gold)}
+.hero{display:grid;grid-template-columns:280px 1fr;gap:2.5rem;align-items:center;padding:2.5rem 0;border-bottom:1px solid var(--line)}
+.hero img{width:100%;border-radius:14px;border:1px solid var(--line);background:#0e0e12}
+.hero h1{font-size:2.2rem;margin:.2rem 0 .4rem}
+.hero .tag{color:var(--dim);font-size:1.02rem;max-width:56ch}
+.pill{display:inline-block;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:.22rem .7rem;color:var(--gold);margin-right:.4rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.25rem;padding:2rem 0 4rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;transition:transform .25s ease,border-color .25s ease;display:block;color:var(--ink)}
+.card:hover{transform:translateY(-4px);border-color:var(--gold);color:var(--ink)}
+.card .imgbox{aspect-ratio:1;background:#0c0c10;overflow:hidden}
+.card img{width:100%;height:100%;object-fit:cover;display:block}
+.card .body{padding:.85rem .95rem 1rem}
+.card h3{font-size:.98rem;color:var(--ink);font-family:'Spectral',Georgia,serif;margin:0 0 .15rem}
+.card .sub{font-size:.74rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}
+.card .price{color:var(--gold);font-family:'Cinzel',serif;margin-top:.35rem;font-size:1.02rem}
+.filters{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;padding:1.5rem 0 .5rem}
+.filters input{background:#0e0e12;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:.55rem .9rem;font-size:.9rem;min-width:220px;font-family:inherit}
+.fpill{border:1px solid var(--line);background:none;color:var(--dim);border-radius:999px;padding:.35rem .9rem;font-size:.78rem;letter-spacing:.06em;cursor:pointer;font-family:inherit}
+.fpill.active,.fpill:hover{color:var(--gold);border-color:var(--gold)}
+.pdp{display:grid;grid-template-columns:minmax(0,520px) 1fr;gap:3rem;padding:2.5rem 0 4rem}
+.pdp .stage{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#0c0c10}
+.pdp .stage img{width:100%;display:block}
+.pdp h1{font-size:1.9rem;margin:.2rem 0 .5rem}
+.pdp .price{font-family:'Cinzel',serif;font-size:1.6rem;color:var(--gold);margin:.4rem 0 1rem}
+.opt-group{margin:1.2rem 0}
+.opt-group .lbl{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:.45rem}
+.opts{display:flex;flex-wrap:wrap;gap:.45rem}
+.opt{border:1px solid var(--line);background:none;color:var(--ink);border-radius:8px;padding:.45rem .85rem;font-size:.85rem;cursor:pointer;font-family:inherit}
+.opt.active{border-color:var(--gold);color:var(--gold);background:rgba(212,175,55,.08)}
+.opt:hover{border-color:var(--gold)}
+.qty{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.qty button{background:none;border:none;color:var(--gold);width:2.4rem;height:2.4rem;font-size:1.2rem;cursor:pointer}
+.qty span{min-width:2.2rem;text-align:center}
+.buy{display:block;width:100%;margin-top:1.6rem;background:var(--gold);color:#0a0a0c;border:none;border-radius:10px;padding:1rem;font-family:'Cinzel',serif;font-size:1rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;font-weight:700}
+.buy:hover{background:var(--gold-bright)}
+.buy:disabled{opacity:.6;cursor:wait}
+.story{margin-top:1.8rem;border-top:1px solid var(--line);padding-top:1.2rem}
+.story h3{font-size:.95rem;margin-bottom:.5rem}
+.story li{color:var(--dim);font-size:.92rem;margin:.25rem 0;list-style:none}
+.story li::before{content:'◆ ';color:var(--gold);font-size:.6rem;vertical-align:middle}
+@media(max-width:820px){
+  .hero{grid-template-columns:1fr;text-align:center}
+  .hero img{max-width:260px;margin:0 auto}
+  .pdp{grid-template-columns:1fr;gap:1.5rem}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+}
+</style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1">
 <script src="/js/herald-beacon.js?v=1" defer></script>
 <!-- PUNICODEX-HERALD-BEACON-END -->
 </head>
 <body>
-
     <nav class="main-nav" id="main-nav">
         <div class="nav-inner">
             <a href="/" class="nav-wordmark"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-camel-gold.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-camel-gold.png" alt="PuniCodex — The Unicode Pantheon" width="680" height="119"></picture></a>
@@ -76,8 +112,6 @@
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
         </div>
     </nav>
-
-            <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobile-menu">
         <div class="mobile-menu-section">
             <span class="mobile-menu-title">Explore</span>
@@ -117,98 +151,2251 @@
             </div>
         </div>
     </div>
-
-    <main class="page-store">
-        <section class="page-hero">
-            <div class="container">
-                <div class="pc-fx-stage pc-fx-brilliant-stage reveal-up" role="img" aria-label="The Golden Brilliant — a faceted gem cut in gold, its facets catching the light">
-                    <canvas class="pc-fx-brilliant" aria-hidden="true"></canvas>
-                </div>
-                <h1 class="display-lg text-center reveal-up">THE RELIQUARY</h1>
-                <p class="body-lg text-center reveal-up">Sacred artifacts from the Pantheon. Each piece consecrated with the true names of the archetypes.</p>
-                <div class="store-status reveal-up">
-                    <span class="badge badge-gold">Opening Soon</span>
-                    <p class="body-md text-center">The Reliquary is being prepared. Browse the preview collection below and be notified when orders open.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="store-content">
-            <div class="container">
-                <div class="store-tabs" role="tablist">
-                    <button class="store-tab active" data-filter="all">All</button>
-                    <button class="store-tab" data-filter="apparel">Apparel</button>
-                    <button class="store-tab" data-filter="art-prints">Art Prints</button>
-                    <button class="store-tab" data-filter="drinkware">Drinkware</button>
-                    <button class="store-tab" data-filter="accessories">Accessories</button>
-                    <button class="store-tab" data-filter="relics">Relics</button>
-                    <button class="store-tab" data-filter="digital">Digital</button>
-                </div>
-
-                <div class="store-grid" id="product-grid">
-                    <!-- Rendered from store/products.json by /js/store.js -->
-                </div>
-
-                <div class="store-cta reveal-up">
-                    <h3 class="heading-md text-center">Be Notified When the Reliquary Opens</h3>
-                    <form class="newsletter-form" id="store-notify-form">
-                        <input type="email" placeholder="your@email.com" required class="newsletter-input" aria-label="Email address for restock notifications">
-                        <button type="submit" class="btn btn-primary">Notify Me</button>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </main>
-
-        
+    <script src="/js/main.js?v=perf12" defer></script>
+<div class="wrap crumbs" style="max-width:1200px"><a href="/">PuniCodex</a> · <a href="/store/" style="color:var(--gold)">The Reliquary</a></div>
+<div class="wrap">
+  <div class="hero" style="grid-template-columns:1fr;text-align:left">
+    <div>
+      <span class="pill">Orders Open</span>
+      <h1>THE RELIQUARY</h1>
+      <p class="tag">Sacred artifacts from the Pantheon, printed on demand. Every temple keeps a collection — choose one, and its whole line of apparel, prints, drinkware and relics opens to you.</p>
+    </div>
+  </div>
+  <div class="filters" id="filters">
+    <input id="q" type="search" placeholder="Search the collections…" aria-label="Search collections">
+    <button class="fpill active" data-f="all">All</button>
+    <button class="fpill" data-f="House">House</button>
+    <button class="fpill" data-f="abrahamic">abrahamic</button>
+    <button class="fpill" data-f="baltic">baltic</button>
+    <button class="fpill" data-f="buddhist">buddhist</button>
+    <button class="fpill" data-f="canaanite">canaanite</button>
+    <button class="fpill" data-f="celtic">celtic</button>
+    <button class="fpill" data-f="chinese">chinese</button>
+    <button class="fpill" data-f="chthonic">chthonic</button>
+    <button class="fpill" data-f="egyptian">egyptian</button>
+    <button class="fpill" data-f="greek">greek</button>
+    <button class="fpill" data-f="greek-location">greek-location</button>
+    <button class="fpill" data-f="japanese">japanese</button>
+    <button class="fpill" data-f="mapuche">mapuche</button>
+    <button class="fpill" data-f="mesopotamian">mesopotamian</button>
+    <button class="fpill" data-f="nahuatl">nahuatl</button>
+    <button class="fpill" data-f="norse">norse</button>
+    <button class="fpill" data-f="olympian">olympian</button>
+    <button class="fpill" data-f="other">other</button>
+    <button class="fpill" data-f="phoenician">phoenician</button>
+    <button class="fpill" data-f="polynesian">polynesian</button>
+    <button class="fpill" data-f="roman">roman</button>
+    <button class="fpill" data-f="sanskrit">sanskrit</button>
+    <button class="fpill" data-f="slavic">slavic</button>
+    <button class="fpill" data-f="taoist">taoist</button>
+    <button class="fpill" data-f="titan">titan</button>
+    <button class="fpill" data-f="yoruba">yoruba</button>
+    <button class="fpill" data-f="zoroastrian">zoroastrian</button>
+  </div>
+  <div class="grid" id="grid">
+<a class="card" href="/store/aigyptos/" data-pantheon="greek-location" data-name="aígyptos">
+  <div class="imgbox"><img src="/sites/aigyptos/assets/aigyptos_mascot.webp" alt="Aígyptos collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek-location · Tier S</div>
+    <h3>Aígyptos</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/aphrodite/" data-pantheon="olympian" data-name="aphrodítē">
+  <div class="imgbox"><img src="/sites/aphrodite/assets/aphrodite_mascot.webp" alt="Aphrodítē collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">olympian · Tier S</div>
+    <h3>Aphrodítē</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/ares/" data-pantheon="olympian" data-name="árēs">
+  <div class="imgbox"><img src="/sites/ares/assets/ares_mascot.webp" alt="Árēs collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">olympian · Tier SSS</div>
+    <h3>Árēs</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/asia/" data-pantheon="greek-location" data-name="asía">
+  <div class="imgbox"><img src="/sites/asia/assets/asia_mascot.webp" alt="Asía collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek-location · Tier S</div>
+    <h3>Asía</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/athena/" data-pantheon="olympian" data-name="athēnâ">
+  <div class="imgbox"><img src="/sites/athena/assets/athena_mascot.webp" alt="Athēnâ collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">olympian</div>
+    <h3>Athēnâ</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/athenai/" data-pantheon="greek-location" data-name="athēnai">
+  <div class="imgbox"><img src="/sites/athenai/assets/athenai_mascot.webp" alt="Athēnai collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek-location · Tier A</div>
+    <h3>Athēnai</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/demeter/" data-pantheon="olympian" data-name="dēmētēr">
+  <div class="imgbox"><img src="/sites/demeter/assets/demeter_mascot.webp" alt="Dēmētēr collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">olympian · Tier A</div>
+    <h3>Dēmētēr</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/europe/" data-pantheon="greek-location" data-name="eurṓpē">
+  <div class="imgbox"><img src="/sites/europe/assets/europe_mascot.webp" alt="Eurṓpē collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek-location · Tier S</div>
+    <h3>Eurṓpē</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/gaia/" data-pantheon="greek" data-name="gaîa">
+  <div class="imgbox"><img src="/sites/gaia/assets/gaia_mascot.webp" alt="Gaîa collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek · Tier S</div>
+    <h3>Gaîa</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/helios/" data-pantheon="greek" data-name="hēlios">
+  <div class="imgbox"><img src="/sites/helios/assets/helios_mascot.webp" alt="Hēlios collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek · Tier A</div>
+    <h3>Hēlios</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/hephaistos/" data-pantheon="olympian" data-name="hēphaistos">
+  <div class="imgbox"><img src="/sites/hephaistos/assets/hephaistos_mascot.webp" alt="Hēphaistos collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">olympian · Tier A</div>
+    <h3>Hēphaistos</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/hera/" data-pantheon="olympian" data-name="hēra">
+  <div class="imgbox"><img src="/sites/hera/assets/hera_mascot.webp" alt="Hēra collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">olympian · Tier A</div>
+    <h3>Hēra</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/hermes/" data-pantheon="olympian" data-name="hermēs">
+  <div class="imgbox"><img src="/sites/hermes/assets/hermes_mascot.webp" alt="Hermēs collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">olympian · Tier SSS</div>
+    <h3>Hermēs</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/hestia/" data-pantheon="olympian" data-name="hestía">
+  <div class="imgbox"><img src="/sites/hestia/assets/hestia_mascot.webp" alt="Hestía collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">olympian · Tier B</div>
+    <h3>Hestía</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/kobe/" data-pantheon="japanese" data-name="kōbe">
+  <div class="imgbox"><img src="/sites/kobe/assets/kobe_mascot.webp" alt="Kōbe collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">japanese · Tier S</div>
+    <h3>Kōbe</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/kyoto/" data-pantheon="japanese" data-name="kyōto">
+  <div class="imgbox"><img src="/sites/kyoto/assets/kyoto_mascot.webp" alt="Kyōto collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">japanese · Tier S</div>
+    <h3>Kyōto</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/libye/" data-pantheon="greek-location" data-name="libyē">
+  <div class="imgbox"><img src="/sites/libye/assets/libye_mascot.webp" alt="Libyē collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek-location · Tier S</div>
+    <h3>Libyē</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/osaka/" data-pantheon="japanese" data-name="ōsaka">
+  <div class="imgbox"><img src="/sites/osaka/assets/osaka_mascot.webp" alt="Ōsaka collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">japanese · Tier S</div>
+    <h3>Ōsaka</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/persephone/" data-pantheon="chthonic" data-name="persephonē">
+  <div class="imgbox"><img src="/sites/persephone/assets/persephone_mascot.webp" alt="Persephonē collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">chthonic · Tier A</div>
+    <h3>Persephonē</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/poseidon/" data-pantheon="olympian" data-name="poseidōn">
+  <div class="imgbox"><img src="/sites/poseidon/assets/poseidon_mascot.webp" alt="Poseidōn collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">olympian · Tier S</div>
+    <h3>Poseidōn</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/prometheus/" data-pantheon="titan" data-name="promētheús">
+  <div class="imgbox"><img src="/sites/prometheus/assets/prometheus_mascot.webp" alt="Promētheús collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">titan</div>
+    <h3>Promētheús</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/selene/" data-pantheon="olympian" data-name="selēnē">
+  <div class="imgbox"><img src="/sites/selene/assets/selene_mascot.webp" alt="Selēnē collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">olympian · Tier A</div>
+    <h3>Selēnē</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/sparte/" data-pantheon="greek-location" data-name="spártē">
+  <div class="imgbox"><img src="/sites/sparte/assets/sparte_mascot.webp" alt="Spártē collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek-location · Tier A</div>
+    <h3>Spártē</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/zeus/" data-pantheon="olympian" data-name="zeús">
+  <div class="imgbox"><img src="/sites/zeus/assets/zeus_mascot.webp" alt="Zeús collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">olympian · Tier SSS</div>
+    <h3>Zeús</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/alfheimr/" data-pantheon="norse" data-name="álfheimr">
+  <div class="imgbox"><img src="/sites/alfheimr/assets/alfheimr_mascot.webp" alt="Álfheimr collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">norse · Tier B</div>
+    <h3>Álfheimr</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/artemis/" data-pantheon="olympian" data-name="ártemis">
+  <div class="imgbox"><img src="/sites/artemis/assets/artemis_mascot.webp" alt="Ártemis collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">olympian · Tier S</div>
+    <h3>Ártemis</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/atlas/" data-pantheon="titan" data-name="átlas">
+  <div class="imgbox"><img src="/sites/atlas/assets/atlas_mascot.webp" alt="Átlas collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">titan · Tier S</div>
+    <h3>Átlas</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/chaos/" data-pantheon="greek" data-name="cháos">
+  <div class="imgbox"><img src="/sites/chaos/assets/chaos_mascot.webp" alt="Cháos collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek · Tier A</div>
+    <h3>Cháos</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/delphoi/" data-pantheon="greek-location" data-name="delphoí">
+  <div class="imgbox"><img src="/sites/delphoi/assets/delphoi_mascot.webp" alt="Delphoí collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek-location · Tier A</div>
+    <h3>Delphoí</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/dionysos/" data-pantheon="olympian" data-name="diónysos">
+  <div class="imgbox"><img src="/sites/dionysos/assets/dionysos_mascot.webp" alt="Diónysos collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">olympian · Tier S</div>
+    <h3>Diónysos</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/helheimr/" data-pantheon="norse" data-name="helheimr">
+  <div class="imgbox"><img src="/sites/helheimr/assets/helheimr_mascot.webp" alt="Helheimr collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">norse · Tier B</div>
+    <h3>Helheimr</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/jotunheimr/" data-pantheon="norse" data-name="jötunheimr">
+  <div class="imgbox"><img src="/sites/jotunheimr/assets/jotunheimr_mascot.webp" alt="Jötunheimr collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">norse · Tier B</div>
+    <h3>Jötunheimr</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/ker/" data-pantheon="chthonic" data-name="kēr">
+  <div class="imgbox"><img src="/sites/ker/assets/ker_mascot.webp" alt="Kēr collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">chthonic · Tier B</div>
+    <h3>Kēr</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/medousa/" data-pantheon="other" data-name="médousa">
+  <div class="imgbox"><img src="/sites/medousa/assets/medousa_mascot.webp" alt="Médousa collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">other · Tier S</div>
+    <h3>Médousa</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/midgardr/" data-pantheon="norse" data-name="miðgarðr">
+  <div class="imgbox"><img src="/sites/midgardr/assets/midgardr_mascot.webp" alt="Miðgarðr collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">norse · Tier A</div>
+    <h3>Miðgarðr</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/muspellheimr/" data-pantheon="norse" data-name="muspellheimr">
+  <div class="imgbox"><img src="/sites/muspellheimr/assets/muspellheimr_mascot.webp" alt="Muspellheimr collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">norse · Tier B</div>
+    <h3>Muspellheimr</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/maat/" data-pantheon="egyptian" data-name="mꜣꜥt">
+  <div class="imgbox"><img src="/sites/maat/assets/maat_mascot.webp" alt="Mꜣꜥt collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">egyptian · Tier A</div>
+    <h3>Mꜣꜥt</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/maa/" data-pantheon="egyptian" data-name="mꜥ">
+  <div class="imgbox"><img src="/sites/maa/assets/maa_mascot.webp" alt="Mꜥ collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">egyptian · Tier C</div>
+    <h3>Mꜥ</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/odinn/" data-pantheon="norse" data-name="óðinn">
+  <div class="imgbox"><img src="/sites/odinn/assets/odinn_mascot.webp" alt="Óðinn collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">norse · Tier S</div>
+    <h3>Óðinn</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/olympos/" data-pantheon="greek-location" data-name="ólympos">
+  <div class="imgbox"><img src="/sites/olympos/assets/olympos_mascot.webp" alt="Ólympos collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek-location · Tier A</div>
+    <h3>Ólympos</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/pontos/" data-pantheon="greek" data-name="póntos">
+  <div class="imgbox"><img src="/sites/pontos/assets/pontos_mascot.webp" alt="Póntos collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek · Tier A</div>
+    <h3>Póntos</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/ragnarok/" data-pantheon="norse" data-name="ragnarǫk">
+  <div class="imgbox"><img src="/sites/ragnarok/assets/ragnarok_mascot.webp" alt="Ragnarǫk collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">norse · Tier A</div>
+    <h3>Ragnarǫk</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/ra/" data-pantheon="egyptian" data-name="rꜥ">
+  <div class="imgbox"><img src="/sites/ra/assets/ra_mascot.webp" alt="Rꜥ collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">egyptian · Tier S</div>
+    <h3>Rꜥ</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/sia/" data-pantheon="egyptian" data-name="sjꜣ">
+  <div class="imgbox"><img src="/sites/sia/assets/sia_mascot.webp" alt="Sjꜣ collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">egyptian</div>
+    <h3>Sjꜣ</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/shiva/" data-pantheon="sanskrit" data-name="śiva">
+  <div class="imgbox"><img src="/sites/shiva/assets/shiva_mascot.webp" alt="Śiva collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">sanskrit · Tier S</div>
+    <h3>Śiva</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/shu/" data-pantheon="egyptian" data-name="šw">
+  <div class="imgbox"><img src="/sites/shu/assets/shu_mascot.webp" alt="Šw collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">egyptian · Tier B</div>
+    <h3>Šw</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/tartaros/" data-pantheon="greek" data-name="tártaros">
+  <div class="imgbox"><img src="/sites/tartaros/assets/tartaros_mascot.webp" alt="Tártaros collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek · Tier A</div>
+    <h3>Tártaros</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/thor/" data-pantheon="norse" data-name="þórr">
+  <div class="imgbox"><img src="/sites/thor/assets/thor_mascot.webp" alt="Þórr collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">norse</div>
+    <h3>Þórr</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/ab/" data-pantheon="egyptian" data-name="ꜣb">
+  <div class="imgbox"><img src="/sites/ab/assets/ab_mascot.webp" alt="ꜣb collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">egyptian · Tier C</div>
+    <h3>ꜣb</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/akh/" data-pantheon="egyptian" data-name="ꜣḫ">
+  <div class="imgbox"><img src="/sites/akh/assets/akh_mascot.webp" alt="ꜣḫ collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">egyptian · Tier C</div>
+    <h3>ꜣḫ</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/apollon/" data-pantheon="olympian" data-name="apóllōn">
+  <div class="imgbox"><img src="/sites/apollon/assets/apollon_mascot.webp" alt="Apóllōn collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">olympian · Tier S</div>
+    <h3>Apóllōn</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/hades/" data-pantheon="olympian" data-name="hádēs">
+  <div class="imgbox"><img src="/sites/hades/assets/hades_mascot.webp" alt="Hádēs collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">olympian · Tier S</div>
+    <h3>Hádēs</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/hekate/" data-pantheon="chthonic" data-name="hekátē">
+  <div class="imgbox"><img src="/sites/hekate/assets/hekate_mascot.webp" alt="Hekátē collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">chthonic · Tier S</div>
+    <h3>Hekátē</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/nike/" data-pantheon="olympian" data-name="níkē">
+  <div class="imgbox"><img src="/sites/nike/assets/nike_mascot.webp" alt="Níkē collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">olympian · Tier SSS</div>
+    <h3>Níkē</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/el/" data-pantheon="canaanite" data-name="ēl">
+  <div class="imgbox"><img src="/sites/el/assets/el_mascot.webp" alt="Ēl collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">canaanite · Tier S</div>
+    <h3>Ēl</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/baal/" data-pantheon="canaanite" data-name="baꜥal">
+  <div class="imgbox"><img src="/sites/baal/assets/baal_mascot.webp" alt="Baꜥal collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">canaanite · Tier S</div>
+    <h3>Baꜥal</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/anat/" data-pantheon="canaanite" data-name="ꜥanat">
+  <div class="imgbox"><img src="/sites/anat/assets/anat_mascot.webp" alt="ꜥAnat collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">canaanite · Tier A</div>
+    <h3>ꜥAnat</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/asherah/" data-pantheon="canaanite" data-name="ꜥasherah">
+  <div class="imgbox"><img src="/sites/asherah/assets/asherah_mascot.webp" alt="ꜥAsherah collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">canaanite</div>
+    <h3>ꜥAsherah</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/kronos/" data-pantheon="greek" data-name="krónos">
+  <div class="imgbox"><img src="/sites/kronos/assets/kronos_mascot.webp" alt="Krónos collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek · Tier SSS</div>
+    <h3>Krónos</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/enlil/" data-pantheon="mesopotamian" data-name="enlīl">
+  <div class="imgbox"><img src="/sites/enlil/assets/enlil_mascot.webp" alt="Enlīl collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">mesopotamian · Tier A</div>
+    <h3>Enlīl</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/typhon/" data-pantheon="greek" data-name="typhōn">
+  <div class="imgbox"><img src="/sites/typhon/assets/typhon_mascot.webp" alt="Typhōn collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek · Tier A</div>
+    <h3>Typhōn</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/ishtar/" data-pantheon="mesopotamian" data-name="ištar">
+  <div class="imgbox"><img src="/sites/ishtar/assets/ishtar_mascot.webp" alt="Ištar collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">mesopotamian · Tier A</div>
+    <h3>Ištar</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/aither/" data-pantheon="greek" data-name="aithḗr">
+  <div class="imgbox"><img src="/sites/aither/assets/aither_mascot.webp" alt="Aithḗr collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek · Tier A</div>
+    <h3>Aithḗr</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/astart/" data-pantheon="phoenician" data-name="aštart">
+  <div class="imgbox"><img src="/sites/astart/assets/astart_mascot.webp" alt="Aštart collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">phoenician · Tier A</div>
+    <h3>Aštart</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/ba/" data-pantheon="egyptian" data-name="bꜣ">
+  <div class="imgbox"><img src="/sites/ba/assets/ba_mascot.webp" alt="Bꜣ collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">egyptian · Tier C</div>
+    <h3>Bꜣ</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/ea/" data-pantheon="mesopotamian" data-name="ēa">
+  <div class="imgbox"><img src="/sites/ea/assets/ea_mascot.webp" alt="Ēa collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">mesopotamian · Tier SSS</div>
+    <h3>Ēa</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/eros/" data-pantheon="greek" data-name="érōs">
+  <div class="imgbox"><img src="/sites/eros/assets/eros_mascot.webp" alt="Érōs collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek · Tier A</div>
+    <h3>Érōs</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/ganesha/" data-pantheon="sanskrit" data-name="gaṇeśa">
+  <div class="imgbox"><img src="/sites/ganesha/assets/ganesha_mascot.webp" alt="Gaṇeśa collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">sanskrit · Tier S</div>
+    <h3>Gaṇeśa</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/heka/" data-pantheon="egyptian" data-name="ḥkꜣ">
+  <div class="imgbox"><img src="/sites/heka/assets/heka_mascot.webp" alt="Ḥkꜣ collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">egyptian · Tier B</div>
+    <h3>Ḥkꜣ</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/horus/" data-pantheon="egyptian" data-name="ḥr">
+  <div class="imgbox"><img src="/sites/horus/assets/horus_mascot.webp" alt="Ḥr collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">egyptian · Tier S</div>
+    <h3>Ḥr</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/kali/" data-pantheon="sanskrit" data-name="kālī">
+  <div class="imgbox"><img src="/sites/kali/assets/kali_mascot.webp" alt="Kālī collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">sanskrit · Tier S</div>
+    <h3>Kālī</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/prajapati/" data-pantheon="sanskrit" data-name="prajāpati">
+  <div class="imgbox"><img src="/sites/prajapati/assets/prajapati_mascot.webp" alt="Prajāpati collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">sanskrit · Tier B</div>
+    <h3>Prajāpati</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/rta/" data-pantheon="sanskrit" data-name="ṛta">
+  <div class="imgbox"><img src="/sites/rta/assets/rta_mascot.webp" alt="Ṛta collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">sanskrit · Tier B</div>
+    <h3>Ṛta</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/vishnu/" data-pantheon="sanskrit" data-name="viṣṇu">
+  <div class="imgbox"><img src="/sites/vishnu/assets/vishnu_mascot.webp" alt="Viṣṇu collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">sanskrit · Tier S</div>
+    <h3>Viṣṇu</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/apsu/" data-pantheon="mesopotamian" data-name="apsû">
+  <div class="imgbox"><img src="/sites/apsu/assets/apsu_mascot.webp" alt="Apsû collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">mesopotamian · Tier A</div>
+    <h3>Apsû</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/okeanos/" data-pantheon="greek" data-name="ōkeanós">
+  <div class="imgbox"><img src="/sites/okeanos/assets/okeanos_mascot.webp" alt="Ōkeanós collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek · Tier A</div>
+    <h3>Ōkeanós</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/trengtreng/" data-pantheon="mapuche" data-name="trengtreng">
+  <div class="imgbox"><img src="/sites/trengtreng/assets/trengtreng_mascot.webp" alt="Trengtreng collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">mapuche</div>
+    <h3>Trengtreng</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/varuna/" data-pantheon="sanskrit" data-name="varuṇa">
+  <div class="imgbox"><img src="/sites/varuna/assets/varuna_mascot.webp" alt="Varuṇa collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">sanskrit · Tier A</div>
+    <h3>Varuṇa</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/ka/" data-pantheon="egyptian" data-name="kꜣ">
+  <div class="imgbox"><img src="/sites/ka/assets/ka_mascot.webp" alt="Kꜣ collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">egyptian · Tier C</div>
+    <h3>Kꜣ</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/asa/" data-pantheon="zoroastrian" data-name="aša">
+  <div class="imgbox"><img src="/sites/asa/assets/asa_mascot.webp" alt="Aša collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">zoroastrian · Tier B</div>
+    <h3>Aša</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/vac/" data-pantheon="sanskrit" data-name="vāc">
+  <div class="imgbox"><img src="/sites/vac/assets/vac_mascot.webp" alt="Vāc collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">sanskrit · Tier B</div>
+    <h3>Vāc</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/anu/" data-pantheon="mesopotamian" data-name="anû">
+  <div class="imgbox"><img src="/sites/anu/assets/anu_mascot.webp" alt="Anû collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">mesopotamian · Tier A</div>
+    <h3>Anû</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/hen/" data-pantheon="greek" data-name="hén">
+  <div class="imgbox"><img src="/sites/hen/assets/hen_mascot.webp" alt="Hén collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek · Tier B</div>
+    <h3>Hén</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/om/" data-pantheon="sanskrit" data-name="oṃ">
+  <div class="imgbox"><img src="/sites/om/assets/om_mascot.webp" alt="Oṃ collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">sanskrit · Tier S</div>
+    <h3>Oṃ</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/ahuramazda/" data-pantheon="zoroastrian" data-name="ahuramazdā">
+  <div class="imgbox"><img src="/sites/ahuramazda/assets/ahuramazda_mascot.webp" alt="AhuraMazdā collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">zoroastrian · Tier S</div>
+    <h3>AhuraMazdā</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/lakshmi/" data-pantheon="sanskrit" data-name="lakṣmī">
+  <div class="imgbox"><img src="/sites/lakshmi/assets/lakshmi_mascot.webp" alt="Lakṣmī collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">sanskrit · Tier S</div>
+    <h3>Lakṣmī</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/nikko/" data-pantheon="japanese" data-name="nikkō">
+  <div class="imgbox"><img src="/sites/nikko/assets/nikko_mascot.webp" alt="Nikkō collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">japanese · Tier A</div>
+    <h3>Nikkō</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/nirmata/" data-pantheon="sanskrit" data-name="nirmātā">
+  <div class="imgbox"><img src="/sites/nirmata/assets/nirmata_mascot.webp" alt="Nirmātā collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">sanskrit · Tier A</div>
+    <h3>Nirmātā</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/parvati/" data-pantheon="sanskrit" data-name="pārvatī">
+  <div class="imgbox"><img src="/sites/parvati/assets/parvati_mascot.webp" alt="Pārvatī collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">sanskrit · Tier S</div>
+    <h3>Pārvatī</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/ptah/" data-pantheon="egyptian" data-name="ptḥ">
+  <div class="imgbox"><img src="/sites/ptah/assets/ptah_mascot.webp" alt="Ptḥ collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">egyptian · Tier A</div>
+    <h3>Ptḥ</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/rama/" data-pantheon="sanskrit" data-name="rāma">
+  <div class="imgbox"><img src="/sites/rama/assets/rama_mascot.webp" alt="Rāma collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">sanskrit · Tier S</div>
+    <h3>Rāma</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/tiamat/" data-pantheon="mesopotamian" data-name="tiāmat">
+  <div class="imgbox"><img src="/sites/tiamat/assets/tiamat_mascot.webp" alt="Tiāmat collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">mesopotamian · Tier A</div>
+    <h3>Tiāmat</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/tyr/" data-pantheon="norse" data-name="týr">
+  <div class="imgbox"><img src="/sites/tyr/assets/tyr_mascot.webp" alt="Týr collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">norse · Tier S</div>
+    <h3>Týr</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/valholl/" data-pantheon="norse" data-name="valhǫll">
+  <div class="imgbox"><img src="/sites/valholl/assets/valholl_mascot.webp" alt="Valhǫll collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">norse · Tier A</div>
+    <h3>Valhǫll</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/ma/" data-pantheon="egyptian" data-name="mꜣ">
+  <div class="imgbox"><img src="/sites/ma/assets/ma_mascot.webp" alt="Mꜣ collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">egyptian · Tier C</div>
+    <h3>Mꜣ</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/erebus/" data-pantheon="greek" data-name="érebos">
+  <div class="imgbox"><img src="/sites/erebus/assets/erebus_mascot.webp" alt="Érebos collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek · Tier S</div>
+    <h3>Érebos</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/ashur/" data-pantheon="mesopotamian" data-name="aššur">
+  <div class="imgbox"><img src="/sites/ashur/assets/ashur_mascot.webp" alt="Aššur collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">mesopotamian · Tier A</div>
+    <h3>Aššur</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/shamash/" data-pantheon="mesopotamian" data-name="šamaš">
+  <div class="imgbox"><img src="/sites/shamash/assets/shamash_mascot.webp" alt="Šamaš collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">mesopotamian · Tier A</div>
+    <h3>Šamaš</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/quetzalcoatl/" data-pantheon="nahuatl" data-name="quetzalcōātl">
+  <div class="imgbox"><img src="/sites/quetzalcoatl/assets/quetzalcoatl_mascot.webp" alt="Quetzalcōātl collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">nahuatl · Tier S</div>
+    <h3>Quetzalcōātl</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/mot/" data-pantheon="phoenician" data-name="mūt">
+  <div class="imgbox"><img src="/sites/mot/assets/mot_mascot.webp" alt="Mūt collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">phoenician</div>
+    <h3>Mūt</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/aseratu/" data-pantheon="phoenician" data-name="ašeratu">
+  <div class="imgbox"><img src="/sites/aseratu/assets/aseratu_mascot.webp" alt="Ašeratu collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">phoenician · Tier A</div>
+    <h3>Ašeratu</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/leviathan/" data-pantheon="canaanite" data-name="liwyāṯān">
+  <div class="imgbox"><img src="/sites/leviathan/assets/leviathan_mascot.webp" alt="Liwyāṯān collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">canaanite · Tier A</div>
+    <h3>Liwyāṯān</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/njordr/" data-pantheon="norse" data-name="njǫrðr">
+  <div class="imgbox"><img src="/sites/njordr/assets/njordr_mascot.webp" alt="Njǫrðr collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">norse · Tier A</div>
+    <h3>Njǫrðr</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/ankh/" data-pantheon="egyptian" data-name="ꜥnḫ">
+  <div class="imgbox"><img src="/sites/ankh/assets/ankh_mascot.webp" alt="ꜥnḫ collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">egyptian · Tier A</div>
+    <h3>ꜥnḫ</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/isis/" data-pantheon="egyptian" data-name="ꜣst">
+  <div class="imgbox"><img src="/sites/isis/assets/isis_mascot.webp" alt="Ꜣst collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">egyptian · Tier S</div>
+    <h3>Ꜣst</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/sekhmet/" data-pantheon="egyptian" data-name="sḫmt">
+  <div class="imgbox"><img src="/sites/sekhmet/assets/sekhmet_mascot.webp" alt="Sḫmt collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">egyptian · Tier A</div>
+    <h3>Sḫmt</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/bastet/" data-pantheon="egyptian" data-name="bꜣstt">
+  <div class="imgbox"><img src="/sites/bastet/assets/bastet_mascot.webp" alt="Bꜣstt collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">egyptian · Tier A</div>
+    <h3>Bꜣstt</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/wadjet/" data-pantheon="egyptian" data-name="wꜣḏyt">
+  <div class="imgbox"><img src="/sites/wadjet/assets/wadjet_mascot.webp" alt="Wꜣḏyt collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">egyptian · Tier B</div>
+    <h3>Wꜣḏyt</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/nht/" data-pantheon="egyptian" data-name="nḫt">
+  <div class="imgbox"><img src="/sites/nht/assets/nht_mascot.webp" alt="Nḫt collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">egyptian · Tier B</div>
+    <h3>Nḫt</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/moses/" data-pantheon="abrahamic" data-name="mōšeh">
+  <div class="imgbox"><img src="/sites/moses/assets/moses_mascot.webp" alt="Mōšeh collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">abrahamic · Tier A</div>
+    <h3>Mōšeh</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/david/" data-pantheon="abrahamic" data-name="dāwîḏ">
+  <div class="imgbox"><img src="/sites/david/assets/david_mascot.webp" alt="Dāwîḏ collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">abrahamic · Tier A</div>
+    <h3>Dāwîḏ</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/solomon/" data-pantheon="abrahamic" data-name="šəlōmōh">
+  <div class="imgbox"><img src="/sites/solomon/assets/solomon_mascot.webp" alt="Šəlōmōh collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">abrahamic · Tier A</div>
+    <h3>Šəlōmōh</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/noah/" data-pantheon="abrahamic" data-name="nōaḥ">
+  <div class="imgbox"><img src="/sites/noah/assets/noah_mascot.webp" alt="Nōaḥ collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">abrahamic · Tier A</div>
+    <h3>Nōaḥ</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/cain/" data-pantheon="abrahamic" data-name="qāyīn">
+  <div class="imgbox"><img src="/sites/cain/assets/cain_mascot.webp" alt="Qāyīn collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">abrahamic · Tier B</div>
+    <h3>Qāyīn</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/abel/" data-pantheon="abrahamic" data-name="hāḇel">
+  <div class="imgbox"><img src="/sites/abel/assets/abel_mascot.webp" alt="Hāḇel collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">abrahamic · Tier B</div>
+    <h3>Hāḇel</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/hemera/" data-pantheon="greek" data-name="hēméra">
+  <div class="imgbox"><img src="/sites/hemera/assets/hemera_mascot.webp" alt="Hēméra collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek · Tier A</div>
+    <h3>Hēméra</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/long/" data-pantheon="chinese" data-name="lóng">
+  <div class="imgbox"><img src="/sites/long/assets/long_mascot.webp" alt="Lóng collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">chinese · Tier S</div>
+    <h3>Lóng</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/taichi/" data-pantheon="chinese" data-name="tàijí">
+  <div class="imgbox"><img src="/sites/taichi/assets/taichi_mascot.webp" alt="Tàijí collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">chinese · Tier A</div>
+    <h3>Tàijí</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/yinyang/" data-pantheon="taoist" data-name="yīnyáng">
+  <div class="imgbox"><img src="/sites/yinyang/assets/yinyang_mascot.webp" alt="Yīnyáng collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">taoist</div>
+    <h3>Yīnyáng</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/wuji/" data-pantheon="taoist" data-name="wújí">
+  <div class="imgbox"><img src="/sites/wuji/assets/wuji_mascot.webp" alt="Wújí collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">taoist · Tier B</div>
+    <h3>Wújí</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/bagua/" data-pantheon="chinese" data-name="bāguà">
+  <div class="imgbox"><img src="/sites/bagua/assets/bagua_mascot.webp" alt="Bāguà collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">chinese · Tier B</div>
+    <h3>Bāguà</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/wuxing/" data-pantheon="chinese" data-name="wǔxíng">
+  <div class="imgbox"><img src="/sites/wuxing/assets/wuxing_mascot.webp" alt="Wǔxíng collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">chinese · Tier B</div>
+    <h3>Wǔxíng</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/herakles/" data-pantheon="greek" data-name="hēraklēs">
+  <div class="imgbox"><img src="/sites/herakles/assets/herakles_mascot.webp" alt="Hēraklēs collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek · Tier S</div>
+    <h3>Hēraklēs</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/adamas/" data-pantheon="greek" data-name="adámas">
+  <div class="imgbox"><img src="/sites/adamas/assets/adamas_mascot.webp" alt="Adámas collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek</div>
+    <h3>Adámas</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/amitabha/" data-pantheon="buddhist" data-name="amitābha">
+  <div class="imgbox"><img src="/sites/amitabha/assets/amitabha_mascot.webp" alt="Amitābha collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">buddhist</div>
+    <h3>Amitābha</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/amun/" data-pantheon="egyptian" data-name="ꜣmun">
+  <div class="imgbox"><img src="/sites/amun/assets/amun_mascot.webp" alt="Ꜣmun collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">egyptian</div>
+    <h3>Ꜣmun</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/andromeda/" data-pantheon="greek" data-name="andromedē">
+  <div class="imgbox"><img src="/sites/andromeda/assets/andromeda_mascot.webp" alt="Andromedē collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek</div>
+    <h3>Andromedē</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/apep/" data-pantheon="egyptian" data-name="ꜥꜣpp">
+  <div class="imgbox"><img src="/sites/apep/assets/apep_mascot.webp" alt="ꜥꜣpp collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">egyptian</div>
+    <h3>ꜥꜣpp</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/arachne/" data-pantheon="greek" data-name="arachnē">
+  <div class="imgbox"><img src="/sites/arachne/assets/arachne_mascot.webp" alt="Arachnē collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek</div>
+    <h3>Arachnē</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/dagan/" data-pantheon="phoenician" data-name="dāgān">
+  <div class="imgbox"><img src="/sites/dagan/assets/dagan_mascot.webp" alt="Dāgān collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">phoenician</div>
+    <h3>Dāgān</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/dazhbog/" data-pantheon="slavic" data-name="dažbog">
+  <div class="imgbox"><img src="/sites/dazhbog/assets/dazhbog_mascot.webp" alt="Dažbog collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">slavic</div>
+    <h3>Dažbog</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/thoth/" data-pantheon="egyptian" data-name="ḏḥwty">
+  <div class="imgbox"><img src="/sites/thoth/assets/thoth_mascot.webp" alt="Ḏḥwty collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">egyptian</div>
+    <h3>Ḏḥwty</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/eggther/" data-pantheon="norse" data-name="eggþér">
+  <div class="imgbox"><img src="/sites/eggther/assets/eggther_mascot.webp" alt="Eggþér collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">norse</div>
+    <h3>Eggþér</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/ge/" data-pantheon="greek" data-name="gē">
+  <div class="imgbox"><img src="/sites/ge/assets/ge_mascot.webp" alt="Gē collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek</div>
+    <h3>Gē</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/hydra/" data-pantheon="greek" data-name="hýdra">
+  <div class="imgbox"><img src="/sites/hydra/assets/hydra_mascot.webp" alt="Hýdra collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek</div>
+    <h3>Hýdra</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/hygieia/" data-pantheon="greek" data-name="hygíeia">
+  <div class="imgbox"><img src="/sites/hygieia/assets/hygieia_mascot.webp" alt="Hygíeia collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek</div>
+    <h3>Hygíeia</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/hypnos/" data-pantheon="greek" data-name="hýpnos">
+  <div class="imgbox"><img src="/sites/hypnos/assets/hypnos_mascot.webp" alt="Hýpnos collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek</div>
+    <h3>Hýpnos</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/iris/" data-pantheon="greek" data-name="íris">
+  <div class="imgbox"><img src="/sites/iris/assets/iris_mascot.webp" alt="Íris collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek</div>
+    <h3>Íris</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/jormungandr/" data-pantheon="norse" data-name="jǫrmungandr">
+  <div class="imgbox"><img src="/sites/jormungandr/assets/jormungandr_mascot.webp" alt="Jǫrmungandr collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">norse</div>
+    <h3>Jǫrmungandr</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/laozi/" data-pantheon="taoist" data-name="lǎozǐ">
+  <div class="imgbox"><img src="/sites/laozi/assets/laozi_mascot.webp" alt="Lǎozǐ collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">taoist</div>
+    <h3>Lǎozǐ</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/manannan/" data-pantheon="celtic" data-name="manannán">
+  <div class="imgbox"><img src="/sites/manannan/assets/manannan_mascot.webp" alt="Manannán collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">celtic</div>
+    <h3>Manannán</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/modi/" data-pantheon="norse" data-name="móði">
+  <div class="imgbox"><img src="/sites/modi/assets/modi_mascot.webp" alt="Móði collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">norse</div>
+    <h3>Móði</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/papatuanuku/" data-pantheon="polynesian" data-name="papatūānuku">
+  <div class="imgbox"><img src="/sites/papatuanuku/assets/papatuanuku_mascot.webp" alt="Papatūānuku collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">polynesian</div>
+    <h3>Papatūānuku</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/phoenix/" data-pantheon="greek" data-name="phoînix">
+  <div class="imgbox"><img src="/sites/phoenix/assets/phoenix_mascot.webp" alt="Phoînix collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek</div>
+    <h3>Phoînix</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/surya/" data-pantheon="sanskrit" data-name="sūrya">
+  <div class="imgbox"><img src="/sites/surya/assets/surya_mascot.webp" alt="Sūrya collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">sanskrit</div>
+    <h3>Sūrya</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/taishang/" data-pantheon="chinese" data-name="tàishàng">
+  <div class="imgbox"><img src="/sites/taishang/assets/taishang_mascot.webp" alt="Tàishàng collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">chinese</div>
+    <h3>Tàishàng</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/tane/" data-pantheon="polynesian" data-name="tāne">
+  <div class="imgbox"><img src="/sites/tane/assets/tane_mascot.webp" alt="Tāne collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">polynesian</div>
+    <h3>Tāne</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/theia/" data-pantheon="greek" data-name="théia">
+  <div class="imgbox"><img src="/sites/theia/assets/theia_mascot.webp" alt="Théia collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek</div>
+    <h3>Théia</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/tiandi/" data-pantheon="chinese" data-name="tiāndì">
+  <div class="imgbox"><img src="/sites/tiandi/assets/tiandi_mascot.webp" alt="Tiāndì collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">chinese</div>
+    <h3>Tiāndì</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/yam/" data-pantheon="canaanite" data-name="yām">
+  <div class="imgbox"><img src="/sites/yam/assets/yam_mascot.webp" alt="Yām collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">canaanite</div>
+    <h3>Yām</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/shapash/" data-pantheon="canaanite" data-name="šāpšu">
+  <div class="imgbox"><img src="/sites/shapash/assets/shapash_mascot.webp" alt="Šāpšu collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">canaanite</div>
+    <h3>Šāpšu</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/he/" data-pantheon="greek" data-name="hē">
+  <div class="imgbox"><img src="/sites/he/assets/he_mascot.webp" alt="Hē collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek</div>
+    <h3>Hē</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/perkunas/" data-pantheon="baltic" data-name="perkūnas">
+  <div class="imgbox"><img src="/sites/perkunas/assets/perkunas_mascot.webp" alt="Perkūnas collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">baltic</div>
+    <h3>Perkūnas</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/buri/" data-pantheon="norse" data-name="búri">
+  <div class="imgbox"><img src="/sites/buri/assets/buri_mascot.webp" alt="Búri collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">norse</div>
+    <h3>Búri</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/eos/" data-pantheon="greek" data-name="ēōs">
+  <div class="imgbox"><img src="/sites/eos/assets/eos_mascot.webp" alt="Ēōs collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek</div>
+    <h3>Ēōs</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/xian/" data-pantheon="chinese" data-name="xiān">
+  <div class="imgbox"><img src="/sites/xian/assets/xian_mascot.webp" alt="Xiān collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">chinese</div>
+    <h3>Xiān</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/ouranos/" data-pantheon="greek" data-name="ouranós">
+  <div class="imgbox"><img src="/sites/ouranos/assets/ouranos_mascot.webp" alt="Ouranós collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek</div>
+    <h3>Ouranós</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/tian/" data-pantheon="chinese" data-name="tiān">
+  <div class="imgbox"><img src="/sites/tian/assets/tian_mascot.webp" alt="Tiān collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">chinese</div>
+    <h3>Tiān</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/mictlantecutli/" data-pantheon="nahuatl" data-name="mictlāntēcutli">
+  <div class="imgbox"><img src="/sites/mictlantecutli/assets/mictlantecutli_mascot.webp" alt="Mictlāntēcutli collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">nahuatl</div>
+    <h3>Mictlāntēcutli</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/python/" data-pantheon="greek" data-name="pýthōn">
+  <div class="imgbox"><img src="/sites/python/assets/python_mascot.webp" alt="Pýthōn collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek</div>
+    <h3>Pýthōn</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/leto/" data-pantheon="greek" data-name="lētō">
+  <div class="imgbox"><img src="/sites/leto/assets/leto_mascot.webp" alt="Lētō collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek</div>
+    <h3>Lētō</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/sphinx/" data-pantheon="greek" data-name="sphínx">
+  <div class="imgbox"><img src="/sites/sphinx/assets/sphinx_mascot.webp" alt="Sphínx collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek</div>
+    <h3>Sphínx</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/mnemosyne/" data-pantheon="greek" data-name="mnēmosýnē">
+  <div class="imgbox"><img src="/sites/mnemosyne/assets/mnemosyne_mascot.webp" alt="Mnēmosýnē collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek</div>
+    <h3>Mnēmosýnē</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/itzpapalotl/" data-pantheon="nahuatl" data-name="ītzpāpālōtl">
+  <div class="imgbox"><img src="/sites/itzpapalotl/assets/itzpapalotl_mascot.webp" alt="Ītzpāpālōtl collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">nahuatl</div>
+    <h3>Ītzpāpālōtl</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/ourania/" data-pantheon="greek" data-name="ouranía">
+  <div class="imgbox"><img src="/sites/ourania/assets/ourania_mascot.webp" alt="Ouranía collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek</div>
+    <h3>Ouranía</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/oya/" data-pantheon="yoruba" data-name="ọya">
+  <div class="imgbox"><img src="/sites/oya/assets/oya_mascot.webp" alt="Ọya collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">yoruba</div>
+    <h3>Ọya</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/tlaloc/" data-pantheon="nahuatl" data-name="tlāloc">
+  <div class="imgbox"><img src="/sites/tlaloc/assets/tlaloc_mascot.webp" alt="Tlāloc collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">nahuatl</div>
+    <h3>Tlāloc</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/thanatos/" data-pantheon="greek" data-name="thánatos">
+  <div class="imgbox"><img src="/sites/thanatos/assets/thanatos_mascot.webp" alt="Thánatos collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek</div>
+    <h3>Thánatos</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/jizo/" data-pantheon="japanese" data-name="jizō">
+  <div class="imgbox"><img src="/sites/jizo/assets/jizo_mascot.webp" alt="Jizō collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">japanese</div>
+    <h3>Jizō</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/kanaloa/" data-pantheon="polynesian" data-name="kanaloa">
+  <div class="imgbox"><img src="/sites/kanaloa/assets/kanaloa_mascot.webp" alt="Kanaloa collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">polynesian</div>
+    <h3>Kanaloa</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/coeus/" data-pantheon="greek" data-name="koîos">
+  <div class="imgbox"><img src="/sites/coeus/assets/coeus_mascot.webp" alt="Koîos collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek</div>
+    <h3>Koîos</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/vali/" data-pantheon="norse" data-name="váli">
+  <div class="imgbox"><img src="/sites/vali/assets/vali_mascot.webp" alt="Váli collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">norse</div>
+    <h3>Váli</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/sati/" data-pantheon="sanskrit" data-name="satī">
+  <div class="imgbox"><img src="/sites/sati/assets/sati_mascot.webp" alt="Satī collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">sanskrit</div>
+    <h3>Satī</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/aer/" data-pantheon="greek" data-name="aḗr">
+  <div class="imgbox"><img src="/sites/aer/assets/aer_mascot.webp" alt="Aḗr collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek</div>
+    <h3>Aḗr</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/aganju/" data-pantheon="yoruba" data-name="aganjú">
+  <div class="imgbox"><img src="/sites/aganju/assets/aganju_mascot.webp" alt="Aganjú collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">yoruba</div>
+    <h3>Aganjú</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/obatala/" data-pantheon="yoruba" data-name="ọbàtálá">
+  <div class="imgbox"><img src="/sites/obatala/assets/obatala_mascot.webp" alt="Ọbàtálá collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">yoruba</div>
+    <h3>Ọbàtálá</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/orunmila/" data-pantheon="yoruba" data-name="ọrúnmìlà">
+  <div class="imgbox"><img src="/sites/orunmila/assets/orunmila_mascot.webp" alt="Ọrúnmìlà collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">yoruba</div>
+    <h3>Ọrúnmìlà</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/shango/" data-pantheon="yoruba" data-name="ṣàngó">
+  <div class="imgbox"><img src="/sites/shango/assets/shango_mascot.webp" alt="Ṣàngó collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">yoruba</div>
+    <h3>Ṣàngó</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/oshun/" data-pantheon="yoruba" data-name="ọṣun">
+  <div class="imgbox"><img src="/sites/oshun/assets/oshun_mascot.webp" alt="Ọṣun collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">yoruba</div>
+    <h3>Ọṣun</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/olodumare/" data-pantheon="yoruba" data-name="olódùmarè">
+  <div class="imgbox"><img src="/sites/olodumare/assets/olodumare_mascot.webp" alt="Olódùmarè collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">yoruba</div>
+    <h3>Olódùmarè</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/babaluaye/" data-pantheon="yoruba" data-name="ọbalúayé">
+  <div class="imgbox"><img src="/sites/babaluaye/assets/babaluaye_mascot.webp" alt="Ọbalúayé collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">yoruba</div>
+    <h3>Ọbalúayé</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/acheron/" data-pantheon="greek" data-name="achérōn">
+  <div class="imgbox"><img src="/sites/acheron/assets/acheron_mascot.webp" alt="Achérōn collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek</div>
+    <h3>Achérōn</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/rhea/" data-pantheon="greek" data-name="rhéā">
+  <div class="imgbox"><img src="/sites/rhea/assets/rhea_mascot.webp" alt="Rhéā collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek</div>
+    <h3>Rhéā</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/ameretat/" data-pantheon="zoroastrian" data-name="amərətāt">
+  <div class="imgbox"><img src="/sites/ameretat/assets/ameretat_mascot.webp" alt="Amərətāt collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">zoroastrian</div>
+    <h3>Amərətāt</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/haurvatat/" data-pantheon="zoroastrian" data-name="haurvatāt">
+  <div class="imgbox"><img src="/sites/haurvatat/assets/haurvatat_mascot.webp" alt="Haurvatāt collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">zoroastrian</div>
+    <h3>Haurvatāt</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/ananke/" data-pantheon="greek" data-name="anánkē">
+  <div class="imgbox"><img src="/sites/ananke/assets/ananke_mascot.webp" alt="Anánkē collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek</div>
+    <h3>Anánkē</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/coatlicue/" data-pantheon="nahuatl" data-name="cōātlīcue">
+  <div class="imgbox"><img src="/sites/coatlicue/assets/coatlicue_mascot.webp" alt="Cōātlīcue collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">nahuatl</div>
+    <h3>Cōātlīcue</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/tlaltecuhtli/" data-pantheon="nahuatl" data-name="tlāltēcuhtli">
+  <div class="imgbox"><img src="/sites/tlaltecuhtli/assets/tlaltecuhtli_mascot.webp" alt="Tlāltēcuhtli collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">nahuatl</div>
+    <h3>Tlāltēcuhtli</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/cihuacoatl/" data-pantheon="nahuatl" data-name="cihuacōātl">
+  <div class="imgbox"><img src="/sites/cihuacoatl/assets/cihuacoatl_mascot.webp" alt="Cihuacōātl collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">nahuatl</div>
+    <h3>Cihuacōātl</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/huitzilopochtli/" data-pantheon="nahuatl" data-name="huītzilōpōchtli">
+  <div class="imgbox"><img src="/sites/huitzilopochtli/assets/huitzilopochtli_mascot.webp" alt="Huītzilōpōchtli collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">nahuatl</div>
+    <h3>Huītzilōpōchtli</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/durga/" data-pantheon="sanskrit" data-name="durgā">
+  <div class="imgbox"><img src="/sites/durga/assets/durga_mascot.webp" alt="Durgā collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">sanskrit</div>
+    <h3>Durgā</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/eshu/" data-pantheon="yoruba" data-name="ẹṣù">
+  <div class="imgbox"><img src="/sites/eshu/assets/eshu_mascot.webp" alt="Ẹṣù collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">yoruba</div>
+    <h3>Ẹṣù</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/fujin/" data-pantheon="japanese" data-name="fūjin">
+  <div class="imgbox"><img src="/sites/fujin/assets/fujin_mascot.webp" alt="Fūjin collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">japanese</div>
+    <h3>Fūjin</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/arche/" data-pantheon="greek" data-name="archḗ">
+  <div class="imgbox"><img src="/sites/arche/assets/arche_mascot.webp" alt="Archḗ collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek</div>
+    <h3>Archḗ</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/atlantis/" data-pantheon="greek-location" data-name="atlantís">
+  <div class="imgbox"><img src="/sites/atlantis/assets/atlantis_mascot.webp" alt="Atlantís collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek-location</div>
+    <h3>Atlantís</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/pyr/" data-pantheon="greek" data-name="pŷr">
+  <div class="imgbox"><img src="/sites/pyr/assets/pyr_mascot.webp" alt="Pŷr collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek</div>
+    <h3>Pŷr</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/achilleus/" data-pantheon="greek" data-name="achilleús">
+  <div class="imgbox"><img src="/sites/achilleus/assets/achilleus_mascot.webp" alt="Achilleús collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek · Tier A</div>
+    <h3>Achilleús</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/asklepios/" data-pantheon="greek" data-name="asklēpiós">
+  <div class="imgbox"><img src="/sites/asklepios/assets/asklepios_mascot.webp" alt="Asklēpiós collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek · Tier S</div>
+    <h3>Asklēpiós</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/atropos/" data-pantheon="greek" data-name="átropos">
+  <div class="imgbox"><img src="/sites/atropos/assets/atropos_mascot.webp" alt="Átropos collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek · Tier B</div>
+    <h3>Átropos</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/delos/" data-pantheon="greek-location" data-name="dêlos">
+  <div class="imgbox"><img src="/sites/delos/assets/delos_mascot.webp" alt="Dêlos collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek-location · Tier A</div>
+    <h3>Dêlos</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/drakon/" data-pantheon="greek" data-name="drákōn">
+  <div class="imgbox"><img src="/sites/drakon/assets/drakon_mascot.webp" alt="Drákōn collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek · Tier A</div>
+    <h3>Drákōn</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/monokeros/" data-pantheon="greek" data-name="monókerōs">
+  <div class="imgbox"><img src="/sites/monokeros/assets/monokeros_mascot.webp" alt="Monókerōs collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek</div>
+    <h3>Monókerōs</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/phanes/" data-pantheon="greek" data-name="phánēs">
+  <div class="imgbox"><img src="/sites/phanes/assets/phanes_mascot.webp" alt="Phánēs collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek · Tier B</div>
+    <h3>Phánēs</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/pegasos/" data-pantheon="greek" data-name="pḗgasos">
+  <div class="imgbox"><img src="/sites/pegasos/assets/pegasos_mascot.webp" alt="Pḗgasos collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek · Tier S</div>
+    <h3>Pḗgasos</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/seiren/" data-pantheon="greek" data-name="seirḗn">
+  <div class="imgbox"><img src="/sites/seiren/assets/seiren_mascot.webp" alt="Seirḗn collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek · Tier A</div>
+    <h3>Seirḗn</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/troia/" data-pantheon="greek-location" data-name="troíā">
+  <div class="imgbox"><img src="/sites/troia/assets/troia_mascot.webp" alt="Troíā collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek-location · Tier A</div>
+    <h3>Troíā</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/tyche/" data-pantheon="greek" data-name="týchē">
+  <div class="imgbox"><img src="/sites/tyche/assets/tyche_mascot.webp" alt="Týchē collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek · Tier S</div>
+    <h3>Týchē</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/diana/" data-pantheon="roman" data-name="diāna">
+  <div class="imgbox"><img src="/sites/diana/assets/diana_mascot.webp" alt="Diāna collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">roman · Tier S</div>
+    <h3>Diāna</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/ianus/" data-pantheon="roman" data-name="iānus">
+  <div class="imgbox"><img src="/sites/ianus/assets/ianus_mascot.webp" alt="Iānus collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">roman · Tier A</div>
+    <h3>Iānus</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/iuno/" data-pantheon="roman" data-name="iūnō">
+  <div class="imgbox"><img src="/sites/iuno/assets/iuno_mascot.webp" alt="Iūnō collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">roman · Tier A</div>
+    <h3>Iūnō</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/iuppiter/" data-pantheon="roman" data-name="iūpiter">
+  <div class="imgbox"><img src="/sites/iuppiter/assets/iuppiter_mascot.webp" alt="Iūpiter collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">roman</div>
+    <h3>Iūpiter</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/neptunus/" data-pantheon="roman" data-name="neptūnus">
+  <div class="imgbox"><img src="/sites/neptunus/assets/neptunus_mascot.webp" alt="Neptūnus collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">roman · Tier S</div>
+    <h3>Neptūnus</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/vulcanus/" data-pantheon="roman" data-name="vulcānus">
+  <div class="imgbox"><img src="/sites/vulcanus/assets/vulcanus_mascot.webp" alt="Vulcānus collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">roman · Tier A</div>
+    <h3>Vulcānus</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/anubis/" data-pantheon="egyptian" data-name="ꜣnpw">
+  <div class="imgbox"><img src="/sites/anubis/assets/anubis_mascot.webp" alt="ꜣnpw collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">egyptian · Tier A</div>
+    <h3>ꜣnpw</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/steh/" data-pantheon="egyptian" data-name="stḫ">
+  <div class="imgbox"><img src="/sites/steh/assets/steh_mascot.webp" alt="Stḫ collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">egyptian · Tier B</div>
+    <h3>Stḫ</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/seshat/" data-pantheon="egyptian" data-name="sšꜣt">
+  <div class="imgbox"><img src="/sites/seshat/assets/seshat_mascot.webp" alt="Sšꜣt collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">egyptian · Tier A</div>
+    <h3>Sšꜣt</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/hp/" data-pantheon="egyptian" data-name="ḥꜥpy">
+  <div class="imgbox"><img src="/sites/hp/assets/hp_mascot.webp" alt="Ḥꜥpy collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">egyptian</div>
+    <h3>Ḥꜥpy</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/amsa/" data-pantheon="sanskrit" data-name="aṃśa">
+  <div class="imgbox"><img src="/sites/amsa/assets/amsa_mascot.webp" alt="Aṃśa collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">sanskrit · Tier B</div>
+    <h3>Aṃśa</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/daksa/" data-pantheon="sanskrit" data-name="dakṣa">
+  <div class="imgbox"><img src="/sites/daksa/assets/daksa_mascot.webp" alt="Dakṣa collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">sanskrit · Tier B</div>
+    <h3>Dakṣa</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/dhatr/" data-pantheon="sanskrit" data-name="dhātṛ">
+  <div class="imgbox"><img src="/sites/dhatr/assets/dhatr_mascot.webp" alt="Dhātṛ collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">sanskrit · Tier B</div>
+    <h3>Dhātṛ</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/pusan/" data-pantheon="sanskrit" data-name="pūṣan">
+  <div class="imgbox"><img src="/sites/pusan/assets/pusan_mascot.webp" alt="Pūṣan collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">sanskrit · Tier B</div>
+    <h3>Pūṣan</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/tvastr/" data-pantheon="sanskrit" data-name="tvaṣṭṛ">
+  <div class="imgbox"><img src="/sites/tvastr/assets/tvastr_mascot.webp" alt="Tvaṣṭṛ collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">sanskrit · Tier B</div>
+    <h3>Tvaṣṭṛ</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/fuxi/" data-pantheon="chinese" data-name="fúxī">
+  <div class="imgbox"><img src="/sites/fuxi/assets/fuxi_mascot.webp" alt="Fúxī collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">chinese · Tier A</div>
+    <h3>Fúxī</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/guanyin/" data-pantheon="chinese" data-name="guānyīn">
+  <div class="imgbox"><img src="/sites/guanyin/assets/guanyin_mascot.webp" alt="Guānyīn collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">chinese · Tier S</div>
+    <h3>Guānyīn</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/mengpo/" data-pantheon="chinese" data-name="mèngpó">
+  <div class="imgbox"><img src="/sites/mengpo/assets/mengpo_mascot.webp" alt="Mèngpó collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">chinese</div>
+    <h3>Mèngpó</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/nuwa/" data-pantheon="chinese" data-name="nǚwā">
+  <div class="imgbox"><img src="/sites/nuwa/assets/nuwa_mascot.webp" alt="Nǚwā collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">chinese · Tier A</div>
+    <h3>Nǚwā</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/pangu/" data-pantheon="chinese" data-name="pángǔ">
+  <div class="imgbox"><img src="/sites/pangu/assets/pangu_mascot.webp" alt="Pángǔ collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">chinese · Tier A</div>
+    <h3>Pángǔ</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/yanluo/" data-pantheon="chinese" data-name="yánluó">
+  <div class="imgbox"><img src="/sites/yanluo/assets/yanluo_mascot.webp" alt="Yánluó collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">chinese · Tier A</div>
+    <h3>Yánluó</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/hokkaido/" data-pantheon="japanese" data-name="hokkaidō">
+  <div class="imgbox"><img src="/sites/hokkaido/assets/hokkaido_mascot.webp" alt="Hokkaidō collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">japanese · Tier A</div>
+    <h3>Hokkaidō</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/honshu/" data-pantheon="japanese" data-name="honshū">
+  <div class="imgbox"><img src="/sites/honshu/assets/honshu_mascot.webp" alt="Honshū collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">japanese · Tier B</div>
+    <h3>Honshū</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/kyushu/" data-pantheon="japanese" data-name="kyūshū">
+  <div class="imgbox"><img src="/sites/kyushu/assets/kyushu_mascot.webp" alt="Kyūshū collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">japanese · Tier B</div>
+    <h3>Kyūshū</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/tezcatlipoca/" data-pantheon="nahuatl" data-name="tēzcatlīpōca">
+  <div class="imgbox"><img src="/sites/tezcatlipoca/assets/tezcatlipoca_mascot.webp" alt="Tēzcatlīpōca collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">nahuatl</div>
+    <h3>Tēzcatlīpōca</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/xolotl/" data-pantheon="nahuatl" data-name="xōlōtl">
+  <div class="imgbox"><img src="/sites/xolotl/assets/xolotl_mascot.webp" alt="Xōlōtl collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">nahuatl · Tier B</div>
+    <h3>Xōlōtl</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/ogun/" data-pantheon="yoruba" data-name="ògún">
+  <div class="imgbox"><img src="/sites/ogun/assets/ogun_mascot.webp" alt="Ògún collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">yoruba · Tier A</div>
+    <h3>Ògún</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/tumatauenga/" data-pantheon="polynesian" data-name="tūmatauenga">
+  <div class="imgbox"><img src="/sites/tumatauenga/assets/tumatauenga_mascot.webp" alt="Tūmatauenga collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">polynesian · Tier B</div>
+    <h3>Tūmatauenga</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/saraswati/" data-pantheon="sanskrit" data-name="sarasvatī">
+  <div class="imgbox"><img src="/sites/saraswati/assets/saraswati_mascot.webp" alt="Sarasvatī collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">sanskrit · Tier S</div>
+    <h3>Sarasvatī</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/sita/" data-pantheon="sanskrit" data-name="sītā">
+  <div class="imgbox"><img src="/sites/sita/assets/sita_mascot.webp" alt="Sītā collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">sanskrit · Tier A</div>
+    <h3>Sītā</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/guandi/" data-pantheon="chinese" data-name="guāndì">
+  <div class="imgbox"><img src="/sites/guandi/assets/guandi_mascot.webp" alt="Guāndì collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">chinese · Tier A</div>
+    <h3>Guāndì</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/ganga/" data-pantheon="sanskrit" data-name="gaṅgā">
+  <div class="imgbox"><img src="/sites/ganga/assets/ganga_mascot.webp" alt="Gaṅgā collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">sanskrit · Tier A</div>
+    <h3>Gaṅgā</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/hanuman/" data-pantheon="sanskrit" data-name="hanumān">
+  <div class="imgbox"><img src="/sites/hanuman/assets/hanuman_mascot.webp" alt="Hanumān collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">sanskrit · Tier A</div>
+    <h3>Hanumān</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/yamuna/" data-pantheon="sanskrit" data-name="yamunā">
+  <div class="imgbox"><img src="/sites/yamuna/assets/yamuna_mascot.webp" alt="Yamunā collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">sanskrit · Tier B</div>
+    <h3>Yamunā</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/gauri/" data-pantheon="sanskrit" data-name="gaurī">
+  <div class="imgbox"><img src="/sites/gauri/assets/gauri_mascot.webp" alt="Gaurī collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">sanskrit · Tier A</div>
+    <h3>Gaurī</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/sani/" data-pantheon="sanskrit" data-name="śani">
+  <div class="imgbox"><img src="/sites/sani/assets/sani_mascot.webp" alt="Śani collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">sanskrit · Tier B</div>
+    <h3>Śani</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/orun/" data-pantheon="yoruba" data-name="ọrun">
+  <div class="imgbox"><img src="/sites/orun/assets/orun_mascot.webp" alt="Ọrun collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">yoruba · Tier B</div>
+    <h3>Ọrun</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/xiuhtecuhtli/" data-pantheon="nahuatl" data-name="xiuhtēcuhtli">
+  <div class="imgbox"><img src="/sites/xiuhtecuhtli/assets/xiuhtecuhtli_mascot.webp" alt="Xiuhtēcuhtli collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">nahuatl · Tier B</div>
+    <h3>Xiuhtēcuhtli</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/pluto/" data-pantheon="roman" data-name="plūtō">
+  <div class="imgbox"><img src="/sites/pluto/assets/pluto_mascot.webp" alt="Plūtō collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">roman · Tier A</div>
+    <h3>Plūtō</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/ceres/" data-pantheon="roman" data-name="cerēs">
+  <div class="imgbox"><img src="/sites/ceres/assets/ceres_mascot.webp" alt="Cerēs collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">roman · Tier A</div>
+    <h3>Cerēs</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/orpheus/" data-pantheon="greek" data-name="orpheús">
+  <div class="imgbox"><img src="/sites/orpheus/assets/orpheus_mascot.webp" alt="Orpheús collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek · Tier A</div>
+    <h3>Orpheús</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/mixcoatl/" data-pantheon="nahuatl" data-name="mixcōātl">
+  <div class="imgbox"><img src="/sites/mixcoatl/assets/mixcoatl_mascot.webp" alt="Mixcōātl collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">nahuatl · Tier B</div>
+    <h3>Mixcōātl</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/oba/" data-pantheon="yoruba" data-name="ọbà">
+  <div class="imgbox"><img src="/sites/oba/assets/oba_mascot.webp" alt="Ọbà collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">yoruba</div>
+    <h3>Ọbà</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/mazu/" data-pantheon="chinese" data-name="māzǔ">
+  <div class="imgbox"><img src="/sites/mazu/assets/mazu_mascot.webp" alt="Māzǔ collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">chinese · Tier A</div>
+    <h3>Māzǔ</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/kartikeya/" data-pantheon="sanskrit" data-name="kārttikeya">
+  <div class="imgbox"><img src="/sites/kartikeya/assets/kartikeya_mascot.webp" alt="Kārttikeya collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">sanskrit</div>
+    <h3>Kārttikeya</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/ashavahista/" data-pantheon="zoroastrian" data-name="ašavahišta">
+  <div class="imgbox"><img src="/sites/ashavahista/assets/ashavahista_mascot.webp" alt="Ašavahišta collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">zoroastrian</div>
+    <h3>Ašavahišta</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/styx/" data-pantheon="greek" data-name="stýx">
+  <div class="imgbox"><img src="/sites/styx/assets/styx_mascot.webp" alt="Stýx collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek</div>
+    <h3>Stýx</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/hermod/" data-pantheon="norse" data-name="hermóðr">
+  <div class="imgbox"><img src="/sites/hermod/assets/hermod_mascot.webp" alt="Hermóðr collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">norse</div>
+    <h3>Hermóðr</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/cerberus/" data-pantheon="greek" data-name="kérberos">
+  <div class="imgbox"><img src="/sites/cerberus/assets/cerberus_mascot.webp" alt="Kérberos collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek</div>
+    <h3>Kérberos</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/ochosi/" data-pantheon="yoruba" data-name="ọṣọọsì">
+  <div class="imgbox"><img src="/sites/ochosi/assets/ochosi_mascot.webp" alt="Ọṣọọsì collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">yoruba</div>
+    <h3>Ọṣọọsì</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/radha/" data-pantheon="sanskrit" data-name="rādhā">
+  <div class="imgbox"><img src="/sites/radha/assets/radha_mascot.webp" alt="Rādhā collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">sanskrit</div>
+    <h3>Rādhā</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/shakyamuni/" data-pantheon="buddhist" data-name="śākyamuni">
+  <div class="imgbox"><img src="/sites/shakyamuni/assets/shakyamuni_mascot.webp" alt="Śākyamuni collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">buddhist</div>
+    <h3>Śākyamuni</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/akshobhya/" data-pantheon="buddhist" data-name="akṣobhya">
+  <div class="imgbox"><img src="/sites/akshobhya/assets/akshobhya_mascot.webp" alt="Akṣobhya collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">buddhist</div>
+    <h3>Akṣobhya</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/vairocana/" data-pantheon="buddhist" data-name="mahāvairocana">
+  <div class="imgbox"><img src="/sites/vairocana/assets/vairocana_mascot.webp" alt="Mahāvairocana collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">buddhist</div>
+    <h3>Mahāvairocana</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/manjushri/" data-pantheon="buddhist" data-name="mañjuśrī">
+  <div class="imgbox"><img src="/sites/manjushri/assets/manjushri_mascot.webp" alt="Mañjuśrī collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">buddhist</div>
+    <h3>Mañjuśrī</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/vajrapani/" data-pantheon="buddhist" data-name="vajrapāṇi">
+  <div class="imgbox"><img src="/sites/vajrapani/assets/vajrapani_mascot.webp" alt="Vajrapāṇi collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">buddhist</div>
+    <h3>Vajrapāṇi</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/ksitigarbha/" data-pantheon="buddhist" data-name="kṣitigarbha">
+  <div class="imgbox"><img src="/sites/ksitigarbha/assets/ksitigarbha_mascot.webp" alt="Kṣitigarbha collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">buddhist</div>
+    <h3>Kṣitigarbha</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/mara/" data-pantheon="buddhist" data-name="māra">
+  <div class="imgbox"><img src="/sites/mara/assets/mara_mascot.webp" alt="Māra collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">buddhist</div>
+    <h3>Māra</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/athiratu/" data-pantheon="canaanite" data-name="ʾaṯiratu">
+  <div class="imgbox"><img src="/sites/athiratu/assets/athiratu_mascot.webp" alt="ʾAṯiratu collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">canaanite</div>
+    <h3>ʾAṯiratu</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/iason/" data-pantheon="greek" data-name="iásōn">
+  <div class="imgbox"><img src="/sites/iason/assets/iason_mascot.webp" alt="Iásōn collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek · Tier A</div>
+    <h3>Iásōn</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/argos/" data-pantheon="greek" data-name="árgos">
+  <div class="imgbox"><img src="/sites/argos/assets/argos_mascot.webp" alt="Árgos collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek · Tier B</div>
+    <h3>Árgos</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/midas/" data-pantheon="greek" data-name="mídas">
+  <div class="imgbox"><img src="/sites/midas/assets/midas_mascot.webp" alt="Mídas collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek · Tier A</div>
+    <h3>Mídas</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/odysseus/" data-pantheon="greek" data-name="odysseús">
+  <div class="imgbox"><img src="/sites/odysseus/assets/odysseus_mascot.webp" alt="Odysseús collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">greek · Tier S</div>
+    <h3>Odysseús</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/gilgamesh/" data-pantheon="mesopotamian" data-name="gilgameš">
+  <div class="imgbox"><img src="/sites/gilgamesh/assets/gilgamesh_mascot.webp" alt="Gilgameš collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">mesopotamian · Tier S</div>
+    <h3>Gilgameš</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">13 pieces · $9.00 – $58.00</div>
+  </div>
+</a>
+<a class="card" href="/store/punicodex/" data-pantheon="House" data-name="punicodex">
+  <div class="imgbox"><img src="/assets/brand/01-logos/punicodex-emblem-gold.webp" alt="PuniCodex collection" loading="lazy"></div>
+  <div class="body">
+    <div class="sub">House</div>
+    <h3>PuniCodex</h3>
+    <div class="sub" style="text-transform:none;letter-spacing:0">8 pieces · $8.00 – $56.00</div>
+  </div>
+</a>
+  </div>
+</div>
+<script>
+(function(){
+  var q = document.getElementById('q');
+  var pills = Array.prototype.slice.call(document.querySelectorAll('.fpill'));
+  var cards = Array.prototype.slice.call(document.querySelectorAll('#grid .card'));
+  var filter = 'all';
+  function apply(){
+    var needle = (q.value || '').toLowerCase();
+    cards.forEach(function(c){
+      var okPan = filter === 'all' || c.getAttribute('data-pantheon') === filter;
+      var okQ = !needle || c.getAttribute('data-name').indexOf(needle) !== -1;
+      c.style.display = okPan && okQ ? '' : 'none';
+    });
+  }
+  pills.forEach(function(p){ p.addEventListener('click', function(){
+    pills.forEach(function(x){ x.classList.remove('active'); });
+    p.classList.add('active');
+    filter = p.getAttribute('data-f');
+    apply();
+  }); });
+  q.addEventListener('input', apply);
+})();
+</script>
 
 <!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
 <div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
 <!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
-<footer class="site-footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="/" class="footer-wordmark"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-camel-gold.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-camel-gold.png" alt="PuniCodex — The Unicode Pantheon" width="680" height="119"></picture></a>
-                    <p class="footer-tagline">Restoring the original names of the gods to the digital realm.</p>
-                </div>
-                <div class="footer-column">
-                    <h2 class="footer-heading">Explore</h2>
-                    <a href="/pantheon/">Pantheon</a>
-                    <a href="/realms/">Realms</a>
-                    <a href="/lexicon/">Lexicon</a>
-                    <a href="/connections/">Connections</a>
-                    <a href="/tiers/">Tier System</a>
-                    <a href="/type/">Type</a>
-                    <a href="/search.html">Search</a>
-                </div>
-                <div class="footer-column">
-                    <h2 class="footer-heading">Resources</h2>
-                    <a href="/codex/">Codex</a>
-                    <a href="/blog/">Blog</a>
-                    <a href="/creatives/">Creatives</a>
-                    <a href="/scholars/">Scholars</a>
-                    <a href="/api/v1/docs/">API</a>
-                    <a href="/appraise/">Appraise</a>
-                    <a href="/authenticity/">Authenticity</a>
-                    <a href="/oracle.html">Oracle</a>
-                </div>
-                <div class="footer-column">
-                    <h2 class="footer-heading">Connect</h2>
-                    <a href="/about/">About</a>
-                    <a href="/contact/">Contact</a>
-                    <a href="/privacy/">Privacy</a>
-                    <a href="/terms/">Terms</a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>© 2026 PuniCodex. All rites reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="/js/px-core.js?v=perf9"></script>
-    <script src="/js/main.js?v=perf8" defer></script>
-    <script src="/js/store.js?v=2" defer></script>
-</body>
-</html>
+</body></html>

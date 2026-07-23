@@ -58,6 +58,7 @@ const SUITES = [
   { name: 'Store Webhook Tests', cmd: 'node test/store-webhook.test.js', timeout: 60000 },
   { name: 'Printful Webhook Tests', cmd: 'node test/printful-webhook.test.js', timeout: 60000 },
   { name: 'Industry Patterns Tests', cmd: 'node test/industry-patterns.test.js', timeout: 60000 },
+  { name: 'Store Structure Tests', cmd: 'node test/store-structure.test.js', timeout: 120000 },
   {
     name: 'Newsletter Subscribe Tests',
     cmd: 'node test/newsletter-subscribe.test.js',
