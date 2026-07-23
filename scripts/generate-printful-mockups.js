@@ -207,9 +207,9 @@ async function createTask(state, product, files) {
   });
 }
 
-async function pollTask(taskKey, attempts = 24) {
+async function pollTask(taskKey, attempts = 30) {
   for (let i = 0; i < attempts; i++) {
-    await sleep(10000);
+    await sleep(8000);
     const poll = await api('GET', `/mockup-generator/task?task_key=${taskKey}`);
     if (poll.status === 'completed') return poll;
   }
@@ -228,6 +228,23 @@ async function main() {
   const state = loadState();
   fs.mkdirSync(OUT_DIR, { recursive: true });
 
+  // Reconcile: mockups already downloaded but not yet written back (batch
+  // interruption) — attach them without re-rendering.
+  let reconciled = 0;
+  for (const p of catalog.products) {
+    if (!p.mockupImage && state.done[p.id] === true) {
+      const jpg = path.join(OUT_DIR, `${p.id}.jpg`);
+      if (fs.existsSync(jpg)) {
+        p.mockupImage = `${MASTERS_BASE}/mockups/${p.id}.jpg`;
+        reconciled++;
+      }
+    }
+  }
+  if (reconciled) {
+    flushCatalog(catalog);
+    console.log(`Reconciled ${reconciled} existing mockups into the catalog.`);
+  }
+
   let pending = catalog.products.filter(
     (p) => p.printfulProductId && !state.done[p.id] && !p.mockupImage
   );
@@ -242,54 +259,72 @@ async function main() {
     process.exit(1);
   }
 
-  // Interleave: keep a small window of tasks in flight, poll the oldest.
+  // Interleave: keep a window of tasks in flight; poll all of them
+  // round-robin each cycle so render time overlaps instead of serializing.
   const inFlight = [];
-  const WINDOW = 3;
+  const WINDOW = 8;
   let done = 0;
 
   const startNext = async () => {
     const product = pending[done + inFlight.length];
-    if (!product) return;
+    if (!product) return false;
     try {
       const files = designFiles(product);
       const task = await createTask(state, product, files);
-      inFlight.push({ product, taskKey: task.task_key });
+      inFlight.push({ product, taskKey: task.task_key, attempts: 0 });
       console.log(`  ▸ task for ${product.id}`);
+      return true;
     } catch (err) {
       console.error(`  ✗ ${product.id}: ${err.message.slice(0, 140)}`);
       state.done[product.id] = `error: ${err.message.slice(0, 120)}`;
       saveState(state);
       done++;
+      return true;
     }
+  };
+
+  const completeOne = async (item) => {
+    const poll = await api('GET', `/mockup-generator/task?task_key=${item.taskKey}`);
+    if (poll.status !== 'completed') return false;
+    const mockups = poll.mockups || [];
+    const front = mockups.find((m) => /front/i.test(m.mockup_url || '')) || mockups[0];
+    if (!front || !front.mockup_url) throw new Error('no mockup URL in completed task');
+    const outPath = path.join(OUT_DIR, `${item.product.id}.jpg`);
+    await downloadMockup(front.mockup_url, outPath);
+    item.product.mockupImage = `${MASTERS_BASE}/mockups/${item.product.id}.jpg`;
+    state.done[item.product.id] = true;
+    saveState(state);
+    done++;
+    console.log(`  ✓ ${item.product.id} (${done}/${pending.length})`);
+    if (done % 20 === 0) flushCatalog(catalog);
+    return true;
   };
 
   while (done < pending.length) {
     while (inFlight.length < WINDOW && pending[done + inFlight.length]) {
-      await startNext();
-      await sleep(12000); // mockup generator has a tight creation budget
+      if (!(await startNext())) break;
+      await sleep(8000);
     }
-    const current = inFlight[0];
-    try {
-      const poll = await pollTask(current.taskKey);
-      const mockups = poll.mockups || [];
-      const front =
-        mockups.find((m) => /front/i.test(m.mockup_url || '')) || mockups[0];
-      if (!front || !front.mockup_url) throw new Error('no mockup URL in completed task');
-      const outPath = path.join(OUT_DIR, `${current.product.id}.jpg`);
-      await downloadMockup(front.mockup_url, outPath);
-      current.product.mockupImage = `${MASTERS_BASE}/mockups/${current.product.id}.jpg`;
-      state.done[current.product.id] = true;
-      saveState(state);
-      done++;
-      console.log(`  ✓ ${current.product.id} (${done}/${pending.length})`);
-      if (done % 20 === 0) flushCatalog(catalog);
-    } catch (err) {
-      console.error(`  ✗ ${current.product.id}: ${err.message}`);
-      state.done[current.product.id] = `error: ${err.message.slice(0, 120)}`;
-      saveState(state);
-      done++;
+    let progressed = false;
+    for (let i = inFlight.length - 1; i >= 0; i--) {
+      const item = inFlight[i];
+      try {
+        if (await completeOne(item)) {
+          inFlight.splice(i, 1);
+          progressed = true;
+        }
+      } catch (err) {
+        item.attempts++;
+        if (item.attempts > 6) {
+          console.error(`  ✗ ${item.product.id}: ${err.message.slice(0, 140)}`);
+          state.done[item.product.id] = `error: ${err.message.slice(0, 120)}`;
+          saveState(state);
+          done++;
+          inFlight.splice(i, 1);
+        }
+      }
     }
-    inFlight.shift();
+    if (!progressed) await sleep(10000);
   }
   flushCatalog(catalog);
   console.log(`Mockups complete: ${done} product(s).`);
