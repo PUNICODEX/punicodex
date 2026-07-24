@@ -1,0 +1,90 @@
+<!-- ==========================================================
+     PuniCodex — drop-in integration snippets
+     Adjust /assets/brand/ to wherever you serve the kit from.
+     ========================================================== -->
+
+<!-- 1. FAVICONS — replace everything in <head> -->
+<link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+<link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+<link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+<link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+<meta name="theme-color" content="#0A0A0C">
+
+<!-- 2. OPEN GRAPH / SOCIAL -->
+<meta property="og:title" content="PuniCodex — The Unicode Pantheon">
+<meta property="og:description" content="895 temples. 22 pantheons. One mission: restore the original Unicode names of myth, place, and sacred tradition to the digital realm.">
+<meta property="og:image" content="https://punicodex.com/assets/brand/05-social/punicodex-og-image-1200x630.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://punicodex.com/assets/brand/05-social/punicodex-og-image-1200x630.png">
+
+<!-- 3. HEADER WORDMARK — replaces the old PŪNYCODEX text logo.
+     The h1/img pattern keeps SEO and accessibility intact. -->
+<a class="brand" href="/" aria-label="PuniCodex home">
+  <img src="/assets/brand/01-logos/punicodex-lockup-horizontal-gold.png"
+       alt="PuniCodex — The Unicode Pantheon"
+       width="260" height="56"
+       onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'PUNICODEX',className:'brand-fallback'}))">
+</a>
+<!-- minimal header variant: just the wordmark image -->
+<img src="/assets/brand/01-logos/punicodex-wordmark-gold.png" alt="PuniCodex" width="220">
+
+<!-- 4. FOOTER WORDMARK -->
+<img src="/assets/brand/01-logos/punicodex-lockup-stacked-gold.png"
+     alt="PuniCodex — The Unicode Pantheon" width="300">
+
+<!-- 5. EMPTY PORTRAIT STATE — pantheon cards missing art -->
+<div class="portrait pc-medallion pc-medallion--empty" role="img" aria-label="Portrait awaiting restoration"></div>
+<!-- or directly: -->
+<img class="pc-medallion" src="/assets/brand/03-ornaments/punicodex-empty-portrait.png" alt="Portrait awaiting restoration">
+
+<!-- 6. SECTION ORNAMENT — diamond divider between sections -->
+<div class="pc-divider"><span></span></div>
+<!-- or the rendered PNG: -->
+<img src="/assets/brand/03-ornaments/punicodex-divider-diamond.png" alt="" width="480" style="display:block;margin:4rem auto">
+
+<!-- 7. GREEK KEY FRIEZE — above footer or under hero -->
+<div class="pc-keyband" aria-hidden="true"></div>
+
+<!-- 8. HERO ATMOSPHERE — wrap hero section -->
+<section class="hero pc-atmosphere"> ... </section>
+
+<!-- 9. GOOGLE FONTS for token typography -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Inter:wght@400..700&display=swap" rel="stylesheet">
+
+<!-- 10. PAGE LOADER — place right after <body>, remove on load.
+     The mark descends onto the column, then breathes. -->
+<div class="pc-loader" id="pcLoader">
+  <img src="/assets/brand/10-motion/punicodex-loader.svg" alt="">
+</div>
+<script>
+  window.addEventListener("load", function () {
+    var l = document.getElementById("pcLoader");
+    if (l) { l.classList.add("is-done"); setTimeout(function(){ l.remove(); }, 600); }
+  });
+</script>
+
+<!-- 11. MOTION — include after tokens.css -->
+<link rel="stylesheet" href="/assets/brand/10-motion/punicodex-motion.css">
+
+<!-- 12. BACKGROUND TESSELLATION — subtle lattice for large sections -->
+<style>
+  .pc-tessellated {
+    background-image: url("/assets/brand/09-patterns/punicodex-tessellation-tile.png");
+    background-size: 800px;
+  }
+</style>
+
+<!-- 13. AWAITING RESTORATION STAMP — for unbuilt temples -->
+<img src="/assets/brand/08-seals-stamps/punicodex-stamp-awaiting-restoration.png"
+     alt="Awaiting restoration" width="220" style="opacity:.9">
+
+<!-- 14. OFFICIAL SEAL — certificates, authenticity marks, sponsorship docs -->
+<img src="/assets/brand/08-seals-stamps/punicodex-official-seal.png"
+     alt="PuniCodex official seal" width="260">

@@ -1,0 +1,376 @@
+================================================================================
+PUNICODEX — 3D VISUAL SYSTEM · PLACEMENT GUIDE
+Version 3.0 · 2026 · prepared after a full re-review of every page of punicodex.com
+================================================================================
+
+This guide tells you (and Kimi Code CLI) EXACTLY where every asset in
+13-page-visuals/ belongs, why it belongs there, and how to wire it in.
+Every PNG is transparent, rendered at 1100–1600px, and pre-lit for the
+obsidian (#0A0A0C) page background — no further color work needed.
+
+HOW TO READ THIS DOCUMENT
+-------------------------
+Each page gets: the concept, the files, the precise DOM location, sizing,
+alt text, and a copy-paste CSS/HTML fragment. Serve the kit from
+/assets/brand/ so paths below resolve, e.g.:
+
+  /assets/brand/13-page-visuals/tiers/triad-ziggurat.png
+
+UNIVERSAL WIRING (put these helpers in your global CSS once)
+------------------------------------------------------------
+/* place any of these renders floating over obsidian with a warm floor glow */
+.pc-art {
+  position: relative;
+  filter: drop-shadow(0 30px 60px rgba(0,0,0,.65))
+          drop-shadow(0 0 42px rgba(212,175,55,.14));
+}
+/* slow museum float — pairs with punicodex-motion.css */
+@keyframes pc-float {
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(-14px); }
+}
+.pc-art--float { animation: pc-float 7s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .pc-art--float { animation: none; } }
+
+================================================================================
+SECTION A — BUGS FOUND DURING THE FULL CRAWL (fix these first)
+================================================================================
+A1. /realms/ — BROKEN NAV. The page renders raw unstyled HTML links
+    ("Explore / Pantheon Realms Lexicon Connections / Tools…") above the
+    styled header. A nav partial is being included without its CSS (or the
+    include is printing escaped markup). Repair the partial; the page is
+    otherwise one of your best.
+A2. /api/v1/docs/ — 404. The API link is in the global nav of every page.
+    Either ship the docs or remove the link. (Art for the future docs page
+    is ready — see API below.)
+A3. /scholars/ — 404, yet /authenticity/, /appraise/, home and temple pages
+    all link to it ("Scholarly Edition"). Ship the page or redirect to
+    /university-sponsorship/. (Art ready — see SCHOLARS.)
+A4. Wordmark drift. Three header variants are live: "PŪNYCODEX" (most
+    pages), plain "PUNICODEX" (realms/lexicon), "PuniCodex" (oracle).
+    Unify on the new gold wordmark image (01-logos/punicodex-wordmark-gold.png).
+A5. Emoji in production UI. Store product cards (⚡🔥🍀), sponsorship
+    features (🌐🎓🎨📊), terms cards (€📖🔍📱🌐), search (🔮⚙️🌐).
+    Replacements are provided below page-by-page.
+A6. Heading convention breaks: /tiers/ H1 renders white sans, /appraise/
+    H1 renders white sans — every other display heading is gold serif.
+    Apply .pc-display (gold gradient) from punicodex-tokens.css.
+A7. /search.html runs a blue-tinted palette and a different header logo.
+    Re-skin with the obsidian-gold tokens.
+
+================================================================================
+SECTION B — PAGE-BY-PAGE PLACEMENT
+================================================================================
+
+--------------------------------------------------------------------------------
+HOME  ( / )
+Concept: the Celestial Knot — a trefoil (the simplest nontrivial knot, the
+"atom of entanglement") in burnished gold: one continuous name, impossible
+to reduce to ASCII without breaking it.
+Files:
+  home/celestial-knot-hero.png    1600×1100, knot weighted right-of-center
+  home/celestial-knot-square.png  1400×1400, centered
+  home/celestial-knot-loop.mp4    960×540, 4s seamless 360° spin
+Placement:
+1. HERO (primary): replace the small phi glyph with the knot as the hero's
+   right-third visual, behind the CTAs. HTML:
+     <div class="hero-grid">
+       <div class="hero-copy"> …existing PUNICODEX masthead… </div>
+       <img class="pc-art pc-art--float"
+            src="/assets/brand/13-page-visuals/home/celestial-knot-hero.png"
+            alt="The Celestial Knot — a golden trefoil" width="640" height="440"
+            fetchpriority="high">
+     </div>
+   CSS: .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:2rem}
+   Keep the emblem (01-logos) above the wordmark if you prefer the knot to
+   stand alone as the only large object.
+2. HERO UPGRADE (motion): use the loop as a muted hero background video:
+     <video class="hero-bg" autoplay muted loop playsinline
+            poster="/assets/brand/13-page-visuals/home/celestial-knot-hero.png">
+       <source src="/assets/brand/13-page-visuals/home/celestial-knot-loop.mp4" type="video/mp4">
+     </video>
+     .hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+              opacity:.5;z-index:-1}
+   Add a media query: (prefers-reduced-motion) swap to the poster PNG.
+3. "OWN A PIECE OF THE PANTHEON" section: center celestial-knot-square.png
+   above the line, width ~420px, opacity .9.
+4. Journal/articles band: square knot at 160px beside the section kicker.
+
+--------------------------------------------------------------------------------
+PANTHEON  ( /pantheon/ )
+Concept: the Council of Twelve — a golden-caged dodecahedron: twelve
+obsidian faces for the twelve Olympian seats, every edge gold.
+File: pantheon/council-of-twelve.png (1200×1200)
+Placement:
+1. Page masthead, right of "THE PANTHEON" H1 (same hero-grid pattern as home),
+   width ~380px. It balances the filter pill rows below.
+2. On deity cards: keep 03-ornaments/punicodex-empty-portrait.png as the
+   per-card default (unchanged from v1).
+3. Optional: shrink to 120px as the "Built" filter chip icon.
+
+--------------------------------------------------------------------------------
+REALMS  ( /realms/ )
+Concept: the Bifrost Stair — a helical stair of floating gold steps winding
+up a central axis, crowned by the restored mark. Thirty-two locations,
+three cosmologies, one ascending path between worlds.
+File: realms/bifrost-stair.png (1200×1200)
+Placement:
+1. FIRST FIX THE NAV (bug A1).
+2. Masthead right side beside "WHERE THE GODS DWELL", width ~400px,
+   .pc-art--float on. The stair's verticality matches the tall tan REALMS
+   display type.
+3. Flagship realm cards (Helheimr, Muspellheimr…): no change — the cards are
+   strong; just add .pc-card hover from tokens.
+
+--------------------------------------------------------------------------------
+LEXICON  ( /lexicon/ )
+Concept: the Möbius Ribbon — 895 names on a single one-sided surface: the
+lexicon with no beginning and no end.
+File: lexicon/mobius-ribbon.png (1200×1200)
+Placement:
+1. Above the stats row (894 / 22 / 156 / 3 / 271 / 618), centered,
+   width ~340px, opacity .92. It fills the dead air between the page kicker
+   and the numbers.
+2. "Show all 894" toggle area: nothing — keep the list dense.
+
+--------------------------------------------------------------------------------
+CONNECTIONS  ( /connections/ )
+Concept: the Hopf Link — two rings, one bright gold, one deep bronze,
+inseparably linked yet never touching: thunder repeating itself across
+cultures.
+File: connections/hopf-link.png (1200×1200)
+Placement:
+1. Right of the CONNECTIONS masthead, width ~360px.
+2. The five domain cards keep their colored left borders (they're the one
+   intentional multi-color moment on the site — the link's two metals echo
+   that duality deliberately).
+
+--------------------------------------------------------------------------------
+TYPE  ( /type/ )
+Concept: the Monolith & Cursor — an obsidian monolith with a single gold
+cursor inlaid (the one valid keystroke), on a gold base, the restored mark
+floating above. Constraint, not conversion.
+File: type/monolith-cursor.png (1100×1100)
+Placement:
+1. Left of the "PuniCodex TYPE" masthead, width ~330px. The page is
+   center-heavy; give it a two-column hero:
+     .type-hero{display:grid;grid-template-columns:auto 1fr;gap:3rem;align-items:center}
+2. The 01/02/03 feature cards: nothing — they're already the best cards
+   on the site.
+
+--------------------------------------------------------------------------------
+TIERS  ( /tiers/ )
+Concept: the Triad Ziggurat — three obsidian steps with gold cap plates
+(Tier 2 base, Tier 1 middle, Dual-Tier summit), the gold column, and the
+restored mark hovering at zenith. The tier doctrine as architecture.
+File: tiers/triad-ziggurat.png (1200×1200)
+Placement:
+1. THIS IS THE PAGE THAT NEEDED THE MOST HELP. Order of operations:
+   a. Make the H1 gold (.pc-display — bug A6).
+   b. Insert the ziggurat centered between the intro paragraph and the
+      stat cards, width ~520px. It becomes the page's altar.
+   c. Replace the three bare stat cards with the v2 seals
+      (04-badges/punicodex-badge-tier-1.png, -tier-2.png, -dual-tier.png)
+      in a 3-up row beneath it.
+   d. Add .pc-keyband frieze above the footer.
+2. Background: apply the v2 tessellation (09-patterns) to this page's
+   section wrapper at shipped opacity.
+
+--------------------------------------------------------------------------------
+CODEX  ( /codex/ )
+Concept: the Codex Icosahedron — twenty faces of scholarship in a gold
+cage; the knowledge solid.
+File: codex/codex-icosahedron.png (1200×1200)
+Placement:
+1. The giant Ψ watermark behind "THE CODEX" stays (it's content), but drop
+   its opacity to .35 and place the icosahedron centered above the title,
+   width ~300px — the watermark becomes its aura.
+2. "Search the Codex" section: nothing.
+
+--------------------------------------------------------------------------------
+API  ( /api/v1/docs/ )  — currently 404 (bug A2)
+Concept: the Lattice — a 3×3×3 constellation of gold nodes and beams with
+an emissive core: the machine graph that serves the canon.
+File: api/api-lattice.png (1200×1200)
+Placement:
+1. When the docs ship: masthead right, width ~360px.
+2. Until then: point the nav API link at a coming-soon partial using this
+   art centered at width ~420px + "The Lattice is being forged." line.
+
+--------------------------------------------------------------------------------
+STORE / THE RELIQUARY  ( /store/ )
+Concept: the Golden Brilliant — a faceted gem cut in gold. The one artifact
+that needs no description.
+File: store/golden-brilliant.png (1200×1200)
+Placement:
+1. Centered above "THE RELIQUARY" H1, width ~380px, bloom-friendly.
+2. PRODUCT CARDS — replace the ⚡🔥🍀 emoji placeholders:
+   - Zeús Thunderbolt Tee → a gold lightning glyph is NOT in this kit on
+     purpose (unicode-safe rule); use the gem at 45% opacity as card art
+     backdrop for all three preview cards, with the product name in
+     Cormorant. Cards instantly read "reliquary" instead of "demo".
+   - Longer term: commission per-product renders in this same style
+     (the render pipeline is preserved in /mnt/agents/work).
+
+--------------------------------------------------------------------------------
+ABOUT / ORIGINS  ( /about/ )
+Concept: the Spark — an obsidian sphere eclipsing a ring of fire: the gods
+evicted from their names, returning as light around the dark.
+File: about/the-spark-eclipse.png (1200×1200)
+Placement:
+1. "The Spark — Why Do the Gods Live in ASCII?" section, right column above
+   the By-the-Numbers card, width ~360px. The eclipse sits exactly at the
+   story's pivot ("But then a thought").
+2. Do not place it in "The Philosophy" — that section is pure prose and
+   should stay typographic (it's the site's best writing).
+
+--------------------------------------------------------------------------------
+CONTACT  ( /contact/ )
+Concept: the Beacon Flame — a gold flame in an obsidian bowl: the message
+carried across the digital realm.
+File: contact/beacon-flame.png (1100×1100)
+Placement:
+1. Replace the phi glyph above the "PuniCodex" wordmark at the top of the
+   form page, width ~200px. (The phi was placeholder energy; the flame is
+   the page's actual metaphor.)
+
+--------------------------------------------------------------------------------
+SEARCH  ( /search.html )
+Concept: the Lens — a gold-rimmed obsidian lens with handle: scrutiny over
+the Unicode namespace.
+File: search/the-lens.png (1200×1200)
+Placement:
+1. Empty state: replace the 🌐 emoji + "SEARCH THE UNICODE WEB" block with
+   the lens at width ~300px + the same text in Cormorant caps.
+2. "Ask the Oracle" card: replace 🔮 with 10-motion loader SVG at 28px.
+3. Re-skin page to obsidian-gold tokens (bug A7).
+
+--------------------------------------------------------------------------------
+ORACLE  ( /oracle.html )
+Concept: the Armillary Sphere — nested gold rings around an emissive core:
+the instrument that measures the heavens. This page is already your most
+ambitious (starfield + orbiting names); the armillary crowns it.
+File: oracle/armillary-sphere.png (1200×1200)
+Placement:
+1. Replace the flat gold sphere at the composition center with the
+   armillary at width ~520px, keeping the orbiting name ring and starfield
+   canvas. The names now orbit an instrument, not a dot.
+2. Provide the same file as the prefers-reduced-motion static fallback.
+
+--------------------------------------------------------------------------------
+APPRAISE  ( /appraise/ )
+Concept: the Golden Balance — pans level, the restored mark as its finial:
+valuation as an act of weighing.
+File: appraise/golden-balance.png (1200×1200)
+Placement:
+1. Fix the H1 to gold serif (bug A6).
+2. Right of the explainer paragraph, width ~340px. The page is a tool;
+   the balance gives it ceremony without hurting usability.
+
+--------------------------------------------------------------------------------
+AUTHENTICITY  ( /authenticity/ )
+Concept: the Cylinder Seal — humanity's first authentication device
+(Mesopotamia, c. 3500 BC), fluted and ring-mounted. Homograph defense is
+just the newest seal technology.
+File: authenticity/cylinder-seal.png (1200×1200)
+Placement:
+1. Above the checker card, centered, width ~280px.
+2. Pair with the v2 official seal (08-seals-stamps) on result pages:
+   "Verified by the Codex" + seal at 120px.
+
+--------------------------------------------------------------------------------
+SCHOLARS  ( /scholars/ )  — currently 404 (bug A3)
+Concept: the Golden Nib — the scholar's instrument, slit and breather hole
+cut true.
+File: scholars/golden-nib.png (1100×1100)
+Placement:
+1. Ship the Scholars page with the nib as masthead art, width ~320px.
+2. Interim: put it on the 404 template itself (see ERRORS) or on the
+   "Creator Studio" link card.
+
+--------------------------------------------------------------------------------
+CREATIVES  ( /creatives/ )
+Concept: the Muse Flame — a twisted gold flame leaning into its own wind:
+student creativity as fire with form.
+Files:
+  creatives/muse-flame.png      (1100×1100)
+  creatives/empty-pedestal.png  (1000×1000) — the empty pedestal with a
+                                  faint gold ring where the work will sit
+Placement:
+1. Marketplace masthead right, width ~320px.
+2. EMPTY STATE: replace the "No assets match your filters yet." text block
+   with empty-pedestal.png at width ~280px + the same line beneath in
+   Cormorant italic. An empty marketplace becomes an awaiting gallery.
+3. All-Access Pass ($999) card: laurel wreath (v2) behind the price.
+
+--------------------------------------------------------------------------------
+UNIVERSITY SPONSORSHIP  ( /university-sponsorship/ )
+Concept: the Academy — four columns, architrave, pediment, the mark above:
+the institution in miniature.
+Files:
+  university-sponsorship/academy-temple.png   (1300×1300)
+  university-sponsorship/icon-globe.png       (700×700)  → replaces 🌐
+  university-sponsorship/icon-mortarboard.png (700×700)  → replaces 🎓
+  university-sponsorship/icon-barchart.png    (700×700)  → replaces 📊
+  (for 🎨 Creative Marketplace reuse creatives/muse-flame.png at 64px,
+   or scholars/golden-nib.png)
+Placement:
+1. Hero centerpiece above the H1, width ~420px. The page is a sales page
+   for academia — it should look like a temple prospectus.
+2. Feature icons at 56–64px inside the four "What You Receive" cards.
+3. Print pair: this page's pitch maps to 11-print certificates + letterhead.
+
+--------------------------------------------------------------------------------
+TEMPLE TEMPLATE  ( /sites/*/lore/ and siblings — 900+ pages )
+Concept: the Portal Ring — a gold ring with a softly glowing obsidian disc
+and stepped base: every temple is a threshold.
+File: temple-template/portal-ring.png (1300×1300)
+Placement:
+1. Behind each deity's hero illustration, centered on the art column,
+   width ~110% of the illustration, z-index -1, opacity .8 — the god stands
+   in a portal. One asset upgrades 900+ pages via a single template line.
+2. On temples lacking illustration: portal + empty-portrait medallion
+   centered inside it.
+
+--------------------------------------------------------------------------------
+LEGAL  ( /privacy/ and /terms/ )
+Concept: the Sealed Tablet — obsidian tablet, gold wax seal: the document
+as artifact.
+File: legal/sealed-tablet.png (1100×1100)
+Placement:
+1. Beside each page title, width ~140px, opacity .85. Legal pages stay
+   typographic — the tablet is the only ornament they get.
+2. Terms cards: replace €📖🔍📱🌐 emoji with small kit glyphs:
+   Advertising → medallion frame; Data Use → official seal; Type → monolith;
+   Search → the-lens; Mobile/API → api-lattice (all at 48–64px).
+
+--------------------------------------------------------------------------------
+ERRORS / 404  ( "This Archetype Is Not in Our Pantheon" )
+Concept: the Toppled Column — a broken order, but the restored mark still
+floats where the capital stood. Even the ruins keep the faith.
+File: errors/toppled-column.png (1200×1200)
+Placement:
+1. 404 template, centered above the message, width ~380px.
+2. Optional: overlay the v2 "Awaiting Restoration" stamp at 40% opacity,
+   rotated -6°, bottom-right of the column.
+
+================================================================================
+SECTION C — GLOBAL FINISHING NOTES
+================================================================================
+C1. Layering: all renders are transparent with baked contact shadows; over
+    #0A0A0C they need no blend modes. Over imagery, add the obsidian glow
+    (03-ornaments/punicodex-glow-gold-radial.png) beneath at 60%.
+C2. Performance: every <img> above includes width/height — keep them (CLS).
+    Add loading="lazy" to everything below the fold; fetchpriority="high"
+    only for each page's hero art.
+C3. Motion: hero art takes .pc-art--float; everything else stays still.
+    One moving object per viewport is the house rule.
+C4. Consistency: all 20+ renders share one light rig (warm key upper-left,
+    cool fill, gold rim, horizon-band env) — they will read as one family
+    next to the v1/v2 gold work. Do not re-color; if you need variants,
+    the full render pipeline is in /mnt/agents/work/punicodex-brand-gen/
+    (render3d.py, scenes3d.py) — every scene is parametric.
+C5. Accessibility: alt texts are supplied per placement. The art is
+    decorative-supportive, never the sole carrier of meaning.
+
+— End of guide. The pantheon is now furnished. —

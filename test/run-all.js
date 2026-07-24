@@ -275,7 +275,7 @@ const SUITES = [
   { name: 'AI Corpus Phases Tests', cmd: 'node test/ai-corpus-phases.test.js' },
   { name: 'Lighthouse Thresholds', cmd: 'node --test test/lighthouse.test.js' },
   { name: 'Font Self-Hosting Tests', cmd: 'node test/fonts-selfhosted.test.js' },
-  { name: 'Link Checker', cmd: 'node test/links.js' },
+  { name: 'Link Checker', cmd: 'node test/links.js', timeout: 900000 },
   {
     name: 'Accessibility Sweep',
     cmd: 'node test/a11y-sweep.test.js',

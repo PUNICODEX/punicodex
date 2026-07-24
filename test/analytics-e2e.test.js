@@ -106,11 +106,16 @@ after(() => {
 
 test('beacon script posts exactly the { p, r, s } payload shape used here', () => {
   const src = fs.readFileSync(path.join(ROOT, 'js', 'analytics-beacon.js'), 'utf8');
-  assert.ok(src.includes('p: location.pathname'), 'beacon sends p = path');
+  // v2: the pageview payload is built once in sendPageView — keys p, r, s.
+  assert.ok(src.includes('p: path'), 'beacon sends p = path');
+  assert.ok(src.includes('var path = location.pathname'), 'path is the pathname');
   assert.ok(src.includes('r: document.referrer'), 'beacon sends r = referrer');
   assert.ok(src.includes('s: sid'), 'beacon sends s = session id');
   assert.ok(src.includes("sessionStorage.getItem('px_sid')"), 'session id comes from px_sid');
   assert.ok(src.includes('/api/analytics/collect/'), 'beacon posts to the collect endpoint');
+  // v2 additions must stay consent-gated and admin-silent.
+  assert.ok(src.includes('punicodex.cookie-consent'), 'beacon reads the consent record');
+  assert.ok(src.includes("t: 'eng'"), 'beacon carries the engagement event');
 });
 
 // ─── 2. Collect → raw events, privacy-preserving ───

@@ -157,7 +157,7 @@
       + '</div>'
       + '<p class="pfp-result-note">' + esc(g.note) + '</p>'
       + '<div class="pfp-cards">' + cardsHtml(g.industry) + '</div>'
-      + '<p class="pfp-result-method"><a href="/patterns/methodology/">How this match is made</a> · <a href="/api/v1/industry-patterns">Open dataset</a></p>'
+      + '<p class="pfp-result-method"><a href="/patterns/methodology/">How this match is made</a> · <a href="/api/v1/industry-patterns/">Open dataset</a></p>'
       + '</div>';
     panel.classList.add('visible');
   }

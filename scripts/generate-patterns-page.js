@@ -339,10 +339,10 @@ ${MARKER_BLOCKS}
 </head>
 <body>
     <!-- Navigation (canonical — built by scripts/sync-desktop-nav.js) -->
-    ${fullNavHtml('/patterns/methodology/')}
+    ${fullNavHtml('/patterns/')}
 
     <!-- Mobile Menu (canonical — built by scripts/sync-mobile-menu.js) -->
-    ${menuForPage('/patterns/methodology/')}
+    ${menuForPage('/patterns/')}
 
     <main class="page-codex codex-article">
         <header class="codex-article-hero">
@@ -382,7 +382,7 @@ ${MARKER_BLOCKS}
             <p>Changes move through the same curator review as the lexicon itself, and the generated JSON is byte-checked against the canonical sources in the divergence gate.</p>
 
             <h2>Data &amp; API</h2>
-            <p>The whole graph is public, machine-readable, and versioned with the dataset. The full map with members and why-lines is at <a href="/api/v1/industry-patterns"><code>/api/v1/industry-patterns</code></a>; a directory view is at <code>/api/v1/industry-patterns/industries</code>; the alias matcher behind Find Your Pattern is at <code>/api/v1/industry-patterns/match?q=</code>; and each temple's own profile is at <code>/api/v1/names/{id}/patterns</code>. Interactive documentation lives in the <a href="/api/v1/docs/">API portal</a>.</p>
+            <p>The whole graph is public, machine-readable, and versioned with the dataset. The full map with members and why-lines is at <a href="/api/v1/industry-patterns/"><code>/api/v1/industry-patterns/</code></a>; a directory view is at <code>/api/v1/industry-patterns/industries</code>; the alias matcher behind Find Your Pattern is at <code>/api/v1/industry-patterns/match/?q=</code>; and each temple's own profile is at <code>/api/v1/names/{id}/patterns</code>. Interactive documentation lives in the <a href="/api/v1/docs/">API portal</a>.</p>
 
             <h2>Corrections</h2>
             <p>A pairing is an argument, and arguments can be wrong. If a why-line overreaches, if a weight feels inverted, or if an industry is missing a temple the canon clearly supports, say so — every challenge is reviewed against the canonical sources by the same curators who wrote the map. The channel is <a href="/contact/">/contact/</a>; please name the industry, the temple, and the source that settles it.</p>
