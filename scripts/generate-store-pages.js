@@ -298,10 +298,6 @@ function head({ title, description, path: pagePath, css = '' }) {
     <script src="/js/main.js?v=perf12" defer></script>`;
 }
 
-function stripNav(active) {
-  return `<div class="wrap crumbs" style="max-width:1200px"><a href="/">PuniCodex</a> · <a href="/store/"${active === 'store' ? ' style="color:var(--gold)"' : ''}>The Reliquary</a></div>`;
-}
-
 // ─── Collections index ───
 function renderStoreIndex(colls) {
   const cards = [...colls.entries()]
@@ -330,7 +326,6 @@ function renderStoreIndex(colls) {
     css: `.store-hero{text-align:center;padding:5.5rem 0 2.5rem}.store-hero .pc-fx-stage{margin:0 auto 1.5rem}.store-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.store-hero .tag{max-width:62ch;margin:0 auto}`,
   })}
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
-${stripNav('store')}
 <div class="wrap">
   <div class="store-hero">
     <div class="pc-fx-stage pc-fx-brilliant-stage" role="img" aria-label="The Golden Brilliant — a faceted gem cut in gold, its facets catching the light">
@@ -415,7 +410,6 @@ function renderCollection(id, products) {
     description: `The complete ${meta.name} line — ${products.length} print-on-demand pieces: ${esc(meta.tagline)}`,
     path: `/store/${id}/`,
   })}
-${stripNav()}
 <div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <span style="color:var(--gold)">${esc(meta.name)}</span></div>
 <div class="wrap">
   <div class="hero">
@@ -498,7 +492,6 @@ function renderProduct(id, kind, product) {
     description: `${product.blurb} — ${product.name}, printed on demand. ${priceRange([product])} USD.`,
     path: `/store/${id}/${kind}/`,
   })}
-${stripNav()}
 <div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <a href="/store/${id}/">${esc(meta.name)}</a> · <span style="color:var(--gold)">${esc(kindLabel(kind))}</span></div>
 <div class="wrap pdp">
   <div class="stage"><img id="stage-img" src="${esc(cardImage(product, meta))}" alt="${esc(product.name)}"></div>
