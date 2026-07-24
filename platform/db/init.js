@@ -247,4 +247,22 @@ try {
   process.exit(1);
 }
 
+// Apply temple-content search corpus schema
+try {
+  const { execSync } = require('node:child_process');
+  execSync(`node "${path.join(__dirname, 'migrate-temple-content.js')}"`, { stdio: 'inherit' });
+} catch (err) {
+  console.error('Temple content migration failed:', err.message);
+  process.exit(1);
+}
+
+// Seed the temple-content search corpus (idempotent)
+try {
+  const { execSync } = require('node:child_process');
+  execSync(`node "${path.join(__dirname, 'seed-temple-content.js')}"`, { stdio: 'inherit' });
+} catch (err) {
+  console.error('Temple content seed failed:', err.message);
+  process.exit(1);
+}
+
 db.close();

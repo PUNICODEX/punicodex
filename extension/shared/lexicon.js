@@ -6264,7 +6264,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Protection, Strength, War",
-    "meaning": "'the inaccessible or terrific goddess', N. of the daughter of Himavat and wife of Śiva (also called Umā, Pārvatī &c., and mother of Kārttikeya and Gaṇeśa)",
+    "meaning": "'The Inaccessible One' — the warrior goddess, daughter of Himavat and consort of Śiva, slayer of the buffalo-demon Mahiṣa",
     "senses": [
       {
         "type": "etymology",
@@ -12426,7 +12426,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Mountains, Fertility, Devotion",
-    "meaning": "of the god Śiva's wife (as daughter of Himavat, king of the snowy mountains), Up.; MBh.; Kāv.",
+    "meaning": "'Daughter of the Mountain' — consort of Śiva, daughter of Himavat, mother of Gaṇeśa and Kārttikeya",
     "senses": [
       {
         "type": "etymology",
@@ -12554,7 +12554,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Virtue, Devotion, Fertility",
-    "meaning": "a furrow, the track or line of a ploughshare (also personified, and apparently once worshipped as a kind of goddess resembling Pomona; in RV. iv, 57, 6",
+    "meaning": "'Furrow' — the field-goddess, wife of Rāma and mother of his twin sons",
     "senses": [
       {
         "type": "etymology",
@@ -23642,7 +23642,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Liberation, Release",
-    "meaning": "of the Divine mountain Meru, L.",
+    "meaning": "Liberation from the cycle of rebirth — the fourth and highest aim of human life",
     "senses": [
       {
         "type": "etymology",
@@ -23819,7 +23819,7 @@ const LEXICON = [
     "tier": "2",
     "tierLabel": "Tier 2",
     "domain": "Ultimate Reality",
-    "meaning": "pious effusion or utterance, outpouring of the heart in worshipping the gods, prayer, RV.; AV.; VS.; TS.",
+    "meaning": "The sacred utterance that became the Absolute — the power of prayer expanded into the world-ground of the Upaniṣads",
     "senses": [
       {
         "type": "etymology",
@@ -24096,7 +24096,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Sacred Syllable, Cosmic Sound",
-    "meaning": "a word of solemn affirmation and respectful assent, sometimes translated by ‘yes, verily, so be it’ (and in this sense compared with Amen; it is placed at the commencement of most",
+    "meaning": "The sacred syllable of solemn affirmation — the sound from which the Vedas and creation itself proceed",
     "senses": [
       {
         "type": "etymology",
@@ -24401,7 +24401,7 @@ const LEXICON = [
     "tier": "2",
     "tierLabel": "Tier 2",
     "domain": "Fish Avatar of Vishnu",
-    "meaning": "N. of a people and country (which accord. to Mn. ii, 19 forms part of Brahmarṣi), RV. &c. &c.",
+    "meaning": "'The Fish' — the first avatāra of Viṣṇu, who saved Manu and the Vedas from the great deluge",
     "senses": [
       {
         "type": "etymology",
@@ -24460,7 +24460,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Man-Lion Avatar",
-    "meaning": "of Viṣṇu in his 4th Avatāra (when he was half m˚ half l˚), Kāv.; Pur.",
+    "meaning": "'The Man-Lion' — the fourth avatāra of Viṣṇu, who burst from the pillar to slay Hiraṇyakaśipu",
     "senses": [
       {
         "type": "etymology",
@@ -36871,7 +36871,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Bull, Gatekeeper of Shiva",
-    "meaning": "‘the happy one’, N. of Viṣṇu, MBh.",
+    "meaning": "'The Happy One' — Śiva's white bull, his mount and the gatekeeper of his shrine",
     "senses": [
       {
         "type": "etymology",
@@ -37214,7 +37214,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Lord of Creatures",
-    "meaning": "lord of creatures, creator, RV. &c. &c. (N. of a supreme god above or among the Vedic deities [RV. (only x, 21, 10); AV.; VS.; Br.] but in later times also applied to Viṣṇu, Śiva",
+    "meaning": "'Lord of Creatures' — the creator and progenitor ranked above or among the Vedic gods",
     "senses": [
       {
         "type": "etymology",
@@ -37584,7 +37584,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Immortal Sage",
-    "meaning": "N. of a Tīrtha, L.",
+    "meaning": "The deathless sage — the boy devotee whom Śiva saved from Death itself",
     "senses": [
       {
         "type": "etymology",
@@ -37667,7 +37667,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Vow, Grandfather",
-    "meaning": "The Terrible — name of a son of Śāntanu and Gaṅgā; in the great war of the Bharatas he took the side of the sons of Dhṛtarāṣṭra against the sons of Pāṇḍu, and was renowned for his continence and wisdom.",
+    "meaning": "The Terrible — son of Śāntanu and Gaṅgā, grandsire of the Bharatas, renowned for his vow of continence and his wisdom",
     "senses": [
       {
         "type": "etymology",
@@ -37732,7 +37732,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Guru, Weapons Master",
-    "meaning": "of one of the 8 Vasus (husband of Abhimati and father of Harṣa, Śoka, Bhaya &c.), BhP.",
+    "meaning": "'The Wooden Vessel' — the martial preceptor of the Kuru princes, son of the sage Bharadvāja",
     "senses": [
       {
         "type": "etymology",
@@ -37785,7 +37785,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Royal Guru",
-    "meaning": "N. of a man (described as a friend of Indra), RV. viii, 3, 12 and 4, 2",
+    "meaning": "'Compassion' — the martial preceptor of the Kuru princes in the Mahābhārata",
     "senses": [
       {
         "type": "etymology",
@@ -37838,7 +37838,7 @@ const LEXICON = [
     "tier": "2",
     "tierLabel": "Tier 2",
     "domain": "Twin, Son of Madri",
-    "meaning": "of a son of the Aśvins and Mādrī (twinbrother of Sahadeva and fourth of the Pāṇḍu princes), MBh.; Hariv.; Pur.",
+    "meaning": "Son of the Aśvins and Mādrī — twin of Sahadeva, fourth of the Pāṇḍu princes, master of horses",
     "senses": [
       {
         "type": "etymology",
@@ -37897,7 +37897,7 @@ const LEXICON = [
     "tier": "2",
     "tierLabel": "Tier 2",
     "domain": "Twin, Son of Madri",
-    "meaning": "N. of a Ṛṣi (with the patr. vArzAgira), RV. i, 107",
+    "meaning": "Son of the Aśvins and Mādrī — twin of Nakula, youngest of the Pāṇḍu princes, famed for wisdom",
     "senses": [
       {
         "type": "etymology",
@@ -41325,7 +41325,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Knowledge, Wisdom",
-    "meaning": "of a Śakti, Rasik.",
+    "meaning": "'Knowledge' — the liberating insight that discerns the real from the unreal",
     "senses": [
       {
         "type": "etymology",
@@ -41496,7 +41496,7 @@ const LEXICON = [
     "tier": "2",
     "tierLabel": "Tier 2",
     "domain": "Heat, Austerity, Spiritual Power",
-    "meaning": "N. of a month intervening between winter and spring, VS.; TS. i; ŚBr.",
+    "meaning": "'Heat' — the generative austerity that burns away impurity and powers creation",
     "senses": [
       {
         "type": "etymology",
@@ -41661,7 +41661,7 @@ const LEXICON = [
     "tier": "2",
     "tierLabel": "Tier 2",
     "domain": "Source, Womb, Shakti",
-    "meaning": "of the sound e, Up.",
+    "meaning": "'Womb, source' — the feminine principle, the origin from which all creation flows",
     "senses": [
       {
         "type": "etymology",
@@ -41965,7 +41965,7 @@ const LEXICON = [
     "tier": "2",
     "tierLabel": "Tier 2",
     "domain": "Jewel-Born, South",
-    "meaning": "N. of a Buddha, (esp.) of a Dhyānibuddha, MWB.",
+    "meaning": "'Born of the Jewel' — the Dhyānibuddha of the southern jewel family",
     "senses": [
       {
         "type": "etymology",
@@ -42066,7 +42066,7 @@ const LEXICON = [
     "tier": "2",
     "tierLabel": "Tier 2",
     "domain": "Infallible Success, North",
-    "meaning": "N. of the fifth Dhyānibuddha.",
+    "meaning": "'Unfailing Accomplishment' — the fifth Dhyānibuddha, lord of the karma family",
     "senses": [
       {
         "type": "etymology",
@@ -42161,7 +42161,7 @@ const LEXICON = [
     "tier": "2",
     "tierLabel": "Tier 2",
     "domain": "Future Buddha, Loving-Kindness",
-    "meaning": "of a Bodhisattva and future Buddha (the 5th of the present age), Lalit.",
+    "meaning": "'The Benevolent One' — the Bodhisattva who will return as the future Buddha",
     "senses": [
       {
         "type": "etymology",
@@ -42303,7 +42303,7 @@ const LEXICON = [
     "tier": "2",
     "tierLabel": "Tier 2",
     "domain": "Universal Good, Practice",
-    "meaning": "N. of a grammar.",
+    "meaning": "'Universal Beneficence' — the Bodhisattva of practice, rider of the white elephant",
     "senses": [
       {
         "type": "etymology",
@@ -42676,7 +42676,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Time, Death, Protection",
-    "meaning": "N. of a Liṅga in Ujjayinī, Kathās.",
+    "meaning": "'Great Time' — the fierce protector who devours death itself",
     "senses": [
       {
         "type": "etymology",
@@ -42747,7 +42747,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Emptiness, Madhyamaka",
-    "meaning": "N. of an ancient, Buddh.",
+    "meaning": "The great Buddhist master of the Middle Way — founder of the Madhyamaka school",
     "senses": [
       {
         "type": "etymology",
@@ -42877,7 +42877,7 @@ const LEXICON = [
     "tier": "2",
     "tierLabel": "Tier 2",
     "domain": "Abhidharma, Yogacara",
-    "meaning": "N. of a celebrated Buddhist scholar, Hcar.; Buddh.",
+    "meaning": "The celebrated Buddhist scholar — author of the Abhidharmakośa, co-founder of the Yogācāra school",
     "senses": [
       {
         "type": "etymology",
@@ -42960,7 +42960,7 @@ const LEXICON = [
     "tier": "2",
     "tierLabel": "Tier 2",
     "domain": "Enlightenment Being, Compassion",
-    "meaning": "of the principal Buddha of the present era (before he became a Buddha), Śiś., Sch.; L.",
+    "meaning": "'Awakening-being' — one who vows Buddhahood for the sake of all beings",
     "senses": [
       {
         "type": "etymology",

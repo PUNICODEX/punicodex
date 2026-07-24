@@ -221,6 +221,9 @@ function listNames(params) {
     sort: params.sort,
     limit: params.limit,
     offset: params.offset,
+    // The v1 names listing is a legitimate browse-all contract: a filterless
+    // GET /api/v1/names returns the full lexicon, paginated.
+    browseAll: true,
   });
 
   return {

@@ -414,7 +414,14 @@ async function sendAnalyticsReport({ email, booking, metrics }) {
   });
 }
 
-async function notifyStoreOrderConfirmation({ email, orderRef, productName, variantLabel, quantity, status }) {
+async function notifyStoreOrderConfirmation({
+  email,
+  orderRef,
+  productName,
+  variantLabel,
+  quantity,
+  status,
+}) {
   const orderUrl = `${PLATFORM_URL}/store/?order=${encodeURIComponent(orderRef)}`;
   const statusLine =
     status === 'sent_to_fulfillment'
@@ -565,6 +572,38 @@ async function notifyAdminPasswordReset({ email, tempPassword }) {
   });
 }
 
+/**
+ * Careers portal: a candidate applied through /careers/. Delivered to the
+ * founder's inbox (CAREERS_EMAIL). Routes through module.exports.sendEmail so
+ * endpoint tests can capture at the sendEmail boundary.
+ */
+async function notifyCareersApplication({ role, name, email, links, message }) {
+  const to = process.env.CAREERS_EMAIL || 'punicodex@gmail.com';
+  const safeRole = escapeHtml(role).slice(0, 80);
+  const safeName = escapeHtml(name).slice(0, 120);
+  const safeEmail = escapeHtml(email).slice(0, 200);
+  const safeLinks = escapeHtml(links || '').slice(0, 500);
+  const safeMessage = escapeHtml(message).slice(0, 5000);
+  return module.exports.sendEmail({
+    to,
+    subject: `[PuniCodex Careers] ${safeRole} — ${safeName}`,
+    html: `
+      <div style="font-family:system-ui,sans-serif;max-width:560px;margin:0 auto;color:#111;">
+        <h2 style="color:#d4af37;">PuniCodex Careers — New Application</h2>
+        <p><strong>Role:</strong> ${safeRole}</p>
+        <p><strong>Name:</strong> ${safeName}</p>
+        <p><strong>Email:</strong> ${safeEmail}</p>
+        ${safeLinks ? `<p><strong>Portfolio / Links:</strong> ${safeLinks}</p>` : ''}
+        <hr style="border:none;border-top:1px solid #d4af37;margin:1rem 0;">
+        <p>${safeMessage.replace(/\n/g, '<br>')}</p>
+        <hr style="border:none;border-top:1px solid #eee;margin:1rem 0;">
+        <p style="color:#666;font-size:13px;">Sent from the careers form at punicodex.com/careers/ — every application is read.</p>
+      </div>
+    `,
+    text: `Role: ${role}\nName: ${name}\nEmail: ${email}\n${links ? `Links: ${links}\n` : ''}\n${message}`,
+  });
+}
+
 module.exports = {
   sendEmail,
   notifyPaymentPending,
@@ -589,6 +628,7 @@ module.exports = {
   notifyAdminPasswordReset,
   notifyTenantAccountProvisioned,
   notifyTenantPasswordReset,
+  notifyCareersApplication,
   getDashboardUrl,
   escapeHtml,
 };

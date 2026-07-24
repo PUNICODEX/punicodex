@@ -83,6 +83,8 @@ const rootPages = [
   path.join('terms', 'advertising', 'index.html'),
   path.join('privacy', 'index.html'),
   path.join('blog', 'index.html'),
+  path.join('texts', 'index.html'),
+  path.join('texts', 'theogony', 'index.html'),
   path.join('university-sponsorship', 'index.html'),
   path.join('game', 'index.html'),
   path.join('art', 'index.html'),
@@ -94,6 +96,12 @@ const rootPages = [
   path.join('app', 'index.html'),
   path.join('terms', 'store', 'index.html'),
   path.join('terms', 'creatives', 'index.html'),
+  path.join('trending', 'index.html'),
+  path.join('patterns', 'index.html'),
+  path.join('patterns', 'methodology', 'index.html'),
+  path.join('careers', 'index.html'),
+  path.join('about', 'founder', 'index.html'),
+  path.join('arbitrage', 'index.html'),
   'search-v2.html',
 ];
 for (const p of rootPages) {

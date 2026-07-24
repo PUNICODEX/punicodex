@@ -8,8 +8,8 @@
  * This script makes the nav canonical everywhere:
  *
  *   Primary : Pantheon, Realms, Lexicon, Connections, Type, Search
- *   More ▾  : Tier System, Oracle, Codex, Blog, API, Appraise, Store,
- *             About, Contact
+ *   More ▾  : Tier System, Oracle, Extension, App, Texts, Codex, Blog,
+ *             Creatives, Scholars, API, Appraise, Store, About, Contact
  *   CTA     : Enter
  *
  * Per page it normalizes the wordmark (horizontal gold lockup), replaces
@@ -37,10 +37,13 @@ const PRIMARY = [
   ['/search.html', 'Search'],
 ];
 const MORE = [
+  ['/patterns/', 'Patterns'],
   ['/tiers/', 'Tier System'],
   ['/oracle.html', 'Oracle'],
   ['/extension/', 'Extension'],
   ['/app/', 'App'],
+  ['/texts/', 'Texts'],
+  ['/trending/', 'Trending'],
   ['/codex/', 'Codex'],
   ['/blog/', 'Blog'],
   ['/creatives/', 'Creatives'],
@@ -66,6 +69,14 @@ const TARGETS = [
   { page: path.join('art', 'index.html'), active: null },
   { page: path.join('authenticity', 'index.html'), active: null },
   { page: path.join('blog', 'index.html'), active: '/blog/' },
+  { page: path.join('texts', 'index.html'), active: '/texts/' },
+  { page: path.join('texts', 'theogony', 'index.html'), active: '/texts/' },
+  { page: path.join('trending', 'index.html'), active: '/trending/' },
+  { page: path.join('patterns', 'index.html'), active: '/patterns/' },
+  { page: path.join('patterns', 'methodology', 'index.html'), active: '/patterns/' },
+  { page: path.join('careers', 'index.html'), active: null },
+  { page: path.join('about', 'founder', 'index.html'), active: '/about/' },
+  { page: path.join('arbitrage', 'index.html'), active: null },
   { page: path.join('codex', 'index.html'), active: '/codex/' },
   { page: path.join('codex', 'anatomy-of-a-punycode-domain', 'index.html'), active: '/codex/' },
   { page: path.join('codex', 'building-the-temple', 'index.html'), active: '/codex/' },

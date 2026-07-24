@@ -998,6 +998,7 @@ async function searchWeb(q, options = {}) {
     },
     timing,
     mode,
+    unicodeOnly: Boolean(unicodeOnly),
     entityBonusApplied,
     matchedEntryId,
     clickBoostApplied,

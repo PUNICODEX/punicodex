@@ -1407,6 +1407,31 @@
           }
         }
       }
+    },
+    "/industry-patterns/match": {
+      "get": {
+        "summary": "Match a free-text profession or industry to pattern industries",
+        "operationId": "matchIndustryAliases",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/QueryQ"
+          },
+          {
+            "$ref": "#/components/parameters/QueryLimit"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/IndustryDirectoryResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          }
+        }
+      }
     }
   },
   "components": {

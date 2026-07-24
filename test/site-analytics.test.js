@@ -479,7 +479,9 @@ test('beacon script exists, is small, and honors Do Not Track', () => {
   const beaconPath = path.join(ROOT, 'js', 'analytics-beacon.js');
   assert.ok(fs.existsSync(beaconPath));
   const src = fs.readFileSync(beaconPath, 'utf8');
-  assert.ok(fs.statSync(beaconPath).size < 2048, 'beacon must stay under 2KB');
+  // v2 (consent gating + engagement pings) raised the budget from 2KB to 8KB —
+  // still a tiny deferred, cache-busted script.
+  assert.ok(fs.statSync(beaconPath).size < 8192, 'beacon must stay under 8KB');
   assert.ok(src.includes("navigator.doNotTrack === '1'"), 'beacon must honor DNT');
   assert.ok(
     src.indexOf('doNotTrack') < src.indexOf('sendBeacon'),
@@ -487,6 +489,10 @@ test('beacon script exists, is small, and honors Do Not Track', () => {
   );
   assert.ok(src.includes('px_sid'), 'beacon must use the px_sid session key');
   assert.ok(src.includes('/api/analytics/collect/'), 'beacon must post to the collect endpoint');
+  // v2 contract: consent gating, admin-surface silence, engagement payload.
+  assert.ok(src.includes('punicodex.cookie-consent'), 'beacon must read the consent record');
+  assert.ok(src.includes("'/admin'"), 'beacon must skip admin surfaces');
+  assert.ok(src.includes("t: 'eng'"), 'beacon must send the engagement event type');
 });
 
 test('inject-analytics.js is idempotent and injects the beacon exactly once', () => {

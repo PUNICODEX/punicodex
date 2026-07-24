@@ -47,6 +47,7 @@ const mainPages = [
   { loc: '/pantheon/', priority: '0.9', changefreq: 'weekly' },
   { loc: '/lexicon/', priority: '0.9', changefreq: 'weekly' },
   { loc: '/blog/', priority: '0.7', changefreq: 'weekly' },
+  { loc: '/texts/', priority: '0.7', changefreq: 'monthly' },
   { loc: '/type/', priority: '0.9', changefreq: 'weekly' },
   { loc: '/tiers/', priority: '0.8', changefreq: 'monthly' },
   { loc: '/realms/', priority: '0.8', changefreq: 'monthly' },
@@ -84,6 +85,12 @@ const mainPages = [
   { loc: '/terms/creatives/', priority: '0.4', changefreq: 'yearly' },
   { loc: '/extension/', priority: '0.6', changefreq: 'monthly' },
   { loc: '/app/', priority: '0.6', changefreq: 'monthly' },
+  { loc: '/trending/', priority: '0.7', changefreq: 'weekly' },
+  { loc: '/patterns/', priority: '0.8', changefreq: 'weekly' },
+  { loc: '/patterns/methodology/', priority: '0.6', changefreq: 'monthly' },
+  { loc: '/careers/', priority: '0.5', changefreq: 'monthly' },
+  { loc: '/about/founder/', priority: '0.5', changefreq: 'monthly' },
+  { loc: '/arbitrage/', priority: '0.6', changefreq: 'monthly' },
 ];
 
 function escapeXml(str) {
@@ -105,6 +112,14 @@ xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
 // Main pages
 for (const p of mainPages) {
   xml += urlEntry(p.loc, p.priority, p.changefreq);
+}
+
+// Sacred Texts: one reading page per registered text.
+const TEXT_REGISTRY = JSON.parse(
+  fs.readFileSync(path.join(ROOT, 'platform', 'texts', 'registry.json'), 'utf8')
+);
+for (const t of TEXT_REGISTRY.texts) {
+  xml += urlEntry(`/texts/${t.id}/`, '0.6', 'monthly');
 }
 
 // Temple pages
@@ -142,5 +157,10 @@ xml += '</urlset>\n';
 writeFileWithRetry(path.join(ROOT, 'sitemap.xml'), xml, 'utf8');
 
 const urlCount =
-  mainPages.length + LEXICON.length + flagshipIds.size * 8 + storeCollectionIds.size + POD.count;
+  mainPages.length +
+  TEXT_REGISTRY.texts.length +
+  LEXICON.length +
+  flagshipIds.size * 8 +
+  storeCollectionIds.size +
+  POD.count;
 console.log(`Sitemap generated: ${urlCount} URLs`);

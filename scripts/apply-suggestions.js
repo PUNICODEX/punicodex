@@ -49,7 +49,21 @@ function fail(msg) {
 // ═════════════════════════════════════════════════════════════════════════════
 
 const handlers = {
-  meaning: (src, s) => updateLexiconScalar(src, s.id, 'meaning', s.value, 'domain'),
+  meaning: (src, s) => {
+    // Defense in depth: never auto-apply a raw dictionary fragment as a
+    // display meaning, whatever the confidence says (the cologne-sanskrit
+    // importer now quarantines these at 0.4, but older batches predate that).
+    if (
+      /(^|\b)N\.\s*of\s|,\s*(MBh|Hariv|Pur|Up|Kāv|RV|AV|VS|TS|ŚBr|L|Kathās|MWB|Buddh|Hcar|Lalit|Rasik|MārkP)\.|accord\.|˚/.test(
+        String(s.value)
+      )
+    ) {
+      throw new Error(
+        `dictionary-style meaning needs editorial review: ${String(s.value).slice(0, 80)}`
+      );
+    }
+    return updateLexiconScalar(src, s.id, 'meaning', s.value, 'domain');
+  },
   greek: (src, s) => updateLexiconScalar(src, s.id, 'greek', s.value, 'unicode'),
   domain: (src, s) => updateLexiconScalar(src, s.id, 'domain', s.value, 'meaning'),
 

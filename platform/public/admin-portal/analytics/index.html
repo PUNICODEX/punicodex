@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Admin Portal — Site Analytics | PuniCodex</title>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="../portal.css">
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+</head>
+<body data-page="analytics" data-depth="1">
+    <a class="skip-link" href="#portal-main">Skip to content</a>
+    <div id="portal-header"></div>
+
+    <main id="portal-main" class="portal-main page-analytics">
+        <div class="portal-page-head">
+            <h1>Site Analytics</h1>
+            <p>First-party beacon traffic — human vs. bot, attention, session depth, temples, pages, devices, and referrers. Aggregates only; no per-visitor data.</p>
+            <p class="portal-updated" id="an-updated"></p>
+        </div>
+
+        <section class="panel" aria-label="Analytics controls">
+            <div class="portal-form-row analytics-controls">
+                <div class="field">
+                    <label id="an-period-label">Period</label>
+                    <div class="period-switch" role="group" aria-labelledby="an-period-label">
+                        <button type="button" class="period-btn" data-days="7">7 days</button>
+                        <button type="button" class="period-btn active" data-days="30">30 days</button>
+                        <button type="button" class="period-btn" data-days="90">90 days</button>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="an-temple-scope">Temple scope</label>
+                    <input type="text" id="an-temple-scope" placeholder="e.g. nike — Enter to apply" autocomplete="off" maxlength="64">
+                </div>
+                <button type="button" class="btn btn-secondary" id="an-scope-clear" hidden>Clear scope</button>
+                <button type="button" class="btn btn-secondary" id="an-refresh">Refresh</button>
+            </div>
+            <p class="field-hint" id="an-scope-note" style="margin-top:0.75rem;" hidden></p>
+        </section>
+
+        <section aria-label="Traffic totals">
+            <div class="stat-grid" id="an-stats">
+                <div class="state-block">Loading analytics…</div>
+            </div>
+        </section>
+
+        <section class="panel" aria-label="Traffic over time">
+            <div class="panel-head">
+                <div>
+                    <h2 class="panel-title">Traffic</h2>
+                    <p class="panel-sub" id="an-chart-sub">Views per day — human stacked under bot.</p>
+                </div>
+            </div>
+            <div class="chart-wrap">
+                <canvas id="traffic-chart" class="traffic-chart"></canvas>
+                <div class="chart-tooltip" id="chart-tooltip" role="status"></div>
+            </div>
+            <div class="chart-legend">
+                <span><span class="legend-swatch" style="background:#d4af37;"></span>Human</span>
+                <span><span class="legend-swatch" style="background:#ff6b6b;"></span>Bot</span>
+            </div>
+        </section>
+
+        <section class="panel" aria-label="Attention leaders">
+            <div class="panel-head">
+                <div>
+                    <h2 class="panel-title">Attention Leaders</h2>
+                    <p class="panel-sub">Engagement is human-only (bot pings are dropped at collection) and gathered post-consent.</p>
+                </div>
+            </div>
+            <div id="an-engaged">
+                <div class="state-block">Loading engagement…</div>
+            </div>
+        </section>
+
+        <section class="panel" aria-label="Top temples">
+            <div class="panel-head">
+                <div>
+                    <h2 class="panel-title">Top Temples</h2>
+                    <p class="panel-sub">Up to 50 temples by human views in the selected period.</p>
+                </div>
+            </div>
+            <div class="field" style="max-width:320px;margin-bottom:0.9rem;">
+                <label for="an-table-filter">Filter</label>
+                <input type="text" id="an-table-filter" placeholder="Filter temples…" autocomplete="off">
+            </div>
+            <div id="an-temples">
+                <div class="state-block">Loading temples…</div>
+            </div>
+        </section>
+
+        <div class="panel-grid-2">
+            <section class="panel" aria-label="Devices">
+                <div class="panel-head">
+                    <h2 class="panel-title">Devices</h2>
+                </div>
+                <div id="an-devices">
+                    <div class="state-block">Loading devices…</div>
+                </div>
+            </section>
+
+            <section class="panel" aria-label="Top referrers">
+                <div class="panel-head">
+                    <div>
+                        <h2 class="panel-title">Top Referrers</h2>
+                        <p class="panel-sub">Human traffic only. <code>(direct)</code> means no referrer.</p>
+                    </div>
+                </div>
+                <div id="an-referrers">
+                    <div class="state-block">Loading referrers…</div>
+                </div>
+            </section>
+        </div>
+
+        <div class="panel-grid-2">
+            <section class="panel" id="an-pages-panel" aria-label="Top pages">
+                <div class="panel-head">
+                    <div>
+                        <h2 class="panel-title">Top Pages</h2>
+                        <p class="panel-sub">Most-visited paths (human views), any page — not only temples.</p>
+                    </div>
+                </div>
+                <div id="an-pages">
+                    <div class="state-block">Loading pages…</div>
+                </div>
+            </section>
+
+            <section class="panel" aria-label="Bot categories">
+                <div class="panel-head">
+                    <div>
+                        <h2 class="panel-title">Bot Categories</h2>
+                        <p class="panel-sub">Classified at collection from the user agent; raw agents are never stored.</p>
+                    </div>
+                </div>
+                <div id="an-botcats">
+                    <div class="state-block">Loading bot categories…</div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="../portal.js"></script>
+    <script>
+    (function () {
+        var state = {
+            days: 30,
+            temple: '',
+            data: null,
+            hoverIndex: -1,
+            loading: false,
+            resizeTimer: null,
+        };
+
+        var TEMPLE_RE = /^[a-z0-9-]{1,64}$/;
+
+        // ── Small formatters ──────────────────────────────────
+
+        function statCard(value, label, hint) {
+            return (
+                '<div class="stat-card"><div class="stat-card-value">' + value + '</div>' +
+                '<div class="stat-card-label">' + Portal.escapeHtml(label) + '</div>' +
+                (hint ? '<div class="stat-card-hint">' + Portal.escapeHtml(hint) + '</div>' : '') +
+                '</div>'
+            );
+        }
+
+        // "1m 24s" / "45 s" from milliseconds.
+        function fmtDuration(ms) {
+            var total = Math.round(Number(ms) / 1000);
+            if (!Number.isFinite(total) || total < 0) return '—';
+            var m = Math.floor(total / 60);
+            var s = total % 60;
+            return m > 0 ? m + 'm ' + s + 's' : s + ' s';
+        }
+
+        function fmtAgo(iso) {
+            var t = new Date(iso).getTime();
+            if (Number.isNaN(t)) return '';
+            var s = Math.max(0, Math.round((Date.now() - t) / 1000));
+            if (s < 5) return 'just now';
+            if (s < 60) return s + ' s ago';
+            var m = Math.floor(s / 60);
+            if (m < 60) return m + ' min ago';
+            var h = Math.floor(m / 60);
+            if (h < 24) return h + ' h ago';
+            return Math.floor(h / 24) + ' d ago';
+        }
+
+        // Temple ids arrive as slugs; prettify client-side (no registry fetch).
+        function prettyTemple(id) {
+            var text = String(id || '').replace(/-/g, ' ').trim();
+            if (!text) return '—';
+            return text.replace(/(^|\s)([a-z])/g, function (m, sp, c) {
+                return sp + c.toUpperCase();
+            });
+        }
+
+        // ── Stat cards ────────────────────────────────────────
+
+        function renderStats(data) {
+            var totals = data.overview.totals;
+            var eng = data.engagement || {};
+            var depth = data.depth;
+            var cards =
+                statCard(Portal.fmtNumber(totals.humanViews), 'Human Views', 'bot traffic filtered') +
+                statCard(Portal.fmtNumber(totals.uniqueSessions), 'Unique Sessions', '') +
+                statCard(
+                    eng.engagements > 0 ? Portal.escapeHtml(fmtDuration(eng.avgVisibleMs)) : '—',
+                    'Avg. Attention',
+                    eng.engagements > 0
+                        ? Portal.fmtNumber(eng.engagements) + ' engagement pings'
+                        : 'no engagement pings yet'
+                );
+            // depth is null when the storage driver cannot compute it — hide
+            // those cards honestly instead of fabricating numbers.
+            if (depth) {
+                cards +=
+                    statCard(
+                        Portal.escapeHtml(String(depth.pagesPerSession)),
+                        'Pages / Session',
+                        Portal.fmtNumber(depth.sessions) + ' sessions'
+                    ) +
+                    statCard(
+                        Portal.escapeHtml(String(depth.bouncePct)) + '%',
+                        'Bounce',
+                        Portal.fmtNumber(depth.singlePageSessions) + ' single-page sessions'
+                    );
+            }
+            cards += statCard(
+                Portal.escapeHtml(String(totals.botPct)) + '%',
+                'Bot Share',
+                Portal.fmtNumber(totals.botViews) + ' bot views filtered out'
+            );
+            document.getElementById('an-stats').innerHTML = cards;
+        }
+
+        function renderStamp() {
+            var el = document.getElementById('an-updated');
+            if (!el || !state.data) return;
+            el.textContent =
+                'Snapshot generated ' + fmtAgo(state.data.generatedAt) +
+                ' (' + Portal.fmtDateTime(state.data.generatedAt) + ')';
+        }
+
+        function renderScopeNote() {
+            var note = document.getElementById('an-scope-note');
+            if (!state.temple) {
+                note.hidden = true;
+                note.textContent = '';
+                return;
+            }
+            note.hidden = false;
+            note.textContent =
+                'Temple scope "' + state.temple + '" applies to traffic, temples, pages, devices, and referrers. ' +
+                'Attention and session-depth figures remain site-wide.';
+        }
+
+        // ── Traffic chart (hand-rolled canvas — no CDN) ───────
+
+        var CHART_PAD = { left: 44, right: 12, top: 12, bottom: 24 };
+
+        function niceMax(v) {
+            if (v <= 1) return 1;
+            var mag = Math.pow(10, Math.floor(Math.log10(v)));
+            var n = v / mag;
+            var nice = n <= 1 ? 1 : n <= 2 ? 2 : n <= 5 ? 5 : 10;
+            return nice * mag;
+        }
+
+        function chartGeom(canvas, byDay) {
+            var w = canvas.clientWidth;
+            var h = canvas.clientHeight;
+            var plotW = Math.max(1, w - CHART_PAD.left - CHART_PAD.right);
+            var plotH = Math.max(1, h - CHART_PAD.top - CHART_PAD.bottom);
+            var maxTotal = 1;
+            for (var i = 0; i < byDay.length; i++) {
+                maxTotal = Math.max(maxTotal, (byDay[i].human || 0) + (byDay[i].bot || 0));
+            }
+            var yMax = niceMax(maxTotal);
+            return {
+                w: w,
+                h: h,
+                plotW: plotW,
+                plotH: plotH,
+                yMax: yMax,
+                xAt: function (i) {
+                    return CHART_PAD.left + (plotW * (i + 0.5)) / Math.max(byDay.length, 1);
+                },
+                yAt: function (v) {
+                    return CHART_PAD.top + plotH - (v / yMax) * plotH;
+                },
+            };
+        }
+
+        // Integer tick step (1/2/5 × 10^n) so a view-count axis never shows
+        // fractional labels; ticks run up to yMax but need not land on it.
+        function niceStep(yMax) {
+            var target = Math.max(1, Math.ceil(yMax / 4));
+            var mag = Math.pow(10, Math.floor(Math.log10(target)));
+            var n = target / mag;
+            var s = n <= 1 ? 1 : n <= 2 ? 2 : n <= 5 ? 5 : 10;
+            return s * mag;
+        }
+
+        function drawArea(ctx, byDay, geom, lowFn, highFn, fill, stroke) {
+            var len = byDay.length;
+            ctx.beginPath();
+            ctx.moveTo(geom.xAt(0), geom.yAt(highFn(byDay[0])));
+            for (var i = 1; i < len; i++) ctx.lineTo(geom.xAt(i), geom.yAt(highFn(byDay[i])));
+            for (var k = len - 1; k >= 0; k--) ctx.lineTo(geom.xAt(k), geom.yAt(lowFn(byDay[k])));
+            ctx.closePath();
+            ctx.fillStyle = fill;
+            ctx.fill();
+            ctx.beginPath();
+            ctx.moveTo(geom.xAt(0), geom.yAt(highFn(byDay[0])));
+            for (var m = 1; m < len; m++) ctx.lineTo(geom.xAt(m), geom.yAt(highFn(byDay[m])));
+            ctx.strokeStyle = stroke;
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+        }
+
+        function drawTrafficChart() {
+            var canvas = document.getElementById('traffic-chart');
+            if (!canvas) return;
+            var byDay = (state.data && state.data.overview && state.data.overview.byDay) || [];
+            var dpr = window.devicePixelRatio || 1;
+            var w = canvas.clientWidth;
+            var h = canvas.clientHeight;
+            if (!w || !h) return;
+            canvas.width = Math.round(w * dpr);
+            canvas.height = Math.round(h * dpr);
+            var ctx = canvas.getContext('2d');
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            ctx.clearRect(0, 0, w, h);
+
+            var geom = chartGeom(canvas, byDay);
+
+            // Y gridlines + tick labels.
+            ctx.font = '10px Montserrat, sans-serif';
+            var step = niceStep(geom.yMax);
+            for (var v = 0; v <= geom.yMax; v += step) {
+                var y = geom.yAt(v);
+                ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(CHART_PAD.left, y);
+                ctx.lineTo(w - CHART_PAD.right, y);
+                ctx.stroke();
+                ctx.fillStyle = '#7a8a9e';
+                ctx.textAlign = 'right';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(Portal.fmtNumber(v), CHART_PAD.left - 6, y);
+            }
+
+            if (!byDay.length) {
+                ctx.fillStyle = '#7a8a9e';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText('No data yet for this period', w / 2, CHART_PAD.top + geom.plotH / 2);
+                return;
+            }
+
+            // X date labels (MM-DD).
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'alphabetic';
+            var labelEvery = Math.max(1, Math.ceil(byDay.length / 8));
+            for (var j = 0; j < byDay.length; j++) {
+                if (j % labelEvery !== 0) continue;
+                ctx.fillStyle = '#7a8a9e';
+                ctx.fillText(String(byDay[j].day).slice(5), geom.xAt(j), h - 6);
+            }
+
+            // Stacked areas: human (gold) below, bot (red) on top.
+            drawArea(
+                ctx, byDay, geom,
+                function () { return 0; },
+                function (d) { return d.human || 0; },
+                'rgba(212,175,55,0.28)', '#d4af37'
+            );
+            drawArea(
+                ctx, byDay, geom,
+                function (d) { return d.human || 0; },
+                function (d) { return (d.human || 0) + (d.bot || 0); },
+                'rgba(255,107,107,0.20)', '#ff6b6b'
+            );
+
+            // Hover crosshair + value dots.
+            if (state.hoverIndex >= 0 && state.hoverIndex < byDay.length) {
+                var hx = geom.xAt(state.hoverIndex);
+                ctx.strokeStyle = 'rgba(232,228,220,0.35)';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(hx, CHART_PAD.top);
+                ctx.lineTo(hx, CHART_PAD.top + geom.plotH);
+                ctx.stroke();
+                var row = byDay[state.hoverIndex];
+                var pts = [
+                    { y: geom.yAt(row.human || 0), color: '#d4af37' },
+                    { y: geom.yAt((row.human || 0) + (row.bot || 0)), color: '#ff6b6b' },
+                ];
+                for (var p = 0; p < pts.length; p++) {
+                    ctx.beginPath();
+                    ctx.arc(hx, pts[p].y, 3, 0, Math.PI * 2);
+                    ctx.fillStyle = pts[p].color;
+                    ctx.fill();
+                }
+            }
+        }
+
+        function hideTooltip() {
+            var tooltip = document.getElementById('chart-tooltip');
+            if (tooltip) tooltip.style.display = 'none';
+        }
+
+        function onChartMove(e) {
+            var byDay = (state.data && state.data.overview && state.data.overview.byDay) || [];
+            if (!byDay.length) return;
+            var canvas = document.getElementById('traffic-chart');
+            var rect = canvas.getBoundingClientRect();
+            var x = e.clientX - rect.left;
+            var plotW = Math.max(1, rect.width - CHART_PAD.left - CHART_PAD.right);
+            var idx = Math.floor(((x - CHART_PAD.left) / plotW) * byDay.length);
+            if (idx < 0 || idx >= byDay.length) {
+                state.hoverIndex = -1;
+                hideTooltip();
+                drawTrafficChart();
+                return;
+            }
+            state.hoverIndex = idx;
+            drawTrafficChart();
+
+            var row = byDay[idx];
+            var tooltip = document.getElementById('chart-tooltip');
+            tooltip.innerHTML =
+                '<div class="tt-day">' + Portal.escapeHtml(String(row.day)) + '</div>' +
+                '<div>Human: ' + Portal.fmtNumber(row.human) + '</div>' +
+                '<div>Bot: ' + Portal.fmtNumber(row.bot) + '</div>' +
+                '<div class="tt-muted">Total: ' + Portal.fmtNumber((row.human || 0) + (row.bot || 0)) + '</div>';
+            tooltip.style.display = 'block';
+            var wrapRect = canvas.parentElement.getBoundingClientRect();
+            var tx = e.clientX - wrapRect.left + 14;
+            var ty = e.clientY - wrapRect.top - 12;
+            var tw = tooltip.offsetWidth;
+            if (tx + tw > wrapRect.width - 4) tx = e.clientX - wrapRect.left - tw - 14;
+            tooltip.style.left = tx + 'px';
+            tooltip.style.top = Math.max(4, ty) + 'px';
+        }
+
+        // ── Tables & panels ───────────────────────────────────
+
+        function emptyState(message) {
+            return '<div class="state-block">' + Portal.escapeHtml(message) + '</div>';
+        }
+
+        function renderEngagement(eng) {
+            var wrap = document.getElementById('an-engaged');
+            var rows = (eng && eng.topEngaged) || [];
+            if (!rows.length) {
+                wrap.innerHTML = emptyState('No engagement data yet for this period.');
+                return;
+            }
+            var body = rows
+                .map(function (t, i) {
+                    return (
+                        '<tr>' +
+                        '<td class="num">' + (i + 1) + '</td>' +
+                        '<td><div class="cell-title">' + Portal.escapeHtml(prettyTemple(t.templeId)) + '</div>' +
+                        '<div class="cell-sub">' + Portal.escapeHtml(t.templeId) + '</div></td>' +
+                        '<td class="num">' + Portal.fmtNumber(t.engagements) + '</td>' +
+                        '<td class="num">' + Portal.escapeHtml(fmtDuration(t.avgVisibleMs)) + '</td>' +
+                        '</tr>'
+                    );
+                })
+                .join('');
+            wrap.innerHTML =
+                '<div class="table-wrap"><table class="portal-table"><thead><tr>' +
+                '<th class="num">#</th><th>Temple</th><th class="num">Engagements</th><th class="num">Avg. Visible</th>' +
+                '</tr></thead><tbody>' + body + '</tbody></table></div>';
+        }
+
+        function renderTemples() {
+            var wrap = document.getElementById('an-temples');
+            var topTemples = (state.data && state.data.overview && state.data.overview.topTemples) || [];
+            var filter = document.getElementById('an-table-filter').value.trim().toLowerCase();
+            var rows = topTemples.slice(0, 50).filter(function (t) {
+                return !filter || String(t.templeId).toLowerCase().indexOf(filter) !== -1;
+            });
+            if (!rows.length) {
+                wrap.innerHTML = emptyState(
+                    topTemples.length ? 'No temples match this filter.' : 'No data yet for this period.'
+                );
+                return;
+            }
+            var body = rows
+                .map(function (t, i) {
+                    return (
+                        '<tr>' +
+                        '<td class="num">' + (i + 1) + '</td>' +
+                        '<td><div class="cell-title"><a href="/sites/' + encodeURIComponent(t.templeId) + '/">' +
+                        Portal.escapeHtml(prettyTemple(t.templeId)) + '</a></div>' +
+                        '<div class="cell-sub">' + Portal.escapeHtml(t.templeId) + '</div></td>' +
+                        '<td class="num">' + Portal.fmtNumber(t.human) + '</td>' +
+                        '<td class="num">' + Portal.fmtNumber(t.uniques) + '</td>' +
+                        '<td class="num">' + Portal.fmtNumber(t.bot) + '</td>' +
+                        '</tr>'
+                    );
+                })
+                .join('');
+            wrap.innerHTML =
+                '<div class="table-wrap"><table class="portal-table"><thead><tr>' +
+                '<th class="num">#</th><th>Temple</th><th class="num">Human</th><th class="num">Uniques</th><th class="num">Bot</th>' +
+                '</tr></thead><tbody>' + body + '</tbody></table></div>';
+        }
+
+        function renderDevices(devices) {
+            var wrap = document.getElementById('an-devices');
+            var d = devices || {};
+            var total = (d.mobile || 0) + (d.tablet || 0) + (d.desktop || 0);
+            if (!total) {
+                wrap.innerHTML = emptyState('No data yet for this period.');
+                return;
+            }
+            var rows = [
+                ['Mobile', d.mobile || 0],
+                ['Tablet', d.tablet || 0],
+                ['Desktop', d.desktop || 0],
+            ];
+            wrap.innerHTML = rows
+                .map(function (row) {
+                    var pct = Math.round((row[1] / total) * 1000) / 10;
+                    return (
+                        '<div class="device-row">' +
+                        '<div class="device-name">' + row[0] + '</div>' +
+                        '<div class="device-bar-track"><div class="device-bar-fill" style="width:' + pct + '%;"></div></div>' +
+                        '<div class="device-val">' + Portal.fmtNumber(row[1]) + ' · ' + pct + '%</div>' +
+                        '</div>'
+                    );
+                })
+                .join('');
+        }
+
+        function renderReferrers(refs) {
+            var wrap = document.getElementById('an-referrers');
+            var rows = refs || [];
+            if (!rows.length) {
+                wrap.innerHTML = emptyState('No data yet for this period.');
+                return;
+            }
+            var body = rows
+                .map(function (r) {
+                    return (
+                        '<tr><td>' + Portal.escapeHtml(r.referrer) + '</td>' +
+                        '<td class="num">' + Portal.fmtNumber(r.count) + '</td></tr>'
+                    );
+                })
+                .join('');
+            wrap.innerHTML =
+                '<div class="table-wrap"><table class="portal-table"><thead><tr>' +
+                '<th>Referrer</th><th class="num">Views</th>' +
+                '</tr></thead><tbody>' + body + '</tbody></table></div>';
+        }
+
+        function renderTopPaths(topPaths) {
+            var panel = document.getElementById('an-pages-panel');
+            // null means the storage driver cannot compute path rollups —
+            // hide the panel honestly rather than show fabricated numbers.
+            if (topPaths === null || topPaths === undefined) {
+                panel.hidden = true;
+                return;
+            }
+            panel.hidden = false;
+            var wrap = document.getElementById('an-pages');
+            if (!topPaths.length) {
+                wrap.innerHTML = emptyState('No data yet for this period.');
+                return;
+            }
+            var body = topPaths
+                .map(function (p) {
+                    return (
+                        '<tr><td>' + Portal.escapeHtml(p.path) + '</td>' +
+                        '<td class="num">' + Portal.fmtNumber(p.views) + '</td></tr>'
+                    );
+                })
+                .join('');
+            wrap.innerHTML =
+                '<div class="table-wrap"><table class="portal-table"><thead><tr>' +
+                '<th>Path</th><th class="num">Views</th>' +
+                '</tr></thead><tbody>' + body + '</tbody></table></div>';
+        }
+
+        function renderBotCats(cats) {
+            var wrap = document.getElementById('an-botcats');
+            var rows = cats || [];
+            if (!rows.length) {
+                wrap.innerHTML = emptyState('No bot traffic in this period.');
+                return;
+            }
+            wrap.innerHTML =
+                '<div class="bot-pills">' +
+                rows
+                    .map(function (c) {
+                        return (
+                            '<span class="bot-pill">' + Portal.escapeHtml(c.category) +
+                            ' <b>' + Portal.fmtNumber(c.count) + '</b></span>'
+                        );
+                    })
+                    .join('') +
+                '</div>';
+        }
+
+        // ── Load & wire-up ────────────────────────────────────
+
+        function renderAll(data) {
+            var overview = data.overview || {};
+            renderStamp();
+            renderScopeNote();
+            renderStats(data);
+            document.getElementById('an-chart-sub').textContent =
+                'Views per day — last ' + String(overview.periodDays || state.days) +
+                ' days, human stacked under bot.';
+            drawTrafficChart();
+            renderEngagement(data.engagement);
+            renderTemples();
+            renderDevices(overview.devices);
+            renderReferrers(overview.topReferrers);
+            renderTopPaths(overview.topPaths);
+            renderBotCats(overview.botCategories);
+        }
+
+        function setLoading(loading) {
+            state.loading = loading;
+            document.getElementById('an-refresh').disabled = loading;
+            var buttons = document.querySelectorAll('.period-btn');
+            for (var i = 0; i < buttons.length; i++) buttons[i].disabled = loading;
+        }
+
+        async function loadAnalytics() {
+            setLoading(true);
+            state.hoverIndex = -1;
+            hideTooltip();
+            var qs = '?days=' + state.days;
+            if (state.temple) qs += '&temple=' + encodeURIComponent(state.temple);
+            try {
+                var data = await Portal.api('/api/admin/portal/analytics/' + qs);
+                state.data = data;
+                renderAll(data);
+            } catch (err) {
+                Portal.toast('Analytics load failed: ' + err.message, 'error');
+                if (!state.data) {
+                    document.getElementById('an-stats').innerHTML =
+                        '<div class="state-block error">' + Portal.escapeHtml(err.message) + '</div>';
+                }
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        function applyScope() {
+            var input = document.getElementById('an-temple-scope');
+            var value = input.value.trim().toLowerCase();
+            if (value && !TEMPLE_RE.test(value)) {
+                Portal.toast('Temple id must match ' + TEMPLE_RE.source + ' (lowercase letters, digits, hyphens)', 'error');
+                input.value = state.temple;
+                return;
+            }
+            if (value === state.temple) return;
+            state.temple = value;
+            document.getElementById('an-scope-clear').hidden = !value;
+            loadAnalytics();
+        }
+
+        function wireControls() {
+            var buttons = document.querySelectorAll('.period-btn');
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].addEventListener('click', function () {
+                    var days = parseInt(this.getAttribute('data-days'), 10);
+                    if (days === state.days) return;
+                    state.days = days;
+                    for (var j = 0; j < buttons.length; j++) buttons[j].classList.remove('active');
+                    this.classList.add('active');
+                    loadAnalytics();
+                });
+            }
+
+            var scopeInput = document.getElementById('an-temple-scope');
+            scopeInput.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter') applyScope();
+            });
+            scopeInput.addEventListener('change', applyScope);
+
+            document.getElementById('an-scope-clear').addEventListener('click', function () {
+                scopeInput.value = '';
+                if (!state.temple) return;
+                state.temple = '';
+                this.hidden = true;
+                loadAnalytics();
+            });
+
+            document.getElementById('an-refresh').addEventListener('click', loadAnalytics);
+            document.getElementById('an-table-filter').addEventListener('input', renderTemples);
+
+            var canvas = document.getElementById('traffic-chart');
+            canvas.addEventListener('mousemove', onChartMove);
+            canvas.addEventListener('mouseleave', function () {
+                state.hoverIndex = -1;
+                hideTooltip();
+                drawTrafficChart();
+            });
+
+            window.addEventListener('resize', function () {
+                clearTimeout(state.resizeTimer);
+                state.resizeTimer = setTimeout(function () {
+                    state.hoverIndex = -1;
+                    hideTooltip();
+                    drawTrafficChart();
+                }, 150);
+            });
+
+            setInterval(renderStamp, 30000);
+        }
+
+        async function init() {
+            // Fire the analytics fetch in parallel with the shell's /me round
+            // trip instead of waiting for the shell first.
+            var load = loadAnalytics();
+            var ctx = await Portal.initShell('analytics');
+            if (!ctx) {
+                load.catch(function () {});
+                return;
+            }
+            wireControls();
+            await load;
+        }
+
+        init();
+    })();
+    </script>
+</body>
+</html>

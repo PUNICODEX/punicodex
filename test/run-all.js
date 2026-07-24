@@ -58,6 +58,7 @@ const SUITES = [
   { name: 'Store Webhook Tests', cmd: 'node test/store-webhook.test.js', timeout: 60000 },
   { name: 'Printful Webhook Tests', cmd: 'node test/printful-webhook.test.js', timeout: 60000 },
   { name: 'Industry Patterns Tests', cmd: 'node test/industry-patterns.test.js', timeout: 60000 },
+  { name: 'Patterns Atlas Tests', cmd: 'node test/patterns-atlas.test.js', timeout: 60000 },
   { name: 'Store Structure Tests', cmd: 'node test/store-structure.test.js', timeout: 120000 },
   {
     name: 'Newsletter Subscribe Tests',
@@ -65,6 +66,12 @@ const SUITES = [
     timeout: 60000,
   },
   { name: 'Contact Endpoint Tests', cmd: 'node test/contact-endpoint.test.js', timeout: 60000 },
+  { name: 'Careers Endpoint Tests', cmd: 'node test/careers-endpoint.test.js', timeout: 60000 },
+  {
+    name: 'Arbitrage Endpoint Tests',
+    cmd: 'node test/arbitrage-endpoint.test.js',
+    timeout: 60000,
+  },
   {
     name: 'API Security Contracts',
     cmd: 'node test/api-security-contracts.test.js',
@@ -105,6 +112,8 @@ const SUITES = [
   { name: 'Availability Checker Tests', cmd: 'node test/availability-checker.test.js' },
   { name: 'Foundation Tests', cmd: 'node test/foundations.test.js' },
   { name: 'Search Service Tests', cmd: 'node test/search.test.js' },
+  { name: 'Temple Content Search Tests', cmd: 'node test/search-temples.test.js', timeout: 60000 },
+  { name: 'Search Gating Tests', cmd: 'node test/search-gating.test.js', timeout: 60000 },
   { name: 'Crawler DB Tests', cmd: 'node test/crawler-db.test.js' },
   { name: 'API v2 Integration Tests', cmd: 'node test/api-v2.test.js' },
   { name: 'OpenAPI Contract Tests', cmd: 'node test/openapi-contract.test.js' },
@@ -144,7 +153,11 @@ const SUITES = [
   { name: 'Collaborators Strip Tests', cmd: 'node test/collaborators-strip.test.js' },
   { name: 'Menu Consistency Tests', cmd: 'node test/menu-consistency.test.js' },
   { name: 'Footer Consistency Tests', cmd: 'node test/footer-consistency.test.js' },
+  { name: 'Texts Section Tests', cmd: 'node test/texts-section.test.js' },
   { name: 'Cookie Consent Tests', cmd: 'node test/cookie-consent.test.js' },
+  { name: 'Lexicon Meaning Style Tests', cmd: 'node test/lexicon-meaning-style.test.js' },
+  { name: 'Site Analytics v2 Tests', cmd: 'node test/site-analytics-v2.test.js' },
+  { name: 'Trending Page Tests', cmd: 'node test/trending-page.test.js' },
   { name: 'Search Page Tests', cmd: 'node test/search-page.test.js' },
   { name: 'Brand Tests', cmd: 'node test/brand.test.js' },
   { name: 'Admin Portal Page Tests', cmd: 'node test/admin-portal-page.test.js' },
@@ -297,6 +310,7 @@ const SERIAL_SUITES = new Set([
   'Generator Idempotency Tests', // runs generators that write artifacts
   'Blog Index Tests', // runs generate-blog-index.js (writes blog/index.html)
   'Herald Beacon Tests', // runs the beacon injector against the tree
+  'Patterns Atlas Tests', // runs generate-patterns-page.js (writes patterns/*.html)
 ]);
 
 function runSuiteCmd(suite) {

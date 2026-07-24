@@ -20,6 +20,7 @@ const SYNCED = path.join(ROOT, 'admin-portal');
 const PAGES = [
   'index.html',
   'login/index.html',
+  'analytics/index.html',
   'applications/index.html',
   'patrons/index.html',
   'scholars/index.html',
@@ -43,6 +44,7 @@ const API_ROUTES = [
   '/api/admin/portal/me/',
   '/api/admin/portal/me/password/',
   '/api/admin/portal/dashboard/',
+  '/api/admin/portal/analytics/',
   '/api/admin/portal/users/',
   '/api/admin/portal/users/:id/',
   '/api/admin/portal/users/:id/disable/',

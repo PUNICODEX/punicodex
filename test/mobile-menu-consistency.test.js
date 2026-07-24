@@ -29,15 +29,20 @@ const CANONICAL_LINKS = [
   '/realms/',
   '/lexicon/',
   '/connections/',
+  '/patterns/',
+  '/trending/',
   '/type/',
   '/search.html',
   '/tiers/',
   '/oracle.html',
+  '/texts/',
   '/codex/',
   '/api/v1/docs/',
   '/appraise/',
   '/store/',
   '/about/',
+  '/about/founder/',
+  '/careers/',
   '/contact/',
 ];
 
@@ -45,7 +50,7 @@ function readPage(rel) {
   return fs.readFileSync(path.join(ROOT, rel), 'utf8');
 }
 
-test('canonical menu covers all 14 navigation links', () => {
+test('canonical menu covers all 19 navigation links', () => {
   for (const href of CANONICAL_LINKS) {
     assert.ok(CANONICAL_MENU.includes(`href="${href}"`), `menu links to ${href}`);
   }

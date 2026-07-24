@@ -18,6 +18,7 @@ const { getRedisClient, disableRedis, isRedisEnabled } = require('./redis-client
 const { classifyUserAgent } = require('./bot-detection');
 const { all, get, insert, run, isPostgres } = require('../db/operational');
 const { runMigration } = require('../db/migrate-site-analytics');
+const { runMigration: runMigrationV2 } = require('../db/migrate-site-analytics-v2');
 
 const KEY_PREFIX = 'punicodex:analytics:';
 const ROLLUP_TTL_SECONDS = 40 * 24 * 60 * 60; // 40 days
@@ -152,6 +153,7 @@ let migrationRan = false;
 function ensureMigration() {
   if (migrationRan || isPostgres()) return;
   runMigration();
+  runMigrationV2();
   migrationRan = true;
 }
 
@@ -186,6 +188,17 @@ async function recordToSqlite(event) {
     `,
     [event.day, event.templeId, event.isBot ? 0 : 1, event.isBot ? 1 : 0]
   );
+  if (!event.isBot) {
+    await run(
+      `
+        INSERT INTO site_analytics_paths_daily (day, path, human_views)
+        VALUES ($1, $2, 1)
+        ON CONFLICT(day, path) DO UPDATE
+          SET human_views = human_views + 1
+      `,
+      [event.day, event.path]
+    );
+  }
 }
 
 /**
@@ -222,6 +235,12 @@ async function recordPageView({ path, templeId, referrer, sessionId, ip, userAge
         sessionHash,
         referrerDomain,
       });
+      if (!isBot) {
+        const client = getRedisClient();
+        const pathKey = `${KEY_PREFIX}pathviews:${day}`;
+        await client.hincrby(pathKey, cleanPath, 1);
+        await client.expire(pathKey, ROLLUP_TTL_SECONDS);
+      }
       return { recorded: true, isBot, category, device, templeId: cleanTempleId };
     } catch (err) {
       console.error('[site-analytics] Redis write failed, falling back to SQLite:', err.message);
@@ -244,6 +263,92 @@ async function recordPageView({ path, templeId, referrer, sessionId, ip, userAge
   return { recorded: true, isBot, category, device, templeId: cleanTempleId };
 }
 
+// ─── Engagement recording (v2 beacon: visible time + scroll depth) ───
+
+const MAX_VISIBLE_MS = 30 * 60 * 1000; // beacon caps at 30 min; enforce server-side too
+
+async function recordEngagementToSqlite(event) {
+  ensureMigration();
+  await insert(
+    `
+      INSERT INTO site_analytics_engagement
+        (path, temple_id, session_hash, visible_ms, scroll_pct, device, is_bot)
+      VALUES ($1, $2, $3, $4, $5, $6, 0)
+      RETURNING id
+    `,
+    [event.path, event.templeId, event.sessionHash, event.visibleMs, event.scrollPct, event.device]
+  );
+  await run(
+    `
+      INSERT INTO site_analytics_engagement_daily
+        (day, temple_id, engagements, total_visible_ms, total_scroll_pct)
+      VALUES ($1, $2, 1, $3, $4)
+      ON CONFLICT(day, temple_id) DO UPDATE
+        SET engagements = engagements + 1,
+            total_visible_ms = total_visible_ms + excluded.total_visible_ms,
+            total_scroll_pct = total_scroll_pct + excluded.total_scroll_pct
+    `,
+    [event.day, event.templeId, event.visibleMs, event.scrollPct]
+  );
+}
+
+/**
+ * Record one engagement ping (visible milliseconds + max scroll depth for a
+ * page visit). Bot pings are dropped entirely — engagement is a human-only
+ * signal. Never throws on bad input.
+ */
+async function recordEngagement({ path, sessionId, visibleMs, scrollPct, userAgent }) {
+  const cleanPath = sanitizePath(path);
+  if (!cleanPath) return null;
+  const ms = Number(visibleMs);
+  const sc = Number(scrollPct);
+  if (!Number.isFinite(ms) || ms < 500 || ms > MAX_VISIBLE_MS) return null;
+  const cleanScroll = Number.isFinite(sc) ? Math.min(100, Math.max(0, Math.round(sc))) : 0;
+
+  const ua = typeof userAgent === 'string' ? userAgent : '';
+  const { isBot } = classifyUserAgent(ua);
+  if (isBot) return null;
+
+  const day = dayString(new Date());
+  const device = detectDevice(ua);
+  const templeId = extractTempleId(cleanPath);
+  const sessionHash = sha256(`${sanitizeSessionId(sessionId)}:${day}`).substring(0, 24);
+  const cleanMs = Math.round(ms);
+
+  if (isRedisEnabled()) {
+    try {
+      const client = getRedisClient();
+      if (!client) throw new Error('Redis client unavailable');
+      const key = `${KEY_PREFIX}eng:${day}:${templeId}`;
+      await client
+        .pipeline()
+        .hincrby(key, 'engagements', 1)
+        .hincrby(key, 'totalMs', cleanMs)
+        .hincrby(key, 'totalScroll', cleanScroll)
+        .expire(key, ROLLUP_TTL_SECONDS)
+        .exec();
+      return { recorded: true, templeId };
+    } catch (err) {
+      console.error(
+        '[site-analytics] Redis engagement write failed, falling back to SQLite:',
+        err.message
+      );
+      disableRedis();
+    }
+  }
+
+  await recordEngagementToSqlite({
+    day,
+    path: cleanPath,
+    templeId,
+    sessionHash,
+    visibleMs: cleanMs,
+    scrollPct: cleanScroll,
+    device,
+  });
+  return { recorded: true, templeId };
+}
+
 // ─── Reporting ───
 
 function emptyDevices() {
@@ -258,6 +363,7 @@ function finalizeOverview({
   devices,
   botCatMap,
   uniqueSessions,
+  topPaths,
 }) {
   const byDay = [...byDayMap.values()];
   let humanViews = 0;
@@ -292,6 +398,8 @@ function finalizeOverview({
     topReferrers,
     devices,
     botCategories,
+    // null when the active storage driver cannot provide path-level rollups
+    topPaths: Array.isArray(topPaths) ? topPaths : null,
   };
 }
 
@@ -315,6 +423,7 @@ async function getRedisOverview({ days, templeId }) {
   const refMap = new Map();
   const botCatMap = new Map();
   const devices = emptyDevices();
+  const pathMap = new Map();
   let uniqueSessions = 0;
 
   const bumpTemple = (tid, field, count) => {
@@ -358,7 +467,19 @@ async function getRedisOverview({ days, templeId }) {
     uniqueSessions += await client.scard(
       templeId !== null ? `${KEY_PREFIX}uniq:${day}:${templeId}` : `${KEY_PREFIX}uniq:${day}`
     );
+    // Path-level rollups are site-wide hashes keyed by full path; when the
+    // overview is temple-scoped, keep only that temple's path prefix.
+    const pathCounts = await client.hgetall(`${KEY_PREFIX}pathviews:${day}`);
+    for (const [p, count] of Object.entries(pathCounts || {})) {
+      if (templeId !== null && !p.startsWith(`/sites/${templeId}/`)) continue;
+      addToMap(pathMap, p, toCount(count));
+    }
   }
+
+  const topPaths = [...pathMap.entries()]
+    .map(([path, views]) => ({ path, views }))
+    .sort((a, b) => b.views - a.views || a.path.localeCompare(b.path))
+    .slice(0, 20);
 
   return finalizeOverview({
     days,
@@ -368,6 +489,7 @@ async function getRedisOverview({ days, templeId }) {
     devices,
     botCatMap,
     uniqueSessions,
+    topPaths,
   });
 }
 
@@ -477,6 +599,21 @@ async function getSqliteOverview({ days, templeId }) {
     addToMap(botCatMap, row.bot_category, toCount(row.views));
   }
 
+  // Path-level rollups are keyed by full path (no temple column); a temple
+  // scope maps to the temple's path prefix.
+  const pathRows = await all(
+    `
+      SELECT path, SUM(human_views) AS views
+        FROM site_analytics_paths_daily
+       WHERE day >= $1 ${scoped ? 'AND path LIKE $2' : ''}
+       GROUP BY path
+       ORDER BY views DESC, path ASC
+       LIMIT 20
+    `,
+    scoped ? [dayList[0], `/sites/${templeId}/%`] : [dayList[0]]
+  );
+  const topPaths = pathRows.map((row) => ({ path: row.path, views: toCount(row.views) }));
+
   return finalizeOverview({
     days,
     byDayMap,
@@ -485,6 +622,7 @@ async function getSqliteOverview({ days, templeId }) {
     devices,
     botCatMap,
     uniqueSessions,
+    topPaths,
   });
 }
 
@@ -522,10 +660,254 @@ async function getTempleTraffic(templeId, { days = 30 } = {}) {
   return getSqliteOverview({ days: window, templeId: tid });
 }
 
+// ─── Engagement + depth reporting (v2) ───
+
+/**
+ * Engagement aggregates for a period: average visible milliseconds, average
+ * scroll depth, and per-temple engagement leaders. Human-only by construction
+ * (bot pings are dropped at record time).
+ */
+async function getEngagementStats({ days = 30 } = {}) {
+  const window = clampDays(days);
+  const dayList = lastNDays(window);
+
+  if (isRedisEnabled()) {
+    try {
+      const client = getRedisClient();
+      if (!client) throw new Error('Redis client unavailable');
+      let engagements = 0;
+      let totalMs = 0;
+      let totalScroll = 0;
+      const templeMap = new Map();
+      for (const day of dayList) {
+        const keys = await scanKeys(client, `${KEY_PREFIX}eng:${day}:*`);
+        for (const key of keys) {
+          const tid = key.slice(`${KEY_PREFIX}eng:${day}:`.length);
+          const row = await client.hgetall(key);
+          const e = toCount(row.engagements);
+          const ms = toCount(row.totalMs);
+          const sc = toCount(row.totalScroll);
+          engagements += e;
+          totalMs += ms;
+          totalScroll += sc;
+          if (tid !== '') {
+            const t = templeMap.get(tid) || { engagements: 0, totalMs: 0 };
+            t.engagements += e;
+            t.totalMs += ms;
+            templeMap.set(tid, t);
+          }
+        }
+      }
+      return finalizeEngagement({ days: window, engagements, totalMs, totalScroll, templeMap });
+    } catch (err) {
+      console.error(
+        '[site-analytics] Redis engagement read failed, falling back to SQLite:',
+        err.message
+      );
+      disableRedis();
+    }
+  }
+
+  ensureMigration();
+  const totals = await get(
+    `
+      SELECT SUM(engagements) AS engagements, SUM(total_visible_ms) AS total_ms,
+             SUM(total_scroll_pct) AS total_scroll
+        FROM site_analytics_engagement_daily
+       WHERE day >= $1
+    `,
+    [dayList[0]]
+  );
+  const templeRows = await all(
+    `
+      SELECT temple_id, SUM(engagements) AS engagements, SUM(total_visible_ms) AS total_ms
+        FROM site_analytics_engagement_daily
+       WHERE day >= $1 AND temple_id <> ''
+       GROUP BY temple_id
+    `,
+    [dayList[0]]
+  );
+  const templeMap = new Map();
+  for (const row of templeRows) {
+    templeMap.set(row.temple_id, {
+      engagements: toCount(row.engagements),
+      totalMs: toCount(row.total_ms),
+    });
+  }
+  return finalizeEngagement({
+    days: window,
+    engagements: toCount(totals?.engagements),
+    totalMs: toCount(totals?.total_ms),
+    totalScroll: toCount(totals?.total_scroll),
+    templeMap,
+  });
+}
+
+function finalizeEngagement({ days, engagements, totalMs, totalScroll, templeMap }) {
+  const topEngaged = [...templeMap.entries()]
+    .map(([templeId, t]) => ({
+      templeId,
+      engagements: t.engagements,
+      avgVisibleMs: t.engagements > 0 ? Math.round(t.totalMs / t.engagements) : 0,
+    }))
+    .sort((a, b) => b.avgVisibleMs - a.avgVisibleMs || a.templeId.localeCompare(b.templeId))
+    .slice(0, 50);
+  return {
+    periodDays: days,
+    engagements,
+    avgVisibleMs: engagements > 0 ? Math.round(totalMs / engagements) : 0,
+    avgScrollPct: engagements > 0 ? Math.round(totalScroll / engagements) : 0,
+    topEngaged,
+  };
+}
+
+/**
+ * Session depth for a period (SQLite only — the Redis rollups store unique
+ * session sets, not per-session page counts): average pages per session and
+ * the share of single-page sessions. Returns null when unavailable so the
+ * dashboard can hide the panel honestly instead of showing fabricated numbers.
+ */
+async function getSessionDepth({ days = 30 } = {}) {
+  if (isRedisEnabled()) return null;
+  ensureMigration();
+  const window = clampDays(days);
+  const dayList = lastNDays(window);
+  const row = await get(
+    `
+      SELECT COUNT(*) AS views, COUNT(DISTINCT session_hash) AS sessions
+        FROM site_analytics_events
+       WHERE is_bot = 0 AND date(created_at) >= $1
+    `,
+    [dayList[0]]
+  );
+  const views = toCount(row?.views);
+  const sessions = toCount(row?.sessions);
+  const bounceRow = await get(
+    `
+      SELECT COUNT(*) AS singles
+        FROM (
+          SELECT session_hash
+            FROM site_analytics_events
+           WHERE is_bot = 0 AND date(created_at) >= $1 AND session_hash <> ''
+           GROUP BY session_hash
+          HAVING COUNT(*) = 1
+        )
+    `,
+    [dayList[0]]
+  );
+  const singles = toCount(bounceRow?.singles);
+  return {
+    periodDays: window,
+    pagesPerSession: sessions > 0 ? Math.round((views / sessions) * 100) / 100 : 0,
+    singlePageSessions: singles,
+    sessions,
+    bouncePct: sessions > 0 ? Math.round((singles / sessions) * 1000) / 10 : 0,
+  };
+}
+
+// ─── Trending (public aggregates) ───
+
+const TRENDING_CACHE_MS = 10 * 60 * 1000;
+const TRENDING_MIN_VIEWS = 3;
+let trendingCache = { at: 0, key: '', data: null };
+
+/**
+ * Public, privacy-safe popularity aggregates: human page views per temple
+ * and per path over a short window. No sessions, no referrers, nothing
+ * per-visitor — counts only, with a small minimum-view threshold.
+ */
+async function getTrending({ days = 7, limit = 20 } = {}) {
+  const window = Math.min(30, Math.max(1, parseInt(days, 10) || 7));
+  const max = Math.min(50, Math.max(1, parseInt(limit, 10) || 20));
+  const cacheKey = `${window}:${max}`;
+  if (
+    trendingCache.data &&
+    trendingCache.key === cacheKey &&
+    Date.now() - trendingCache.at < TRENDING_CACHE_MS
+  ) {
+    return trendingCache.data;
+  }
+  const dayList = lastNDays(window);
+  let temples = [];
+  let pages = [];
+
+  if (isRedisEnabled()) {
+    try {
+      const client = getRedisClient();
+      if (!client) throw new Error('Redis client unavailable');
+      const templeMap = new Map();
+      for (const day of dayList) {
+        const keys = await scanKeys(client, `${KEY_PREFIX}views:${day}:*`);
+        for (const key of keys) {
+          const tid = key.slice(`${KEY_PREFIX}views:${day}:`.length);
+          if (tid === '') continue;
+          const row = await client.hgetall(key);
+          templeMap.set(tid, (templeMap.get(tid) || 0) + toCount(row.human));
+        }
+        const pathRows = await client.hgetall(`${KEY_PREFIX}pathviews:${day}`);
+        for (const [p, count] of Object.entries(pathRows || {})) {
+          pages.push([p, toCount(count)]);
+        }
+      }
+      temples = [...templeMap.entries()].map(([templeId, views]) => ({ templeId, views }));
+      const pageMap = new Map();
+      for (const [p, count] of pages) pageMap.set(p, (pageMap.get(p) || 0) + count);
+      pages = [...pageMap.entries()].map(([path, views]) => ({ path, views }));
+    } catch (err) {
+      console.error(
+        '[site-analytics] Redis trending read failed, falling back to SQLite:',
+        err.message
+      );
+      disableRedis();
+    }
+  }
+
+  if (!isRedisEnabled() || (temples.length === 0 && pages.length === 0)) {
+    ensureMigration();
+    const templeRows = await all(
+      `
+        SELECT temple_id, SUM(human_views) AS views
+          FROM site_analytics_daily
+         WHERE day >= $1 AND temple_id <> ''
+         GROUP BY temple_id
+        HAVING SUM(human_views) >= $2
+    `,
+      [dayList[0], TRENDING_MIN_VIEWS]
+    );
+    temples = templeRows.map((row) => ({ templeId: row.temple_id, views: toCount(row.views) }));
+    const pageRows = await all(
+      `
+        SELECT path, SUM(human_views) AS views
+          FROM site_analytics_paths_daily
+         WHERE day >= $1
+         GROUP BY path
+        HAVING SUM(human_views) >= $2
+    `,
+      [dayList[0], TRENDING_MIN_VIEWS]
+    );
+    pages = pageRows.map((row) => ({ path: row.path, views: toCount(row.views) }));
+  }
+
+  temples.sort((a, b) => b.views - a.views || a.templeId.localeCompare(b.templeId));
+  pages.sort((a, b) => b.views - a.views || a.path.localeCompare(b.path));
+  const data = {
+    periodDays: window,
+    generatedAt: new Date().toISOString(),
+    temples: temples.slice(0, max),
+    pages: pages.slice(0, max),
+  };
+  trendingCache = { at: Date.now(), key: cacheKey, data };
+  return data;
+}
+
 module.exports = {
   recordPageView,
+  recordEngagement,
   getOverview,
   getTempleTraffic,
+  getEngagementStats,
+  getSessionDepth,
+  getTrending,
   extractTempleId,
   detectDevice,
   sanitizePath,

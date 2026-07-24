@@ -2,7 +2,7 @@
  * PuniCodex — Menu Consistency Tests
  *
  * Guards the canonical navigation system: every non-temple page must carry
- * the same desktop nav (6 primary links + 13-item More dropdown + Enter CTA)
+ * the same desktop nav (6 primary links + 16-item More dropdown + Enter CTA)
  * and the canonical sectioned mobile menu, with the page's own item marked
  * aria-current. Prevents the hand-maintained drift this audit found
  * (7 different desktop menus across 26 pages).
@@ -31,10 +31,10 @@ function test(name, fn) {
 
 const read = (rel) => fs.readFileSync(path.join(root, rel), 'utf8');
 
-test('sync-desktop-nav covers every root navigation page (34 targets)', () => {
-  assert.strictEqual(TARGETS.length, 34);
+test('sync-desktop-nav covers every root navigation page (42 targets)', () => {
+  assert.strictEqual(TARGETS.length, 42);
   assert.strictEqual(PRIMARY.length, 6);
-  assert.strictEqual(MORE.length, 13);
+  assert.strictEqual(MORE.length, 16);
 });
 
 test('every target page carries the canonical primary links in order', () => {
@@ -51,7 +51,7 @@ test('every target page carries the canonical primary links in order', () => {
   }
 });
 
-test('every target page carries the full 13-item More dropdown', () => {
+test('every target page carries the full 16-item More dropdown', () => {
   for (const { page } of TARGETS) {
     const html = read(page);
     assert.ok(html.includes('class="nav-more-toggle"'), `${page}: missing More toggle`);

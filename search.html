@@ -73,10 +73,13 @@
                           <div class="nav-more">
                               <button class="nav-more-toggle" aria-haspopup="true" aria-expanded="false">More</button>
                               <div class="nav-more-menu">
+                                  <a href="/patterns/" class="nav-link">Patterns</a>
                                   <a href="/tiers/" class="nav-link">Tier System</a>
                                   <a href="/oracle.html" class="nav-link">Oracle</a>
                                   <a href="/extension/" class="nav-link">Extension</a>
                                   <a href="/app/" class="nav-link">App</a>
+                                  <a href="/texts/" class="nav-link">Texts</a>
+                                  <a href="/trending/" class="nav-link">Trending</a>
                                   <a href="/codex/" class="nav-link">Codex</a>
                                   <a href="/blog/" class="nav-link">Blog</a>
                                   <a href="/creatives/" class="nav-link">Creatives</a>
@@ -205,6 +208,21 @@
     let focusedIndex = -1;
     let currentResults = [];
     let activeAutocompleteIndex = -1;
+
+    // Concept pills: an honest client-side behavior. The web index ignores
+    // concepts, so each concept merges a curated keyword set into the Temple
+    // Passages query instead (see searchWeb) and tags the section header.
+    const CONCEPT_KEYWORDS = {
+      commerce: 'commerce trade wealth market',
+      wisdom: 'wisdom knowledge philosophy',
+      travel: 'travel journey roads',
+      war: 'war battle army',
+      nature: 'nature earth harvest',
+      underworld: 'underworld death afterlife',
+    };
+
+    // Type pills that only function in domains mode — hidden elsewhere.
+    const WEB_HIDDEN_TYPES = ['realms', 'available'];
 
     async function loadPantheons() {
       try {
@@ -370,6 +388,13 @@
       if (q) searchInput.value = q;
       searchClear.classList.toggle('visible', !!q);
 
+      // Sync visibility against the mode the URL actually selects (default web)
+      // so a deep-linked domains-mode type/sort is not reset as web-hidden.
+      if (mode && document.querySelector(`.mode-tab[data-mode="${mode}"]`)) {
+        currentMode = mode;
+      }
+      syncModeFilterVisibility();
+
       if (mode && mode !== 'web' && document.querySelector(`.mode-tab[data-mode="${mode}"]`)) {
         setMode(mode); // setMode triggers the search itself
       } else if (q) {
@@ -392,10 +417,35 @@
       });
     });
 
+    // Type pills realms/available and the confidence sort only function in
+    // domains mode. Everywhere else they are hidden — no control may be a
+    // silent no-op — and any now-hidden active selection is reset.
+    function syncModeFilterVisibility() {
+      const domainsMode = currentMode === 'domains';
+      document.querySelectorAll('.filter-pill[data-filter="type"]').forEach((pill) => {
+        if (WEB_HIDDEN_TYPES.includes(pill.dataset.value)) {
+          pill.style.display = domainsMode ? '' : 'none';
+        }
+      });
+      if (!domainsMode && WEB_HIDDEN_TYPES.includes(currentType)) {
+        currentType = 'all';
+        document.querySelectorAll('.filter-pill[data-filter="type"]').forEach((p) => p.classList.toggle('active', p.dataset.value === 'all'));
+      }
+      const sortSelect = document.getElementById('sortFilter');
+      const confidenceOpt = sortSelect ? sortSelect.querySelector('option[value="confidence"]') : null;
+      if (confidenceOpt) confidenceOpt.hidden = !domainsMode;
+      if (!domainsMode && currentSort === 'confidence') {
+        currentSort = 'relevance';
+        if (sortSelect) sortSelect.value = 'relevance';
+      }
+    }
+
     function setMode(mode) {
       currentMode = mode;
       modeTabs.forEach(t => t.classList.toggle('active', t.dataset.mode === mode));
       searchInput.placeholder = mode === 'domains' ? 'Find gods, names, meanings...' : 'Search gods, myths, and curated domains...';
+      syncModeFilterVisibility();
+      renderActiveFilters();
       searchInput.focus();
       if (!searchInput.value.trim()) {
         showEmptyState(mode);
@@ -808,6 +858,34 @@
       return html;
     }
 
+    // TEMPLE PASSAGES — lore, blog, and industry-pattern passages from the
+    // flagship temples, keyword-searchable with highlighted phrase matches.
+    // Additive by design: an upstream failure simply hides the section.
+    function buildTemplePassages(templesData) {
+      const items = templesData && Array.isArray(templesData.results) ? templesData.results : [];
+      if (!items.length) return '';
+      let html = `<div class="temple-passages">`;
+      html += `<div class="temple-passages-header"><span class="temple-passages-title">Temple Passages</span>`;
+      if (currentConcept && CONCEPT_KEYWORDS[currentConcept]) {
+        html += `<span class="temple-passages-concept">Concept: ${escapeHtml(capitalize(currentConcept))}</span>`;
+      }
+      html += `</div>`;
+      items.forEach((t) => {
+        const href = typeof t.url === 'string' && t.url.startsWith('/') ? t.url : '#';
+        html += `<a href="${escapeHtml(href)}" class="temple-passage-card">`;
+        html += `<div class="temple-passage-head">`;
+        html += `<span class="temple-passage-name">${escapeHtml(t.unicode || t.templeId || '')}</span>`;
+        if (t.pantheon) html += `<span class="serp-badge pantheon">${escapeHtml(t.pantheon)}</span>`;
+        if (t.sectionLabel) html += `<span class="serp-badge temple-section">${escapeHtml(t.sectionLabel)}</span>`;
+        html += `</div>`;
+        if (t.title) html += `<div class="temple-passage-title">${escapeHtml(t.title)}</div>`;
+        html += `<div class="temple-passage-snippet">${escapeHtmlKeepMarks(t.snippet)}</div>`;
+        html += `</a>`;
+      });
+      html += `</div>`;
+      return html;
+    }
+
     async function searchWeb(options = {}) {
       const q = searchInput.value.trim();
       if (!q) { showEmptyState(currentMode); return; }
@@ -836,8 +914,13 @@
       if (currentPantheon) params.set('pantheon', currentPantheon);
       const sort = currentMode === 'web' && currentSort === 'confidence' ? 'relevance' : currentSort;
       if (sort) params.set('sort', sort);
-      if (document.getElementById('unicodeOnly')?.checked) params.set('unicodeOnly', 'true');
-      if (currentConcept) params.set('concept', currentConcept);
+      if (document.getElementById('unicodeOnly')?.checked) params.set('unicodeOnly', '1');
+
+      // Temple Passages: an active concept pill honestly widens the passage
+      // query with its curated keyword set (the web index ignores concepts).
+      const templeQuery = currentConcept && CONCEPT_KEYWORDS[currentConcept]
+        ? `${q} ${CONCEPT_KEYWORDS[currentConcept]}`
+        : q;
 
       try {
         const requests = [
@@ -848,10 +931,11 @@
         if (!append) {
           requests.push(
             fetch(`${API_BASE}/api/search/knowledge/?q=${encodeURIComponent(q)}`).catch(() => ({ ok: false })),
-            fetch(`${API_BASE}/api/search/paa/?q=${encodeURIComponent(q)}&limit=4`).catch(() => ({ ok: false }))
+            fetch(`${API_BASE}/api/search/paa/?q=${encodeURIComponent(q)}&limit=4`).catch(() => ({ ok: false })),
+            fetch(`${API_BASE}/api/search/temples/?q=${encodeURIComponent(templeQuery)}&limit=8`).catch(() => ({ ok: false }))
           );
         }
-        const [searchRes, dymRes, relatedRes, knowledgeRes, paaRes] = await Promise.all(requests);
+        const [searchRes, dymRes, relatedRes, knowledgeRes, paaRes, templesRes] = await Promise.all(requests);
 
         const data = await searchRes.json();
         const dymData = await dymRes.json();
@@ -864,6 +948,10 @@
         if (!append && paaRes && paaRes.ok) {
           try { paaData = await paaRes.json(); } catch { /* ignore */ }
         }
+        let templesData = null;
+        if (!append && templesRes && templesRes.ok) {
+          try { templesData = await templesRes.json(); } catch { /* ignore */ }
+        }
 
         currentHasMore = data.hasMore || false;
         if (append) {
@@ -871,7 +959,7 @@
           appendWebResults(data, relatedData.related);
         } else {
           currentResults = data.results;
-          renderWebResults(data, dymData.suggestions, relatedData.related, knowledgeData, paaData?.questions);
+          renderWebResults(data, dymData.suggestions, relatedData.related, knowledgeData, paaData?.questions, templesData);
           if (looksLikeQuestion(q)) {
             if (oracleCollapsed) toggleOracle();
             updateOracle(q);
@@ -892,8 +980,9 @@
       await searchWeb({ append: true });
     }
 
-    function renderWebResults(data, didYouMean, related, knowledgePanel, paaQuestions) {
+    function renderWebResults(data, didYouMean, related, knowledgePanel, paaQuestions, templesData) {
       let html = '';
+      const templePassagesHtml = buildTemplePassages(templesData);
 
       if (knowledgePanel && knowledgePanel.entry) {
         const e = knowledgePanel.entry;
@@ -995,7 +1084,7 @@
             </div>
           </div>
         `;
-        resultsEl.innerHTML = html;
+        resultsEl.innerHTML = templePassagesHtml + html;
         return;
       }
 
@@ -1014,6 +1103,8 @@
         });
         html += `</div>`;
       }
+
+      html += templePassagesHtml;
 
       const semanticBadge = data.isSemanticFallback ? `<span style="color:var(--cn-blue);margin-left:0.5rem;font-size:0.75rem">semantic match</span>` : '';
       html += `<div class="result-count">About ${data.total || data.results.length} results (${data.timing}s)${semanticBadge}</div>`;
@@ -1060,6 +1151,7 @@
           html += `<a href="https://www.godaddy.com/domainsearch/find?domainToCheck=${encodeURIComponent(puny)}" target="_blank" rel="noopener" class="avail-action" title="Check on GoDaddy">GoDaddy</a>`;
           html += `<a href="https://www.namecheap.com/domains/registration/results/?domain=${encodeURIComponent(puny)}" target="_blank" rel="noopener" class="avail-action" title="Check on Namecheap">Namecheap</a>`;
           html += `<a href="https://porkbun.com/checkout/search?q=${encodeURIComponent(puny)}" target="_blank" rel="noopener" class="avail-action" title="Check on Porkbun">Porkbun</a>`;
+          html += `<a href="https://spaceship.com/domain-search/?query=${encodeURIComponent(puny)}" target="_blank" rel="noopener" class="avail-action" title="Check on Spaceship">Spaceship</a>`;
           html += `<a href="entry.html?id=${encodeURIComponent(avail.id || '')}" class="avail-action" title="View lexicon entry">Entry</a>`;
           html += `</div>`;
           html += `</div>`;
@@ -1140,10 +1232,12 @@
     }
 
     function toggleUnicodeOnly() {
-            unicodeOnly = !unicodeOnly;
-            document.getElementById('unicode-toggle').classList.toggle('active', unicodeOnly);
-            triggerSearch();
-        }
+      const checkbox = document.getElementById('unicodeOnly');
+      if (!checkbox) return;
+      const label = checkbox.closest('.unicode-toggle');
+      if (label) label.classList.toggle('active', checkbox.checked);
+      triggerSearch();
+    }
 
     function togglePaa(el) {
       el.classList.toggle('expanded');
@@ -1259,6 +1353,7 @@
                 <a href="https://www.namecheap.com/domains/registration/results/?domain=${encodeURIComponent(domain)}" target="_blank" rel="noopener" class="registrar-link">Namecheap</a>
                 <a href="https://porkbun.com/checkout/search?q=${encodeURIComponent(domain)}" target="_blank" rel="noopener" class="registrar-link">Porkbun</a>
                 <a href="https://www.dynadot.com/domain/search.html?domain=${encodeURIComponent(domain)}" target="_blank" rel="noopener" class="registrar-link">Dynadot</a>
+                <a href="https://spaceship.com/domain-search/?query=${encodeURIComponent(domain)}" target="_blank" rel="noopener" class="registrar-link">Spaceship</a>
               </div>
             </div>
           `;
@@ -1427,6 +1522,8 @@
                     <a href="/realms/">Realms</a>
                     <a href="/lexicon/">Lexicon</a>
                     <a href="/connections/">Connections</a>
+                    <a href="/patterns/">Patterns</a>
+                    <a href="/trending/">Trending</a>
                     <a href="/tiers/">Tier System</a>
                     <a href="/type/">Type</a>
                     <a href="/search.html">Search</a>
@@ -1435,16 +1532,20 @@
                     <h2 class="footer-heading">Resources</h2>
                     <a href="/codex/">Codex</a>
                     <a href="/blog/">Blog</a>
+                    <a href="/texts/">Texts</a>
                     <a href="/creatives/">Creatives</a>
                     <a href="/scholars/">Scholars</a>
                     <a href="/api/v1/docs/">API</a>
                     <a href="/appraise/">Appraise</a>
                     <a href="/authenticity/">Authenticity</a>
                     <a href="/oracle.html">Oracle</a>
+                    <a href="/arbitrage/">Arbitrage</a>
                 </div>
                 <div class="footer-column">
                     <h2 class="footer-heading">Connect</h2>
                     <a href="/about/">About</a>
+                    <a href="/about/founder/">Founder</a>
+                    <a href="/careers/">Careers</a>
                     <a href="/contact/">Contact</a>
                     <a href="/privacy/">Privacy</a>
                     <a href="/terms/">Terms</a>

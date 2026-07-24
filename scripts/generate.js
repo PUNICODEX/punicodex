@@ -60,6 +60,14 @@ const scripts = [
   'scripts/generate-blog-content.js',
   'scripts/generate-blog-pages.js',
   'scripts/generate-blog-index.js',
+  // Sacred Texts (/texts/): registry-driven library + reading pages. Must run
+  // before the injectors so its fresh pages keep their beacon/consent blocks.
+  'scripts/generate-text-pages.js',
+  'scripts/generate-trending-page.js',
+  // Pattern Atlas (/patterns/ + /patterns/methodology/): reads the generated
+  // industry-patterns.json produced at step 5; before the injectors so the
+  // fresh pages keep their beacon/consent blocks.
+  'scripts/generate-patterns-page.js',
   'scripts/sync-scholars-portal.js',
   'scripts/gen-sitemap.js',
   'scripts/inject-analytics.js',

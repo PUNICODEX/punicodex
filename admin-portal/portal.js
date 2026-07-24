@@ -20,6 +20,7 @@
 
   const NAV_ITEMS = [
     { id: 'dashboard', label: 'Dashboard', href: PREFIX, permission: 'read' },
+    { id: 'analytics', label: 'Analytics', href: `${PREFIX}analytics/`, permission: 'read' },
     {
       id: 'applications',
       label: 'Applications',

@@ -1930,6 +1930,11 @@
   accent-color: var(--cn-gold);
 }
 
+.unicode-toggle.active {
+  color: var(--cn-gold);
+  font-weight: 600;
+}
+
 /* Filter bar */
 .filter-bar {
   position: relative;
@@ -2995,6 +3000,98 @@
 .paa-item.expanded .paa-answer {
   max-height: 300px;
   padding: 0 var(--cn-space-md) var(--cn-space-md);
+}
+
+/* Temple Passages — lore/blog/patterns hits from the flagship temples */
+.temple-passages {
+  margin: var(--cn-space-md) 0 var(--cn-space-lg);
+  background: linear-gradient(135deg, rgba(18, 20, 32, 0.92), rgba(14, 16, 24, 0.92));
+  border: 1px solid var(--cn-border);
+  border-radius: var(--cn-radius-md);
+  overflow: hidden;
+  box-shadow: var(--cn-shadow-sm);
+}
+
+.temple-passages-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: var(--cn-space-md);
+  border-bottom: 1px solid var(--cn-border);
+}
+
+.temple-passages-title {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cn-text-muted);
+}
+
+.temple-passages-concept {
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cn-gold);
+}
+
+.temple-passage-card {
+  display: block;
+  padding: 0.9rem var(--cn-space-md);
+  border-bottom: 1px solid var(--cn-border);
+  text-decoration: none;
+  transition: background var(--cn-duration-fast) var(--cn-ease-smooth);
+}
+
+.temple-passage-card:last-child {
+  border-bottom: none;
+}
+
+.temple-passage-card:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.temple-passage-head {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--cn-space-xs);
+  margin-bottom: 0.3rem;
+}
+
+.temple-passage-name {
+  font-family: var(--cn-font-display);
+  font-size: 0.95rem;
+  color: var(--cn-gold);
+  margin-right: 0.15rem;
+}
+
+.serp-badge.temple-section {
+  color: var(--cn-gold);
+  background: rgba(212, 175, 55, 0.1);
+  border-color: rgba(212, 175, 55, 0.25);
+}
+
+.temple-passage-title {
+  font-size: 0.92rem;
+  color: var(--cn-text);
+  margin-bottom: 0.25rem;
+}
+
+.temple-passage-snippet {
+  font-size: 0.88rem;
+  color: var(--cn-text-dim);
+  line-height: 1.6;
+}
+
+.temple-passage-snippet mark {
+  background: rgba(212, 175, 55, 0.18);
+  color: var(--cn-gold);
+  padding: 0 2px;
+  border-radius: 2px;
+  font-weight: 600;
 }
 
 /* Availability */

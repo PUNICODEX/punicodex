@@ -73,6 +73,7 @@ const loginHandler = require('../api/admin/portal/login/index.js');
 const meHandler = require('../api/admin/portal/me/index.js');
 const passwordHandler = require('../api/admin/portal/me/password/index.js');
 const dashboardHandler = require('../api/admin/portal/dashboard/index.js');
+const analyticsHandler = require('../api/admin/portal/analytics/index.js');
 const usersHandler = require('../api/admin/portal/users/index.js');
 const userPatchHandler = require('../api/admin/portal/users/[id]/index.js');
 const userDisableHandler = require('../api/admin/portal/users/[id]/disable/index.js');
@@ -219,6 +220,7 @@ const MUTATION_ROUTES = [
 
 const READ_ROUTES = [
   { label: 'dashboard', handler: dashboardHandler, url: '/api/admin/portal/dashboard/' },
+  { label: 'analytics', handler: analyticsHandler, url: '/api/admin/portal/analytics/' },
   { label: 'applications', handler: applicationsHandler, url: '/api/admin/portal/applications/' },
   { label: 'patrons', handler: patronsHandler, url: '/api/admin/portal/patrons/' },
   { label: 'patrons.stats', handler: patronStatsHandler, url: '/api/admin/portal/patrons/stats/' },
@@ -485,6 +487,99 @@ async function runTests() {
         headers: adminHeader(roleTokens[role]),
       });
       assert.strictEqual(res.status, 403, `${role} users.list → ${res.status}`);
+    }
+  });
+
+  // ── (a2) Portal analytics endpoint ───────────────────────
+  await test('analytics: rejects unauthenticated requests with 401', async () => {
+    const res = await invoke(analyticsHandler, 'GET', '/api/admin/portal/analytics/', {});
+    assert.strictEqual(res.status, 401);
+  });
+
+  await test('analytics: envelope shape with a valid session', async () => {
+    const res = await invoke(analyticsHandler, 'GET', '/api/admin/portal/analytics/?days=7', {
+      headers: adminHeader(roleTokens.viewer),
+    });
+    assert.strictEqual(res.status, 200, JSON.stringify(res.body).slice(0, 200));
+    const b = res.body;
+    assert.ok(
+      typeof b.generatedAt === 'string' && !Number.isNaN(new Date(b.generatedAt).getTime()),
+      'generatedAt should be an ISO timestamp'
+    );
+
+    const o = b.overview;
+    assert.ok(o && typeof o === 'object', 'overview missing');
+    assert.strictEqual(o.periodDays, 7);
+    for (const key of ['humanViews', 'botViews', 'uniqueSessions', 'botPct']) {
+      assert.strictEqual(typeof o.totals[key], 'number', `totals.${key} should be a number`);
+    }
+    assert.ok(Array.isArray(o.byDay) && o.byDay.length === 7, 'byDay should cover 7 days');
+    for (const key of ['topTemples', 'topReferrers', 'botCategories']) {
+      assert.ok(Array.isArray(o[key]), `overview.${key} should be an array`);
+    }
+    assert.ok(o.devices && typeof o.devices === 'object', 'devices missing');
+    // topPaths: array of {path, views} when the driver computes path rollups,
+    // an honest null otherwise — never missing.
+    assert.ok(
+      Array.isArray(o.topPaths) || o.topPaths === null,
+      'overview.topPaths should be an array or null'
+    );
+    if (Array.isArray(o.topPaths)) {
+      assert.ok(o.topPaths.length <= 20, 'topPaths capped at 20');
+      for (const row of o.topPaths) {
+        assert.strictEqual(typeof row.path, 'string');
+        assert.strictEqual(typeof row.views, 'number');
+      }
+    }
+
+    const e = b.engagement;
+    assert.ok(e && typeof e === 'object', 'engagement missing');
+    for (const key of ['periodDays', 'engagements', 'avgVisibleMs', 'avgScrollPct']) {
+      assert.strictEqual(typeof e[key], 'number', `engagement.${key} should be a number`);
+    }
+    assert.ok(Array.isArray(e.topEngaged), 'engagement.topEngaged should be an array');
+
+    // depth is null when the storage driver cannot compute it.
+    assert.ok(b.depth === null || typeof b.depth === 'object', 'depth should be an object or null');
+    if (b.depth) {
+      for (const key of [
+        'periodDays',
+        'pagesPerSession',
+        'singlePageSessions',
+        'sessions',
+        'bouncePct',
+      ]) {
+        assert.strictEqual(typeof b.depth[key], 'number', `depth.${key} should be a number`);
+      }
+    }
+  });
+
+  await test('analytics: days is clamped to the 1–90 window', async () => {
+    const high = await invoke(analyticsHandler, 'GET', '/api/admin/portal/analytics/?days=500', {
+      headers: adminHeader(roleTokens.viewer),
+    });
+    assert.strictEqual(high.status, 200);
+    assert.strictEqual(high.body.overview.periodDays, 90);
+    assert.strictEqual(high.body.overview.byDay.length, 90);
+
+    const garbage = await invoke(analyticsHandler, 'GET', '/api/admin/portal/analytics/?days=abc', {
+      headers: adminHeader(roleTokens.viewer),
+    });
+    assert.strictEqual(garbage.status, 200);
+    assert.strictEqual(garbage.body.overview.periodDays, 30);
+  });
+
+  await test('analytics: temple scope narrows the overview to one temple', async () => {
+    const res = await invoke(
+      analyticsHandler,
+      'GET',
+      '/api/admin/portal/analytics/?days=30&temple=nike',
+      { headers: adminHeader(roleTokens.leasing) }
+    );
+    assert.strictEqual(res.status, 200);
+    assert.ok(res.body.overview.topTemples.every((t) => t.templeId === 'nike'));
+    if (Array.isArray(res.body.overview.topPaths)) {
+      assert.ok(res.body.overview.topPaths.every((p) => p.path.startsWith('/sites/nike/')));
     }
   });
 
@@ -909,6 +1004,7 @@ async function runTests() {
         params: { kind: 'edit', id: '1' },
       },
       { handler: dashboardHandler, method: 'POST', url: '/api/admin/portal/dashboard/' },
+      { handler: analyticsHandler, method: 'POST', url: '/api/admin/portal/analytics/' },
       { handler: passwordHandler, method: 'GET', url: '/api/admin/portal/me/password/' },
     ];
     for (const c of cases) {

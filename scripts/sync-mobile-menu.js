@@ -41,6 +41,8 @@ const CANONICAL_MENU = `<div class="mobile-menu" id="mobile-menu">
                 <a href="/realms/">Realms</a>
                 <a href="/lexicon/">Lexicon</a>
                 <a href="/connections/">Connections</a>
+                <a href="/patterns/">Patterns</a>
+                <a href="/trending/">Trending</a>
             </div>
         </div>
         <div class="mobile-menu-section">
@@ -57,6 +59,7 @@ const CANONICAL_MENU = `<div class="mobile-menu" id="mobile-menu">
         <div class="mobile-menu-section">
             <span class="mobile-menu-title">Resources</span>
             <div class="mobile-menu-group">
+                <a href="/texts/">Texts</a>
                 <a href="/codex/">Codex</a>
                 <a href="/blog/">Blog</a>
                 <a href="/creatives/">Creatives</a>
@@ -70,6 +73,8 @@ const CANONICAL_MENU = `<div class="mobile-menu" id="mobile-menu">
             <span class="mobile-menu-title">About</span>
             <div class="mobile-menu-group">
                 <a href="/about/">About</a>
+                <a href="/about/founder/">Founder</a>
+                <a href="/careers/">Careers</a>
                 <a href="/contact/">Contact</a>
             </div>
         </div>
@@ -89,6 +94,12 @@ const TARGETS = [
   { page: path.join('art', 'index.html'), active: null },
   { page: path.join('authenticity', 'index.html'), active: null },
   { page: path.join('codex', 'index.html'), active: '/codex/' },
+  { page: path.join('texts', 'index.html'), active: '/texts/' },
+  { page: path.join('trending', 'index.html'), active: '/trending/' },
+  { page: path.join('patterns', 'index.html'), active: '/patterns/' },
+  { page: path.join('careers', 'index.html'), active: '/careers/' },
+  { page: path.join('about', 'founder', 'index.html'), active: '/about/' },
+  { page: path.join('arbitrage', 'index.html'), active: null },
   { page: path.join('connections', 'index.html'), active: '/connections/' },
   { page: path.join('contact', 'index.html'), active: '/contact/' },
   { page: path.join('creatives', 'index.html'), active: null },

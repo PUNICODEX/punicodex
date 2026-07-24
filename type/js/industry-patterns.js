@@ -14,6 +14,9 @@
  *     entry shares without owning it.
  *   - If a mapping cannot be justified from canonical data, it is excluded.
  *
+ * Companion canonical source: type/js/industry-aliases.js — the profession/
+ * search-term vocabulary that maps fragment queries onto these industries.
+ *
  * Generated consumers (DO NOT edit by hand):
  *   - platform/api/industry-patterns.json
  *   - platform/browser/renderer/industry-patterns.json

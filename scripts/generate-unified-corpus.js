@@ -275,6 +275,25 @@ function main() {
   };
   fs.writeFileSync(OUT_MANIFEST, JSON.stringify(manifest, null, 2));
 
+  // The model-corpus manifest (export-model-corpus.js) runs before the phase
+  // generators in the pipeline, so its chat counts would otherwise lag one
+  // generate behind after any canonical change. This script is the authority
+  // on the split — sync the counts into manifest.json so it always reflects
+  // the files of the current run.
+  const MODEL_MANIFEST = path.join(CORPUS_DIR, 'manifest.json');
+  if (fs.existsSync(MODEL_MANIFEST)) {
+    const modelManifest = JSON.parse(fs.readFileSync(MODEL_MANIFEST, 'utf8'));
+    if (
+      modelManifest.counts &&
+      (modelManifest.counts.chatTrainExamples !== train.length ||
+        modelManifest.counts.chatEvalExamples !== evalSet.length)
+    ) {
+      modelManifest.counts.chatTrainExamples = train.length;
+      modelManifest.counts.chatEvalExamples = evalSet.length;
+      fs.writeFileSync(MODEL_MANIFEST, JSON.stringify(modelManifest, null, 2));
+    }
+  }
+
   const modelCard = `# PuniCodex Oracle — Model Card
 
 **Model family:** PuniCodex Oracle (specialized language model)  

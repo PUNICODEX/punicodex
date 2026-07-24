@@ -116,6 +116,31 @@ test('generated industry-patterns JSON is in sync with the canonical map', () =>
   assert.ok(apiCount >= 200, `byEntry covers only ${apiCount} temples`);
 });
 
+test('generated JSON carries a valid alias index', () => {
+  const api = JSON.parse(
+    fs.readFileSync(path.join(ROOT, 'platform', 'api', 'industry-patterns.json'), 'utf8')
+  );
+  assert.ok(api.aliases && typeof api.aliases === 'object', 'aliases index missing');
+  const industryIds = new Set(api.industries.map((g) => g.industry));
+  let count = 0;
+  for (const [term, targets] of Object.entries(api.aliases)) {
+    count++;
+    assert.ok(Array.isArray(targets) && targets.length > 0, `alias ${term} has no target`);
+    assert.strictEqual(
+      targets.length,
+      1,
+      `alias "${term}" maps to ${targets.length} industries (one home per term)`
+    );
+    assert.ok(
+      industryIds.has(targets[0].industry),
+      `alias "${term}" targets unknown industry ${targets[0].industry}`
+    );
+    assert.ok(targets[0].weight === 1 || targets[0].weight === 2, `alias ${term} bad weight`);
+  }
+  assert.strictEqual(api.meta.aliasCount, count, 'meta.aliasCount disagrees with the index');
+  assert.ok(count >= 600, `alias vocabulary too thin: ${count}`);
+});
+
 async function run() {
   let passed = 0;
   let failed = 0;

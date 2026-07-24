@@ -35,6 +35,71 @@
 .roadmap ol{max-width:640px;margin:0 auto;color:#b9b3a8;font-size:.95rem;line-height:1.8}
 .roadmap ol strong{color:#e8e4dc}
 @media(max-width:640px){.teaser-hero{padding-top:4rem}}
+
+/* ── SEE IT WORK: rendered product mockups (pure CSS, no JS, no images) ── */
+.see-it-work{max-width:1100px;margin:0 auto;padding:.5rem 1.25rem 2.5rem}
+.see-it-work h2{font-family:'Cinzel',serif;color:#d4af37;font-size:1.4rem;text-align:center;margin:0 0 .45rem}
+.see-it-work .siw-sub{text-align:center;color:#9a948a;font-size:.92rem;max-width:56ch;margin:0 auto 1.75rem}
+.ui-mock-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:1.5rem;align-items:start}
+.ui-mock{margin:0}
+.ui-mock-cap{font-size:.78rem;color:#8a8577;text-align:center;margin:.7rem auto 0;max-width:44ch;line-height:1.5}
+/* CSS-only browser chrome */
+.browser-frame{background:#0a0a0c;border:1px solid rgba(212,175,55,.22);border-radius:12px;overflow:hidden;box-shadow:0 18px 48px rgba(0,0,0,.45);max-width:100%}
+.bf-chrome{display:flex;align-items:center;gap:.6rem;padding:.55rem .75rem;background:#141418;border-bottom:1px solid rgba(212,175,55,.14)}
+.bf-dots{display:flex;gap:6px;flex-shrink:0}
+.bf-dot{width:10px;height:10px;border-radius:50%}
+.bf-dot.r{background:#ff5f57}.bf-dot.y{background:#febc2e}.bf-dot.g{background:#28c840}
+.bf-addr{flex:1;display:flex;align-items:center;gap:.45rem;min-width:0;background:#0a0a0c;border:1px solid rgba(212,175,55,.18);border-radius:8px;padding:.32rem .6rem;font-family:'JetBrains Mono','Fira Code',monospace;font-size:.68rem;color:#b9b3a8}
+.bf-addr .bf-lock{color:#d4af37;flex-shrink:0;font-style:normal}
+.bf-addr span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bf-addr.threat{border-color:rgba(225,29,72,.55)}
+.bf-addr.threat .bf-lock{color:#e11d48}
+.bf-addr.threat span{color:#f0b6c1}
+.bf-viewport{padding:1.15rem 1.25rem 1.35rem}
+/* Fake host page behind the autocomplete moment */
+.um-page-title{font-family:'Cinzel',serif;color:#e8e4dc;font-size:.82rem;margin:0 0 .55rem}
+.um-skel{display:block;height:7px;border-radius:4px;background:#1c1c22;margin-bottom:.45rem}
+.um-skel.w90{width:90%}.um-skel.w70{width:70%}
+.um-field{margin-top:.85rem;background:#0f0f13;border:1px solid rgba(212,175,55,.45);border-radius:8px;padding:.5rem .65rem;font-family:'JetBrains Mono','Fira Code',monospace;font-size:.74rem;color:#e8e4dc;box-shadow:0 0 0 3px rgba(212,175,55,.08)}
+.um-caret{display:inline-block;width:2px;height:.95em;background:#d4af37;vertical-align:-2px;margin-left:1px}
+/* Inline autocomplete dropdown — mirrors extension/content/content.css */
+.um-dd{margin-top:.35rem;max-width:360px;background:#111111;border:1px solid rgba(212,175,55,.3);border-radius:8px;box-shadow:0 8px 32px rgba(0,0,0,.6),0 0 0 1px rgba(212,175,55,.1);padding:4px 0;font-size:12px;color:#c9b8a0;overflow:hidden}
+.um-dd-item{display:flex;align-items:center;gap:8px;padding:7px 12px;white-space:nowrap}
+.um-dd-item.active{background:rgba(212,175,55,.08)}
+.um-dd-emoji{font-size:13px;width:20px;text-align:center;flex-shrink:0}
+.um-dd-name{font-family:'JetBrains Mono','Fira Code',monospace;font-size:11.5px;color:#c9b8a0}
+.um-dd-arrow{color:rgba(201,184,160,.3);font-size:11px}
+.um-dd-unicode{font-family:'JetBrains Mono','Fira Code',monospace;font-size:11.5px;color:#d4af37;font-weight:500;margin-left:auto}
+.um-dd-foot{border-top:1px solid rgba(212,175,55,.15);margin-top:4px;padding:6px 12px;font-family:'JetBrains Mono','Fira Code',monospace;font-size:.6rem;color:#8a8577;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.um-dd-foot b{color:#c9b8a0;font-weight:500}
+/* Threat interstitial — mirrors /interstitial.html structure */
+.um-ist{background:#0b0c15;padding:.9rem;font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+.um-ist-card{background:#151725;border:1px solid #2d2f45;border-radius:12px;padding:1rem 1.05rem;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.um-ist-brand{display:flex;align-items:center;gap:8px;margin-bottom:.7rem;color:#f3f4f6;font-size:.6rem;font-weight:700;letter-spacing:.08em}
+.um-ist-logo{width:20px;height:20px;border-radius:5px;background:linear-gradient(135deg,#d4af37,#8c6a22);display:grid;place-items:center;color:#0a0a0c;font-size:.62rem;font-weight:800;flex-shrink:0}
+.um-ist-title{font-size:.98rem;font-weight:700;color:#f3f4f6;margin:0 0 .2rem}
+.um-ist-sub{color:#9ca3af;font-size:.64rem;margin:0 0 .65rem}
+.um-ist-tier{display:inline-flex;align-items:center;gap:6px;font-size:.58rem;font-weight:700;padding:.24rem .6rem;border-radius:999px;border:1px solid #e11d48;color:#fecdd3;margin-bottom:.65rem}
+.um-ist-warn{background:rgba(225,29,72,.12);border-left:4px solid #e11d48;border-radius:0 8px 8px 0;padding:.55rem .7rem;margin-bottom:.65rem;font-size:.64rem;line-height:1.5;color:#f5d0d0}
+.um-ist-warn strong{display:block;color:#fecdd3;margin-bottom:2px}
+.um-ist-conf{font-family:'JetBrains Mono','Fira Code',monospace;font-size:.62rem;color:#9ca3af;background:#0b0c15;border:1px solid #2d2f45;border-radius:8px;padding:.5rem .6rem;margin-bottom:.65rem;line-height:1.6}
+.um-ist-conf .bad{color:#fecaca;background:rgba(225,29,72,.22);border-radius:3px;padding:0 2px}
+.um-ist-conf .good{color:#bbf7d0}
+.um-ist-meta{display:grid;gap:.4rem;margin:0 0 .75rem}
+.um-ist-row{display:flex;gap:.6rem;font-size:.62rem}
+.um-ist-row dt{min-width:86px;flex-shrink:0;color:#9ca3af;text-transform:uppercase;letter-spacing:.04em}
+.um-ist-row dd{margin:0;color:#e5e7eb;word-break:break-all;font-family:'JetBrains Mono','Fira Code',monospace}
+.um-ist-sev{background:rgba(239,68,68,.2);color:#fecaca;border-radius:999px;padding:1px 8px;font-weight:700;text-transform:uppercase;font-size:.56rem;font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+.um-ist-actions{display:flex;gap:.5rem;flex-wrap:wrap}
+.um-btn{border-radius:8px;padding:.48rem .75rem;font-size:.62rem;font-weight:600;line-height:1}
+.um-btn-back{background:#d4af37;color:#0a0a0c}
+.um-btn-proc{background:transparent;color:#9ca3af;border:1px solid #2d2f45}
+.um-btn-rep{background:#e11d48;color:#fff;margin-left:auto}
+@media(max-width:560px){.um-btn-rep{margin-left:0}.um-ist-row{flex-direction:column;gap:2px}}
+@media(prefers-reduced-motion:no-preference){
+.um-caret{animation:um-blink 1.1s steps(2,start) infinite}
+@keyframes um-blink{to{visibility:hidden}}
+}
 </style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1">
@@ -59,10 +124,13 @@
                 <div class="nav-more">
                     <button class="nav-more-toggle" aria-haspopup="true" aria-expanded="false">More</button>
                     <div class="nav-more-menu">
+                        <a href="/patterns/" class="nav-link">Patterns</a>
                         <a href="/tiers/" class="nav-link">Tier System</a>
                         <a href="/oracle.html" class="nav-link">Oracle</a>
                         <a href="/extension/" class="nav-link active" aria-current="page">Extension</a>
                         <a href="/app/" class="nav-link">App</a>
+                        <a href="/texts/" class="nav-link">Texts</a>
+                        <a href="/trending/" class="nav-link">Trending</a>
                         <a href="/codex/" class="nav-link">Codex</a>
                         <a href="/blog/" class="nav-link">Blog</a>
                         <a href="/creatives/" class="nav-link">Creatives</a>
@@ -87,6 +155,8 @@
                 <a href="/realms/">Realms</a>
                 <a href="/lexicon/">Lexicon</a>
                 <a href="/connections/">Connections</a>
+                <a href="/patterns/">Patterns</a>
+                <a href="/trending/">Trending</a>
             </div>
         </div>
         <div class="mobile-menu-section">
@@ -103,6 +173,7 @@
         <div class="mobile-menu-section">
             <span class="mobile-menu-title">Resources</span>
             <div class="mobile-menu-group">
+                <a href="/texts/">Texts</a>
                 <a href="/codex/">Codex</a>
                 <a href="/blog/">Blog</a>
                 <a href="/creatives/">Creatives</a>
@@ -116,6 +187,8 @@
             <span class="mobile-menu-title">About</span>
             <div class="mobile-menu-group">
                 <a href="/about/">About</a>
+                <a href="/about/founder/">Founder</a>
+                <a href="/careers/">Careers</a>
                 <a href="/contact/">Contact</a>
             </div>
         </div>
@@ -129,6 +202,84 @@
   <h1>THE EXTENSION</h1>
   <p class="tag">PuniCodex in your browser. Type the restored names of the pantheon anywhere on the web — and let the Authenticity engine quietly judge every domain you visit, before it can judge you back.</p>
 </div>
+
+<section class="see-it-work" aria-labelledby="siw-title">
+  <h2 id="siw-title">SEE IT WORK</h2>
+  <p class="siw-sub">Not concept art — these miniatures are rendered in plain HTML and CSS from the same styles the shipping clients use.</p>
+
+  <div class="ui-mock-grid">
+    <figure class="ui-mock">
+      <div class="browser-frame" role="img" aria-label="Mockup of the PuniCodex extension's inline autocomplete: a browser window on example.com with the text 'apoll' typed into a field and a dark dropdown suggesting the restored forms Apóllōn, Apṓllōn, and Apollōn.">
+        <div class="bf-chrome" aria-hidden="true">
+          <div class="bf-dots"><span class="bf-dot r"></span><span class="bf-dot y"></span><span class="bf-dot g"></span></div>
+          <div class="bf-addr"><i class="bf-lock">🔒</i><span>https://example.com</span></div>
+        </div>
+        <div class="bf-viewport" aria-hidden="true">
+          <p class="um-page-title">Notes — the_sun_god_draft.md</p>
+          <span class="um-skel w90"></span>
+          <span class="um-skel w70"></span>
+          <div class="um-field">apoll<span class="um-caret"></span></div>
+          <div class="um-dd">
+            <div class="um-dd-item active">
+              <span class="um-dd-emoji">⚡</span>
+              <span class="um-dd-name">apollon</span>
+              <span class="um-dd-arrow">→</span>
+              <span class="um-dd-unicode">Apóllōn</span>
+            </div>
+            <div class="um-dd-item">
+              <span class="um-dd-emoji">⚡</span>
+              <span class="um-dd-name">apollon · ideal</span>
+              <span class="um-dd-arrow">→</span>
+              <span class="um-dd-unicode">Apṓllōn</span>
+            </div>
+            <div class="um-dd-item">
+              <span class="um-dd-emoji">⚡</span>
+              <span class="um-dd-name">apollon · macron-only</span>
+              <span class="um-dd-arrow">→</span>
+              <span class="um-dd-unicode">Apollōn</span>
+            </div>
+            <div class="um-dd-foot">apóllōn.com · <b>xn--aplln-1ta64d.com</b> · Tier dual · ⏎ to insert</div>
+          </div>
+        </div>
+      </div>
+      <figcaption class="ui-mock-cap">Inline autocomplete, rendered from the shipping content-script styles — dark panel, gold accents, real lexicon restorations.</figcaption>
+    </figure>
+
+    <figure class="ui-mock">
+      <div class="browser-frame" role="img" aria-label="Mockup of the PuniCodex Authenticity interstitial: a browser window on the punycode domain xn--pple-43d.com showing a critical red verdict panel warning that the domain impersonates apple.com, with a confusable breakdown and action buttons.">
+        <div class="bf-chrome" aria-hidden="true">
+          <div class="bf-dots"><span class="bf-dot r"></span><span class="bf-dot y"></span><span class="bf-dot g"></span></div>
+          <div class="bf-addr threat"><i class="bf-lock">⚠</i><span>https://xn--pple-43d.com</span></div>
+        </div>
+        <div class="um-ist" aria-hidden="true">
+          <div class="um-ist-card">
+            <div class="um-ist-brand"><span class="um-ist-logo">P</span>PUNICODEX AUTHENTICITY SHIELD</div>
+            <p class="um-ist-title">Potential spoof detected</p>
+            <p class="um-ist-sub">This page was flagged by your name-authenticity policy.</p>
+            <span class="um-ist-tier">⛔ known-threat</span>
+            <div class="um-ist-warn">
+              <strong>Critical threat</strong>
+              This domain impersonates <b>apple.com</b>. The address uses lookalike characters from another script.
+            </div>
+            <div class="um-ist-conf"><span class="bad">а</span>pple.com — “а” is U+0430 CYRILLIC SMALL LETTER A, not U+0061 · displays as <span class="good">apple.com</span></div>
+            <dl class="um-ist-meta">
+              <div class="um-ist-row"><dt>Target URL</dt><dd>https://xn--pple-43d.com</dd></div>
+              <div class="um-ist-row"><dt>Verdict</dt><dd>homograph-spoof</dd></div>
+              <div class="um-ist-row"><dt>Severity</dt><dd><span class="um-ist-sev">critical</span></dd></div>
+              <div class="um-ist-row"><dt>Target identity</dt><dd>apple.com</dd></div>
+            </dl>
+            <div class="um-ist-actions">
+              <span class="um-btn um-btn-back">Go back to safety</span>
+              <span class="um-btn um-btn-proc">Proceed at your own risk</span>
+              <span class="um-btn um-btn-rep">Report mistake</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <figcaption class="ui-mock-cap">The full-page interstitial high and critical verdicts trigger — same card, same actions as the shipping page.</figcaption>
+    </figure>
+  </div>
+</section>
 
 <div class="feat-grid">
   <div class="feat">

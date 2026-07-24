@@ -456,6 +456,38 @@ function isCrossReferenceGloss(gloss) {
   return /^(see below|see\s|&c\.|cf\.)/.test(clean);
 }
 
+// Monier-Williams citation abbreviations (Cologne markup leaks these into the
+// English definition text). A display gloss must never carry them — and must
+// never be cut off in the middle of one.
+const CITATION_RE =
+  /[,;]\s*(?:also\s+)?(?:MBh|Hariv|Pur|Up|Kāv|RV|AV|VS|TS|ŚBr|Br|Mn|Āp|Suśr|R|L|Kathās|MWB|Buddh|Hcar|Śiś|Sch|Lalit|Rasik|MārkP|VP|BhP|Gr|Sūtr|Yājñ|Sāh|Ragh|Kum|Māl|Daś|Mṛcch|Pañcat|Hit|Vet|Nal|Śak|Megh|Git|Nir|Vedânt)\..*$/;
+
+// Residual dictionary-fragment markers: definitions that are still raw
+// Monier-Williams matter rather than a curated English gloss.
+const DICTIONARY_STYLE_RE =
+  /(^|\b)N\.\s*of\s|accord\.|˚|vArz|\[\s*RV|\s&c\.|^of\s+(a|the)\s/i;
+
+function balanceParentheses(gloss) {
+  let depth = 0;
+  let firstUnmatchedOpen = -1;
+  for (let i = 0; i < gloss.length; i++) {
+    if (gloss[i] === '(') {
+      if (depth === 0) firstUnmatchedOpen = i;
+      depth++;
+    } else if (gloss[i] === ')') {
+      depth--;
+      if (depth <= 0) {
+        depth = 0;
+        firstUnmatchedOpen = -1;
+      }
+    }
+  }
+  if (depth > 0 && firstUnmatchedOpen !== -1) {
+    return gloss.slice(0, firstUnmatchedOpen);
+  }
+  return gloss;
+}
+
 function extractGloss(bodyText, headwordSlp1) {
   let text = bodyText
     .replace(/[/\\^-]/g, '')
@@ -484,6 +516,11 @@ function extractGloss(bodyText, headwordSlp1) {
   const sentenceEnd = findSentenceEnd(text);
   let gloss = sentenceEnd >= 0 ? text.slice(0, sentenceEnd) : text;
 
+  // Cut at the first citation abbreviation — citations are provenance, not
+  // gloss, and slicing through them mid-reference is how truncated fragments
+  // like "MBh. i" used to ship. What remains is the English substance.
+  gloss = gloss.replace(CITATION_RE, '');
+
   if (gloss.length > 180) {
     let cut = gloss.lastIndexOf(',', 180);
     if (cut < 150) cut = gloss.lastIndexOf(' ', 180);
@@ -491,9 +528,10 @@ function extractGloss(bodyText, headwordSlp1) {
     gloss = gloss.slice(0, cut);
   }
 
+  gloss = balanceParentheses(gloss);
   gloss = gloss.replace(/[,;:\s]+$/, '').trim();
   if (gloss.length < 3 || isCrossReferenceGloss(gloss)) return null;
-  return gloss;
+  return { gloss, dictionaryStyle: DICTIONARY_STYLE_RE.test(gloss) };
 }
 
 function parseEntryBlock(block) {
@@ -638,7 +676,10 @@ function scoreGloss(gloss, candidate) {
   const lower = gloss.toLowerCase();
   if (candidate.deity) score += 20;
   if (candidate.s1Match) score += 15;
-  if (/\bN\.\s*of\b/.test(gloss)) score += 15;
+  // Raw dictionary fragments ("N. of …", citation-laden senses) must lose to
+  // clean senses — they used to win by +15 and shipped straight to the site.
+  if (/\bN\.\s*of\b/.test(gloss)) score -= 25;
+  if (CITATION_RE.test(gloss) || /\baccord\./.test(lower)) score -= 30;
   if (/\b(deity|god|gods|goddess)\b/i.test(gloss)) score += 12;
   if (/\b(wife of|husband of|son of|daughter of|monkey-chief)\b/i.test(gloss)) score += 8;
   if (/\b(sun|moon|fire|wind|sky|earth|ocean)\b/i.test(gloss)) score += 4;
@@ -654,12 +695,12 @@ function pickBestGlossCandidate(candidates) {
   let bestScore = -Infinity;
   for (const c of candidates) {
     const headword = stripCologneAccents(c.firstS || c.key1);
-    const gloss = extractGloss(c.bodyText, headword);
-    if (!gloss) continue;
-    const q = scoreGloss(gloss, c);
+    const extracted = extractGloss(c.bodyText, headword);
+    if (!extracted) continue;
+    const q = scoreGloss(extracted.gloss, c);
     if (q > bestScore) {
       bestScore = q;
-      best = { candidate: c, gloss };
+      best = { candidate: c, gloss: extracted.gloss, dictionaryStyle: extracted.dictionaryStyle };
     }
   }
   return best;
@@ -771,9 +812,13 @@ module.exports = {
           id: entry.id,
           field: 'meaning',
           value: glossPick.gloss,
-          confidence: 0.85,
+          // Dictionary-style fragments go to human review (0.4 < the 0.5
+          // auto-apply floor); clean glosses apply as before.
+          confidence: glossPick.dictionaryStyle ? 0.4 : 0.85,
           provenance,
-          note: `Monier-Williams concise gloss for ${entry.unicode}`,
+          note: glossPick.dictionaryStyle
+            ? `Monier-Williams raw dictionary fragment for ${entry.unicode} — needs editorial review`
+            : `Monier-Williams concise gloss for ${entry.unicode}`,
         });
       }
 

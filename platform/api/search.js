@@ -45,6 +45,13 @@ function isGodEntry(entry) {
 
 /**
  * Rich search: returns entries with live site data (business card) + availability
+ *
+ * Keyword gating: a bare request (no query and no browse-intent filter) must
+ * not dump the whole entries table — it returns an empty result set instead.
+ * Filters (`type` other than 'all', `pantheon`, `tier`, `hasSite`, `trust`
+ * other than the default 'safe') signal browse intent and keep the previous
+ * full-listing behavior. Callers with a legitimate browse-all contract (the
+ * v1 names listing) pass `browseAll: true` to opt out.
  */
 function search({
   q,
@@ -56,7 +63,19 @@ function search({
   limit = 20,
   offset = 0,
   trust = 'safe',
+  browseAll = false,
 }) {
+  const hasBrowseFilter = Boolean(
+    pantheon ||
+      tier ||
+      (hasSite !== undefined && hasSite !== null && hasSite !== '') ||
+      (type && type !== 'all') ||
+      (trust && trust !== 'safe')
+  );
+  if (!browseAll && !q?.trim() && !hasBrowseFilter) {
+    return { entries: [], total: 0, limit, offset, queryTrust: null };
+  }
+
   const db = getDb();
 
   let sql = `

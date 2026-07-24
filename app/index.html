@@ -35,6 +35,83 @@
 .roadmap ol{max-width:640px;margin:0 auto;color:#b9b3a8;font-size:.95rem;line-height:1.8}
 .roadmap ol strong{color:#e8e4dc}
 @media(max-width:640px){.teaser-hero{padding-top:4rem}}
+
+/* ── SEE IT WORK: rendered product mockups (pure CSS, no JS, no images) ── */
+.see-it-work{max-width:1100px;margin:0 auto;padding:.5rem 1.25rem 2.5rem}
+.see-it-work h2{font-family:'Cinzel',serif;color:#d4af37;font-size:1.4rem;text-align:center;margin:0 0 .45rem}
+.see-it-work .siw-sub{text-align:center;color:#9a948a;font-size:.92rem;max-width:56ch;margin:0 auto 1.75rem}
+.ui-mock-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:1.75rem;align-items:start}
+.ui-mock{margin:0}
+.ui-mock-cap{font-size:.78rem;color:#8a8577;text-align:center;margin:.7rem auto 0;max-width:34ch;line-height:1.5}
+/* CSS-only phone bezel */
+.phone-frame{width:min(264px,100%);margin:0 auto;background:#141418;border:1px solid rgba(212,175,55,.3);border-radius:38px;padding:9px;box-shadow:0 18px 48px rgba(0,0,0,.5)}
+.pf-screen{position:relative;background:#050505;border:1px solid rgba(255,255,255,.06);border-radius:30px;overflow:hidden;min-height:496px;display:flex;flex-direction:column;font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;color:#e8e4dc;font-size:10px}
+.pf-punch{position:absolute;top:9px;left:50%;transform:translateX(-50%);width:9px;height:9px;border-radius:50%;background:#1c1c22;border:1px solid rgba(255,255,255,.08);z-index:3}
+.pf-status{display:flex;justify-content:space-between;align-items:center;padding:7px 14px 2px;font-size:8.5px;color:#9a948a;letter-spacing:.04em}
+/* Shared screen chrome — mirrors mobile/css/mobile.css palette (#050505 bg, #d4af37 gold) */
+.ps-head{display:flex;align-items:center;justify-content:space-between;padding:8px 14px 7px;border-bottom:1px solid rgba(212,175,55,.14)}
+.ps-logo{font-family:'Cinzel',serif;color:#d4af37;font-size:12px;letter-spacing:.06em}
+.ps-logo span{color:#8a8577;font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:9px;margin-left:6px;letter-spacing:.02em}
+.ps-shield{width:14px;height:14px;color:#d4af37;flex-shrink:0}
+.ps-body{flex:1;padding:10px 12px;display:flex;flex-direction:column;gap:8px;min-height:0}
+/* Lexicon screen — mirrors mobile/index.html type mode */
+.ps-pills{display:flex;gap:5px;overflow:hidden}
+.ps-pill{flex-shrink:0;font-size:8px;padding:3px 8px;border-radius:999px;border:1px solid rgba(212,175,55,.25);color:#b9b3a8;background:rgba(255,255,255,.03)}
+.ps-pill.active{color:#d4af37;border-color:rgba(212,175,55,.55);background:rgba(212,175,55,.12)}
+.ps-input{border:1px solid rgba(212,175,55,.3);border-radius:10px;background:rgba(255,255,255,.05);padding:7px 10px;font-size:9.5px;color:#8a8577}
+.ps-card{display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.04);border:1px solid rgba(212,175,55,.18);border-radius:12px;padding:8px 10px}
+.ps-emoji{width:26px;height:26px;flex-shrink:0;display:grid;place-items:center;font-size:13px;background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.22);border-radius:8px}
+.ps-card-main{min-width:0}
+.ps-name{display:block;font-size:11.5px;color:#d4af37;font-weight:600}
+.ps-greek{display:block;font-size:8.5px;color:#8a8577;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ps-domain{margin-left:auto;flex-shrink:0;font-size:7.5px;color:#6a6659;text-align:right;line-height:1.4}
+/* Shield screen — mirrors mobile/shield.html */
+.ps-hero{text-align:center;padding:2px 0 0}
+.ps-hero h3{font-family:'Cinzel',serif;color:#d4af37;font-size:12px;margin:0 0 3px}
+.ps-hero p{font-size:8px;color:#9a948a;margin:0;line-height:1.5}
+.ps-check-row{display:flex;gap:6px}
+.ps-check-row .ps-input{flex:1;min-width:0}
+.ps-check-btn{flex-shrink:0;background:#d4af37;color:#0a0a0a;font-size:9px;font-weight:700;border-radius:10px;padding:7px 12px;display:grid;place-items:center}
+.ps-result{border:1px solid rgba(212,175,55,.25);background:rgba(255,255,255,.04);border-radius:12px;padding:9px 10px}
+.ps-sev{display:inline-block;font-size:7.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#0a0a0a;border-radius:999px;padding:2px 8px;margin-bottom:5px}
+.ps-sev.high{background:#ff9f43}
+.ps-sev.low{background:#54a0ff}
+.ps-verdict{font-size:11px;font-weight:700;color:#e8e4dc;margin:0 0 3px}
+.ps-expl{font-size:8px;color:#9a948a;line-height:1.5;margin:0 0 6px}
+.ps-target{font-size:8px;color:#9a948a;border-top:1px dashed rgba(212,175,55,.2);padding-top:6px}
+.ps-target strong{color:#d4af37;font-weight:600}
+.ps-recs{margin:6px 0 0;padding-left:12px;font-size:7.5px;color:#9a948a;line-height:1.6}
+.ps-hist-title{display:flex;justify-content:space-between;font-size:8.5px;color:#b9b3a8;font-weight:600}
+.ps-hist-title span:last-child{color:rgba(212,175,55,.85);font-weight:400}
+.ps-hist-item{display:flex;align-items:center;gap:7px;font-size:8px;color:#9a948a;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:6px 8px}
+.ps-hist-item .ps-sev{margin-bottom:0}
+.ps-hist-item em{font-style:normal;margin-left:auto;color:#6a6659;font-size:7px}
+/* AR lens screen — mirrors mobile/ar-lens.html */
+.ps-lens{position:relative;flex:1;background:radial-gradient(120% 90% at 50% 20%,#1a1c26 0%,#0b0b12 55%,#050505 100%);overflow:hidden}
+.ps-lens-status{position:absolute;top:26px;left:12px;right:12px;text-align:center;font-size:8px;color:#aaa}
+.ps-plaque{position:absolute;top:34%;left:50%;transform:translate(-50%,-50%);width:96px;padding:10px 12px;background:linear-gradient(160deg,#24222c,#16151c);border:1px solid rgba(212,175,55,.25);border-radius:6px;box-shadow:0 10px 24px rgba(0,0,0,.5)}
+.ps-plaque i{display:block;height:4px;border-radius:2px;background:rgba(201,184,160,.28);margin-bottom:5px}
+.ps-plaque i:last-child{width:60%;margin-bottom:0}
+.ps-reticle{position:absolute;top:calc(34% - 34px);left:50%;transform:translateX(-50%);width:124px;height:74px}
+.ps-reticle b{position:absolute;width:16px;height:16px;border:2px solid #d4af37}
+.ps-reticle b.tl{top:0;left:0;border-right:none;border-bottom:none}
+.ps-reticle b.tr{top:0;right:0;border-left:none;border-bottom:none}
+.ps-reticle b.bl{bottom:0;left:0;border-right:none;border-top:none}
+.ps-reticle b.br{bottom:0;right:0;border-left:none;border-top:none}
+.ps-lens-card{position:absolute;left:10px;right:10px;bottom:12px;background:rgba(10,10,15,.9);border:1px solid #d4af37;border-radius:14px;padding:9px 11px}
+.ps-lens-card h4{color:#d4af37;font-size:12px;margin:0 0 2px;font-family:'Cinzel',serif}
+.ps-lens-card p{font-size:8px;color:#9a948a;margin:0 0 4px}
+.ps-lens-link{color:#d4af37;font-size:8.5px}
+.ps-shutter{position:absolute;bottom:86px;left:50%;transform:translateX(-50%);width:34px;height:34px;border-radius:50%;border:3px solid #d4af37;background:rgba(212,175,55,.2)}
+/* Bottom tab bar — mirrors mobile bottom-nav */
+.ps-nav{display:flex;border-top:1px solid rgba(212,175,55,.14);padding:6px 4px calc(6px + 2px);background:#0a0a0c}
+.ps-nav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:6.5px;color:#6a6659}
+.ps-nav-item svg{width:14px;height:14px}
+.ps-nav-item.active{color:#d4af37}
+@media(prefers-reduced-motion:no-preference){
+.ps-reticle::after{content:"";position:absolute;left:6%;right:6%;height:2px;background:linear-gradient(90deg,transparent,rgba(212,175,55,.85),transparent);animation:ps-scan 2.8s ease-in-out infinite}
+@keyframes ps-scan{0%,100%{top:6%}50%{top:92%}}
+}
 </style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1">
@@ -59,10 +136,13 @@
                 <div class="nav-more">
                     <button class="nav-more-toggle" aria-haspopup="true" aria-expanded="false">More</button>
                     <div class="nav-more-menu">
+                        <a href="/patterns/" class="nav-link">Patterns</a>
                         <a href="/tiers/" class="nav-link">Tier System</a>
                         <a href="/oracle.html" class="nav-link">Oracle</a>
                         <a href="/extension/" class="nav-link">Extension</a>
                         <a href="/app/" class="nav-link active" aria-current="page">App</a>
+                        <a href="/texts/" class="nav-link">Texts</a>
+                        <a href="/trending/" class="nav-link">Trending</a>
                         <a href="/codex/" class="nav-link">Codex</a>
                         <a href="/blog/" class="nav-link">Blog</a>
                         <a href="/creatives/" class="nav-link">Creatives</a>
@@ -87,6 +167,8 @@
                 <a href="/realms/">Realms</a>
                 <a href="/lexicon/">Lexicon</a>
                 <a href="/connections/">Connections</a>
+                <a href="/patterns/">Patterns</a>
+                <a href="/trending/">Trending</a>
             </div>
         </div>
         <div class="mobile-menu-section">
@@ -103,6 +185,7 @@
         <div class="mobile-menu-section">
             <span class="mobile-menu-title">Resources</span>
             <div class="mobile-menu-group">
+                <a href="/texts/">Texts</a>
                 <a href="/codex/">Codex</a>
                 <a href="/blog/">Blog</a>
                 <a href="/creatives/">Creatives</a>
@@ -116,6 +199,8 @@
             <span class="mobile-menu-title">About</span>
             <div class="mobile-menu-group">
                 <a href="/about/">About</a>
+                <a href="/about/founder/">Founder</a>
+                <a href="/careers/">Careers</a>
                 <a href="/contact/">Contact</a>
             </div>
         </div>
@@ -129,6 +214,125 @@
   <h1>THE APP</h1>
   <p class="tag">The pantheon in your pocket. The whole lexicon, resident offline. The Shield verdict engine on every link you tap. And an AR lens that reads the sacred names off the world itself.</p>
 </div>
+
+<section class="see-it-work" aria-labelledby="siw-title">
+  <h2 id="siw-title">SEE IT WORK</h2>
+  <p class="siw-sub">Not concept art — these miniatures are rendered in plain HTML and CSS from the same palette and layout the PWA ships today.</p>
+
+  <div class="ui-mock-grid">
+    <figure class="ui-mock">
+      <div class="phone-frame" role="img" aria-label="Mockup of the app's lexicon screen: a phone showing pantheon filter pills, a search field, and deity cards for Apóllōn, Athēnâ, Níkē, and Hekátē above a five-tab bottom navigation.">
+        <div class="pf-screen" aria-hidden="true">
+          <span class="pf-punch"></span>
+          <div class="pf-status"><span>9:41</span><span>▲ ▮ ▮</span></div>
+          <div class="ps-head">
+            <span class="ps-logo">PuniCodex</span>
+            <svg class="ps-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="ps-body">
+            <div class="ps-pills">
+              <span class="ps-pill active">All</span>
+              <span class="ps-pill">⚡ Greek</span>
+              <span class="ps-pill">❄️ Norse</span>
+              <span class="ps-pill">☀️ Egyptian</span>
+              <span class="ps-pill">🕉️ Sanskrit</span>
+            </div>
+            <div class="ps-input">Type a name…</div>
+            <div class="ps-card">
+              <span class="ps-emoji">⚡</span>
+              <span class="ps-card-main"><span class="ps-name">Apóllōn</span><span class="ps-greek">Ἀπόλλων · dual-tier</span></span>
+              <span class="ps-domain">Light, Music,<br>Prophecy</span>
+            </div>
+            <div class="ps-card">
+              <span class="ps-emoji">⚡</span>
+              <span class="ps-card-main"><span class="ps-name">Athēnâ</span><span class="ps-greek">Ἀθηνᾶ · tier-1</span></span>
+              <span class="ps-domain">Wisdom,<br>Craft</span>
+            </div>
+            <div class="ps-card">
+              <span class="ps-emoji">⚡</span>
+              <span class="ps-card-main"><span class="ps-name">Níkē</span><span class="ps-greek">Νίκη · dual-tier</span></span>
+              <span class="ps-domain">Victory</span>
+            </div>
+            <div class="ps-card">
+              <span class="ps-emoji">⚡</span>
+              <span class="ps-card-main"><span class="ps-name">Hekátē</span><span class="ps-greek">Ἑκάτη · dual-tier</span></span>
+              <span class="ps-domain">Crossroads,<br>Magic</span>
+            </div>
+          </div>
+          <nav class="ps-nav">
+            <span class="ps-nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>Type</span>
+            <span class="ps-nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>Compose</span>
+            <span class="ps-nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Saved</span>
+            <span class="ps-nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Directory</span>
+            <span class="ps-nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M6 8h.01M10 8h.01M14 8h.01M18 8h.01M8 12h.01M12 12h.01M16 12h.01M7 16h10"/></svg>Keyboard</span>
+          </nav>
+        </div>
+      </div>
+      <figcaption class="ui-mock-cap">The lexicon, resident offline — the PWA's type screen, cards and pills as shipped.</figcaption>
+    </figure>
+
+    <figure class="ui-mock">
+      <div class="phone-frame" role="img" aria-label="Mockup of the app's Shield screen: a phone showing a scanned link judged a suspicious lookalike of apple.com with a high-severity badge, evidence and recommendations, plus a history row showing a safe canonical verdict.">
+        <div class="pf-screen" aria-hidden="true">
+          <span class="pf-punch"></span>
+          <div class="pf-status"><span>9:41</span><span>▲ ▮ ▮</span></div>
+          <div class="ps-head">
+            <span class="ps-logo">PuniCodex<span>Shield</span></span>
+            <svg class="ps-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="ps-body">
+            <div class="ps-hero">
+              <h3>Authenticity Shield</h3>
+              <p>Paste any link, name, or domain to check for homograph and mixed-script attacks.</p>
+            </div>
+            <div class="ps-check-row">
+              <div class="ps-input">xn--pple-43d.com</div>
+              <span class="ps-check-btn">Check</span>
+            </div>
+            <div class="ps-result">
+              <span class="ps-sev high">high</span>
+              <p class="ps-verdict">Suspicious lookalike</p>
+              <p class="ps-expl">Mixed-script domain: Cyrillic “а” (U+0430) stands in for Latin “a”. Displays as apple.com.</p>
+              <ul class="ps-recs">
+                <li>Do not enter credentials on this page</li>
+                <li>Navigate to the canonical domain instead</li>
+              </ul>
+              <div class="ps-target">Looks like <strong>apple.com</strong></div>
+            </div>
+            <div class="ps-hist-title"><span>History</span><span>Clear</span></div>
+            <div class="ps-hist-item"><span class="ps-sev low">low</span>apóllōn.com — canonical<em>2m</em></div>
+          </div>
+          <nav class="ps-nav">
+            <span class="ps-nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Type</span>
+            <span class="ps-nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Shield</span>
+          </nav>
+        </div>
+      </div>
+      <figcaption class="ui-mock-cap">The Shield verdict engine — evidence attached, never a bare color. Warning and safe states.</figcaption>
+    </figure>
+
+    <figure class="ui-mock">
+      <div class="phone-frame" role="img" aria-label="Mockup of the app's AR lens: a phone camera view aimed at a stone inscription plaque with a gold scan reticle, and a detected-name card for Apóllōn overlaid at the bottom with an 'Open entry' action.">
+        <div class="pf-screen" aria-hidden="true">
+          <span class="pf-punch"></span>
+          <div class="pf-status"><span>9:41</span><span>▲ ▮ ▮</span></div>
+          <div class="ps-lens">
+            <p class="ps-lens-status">Match found</p>
+            <div class="ps-plaque"><i></i><i></i><i></i></div>
+            <div class="ps-reticle"><b class="tl"></b><b class="tr"></b><b class="bl"></b><b class="br"></b></div>
+            <span class="ps-shutter"></span>
+            <div class="ps-lens-card">
+              <h4>Apóllōn</h4>
+              <p>greek · Light, Music, Prophecy</p>
+              <span class="ps-lens-link">Open entry →</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <figcaption class="ui-mock-cap">The AR lens — point at an inscription, get the restoration and its temple.</figcaption>
+    </figure>
+  </div>
+</section>
 
 <div class="feat-grid">
   <div class="feat">

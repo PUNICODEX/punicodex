@@ -1,4 +1,4 @@
-const { recordPageView } = require('../../../platform/api/site-analytics');
+const { recordPageView, recordEngagement } = require('../../../platform/api/site-analytics');
 const { setCors } = require('../../_utils');
 const { checkPublicRateLimitByReq } = require('../../../platform/api/public-rate-limiter');
 const { getClientIp } = require('../../../platform/api/client-ip');
@@ -39,14 +39,24 @@ module.exports = async (req, res) => {
 
   res.setHeader('Cache-Control', 'no-store');
   try {
-    const { p, r, s } = parseBeaconBody(req);
-    await recordPageView({
-      path: p,
-      referrer: r,
-      sessionId: s,
-      ip: getClientIp(req),
-      userAgent: req.headers['user-agent'],
-    });
+    const body = parseBeaconBody(req);
+    if (body.t === 'eng') {
+      await recordEngagement({
+        path: body.p,
+        sessionId: body.s,
+        visibleMs: body.ms,
+        scrollPct: body.sc,
+        userAgent: req.headers['user-agent'],
+      });
+    } else {
+      await recordPageView({
+        path: body.p,
+        referrer: body.r,
+        sessionId: body.s,
+        ip: getClientIp(req),
+        userAgent: req.headers['user-agent'],
+      });
+    }
   } catch (err) {
     // Analytics must never 500 — log and still acknowledge the beacon.
     console.error('[site-analytics] collect failed:', err.message);
