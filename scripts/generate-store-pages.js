@@ -214,14 +214,24 @@ a:hover{color:var(--gold-bright)}
 }
 `;
 
-function head({ title, description, path: pagePath, css = '' }) {
+function head({ title, description, path: pagePath, css = '', collaborators = false }) {
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
 <!-- PUNICODEX-ANALYTICS-START -->
 <script src="/js/analytics-beacon.js" defer></script>
 <!-- PUNICODEX-ANALYTICS-END -->
+${
+  collaborators
+    ? `
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3">
+<script src="/js/university-collaborators.js?v=3" defer></script>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
+`
+    : ''
+}
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google" content="notranslate">
@@ -278,6 +288,7 @@ function renderStoreIndex(colls) {
     description: `Print-on-demand relics of the Unicode Pantheon — ${colls.size} temple collections, each with its own line of apparel, prints, drinkware and relics.`,
     path: '/store/',
     css: `.store-hero{text-align:center;padding:5.5rem 0 2.5rem}.store-hero .pc-fx-stage{margin:0 auto 1.5rem}.store-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.store-hero .tag{max-width:62ch;margin:0 auto}`,
+    collaborators: true,
   })}
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <div class="wrap">
@@ -322,7 +333,11 @@ ${cards}
   q.addEventListener('input', apply);
 })();
 </script>
-    ${footerHtml()}
+    
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+${footerHtml()}
 </body></html>
 `;
 }
