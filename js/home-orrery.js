@@ -19,7 +19,15 @@
   const ctx = canvas.getContext('2d');
 
   const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const DPR = Math.min(window.devicePixelRatio || 1, 2);
+  // 1.5 keeps the sphere crisp on hi-DPI phones at ~44% fewer pixels than 2.
+  const DPR = Math.min(window.devicePixelRatio || 1, 1.5);
+
+  // Adaptive frame governor: when the device can't hold ~60fps, render
+  // every 2nd (then 3rd) frame — identical scene, graceful degradation.
+  let frameBudget = 19; // ms EMA target before stepping down
+  let frameSkip = 1;
+  let frameTick = 0;
+  let emaFrame = 16;
 
   // ── Glyph inventory (one per script tradition of the pantheon) ──────────
   const SCRIPT_SETS = [
@@ -338,9 +346,19 @@
     }
   }
 
+  let lastT = 0;
   function loop(now) {
     if (!running) return;
-    drawFrame(now);
+    // Governor: EMA of real frame time steers the skip factor.
+    if (lastT) {
+      const dt = now - lastT;
+      emaFrame = emaFrame * 0.9 + dt * 0.1;
+      if (emaFrame > 34 && frameSkip < 3) frameSkip = 3;
+      else if (emaFrame > frameBudget && frameSkip < 2) frameSkip = 2;
+      else if (emaFrame < 14 && frameSkip > 1) frameSkip = 1;
+    }
+    lastT = now;
+    if (frameTick++ % frameSkip === 0) drawFrame(now);
     rafId = requestAnimationFrame(loop);
   }
   function play() {

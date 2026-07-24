@@ -15,7 +15,7 @@
   'use strict';
 
   const PCFX = {};
-  const DPR_CAP = 2;
+  const DPR_CAP = 1.5; // crisp on hi-DPI at ~44% less fill cost than 2
 
   // ── Glyph renderability (drop .notdef boxes and blanks) ────────────────
   let probeCanvas = null;

@@ -54,7 +54,7 @@
     clearTimeout(failsafeId);
     return;
   }
-  const DPR = Math.min(window.devicePixelRatio || 1, 2);
+  const DPR = Math.min(window.devicePixelRatio || 1, 1.5);
 
   // ── Scene: a small orrery assembling around the seal ────────────────────
   const sets = [

@@ -67,7 +67,7 @@
 
     const portraitHtml = !a.built
       ? `<picture><source srcset="${EMPTY_PORTRAIT_WEBP}" type="image/webp"><img src="${EMPTY_PORTRAIT}" alt="" loading="lazy" /></picture>`
-      : `<img src="${a.mascotPath}" alt="${escapeHtml(a.name)} — ${escapeHtml(a.domain)}" loading="lazy" onerror="this.onerror=null;this.src='${EMPTY_PORTRAIT}';" />`;
+      : `<img src="/assets/images/mascots/thumbs/small/${a.id}_thumb.webp" alt="${escapeHtml(a.name)} — ${escapeHtml(a.domain)}" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${a.mascotPath}';this.onerror=function(){this.onerror=null;this.src='${EMPTY_PORTRAIT}';};" />`;
 
     return `
       <${tag} ${hrefAttr} class="archetype-card reveal-up ${unbuiltClass}" style="--stagger-index:${index % 6}">
