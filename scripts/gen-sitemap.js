@@ -80,6 +80,10 @@ const mainPages = [
   { loc: '/lexicon/cognates.html', priority: '0.6', changefreq: 'monthly' },
   { loc: '/interstitial.html', priority: '0.3', changefreq: 'yearly' },
   { loc: '/terms/data-use/', priority: '0.4', changefreq: 'yearly' },
+  { loc: '/terms/store/', priority: '0.4', changefreq: 'yearly' },
+  { loc: '/terms/creatives/', priority: '0.4', changefreq: 'yearly' },
+  { loc: '/extension/', priority: '0.6', changefreq: 'monthly' },
+  { loc: '/app/', priority: '0.6', changefreq: 'monthly' },
 ];
 
 function escapeXml(str) {

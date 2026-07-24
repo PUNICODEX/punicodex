@@ -256,6 +256,10 @@ const html = `<!DOCTYPE html>
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1">
 <script src="/js/herald-beacon.js?v=1" defer></script>
 <!-- PUNICODEX-HERALD-BEACON-END -->
+<!-- PUNICODEX-COOKIE-CONSENT-START -->
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1">
+<script src="/js/cookie-consent.js?v=1" defer></script>
+<!-- PUNICODEX-COOKIE-CONSENT-END -->
 </head>
 <body>
     <!-- Navigation (canonical — built by scripts/sync-desktop-nav.js) -->

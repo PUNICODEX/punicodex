@@ -544,9 +544,13 @@ test('(j) built cards render mascot imgs and the medallion overlay is gone', () 
     'js/pantheon.js no longer tags the portrait img'
   );
   const home = read('js/home.js');
+  // Home renders the weight-optimised small thumb as the primary source, with
+  // the full mascotPath as the onerror fallback and the kit empty portrait
+  // last — the same thumb-primary pattern the pantheon page uses.
   assert.ok(
-    home.includes('<img src="${a.mascotPath}"'),
-    'js/home.js no longer renders the mascotPath img for built archetypes'
+    home.includes('thumbs/small/${a.id}_thumb.webp') &&
+      home.includes("this.src='${a.mascotPath}'"),
+    'js/home.js no longer renders the mascot thumb with mascotPath fallback for built archetypes'
   );
   // 2026-07-19: the kit medallion-frame overlay was removed — it overlapped
   // the mascots. The portrait's own circular border + ring shadow stay.

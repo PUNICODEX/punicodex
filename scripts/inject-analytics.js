@@ -90,6 +90,10 @@ const rootPages = [
   path.join('appraise', 'index.html'),
   path.join('connections', 'index.html'),
   path.join('authenticity', 'index.html'),
+  path.join('extension', 'index.html'),
+  path.join('app', 'index.html'),
+  path.join('terms', 'store', 'index.html'),
+  path.join('terms', 'creatives', 'index.html'),
   'search-v2.html',
 ];
 for (const p of rootPages) {

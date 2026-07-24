@@ -20,7 +20,10 @@ const EXCLUDE = [
   /^docs\//,
   /^templates\//,
   /^platform\//,
-  /^extension/,
+  // The extension source tree is excluded, but extension/index.html is a
+  // public teaser page and must carry consent like every other public page.
+  /^extension\/(?!index\.html$)/,
+  /^extension-v2\//,
   /^mobile\//,
   /^android\//,
   /^tools\//,

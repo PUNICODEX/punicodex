@@ -50,7 +50,10 @@ const EXCLUDE_PATTERNS = [
   /^docs\//,
   /^templates\//,
   /^platform\//,
-  /^extension/,
+  // The extension source tree is excluded, but extension/index.html is now a
+  // public teaser page (in the canonical nav) and belongs in the sitemap.
+  /^extension\/(?!index\.html$)/,
+  /^extension-v2\//,
   /^mobile\//,
   /^android\//,
   /^tools\//,

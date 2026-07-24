@@ -18,6 +18,10 @@ const ROOT = path.join(__dirname, '..');
 const CATALOG = require(path.join(ROOT, 'store', 'products.json'));
 const { ARCHETYPES } = require(path.join(ROOT, 'js', 'archetypes-v2.js'));
 const LORE = require(path.join(ROOT, 'scripts', 'lore-catalog.json'));
+// Canonical chrome builders — never fork the nav/menu/footer item lists.
+const { fullNavHtml } = require('./sync-desktop-nav.js');
+const { menuForPage } = require('./sync-mobile-menu.js');
+const { footerHtml } = require('./sync-footer.js');
 
 const KIND_ORDER = [
   'tee',
@@ -220,81 +224,18 @@ function head({ title, description, path: pagePath, css = '' }) {
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
 <link rel="canonical" href="https://punicodex.com${pagePath}">
+<link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+<link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+<link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+<link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
 <link rel="stylesheet" href="/assets/fonts/fonts.css">
 <link rel="stylesheet" href="/css/main.css?v=perf12">
 <style>${BASE_CSS}${css}</style>
 </head>
 <body>
-    <nav class="main-nav" id="main-nav">
-        <div class="nav-inner">
-            <a href="/" class="nav-wordmark"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-camel-gold.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-camel-gold.png" alt="PuniCodex — The Unicode Pantheon" width="680" height="119"></picture></a>
-            <div class="nav-links">
-                <a href="/pantheon/" class="nav-link">Pantheon</a>
-                <a href="/realms/" class="nav-link">Realms</a>
-                <a href="/lexicon/" class="nav-link">Lexicon</a>
-                <a href="/connections/" class="nav-link">Connections</a>
-                <a href="/type/" class="nav-link">Type</a>
-                <a href="/search.html" class="nav-link">Search</a>
-                <div class="nav-more">
-                    <button class="nav-more-toggle" aria-haspopup="true" aria-expanded="false">More</button>
-                    <div class="nav-more-menu">
-                        <a href="/tiers/" class="nav-link">Tier System</a>
-                        <a href="/oracle.html" class="nav-link">Oracle</a>
-                        <a href="/codex/" class="nav-link">Codex</a>
-                        <a href="/blog/" class="nav-link">Blog</a>
-                        <a href="/creatives/" class="nav-link">Creatives</a>
-                        <a href="/scholars/" class="nav-link">Scholars</a>
-                        <a href="/api/v1/docs/" class="nav-link">API</a>
-                        <a href="/appraise/" class="nav-link">Appraise</a>
-                        <a href="/store/" class="nav-link active" aria-current="page">Store</a>
-                        <a href="/about/" class="nav-link">About</a>
-                        <a href="/contact/" class="nav-link">Contact</a>
-                    </div>
-                </div>
-            </div>
-            <a href="/pantheon/" class="nav-cta"><span>Enter</span></a>
-            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
-        </div>
-    </nav>
-    <div class="mobile-menu" id="mobile-menu">
-        <div class="mobile-menu-section">
-            <span class="mobile-menu-title">Explore</span>
-            <div class="mobile-menu-group">
-                <a href="/pantheon/">Pantheon</a>
-                <a href="/realms/">Realms</a>
-                <a href="/lexicon/">Lexicon</a>
-                <a href="/connections/">Connections</a>
-            </div>
-        </div>
-        <div class="mobile-menu-section">
-            <span class="mobile-menu-title">Tools</span>
-            <div class="mobile-menu-group">
-                <a href="/type/">Type</a>
-                <a href="/search.html">Search</a>
-                <a href="/tiers/">Tier System</a>
-                <a href="/oracle.html">Oracle</a>
-            </div>
-        </div>
-        <div class="mobile-menu-section">
-            <span class="mobile-menu-title">Resources</span>
-            <div class="mobile-menu-group">
-                <a href="/codex/">Codex</a>
-                <a href="/blog/">Blog</a>
-                <a href="/creatives/">Creatives</a>
-                <a href="/scholars/">Scholars</a>
-                <a href="/api/v1/docs/">API</a>
-                <a href="/appraise/">Appraise</a>
-                <a href="/store/" class="active">Store</a>
-            </div>
-        </div>
-        <div class="mobile-menu-section">
-            <span class="mobile-menu-title">About</span>
-            <div class="mobile-menu-group">
-                <a href="/about/">About</a>
-                <a href="/contact/">Contact</a>
-            </div>
-        </div>
-    </div>
+    ${fullNavHtml('/store/')}
+    ${menuForPage('/store/')}
     <script src="/js/px-core.js?v=perf21" defer></script>
     <script src="/js/main.js?v=perf12" defer></script>`;
 }
@@ -369,6 +310,7 @@ ${cards}
   q.addEventListener('input', apply);
 })();
 </script>
+    ${footerHtml()}
 </body></html>
 `;
 }
@@ -428,6 +370,7 @@ ${cards}
   <p class="wrap" style="padding-bottom:3rem;color:var(--dim);font-size:.85rem">Every piece is printed to order and shipped worldwide. Curious about the name itself? <a href="${esc(meta.url)}">Enter the ${esc(meta.name)} temple →</a></p>
 </div>
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
+    ${footerHtml()}
 </body></html>
 `;
 }
@@ -560,6 +503,7 @@ ${placements}
   });
 })();
 </script>
+    ${footerHtml()}
 </body></html>
 `;
 }
