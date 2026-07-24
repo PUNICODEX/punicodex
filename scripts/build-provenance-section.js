@@ -41,9 +41,9 @@ function safe(value) {
 }
 
 function computePunycode(entry) {
-  if (entry.domainPunycode) return entry.domainPunycode;
+  if (entry.domainPunycode) return entry.domainPunycode.toLowerCase();
   try {
-    return punycode.toASCII((entry.unicode || entry.ascii || '') + '.com');
+    return punycode.toASCII((entry.unicode || entry.ascii || '').toLowerCase() + '.com');
   } catch {
     return '';
   }
@@ -97,11 +97,10 @@ function renderSources(sources) {
       ${sources.map((s) => {
         const title = escapeHtml(s.title || '');
         const meta = [s.author, s.year, s.pages].filter(Boolean).join(', ');
-        const tierBadge = s.tier ? `<span class="source-tier tier-${s.tier}">Tier ${s.tier}</span>` : '';
         const url = s.url ? ` <a href="${escapeHtml(s.url)}" target="_blank" rel="noopener" class="source-link">↗</a>` : '';
         return `
           <div class="source-item">
-            <div class="source-title">${title}${url}${tierBadge}</div>
+            <div class="source-title">${title}${url}</div>
             ${meta ? `<div class="source-meta">${escapeHtml(meta)}</div>` : ''}
           </div>`;
       }).join('')}

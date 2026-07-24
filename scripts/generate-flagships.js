@@ -182,7 +182,7 @@ for (const id of handcrafted) {
     } else if (lex) {
         const colors = PANTHEON_COLORS[lex.pantheon] || PANTHEON_COLORS.greek;
         const tier = mapTier(lex.tier);
-        const domainUnicode = lex.unicode + '.com';
+        const domainUnicode = lex.unicode.toLowerCase() + '.com';
         let domainPunycode;
         try { domainPunycode = punycode.toASCII(domainUnicode); } catch (e) { domainPunycode = lex.ascii + '.com'; }
         allEntries.push({

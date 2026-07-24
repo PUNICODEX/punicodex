@@ -428,7 +428,7 @@ function generateGreek(entry, archetype) {
     steps: [
       `The Greek form ${originalScript} is written in the Classical Greek alphabet.`,
       'Letters with acute, grave, or circumflex accents preserve the pitch accent of Ancient Greek.',
-      'Macrons and omegas (η, ω) mark long vowels, a feature lost in the plain ASCII form.',
+      'In the original Greek script, length is native to the letters η and ω themselves; the Latin transliteration adds a macron to mark that same length, a distinction lost in the plain ASCII form.',
       `The Unicode restoration ${name} encodes the scholarly spelling as a registrable domain name.`,
     ],
     etymology: deriveEtymology(entry, archetype),
