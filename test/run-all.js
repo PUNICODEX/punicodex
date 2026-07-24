@@ -144,6 +144,7 @@ const SUITES = [
   { name: 'Collaborators Strip Tests', cmd: 'node test/collaborators-strip.test.js' },
   { name: 'Menu Consistency Tests', cmd: 'node test/menu-consistency.test.js' },
   { name: 'Footer Consistency Tests', cmd: 'node test/footer-consistency.test.js' },
+  { name: 'Cookie Consent Tests', cmd: 'node test/cookie-consent.test.js' },
   { name: 'Search Page Tests', cmd: 'node test/search-page.test.js' },
   { name: 'Brand Tests', cmd: 'node test/brand.test.js' },
   { name: 'Admin Portal Page Tests', cmd: 'node test/admin-portal-page.test.js' },
