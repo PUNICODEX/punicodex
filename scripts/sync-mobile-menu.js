@@ -50,6 +50,8 @@ const CANONICAL_MENU = `<div class="mobile-menu" id="mobile-menu">
                 <a href="/search.html">Search</a>
                 <a href="/tiers/">Tier System</a>
                 <a href="/oracle.html">Oracle</a>
+                <a href="/extension/">Extension</a>
+                <a href="/app/">App</a>
             </div>
         </div>
         <div class="mobile-menu-section">
@@ -90,6 +92,11 @@ const TARGETS = [
   { page: path.join('connections', 'index.html'), active: '/connections/' },
   { page: path.join('contact', 'index.html'), active: '/contact/' },
   { page: path.join('creatives', 'index.html'), active: null },
+  { page: path.join('terms', 'index.html'), active: null },
+  { page: path.join('terms', 'store', 'index.html'), active: null },
+  { page: path.join('terms', 'creatives', 'index.html'), active: null },
+  { page: path.join('extension', 'index.html'), active: '/extension/' },
+  { page: path.join('app', 'index.html'), active: '/app/' },
   { page: path.join('lexicon', 'index.html'), active: '/lexicon/' },
   { page: path.join('lexicon', 'cognates.html'), active: '/lexicon/' },
   { page: path.join('pantheon', 'index.html'), active: '/pantheon/' },

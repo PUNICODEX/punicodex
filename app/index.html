@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google" content="notranslate">
+<title>The App — The Pantheon in Your Pocket | PUNICODEX</title>
+<meta name="description" content="The PuniCodex app: the full lexicon offline, the Shield verdict engine on every link you tap, and an AR lens that reads sacred names off the world. In active development as a progressive web app.">
+<link rel="canonical" href="https://punicodex.com/app/">
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
+<link rel="stylesheet" href="/css/main.css?v=perf12">
+<link rel="stylesheet" href="/css/pc-fx.css?v=1">
+<style>
+.teaser-hero{text-align:center;padding:5.5rem 1rem 2.5rem}
+.teaser-hero .pc-fx-stage{margin:0 auto 1.5rem}
+.teaser-hero h1{font-size:2.4rem;margin:.4rem 0 .6rem}
+.teaser-hero .tag{max-width:64ch;margin:0 auto;color:var(--text-dim,#9a948a)}
+.status-pill{display:inline-block;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;border:1px solid rgba(212,175,55,.4);border-radius:999px;padding:.3rem .9rem;color:#d4af37;margin-bottom:1rem}
+.feat-grid{max-width:1100px;margin:0 auto;padding:1rem 1.25rem 2rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.25rem}
+.feat{background:#121216;border:1px solid rgba(212,175,55,.18);border-radius:14px;padding:1.4rem}
+.feat h3{font-family:'Cinzel',serif;color:#d4af37;font-size:1.05rem;margin:0 0 .5rem}
+.feat p{color:#b9b3a8;font-size:.92rem;line-height:1.6}
+.codeblock{background:#0a0a0c;border:1px solid rgba(212,175,55,.22);border-radius:10px;padding:1rem 1.1rem;margin-top:.9rem;overflow-x:auto}
+.codeblock .cb-label{font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:#8a8577;margin-bottom:.5rem}
+.codeblock pre{margin:0;font-family:'JetBrains Mono','Fira Code',monospace;font-size:.76rem;line-height:1.55;color:#c9c2ae;white-space:pre}
+.codeblock .k{color:#d4af37}
+.codeblock .s{color:#9ec1ff}
+.codeblock .c{color:#6a6659}
+.roadmap{max-width:1100px;margin:0 auto 4rem;padding:1.5rem 1.25rem}
+.roadmap h2{font-family:'Cinzel',serif;color:#d4af37;font-size:1.4rem;text-align:center;margin-bottom:1.5rem}
+.roadmap ol{max-width:640px;margin:0 auto;color:#b9b3a8;font-size:.95rem;line-height:1.8}
+.roadmap ol strong{color:#e8e4dc}
+@media(max-width:640px){.teaser-hero{padding-top:4rem}}
+</style>
+</head>
+<body>
+    <nav class="main-nav" id="main-nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-wordmark"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-ivory.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-ivory.png" alt="PuniCodex — The Unicode Pantheon" width="680" height="119"></picture></a>
+            <div class="nav-links">
+                <a href="/pantheon/" class="nav-link">Pantheon</a>
+                <a href="/realms/" class="nav-link">Realms</a>
+                <a href="/lexicon/" class="nav-link">Lexicon</a>
+                <a href="/connections/" class="nav-link">Connections</a>
+                <a href="/type/" class="nav-link">Type</a>
+                <a href="/search.html" class="nav-link">Search</a>
+                <div class="nav-more">
+                    <button class="nav-more-toggle" aria-haspopup="true" aria-expanded="false">More</button>
+                    <div class="nav-more-menu">
+                        <a href="/tiers/" class="nav-link">Tier System</a>
+                        <a href="/oracle.html" class="nav-link">Oracle</a>
+                        <a href="/extension/" class="nav-link">Extension</a>
+                        <a href="/app/" class="nav-link active" aria-current="page">App</a>
+                        <a href="/codex/" class="nav-link">Codex</a>
+                        <a href="/blog/" class="nav-link">Blog</a>
+                        <a href="/creatives/" class="nav-link">Creatives</a>
+                        <a href="/scholars/" class="nav-link">Scholars</a>
+                        <a href="/api/v1/docs/" class="nav-link">API</a>
+                        <a href="/appraise/" class="nav-link">Appraise</a>
+                        <a href="/store/" class="nav-link">Store</a>
+                        <a href="/about/" class="nav-link">About</a>
+                        <a href="/contact/" class="nav-link">Contact</a>
+                    </div>
+                </div>
+            </div>
+            <a href="/pantheon/" class="nav-cta"><span>Enter</span></a>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-section">
+            <span class="mobile-menu-title">Explore</span>
+            <div class="mobile-menu-group">
+                <a href="/pantheon/">Pantheon</a>
+                <a href="/realms/">Realms</a>
+                <a href="/lexicon/">Lexicon</a>
+                <a href="/connections/">Connections</a>
+            </div>
+        </div>
+        <div class="mobile-menu-section">
+            <span class="mobile-menu-title">Tools</span>
+            <div class="mobile-menu-group">
+                <a href="/type/">Type</a>
+                <a href="/search.html">Search</a>
+                <a href="/tiers/">Tier System</a>
+                <a href="/oracle.html">Oracle</a>
+                <a href="/extension/">Extension</a>
+                <a href="/app/" class="active">App</a>
+            </div>
+        </div>
+        <div class="mobile-menu-section">
+            <span class="mobile-menu-title">Resources</span>
+            <div class="mobile-menu-group">
+                <a href="/codex/">Codex</a>
+                <a href="/blog/">Blog</a>
+                <a href="/creatives/">Creatives</a>
+                <a href="/scholars/">Scholars</a>
+                <a href="/api/v1/docs/">API</a>
+                <a href="/appraise/">Appraise</a>
+                <a href="/store/">Store</a>
+            </div>
+        </div>
+        <div class="mobile-menu-section">
+            <span class="mobile-menu-title">About</span>
+            <div class="mobile-menu-group">
+                <a href="/about/">About</a>
+                <a href="/contact/">Contact</a>
+            </div>
+        </div>
+    </div>
+
+<div class="teaser-hero">
+  <div class="pc-fx-stage pc-fx-mobius-stage" role="img" aria-label="The Mobius — a golden ribbon folding into an endless loop">
+    <canvas class="pc-fx-mobius" aria-hidden="true"></canvas>
+  </div>
+  <span class="status-pill">In Active Development</span>
+  <h1>THE APP</h1>
+  <p class="tag">The pantheon in your pocket. The whole lexicon, resident offline. The Shield verdict engine on every link you tap. And an AR lens that reads the sacred names off the world itself.</p>
+</div>
+
+<div class="feat-grid">
+  <div class="feat">
+    <h3>The Lexicon, Offline</h3>
+    <p>All 924 scholarly restorations — breakdowns, original scripts, pronunciation, etymology — live on the device from first launch. A mountain hut, a long flight, a dead zone: the pantheon answers anyway.</p>
+    <div class="codeblock">
+      <div class="cb-label">mobile/shared/lexicon.js — generated from the canonical source</div>
+      <pre><span class="c">// One canonical lexicon, regenerated into every client:</span>
+<span class="c">// web, extension, mobile, Android, desktop, corpora.</span>
+<span class="k">const</span> LEXICON_VERSION = <span class="s">'2.0.63'</span>;</pre>
+    </div>
+  </div>
+
+  <div class="feat">
+    <h3>The Shield, On Every Tap</h3>
+    <p>The same Authenticity engine that guards the extension rides in the app. Paste a name — or let the share sheet hand it one — and the verdict arrives with its reasoning, not just its color.</p>
+    <div class="codeblock">
+      <div class="cb-label">mobile/js/shield.js — the actual verdict render (shipping in the PWA)</div>
+      <pre>verdictEl.textContent = result.label || result.verdict;
+<span class="c">// canonical · ascii-fallback · styled ·</span>
+<span class="c">// suspicious · unsafe · unknown — each with</span>
+<span class="c">// the evidence attached, never a bare color.</span></pre>
+    </div>
+  </div>
+
+  <div class="feat">
+    <h3>The AR Lens</h3>
+    <p>Point the camera at an inscription — a plaque, a book spine, a museum label — and the lens recognizes the name in any of the pantheon's writing systems, restores it, and opens its temple. The lexicon stops being a reference and starts being a companion.</p>
+    <div class="codeblock">
+      <div class="cb-label">mobile/ar-lens.html — the lens, already standing</div>
+      <pre><span class="c">// camera → frame analysis → glyph cluster match</span>
+<span class="c">// → lexicon resolve → temple, in under a second.</span></pre>
+    </div>
+  </div>
+</div>
+
+<div class="roadmap">
+  <h2>WHERE IT STANDS</h2>
+  <ol>
+    <li><strong>Today:</strong> the mobile PWA already ships the offline lexicon, the Shield checker, and the AR lens scaffold. Install it from your browser — it behaves like a native app, because it is one in everything but the store review.</li>
+    <li><strong>Now building:</strong> the Capacitor shells — the same codebase wrapped for the App Store and Google Play, with native share targets and push notifications.</li>
+    <li><strong>Then:</strong> the lens grows eyes — live cuneiform, hieroglyphic, and runic recognition joining the alphabetic systems.</li>
+  </ol>
+</div>
+
+<script src="/js/px-core.js?v=perf21" defer></script>
+<script src="/js/pc-fx-core.js?v=2" defer></script>
+<script src="/js/pc-fx-mobius.js?v=1" defer></script>
+</body>
+</html>

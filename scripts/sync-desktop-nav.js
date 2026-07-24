@@ -39,6 +39,8 @@ const PRIMARY = [
 const MORE = [
   ['/tiers/', 'Tier System'],
   ['/oracle.html', 'Oracle'],
+  ['/extension/', 'Extension'],
+  ['/app/', 'App'],
   ['/codex/', 'Codex'],
   ['/blog/', 'Blog'],
   ['/creatives/', 'Creatives'],
@@ -80,12 +82,16 @@ const TARGETS = [
   { page: path.join('terms', 'index.html'), active: null },
   { page: path.join('terms', 'data-use', 'index.html'), active: null },
   { page: path.join('terms', 'advertising', 'index.html'), active: null, insertNav: true },
+  { page: path.join('terms', 'store', 'index.html'), active: null },
+  { page: path.join('terms', 'creatives', 'index.html'), active: null },
+  { page: path.join('extension', 'index.html'), active: '/extension/' },
+  { page: path.join('app', 'index.html'), active: '/app/' },
   { page: path.join('tiers', 'index.html'), active: '/tiers/' },
   { page: path.join('type', 'index.html'), active: '/type/' },
   { page: path.join('university-sponsorship', 'index.html'), active: null },
 ];
 
-const WORDMARK = `<a href="/" class="nav-wordmark"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-camel-gold.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-camel-gold.png" alt="PuniCodex — The Unicode Pantheon" width="680" height="119"></picture></a>`;
+const WORDMARK = `<a href="/" class="nav-wordmark"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-ivory.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-ivory.png" alt="PuniCodex — The Unicode Pantheon" width="680" height="119"></picture></a>`;
 const CTA = `<a href="/pantheon/" class="nav-cta"><span>Enter</span></a>`;
 const TOGGLE = `<button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-controls="mobile-menu">
                 <span></span>

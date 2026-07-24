@@ -78,6 +78,7 @@ const scripts = [
   'scripts/inject-analytics.js',
   'scripts/inject-university-collaborators.js',
   'scripts/inject-herald-beacon.js',
+  'scripts/inject-cookie-consent.js',
   'scripts/update-data-version.js',
   // Writes data/corpus/entries.jsonl + manifest.json. MUST run before the
   // corpus generators below, several of which read entries.jsonl — running it

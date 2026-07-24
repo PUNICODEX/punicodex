@@ -67,7 +67,7 @@ const files = [
       [/\d+ temples[.,] \d+ pantheons/g, '__SYNC:temple-count__ temples. __SYNC:pantheon-count__ pantheons'],
       [/\d+ temples consecrated/g, '__SYNC:temple-count__ temples consecrated'],
       [/\d+ temples later/g, '__SYNC:temple-count__ temples later'],
-      [/data-count="\d+"/g, 'data-count="__SYNC:temple-count__"'],
+      [/\d+ pantheons represented/g, '__SYNC:pantheon-count__ pantheons represented'],
     ],
     fallbacks: {
       '74 temples. 21 pantheons. One mission': `__SYNC:temple-count__ temples. __SYNC:pantheon-count__ pantheons. One mission`,

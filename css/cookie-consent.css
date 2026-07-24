@@ -1,0 +1,84 @@
+/* PuniCodex — Cookie consent (GDPR/ePrivacy)
+ * First-visit consent surface: obsidian + gold, Cinzel identity,
+ * bottom bar on desktop, bottom sheet on mobile. GPU-only motion. */
+.pc-cookie {
+  position: fixed;
+  left: 50%;
+  bottom: 1.25rem;
+  transform: translateX(-50%) translateY(140%);
+  width: min(680px, calc(100vw - 2rem));
+  background: rgba(12, 12, 15, 0.97);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: 14px;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.65), 0 0 32px rgba(212, 175, 55, 0.08);
+  padding: 1rem 1.25rem;
+  z-index: 10040;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  font-family: 'Spectral', Georgia, serif;
+  color: #e8e4dc;
+  backdrop-filter: blur(8px);
+}
+.pc-cookie.pc-cookie--visible {
+  transform: translateX(-50%) translateY(0);
+}
+.pc-cookie__title {
+  font-family: 'Cinzel', serif;
+  color: #d4af37;
+  font-size: 0.92rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0 0 0.35rem;
+}
+.pc-cookie__text {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: #b9b3a8;
+  margin: 0 0 0.9rem;
+}
+.pc-cookie__text a { color: #d4af37; }
+.pc-cookie__row {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+.pc-cookie__btn {
+  flex: 1 1 140px;
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.pc-cookie__btn--accept {
+  background: #d4af37;
+  border: 1px solid #d4af37;
+  color: #0a0a0c;
+  font-weight: 700;
+}
+.pc-cookie__btn--accept:hover { background: #f0d878; border-color: #f0d878; }
+.pc-cookie__btn--decline {
+  background: transparent;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  color: #d4af37;
+}
+.pc-cookie__btn--decline:hover { border-color: #d4af37; background: rgba(212, 175, 55, 0.08); }
+@media (max-width: 640px) {
+  .pc-cookie {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    transform: translateY(110%);
+    border-radius: 14px 14px 0 0;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+  }
+  .pc-cookie.pc-cookie--visible { transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pc-cookie { transition: none; }
+}

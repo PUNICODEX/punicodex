@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google" content="notranslate">
+<title>The Extension — PuniCodex in Your Browser | PUNICODEX</title>
+<meta name="description" content="The PuniCodex browser extension: type restored Unicode names anywhere on the web, and let the Authenticity engine quietly judge every domain you visit. In active development.">
+<link rel="canonical" href="https://punicodex.com/extension/">
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
+<link rel="stylesheet" href="/css/main.css?v=perf12">
+<link rel="stylesheet" href="/css/pc-fx.css?v=1">
+<style>
+.teaser-hero{text-align:center;padding:5.5rem 1rem 2.5rem}
+.teaser-hero .pc-fx-stage{margin:0 auto 1.5rem}
+.teaser-hero h1{font-size:2.4rem;margin:.4rem 0 .6rem}
+.teaser-hero .tag{max-width:64ch;margin:0 auto;color:var(--text-dim,#9a948a)}
+.status-pill{display:inline-block;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;border:1px solid rgba(212,175,55,.4);border-radius:999px;padding:.3rem .9rem;color:#d4af37;margin-bottom:1rem}
+.feat-grid{max-width:1100px;margin:0 auto;padding:1rem 1.25rem 2rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.25rem}
+.feat{background:#121216;border:1px solid rgba(212,175,55,.18);border-radius:14px;padding:1.4rem}
+.feat h3{font-family:'Cinzel',serif;color:#d4af37;font-size:1.05rem;margin:0 0 .5rem}
+.feat p{color:#b9b3a8;font-size:.92rem;line-height:1.6}
+.codeblock{background:#0a0a0c;border:1px solid rgba(212,175,55,.22);border-radius:10px;padding:1rem 1.1rem;margin-top:.9rem;overflow-x:auto}
+.codeblock .cb-label{font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:#8a8577;margin-bottom:.5rem}
+.codeblock pre{margin:0;font-family:'JetBrains Mono','Fira Code',monospace;font-size:.76rem;line-height:1.55;color:#c9c2ae;white-space:pre}
+.codeblock .k{color:#d4af37}
+.codeblock .s{color:#9ec1ff}
+.codeblock .c{color:#6a6659}
+.roadmap{max-width:1100px;margin:0 auto 4rem;padding:1.5rem 1.25rem}
+.roadmap h2{font-family:'Cinzel',serif;color:#d4af37;font-size:1.4rem;text-align:center;margin-bottom:1.5rem}
+.roadmap ol{max-width:640px;margin:0 auto;color:#b9b3a8;font-size:.95rem;line-height:1.8}
+.roadmap ol strong{color:#e8e4dc}
+@media(max-width:640px){.teaser-hero{padding-top:4rem}}
+</style>
+</head>
+<body>
+    <nav class="main-nav" id="main-nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-wordmark"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-ivory.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-ivory.png" alt="PuniCodex — The Unicode Pantheon" width="680" height="119"></picture></a>
+            <div class="nav-links">
+                <a href="/pantheon/" class="nav-link">Pantheon</a>
+                <a href="/realms/" class="nav-link">Realms</a>
+                <a href="/lexicon/" class="nav-link">Lexicon</a>
+                <a href="/connections/" class="nav-link">Connections</a>
+                <a href="/type/" class="nav-link">Type</a>
+                <a href="/search.html" class="nav-link">Search</a>
+                <div class="nav-more">
+                    <button class="nav-more-toggle" aria-haspopup="true" aria-expanded="false">More</button>
+                    <div class="nav-more-menu">
+                        <a href="/tiers/" class="nav-link">Tier System</a>
+                        <a href="/oracle.html" class="nav-link">Oracle</a>
+                        <a href="/extension/" class="nav-link active" aria-current="page">Extension</a>
+                        <a href="/app/" class="nav-link">App</a>
+                        <a href="/codex/" class="nav-link">Codex</a>
+                        <a href="/blog/" class="nav-link">Blog</a>
+                        <a href="/creatives/" class="nav-link">Creatives</a>
+                        <a href="/scholars/" class="nav-link">Scholars</a>
+                        <a href="/api/v1/docs/" class="nav-link">API</a>
+                        <a href="/appraise/" class="nav-link">Appraise</a>
+                        <a href="/store/" class="nav-link">Store</a>
+                        <a href="/about/" class="nav-link">About</a>
+                        <a href="/contact/" class="nav-link">Contact</a>
+                    </div>
+                </div>
+            </div>
+            <a href="/pantheon/" class="nav-cta"><span>Enter</span></a>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-section">
+            <span class="mobile-menu-title">Explore</span>
+            <div class="mobile-menu-group">
+                <a href="/pantheon/">Pantheon</a>
+                <a href="/realms/">Realms</a>
+                <a href="/lexicon/">Lexicon</a>
+                <a href="/connections/">Connections</a>
+            </div>
+        </div>
+        <div class="mobile-menu-section">
+            <span class="mobile-menu-title">Tools</span>
+            <div class="mobile-menu-group">
+                <a href="/type/">Type</a>
+                <a href="/search.html">Search</a>
+                <a href="/tiers/">Tier System</a>
+                <a href="/oracle.html">Oracle</a>
+                <a href="/extension/" class="active">Extension</a>
+                <a href="/app/">App</a>
+            </div>
+        </div>
+        <div class="mobile-menu-section">
+            <span class="mobile-menu-title">Resources</span>
+            <div class="mobile-menu-group">
+                <a href="/codex/">Codex</a>
+                <a href="/blog/">Blog</a>
+                <a href="/creatives/">Creatives</a>
+                <a href="/scholars/">Scholars</a>
+                <a href="/api/v1/docs/">API</a>
+                <a href="/appraise/">Appraise</a>
+                <a href="/store/">Store</a>
+            </div>
+        </div>
+        <div class="mobile-menu-section">
+            <span class="mobile-menu-title">About</span>
+            <div class="mobile-menu-group">
+                <a href="/about/">About</a>
+                <a href="/contact/">Contact</a>
+            </div>
+        </div>
+    </div>
+
+<div class="teaser-hero">
+  <div class="pc-fx-stage pc-fx-lens-stage" role="img" aria-label="The Lens — a golden lens ring focusing light into a single bright point">
+    <canvas class="pc-fx-lens" aria-hidden="true"></canvas>
+  </div>
+  <span class="status-pill">In Active Development</span>
+  <h1>THE EXTENSION</h1>
+  <p class="tag">PuniCodex in your browser. Type the restored names of the pantheon anywhere on the web — and let the Authenticity engine quietly judge every domain you visit, before it can judge you back.</p>
+</div>
+
+<div class="feat-grid">
+  <div class="feat">
+    <h3>Type the Restoration, Anywhere</h3>
+    <p>The full 924-entry lexicon rides inside the extension. Start a name in any text field and the restored Unicode form — accents, macrons, original scripts — arrives as an inline completion. No clipboard tourism; the names come to where you already are.</p>
+    <div class="codeblock">
+      <div class="cb-label">content/autocomplete.js — inline completion (v1, shipping)</div>
+      <pre><span class="k">const</span> shortcut = isMac ? <span class="s">'⌘+Shift+P'</span> : <span class="s">'Ctrl+Shift+P'</span>;
+<span class="c">// Opens the full typing interface over any page,</span>
+<span class="c">// with the lexicon already resident — no round trips.</span></pre>
+    </div>
+  </div>
+
+  <div class="feat">
+    <h3>Authenticity on Patrol</h3>
+    <p>Every domain you visit is evaluated against the confusable atlas and the policy engine — cached for five minutes, timed out at eight seconds, never blocking your path unless the verdict demands it. High and critical threats meet a full-page interstitial; everything else passes in silence.</p>
+    <div class="codeblock">
+      <div class="cb-label">background/background.js — the actual service worker (v2)</div>
+      <pre><span class="k">const</span> CACHE_TTL_MS = <span class="s">5 * 60 * 1000</span>;
+<span class="k">const</span> FETCH_TIMEOUT_MS = <span class="s">8000</span>;
+<span class="k">function</span> isCheckableUrl(url) {
+  <span class="k">try</span> {
+    <span class="k">const</span> parsed = <span class="k">new</span> URL(url);
+    <span class="k">return</span> parsed.protocol === <span class="s">'http:'</span> || parsed.protocol === <span class="s">'https:'</span>;
+  } <span class="k">catch</span> { <span class="k">return false</span>; }
+}</pre>
+    </div>
+  </div>
+
+  <div class="feat">
+    <h3>Policy, Not Panic</h3>
+    <p>Allow and block lists are yours. The extension evaluates <em>your</em> policy first, the threat feed second — so a whitelisted partner domain never interrupts your day, and a lookalike of your bank never gets the benefit of the doubt.</p>
+    <div class="codeblock">
+      <div class="cb-label">shared/policy.js — verdicts with reasons attached</div>
+      <pre><span class="c">// evaluatePolicy(domain, verdict) →</span>
+<span class="c">// { action: 'allow' | 'warn' | 'interstitial', reason }</span>
+<span class="c">// Your rules always outrank the feed.</span></pre>
+    </div>
+  </div>
+</div>
+
+<div class="roadmap">
+  <h2>WHERE IT STANDS</h2>
+  <ol>
+    <li><strong>Today:</strong> the type-tool extension (v1) ships inline autocomplete, the full typing popup, and the Ctrl+Shift+P / ⌘+Shift+P shortcut. The Authenticity extension (v2) already blocks high and critical threats with a full-page interstitial, banner warnings, link highlighting, and configurable allow/blocklists.</li>
+    <li><strong>Now building:</strong> shared state with the web account — your allowlist and consent follow you from browser to browser.</li>
+    <li><strong>Then:</strong> temple-aware context. Browse any flagship temple and the extension understands which deity's domain you're in — and guards it accordingly.</li>
+  </ol>
+</div>
+
+<script src="/js/px-core.js?v=perf21" defer></script>
+<script src="/js/pc-fx-core.js?v=2" defer></script>
+<script src="/js/pc-fx-lens.js?v=1" defer></script>
+</body>
+</html>

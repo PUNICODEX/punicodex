@@ -227,12 +227,16 @@
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1">
 <script src="/js/herald-beacon.js?v=1" defer></script>
 <!-- PUNICODEX-HERALD-BEACON-END -->
+<!-- PUNICODEX-COOKIE-CONSENT-START -->
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1">
+<script src="/js/cookie-consent.js?v=1" defer></script>
+<!-- PUNICODEX-COOKIE-CONSENT-END -->
 </head>
 <body>
 
     <nav class="main-nav" id="main-nav">
         <div class="nav-inner">
-            <a href="/" class="nav-wordmark"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-camel-gold.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-camel-gold.png" alt="PuniCodex — The Unicode Pantheon" width="680" height="119"></picture></a>
+            <a href="/" class="nav-wordmark"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-ivory.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-ivory.png" alt="PuniCodex — The Unicode Pantheon" width="680" height="119"></picture></a>
             <div class="nav-links">
                 <a href="/pantheon/" class="nav-link">Pantheon</a>
                 <a href="/realms/" class="nav-link">Realms</a>
@@ -245,6 +249,8 @@
                     <div class="nav-more-menu">
                         <a href="/tiers/" class="nav-link">Tier System</a>
                         <a href="/oracle.html" class="nav-link">Oracle</a>
+                        <a href="/extension/" class="nav-link">Extension</a>
+                        <a href="/app/" class="nav-link">App</a>
                         <a href="/codex/" class="nav-link">Codex</a>
                         <a href="/blog/" class="nav-link">Blog</a>
                         <a href="/creatives/" class="nav-link">Creatives</a>
@@ -268,18 +274,45 @@
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobile-menu">
-        <a href="/pantheon/">Pantheon</a>
-        <a href="/realms/">Realms</a>
-        <a href="/lexicon/">Lexicon</a>
-        <a href="/tiers/">Tier System</a>
-        <a href="/type/">Type</a>
-        <a href="/search.html">Search</a>
-        <a href="/codex/">Codex</a>
-        <a href="/api/v1/docs/">API</a>
-        <a href="/appraise/">Appraise</a>
-        <a href="/store/">Store</a>
-        <a href="/about/">About</a>
-        <a href="/contact/">Contact</a>
+        <div class="mobile-menu-section">
+            <span class="mobile-menu-title">Explore</span>
+            <div class="mobile-menu-group">
+                <a href="/pantheon/">Pantheon</a>
+                <a href="/realms/">Realms</a>
+                <a href="/lexicon/">Lexicon</a>
+                <a href="/connections/">Connections</a>
+            </div>
+        </div>
+        <div class="mobile-menu-section">
+            <span class="mobile-menu-title">Tools</span>
+            <div class="mobile-menu-group">
+                <a href="/type/">Type</a>
+                <a href="/search.html">Search</a>
+                <a href="/tiers/">Tier System</a>
+                <a href="/oracle.html">Oracle</a>
+                <a href="/extension/">Extension</a>
+                <a href="/app/">App</a>
+            </div>
+        </div>
+        <div class="mobile-menu-section">
+            <span class="mobile-menu-title">Resources</span>
+            <div class="mobile-menu-group">
+                <a href="/codex/">Codex</a>
+                <a href="/blog/">Blog</a>
+                <a href="/creatives/">Creatives</a>
+                <a href="/scholars/">Scholars</a>
+                <a href="/api/v1/docs/">API</a>
+                <a href="/appraise/">Appraise</a>
+                <a href="/store/">Store</a>
+            </div>
+        </div>
+        <div class="mobile-menu-section">
+            <span class="mobile-menu-title">About</span>
+            <div class="mobile-menu-group">
+                <a href="/about/">About</a>
+                <a href="/contact/">Contact</a>
+            </div>
+        </div>
     </div>
 
   <div class="container">
@@ -308,6 +341,32 @@
 
     <div class="group-list">
       <h2 style="font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:1rem;">Product-Specific Agreements</h2>
+
+      <a href="/terms/store/" class="group-card">
+        <div class="group-icon"><picture><source srcset="/assets/brand/13-page-visuals/store/golden-brilliant.webp" type="image/webp"><img src="/assets/brand/13-page-visuals/store/golden-brilliant.png" alt="" width="48" height="48" loading="lazy" decoding="async"></picture></div>
+        <div class="group-content">
+          <h3>Reliquary Sale Terms <span class="group-status status-live">Live</span></h3>
+          <p>Terms for the Reliquary print-on-demand store: made-to-order production by our fulfillment partner, pricing and payment, worldwide shipping and risk, returns for defects and misprints, and intellectual property in the designs.</p>
+          <div class="group-meta">
+            <span>Made to order</span>
+            <span>Worldwide shipping</span>
+            <span>Defect guarantee</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="/terms/creatives/" class="group-card">
+        <div class="group-icon"><picture><source srcset="/assets/brand/13-page-visuals/creatives/muse-flame.webp" type="image/webp"><img src="/assets/brand/13-page-visuals/creatives/muse-flame.png" alt="" width="48" height="48" loading="lazy" decoding="async"></picture></div>
+        <div class="group-content">
+          <h3>Creative Marketplace Terms <span class="group-status status-live">Live</span></h3>
+          <p>Terms for the student creative marketplace: creator copyright and the opt-in merch license, the 50/50 net-margin revenue share, buyer digital licenses, moderation, and withdrawal.</p>
+          <div class="group-meta">
+            <span>50/50 net margin</span>
+            <span>Creator retains copyright</span>
+            <span>Withdrawable consent</span>
+          </div>
+        </div>
+      </a>
 
       <a href="/terms/advertising/" class="group-card">
         <div class="group-icon"><picture><source srcset="/assets/brand/03-ornaments/punicodex-medallion-frame.webp" type="image/webp"><img src="/assets/brand/03-ornaments/punicodex-medallion-frame.png" alt="" width="48" height="48" loading="lazy" decoding="async"></picture></div>
@@ -440,7 +499,7 @@
         </div>
     </footer>
 
-    <script src="/js/px-core.js?v=perf9"></script>
+    <script src="/js/px-core.js?v=perf21"></script>
     <script src="/js/main.js?v=perf8"></script>
 </body>
 </html>
