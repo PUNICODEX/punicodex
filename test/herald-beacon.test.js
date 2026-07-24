@@ -87,6 +87,11 @@ async function run() {
     assert.ok(!herald.includes('PUNICODEX-HERALD-BEACON-START'), 'no beacon on the Herald page');
     const admin = fs.readFileSync(path.join(ROOT, 'platform', 'public', 'admin-portal', 'index.html'), 'utf8');
     assert.ok(!admin.includes('PUNICODEX-HERALD-BEACON-START'), 'no beacon in admin portal');
+
+    // The herald injector is last-writer-wins before </head>, so these two
+    // runs flip every page to cookie-then-herald order. Restore the pipeline
+    // equilibrium (cookie last) or the Divergence Gate sees 6,952 dirty files.
+    execSync('node scripts/inject-cookie-consent.js', { cwd: ROOT, stdio: 'pipe' });
   });
 
   const exe = findBrowser();
