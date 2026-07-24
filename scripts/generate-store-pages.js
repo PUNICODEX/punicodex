@@ -295,6 +295,7 @@ function head({ title, description, path: pagePath, css = '' }) {
             </div>
         </div>
     </div>
+    <script src="/js/px-core.js?v=perf21" defer></script>
     <script src="/js/main.js?v=perf12" defer></script>`;
 }
 

@@ -286,7 +286,7 @@
 @media (max-width: 768px) {
     .pantheon-grid {
         grid-template-columns: repeat(3, 1fr);
-        gap: var(--space-2);
+        gap: 8px;
     }
 }
 
@@ -321,6 +321,20 @@
 
 .section-pantheon .archetype-card .card-name {
     font-size: 17px;
+}
+
+/* Match the /pantheon mobile card exactly — compact and neat. */
+@media (max-width: 768px) {
+    .section-pantheon .archetype-card {
+        padding: 10px 6px;
+    }
+    .section-pantheon .archetype-card .card-portrait {
+        width: 78px;
+        height: 78px;
+    }
+    .section-pantheon .archetype-card .card-name {
+        font-size: 14px;
+    }
 }
 
 .pantheon-status {

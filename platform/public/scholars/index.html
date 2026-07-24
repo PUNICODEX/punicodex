@@ -141,7 +141,17 @@
         }
         @media (max-width: 640px) {
             .hero-stats { gap: 1.4rem; }
-            .editions-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+            .editions-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+                padding: 1rem 0.75rem 4rem;
+            }
+            /* Compact pantheon-style thumbs — the grey card surface stays. */
+            .edition-card { padding: 10px 6px; border-radius: 10px; }
+            .edition-card .edition-mascot { width: 78px; height: 78px; }
+            .edition-card .edition-name { font-size: 14px; }
+            .edition-card .edition-script { font-size: 0.68rem; }
+            .edition-card .edition-actions { flex-wrap: wrap; justify-content: center; }
         }
     </style>
 </head>
