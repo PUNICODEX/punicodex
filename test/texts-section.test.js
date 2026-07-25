@@ -78,19 +78,62 @@ test('greek corpus: 1,022 lines, numbered exactly 1..1022', () => {
   );
 });
 
-test('english corpus: chunks cover 1..1022 contiguously with no overlap', () => {
+test('english corpus: ranges tile 1..1022 exactly (set-based), document order preserved', () => {
   const eng = JSON.parse(read(path.join('platform', 'texts', 'theogony', 'eng.json')));
   assert.strictEqual(eng.lang, 'eng');
   assert.ok(eng.chunks.length > 100, `suspiciously few chunks: ${eng.chunks.length}`);
-  let prevTo = 0;
   for (const c of eng.chunks) {
     assert.ok(Number.isInteger(c.from) && Number.isInteger(c.to), 'non-integer range');
     assert.ok(c.from >= 1 && c.to >= c.from, `bad range ${c.from}-${c.to}`);
-    assert.strictEqual(c.from, prevTo + 1, `coverage gap/overlap before chunk ${c.from}-${c.to}`);
     assert.ok(typeof c.text === 'string' && c.text.length > 0, `empty chunk text at ${c.from}`);
-    prevTo = c.to;
   }
-  assert.strictEqual(prevTo, 1022, 'chunks must end exactly at line 1022');
+  // Ranges are true line intervals: sorted numerically, each chunk ends one
+  // line before the next anchor, and the last ends exactly at 1022.
+  const sorted = [...eng.chunks].sort((a, b) => a.from - b.from);
+  for (let i = 0; i < sorted.length; i++) {
+    const want = i + 1 < sorted.length ? sorted[i + 1].from - 1 : 1022;
+    assert.strictEqual(
+      sorted[i].to,
+      want,
+      `chunk ${sorted[i].from} should end at ${want}, got ${sorted[i].to}`
+    );
+  }
+  // Set-based coverage: every Greek line inside exactly one chunk — this
+  // holds even where the document order transposes chunks.
+  const cover = new Array(1023).fill(0);
+  for (const c of eng.chunks) for (let n = c.from; n <= c.to; n++) cover[n]++;
+  for (let n = 1; n <= 1022; n++) {
+    assert.strictEqual(cover[n], 1, `line ${n} covered ${cover[n]} times`);
+  }
+  // Document order is TEI reading order, NOT numeric order: at Rzach's
+  // transpositions the anchor order must be 425, 427, 426 (Evelyn-White
+  // translates in the edition's printed order).
+  const docOrder = eng.chunks.map((c) => c.from);
+  const i425 = docOrder.indexOf(425);
+  assert.deepStrictEqual(
+    docOrder.slice(i425, i425 + 4),
+    [425, 427, 426, 428],
+    'Hekate transposition must keep TEI document order (425, 427, 426, 428)'
+  );
+  const i434 = docOrder.indexOf(434);
+  assert.ok(
+    docOrder.indexOf(430) > i434 && docOrder.indexOf(433) > i434,
+    'chunk 434 must precede 430–433 in document order'
+  );
+});
+
+test('anchor swap: line 213 is the Night clause, line 214 is Blame/Woe', () => {
+  const eng = JSON.parse(read(path.join('platform', 'texts', 'theogony', 'eng.json')));
+  const at = (n) => eng.chunks.find((c) => c.from === n);
+  assert.ok(at(213), 'chunk anchored at 213 missing');
+  assert.ok(at(214), 'chunk anchored at 214 missing');
+  assert.ok(
+    at(213).text.includes('murky Night'),
+    `213 should be the Night clause: ${at(213).text}`
+  );
+  assert.ok(at(214).text.includes('bare Blame'), `214 should be Blame/Woe: ${at(214).text}`);
+  assert.strictEqual(at(213).to, 213, '213 is a single-line chunk');
+  assert.strictEqual(at(214).to, 214, '214 is a single-line chunk');
 });
 
 // ── Cross-reference table ───────────────────────────────────────────────────
@@ -195,6 +238,117 @@ test('theogony page carries the scholarly anchors (incipit, closing, deep links,
   assert.ok(html.includes('Θεογονία'), 'native title missing');
   assert.ok(html.includes('Evelyn-White'), 'Evelyn-White attribution missing');
   assert.ok(html.includes('Perseus'), 'Perseus attribution missing');
+});
+
+test('english reading order: Night clause before Blame/Woe; Hekate transpositions preserved', () => {
+  const html = read(path.join('texts', 'theogony', 'index.html'));
+  const engView = html.split('id="tx-view-eng"')[1].split('id="tx-view-grc"')[0];
+  const order = [...engView.matchAll(/<article class="tx-chunk" id="L(\d+)-(\d+)"/g)].map((m) =>
+    Number(m[1])
+  );
+  const i210 = order.indexOf(210);
+  assert.deepStrictEqual(
+    order.slice(i210, i210 + 4),
+    [210, 213, 214, 215],
+    'Night clause (213) must display before Blame/Woe (214)'
+  );
+  const i425 = order.indexOf(425);
+  assert.deepStrictEqual(
+    order.slice(i425, i425 + 8),
+    [425, 427, 426, 428, 434, 430, 433, 435],
+    'Hekate passage must keep Evelyn-White reading order (427 before 426, 434 before 430)'
+  );
+  // The sentence must read continuously: "...holds ... privilege ... Also,
+  // because she is an only child ... but much more still, for Zeus honors her."
+  const i425t = engView.indexOf('but she holds, as the division was at the first');
+  const i427t = engView.indexOf('privilege both in earth, and in heaven, and in sea.');
+  const i426t = engView.indexOf('because she is an only child');
+  const i428t = engView.indexOf('but much more still, for Zeus honors her.');
+  assert.ok(
+    i425t !== -1 && i427t > i425t && i426t > i427t && i428t > i426t,
+    'Hekate sentence fragments out of order'
+  );
+});
+
+test('parallel view pairs chunks to Greek lines by range, correctly at transpositions', () => {
+  const grc = JSON.parse(read(path.join('platform', 'texts', 'theogony', 'grc.json')));
+  const byN = new Map(grc.lines.map((l) => [l.n, l.text]));
+  const html = read(path.join('texts', 'theogony', 'index.html'));
+  const parView = html.split('id="tx-view-par"')[1].split('tx-mentioned')[0];
+  // Every chunk pairs exactly the lines [from..to], in numeric order.
+  const re = /<article class="tx-pair" data-from="(\d+)" data-to="(\d+)"/g;
+  let m;
+  let count = 0;
+  while ((m = re.exec(parView))) {
+    count++;
+    const from = Number(m[1]);
+    const to = Number(m[2]);
+    const block = parView.slice(m.index, parView.indexOf('</article>', m.index));
+    const ns = [...block.matchAll(/<div class="tx-line" data-l="(\d+)">/g)].map((x) =>
+      Number(x[1])
+    );
+    const want = [];
+    for (let n = from; n <= to; n++) want.push(n);
+    assert.deepStrictEqual(ns, want, `chunk ${from}-${to} mispaired`);
+  }
+  assert.strictEqual(count, 211, 'expected 211 parallel pairs');
+  // Transposition spot check: chunk 427 renders the Greek of line 427
+  // (καὶ γέρας …) beneath "privilege both in earth…".
+  const i427 = parView.indexOf('data-from="427"');
+  const block427 = parView.slice(i427, parView.indexOf('</article>', i427));
+  assert.ok(block427.includes('data-l="427"'), 'chunk 427 does not pair Greek line 427');
+  assert.ok(
+    block427.includes('καὶ γέρας ἐν γαίῃ'),
+    `chunk 427 should render Greek 427: ${byN.get(427)}`
+  );
+});
+
+test('nemean lion chip renders with the space (lexicon unicode fixed canonically)', () => {
+  const lexEntry = LEXICON.find((e) => e.id === 'nemeanlion');
+  assert.strictEqual(lexEntry.unicode, 'Nemean Léon', 'canonical lexicon unicode must be spaced');
+  const html = read(path.join('texts', 'theogony', 'index.html'));
+  assert.ok(html.includes('Nemean Léon'), 'spaced chip missing from the page');
+  assert.ok(!html.includes('NemeanLéon'), 'unspaced form still present on the page');
+});
+
+test('movement display ranges snap to chunk edges at the seams', () => {
+  const html = read(path.join('texts', 'theogony', 'index.html'));
+  const engView = html.split('id="tx-view-eng"')[1].split('id="tx-view-grc"')[0];
+  const ranges = [
+    ...engView.matchAll(/<span class="tx-movement-range">lines (\d+)–(\d+)<\/span>/g),
+  ].map((m) => [Number(m[1]), Number(m[2])]);
+  assert.deepStrictEqual(
+    ranges,
+    [
+      [1, 114],
+      [115, 229],
+      [230, 334],
+      [335, 614],
+      [615, 884],
+      [885, 959],
+      [960, 1022],
+    ],
+    'snapped movement ranges must follow the chunk anchors'
+  );
+  // No post-seam content is stranded: the chunk containing line 116 renders
+  // under The First Gods, not the Proem.
+  const proemSection = engView.split('id="proem"')[1].split('id="first-gods"')[0];
+  assert.ok(!proemSection.includes('id="L115-119"'), 'chunk [115-119] must not sit in the Proem');
+  const firstGodsSection = engView.split('id="first-gods"')[1].split('id="sea-deities"')[0];
+  assert.ok(firstGodsSection.includes('id="L115-119"'), 'chunk [115-119] must open The First Gods');
+  assert.ok(
+    html.includes('Section ranges follow the poem') &&
+      html.includes('display blocks snap to the nearest line block at the seams'),
+    'seam footnote missing from the colophon'
+  );
+});
+
+test('licensing line distinguishes Perseus CC BY-SA from site CC BY and public domain', () => {
+  const html = read(path.join('texts', 'theogony', 'index.html'));
+  assert.ok(html.includes('CC BY-SA'), 'CC BY-SA missing');
+  assert.ok(html.includes('share-alike'), 'share-alike gloss missing');
+  assert.ok(html.includes('CC BY 4.0'), 'site license distinction missing');
+  assert.ok(html.includes('public domain'), 'public-domain note missing');
 });
 
 test('greek text renders byte-faithfully (tag-stripped output equals the corpus)', () => {

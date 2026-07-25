@@ -226,8 +226,10 @@ test('PATTERN_GRAPH is embedded complete, slimmed, and cannot break the script t
   assert.ok(!m[1].includes('</') && !m[2].includes('</'), 'raw "</" inside the embedded JSON');
   const graph = JSON.parse(m[1].replace(/<\\\//g, '</'));
   const temples = JSON.parse(m[2].replace(/<\\\//g, '</'));
-  assert.strictEqual(graph.industries.length, 53);
-  assert.strictEqual(graph.sectors.length, 7);
+  // Counts must mirror the canonical graph exactly — never hardcode them.
+  const canonical = require(path.join(root, 'type', 'js', 'industry-patterns.js'));
+  assert.strictEqual(graph.industries.length, canonical.INDUSTRY_GROUPS.length);
+  assert.strictEqual(graph.sectors.length, canonical.INDUSTRY_SECTORS.length);
   assert.ok(Object.keys(graph.aliases).length >= 600, 'alias index not embedded');
   assert.ok(!graph.byEntry, 'byEntry should be stripped from the embed');
   assert.ok(

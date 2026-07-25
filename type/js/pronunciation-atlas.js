@@ -7280,7 +7280,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "reconstructed",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration NemeanLéon."
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Nemean Léon."
   },
   "erymanthianboar": {
     "ipa": "/erymantʰianboar/",

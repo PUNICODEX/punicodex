@@ -287,6 +287,20 @@ const MOVEMENTS = [
 // core and is dropped by normGreek (Γαῖʼ → γαι, Φῖκʼ → φικ, Δίʼ → δι).
 const EDGE_PUNCT = /^[,;.·†—]+|[,;.·†—]+$/gu;
 
+// Movement assignment. The scholarly boundaries above are fixed, but the
+// English translation is chunked in ~5-line blocks whose edges rarely align
+// with them (e.g. chunk [115–119] straddles the Proem/First-Gods seam).
+// A chunk is assigned to the movement containing its LAST line, so no
+// post-seam content is ever stranded under the previous movement; each
+// movement's DISPLAYED range is then the union of its assigned chunks —
+// snapped to real chunk edges, recomputed from the actual anchors.
+function scholarlyMovementIndex(n) {
+  for (let i = 0; i < MOVEMENTS.length; i++) {
+    if (n >= MOVEMENTS[i].from && n <= MOVEMENTS[i].to) return i;
+  }
+  return MOVEMENTS.length - 1;
+}
+
 function analyzeGreekLine(text) {
   // Returns { html, ids } — html with temple links baked in (original text
   // preserved byte-faithfully inside the tags), ids = temple ids matched in
@@ -326,21 +340,48 @@ function loadCorpus(text) {
 }
 
 function computeText(text, corpus) {
-  // Per-line analysis.
+  // Per-chunk chips: entities matched in the chunk's Greek line range, in
+  // first-appearance order. Ranges (not display sequence) drive every
+  // pairing, so transposed chunks (427 before 426, 434 before 430) still
+  // attach to their true Greek lines.
+  const chunkShells = corpus.eng.chunks.map((c) => ({
+    from: c.from,
+    to: c.to,
+    text: c.text,
+    movement: scholarlyMovementIndex(c.to),
+  }));
+
+  // Snapped display ranges: the union of the chunks assigned to each
+  // movement. Chunks tile the poem contiguously and assignment is by last
+  // line, so the ranges tile too (displayTo of one movement is displayFrom
+  // of the next minus one).
+  const displayRanges = MOVEMENTS.map(() => ({ from: Infinity, to: -Infinity }));
+  for (const c of chunkShells) {
+    const r = displayRanges[c.movement];
+    r.from = Math.min(r.from, c.from);
+    r.to = Math.max(r.to, c.to);
+  }
+
+  // Per-line analysis. Greek lines group into the same snapped display
+  // ranges so all three views agree on section membership.
+  const movementOfLine = (n) => {
+    for (let i = 0; i < displayRanges.length; i++) {
+      if (n >= displayRanges[i].from && n <= displayRanges[i].to) return i;
+    }
+    return displayRanges.length - 1;
+  };
   const lines = corpus.grc.lines.map((l) => {
     const a = analyzeGreekLine(l.text);
-    return { n: l.n, text: l.text, html: a.html, ids: a.ids };
+    return { n: l.n, text: l.text, html: a.html, ids: a.ids, movement: movementOfLine(l.n) };
   });
 
-  // Per-chunk chips: entities matched in the chunk's Greek line range, in
-  // first-appearance order.
-  const chunks = corpus.eng.chunks.map((c) => {
+  const chunks = chunkShells.map((c) => {
     const seen = [];
     for (const l of lines) {
       if (l.n < c.from || l.n > c.to) continue;
       for (const id of l.ids) if (!seen.includes(id)) seen.push(id);
     }
-    return { from: c.from, to: c.to, text: c.text, ids: seen };
+    return { ...c, ids: seen };
   });
 
   // Mentioned-in-this-text index: every cross-linked temple, ordered by first
@@ -358,7 +399,7 @@ function computeText(text, corpus) {
     (a, b) => firstLine.get(a) - firstLine.get(b) || xrefOrder.get(a) - xrefOrder.get(b)
   );
 
-  return { lines, chunks, mentioned, firstLine, counts };
+  return { lines, chunks, mentioned, firstLine, counts, displayRanges };
 }
 
 // ── Shared CSS (both pages) ─────────────────────────────────────────────────
@@ -475,33 +516,29 @@ function rangeLabel(from, to) {
   return from === to ? `${from}` : `${from}–${to}`;
 }
 
-function movementFor(n) {
-  for (const m of MOVEMENTS) if (n >= m.from && n <= m.to) return m;
-  return MOVEMENTS[MOVEMENTS.length - 1];
-}
-
 // Movement sections repeat across the three language views, so only the
 // English view carries the bare anchor id (#proem); Greek/Parallel sections
 // are suffixed (#proem-grc / #proem-par) and the page script routes section
-// nav clicks to the active view's copy.
-function movementHeadHtml(m, suffix) {
+// nav clicks to the active view's copy. The displayed range is the snapped
+// chunk-edge range computed from the actual chunk anchors (see computeText).
+function movementHeadHtml(m, suffix, display) {
   return `<section class="tx-movement" id="${m.anchor}${suffix}">
             <div class="tx-movement-head">
                 <h2>${escapeHtml(m.label)}</h2>
                 <span class="tx-movement-sub">${escapeHtml(m.sub)}</span>
-                <span class="tx-movement-range">lines ${m.from}–${m.to}</span>
+                <span class="tx-movement-range">lines ${display.from}–${display.to}</span>
             </div>`;
 }
 
 // ── Reading page views ──────────────────────────────────────────────────────
 
 function englishViewHtml(computed) {
-  const byMovement = new Map(MOVEMENTS.map((m) => [m.anchor, []]));
-  for (const c of computed.chunks) byMovement.get(movementFor(c.from).anchor).push(c);
+  const byMovement = MOVEMENTS.map(() => []);
+  for (const c of computed.chunks) byMovement[c.movement].push(c);
   const parts = [];
-  for (const m of MOVEMENTS) {
-    parts.push(movementHeadHtml(m, ''));
-    for (const c of byMovement.get(m.anchor)) {
+  for (let i = 0; i < MOVEMENTS.length; i++) {
+    parts.push(movementHeadHtml(MOVEMENTS[i], '', computed.displayRanges[i]));
+    for (const c of byMovement[i]) {
       parts.push(`            <article class="tx-chunk" id="L${c.from}-${c.to}" data-from="${c.from}" data-to="${c.to}">
                 <div class="tx-chunk-head">
                     <span class="tx-range">${rangeLabel(c.from, c.to)}</span>
@@ -517,12 +554,12 @@ function englishViewHtml(computed) {
 }
 
 function greekViewHtml(computed) {
-  const byMovement = new Map(MOVEMENTS.map((m) => [m.anchor, []]));
-  for (const l of computed.lines) byMovement.get(movementFor(l.n).anchor).push(l);
+  const byMovement = MOVEMENTS.map(() => []);
+  for (const l of computed.lines) byMovement[l.movement].push(l);
   const parts = [];
-  for (const m of MOVEMENTS) {
-    parts.push(movementHeadHtml(m, '-grc'));
-    for (const l of byMovement.get(m.anchor)) {
+  for (let i = 0; i < MOVEMENTS.length; i++) {
+    parts.push(movementHeadHtml(MOVEMENTS[i], '-grc', computed.displayRanges[i]));
+    for (const l of byMovement[i]) {
       const gutter = l.n === 1 || l.n % 5 === 0 ? String(l.n) : '';
       parts.push(`            <div class="tx-line" id="L${l.n}" data-l="${l.n}">
                 <button type="button" class="tx-gut" data-anchor="L${l.n}" title="Line ${l.n} — copy link" aria-label="Line ${l.n} — copy link">${gutter}</button>
@@ -536,12 +573,12 @@ function greekViewHtml(computed) {
 
 function parallelViewHtml(computed) {
   const lineByN = new Map(computed.lines.map((l) => [l.n, l]));
-  const byMovement = new Map(MOVEMENTS.map((m) => [m.anchor, []]));
-  for (const c of computed.chunks) byMovement.get(movementFor(c.from).anchor).push(c);
+  const byMovement = MOVEMENTS.map(() => []);
+  for (const c of computed.chunks) byMovement[c.movement].push(c);
   const parts = [];
-  for (const m of MOVEMENTS) {
-    parts.push(movementHeadHtml(m, '-par'));
-    for (const c of byMovement.get(m.anchor)) {
+  for (let i = 0; i < MOVEMENTS.length; i++) {
+    parts.push(movementHeadHtml(MOVEMENTS[i], '-par', computed.displayRanges[i]));
+    for (const c of byMovement[i]) {
       const grcLines = [];
       for (let n = c.from; n <= c.to; n++) {
         const l = lineByN.get(n);
@@ -840,6 +877,7 @@ ${headHtml({
         <div class="tx-attr">
             <p><strong>${escapeHtml(grcEdition.label)}</strong> — ${escapeHtml(grcEdition.source)}. License: ${escapeHtml(grcEdition.license)}. <a href="${escapeHtml(grcEdition.sourceUrl)}" rel="noopener">Source</a>.</p>
             <p><strong>${escapeHtml(engEdition.label)}</strong> — ${escapeHtml(engEdition.source)}. License: ${escapeHtml(engEdition.license)}.</p>
+            <p><strong>Licensing.</strong> The Greek pane reproduces the Perseus Digital Library digital edition under <strong>CC BY-SA</strong> (share-alike) — a distinct, stricter license than the site's own CC BY 4.0. The Evelyn-White translation (1914) is in the public domain.</p>
         </div>
     </section>
 
@@ -877,7 +915,8 @@ ${mentionedHtml(computed)}
         <div class="tx-colophon-box">
             <h2>Sources &amp; licenses</h2>
             ${editionsHtml(text)}
-            <p>The Greek text is rendered byte-faithfully from the Perseus TEI corpus; the line numbering follows the Greek edition throughout. Gold-underlined names and temple chips are editorial cross-links into the PuniCodex Pantheon.</p>
+            <p>The Greek pane reproduces the Perseus Digital Library digital edition under <strong>CC BY-SA</strong> (share-alike) — a distinct, stricter license than the site's own CC BY 4.0; the Evelyn-White translation (1914) is in the public domain. The Greek text is rendered byte-faithfully from the Perseus TEI corpus; the line numbering follows the Greek edition throughout. Gold-underlined names and temple chips are editorial cross-links into the PuniCodex Pantheon.</p>
+            <p>Section ranges follow the poem's standard movements; display blocks snap to the nearest line block at the seams.</p>
         </div>
     </section>
 

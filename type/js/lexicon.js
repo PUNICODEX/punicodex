@@ -36505,7 +36505,7 @@ const LEXICON = [
   {
     "id": "nemeanlion",
     "ascii": "nemeanlion",
-    "unicode": "NemeanLéon",
+    "unicode": "Nemean Léon",
     "greek": "Νεμεῖος Λέων",
     "pantheon": "greek",
     "tier": "1",

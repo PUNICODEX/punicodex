@@ -276,21 +276,56 @@ function main() {
   fs.writeFileSync(OUT_MANIFEST, JSON.stringify(manifest, null, 2));
 
   // The model-corpus manifest (export-model-corpus.js) runs before the phase
-  // generators in the pipeline, so its chat counts would otherwise lag one
-  // generate behind after any canonical change. This script is the authority
-  // on the split — sync the counts into manifest.json so it always reflects
-  // the files of the current run.
+  // generators in the pipeline, so its counts would otherwise lag one generate
+  // behind after any canonical change. This script reads the freshly generated
+  // phase files — sync every count it computes into manifest.json so the
+  // manifest always reflects the files of the current run.
   const MODEL_MANIFEST = path.join(CORPUS_DIR, 'manifest.json');
   if (fs.existsSync(MODEL_MANIFEST)) {
     const modelManifest = JSON.parse(fs.readFileSync(MODEL_MANIFEST, 'utf8'));
-    if (
-      modelManifest.counts &&
-      (modelManifest.counts.chatTrainExamples !== train.length ||
-        modelManifest.counts.chatEvalExamples !== evalSet.length)
-    ) {
-      modelManifest.counts.chatTrainExamples = train.length;
-      modelManifest.counts.chatEvalExamples = evalSet.length;
-      fs.writeFileSync(MODEL_MANIFEST, JSON.stringify(modelManifest, null, 2));
+    if (modelManifest.counts) {
+      const KEY_BY_SOURCE = {
+        'instructions.jsonl': 'instructions',
+        'safety-examples.jsonl': 'safetyExamples',
+        'dialogue-examples.jsonl': 'dialogueExamples',
+        'tool-use-examples.jsonl': 'toolUseExamples',
+        'multimodal-examples.jsonl': 'multimodalExamples',
+        'preference-examples.jsonl': 'preferenceExamples',
+        'reasoning-examples.jsonl': 'reasoningExamples',
+        'mythology-synthesis.jsonl': 'mythologySynthesisExamples',
+        'oracle-examples.jsonl': 'oracleExamples',
+        'symbolic-correspondences.jsonl': 'symbolicCorrespondenceExamples',
+        'scientific-analogies.jsonl': 'scientificAnalogyExamples',
+      };
+      let dirty = false;
+      for (const [file, key] of Object.entries(KEY_BY_SOURCE)) {
+        const count = bySource[file]?.count;
+        if (Number.isFinite(count) && modelManifest.counts[key] !== count) {
+          modelManifest.counts[key] = count;
+          dirty = true;
+        }
+      }
+      // benchmark.jsonl is written by generate-benchmark-suite.js (earlier in
+      // the pipeline) — same one-run-lag class, same authority sync.
+      const BENCH_PATH = path.join(CORPUS_DIR, 'benchmark.jsonl');
+      if (fs.existsSync(BENCH_PATH)) {
+        const benchCount = readJsonl(BENCH_PATH).length;
+        if (modelManifest.counts.benchmarkExamples !== benchCount) {
+          modelManifest.counts.benchmarkExamples = benchCount;
+          dirty = true;
+        }
+      }
+      if (
+        modelManifest.counts.chatTrainExamples !== train.length ||
+        modelManifest.counts.chatEvalExamples !== evalSet.length
+      ) {
+        modelManifest.counts.chatTrainExamples = train.length;
+        modelManifest.counts.chatEvalExamples = evalSet.length;
+        dirty = true;
+      }
+      if (dirty) {
+        fs.writeFileSync(MODEL_MANIFEST, JSON.stringify(modelManifest, null, 2));
+      }
     }
   }
 
