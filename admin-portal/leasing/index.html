@@ -190,9 +190,11 @@
 
         var bkState = { status: '', temple: '', search: '', offset: 0 };
 
+        var bkItems = [];
         function bookingActions(b) {
-            if (!Portal.can('leasing')) return '<span class="cell-sub">—</span>';
-            var btns = [];
+            var viewBtn = '<button type="button" class="btn btn-sm btn-ghost" data-view="' + bkItems.indexOf(b) + '">View</button>';
+            if (!Portal.can('leasing')) return viewBtn;
+            var btns = [viewBtn];
             var id = b.id;
             if (b.status === 'pending_application') {
                 btns.push('<button type="button" class="btn btn-sm btn-primary" data-action="approve-application" data-id="' + id + '">Approve Application</button>');
@@ -208,7 +210,57 @@
                 btns.push('<button type="button" class="btn btn-sm btn-secondary" data-action="report" data-id="' + id + '">Send Report</button>');
                 btns.push('<button type="button" class="btn btn-sm btn-danger" data-action="end" data-id="' + id + '">End</button>');
             }
-            return btns.length ? btns.join('') : '<span class="cell-sub">—</span>';
+            return btns.join('');
+        }
+
+        function factRow(label, value) {
+            if (value == null || value === '') return '';
+            return '<div><div class="cell-sub">' + label + '</div><div>' + value + '</div></div>';
+        }
+
+        function openBookingDetail(b) {
+            var creative = b.creative_path
+                ? '<div style="margin:0.6rem 0;"><img src="' + Portal.escapeHtml(b.creative_path) + '" alt="Sponsor creative" style="max-width:100%;max-height:280px;border-radius:8px;border:1px solid rgba(212,175,55,0.25);display:block;" onerror="this.outerHTML=\'<div class=&quot;state-block&quot;>Creative failed to load.</div>\'">' +
+                  (b.creative_original_name ? '<div class="cell-sub" style="margin-top:0.3rem;">' + Portal.escapeHtml(b.creative_original_name) + '</div>' : '') +
+                  '</div>'
+                : '<div class="state-block">No creative uploaded yet.</div>';
+            var link = b.website_url
+                ? '<a href="' + Portal.escapeHtml(b.website_url) + '" target="_blank" rel="noopener">' + Portal.escapeHtml(b.website_url) + '</a>'
+                : '—';
+            var facts =
+                '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:0.8rem;margin:1rem 0;">' +
+                factRow('Email', Portal.escapeHtml(b.email || '')) +
+                factRow('Temple', Portal.escapeHtml(b.site_slug || '')) +
+                factRow('Slot', Portal.escapeHtml((b.slot_name || '') + ' (' + (b.slot_slug || '') + ')')) +
+                factRow('Amount paid', b.amount_paid_cents != null ? Portal.fmtDollars(b.amount_paid_cents) : '') +
+                factRow('Lease', b.lease_months ? b.lease_months + ' month(s)' : '') +
+                factRow('Billing', Portal.escapeHtml(b.billing_status || '') + (b.billing_status === 'trialing' && b.trial_ends_at ? ' until ' + Portal.fmtDate(b.trial_ends_at) : '')) +
+                factRow('Created', Portal.fmtDate(b.created_at)) +
+                factRow('Started', Portal.fmtDate(b.started_at)) +
+                factRow('Ends', Portal.fmtDate(b.ends_at)) +
+                factRow('Stripe session', b.stripe_session_id ? '<span style="word-break:break-all;font-size:0.75rem;">' + Portal.escapeHtml(b.stripe_session_id) + '</span>' : '') +
+                factRow('Stripe subscription', b.stripe_subscription_id ? '<span style="word-break:break-all;font-size:0.75rem;">' + Portal.escapeHtml(b.stripe_subscription_id) + '</span>' : '') +
+                factRow('Admin note', Portal.escapeHtml(b.admin_note || '')) +
+                '</div>';
+            var overlay = Portal.openModal(
+                '<h2 style="margin-top:0;">' + Portal.escapeHtml(b.company_name || 'Booking') + ' ' + Portal.statusBadge(b.status) + '</h2>' +
+                '<div class="cell-sub">' + Portal.escapeHtml(b.email || '') + '</div>' +
+                creative +
+                '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0.8rem;margin:0.8rem 0;">' +
+                factRow('Link', link) +
+                factRow('Heading', Portal.escapeHtml(b.custom_heading || '—')) +
+                factRow('Subheading', Portal.escapeHtml(b.custom_subtitle || '—')) +
+                '</div>' +
+                facts +
+                '<div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:1rem;">' + bookingActions(b) + '</div>',
+                'Booking detail'
+            );
+            overlay.addEventListener('click', function (e) {
+                var btn = e.target.closest('button[data-action]');
+                if (!btn) return;
+                Portal.closeModal();
+                bookingAction(btn.getAttribute('data-id'), btn.getAttribute('data-action'));
+            });
         }
 
         function renderBookingStats(data) {
@@ -235,6 +287,7 @@
             } else {
                 var rows = items
                     .map(function (b) {
+                        bkItems = items;
                         var billing =
                             b.status === 'live' && b.billing_status === 'trialing'
                                 ? '<div class="cell-sub">trialing</div>'
@@ -459,16 +512,29 @@
                                 actions += '<button type="button" class="btn btn-sm btn-secondary" data-action="expired" data-id="' + p.id + '">Expire</button>';
                             }
                         }
+                        var social = p.social_url
+                            ? '<a href="' + Portal.escapeHtml(p.social_url) + '" target="_blank" rel="noopener">' +
+                              Portal.escapeHtml(p.social_platform || 'link') +
+                              '</a>'
+                            : '<span class="cell-sub">—</span>';
+                        var message = p.message
+                            ? '<details style="margin-top:0.25rem;"><summary class="cell-sub" style="cursor:pointer;">message</summary><div class="cell-sub" style="max-width:32ch;">' +
+                              Portal.escapeHtml(p.message) +
+                              '</div></details>'
+                            : '';
                         return (
                             '<tr>' +
                             '<td><span class="badge badge--gold">' + Portal.escapeHtml(p.temple_id || '—') + '</span></td>' +
                             '<td><div class="cell-title">' + Portal.escapeHtml(p.display_name || '—') + '</div>' +
-                            '<div class="cell-sub">' + Portal.escapeHtml(p.email || '') + '</div></td>' +
+                            '<div class="cell-sub">' + Portal.escapeHtml(p.email || '') + '</div>' +
+                            (p.title ? '<div class="cell-sub">' + Portal.escapeHtml(p.title) + '</div>' : '') +
+                            message +
+                            '</td>' +
                             '<td>' + Portal.fmtDollars(p.amount_cents) + '/mo</td>' +
+                            '<td>' + social + '</td>' +
                             '<td>' + Portal.statusBadge(p.status) + '</td>' +
                             '<td>' + Portal.escapeHtml(Portal.fmtDate(p.started_at)) + '</td>' +
                             '<td>' + Portal.escapeHtml(Portal.fmtDate(p.ends_at)) + '</td>' +
-                            '<td>' + Portal.escapeHtml(Portal.fmtDate(p.created_at)) + '</td>' +
                             '<td><div class="cell-actions">' + actions + '</div></td>' +
                             '</tr>'
                         );
@@ -476,7 +542,7 @@
                     .join('');
                 wrap.innerHTML =
                     '<div class="table-wrap"><table class="portal-table">' +
-                    '<thead><tr><th>Temple</th><th>Patron</th><th>Amount</th><th>Status</th><th>Started</th><th>Ends</th><th>Created</th><th>Actions</th></tr></thead>' +
+                    '<thead><tr><th>Temple</th><th>Patron</th><th>Amount</th><th>Social</th><th>Status</th><th>Started</th><th>Ends</th><th>Actions</th></tr></thead>' +
                     '<tbody>' + rows + '</tbody></table></div>';
             }
             updatePager('patron', data, items.length);
@@ -584,6 +650,12 @@
             });
             bindPager('booking', bkState, loadBookings);
             document.getElementById('booking-table').addEventListener('click', function (e) {
+                var viewBtn = e.target.closest('button[data-view]');
+                if (viewBtn) {
+                    var b = bkItems[Number(viewBtn.getAttribute('data-view'))];
+                    if (b) openBookingDetail(b);
+                    return;
+                }
                 var btn = e.target.closest('button[data-action]');
                 if (!btn) return;
                 bookingAction(btn.getAttribute('data-id'), btn.getAttribute('data-action'));

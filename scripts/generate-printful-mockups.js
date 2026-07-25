@@ -68,34 +68,38 @@ function assetUrlFor(product, assetKey) {
 }
 
 // Mockup-generator placement ids vary by product family (unlike the sync
-// API's uniform default/back).
-const KIND_FRONT_PLACEMENT = {
-  tee: 'front',
-  hoodie: 'front',
-  crewneck: 'front',
-  print: 'default',
-  canvas: 'default',
-  notebook: 'front',
-  tote: 'front',
-  tumbler: 'front',
-  sticker: 'default',
-  pin: 'front',
-  mug: 'default',
-  phonecase: 'default',
-  cap: 'embroidery_front',
+// API's uniform default/back). Verified against GET /products/{id} `files`
+// for every catalog; `back: null` means the product is single-faced and the
+// back design must be skipped rather than rejected by the API.
+const KIND_PLACEMENTS = {
+  tee: { front: 'front', back: 'back' },
+  hoodie: { front: 'front', back: 'back' },
+  crewneck: { front: 'front', back: 'back' },
+  print: { front: 'default', back: null },
+  canvas: { front: 'default', back: null },
+  notebook: { front: 'front', back: 'back' },
+  tote: { front: 'front', back: 'back' },
+  tumbler: { front: 'default', back: null },
+  sticker: { front: 'default', back: null },
+  pin: { front: 'front', back: null },
+  mug: { front: 'default', back: null },
+  phonecase: { front: 'default', back: null },
+  cap: { front: 'embroidery_front', back: null },
 };
 
 function designFiles(product) {
   const kind = product.id.split('-').pop();
-  const frontPlacement = KIND_FRONT_PLACEMENT[kind] || 'front';
+  const conf = KIND_PLACEMENTS[kind] || { front: 'front', back: null };
   const byArea = new Map();
   for (const pl of product.design.placements) {
     if (!byArea.has(pl.area)) byArea.set(pl.area, pl.asset);
   }
   const files = [];
   for (const [area, assetKey] of byArea) {
+    const placement = conf[area];
+    if (!placement) continue; // single-faced product: skip the back design
     const url = assetUrlFor(product, assetKey);
-    if (url) files.push({ placement: area === 'back' ? 'back' : frontPlacement, url, assetKey });
+    if (url) files.push({ placement, url, assetKey });
   }
   return files;
 }
@@ -177,11 +181,14 @@ async function templateFor(state, catalogId, placement) {
   if (state.templates[cacheKey]) return state.templates[cacheKey];
   const result = await api('GET', `/mockup-generator/templates/${catalogId}`);
   const all = result.templates || [];
-  const preferred = all.find((x) => x.placement === placement) || all[0];
+  // Templates carry no placement id — only `is_template_on_front`. Resolve
+  // front vs back from that flag; fall back to the first template.
+  const wantFront = placement !== 'back';
+  const preferred = all.find((x) => x.is_template_on_front === wantFront) || all[0];
   state.templates[cacheKey] = {
     area_width: preferred.print_area_width,
     area_height: preferred.print_area_height,
-    placement: preferred.placement,
+    placement,
   };
   saveState(state);
   return state.templates[cacheKey];
