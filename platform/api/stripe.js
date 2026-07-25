@@ -366,6 +366,7 @@ module.exports = {
   createPatronCheckoutSession,
   createStoreCheckoutSession,
   handleWebhook,
+  getStripe,
   PRICE_BASE,
   PRICE_PREMIUM,
 };

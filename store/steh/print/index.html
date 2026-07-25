@@ -180,7 +180,7 @@ a:hover{color:var(--gold-bright)}
     <span class="pill">Art Print</span> <span class="pill">Stḫ</span>
     <h1>Stḫ Mascot Art Print</h1>
     <p style="color:var(--dim)">Museum-grade matte poster, 30×40 cm, ready to frame.</p>
-    <div class="price">$29.00</div>
+    <div class="price" id="pdp-price">from $29.00</div>
     
     <div class="opt-group"><div class="lbl">Option</div><div class="opts" id="opts-size"><button class="opt active" data-s="21×30 cm">21×30 cm</button><button class="opt" data-s="30×40 cm">30×40 cm</button><button class="opt" data-s="50×70 cm">50×70 cm</button><button class="opt" data-s="61×91 cm">61×91 cm</button><button class="opt" data-s="A1 (59.4×84.1 cm)">A1 (59.4×84.1 cm)</button><button class="opt" data-s="A2 (42×59.4 cm)">A2 (42×59.4 cm)</button></div></div>
     <div class="opt-group">
@@ -220,7 +220,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = null;
+  var PRICES = {"A1 (59.4×84.1 cm)":3900,"A2 (42×59.4 cm)":3300,"21×30 cm":2900,"30×40 cm":3400,"50×70 cm":3800,"61×91 cm":4400};
   var FLAT_PRICE = "$29.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');

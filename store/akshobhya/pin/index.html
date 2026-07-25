@@ -180,7 +180,7 @@ a:hover{color:var(--gold-bright)}
     <span class="pill">Enamel Pin</span> <span class="pill">Akṣobhya</span>
     <h1>Akṣobhya Seal Enamel Pin</h1>
     <p style="color:var(--dim)">Hard enamel pin of the temple mark, gold on obsidian.</p>
-    <div class="price">$12.00</div>
+    <div class="price" id="pdp-price">from $12.00</div>
     <div class="opt-group"><div class="lbl">Colour</div><div class="opts" id="opts-color"><button class="opt active" data-c="White">White</button></div></div>
     <div class="opt-group"><div class="lbl">Option</div><div class="opts" id="opts-size"><button class="opt active" data-s="1.25″">1.25″</button><button class="opt" data-s="2.25″">2.25″</button></div></div>
     <div class="opt-group">
@@ -220,7 +220,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = null;
+  var PRICES = {"White / 1.25″":1200,"White / 2.25″":1300};
   var FLAT_PRICE = "$12.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');

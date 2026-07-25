@@ -42,6 +42,10 @@ async function processWebhook(rawBody, signature) {
         displayName: patron.display_name,
         templeId: patron.temple_id,
       }).catch(() => {});
+      // Operational alert to the admin inbox; fire-and-forget like the
+      // welcome email so an alert failure never fails the webhook.
+      const { alertPatronSignup } = require('./digest-service');
+      await alertPatronSignup(patron).catch(() => {});
     }
   }
 

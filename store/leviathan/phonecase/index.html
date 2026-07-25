@@ -180,7 +180,7 @@ a:hover{color:var(--gold-bright)}
     <span class="pill">Phone Case</span> <span class="pill">Liwyāṯān</span>
     <h1>Liwyāṯān Mascot Phone Case</h1>
     <p style="color:var(--dim)">Slim impact case — the deity, edge to edge.</p>
-    <div class="price">$24.00</div>
+    <div class="price" id="pdp-price">$24.00</div>
     <div class="opt-group"><div class="lbl">Colour</div><div class="opts" id="opts-color"><button class="opt active" data-c="Glossy">Glossy</button></div></div>
     <div class="opt-group"><div class="lbl">Option</div><div class="opts" id="opts-size"><button class="opt active" data-s="iPhone 11">iPhone 11</button><button class="opt" data-s="iPhone 11 Pro">iPhone 11 Pro</button><button class="opt" data-s="iPhone 11 Pro Max">iPhone 11 Pro Max</button><button class="opt" data-s="iPhone 12 Mini">iPhone 12 Mini</button><button class="opt" data-s="iPhone 12 Pro">iPhone 12 Pro</button><button class="opt" data-s="iPhone 12 Pro Max">iPhone 12 Pro Max</button></div></div>
     <div class="opt-group">
@@ -220,7 +220,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = null;
+  var PRICES = {"Glossy / iPhone 11 Pro Max":2400,"Glossy / iPhone 11 Pro":2400,"Glossy / iPhone 11":2400,"Glossy / iPhone 12 Mini":2400,"Glossy / iPhone 12 Pro Max":2400,"Glossy / iPhone 12 Pro":2400};
   var FLAT_PRICE = "$24.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');

@@ -180,7 +180,7 @@ a:hover{color:var(--gold-bright)}
     <span class="pill">Sticker Set</span> <span class="pill">Ītzpāpālōtl</span>
     <h1>Ītzpāpālōtl Seal Sticker Set</h1>
     <p style="color:var(--dim)">Three weatherproof vinyl seals — the deity, the mark, and the lockup.</p>
-    <div class="price">$9.00</div>
+    <div class="price" id="pdp-price">$9.00</div>
     <div class="opt-group"><div class="lbl">Colour</div><div class="opts" id="opts-color"><button class="opt active" data-c="White">White</button></div></div>
     
     <div class="opt-group">
@@ -220,7 +220,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = null;
+  var PRICES = {"White / 5.83″×8.27″":900};
   var FLAT_PRICE = "$9.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');

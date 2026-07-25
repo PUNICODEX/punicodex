@@ -180,7 +180,7 @@ a:hover{color:var(--gold-bright)}
     <span class="pill">Cap</span> <span class="pill">Ṣàngó</span>
     <h1>Ṣàngó Temple Cap</h1>
     <p style="color:var(--dim)">Six-panel dad cap, the temple mark embroidered in gold.</p>
-    <div class="price">$28.00</div>
+    <div class="price" id="pdp-price">$28.00</div>
     
     
     <div class="opt-group">
@@ -220,7 +220,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = null;
+  var PRICES = {"White":2800};
   var FLAT_PRICE = "$28.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');

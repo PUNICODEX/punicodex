@@ -180,7 +180,7 @@ a:hover{color:var(--gold-bright)}
     <span class="pill">Cap</span> <span class="pill">PuniCodex</span>
     <h1>PuniCodex Glyph Cap</h1>
     <p style="color:var(--dim)">Six-panel cap, the gold glyph embroidered front and centre.</p>
-    <div class="price">$26.00</div>
+    <div class="price" id="pdp-price">$26.00</div>
     
     
     <div class="opt-group">
@@ -220,7 +220,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = null;
+  var PRICES = {"White":2600};
   var FLAT_PRICE = "$26.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');

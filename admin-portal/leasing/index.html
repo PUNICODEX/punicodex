@@ -33,6 +33,7 @@
             <button type="button" class="btn btn-primary btn-sm" role="tab" id="tabbtn-bookings" data-tab="bookings" aria-selected="true" aria-controls="tab-bookings">Bookings</button>
             <button type="button" class="btn btn-secondary btn-sm" role="tab" id="tabbtn-tenants" data-tab="tenants" aria-selected="false" aria-controls="tab-tenants">Tenants</button>
             <button type="button" class="btn btn-secondary btn-sm" role="tab" id="tabbtn-patrons" data-tab="patrons" aria-selected="false" aria-controls="tab-patrons">Patrons</button>
+            <button type="button" class="btn btn-secondary btn-sm" role="tab" id="tabbtn-discounts" data-tab="discounts" aria-selected="false" aria-controls="tab-discounts">Discounts</button>
         </div>
 
         <!-- ═══ Bookings ═══ -->
@@ -147,6 +148,89 @@
                     <button type="button" class="btn btn-secondary btn-sm" id="patron-prev">← Previous</button>
                     <span class="field-hint" id="patron-page-label"></span>
                     <button type="button" class="btn btn-secondary btn-sm" id="patron-next">Next →</button>
+                </div>
+            </section>
+        <!-- ═══ Discounts ═══ -->
+        <div id="tab-discounts" role="tabpanel" aria-labelledby="tabbtn-discounts" hidden>
+            <section aria-label="Discount statistics">
+                <div class="stat-grid" id="discount-stats">
+                    <div class="state-block">Loading discount stats…</div>
+                </div>
+            </section>
+
+            <section class="panel" aria-label="Create discount code" id="discount-create-panel">
+                <div class="panel-head">
+                    <h2 class="panel-title">Create Code</h2>
+                </div>
+                <p class="field-hint">Discount codes apply to temple sponsorships (ad-slot bookings) only — never to patrons. Sponsors quote a code on their application; approval re-validates and redeems it.</p>
+                <div class="portal-form-row">
+                    <div class="field">
+                        <label for="dc-code">Code</label>
+                        <input type="text" id="dc-code" placeholder="e.g. LAUNCH25" maxlength="40">
+                    </div>
+                    <div class="field">
+                        <label for="dc-kind">Kind</label>
+                        <select id="dc-kind">
+                            <option value="percent_off">Percent off</option>
+                            <option value="fixed_off">Fixed amount off</option>
+                            <option value="free_months">Free months</option>
+                            <option value="free_months_then_price">Free months, then a set price</option>
+                            <option value="trial_extension">Trial extension</option>
+                        </select>
+                    </div>
+                    <div class="field" data-dc-field="percent">
+                        <label for="dc-percent">Percent off (1–99)</label>
+                        <input type="number" id="dc-percent" min="1" max="99" step="1" placeholder="25">
+                    </div>
+                    <div class="field" data-dc-field="fixed" hidden>
+                        <label for="dc-fixed">Amount off (USD)</label>
+                        <input type="number" id="dc-fixed" min="0.01" step="0.01" placeholder="50.00">
+                    </div>
+                    <div class="field" data-dc-field="freeMonths" hidden>
+                        <label for="dc-free-months">Free months</label>
+                        <input type="number" id="dc-free-months" min="1" step="1" placeholder="3">
+                    </div>
+                    <div class="field" data-dc-field="thenPrice" hidden>
+                        <label for="dc-then-price">Then price (USD/mo)</label>
+                        <input type="number" id="dc-then-price" min="0.01" step="0.01" placeholder="49.00">
+                    </div>
+                    <div class="field">
+                        <label for="dc-applies-to">Temple</label>
+                        <input type="text" id="dc-applies-to" placeholder="all (or e.g. zeus)">
+                    </div>
+                    <div class="field">
+                        <label for="dc-max-uses">Max uses (optional)</label>
+                        <input type="number" id="dc-max-uses" min="1" step="1" placeholder="unlimited">
+                    </div>
+                    <div class="field">
+                        <label for="dc-expires">Expiry (optional)</label>
+                        <input type="date" id="dc-expires">
+                    </div>
+                    <div class="field">
+                        <label for="dc-note">Note (optional)</label>
+                        <input type="text" id="dc-note" placeholder="Internal note" maxlength="500">
+                    </div>
+                    <button type="button" class="btn btn-primary" id="dc-create">Create Code</button>
+                </div>
+            </section>
+
+            <section class="panel" aria-label="Discount code roster">
+                <div class="panel-head">
+                    <h2 class="panel-title">Discount Codes</h2>
+                    <span class="field-hint" id="discount-total"></span>
+                </div>
+                <div class="portal-form-row" style="margin-bottom:0.75rem;">
+                    <label class="field-hint" style="display:flex;align-items:center;gap:0.4rem;" for="dc-include-inactive">
+                        <input type="checkbox" id="dc-include-inactive"> Show inactive codes
+                    </label>
+                </div>
+                <div id="discount-table">
+                    <div class="state-block">Loading discount codes…</div>
+                </div>
+                <div class="portal-form-row" id="discount-pager" style="margin-top:1rem;" hidden>
+                    <button type="button" class="btn btn-secondary btn-sm" id="discount-prev">← Previous</button>
+                    <span class="field-hint" id="discount-page-label"></span>
+                    <button type="button" class="btn btn-secondary btn-sm" id="discount-next">Next →</button>
                 </div>
             </section>
         </div>
@@ -592,9 +676,263 @@
             }
         }
 
+        // ── Discounts (sponsorship booking codes — never patrons) ──
+
+        var dcState = { offset: 0, includeInactive: false };
+        var discountsLoaded = false;
+        var dcItems = [];
+
+        function dcMoney(cents) {
+            if (cents == null) return '—';
+            var s = (cents / 100).toFixed(2);
+            return '$' + (s.slice(-3) === '.00' ? s.slice(0, -3) : s);
+        }
+
+        // Plain-words term summary, built client-side from the code's fields.
+        function discountKindSummary(d) {
+            if (d.kind === 'percent_off') return d.percent + '% off';
+            if (d.kind === 'fixed_off') return dcMoney(d.fixed_cents) + ' off';
+            if (d.kind === 'free_months') {
+                return d.free_months + ' month' + (d.free_months === 1 ? '' : 's') + ' free';
+            }
+            if (d.kind === 'free_months_then_price') {
+                return d.free_months + ' months free, then ' + dcMoney(d.then_price_cents) + '/mo';
+            }
+            if (d.kind === 'trial_extension') {
+                return '+' + d.free_months + ' trial month' + (d.free_months === 1 ? '' : 's');
+            }
+            return d.kind || '—';
+        }
+
+        function discountUses(d) {
+            return d.max_uses == null ? d.used_count + ' / ∞' : d.used_count + ' / ' + d.max_uses;
+        }
+
+        function renderDiscountStats(s) {
+            document.getElementById('discount-stats').innerHTML =
+                statCard(Portal.fmtNumber(s.activeCodes), 'Active Codes', '') +
+                statCard(Portal.fmtNumber(s.redemptions30d), 'Redemptions · 30d', '') +
+                statCard(
+                    s.unlimitedCodes ? Portal.fmtNumber(s.usesRemaining) + '+' : Portal.fmtNumber(s.usesRemaining),
+                    'Uses Remaining',
+                    s.unlimitedCodes ? Portal.fmtNumber(s.unlimitedCodes) + ' unlimited code(s)' : ''
+                );
+        }
+
+        function discountActions(d) {
+            if (!Portal.can('leasing')) return '<span class="cell-sub">—</span>';
+            var btns = [];
+            btns.push(
+                '<button type="button" class="btn btn-sm btn-secondary" data-dc-action="toggle" data-id="' + d.id + '">' +
+                (d.active ? 'Deactivate' : 'Activate') +
+                '</button>'
+            );
+            btns.push(
+                '<button type="button" class="btn btn-sm btn-ghost" data-dc-action="redemptions" data-id="' + d.id + '">Redemptions</button>'
+            );
+            if (d.used_count === 0) {
+                btns.push(
+                    '<button type="button" class="btn btn-sm btn-danger" data-dc-action="delete" data-id="' + d.id + '">Delete</button>'
+                );
+            }
+            return btns.join('');
+        }
+
+        function renderDiscounts(data) {
+            var wrap = document.getElementById('discount-table');
+            var items = data.items || [];
+            dcItems = items;
+            document.getElementById('discount-total').textContent = Portal.fmtNumber(data.total) + ' codes';
+            if (!items.length) {
+                wrap.innerHTML = '<div class="state-block">No discount codes yet.</div>';
+            } else {
+                var rows = items
+                    .map(function (d) {
+                        var expiry = d.expires_at
+                            ? Portal.escapeHtml(Portal.fmtDate(d.expires_at))
+                            : '<span class="cell-sub">never</span>';
+                        var status = d.active
+                            ? '<span class="badge badge--gold">active</span>'
+                            : '<span class="badge">inactive</span>';
+                        return (
+                            '<tr>' +
+                            '<td><div class="cell-title">' + Portal.escapeHtml(d.code) + '</div>' +
+                            (d.note ? '<div class="cell-sub">' + Portal.escapeHtml(d.note) + '</div>' : '') +
+                            '</td>' +
+                            '<td>' + Portal.escapeHtml(discountKindSummary(d)) + '</td>' +
+                            '<td><span class="badge badge--gold">' + Portal.escapeHtml(d.applies_to || 'all') + '</span></td>' +
+                            '<td>' + Portal.escapeHtml(discountUses(d)) + '</td>' +
+                            '<td>' + expiry + '</td>' +
+                            '<td>' + status + '</td>' +
+                            '<td><div class="cell-actions">' + discountActions(d) + '</div></td>' +
+                            '</tr>' +
+                            '<tr data-dc-redemptions-for="' + d.id + '" hidden>' +
+                            '<td colspan="7"><div class="state-block">Loading redemptions…</div></td>' +
+                            '</tr>'
+                        );
+                    })
+                    .join('');
+                wrap.innerHTML =
+                    '<div class="table-wrap"><table class="portal-table">' +
+                    '<thead><tr><th>Code</th><th>Terms</th><th>Temple</th><th>Uses</th><th>Expiry</th><th>Status</th><th>Actions</th></tr></thead>' +
+                    '<tbody>' + rows + '</tbody></table></div>';
+            }
+            updatePager('discount', data, items.length);
+        }
+
+        function fetchDiscounts() {
+            var params = new URLSearchParams();
+            if (dcState.includeInactive) params.set('includeInactive', '1');
+            params.set('limit', String(PAGE_SIZE));
+            params.set('offset', String(dcState.offset));
+            return Portal.api('/api/admin/portal/discounts/?' + params.toString());
+        }
+
+        async function loadDiscounts(promise) {
+            document.getElementById('discount-table').innerHTML = '<div class="state-block">Loading discount codes…</div>';
+            try {
+                var data = await (promise || fetchDiscounts());
+                renderDiscountStats(data.stats || {});
+                renderDiscounts(data);
+            } catch (err) {
+                document.getElementById('discount-stats').innerHTML = '<div class="state-block error">' + Portal.escapeHtml(err.message) + '</div>';
+                document.getElementById('discount-table').innerHTML = '<div class="state-block error">' + Portal.escapeHtml(err.message) + '</div>';
+            }
+        }
+
+        var DC_KIND_FIELDS = {
+            percent_off: ['percent'],
+            fixed_off: ['fixed'],
+            free_months: ['freeMonths'],
+            free_months_then_price: ['freeMonths', 'thenPrice'],
+            trial_extension: ['freeMonths'],
+        };
+
+        function syncDiscountForm() {
+            var kind = document.getElementById('dc-kind').value;
+            var show = DC_KIND_FIELDS[kind] || [];
+            var fields = document.querySelectorAll('[data-dc-field]');
+            for (var i = 0; i < fields.length; i++) {
+                fields[i].hidden = show.indexOf(fields[i].getAttribute('data-dc-field')) === -1;
+            }
+        }
+
+        function dollarsToCents(value) {
+            var n = Number(value);
+            return Number.isFinite(n) && n > 0 ? Math.round(n * 100) : null;
+        }
+
+        async function createDiscount() {
+            var kind = document.getElementById('dc-kind').value;
+            var body = {
+                code: document.getElementById('dc-code').value.trim(),
+                kind: kind,
+                appliesTo: document.getElementById('dc-applies-to').value.trim() || 'all',
+                note: document.getElementById('dc-note').value.trim() || undefined,
+            };
+            var maxUses = parseInt(document.getElementById('dc-max-uses').value, 10);
+            if (maxUses > 0) body.maxUses = maxUses;
+            var expires = document.getElementById('dc-expires').value;
+            if (expires) body.expiresAt = expires;
+            if (kind === 'percent_off') body.percent = Number(document.getElementById('dc-percent').value);
+            if (kind === 'fixed_off') body.fixedCents = dollarsToCents(document.getElementById('dc-fixed').value);
+            if (kind === 'free_months' || kind === 'trial_extension' || kind === 'free_months_then_price') {
+                body.freeMonths = parseInt(document.getElementById('dc-free-months').value, 10) || null;
+            }
+            if (kind === 'free_months_then_price') {
+                body.thenPriceCents = dollarsToCents(document.getElementById('dc-then-price').value);
+            }
+            try {
+                await Portal.api('/api/admin/portal/discounts/', { method: 'POST', body: body });
+                Portal.toast('Discount code created', 'success');
+                document.getElementById('dc-code').value = '';
+                document.getElementById('dc-note').value = '';
+                loadDiscounts();
+            } catch (err) {
+                Portal.toast('Create failed: ' + err.message, 'error');
+            }
+        }
+
+        async function toggleRedemptions(id) {
+            var row = document.querySelector('tr[data-dc-redemptions-for="' + id + '"]');
+            if (!row) return;
+            if (!row.hidden) {
+                row.hidden = true;
+                return;
+            }
+            row.hidden = false;
+            var cell = row.querySelector('td');
+            try {
+                var data = await Portal.api('/api/admin/portal/discounts/' + id + '/redemptions/?limit=20');
+                var items = data.items || [];
+                if (!items.length) {
+                    cell.innerHTML = '<div class="state-block">No redemptions yet.</div>';
+                    return;
+                }
+                cell.innerHTML =
+                    '<div class="table-wrap"><table class="portal-table">' +
+                    '<thead><tr><th>Booking</th><th>Email</th><th>Original</th><th>Final</th><th>When</th></tr></thead>' +
+                    '<tbody>' +
+                    items
+                        .map(function (r) {
+                            var booking = r.email
+                                ? '<a href="?tab=bookings&search=' + encodeURIComponent(r.email) + '">#' + r.booking_id + '</a>'
+                                : '#' + r.booking_id;
+                            return (
+                                '<tr>' +
+                                '<td>' + booking + '</td>' +
+                                '<td>' + Portal.escapeHtml(r.email || '—') + '</td>' +
+                                '<td>' + dcMoney(r.original_cents) + '</td>' +
+                                '<td>' + dcMoney(r.final_cents) + '</td>' +
+                                '<td>' + Portal.escapeHtml(Portal.fmtDateTime(r.created_at)) + '</td>' +
+                                '</tr>'
+                            );
+                        })
+                        .join('') +
+                    '</tbody></table></div>';
+            } catch (err) {
+                cell.innerHTML = '<div class="state-block error">' + Portal.escapeHtml(err.message) + '</div>';
+            }
+        }
+
+        async function discountAction(id, action) {
+            if (action === 'redemptions') {
+                toggleRedemptions(id);
+                return;
+            }
+            if (action === 'toggle') {
+                var d = null;
+                for (var i = 0; i < dcItems.length; i++) {
+                    if (String(dcItems[i].id) === String(id)) d = dcItems[i];
+                }
+                if (!d) return;
+                try {
+                    await Portal.api('/api/admin/portal/discounts/' + id + '/', {
+                        method: 'PATCH',
+                        body: { active: !d.active },
+                    });
+                    Portal.toast('Code ' + (!d.active ? 'activated' : 'deactivated'), 'success');
+                    loadDiscounts();
+                } catch (err) {
+                    Portal.toast('Update failed: ' + err.message, 'error');
+                }
+                return;
+            }
+            if (action === 'delete') {
+                if (!window.confirm('Delete this discount code? Only unused codes can be deleted.')) return;
+                try {
+                    await Portal.api('/api/admin/portal/discounts/' + id + '/', { method: 'DELETE' });
+                    Portal.toast('Discount code deleted', 'success');
+                    loadDiscounts();
+                } catch (err) {
+                    Portal.toast('Delete failed: ' + err.message, 'error');
+                }
+            }
+        }
+
         // ── Tabs ──────────────────────────────────────────────
 
-        var TABS = ['bookings', 'tenants', 'patrons'];
+        var TABS = ['bookings', 'tenants', 'patrons', 'discounts'];
 
         function showTab(name) {
             if (TABS.indexOf(name) === -1) name = 'bookings';
@@ -620,6 +958,10 @@
                 patronsLoaded = true;
                 loadPatronStats();
                 loadPatrons();
+            }
+            if (name === 'discounts' && !discountsLoaded) {
+                discountsLoaded = true;
+                loadDiscounts();
             }
         }
 
@@ -676,12 +1018,41 @@
                 setPatronStatus(btn.getAttribute('data-id'), btn.getAttribute('data-action'));
             });
 
+            if (!Portal.can('leasing')) {
+                document.getElementById('discount-create-panel').hidden = true;
+            }
+            syncDiscountForm();
+            document.getElementById('dc-kind').addEventListener('change', syncDiscountForm);
+            document.getElementById('dc-create').addEventListener('click', createDiscount);
+            document.getElementById('dc-include-inactive').addEventListener('change', function (e) {
+                dcState.includeInactive = Boolean(e.target.checked);
+                dcState.offset = 0;
+                loadDiscounts();
+            });
+            bindPager('discount', dcState, loadDiscounts);
+            document.getElementById('discount-table').addEventListener('click', function (e) {
+                var btn = e.target.closest('button[data-dc-action]');
+                if (!btn) return;
+                discountAction(btn.getAttribute('data-id'), btn.getAttribute('data-dc-action'));
+            });
+
             var initial = 'bookings';
             try {
-                initial = new URL(window.location.href).searchParams.get('tab') || 'bookings';
+                var initialParams = new URL(window.location.href).searchParams;
+                initial = initialParams.get('tab') || 'bookings';
+                // Deep link from the Discounts redemption expander: pre-apply
+                // the bookings search filter (?tab=bookings&search=<email>).
+                var initialSearch = initialParams.get('search');
+                if (initialSearch) {
+                    bkState.search = initialSearch;
+                    document.getElementById('bk-filter-search').value = initialSearch;
+                }
             } catch (e) { /* default tab */ }
             showTab(initial);
-            loadBookings(bookingsPromise);
+            // The pre-fired bookings fetch predates the ?search= deep link,
+            // so refetch when a search filter came in via the URL.
+            if (bkState.search) loadBookings();
+            else loadBookings(bookingsPromise);
         }
 
         init();

@@ -137,6 +137,7 @@ function parseVariants(product) {
   if (colors.size === 0 && labels.some((l) => !l.includes(' / ') && !sizes.has(l))) {
     // Single-token labels that are all sizes (e.g. S/M/L) — no colour dimension.
   }
+  const hasColorDimension = labels.some((l) => l.includes(' / '));
   const SIZE_RANK = { XS: 0, S: 1, M: 2, L: 3, XL: 4, '2XL': 5, '3XL': 6, '4XL': 7, '5XL': 8, 'One size': 99 };
   const sizeList = [...sizes].sort((a, b) => {
     const ra = SIZE_RANK[a] ?? 50;
@@ -147,6 +148,7 @@ function parseVariants(product) {
     labels,
     colors: [...colors].sort(),
     sizes: sizeList,
+    hasColorDimension,
     labelFor: (color, size) => {
       if (color && labels.includes(`${color} / ${size}`)) return `${color} / ${size}`;
       if (color && labels.includes(color)) return color;
@@ -446,7 +448,7 @@ function renderProduct(id, kind, product) {
   };
 
   const colorBlock =
-    v.colors.length > 1
+    v.colors.length > 1 || (v.colors.length > 0 && v.hasColorDimension)
       ? `<div class="opt-group"><div class="lbl">Colour</div><div class="opts" id="opts-color">${v.colors
           .map((c, i) => `<button class="opt${i === 0 ? ' active' : ''}" data-c="${esc(c)}">${esc(c)}</button>`)
           .join('')}</div></div>`
@@ -458,6 +460,25 @@ function renderProduct(id, kind, product) {
           .join('')}</div></div>`
       : '';
 
+  // Per-variant pricing: bake the slice of the catalog's variantPricing map
+  // that this product can actually sell (its printfulVariants labels). The
+  // page opens on "from $X" when the variant prices spread, and the client
+  // swaps in the exact price as the customer picks a variant.
+  const pricing = product.variantPricing || null;
+  const pricedLabels = pricing ? Object.keys(pricing).filter((l) => v.labels.includes(l)) : [];
+  let bakedPrices = null;
+  let fromCents = null;
+  if (pricedLabels.length) {
+    bakedPrices = {};
+    for (const l of pricedLabels) bakedPrices[l] = pricing[l];
+    const cents = pricedLabels.map((l) => pricing[l]);
+    if (Math.max(...cents) > Math.min(...cents)) fromCents = Math.min(...cents);
+  }
+  const colourNote =
+    v.colors.length > 1
+      ? `<p style="color:var(--dim);font-size:.82rem;margin-top:.6rem">Shown in Black — the design prints the same on every colour.</p>`
+      : '';
+
   return `${head({
     title: `${product.name} | PUNICODEX Reliquary`,
     description: `${product.blurb} — ${product.name}, printed on demand. ${priceRange([product])} USD.`,
@@ -465,12 +486,12 @@ function renderProduct(id, kind, product) {
   })}
 <div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <a href="/store/${id}/">${esc(meta.name)}</a> · <span style="color:var(--gold)">${esc(kindLabel(kind))}</span></div>
 <div class="wrap pdp">
-  <div class="stage"><img id="stage-img" src="${esc(cardImage(product, meta))}" alt="${esc(product.name)}"></div>
+  <div><div class="stage"><img id="stage-img" src="${esc(cardImage(product, meta))}" alt="${esc(product.name)}"></div>${colourNote}</div>
   <div>
     <span class="pill">${esc(kindLabel(kind))}</span> <span class="pill">${esc(meta.name)}</span>
     <h1>${esc(product.name)}</h1>
     <p style="color:var(--dim)">${esc(product.blurb)}</p>
-    <div class="price">${money(product.price)}</div>
+    <div class="price"${bakedPrices ? ' id="pdp-price"' : ''}>${fromCents ? `from ${money(fromCents / 100)}` : money(product.price)}</div>
     ${colorBlock}
     ${sizeBlock}
     <div class="opt-group">
@@ -495,8 +516,8 @@ ${placements}
   var qtyEl = document.getElementById('q-val');
   var qty = 1;
   function pick(list, el){ list.forEach(function(x){ x.classList.remove('active'); }); el.classList.add('active'); }
-  colors.forEach(function(b){ b.addEventListener('click', function(){ pick(colors, b); }); });
-  sizes.forEach(function(b){ b.addEventListener('click', function(){ pick(sizes, b); }); });
+  colors.forEach(function(b){ b.addEventListener('click', function(){ pick(colors, b); updatePrice(); }); });
+  sizes.forEach(function(b){ b.addEventListener('click', function(){ pick(sizes, b); updatePrice(); }); });
   document.getElementById('q-down').addEventListener('click', function(){ qty = Math.max(1, qty - 1); qtyEl.textContent = qty; });
   document.getElementById('q-up').addEventListener('click', function(){ qty = Math.min(5, qty + 1); qtyEl.textContent = qty; });
   var LABELS = ${JSON.stringify(v.labels)};
@@ -509,6 +530,14 @@ ${placements}
     if (color && LABELS.indexOf(color) !== -1) return color;
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
+  }
+  var PRICES = ${bakedPrices ? JSON.stringify(bakedPrices) : 'null'};
+  var FLAT_PRICE = ${JSON.stringify(money(product.price))};
+  function updatePrice(){
+    var el = document.getElementById('pdp-price');
+    if (!PRICES || !el) return;
+    var cents = PRICES[currentLabel()];
+    el.textContent = cents ? '$' + (cents / 100).toFixed(2) : FLAT_PRICE;
   }
   var buy = document.getElementById('buy');
   buy.addEventListener('click', async function(){
@@ -561,4 +590,6 @@ function main() {
   console.log(`Store pages: ${written} written (${colls.size} collections, ${CATALOG.count} products).`);
 }
 
-main();
+if (require.main === module) main();
+
+module.exports = { parseVariants };

@@ -1,5 +1,5 @@
 const crypto = require('node:crypto');
-const { insert, get, all, run, transaction } = require('../db/operational');
+const { insert, get, all, run, transaction, isPostgres } = require('../db/operational');
 const { getDb } = require('../db/connection');
 const { extractAndSave } = require('./keyword-extractor');
 const { isBotBasic } = require('./bot-detection');
@@ -103,6 +103,25 @@ async function getSlotById(id) {
 
 // ─── Bookings ───
 
+// The bookings.discount_code dimension is added by migrate-discount-codes.
+// Ensure it lazily once per process so createBooking never depends on
+// migration ordering (same pattern as ensureAnalyticsSlotColumn below).
+let discountCodeColumnReady = false;
+function ensureDiscountCodeColumn() {
+  if (discountCodeColumnReady) return;
+  if (!isPostgres()) require('../db/migrate-discount-codes').runMigration();
+  discountCodeColumnReady = true;
+}
+
+// Codes are stored verbatim (trimmed, length-capped) and only re-validated
+// authoritatively at application-approval time — existence is not required
+// at store time.
+function sanitizeDiscountCode(value) {
+  if (typeof value !== 'string') return null;
+  const trimmed = value.trim().slice(0, 40);
+  return trimmed || null;
+}
+
 async function createBooking({
   slotId,
   email,
@@ -115,7 +134,9 @@ async function createBooking({
   siteSlug = null,
   status = 'pending_payment',
   applicationNote = null,
+  discountCode = null,
 }) {
+  ensureDiscountCodeColumn();
   return withSlotLock(slotId, async () => {
     const token = generateToken();
     // Public tracking identifier for pixel/click/viewability. Safe to expose
@@ -134,8 +155,8 @@ async function createBooking({
 
         const bookingId = await insert(
           `
-              INSERT INTO bookings (slot_id, email, company_name, website_url, custom_heading, custom_subtitle, status, analytics_token, public_id, lease_months, trial_months, site_slug, admin_note)
-              VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
+              INSERT INTO bookings (slot_id, email, company_name, website_url, custom_heading, custom_subtitle, status, analytics_token, public_id, lease_months, trial_months, site_slug, admin_note, discount_code)
+              VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)
               RETURNING id
             `,
           [
@@ -152,6 +173,7 @@ async function createBooking({
             trialMonths,
             siteSlug || 'nike',
             applicationNote || null,
+            sanitizeDiscountCode(discountCode),
           ]
         );
 

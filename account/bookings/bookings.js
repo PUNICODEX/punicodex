@@ -51,6 +51,15 @@
       '<tbody>' + rows + '</tbody></table></div>';
   }
 
+  function patronActionCell(p) {
+    if (p.status !== 'active') return '<span class="sb-cell-sub">—</span>';
+    return (
+      '<button type="button" class="sb-btn sb-btn-outline sb-btn-sm" data-cancel-patron="' +
+      S.esc(p.id) +
+      '">Cancel membership</button>'
+    );
+  }
+
   function renderPatrons(patrons) {
     var wrap = document.getElementById('patrons-list');
     if (!patrons.length) {
@@ -67,14 +76,42 @@
           '<td>' + S.esc(S.fmtDate(p.startedAt)) + (p.endsAt ? ' → ' + S.esc(S.fmtDate(p.endsAt)) : '') + '</td>' +
           '<td>' + (p.endsAt ? countdown(p.endsAt) : '<span class="sb-cell-sub">renews monthly</span>') + '</td>' +
           '<td>' + (p.socialUrl ? '<a href="' + S.esc(p.socialUrl) + '" target="_blank" rel="noopener">' + S.esc(p.socialPlatform || 'link') + '</a>' : '<span class="sb-cell-sub">no links</span>') + '</td>' +
+          '<td>' + patronActionCell(p) + '</td>' +
           '</tr>'
         );
       })
       .join('');
     wrap.innerHTML =
       '<div class="sb-table-wrap"><table class="sb-table">' +
-      '<thead><tr><th>Name</th><th>Temple</th><th>Status</th><th>Period</th><th>Countdown</th><th>Links</th></tr></thead>' +
+      '<thead><tr><th>Name</th><th>Temple</th><th>Status</th><th>Period</th><th>Countdown</th><th>Links</th><th></th></tr></thead>' +
       '<tbody>' + rows + '</tbody></table></div>';
+    bindPatronCancelButtons(wrap);
+  }
+
+  function bindPatronCancelButtons(wrap) {
+    var buttons = wrap.querySelectorAll('[data-cancel-patron]');
+    Array.prototype.forEach.call(buttons, function (btn) {
+      btn.addEventListener('click', async function () {
+        var id = btn.getAttribute('data-cancel-patron');
+        var confirmed = window.confirm(
+          'Cancel this patron membership? It takes effect immediately: your name comes off the patron wall and no further charges are made.'
+        );
+        if (!confirmed) return;
+        btn.disabled = true;
+        btn.textContent = 'Cancelling…';
+        try {
+          await S.api('/api/account/patrons/' + encodeURIComponent(id) + '/cancel', {
+            method: 'POST',
+            body: {},
+          });
+          await init();
+        } catch (err) {
+          btn.disabled = false;
+          btn.textContent = 'Cancel membership';
+          window.alert(err.message || 'Could not cancel the membership. Please try again.');
+        }
+      });
+    });
   }
 
   async function init() {

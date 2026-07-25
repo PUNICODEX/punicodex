@@ -180,7 +180,7 @@ a:hover{color:var(--gold-bright)}
     <span class="pill">Tote</span> <span class="pill">Póntos</span>
     <h1>Póntos Temple Tote</h1>
     <p style="color:var(--dim)">Heavy canvas carry-all — the lockup large, the deity tagged below.</p>
-    <div class="price">$26.00</div>
+    <div class="price" id="pdp-price">$26.00</div>
     <div class="opt-group"><div class="lbl">Colour</div><div class="opts" id="opts-color"><button class="opt active" data-c="Camel">Camel</button><button class="opt" data-c="White">White</button></div></div>
     
     <div class="opt-group">
@@ -220,7 +220,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = null;
+  var PRICES = {"Camel":2600,"White":2600};
   var FLAT_PRICE = "$26.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');

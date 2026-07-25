@@ -150,8 +150,20 @@ async function resolveCatalogProduct(state, kind, catalogList) {
 async function pickVariants(catalogProductId, kind) {
   const detail = await api('GET', `/products/${catalogProductId}`);
   const variants = detail.variants || [];
-  if (['tee', 'hoodie', 'crewneck'].includes(kind)) {
-    // One colour, all sizes — prefer Black for the obsidian-gold identity.
+  if (kind === 'tee') {
+    // Curated palette: Black + White, up to 8 sizes per colour. Black carries
+    // the obsidian-gold identity; White gives a light option for contrast.
+    // Mirrored by sellableVariants() in scripts/build-variant-pricing.js.
+    const wanted = ['black', 'white'].flatMap((color) =>
+      variants
+        .filter((v) => String(v.color || '').trim().toLowerCase() === color)
+        .slice(0, 8)
+    );
+    return wanted.length ? wanted : variants.slice(0, 16);
+  }
+  if (kind === 'hoodie' || kind === 'crewneck') {
+    // Black only, all sizes — premium dark garment identity: the gold print
+    // is tuned for dark fabric, so these garments stay on black.
     const black = variants.filter((v) => /black/i.test(v.color || ''));
     const chosen = black.length ? black : variants;
     return chosen.slice(0, 8);
@@ -206,6 +218,9 @@ async function refreshProduct(state, product, catalogList) {
   const catalogId = await resolveCatalogProduct(state, kind, catalogList);
   const detail = await api('GET', `/store/products/${product.printfulProductId}`);
   const existing = detail.sync_variants || [];
+  // Align the sync product with the current pickVariants palette: existing
+  // sync variants are updated in place, palette additions are appended.
+  const wanted = await pickVariants(catalogId, kind);
 
   const byArea = new Map();
   for (const pl of product.design.placements) byArea.set(pl.area, pl.asset);
@@ -216,15 +231,23 @@ async function refreshProduct(state, product, catalogList) {
     files.push({ type: area === 'back' ? 'back' : KIND_FRONT_FILE_TYPE[kind] || 'default', url });
   }
 
+  const variantBody = (v) => ({
+    variant_id: v.variant_id,
+    retail_price: product.price.toFixed(2),
+    files,
+    ...(KIND_OPTIONS[kind] ? { options: KIND_OPTIONS[kind] } : {}),
+  });
+  const syncVariants = existing.map((v) => ({ id: v.id, ...variantBody(v) }));
+  const have = new Set(existing.map((v) => v.variant_id));
+  for (const v of wanted) {
+    if (have.has(v.id)) continue;
+    console.log(`  ${product.id}: adding palette variant ${v.color || ''} ${v.size || ''}`.trimEnd());
+    syncVariants.push(variantBody({ variant_id: v.id }));
+  }
+
   const body = {
     sync_product: { name: product.name, external_id: product.id },
-    sync_variants: existing.map((v) => ({
-      id: v.id,
-      variant_id: v.variant_id,
-      retail_price: product.price.toFixed(2),
-      files,
-      ...(KIND_OPTIONS[kind] ? { options: KIND_OPTIONS[kind] } : {}),
-    })),
+    sync_variants: syncVariants,
   };
   try {
     await api('PUT', `/store/products/${product.printfulProductId}`, body);

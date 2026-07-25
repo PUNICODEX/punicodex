@@ -194,6 +194,8 @@ async function applyBookingRequest({
   leaseMonths = 1,
   trialMonths = 0,
   applicationNote,
+  discountCode,
+  discount_code,
   verificationToken,
 }) {
   if (!slotId || !email) {
@@ -236,6 +238,9 @@ async function applyBookingRequest({
       siteSlug,
       status: 'pending_application',
       applicationNote,
+      // Sponsorship discount code (never patrons): stored lightly here —
+      // admin approval re-validates and redeems it authoritatively.
+      discountCode: discountCode || discount_code,
     });
   } catch (err) {
     if (err.status === 409) {

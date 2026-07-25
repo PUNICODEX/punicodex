@@ -1,4 +1,4 @@
-const { setCors, handleError, requireCronSecret } = require('../../_utils');
+const { setCors, handleError, requireCronSecret } = require('../_utils');
 const { withCronLock } = require('../../platform/api/cron-single-flight');
 
 /**

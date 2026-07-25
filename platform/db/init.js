@@ -256,6 +256,16 @@ try {
   process.exit(1);
 }
 
+// Digest log for the membership automation layer (weekly digests, expiry
+// reminders, spike alerts — dedup keys)
+try {
+  const { execSync } = require('node:child_process');
+  execSync(`node "${path.join(__dirname, 'migrate-digest.js')}"`, { stdio: 'inherit' });
+} catch (err) {
+  console.error('Digest migration failed:', err.message);
+  process.exit(1);
+}
+
 // Seed the temple-content search corpus (idempotent)
 try {
   const { execSync } = require('node:child_process');

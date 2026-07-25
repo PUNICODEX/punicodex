@@ -679,6 +679,172 @@ async function notifyCareersApplication({ role, name, email, links, message }) {
   });
 }
 
+// ─────────────────────────────────────────────────────────────
+// Membership automation (weekly digests, expiry reminders, cancellation).
+// Every helper routes through module.exports.sendEmail so endpoint tests can
+// capture at the sendEmail boundary (same pattern as
+// notifyCareersApplication).
+// ─────────────────────────────────────────────────────────────
+
+function digestStatBox(value, label, color) {
+  return `<div style="flex:1;background:#f8f8f8;border-radius:8px;padding:1rem;text-align:center;">
+            <div style="font-size:1.8rem;font-weight:700;color:${color};">${escapeHtml(value)}</div>
+            <div style="font-size:0.75rem;color:#666;text-transform:uppercase;">${escapeHtml(label)}</div>
+          </div>`;
+}
+
+function digestTempleSection(temple) {
+  if (!temple) return '';
+  const countries = (temple.countries || [])
+    .map(
+      (c) =>
+        `<tr><td style="padding:6px;border-bottom:1px solid #eee;">${escapeHtml(c.country)}</td><td style="padding:6px;border-bottom:1px solid #eee;text-align:right;">${escapeHtml(Number(c.views).toLocaleString())} views</td></tr>`
+    )
+    .join('');
+  return `
+        <h3 style="color:#d4af37;margin:1.5rem 0 0.75rem;">Temple traffic this week</h3>
+        <div style="display:flex;gap:1rem;margin:1rem 0;">
+          ${digestStatBox(Number(temple.views).toLocaleString(), 'Views', '#d4af37')}
+          ${digestStatBox(Number(temple.uniqueSessions).toLocaleString(), 'Visitors', '#4ade80')}
+          ${digestStatBox(temple.avgVisibleLabel, 'Avg. attention', '#111')}
+        </div>
+        ${
+          countries
+            ? `<p style="margin:0.5rem 0;"><strong>Top countries</strong></p>
+        <table style="width:100%;border-collapse:collapse;font-size:0.85rem;margin:0.5rem 0;">${countries}</table>`
+            : ''
+        }`;
+}
+
+function digestPulseSection(pulse) {
+  if (!pulse?.length) return '';
+  const rows = pulse
+    .map(
+      (t, i) => `
+        <tr>
+          <td style="padding:8px;border-bottom:1px solid #eee;color:#666;">${i + 1}.</td>
+          <td style="padding:8px;border-bottom:1px solid #eee;"><a href="${escapeHtml(`${PLATFORM_URL}/sites/${t.templeId}/`)}" style="color:#111;text-decoration:none;font-weight:600;">${escapeHtml(t.name)}</a></td>
+          <td style="padding:8px;border-bottom:1px solid #eee;text-align:right;">${escapeHtml(Number(t.views).toLocaleString())} views</td>
+        </tr>`
+    )
+    .join('');
+  return `
+        <h3 style="color:#d4af37;margin:1.5rem 0 0.75rem;">Site pulse — trending temples</h3>
+        <table style="width:100%;border-collapse:collapse;font-size:0.9rem;">${rows}</table>`;
+}
+
+async function notifyWeeklyDigestSponsor({
+  email,
+  companyName,
+  siteSlug,
+  slotName,
+  bookingToken,
+  weekLabel,
+  slot,
+  temple,
+  pulse,
+}) {
+  const siteName = getSiteDisplayName(siteSlug);
+  const ctaUrl = bookingToken
+    ? getDashboardUrl(bookingToken, siteSlug)
+    : `${PLATFORM_URL}/sites/${escapeHtml(siteSlug || '')}/`;
+  return module.exports.sendEmail({
+    to: email,
+    subject: `Your week on PuniCodex — ${siteName} · ${slotName}`,
+    html: `
+      <div style="font-family:system-ui,sans-serif;max-width:560px;margin:0 auto;color:#111;">
+        <h2 style="color:#d4af37;">${escapeHtml(siteName)} — Your Week on PuniCodex</h2>
+        <p>Hi ${escapeHtml(companyName || 'there')},</p>
+        <p>Here is how <strong>${escapeHtml(slotName)}</strong> and the ${escapeHtml(siteName)} temple performed this week (${escapeHtml(weekLabel)}).</p>
+        <h3 style="color:#d4af37;margin:1.5rem 0 0.75rem;">Your slot — ${escapeHtml(slotName)}</h3>
+        <div style="display:flex;gap:1rem;margin:1rem 0;">
+          ${digestStatBox(Number(slot.impressions).toLocaleString(), 'Impressions', '#d4af37')}
+          ${digestStatBox(Number(slot.clicks).toLocaleString(), 'Clicks', '#4ade80')}
+          ${digestStatBox(`${slot.ctr}%`, 'CTR', '#111')}
+          ${digestStatBox(`${slot.viewabilityPct}%`, 'Viewability', '#111')}
+        </div>
+        ${digestTempleSection(temple)}
+        ${digestPulseSection(pulse)}
+        <a href="${escapeHtml(ctaUrl)}" style="display:block;background:#d4af37;color:#000;padding:14px;text-align:center;text-decoration:none;border-radius:8px;font-weight:600;margin-top:1.5rem;">Open Your Dashboard</a>
+        <p style="color:#666;font-size:0.8rem;margin-top:1.5rem;">You receive this weekly digest because you have a live sponsorship on ${escapeHtml(siteName)}.</p>
+      </div>
+    `,
+  });
+}
+
+async function notifyWeeklyDigestPatron({
+  email,
+  displayName,
+  siteSlug,
+  weekLabel,
+  temple,
+  pulse,
+}) {
+  const siteName = getSiteDisplayName(siteSlug);
+  const templeUrl = `${PLATFORM_URL}/sites/${siteSlug}/`;
+  const portalUrl = `${PLATFORM_URL}/account/`;
+  return module.exports.sendEmail({
+    to: email,
+    subject: `Your week on PuniCodex — ${siteName}`,
+    html: `
+      <div style="font-family:system-ui,sans-serif;max-width:560px;margin:0 auto;color:#111;">
+        <h2 style="color:#d4af37;">${escapeHtml(siteName)} — Your Week on PuniCodex</h2>
+        <p>Hi ${escapeHtml(displayName || 'there')},</p>
+        <p>Thank you for standing with the ${escapeHtml(siteName)} temple. Here is what your patronage supported this week (${escapeHtml(weekLabel)}).</p>
+        ${digestTempleSection(temple)}
+        ${digestPulseSection(pulse)}
+        <a href="${escapeHtml(templeUrl)}" style="display:block;background:#d4af37;color:#000;padding:14px;text-align:center;text-decoration:none;border-radius:8px;font-weight:600;margin-top:1.5rem;">View Temple</a>
+        <p style="color:#666;font-size:0.8rem;margin-top:1.5rem;">You receive this weekly digest because you are an active patron of ${escapeHtml(siteName)}. You can cancel your membership anytime from your <a href="${escapeHtml(portalUrl)}" style="color:#d4af37;">account portal</a>.</p>
+      </div>
+    `,
+  });
+}
+
+async function notifyPatronExpiryReminder({ email, displayName, siteSlug, endsAt, daysLeft }) {
+  const siteName = getSiteDisplayName(siteSlug);
+  const templeUrl = `${PLATFORM_URL}/sites/${siteSlug}/`;
+  const portalUrl = `${PLATFORM_URL}/account/`;
+  const endDate = endsAt
+    ? new Date(endsAt).toLocaleDateString('en-US', {
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric',
+      })
+    : 'soon';
+  return module.exports.sendEmail({
+    to: email,
+    subject: `Your ${siteName} patron membership ends in ${daysLeft} day${daysLeft === 1 ? '' : 's'}`,
+    html: `
+      <div style="font-family:system-ui,sans-serif;max-width:480px;margin:0 auto;color:#111;">
+        <h2 style="color:#d4af37;">${escapeHtml(siteName)} — Membership Ending Soon</h2>
+        <p>Hi ${escapeHtml(displayName || 'there')},</p>
+        <p>Your patron membership for the ${escapeHtml(siteName)} temple ends on <strong>${escapeHtml(endDate)}</strong> (${escapeHtml(daysLeft)} day${daysLeft === 1 ? '' : 's'} left). After that your name comes off the patron wall.</p>
+        <p>To keep your spot, renew from the temple page:</p>
+        <p><a href="${escapeHtml(templeUrl)}" style="display:inline-block;background:#d4af37;color:#000;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600;">Renew Membership</a></p>
+        <p style="color:#666;font-size:0.85rem;">You can cancel anytime from your <a href="${escapeHtml(portalUrl)}" style="color:#d4af37;">account portal</a> — no questions asked.</p>
+      </div>
+    `,
+  });
+}
+
+async function notifyPatronCancelled({ email, displayName, siteSlug }) {
+  const siteName = getSiteDisplayName(siteSlug);
+  const templeUrl = `${PLATFORM_URL}/sites/${siteSlug}/`;
+  return module.exports.sendEmail({
+    to: email,
+    subject: `Your ${siteName} patron membership is cancelled`,
+    html: `
+      <div style="font-family:system-ui,sans-serif;max-width:480px;margin:0 auto;color:#111;">
+        <h2 style="color:#d4af37;">${escapeHtml(siteName)} — Membership Cancelled</h2>
+        <p>Hi ${escapeHtml(displayName || 'there')},</p>
+        <p>Your patron membership for the ${escapeHtml(siteName)} temple has been cancelled. Your name has been removed from the patron wall and no further charges will be made.</p>
+        <p>You can rejoin anytime from the temple page:</p>
+        <p><a href="${escapeHtml(templeUrl)}" style="display:inline-block;background:#d4af37;color:#000;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600;">View Temple</a></p>
+      </div>
+    `,
+  });
+}
+
 module.exports = {
   sendEmail,
   notifyPaymentPending,
@@ -704,6 +870,10 @@ module.exports = {
   notifyTenantAccountProvisioned,
   notifyTenantPasswordReset,
   notifyCareersApplication,
+  notifyWeeklyDigestSponsor,
+  notifyWeeklyDigestPatron,
+  notifyPatronExpiryReminder,
+  notifyPatronCancelled,
   getDashboardUrl,
   getSiteDisplayName,
   resolveSiteSlug,

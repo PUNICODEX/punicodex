@@ -332,6 +332,7 @@ const REAL_ENDPOINTS = [
   '/api/account/analytics/temple/',
   '/api/account/analytics/slot/',
   '/api/account/requests/',
+  '/api/account/patrons/',
 ];
 
 const PAGES = [

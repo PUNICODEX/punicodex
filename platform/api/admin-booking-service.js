@@ -23,6 +23,8 @@ const {
   sendAnalyticsReport,
 } = require('./email');
 const { getAllBookings, getBookingCount, getBookingStats, getRevenueStats } = require('./admin');
+const { run } = require('../db/operational');
+const discountService = require('./discount-service');
 const { runTrialReminders } = require('../scripts/trial-reminders');
 const { runLeaseExpiry } = require('../scripts/lease-expiry');
 const { validateMeta } = require('./booking-validation');
@@ -192,9 +194,50 @@ async function approveApplication(id, adminToken) {
 
   const months = booking.lease_months || 1;
   const trial = booking.trial_months || 0;
-  const amountCents = computeBookingAmount(slot, months, trial);
+  const baseAmountCents = computeBookingAmount(slot, months, trial);
   const siteSlug = slot.site_slug || 'nike';
   const siteName = siteSlug === 'hermes' ? 'Hermês' : 'Níkē';
+
+  // Sponsorship discount codes (bookings only — this system never touches
+  // patrons). The code was stored unvalidated at application time;
+  // re-validate authoritatively now. A code that died since application must
+  // never block approval: fall back to full price and note it for the admin.
+  let amountCents = baseAmountCents;
+  let effectiveTrial = trial;
+  let appliedDiscount = null;
+  let discountNote = null;
+
+  if (booking.discount_code) {
+    const check = await discountService.validateCode({
+      code: booking.discount_code,
+      siteSlug,
+      leaseMonths: months,
+      priceCents: slot.price_cents,
+    });
+    if (check.valid) {
+      const terms = check.terms;
+      if (terms.kind === 'free_months_then_price') {
+        // Stripe subscription with free_months×30 trial days, recurring
+        // then_price_cents/mo.
+        effectiveTrial = terms.freeMonths;
+        amountCents = terms.thenPriceCents;
+      } else if (terms.kind === 'free_months' || terms.kind === 'trial_extension') {
+        // Trial-month terms: extend the booking's trial; the recurring
+        // subscription price is the slot's monthly price.
+        effectiveTrial = trial + terms.freeMonths;
+        amountCents = slot.price_cents;
+      } else {
+        amountCents = discountService.computePrice({
+          priceCents: baseAmountCents,
+          leaseMonths: months,
+          ...terms,
+        }).finalCents;
+      }
+      appliedDiscount = check;
+    } else {
+      discountNote = `Discount code ${booking.discount_code} not applied (${check.reason}); full price charged.`;
+    }
+  }
 
   const stripeResult = await createBookingCheckoutSession({
     bookingId: booking.id,
@@ -203,13 +246,34 @@ async function approveApplication(id, adminToken) {
     amountCents,
     token: booking.analytics_token,
     leaseMonths: months,
-    trialMonths: trial,
+    trialMonths: effectiveTrial,
     siteSlug,
     siteName,
   });
 
   await updateBookingStripeSession(booking.id, stripeResult.sessionId);
-  await setBookingStatus(booking.id, 'pending_payment');
+  // Append the dead-code note without clobbering the sponsor's application
+  // note, and persist adjusted trial terms for goLive / trial reminders.
+  const note = discountNote ? [booking.admin_note, discountNote].filter(Boolean).join(' | ') : null;
+  await setBookingStatus(booking.id, 'pending_payment', note);
+  if (effectiveTrial !== trial) {
+    await run('UPDATE bookings SET trial_months = $1 WHERE id = $2', [effectiveTrial, booking.id]);
+  }
+
+  if (appliedDiscount) {
+    const redemption = await discountService.redeem({
+      codeId: appliedDiscount.codeId,
+      bookingId: booking.id,
+      email: booking.email,
+      originalCents: baseAmountCents,
+      finalCents: amountCents,
+    });
+    if (!redemption.ok) {
+      console.error(
+        `Discount code ${booking.discount_code} redemption failed (${redemption.reason}) after checkout session creation for booking ${booking.id}`
+      );
+    }
+  }
 
   notifyApplicationApproved({
     email: booking.email,
@@ -223,10 +287,32 @@ async function approveApplication(id, adminToken) {
     ...auditActor(adminToken),
     action: 'admin.booking.approve-application',
     bookingId: booking.id,
-    payload: { amountCents, sessionId: stripeResult.sessionId },
+    payload: {
+      amountCents,
+      sessionId: stripeResult.sessionId,
+      ...(appliedDiscount
+        ? { discountCode: appliedDiscount.code, originalCents: baseAmountCents }
+        : {}),
+    },
   });
 
-  return { success: true, status: 'pending_payment', stripeUrl: stripeResult.sessionUrl };
+  return {
+    success: true,
+    status: 'pending_payment',
+    stripeUrl: stripeResult.sessionUrl,
+    ...(appliedDiscount
+      ? {
+          discount: {
+            code: appliedDiscount.code,
+            kind: appliedDiscount.terms.kind,
+            originalCents: baseAmountCents,
+            finalCents: amountCents,
+            freeMonths: appliedDiscount.pricing.freeMonths,
+            thenPriceCents: appliedDiscount.pricing.thenPriceCents,
+          },
+        }
+      : {}),
+  };
 }
 
 async function approveBooking(id, note, adminToken) {

@@ -54,9 +54,11 @@ function saveState(state) {
 }
 
 function variantLabel(v) {
-  // "Zeús Temple Tee / Black / 2XL" → "2XL"; posters/mugs keep the size too.
+  // "Zeús Temple Tee / Black / 2XL" → "Black / 2XL". The colour is kept
+  // verbatim (black included) so multi-colour products stay distinguishable
+  // and the labels match the variantPricing map keys.
   const size = v.size && v.size !== 'One size' ? v.size : null;
-  const color = v.color && !/black/i.test(v.color) ? v.color : null;
+  const color = v.color || null;
   return [color, size].filter(Boolean).join(' / ') || 'One size';
 }
 

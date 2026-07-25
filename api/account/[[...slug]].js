@@ -16,6 +16,7 @@
  *   GET  /api/account/analytics/site      — site-wide public-level aggregates
  *   GET  /api/account/requests            — own change requests with statuses
  *   POST /api/account/requests            — create a change request (ownership-checked)
+ *   POST /api/account/patrons/:id/cancel  — cancel own patron membership (ownership-checked)
  *
  * The tenant portal migration is idempotent and runs on every cold start
  * because the Vercel SQLite database lives in ephemeral /tmp.
@@ -124,6 +125,17 @@ module.exports = async (req, res) => {
         const request = await tenantPortal.createChangeRequest(account, { type, target, payload });
         return res.status(201).json({ request });
       }
+    }
+
+    // ── Patron membership ─────────────────────────────────────
+    if (slugParts[0] === 'patrons' && slugParts.length === 3 && slugParts[2] === 'cancel') {
+      const account = await tenantPortal.requireAccount(req, res);
+      if (!account) return;
+      if (req.method !== 'POST') {
+        return res.status(405).json({ error: 'Method not allowed' });
+      }
+      const { cancelPatron } = require('../../platform/api/digest-service');
+      return res.json(await cancelPatron({ patronId: slugParts[1], email: account.email }));
     }
 
     return res.status(405).json({ error: 'Method not allowed' });

@@ -87,8 +87,19 @@ function resolveProduct(productId) {
     baseCents: null,
     variantLabels,
     variantMap: entry.printfulVariants || {},
+    variantPricing: entry.variantPricing || null,
     requiresVariant: variantLabels.length > 1,
   };
+}
+
+/**
+ * Unit price for an order line: the catalog's per-variant price map when it
+ * covers the validated label, else the product's flat price. The price always
+ * comes from the catalog — never from the client.
+ */
+function unitPriceFor(product, variantLabel) {
+  const priced = product.variantPricing ? product.variantPricing[variantLabel] : undefined;
+  return Number.isInteger(priced) ? priced : product.unitPriceCents;
 }
 
 function validateOrder({ product, variantLabel, quantity }) {
@@ -114,7 +125,8 @@ function validateOrder({ product, variantLabel, quantity }) {
 function createStoreOrder({ productId, variantLabel, quantity, email }) {
   const product = resolveProduct(productId);
   const validated = validateOrder({ product, variantLabel, quantity });
-  const grossCents = product.unitPriceCents * validated.quantity;
+  const unitPriceCents = unitPriceFor(product, validated.variantLabel);
+  const grossCents = unitPriceCents * validated.quantity;
   const ref = generateOrderRef();
   const db = getDb();
   const result = db
@@ -131,14 +143,14 @@ function createStoreOrder({ productId, variantLabel, quantity, email }) {
       product.name,
       validated.variantLabel,
       validated.quantity,
-      product.unitPriceCents,
+      unitPriceCents,
       grossCents,
       product.baseCents,
       email || null,
       product.creatorProductId
     );
   const order = db.prepare('SELECT * FROM store_orders WHERE id = ?').get(result.lastInsertRowid);
-  return { order, product };
+  return { order, product: { ...product, unitPriceCents } };
 }
 
 function getStoreOrderByRef(orderRef) {
@@ -256,6 +268,7 @@ module.exports = {
   createStoreOrder,
   resolveProduct,
   validateOrder,
+  unitPriceFor,
   getStoreOrderByRef,
   getStoreOrderBySessionId,
   getStoreOrderByPrintfulId,
