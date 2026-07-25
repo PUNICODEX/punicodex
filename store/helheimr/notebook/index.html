@@ -175,7 +175,7 @@ a:hover{color:var(--gold-bright)}
     <script src="/js/main.js?v=perf12" defer></script>
 <div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <a href="/store/helheimr/">Helheimr</a> · <span style="color:var(--gold)">Notebook</span></div>
 <div class="wrap pdp">
-  <div class="stage"><img id="stage-img" src="https://punycodex-masters.vercel.app/mockups/helheimr-notebook.jpg" alt="Helheimr Temple Notebook"></div>
+  <div><div class="stage"><img id="stage-img" src="https://punycodex-masters.vercel.app/mockups/helheimr-notebook.jpg" alt="Helheimr Temple Notebook"></div></div>
   <div>
     <span class="pill">Notebook</span> <span class="pill">Helheimr</span>
     <h1>Helheimr Temple Notebook</h1>
@@ -205,8 +205,8 @@ a:hover{color:var(--gold-bright)}
   var qtyEl = document.getElementById('q-val');
   var qty = 1;
   function pick(list, el){ list.forEach(function(x){ x.classList.remove('active'); }); el.classList.add('active'); }
-  colors.forEach(function(b){ b.addEventListener('click', function(){ pick(colors, b); }); });
-  sizes.forEach(function(b){ b.addEventListener('click', function(){ pick(sizes, b); }); });
+  colors.forEach(function(b){ b.addEventListener('click', function(){ pick(colors, b); updatePrice(); }); });
+  sizes.forEach(function(b){ b.addEventListener('click', function(){ pick(sizes, b); updatePrice(); }); });
   document.getElementById('q-down').addEventListener('click', function(){ qty = Math.max(1, qty - 1); qtyEl.textContent = qty; });
   document.getElementById('q-up').addEventListener('click', function(){ qty = Math.min(5, qty + 1); qtyEl.textContent = qty; });
   var LABELS = ["One size"];
@@ -219,6 +219,14 @@ a:hover{color:var(--gold-bright)}
     if (color && LABELS.indexOf(color) !== -1) return color;
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
+  }
+  var PRICES = null;
+  var FLAT_PRICE = "$18.00";
+  function updatePrice(){
+    var el = document.getElementById('pdp-price');
+    if (!PRICES || !el) return;
+    var cents = PRICES[currentLabel()];
+    el.textContent = cents ? '$' + (cents / 100).toFixed(2) : FLAT_PRICE;
   }
   var buy = document.getElementById('buy');
   buy.addEventListener('click', async function(){

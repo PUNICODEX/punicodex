@@ -175,13 +175,13 @@ a:hover{color:var(--gold-bright)}
     <script src="/js/main.js?v=perf12" defer></script>
 <div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <a href="/store/ahuramazda/">AhuraMazdā</a> · <span style="color:var(--gold)">Tumbler</span></div>
 <div class="wrap pdp">
-  <div class="stage"><img id="stage-img" src="/sites/ahuramazda/assets/ahuramazda_mascot.webp" alt="AhuraMazdā Temple Tumbler"></div>
+  <div><div class="stage"><img id="stage-img" src="https://punycodex-masters.vercel.app/mockups/ahuramazda-tumbler.jpg" alt="AhuraMazdā Temple Tumbler"></div></div>
   <div>
     <span class="pill">Tumbler</span> <span class="pill">AhuraMazdā</span>
     <h1>AhuraMazdā Temple Tumbler</h1>
     <p style="color:var(--dim)">Insulated 590 ml steel — the lockup wrapped vertical in gold.</p>
     <div class="price">$32.00</div>
-    
+    <div class="opt-group"><div class="lbl">Colour</div><div class="opts" id="opts-color"><button class="opt active" data-c="White">White</button></div></div>
     
     <div class="opt-group">
       <div class="lbl">Quantity</div>
@@ -197,7 +197,7 @@ a:hover{color:var(--gold-bright)}
     </div>
   </div>
 </div>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"AhuraMazdā Temple Tumbler","image":"/sites/ahuramazda/assets/ahuramazda_mascot.webp","description":"Insulated 590 ml steel — the lockup wrapped vertical in gold.","brand":{"@type":"Brand","name":"PuniCodex"},"offers":{"@type":"Offer","price":"32.00","priceCurrency":"USD","availability":"https://schema.org/InStock"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"AhuraMazdā Temple Tumbler","image":"https://punycodex-masters.vercel.app/mockups/ahuramazda-tumbler.jpg","description":"Insulated 590 ml steel — the lockup wrapped vertical in gold.","brand":{"@type":"Brand","name":"PuniCodex"},"offers":{"@type":"Offer","price":"32.00","priceCurrency":"USD","availability":"https://schema.org/InStock"}}</script>
 <script>
 (function(){
   var colors = Array.prototype.slice.call(document.querySelectorAll('#opts-color .opt'));
@@ -205,8 +205,8 @@ a:hover{color:var(--gold-bright)}
   var qtyEl = document.getElementById('q-val');
   var qty = 1;
   function pick(list, el){ list.forEach(function(x){ x.classList.remove('active'); }); el.classList.add('active'); }
-  colors.forEach(function(b){ b.addEventListener('click', function(){ pick(colors, b); }); });
-  sizes.forEach(function(b){ b.addEventListener('click', function(){ pick(sizes, b); }); });
+  colors.forEach(function(b){ b.addEventListener('click', function(){ pick(colors, b); updatePrice(); }); });
+  sizes.forEach(function(b){ b.addEventListener('click', function(){ pick(sizes, b); updatePrice(); }); });
   document.getElementById('q-down').addEventListener('click', function(){ qty = Math.max(1, qty - 1); qtyEl.textContent = qty; });
   document.getElementById('q-up').addEventListener('click', function(){ qty = Math.min(5, qty + 1); qtyEl.textContent = qty; });
   var LABELS = ["White / 20oz"];
@@ -219,6 +219,14 @@ a:hover{color:var(--gold-bright)}
     if (color && LABELS.indexOf(color) !== -1) return color;
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
+  }
+  var PRICES = null;
+  var FLAT_PRICE = "$32.00";
+  function updatePrice(){
+    var el = document.getElementById('pdp-price');
+    if (!PRICES || !el) return;
+    var cents = PRICES[currentLabel()];
+    el.textContent = cents ? '$' + (cents / 100).toFixed(2) : FLAT_PRICE;
   }
   var buy = document.getElementById('buy');
   buy.addEventListener('click', async function(){

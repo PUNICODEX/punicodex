@@ -175,7 +175,7 @@ a:hover{color:var(--gold-bright)}
     <script src="/js/main.js?v=perf12" defer></script>
 <div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <a href="/store/selene/">Selēnē</a> · <span style="color:var(--gold)">Tote</span></div>
 <div class="wrap pdp">
-  <div class="stage"><img id="stage-img" src="https://punycodex-masters.vercel.app/mockups/selene-tote.jpg" alt="Selēnē Temple Tote"></div>
+  <div><div class="stage"><img id="stage-img" src="https://punycodex-masters.vercel.app/mockups/selene-tote.jpg" alt="Selēnē Temple Tote"></div><p style="color:var(--dim);font-size:.82rem;margin-top:.6rem">Shown in Black — the design prints the same on every colour.</p></div>
   <div>
     <span class="pill">Tote</span> <span class="pill">Selēnē</span>
     <h1>Selēnē Temple Tote</h1>
@@ -205,8 +205,8 @@ a:hover{color:var(--gold-bright)}
   var qtyEl = document.getElementById('q-val');
   var qty = 1;
   function pick(list, el){ list.forEach(function(x){ x.classList.remove('active'); }); el.classList.add('active'); }
-  colors.forEach(function(b){ b.addEventListener('click', function(){ pick(colors, b); }); });
-  sizes.forEach(function(b){ b.addEventListener('click', function(){ pick(sizes, b); }); });
+  colors.forEach(function(b){ b.addEventListener('click', function(){ pick(colors, b); updatePrice(); }); });
+  sizes.forEach(function(b){ b.addEventListener('click', function(){ pick(sizes, b); updatePrice(); }); });
   document.getElementById('q-down').addEventListener('click', function(){ qty = Math.max(1, qty - 1); qtyEl.textContent = qty; });
   document.getElementById('q-up').addEventListener('click', function(){ qty = Math.min(5, qty + 1); qtyEl.textContent = qty; });
   var LABELS = ["One size","Camel","White"];
@@ -219,6 +219,14 @@ a:hover{color:var(--gold-bright)}
     if (color && LABELS.indexOf(color) !== -1) return color;
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
+  }
+  var PRICES = null;
+  var FLAT_PRICE = "$26.00";
+  function updatePrice(){
+    var el = document.getElementById('pdp-price');
+    if (!PRICES || !el) return;
+    var cents = PRICES[currentLabel()];
+    el.textContent = cents ? '$' + (cents / 100).toFixed(2) : FLAT_PRICE;
   }
   var buy = document.getElementById('buy');
   buy.addEventListener('click', async function(){
