@@ -21,8 +21,11 @@ const { seedTempleContent } = require('../platform/db/seed-temple-content.js');
 const FIXTURE_TEMPLES = ['athena', 'zeus', 'thor'];
 
 // Migrate + seed the fixture before the handler opens its shared connection.
+// The golden DB now ships the full 271-temple corpus (db-init seeds it), so
+// the copied DB must be emptied first or the fixture is not isolated.
 const setupDb = new Database(testDbPath);
 migrate(setupDb);
+setupDb.exec('DELETE FROM temple_content');
 const seeded = seedTempleContent({ db: setupDb, temples: FIXTURE_TEMPLES });
 setupDb.close();
 

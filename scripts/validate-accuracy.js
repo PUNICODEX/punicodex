@@ -54,8 +54,12 @@ LEXICON.forEach((entry) => {
   if (!entry.breakdown || !entry.unicode) return;
   const reconstructed = entry.breakdown.map((s) => s.to).join('');
   const nfc = reconstructed.normalize('NFC');
+  // The ASCII slug cannot carry spaces, so a display space in the Unicode
+  // form has no breakdown step (e.g. "Nemean Léon" — the slug is nemeanlion).
+  // Compare space-insensitively: the letters must still reconstruct exactly.
+  const squash = (s) => s.replace(/\s+/g, '');
   assert(
-    nfc === entry.unicode,
+    nfc === entry.unicode || squash(nfc) === squash(entry.unicode),
     `[${entry.id}] breakdown reconstructs to "${nfc}" but unicode is "${entry.unicode}"`
   );
 });
