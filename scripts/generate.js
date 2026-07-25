@@ -64,6 +64,7 @@ const scripts = [
   // before the injectors so its fresh pages keep their beacon/consent blocks.
   'scripts/generate-text-pages.js',
   'scripts/generate-trending-page.js',
+  'scripts/generate-trending-temple-page.js',
   // Pattern Atlas (/patterns/ + /patterns/methodology/): reads the generated
   // industry-patterns.json produced at step 5; before the injectors so the
   // fresh pages keep their beacon/consent blocks.

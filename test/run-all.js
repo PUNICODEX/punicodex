@@ -157,6 +157,7 @@ const SUITES = [
   { name: 'Cookie Consent Tests', cmd: 'node test/cookie-consent.test.js' },
   { name: 'Lexicon Meaning Style Tests', cmd: 'node test/lexicon-meaning-style.test.js' },
   { name: 'Site Analytics v2 Tests', cmd: 'node test/site-analytics-v2.test.js' },
+  { name: 'Analytics Depth Tests', cmd: 'node test/analytics-depth.test.js' },
   { name: 'Trending Page Tests', cmd: 'node test/trending-page.test.js' },
   { name: 'Search Page Tests', cmd: 'node test/search-page.test.js' },
   { name: 'Brand Tests', cmd: 'node test/brand.test.js' },

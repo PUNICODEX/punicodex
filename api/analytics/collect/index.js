@@ -55,6 +55,8 @@ module.exports = async (req, res) => {
         sessionId: body.s,
         ip: getClientIp(req),
         userAgent: req.headers['user-agent'],
+        // Vercel edge injects the visitor's coarse country (ISO alpha-2).
+        country: req.headers['x-vercel-ip-country'],
       });
     }
   } catch (err) {

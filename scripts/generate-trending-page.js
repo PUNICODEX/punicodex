@@ -135,6 +135,9 @@ function render() {
   <h2 class="trend-section-title">MOST VISITED PAGES</h2>
   <div class="trend-grid" id="page-board" aria-live="polite"></div>
 
+  <h2 class="trend-section-title">VISITORS BY COUNTRY</h2>
+  <div class="trend-grid" id="country-board" aria-live="polite"></div>
+
   <p class="trend-note" id="trend-note">First-party PuniCodex analytics · human views only · bots filtered · updated <b id="trend-updated">just now</b></p>
 </div>
 

@@ -43,10 +43,16 @@
         escapeHtml(meta.mascot) +
         '" alt="" loading="lazy" onerror="this.style.visibility=\'hidden\'">'
       : '<span class="trend-mascot" aria-hidden="true"></span>';
+    var delta =
+      item.viewsToday > 0
+        ? '<span class="trend-sub" style="color:#d4af37">+' +
+          Number(item.viewsToday).toLocaleString('en-US') +
+          ' today</span>'
+        : '';
     return (
-      '<a class="trend-row" href="/sites/' +
+      '<a class="trend-row" href="/trending/temple/?id=' +
       encodeURIComponent(item.templeId) +
-      '/">' +
+      '">' +
       '<span class="trend-rank">' +
       rank +
       '</span>' +
@@ -56,7 +62,9 @@
       '</span><span class="trend-sub">' +
       escapeHtml(meta.pantheon) +
       (meta.pantheon ? ' · ' : '') +
-      'temple</span></span>' +
+      'temple</span>' +
+      delta +
+      '</span>' +
       '<span class="trend-views"><b>' +
       Number(item.views).toLocaleString('en-US') +
       '</b><span>views</span></span>' +
@@ -107,6 +115,42 @@
         'No page rankings yet.',
         'Page-level views appear once traffic has accrued beyond the anonymity threshold.'
       );
+    }
+    var countryBoard = document.getElementById('country-board');
+    if (countryBoard) {
+      if (data.countries && data.countries.length) {
+        var max = Math.max.apply(
+          null,
+          data.countries.map(function (c) {
+            return c.views;
+          })
+        );
+        countryBoard.innerHTML = data.countries
+          .map(function (c, i) {
+            var pct = max > 0 ? Math.round((c.views / max) * 100) : 0;
+            return (
+              '<div class="trend-row" style="cursor:default">' +
+              '<span class="trend-rank">' +
+              (i + 1) +
+              '</span>' +
+              '<span><span class="trend-name">' +
+              escapeHtml(c.country) +
+              '</span><div class="trend-bar" style="height:4px;border-radius:2px;background:#d4af37;opacity:.5;width:' +
+              pct +
+              '%"></div></span>' +
+              '<span class="trend-views"><b>' +
+              Number(c.views).toLocaleString('en-US') +
+              '</b><span>views</span></span>' +
+              '</div>'
+            );
+          })
+          .join('');
+      } else {
+        countryBoard.innerHTML = emptyState(
+          'Regions are still forming.',
+          'Country-level views appear as the first visits arrive from around the world.'
+        );
+      }
     }
     if (data.generatedAt) {
       var ageSec = Math.max(0, Math.round((Date.now() - Date.parse(data.generatedAt)) / 1000));

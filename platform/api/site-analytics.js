@@ -19,6 +19,7 @@ const { classifyUserAgent } = require('./bot-detection');
 const { all, get, insert, run, isPostgres } = require('../db/operational');
 const { runMigration } = require('../db/migrate-site-analytics');
 const { runMigration: runMigrationV2 } = require('../db/migrate-site-analytics-v2');
+const { runMigration: runMigrationV3 } = require('../db/migrate-site-analytics-v3');
 
 const KEY_PREFIX = 'punicodex:analytics:';
 const ROLLUP_TTL_SECONDS = 40 * 24 * 60 * 60; // 40 days
@@ -154,6 +155,7 @@ function ensureMigration() {
   if (migrationRan || isPostgres()) return;
   runMigration();
   runMigrationV2();
+  runMigrationV3();
   migrationRan = true;
 }
 
@@ -162,8 +164,8 @@ async function recordToSqlite(event) {
   await insert(
     `
       INSERT INTO site_analytics_events
-        (path, temple_id, referrer, session_hash, ip_hash, ua_hash, is_bot, bot_category, device)
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+        (path, temple_id, referrer, session_hash, ip_hash, ua_hash, is_bot, bot_category, device, country)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
       RETURNING id
     `,
     [
@@ -176,6 +178,7 @@ async function recordToSqlite(event) {
       event.isBot ? 1 : 0,
       event.isBot ? event.category : null,
       event.device,
+      event.country || null,
     ]
   );
   await run(
@@ -198,6 +201,17 @@ async function recordToSqlite(event) {
       `,
       [event.day, event.path]
     );
+    if (event.country) {
+      await run(
+        `
+          INSERT INTO site_analytics_countries_daily (day, country, human_views)
+          VALUES ($1, $2, 1)
+          ON CONFLICT(day, country) DO UPDATE
+            SET human_views = human_views + 1
+        `,
+        [event.day, event.country]
+      );
+    }
   }
 }
 
@@ -206,7 +220,7 @@ async function recordToSqlite(event) {
  * summary of what was stored. Never throws on bad input — only on storage
  * errors, which callers are expected to swallow.
  */
-async function recordPageView({ path, templeId, referrer, sessionId, ip, userAgent }) {
+async function recordPageView({ path, templeId, referrer, sessionId, ip, userAgent, country }) {
   const cleanPath = sanitizePath(path);
   if (!cleanPath) return null;
 
@@ -217,6 +231,7 @@ async function recordPageView({ path, templeId, referrer, sessionId, ip, userAge
   const rawTempleId =
     typeof templeId === 'string' && templeId ? templeId : extractTempleId(cleanPath);
   const cleanTempleId = /^[a-z0-9-]{1,64}$/.test(rawTempleId) ? rawTempleId : '';
+  const cleanCountry = typeof country === 'string' && /^[A-Z]{2}$/.test(country) ? country : '';
   const sessionHash = sha256(`${sanitizeSessionId(sessionId)}:${day}`).substring(0, 24);
   const ipHash = sha256(ip || 'unknown').substring(0, 16);
   const uaHash = sha256(ua).substring(0, 16);
@@ -240,6 +255,14 @@ async function recordPageView({ path, templeId, referrer, sessionId, ip, userAge
         const pathKey = `${KEY_PREFIX}pathviews:${day}`;
         await client.hincrby(pathKey, cleanPath, 1);
         await client.expire(pathKey, ROLLUP_TTL_SECONDS);
+        if (cleanCountry) {
+          const countryKey = `${KEY_PREFIX}countries:${day}`;
+          await client.hincrby(countryKey, cleanCountry, 1);
+          await client.expire(countryKey, ROLLUP_TTL_SECONDS);
+          const templeCountryKey = `${KEY_PREFIX}countries:${day}:${cleanTempleId}`;
+          await client.hincrby(templeCountryKey, cleanCountry, 1);
+          await client.expire(templeCountryKey, ROLLUP_TTL_SECONDS);
+        }
       }
       return { recorded: true, isBot, category, device, templeId: cleanTempleId };
     } catch (err) {
@@ -259,6 +282,7 @@ async function recordPageView({ path, templeId, referrer, sessionId, ip, userAge
     isBot,
     category,
     device,
+    country: cleanCountry,
   });
   return { recorded: true, isBot, category, device, templeId: cleanTempleId };
 }
@@ -805,6 +829,281 @@ async function getSessionDepth({ days = 30 } = {}) {
   };
 }
 
+// ─── Country reporting (v3) ───
+
+/**
+ * Site-wide country aggregates: human page views per ISO alpha-2 country.
+ * Coarse by design — no regions, no cities, nothing below country level.
+ */
+async function getCountryStats({ days = 30, limit = 30 } = {}) {
+  const window = clampDays(days);
+  const max = Math.min(60, Math.max(1, parseInt(limit, 10) || 30));
+  const dayList = lastNDays(window);
+
+  if (isRedisEnabled()) {
+    try {
+      const client = getRedisClient();
+      if (!client) throw new Error('Redis client unavailable');
+      const countryMap = new Map();
+      for (const day of dayList) {
+        const rows = await client.hgetall(`${KEY_PREFIX}countries:${day}`);
+        for (const [country, count] of Object.entries(rows || {})) {
+          countryMap.set(country, (countryMap.get(country) || 0) + toCount(count));
+        }
+      }
+      const countries = [...countryMap.entries()]
+        .map(([country, views]) => ({ country, views }))
+        .sort((a, b) => b.views - a.views || a.country.localeCompare(b.country))
+        .slice(0, max);
+      return { periodDays: window, countries };
+    } catch (err) {
+      console.error('[site-analytics] Redis country read failed, falling back to SQLite:', err.message);
+      disableRedis();
+    }
+  }
+
+  ensureMigration();
+  const rows = await all(
+    `
+      SELECT country, SUM(human_views) AS views
+        FROM site_analytics_countries_daily
+       WHERE day >= $1
+       GROUP BY country
+       ORDER BY views DESC, country ASC
+       LIMIT $2
+    `,
+    [dayList[0], max]
+  );
+  return {
+    periodDays: window,
+    countries: rows.map((row) => ({ country: row.country, views: toCount(row.views) })),
+  };
+}
+
+// ─── Per-temple drill-down (trending detail) ───
+
+/**
+ * Deep analytics for one temple: views series, unique sessions, engagement
+ * (attention time + scroll depth), countries, referrers, sub-pages, devices,
+ * and "also visited" sister temples (navigation habits). Aggregates only;
+ * panels that a storage driver cannot compute come back as null so the page
+ * can hide them honestly.
+ */
+async function getTempleAnalytics(templeId, { days = 30 } = {}) {
+  const tid =
+    typeof templeId === 'string' && /^[a-z0-9-]{1,64}$/.test(templeId) ? templeId : null;
+  if (!tid) return null;
+  const window = clampDays(days);
+  const dayList = lastNDays(window);
+  const firstDay = dayList[0];
+  const pathPrefix = `/sites/${tid}/%`;
+
+  const byDayMap = new Map(dayList.map((day) => [day, { day, views: 0, avgVisibleMs: 0 }]));
+  let uniqueSessions = 0;
+  let views = 0;
+  let countries = null;
+  let referrers = null;
+  let subPages = null;
+  let devices = null;
+  let alsoVisited = null;
+
+  // ── Views + engagement series (SQLite; Redis fills views only) ──
+  if (isRedisEnabled()) {
+    try {
+      const client = getRedisClient();
+      if (!client) throw new Error('Redis client unavailable');
+      for (const day of dayList) {
+        const counts = await client.hgetall(`${KEY_PREFIX}views:${day}:${tid}`);
+        const human = toCount(counts.human);
+        byDayMap.get(day).views = human;
+        views += human;
+        uniqueSessions += await client.scard(`${KEY_PREFIX}uniq:${day}:${tid}`);
+        const eng = await client.hgetall(`${KEY_PREFIX}eng:${day}:${tid}`);
+        const engagements = toCount(eng.engagements);
+        if (engagements > 0) {
+          byDayMap.get(day).avgVisibleMs = Math.round(toCount(eng.totalMs) / engagements);
+        }
+        const countryRows = await client.hgetall(`${KEY_PREFIX}countries:${day}:${tid}`);
+        if (countryRows && Object.keys(countryRows).length) {
+          if (!countries) countries = new Map();
+          for (const [country, count] of Object.entries(countryRows)) {
+            countries.set(country, (countries.get(country) || 0) + toCount(count));
+          }
+        }
+      }
+      countries = countries
+        ? [...countries.entries()]
+            .map(([country, count]) => ({ country, views: count }))
+            .sort((a, b) => b.views - a.views || a.country.localeCompare(b.country))
+            .slice(0, 12)
+        : null;
+    } catch (err) {
+      console.error('[site-analytics] Redis temple read failed, falling back to SQLite:', err.message);
+      disableRedis();
+    }
+  }
+
+  if (!isRedisEnabled()) {
+    ensureMigration();
+    const dayRows = await all(
+      `
+        SELECT day, SUM(human_views) AS views
+          FROM site_analytics_daily
+         WHERE temple_id = $1 AND day >= $2
+         GROUP BY day
+      `,
+      [tid, firstDay]
+    );
+    for (const row of dayRows) {
+      const entry = byDayMap.get(row.day);
+      if (entry) entry.views = toCount(row.views);
+      views += toCount(row.views);
+    }
+
+    const uniqRow = await get(
+      `
+        SELECT COUNT(DISTINCT session_hash) AS uniques
+          FROM site_analytics_events
+         WHERE temple_id = $1 AND is_bot = 0 AND date(created_at) >= $2
+      `,
+      [tid, firstDay]
+    );
+    uniqueSessions = toCount(uniqRow?.uniques);
+
+    const engRows = await all(
+      `
+        SELECT day, SUM(engagements) AS engagements, SUM(total_visible_ms) AS total_ms
+          FROM site_analytics_engagement_daily
+         WHERE temple_id = $1 AND day >= $2
+         GROUP BY day
+      `,
+      [tid, firstDay]
+    );
+    for (const row of engRows) {
+      const entry = byDayMap.get(row.day);
+      const engagements = toCount(row.engagements);
+      if (entry && engagements > 0) {
+        entry.avgVisibleMs = Math.round(toCount(row.total_ms) / engagements);
+      }
+    }
+
+    const countryRows = await all(
+      `
+        SELECT country, COUNT(*) AS views
+          FROM site_analytics_events
+         WHERE temple_id = $1 AND is_bot = 0 AND country IS NOT NULL AND date(created_at) >= $2
+         GROUP BY country
+         ORDER BY views DESC, country ASC
+         LIMIT 12
+      `,
+      [tid, firstDay]
+    );
+    countries = countryRows.length
+      ? countryRows.map((row) => ({ country: row.country, views: toCount(row.views) }))
+      : null;
+
+    const refRows = await all(
+      `
+        SELECT referrer, COUNT(*) AS views
+          FROM site_analytics_events
+         WHERE temple_id = $1 AND is_bot = 0 AND date(created_at) >= $2
+         GROUP BY referrer
+      `,
+      [tid, firstDay]
+    );
+    const refMap = new Map();
+    for (const row of refRows) {
+      const domain = extractReferrerDomain(row.referrer) || '(direct)';
+      addToMap(refMap, domain, toCount(row.views));
+    }
+    referrers = refMap.size
+      ? [...refMap.entries()]
+          .map(([referrer, count]) => ({ referrer, count }))
+          .sort((a, b) => b.count - a.count || a.referrer.localeCompare(b.referrer))
+          .slice(0, 10)
+      : null;
+
+    const pathRows = await all(
+      `
+        SELECT path, SUM(human_views) AS views
+          FROM site_analytics_paths_daily
+         WHERE day >= $1 AND path LIKE $2
+         GROUP BY path
+         ORDER BY views DESC, path ASC
+         LIMIT 10
+      `,
+      [firstDay, pathPrefix]
+    );
+    subPages = pathRows.length
+      ? pathRows.map((row) => ({ path: row.path, views: toCount(row.views) }))
+      : null;
+
+    const devRows = await all(
+      `
+        SELECT device, COUNT(*) AS views
+          FROM site_analytics_events
+         WHERE temple_id = $1 AND date(created_at) >= $2
+         GROUP BY device
+      `,
+      [tid, firstDay]
+    );
+    const devMap = emptyDevices();
+    for (const row of devRows) {
+      if (row.device in devMap) devMap[row.device] += toCount(row.views);
+    }
+    devices = devMap;
+
+    // Navigation habits: sister temples viewed by the same sessions.
+    const alsoRows = await all(
+      `
+        SELECT e2.temple_id AS other, COUNT(DISTINCT e2.session_hash) AS sessions
+          FROM site_analytics_events e1
+          JOIN site_analytics_events e2
+            ON e1.session_hash = e2.session_hash
+           AND e2.is_bot = 0
+           AND e2.temple_id <> ''
+           AND e2.temple_id <> $1
+           AND date(e2.created_at) >= $2
+         WHERE e1.temple_id = $3
+           AND e1.is_bot = 0
+           AND date(e1.created_at) >= $4
+         GROUP BY e2.temple_id
+         ORDER BY sessions DESC, other ASC
+         LIMIT 8
+      `,
+      [tid, firstDay, tid, firstDay]
+    );
+    alsoVisited = alsoRows.length
+      ? alsoRows.map((row) => ({ templeId: row.other, sessions: toCount(row.sessions) }))
+      : null;
+  }
+
+  const series = [...byDayMap.values()];
+  const engagements = series.reduce((sum, row) => sum + (row.avgVisibleMs > 0 ? 1 : 0), 0);
+  const attentionDays = series.filter((row) => row.avgVisibleMs > 0);
+  const avgVisibleMs = attentionDays.length
+    ? Math.round(attentionDays.reduce((sum, row) => sum + row.avgVisibleMs, 0) / attentionDays.length)
+    : 0;
+
+  return {
+    templeId: tid,
+    periodDays: window,
+    generatedAt: new Date().toISOString(),
+    totals: {
+      views,
+      uniqueSessions,
+      avgVisibleMs,
+      engagementDays: engagements,
+    },
+    byDay: series,
+    countries,
+    referrers,
+    subPages,
+    devices,
+    alsoVisited,
+  };
+}
+
 // ─── Trending (public aggregates) ───
 
 const TRENDING_CACHE_MS = 10 * 60 * 1000;
@@ -890,11 +1189,46 @@ async function getTrending({ days = 7, limit = 20 } = {}) {
 
   temples.sort((a, b) => b.views - a.views || a.templeId.localeCompare(b.templeId));
   pages.sort((a, b) => b.views - a.views || a.path.localeCompare(b.path));
+  const today = dayString(new Date());
+  const todayMap = new Map();
+  if (isRedisEnabled()) {
+    try {
+      const client = getRedisClient();
+      if (client) {
+        const keys = await scanKeys(client, `${KEY_PREFIX}views:${today}:*`);
+        for (const key of keys) {
+          const tid = key.slice(`${KEY_PREFIX}views:${today}:`.length);
+          if (tid === '') continue;
+          const row = await client.hgetall(key);
+          todayMap.set(tid, toCount(row.human));
+        }
+      }
+    } catch {
+      // today deltas are cosmetic; never fail the board over them
+    }
+  } else {
+    ensureMigration();
+    const todayRows = await all(
+      `
+        SELECT temple_id, SUM(human_views) AS views
+          FROM site_analytics_daily
+         WHERE day = $1 AND temple_id <> ''
+         GROUP BY temple_id
+      `,
+      [today]
+    );
+    for (const row of todayRows) todayMap.set(row.temple_id, toCount(row.views));
+  }
+  for (const temple of temples) {
+    temple.viewsToday = todayMap.get(temple.templeId) || 0;
+  }
+  const countries = (await getCountryStats({ days: window, limit: 15 })).countries;
   const data = {
     periodDays: window,
     generatedAt: new Date().toISOString(),
     temples: temples.slice(0, max),
     pages: pages.slice(0, max),
+    countries,
   };
   trendingCache = { at: Date.now(), key: cacheKey, data };
   return data;
@@ -908,6 +1242,8 @@ module.exports = {
   getEngagementStats,
   getSessionDepth,
   getTrending,
+  getCountryStats,
+  getTempleAnalytics,
   extractTempleId,
   detectDevice,
   sanitizePath,
