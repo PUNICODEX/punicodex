@@ -16,6 +16,7 @@ const OPERATIONAL_TABLES = [
   'site_analytics_engagement',
   'site_analytics_engagement_daily',
   'site_analytics_paths_daily',
+  'site_analytics_countries_daily',
   'admin_sessions',
   'admin_actions',
   'admin_users',
@@ -25,6 +26,23 @@ const OPERATIONAL_TABLES = [
   'api_keys',
   'api_request_log',
   'claims',
+  'newsletter_subscribers',
+  'search_queries',
+  'search_sessions',
+  'search_feedback',
+  'ab_assignments',
+  'trending_searches',
+  'career_applications',
+  'arbitrage_requests',
+  'creator_products',
+  'creator_order_ledger',
+  'creative_assets',
+  'store_orders',
+  'abuse_reports',
+  'dsar_requests',
+  'lawful_access_requests',
+  'raw_inputs',
+  'udrp_cases',
   'scholars_institutions',
   'scholars_users',
   'scholars_sessions',
@@ -93,7 +111,8 @@ function buildTableSql(sqliteDb, tableName) {
     }
     if (col.dflt_value !== null && col.dflt_value !== undefined) {
       const defaultValue = String(col.dflt_value);
-      if (defaultValue.toUpperCase() === 'CURRENT_TIMESTAMP') {
+      const upper = defaultValue.toUpperCase().replace(/[()']/g, '');
+      if (upper === 'CURRENT_TIMESTAMP' || upper === 'DATETIMENOW') {
         def += ' DEFAULT CURRENT_TIMESTAMP';
       } else {
         def += ` DEFAULT ${defaultValue}`;
