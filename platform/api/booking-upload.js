@@ -72,12 +72,17 @@ async function uploadBookingCreative(token, { image, filename }, { notifyAdminPe
       slotName: booking.slot_name,
       companyName: booking.company_name,
       bookingId: booking.id,
+      siteSlug: booking.site_slug,
     }).catch(() => {});
   }
 
   return {
     status: 200,
-    body: { success: true, path: publicPath, webpPath: webpWritten ? webpSiblingPath(publicPath) : null },
+    body: {
+      success: true,
+      path: publicPath,
+      webpPath: webpWritten ? webpSiblingPath(publicPath) : null,
+    },
   };
 }
 
@@ -128,7 +133,11 @@ async function uploadSlotCreative(token, slotId, { image, filename }) {
 
   return {
     status: 200,
-    body: { success: true, path: publicPath, webpPath: webpWritten ? webpSiblingPath(publicPath) : null },
+    body: {
+      success: true,
+      path: publicPath,
+      webpPath: webpWritten ? webpSiblingPath(publicPath) : null,
+    },
   };
 }
 

@@ -595,6 +595,22 @@ async function updateSlotMeta(bookingId, slotId, { customHeading, customSubtitle
 
 // ─── Analytics ───
 
+// The slot dimension (analytics_events.slot_slug) is added by
+// migrate-analytics-slot. Ensure it lazily once per process so direct
+// recordEvent callers never depend on migration ordering.
+let analyticsSlotReady = false;
+function ensureAnalyticsSlotColumn() {
+  if (analyticsSlotReady) return;
+  require('../db/migrate-analytics-slot').runMigration();
+  analyticsSlotReady = true;
+}
+
+// Placement slug emitted by the temple ad renderer; anything that is not a
+// canonical slot slug shape is dropped to NULL (whole-slot bucket).
+function sanitizeSlotSlug(value) {
+  return typeof value === 'string' && /^[a-z0-9-]{1,64}$/.test(value) ? value : null;
+}
+
 async function recordEvent({
   bookingId,
   eventType,
@@ -603,13 +619,15 @@ async function recordEvent({
   referrer,
   visibleSeconds,
   visiblePercent,
+  slotSlug,
 }) {
+  ensureAnalyticsSlotColumn();
   const ipHash = hashIp(ip || 'unknown');
   const botFlag = isBotBasic(userAgent) ? 1 : 0;
   await insert(
     `
-      INSERT INTO analytics_events (booking_id, event_type, ip_hash, user_agent, referrer, is_bot, visible_seconds, visible_percent)
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+      INSERT INTO analytics_events (booking_id, event_type, ip_hash, user_agent, referrer, is_bot, visible_seconds, visible_percent, slot_slug)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
       RETURNING id
     `,
     [
@@ -621,6 +639,7 @@ async function recordEvent({
       botFlag,
       visibleSeconds ?? null,
       visiblePercent ?? null,
+      sanitizeSlotSlug(slotSlug),
     ]
   );
 }
@@ -696,6 +715,7 @@ async function getDashboardMetrics(token) {
       company_name: booking.company_name,
       website_url: booking.website_url,
       status: booking.status,
+      site_slug: booking.site_slug,
       creative_path: booking.creative_path,
       creative_webp_path: existingWebpFor(booking.creative_path),
       started_at: booking.started_at,

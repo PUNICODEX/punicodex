@@ -196,7 +196,7 @@ async function loadSlots() {
   }
 }
 
-function trackViewability(container, token) {
+function trackViewability(container, token, slotSlug) {
   if (!('IntersectionObserver' in window)) return;
   let timer = null;
   const observer = new IntersectionObserver((entries) => {
@@ -211,6 +211,7 @@ function trackViewability(container, token) {
               token,
               visibleSeconds: 1,
               visiblePercent: Math.round(entry.intersectionRatio * 100),
+              slotSlug: slotSlug || undefined,
             }),
           }).catch(() => {});
           observer.disconnect();
@@ -280,9 +281,12 @@ function updateSlotUI() {
     if (slot.status === 'live' && hasOwnCreative) {
       // LIVE: render actual creative with click tracking. slot.public_id is a
       // write-only tracking identifier; the secret management token is never
-      // shipped to the browser.
-      const pixelUrl = `${API_BASE}/api/analytics/pixel.gif/?b=${slot.public_id}`;
-      const clickUrl = `${API_BASE}/api/analytics/click/?b=${slot.public_id}&url=${encodeURIComponent(slot.website_url || '#')}`;
+      // shipped to the browser. The slot slug rides along on every tracker so
+      // bundle/takeover bookings (one token across member placements) can be
+      // split per placement in the analytics pipeline.
+      const slotParam = slot.slug ? `&slot=${encodeURIComponent(slot.slug)}` : '';
+      const pixelUrl = `${API_BASE}/api/analytics/pixel.gif/?b=${slot.public_id}${slotParam}`;
+      const clickUrl = `${API_BASE}/api/analytics/click/?b=${slot.public_id}&url=${encodeURIComponent(slot.website_url || '#')}${slotParam}`;
       const adImg = `<img src="${API_BASE}${slot.creative_path}" alt="${slot.company_name || 'Advertisement'}" style="width:100%;height:100%;object-fit:cover;display:block;">`;
       const adMedia = slot.creative_webp_path
         ? `<picture><source type="image/webp" srcset="${API_BASE}${slot.creative_webp_path}">${adImg}</picture>`
@@ -301,7 +305,7 @@ function updateSlotUI() {
       }
 
       // Fire viewability beacon after 1s at ≥50% visibility
-      trackViewability(frame, slot.public_id);
+      trackViewability(frame, slot.public_id, slot.slug);
     } else if (slot.status !== 'available') {
       // RESERVED: hide button, show overlay inside frame
       const overlay = document.createElement('div');

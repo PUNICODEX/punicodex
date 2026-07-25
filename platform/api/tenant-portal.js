@@ -33,6 +33,7 @@ const { imageSize } = require('image-size');
 const { get, all, run, insert, transaction } = require('../db/operational');
 const { getDb } = require('../db/connection');
 const { migrate: migrateTenantPortal } = require('../db/migrate-tenant-portal');
+const { migrate: migrateAnalyticsSlot } = require('../db/migrate-analytics-slot');
 const { hashToken } = require('./admin');
 const { getTempleTraffic, getOverview } = require('./site-analytics');
 const { logAction } = require('./admin-actions');
@@ -66,11 +67,13 @@ const SOCIAL_PATTERNS = {
 };
 
 // Cold-start schema: idempotent, once per serverless instance (lazy so
-// importing the module stays cheap).
+// importing the module stays cheap). The analytics-slot migration rides
+// along because getBookingEventStats reads analytics_events.slot_slug.
 let schemaReady = false;
 function ensureSchema() {
   if (schemaReady) return;
   migrateTenantPortal(getDb());
+  migrateAnalyticsSlot(getDb());
   schemaReady = true;
 }
 
@@ -125,8 +128,8 @@ async function linkTenantAccount(email) {
   const [bookings, patrons] = await Promise.all([
     all(
       `SELECT b.id, b.slot_id, b.email, b.company_name, b.website_url, b.status, b.site_slug,
-              b.creative_path, b.started_at, b.ends_at, b.created_at,
-              s.name AS slot_name, s.slug AS slot_slug, s.width, s.height
+              b.creative_path, b.started_at, b.ends_at, b.created_at, b.analytics_token,
+              s.name AS slot_name, s.slug AS slot_slug, s.width, s.height, s.is_bundle
          FROM bookings b
          JOIN ad_slots s ON b.slot_id = s.id
         WHERE b.email = $1
@@ -413,12 +416,21 @@ async function getMe(account) {
         slotName: b.slot_name,
         slotSlug: b.slot_slug,
         siteSlug: b.site_slug,
+        templeSlug: b.site_slug,
         status: b.status,
         creativePath: b.creative_path,
         companyName: b.company_name,
         websiteUrl: b.website_url,
+        width: b.width,
+        height: b.height,
+        isBundle: Boolean(b.is_bundle),
         startedAt: b.started_at,
         endsAt: b.ends_at,
+        // The analytics_token doubles as the advertiser-dashboard credential.
+        // It is returned only to the authenticated owner of the booking's
+        // contact email — the same disclosure as the /api/bookings/recover
+        // email, never to anyone else.
+        dashboardToken: b.analytics_token || null,
       })),
       patrons: patrons.map((p) => ({
         id: p.id,
@@ -429,6 +441,7 @@ async function getMe(account) {
         socialPlatform: p.social_platform,
         socialUrl: p.social_url,
         startedAt: p.started_at,
+        endsAt: p.ends_at,
       })),
     },
   };
@@ -443,7 +456,8 @@ async function getBookingEventStats(bookingId) {
   const totals = await get(
     `SELECT
        SUM(CASE WHEN event_type = 'impression' THEN 1 ELSE 0 END) AS impressions,
-       SUM(CASE WHEN event_type = 'click' THEN 1 ELSE 0 END) AS clicks
+       SUM(CASE WHEN event_type = 'click' THEN 1 ELSE 0 END) AS clicks,
+       SUM(CASE WHEN event_type = 'viewable_impression' THEN 1 ELSE 0 END) AS viewable
      FROM analytics_events
      WHERE booking_id = $1 AND is_bot = 0`,
     [bookingId]
@@ -464,12 +478,51 @@ async function getBookingEventStats(bookingId) {
     if (row.event_type === 'click') entry.clicks += toCount(row.count);
     byDay.set(row.day, entry);
   }
+
+  // Placement-level split. Events without a slot slug (pre-dimension events,
+  // whole-slot renders) group under slot_slug NULL — the booking's whole-slot
+  // bucket; the UI labels it as the slot itself.
+  const slotRows = await all(
+    `SELECT slot_slug,
+            SUM(CASE WHEN event_type = 'impression' THEN 1 ELSE 0 END) AS impressions,
+            SUM(CASE WHEN event_type = 'click' THEN 1 ELSE 0 END) AS clicks,
+            SUM(CASE WHEN event_type = 'viewable_impression' THEN 1 ELSE 0 END) AS viewable
+       FROM analytics_events
+      WHERE booking_id = $1 AND is_bot = 0
+      GROUP BY slot_slug
+      ORDER BY impressions DESC, slot_slug ASC`,
+    [bookingId]
+  );
+  const bySlot = slotRows
+    .filter(
+      (row) => toCount(row.impressions) > 0 || toCount(row.clicks) > 0 || toCount(row.viewable) > 0
+    )
+    .map((row) => {
+      const impressions = toCount(row.impressions);
+      const clicks = toCount(row.clicks);
+      const viewableImpressions = toCount(row.viewable);
+      return {
+        slotSlug: row.slot_slug || null,
+        impressions,
+        clicks,
+        ctr: impressions > 0 ? ((clicks / impressions) * 100).toFixed(2) : '0.00',
+        viewableImpressions,
+        viewabilityPct:
+          impressions > 0 ? ((viewableImpressions / impressions) * 100).toFixed(1) : '0.0',
+      };
+    });
+
   const impressions = toCount(totals?.impressions);
   const clicks = toCount(totals?.clicks);
+  const viewableImpressions = toCount(totals?.viewable);
   return {
     impressions,
     clicks,
     ctr: impressions > 0 ? ((clicks / impressions) * 100).toFixed(2) : '0.00',
+    viewableImpressions,
+    viewabilityPct:
+      impressions > 0 ? ((viewableImpressions / impressions) * 100).toFixed(1) : '0.0',
+    bySlot,
     daily: [...byDay.values()],
   };
 }
@@ -490,8 +543,10 @@ async function getSpaceAnalytics(account) {
       slotName: b.slot_name,
       slotSlug: b.slot_slug,
       siteSlug: b.site_slug,
+      templeSlug: b.site_slug,
       status: b.status,
       creativePath: b.creative_path,
+      isBundle: Boolean(b.is_bundle),
       tracking: 'events',
       ...stats,
     });
@@ -527,6 +582,48 @@ async function ownsTempleResource(email, templeId) {
 }
 
 /**
+ * Deep per-temple aggregates from site-analytics#getTempleAnalytics
+ * (attention, countries, referrers, sub-pages). Lazy-required like the other
+ * optional deps and fully guarded: an analytics failure must never 500 the
+ * sandbox, so any error degrades every enriched field to null.
+ */
+async function getTempleEnrichment(templeId, days) {
+  try {
+    const { getTempleAnalytics: getTempleDeep } = require('./site-analytics');
+    return await getTempleDeep(templeId, { days });
+  } catch (err) {
+    console.error('[tenant-portal] temple enrichment failed:', err.message);
+    return null;
+  }
+}
+
+/**
+ * Build the temple analytics payload shared by the temple route and the
+ * placement-detail route: the existing getTempleTraffic overview plus the
+ * guarded enrichment block.
+ */
+async function buildTempleAnalyticsPayload(tid) {
+  const data = await getTempleTraffic(tid, { days: 30 });
+  const deep = await getTempleEnrichment(tid, 30);
+  return {
+    templeId: tid,
+    periodDays: data.periodDays,
+    totals: data.totals,
+    byDay: data.byDay,
+    devices: data.devices,
+    attention: deep
+      ? {
+          avgVisibleMs: deep.totals?.avgVisibleMs ?? 0,
+          engagementDays: deep.totals?.engagementDays ?? 0,
+        }
+      : null,
+    countries: deep?.countries ?? null,
+    referrers: deep?.referrers ?? null,
+    subPages: deep?.subPages ?? null,
+  };
+}
+
+/**
  * Aggregate page stats for one temple. Only available when the account owns
  * a resource (booking or patron spot) on that temple — 403 otherwise.
  */
@@ -538,13 +635,66 @@ async function getTempleAnalytics(account, templeId) {
   if (!(await ownsTempleResource(account.email, tid))) {
     throw portalError(403, 'You do not own a resource on this temple', 'not_owner');
   }
-  const data = await getTempleTraffic(tid, { days: 30 });
+  return buildTempleAnalyticsPayload(tid);
+}
+
+/**
+ * Full placement detail for one owned booking: the booking itself, its event
+ * stats (totals + per-placement bySlot + 30d daily), and the host temple's
+ * traffic summary. Ownership is the booking's contact email — 403 otherwise.
+ */
+async function getSlotAnalytics(account, bookingId) {
+  const id = Number.parseInt(bookingId, 10);
+  if (Number.isNaN(id) || id <= 0) {
+    throw portalError(400, 'Invalid booking id');
+  }
+  const booking = await get(
+    `SELECT b.id, b.slot_id, b.email, b.company_name, b.website_url, b.status, b.site_slug,
+            b.creative_path, b.started_at, b.ends_at, b.created_at,
+            s.name AS slot_name, s.slug AS slot_slug, s.width, s.height, s.is_bundle
+       FROM bookings b
+       JOIN ad_slots s ON b.slot_id = s.id
+      WHERE b.id = $1`,
+    [id]
+  );
+  if (!booking) throw portalError(404, 'Booking not found');
+  if (normalizeEmail(booking.email) !== account.email) {
+    throw portalError(403, 'You do not own this booking', 'not_owner');
+  }
+
+  const stats = await getBookingEventStats(booking.id);
+  // The temple summary is additive context; a traffic-store failure must not
+  // take the placement stats down with it.
+  let temple = null;
+  if (booking.site_slug && /^[a-z0-9-]{1,64}$/.test(booking.site_slug)) {
+    try {
+      temple = await buildTempleAnalyticsPayload(booking.site_slug);
+    } catch (err) {
+      console.error('[tenant-portal] slot temple summary failed:', err.message);
+      temple = null;
+    }
+  }
+
   return {
-    templeId: tid,
-    periodDays: data.periodDays,
-    totals: data.totals,
-    byDay: data.byDay,
-    devices: data.devices,
+    booking: {
+      id: booking.id,
+      slotId: booking.slot_id,
+      slotName: booking.slot_name,
+      slotSlug: booking.slot_slug,
+      siteSlug: booking.site_slug,
+      templeSlug: booking.site_slug,
+      status: booking.status,
+      creativePath: booking.creative_path,
+      companyName: booking.company_name,
+      websiteUrl: booking.website_url,
+      width: booking.width,
+      height: booking.height,
+      isBundle: Boolean(booking.is_bundle),
+      startedAt: booking.started_at,
+      endsAt: booking.ends_at,
+    },
+    ...stats,
+    temple,
   };
 }
 
@@ -789,6 +939,44 @@ async function adminListChangeRequests({ status = null, limit = 100, offset = 0 
 }
 
 /**
+ * Tenants directory for the unified admin portal (Leasing section). Lists
+ * tenant_accounts and augments each row through the same ownership linkage
+ * the tenant portal scopes by (bookings.email / patrons.email), so the admin
+ * sees exactly the temples, bookings, and patron spots the tenant can see.
+ * Read-only; N+1 is bounded by limit.
+ */
+async function adminListTenants({ limit = 100, offset = 0 } = {}) {
+  ensureSchema();
+  const rows = await all(
+    `SELECT id, email, is_sponsor, is_patron, status, created_at, last_login_at
+       FROM tenant_accounts
+      ORDER BY created_at DESC
+      LIMIT $1 OFFSET $2`,
+    [limit, offset]
+  );
+  const totalRow = await get('SELECT COUNT(*) AS c FROM tenant_accounts');
+
+  const items = [];
+  for (const row of rows) {
+    const { bookings, patrons } = await linkTenantAccount(row.email);
+    items.push({
+      id: row.id,
+      email: row.email,
+      status: row.status,
+      isSponsor: Boolean(row.is_sponsor),
+      isPatron: Boolean(row.is_patron),
+      createdAt: row.created_at,
+      lastLoginAt: row.last_login_at,
+      siteSlugs: [...new Set(bookings.map((b) => b.site_slug).filter(Boolean))],
+      patronTempleIds: [...new Set(patrons.map((p) => p.temple_id).filter(Boolean))],
+      bookingCount: bookings.length,
+      patronCount: patrons.length,
+    });
+  }
+  return { items, total: toCount(totalRow?.c), limit, offset };
+}
+
+/**
  * Approve or reject a pending request. Approval re-validates ownership and
  * applies the change to the real record (bookings creative swap / patrons
  * social links) inside the same transaction that marks the request reviewed,
@@ -898,11 +1086,14 @@ module.exports = {
   deleteSession,
   deleteSessionsForUser,
   getMe,
+  getBookingEventStats,
   getSpaceAnalytics,
   getTempleAnalytics,
+  getSlotAnalytics,
   getSiteAnalytics,
   createChangeRequest,
   listChangeRequests,
   adminListChangeRequests,
+  adminListTenants,
   reviewChangeRequest,
 };

@@ -70,7 +70,14 @@ function pixelHeaders(res) {
   res.setHeader('Expires', '0');
 }
 
-async function trackPixel(token, req, res) {
+// Placement slug passed by the temple ad renderer (?slot= / body slotSlug).
+// Only canonical slug shapes are stored; anything else falls back to the
+// booking's whole-slot bucket (NULL).
+function sanitizeSlotSlug(value) {
+  return typeof value === 'string' && /^[a-z0-9-]{1,64}$/.test(value) ? value : null;
+}
+
+async function trackPixel(token, req, res, slotSlug) {
   pixelHeaders(res);
   try {
     if (token) {
@@ -82,6 +89,7 @@ async function trackPixel(token, req, res) {
           ip: getClientIp(req),
           userAgent: req.headers['user-agent'],
           referrer: req.headers.referer,
+          slotSlug: sanitizeSlotSlug(slotSlug),
         });
       }
     }
@@ -92,7 +100,7 @@ async function trackPixel(token, req, res) {
   res.status(200).send(GIF_BUFFER);
 }
 
-async function trackClick(token, url, req, res) {
+async function trackClick(token, url, req, res, slotSlug) {
   if (!token || !url) {
     return res.status(400).send('Missing parameters');
   }
@@ -126,6 +134,7 @@ async function trackClick(token, url, req, res) {
         ip: getClientIp(req),
         userAgent: req.headers['user-agent'],
         referrer: req.headers.referer,
+        slotSlug: sanitizeSlotSlug(slotSlug),
       });
     }
   } catch (err) {
@@ -135,7 +144,7 @@ async function trackClick(token, url, req, res) {
   res.redirect(url);
 }
 
-async function trackViewability(token, visibleSeconds, visiblePercent, req, res) {
+async function trackViewability(token, visibleSeconds, visiblePercent, req, res, slotSlug) {
   if (!token) {
     return res.status(400).json({ error: 'token required' });
   }
@@ -156,6 +165,7 @@ async function trackViewability(token, visibleSeconds, visiblePercent, req, res)
         referrer: req.headers.referer,
         visibleSeconds: seconds,
         visiblePercent: percent,
+        slotSlug: sanitizeSlotSlug(slotSlug),
       });
     }
   } catch (err) {
@@ -192,5 +202,6 @@ module.exports = {
   trackViewability,
   getDashboard,
   isSafeRedirectUrl,
+  sanitizeSlotSlug,
   GIF_BUFFER,
 };

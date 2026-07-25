@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Sign In — Sponsor Sandbox · PuniCodex</title>
+  <meta name="description" content="Sign in to the PuniCodex Sponsor Sandbox to review your placement analytics and manage your ad space or patron spot.">
+  <link rel="canonical" href="https://punicodex.com/account/login/">
+  <link rel="stylesheet" href="/assets/fonts/fonts.css">
+  <link rel="stylesheet" href="/account/sandbox.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+  <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+</head>
+<body>
+  <header class="sb-topbar">
+    <a class="sb-brand" href="/">
+      <picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-camel-gold.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-camel-gold.png" alt="PuniCodex" width="680" height="119"></picture>
+      <span class="sb-brand-tag">Sponsor Sandbox</span>
+    </a>
+  </header>
+
+  <main class="sb-auth-wrap">
+    <!-- ── Sign in ────────────────────────────────────────── -->
+    <section class="sb-auth-card" id="view-login" hidden>
+      <h1>Sponsor Sandbox</h1>
+      <p class="sb-auth-lead">Sign in to review your placement analytics and manage your ad space or patron spot.</p>
+      <form id="login-form" novalidate>
+        <div class="sb-field">
+          <label for="login-email">Email</label>
+          <input type="email" id="login-email" autocomplete="email" required>
+        </div>
+        <div class="sb-field">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" autocomplete="current-password" required>
+        </div>
+        <button type="submit" class="sb-btn sb-btn-primary" id="login-submit">Sign In</button>
+        <p class="sb-form-message" id="login-message" role="alert"></p>
+      </form>
+      <details class="sb-forgot">
+        <summary>Forgot your password?</summary>
+        <form id="forgot-form" novalidate>
+          <div class="sb-field">
+            <label for="forgot-email">Email</label>
+            <input type="email" id="forgot-email" autocomplete="email" required>
+          </div>
+          <button type="submit" class="sb-btn sb-btn-outline sb-btn-sm" id="forgot-submit">Send Reset Link</button>
+          <p class="sb-form-message" id="forgot-message" role="status"></p>
+        </form>
+      </details>
+      <p class="sb-auth-hint">New sponsor or patron? Your activation email contains a one-time setup link.</p>
+    </section>
+
+    <!-- ── Set password (first use / reset) ───────────────── -->
+    <section class="sb-auth-card" id="view-set-password" hidden>
+      <h1>Set Your Password</h1>
+      <p class="sb-auth-lead">Choose a password for your sandbox account. The setup link works once and expires after 24 hours.</p>
+      <form id="set-password-form" novalidate>
+        <div class="sb-field">
+          <label for="new-password">New password</label>
+          <input type="password" id="new-password" autocomplete="new-password" minlength="8" required>
+        </div>
+        <div class="sb-field">
+          <label for="confirm-password">Confirm password</label>
+          <input type="password" id="confirm-password" autocomplete="new-password" minlength="8" required>
+        </div>
+        <button type="submit" class="sb-btn sb-btn-primary" id="set-password-submit">Set Password &amp; Sign In</button>
+        <p class="sb-form-message" id="set-password-message" role="alert"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="sb-footer">
+    <p>© 2026 PuniCodex · <a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a> · <a href="/contact/">Contact</a></p>
+  </footer>
+
+  <script src="/account/sandbox.js"></script>
+  <script src="/account/login/login.js"></script>
+</body>
+</html>

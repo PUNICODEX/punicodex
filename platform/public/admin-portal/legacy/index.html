@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Admin Portal — Legacy Tools | PuniCodex</title>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="../portal.css">
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+</head>
+<body data-page="legacy" data-depth="1">
+    <a class="skip-link" href="#portal-main">Skip to content</a>
+    <div id="portal-header"></div>
+
+    <main id="portal-main" class="portal-main">
+        <div class="portal-page-head">
+            <h1>Legacy Tools</h1>
+            <p>Standalone single-purpose dashboards that predate the unified portal.</p>
+        </div>
+
+        <section class="panel" aria-label="Deprecation notice">
+            <p class="credential-warning" style="margin:0;">These standalone tools predate the Sanctum; they remain live and your portal token works on all of them. Where a portal-native replacement exists it is noted — prefer the replacement.</p>
+        </section>
+
+        <section class="panel" aria-label="Legacy tool directory">
+            <div class="panel-head">
+                <h2 class="panel-title">Directory</h2>
+            </div>
+            <div class="quick-links">
+                <a class="quick-link" href="/platform/public/admin-bookings.html">
+                    <div class="quick-link-title">Bookings</div>
+                    <div class="quick-link-desc">Ad-slot bookings, trials, creative approvals, and reports.</div>
+                </a>
+                <a class="quick-link" href="/platform/public/admin-api-keys.html">
+                    <div class="quick-link-title">API Keys (legacy UI)</div>
+                    <div class="quick-link-desc">Superseded by this portal's API Keys page — same endpoints, older interface.</div>
+                </a>
+                <a class="quick-link" href="/platform/public/admin-authenticity.html">
+                    <div class="quick-link-title">Authenticity</div>
+                    <div class="quick-link-desc">Threat feed and brand-protection console.</div>
+                </a>
+                <a class="quick-link" href="/platform/public/admin-authenticity-policy.html">
+                    <div class="quick-link-title">Authenticity Policy</div>
+                    <div class="quick-link-desc">Policy engine configuration for homograph verdicts.</div>
+                </a>
+                <a class="quick-link" href="/platform/public/admin-analytics.html">
+                    <div class="quick-link-title">Site Analytics</div>
+                    <div class="quick-link-desc">Beacon traffic, sessions, and engagement analytics.</div>
+                </a>
+                <a class="quick-link" href="/admin.html">
+                    <div class="quick-link-title">Crawler (legacy)</div>
+                    <div class="quick-link-desc">Reads work; mutations have no auth UI and fail — superseded by System.</div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <script src="../portal.js"></script>
+    <script>
+    (function () {
+        Portal.initShell('legacy');
+    })();
+    </script>
+</body>
+</html>

@@ -22,7 +22,7 @@ const {
   notifyTrialStarted,
   sendAnalyticsReport,
 } = require('./email');
-const { getAllBookings, getBookingStats, getRevenueStats } = require('./admin');
+const { getAllBookings, getBookingCount, getBookingStats, getRevenueStats } = require('./admin');
 const { runTrialReminders } = require('../scripts/trial-reminders');
 const { runLeaseExpiry } = require('../scripts/lease-expiry');
 const { validateMeta } = require('./booking-validation');
@@ -42,6 +42,16 @@ class AdminBookingError extends Error {
     super(message);
     this.status = status;
   }
+}
+
+/**
+ * Audit-trail actor. Legacy admin routes pass the raw x-admin-token string;
+ * the unified admin portal passes the requirePortal auth object ({user,
+ * role}) so the audit row records the portal user id instead.
+ */
+function auditActor(actor) {
+  if (actor && typeof actor === 'object') return { adminUserId: actor.user?.id ?? null };
+  return { adminToken: actor || null };
 }
 
 function parseMonths(value) {
@@ -64,6 +74,36 @@ async function listBookings({ status, site } = {}) {
   return {
     bookings: await getAllBookings(status || null, site || null),
     stats: await getBookingStats(site || null),
+  };
+}
+
+/**
+ * Paged booking roster for the unified admin portal (Leasing section).
+ * Returns the envelope the Leasing page renders: filtered/paged items, the
+ * full stats block (incl. per-status counts) and a true 30-day revenue
+ * summary derived from the daily revenue series.
+ */
+async function listBookingsPortal({ status, site, search, limit = 100, offset = 0 } = {}) {
+  const [items, total, stats, revenue] = await Promise.all([
+    getAllBookings(status || null, site || null, { search: search || null, limit, offset }),
+    getBookingCount({ status: status || null, siteSlug: site || null, search: search || null }),
+    getBookingStats(site || null),
+    getRevenueStats(30),
+  ]);
+  const revenue30dCents = revenue.daily.reduce((sum, d) => sum + (Number(d.revenue_cents) || 0), 0);
+  const bookings30d = revenue.daily.reduce((sum, d) => sum + (Number(d.bookings) || 0), 0);
+  return {
+    items,
+    total,
+    limit,
+    offset,
+    stats,
+    revenue: {
+      days: 30,
+      revenueCents: revenue30dCents,
+      revenueDollars: (revenue30dCents / 100).toFixed(2),
+      bookings: bookings30d,
+    },
   };
 }
 
@@ -125,7 +165,7 @@ async function createBookingAdmin(
   await setBookingStatus(id, 'pending_upload', 'Admin-created trial lease');
 
   await logAction({
-    adminToken,
+    ...auditActor(adminToken),
     action: 'admin.booking.create',
     bookingId: id,
     payload: { siteSlug, leaseMonths: months, trialMonths: trial },
@@ -176,10 +216,11 @@ async function approveApplication(id, adminToken) {
     slotName: slot.name,
     companyName: booking.company_name,
     stripeUrl: stripeResult.sessionUrl,
+    siteSlug,
   }).catch(() => {});
 
   await logAction({
-    adminToken,
+    ...auditActor(adminToken),
     action: 'admin.booking.approve-application',
     bookingId: booking.id,
     payload: { amountCents, sessionId: stripeResult.sessionId },
@@ -193,7 +234,7 @@ async function approveBooking(id, note, adminToken) {
   if (!booking) throw new AdminBookingError(404, 'Booking not found');
   await setBookingStatus(id, 'approved', note || null);
   await logAction({
-    adminToken,
+    ...auditActor(adminToken),
     action: 'admin.booking.approve',
     bookingId: booking.id,
     payload: { note: note || null },
@@ -203,6 +244,7 @@ async function approveBooking(id, note, adminToken) {
     slotName: booking.slot_name,
     companyName: booking.company_name,
     bookingToken: booking.analytics_token,
+    siteSlug: booking.site_slug,
   }).catch(() => {});
   return { success: true, status: 'approved' };
 }
@@ -213,7 +255,7 @@ async function rejectBooking(id, note, adminToken) {
   const reason = note || 'Does not meet guidelines';
   await setBookingStatus(id, 'rejected', reason);
   await logAction({
-    adminToken,
+    ...auditActor(adminToken),
     action: 'admin.booking.reject',
     bookingId: booking.id,
     payload: { note: reason },
@@ -224,6 +266,7 @@ async function rejectBooking(id, note, adminToken) {
     companyName: booking.company_name,
     note: reason,
     bookingToken: booking.analytics_token,
+    siteSlug: booking.site_slug,
   }).catch(() => {});
   return { success: true, status: 'rejected' };
 }
@@ -233,7 +276,7 @@ async function goLiveBooking(id, adminToken) {
   if (!booking) throw new AdminBookingError(404, 'Booking not found');
   await goLive(id);
   await logAction({
-    adminToken,
+    ...auditActor(adminToken),
     action: 'admin.booking.golive',
     bookingId: booking.id,
     payload: { trialMonths: booking.trial_months, leaseMonths: booking.lease_months },
@@ -248,6 +291,7 @@ async function goLiveBooking(id, adminToken) {
       trialMonths: booking.trial_months,
       trialEndsAt: booking.trial_ends_at,
       bookingToken: booking.analytics_token,
+      siteSlug: booking.site_slug,
     }).catch(() => {});
   } else {
     notifyLive({
@@ -256,6 +300,7 @@ async function goLiveBooking(id, adminToken) {
       companyName: booking.company_name,
       bookingToken: booking.analytics_token,
       leaseMonths: booking.lease_months,
+      siteSlug: booking.site_slug,
     }).catch(() => {});
   }
 
@@ -277,7 +322,7 @@ async function endBookingAdmin(id, adminToken) {
 
   await endBooking(id);
   await logAction({
-    adminToken,
+    ...auditActor(adminToken),
     action: 'admin.booking.end',
     bookingId: booking.id,
   });
@@ -295,7 +340,7 @@ async function sendBookingReport(id, adminToken) {
     metrics: metrics.metrics,
   });
   await logAction({
-    adminToken,
+    ...auditActor(adminToken),
     action: 'admin.booking.report',
     bookingId: booking.id,
   });
@@ -305,7 +350,7 @@ async function sendBookingReport(id, adminToken) {
 async function runTrialRemindersAdmin(adminToken) {
   const result = await runTrialReminders();
   await logAction({
-    adminToken,
+    ...auditActor(adminToken),
     action: 'admin.trial-reminders',
     payload: result,
   });
@@ -315,7 +360,7 @@ async function runTrialRemindersAdmin(adminToken) {
 async function runLeaseExpiryAdmin(adminToken) {
   const result = await runLeaseExpiry();
   await logAction({
-    adminToken,
+    ...auditActor(adminToken),
     action: 'admin.lease-expiry',
     payload: result,
   });
@@ -325,6 +370,7 @@ async function runLeaseExpiryAdmin(adminToken) {
 module.exports = {
   AdminBookingError,
   listBookings,
+  listBookingsPortal,
   getRevenue,
   createBookingAdmin,
   approveApplication,

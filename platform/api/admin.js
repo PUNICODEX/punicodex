@@ -55,15 +55,37 @@ async function login(password) {
   return { success: true, token };
 }
 
-async function getAllBookings(status = null, siteSlug = null) {
+async function getAllBookings(
+  status = null,
+  siteSlug = null,
+  { search = null, limit = null, offset = null } = {}
+) {
+  const { where, params } = bookingWhere({ status, siteSlug, search });
   let query = `
     SELECT b.*, s.name as slot_name, s.slug as slot_slug, s.width, s.height, s.is_bundle
     FROM bookings b
     JOIN ad_slots s ON b.slot_id = s.id
   `;
+  query += where;
+  query += ' ORDER BY b.created_at DESC';
+  if (limit != null) {
+    query += ` LIMIT $${params.length + 1} OFFSET $${params.length + 2}`;
+    params.push(limit, offset || 0);
+  }
+  return all(query, params);
+}
+
+/**
+ * Shared WHERE builder for booking admin queries. `status` accepts the
+ * pseudo-status 'trialing' (live bookings whose billing is still in trial).
+ * `search` is an escaped case-insensitive substring match on email/company.
+ */
+function bookingWhere({ status = null, siteSlug = null, search = null } = {}) {
   const params = [];
   const conditions = [];
-  if (status) {
+  if (status === 'trialing') {
+    conditions.push(`b.status = 'live' AND b.billing_status = 'trialing'`);
+  } else if (status) {
     conditions.push(`b.status = $${params.length + 1}`);
     params.push(status);
   }
@@ -71,11 +93,22 @@ async function getAllBookings(status = null, siteSlug = null) {
     conditions.push(`b.site_slug = $${params.length + 1}`);
     params.push(siteSlug);
   }
-  if (conditions.length > 0) {
-    query += ` WHERE ${conditions.join(' AND ')}`;
+  if (search) {
+    const term = `%${String(search)
+      .toLowerCase()
+      .replace(/[%_\\]/g, (m) => `\\${m}`)}%`;
+    conditions.push(
+      `(LOWER(b.email) LIKE $${params.length + 1} ESCAPE '\\' OR LOWER(b.company_name) LIKE $${params.length + 2} ESCAPE '\\')`
+    );
+    params.push(term, term);
   }
-  query += ' ORDER BY b.created_at DESC';
-  return all(query, params);
+  return { where: conditions.length > 0 ? ` WHERE ${conditions.join(' AND ')}` : '', params };
+}
+
+async function getBookingCount({ status = null, siteSlug = null, search = null } = {}) {
+  const { where, params } = bookingWhere({ status, siteSlug, search });
+  const row = await get(`SELECT COUNT(*) as c FROM bookings b${where}`, params);
+  return row?.c || 0;
 }
 
 async function getBookingStats(siteSlug = null) {
@@ -107,6 +140,14 @@ async function getBookingStats(siteSlug = null) {
     `SELECT COALESCE(SUM(amount_paid_cents), 0) as c FROM bookings WHERE status IN ('live', 'ended', 'approved')${siteClause}`,
     params
   );
+  const byStatusRows = await all(
+    `SELECT status, COUNT(*) as c FROM bookings WHERE 1=1${siteClause} GROUP BY status`,
+    params
+  );
+  const byStatus = {};
+  for (const row of byStatusRows) {
+    byStatus[row.status] = Number(row.c) || 0;
+  }
 
   return {
     totalLive: totalLiveRow?.c || 0,
@@ -116,6 +157,7 @@ async function getBookingStats(siteSlug = null) {
     totalTrialing: totalTrialingRow?.c || 0,
     revenueCents: revenueRow?.c || 0,
     revenueDollars: ((revenueRow?.c || 0) / 100).toFixed(2),
+    byStatus,
   };
 }
 
@@ -189,6 +231,7 @@ module.exports = {
   validateAdminToken,
   revokeToken,
   getAllBookings,
+  getBookingCount,
   getBookingStats,
   getRevenueStats,
   hashToken,

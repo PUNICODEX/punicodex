@@ -1302,7 +1302,7 @@ app.post('/api/bookings', bookingsLimit, async (req, res) => {
 
     await updateBookingStripeSession(id, stripeResult.sessionId);
 
-    // Send booking confirmation email
+    // Send booking confirmation email (branded for the booking's temple)
     sendBookingConfirmation({
       email,
       slotName: slot.name,
@@ -1313,8 +1313,8 @@ app.post('/api/bookings', bookingsLimit, async (req, res) => {
       customSubtitle,
       leaseMonths: months,
       trialMonths: trial,
+      siteSlug,
     }).catch(() => {});
-    // Note: emails still show Níkē branding; dynamic branding enhancement deferred
 
     res.json({
       bookingId: id,
@@ -1739,16 +1739,16 @@ app.get('/api/bookings/:token/slots', publicReadLimit, async (req, res) => {
 
 // --- Analytics ---
 app.get('/api/analytics/pixel.gif', analyticsPixelLimit, async (req, res) => {
-  await adAnalytics.trackPixel(req.query.b, req, res);
+  await adAnalytics.trackPixel(req.query.b, req, res, req.query.slot);
 });
 
 app.get('/api/analytics/click', analyticsClickLimit, async (req, res) => {
-  await adAnalytics.trackClick(req.query.b, req.query.url, req, res);
+  await adAnalytics.trackClick(req.query.b, req.query.url, req, res, req.query.slot);
 });
 
 app.post('/api/analytics/viewability', analyticsPixelLimit, async (req, res) => {
-  const { token, visibleSeconds, visiblePercent } = req.body || {};
-  await adAnalytics.trackViewability(token, visibleSeconds, visiblePercent, req, res);
+  const { token, visibleSeconds, visiblePercent, slotSlug, slot } = req.body || {};
+  await adAnalytics.trackViewability(token, visibleSeconds, visiblePercent, req, res, slotSlug || slot);
 });
 
 app.get('/api/analytics/dashboard', publicReadLimit, async (req, res) => {
@@ -1946,6 +1946,7 @@ app.post('/api/admin/bookings/create', requireAdmin, async (req, res) => {
       customSubtitle,
       leaseMonths: months,
       trialMonths: trial,
+      siteSlug,
     }).catch(() => {});
 
     res.json({
@@ -2027,6 +2028,7 @@ app.post('/api/admin/bookings/:id/approve', requireAdmin, async (req, res) => {
       slotName: booking.slot_name,
       companyName: booking.company_name,
       bookingToken: booking.analytics_token,
+      siteSlug: booking.site_slug,
     }).catch(() => {});
     res.json({ success: true, status: 'approved' });
   } catch (err) {
@@ -2052,6 +2054,7 @@ app.post('/api/admin/bookings/:id/reject', requireAdmin, async (req, res) => {
       companyName: booking.company_name,
       note,
       bookingToken: booking.analytics_token,
+      siteSlug: booking.site_slug,
     }).catch(() => {});
     res.json({ success: true, status: 'rejected' });
   } catch (err) {
@@ -2079,6 +2082,7 @@ app.post('/api/admin/bookings/:id/golive', requireAdmin, async (req, res) => {
         trialMonths: booking.trial_months,
         trialEndsAt: booking.trial_ends_at,
         bookingToken: booking.analytics_token,
+        siteSlug: booking.site_slug,
       }).catch(() => {});
     } else {
       notifyLive({
@@ -2087,6 +2091,7 @@ app.post('/api/admin/bookings/:id/golive', requireAdmin, async (req, res) => {
         companyName: booking.company_name,
         bookingToken: booking.analytics_token,
         leaseMonths: booking.lease_months,
+        siteSlug: booking.site_slug,
       }).catch(() => {});
     }
     res.json({ success: true, status: 'live', trial: isTrial });

@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Admin Portal — System | PuniCodex</title>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="../portal.css">
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+</head>
+<body data-page="system" data-depth="1">
+    <a class="skip-link" href="#portal-main">Skip to content</a>
+    <div id="portal-header"></div>
+
+    <main id="portal-main" class="portal-main">
+        <div class="portal-page-head">
+            <h1>System</h1>
+            <p>Crawler operations, API observability, and database inventory. Your portal token authorizes every action on this page.</p>
+        </div>
+
+        <div class="portal-form-row" role="tablist" aria-label="System sections">
+            <button type="button" class="btn btn-primary" data-system-tab="crawler" role="tab" aria-selected="true">Crawler</button>
+            <button type="button" class="btn btn-secondary" data-system-tab="observability" role="tab" aria-selected="false">Observability</button>
+            <button type="button" class="btn btn-secondary" data-system-tab="database" role="tab" aria-selected="false">Database</button>
+        </div>
+
+        <!-- ── Crawler ─────────────────────────────────────────── -->
+        <div id="panel-crawler" role="tabpanel" aria-label="Crawler">
+            <section class="panel" aria-label="Index health">
+                <div class="panel-head">
+                    <div>
+                        <h2 class="panel-title">Index Health</h2>
+                        <p class="panel-sub">Live counts from the crawler index and queue.</p>
+                    </div>
+                    <button type="button" class="btn btn-secondary btn-sm" id="crawler-refresh">Refresh</button>
+                </div>
+                <div class="stat-grid" id="crawler-stats">
+                    <div class="state-block">Loading crawler stats…</div>
+                </div>
+            </section>
+
+            <section class="panel" aria-label="Crawl queue" id="crawler-ops" hidden>
+                <div class="panel-head">
+                    <div>
+                        <h2 class="panel-title">Queue Operations</h2>
+                        <p class="panel-sub">Actions run immediately against the live crawler.</p>
+                    </div>
+                </div>
+                <div class="portal-form-row">
+                    <div class="field">
+                        <label for="queue-domain">Add a domain to the queue</label>
+                        <input type="text" id="queue-domain" placeholder="e.g. xn--zes-9na.com or zeús.com">
+                    </div>
+                    <button type="button" class="btn btn-primary" id="queue-add-btn">Add to Queue</button>
+                    <button type="button" class="btn btn-secondary" id="queue-process-btn">Process Queue</button>
+                </div>
+                <div class="portal-form-row">
+                    <div class="field">
+                        <label for="crawl-domain">Crawl a domain now</label>
+                        <input type="text" id="crawl-domain" placeholder="e.g. xn--zes-9na.com or zeús.com">
+                    </div>
+                    <button type="button" class="btn btn-primary" id="crawl-btn">Crawl</button>
+                    <button type="button" class="btn btn-secondary" id="recrawl-btn">Re-crawl All</button>
+                </div>
+                <div class="portal-form-row">
+                    <div class="field">
+                        <label for="discover-domains">Discover domains (one per line)</label>
+                        <textarea id="discover-domains" rows="3" placeholder="xn--hxajbheg2az3al.com&#10;xn--nxasmq6b.example"></textarea>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="discover-btn">Run Discovery</button>
+                    <button type="button" class="btn btn-secondary" id="tenant-keywords-btn">Refresh Tenant Keywords</button>
+                </div>
+            </section>
+
+            <section class="panel" aria-label="Crawl queue contents">
+                <div class="panel-head">
+                    <h2 class="panel-title">Queue</h2>
+                    <span class="field-hint" id="queue-total"></span>
+                </div>
+                <div id="queue-table">
+                    <div class="state-block">Loading queue…</div>
+                </div>
+            </section>
+
+            <section class="panel" aria-label="Indexed sites">
+                <div class="panel-head">
+                    <div>
+                        <h2 class="panel-title">Indexed Sites</h2>
+                        <p class="panel-sub">Newest first by index order. Flagging marks a site as spam and excludes it from search.</p>
+                    </div>
+                    <button type="button" class="btn btn-secondary btn-sm" id="sites-refresh">Refresh</button>
+                </div>
+                <div id="sites-table">
+                    <div class="state-block">Loading sites…</div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ── Observability ───────────────────────────────────── -->
+        <div id="panel-observability" role="tabpanel" aria-label="Observability" hidden>
+            <section class="panel" aria-label="Request metrics">
+                <div class="panel-head">
+                    <div>
+                        <h2 class="panel-title">Request Metrics</h2>
+                        <p class="panel-sub" id="obs-updated"></p>
+                    </div>
+                    <div class="portal-form-row" style="margin:0;">
+                        <div class="field">
+                            <label for="obs-hours">Window</label>
+                            <select id="obs-hours">
+                                <option value="1">Last hour</option>
+                                <option value="6">Last 6 hours</option>
+                                <option value="24" selected>Last 24 hours</option>
+                                <option value="72">Last 3 days</option>
+                                <option value="168">Last 7 days</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn btn-secondary btn-sm" id="obs-refresh">Refresh</button>
+                    </div>
+                </div>
+                <div class="stat-grid" id="obs-stats">
+                    <div class="state-block">Loading metrics…</div>
+                </div>
+            </section>
+
+            <section class="panel" aria-label="Health summary">
+                <div class="panel-head">
+                    <h2 class="panel-title">Health Summary</h2>
+                </div>
+                <div id="obs-health">
+                    <div class="state-block">Loading health…</div>
+                </div>
+            </section>
+
+            <section class="panel" aria-label="Top searches">
+                <div class="panel-head">
+                    <h2 class="panel-title">Top Searches</h2>
+                </div>
+                <div id="obs-searches">
+                    <div class="state-block">Loading searches…</div>
+                </div>
+            </section>
+
+            <section class="panel" aria-label="Slowest endpoints">
+                <div class="panel-head">
+                    <h2 class="panel-title">Slowest Endpoints</h2>
+                </div>
+                <div id="obs-slow">
+                    <div class="state-block">Loading endpoints…</div>
+                </div>
+            </section>
+
+            <section class="panel" aria-label="Recent requests">
+                <div class="panel-head">
+                    <h2 class="panel-title">Recent Requests</h2>
+                </div>
+                <div id="obs-recent">
+                    <div class="state-block">Loading requests…</div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ── Database ────────────────────────────────────────── -->
+        <div id="panel-database" role="tabpanel" aria-label="Database" hidden>
+            <section class="panel" aria-label="Principal tables">
+                <div class="panel-head">
+                    <div>
+                        <h2 class="panel-title">Principal Tables</h2>
+                        <p class="panel-sub">The core schema at a glance. The full schema is managed by the idempotent migrations in <code>platform/db/</code>, which every API handler re-runs on cold start; there is no separate migrations endpoint, so no live count is shown.</p>
+                    </div>
+                </div>
+                <div id="db-tables"></div>
+            </section>
+        </div>
+    </main>
+
+    <script src="../portal.js"></script>
+    <script>
+    (function () {
+        // ── Shared bits ───────────────────────────────────────
+        function statCard(value, label, hint) {
+            return (
+                '<div class="stat-card"><div class="stat-card-value">' + value + '</div>' +
+                '<div class="stat-card-label">' + Portal.escapeHtml(label) + '</div>' +
+                (hint ? '<div class="stat-card-hint">' + Portal.escapeHtml(hint) + '</div>' : '') +
+                '</div>'
+            );
+        }
+
+        function emptyState(text) {
+            return '<div class="state-block">' + Portal.escapeHtml(text) + '</div>';
+        }
+
+        function errorState(err) {
+            return '<div class="state-block error">' + Portal.escapeHtml(err.message) + '</div>';
+        }
+
+        function dataTable(head, rows) {
+            return (
+                '<div class="table-wrap"><table class="portal-table">' +
+                '<thead><tr>' + head + '</tr></thead>' +
+                '<tbody>' + rows + '</tbody></table></div>'
+            );
+        }
+
+        async function runAction(btn, label, fn) {
+            btn.disabled = true;
+            try {
+                await fn();
+            } catch (err) {
+                Portal.toast(label + ' failed: ' + err.message, 'error');
+            } finally {
+                btn.disabled = false;
+            }
+        }
+
+        // ── Tabs ──────────────────────────────────────────────
+        var loadedTabs = {};
+        function switchTab(name) {
+            var tabs = document.querySelectorAll('[data-system-tab]');
+            for (var i = 0; i < tabs.length; i++) {
+                var active = tabs[i].getAttribute('data-system-tab') === name;
+                tabs[i].className = 'btn ' + (active ? 'btn-primary' : 'btn-secondary');
+                tabs[i].setAttribute('aria-selected', active ? 'true' : 'false');
+            }
+            for (var panel of ['crawler', 'observability', 'database']) {
+                document.getElementById('panel-' + panel).hidden = panel !== name;
+            }
+            if (!loadedTabs[name]) {
+                loadedTabs[name] = true;
+                if (name === 'observability') loadObservability();
+                if (name === 'database') renderDbTables();
+            }
+        }
+
+        // ── Crawler: stats ────────────────────────────────────
+        async function loadCrawlerStats(promise) {
+            var grid = document.getElementById('crawler-stats');
+            try {
+                var s = await (promise || Portal.api('/api/crawler/stats/'));
+                var queue = s.queue || {};
+                grid.innerHTML =
+                    statCard(Portal.fmtNumber(s.total_sites), 'Total Indexed', '') +
+                    statCard(Portal.fmtNumber(s.active_sites), 'Active', '') +
+                    statCard(Portal.fmtNumber(s.pending_sites), 'Pending', '') +
+                    statCard(Portal.fmtNumber(s.error_sites), 'Errors', '') +
+                    statCard(Portal.fmtNumber(s.flagged_sites), 'Flagged (spam)', '') +
+                    statCard(Portal.fmtNumber(s.available_entries), 'Available Entries', '') +
+                    statCard(Portal.fmtNumber(queue.pending), 'Queue Pending', Portal.fmtNumber(queue.crawling) + ' crawling') +
+                    statCard(Portal.fmtNumber(queue.total_discovered), 'Discovered Domains', Portal.fmtNumber(queue.error) + ' queue errors');
+            } catch (err) {
+                grid.innerHTML = errorState(err);
+            }
+        }
+
+        // ── Crawler: queue ────────────────────────────────────
+        async function loadQueue() {
+            var wrap = document.getElementById('queue-table');
+            try {
+                var data = await Portal.api('/api/crawler/queue/?limit=10');
+                var items = data.items || [];
+                document.getElementById('queue-total').textContent = Portal.fmtNumber(data.total) + ' total';
+                if (!items.length) {
+                    wrap.innerHTML = emptyState('The crawl queue is empty.');
+                    return;
+                }
+                var rows = items
+                    .map(function (q) {
+                        return (
+                            '<tr>' +
+                            '<td><div class="cell-title">' + Portal.escapeHtml(q.domain) + '</div>' +
+                            '<div class="cell-sub">' + Portal.escapeHtml(q.punycode || '') + '</div></td>' +
+                            '<td>' + Portal.statusBadge(q.status) + '</td>' +
+                            '<td>' + Portal.escapeHtml(q.source || '—') + '</td>' +
+                            '<td>' + Portal.fmtNumber(q.priority) + '</td>' +
+                            '<td>' + Portal.escapeHtml(Portal.fmtDateTime(q.discovery_date)) + '</td>' +
+                            '</tr>'
+                        );
+                    })
+                    .join('');
+                wrap.innerHTML = dataTable(
+                    '<th>Domain</th><th>Status</th><th>Source</th><th>Priority</th><th>Discovered</th>',
+                    rows
+                );
+            } catch (err) {
+                wrap.innerHTML = errorState(err);
+            }
+        }
+
+        function refreshCrawler() {
+            loadCrawlerStats();
+            loadQueue();
+            loadSites();
+        }
+
+        // ── Crawler: actions ──────────────────────────────────
+        async function addToQueue() {
+            var input = document.getElementById('queue-domain');
+            var domain = input.value.trim();
+            if (!domain) {
+                Portal.toast('Enter a domain first', 'error');
+                return;
+            }
+            var btn = document.getElementById('queue-add-btn');
+            await runAction(btn, 'Add to queue', async function () {
+                var data = await Portal.api('/api/crawler/queue/', {
+                    method: 'POST',
+                    body: { domains: domain, source: 'portal' },
+                });
+                Portal.toast('Queued ' + Portal.fmtNumber(data.added) + ' domain(s), skipped ' + Portal.fmtNumber(data.skipped), 'success');
+                input.value = '';
+                loadCrawlerStats();
+                loadQueue();
+            });
+        }
+
+        async function processQueue() {
+            if (!window.confirm('Process a batch of pending queue items now?')) return;
+            var btn = document.getElementById('queue-process-btn');
+            await runAction(btn, 'Process queue', async function () {
+                var data = await Portal.api('/api/crawler/queue/process/', { method: 'POST', body: {} });
+                Portal.toast(
+                    'Crawled ' + Portal.fmtNumber(data.crawled) + ' item(s), ' + Portal.fmtNumber(data.errors) + ' errors',
+                    'success'
+                );
+                loadCrawlerStats();
+                loadQueue();
+            });
+        }
+
+        async function crawlNow() {
+            var input = document.getElementById('crawl-domain');
+            var domain = input.value.trim();
+            if (!domain) {
+                Portal.toast('Enter a domain first', 'error');
+                return;
+            }
+            var btn = document.getElementById('crawl-btn');
+            await runAction(btn, 'Crawl', async function () {
+                var data = await Portal.api('/api/crawl/', { method: 'POST', body: { domain: domain } });
+                if (data.error) throw new Error(data.error);
+                Portal.toast('Crawled: ' + (data.title || data.domain || domain) + ' (' + (data.status || 'done') + ')', 'success');
+                input.value = '';
+                refreshCrawler();
+            });
+        }
+
+        async function recrawlAll() {
+            if (!window.confirm('Re-crawl all active sites now?')) return;
+            var btn = document.getElementById('recrawl-btn');
+            await runAction(btn, 'Re-crawl', async function () {
+                var data = await Portal.api('/api/crawl/recrawl/', { method: 'POST', body: {} });
+                Portal.toast('Re-crawled ' + Portal.fmtNumber(data.total) + ' sites', 'success');
+                refreshCrawler();
+            });
+        }
+
+        async function discover() {
+            var input = document.getElementById('discover-domains');
+            var domains = input.value
+                .split(/\r?\n/)
+                .map(function (d) { return d.trim(); })
+                .filter(Boolean);
+            if (!domains.length) {
+                Portal.toast('Enter at least one domain first', 'error');
+                return;
+            }
+            var btn = document.getElementById('discover-btn');
+            await runAction(btn, 'Discovery', async function () {
+                var data = await Portal.api('/api/crawler/discover/', {
+                    method: 'POST',
+                    body: { domains: domains, source: 'portal' },
+                });
+                Portal.toast(
+                    'Discovered ' + Portal.fmtNumber(data.added) + ' new (' + Portal.fmtNumber(data.total_discovered) + ' total), skipped ' + Portal.fmtNumber(data.skipped),
+                    'success'
+                );
+                input.value = '';
+                loadCrawlerStats();
+                loadQueue();
+            });
+        }
+
+        async function tenantKeywords() {
+            if (!window.confirm('Re-extract tenant keywords for every active leased site? This can take a while.')) return;
+            var btn = document.getElementById('tenant-keywords-btn');
+            await runAction(btn, 'Tenant keyword refresh', async function () {
+                var data = await Portal.api('/api/crawler/tenant-keywords/', { method: 'POST', body: {} });
+                Portal.toast(
+                    'Keywords refreshed for ' + Portal.fmtNumber(data.updated) + ' site(s), ' + Portal.fmtNumber(data.failed) + ' failed',
+                    'success'
+                );
+            });
+        }
+
+        // ── Crawler: sites + spam ─────────────────────────────
+        async function loadSites() {
+            var wrap = document.getElementById('sites-table');
+            try {
+                var data = await Portal.api('/api/sites/?limit=25');
+                var sites = data.sites || [];
+                if (!sites.length) {
+                    wrap.innerHTML = emptyState('No indexed sites yet.');
+                    return;
+                }
+                var canOps = Portal.can('ops');
+                var rows = sites
+                    .map(function (site) {
+                        var actions = canOps && site.status !== 'spam'
+                            ? '<button type="button" class="btn btn-sm btn-danger" data-action="spam" data-punycode="' + Portal.escapeHtml(site.punycode || '') + '" data-domain="' + Portal.escapeHtml(site.domain || '') + '">Flag Spam</button>'
+                            : '<span class="cell-sub">—</span>';
+                        return (
+                            '<tr>' +
+                            '<td><div class="cell-title">' + Portal.escapeHtml(site.domain || '—') + '</div>' +
+                            '<div class="cell-sub">' + Portal.escapeHtml(site.punycode || '') + '</div></td>' +
+                            '<td>' + Portal.statusBadge(site.status) + '</td>' +
+                            '<td>' + Portal.escapeHtml(site.pantheon || '—') + '</td>' +
+                            '<td>' + Portal.escapeHtml(site.title || '—') + '</td>' +
+                            '<td>' + Portal.escapeHtml(Portal.fmtDateTime(site.last_crawled)) + '</td>' +
+                            '<td><div class="cell-actions">' + actions + '</div></td>' +
+                            '</tr>'
+                        );
+                    })
+                    .join('');
+                wrap.innerHTML = dataTable(
+                    '<th>Domain</th><th>Status</th><th>Pantheon</th><th>Title</th><th>Last Crawled</th><th>Actions</th>',
+                    rows
+                );
+            } catch (err) {
+                wrap.innerHTML = errorState(err);
+            }
+        }
+
+        function showSpamModal(punycode, domain) {
+            Portal.openModal(
+                '<h2>Flag Site as Spam</h2>' +
+                '<p>Mark <strong>' + Portal.escapeHtml(domain) + '</strong> (<code>' + Portal.escapeHtml(punycode) + '</code>) as spam? It will be excluded from search results.</p>' +
+                '<div class="modal-actions">' +
+                '<button type="button" class="btn btn-secondary" id="modal-cancel">Cancel</button>' +
+                '<button type="button" class="btn btn-danger" id="modal-spam">Flag as Spam</button>' +
+                '</div>',
+                'Flag site as spam'
+            );
+            document.getElementById('modal-cancel').addEventListener('click', Portal.closeModal);
+            document.getElementById('modal-spam').addEventListener('click', async function () {
+                var btn = this;
+                btn.disabled = true;
+                try {
+                    await Portal.api('/api/sites/' + encodeURIComponent(punycode) + '/spam/', {
+                        method: 'POST',
+                        body: {},
+                    });
+                    Portal.closeModal();
+                    Portal.toast('Flagged ' + domain + ' as spam', 'success');
+                    loadSites();
+                    loadCrawlerStats();
+                } catch (err) {
+                    btn.disabled = false;
+                    Portal.toast('Spam flag failed: ' + err.message, 'error');
+                }
+            });
+        }
+
+        // ── Observability ─────────────────────────────────────
+        function renderHealth(health) {
+            var wrap = document.getElementById('obs-health');
+            if (!health) {
+                wrap.innerHTML = emptyState('No health data.');
+                return;
+            }
+            var lastError = health.lastServerError
+                ? '<div class="cell-sub">Last 5xx: ' + Portal.escapeHtml(health.lastServerError.status_code) +
+                  ' on ' + Portal.escapeHtml(health.lastServerError.path) +
+                  ' at ' + Portal.escapeHtml(Portal.fmtDateTime(health.lastServerError.created_at)) + '</div>'
+                : '<div class="cell-sub">No 5xx errors recorded.</div>';
+            wrap.innerHTML =
+                '<div class="stat-grid">' +
+                statCard(Portal.escapeHtml(health.status || 'unknown'), 'Status', '') +
+                statCard(health.database && health.database.healthy ? 'yes' : 'no', 'Database Healthy', Portal.escapeHtml((health.database && health.database.type) || '')) +
+                statCard(Portal.fmtNumber(health.lastHour && health.lastHour.requests), 'Requests · 1h', '') +
+                statCard(Portal.fmtNumber(health.lastHour && health.lastHour.uniqueIps), 'Unique IPs · 1h', '') +
+                statCard(Portal.fmtNumber(health.activeSites), 'Active Sites', '') +
+                '</div>' + lastError;
+        }
+
+        function renderSearches(topSearches) {
+            var wrap = document.getElementById('obs-searches');
+            var items = (topSearches && topSearches.items) || [];
+            if (!items.length) {
+                wrap.innerHTML = emptyState('No searches in this window.');
+                return;
+            }
+            var rows = items
+                .map(function (s) {
+                    return (
+                        '<tr><td>' + Portal.escapeHtml(s.query) + '</td>' +
+                        '<td>' + Portal.fmtNumber(s.count) + '</td>' +
+                        '<td>' + Portal.escapeHtml(String(s.avgResults)) + '</td></tr>'
+                    );
+                })
+                .join('');
+            wrap.innerHTML = dataTable('<th>Query</th><th>Count</th><th>Avg Results</th>', rows);
+        }
+
+        function renderSlow(slowEndpoints) {
+            var wrap = document.getElementById('obs-slow');
+            var items = (slowEndpoints && slowEndpoints.items) || [];
+            if (!items.length) {
+                wrap.innerHTML = emptyState('No timed requests in this window.');
+                return;
+            }
+            var rows = items
+                .map(function (e) {
+                    return (
+                        '<tr><td>' + Portal.escapeHtml(e.path) + '</td>' +
+                        '<td>' + Portal.escapeHtml(String(e.avgDurationMs)) + '</td>' +
+                        '<td>' + Portal.escapeHtml(String(e.maxDurationMs)) + '</td>' +
+                        '<td>' + Portal.fmtNumber(e.requests) + '</td></tr>'
+                    );
+                })
+                .join('');
+            wrap.innerHTML = dataTable('<th>Path</th><th>Avg ms</th><th>Max ms</th><th>Requests</th>', rows);
+        }
+
+        function renderRecent(recentRequests) {
+            var wrap = document.getElementById('obs-recent');
+            var items = (recentRequests && recentRequests.items) || [];
+            if (!items.length) {
+                wrap.innerHTML = emptyState('No requests in this window.');
+                return;
+            }
+            var rows = items
+                .map(function (r) {
+                    return (
+                        '<tr><td>' + Portal.escapeHtml(r.method || '—') + '</td>' +
+                        '<td><div class="cell-title">' + Portal.escapeHtml(r.path || '—') + '</div></td>' +
+                        '<td>' + Portal.statusBadge(r.status_code) + '</td>' +
+                        '<td>' + Portal.escapeHtml(r.duration_ms != null ? String(r.duration_ms) : '—') + '</td>' +
+                        '<td>' + Portal.escapeHtml(Portal.fmtDateTime(r.created_at)) + '</td></tr>'
+                    );
+                })
+                .join('');
+            wrap.innerHTML = dataTable('<th>Method</th><th>Path</th><th>Status</th><th>ms</th><th>Time</th>', rows);
+        }
+
+        async function loadObservability() {
+            var grid = document.getElementById('obs-stats');
+            grid.innerHTML = '<div class="state-block">Loading metrics…</div>';
+            try {
+                var hours = document.getElementById('obs-hours').value;
+                var res = await Portal.api('/api/admin/observability/?hours=' + hours + '&limit=10');
+                var data = res.data || {};
+                var metrics = data.metrics || {};
+                var percentiles = metrics.latencyPercentiles || {};
+                var windowMinutes = (metrics.windowHours || 24) * 60;
+                var perMinute = windowMinutes > 0 ? (metrics.totalRequests / windowMinutes).toFixed(2) : '0';
+                grid.innerHTML =
+                    statCard(Portal.fmtNumber(metrics.totalRequests), 'Requests', 'window ' + (metrics.windowHours || hours) + 'h') +
+                    statCard(perMinute, 'Requests / min', '') +
+                    statCard(Portal.fmtNumber(metrics.errorCount), 'Errors', 'rate ' + (metrics.errorRate != null ? metrics.errorRate : 0)) +
+                    statCard(Portal.escapeHtml(String(metrics.averageDurationMs != null ? metrics.averageDurationMs : 0)), 'Avg Duration ms', '') +
+                    statCard(Portal.escapeHtml(String(percentiles.p50 != null ? percentiles.p50 : '—')), 'p50 ms', '') +
+                    statCard(Portal.escapeHtml(String(percentiles.p95 != null ? percentiles.p95 : '—')), 'p95 ms', 'p99 ' + (percentiles.p99 != null ? percentiles.p99 : '—') + ' ms');
+                document.getElementById('obs-updated').textContent =
+                    'Generated ' + Portal.fmtDateTime(res.meta && res.meta.generatedAt);
+                renderHealth(data.health);
+                renderSearches(data.topSearches);
+                renderSlow(data.slowEndpoints);
+                renderRecent(data.recentRequests);
+            } catch (err) {
+                grid.innerHTML = errorState(err);
+                document.getElementById('obs-health').innerHTML = '';
+                document.getElementById('obs-searches').innerHTML = '';
+                document.getElementById('obs-slow').innerHTML = '';
+                document.getElementById('obs-recent').innerHTML = '';
+            }
+        }
+
+        // ── Database ──────────────────────────────────────────
+        var PRINCIPAL_TABLES = [
+            ['entries', 'The 895-entry lexicon (names, scripts, tiers, pantheons).'],
+            ['breakdowns', 'Per-entry character breakdowns for temple pages.'],
+            ['entries_fts', 'FTS5 full-text index over the lexicon.'],
+            ['indexed_sites', 'Crawled live sites with extracted content and trust metadata.'],
+            ['crawl_queue', 'Pending/active crawl jobs with priority and provenance.'],
+            ['discovered_domains', 'Domains found by CT-log scans and manual discovery.'],
+            ['availability', 'Registrar availability snapshots per lexicon entry.'],
+            ['api_keys', 'Enterprise API keys (SHA-256 hashes only).'],
+            ['api_request_log', 'Per-request API telemetry powering Observability.'],
+            ['search_queries', 'Logged search terms and result counts.'],
+            ['admin_sessions', 'Admin/portal session tokens (hashed, 8h TTL).'],
+            ['admin_users', 'Portal accounts with roles (superadmin/ops/leasing/scholars/viewer).'],
+            ['admin_actions', 'Portal audit trail (every mutating portal action).'],
+            ['bookings', 'Ad-slot lease applications and their lifecycle.'],
+            ['ad_slots', 'Leasable ad slots per flagship temple.'],
+            ['patrons', 'Patron tiers, MRR, and cancellation state per temple.'],
+            ['newsletter_subscribers', 'Herald subscribers (email, phone, source).'],
+            ['career_applications', 'Careers portal applications (status-triaged in Applications).'],
+            ['arbitrage_requests', 'Domain arbitrage leads (status-triaged in Applications).'],
+            ['tenant_accounts', 'Sponsor/tenant identities linked by email.'],
+            ['tenant_sessions', 'Tenant bearer sessions (hashed).'],
+            ['tenant_change_requests', 'Tenant creative/social change approval queue.'],
+            ['creator_products', 'Creator merch products and their review status.'],
+            ['creator_order_ledger', '50/50 royalty ledger for creator merch orders.'],
+            ['store_orders', 'Reliquary print-on-demand orders and fulfillment state.'],
+        ];
+
+        function renderDbTables() {
+            var rows = PRINCIPAL_TABLES.map(function (t) {
+                return (
+                    '<tr><td><code>' + Portal.escapeHtml(t[0]) + '</code></td>' +
+                    '<td>' + Portal.escapeHtml(t[1]) + '</td></tr>'
+                );
+            }).join('');
+            document.getElementById('db-tables').innerHTML = dataTable('<th>Table</th><th>Purpose</th>', rows);
+        }
+
+        // ── Init ──────────────────────────────────────────────
+        async function init() {
+            // Fire the crawler reads in parallel with the shell's /me round
+            // trip instead of waiting for the shell first.
+            var statsPromise = Portal.api('/api/crawler/stats/');
+            var ctx = await Portal.initShell('system');
+            if (!ctx) {
+                statsPromise.catch(function () {});
+                return;
+            }
+            loadedTabs.crawler = true;
+
+            // Seed the stats grid with the already-in-flight response.
+            loadCrawlerStats(statsPromise);
+            loadQueue();
+            loadSites();
+
+            var tabs = document.querySelectorAll('[data-system-tab]');
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].addEventListener('click', function () {
+                    switchTab(this.getAttribute('data-system-tab'));
+                });
+            }
+
+            document.getElementById('crawler-refresh').addEventListener('click', function () {
+                loadCrawlerStats();
+                loadQueue();
+            });
+            document.getElementById('sites-refresh').addEventListener('click', loadSites);
+            document.getElementById('sites-table').addEventListener('click', function (e) {
+                var btn = e.target.closest('button[data-action="spam"]');
+                if (!btn) return;
+                showSpamModal(btn.getAttribute('data-punycode'), btn.getAttribute('data-domain'));
+            });
+
+            // Mutation controls require the ops permission (same gate as the
+            // dashboard crawler panel).
+            if (Portal.can('ops')) {
+                document.getElementById('crawler-ops').hidden = false;
+                document.getElementById('queue-add-btn').addEventListener('click', addToQueue);
+                document.getElementById('queue-process-btn').addEventListener('click', processQueue);
+                document.getElementById('crawl-btn').addEventListener('click', crawlNow);
+                document.getElementById('recrawl-btn').addEventListener('click', recrawlAll);
+                document.getElementById('discover-btn').addEventListener('click', discover);
+                document.getElementById('tenant-keywords-btn').addEventListener('click', tenantKeywords);
+            }
+
+            document.getElementById('obs-refresh').addEventListener('click', loadObservability);
+            document.getElementById('obs-hours').addEventListener('change', loadObservability);
+        }
+
+        init();
+    })();
+    </script>
+</body>
+</html>

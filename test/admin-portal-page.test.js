@@ -22,12 +22,20 @@ const PAGES = [
   'login/index.html',
   'analytics/index.html',
   'applications/index.html',
-  'patrons/index.html',
+  'requests/index.html',
+  'leasing/index.html',
   'scholars/index.html',
   'newsletter/index.html',
   'merch/index.html',
   'users/index.html',
+  'system/index.html',
+  'api-keys/index.html',
+  'legacy/index.html',
 ];
+// Legacy stubs whose content moved into another section. They stay as
+// noindex redirect pages (no portal.js auth guard) and are checked in a
+// dedicated test below.
+const REDIRECT_PAGES = ['patrons/index.html'];
 const ASSETS = ['portal.css', 'portal.js'];
 const ALL_FILES = [...PAGES, ...ASSETS];
 
@@ -55,6 +63,21 @@ const API_ROUTES = [
   '/api/admin/portal/patrons/',
   '/api/admin/portal/patrons/stats/',
   '/api/admin/portal/patrons/:id/',
+  '/api/admin/portal/tenant-requests/',
+  '/api/admin/portal/tenant-requests/:id/approve/',
+  '/api/admin/portal/tenant-requests/:id/reject/',
+  '/api/admin/portal/bookings/',
+  '/api/admin/portal/bookings/:id/approve/',
+  '/api/admin/portal/bookings/:id/approve-application/',
+  '/api/admin/portal/bookings/:id/reject/',
+  '/api/admin/portal/bookings/:id/golive/',
+  '/api/admin/portal/bookings/:id/end/',
+  '/api/admin/portal/bookings/:id/report/',
+  '/api/admin/portal/tenants/',
+  '/api/admin/portal/careers/',
+  '/api/admin/portal/careers/:id/status/',
+  '/api/admin/portal/arbitrage/',
+  '/api/admin/portal/arbitrage/:id/status/',
   '/api/admin/portal/scholars/pending/',
   '/api/admin/portal/scholars/:kind/:id/approve/',
   '/api/admin/portal/scholars/:kind/:id/reject/',
@@ -62,9 +85,25 @@ const API_ROUTES = [
   '/api/admin/portal/newsletter/export/',
   '/api/admin/portal/merch/',
   '/api/admin/portal/merch/:id/withdraw/',
+  '/api/admin/portal/careers/',
+  '/api/admin/portal/careers/:id/status/',
+  '/api/admin/portal/arbitrage/',
+  '/api/admin/portal/arbitrage/:id/status/',
   '/api/crawler/stats/',
+  '/api/crawler/queue/',
+  '/api/crawler/queue/process/',
+  '/api/crawler/discover/',
+  '/api/crawler/tenant-keywords/',
   '/api/crawl/',
   '/api/crawl/recrawl/',
+  '/api/sites/',
+  '/api/sites/:punycode/spam/',
+  '/api/admin/observability/',
+  '/api/admin/api-keys/',
+  '/api/admin/api-keys/:id/',
+  '/api/admin/api-keys/:id/revoke/',
+  '/api/admin/api-keys/:id/unrevoke/',
+  '/api/admin/api-keys/:id/usage/',
 ];
 
 function routeToRegex(route) {
@@ -136,6 +175,23 @@ test('synced admin-portal/ copy exists and is byte-identical to canonical', () =
     assert.strictEqual(
       fs.readFileSync(syncedPath, 'utf8'),
       readCanonical(rel),
+      `admin-portal/${rel} diverged from canonical — rerun scripts/sync-admin-portal.js`
+    );
+  }
+});
+
+test('legacy redirect stubs are noindex, point at their new section, and stay in sync', () => {
+  for (const rel of REDIRECT_PAGES) {
+    const src = readCanonical(rel);
+    assert.ok(src.includes('/leasing/?tab=patrons'), `${rel}: expected the leasing tab link`);
+    const $ = cheerio.load(src);
+    const robots = $('meta[name="robots"]').attr('content') || '';
+    assert.ok(robots.includes('noindex'), `${rel}: expected a noindex robots meta`);
+    const syncedPath = path.join(SYNCED, rel);
+    assert.ok(fs.existsSync(syncedPath), `missing synced file admin-portal/${rel}`);
+    assert.strictEqual(
+      fs.readFileSync(syncedPath, 'utf8'),
+      src,
       `admin-portal/${rel} diverged from canonical — rerun scripts/sync-admin-portal.js`
     );
   }
@@ -287,8 +343,8 @@ test('role-based nav and action gating logic is present', () => {
     'applications: expected per-kind action gating'
   );
   assert.ok(
-    readCanonical('patrons/index.html').includes("Portal.can('leasing')"),
-    'patrons: expected leasing-gated actions'
+    readCanonical('leasing/index.html').includes("Portal.can('leasing')"),
+    'leasing: expected leasing-gated booking/patron actions'
   );
   assert.ok(
     readCanonical('scholars/index.html').includes("Portal.can('scholars')"),
@@ -308,7 +364,7 @@ test('role-based nav and action gating logic is present', () => {
   );
 });
 
-test('dashboard renders every field of the dashboard payload and the existing-tools block', () => {
+test('dashboard renders every field of the dashboard payload', () => {
   const src = readCanonical('index.html');
   for (const field of [
     'businessPending',
@@ -327,18 +383,6 @@ test('dashboard renders every field of the dashboard payload and the existing-to
     'generatedAt',
   ]) {
     assert.ok(src.includes(field), `dashboard: expected payload field ${field}`);
-  }
-  const $ = cheerio.load(src);
-  const hrefs = $('a[href]')
-    .map((_, el) => $(el).attr('href'))
-    .get();
-  for (const tool of [
-    '/platform/public/admin-api-keys.html',
-    '/platform/public/admin-bookings.html',
-    '/platform/public/admin-analytics.html',
-    '/platform/public/admin-authenticity.html',
-  ]) {
-    assert.ok(hrefs.includes(tool), `dashboard: expected existing-tools link ${tool}`);
   }
 });
 

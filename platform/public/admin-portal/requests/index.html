@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex,nofollow">
-    <title>Admin Portal — Tenant Requests | PuniCodex</title>
+    <title>Admin Portal — Change Requests | PuniCodex</title>
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
     <link rel="stylesheet" href="../portal.css">
     <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
@@ -25,8 +25,9 @@
 
     <main id="portal-main" class="portal-main">
         <div class="portal-page-head">
-            <h1>Tenant Requests</h1>
-            <p>Approval queue for sponsor creative swaps and patron social-link changes. Nothing applies until it is approved here.</p>
+            <h1>Change Requests</h1>
+            <p>Creative swaps and social-link approvals from tenant accounts. Nothing applies until it is approved here.</p>
+            <p class="field-hint" id="request-summary" aria-live="polite"></p>
         </div>
 
         <section class="panel" aria-label="Request filters">
@@ -69,14 +70,20 @@
             var t = item.target;
             if (!t) return '<span class="cell-sub">target missing</span>';
             if (item.targetKind === 'booking') {
+                var siteHref = t.site_slug ? '/sites/' + encodeURIComponent(t.site_slug) + '/' : null;
                 return (
                     '<div class="cell-title">' + Portal.escapeHtml(t.slot_name || ('Booking #' + t.id)) + '</div>' +
-                    '<div class="cell-sub">' + Portal.escapeHtml(t.site_slug || '') + ' · ' + Portal.escapeHtml(t.status || '') + '</div>'
+                    '<div class="cell-sub">' +
+                    (siteHref ? '<a href="' + Portal.escapeHtml(siteHref) + '" target="_blank" rel="noopener">' + Portal.escapeHtml(t.site_slug) + '</a>' : '') +
+                    ' · ' + Portal.escapeHtml(t.status || '') + '</div>'
                 );
             }
+            var templeHref = t.temple_id ? '/sites/' + encodeURIComponent(t.temple_id) + '/' : null;
             return (
                 '<div class="cell-title">' + Portal.escapeHtml(t.display_name || ('Patron #' + t.id)) + '</div>' +
-                '<div class="cell-sub">' + Portal.escapeHtml(t.temple_id || '') + ' · ' + Portal.escapeHtml(t.status || '') + '</div>'
+                '<div class="cell-sub">' +
+                (templeHref ? '<a href="' + Portal.escapeHtml(templeHref) + '" target="_blank" rel="noopener">' + Portal.escapeHtml(t.temple_id) + '</a>' : '') +
+                ' · ' + Portal.escapeHtml(t.status || '') + '</div>'
             );
         }
 
@@ -84,9 +91,15 @@
             var p = item.payload || {};
             if (item.type === 'image') {
                 var path = p.creativePath || '';
+                var thumb = /^\/[^"]+\.(png|jpe?g|webp|gif|avif|svg)$/i.test(path)
+                    ? '<img src="' + Portal.escapeHtml(path) + '" alt="Staged creative preview" loading="lazy" ' +
+                      'style="max-width:96px;max-height:64px;border-radius:4px;cursor:zoom-in;display:block;margin-top:0.25rem;" ' +
+                      'data-preview-src="' + Portal.escapeHtml(path) + '" data-preview-name="' + Portal.escapeHtml(p.originalName || path) + '">'
+                    : '';
                 return (
                     '<div class="cell-title">New creative</div>' +
-                    '<div class="cell-sub"><a href="' + Portal.escapeHtml(path) + '" target="_blank" rel="noopener">' + Portal.escapeHtml(p.originalName || path) + '</a></div>'
+                    '<div class="cell-sub"><a href="' + Portal.escapeHtml(path) + '" target="_blank" rel="noopener">' + Portal.escapeHtml(p.originalName || path) + '</a></div>' +
+                    thumb
                 );
             }
             if (p.socialPlatform === null || p.socialUrl === null) {
@@ -96,6 +109,21 @@
                 '<div class="cell-title">' + Portal.escapeHtml(p.socialPlatform || '') + '</div>' +
                 '<div class="cell-sub">' + Portal.escapeHtml(p.socialUrl || '') + '</div>'
             );
+        }
+
+        function showImagePreview(src, name) {
+            var overlay = Portal.openModal(
+                '<h2 style="margin-top:0;word-break:break-all;">' + Portal.escapeHtml(name || 'Staged creative') + '</h2>' +
+                '<img src="' + Portal.escapeHtml(src) + '" alt="Staged creative full preview" style="max-width:100%;height:auto;border-radius:6px;">' +
+                '<div class="cell-actions" style="margin-top:1rem;">' +
+                '<a class="btn btn-secondary btn-sm" href="' + Portal.escapeHtml(src) + '" target="_blank" rel="noopener">Open Original</a>' +
+                '<button type="button" class="btn btn-primary btn-sm" id="preview-close">Close</button>' +
+                '</div>',
+                'Staged creative preview'
+            );
+            overlay.querySelector('#preview-close').addEventListener('click', function () {
+                Portal.closeModal();
+            });
         }
 
         function renderTable(data) {
@@ -174,16 +202,38 @@
                 });
                 Portal.toast('Request ' + (action === 'approve' ? 'approved — change applied' : 'rejected'), 'success');
                 load();
+                loadSummary();
             } catch (err) {
                 Portal.toast(verb + ' failed: ' + err.message, 'error');
             }
         }
 
+        async function loadSummary() {
+            var el = document.getElementById('request-summary');
+            try {
+                var statuses = ['pending', 'approved', 'rejected'];
+                var counts = await Promise.all(
+                    statuses.map(function (s) {
+                        return Portal.api('/api/admin/portal/tenant-requests/?status=' + s + '&limit=1&offset=0');
+                    })
+                );
+                el.textContent = counts
+                    .map(function (d, i) {
+                        return Portal.fmtNumber(d.total) + ' ' + statuses[i];
+                    })
+                    .join(' · ');
+            } catch (err) {
+                el.textContent = '';
+            }
+        }
+
         async function init() {
             var listPromise = fetchRequests();
+            var summaryPromise = loadSummary();
             var ctx = await Portal.initShell('requests');
             if (!ctx) {
                 listPromise.catch(function () {});
+                summaryPromise.catch(function () {});
                 return;
             }
 
@@ -201,6 +251,11 @@
                 load();
             });
             document.getElementById('request-table').addEventListener('click', function (e) {
+                var img = e.target.closest('img[data-preview-src]');
+                if (img) {
+                    showImagePreview(img.getAttribute('data-preview-src'), img.getAttribute('data-preview-name'));
+                    return;
+                }
                 var btn = e.target.closest('button[data-action]');
                 if (!btn) return;
                 review(btn.getAttribute('data-id'), btn.getAttribute('data-action'));

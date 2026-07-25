@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Admin Portal — Leasing | PuniCodex</title>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="../portal.css">
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+</head>
+<body data-page="leasing" data-depth="1">
+    <a class="skip-link" href="#portal-main">Skip to content</a>
+    <div id="portal-header"></div>
+
+    <main id="portal-main" class="portal-main">
+        <div class="portal-page-head">
+            <h1>Leasing</h1>
+            <p>Temple ad-space leasing — booking pipeline, patron subscriptions, and the tenant directory.</p>
+        </div>
+
+        <div class="portal-form-row" role="tablist" aria-label="Leasing sections" style="margin-bottom:1rem;">
+            <button type="button" class="btn btn-primary btn-sm" role="tab" id="tabbtn-bookings" data-tab="bookings" aria-selected="true" aria-controls="tab-bookings">Bookings</button>
+            <button type="button" class="btn btn-secondary btn-sm" role="tab" id="tabbtn-tenants" data-tab="tenants" aria-selected="false" aria-controls="tab-tenants">Tenants</button>
+            <button type="button" class="btn btn-secondary btn-sm" role="tab" id="tabbtn-patrons" data-tab="patrons" aria-selected="false" aria-controls="tab-patrons">Patrons</button>
+        </div>
+
+        <!-- ═══ Bookings ═══ -->
+        <div id="tab-bookings" role="tabpanel" aria-labelledby="tabbtn-bookings">
+            <section aria-label="Booking statistics">
+                <div class="stat-grid" id="booking-stats">
+                    <div class="state-block">Loading booking stats…</div>
+                </div>
+            </section>
+
+            <section class="panel" aria-label="Booking filters">
+                <div class="portal-form-row">
+                    <div class="field">
+                        <label for="bk-filter-status">Status</label>
+                        <select id="bk-filter-status">
+                            <option value="">All statuses</option>
+                            <option value="pending_application">Pending application</option>
+                            <option value="pending_payment">Pending payment</option>
+                            <option value="pending_upload">Pending upload</option>
+                            <option value="approved">Approved</option>
+                            <option value="live">Live</option>
+                            <option value="trialing">Trialing</option>
+                            <option value="ended">Ended</option>
+                            <option value="cancelled">Cancelled</option>
+                            <option value="rejected">Rejected</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="bk-filter-temple">Temple</label>
+                        <input type="text" id="bk-filter-temple" placeholder="e.g. nike, zeus">
+                    </div>
+                    <div class="field">
+                        <label for="bk-filter-search">Search</label>
+                        <input type="text" id="bk-filter-search" placeholder="Company or email">
+                    </div>
+                    <button type="button" class="btn btn-primary" id="bk-filter-apply">Apply</button>
+                </div>
+            </section>
+
+            <section class="panel" aria-label="Booking roster">
+                <div class="panel-head">
+                    <h2 class="panel-title">Bookings</h2>
+                    <span class="field-hint" id="booking-total"></span>
+                </div>
+                <div id="booking-table">
+                    <div class="state-block">Loading bookings…</div>
+                </div>
+                <div class="portal-form-row" id="booking-pager" style="margin-top:1rem;" hidden>
+                    <button type="button" class="btn btn-secondary btn-sm" id="booking-prev">← Previous</button>
+                    <span class="field-hint" id="booking-page-label"></span>
+                    <button type="button" class="btn btn-secondary btn-sm" id="booking-next">Next →</button>
+                </div>
+            </section>
+        </div>
+
+        <!-- ═══ Tenants ═══ -->
+        <div id="tab-tenants" role="tabpanel" aria-labelledby="tabbtn-tenants" hidden>
+            <section class="panel" aria-label="Tenant directory">
+                <div class="panel-head">
+                    <h2 class="panel-title">Tenants</h2>
+                    <span class="field-hint" id="tenant-total"></span>
+                </div>
+                <p class="field-hint">Every sponsor/patron account, with the temples it holds through bookings and patron spots. Read-only.</p>
+                <div id="tenant-table">
+                    <div class="state-block">Loading tenants…</div>
+                </div>
+                <div class="portal-form-row" id="tenant-pager" style="margin-top:1rem;" hidden>
+                    <button type="button" class="btn btn-secondary btn-sm" id="tenant-prev">← Previous</button>
+                    <span class="field-hint" id="tenant-page-label"></span>
+                    <button type="button" class="btn btn-secondary btn-sm" id="tenant-next">Next →</button>
+                </div>
+            </section>
+        </div>
+
+        <!-- ═══ Patrons ═══ -->
+        <div id="tab-patrons" role="tabpanel" aria-labelledby="tabbtn-patrons" hidden>
+            <section aria-label="Patron statistics">
+                <div class="stat-grid" id="patron-stats">
+                    <div class="state-block">Loading patron stats…</div>
+                </div>
+            </section>
+
+            <section class="panel" aria-label="Patron filters">
+                <div class="portal-form-row">
+                    <div class="field">
+                        <label for="filter-temple">Temple</label>
+                        <input type="text" id="filter-temple" placeholder="e.g. nike, apollon">
+                    </div>
+                    <div class="field">
+                        <label for="filter-status">Status</label>
+                        <select id="filter-status">
+                            <option value="">All statuses</option>
+                            <option value="pending_payment">Pending payment</option>
+                            <option value="active">Active</option>
+                            <option value="cancelled">Cancelled</option>
+                            <option value="expired">Expired</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="filter-apply">Apply</button>
+                </div>
+            </section>
+
+            <section class="panel" aria-label="Patron roster">
+                <div class="panel-head">
+                    <h2 class="panel-title">Patrons</h2>
+                    <span class="field-hint" id="patron-total"></span>
+                </div>
+                <div id="patron-table">
+                    <div class="state-block">Loading patrons…</div>
+                </div>
+                <div class="portal-form-row" id="patron-pager" style="margin-top:1rem;" hidden>
+                    <button type="button" class="btn btn-secondary btn-sm" id="patron-prev">← Previous</button>
+                    <span class="field-hint" id="patron-page-label"></span>
+                    <button type="button" class="btn btn-secondary btn-sm" id="patron-next">Next →</button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="../portal.js"></script>
+    <script>
+    (function () {
+        var PAGE_SIZE = 50;
+
+        function statCard(value, label, hint) {
+            return (
+                '<div class="stat-card"><div class="stat-card-value">' + value + '</div>' +
+                '<div class="stat-card-label">' + Portal.escapeHtml(label) + '</div>' +
+                (hint ? '<div class="stat-card-hint">' + Portal.escapeHtml(hint) + '</div>' : '') +
+                '</div>'
+            );
+        }
+
+        function bindPager(prefix, state, reload) {
+            document.getElementById(prefix + '-prev').addEventListener('click', function () {
+                state.offset = Math.max(0, state.offset - PAGE_SIZE);
+                reload();
+            });
+            document.getElementById(prefix + '-next').addEventListener('click', function () {
+                state.offset += PAGE_SIZE;
+                reload();
+            });
+        }
+
+        function updatePager(prefix, data, count) {
+            var pager = document.getElementById(prefix + '-pager');
+            pager.hidden = false;
+            document.getElementById(prefix + '-page-label').textContent =
+                'Showing ' + (count ? data.offset + 1 : 0) + '–' + (data.offset + count) + ' of ' + Portal.fmtNumber(data.total);
+            document.getElementById(prefix + '-prev').disabled = data.offset <= 0;
+            document.getElementById(prefix + '-next').disabled = data.offset + count >= data.total;
+        }
+
+        // ── Bookings ──────────────────────────────────────────
+
+        var bkState = { status: '', temple: '', search: '', offset: 0 };
+
+        function bookingActions(b) {
+            if (!Portal.can('leasing')) return '<span class="cell-sub">—</span>';
+            var btns = [];
+            var id = b.id;
+            if (b.status === 'pending_application') {
+                btns.push('<button type="button" class="btn btn-sm btn-primary" data-action="approve-application" data-id="' + id + '">Approve Application</button>');
+                btns.push('<button type="button" class="btn btn-sm btn-danger" data-action="reject" data-id="' + id + '">Reject</button>');
+            } else if (b.status === 'pending_payment') {
+                btns.push('<button type="button" class="btn btn-sm btn-danger" data-action="reject" data-id="' + id + '">Reject</button>');
+            } else if (b.status === 'pending_upload') {
+                btns.push('<button type="button" class="btn btn-sm btn-primary" data-action="approve" data-id="' + id + '">Approve</button>');
+                btns.push('<button type="button" class="btn btn-sm btn-danger" data-action="reject" data-id="' + id + '">Reject</button>');
+            } else if (b.status === 'approved') {
+                btns.push('<button type="button" class="btn btn-sm btn-success" data-action="golive" data-id="' + id + '">Go Live</button>');
+            } else if (b.status === 'live') {
+                btns.push('<button type="button" class="btn btn-sm btn-secondary" data-action="report" data-id="' + id + '">Send Report</button>');
+                btns.push('<button type="button" class="btn btn-sm btn-danger" data-action="end" data-id="' + id + '">End</button>');
+            }
+            return btns.length ? btns.join('') : '<span class="cell-sub">—</span>';
+        }
+
+        function renderBookingStats(data) {
+            var s = data.stats || {};
+            var by = s.byStatus || {};
+            var rev = data.revenue || {};
+            document.getElementById('booking-stats').innerHTML =
+                statCard('$' + Portal.escapeHtml(String(rev.revenueDollars || '0.00')), 'Revenue · ' + (rev.days || 30) + 'd', '$' + String(s.revenueDollars || '0.00') + ' all-time') +
+                statCard(Portal.fmtNumber(rev.bookings), 'Bookings · ' + (rev.days || 30) + 'd', '') +
+                statCard(Portal.fmtNumber(by.live), 'Live', '') +
+                statCard(Portal.fmtNumber(s.totalTrialing), 'Trialing', '') +
+                statCard(Portal.fmtNumber(by.pending_application), 'Pending Application', '') +
+                statCard(Portal.fmtNumber(by.pending_payment), 'Pending Payment', '') +
+                statCard(Portal.fmtNumber(by.pending_upload), 'Pending Upload', '') +
+                statCard(Portal.fmtNumber(by.approved), 'Approved', '');
+        }
+
+        function renderBookings(data) {
+            var wrap = document.getElementById('booking-table');
+            var items = data.items || [];
+            document.getElementById('booking-total').textContent = Portal.fmtNumber(data.total) + ' bookings';
+            if (!items.length) {
+                wrap.innerHTML = '<div class="state-block">No bookings match these filters.</div>';
+            } else {
+                var rows = items
+                    .map(function (b) {
+                        var billing =
+                            b.status === 'live' && b.billing_status === 'trialing'
+                                ? '<div class="cell-sub">trialing</div>'
+                                : '';
+                        return (
+                            '<tr>' +
+                            '<td><span class="badge badge--gold">' + Portal.escapeHtml(b.site_slug || '—') + '</span></td>' +
+                            '<td><div class="cell-title">' + Portal.escapeHtml(b.slot_name || '—') + '</div></td>' +
+                            '<td><div class="cell-title">' + Portal.escapeHtml(b.company_name || '—') + '</div>' +
+                            '<div class="cell-sub">' + Portal.escapeHtml(b.email || '') + '</div></td>' +
+                            '<td>' + Portal.statusBadge(b.status) + billing + '</td>' +
+                            '<td>' + Portal.escapeHtml(Portal.fmtDate(b.created_at)) + '</td>' +
+                            '<td>' + Portal.escapeHtml(Portal.fmtDate(b.ends_at)) + '</td>' +
+                            '<td><div class="cell-actions">' + bookingActions(b) + '</div></td>' +
+                            '</tr>'
+                        );
+                    })
+                    .join('');
+                wrap.innerHTML =
+                    '<div class="table-wrap"><table class="portal-table">' +
+                    '<thead><tr><th>Temple</th><th>Slot</th><th>Company</th><th>Status</th><th>Created</th><th>Ends</th><th>Actions</th></tr></thead>' +
+                    '<tbody>' + rows + '</tbody></table></div>';
+            }
+            updatePager('booking', data, items.length);
+        }
+
+        function fetchBookings() {
+            var params = new URLSearchParams();
+            if (bkState.status) params.set('status', bkState.status);
+            if (bkState.temple) params.set('temple', bkState.temple);
+            if (bkState.search) params.set('search', bkState.search);
+            params.set('limit', String(PAGE_SIZE));
+            params.set('offset', String(bkState.offset));
+            return Portal.api('/api/admin/portal/bookings/?' + params.toString());
+        }
+
+        async function loadBookings(promise) {
+            document.getElementById('booking-table').innerHTML = '<div class="state-block">Loading bookings…</div>';
+            try {
+                var data = await (promise || fetchBookings());
+                renderBookingStats(data);
+                renderBookings(data);
+            } catch (err) {
+                document.getElementById('booking-stats').innerHTML = '<div class="state-block error">' + Portal.escapeHtml(err.message) + '</div>';
+                document.getElementById('booking-table').innerHTML = '<div class="state-block error">' + Portal.escapeHtml(err.message) + '</div>';
+            }
+        }
+
+        function showCheckoutModal(url) {
+            var overlay = Portal.openModal(
+                '<h2 style="margin-top:0;">Checkout session created</h2>' +
+                '<p>The application is approved and the booking is now <strong>pending payment</strong>. Send this payment link to the advertiser:</p>' +
+                '<p style="word-break:break-all;"><a href="' + Portal.escapeHtml(url) + '" target="_blank" rel="noopener">' + Portal.escapeHtml(url) + '</a></p>' +
+                '<div class="cell-actions">' +
+                '<button type="button" class="btn btn-primary btn-sm" id="modal-copy">Copy Link</button>' +
+                '<button type="button" class="btn btn-secondary btn-sm" id="modal-close">Close</button>' +
+                '</div>',
+                'Stripe checkout link'
+            );
+            overlay.querySelector('#modal-copy').addEventListener('click', function () {
+                Portal.copyToClipboard(url, 'Checkout link');
+            });
+            overlay.querySelector('#modal-close').addEventListener('click', function () {
+                Portal.closeModal();
+            });
+        }
+
+        function showRejectModal(id) {
+            var overlay = Portal.openModal(
+                '<h2 style="margin-top:0;">Reject booking #' + id + '</h2>' +
+                '<div class="field"><label for="reject-note">Reason (emailed to the advertiser)</label>' +
+                '<textarea id="reject-note" rows="3" placeholder="Does not meet guidelines"></textarea></div>' +
+                '<div class="cell-actions">' +
+                '<button type="button" class="btn btn-danger btn-sm" id="reject-confirm">Reject Booking</button>' +
+                '<button type="button" class="btn btn-secondary btn-sm" id="reject-cancel">Cancel</button>' +
+                '</div>',
+                'Reject booking'
+            );
+            overlay.querySelector('#reject-cancel').addEventListener('click', function () {
+                Portal.closeModal();
+            });
+            overlay.querySelector('#reject-confirm').addEventListener('click', async function () {
+                var note = overlay.querySelector('#reject-note').value.trim();
+                try {
+                    await Portal.api('/api/admin/portal/bookings/' + id + '/reject/', {
+                        method: 'POST',
+                        body: { note: note || undefined },
+                    });
+                    Portal.closeModal();
+                    Portal.toast('Booking rejected', 'success');
+                    loadBookings();
+                } catch (err) {
+                    Portal.toast('Reject failed: ' + err.message, 'error');
+                }
+            });
+        }
+
+        async function bookingAction(id, action) {
+            if (action === 'reject') {
+                showRejectModal(id);
+                return;
+            }
+            var labels = {
+                'approve-application': 'Approve this application and create a Stripe checkout session?',
+                approve: 'Approve booking #' + id + '?',
+                golive: 'Publish booking #' + id + ' live on the temple?',
+                end: 'End booking #' + id + '? This cancels billing and frees the slot.',
+                report: 'Email the analytics report for booking #' + id + ' to the advertiser?',
+            };
+            if (!window.confirm(labels[action] || 'Run ' + action + ' on booking #' + id + '?')) return;
+            try {
+                var result = await Portal.api('/api/admin/portal/bookings/' + id + '/' + action + '/', {
+                    method: 'POST',
+                    body: {},
+                });
+                if (action === 'approve-application' && result.stripeUrl) {
+                    showCheckoutModal(result.stripeUrl);
+                } else if (action === 'report') {
+                    Portal.toast('Analytics report sent', 'success');
+                } else {
+                    Portal.toast('Booking ' + (result.status || action), 'success');
+                }
+                loadBookings();
+            } catch (err) {
+                Portal.toast(action + ' failed: ' + err.message, 'error');
+            }
+        }
+
+        // ── Tenants ───────────────────────────────────────────
+
+        var tnState = { offset: 0 };
+        var tenantsLoaded = false;
+
+        function renderTenants(data) {
+            var wrap = document.getElementById('tenant-table');
+            var items = data.items || [];
+            document.getElementById('tenant-total').textContent = Portal.fmtNumber(data.total) + ' tenant accounts';
+            if (!items.length) {
+                wrap.innerHTML = '<div class="state-block">No tenant accounts yet.</div>';
+            } else {
+                var rows = items
+                    .map(function (t) {
+                        var temples = (t.siteSlugs || [])
+                            .map(function (s) {
+                                return '<span class="badge badge--gold">' + Portal.escapeHtml(s) + '</span>';
+                            })
+                            .join(' ');
+                        var patronTemples = (t.patronTempleIds || [])
+                            .map(function (s) {
+                                return '<span class="badge">' + Portal.escapeHtml(s) + '</span>';
+                            })
+                            .join(' ');
+                        var templeCell = temples || patronTemples ? temples + ' ' + patronTemples : '<span class="cell-sub">—</span>';
+                        return (
+                            '<tr>' +
+                            '<td><div class="cell-title">' + Portal.escapeHtml(t.email || '') + '</div></td>' +
+                            '<td>' + Portal.statusBadge(t.status) + '</td>' +
+                            '<td>' + templeCell + '</td>' +
+                            '<td>' + Portal.fmtNumber(t.bookingCount) + '</td>' +
+                            '<td>' + Portal.fmtNumber(t.patronCount) + '</td>' +
+                            '<td>' + Portal.escapeHtml(Portal.fmtDateTime(t.lastLoginAt)) + '</td>' +
+                            '<td>' + Portal.escapeHtml(Portal.fmtDate(t.createdAt)) + '</td>' +
+                            '</tr>'
+                        );
+                    })
+                    .join('');
+                wrap.innerHTML =
+                    '<div class="table-wrap"><table class="portal-table">' +
+                    '<thead><tr><th>Email</th><th>Status</th><th>Temples</th><th>Bookings</th><th>Patron Spots</th><th>Last Login</th><th>Created</th></tr></thead>' +
+                    '<tbody>' + rows + '</tbody></table></div>';
+            }
+            updatePager('tenant', data, items.length);
+        }
+
+        function fetchTenants() {
+            var params = new URLSearchParams();
+            params.set('limit', String(PAGE_SIZE));
+            params.set('offset', String(tnState.offset));
+            return Portal.api('/api/admin/portal/tenants/?' + params.toString());
+        }
+
+        async function loadTenants(promise) {
+            document.getElementById('tenant-table').innerHTML = '<div class="state-block">Loading tenants…</div>';
+            try {
+                renderTenants(await (promise || fetchTenants()));
+            } catch (err) {
+                document.getElementById('tenant-table').innerHTML =
+                    '<div class="state-block error">' + Portal.escapeHtml(err.message) + '</div>';
+            }
+        }
+
+        // ── Patrons (moved from /admin-portal/patrons/) ───────
+
+        var ptState = { temple: '', status: '', offset: 0 };
+        var patronsLoaded = false;
+
+        function renderPatronStats(s) {
+            document.getElementById('patron-stats').innerHTML =
+                statCard(Portal.fmtNumber(s.active), 'Active Patrons', '') +
+                statCard('$' + Portal.escapeHtml(String(s.estimatedMrrDollars || '0.00')), 'Estimated MRR', Portal.fmtNumber(s.estimatedMrrCents) + ' cents/mo') +
+                statCard(Portal.fmtNumber(s.pendingPayment), 'Pending Payment', '') +
+                statCard(Portal.fmtNumber(s.activeTemples), 'Active Temples', 'limit ' + Portal.fmtNumber(s.limitPerTemple || 20) + ' / temple') +
+                statCard(Portal.fmtNumber(s.cancelled), 'Cancelled', '') +
+                statCard(Portal.fmtNumber(s.expired), 'Expired', '') +
+                statCard(Portal.fmtNumber(s.total), 'Total', '');
+        }
+
+        function renderPatrons(data) {
+            var wrap = document.getElementById('patron-table');
+            var items = data.items || [];
+            document.getElementById('patron-total').textContent = Portal.fmtNumber(data.total) + ' patrons total';
+            if (!items.length) {
+                wrap.innerHTML = '<div class="state-block">No patrons match these filters.</div>';
+            } else {
+                var canLease = Portal.can('leasing');
+                var rows = items
+                    .map(function (p) {
+                        var actions = '<span class="cell-sub">—</span>';
+                        if (canLease && (p.status === 'active' || p.status === 'pending_payment')) {
+                            actions = '<button type="button" class="btn btn-sm btn-danger" data-action="cancelled" data-id="' + p.id + '">Cancel</button>';
+                            if (p.status === 'active') {
+                                actions += '<button type="button" class="btn btn-sm btn-secondary" data-action="expired" data-id="' + p.id + '">Expire</button>';
+                            }
+                        }
+                        return (
+                            '<tr>' +
+                            '<td><span class="badge badge--gold">' + Portal.escapeHtml(p.temple_id || '—') + '</span></td>' +
+                            '<td><div class="cell-title">' + Portal.escapeHtml(p.display_name || '—') + '</div>' +
+                            '<div class="cell-sub">' + Portal.escapeHtml(p.email || '') + '</div></td>' +
+                            '<td>' + Portal.fmtDollars(p.amount_cents) + '/mo</td>' +
+                            '<td>' + Portal.statusBadge(p.status) + '</td>' +
+                            '<td>' + Portal.escapeHtml(Portal.fmtDate(p.started_at)) + '</td>' +
+                            '<td>' + Portal.escapeHtml(Portal.fmtDate(p.ends_at)) + '</td>' +
+                            '<td>' + Portal.escapeHtml(Portal.fmtDate(p.created_at)) + '</td>' +
+                            '<td><div class="cell-actions">' + actions + '</div></td>' +
+                            '</tr>'
+                        );
+                    })
+                    .join('');
+                wrap.innerHTML =
+                    '<div class="table-wrap"><table class="portal-table">' +
+                    '<thead><tr><th>Temple</th><th>Patron</th><th>Amount</th><th>Status</th><th>Started</th><th>Ends</th><th>Created</th><th>Actions</th></tr></thead>' +
+                    '<tbody>' + rows + '</tbody></table></div>';
+            }
+            updatePager('patron', data, items.length);
+        }
+
+        function fetchPatrons() {
+            var params = new URLSearchParams();
+            if (ptState.temple) params.set('temple', ptState.temple);
+            if (ptState.status) params.set('status', ptState.status);
+            params.set('limit', String(PAGE_SIZE));
+            params.set('offset', String(ptState.offset));
+            return Portal.api('/api/admin/portal/patrons/?' + params.toString());
+        }
+
+        async function loadPatronStats(promise) {
+            try {
+                renderPatronStats(await (promise || Portal.api('/api/admin/portal/patrons/stats/')));
+            } catch (err) {
+                document.getElementById('patron-stats').innerHTML =
+                    '<div class="state-block error">' + Portal.escapeHtml(err.message) + '</div>';
+            }
+        }
+
+        async function loadPatrons(promise) {
+            document.getElementById('patron-table').innerHTML = '<div class="state-block">Loading patrons…</div>';
+            try {
+                renderPatrons(await (promise || fetchPatrons()));
+            } catch (err) {
+                document.getElementById('patron-table').innerHTML =
+                    '<div class="state-block error">' + Portal.escapeHtml(err.message) + '</div>';
+            }
+        }
+
+        async function setPatronStatus(id, status) {
+            var verb = status === 'cancelled' ? 'Cancel' : 'Expire';
+            if (!window.confirm(verb + ' patron #' + id + '?')) return;
+            try {
+                await Portal.api('/api/admin/portal/patrons/' + id + '/', {
+                    method: 'PATCH',
+                    body: { status: status },
+                });
+                Portal.toast('Patron ' + status, 'success');
+                loadPatrons();
+                loadPatronStats();
+            } catch (err) {
+                Portal.toast(verb + ' failed: ' + err.message, 'error');
+            }
+        }
+
+        // ── Tabs ──────────────────────────────────────────────
+
+        var TABS = ['bookings', 'tenants', 'patrons'];
+
+        function showTab(name) {
+            if (TABS.indexOf(name) === -1) name = 'bookings';
+            for (var i = 0; i < TABS.length; i++) {
+                var tab = TABS[i];
+                var active = tab === name;
+                document.getElementById('tab-' + tab).hidden = !active;
+                var btn = document.getElementById('tabbtn-' + tab);
+                btn.setAttribute('aria-selected', active ? 'true' : 'false');
+                btn.className = 'btn btn-sm ' + (active ? 'btn-primary' : 'btn-secondary');
+            }
+            try {
+                var url = new URL(window.location.href);
+                if (name === 'bookings') url.searchParams.delete('tab');
+                else url.searchParams.set('tab', name);
+                window.history.replaceState(null, '', url.toString());
+            } catch (e) { /* URL API unavailable — tab state is cosmetic */ }
+            if (name === 'tenants' && !tenantsLoaded) {
+                tenantsLoaded = true;
+                loadTenants();
+            }
+            if (name === 'patrons' && !patronsLoaded) {
+                patronsLoaded = true;
+                loadPatronStats();
+                loadPatrons();
+            }
+        }
+
+        async function init() {
+            // Fire the bookings fetch in parallel with the shell's /me round
+            // trip instead of waiting for the shell first.
+            var bookingsPromise = fetchBookings();
+            var ctx = await Portal.initShell('leasing');
+            if (!ctx) {
+                bookingsPromise.catch(function () {});
+                return;
+            }
+
+            for (var i = 0; i < TABS.length; i++) {
+                (function (tab) {
+                    document.getElementById('tabbtn-' + tab).addEventListener('click', function () {
+                        showTab(tab);
+                    });
+                })(TABS[i]);
+            }
+
+            document.getElementById('bk-filter-apply').addEventListener('click', function () {
+                bkState.status = document.getElementById('bk-filter-status').value;
+                bkState.temple = document.getElementById('bk-filter-temple').value.trim();
+                bkState.search = document.getElementById('bk-filter-search').value.trim();
+                bkState.offset = 0;
+                loadBookings();
+            });
+            bindPager('booking', bkState, loadBookings);
+            document.getElementById('booking-table').addEventListener('click', function (e) {
+                var btn = e.target.closest('button[data-action]');
+                if (!btn) return;
+                bookingAction(btn.getAttribute('data-id'), btn.getAttribute('data-action'));
+            });
+
+            bindPager('tenant', tnState, loadTenants);
+
+            document.getElementById('filter-apply').addEventListener('click', function () {
+                ptState.temple = document.getElementById('filter-temple').value.trim();
+                ptState.status = document.getElementById('filter-status').value;
+                ptState.offset = 0;
+                loadPatrons();
+            });
+            bindPager('patron', ptState, loadPatrons);
+            document.getElementById('patron-table').addEventListener('click', function (e) {
+                var btn = e.target.closest('button[data-action]');
+                if (!btn) return;
+                setPatronStatus(btn.getAttribute('data-id'), btn.getAttribute('data-action'));
+            });
+
+            var initial = 'bookings';
+            try {
+                initial = new URL(window.location.href).searchParams.get('tab') || 'bookings';
+            } catch (e) { /* default tab */ }
+            showTab(initial);
+            loadBookings(bookingsPromise);
+        }
+
+        init();
+    })();
+    </script>
+</body>
+</html>

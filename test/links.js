@@ -132,6 +132,7 @@ HTML_FILES.forEach((file) => {
     if (src.startsWith('data:')) continue;
     if (src.startsWith('about:')) continue;
     if (src.includes('${')) continue;
+    if (/\+\s*['"]|["']\s*\+/.test(src)) continue; // JS string concatenation fragments
     checked++;
     const result = resolveLink(file, src);
     if (result.internal && !result.exists) {

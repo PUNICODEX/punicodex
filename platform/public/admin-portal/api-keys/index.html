@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Admin Portal — API Keys | PuniCodex</title>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="../portal.css">
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+</head>
+<body data-page="api-keys" data-depth="1">
+    <a class="skip-link" href="#portal-main">Skip to content</a>
+    <div id="portal-header"></div>
+
+    <main id="portal-main" class="portal-main">
+        <div class="portal-page-head">
+            <h1>API Keys</h1>
+            <p>Enterprise API keys for the Names API. Keys are stored as SHA-256 hashes — a new key's plaintext is shown exactly once at creation.</p>
+        </div>
+
+        <section aria-label="Key statistics">
+            <div class="stat-grid" id="key-stats">
+                <div class="state-block">Loading stats…</div>
+            </div>
+        </section>
+
+        <section class="panel" aria-label="API key list">
+            <div class="panel-head">
+                <h2 class="panel-title">Keys</h2>
+                <div class="portal-form-row" style="margin:0;">
+                    <button type="button" class="btn btn-primary btn-sm" id="create-open">+ Create Key</button>
+                    <button type="button" class="btn btn-secondary btn-sm" id="keys-refresh">Refresh</button>
+                </div>
+            </div>
+            <div id="keys-table">
+                <div class="state-block">Loading keys…</div>
+            </div>
+        </section>
+
+        <section class="panel" id="usage-panel" aria-label="Key usage" hidden>
+            <div class="panel-head">
+                <h2 class="panel-title" id="usage-title">Usage</h2>
+                <button type="button" class="btn btn-secondary btn-sm" id="usage-close">Close</button>
+            </div>
+            <div id="usage-body">
+                <div class="state-block">Loading usage…</div>
+            </div>
+        </section>
+    </main>
+
+    <script src="../portal.js"></script>
+    <script>
+    (function () {
+        var SCOPES = ['names:read', 'names:write', 'admin'];
+        var TIERS = [
+            ['free', 'Free — 100/day'],
+            ['hobby', 'Hobby — 1,000/day'],
+            ['pro', 'Pro — 10,000/day'],
+            ['enterprise', 'Enterprise — 100,000/day'],
+        ];
+        var cachedKeys = [];
+
+        function statCard(value, label, hint) {
+            return (
+                '<div class="stat-card"><div class="stat-card-value">' + value + '</div>' +
+                '<div class="stat-card-label">' + Portal.escapeHtml(label) + '</div>' +
+                (hint ? '<div class="stat-card-hint">' + Portal.escapeHtml(hint) + '</div>' : '') +
+                '</div>'
+            );
+        }
+
+        function tierBadge(tier) {
+            return '<span class="badge badge--gold">' + Portal.escapeHtml(tier || 'free') + '</span>';
+        }
+
+        function scopeChips(scopes) {
+            if (!scopes || !scopes.length) return '<span class="cell-sub">—</span>';
+            return scopes
+                .map(function (s) {
+                    return '<span class="badge">' + Portal.escapeHtml(s) + '</span>';
+                })
+                .join(' ');
+        }
+
+        // One-time plaintext reveal, same pattern as the users page's
+        // temporary-password modal: shown exactly once, copy out-of-band.
+        function showCreatedKey(key) {
+            Portal.openModal(
+                '<h2>API Key Created</h2>' +
+                '<p class="credential-warning">This key is shown exactly once and is stored only as a hash. Copy it now and deliver it to the consumer out-of-band.</p>' +
+                '<div class="credential-box"><dl>' +
+                '<dt>Name</dt><dd><code>' + Portal.escapeHtml(key.name || 'Unnamed') + '</code></dd>' +
+                '<dt>Tier</dt><dd><code>' + Portal.escapeHtml(key.tier) + '</code></dd>' +
+                '<dt>API Key</dt><dd><code>' + Portal.escapeHtml(key.plaintext) + '</code></dd>' +
+                '</dl></div>' +
+                '<div class="modal-actions">' +
+                '<button type="button" class="btn btn-secondary" id="modal-close">Close</button>' +
+                '<button type="button" class="btn btn-primary" id="modal-copy">Copy Key</button>' +
+                '</div>',
+                'API key created'
+            );
+            document.getElementById('modal-close').addEventListener('click', Portal.closeModal);
+            document.getElementById('modal-copy').addEventListener('click', function () {
+                Portal.copyToClipboard(key.plaintext, 'API key');
+            });
+        }
+
+        function scopeCheckboxes(selected) {
+            selected = selected || ['names:read'];
+            return SCOPES.map(function (s) {
+                var checked = selected.indexOf(s) !== -1 ? ' checked' : '';
+                return (
+                    '<label class="field-hint" style="display:block;">' +
+                    '<input type="checkbox" class="key-scope" value="' + s + '"' + checked + '> ' + Portal.escapeHtml(s) +
+                    '</label>'
+                );
+            }).join('');
+        }
+
+        function tierOptions(selected) {
+            return TIERS.map(function (t) {
+                return (
+                    '<option value="' + t[0] + '"' + (t[0] === selected ? ' selected' : '') + '>' +
+                    Portal.escapeHtml(t[1]) + '</option>'
+                );
+            }).join('');
+        }
+
+        function readScopes() {
+            var boxes = document.querySelectorAll('.key-scope');
+            var scopes = [];
+            for (var i = 0; i < boxes.length; i++) {
+                if (boxes[i].checked) scopes.push(boxes[i].value);
+            }
+            return scopes;
+        }
+
+        function showCreateModal() {
+            Portal.openModal(
+                '<h2>Create API Key</h2>' +
+                '<div class="field"><label for="key-name">Name / Label</label>' +
+                '<input type="text" id="key-name" placeholder="e.g. Acme Games Production"></div>' +
+                '<div class="field"><label for="key-tier">Tier</label>' +
+                '<select id="key-tier">' + tierOptions('free') + '</select></div>' +
+                '<div class="field"><label for="key-rate">Custom Rate Limit (optional)</label>' +
+                '<input type="number" id="key-rate" min="1" placeholder="Leave blank for tier default"></div>' +
+                '<div class="field"><label>Scopes</label>' + scopeCheckboxes(['names:read']) + '</div>' +
+                '<div class="modal-actions">' +
+                '<button type="button" class="btn btn-secondary" id="modal-cancel">Cancel</button>' +
+                '<button type="button" class="btn btn-primary" id="modal-create">Create Key</button>' +
+                '</div>',
+                'Create API key'
+            );
+            document.getElementById('modal-cancel').addEventListener('click', Portal.closeModal);
+            document.getElementById('modal-create').addEventListener('click', async function () {
+                var btn = this;
+                var scopes = readScopes();
+                if (!scopes.length) {
+                    Portal.toast('Select at least one scope', 'error');
+                    return;
+                }
+                var rateRaw = document.getElementById('key-rate').value.trim();
+                var body = {
+                    name: document.getElementById('key-name').value.trim(),
+                    tier: document.getElementById('key-tier').value,
+                    scopes: scopes,
+                };
+                if (rateRaw) body.rateLimit = parseInt(rateRaw, 10);
+                btn.disabled = true;
+                try {
+                    var data = await Portal.api('/api/admin/api-keys/', { method: 'POST', body: body });
+                    if (data.error) throw new Error(data.error);
+                    Portal.closeModal();
+                    showCreatedKey(data.key);
+                    load();
+                } catch (err) {
+                    btn.disabled = false;
+                    Portal.toast('Create failed: ' + err.message, 'error');
+                }
+            });
+        }
+
+        function showEditModal(id) {
+            var key = cachedKeys.find(function (k) { return String(k.id) === String(id); });
+            if (!key) return;
+            Portal.openModal(
+                '<h2>Edit ' + Portal.escapeHtml(key.name || 'Unnamed') + '</h2>' +
+                '<div class="field"><label for="key-name">Name / Label</label>' +
+                '<input type="text" id="key-name" value="' + Portal.escapeHtml(key.name || '') + '"></div>' +
+                '<div class="field"><label for="key-tier">Tier</label>' +
+                '<select id="key-tier">' + tierOptions(key.tier) + '</select></div>' +
+                '<div class="field"><label for="key-rate">Rate Limit (per day)</label>' +
+                '<input type="number" id="key-rate" min="1" value="' + Portal.escapeHtml(String(key.rateLimit)) + '"></div>' +
+                '<div class="field"><label>Scopes</label>' + scopeCheckboxes(key.scopes) + '</div>' +
+                '<div class="modal-actions">' +
+                '<button type="button" class="btn btn-secondary" id="modal-cancel">Cancel</button>' +
+                '<button type="button" class="btn btn-primary" id="modal-save">Save Changes</button>' +
+                '</div>',
+                'Edit API key'
+            );
+            document.getElementById('modal-cancel').addEventListener('click', Portal.closeModal);
+            document.getElementById('modal-save').addEventListener('click', async function () {
+                var btn = this;
+                var scopes = readScopes();
+                if (!scopes.length) {
+                    Portal.toast('Select at least one scope', 'error');
+                    return;
+                }
+                btn.disabled = true;
+                try {
+                    var data = await Portal.api('/api/admin/api-keys/' + id + '/', {
+                        method: 'PATCH',
+                        body: {
+                            name: document.getElementById('key-name').value.trim(),
+                            tier: document.getElementById('key-tier').value,
+                            scopes: scopes,
+                            rateLimit: parseInt(document.getElementById('key-rate').value, 10),
+                        },
+                    });
+                    if (data.error) throw new Error(data.error);
+                    Portal.closeModal();
+                    Portal.toast('Key updated', 'success');
+                    load();
+                } catch (err) {
+                    btn.disabled = false;
+                    Portal.toast('Update failed: ' + err.message, 'error');
+                }
+            });
+        }
+
+        async function revokeKey(id) {
+            if (!window.confirm('Revoke this key? It immediately stops authenticating.')) return;
+            try {
+                await Portal.api('/api/admin/api-keys/' + id + '/revoke/', { method: 'POST', body: {} });
+                Portal.toast('Key revoked', 'success');
+                load();
+            } catch (err) {
+                Portal.toast('Revoke failed: ' + err.message, 'error');
+            }
+        }
+
+        async function unrevokeKey(id) {
+            try {
+                await Portal.api('/api/admin/api-keys/' + id + '/unrevoke/', { method: 'POST', body: {} });
+                Portal.toast('Key unrevoked', 'success');
+                load();
+            } catch (err) {
+                Portal.toast('Unrevoke failed: ' + err.message, 'error');
+            }
+        }
+
+        function renderStats(stats) {
+            stats = stats || {};
+            document.getElementById('key-stats').innerHTML =
+                statCard(Portal.fmtNumber(stats.total), 'Total Keys', '') +
+                statCard(Portal.fmtNumber(stats.active), 'Active', '') +
+                statCard(Portal.fmtNumber(stats.revoked), 'Revoked', '') +
+                statCard(Portal.fmtNumber(stats.requestsToday), 'Requests Today', 'all keys');
+        }
+
+        function renderTable(keys) {
+            var wrap = document.getElementById('keys-table');
+            if (!keys.length) {
+                wrap.innerHTML = '<div class="state-block">No API keys yet.</div>';
+                return;
+            }
+            var rows = keys
+                .map(function (k) {
+                    var statusBtn = k.isRevoked
+                        ? '<button type="button" class="btn btn-sm btn-success" data-action="unrevoke" data-id="' + k.id + '">Unrevoke</button>'
+                        : '<button type="button" class="btn btn-sm btn-danger" data-action="revoke" data-id="' + k.id + '">Revoke</button>';
+                    return (
+                        '<tr>' +
+                        '<td><div class="cell-title">' + Portal.escapeHtml(k.name || 'Unnamed') + '</div>' +
+                        '<div class="cell-sub">Created ' + Portal.escapeHtml(Portal.fmtDate(k.createdAt)) + '</div></td>' +
+                        '<td>' + tierBadge(k.tier) + '</td>' +
+                        '<td>' + scopeChips(k.scopes) + '</td>' +
+                        '<td>' + Portal.fmtNumber(k.requestCount) + '</td>' +
+                        '<td>' + Portal.fmtNumber(k.rateLimit) + '/day</td>' +
+                        '<td>' + Portal.statusBadge(k.isRevoked ? 'revoked' : 'active') + '</td>' +
+                        '<td>' + Portal.escapeHtml(k.lastUsedAt ? Portal.fmtDateTime(k.lastUsedAt) : 'Never') + '</td>' +
+                        '<td><div class="cell-actions">' +
+                        '<button type="button" class="btn btn-sm btn-secondary" data-action="usage" data-id="' + k.id + '">Usage</button>' +
+                        '<button type="button" class="btn btn-sm btn-secondary" data-action="edit" data-id="' + k.id + '">Edit</button>' +
+                        statusBtn +
+                        '</div></td>' +
+                        '</tr>'
+                    );
+                })
+                .join('');
+            wrap.innerHTML =
+                '<div class="table-wrap"><table class="portal-table">' +
+                '<thead><tr><th>Name</th><th>Tier</th><th>Scopes</th><th>Requests</th><th>Rate Limit</th><th>Status</th><th>Last Used</th><th>Actions</th></tr></thead>' +
+                '<tbody>' + rows + '</tbody></table></div>';
+        }
+
+        async function load(promise) {
+            document.getElementById('keys-table').innerHTML = '<div class="state-block">Loading keys…</div>';
+            try {
+                var data = await (promise || Portal.api('/api/admin/api-keys/'));
+                if (data.error) throw new Error(data.error);
+                cachedKeys = data.keys || [];
+                renderStats(data.stats);
+                renderTable(cachedKeys);
+            } catch (err) {
+                document.getElementById('keys-table').innerHTML =
+                    '<div class="state-block error">' + Portal.escapeHtml(err.message) + '</div>';
+            }
+        }
+
+        // 7-day request series rendered as a minimal bar chart (inline styles
+        // only — the values are dynamic) plus the most recent requests.
+        function renderUsage(key, usage) {
+            var daily = (usage.daily || []).slice().reverse();
+            var max = 1;
+            for (var i = 0; i < daily.length; i++) max = Math.max(max, daily[i].requests || 0);
+            var chart = daily.length
+                ? '<div style="display:flex;align-items:flex-end;gap:4px;height:64px;margin-bottom:0.5rem;">' +
+                  daily
+                      .map(function (d) {
+                          var pct = Math.max(2, Math.round(((d.requests || 0) / max) * 100));
+                          return (
+                              '<div style="flex:1;background:var(--gold,#d4af37);height:' + pct + '%;min-height:2px;border-radius:3px 3px 0 0;" title="' +
+                              Portal.escapeHtml(d.day) + ': ' + Portal.fmtNumber(d.requests) + ' requests"></div>'
+                          );
+                      })
+                      .join('') +
+                  '</div>' +
+                  '<div class="field-hint">Last ' + (usage.days || 7) + ' days, oldest → newest</div>'
+                : '<div class="state-block">No requests in the last ' + (usage.days || 7) + ' days.</div>';
+
+            var recent = usage.recent || [];
+            var recentTable = recent.length
+                ? '<div class="table-wrap" style="margin-top:1rem;"><table class="portal-table">' +
+                  '<thead><tr><th>Time</th><th>Method</th><th>Path</th><th>Status</th><th>ms</th></tr></thead><tbody>' +
+                  recent
+                      .slice(0, 20)
+                      .map(function (r) {
+                          return (
+                              '<tr><td>' + Portal.escapeHtml(Portal.fmtDateTime(r.created_at)) + '</td>' +
+                              '<td>' + Portal.escapeHtml(r.method || '—') + '</td>' +
+                              '<td>' + Portal.escapeHtml(r.path || '—') + '</td>' +
+                              '<td>' + Portal.statusBadge(r.status_code) + '</td>' +
+                              '<td>' + Portal.escapeHtml(r.duration_ms != null ? String(r.duration_ms) : '—') + '</td></tr>'
+                          );
+                      })
+                      .join('') +
+                  '</tbody></table></div>'
+                : '';
+
+            document.getElementById('usage-title').textContent = 'Usage — ' + (key.name || 'Unnamed');
+            document.getElementById('usage-body').innerHTML = chart + recentTable;
+            document.getElementById('usage-panel').hidden = false;
+        }
+
+        async function loadUsage(id) {
+            var key = cachedKeys.find(function (k) { return String(k.id) === String(id); });
+            document.getElementById('usage-title').textContent = 'Usage';
+            document.getElementById('usage-body').innerHTML = '<div class="state-block">Loading usage…</div>';
+            document.getElementById('usage-panel').hidden = false;
+            try {
+                var usage = await Portal.api('/api/admin/api-keys/' + id + '/usage/?days=7');
+                if (usage.error) throw new Error(usage.error);
+                renderUsage(key || { name: 'Key #' + id }, usage);
+            } catch (err) {
+                document.getElementById('usage-body').innerHTML =
+                    '<div class="state-block error">' + Portal.escapeHtml(err.message) + '</div>';
+            }
+        }
+
+        async function init() {
+            // Fire the key-list fetch in parallel with the shell's /me round
+            // trip instead of waiting for the shell first.
+            var firstLoad = Portal.api('/api/admin/api-keys/');
+            var ctx = await Portal.initShell('api-keys');
+            if (!ctx) {
+                firstLoad.catch(function () {});
+                return;
+            }
+
+            document.getElementById('keys-refresh').addEventListener('click', function () { load(); });
+            document.getElementById('create-open').addEventListener('click', showCreateModal);
+            document.getElementById('usage-close').addEventListener('click', function () {
+                document.getElementById('usage-panel').hidden = true;
+            });
+            document.getElementById('keys-table').addEventListener('click', function (e) {
+                var btn = e.target.closest('button[data-action]');
+                if (!btn) return;
+                var id = btn.getAttribute('data-id');
+                var action = btn.getAttribute('data-action');
+                if (action === 'usage') loadUsage(id);
+                else if (action === 'edit') showEditModal(id);
+                else if (action === 'revoke') revokeKey(id);
+                else if (action === 'unrevoke') unrevokeKey(id);
+            });
+
+            load(firstLoad);
+        }
+
+        init();
+    })();
+    </script>
+</body>
+</html>

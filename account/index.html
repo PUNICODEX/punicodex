@@ -8,235 +8,66 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex,nofollow">
-  <title>Account Portal — PuniCodex</title>
-  <meta name="description" content="Self-service portal for PuniCodex sponsors and patrons: review your analytics and request changes to your ad space or patron spot.">
+  <title>Overview — Sponsor Sandbox · PuniCodex</title>
+  <meta name="description" content="Sponsor Sandbox overview: your temples, placement performance, and patron spots on PuniCodex.">
   <link rel="canonical" href="https://punicodex.com/account/">
   <link rel="stylesheet" href="/assets/fonts/fonts.css">
-  <link rel="stylesheet" href="/css/main.css?v=perf20">
-  <link rel="stylesheet" href="/css/punicodex-tokens.css">
-  <link rel="stylesheet" href="/css/brand-overrides.css">
-  <link rel="stylesheet" href="account.css">
+  <link rel="stylesheet" href="/account/sandbox.css">
   <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
   <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
   <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
-  <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
-  <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
 </head>
-<body>
-  <nav class="main-nav" id="main-nav">
-    <div class="nav-inner">
-      <a href="/" class="nav-wordmark"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-camel-gold.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-camel-gold.png" alt="PuniCodex — The Unicode Pantheon" width="680" height="119"></picture></a>
-      <div class="nav-links">
-                <a href="/pantheon/" class="nav-link">Pantheon</a>
-                <a href="/realms/" class="nav-link">Realms</a>
-                <a href="/lexicon/" class="nav-link">Lexicon</a>
-                <a href="/connections/" class="nav-link">Connections</a>
-                <a href="/type/" class="nav-link">Type</a>
-                <a href="/search.html" class="nav-link">Search</a>
-                <div class="nav-more">
-                    <button class="nav-more-toggle" aria-haspopup="true" aria-expanded="false">More</button>
-                    <div class="nav-more-menu">
-                        <a href="/tiers/" class="nav-link">Tier System</a>
-                        <a href="/oracle.html" class="nav-link">Oracle</a>
-                        <a href="/codex/" class="nav-link">Codex</a>
-                        <a href="/blog/" class="nav-link">Blog</a>
-                        <a href="/creatives/" class="nav-link">Creatives</a>
-                        <a href="/scholars/" class="nav-link">Scholars</a>
-                        <a href="/api/v1/docs/" class="nav-link">API</a>
-                        <a href="/appraise/" class="nav-link">Appraise</a>
-                        <a href="/store/" class="nav-link">Store</a>
-                        <a href="/about/" class="nav-link">About</a>
-                        <a href="/contact/" class="nav-link">Contact</a>
-                    </div>
-                </div>
-            </div>
-      <a href="/pantheon/" class="nav-cta"><span>Enter</span></a>
-      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-controls="mobile-menu"><span></span><span></span><span></span></button>
-    </div>
-  </nav>
+<body data-page="overview">
+  <header class="sb-topbar" id="sandbox-topbar"></header>
 
-    <div class="mobile-menu" id="mobile-menu">
-        <div class="mobile-menu-section">
-            <span class="mobile-menu-title">Explore</span>
-            <div class="mobile-menu-group">
-                <a href="/pantheon/">Pantheon</a>
-                <a href="/realms/">Realms</a>
-                <a href="/lexicon/">Lexicon</a>
-                <a href="/connections/">Connections</a>
-            </div>
-        </div>
-        <div class="mobile-menu-section">
-            <span class="mobile-menu-title">Tools</span>
-            <div class="mobile-menu-group">
-                <a href="/type/">Type</a>
-                <a href="/search.html">Search</a>
-                <a href="/tiers/">Tier System</a>
-                <a href="/oracle.html">Oracle</a>
-            </div>
-        </div>
-        <div class="mobile-menu-section">
-            <span class="mobile-menu-title">Resources</span>
-            <div class="mobile-menu-group">
-                <a href="/codex/">Codex</a>
-                <a href="/blog/">Blog</a>
-                <a href="/creatives/">Creatives</a>
-                <a href="/scholars/">Scholars</a>
-                <a href="/api/v1/docs/">API</a>
-                <a href="/appraise/">Appraise</a>
-                <a href="/store/">Store</a>
-            </div>
-        </div>
-        <div class="mobile-menu-section">
-            <span class="mobile-menu-title">About</span>
-            <div class="mobile-menu-group">
-                <a href="/about/">About</a>
-                <a href="/contact/">Contact</a>
-            </div>
-        </div>
+  <main class="sb-main">
+    <div class="sb-page-head">
+      <div>
+        <h1>Overview</h1>
+        <p class="sb-page-sub" id="overview-sub">Your temples and placements at a glance.</p>
+      </div>
     </div>
 
-  <main class="account-page" id="account-main">
-
-    <!-- ── Auth: sign in / forgot ─────────────────────────── -->
-    <section class="account-auth" id="view-login" hidden>
-      <div class="auth-card">
-        <h1>Account Portal</h1>
-        <p class="lead">Sign in to review your analytics and manage your ad space or patron spot.</p>
-        <form id="login-form" novalidate>
-          <div class="field">
-            <label for="login-email">Email</label>
-            <input type="email" id="login-email" autocomplete="email" required>
-          </div>
-          <div class="field">
-            <label for="login-password">Password</label>
-            <input type="password" id="login-password" autocomplete="current-password" required>
-          </div>
-          <button type="submit" class="btn btn-primary" id="login-submit">Sign In</button>
-          <p class="form-message" id="login-message" role="alert"></p>
-        </form>
-        <details class="forgot-block">
-          <summary>Forgot your password?</summary>
-          <form id="forgot-form" novalidate>
-            <div class="field">
-              <label for="forgot-email">Email</label>
-              <input type="email" id="forgot-email" autocomplete="email" required>
-            </div>
-            <button type="submit" class="btn btn-outline" id="forgot-submit">Send Reset Link</button>
-            <p class="form-message" id="forgot-message" role="status"></p>
-          </form>
-        </details>
-        <p class="auth-hint">New sponsor or patron? Your activation email contains a one-time setup link.</p>
+    <!-- ── My temples ─────────────────────────────────────── -->
+    <section class="sb-section" aria-labelledby="temples-heading">
+      <div class="sb-section-head">
+        <h2 id="temples-heading">My Temples</h2>
+        <p class="sb-section-note">Traffic across all visitors, last 30 days</p>
+      </div>
+      <div class="sb-grid temples" id="temple-cards">
+        <div class="sb-state">Loading your temples…</div>
       </div>
     </section>
 
-    <!-- ── Set password (first use / reset) ───────────────── -->
-    <section class="account-auth" id="view-set-password" hidden>
-      <div class="auth-card">
-        <h2>Set Your Password</h2>
-        <p class="lead">Choose a password for your account portal. The setup link works once and expires after 24 hours.</p>
-        <form id="set-password-form" novalidate>
-          <div class="field">
-            <label for="new-password">New password</label>
-            <input type="password" id="new-password" autocomplete="new-password" minlength="8" required>
-          </div>
-          <div class="field">
-            <label for="confirm-password">Confirm password</label>
-            <input type="password" id="confirm-password" autocomplete="new-password" minlength="8" required>
-          </div>
-          <button type="submit" class="btn btn-primary" id="set-password-submit">Set Password &amp; Sign In</button>
-          <p class="form-message" id="set-password-message" role="alert"></p>
-        </form>
+    <!-- ── My placements ──────────────────────────────────── -->
+    <section class="sb-section" aria-labelledby="placements-heading">
+      <div class="sb-section-head">
+        <h2 id="placements-heading">My Placements</h2>
+        <p class="sb-section-note">Event-tracked, last 30 days · click a row for the full breakdown</p>
+      </div>
+      <div id="placements-list">
+        <div class="sb-state">Loading your placements…</div>
       </div>
     </section>
 
-    <!-- ── Dashboard ──────────────────────────────────────── -->
-    <section class="account-dashboard" id="view-dashboard" hidden>
-      <div class="dashboard-head">
-        <div>
-          <h2>Account Portal</h2>
-          <p class="lead" id="dashboard-subtitle"></p>
-        </div>
-        <button type="button" class="btn btn-outline btn-sm" id="logout-btn">Sign Out</button>
+    <!-- ── Patron spots ───────────────────────────────────── -->
+    <section class="sb-section" aria-labelledby="patrons-heading">
+      <div class="sb-section-head">
+        <h2 id="patrons-heading">Patron Spots</h2>
       </div>
-
-      <h2 class="section-heading">My Space</h2>
-      <div class="panel-grid" id="space-panels">
-        <div class="state-block">Loading your space…</div>
-      </div>
-
-      <h2 class="section-heading">My Temples</h2>
-      <div class="panel-grid" id="temple-panels">
-        <div class="state-block">Loading temple stats…</div>
-      </div>
-
-      <h2 class="section-heading">Site-wide</h2>
-      <div class="panel-grid" id="site-panels">
-        <div class="state-block">Loading site stats…</div>
-      </div>
-
-      <h2 class="section-heading">My Resources</h2>
-      <div id="resources-list">
-        <div class="state-block">Loading your resources…</div>
-      </div>
-
-      <h2 class="section-heading">Request a Change</h2>
-      <p class="section-note">Changes go into a review queue. Nothing goes live until the PuniCodex team approves it.</p>
-      <div class="panel-grid" id="request-forms">
-        <div class="state-block">Loading…</div>
-      </div>
-
-      <h2 class="section-heading">Request History</h2>
-      <div id="request-history">
-        <div class="state-block">Loading requests…</div>
+      <div class="sb-patron-strip" id="patrons-strip">
+        <div class="sb-state">Loading patron spots…</div>
       </div>
     </section>
   </main>
 
-<footer class="site-footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="/" class="footer-wordmark"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-camel-gold.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-camel-gold.png" alt="PuniCodex — The Unicode Pantheon" width="680" height="119"></picture></a>
-                    <p class="footer-tagline">Restoring the original names of the gods to the digital realm.</p>
-                </div>
-                <div class="footer-column">
-                    <h2 class="footer-heading">Explore</h2>
-                    <a href="/pantheon/">Pantheon</a>
-                    <a href="/realms/">Realms</a>
-                    <a href="/lexicon/">Lexicon</a>
-                    <a href="/connections/">Connections</a>
-                    <a href="/tiers/">Tier System</a>
-                    <a href="/type/">Type</a>
-                    <a href="/search.html">Search</a>
-                </div>
-                <div class="footer-column">
-                    <h2 class="footer-heading">Resources</h2>
-                    <a href="/codex/">Codex</a>
-                    <a href="/blog/">Blog</a>
-                    <a href="/creatives/">Creatives</a>
-                    <a href="/scholars/">Scholars</a>
-                    <a href="/api/v1/docs/">API</a>
-                    <a href="/appraise/">Appraise</a>
-                    <a href="/authenticity/">Authenticity</a>
-                    <a href="/oracle.html">Oracle</a>
-                </div>
-                <div class="footer-column">
-                    <h2 class="footer-heading">Connect</h2>
-                    <a href="/about/">About</a>
-                    <a href="/contact/">Contact</a>
-                    <a href="/privacy/">Privacy</a>
-                    <a href="/terms/">Terms</a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>© 2026 PuniCodex. All rites reserved.</p>
-            </div>
-        </div>
-    </footer>
+  <footer class="sb-footer">
+    <p>© 2026 PuniCodex · <a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a> · <a href="/contact/">Contact</a></p>
+  </footer>
 
-  <script src="/js/px-core.js?v=perf21"></script>
-  <script src="account.js"></script>
+  <script src="/account/sandbox.js"></script>
+  <script src="/account/index.js"></script>
 </body>
 </html>

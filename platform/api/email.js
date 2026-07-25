@@ -52,17 +52,53 @@ async function sendEmail({ to, subject, html, text }) {
   }
 }
 
-function getDashboardUrl(token, siteSlug = 'nike') {
-  return `${PLATFORM_URL}/sites/${siteSlug}/dashboard/?token=${token}`;
+/**
+ * Normalize a caller-supplied site slug. Returns null when no slug is
+ * knowable so callers can fall back loudly instead of silently linking a
+ * customer to the wrong temple.
+ */
+function resolveSiteSlug(siteSlug) {
+  return typeof siteSlug === 'string' && siteSlug.trim() ? siteSlug.trim() : null;
 }
 
-async function notifyPaymentPending({ email, slotName, companyName, stripeUrl }) {
+// Lazily-loaded map of lexicon id → Unicode restoration (the temple display
+// name). Loaded on first use so the mail module stays cheap on cold start.
+let siteNameCache = null;
+function getSiteDisplayName(siteSlug) {
+  const slug = resolveSiteSlug(siteSlug);
+  if (!slug) return 'PuniCodex';
+  try {
+    if (!siteNameCache) {
+      const { LEXICON } = require('../../type/js/lexicon.js');
+      siteNameCache = new Map(LEXICON.map((entry) => [entry.id, entry.unicode]));
+    }
+    const name = siteNameCache.get(slug);
+    if (name) return name;
+  } catch {
+    /* lexicon unavailable — fall through to the raw slug */
+  }
+  return slug.charAt(0).toUpperCase() + slug.slice(1);
+}
+
+function getDashboardUrl(token, siteSlug) {
+  const slug = resolveSiteSlug(siteSlug);
+  if (!slug) {
+    // Last-resort legacy fallback (the first temples were all nike). Loud on
+    // purpose: a wrong temple in a customer email is worse than a log line.
+    console.warn('[EMAIL] dashboard link built without a site slug — falling back to nike');
+    return `${PLATFORM_URL}/sites/nike/dashboard/?token=${token}`;
+  }
+  return `${PLATFORM_URL}/sites/${slug}/dashboard/?token=${token}`;
+}
+
+async function notifyPaymentPending({ email, slotName, companyName, stripeUrl, siteSlug }) {
+  const siteName = getSiteDisplayName(siteSlug);
   return sendEmail({
     to: email,
     subject: `Complete your reservation for ${slotName}`,
     html: `
       <div style="font-family:system-ui,sans-serif;max-width:480px;margin:0 auto;color:#111;">
-        <h2 style="color:#d4af37;">Níkē.com — Reservation Pending</h2>
+        <h2 style="color:#d4af37;">${escapeHtml(siteName)} — Reservation Pending</h2>
         <p>Hi ${escapeHtml(companyName || 'there')},</p>
         <p>Your reservation for <strong>${escapeHtml(slotName)}</strong> is waiting for payment.</p>
         <p><a href="${escapeHtml(stripeUrl)}" style="display:inline-block;background:#d4af37;color:#000;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600;">Complete Payment</a></p>
@@ -72,32 +108,41 @@ async function notifyPaymentPending({ email, slotName, companyName, stripeUrl })
   });
 }
 
-async function notifyUploadReady({ email, slotName, companyName, bookingToken, leaseMonths = 1 }) {
+async function notifyUploadReady({
+  email,
+  slotName,
+  companyName,
+  bookingToken,
+  leaseMonths = 1,
+  siteSlug,
+}) {
   const duration = leaseMonths === 12 ? '12 months' : '1 month';
+  const siteName = getSiteDisplayName(siteSlug);
   return sendEmail({
     to: email,
     subject: `Upload your creative for ${slotName}`,
     html: `
       <div style="font-family:system-ui,sans-serif;max-width:480px;margin:0 auto;color:#111;">
-        <h2 style="color:#d4af37;">Níkē.com — Payment Received</h2>
+        <h2 style="color:#d4af37;">${escapeHtml(siteName)} — Payment Received</h2>
         <p>Hi ${escapeHtml(companyName || 'there')},</p>
         <p>Thank you for your payment for <strong>${escapeHtml(slotName)}</strong> (${escapeHtml(duration)}).</p>
         <p>Now it's time to upload your creative:</p>
-        <p><a href="${escapeHtml(getDashboardUrl(bookingToken))}" style="display:inline-block;background:#d4af37;color:#000;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600;">Upload Creative</a></p>
+        <p><a href="${escapeHtml(getDashboardUrl(bookingToken, siteSlug))}" style="display:inline-block;background:#d4af37;color:#000;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600;">Upload Creative</a></p>
       </div>
     `,
   });
 }
 
-async function notifyAdminPending({ slotName, companyName, bookingId }) {
+async function notifyAdminPending({ slotName, companyName, bookingId, siteSlug }) {
   const adminEmail = process.env.ADMIN_EMAIL;
   if (!adminEmail) return { success: true, skipped: true };
+  const siteName = getSiteDisplayName(siteSlug);
   return sendEmail({
     to: adminEmail,
     subject: `New creative pending approval — ${slotName}`,
     html: `
       <div style="font-family:system-ui,sans-serif;max-width:480px;margin:0 auto;color:#111;">
-        <h2 style="color:#d4af37;">Níkē Admin — Approval Needed</h2>
+        <h2 style="color:#d4af37;">${escapeHtml(siteName)} Admin — Approval Needed</h2>
         <p><strong>${escapeHtml(companyName || 'A new advertiser')}</strong> submitted a creative for <strong>${escapeHtml(slotName)}</strong>.</p>
         <p>Booking ID: <code>${escapeHtml(bookingId)}</code></p>
         <p><a href="${escapeHtml(`${PLATFORM_URL}/admin-bookings.html`)}" style="display:inline-block;background:#d4af37;color:#000;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600;">Review in Admin Panel</a></p>
@@ -106,15 +151,22 @@ async function notifyAdminPending({ slotName, companyName, bookingId }) {
   });
 }
 
-async function notifyAdminApplication({ slotName, companyName, bookingId, applicationNote }) {
+async function notifyAdminApplication({
+  slotName,
+  companyName,
+  bookingId,
+  applicationNote,
+  siteSlug,
+}) {
   const adminEmail = process.env.ADMIN_EMAIL;
   if (!adminEmail) return { success: true, skipped: true };
+  const siteName = getSiteDisplayName(siteSlug);
   return sendEmail({
     to: adminEmail,
     subject: `New application — ${slotName}`,
     html: `
       <div style="font-family:system-ui,sans-serif;max-width:480px;margin:0 auto;color:#111;">
-        <h2 style="color:#d4af37;">Níkē Admin — Application Pending</h2>
+        <h2 style="color:#d4af37;">${escapeHtml(siteName)} Admin — Application Pending</h2>
         <p><strong>${escapeHtml(companyName || 'A new advertiser')}</strong> applied for <strong>${escapeHtml(slotName)}</strong>.</p>
         ${applicationNote ? `<p><strong>Note:</strong> ${escapeHtml(applicationNote)}</p>` : ''}
         <p>Booking ID: <code>${escapeHtml(bookingId)}</code></p>
@@ -124,13 +176,14 @@ async function notifyAdminApplication({ slotName, companyName, bookingId, applic
   });
 }
 
-async function notifyApplicationApproved({ email, slotName, companyName, stripeUrl }) {
+async function notifyApplicationApproved({ email, slotName, companyName, stripeUrl, siteSlug }) {
+  const siteName = getSiteDisplayName(siteSlug);
   return sendEmail({
     to: email,
     subject: `Your application for ${slotName} is approved`,
     html: `
       <div style="font-family:system-ui,sans-serif;max-width:480px;margin:0 auto;color:#111;">
-        <h2 style="color:#d4af37;">Níkē.com — Application Approved</h2>
+        <h2 style="color:#d4af37;">${escapeHtml(siteName)} — Application Approved</h2>
         <p>Hi ${escapeHtml(companyName || 'there')},</p>
         <p>Your application for <strong>${escapeHtml(slotName)}</strong> has been approved.</p>
         <p>Complete payment to secure the placement:</p>
@@ -140,56 +193,70 @@ async function notifyApplicationApproved({ email, slotName, companyName, stripeU
   });
 }
 
-async function notifyApproved({ email, slotName, companyName, bookingToken }) {
+async function notifyApproved({ email, slotName, companyName, bookingToken, siteSlug }) {
+  const siteName = getSiteDisplayName(siteSlug);
   return sendEmail({
     to: email,
     subject: `Your ad for ${slotName} is approved`,
     html: `
       <div style="font-family:system-ui,sans-serif;max-width:480px;margin:0 auto;color:#111;">
-        <h2 style="color:#d4af37;">Níkē.com — Creative Approved</h2>
+        <h2 style="color:#d4af37;">${escapeHtml(siteName)} — Creative Approved</h2>
         <p>Hi ${escapeHtml(companyName || 'there')},</p>
         <p>Your creative for <strong>${escapeHtml(slotName)}</strong> has been approved and is going live shortly.</p>
-        <p><a href="${escapeHtml(getDashboardUrl(bookingToken))}" style="display:inline-block;background:#d4af37;color:#000;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600;">View Dashboard</a></p>
+        <p><a href="${escapeHtml(getDashboardUrl(bookingToken, siteSlug))}" style="display:inline-block;background:#d4af37;color:#000;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600;">View Dashboard</a></p>
       </div>
     `,
   });
 }
 
-async function notifyRejected({ email, slotName, companyName, note, bookingToken }) {
+async function notifyRejected({ email, slotName, companyName, note, bookingToken, siteSlug }) {
+  const siteName = getSiteDisplayName(siteSlug);
   return sendEmail({
     to: email,
     subject: `Your creative needs changes — ${slotName}`,
     html: `
       <div style="font-family:system-ui,sans-serif;max-width:480px;margin:0 auto;color:#111;">
-        <h2 style="color:#d4af37;">Níkē.com — Creative Needs Changes</h2>
+        <h2 style="color:#d4af37;">${escapeHtml(siteName)} — Creative Needs Changes</h2>
         <p>Hi ${escapeHtml(companyName || 'there')},</p>
         <p>Your creative for <strong>${escapeHtml(slotName)}</strong> was not approved.</p>
         <p><strong>Reason:</strong> ${escapeHtml(note || 'Does not meet our guidelines.')}</p>
         <p>You can upload a revised version here:</p>
-        <p><a href="${escapeHtml(getDashboardUrl(bookingToken))}" style="display:inline-block;background:#d4af37;color:#000;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600;">Re-upload Creative</a></p>
+        <p><a href="${escapeHtml(getDashboardUrl(bookingToken, siteSlug))}" style="display:inline-block;background:#d4af37;color:#000;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600;">Re-upload Creative</a></p>
       </div>
     `,
   });
 }
 
-async function notifyLive({ email, slotName, companyName, bookingToken, leaseMonths = 1 }) {
+async function notifyLive({
+  email,
+  slotName,
+  companyName,
+  bookingToken,
+  leaseMonths = 1,
+  siteSlug,
+}) {
   const duration = leaseMonths === 12 ? '12 months' : '1 month';
+  const siteName = getSiteDisplayName(siteSlug);
   return sendEmail({
     to: email,
-    subject: `Your ad is now live on Níkē.com`,
+    subject: `Your ad is now live on ${siteName}`,
     html: `
       <div style="font-family:system-ui,sans-serif;max-width:480px;margin:0 auto;color:#111;">
-        <h2 style="color:#d4af37;">Níkē.com — You're Live!</h2>
+        <h2 style="color:#d4af37;">${escapeHtml(siteName)} — You're Live!</h2>
         <p>Hi ${escapeHtml(companyName || 'there')},</p>
-        <p>Your ad on <strong>${escapeHtml(slotName)}</strong> is now live on Níkē.com for <strong>${escapeHtml(duration)}</strong>.</p>
+        <p>Your ad on <strong>${escapeHtml(slotName)}</strong> is now live on ${escapeHtml(siteName)} for <strong>${escapeHtml(duration)}</strong>.</p>
         <p>Track performance in your dashboard:</p>
-        <p><a href="${escapeHtml(getDashboardUrl(bookingToken))}" style="display:inline-block;background:#d4af37;color:#000;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600;">Open Analytics Dashboard</a></p>
+        <p><a href="${escapeHtml(getDashboardUrl(bookingToken, siteSlug))}" style="display:inline-block;background:#d4af37;color:#000;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600;">Open Analytics Dashboard</a></p>
       </div>
     `,
   });
 }
 
 async function sendDashboardLinks({ email, bookings }) {
+  // Brand the email after the temple when every booking belongs to the same
+  // one; mixed-temple inboxes get the neutral PuniCodex branding.
+  const slugs = [...new Set(bookings.map((b) => resolveSiteSlug(b.site_slug)).filter(Boolean))];
+  const brand = slugs.length === 1 ? getSiteDisplayName(slugs[0]) : 'PuniCodex';
   const rows = bookings
     .map(
       (b) => `
@@ -197,7 +264,7 @@ async function sendDashboardLinks({ email, bookings }) {
       <td style="padding:12px;border-bottom:1px solid #eee;font-weight:600;">${escapeHtml(b.slot_name)}</td>
       <td style="padding:12px;border-bottom:1px solid #eee;text-transform:uppercase;font-size:0.8rem;">${escapeHtml(b.status.replace(/_/g, ' '))}</td>
       <td style="padding:12px;border-bottom:1px solid #eee;">
-        <a href="${escapeHtml(getDashboardUrl(b.analytics_token))}" style="color:#d4af37;font-weight:600;text-decoration:none;">Dashboard &rarr;</a>
+        <a href="${escapeHtml(getDashboardUrl(b.analytics_token, b.site_slug))}" style="color:#d4af37;font-weight:600;text-decoration:none;">Dashboard &rarr;</a>
       </td>
     </tr>
   `
@@ -206,10 +273,10 @@ async function sendDashboardLinks({ email, bookings }) {
 
   return sendEmail({
     to: email,
-    subject: `Your Níkē.com dashboard links`,
+    subject: `Your ${brand} dashboard links`,
     html: `
       <div style="font-family:system-ui,sans-serif;max-width:560px;margin:0 auto;color:#111;">
-        <h2 style="color:#d4af37;">Níkē.com — Your Bookings</h2>
+        <h2 style="color:#d4af37;">${escapeHtml(brand)} — Your Bookings</h2>
         <p>Here are all your reservations:</p>
         <table style="width:100%;border-collapse:collapse;margin:1rem 0;font-size:0.9rem;">
           <thead>
@@ -230,10 +297,10 @@ async function sendDashboardLinks({ email, bookings }) {
 async function sendVerificationCode({ email, code }) {
   return sendEmail({
     to: email,
-    subject: `Your Níkē verification code`,
+    subject: `Your PuniCodex verification code`,
     html: `
       <div style="font-family:system-ui,sans-serif;max-width:480px;margin:0 auto;color:#111;">
-        <h2 style="color:#d4af37;">Níkē.com — Verification Code</h2>
+        <h2 style="color:#d4af37;">PuniCodex — Verification Code</h2>
         <p>Your verification code is:</p>
         <div style="background:#f8f8f8;border-radius:8px;padding:1.5rem;text-align:center;margin:1.5rem 0;">
           <span style="font-family:monospace;font-size:2rem;font-weight:700;letter-spacing:0.2em;color:#111;">${escapeHtml(code)}</span>
@@ -254,8 +321,10 @@ async function sendBookingConfirmation({
   customSubtitle,
   leaseMonths = 1,
   trialMonths = 0,
+  siteSlug,
 }) {
-  const dashboardUrl = getDashboardUrl(token);
+  const siteName = getSiteDisplayName(siteSlug);
+  const dashboardUrl = getDashboardUrl(token, siteSlug);
   const panelUrl = `${PLATFORM_URL}/advertiser-panel.html?token=${token}`;
   const durationLabel = leaseMonths === 12 ? '12 months' : '1 month';
   const trialLabel = trialMonths > 0 ? `${trialMonths}-month free trial, then ` : '';
@@ -272,7 +341,7 @@ async function sendBookingConfirmation({
     subject: `Your reservation for ${slotName} — Complete your setup`,
     html: `
       <div style="font-family:system-ui,sans-serif;max-width:520px;margin:0 auto;color:#111;">
-        <h2 style="color:#d4af37;">Níkē.com — Reservation Confirmed</h2>
+        <h2 style="color:#d4af37;">${escapeHtml(siteName)} — Reservation Confirmed</h2>
         <p>Hi ${escapeHtml(companyName || 'there')},</p>
         <p>You've reserved <strong>${escapeHtml(slotName)}</strong> for <strong>${escapeHtml(durationLabel)}</strong> at <strong>${escapeHtml(trialLabel)}${escapeHtml(priceLabel)}</strong>.</p>
         ${trialBadge}
@@ -296,8 +365,10 @@ async function notifyTrialStarted({
   trialMonths,
   trialEndsAt,
   bookingToken,
+  siteSlug,
 }) {
-  const dashboardUrl = getDashboardUrl(bookingToken);
+  const siteName = getSiteDisplayName(siteSlug);
+  const dashboardUrl = getDashboardUrl(bookingToken, siteSlug);
   const endDate = trialEndsAt
     ? new Date(trialEndsAt).toLocaleDateString('en-US', {
         month: 'long',
@@ -310,7 +381,7 @@ async function notifyTrialStarted({
     subject: `Your ${trialMonths}-month free trial for ${slotName} has started`,
     html: `
       <div style="font-family:system-ui,sans-serif;max-width:520px;margin:0 auto;color:#111;">
-        <h2 style="color:#d4af37;">Níkē.com — Trial Started</h2>
+        <h2 style="color:#d4af37;">${escapeHtml(siteName)} — Trial Started</h2>
         <p>Hi ${escapeHtml(companyName || 'there')},</p>
         <p>Your ad on <strong>${escapeHtml(slotName)}</strong> is now live on its <strong>${escapeHtml(trialMonths)}-month free trial</strong>.</p>
         <p>Billing will begin on <strong>${escapeHtml(endDate)}</strong>. We'll send reminders 7 days and 1 day before billing starts.</p>
@@ -327,8 +398,10 @@ async function notifyTrialEnding({
   daysLeft,
   trialEndsAt,
   bookingToken,
+  siteSlug,
 }) {
-  const dashboardUrl = getDashboardUrl(bookingToken);
+  const siteName = getSiteDisplayName(siteSlug);
+  const dashboardUrl = getDashboardUrl(bookingToken, siteSlug);
   const endDate = trialEndsAt
     ? new Date(trialEndsAt).toLocaleDateString('en-US', {
         month: 'long',
@@ -341,7 +414,7 @@ async function notifyTrialEnding({
     subject: `Your ${slotName} free trial ends in ${daysLeft} day${daysLeft === 1 ? '' : 's'}`,
     html: `
       <div style="font-family:system-ui,sans-serif;max-width:520px;margin:0 auto;color:#111;">
-        <h2 style="color:#d4af37;">Níkē.com — Trial Ending Soon</h2>
+        <h2 style="color:#d4af37;">${escapeHtml(siteName)} — Trial Ending Soon</h2>
         <p>Hi ${escapeHtml(companyName || 'there')},</p>
         <p>Your free trial for <strong>${escapeHtml(slotName)}</strong> ends on <strong>${escapeHtml(endDate)}</strong> (${escapeHtml(daysLeft)} day${daysLeft === 1 ? '' : 's'} left).</p>
         <p>Billing will start automatically after the trial ends. If you want to cancel before then, contact us.</p>
@@ -369,7 +442,9 @@ async function notifyCreativePurchaseReady({ email, assetId, purchaseId }) {
 }
 
 async function sendAnalyticsReport({ email, booking, metrics }) {
-  const dashboardUrl = getDashboardUrl(booking.analytics_token);
+  const siteSlug = resolveSiteSlug(booking.site_slug);
+  const siteName = getSiteDisplayName(siteSlug);
+  const dashboardUrl = getDashboardUrl(booking.analytics_token, siteSlug);
   const days = metrics.daily
     .slice(-7)
     .map(
@@ -385,10 +460,10 @@ async function sendAnalyticsReport({ email, booking, metrics }) {
 
   return sendEmail({
     to: email,
-    subject: `Níkē Analytics — ${booking.slot_name} Performance`,
+    subject: `${siteName} Analytics — ${booking.slot_name} Performance`,
     html: `
       <div style="font-family:system-ui,sans-serif;max-width:520px;margin:0 auto;color:#111;">
-        <h2 style="color:#d4af37;">Níkē Analytics Report</h2>
+        <h2 style="color:#d4af37;">${escapeHtml(siteName)} Analytics Report</h2>
         <p><strong>${escapeHtml(booking.slot_name)}</strong> — ${escapeHtml(booking.company_name || 'Your Ad')}</p>
         <div style="display:flex;gap:1rem;margin:1.5rem 0;">
           <div style="flex:1;background:#f8f8f8;border-radius:8px;padding:1rem;text-align:center;">
@@ -630,5 +705,7 @@ module.exports = {
   notifyTenantPasswordReset,
   notifyCareersApplication,
   getDashboardUrl,
+  getSiteDisplayName,
+  resolveSiteSlug,
   escapeHtml,
 };

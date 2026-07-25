@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex,nofollow">
-    <title>Admin Portal — Dashboard | PuniCodex</title>
+    <title>Admin Portal — Command | PuniCodex</title>
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
     <link rel="stylesheet" href="portal.css">
     <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
@@ -25,34 +25,109 @@
 
     <main id="portal-main" class="portal-main">
         <div class="portal-page-head">
-            <h1>Dashboard</h1>
-            <p>Operational snapshot across applications, scholarly review, patrons, revenue, traffic, and the crawler.</p>
-            <p class="portal-updated" id="dash-updated"></p>
+            <h1>Command</h1>
+            <p>Operational snapshot across decision queues, the living pantheon, revenue, traffic, and system health.</p>
         </div>
 
-        <section aria-label="Portal overview">
-            <div class="stat-grid" id="dash-stats">
-                <div class="state-block">Loading dashboard…</div>
+        <section aria-label="Key metrics">
+            <div class="stat-grid" id="cmd-kpis">
+                <span class="pz-skeleton pz-skeleton--card"></span>
+                <span class="pz-skeleton pz-skeleton--card"></span>
+                <span class="pz-skeleton pz-skeleton--card"></span>
+                <span class="pz-skeleton pz-skeleton--card"></span>
+                <span class="pz-skeleton pz-skeleton--card"></span>
+                <span class="pz-skeleton pz-skeleton--card"></span>
+                <span class="pz-skeleton pz-skeleton--card"></span>
+                <span class="pz-skeleton pz-skeleton--card"></span>
             </div>
         </section>
 
-        <section class="panel" aria-label="Quick links">
+        <section class="panel" aria-label="Needs your decision">
             <div class="panel-head">
-                <h2 class="panel-title">Queues</h2>
+                <div>
+                    <h2 class="panel-title">Needs Your Decision</h2>
+                    <p class="panel-sub">Every open queue. Empty queues stay visible so nothing hides.</p>
+                </div>
             </div>
-            <div class="quick-links" id="dash-quick-links"></div>
+            <div class="pz-queue" id="cmd-queues">
+                <span class="pz-skeleton pz-skeleton--row"></span>
+                <span class="pz-skeleton pz-skeleton--row"></span>
+                <span class="pz-skeleton pz-skeleton--row"></span>
+                <span class="pz-skeleton pz-skeleton--row"></span>
+                <span class="pz-skeleton pz-skeleton--row"></span>
+                <span class="pz-skeleton pz-skeleton--row"></span>
+            </div>
+        </section>
+
+        <div class="panel-grid-2">
+            <section class="panel" aria-label="Trending temples">
+                <div class="panel-head">
+                    <div>
+                        <h2 class="panel-title">The Living Pantheon</h2>
+                        <p class="panel-sub">Most-visited temples this week (human views).</p>
+                    </div>
+                </div>
+                <div class="pz-rank-list" id="cmd-temples">
+                    <span class="pz-skeleton pz-skeleton--row"></span>
+                    <span class="pz-skeleton pz-skeleton--row"></span>
+                    <span class="pz-skeleton pz-skeleton--row"></span>
+                    <span class="pz-skeleton pz-skeleton--row"></span>
+                    <span class="pz-skeleton pz-skeleton--row"></span>
+                </div>
+            </section>
+
+            <section class="panel" aria-label="Top countries">
+                <div class="panel-head">
+                    <div>
+                        <h2 class="panel-title">Pilgrims by Country</h2>
+                        <p class="panel-sub">Human page views this week, by country.</p>
+                    </div>
+                </div>
+                <div class="pz-rank-list" id="cmd-countries">
+                    <span class="pz-skeleton pz-skeleton--row"></span>
+                    <span class="pz-skeleton pz-skeleton--row"></span>
+                    <span class="pz-skeleton pz-skeleton--row"></span>
+                    <span class="pz-skeleton pz-skeleton--row"></span>
+                    <span class="pz-skeleton pz-skeleton--row"></span>
+                </div>
+            </section>
+        </div>
+
+        <section class="panel" aria-label="System health">
+            <div class="panel-head">
+                <div>
+                    <h2 class="panel-title">System Health</h2>
+                    <p class="panel-sub" id="cmd-health-summary">API telemetry from the request log.</p>
+                </div>
+                <div class="pz-panel-actions">
+                    <div class="pz-health" id="cmd-health-dots"></div>
+                </div>
+            </div>
+            <div class="table-wrap">
+                <table class="portal-table" aria-label="Slowest endpoints">
+                    <thead>
+                        <tr>
+                            <th>Slowest endpoint · 24h</th>
+                            <th class="num">Avg</th>
+                            <th class="num">Max</th>
+                            <th class="num">Calls</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cmd-slow-body">
+                        <tr><td colspan="4"><span class="pz-skeleton pz-skeleton--row"></span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="cmd-crawler" style="margin-top:1rem;"></div>
         </section>
 
         <section class="panel" id="dash-ops" aria-label="Crawler operations" hidden>
             <div class="panel-head">
                 <div>
                     <h2 class="panel-title">Crawler Operations</h2>
-                    <p class="panel-sub">Live crawl triggers and index health. Actions run immediately.</p>
+                    <p class="panel-sub">Live crawl triggers. Actions run immediately.</p>
                 </div>
                 <button type="button" class="btn btn-secondary btn-sm" id="ops-refresh">Refresh</button>
-            </div>
-            <div class="stat-grid" id="ops-stats">
-                <div class="state-block">Loading crawler stats…</div>
             </div>
             <div class="portal-form-row">
                 <div class="field">
@@ -64,31 +139,14 @@
             </div>
         </section>
 
-        <section class="panel" aria-label="Existing admin tools">
+        <section class="panel" aria-label="Portal sections">
             <div class="panel-head">
                 <div>
-                    <h2 class="panel-title">Existing Tools</h2>
-                    <p class="panel-sub">Legacy single-purpose dashboards. Your portal token works on all of them.</p>
+                    <h2 class="panel-title">The Sanctum</h2>
+                    <p class="panel-sub">Every section of the portal, one hop away.</p>
                 </div>
             </div>
-            <div class="quick-links">
-                <a class="quick-link" href="/platform/public/admin-api-keys.html">
-                    <div class="quick-link-title">API Keys</div>
-                    <div class="quick-link-desc">Issue, tier, and revoke Enterprise API keys.</div>
-                </a>
-                <a class="quick-link" href="/platform/public/admin-bookings.html">
-                    <div class="quick-link-title">Bookings</div>
-                    <div class="quick-link-desc">Ad-slot bookings, trials, and creative approvals.</div>
-                </a>
-                <a class="quick-link" href="/platform/public/admin-analytics.html">
-                    <div class="quick-link-title">Analytics</div>
-                    <div class="quick-link-desc">Traffic, sessions, and beacon analytics.</div>
-                </a>
-                <a class="quick-link" href="/platform/public/admin-authenticity.html">
-                    <div class="quick-link-title">Authenticity</div>
-                    <div class="quick-link-desc">Threat feed and brand-protection console.</div>
-                </a>
-            </div>
+            <div class="quick-links" id="cmd-quick-links"></div>
         </section>
     </main>
 
@@ -104,38 +162,172 @@
             );
         }
 
-        function renderDashboard(d) {
-            var grid = document.getElementById('dash-stats');
-            var traffic = d.traffic || {};
-            var revenue = d.revenue || {};
-            var patrons = d.patrons || {};
+        function fmtPct(rate) {
+            var n = Number(rate);
+            if (!Number.isFinite(n)) return '0%';
+            return (n * 100).toFixed(2) + '%';
+        }
+
+        function healthDot(level, label) {
+            return (
+                '<span class="pz-health-item"><span class="pz-health-dot pz-health-dot--' + level + '"></span>' +
+                Portal.escapeHtml(label) + '</span>'
+            );
+        }
+
+        // KPI row: site traffic (beacon) + API telemetry (request log) + revenue.
+        // The request-log card is labeled API Calls — it is telemetry, not a
+        // work queue.
+        function renderKpis(d, a) {
+            var traffic = (d && d.traffic) || {};
+            var revenue = (d && d.revenue) || {};
+            var patrons = (d && d.patrons) || {};
+            var totals = (a && a.overview && a.overview.totals) || {};
+            var hours = traffic.windowHours || 24;
+            var days = revenue.windowDays || 30;
+            document.getElementById('cmd-kpis').innerHTML =
+                statCard(Portal.fmtNumber(traffic.todayViews), 'Views · Today', 'human page views') +
+                statCard(a ? Portal.fmtNumber(totals.humanViews) : '—', 'Views · 7d', 'human page views') +
+                statCard(a ? Portal.fmtNumber(totals.uniqueSessions) : '—', 'Unique Sessions · 7d', '') +
+                statCard(Portal.fmtNumber(traffic.requests), 'API Calls · ' + hours + 'h', 'api request log') +
+                statCard(fmtPct(traffic.errorRate), 'Error Rate · ' + hours + 'h', Portal.fmtNumber(traffic.errorCount) + ' errors') +
+                statCard(Portal.fmtNumber(d ? d.indexedSites : 0), 'Indexed Sites', 'crawler index') +
+                statCard('$' + Portal.escapeHtml(String(revenue.last30dDollars || '0.00')), 'Revenue · ' + days + 'd', Portal.fmtNumber(revenue.bookingsLast30d) + ' bookings') +
+                statCard('$' + Portal.escapeHtml(String(patrons.estimatedMrrDollars || '0.00')), 'Patron MRR', Portal.fmtNumber(patrons.active) + ' active · ' + Portal.fmtNumber(patrons.estimatedMrrCents) + ' cents/mo');
+        }
+
+        // Decision queues — zero counts render dimmed with "clear", never hidden.
+        function renderQueues(d) {
             var applications = d.applications || {};
             var scholars = d.scholars || {};
-            grid.innerHTML =
-                statCard(Portal.fmtNumber(applications.businessPending), 'Business Apps Pending', 'leasing queue') +
-                statCard(Portal.fmtNumber(applications.universityPending), 'University Apps Pending', 'scholars queue') +
-                statCard(Portal.fmtNumber(scholars.pendingEdits), 'Pending Edits', 'scholarly review') +
-                statCard(Portal.fmtNumber(scholars.pendingMedia), 'Pending Media', 'scholarly review') +
-                statCard(Portal.fmtNumber(patrons.active), 'Active Patrons', '') +
-                statCard('$' + Portal.escapeHtml(String(patrons.estimatedMrrDollars || '0.00')), 'Patron MRR', Portal.fmtNumber(patrons.estimatedMrrCents) + ' cents/mo') +
-                statCard('$' + Portal.escapeHtml(String(revenue.last30dDollars || '0.00')), 'Revenue · ' + (revenue.windowDays || 30) + 'd', Portal.fmtNumber(revenue.bookingsLast30d) + ' bookings') +
-                statCard(Portal.fmtNumber(traffic.requests), 'Requests · ' + (traffic.windowHours || 24) + 'h', '') +
-                statCard(Portal.fmtNumber(traffic.errorCount), 'Errors · ' + (traffic.windowHours || 24) + 'h', 'rate ' + (traffic.errorRate != null ? traffic.errorRate : 0)) +
-                statCard(Portal.fmtNumber(d.indexedSites), 'Indexed Sites', '');
-            document.getElementById('dash-updated').textContent = 'Snapshot generated ' + Portal.fmtDateTime(d.generatedAt);
+            var queues = [
+                { label: 'Sponsorship applications', desc: 'Business lease applications awaiting review', count: applications.businessPending, href: 'applications/', permission: 'read' },
+                { label: 'University applications', desc: 'Scholarly Edition sponsorship requests', count: applications.universityPending, href: 'applications/?kind=university', permission: 'read' },
+                { label: 'Careers applications', desc: 'Open-role submissions from the careers page', count: d.pendingCareers, href: 'applications/?kind=careers', permission: 'read' },
+                { label: 'Arbitrage requests', desc: 'Domain acquisition applications awaiting contact', count: d.pendingArbitrage, href: 'applications/?kind=arbitrage', permission: 'read' },
+                { label: 'Scholars edits', desc: 'Scholarly edits awaiting review (' + Portal.fmtNumber(scholars.pendingMedia) + ' media uploads pending)', count: scholars.pendingEdits, href: 'scholars/', permission: 'read' },
+                { label: 'Change requests', desc: 'Creative swaps and social-link approvals', count: d.pendingChangeRequests, href: 'requests/', permission: 'ops' },
+            ];
+            document.getElementById('cmd-queues').innerHTML = queues
+                .filter(function (q) { return Portal.can(q.permission); })
+                .map(function (q) {
+                    var n = Number(q.count) || 0;
+                    var clear = n === 0;
+                    return (
+                        '<a class="pz-queue-row' + (clear ? ' clear' : '') + '" href="' + q.href + '">' +
+                        '<span class="pz-queue-main"><span class="pz-queue-label">' + Portal.escapeHtml(q.label) + '</span>' +
+                        '<span class="pz-queue-desc">' + Portal.escapeHtml(q.desc) + '</span></span>' +
+                        '<span class="pz-queue-count">' + Portal.fmtNumber(n) + '</span>' +
+                        '<span class="pz-queue-state">' + (clear ? 'clear' : 'pending') + '</span></a>'
+                    );
+                })
+                .join('');
+        }
+
+        function renderPantheon(d) {
+            var trending = d.trending || {};
+            var temples = Array.isArray(trending.topTemples) ? trending.topTemples : [];
+            var countries = Array.isArray(trending.topCountries) ? trending.topCountries : [];
+
+            document.getElementById('cmd-temples').innerHTML = temples.length
+                ? temples
+                      .map(function (t, i) {
+                          var today = Number(t.viewsToday) || 0;
+                          return (
+                              '<a class="pz-rank-row" href="/trending/temple/?id=' + encodeURIComponent(t.templeId) + '">' +
+                              '<span class="pz-rank-pos">' + (i + 1) + '</span>' +
+                              '<span class="pz-rank-name">' + Portal.escapeHtml(t.templeId) + '</span>' +
+                              '<span class="pz-rank-sub">' + (today > 0 ? '+' + Portal.fmtNumber(today) + ' today' : '—') + '</span>' +
+                              '<span class="pz-rank-value">' + Portal.fmtNumber(t.views) + '</span></a>'
+                          );
+                      })
+                      .join('')
+                : '<div class="state-block">No temple traffic recorded this week yet.</div>';
+
+            document.getElementById('cmd-countries').innerHTML = countries.length
+                ? countries
+                      .map(function (c, i) {
+                          return (
+                              '<div class="pz-rank-row">' +
+                              '<span class="pz-rank-pos">' + (i + 1) + '</span>' +
+                              '<span class="pz-rank-name">' + Portal.escapeHtml(c.country) + '</span>' +
+                              '<span class="pz-rank-value">' + Portal.fmtNumber(c.views) + '</span></div>'
+                          );
+                      })
+                      .join('')
+                : '<div class="state-block">No country data recorded this week yet.</div>';
+        }
+
+        function renderHealth(d) {
+            var traffic = d.traffic || {};
+            var hours = traffic.windowHours || 24;
+            var rate = Number(traffic.errorRate) || 0;
+            var apiLevel = rate < 0.01 ? 'ok' : rate < 0.05 ? 'warn' : 'bad';
+            var indexLevel = (Number(d.indexedSites) || 0) > 0 ? 'ok' : 'warn';
+            document.getElementById('cmd-health-dots').innerHTML =
+                healthDot(apiLevel, 'API') +
+                healthDot(indexLevel, 'Index') +
+                '<span id="cmd-crawler-dot"></span>';
+            document.getElementById('cmd-health-summary').textContent =
+                'Error rate ' + fmtPct(rate) + ' over ' + hours + 'h — ' +
+                Portal.fmtNumber(traffic.errorCount) + ' errors across ' +
+                Portal.fmtNumber(traffic.requests) + ' API calls.';
+
+            var slow = Array.isArray(traffic.slowEndpoints) ? traffic.slowEndpoints : [];
+            document.getElementById('cmd-slow-body').innerHTML = slow.length
+                ? slow
+                      .map(function (row) {
+                          return (
+                              '<tr><td class="cell-title">' + Portal.escapeHtml(row.path) + '</td>' +
+                              '<td class="num">' + Portal.escapeHtml(String(row.avgDurationMs)) + ' ms</td>' +
+                              '<td class="num">' + Portal.fmtNumber(row.maxDurationMs) + ' ms</td>' +
+                              '<td class="num">' + Portal.fmtNumber(row.requests) + '</td></tr>'
+                          );
+                      })
+                      .join('')
+                : '<tr><td colspan="4"><div class="state-block">No timed requests in the window.</div></td></tr>';
+        }
+
+        // Crawler telemetry (ops role) — rendered into the health panel and
+        // refreshed by the ops panel's Refresh button.
+        async function loadCrawlerStats() {
+            var wrap = document.getElementById('cmd-crawler');
+            var dotHost = document.getElementById('cmd-crawler-dot');
+            try {
+                var s = await Portal.api('/api/crawler/stats/');
+                var queue = s.queue || {};
+                var errors = Number(s.error_sites) || 0;
+                if (dotHost) dotHost.innerHTML = healthDot(errors === 0 ? 'ok' : 'warn', 'Crawler');
+                wrap.innerHTML =
+                    '<div class="stat-grid">' +
+                    statCard(Portal.fmtNumber(s.total_sites), 'Total Indexed', '') +
+                    statCard(Portal.fmtNumber(s.active_sites), 'Active', '') +
+                    statCard(Portal.fmtNumber(s.pending_sites), 'Pending', '') +
+                    statCard(Portal.fmtNumber(s.error_sites), 'Errors', '') +
+                    statCard(Portal.fmtNumber(queue.pending), 'Queue Pending', '') +
+                    '</div>';
+            } catch (err) {
+                if (dotHost) dotHost.innerHTML = healthDot('bad', 'Crawler');
+                wrap.innerHTML = '<div class="state-block error">' + Portal.escapeHtml(err.message) + '</div>';
+            }
         }
 
         function renderQuickLinks() {
             var links = [
-                { href: 'applications/', title: 'Applications', desc: 'Approve business leases and university sponsorships.', permission: 'read' },
-                { href: 'requests/', title: 'Requests', desc: 'Sponsor and patron self-service approval queue.', permission: 'read' },
+                { href: 'analytics/', title: 'Analytics', desc: 'Traffic, engagement, countries, and per-temple drill-downs.', permission: 'read' },
+                { href: 'applications/', title: 'Applications', desc: 'Sponsorship, university, careers, and arbitrage queues.', permission: 'read' },
+                { href: 'requests/', title: 'Change Requests', desc: 'Creative swaps and social-link approvals.', permission: 'ops' },
+                { href: 'leasing/', title: 'Leasing', desc: 'Bookings, ad slots, tenants, and lease lifecycle.', permission: 'read' },
                 { href: 'patrons/', title: 'Patrons', desc: 'Patron roster, MRR, cancellations, and expiry.', permission: 'read' },
                 { href: 'scholars/', title: 'Scholars Review', desc: 'Pending scholarly edits and media uploads.', permission: 'read' },
-                { href: 'newsletter/', title: 'Newsletter', desc: 'Herald subscribers and CSV export.', permission: 'read' },
                 { href: 'merch/', title: 'Creator Merch', desc: 'Product oversight, revenue split, and takedowns.', permission: 'read' },
+                { href: 'newsletter/', title: 'Newsletter', desc: 'Herald subscribers and CSV export.', permission: 'read' },
                 { href: 'users/', title: 'Users', desc: 'Portal accounts, roles, and credential resets.', permission: 'users' },
+                { href: 'system/', title: 'System', desc: 'Crawler, observability, and database telemetry.', permission: 'read' },
+                { href: 'api-keys/', title: 'API Keys', desc: 'Issue, tier, and revoke Enterprise API keys.', permission: 'read' },
+                { href: 'legacy/', title: 'Legacy Tools', desc: 'Retired single-purpose dashboards, with deprecation notes.', permission: 'read' },
             ];
-            document.getElementById('dash-quick-links').innerHTML = links
+            document.getElementById('cmd-quick-links').innerHTML = links
                 .filter(function (l) { return Portal.can(l.permission); })
                 .map(function (l) {
                     return (
@@ -147,82 +339,96 @@
                 .join('');
         }
 
-        async function loadOpsStats() {
-            var grid = document.getElementById('ops-stats');
-            try {
-                var s = await Portal.api('/api/crawler/stats/');
-                var queue = s.queue || {};
-                grid.innerHTML =
-                    statCard(Portal.fmtNumber(s.total_sites), 'Total Indexed', '') +
-                    statCard(Portal.fmtNumber(s.active_sites), 'Active', '') +
-                    statCard(Portal.fmtNumber(s.pending_sites), 'Pending', '') +
-                    statCard(Portal.fmtNumber(s.error_sites), 'Errors', '') +
-                    statCard(Portal.fmtNumber(queue.pending), 'Queue Pending', '');
-            } catch (err) {
-                grid.innerHTML = '<div class="state-block error">' + Portal.escapeHtml(err.message) + '</div>';
-            }
+        function wireOpsPanel() {
+            var opsPanel = document.getElementById('dash-ops');
+            opsPanel.hidden = false;
+            loadCrawlerStats();
+            document.getElementById('ops-refresh').addEventListener('click', loadCrawlerStats);
+
+            document.getElementById('ops-crawl-btn').addEventListener('click', async function () {
+                var input = document.getElementById('ops-crawl-domain');
+                var domain = input.value.trim();
+                if (!domain) {
+                    Portal.toast('Enter a domain first', 'error');
+                    return;
+                }
+                var btn = this;
+                btn.disabled = true;
+                try {
+                    var data = await Portal.api('/api/crawl/', { method: 'POST', body: { domain: domain } });
+                    if (data.error) throw new Error(data.error);
+                    Portal.toast('Crawled: ' + (data.title || data.domain || domain) + ' (' + (data.status || 'done') + ')', 'success');
+                    input.value = '';
+                    loadCrawlerStats();
+                } catch (err) {
+                    Portal.toast('Crawl failed: ' + err.message, 'error');
+                } finally {
+                    btn.disabled = false;
+                }
+            });
+
+            document.getElementById('ops-recrawl-btn').addEventListener('click', async function () {
+                if (!window.confirm('Re-crawl all active sites now?')) return;
+                var btn = this;
+                btn.disabled = true;
+                try {
+                    var data = await Portal.api('/api/crawl/recrawl/', { method: 'POST', body: {} });
+                    Portal.toast('Re-crawled ' + Portal.fmtNumber(data.total) + ' sites', 'success');
+                    loadCrawlerStats();
+                } catch (err) {
+                    Portal.toast('Re-crawl failed: ' + err.message, 'error');
+                } finally {
+                    btn.disabled = false;
+                }
+            });
         }
 
         async function init() {
-            // Fire the dashboard fetch in parallel with the shell's /me round
-            // trip instead of waiting for the shell first.
-            var dataPromise = Portal.api('/api/admin/portal/dashboard/');
+            // Fire both fetches in parallel with the shell's /me round trip.
+            var dashPromise = Portal.api('/api/admin/portal/dashboard/');
+            var analyticsPromise = Portal.api('/api/admin/portal/analytics/?days=7');
             var ctx = await Portal.initShell('dashboard');
             if (!ctx) {
-                dataPromise.catch(function () {});
+                dashPromise.catch(function () {});
+                analyticsPromise.catch(function () {});
                 return;
             }
             renderQuickLinks();
 
-            try {
-                renderDashboard(await dataPromise);
-            } catch (err) {
-                document.getElementById('dash-stats').innerHTML =
-                    '<div class="state-block error">' + Portal.escapeHtml(err.message) + '</div>';
+            var results = await Promise.allSettled([dashPromise, analyticsPromise]);
+            var d = results[0].status === 'fulfilled' ? results[0].value : null;
+            var a = results[1].status === 'fulfilled' ? results[1].value : null;
+
+            if (!d && !a) {
+                var reason = results[0].reason;
+                document.getElementById('cmd-kpis').innerHTML =
+                    '<div class="state-block error">' +
+                    Portal.escapeHtml(reason ? reason.message : 'Dashboard unavailable') +
+                    '</div>';
+                return;
+            }
+
+            renderKpis(d, a);
+            if (d) {
+                Portal.setSnapshotTime(d.generatedAt);
+                renderQueues(d);
+                renderPantheon(d);
+                renderHealth(d);
+            } else {
+                var msg =
+                    '<div class="state-block error">' +
+                    Portal.escapeHtml(results[0].reason ? results[0].reason.message : 'Dashboard unavailable') +
+                    '</div>';
+                document.getElementById('cmd-queues').innerHTML = msg;
+                document.getElementById('cmd-temples').innerHTML = msg;
+                document.getElementById('cmd-countries').innerHTML = msg;
             }
 
             if (Portal.can('ops')) {
-                var opsPanel = document.getElementById('dash-ops');
-                opsPanel.hidden = false;
-                loadOpsStats();
-                document.getElementById('ops-refresh').addEventListener('click', loadOpsStats);
-
-                document.getElementById('ops-crawl-btn').addEventListener('click', async function () {
-                    var input = document.getElementById('ops-crawl-domain');
-                    var domain = input.value.trim();
-                    if (!domain) {
-                        Portal.toast('Enter a domain first', 'error');
-                        return;
-                    }
-                    var btn = this;
-                    btn.disabled = true;
-                    try {
-                        var data = await Portal.api('/api/crawl/', { method: 'POST', body: { domain: domain } });
-                        if (data.error) throw new Error(data.error);
-                        Portal.toast('Crawled: ' + (data.title || data.domain || domain) + ' (' + (data.status || 'done') + ')', 'success');
-                        input.value = '';
-                        loadOpsStats();
-                    } catch (err) {
-                        Portal.toast('Crawl failed: ' + err.message, 'error');
-                    } finally {
-                        btn.disabled = false;
-                    }
-                });
-
-                document.getElementById('ops-recrawl-btn').addEventListener('click', async function () {
-                    if (!window.confirm('Re-crawl all active sites now?')) return;
-                    var btn = this;
-                    btn.disabled = true;
-                    try {
-                        var data = await Portal.api('/api/crawl/recrawl/', { method: 'POST', body: {} });
-                        Portal.toast('Re-crawled ' + Portal.fmtNumber(data.total) + ' sites', 'success');
-                        loadOpsStats();
-                    } catch (err) {
-                        Portal.toast('Re-crawl failed: ' + err.message, 'error');
-                    } finally {
-                        btn.disabled = false;
-                    }
-                });
+                wireOpsPanel();
+            } else {
+                document.getElementById('cmd-crawler').innerHTML =
+                    '<p class="field-hint">Crawler telemetry requires the ops role.</p>';
             }
         }
 

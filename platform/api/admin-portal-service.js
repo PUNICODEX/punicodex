@@ -14,25 +14,40 @@
  * admin_actions audit trail.
  */
 
-const { get, all } = require('../db/operational');
+const { get, all, run } = require('../db/operational');
 const { getDb } = require('../db/connection');
 const { migrate: migrateScholars } = require('../db/migrate-scholars');
 const { migrate: migrateQuality } = require('../db/migrate-scholars-quality');
 const { migrate: migratePatrons } = require('../db/migrate-patrons');
 const migrateNewsletter = require('../db/migrate-newsletter');
 const { migrate: migrateCreatorMerch } = require('../db/migrate-creator-merch');
+const { migrate: migrateCareers } = require('../db/migrate-careers');
+const { migrate: migrateArbitrage } = require('../db/migrate-arbitrage');
+const { migrate: migrateTenantPortal } = require('../db/migrate-tenant-portal');
 const creatorMerch = require('./creator-merch');
 const dbApi = require('../db/scholars');
 const { ensureAdminIdentity } = require('../db/scholars/seed');
 const { hashPassword } = require('../scholars/auth');
 const cache = require('../scholars/cache');
 const { getRevenueStats } = require('./admin');
-const { getMetrics, getHealthSummary } = require('./observability-service');
+const { getMetrics, getSlowEndpoints, getHealthSummary } = require('./observability-service');
 const bookingAdmin = require('./admin-booking-service');
 const patronService = require('./patron-service');
 const { logAction } = require('./admin-actions');
 const { generateTempPassword } = require('./admin-portal-auth');
 const emailModule = require('./email');
+
+// First-party site analytics (beacon rollups). Required lazily — mirroring
+// the _portal.js service deferral — so importing this module stays cheap and
+// the analytics engine (Redis client, migrations) loads only when a
+// dashboard snapshot is actually built.
+let siteAnalyticsModule = null;
+function getSiteAnalytics() {
+  if (!siteAnalyticsModule) {
+    siteAnalyticsModule = require('./site-analytics');
+  }
+  return siteAnalyticsModule;
+}
 
 // Cold-start schema for every subsystem the portal touches. All migrations
 // are idempotent. Runs lazily before the first DB use (once per serverless
@@ -48,6 +63,9 @@ function ensureServiceSchema() {
   migratePatrons(db);
   migrateNewsletter(db);
   migrateCreatorMerch(db);
+  migrateCareers(db);
+  migrateArbitrage(db);
+  migrateTenantPortal(db);
   serviceSchemaReady = true;
 }
 
@@ -75,13 +93,30 @@ async function getDashboard() {
   // Every aggregate is best-effort: a single failing source (a table that
   // exists in only one driver, a transient upstream error) must not take the
   // whole portal landing page down — the affected widget shows zeros instead.
-  const orFallback = (label, promise, fallback) =>
-    promise.catch((err) => {
-      console.warn(`[portal] dashboard source "${label}" degraded: ${err.message}`);
-      return fallback;
-    });
+  // Accepts a promise or a thunk; synchronous throws degrade the same way.
+  const orFallback = (label, promiseOrThunk, fallback) => {
+    const run = typeof promiseOrThunk === 'function' ? promiseOrThunk : () => promiseOrThunk;
+    return Promise.resolve()
+      .then(run)
+      .catch((err) => {
+        console.warn(`[portal] dashboard source "${label}" degraded: ${err.message}`);
+        return fallback;
+      });
+  };
 
-  const [pendingBusinessRow, revenue, metrics, health, patronStats] = await Promise.all([
+  const [
+    pendingBusinessRow,
+    revenue,
+    metrics,
+    health,
+    patronStats,
+    pendingCareersRow,
+    pendingArbitrageRow,
+    pendingChangeRequestsRow,
+    todayViews,
+    slowEndpoints,
+    trending,
+  ] = await Promise.all([
     orFallback(
       'pendingBusiness',
       get("SELECT COUNT(*) as c FROM bookings WHERE status = 'pending_application'"),
@@ -99,6 +134,46 @@ async function getDashboard() {
       estimatedMrrCents: 0,
       estimatedMrrDollars: '0.00',
     }),
+    orFallback(
+      'pendingCareers',
+      get("SELECT COUNT(*) as c FROM career_applications WHERE status = 'pending'"),
+      null
+    ),
+    orFallback(
+      'pendingArbitrage',
+      get("SELECT COUNT(*) as c FROM arbitrage_requests WHERE status = 'pending'"),
+      null
+    ),
+    orFallback(
+      'pendingChangeRequests',
+      get("SELECT COUNT(*) as c FROM tenant_change_requests WHERE status = 'pending'"),
+      null
+    ),
+    // Site-wide human views for the current UTC day, from the beacon
+    // rollups (same source as getTrending's per-temple today deltas).
+    orFallback(
+      'traffic.todayViews',
+      getSiteAnalytics()
+        .getOverview({ days: 1 })
+        .then((overview) => overview.totals.humanViews),
+      0
+    ),
+    orFallback('slowEndpoints', () => getSlowEndpoints({ hours: 24, limit: 5 }), { items: [] }),
+    orFallback(
+      'trending',
+      (async () => {
+        const analytics = getSiteAnalytics();
+        const [trend, countries] = await Promise.all([
+          analytics.getTrending({ days: 7, limit: 5 }),
+          analytics.getCountryStats({ days: 7, limit: 5 }),
+        ]);
+        return {
+          topTemples: trend.temples.slice(0, 5),
+          topCountries: countries.countries.slice(0, 5),
+        };
+      })(),
+      { topTemples: [], topCountries: [] }
+    ),
   ]);
 
   const universityPending = dbApi.countSponsorshipApplications({ status: 'pending' });
@@ -134,8 +209,14 @@ async function getDashboard() {
       requests: metrics.totalRequests,
       errorCount: metrics.errorCount,
       errorRate: metrics.errorRate,
+      todayViews,
+      slowEndpoints: slowEndpoints.items,
     },
     indexedSites: health.activeSites,
+    pendingCareers: pendingCareersRow?.c || 0,
+    pendingArbitrage: pendingArbitrageRow?.c || 0,
+    pendingChangeRequests: pendingChangeRequestsRow?.c || 0,
+    trending,
   };
   dashboardCache = { payload, cachedAt: Date.now() };
   return payload;
@@ -763,6 +844,100 @@ async function withdrawCreatorProductById(id, actor) {
   return db.prepare('SELECT * FROM creator_products WHERE id = ?').get(id);
 }
 
+// ─────────────────────────────────────────────────────────────
+// Careers + arbitrage application queues (status triage only —
+// applicant contact happens out-of-band over email)
+// ─────────────────────────────────────────────────────────────
+
+const CAREER_APPLICATION_STATUSES = ['pending', 'contacted', 'closed'];
+const ARBITRAGE_REQUEST_STATUSES = ['pending', 'contacted', 'closed'];
+
+function validateStatus(status, allowed) {
+  if (!allowed.includes(status)) {
+    throw portalError(400, `status must be one of: ${allowed.join(', ')}`);
+  }
+}
+
+async function listCareerApplications({ status = null, limit = 100, offset = 0 } = {}) {
+  ensureServiceSchema();
+  if (status) validateStatus(status, CAREER_APPLICATION_STATUSES);
+  const params = [];
+  let where = '';
+  if (status) {
+    where = 'WHERE status = $1';
+    params.push(status);
+  }
+  const [items, totalRow] = await Promise.all([
+    all(
+      `SELECT id, role, name, email, links, message, status, created_at
+       FROM career_applications ${where}
+       ORDER BY created_at DESC, id DESC
+       LIMIT $${params.length + 1} OFFSET $${params.length + 2}`,
+      [...params, limit, offset]
+    ),
+    get(`SELECT COUNT(*) as c FROM career_applications ${where}`, params),
+  ]);
+  return { items, total: Number(totalRow?.c ?? 0), limit, offset };
+}
+
+async function setCareerApplicationStatus(id, status, actor) {
+  ensureServiceSchema();
+  validateStatus(status, CAREER_APPLICATION_STATUSES);
+  const existing = await get('SELECT id, status FROM career_applications WHERE id = $1', [id]);
+  if (!existing) throw portalError(404, 'Application not found');
+  await run('UPDATE career_applications SET status = $1 WHERE id = $2', [status, id]);
+  await logAction({
+    adminUserId: actor.user.id,
+    action: 'portal.careers.status',
+    target: `career_application:${id}`,
+    meta: { from: existing.status, to: status, by: actor.user.email },
+  });
+  return get(
+    'SELECT id, role, name, email, links, message, status, created_at FROM career_applications WHERE id = $1',
+    [id]
+  );
+}
+
+async function listArbitrageRequests({ status = null, limit = 100, offset = 0 } = {}) {
+  ensureServiceSchema();
+  if (status) validateStatus(status, ARBITRAGE_REQUEST_STATUSES);
+  const params = [];
+  let where = '';
+  if (status) {
+    where = 'WHERE status = $1';
+    params.push(status);
+  }
+  const [items, totalRow] = await Promise.all([
+    all(
+      `SELECT id, domain, name, email, budget, notes, status, created_at
+       FROM arbitrage_requests ${where}
+       ORDER BY created_at DESC, id DESC
+       LIMIT $${params.length + 1} OFFSET $${params.length + 2}`,
+      [...params, limit, offset]
+    ),
+    get(`SELECT COUNT(*) as c FROM arbitrage_requests ${where}`, params),
+  ]);
+  return { items, total: Number(totalRow?.c ?? 0), limit, offset };
+}
+
+async function setArbitrageRequestStatus(id, status, actor) {
+  ensureServiceSchema();
+  validateStatus(status, ARBITRAGE_REQUEST_STATUSES);
+  const existing = await get('SELECT id, status FROM arbitrage_requests WHERE id = $1', [id]);
+  if (!existing) throw portalError(404, 'Request not found');
+  await run('UPDATE arbitrage_requests SET status = $1 WHERE id = $2', [status, id]);
+  await logAction({
+    adminUserId: actor.user.id,
+    action: 'portal.arbitrage.status',
+    target: `arbitrage_request:${id}`,
+    meta: { from: existing.status, to: status, by: actor.user.email },
+  });
+  return get(
+    'SELECT id, domain, name, email, budget, notes, status, created_at FROM arbitrage_requests WHERE id = $1',
+    [id]
+  );
+}
+
 module.exports = {
   getDashboard,
   listApplications,
@@ -779,4 +954,10 @@ module.exports = {
   newsletterSubscribersToCsv,
   getCreatorMerchOverview,
   withdrawCreatorProductById,
+  CAREER_APPLICATION_STATUSES,
+  ARBITRAGE_REQUEST_STATUSES,
+  listCareerApplications,
+  setCareerApplicationStatus,
+  listArbitrageRequests,
+  setArbitrageRequestStatus,
 };

@@ -11,6 +11,8 @@
  *   GET  /api/account/me                  — profile + owned resources summary
  *   GET  /api/account/analytics/space     — per owned slot / patron spot stats
  *   GET  /api/account/analytics/temple/:id — aggregate temple stats (owners only)
+ *   GET  /api/account/analytics/slot/:id   — placement detail for one owned booking
+ *                                            (also accepts ?id= on /analytics/slot/)
  *   GET  /api/account/analytics/site      — site-wide public-level aggregates
  *   GET  /api/account/requests            — own change requests with statuses
  *   POST /api/account/requests            — create a change request (ownership-checked)
@@ -98,6 +100,11 @@ module.exports = async (req, res) => {
       }
       if (slugParts.length === 3 && slugParts[1] === 'temple') {
         return res.json(await tenantPortal.getTempleAnalytics(account, slugParts[2]));
+      }
+      // Placement detail: /analytics/slot/:id or /analytics/slot/?id=
+      if (slugParts[1] === 'slot' && (slugParts.length === 2 || slugParts.length === 3)) {
+        const bookingId = slugParts.length === 3 ? slugParts[2] : req.query.id;
+        return res.json(await tenantPortal.getSlotAnalytics(account, bookingId));
       }
       if (slugParts.length === 2 && slugParts[1] === 'site') {
         return res.json(await tenantPortal.getSiteAnalytics());

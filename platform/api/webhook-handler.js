@@ -16,6 +16,7 @@ async function processWebhook(rawBody, signature) {
         companyName: booking.company_name,
         bookingToken: booking.analytics_token,
         leaseMonths: booking.lease_months,
+        siteSlug: booking.site_slug,
       }).catch(() => {});
     }
   }

@@ -167,7 +167,7 @@ const EXCLUDED_ADMIN_DIRS = [
   'platform/public/scholars/dept-admin',
   'scholars/dept-admin',
 ];
-const EXCLUDED_ADMIN_FILES = new Set(['admin.html', 'platform/public/admin.html']);
+const EXCLUDED_ADMIN_FILES = new Set(['admin.html']);
 
 function isExcludedAdminSurface(filePath) {
   const rel = path.relative(ROOT, filePath).split(path.sep).join('/');

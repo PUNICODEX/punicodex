@@ -12,7 +12,7 @@ module.exports = async (req, res) => {
   }
 
   try {
-    await trackPixel(req.query.b, req, res);
+    await trackPixel(req.query.b, req, res, req.query.slot);
   } catch (err) {
     handleError(res, err);
   }

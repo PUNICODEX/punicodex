@@ -5,21 +5,6 @@
 const fs = require('node:fs');
 
 const FIXES = {
-  'platform/public/admin.html': [
-    ['<input type="text" id="crawlInput"', '<input type="text" id="crawlInput" aria-label="Domain to crawl"'],
-    ['<input type="text" id="discoverInput"', '<input type="text" id="discoverInput" aria-label="Domains to add to queue"'],
-    ['<input type="text" id="bulkDiscoverInput"', '<input type="text" id="bulkDiscoverInput" aria-label="Bulk discover domains"'],
-    ['<select id="queueStatusFilter"', '<select id="queueStatusFilter" aria-label="Filter queue by status"'],
-    ['<select id="statusFilter"', '<select id="statusFilter" aria-label="Filter sites by status"'],
-    ['<select id="pantheonFilter"', '<select id="pantheonFilter" aria-label="Filter sites by pantheon"'],
-  ],
-  'platform/public/admin-authenticity-audit.html': [
-    ['<select id="tenantSelect"', '<select id="tenantSelect" aria-label="Select tenant"'],
-    ['<input id="actionFilter"', '<input id="actionFilter" aria-label="Filter by action"'],
-    ['<input id="resourceTypeFilter"', '<input id="resourceTypeFilter" aria-label="Filter by resource type"'],
-    ['<input id="fromDate"', '<input id="fromDate" aria-label="From date"'],
-    ['<input id="toDate"', '<input id="toDate" aria-label="To date"'],
-  ],
   'platform/public/admin-authenticity.html': [
     ['<input type="password" id="password"', '<input type="password" id="password" aria-label="Admin password"'],
     ['<select id="filter-severity"', '<select id="filter-severity" aria-label="Filter by severity"'],
@@ -52,16 +37,6 @@ const FIXES = {
     ['<textarea id="policyJson"', '<textarea id="policyJson" aria-label="Policy JSON"'],
     ['<input id="testInput"', '<input id="testInput" aria-label="Domain, URL, or term to evaluate"'],
     ['<select id="testType"', '<select id="testType" aria-label="Test input type"'],
-  ],
-  'platform/public/admin-authenticity-users.html': [
-    ['<select id="tenantSelect"', '<select id="tenantSelect" aria-label="Select tenant"'],
-    ['<input id="newUserEmail"', '<input id="newUserEmail" aria-label="New user email address"'],
-    ['<select id="newUserRole"', '<select id="newUserRole" aria-label="New user role"'],
-  ],
-  'platform/public/admin-disputes.html': [
-    ['<input type="password" id="password"', '<input type="password" id="password" aria-label="Admin password"'],
-    ['<select id="filter-decision"', '<select id="filter-decision" aria-label="Filter by decision"'],
-    ['<input id="filter-identity"', '<input id="filter-identity" aria-label="Filter by identity"'],
   ],
   'platform/public/search.html': [
     ['<select id="pantheonFilter"', '<select id="pantheonFilter" aria-label="Filter by pantheon"'],

@@ -114,7 +114,7 @@ function render() {
 
 <div class="tt-wrap">
   <a class="tt-back" href="/trending/">&larr; The Living Pantheon</a>
-  <div class="tt-head" id="tt-head"></div>
+  <div class="tt-head" id="tt-head"><div><h1>Temple Analytics</h1><p class="tt-sub">Loading the temple’s profile…</p></div></div>
   <div class="tt-controls" role="group" aria-label="Analytics period">
     <button class="tt-btn" data-days="7">7 days</button>
     <button class="tt-btn active" data-days="30">30 days</button>

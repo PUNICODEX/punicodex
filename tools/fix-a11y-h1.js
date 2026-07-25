@@ -71,11 +71,7 @@ if (demoteNth('game/index.html', 2)) n++;
 if (demoteNth('game/index.html', 3)) n++;
 if (demoteNth('game/index.html', 4)) n++;
 if (demote('platform/public/scholars/analytics/index.html', 'Curator Access Required')) n++;
-for (const f of [
-  'platform/public/admin-disputes.html',
-  'platform/public/admin-authenticity.html',
-  'platform/public/admin-authenticity-compliance.html',
-]) {
+for (const f of ['platform/public/admin-authenticity.html']) {
   if (demote(f, 'Admin Login')) n++;
 }
 
@@ -90,16 +86,10 @@ const H1_TEXT = {
   'mobile/index.html': 'PuniCodex Mobile',
   'mobile/shield.html': 'PuniCodex Shield',
   'platform/browser/renderer/index.html': 'PuniCodex Browser',
-  'platform/public/admin-ai-review.html': 'PuniCodex Admin — AI Review',
   'platform/public/admin-analytics.html': 'PuniCodex Admin — Analytics',
   'platform/public/admin-api-keys.html': 'PuniCodex Admin — API Keys',
-  'platform/public/admin-authenticity-audit.html': 'PuniCodex Admin — Authenticity Audit',
   'platform/public/admin-authenticity-policy.html': 'PuniCodex Admin — Authenticity Policy',
-  'platform/public/admin-authenticity-users.html': 'PuniCodex Admin — Authenticity Users',
   'platform/public/admin-bookings.html': 'PuniCodex Admin — Bookings',
-  'platform/public/admin-curator.html': 'PuniCodex Admin — Curator',
-  'platform/public/admin-tenants.html': 'PuniCodex Admin — Tenants',
-  'platform/public/admin.html': 'PuniCodex Admin',
   'platform/public/browser.html': 'PuniCodex Browser',
   'platform/public/claim.html': 'PuniCodex — Claim Your Name',
   'platform/public/entry.html': 'PuniCodex Entry',

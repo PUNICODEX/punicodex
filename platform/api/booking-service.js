@@ -170,6 +170,7 @@ async function createBookingRequest({
     customSubtitle,
     leaseMonths: months,
     trialMonths: trial,
+    siteSlug,
   }).catch(() => {});
 
   return {
@@ -249,6 +250,7 @@ async function applyBookingRequest({
     companyName,
     bookingId: id,
     applicationNote,
+    siteSlug,
   }).catch(() => {});
 
   return {

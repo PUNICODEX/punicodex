@@ -12,8 +12,8 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const { token, visibleSeconds, visiblePercent } = req.body || {};
-    await trackViewability(token, visibleSeconds, visiblePercent, req, res);
+    const { token, visibleSeconds, visiblePercent, slotSlug, slot } = req.body || {};
+    await trackViewability(token, visibleSeconds, visiblePercent, req, res, slotSlug || slot);
   } catch (err) {
     handleError(res, err);
   }

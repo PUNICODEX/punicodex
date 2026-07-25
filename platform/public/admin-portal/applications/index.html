@@ -26,19 +26,17 @@
     <main id="portal-main" class="portal-main">
         <div class="portal-page-head">
             <h1>Applications</h1>
-            <p>Unified queue: business lease applications (bookings) and university sponsorship applications.</p>
+            <p>Unified queue: business lease applications (bookings), university sponsorships, careers applications, and domain arbitrage requests.</p>
         </div>
 
         <section class="panel" aria-label="Application filters">
+            <div class="portal-form-row" role="tablist" aria-label="Application kinds">
+                <button type="button" class="btn btn-primary" data-kind-tab="business" role="tab" aria-selected="true">Business</button>
+                <button type="button" class="btn btn-secondary" data-kind-tab="university" role="tab" aria-selected="false">University</button>
+                <button type="button" class="btn btn-secondary" data-kind-tab="careers" role="tab" aria-selected="false">Careers</button>
+                <button type="button" class="btn btn-secondary" data-kind-tab="arbitrage" role="tab" aria-selected="false">Arbitrage</button>
+            </div>
             <div class="portal-form-row">
-                <div class="field">
-                    <label for="filter-kind">Kind</label>
-                    <select id="filter-kind">
-                        <option value="">All kinds</option>
-                        <option value="business">Business</option>
-                        <option value="university">University</option>
-                    </select>
-                </div>
                 <div class="field">
                     <label for="filter-status">Status</label>
                     <select id="filter-status">
@@ -72,55 +70,168 @@
     <script>
     (function () {
         var PAGE_SIZE = 50;
-        var state = { kind: '', status: 'pending', offset: 0 };
+        var state = { kind: 'business', status: 'pending', offset: 0 };
+
+        var QUEUE_ENDPOINTS = {
+            careers: '/api/admin/portal/careers/',
+            arbitrage: '/api/admin/portal/arbitrage/',
+        };
+
+        function isQueueKind(kind) {
+            return kind === 'careers' || kind === 'arbitrage';
+        }
 
         function permissionFor(kind) {
-            return kind === 'business' ? 'leasing' : 'scholars';
+            if (kind === 'university') return 'scholars';
+            // business, careers, and arbitrage are all leasing queues
+            return 'leasing';
         }
 
         function isActionable(item) {
             return item.status === 'pending' || item.status === 'pending_application';
         }
 
+        function statusOptions(kind) {
+            if (isQueueKind(kind)) {
+                return (
+                    '<option value="pending">Pending</option>' +
+                    '<option value="">All statuses</option>' +
+                    '<option value="contacted">Contacted</option>' +
+                    '<option value="closed">Closed</option>'
+                );
+            }
+            return (
+                '<option value="pending">Pending</option>' +
+                '<option value="">All statuses</option>' +
+                '<option value="approved">Approved</option>' +
+                '<option value="rejected">Rejected</option>'
+            );
+        }
+
         function renderCounts(counts) {
-            counts = counts || {};
-            document.getElementById('pending-counts').innerHTML =
+            var el = document.getElementById('pending-counts');
+            if (!counts) {
+                // careers/arbitrage endpoints return {items,total,limit,offset} only
+                el.innerHTML = '';
+                return;
+            }
+            el.innerHTML =
                 '<span class="badge badge--business">business pending: ' + Portal.fmtNumber(counts.business) + '</span> ' +
                 '<span class="badge badge--university">university pending: ' + Portal.fmtNumber(counts.university) + '</span>';
         }
 
+        function renderApplicationRow(item) {
+            var canAct = isActionable(item) && Portal.can(permissionFor(item.kind));
+            var actions = canAct
+                ? '<button type="button" class="btn btn-sm btn-success" data-action="approve" data-kind="' + item.kind + '" data-id="' + item.id + '">Approve</button>' +
+                  '<button type="button" class="btn btn-sm btn-danger" data-action="reject" data-kind="' + item.kind + '" data-id="' + item.id + '">Reject</button>'
+                : '<span class="cell-sub">—</span>';
+            return (
+                '<tr>' +
+                '<td><span class="badge badge--' + item.kind + '">' + item.kind + '</span></td>' +
+                '<td><div class="cell-title">' + Portal.escapeHtml(item.applicant || '—') + '</div>' +
+                (item.websiteUrl ? '<div class="cell-sub">' + Portal.escapeHtml(item.websiteUrl) + '</div>' : '') +
+                '</td>' +
+                '<td>' + Portal.escapeHtml(item.contactEmail || '—') + '</td>' +
+                '<td>' + Portal.escapeHtml(item.detail || '—') + '</td>' +
+                '<td>' + Portal.statusBadge(item.status) + '</td>' +
+                '<td>' + Portal.escapeHtml(Portal.fmtDate(item.createdAt)) + '</td>' +
+                '<td><div class="cell-actions">' + actions + '</div></td>' +
+                '</tr>'
+            );
+        }
+
+        function mailto(email) {
+            if (!email) return '—';
+            var safe = Portal.escapeHtml(email);
+            return '<a href="mailto:' + safe + '">' + safe + '</a>';
+        }
+
+        function expandable(text) {
+            var t = String(text || '').trim();
+            if (!t) return '<span class="cell-sub">—</span>';
+            if (t.length <= 80) return '<span>' + Portal.escapeHtml(t) + '</span>';
+            return (
+                '<details><summary>' + Portal.escapeHtml(t.slice(0, 80)) + '…</summary>' +
+                '<div>' + Portal.escapeHtml(t) + '</div></details>'
+            );
+        }
+
+        function linkList(text) {
+            var t = String(text || '').trim();
+            if (!t) return '<span class="cell-sub">—</span>';
+            if (/^https?:\/\//i.test(t)) {
+                var safe = Portal.escapeHtml(t);
+                return '<a href="' + safe + '" target="_blank" rel="noopener noreferrer">' + safe + '</a>';
+            }
+            return '<span>' + Portal.escapeHtml(t) + '</span>';
+        }
+
+        function statusButton(item, next, label, cls) {
+            return (
+                '<button type="button" class="btn btn-sm ' + cls + '" data-action="status" data-kind="' +
+                item.kind + '" data-id="' + item.id + '" data-status="' + next + '">' + label + '</button>'
+            );
+        }
+
+        function queueActions(item) {
+            if (!Portal.can(permissionFor(item.kind))) return '<span class="cell-sub">—</span>';
+            if (item.status === 'pending') {
+                return statusButton(item, 'contacted', 'Mark Contacted', 'btn-success') +
+                    statusButton(item, 'closed', 'Close', 'btn-secondary');
+            }
+            if (item.status === 'contacted') {
+                return statusButton(item, 'closed', 'Close', 'btn-success') +
+                    statusButton(item, 'pending', 'Reopen', 'btn-secondary');
+            }
+            if (item.status === 'closed') {
+                return statusButton(item, 'pending', 'Reopen', 'btn-secondary');
+            }
+            return '<span class="cell-sub">—</span>';
+        }
+
+        function renderQueueRow(item) {
+            var lead = state.kind === 'careers'
+                ? Portal.escapeHtml(String(item.role || '—').replace(/-/g, ' '))
+                : Portal.escapeHtml(item.domain || '—');
+            var mid = state.kind === 'careers' ? linkList(item.links) : expandable(item.budget);
+            var body = state.kind === 'careers' ? expandable(item.message) : expandable(item.notes);
+            return (
+                '<tr>' +
+                '<td><div class="cell-title">' + lead + '</div></td>' +
+                '<td>' + Portal.escapeHtml(item.name || '—') + '</td>' +
+                '<td>' + mailto(item.email) + '</td>' +
+                '<td>' + mid + '</td>' +
+                '<td>' + body + '</td>' +
+                '<td>' + Portal.statusBadge(item.status) + '</td>' +
+                '<td>' + Portal.escapeHtml(Portal.fmtDate(item.created_at)) + '</td>' +
+                '<td><div class="cell-actions">' + queueActions(item) + '</div></td>' +
+                '</tr>'
+            );
+        }
+
         function renderTable(data) {
             var wrap = document.getElementById('apps-table');
-            var items = data.items || [];
+            var items = (data.items || []).map(function (item) {
+                // careers/arbitrage rows come straight from their tables and
+                // carry no kind field — tag them from the active tab.
+                if (!item.kind) item.kind = state.kind;
+                return item;
+            });
             renderCounts(data.pendingCounts);
             if (!items.length) {
                 wrap.innerHTML = '<div class="state-block">No applications match these filters.</div>';
             } else {
-                var rows = items
-                    .map(function (item) {
-                        var canAct = isActionable(item) && Portal.can(permissionFor(item.kind));
-                        var actions = canAct
-                            ? '<button type="button" class="btn btn-sm btn-success" data-action="approve" data-kind="' + item.kind + '" data-id="' + item.id + '">Approve</button>' +
-                              '<button type="button" class="btn btn-sm btn-danger" data-action="reject" data-kind="' + item.kind + '" data-id="' + item.id + '">Reject</button>'
-                            : '<span class="cell-sub">—</span>';
-                        return (
-                            '<tr>' +
-                            '<td><span class="badge badge--' + item.kind + '">' + item.kind + '</span></td>' +
-                            '<td><div class="cell-title">' + Portal.escapeHtml(item.applicant || '—') + '</div>' +
-                            (item.websiteUrl ? '<div class="cell-sub">' + Portal.escapeHtml(item.websiteUrl) + '</div>' : '') +
-                            '</td>' +
-                            '<td>' + Portal.escapeHtml(item.contactEmail || '—') + '</td>' +
-                            '<td>' + Portal.escapeHtml(item.detail || '—') + '</td>' +
-                            '<td>' + Portal.statusBadge(item.status) + '</td>' +
-                            '<td>' + Portal.escapeHtml(Portal.fmtDate(item.createdAt)) + '</td>' +
-                            '<td><div class="cell-actions">' + actions + '</div></td>' +
-                            '</tr>'
-                        );
-                    })
-                    .join('');
+                var queue = isQueueKind(state.kind);
+                var head = queue
+                    ? state.kind === 'careers'
+                        ? '<th>Role</th><th>Name</th><th>Email</th><th>Links</th><th>Message</th><th>Status</th><th>Created</th><th>Actions</th>'
+                        : '<th>Domain</th><th>Name</th><th>Email</th><th>Budget</th><th>Notes</th><th>Status</th><th>Created</th><th>Actions</th>'
+                    : '<th>Kind</th><th>Applicant</th><th>Contact</th><th>Detail</th><th>Status</th><th>Created</th><th>Actions</th>';
+                var rows = items.map(queue ? renderQueueRow : renderApplicationRow).join('');
                 wrap.innerHTML =
                     '<div class="table-wrap"><table class="portal-table">' +
-                    '<thead><tr><th>Kind</th><th>Applicant</th><th>Contact</th><th>Detail</th><th>Status</th><th>Created</th><th>Actions</th></tr></thead>' +
+                    '<thead><tr>' + head + '</tr></thead>' +
                     '<tbody>' + rows + '</tbody></table></div>';
             }
 
@@ -134,21 +245,49 @@
 
         function fetchApplications() {
             var params = new URLSearchParams();
-            if (state.kind) params.set('kind', state.kind);
+            params.set('kind', state.kind);
             if (state.status) params.set('status', state.status);
             params.set('limit', String(PAGE_SIZE));
             params.set('offset', String(state.offset));
             return Portal.api('/api/admin/portal/applications/?' + params.toString());
         }
 
+        function fetchQueue(kind) {
+            var params = new URLSearchParams();
+            if (state.status) params.set('status', state.status);
+            params.set('limit', String(PAGE_SIZE));
+            params.set('offset', String(state.offset));
+            return Portal.api(QUEUE_ENDPOINTS[kind] + '?' + params.toString());
+        }
+
+        function fetchCurrent() {
+            return isQueueKind(state.kind) ? fetchQueue(state.kind) : fetchApplications();
+        }
+
         async function load(promise) {
             document.getElementById('apps-table').innerHTML = '<div class="state-block">Loading applications…</div>';
             try {
-                renderTable(await (promise || fetchApplications()));
+                renderTable(await (promise || fetchCurrent()));
             } catch (err) {
                 document.getElementById('apps-table').innerHTML =
                     '<div class="state-block error">' + Portal.escapeHtml(err.message) + '</div>';
             }
+        }
+
+        function activateTab(kind) {
+            state.kind = kind;
+            state.status = 'pending';
+            state.offset = 0;
+            var statusSelect = document.getElementById('filter-status');
+            statusSelect.innerHTML = statusOptions(kind);
+            statusSelect.value = 'pending';
+            var tabs = document.querySelectorAll('[data-kind-tab]');
+            for (var i = 0; i < tabs.length; i++) {
+                var active = tabs[i].getAttribute('data-kind-tab') === kind;
+                tabs[i].className = 'btn ' + (active ? 'btn-primary' : 'btn-secondary');
+                tabs[i].setAttribute('aria-selected', active ? 'true' : 'false');
+            }
+            load();
         }
 
         function showBusinessApproved(data) {
@@ -247,18 +386,36 @@
             }
         }
 
+        async function setQueueStatus(kind, id, status) {
+            try {
+                await Portal.api(QUEUE_ENDPOINTS[kind] + id + '/status/', {
+                    method: 'POST',
+                    body: { status: status },
+                });
+                Portal.toast('Marked ' + status, 'success');
+                load();
+            } catch (err) {
+                Portal.toast('Status update failed: ' + err.message, 'error');
+            }
+        }
+
         async function init() {
             // Fire the first page fetch in parallel with the shell's /me
             // round trip instead of waiting for the shell first.
-            var firstLoad = fetchApplications();
+            var firstLoad = fetchCurrent();
             var ctx = await Portal.initShell('applications');
             if (!ctx) {
                 firstLoad.catch(function () {});
                 return;
             }
 
+            var tabs = document.querySelectorAll('[data-kind-tab]');
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].addEventListener('click', function () {
+                    activateTab(this.getAttribute('data-kind-tab'));
+                });
+            }
             document.getElementById('filter-apply').addEventListener('click', function () {
-                state.kind = document.getElementById('filter-kind').value;
                 state.status = document.getElementById('filter-status').value;
                 state.offset = 0;
                 load();
@@ -276,8 +433,10 @@
                 if (!btn) return;
                 var kind = btn.getAttribute('data-kind');
                 var id = btn.getAttribute('data-id');
-                if (btn.getAttribute('data-action') === 'approve') approve(kind, id);
-                else showRejectModal(kind, id);
+                var action = btn.getAttribute('data-action');
+                if (action === 'approve') approve(kind, id);
+                else if (action === 'reject') showRejectModal(kind, id);
+                else if (action === 'status') setQueueStatus(kind, id, btn.getAttribute('data-status'));
             });
 
             load(firstLoad);

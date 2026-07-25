@@ -8,7 +8,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex,nofollow">
-    <title>Admin Portal — Patrons | PuniCodex</title>
+    <meta http-equiv="refresh" content="0; url=/admin-portal/leasing/?tab=patrons">
+    <title>Patrons moved — Leasing | PuniCodex Admin Portal</title>
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
     <link rel="stylesheet" href="../portal.css">
     <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
@@ -20,211 +21,14 @@
     <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
 </head>
 <body data-page="patrons" data-depth="1">
-    <a class="skip-link" href="#portal-main">Skip to content</a>
-    <div id="portal-header"></div>
-
     <main id="portal-main" class="portal-main">
         <div class="portal-page-head">
-            <h1>Patrons</h1>
-            <p>Patron subscriptions across all temples — status, MRR, cancellations, and expiry.</p>
+            <h1>Patrons has moved</h1>
+            <p>The patron roster now lives inside the Leasing section.</p>
         </div>
-
-        <section aria-label="Patron statistics">
-            <div class="stat-grid" id="patron-stats">
-                <div class="state-block">Loading patron stats…</div>
-            </div>
-        </section>
-
-        <section class="panel" aria-label="Patron filters">
-            <div class="portal-form-row">
-                <div class="field">
-                    <label for="filter-temple">Temple</label>
-                    <input type="text" id="filter-temple" placeholder="e.g. nike, apollon">
-                </div>
-                <div class="field">
-                    <label for="filter-status">Status</label>
-                    <select id="filter-status">
-                        <option value="">All statuses</option>
-                        <option value="pending_payment">Pending payment</option>
-                        <option value="active">Active</option>
-                        <option value="cancelled">Cancelled</option>
-                        <option value="expired">Expired</option>
-                    </select>
-                </div>
-                <button type="button" class="btn btn-primary" id="filter-apply">Apply</button>
-            </div>
-        </section>
-
-        <section class="panel" aria-label="Patron roster">
-            <div class="panel-head">
-                <h2 class="panel-title">Roster</h2>
-                <span class="field-hint" id="patron-total"></span>
-            </div>
-            <div id="patron-table">
-                <div class="state-block">Loading patrons…</div>
-            </div>
-            <div class="portal-form-row" id="patron-pager" style="margin-top:1rem;" hidden>
-                <button type="button" class="btn btn-secondary btn-sm" id="patron-prev">← Previous</button>
-                <span class="field-hint" id="patron-page-label"></span>
-                <button type="button" class="btn btn-secondary btn-sm" id="patron-next">Next →</button>
-            </div>
+        <section class="panel">
+            <p><a href="/admin-portal/leasing/?tab=patrons">Continue to Leasing → Patrons</a></p>
         </section>
     </main>
-
-    <script src="../portal.js"></script>
-    <script>
-    (function () {
-        var PAGE_SIZE = 50;
-        var state = { temple: '', status: '', offset: 0 };
-
-        function statCard(value, label, hint) {
-            return (
-                '<div class="stat-card"><div class="stat-card-value">' + value + '</div>' +
-                '<div class="stat-card-label">' + Portal.escapeHtml(label) + '</div>' +
-                (hint ? '<div class="stat-card-hint">' + Portal.escapeHtml(hint) + '</div>' : '') +
-                '</div>'
-            );
-        }
-
-        function renderStats(s) {
-            document.getElementById('patron-stats').innerHTML =
-                statCard(Portal.fmtNumber(s.active), 'Active Patrons', '') +
-                statCard('$' + Portal.escapeHtml(String(s.estimatedMrrDollars || '0.00')), 'Estimated MRR', Portal.fmtNumber(s.estimatedMrrCents) + ' cents/mo') +
-                statCard(Portal.fmtNumber(s.pendingPayment), 'Pending Payment', '') +
-                statCard(Portal.fmtNumber(s.activeTemples), 'Active Temples', 'limit ' + Portal.fmtNumber(s.limitPerTemple || 20) + ' / temple') +
-                statCard(Portal.fmtNumber(s.cancelled), 'Cancelled', '') +
-                statCard(Portal.fmtNumber(s.expired), 'Expired', '') +
-                statCard(Portal.fmtNumber(s.total), 'Total', '');
-        }
-
-        function renderTable(data) {
-            var wrap = document.getElementById('patron-table');
-            var items = data.items || [];
-            document.getElementById('patron-total').textContent = Portal.fmtNumber(data.total) + ' patrons total';
-            if (!items.length) {
-                wrap.innerHTML = '<div class="state-block">No patrons match these filters.</div>';
-            } else {
-                var canLease = Portal.can('leasing');
-                var rows = items
-                    .map(function (p) {
-                        var actions = '<span class="cell-sub">—</span>';
-                        if (canLease && (p.status === 'active' || p.status === 'pending_payment')) {
-                            actions = '<button type="button" class="btn btn-sm btn-danger" data-action="cancelled" data-id="' + p.id + '">Cancel</button>';
-                            if (p.status === 'active') {
-                                actions += '<button type="button" class="btn btn-sm btn-secondary" data-action="expired" data-id="' + p.id + '">Expire</button>';
-                            }
-                        }
-                        return (
-                            '<tr>' +
-                            '<td><span class="badge badge--gold">' + Portal.escapeHtml(p.temple_id || '—') + '</span></td>' +
-                            '<td><div class="cell-title">' + Portal.escapeHtml(p.display_name || '—') + '</div>' +
-                            '<div class="cell-sub">' + Portal.escapeHtml(p.email || '') + '</div></td>' +
-                            '<td>' + Portal.fmtDollars(p.amount_cents) + '/mo</td>' +
-                            '<td>' + Portal.statusBadge(p.status) + '</td>' +
-                            '<td>' + Portal.escapeHtml(Portal.fmtDate(p.started_at)) + '</td>' +
-                            '<td>' + Portal.escapeHtml(Portal.fmtDate(p.ends_at)) + '</td>' +
-                            '<td>' + Portal.escapeHtml(Portal.fmtDate(p.created_at)) + '</td>' +
-                            '<td><div class="cell-actions">' + actions + '</div></td>' +
-                            '</tr>'
-                        );
-                    })
-                    .join('');
-                wrap.innerHTML =
-                    '<div class="table-wrap"><table class="portal-table">' +
-                    '<thead><tr><th>Temple</th><th>Patron</th><th>Amount</th><th>Status</th><th>Started</th><th>Ends</th><th>Created</th><th>Actions</th></tr></thead>' +
-                    '<tbody>' + rows + '</tbody></table></div>';
-            }
-
-            var pager = document.getElementById('patron-pager');
-            pager.hidden = false;
-            document.getElementById('patron-page-label').textContent =
-                'Showing ' + (items.length ? data.offset + 1 : 0) + '–' + (data.offset + items.length) + ' of ' + Portal.fmtNumber(data.total);
-            document.getElementById('patron-prev').disabled = data.offset <= 0;
-            document.getElementById('patron-next').disabled = data.offset + items.length >= data.total;
-        }
-
-        function fetchPatrons() {
-            var params = new URLSearchParams();
-            if (state.temple) params.set('temple', state.temple);
-            if (state.status) params.set('status', state.status);
-            params.set('limit', String(PAGE_SIZE));
-            params.set('offset', String(state.offset));
-            return Portal.api('/api/admin/portal/patrons/?' + params.toString());
-        }
-
-        async function loadStats(promise) {
-            try {
-                renderStats(await (promise || Portal.api('/api/admin/portal/patrons/stats/')));
-            } catch (err) {
-                document.getElementById('patron-stats').innerHTML =
-                    '<div class="state-block error">' + Portal.escapeHtml(err.message) + '</div>';
-            }
-        }
-
-        async function load(promise) {
-            document.getElementById('patron-table').innerHTML = '<div class="state-block">Loading patrons…</div>';
-            try {
-                renderTable(await (promise || fetchPatrons()));
-            } catch (err) {
-                document.getElementById('patron-table').innerHTML =
-                    '<div class="state-block error">' + Portal.escapeHtml(err.message) + '</div>';
-            }
-        }
-
-        async function setStatus(id, status) {
-            var verb = status === 'cancelled' ? 'Cancel' : 'Expire';
-            if (!window.confirm(verb + ' patron #' + id + '?')) return;
-            try {
-                await Portal.api('/api/admin/portal/patrons/' + id + '/', {
-                    method: 'PATCH',
-                    body: { status: status },
-                });
-                Portal.toast('Patron ' + status, 'success');
-                load();
-                loadStats();
-            } catch (err) {
-                Portal.toast(verb + ' failed: ' + err.message, 'error');
-            }
-        }
-
-        async function init() {
-            // Fire both data fetches in parallel with the shell's /me round
-            // trip instead of waiting for the shell first.
-            var statsPromise = Portal.api('/api/admin/portal/patrons/stats/');
-            var listPromise = fetchPatrons();
-            var ctx = await Portal.initShell('patrons');
-            if (!ctx) {
-                statsPromise.catch(function () {});
-                listPromise.catch(function () {});
-                return;
-            }
-
-            document.getElementById('filter-apply').addEventListener('click', function () {
-                state.temple = document.getElementById('filter-temple').value.trim();
-                state.status = document.getElementById('filter-status').value;
-                state.offset = 0;
-                load();
-            });
-            document.getElementById('patron-prev').addEventListener('click', function () {
-                state.offset = Math.max(0, state.offset - PAGE_SIZE);
-                load();
-            });
-            document.getElementById('patron-next').addEventListener('click', function () {
-                state.offset += PAGE_SIZE;
-                load();
-            });
-            document.getElementById('patron-table').addEventListener('click', function (e) {
-                var btn = e.target.closest('button[data-action]');
-                if (!btn) return;
-                setStatus(btn.getAttribute('data-id'), btn.getAttribute('data-action'));
-            });
-
-            loadStats(statsPromise);
-            load(listPromise);
-        }
-
-        init();
-    })();
-    </script>
 </body>
 </html>

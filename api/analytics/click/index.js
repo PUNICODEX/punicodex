@@ -12,7 +12,7 @@ module.exports = async (req, res) => {
   }
 
   try {
-    await trackClick(req.query.b, req.query.url, req, res);
+    await trackClick(req.query.b, req.query.url, req, res, req.query.slot);
   } catch (err) {
     handleError(res, err);
   }

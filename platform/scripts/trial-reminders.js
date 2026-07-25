@@ -37,6 +37,7 @@ async function runTrialReminders() {
           daysLeft: 1,
           trialEndsAt: booking.trial_ends_at,
           bookingToken: booking.analytics_token,
+          siteSlug: booking.site_slug,
         });
         await recordTrialReminder(booking.id, '1d');
         sent1++;
@@ -48,6 +49,7 @@ async function runTrialReminders() {
           daysLeft,
           trialEndsAt: booking.trial_ends_at,
           bookingToken: booking.analytics_token,
+          siteSlug: booking.site_slug,
         });
         await recordTrialReminder(booking.id, '7d');
         sent7++;

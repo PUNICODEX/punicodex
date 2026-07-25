@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Placement — Sponsor Sandbox · PuniCodex</title>
+  <meta name="description" content="Placement-level sponsorship analytics: impressions, viewability, clicks, and per-placement breakdowns.">
+  <link rel="canonical" href="https://punicodex.com/account/slot/">
+  <link rel="stylesheet" href="/assets/fonts/fonts.css">
+  <link rel="stylesheet" href="/account/sandbox.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+  <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+</head>
+<body data-page="slot">
+  <header class="sb-topbar" id="sandbox-topbar"></header>
+
+  <main class="sb-main">
+    <div class="sb-page-head">
+      <div>
+        <h1 id="slot-title">Placement</h1>
+        <p class="sb-page-sub" id="slot-sub"></p>
+      </div>
+      <a class="sb-btn sb-btn-ghost sb-btn-sm" href="/account/">&larr; Overview</a>
+    </div>
+
+    <div id="slot-root">
+      <div class="sb-state">Loading placement…</div>
+    </div>
+
+    <!-- ── Booking summary + KPIs ─────────────────────────── -->
+    <div id="slot-content" hidden>
+      <section class="sb-section" aria-labelledby="summary-heading">
+        <div class="sb-section-head"><h2 id="summary-heading">Sponsorship</h2></div>
+        <div class="sb-grid two">
+          <div class="sb-panel" id="slot-summary"></div>
+          <div class="sb-panel" id="slot-creative"></div>
+        </div>
+      </section>
+
+      <section class="sb-section" aria-label="Key metrics">
+        <div class="sb-grid kpis" id="slot-kpis"></div>
+      </section>
+
+      <section class="sb-section" aria-labelledby="daily-heading">
+        <div class="sb-section-head">
+          <h2 id="daily-heading">Daily Performance</h2>
+          <p class="sb-section-note">Last 30 days</p>
+        </div>
+        <div class="sb-grid two">
+          <div class="sb-panel">
+            <h3>Impressions</h3>
+            <canvas class="sb-chart" id="chart-impressions" aria-label="Daily impressions chart"></canvas>
+            <div class="sb-chart-caption" id="caption-impressions"></div>
+          </div>
+          <div class="sb-panel">
+            <h3>Clicks</h3>
+            <canvas class="sb-chart" id="chart-clicks" aria-label="Daily clicks chart"></canvas>
+            <div class="sb-chart-caption" id="caption-clicks"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="sb-section" aria-labelledby="placements-heading">
+        <div class="sb-section-head">
+          <h2 id="placements-heading">Placements in this Sponsorship</h2>
+          <p class="sb-section-note" id="placements-note"></p>
+        </div>
+        <div id="slot-placements"></div>
+      </section>
+
+      <section class="sb-section" aria-labelledby="temple-heading">
+        <div class="sb-section-head">
+          <h2 id="temple-heading">Host Temple Traffic</h2>
+          <p class="sb-section-note">All visitors, last 30 days</p>
+        </div>
+        <div id="slot-temple"></div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="sb-footer">
+    <p>© 2026 PuniCodex · <a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a> · <a href="/contact/">Contact</a></p>
+  </footer>
+
+  <script src="/account/sandbox.js"></script>
+  <script src="/account/slot/slot.js"></script>
+</body>
+</html>
