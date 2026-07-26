@@ -470,6 +470,10 @@ const TEXTS_CSS = `
         .tx-card-read { font-size: 0.85rem; color: var(--primary, #d4af37); text-decoration: none; letter-spacing: 0.06em; }
         .tx-card-read:hover { color: var(--primary-bright, #f0d878); }
         .tx-mentioned { max-width: 64rem; margin: 0 auto; padding: 0.5rem 1.5rem 4rem; }
+        .tx-chapter { max-width: 44rem; margin: 0 auto; padding: 2.2rem 0 1.4rem; border-bottom: 1px solid rgba(212,175,55,0.10); }
+        .tx-chapter-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.35rem; color: var(--primary, #d4af37); margin: 0 0 1.1rem; }
+        .tx-chapter p { color: var(--white-dim, #e8e4dc); line-height: 1.85; font-size: 1.02rem; margin: 0 0 1.05rem; }
+        .tx-chapter .tx-chips { margin: 0.4rem 0 0.6rem; }
         .tx-mentioned-head { text-align: center; margin-bottom: 2rem; }
         .tx-mentioned-head h2 { font-family: var(--font-display, Cinzel, serif); font-size: clamp(1.5rem, 3.4vw, 2rem); color: var(--white, #fff); margin: 0 0 0.6rem; }
         .tx-mentioned-head p { max-width: 40rem; margin: 0 auto; color: var(--white-dim, #e8e4dc); line-height: 1.7; font-size: 0.95rem; }
@@ -935,10 +939,207 @@ ${mentionedHtml(computed)}
 `;
 }
 
+// ── Chaptered texts (prose corpora: Eddas, Book of the Dead, sutras, …) ────
+// Structure 'chapters': corpus is platform/texts/{id}/eng.json
+// ({ lang, sections: [{ id, title, text }] }) with cross-links from
+// platform/texts/{id}/xref.json. Contract: scripts/lib/chapter-corpus.js.
+const { loadChapterCorpus, validateChapterCorpus, validateXref } = require('./lib/chapter-corpus.js');
+
+function escapeRe(s) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+// Whole-word, capitalized match with a genitive tail allowed (Othin →
+// Othin's). Mirrors the theogony rule: dictionary forms link their
+// inflections, common lowercase nouns are never linked.
+function formRegex(form) {
+  return new RegExp(`(?<![\\p{L}\\p{M}])${escapeRe(form)}(?:[’']s)?(?![\\p{L}\\p{M}])`, 'u');
+}
+
+function computeChapters(text, corpus, xref) {
+  validateChapterCorpus(corpus, { id: text.id });
+  validateXref(xref, corpus, { id: text.id });
+  const xrefOrder = new Map(xref.links.map((l, i) => [l.temple, i]));
+
+  const sections = corpus.sections.map((s) => {
+    const hits = [];
+    for (const link of xref.links) {
+      let pos = Infinity;
+      let count = 0;
+      for (const form of link.forms) {
+        const re = formRegex(form);
+        const m = re.exec(s.text);
+        if (m) {
+          pos = Math.min(pos, m.index);
+          count += (s.text.match(new RegExp(re.source, 'gu')) || []).length;
+        }
+      }
+      if (count > 0) hits.push({ id: link.temple, pos, count });
+    }
+    hits.sort((a, b) => a.pos - b.pos || xrefOrder.get(a.id) - xrefOrder.get(b.id));
+    const paras = s.text
+      .split(/\n\n+/)
+      .map((p) => escapeHtml(p).replace(/\n/g, '<br>'));
+    return { id: s.id, title: s.title, paras, ids: hits.map((h) => h.id), hits };
+  });
+
+  const firstSection = new Map();
+  const counts = new Map();
+  for (const [i, s] of sections.entries()) {
+    for (const h of s.hits) {
+      counts.set(h.id, (counts.get(h.id) || 0) + h.count);
+      if (!firstSection.has(h.id)) firstSection.set(h.id, i);
+    }
+  }
+  const mentioned = [...firstSection.keys()].sort(
+    (a, b) => firstSection.get(a) - firstSection.get(b) || xrefOrder.get(a) - xrefOrder.get(b)
+  );
+  return { sections, mentioned, firstSection, counts };
+}
+
+function chaptersMentionedHtml(text, computed) {
+  const cards = computed.mentioned
+    .map((id) => {
+      const e = LEXICON_BY_ID.get(id) || {};
+      const sec = computed.sections[computed.firstSection.get(id)];
+      return `            <a class="tx-m-card" href="/sites/${id}/">
+                <span class="tx-m-name">${escapeHtml(e.unicode || e.ascii || id)}<span class="tx-m-badge">Flagship</span></span>
+                <span class="tx-m-greek" lang="grc">${escapeHtml(e.greek || '')}</span>
+                <span class="tx-m-gloss">${escapeHtml(e.domain || '')}</span>
+                <span class="tx-m-line">first named in “${escapeHtml(sec ? sec.title : '')}” · ${computed.counts.get(id)} mention${computed.counts.get(id) === 1 ? '' : 's'}</span>
+            </a>`;
+    })
+    .join('\n');
+  return `    <section class="tx-mentioned">
+        <div class="tx-mentioned-head">
+            <h2>Mentioned in this text</h2>
+            <p>${computed.mentioned.length} temples are named in the ${escapeHtml(text.title)}. Every temple chip beside a section leads here — the gods of this tradition, restored and housed.</p>
+        </div>
+        <div class="tx-m-grid">
+${cards}
+        </div>
+    </section>`;
+}
+
+function buildChaptersReadingPage(text, computed) {
+  const engEdition = text.editions.find((e) => e.lang === 'eng') || text.editions[0];
+  const mentionedCount = computed.mentioned.length;
+  const canonical = `https://punicodex.com/texts/${text.id}/`;
+
+  const jsonLd = JSON.stringify(
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Book',
+      name: text.title,
+      alternateName: text.titleNative,
+      author: { '@type': 'Person', name: text.author },
+      inLanguage: text.language,
+      url: canonical,
+      isPartOf: { '@type': 'WebSite', name: 'PUNICODEX', url: 'https://punicodex.com' },
+      workTranslation: { '@type': 'Book', inLanguage: 'en' },
+    },
+    null,
+    2
+  ).replace(/</g, '\\u003c');
+
+  const toc = computed.sections
+    .map((s) => `<a href="#${s.id}">${escapeHtml(s.title)}</a>`)
+    .join('\n                ');
+
+  const body = computed.sections
+    .map(
+      (s) => `            <article class="tx-chapter" id="${s.id}">
+                <h2 class="tx-chapter-title">${escapeHtml(s.title)}</h2>
+${s.paras.map((p) => `                <p>${p}</p>`).join('\n')}
+${chipsHtml(s.ids)}
+            </article>`
+    )
+    .join('\n');
+
+  return `<!DOCTYPE html>
+<!-- GENERATED FILE — do not edit by hand. Regenerate with: node scripts/generate-text-pages.js -->
+<html lang="en">
+${headHtml({
+  title: `${text.title} — ${text.author} · Sacred Texts | PUNICODEX`,
+  description: `Read the ${text.title} (${text.author}, ${text.composed}): the complete ${engEdition.label} with section deep links and cross-links to the temples of ${mentionedCount} named gods.`,
+  canonical,
+  ogDescription: `The complete ${text.title} — ${computed.sections.length} sections, deep-linked by section, cross-linked to ${mentionedCount} temples of the Pantheon.`,
+  jsonLd,
+})}
+<body>
+    <!-- Navigation (canonical — built by scripts/sync-desktop-nav.js) -->
+    ${fullNavHtml('/texts/')}
+
+    <!-- Mobile Menu (canonical — built by scripts/sync-mobile-menu.js) -->
+    ${menuForPage('/texts/')}
+
+    <!-- Hero -->
+    <section class="tx-hero">
+        <p class="tx-eyebrow">The Library · Sacred Texts</p>
+        <h1 class="tx-hero-native"${text.language === 'grc' ? ' lang="grc"' : ''}>${escapeHtml(text.titleNative)}</h1>
+        <p class="tx-hero-title">${escapeHtml(text.title)}</p>
+        <p class="tx-hero-sub">${escapeHtml(text.summary)}</p>
+        <div class="tx-stats">
+            <div class="tx-stat">
+                <span class="tx-stat-value">${escapeHtml(text.author)}</span>
+                <span class="tx-stat-label">${escapeHtml(text.composed)}</span>
+            </div>
+            <div class="tx-stat">
+                <span class="tx-stat-value">${computed.sections.length}</span>
+                <span class="tx-stat-label">Sections</span>
+            </div>
+            <div class="tx-stat">
+                <span class="tx-stat-value">${mentionedCount}</span>
+                <span class="tx-stat-label">Temples named</span>
+            </div>
+        </div>
+        <div class="tx-attr">
+            <p><strong>${escapeHtml(engEdition.label)}</strong> — ${escapeHtml(engEdition.source)}. License: ${escapeHtml(engEdition.license)}. <a href="${escapeHtml(engEdition.sourceUrl)}" rel="noopener">Source</a>.</p>
+        </div>
+    </section>
+
+    <!-- Table of contents -->
+    <div class="tx-toolbar">
+        <nav class="tx-secs" aria-label="Contents">
+                ${toc}
+        </nav>
+    </div>
+
+    <!-- Text -->
+    <main class="tx-measure">
+${body}
+    </main>
+
+${chaptersMentionedHtml(text, computed)}
+
+    <!-- Colophon -->
+    <section class="tx-colophon">
+        <div class="tx-colophon-box">
+            <h2>Sources &amp; licenses</h2>
+            ${editionsHtml(text)}
+            <p>The translation is in the public domain and is reproduced faithfully, with translator introductions and footnote apparatus removed. Temple chips are editorial cross-links into the PuniCodex Pantheon: a chip appears wherever the god is named as a capitalized whole word in the translation.</p>
+        </div>
+    </section>
+
+    <p class="tx-back"><a href="/texts/">← Back to the Library</a></p>
+
+    <!-- Footer (canonical — built by scripts/sync-footer.js) -->
+    ${footerHtml()}
+
+    <script src="/js/px-core.js?v=perf20" defer></script>
+    <script src="/js/temple-base.js?v=perf20" defer></script>
+    <script src="/js/newsletter.js?v=1" defer></script>
+</body>
+</html>
+`;
+}
+
 // ── Library index (/texts/) ─────────────────────────────────────────────────
 
 function buildIndexPage(texts, computedById) {
   const totalLines = texts.reduce((a, t) => a + (t.lineCount || 0), 0);
+  const totalSections = texts.reduce((a, t) => a + (t.sectionCount || 0), 0);
+  const totalPassages = totalLines + totalSections;
   const linkedTemples = texts.reduce(
     (a, t) => a + (computedById.has(t.id) ? computedById.get(t.id).mentioned.length : 0),
     0
@@ -947,17 +1148,23 @@ function buildIndexPage(texts, computedById) {
   const cards = texts
     .map((t) => {
       const computed = computedById.get(t.id);
-      const grcEdition = t.editions.find((e) => e.lang === 'grc') || t.editions[0];
-      const engEdition = t.editions.find((e) => e.lang === 'eng') || t.editions[1];
-      const license = `Greek ${licenseShort(grcEdition.license)} · English ${licenseShort(engEdition.license)}`;
+      const grcEdition = t.editions.find((e) => e.lang === 'grc');
+      const engEdition = t.editions.find((e) => e.lang === 'eng') || t.editions[0];
+      const license = grcEdition
+        ? `Greek ${licenseShort(grcEdition.license)} · English ${licenseShort(engEdition.license)}`
+        : `English ${licenseShort(engEdition.license)}`;
+      const units =
+        t.structure === 'chapters'
+          ? `${(t.sectionCount || 0).toLocaleString('en-US')} sections`
+          : `${(t.lineCount || 0).toLocaleString('en-US')} lines`;
       const foot = computed
         ? `<span class="tx-card-license">${escapeHtml(license)}</span>
                     <a class="tx-card-read" href="/texts/${t.id}/">Read the text →</a>`
         : `<span class="tx-card-license">${escapeHtml(license)}</span>
                     <span class="tx-card-read">Corpus in preparation</span>`;
       const linked = computed
-        ? `<p class="tx-card-meta">${escapeHtml(t.authorNative)} ${escapeHtml(t.author)} · ${escapeHtml(t.composed)} · ${t.lineCount.toLocaleString('en-US')} lines · ${computed.mentioned.length} temples cross-linked</p>`
-        : `<p class="tx-card-meta">${escapeHtml(t.authorNative)} ${escapeHtml(t.author)} · ${escapeHtml(t.composed)} · ${t.lineCount.toLocaleString('en-US')} lines</p>`;
+        ? `<p class="tx-card-meta">${escapeHtml(t.authorNative)} ${escapeHtml(t.author)} · ${escapeHtml(t.composed)} · ${units} · ${computed.mentioned.length} temples cross-linked</p>`
+        : `<p class="tx-card-meta">${escapeHtml(t.authorNative)} ${escapeHtml(t.author)} · ${escapeHtml(t.composed)} · ${units}</p>`;
       return `            <article class="tx-card">
                 <h2 class="tx-card-native" lang="grc">${escapeHtml(t.titleNative)}</h2>
                 <p class="tx-card-title">${escapeHtml(t.title)}</p>
@@ -1022,8 +1229,8 @@ ${headHtml({
                 <span class="tx-stat-label">Texts</span>
             </div>
             <div class="tx-stat">
-                <span class="tx-stat-value">${totalLines.toLocaleString('en-US')}</span>
-                <span class="tx-stat-label">Lines</span>
+                <span class="tx-stat-value">${totalPassages.toLocaleString('en-US')}</span>
+                <span class="tx-stat-label">Lines &amp; sections</span>
             </div>
             <div class="tx-stat">
                 <span class="tx-stat-value">${linkedTemples}</span>
@@ -1057,6 +1264,23 @@ function main() {
   let written = 0;
 
   for (const text of registry.texts) {
+    if (text.structure === 'chapters') {
+      const loaded = loadChapterCorpus(text.id);
+      if (!loaded) {
+        console.warn(`  skipping reading page for ${text.id}: chapter corpus not found`);
+        continue;
+      }
+      const computed = computeChapters(text, loaded.corpus, loaded.xref);
+      computedById.set(text.id, computed);
+      const dir = path.join(OUT_DIR, text.id);
+      fs.mkdirSync(dir, { recursive: true });
+      writeFileWithRetry(path.join(dir, 'index.html'), buildChaptersReadingPage(text, computed), 'utf8');
+      console.log(
+        `  texts/${text.id}/index.html written (${computed.sections.length} sections, ${computed.mentioned.length} temples cross-linked)`
+      );
+      written++;
+      continue;
+    }
     const corpus = loadCorpus(text);
     if (!corpus) {
       console.warn(`  skipping reading page for ${text.id}: corpus JSONs not found`);

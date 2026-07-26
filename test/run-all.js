@@ -173,6 +173,7 @@ const SUITES = [
     timeout: 60000,
   },
   { name: 'Service Worker Contract Tests', cmd: 'node test/service-worker.test.js', timeout: 30000 },
+  { name: 'Texts Chapters Tests', cmd: 'node test/texts-chapters.test.js', timeout: 60000 },
   { name: 'Portal System Tests', cmd: 'node test/portal-system.test.js', timeout: 60000 },
   { name: 'Tenant Portal Tests', cmd: 'node test/tenant-portal.test.js', timeout: 60000 },
   {
