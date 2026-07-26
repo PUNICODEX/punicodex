@@ -107,6 +107,62 @@ function ensureAdminIdentity(db) {
   return { institution, user };
 }
 
+// ── Demo accounts ─────────────────────────────────────────────────────────
+// A stable, isolated demo identity so the Scholarly Edition interface can be
+// explored without a real sponsorship. The institution touches nothing
+// outside itself; the accounts are recreated on every cold start (Vercel's
+// SQLite is ephemeral), so the demo login keeps working in production. Only
+// the bcrypt hashes live here — the plaintext passwords are handed to the
+// operator out of band, never committed.
+const DEMO_INSTITUTION_NAME = 'PuniCodex Demo University';
+const DEMO_INSTITUTION_SLUG = 'punicodex-demo';
+const DEMO_STUDENT_EMAIL = 'demo.student@punicodex.com';
+const DEMO_ADMIN_EMAIL = 'demo.admin@punicodex.com';
+const DEMO_STUDENT_HASH = '$2b$12$t0MZ7Sj6R.BiplNJYPI5OO2y83JTOU/6wxTrNXqKHQGZvOUd65lAi';
+const DEMO_ADMIN_HASH = '$2b$12$73xkA./zQETFCo.Eyugh0.EhWVH0RbHL/FvIgDubaGEVxyXc94VG2';
+
+function ensureDemoIdentity(db) {
+  let institution = dbApi.getInstitutionBySlug(DEMO_INSTITUTION_SLUG);
+  if (!institution) {
+    const result = dbApi.createInstitution({
+      name: DEMO_INSTITUTION_NAME,
+      slug: DEMO_INSTITUTION_SLUG,
+      domain: 'punicodex.com',
+      accreditation: 'Demonstration institution for interface review.',
+      metadata: { note: 'Isolated demo institution. Not a real university.' },
+    });
+    institution = dbApi.getInstitutionById(result.lastInsertRowid);
+  }
+  if (institution.status !== 'active' || institution.sponsorship_status !== 'active') {
+    db.prepare(
+      "UPDATE scholars_institutions SET status = 'active', sponsorship_status = 'active' WHERE id = ?"
+    ).run(institution.id);
+  }
+
+  if (!dbApi.getUserByEmail(DEMO_STUDENT_EMAIL)) {
+    dbApi.createUserWithPassword({
+      email: DEMO_STUDENT_EMAIL,
+      institutionId: institution.id,
+      role: 'student',
+      displayName: 'Demo Student',
+      department: 'Digital Philology',
+      passwordHash: DEMO_STUDENT_HASH,
+      accountStatus: 'active',
+    });
+  }
+  if (!dbApi.getUserByEmail(DEMO_ADMIN_EMAIL)) {
+    dbApi.createUserWithPassword({
+      email: DEMO_ADMIN_EMAIL,
+      institutionId: institution.id,
+      role: 'inst_admin',
+      displayName: 'Demo Institution Admin',
+      department: 'Administration',
+      passwordHash: DEMO_ADMIN_HASH,
+      accountStatus: 'active',
+    });
+  }
+}
+
 function seedTemple(manifest, stats) {
   let temple = dbApi.getTempleByEntryId(manifest.entryId);
   if (temple) {
@@ -342,6 +398,7 @@ function seedScholarsFromManifests({ logger = console } = {}) {
 
   const db = getDb();
   const admin = ensureAdminIdentity(db);
+  ensureDemoIdentity(db);
 
   const all = JSON.parse(fs.readFileSync(ALL_MANIFEST, 'utf8'));
   const entryIds = Object.keys(all.manifests).sort();

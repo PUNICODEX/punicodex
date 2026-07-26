@@ -20,7 +20,7 @@
     <style>
         :root {
             --review-primary: #D4AF37;
-            --review-primary-dim: #8B7355;
+            --review-primary-dim: #A98F66;
             --review-void: #0A0A0A;
             --review-void-raised: #111111;
             --review-white: #F5F5F5;
@@ -546,6 +546,34 @@
             color: var(--review-white-dim);
         }
 
+        .review-diff-view {
+            font-family: 'SF Mono', Monaco, Consolas, monospace;
+            font-size: 0.8rem;
+            line-height: 1.6;
+            max-height: 480px;
+            overflow-y: auto;
+        }
+
+        .diff-ins {
+            background: rgba(74, 222, 128, 0.12);
+            color: #7ee2a0;
+            padding: 0.1rem 0.4rem;
+            border-radius: 3px;
+        }
+
+        .diff-del {
+            background: rgba(242, 109, 109, 0.12);
+            color: #f28b8b;
+            text-decoration: line-through;
+            padding: 0.1rem 0.4rem;
+            border-radius: 3px;
+        }
+
+        .diff-ctx {
+            color: var(--review-white-dim);
+            padding: 0.1rem 0.4rem;
+        }
+
         .review-expand-btn {
             background: transparent;
             border: 1px solid var(--review-border);
@@ -1005,7 +1033,7 @@
 
     <script>
     (function() {
-        const apiBase = '/api/v1/scholars/';
+        const apiBase = '/api/v1/scholars';
         const container = document.getElementById('app');
 
         function getSessionId() {
@@ -1159,7 +1187,7 @@
                 <div class="review-card-footer">
                     <button class="review-expand-btn" id="expand-${edit.id}">Show diff</button>
                     <div class="review-comment">
-                        <input type="text" class="reviewer-comment" placeholder="Reason or comment for the contributor…" maxlength="500">
+                        <input type="text" class="reviewer-comment" placeholder="Reason or comment for the contributor…" maxlength="500" aria-label="Reason or comment for the contributor">
                     </div>
                     <button class="review-decision-btn approve" data-action="approve">Approve</button>
                     <button class="review-decision-btn reject" data-action="reject">Reject</button>
@@ -1228,10 +1256,47 @@
             }
             const edit = data.data;
             const proposed = edit.proposed_body || '';
+
+            // Fetch the currently published body so the diff is a real
+            // comparison — never the proposed text shown twice.
+            let current = '';
+            if (edit.entry_id && edit.section_key) {
+                const sec = await api('/temples/' + encodeURIComponent(edit.entry_id) + '/sections/' + encodeURIComponent(edit.section_key));
+                if (sec.ok && sec.data && sec.data.data && typeof sec.data.data.body === 'string') {
+                    current = sec.data.data.body;
+                }
+            }
             containerEl.innerHTML = `
-                <div class="review-card-label">Proposed Content</div>
-                <div style="white-space: pre-wrap;">${escapeHtml(proposed)}</div>
+                <div class="review-card-label">Changes vs. published section</div>
+                <div class="review-diff-view">${renderLineDiff(current, proposed)}</div>
             `;
+        }
+
+        // Line-level LCS diff: added lines marked .diff-ins, removed .diff-del.
+        function renderLineDiff(oldText, newText) {
+            const a = String(oldText).split('\n');
+            const b = String(newText).split('\n');
+            const n = a.length, m = b.length;
+            const dp = Array.from({ length: n + 1 }, () => new Uint32Array(m + 1));
+            for (let i = n - 1; i >= 0; i--) {
+                for (let j = m - 1; j >= 0; j--) {
+                    dp[i][j] = a[i] === b[j] ? dp[i + 1][j + 1] + 1 : Math.max(dp[i + 1][j], dp[i][j + 1]);
+                }
+            }
+            const out = [];
+            let i = 0, j = 0;
+            while (i < n && j < m) {
+                if (a[i] === b[j]) { out.push('<div class="diff-ctx">' + (escapeHtml(a[i]) || '&nbsp;') + '</div>'); i++; j++; }
+                else if (dp[i + 1][j] >= dp[i][j + 1]) { out.push('<div class="diff-del">− ' + (escapeHtml(a[i]) || '&nbsp;') + '</div>'); i++; }
+                else { out.push('<div class="diff-ins">+ ' + (escapeHtml(b[j]) || '&nbsp;') + '</div>'); j++; }
+            }
+            while (i < n) { out.push('<div class="diff-del">− ' + (escapeHtml(a[i]) || '&nbsp;') + '</div>'); i++; }
+            while (j < m) { out.push('<div class="diff-ins">+ ' + (escapeHtml(b[j]) || '&nbsp;') + '</div>'); j++; }
+            if (!out.length || (n === 0 && m === 0)) {
+                return '<div class="review-diff-empty">Both versions are empty.</div>';
+            }
+            if (n === 0) return '<div class="review-diff-empty">New content — every line is an addition.</div>' + out.join('');
+            return out.join('');
         }
 
         function updateCount() {
@@ -1611,16 +1676,13 @@
             filters.className = 'review-filters';
             filters.innerHTML = `
                 ${isCurator
-                    ? '<select class="review-filter" id="filter-institution"><option value="">All institutions</option>' +
+                    ? '<select class="review-filter" id="filter-institution" aria-label="Filter by institution"><option value="">All institutions</option>' +
                       Object.values(institutionsMap).map(function(i) {
                           return '<option value="' + i.id + '">' + escapeHtml(i.name) + '</option>';
                       }).join('') +
                       '</select>'
                     : ''}
-                <input type="search" class="review-filter" id="filter-section" placeholder="Filter by section…">
-                <select class="review-filter" id="filter-status">
-                    <option value="pending">Pending</option>
-                </select>
+                <input type="search" class="review-filter" id="filter-section" placeholder="Filter by section…" aria-label="Filter by section">
                 <button class="review-btn" id="apply-filters">Apply Filters</button>
             `;
 

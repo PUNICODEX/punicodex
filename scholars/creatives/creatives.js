@@ -445,6 +445,10 @@
   }
 
   function bindAssetActions() {
+    // The container is persistent across renders — bind once, never per render,
+    // or a single click fires once per accumulated listener.
+    if (container.dataset.assetActionsBound) return;
+    container.dataset.assetActionsBound = '1';
     container.addEventListener('click', async (e) => {
       const btn = e.target.closest('button[data-action]');
       if (!btn) return;

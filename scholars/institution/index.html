@@ -20,7 +20,7 @@
     <style>
         :root {
             --inst-primary: #D4AF37;
-            --inst-primary-dim: #8B7355;
+            --inst-primary-dim: #A98F66;
             --inst-void: #0A0A0A;
             --inst-void-raised: #111111;
             --inst-white: #F5F5F5;
@@ -784,7 +784,7 @@
 
     <script>
     (function() {
-        const apiBase = '/api/v1/scholars/';
+        const apiBase = '/api/v1/scholars';
         const container = document.getElementById('app');
         const passwordToasts = document.getElementById('password-toasts');
 
@@ -1185,7 +1185,7 @@
 
                 <div class="card" style="overflow-x: auto;">
                     ${pendingRows ? `
-                        <table class="members-table">
+                        <table class="members-table" id="creative-review-table">
                             <thead>
                                 <tr>
                                     <th>Preview</th>
@@ -1547,7 +1547,7 @@
         }
 
         function bindCreativeReviewActions() {
-            const table = document.querySelector('.members-table tbody');
+            const table = document.querySelector('#creative-review-table tbody');
             if (!table) return;
             table.addEventListener('click', async (e) => {
                 const btn = e.target.closest('button[data-action^="creative-"]');

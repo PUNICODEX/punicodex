@@ -292,7 +292,13 @@ router.post(
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
-    res.json(success({ token: result.sessionId, user: result.user }));
+    res.json(
+      success({
+        token: result.sessionId,
+        user: result.user,
+        requirePasswordChange: result.requirePasswordChange === true,
+      })
+    );
   })
 );
 

@@ -16,7 +16,7 @@
     <style>
         :root {
             --admin-primary: #D4AF37;
-            --admin-primary-dim: #8B7355;
+            --admin-primary-dim: #A98F66;
             --admin-void: #0A0A0A;
             --admin-void-raised: #111111;
             --admin-white: #F5F5F5;
@@ -921,7 +921,7 @@
 
     <script>
     (function() {
-        const apiBase = '/api/v1/scholars/';
+        const apiBase = '/api/v1/scholars';
         const container = document.getElementById('app');
 
         function getSessionId() {
@@ -1595,7 +1595,9 @@
                         const row = btn.closest('tr');
                         const id = Number(row.dataset.id);
                         const action = btn.dataset.action;
-                        const newStatus = action === 'activate' ? 'active' : 'pending';
+                        // Deactivate must record 'expired', not 'pending':
+                        // a formerly active institution is not a fresh applicant.
+                        const newStatus = action === 'activate' ? 'active' : 'expired';
                         btn.disabled = true;
                         const msg = document.getElementById('institution-message');
                         msg.className = 'admin-message';

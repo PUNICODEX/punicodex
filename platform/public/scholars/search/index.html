@@ -20,7 +20,7 @@
     <style>
         :root {
             --review-primary: #D4AF37;
-            --review-primary-dim: #8B7355;
+            --review-primary-dim: #A98F66;
             --review-void: #0A0A0A;
             --review-void-raised: #111111;
             --review-white: #F5F5F5;
@@ -429,26 +429,6 @@
             <input type="search" class="search-input" id="search-input" placeholder="Search sections and labels…" autocomplete="off" aria-label="Search sections and labels">
             <select class="search-select" id="pantheon-select" aria-label="Filter by pantheon">
                 <option value="">All pantheons</option>
-                <option value="olympian">Olympian</option>
-                <option value="egyptian">Egyptian</option>
-                <option value="norse">Norse</option>
-                <option value="hindu">Hindu</option>
-                <option value="japanese">Japanese</option>
-                <option value="chinese">Chinese</option>
-                <option value="canaanite">Canaanite</option>
-                <option value="mesopotamian">Mesopotamian</option>
-                <option value="judeo-christian">Judeo-Christian</option>
-                <option value="gnostic">Gnostic</option>
-                <option value="celtic">Celtic</option>
-                <option value="aztec">Aztec</option>
-                <option value="buddhist">Buddhist</option>
-                <option value="jain">Jain</option>
-                <option value="sikh">Sikh</option>
-                <option value="slavic">Slavic</option>
-                <option value="finnic">Finnic</option>
-                <option value="romani">Romani</option>
-                <option value="yoruba">Yoruba</option>
-                <option value="zoroastrian">Zoroastrian</option>
             </select>
             <button type="submit" class="search-btn">Search</button>
         </form>
@@ -462,9 +442,10 @@
         <div class="search-pagination" id="pagination" style="display: none;"></div>
     </main>
 
+    <script src="/js/archetypes-v2.js"></script>
     <script>
     (function() {
-        const apiBase = '/api/v1/scholars/';
+        const apiBase = '/api/v1/scholars';
         const container = document.getElementById('results');
         const meta = document.getElementById('search-meta');
         const pagination = document.getElementById('pagination');
@@ -479,6 +460,19 @@
             offset: 0,
             total: 0,
         };
+
+        // Populate the pantheon filter from the canonical archetype list so
+        // every option maps to real data — a hardcoded list drifts.
+        (function populatePantheons() {
+            const entries = (typeof ARCHETYPES !== 'undefined' ? ARCHETYPES : []).filter((a) => a.built);
+            const pantheons = [...new Set(entries.map((a) => a.pantheon).filter(Boolean))].sort();
+            for (const p of pantheons) {
+                const opt = document.createElement('option');
+                opt.value = p;
+                opt.textContent = p.charAt(0).toUpperCase() + p.slice(1).replace(/-/g, ' ');
+                pantheonSelect.appendChild(opt);
+            }
+        })();
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
@@ -576,9 +570,10 @@
 
         function renderMeta() {
             document.getElementById('result-count').textContent = state.total.toLocaleString();
+            // textContent is already safe — escaping here would show entities literally.
             document.getElementById('query-display').textContent = state.pantheon
-                ? `query: “${escapeHtml(state.q)}” · pantheon: ${escapeHtml(state.pantheon)}`
-                : `query: “${escapeHtml(state.q)}”`;
+                ? `query: “${state.q}” · pantheon: ${state.pantheon}`
+                : `query: “${state.q}”`;
             meta.style.display = 'flex';
         }
 

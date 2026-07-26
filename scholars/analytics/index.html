@@ -20,7 +20,7 @@
     <style>
         :root {
             --analytics-primary: #D4AF37;
-            --analytics-primary-dim: #8B7355;
+            --analytics-primary-dim: #A98F66;
             --analytics-void: #0A0A0A;
             --analytics-void-raised: #111111;
             --analytics-white: #F5F5F5;
@@ -312,6 +312,7 @@
             <div id="forbidden" class="forbidden" style="display:none">
                 <h2>Curator Access Required</h2>
                 <p>You must be signed in as a curator to view this dashboard.</p>
+                <p><a href="/scholars/login/?redirect=/scholars/analytics/" style="display:inline-block;margin-top:0.75rem;background:var(--gold,#D4AF37);color:#0A0A0C;padding:0.5rem 1.4rem;border-radius:6px;font-weight:600;text-decoration:none;">Sign in</a></p>
             </div>
 
             <div id="dashboard">
@@ -368,7 +369,7 @@
     </main>
 
     <script>
-        const API_BASE = '/api/v1/scholars/';
+        const API_BASE = '/api/v1/scholars';
         let currentUser = null;
 
         async function fetchSession() {

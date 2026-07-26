@@ -20,7 +20,7 @@
     <style>
         :root {
             --login-primary: #D4AF37;
-            --login-primary-dim: #8B7355;
+            --login-primary-dim: #A98F66;
             --login-primary-bright: #F0D878;
             --login-void: #0A0A0A;
             --login-void-raised: #111111;
@@ -327,20 +327,34 @@
 
     <script>
     (function() {
-        const apiBase = '/api/v1/scholars/';
+        const apiBase = '/api/v1/scholars';
         const form = document.getElementById('login-form');
         const submitBtn = document.getElementById('login-submit');
         const messageEl = document.getElementById('login-message');
+        let lastLoginRole = 'student';
 
         function getRedirect() {
             const params = new URLSearchParams(window.location.search);
             const redirect = params.get('redirect');
-            if (!redirect) return '/scholars/institution/';
-            // Reject absolute URLs or protocol-relative URLs to prevent open redirects.
-            if (/^[a-z][a-z0-9+.-]*:/i.test(redirect) || redirect.startsWith('//')) {
-                return '/scholars/institution/';
+            if (redirect) {
+                // Reject absolute URLs or protocol-relative URLs to prevent open redirects.
+                if (!/^[a-z][a-z0-9+.-]*:/i.test(redirect) && !redirect.startsWith('//')) {
+                    return redirect;
+                }
             }
-            return redirect;
+            return null;
+        }
+
+        // Each role has its own home; a student must never land on the
+        // institution-admin page and hit a role error.
+        function homeForRole(role) {
+            return {
+                student: '/scholars/dashboard/',
+                reviewer: '/scholars/review/',
+                dept_admin: '/scholars/dept-admin/',
+                inst_admin: '/scholars/institution/',
+                curator: '/scholars/admin/',
+            }[role] || '/scholars/dashboard/';
         }
 
         function showMessage(text, type) {
@@ -382,6 +396,7 @@
 
             if (ok && data?.data?.token) {
                 localStorage.setItem('scholars_session', data.data.token);
+                lastLoginRole = data.data.user?.role || 'student';
                 if (data.data.requirePasswordChange === true) {
                     submitBtn.disabled = false;
                     submitBtn.textContent = 'Sign In';
@@ -389,7 +404,7 @@
                     return;
                 }
                 showMessage('Sign-in successful. Redirecting…', 'success');
-                window.location.href = getRedirect();
+                window.location.href = getRedirect() || homeForRole(lastLoginRole);
                 return;
             }
 
@@ -461,7 +476,7 @@
 
             if (ok && data?.data?.changed) {
                 showMessage('Password updated. Redirecting…', 'success');
-                setTimeout(() => { window.location.href = getRedirect(); }, 1200);
+                setTimeout(() => { window.location.href = getRedirect() || homeForRole(lastLoginRole); }, 1200);
                 return;
             }
 
