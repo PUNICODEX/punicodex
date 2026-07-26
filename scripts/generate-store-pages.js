@@ -161,7 +161,7 @@ function parseVariants(product) {
 const BASE_CSS = `
 :root{--obsidian:#0A0A0C;--gold:#D4AF37;--gold-bright:#F0D878;--ink:#E8E4DC;--dim:#9a948a;--line:rgba(212,175,55,.18);--card:#121216}
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--obsidian);color:var(--ink);font-family:'Spectral',Georgia,serif;line-height:1.6}
+body{background:var(--obsidian);color:var(--ink);font-family:'Spectral',Georgia,serif;line-height:1.6;padding-top:72px}
 h1,h2,h3,.display{font-family:'Cinzel',serif;color:var(--gold)}
 a{color:var(--gold);text-decoration:none}
 a:hover{color:var(--gold-bright)}
