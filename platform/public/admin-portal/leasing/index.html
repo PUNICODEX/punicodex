@@ -980,9 +980,17 @@
         var ordersLoaded = false;
 
         function orderStatusBadge(status) {
-            var gold = ['sent_to_fulfillment', 'shipped', 'delivered'].indexOf(status) !== -1;
-            var failed = status === 'fulfillment_failed';
-            var cls = failed ? 'badge badge--danger' : gold ? 'badge badge--gold' : 'badge';
+            var cls = {
+                pending_payment: 'badge badge--pending',
+                paid: 'badge badge--active',
+                fulfillment_queued: 'badge badge--pending',
+                sent_to_fulfillment: 'badge badge--active',
+                fulfillment_failed: 'badge badge--error',
+                shipped: 'badge badge--active',
+                delivered: 'badge badge--active',
+                cancelled: 'badge badge--cancelled',
+                refunded: 'badge badge--withdrawn',
+            }[status] || 'badge';
             return '<span class="' + cls + '">' + Portal.escapeHtml(String(status || '').replace(/_/g, ' ')) + '</span>';
         }
 

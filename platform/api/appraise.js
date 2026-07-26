@@ -42,7 +42,7 @@ const { ARCHETYPES } = require('../../js/archetypes-v2.js');
 const { LEXICON } = require('../../type/js/lexicon.js');
 const { getOriginalScript } = require('../../type/js/original-scripts.js');
 
-const MODEL_VERSION = 'appraise-2.0.0';
+const MODEL_VERSION = 'appraise-3.0.0';
 const DATA_VERSION = getVersion().version || 'unknown';
 const BASE_REFERENCE_VALUE = 50_000; // USD for a perfect ASCII .com one-word 4-5 letter name
 const REGISTRATION_FEE_USD = 12;
@@ -67,7 +67,15 @@ const IDN_BASE_VALUE_USD = {
 const IDN_VALUE_CEILING_USD = 10_000; // hard cap for any Unicode appraisal
 const IDN_MULTIPLIER_STACK_CAP = 120; // max product of quality multipliers
 const IDN_LIQUIDITY_DISCOUNT = 0.5; // thin resale market: halve raw quality value
-const IDN_BRAND_CANONICAL_CAP = 4.5; // max brand-defensive premium multiplier
+
+// Industry demand: the pattern graph (platform/api/industry-patterns.json,
+// generated from the canonical industry map) records which real-world
+// industries each temple resonates with. Demand from meaning — never from
+// third-party brands. A temple's industries raise its ceiling of likely
+// end-users, so they raise its value. Bounded at IDN_INDUSTRY_DEMAND_CAP.
+const IDN_INDUSTRY_PRIMARY_WEIGHT = 0.35; // per primary (weight-2) industry seat
+const IDN_INDUSTRY_RESONANT_WEIGHT = 0.08; // per resonant (weight-1) seat
+const IDN_INDUSTRY_DEMAND_CAP = 2.5; // max industry-demand multiplier
 
 // Tier restoration quality: dual-tier names preserve stress AND length and
 // are the strongest restorations; tier-1 preserves both features with a
@@ -161,26 +169,6 @@ const PREMIUM_BIGRAMS = new Set([
 const DEFAULT_FLAGSHIP_SLOT_MONTHLY_CENTS = 300_000; // ≈ seeded flagship slot inventory ($3,000/mo)
 const TENANT_REVENUE_MONTHS = 12; // capitalize one year of bookings
 const TENANT_OCCUPANCY_DEFAULT = 0.1;
-const TENANT_OCCUPANCY_BRAND = 0.15;
-const BRAND_TENANT_MULTIPLIER = 1.5;
-
-// Global brands whose exact ASCII .com is effectively priceless and whose
-// canonical Unicode transliterations in PuniCodex command a scarcity premium.
-// Values are wholesale scarcity floors, not market comps.
-const BRAND_SCARCITY_OVERRIDES = {
-  nike: { tier: 'mega', asciiValue: 2_000_000, canonicalShare: 0.35 },
-  hermes: { tier: 'mega', asciiValue: 2_000_000, canonicalShare: 0.35 },
-  ea: { tier: 'mega', asciiValue: 1_500_000, canonicalShare: 0.3 },
-  apple: { tier: 'mega', asciiValue: 3_000_000, canonicalShare: 0.3 },
-  google: { tier: 'mega', asciiValue: 2_500_000, canonicalShare: 0.3 },
-  amazon: { tier: 'mega', asciiValue: 2_500_000, canonicalShare: 0.3 },
-  microsoft: { tier: 'mega', asciiValue: 2_000_000, canonicalShare: 0.25 },
-  meta: { tier: 'mega', asciiValue: 1_500_000, canonicalShare: 0.25 },
-  tesla: { tier: 'mega', asciiValue: 1_500_000, canonicalShare: 0.3 },
-  netflix: { tier: 'mega', asciiValue: 1_500_000, canonicalShare: 0.3 },
-  paypal: { tier: 'major', asciiValue: 800_000, canonicalShare: 0.25 },
-  gaia: { tier: 'major', asciiValue: 500_000, canonicalShare: 0.25 },
-};
 
 // Verified aftermarket comparables for specific names. When a name has a
 // marketplace comp, it overrides the formula-driven ASCII control value.
@@ -692,82 +680,43 @@ function isFlagshipEntry(entry) {
   return Boolean(entry && ownedDomainsById.has(entry.id));
 }
 
-function getBrandScarcity(profile) {
-  const asciiRoot = String(profile.asciiRoot || profile.label || '').toLowerCase();
-  if (!asciiRoot) return null;
-
-  let brand = lookupBrand(asciiRoot, { domain: profile.domain });
-  let synthetic = false;
-  if (!brand && BRAND_SCARCITY_OVERRIDES[asciiRoot]) {
-    synthetic = true;
-    brand = {
-      ascii: asciiRoot,
-      name: asciiRoot,
-      matchType: 'folded',
-      identity: { priority: 95 },
-    };
+// ── Industry demand (pattern graph) ─────────────────────────────────────
+// Loaded from the generated pattern graph (byEntry: temple id → industry
+// seats with weights). The graph maps every flagship temple to the real-
+// world industries its meaning resonates with — this is the demand side of
+// the valuation, derived from what the name means and whom it serves.
+let industryByEntry = null;
+function getIndustrySeats(entryId) {
+  if (!entryId) return [];
+  if (industryByEntry === null) {
+    try {
+      industryByEntry = require('./industry-patterns.json').byEntry || {};
+    } catch (_e) {
+      industryByEntry = {};
+    }
   }
-  if (!brand) return null;
-
-  const matchType = synthetic ? 'folded' : brand.matchType || 'visual';
-  if (!['exact', 'folded', 'domain'].includes(matchType)) return null;
-
-  const priority = brand.identity?.priority || 50;
-  let tier = 'known';
-  let asciiValue = 100_000;
-  let canonicalShare = 0.15;
-
-  if (priority >= 95) {
-    tier = 'mega';
-    asciiValue = 2_000_000;
-    canonicalShare = 0.35;
-  } else if (priority >= 85) {
-    tier = 'major';
-    asciiValue = 500_000;
-    canonicalShare = 0.25;
-  } else if (priority >= 60) {
-    tier = 'known';
-    asciiValue = 100_000;
-    canonicalShare = 0.15;
-  }
-
-  const override = BRAND_SCARCITY_OVERRIDES[asciiRoot];
-  if (override) {
-    tier = override.tier || tier;
-    asciiValue = override.asciiValue || asciiValue;
-    canonicalShare = override.canonicalShare || canonicalShare;
-  }
-
-  return { brand, tier, asciiValue, canonicalShare };
+  return industryByEntry[entryId] || [];
 }
 
-function computeBrandScarcityValue(profile, scarcity) {
-  if (!scarcity) return { exactValue: 0, canonicalValue: 0, isExact: false };
-
-  const brandAscii = normalizeLabel(scarcity.brand.ascii || scarcity.brand.name || '');
-  const label = normalizeLabel(profile.label);
-  const isExact = label === brandAscii;
-
-  if (isExact) {
-    return { exactValue: scarcity.asciiValue, canonicalValue: 0, isExact: true };
-  }
-
-  const recognizedForm = ['owned', 'ideal', 'variant', 'original-script'].includes(profile.form);
-  if (recognizedForm) {
-    return {
-      exactValue: 0,
-      canonicalValue: Math.round(scarcity.asciiValue * scarcity.canonicalShare),
-      isExact: false,
-    };
-  }
-
-  return { exactValue: 0, canonicalValue: 0, isExact: false };
+function industryDemandFactor(entryId) {
+  const seats = getIndustrySeats(entryId);
+  const primary = seats.filter((s) => s.weight === 2).length;
+  const resonant = seats.filter((s) => s.weight !== 2).length;
+  if (!primary && !resonant) return null;
+  const raw = primary * IDN_INDUSTRY_PRIMARY_WEIGHT + resonant * IDN_INDUSTRY_RESONANT_WEIGHT;
+  const multiplier = 1 + Math.min(raw, IDN_INDUSTRY_DEMAND_CAP);
+  const top = seats
+    .slice()
+    .sort((a, b) => b.weight - a.weight)
+    .slice(0, 3)
+    .map((s) => s.name);
+  return { multiplier, primary, resonant, top };
 }
 
-function tenantRevenueValue(profile, brandScarcity, tldInfo) {
+function tenantRevenueValue(profile, tldInfo) {
   const entry = profile.entry;
   if (!entry || !isFlagshipEntry(entry)) {
-    return { value: 0, monthlyUsd: 0, occupancy: 0, brandMultiplier: 1, note: 'not a flagship' };
+    return { value: 0, monthlyUsd: 0, occupancy: 0, note: 'not a flagship' };
   }
 
   const siteSlug = entry.id;
@@ -790,20 +739,15 @@ function tenantRevenueValue(profile, brandScarcity, tldInfo) {
   }
 
   const monthlyUsd = monthlyCents / 100;
-  const isBrand = Boolean(brandScarcity);
-  const occupancy = isBrand ? TENANT_OCCUPANCY_BRAND : TENANT_OCCUPANCY_DEFAULT;
-  const brandMultiplier = isBrand ? BRAND_TENANT_MULTIPLIER : 1.0;
+  const occupancy = TENANT_OCCUPANCY_DEFAULT;
   const tldMultiplier = tldInfo?.supportsIdn ? 1.0 : (tldInfo?.score ?? 0.08);
-  const value = Math.round(
-    monthlyUsd * TENANT_REVENUE_MONTHS * occupancy * brandMultiplier * tldMultiplier
-  );
+  const value = Math.round(monthlyUsd * TENANT_REVENUE_MONTHS * occupancy * tldMultiplier);
 
   return {
     value,
     monthlyUsd,
     occupancy,
-    brandMultiplier,
-    note: `${isBrand ? 'brand-aligned' : 'standard'} flagship ad inventory`,
+    note: 'flagship ad inventory, 12-month conservative capitalization',
   };
 }
 
@@ -827,7 +771,7 @@ function idnTldMultiplier(tld) {
   return Math.min(0.6, Math.max(0.3, info.score * 1.5));
 }
 
-function computeUnicodePremium(profile, _asciiValue, brandScarcity) {
+function computeUnicodePremium(profile) {
   const factors = [];
 
   if (!profile.hasUnicode) {
@@ -900,6 +844,18 @@ function computeUnicodePremium(profile, _asciiValue, brandScarcity) {
       note: entry.pantheon,
     });
 
+    // Industry demand from the pattern graph: the industries the name's
+    // meaning aligns with are its end-user market. Demand from meaning —
+    // never from third-party brands.
+    const industry = industryDemandFactor(entry.id);
+    if (industry) {
+      stack.push({
+        name: 'industryDemand',
+        multiplier: industry.multiplier,
+        note: `${industry.primary} primary · ${industry.resonant} resonant industries`,
+      });
+    }
+
     if (entry.availability?.status === 'available') {
       stack.push({ name: 'availability', multiplier: 1.1, note: 'unregistered — acquirable' });
     }
@@ -949,21 +905,9 @@ function computeUnicodePremium(profile, _asciiValue, brandScarcity) {
     });
   }
 
-  // Brand-defensive demand is a distinct driver and is applied after the
-  // stack cap: the exact canonical transliteration of a famous brand is the
-  // one documented source of four-figure IDN sales. Bounded at
-  // IDN_BRAND_CANONICAL_CAP.
-  let brandMultiplier = 1.0;
-  if (brandScarcity && recognizedForm) {
-    brandMultiplier = Math.min(1 + brandScarcity.canonicalShare * 10, IDN_BRAND_CANONICAL_CAP);
-    factors.push({
-      name: 'brandCanonical',
-      impact: brandMultiplier,
-      kind: 'multiplier',
-      note: `canonical transliteration of ${brandScarcity.brand.name || brandScarcity.brand.id}`,
-    });
-  }
-
+  // The multiplier stack is the whole valuation: attestation, restoration
+  // quality, development, industry demand. No factor may reference a
+  // third-party brand — value derives from meaning and measured demand.
   const tldMultiplier = idnTldMultiplier(profile.tld);
   if (tldMultiplier < 1.0) {
     factors.push({
@@ -983,14 +927,12 @@ function computeUnicodePremium(profile, _asciiValue, brandScarcity) {
     note: 'thin IDN resale market',
   });
 
-  const value =
-    baseValue * stackFinal * brandMultiplier * tldMultiplier * IDN_LIQUIDITY_DISCOUNT;
+  const value = baseValue * stackFinal * tldMultiplier * IDN_LIQUIDITY_DISCOUNT;
 
   return {
     baseValue,
     stack: Number(stackFinal.toFixed(2)),
     stackCapped,
-    brandMultiplier,
     tldMultiplier,
     liquidityDiscount: IDN_LIQUIDITY_DISCOUNT,
     value,
@@ -998,17 +940,16 @@ function computeUnicodePremium(profile, _asciiValue, brandScarcity) {
   };
 }
 
-function trademarkFactor(profile, brandScarcity) {
-  // Canonical transliterations of famous brand names are defensible and valuable,
-  // not trademark risks. Only unknown or deceptive brand-like forms are suppressed.
-  if (brandScarcity) {
-    const brandAscii = normalizeLabel(brandScarcity.brand.ascii || brandScarcity.brand.name || '');
-    const label = normalizeLabel(profile.label);
-    const isExact = label === brandAscii;
-    const recognizedForm = ['owned', 'ideal', 'variant', 'original-script'].includes(profile.form);
-    if (isExact || recognizedForm) {
-      return { factor: 1.0, brand: brandScarcity.brand, premium: true };
-    }
+function trademarkFactor(profile) {
+  // Attested lexicon restorations (owned/ideal/variant/original-script) are
+  // legitimate scholarly forms and are never suppressed or inflated by brand
+  // proximity: neutral factor, no premium either way. Only unknown or
+  // deceptive brand-lookalike forms are suppressed — that protects buyers.
+  const recognizedForm = ['owned', 'ideal', 'variant', 'original-script', 'ascii'].includes(
+    profile.form
+  );
+  if (recognizedForm && profile.entry) {
+    return { factor: 1.0, brand: null, premium: false };
   }
 
   const rawLabel = profile.label;
@@ -1027,7 +968,7 @@ function trademarkFactor(profile, brandScarcity) {
       return { factor: 0.15, brand: brandAscii };
     return { factor: 0.5, brand: brandAscii };
   }
-  return { factor: 1.0, brand: null };
+  return { factor: 1.0, brand: null, premium: false };
 }
 
 function liquidityRating(profile, finalValue) {
@@ -1093,7 +1034,7 @@ function valueRange(value, confidence) {
   return { low, high, spread: Number(spread.toFixed(2)) };
 }
 
-function appraise(domain) {
+function appraise(domain, options = {}) {
   const rawDomain = String(domain || '').trim();
   if (!rawDomain) {
     return {
@@ -1113,11 +1054,8 @@ function appraise(domain) {
   }
 
   const info = getTldInfo(profile.tld);
-  const ascii = estimateAsciiValue(profile.asciiRoot, profile.tld, profile.entry, rawDomain);
 
-  const brandScarcity = getBrandScarcity(profile);
-  const bs = computeBrandScarcityValue(profile, brandScarcity);
-  const tm = trademarkFactor(profile, brandScarcity);
+  const tm = trademarkFactor(profile);
 
   // Tenant revenue only attaches to legitimate, safe forms. A false/unknown
   // Unicode form flagged as a lookalike should not inherit the income value
@@ -1126,41 +1064,34 @@ function appraise(domain) {
     profile.form
   );
 
-  // ASCII control value anchors the appraisal. It is the maximum of the
-  // formula-driven base, a verified market comparable, or the exact brand
-  // scarcity floor when the root corresponds to a famous brand.
-  // For canonical transliterations of a brand, the control is capped at the
-  // exact ASCII brand value so the Unicode form never outranks the ASCII root.
-  let asciiControlValue = ascii.value;
-  if (brandScarcity) {
-    if (bs.isExact || recognizedForm) {
-      // Canonical (exact ASCII or recognized transliteration) brand forms anchor
-      // to the brand's exact ASCII scarcity value. The Unicode premium is applied
-      // on top of that control, so the Unicode name stays below the ASCII root.
-      asciiControlValue = brandScarcity.asciiValue;
-    } else {
-      asciiControlValue = Math.max(ascii.value, brandScarcity.asciiValue * 0.1);
-    }
-  }
-  asciiControlValue = Math.round(asciiControlValue);
+  // ASCII estimates are produced ONLY for ASCII domains, where the estimate
+  // is the appraisal itself — never as a comparison twin for Unicode names.
+  // A Unicode name is valued from its own factors alone; no ASCII control,
+  // folded-twin value, or share-of-control ratio is computed for it, so the
+  // output can never be read as pricing by brand or ASCII adjacency.
+  const ascii = profile.hasUnicode
+    ? { value: null, factors: null }
+    : estimateAsciiValue(profile.asciiRoot, profile.tld, profile.entry, rawDomain);
+  const asciiControlValue = profile.hasUnicode ? null : Math.round(ascii.value);
 
-  const premium = computeUnicodePremium(profile, asciiControlValue, brandScarcity);
+  const premium = computeUnicodePremium(profile);
   const unsafe = premium.unsafe === true;
   const tenant =
     !unsafe && recognizedForm
-      ? tenantRevenueValue(profile, brandScarcity, info)
-      : { value: 0, monthlyUsd: 0, occupancy: 0, brandMultiplier: 1, note: 'not eligible' };
+      ? tenantRevenueValue(profile, info)
+      : { value: 0, monthlyUsd: 0, occupancy: 0, note: 'not eligible' };
 
-  // Pure domain value. Unicode forms are valued from IDN-market fundamentals
-  // (small TLD base × bounded multiplier stack × TLD and liquidity discounts),
-  // then hard-capped by the ASCII control value and the absolute IDN ceiling.
-  // ASCII forms stand at their control value. Trademark proximity suppresses
-  // unrecognized brand-like forms.
+  // Pure domain value. Unicode forms are valued from meaning and demand
+  // fundamentals (small TLD base × bounded multiplier stack of attestation,
+  // restoration quality, development and industry demand × TLD and liquidity
+  // discounts), hard-capped only by the absolute IDN ceiling. ASCII forms
+  // stand at their estimated value. Deceptive brand-lookalike forms are
+  // suppressed; legitimate lexicon restorations are never brand-adjusted.
   let domainValue = profile.hasUnicode
     ? premium.value * tm.factor
     : asciiControlValue * tm.factor;
   if (profile.hasUnicode) {
-    domainValue = Math.min(domainValue, asciiControlValue, IDN_VALUE_CEILING_USD);
+    domainValue = Math.min(domainValue, IDN_VALUE_CEILING_USD);
   } else {
     domainValue = Math.min(domainValue, asciiControlValue);
   }
@@ -1172,14 +1103,15 @@ function appraise(domain) {
 
   // The public-facing Unicode appraisal is the pure domain value.
   const unicodeValue = domainValue;
-  const shareOfControl = asciiControlValue > 0 ? unicodeValue / asciiControlValue : 0;
+  const shareOfControl =
+    !profile.hasUnicode && asciiControlValue > 0 ? unicodeValue / asciiControlValue : null;
 
   const confidence = confidenceScore(profile);
   const range = valueRange(unicodeValue, confidence);
   const rec = recommendation(profile, unicodeValue, unsafe);
   const rating = liquidityRating(profile, unicodeValue);
 
-  const scarcityFactor = bs.canonicalValue > 0 || bs.exactValue > 0 ? bs : null;
+  const industry = profile.entry ? industryDemandFactor(profile.entry.id) : null;
 
   const result = {
     domain: rawDomain,
@@ -1212,15 +1144,31 @@ function appraise(domain) {
       unicodeValue,
       totalValue,
       range,
-      premiumMultiplier: Number(shareOfControl.toFixed(4)),
-      discount: Number((1 - shareOfControl).toFixed(4)),
-      brandScarcityValue: bs.exactValue || bs.canonicalValue || 0,
+      premiumMultiplier: shareOfControl === null ? null : Number(shareOfControl.toFixed(4)),
+      discount: shareOfControl === null ? null : Number((1 - shareOfControl).toFixed(4)),
       tenantRevenueValue: tenant.value,
       liquidityRating: rating,
       recommendation: rec,
       confidence: Number(confidence.toFixed(2)),
     },
-    factors: {
+    // Demand context is public (it is market data, not formula): which
+    // industry seats the name's meaning aligns with. The numeric factor
+    // breakdown — the algorithm itself — ships only under ?explain=1.
+    industryAlignment: industry
+      ? {
+          primary: industry.primary,
+          resonant: industry.resonant,
+          top: industry.top,
+        }
+      : null,
+    model: {
+      version: MODEL_VERSION,
+      dataVersion: DATA_VERSION,
+    },
+  };
+
+  if (options.explain === true) {
+    result.factors = {
       ascii: ascii.factors,
       unicode: premium.factors,
       unicodeSummary: profile.hasUnicode
@@ -1228,10 +1176,17 @@ function appraise(domain) {
             baseValue: premium.baseValue ?? 0,
             multiplierStack: premium.stack ?? 0,
             stackCapped: premium.stackCapped === true,
-            brandMultiplier: premium.brandMultiplier ?? 1,
             tldMultiplier: premium.tldMultiplier ?? 1,
             liquidityDiscount: premium.liquidityDiscount ?? IDN_LIQUIDITY_DISCOUNT,
-            shareOfControl: Number(shareOfControl.toFixed(4)),
+          }
+        : null,
+      industryDemand: industry
+        ? {
+            multiplier: industry.multiplier,
+            primary: industry.primary,
+            resonant: industry.resonant,
+            top: industry.top,
+            note: `${industry.primary} primary · ${industry.resonant} resonant industry seats`,
           }
         : null,
       trademark: tm.brand
@@ -1239,17 +1194,7 @@ function appraise(domain) {
             factor: tm.factor,
             name: tm.brand.name || tm.brand.id,
             matchType: tm.brand.matchType,
-            premium: tm.premium || false,
-          }
-        : null,
-      brandScarcity: scarcityFactor
-        ? {
-            tier: brandScarcity.tier,
-            value: scarcityFactor.exactValue || scarcityFactor.canonicalValue,
-            brand: brandScarcity.brand.name || brandScarcity.brand.id,
-            note: scarcityFactor.isExact
-              ? `exact ASCII brand scarcity (${brandScarcity.tier})`
-              : `canonical transliteration of ${brandScarcity.brand.name}`,
+            premium: false,
           }
         : null,
       tenantRevenue:
@@ -1258,19 +1203,17 @@ function appraise(domain) {
               value: tenant.value,
               monthlyUsd: tenant.monthlyUsd,
               occupancy: tenant.occupancy,
-              brandMultiplier: tenant.brandMultiplier,
               note: tenant.note,
             }
           : null,
-    },
-    model: {
-      version: MODEL_VERSION,
-      dataVersion: DATA_VERSION,
+    };
+    result.model = {
+      ...result.model,
       unicodeCeilingUsd: IDN_VALUE_CEILING_USD,
       multiplierStackCap: IDN_MULTIPLIER_STACK_CAP,
       liquidityDiscount: IDN_LIQUIDITY_DISCOUNT,
-    },
-  };
+    };
+  }
 
   return result;
 }

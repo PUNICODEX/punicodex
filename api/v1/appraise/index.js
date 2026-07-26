@@ -23,7 +23,9 @@ module.exports = createApiHandler(async (req, res) => {
     return;
   }
 
-  const result = appraise(params.q);
+  const result = appraise(params.q, {
+    explain: ['1', 'true', 'yes'].includes(String(req.query?.explain || '').toLowerCase()),
+  });
   if (result.error) {
     error(res, result.error, result.message, { status: 400 });
     return;

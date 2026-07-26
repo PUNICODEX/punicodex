@@ -635,6 +635,13 @@ Three GitHub Actions workflows in `.github/workflows/`:
   production persistence requires an external DB (Postgres deps are present).
 - `REDIS_URL` enables globally consistent Redis-backed rate limits;
   otherwise limiters fall back to per-process in-memory counters.
+- Root `sw.js` (registered from `js/main.js`) caches shell pages and assets.
+  It must **never intercept `/api/` or `/admin-portal/`** (admin/checkout
+  need live authenticated responses), and every `respondWith` path must
+  resolve to a real `Response` — a rejected or undefined path surfaces as
+  "Failed to convert value to 'Response'" and breaks the page's own fetches.
+  Bump the cache revision on any fix so broken workers flush. Guarded by
+  `test/service-worker.test.js`.
 - Operational docs: `DEPLOY.md`, `DNS-SETUP-GUIDE.txt`, `docs/runbooks/`
   (DDoS, failover, false-positive storm, model rollback, blocklist revert).
 
@@ -969,13 +976,25 @@ Core tables: `entries`, `breakdowns`, `entries_fts` (FTS5), `indexed_sites`,
 `/slots`), `pantheons`, `tiers`, `autocomplete`, `convert` (+ `/batch`),
 `appraise`, `authenticity`, `threat-feed`, `policy`, `canary`,
 `transparency-report`, `similarities`, `industry-patterns` (+ `/industries`,
-`/match`), `connections`,
-`cards`, `creatives`, `scholars`, `version`, `docs` (Swagger UI),
+`/match`), `connections`,`cards`, `creatives`, `scholars`, `version`, `docs` (Swagger UI),
 `openapi.json`.
 
 **`/api/v2`:** `search`, `names`, `sites`, `pantheons`, `tiers`, `convert`,
 `autocomplete`, `health`, `version`, `openapi.json`, and a `[[...slug]]`
 catch-all.
+
+**Appraisal contract (`appraise-3.0.0`):** valuations derive from meaning
+and demand only — lexicon attestation, tier, development, and industry
+demand from the pattern graph (`platform/api/industry-patterns.json`
+`byEntry`). No brand table, no brand multiplier, and **no ASCII comparison
+for Unicode names** (`asciiControlValue`/`premiumMultiplier`/`discount` are
+`null` for Unicode inputs; the ASCII estimate exists only for ASCII domains,
+where it *is* the appraisal). Trademark proximity appears solely as
+suppression (≤0.5) of deceptive unrecognized lookalikes. The default
+response is verdict-only; the full factor breakdown and model constants ship
+only with `?explain=1` (the `/appraise/` page fetches them behind "View the
+logic"). Methodology: `docs/appraisal-methodology.md`; tests:
+`test/appraise.test.js`.
 
 **Admin (require `x-admin-token`):** API-key management under
 `/api/admin/api-keys` (list/create/patch/revoke/unrevoke/usage), booking

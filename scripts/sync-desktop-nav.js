@@ -249,8 +249,8 @@ function syncPage(rel, { active, insertNav, chrome, replaceNav }) {
   if (!html.includes('/css/main.css')) {
     // Normalize component-CSS versions (immutable-cached URLs must change
     // when the files change), then ensure they're linked.
-    html = html.replace(/\/css\/nav-more\.css\?v=\d+/g, '/css/nav-more.css?v=2');
-    html = ensureCssLink(html, '/css/nav-more.css?v=2');
+    html = html.replace(/\/css\/nav-more\.css\?v=\d+/g, '/css/nav-more.css?v=3');
+    html = ensureCssLink(html, '/css/nav-more.css?v=3');
     if (html.includes('class="mobile-menu"')) html = ensureCssLink(html, '/css/mobile-menu.css?v=1');
   }
   if (!html.includes('/js/px-core.js')) {

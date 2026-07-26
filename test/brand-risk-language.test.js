@@ -99,6 +99,10 @@ const ALLOWED_FILES = new Set([
   'scripts/compare-zeus-aphrodite.js',
   // Documentation that discusses the risk itself.
   'docs/name-authenticity-plan.md',
+  // The advertising lease whose clauses are deliberate NEGATIONS ("not
+  // affiliated with, sponsored by, endorsed by…") — the disclaimer language
+  // itself, reviewed per policy and required for legal precision.
+  'terms/advertising/index.html',
 ]);
 
 function relative(file) {

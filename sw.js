@@ -1,11 +1,20 @@
 /**
  * PUNICODEX — Service Worker
  * Lightweight: precache shell pages, stale-while-revalidate for assets.
- * Cache-bust revision: v2-2026-07-15
+ * Cache-bust revision: v3-2026-07-26
+ *
+ * Hard rules (learned from production failures):
+ * - NEVER intercept /api/ or /admin-portal/ requests. Admin tooling and
+ *   customer checkout need live, authenticated responses; a service-worker
+ *   cache layer adds nothing and a rejected respondWith turns any hiccup
+ *   into a hard network error for the page.
+ * - respondWith must always resolve to a real Response. Any miss path that
+ *   can yield undefined produces "Failed to convert value to 'Response'"
+ *   and breaks the page's own fetch handling.
  */
 
-const SHELL_CACHE = 'punicodex-shell-v2';
-const ASSET_CACHE = 'punicodex-assets-v2';
+const SHELL_CACHE = 'punicodex-shell-v3';
+const ASSET_CACHE = 'punicodex-assets-v3';
 
 // Precache critical shell HTML pages only.
 // Versioned JS/CSS are fetched on demand and will update when their query
@@ -43,6 +52,16 @@ self.addEventListener('activate', (event) => {
   );
 });
 
+function offlineDocumentResponse() {
+  return new Response(
+    '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Offline — PuniCodex</title></head>' +
+      '<body style="background:#0a0a0c;color:#e8e4dc;font-family:Georgia,serif;display:grid;place-items:center;min-height:100vh;margin:0">' +
+      '<div style="text-align:center"><h1 style="color:#D4AF37">You are offline</h1>' +
+      '<p>PuniCodex could not reach the network. Check your connection and reload.</p></div></body></html>',
+    { status: 503, headers: { 'Content-Type': 'text/html; charset=utf-8' } }
+  );
+}
+
 self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
@@ -52,38 +71,48 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // HTML pages: network-first (always fresh content)
+  // API and admin traffic: never intercept — the browser handles these
+  // natively so auth, errors and streaming behave exactly as the server
+  // intends. (Returning here without respondWith hands control straight
+  // back to the network stack.)
+  if (url.pathname.startsWith('/api/') || url.pathname.startsWith('/admin-portal/')) {
+    return;
+  }
+
+  // HTML pages: network-first (always fresh content), with a guaranteed
+  // Response on every failure path.
   if (request.destination === 'document' || url.pathname.endsWith('.html')) {
     event.respondWith(
       fetch(request)
         .then(response => {
           const clone = response.clone();
-          caches.open(SHELL_CACHE).then(cache => cache.put(request, clone));
+          caches.open(SHELL_CACHE).then(cache => cache.put(request, clone)).catch(() => {});
           return response;
         })
-        .catch(() => caches.match(request).then(r => r || caches.match('/')))
+        .catch(() =>
+          caches
+            .match(request)
+            .then(r => r || caches.match('/'))
+            .then(r => r || offlineDocumentResponse())
+            .catch(() => offlineDocumentResponse())
+        )
     );
     return;
   }
 
-  // API responses: never serve stale — always go to network.
-  if (url.pathname.startsWith('/api/')) {
-    event.respondWith(fetch(request));
-    return;
-  }
-
-  // CSS/JS/Fonts/Images: stale-while-revalidate (instant, then update)
+  // CSS/JS/Fonts/Images: stale-while-revalidate (instant, then update),
+  // again with a guaranteed Response-shaped outcome.
   event.respondWith(
     caches.match(request).then(cached => {
       const fetchPromise = fetch(request)
         .then(networkResponse => {
           if (networkResponse && networkResponse.ok) {
             const clone = networkResponse.clone();
-            caches.open(ASSET_CACHE).then(cache => cache.put(request, clone));
+            caches.open(ASSET_CACHE).then(cache => cache.put(request, clone)).catch(() => {});
           }
           return networkResponse;
         })
-        .catch(() => cached);
+        .catch(() => cached || Promise.reject(new Error('offline')));
 
       return cached || fetchPromise;
     })

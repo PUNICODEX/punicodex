@@ -32,8 +32,8 @@
 
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
 
-    <link rel="preload" href="/css/main.css?v=perf12" as="style">
-    <link rel="stylesheet" href="/css/main.css?v=perf12">
+    <link rel="preload" href="/css/main.css?v=perf22" as="style">
+    <link rel="stylesheet" href="/css/main.css?v=perf22">
     <link rel="stylesheet" href="/css/punicodex-tokens.css">
     <link rel="stylesheet" href="/css/brand-overrides.css">
     <link rel="stylesheet" href="/css/pc-fx.css?v=1">
@@ -187,7 +187,7 @@
                 <p class="hero-eyebrow reveal-up">PuniCodex Appraisal Engine</p>
                 <h1 class="pc-display reveal-up">Unicode Domain Appraiser</h1>
                 <p class="body-lg reveal-up">
-                    The first valuation model built for Unicode / IDN domain names. It anchors every name to its ASCII control value, then values the Unicode form at 10% of that anchor and applies transparent percentage boosts for canonical form, tier, scholarly sources, brand scarcity, safety, and TLD reality. The Unicode domain itself is never valued above its ASCII root; tenant revenue is reported separately.
+                    The first valuation model built for Unicode / IDN domain names. It values what a name <em>means</em>: restoration quality, scholarly attestation, development depth, and real-world industry demand from the PuniCodex pattern graph — the industries a name's meaning aligns with are its end-user market. Tenant revenue from live sponsorship inventory is reported separately. No factor in this engine reads, references, or derives value from any third-party brand; the folded ASCII twin is shown for market context only.
                 </p>
             </div>
             <div class="pc-fx-stage pc-fx-balance-stage reveal-up" role="img" aria-label="The Golden Balance — pans level, the restored mark as its finial">
@@ -226,37 +226,41 @@
                 </div>
             </div>
             <div class="result-meta">
-                <div class="meta-pill"><span class="label">ASCII control</span><span class="value" id="res-ascii"></span></div>
-                <div class="meta-pill"><span class="label">Effective rate</span><span class="value" id="res-rate"></span></div>
-                <div class="meta-pill" id="res-boost-pill"><span class="label">Boost</span><span class="value" id="res-boost"></span></div>
+                <div class="meta-pill" id="res-ascii-pill"><span class="label">ASCII estimate</span><span class="value" id="res-ascii"></span></div>
                 <div class="meta-pill"><span class="label">Liquidity</span><span class="value" id="res-liquidity"></span></div>
                 <div class="meta-pill"><span class="label">Recommendation</span><span class="value" id="res-recommendation"></span></div>
                 <div class="meta-pill"><span class="label">Confidence</span><span class="value" id="res-confidence"></span></div>
                 <div class="meta-pill"><span class="label">Safety</span><span class="value" id="res-safety"></span></div>
-                <div class="meta-pill" id="res-brand-scarcity-pill" style="display:none;"><span class="label">Brand scarcity</span><span class="value" id="res-brand-scarcity"></span></div>
+                <div class="meta-pill" id="res-industry-pill" style="display:none;"><span class="label">Industry demand</span><span class="value" id="res-industry"></span></div>
                 <div class="meta-pill" id="res-tenant-pill" style="display:none;"><span class="label">Tenant revenue</span><span class="value" id="res-tenant"></span></div>
             </div>
             <div id="res-lexicon" class="meta-pill" style="margin-bottom:1rem;display:none;">
                 <span class="label">Lexicon match</span>
                 <span class="value" id="res-lexicon-text"></span>
             </div>
-            <div class="factors">
-                <h3>ASCII control factors</h3>
-                <ul class="factor-list" id="ascii-factors"></ul>
-                <h3>Unicode premium factors</h3>
+            <div id="res-industries" class="meta-pill" style="margin-bottom:1rem;display:none;">
+                <span class="label">Aligned industries</span>
+                <span class="value" id="res-industries-text"></span>
+            </div>
+            <div style="text-align:center;margin-top:1.5rem;">
+                <button type="button" id="logic-btn" style="display:none;background:none;border:1px solid rgba(212,175,55,0.45);color:#d4af37;border-radius:8px;padding:0.7rem 1.6rem;font-size:0.9rem;letter-spacing:0.06em;cursor:pointer;">View the logic</button>
+            </div>
+            <div class="factors" id="factors-panel" style="display:none;">
+                <h3 id="unicode-factors-heading">Restoration &amp; demand factors</h3>
                 <ul class="factor-list" id="unicode-factors"></ul>
-                <h3 id="trademark-factor-heading" style="display:none;">Trademark / brand</h3>
+                <h3 id="ascii-factors-heading" style="display:none;">ASCII estimate factors</h3>
+                <ul class="factor-list" id="ascii-factors" style="display:none;"></ul>
+                <h3 id="trademark-factor-heading" style="display:none;">Lookalike suppression</h3>
                 <ul class="factor-list" id="trademark-factors" style="display:none;"></ul>
-                <h3 id="brand-scarcity-factor-heading" style="display:none;">Brand scarcity</h3>
-                <ul class="factor-list" id="brand-scarcity-factors" style="display:none;"></ul>
                 <h3 id="tenant-factor-heading" style="display:none;">Tenant revenue</h3>
                 <ul class="factor-list" id="tenant-factors" style="display:none;"></ul>
+                <p style="font-size:0.8rem;opacity:0.55;margin-top:1rem;">Factor math is computed server-side and fetched on request. Valuations derive from the name's meaning, restoration quality and measured industry demand — never from any third-party brand.</p>
             </div>
 
         </div>
 
         <p class="disclaimer">
-            Appraisals are algorithmic estimates for informational purposes only. They do not constitute financial or investment advice. Realized sale prices depend on buyer, seller, venue, and market conditions.
+            Appraisals are algorithmic estimates for informational purposes only. They do not constitute financial or investment advice. Realized sale prices depend on buyer, seller, venue, and market conditions. Every valuation derives from the name's linguistic restoration, scholarly attestation, development depth and measured industry demand — the model reads no third-party brand or trade mark data, and Unicode names are never benchmarked against an ASCII twin.
         </p>
     </main>
 
@@ -327,15 +331,6 @@
                 return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(n);
             }
 
-            function fmtMultiplier(n) {
-                return `${(n * 100).toFixed(1)}%`;
-            }
-
-            function fmtBoost(n) {
-                const sign = n > 0 ? '+' : '';
-                return `${sign}${(n * 100).toFixed(0)}%`;
-            }
-
             function showError(msg) {
                 errorBox.textContent = msg;
                 errorBox.style.display = 'block';
@@ -384,8 +379,21 @@
                 listEl.appendChild(li);
             }
 
+            let lastQuery = null;
+            let logicLoaded = false;
+
+            function hideLogic() {
+                logicLoaded = false;
+                document.getElementById('factors-panel').style.display = 'none';
+                const btn = document.getElementById('logic-btn');
+                btn.style.display = 'none';
+                btn.textContent = 'View the logic';
+                btn.disabled = false;
+            }
+
             async function appraise(domain) {
                 clearError();
+                hideLogic();
                 btn.disabled = true;
                 btn.textContent = 'Appraising…';
                 try {
@@ -395,6 +403,7 @@
                         throw new Error(json.error?.message || 'Appraisal failed');
                     }
                     const d = json.data;
+                    lastQuery = domain;
                     document.getElementById('res-domain').textContent = d.displayDomain || d.domain;
                     document.getElementById('res-punycode').textContent = d.punycode ? `punycode: ${d.punycode}` : '';
                     document.getElementById('res-value').textContent = fmtMoney(d.appraisal.unicodeValue);
@@ -406,34 +415,39 @@
                     } else {
                         totalEl.style.display = 'none';
                     }
-                    document.getElementById('res-ascii').textContent = fmtMoney(d.appraisal.asciiControlValue);
-                    document.getElementById('res-rate').textContent = fmtMultiplier(d.appraisal.premiumMultiplier);
-                    const summary = d.factors?.unicodeSummary;
-                    document.getElementById('res-boost').textContent = summary
-                        ? fmtBoost(summary.boost)
-                        : '—';
+                    // The ASCII estimate pill appears only for ASCII domains,
+                    // where the estimate IS the appraisal. Unicode names are
+                    // valued on their own factors — no twin comparison.
+                    document.getElementById('res-ascii-pill').style.display = d.hasUnicode ? 'none' : 'block';
+                    if (!d.hasUnicode) {
+                        document.getElementById('res-ascii').textContent = fmtMoney(d.appraisal.asciiControlValue);
+                    }
                     document.getElementById('res-liquidity').textContent = d.appraisal.liquidityRating;
                     document.getElementById('res-recommendation').textContent = d.appraisal.recommendation;
                     document.getElementById('res-confidence').textContent = `${(d.appraisal.confidence * 100).toFixed(0)}%`;
                     document.getElementById('res-safety').textContent = d.safety.verdict;
 
-                    const brandScarcityValue = d.appraisal.brandScarcityValue || 0;
                     const tenantRevenueValue = d.appraisal.tenantRevenueValue || 0;
-
-                    const brandPill = document.getElementById('res-brand-scarcity-pill');
-                    if (brandScarcityValue > 0) {
-                        brandPill.style.display = 'block';
-                        document.getElementById('res-brand-scarcity').textContent = fmtMoney(brandScarcityValue);
-                    } else {
-                        brandPill.style.display = 'none';
-                    }
-
                     const tenantPill = document.getElementById('res-tenant-pill');
                     if (tenantRevenueValue > 0) {
                         tenantPill.style.display = 'block';
                         document.getElementById('res-tenant').textContent = fmtMoney(tenantRevenueValue);
                     } else {
                         tenantPill.style.display = 'none';
+                    }
+
+                    const alignment = d.industryAlignment;
+                    const industryPill = document.getElementById('res-industry-pill');
+                    const industriesBox = document.getElementById('res-industries');
+                    if (alignment && (alignment.primary || alignment.resonant)) {
+                        industryPill.style.display = 'block';
+                        document.getElementById('res-industry').textContent =
+                            `${alignment.primary} primary · ${alignment.resonant} resonant`;
+                        industriesBox.style.display = 'block';
+                        document.getElementById('res-industries-text').textContent = alignment.top.join(' · ');
+                    } else {
+                        industryPill.style.display = 'none';
+                        industriesBox.style.display = 'none';
                     }
 
                     const lexiconEl = document.getElementById('res-lexicon');
@@ -444,21 +458,7 @@
                         lexiconEl.style.display = 'none';
                     }
 
-                    renderFactors(document.getElementById('ascii-factors'), d.factors?.ascii || []);
-                    renderFactors(document.getElementById('unicode-factors'), d.factors?.unicode || [], true);
-
-                    const tm = d.factors?.trademark;
-                    showSection('trademark-factor-heading', 'trademark-factors', !!tm);
-                    renderObjectFactor(document.getElementById('trademark-factors'), tm);
-
-                    const bs = d.factors?.brandScarcity;
-                    showSection('brand-scarcity-factor-heading', 'brand-scarcity-factors', !!bs);
-                    renderObjectFactor(document.getElementById('brand-scarcity-factors'), bs);
-
-                    const tr = d.factors?.tenantRevenue;
-                    showSection('tenant-factor-heading', 'tenant-factors', !!tr);
-                    renderObjectFactor(document.getElementById('tenant-factors'), tr);
-
+                    document.getElementById('logic-btn').style.display = 'inline-block';
                     card.classList.add('active');
                 } catch (err) {
                     showError(err.message || 'Could not fetch appraisal. Please try again.');
@@ -467,6 +467,59 @@
                     btn.textContent = 'Appraise';
                 }
             }
+
+            async function showLogic() {
+                if (!lastQuery || logicLoaded) {
+                    document.getElementById('factors-panel').style.display = logicLoaded ? 'block' : 'none';
+                    return;
+                }
+                const logicBtn = document.getElementById('logic-btn');
+                logicBtn.disabled = true;
+                logicBtn.textContent = 'Loading…';
+                try {
+                    const res = await fetch(`/api/v1/appraise/?q=${encodeURIComponent(lastQuery)}&explain=1`);
+                    const json = await res.json();
+                    if (!json.success || json.error) {
+                        throw new Error(json.error?.message || 'Could not load the logic');
+                    }
+                    const d = json.data;
+                    const uf = d.factors?.unicode || [];
+                    showSection('unicode-factors-heading', 'unicode-factors', uf.length > 0);
+                    renderFactors(document.getElementById('unicode-factors'), uf, true);
+
+                    const af = d.factors?.ascii || [];
+                    showSection('ascii-factors-heading', 'ascii-factors', af.length > 0);
+                    renderFactors(document.getElementById('ascii-factors'), af);
+
+                    const tm = d.factors?.trademark;
+                    showSection('trademark-factor-heading', 'trademark-factors', !!tm);
+                    renderObjectFactor(document.getElementById('trademark-factors'), tm);
+
+                    const tr = d.factors?.tenantRevenue;
+                    showSection('tenant-factor-heading', 'tenant-factors', !!tr);
+                    renderObjectFactor(document.getElementById('tenant-factors'), tr);
+
+                    logicLoaded = true;
+                    document.getElementById('factors-panel').style.display = 'block';
+                    logicBtn.textContent = 'Hide the logic';
+                } catch (err) {
+                    logicBtn.textContent = 'View the logic';
+                    showError(err.message || 'Could not load the logic.');
+                } finally {
+                    logicBtn.disabled = false;
+                }
+            }
+
+            document.getElementById('logic-btn').addEventListener('click', () => {
+                if (logicLoaded) {
+                    const panel = document.getElementById('factors-panel');
+                    const showing = panel.style.display !== 'none';
+                    panel.style.display = showing ? 'none' : 'block';
+                    document.getElementById('logic-btn').textContent = showing ? 'View the logic' : 'Hide the logic';
+                } else {
+                    showLogic();
+                }
+            });
 
             form.addEventListener('submit', (e) => {
                 e.preventDefault();

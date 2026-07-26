@@ -256,7 +256,7 @@ ${
 <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
 <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
 <link rel="stylesheet" href="/assets/fonts/fonts.css">
-<link rel="stylesheet" href="/css/main.css?v=perf12">
+<link rel="stylesheet" href="/css/main.css?v=perf22">
 <style>${BASE_CSS}${css}</style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1">
