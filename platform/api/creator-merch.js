@@ -157,8 +157,16 @@ function getCreatorProductByAssetId(assetId) {
 
 function listLiveCreatorProducts() {
   const db = getDb();
+  // The join surfaces the artwork's inspiration entry so the storefront can
+  // place a creator edition inside the temple collection it depicts.
   return db
-    .prepare("SELECT * FROM creator_products WHERE status = 'live' ORDER BY created_at DESC")
+    .prepare(
+      `SELECT cp.*, ca.inspiration_entry_id
+       FROM creator_products cp
+       LEFT JOIN creative_assets ca ON ca.id = cp.creative_asset_id
+       WHERE cp.status = 'live'
+       ORDER BY cp.created_at DESC`
+    )
     .all();
 }
 

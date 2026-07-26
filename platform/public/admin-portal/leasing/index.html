@@ -34,6 +34,7 @@
             <button type="button" class="btn btn-secondary btn-sm" role="tab" id="tabbtn-tenants" data-tab="tenants" aria-selected="false" aria-controls="tab-tenants">Tenants</button>
             <button type="button" class="btn btn-secondary btn-sm" role="tab" id="tabbtn-patrons" data-tab="patrons" aria-selected="false" aria-controls="tab-patrons">Patrons</button>
             <button type="button" class="btn btn-secondary btn-sm" role="tab" id="tabbtn-discounts" data-tab="discounts" aria-selected="false" aria-controls="tab-discounts">Discounts</button>
+            <button type="button" class="btn btn-secondary btn-sm" role="tab" id="tabbtn-orders" data-tab="orders" aria-selected="false" aria-controls="tab-orders">Store Orders</button>
         </div>
 
         <!-- ═══ Bookings ═══ -->
@@ -196,7 +197,9 @@
                     </div>
                     <div class="field">
                         <label for="dc-applies-to">Temple</label>
-                        <input type="text" id="dc-applies-to" placeholder="all (or e.g. zeus)">
+                        <select id="dc-applies-to">
+                            <option value="all">All temples</option>
+                        </select>
                     </div>
                     <div class="field">
                         <label for="dc-max-uses">Max uses (optional)</label>
@@ -231,6 +234,47 @@
                     <button type="button" class="btn btn-secondary btn-sm" id="discount-prev">← Previous</button>
                     <span class="field-hint" id="discount-page-label"></span>
                     <button type="button" class="btn btn-secondary btn-sm" id="discount-next">Next →</button>
+                </div>
+            </section>
+        </div>
+        <!-- ═══ Store Orders ═══ -->
+        <div id="tab-orders" role="tabpanel" aria-labelledby="tabbtn-orders" hidden>
+            <section aria-label="Store order statistics">
+                <div class="stat-grid" id="order-stats">
+                    <div class="state-block">Loading store stats…</div>
+                </div>
+            </section>
+
+            <section class="panel" aria-label="Store orders">
+                <div class="panel-head">
+                    <h2 class="panel-title">Reliquary Orders</h2>
+                    <span class="field-hint" id="order-total"></span>
+                </div>
+                <div class="portal-form-row" style="margin-bottom:0.75rem;">
+                    <div class="field">
+                        <label for="order-filter-status">Status</label>
+                        <select id="order-filter-status">
+                            <option value="">All statuses</option>
+                            <option value="pending_payment">Pending payment</option>
+                            <option value="paid">Paid</option>
+                            <option value="fulfillment_queued">Fulfillment queued</option>
+                            <option value="sent_to_fulfillment">Sent to fulfillment</option>
+                            <option value="fulfillment_failed">Fulfillment failed</option>
+                            <option value="shipped">Shipped</option>
+                            <option value="delivered">Delivered</option>
+                            <option value="cancelled">Cancelled</option>
+                            <option value="refunded">Refunded</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-secondary btn-sm" id="order-filter-apply">Apply</button>
+                </div>
+                <div id="order-table">
+                    <div class="state-block">Loading store orders…</div>
+                </div>
+                <div class="portal-form-row" id="order-pager" style="margin-top:1rem;" hidden>
+                    <button type="button" class="btn btn-secondary btn-sm" id="order-prev">← Previous</button>
+                    <span class="field-hint" id="order-page-label"></span>
+                    <button type="button" class="btn btn-secondary btn-sm" id="order-next">Next →</button>
                 </div>
             </section>
         </div>
@@ -930,9 +974,159 @@
             }
         }
 
+        // ── Store Orders (Reliquary merch) ──────────────────
+
+        var orderState = { offset: 0, status: '' };
+        var ordersLoaded = false;
+
+        function orderStatusBadge(status) {
+            var gold = ['sent_to_fulfillment', 'shipped', 'delivered'].indexOf(status) !== -1;
+            var failed = status === 'fulfillment_failed';
+            var cls = failed ? 'badge badge--danger' : gold ? 'badge badge--gold' : 'badge';
+            return '<span class="' + cls + '">' + Portal.escapeHtml(String(status || '').replace(/_/g, ' ')) + '</span>';
+        }
+
+        function renderOrderStats(s) {
+            document.getElementById('order-stats').innerHTML =
+                statCard(dcMoney(s.revenueCents || 0), 'Revenue · all time', Portal.fmtNumber(s.totalOrders || 0) + ' paid orders') +
+                statCard(dcMoney(s.revenue30dCents || 0), 'Revenue · 30d', Portal.fmtNumber(s.orders30d || 0) + ' paid orders') +
+                statCard(Portal.fmtNumber((s.byStatus && s.byStatus.fulfillment_failed && s.byStatus.fulfillment_failed.count) || 0), 'Fulfillment Failed', 'retry from the table below') +
+                statCard(Portal.fmtNumber((s.byStatus && s.byStatus.sent_to_fulfillment && s.byStatus.sent_to_fulfillment.count) || 0), 'At Printful', '');
+        }
+
+        function renderOrders(data) {
+            var wrap = document.getElementById('order-table');
+            var items = data.items || [];
+            document.getElementById('order-total').textContent = Portal.fmtNumber(data.total) + ' orders';
+            if (!items.length) {
+                wrap.innerHTML = '<div class="state-block">No store orders yet.</div>';
+            } else {
+                var rows = items
+                    .map(function (o) {
+                        var actions = [];
+                        actions.push(
+                            '<button type="button" class="btn btn-sm btn-secondary" data-order-action="detail" data-id="' + o.id + '">Detail</button>'
+                        );
+                        if (o.status === 'fulfillment_failed' && Portal.can('leasing')) {
+                            actions.push(
+                                '<button type="button" class="btn btn-sm btn-primary" data-order-action="retry" data-id="' + o.id + '">Retry fulfillment</button>'
+                            );
+                        }
+                        return (
+                            '<tr>' +
+                            '<td><div class="cell-title">' + Portal.escapeHtml(o.order_ref) + '</div>' +
+                            '<div class="cell-sub">' + Portal.escapeHtml(Portal.fmtDateTime(o.created_at)) + '</div></td>' +
+                            '<td><div class="cell-title">' + Portal.escapeHtml(o.product_name) + '</div>' +
+                            '<div class="cell-sub">' + Portal.escapeHtml(o.variant_label || 'One size') + ' × ' + o.quantity + '</div></td>' +
+                            '<td>' + dcMoney(o.gross_cents) + '</td>' +
+                            '<td>' + orderStatusBadge(o.status) + '</td>' +
+                            '<td>' + (o.printful_order_id ? '<span class="cell-sub">#' + Portal.escapeHtml(String(o.printful_order_id)) + '</span>' : '<span class="cell-sub">—</span>') + '</td>' +
+                            '<td><div class="cell-actions">' + actions.join('') + '</div></td>' +
+                            '</tr>' +
+                            '<tr data-order-detail-for="' + o.id + '" hidden>' +
+                            '<td colspan="6"><div class="state-block">Loading order…</div></td>' +
+                            '</tr>'
+                        );
+                    })
+                    .join('');
+                wrap.innerHTML =
+                    '<div class="table-wrap"><table class="portal-table">' +
+                    '<thead><tr><th>Order</th><th>Product</th><th>Amount</th><th>Status</th><th>Printful</th><th>Actions</th></tr></thead>' +
+                    '<tbody>' + rows + '</tbody></table></div>';
+            }
+            updatePager('order', data, items.length);
+        }
+
+        function fetchOrders() {
+            var params = new URLSearchParams();
+            if (orderState.status) params.set('status', orderState.status);
+            params.set('limit', String(PAGE_SIZE));
+            params.set('offset', String(orderState.offset));
+            return Portal.api('/api/admin/portal/store-orders/?' + params.toString());
+        }
+
+        async function loadOrders(promise) {
+            document.getElementById('order-table').innerHTML = '<div class="state-block">Loading store orders…</div>';
+            try {
+                var data = await (promise || fetchOrders());
+                renderOrderStats(data.stats || {});
+                renderOrders(data);
+            } catch (err) {
+                document.getElementById('order-stats').innerHTML = '<div class="state-block error">' + Portal.escapeHtml(err.message) + '</div>';
+                document.getElementById('order-table').innerHTML = '<div class="state-block error">' + Portal.escapeHtml(err.message) + '</div>';
+            }
+        }
+
+        function formatAddress(raw) {
+            if (!raw) return '—';
+            try {
+                var a = typeof raw === 'string' ? JSON.parse(raw) : raw;
+                return [a.line1, a.line2, a.city, a.state, a.postal_code, a.country]
+                    .filter(Boolean)
+                    .join(', ');
+            } catch (e) {
+                return String(raw);
+            }
+        }
+
+        async function toggleOrderDetail(id) {
+            var row = document.querySelector('tr[data-order-detail-for="' + id + '"]');
+            if (!row) return;
+            if (!row.hidden) {
+                row.hidden = true;
+                return;
+            }
+            row.hidden = false;
+            var cell = row.querySelector('td');
+            try {
+                var data = await Portal.api('/api/admin/portal/store-orders/' + id + '/');
+                var o = data.order;
+                var lines = [
+                    ['Customer', o.customer_email || '—'],
+                    ['Ship to', (o.shipping_name ? o.shipping_name + ' — ' : '') + formatAddress(o.shipping_address)],
+                    ['Unit price', dcMoney(o.unit_price_cents) + ' × ' + o.quantity + ' = ' + dcMoney(o.gross_cents)],
+                    ['Stripe session', o.stripe_session_id || '—'],
+                    ['Printful order', o.printful_order_id ? '#' + o.printful_order_id + ' (' + (o.printful_status || '—') + ')' : '—'],
+                    ['Tracking', o.tracking_url ? o.tracking_url + (o.carrier ? ' via ' + o.carrier : '') : '—'],
+                    ['Updated', Portal.fmtDateTime(o.updated_at)],
+                ];
+                if (o.error) lines.push(['Last error', o.error]);
+                cell.innerHTML =
+                    '<div class="table-wrap"><table class="portal-table"><tbody>' +
+                    lines
+                        .map(function (l) {
+                            return (
+                                '<tr><th style="text-align:left;white-space:nowrap;">' + Portal.escapeHtml(l[0]) + '</th>' +
+                                '<td>' + Portal.escapeHtml(l[1]) + '</td></tr>'
+                            );
+                        })
+                        .join('') +
+                    '</tbody></table></div>';
+            } catch (err) {
+                cell.innerHTML = '<div class="state-block error">' + Portal.escapeHtml(err.message) + '</div>';
+            }
+        }
+
+        async function orderAction(id, action) {
+            if (action === 'detail') {
+                toggleOrderDetail(id);
+                return;
+            }
+            if (action === 'retry') {
+                if (!window.confirm('Retry fulfillment for this order? Safe: an order already created at Printful is recovered, never duplicated.')) return;
+                try {
+                    var res = await Portal.api('/api/admin/portal/store-orders/' + id + '/retry-fulfillment/', { method: 'POST' });
+                    Portal.toast('Order now ' + String(res.order.status).replace(/_/g, ' '), 'success');
+                    loadOrders();
+                } catch (err) {
+                    Portal.toast('Retry failed: ' + err.message, 'error');
+                }
+            }
+        }
+
         // ── Tabs ──────────────────────────────────────────────
 
-        var TABS = ['bookings', 'tenants', 'patrons', 'discounts'];
+        var TABS = ['bookings', 'tenants', 'patrons', 'discounts', 'orders'];
 
         function showTab(name) {
             if (TABS.indexOf(name) === -1) name = 'bookings';
@@ -961,7 +1155,32 @@
             }
             if (name === 'discounts' && !discountsLoaded) {
                 discountsLoaded = true;
+                populateDcTemples();
                 loadDiscounts();
+            }
+            if (name === 'orders' && !ordersLoaded) {
+                ordersLoaded = true;
+                loadOrders();
+            }
+        }
+
+        // Populate the per-temple target selector from the public names API so a
+        // code can never be aimed at a mistyped temple id.
+        async function populateDcTemples() {
+            var sel = document.getElementById('dc-applies-to');
+            if (!sel || sel.getAttribute('data-populated')) return;
+            sel.setAttribute('data-populated', '1');
+            try {
+                var res = await Portal.api('/api/v1/names/?limit=300');
+                var names = (res && res.data && res.data.names) || (res && res.names) || [];
+                names.forEach(function (n) {
+                    var opt = document.createElement('option');
+                    opt.value = n.id;
+                    opt.textContent = (n.unicode || n.ascii || n.id) + ' (' + n.id + ')';
+                    sel.appendChild(opt);
+                });
+            } catch (err) {
+                // Leave the All-temples option alone if the directory is unreachable.
             }
         }
 
@@ -1034,6 +1253,18 @@
                 var btn = e.target.closest('button[data-dc-action]');
                 if (!btn) return;
                 discountAction(btn.getAttribute('data-id'), btn.getAttribute('data-dc-action'));
+            });
+
+            document.getElementById('order-filter-apply').addEventListener('click', function () {
+                orderState.status = document.getElementById('order-filter-status').value;
+                orderState.offset = 0;
+                loadOrders();
+            });
+            bindPager('order', orderState, loadOrders);
+            document.getElementById('order-table').addEventListener('click', function (e) {
+                var btn = e.target.closest('button[data-order-action]');
+                if (!btn) return;
+                orderAction(btn.getAttribute('data-id'), btn.getAttribute('data-order-action'));
             });
 
             var initial = 'bookings';

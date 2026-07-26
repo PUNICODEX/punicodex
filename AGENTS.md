@@ -870,8 +870,10 @@ notebook) plus an 8-item PuniCodex house line.
 
 - `scripts/sync-printful-products.js` — creates/updates Printful sync
   products; resumable checkpoints; `--refresh` to update files.
-- `scripts/backfill-printful-variants.js` — per-size sync-variant maps
-  (`printfulVariants`) needed for ordering.
+- `scripts/backfill-printful-variants.js` — per-variant sync-variant maps
+  (`printfulVariants`, colour + size labels) needed for ordering.
+- `scripts/build-variant-pricing.js` — per-variant retail pricing
+  (`variantPricing`) from Printful size deltas, margin preserved.
 - `scripts/generate-printful-mockups.js` — renders product mockups via
   the mockup generator, downloads them into `.masters/mockups/`, and
   writes `mockupImage` back into the catalog (store cards prefer mockups,
@@ -885,9 +887,18 @@ for creator merch, whose 50/50 royalty ledger settles in
 `package_shipped` / `order_failed` / `order_canceled` and emails tracking.
 Order state: `store_orders` table (`platform/db/migrate-store-orders.js`).
 Services: `platform/api/store-orders.js`, `store-fulfillment.js`,
-`printful-orders.js`. Tests: `test/store-orders.test.js`,
+`printful-orders.js`. The Printful client self-heals the
+created-but-not-recorded crash window (`GET /orders/@{external_id}` +
+confirm), so admin retries never duplicate an order. Admin visibility lives
+in the portal's Leasing → Store Orders tab (`GET /api/admin/portal/store-orders/`,
+`GET …/:id/`, `POST …/:id/retry-fulfillment/` — retry accepts only
+`fulfillment_failed` rows). Creator editions carry their temple linkage
+(`creative_assets.inspiration_entry_id`) through `/api/store/products`, which
+the collection pages hydrate into the Creator Editions band (honest empty
+state when a temple has none). Tests: `test/store-orders.test.js`,
 `store-checkout.test.js`, `store-webhook.test.js`,
-`printful-webhook.test.js`, `store-structure.test.js`.
+`printful-webhook.test.js`, `store-structure.test.js`,
+`portal-store-orders.test.js`.
 Docs: `docs/pod-integration.md`, `docs/creator-merch.md`.
 
 ---

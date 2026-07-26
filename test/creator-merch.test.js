@@ -303,6 +303,9 @@ async function runTests() {
       name: 'Creative Student',
       university: 'Load Test Academy',
     });
+    // The artwork's inspiration entry surfaces as the temple linkage so the
+    // collection page can place creator editions inside the right temple.
+    assert.strictEqual(storeProducts[0].temple, 'nike');
     console.log('  ✓ store endpoint returns the live product with the creator badge payload');
 
     // Only the creator can opt in; a reviewer session is refused.
@@ -321,6 +324,9 @@ async function runTests() {
     assert.strictEqual(secondProduct.status, 'live');
     storeProducts = fetchStoreProducts();
     assert.strictEqual(storeProducts.length, 2, 'store now lists both consented works');
+    const plainListing = storeProducts.find((p) => p.id === `creator-${secondProduct.id}`);
+    assert.ok(plainListing, 'opted-in product present in the store listing');
+    assert.strictEqual(plainListing.temple, null, 'no inspiration entry → no temple linkage');
     console.log('  ✓ creator opt-in re-lists an approved asset; other roles are refused');
 
     // Withdrawal revokes consent and pulls the product from the store.

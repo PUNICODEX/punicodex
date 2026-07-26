@@ -208,6 +208,16 @@ a:hover{color:var(--gold-bright)}
 .story h3{font-size:.95rem;margin-bottom:.5rem}
 .story li{color:var(--dim);font-size:.92rem;margin:.25rem 0;list-style:none}
 .story li::before{content:'◆ ';color:var(--gold);font-size:.6rem;vertical-align:middle}
+.section-head{padding:2.2rem 0 1rem;border-bottom:1px solid var(--line)}
+.section-head h2{font-size:1.45rem;margin-bottom:.3rem}
+.section-head p{color:var(--dim);max-width:64ch;font-size:.95rem}
+.group-head{display:flex;align-items:baseline;gap:.7rem;padding:1.7rem 0 .1rem}
+.group-head h3{font-size:1.02rem}
+.group-head .count{color:var(--dim);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase}
+.grid--group{padding:.9rem 0 0}
+.creator-editions{padding:2.5rem 0 1.5rem}
+.ce-empty{border:1px dashed var(--line);border-radius:12px;padding:1.6rem;color:var(--dim);text-align:center;font-size:.92rem;line-height:1.8}
+.ce-by{font-size:.74rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase;margin-top:.2rem}
 @media(max-width:820px){
   .hero{grid-template-columns:1fr;text-align:center}
   .hero img{max-width:260px;margin:0 auto}
@@ -345,15 +355,23 @@ ${footerHtml()}
 }
 
 // ─── Collection page ───
+// Curated kind groups give the collection structure. A future product kind
+// joins an existing group or lands in "More from the Collection" — a fresh
+// batch is a data change, never a redesign.
+const KIND_GROUPS = [
+  { label: 'Wearables', kinds: ['tee', 'hoodie', 'crewneck', 'cap', 'tote'] },
+  { label: 'Art & Prints', kinds: ['print', 'canvas'] },
+  { label: 'Relics & Objects', kinds: ['mug', 'tumbler', 'sticker', 'pin', 'notebook', 'phonecase'] },
+];
+
 function renderCollection(id, products) {
   const meta = templeMeta(id);
   const sorted = products
     .slice()
     .sort((a, b) => KIND_ORDER.indexOf(a.id.split('-').pop()) - KIND_ORDER.indexOf(b.id.split('-').pop()));
-  const cards = sorted
-    .map((p) => {
-      const kind = p.id.split('-').pop();
-      return `<a class="card" href="/store/${id}/${kind}/">
+  const cardHtml = (p) => {
+    const kind = p.id.split('-').pop();
+    return `<a class="card" href="/store/${id}/${kind}/">
   <div class="imgbox"><img src="${esc(cardImage(p, meta))}" alt="${esc(p.name)}" loading="lazy"></div>
   <div class="body">
     <div class="sub">${esc(kindLabel(kind))}</div>
@@ -361,7 +379,25 @@ function renderCollection(id, products) {
     <div class="price">${money(p.price)}</div>
   </div>
 </a>`;
-    })
+  };
+
+  const groups = [];
+  const claimed = new Set();
+  for (const g of KIND_GROUPS) {
+    const members = sorted.filter((p) => g.kinds.includes(p.id.split('-').pop()));
+    for (const p of members) claimed.add(p.id);
+    if (members.length) groups.push({ label: g.label, members });
+  }
+  const rest = sorted.filter((p) => !claimed.has(p.id));
+  if (rest.length) groups.push({ label: 'More from the Collection', members: rest });
+
+  const groupsHtml = groups
+    .map(
+      (g) => `  <div class="group-head"><h3>${esc(g.label)}</h3><span class="count">${g.members.length} piece${g.members.length === 1 ? '' : 's'}</span></div>
+  <div class="grid grid--group">
+${g.members.map(cardHtml).join('\n')}
+  </div>`
+    )
     .join('\n');
 
   const jsonLd = {
@@ -393,11 +429,42 @@ function renderCollection(id, products) {
       <p class="sub" style="color:var(--dim);font-size:.8rem;margin-top:.8rem;letter-spacing:.06em;text-transform:uppercase">${products.length} pieces · ${priceRange(products)} · printed on demand</p>
     </div>
   </div>
-  <div class="grid">
-${cards}
+  <div class="section-head">
+    <h2>The Foundation Collection</h2>
+    <p>${products.length} pieces built from the temple's own materials — the mascot, the temple seal and the name lockup — printed to order.</p>
   </div>
+${groupsHtml}
+  <section class="creator-editions" aria-label="Creator Editions">
+    <div class="section-head" style="border-bottom:none">
+      <h2>Creator Editions</h2>
+      <p>Designs by verified university creators, inspired by ${esc(meta.name)} and sold with their consent — half of every sale goes to the creator.</p>
+    </div>
+    <div id="ce-grid">
+      <div class="ce-empty">No creator editions for ${esc(meta.name)} yet. When a verified creator publishes work inspired by this temple, it appears here.<br><a href="/creatives/">The Creative Marketplace →</a></div>
+    </div>
+  </section>
   <p class="wrap" style="padding-bottom:3rem;color:var(--dim);font-size:.85rem">Every piece is printed to order and shipped worldwide. Curious about the name itself? <a href="${esc(meta.url)}">Enter the ${esc(meta.name)} temple →</a></p>
 </div>
+<script>
+(function(){
+  var templeId = ${JSON.stringify(id)};
+  var grid = document.getElementById('ce-grid');
+  if (!grid || !window.fetch) return;
+  fetch('/api/store/products').then(function(r){ return r.ok ? r.json() : null; }).then(function(data){
+    if (!data || !data.products) return;
+    var editions = data.products.filter(function(p){ return p.temple === templeId; });
+    if (!editions.length) return;
+    grid.innerHTML = '<div class="grid grid--group">' + editions.map(function(p){
+      var by = p.creator && p.creator.name ? p.creator.name + (p.creator.university ? ' · ' + p.creator.university : '') : 'Verified creator';
+      return '<a class="card" href="/creatives/">' +
+        '<div class="imgbox"><img src="' + p.image + '" alt="' + p.name.replace(/"/g, '&quot;') + '" loading="lazy"></div>' +
+        '<div class="body"><div class="sub">Creator Edition</div><h3>' + p.name + '</h3>' +
+        '<div class="ce-by">' + by + '</div>' +
+        '<div class="price">$' + Number(p.price).toFixed(2).replace(/\\.00$/, '') + '</div></div></a>';
+    }).join('') + '</div>';
+  }).catch(function(){ /* the honest empty state stays */ });
+})();
+</script>
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
     ${footerHtml()}
 </body></html>

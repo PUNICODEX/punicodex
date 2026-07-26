@@ -60,6 +60,7 @@
       items: [
         { id: 'leasing', label: 'Leasing', href: `${PREFIX}leasing/`, permission: 'read' },
         { id: 'patrons', label: 'Patrons', href: `${PREFIX}leasing/?tab=patrons`, permission: 'read' },
+        { id: 'discounts', label: 'Discount Codes', href: `${PREFIX}leasing/?tab=discounts`, permission: 'read' },
       ],
     },
     {

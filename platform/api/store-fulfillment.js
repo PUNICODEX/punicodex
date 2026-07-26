@@ -13,7 +13,7 @@
  * Then the customer gets an order-confirmation email (fire-and-forget).
  */
 
-const { setStoreOrderStatus, resolveProduct } = require('./store-orders');
+const { setStoreOrderStatus, resolveProduct, getStoreOrderById } = require('./store-orders');
 
 async function fulfillStoreOrder(order) {
   const { notifyStoreOrderConfirmation } = require('./email');
@@ -55,4 +55,29 @@ async function fulfillStoreOrder(order) {
   return fulfilled;
 }
 
-module.exports = { fulfillStoreOrder };
+/**
+ * Admin-driven retry for an order stuck at `fulfillment_failed`. Any other
+ * status is rejected so a retry can never double-create a Printful order for
+ * one that already went through. The Printful client itself self-heals the
+ * "created but not recorded" case via the external_id lookup, so a retry
+ * after a mid-flight crash recovers the original order instead of
+ * duplicating it.
+ */
+async function retryStoreOrderFulfillment(orderId) {
+  const order = getStoreOrderById(orderId);
+  if (!order) {
+    const err = new Error('Unknown store order');
+    err.status = 404;
+    throw err;
+  }
+  if (order.status !== 'fulfillment_failed') {
+    const err = new Error(
+      `Only fulfillment_failed orders can be retried (current status: ${order.status})`
+    );
+    err.status = 409;
+    throw err;
+  }
+  return fulfillStoreOrder(order);
+}
+
+module.exports = { fulfillStoreOrder, retryStoreOrderFulfillment };

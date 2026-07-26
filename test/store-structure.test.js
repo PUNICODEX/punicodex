@@ -160,6 +160,18 @@ test('collection pages link only to product pages that exist on disk', () => {
   }
 });
 
+test('collection pages separate the Foundation Collection from Creator Editions', () => {
+  for (const id of COLLECTION_IDS.slice(0, 25)) {
+    const html = read(`store/${id}/index.html`);
+    assert.ok(html.includes('The Foundation Collection'), `store/${id}: no foundation header`);
+    assert.ok(html.includes('Creator Editions'), `store/${id}: no creator editions band`);
+    assert.ok(html.includes('id="ce-grid"'), `store/${id}: no hydration container`);
+    assert.ok(html.includes('/api/store/products'), `store/${id}: no hydration source`);
+    assert.ok(html.includes('class="group-head"'), `store/${id}: no curated groups`);
+    assert.ok(html.includes('ce-empty'), `store/${id}: no honest empty state`);
+  }
+});
+
 test('card imagery is either a mockup on the masters host or a deployed local asset', () => {
   for (const p of CATALOG.products) {
     if (p.mockupImage) {

@@ -54,6 +54,20 @@ function toRecipient({ name, address }) {
 }
 
 /**
+ * Fetch a Printful order by our external id (order_ref). Returns null when
+ * no order carries it. Used to self-heal the "created at Printful but the
+ * response never reached us" crash window before retrying a create.
+ */
+async function getOrderByExternalId(externalId) {
+  try {
+    return await api('GET', `/orders/@${encodeURIComponent(externalId)}`);
+  } catch (err) {
+    if (/→ 404:/.test(err.message)) return null;
+    throw err;
+  }
+}
+
+/**
  * Create + confirm a Printful order for a paid store order.
  * @param {object} order — store_orders row (needs order_ref, quantity, shipping fields)
  * @param {number} syncVariantId — Printful sync variant to fulfill
@@ -64,13 +78,27 @@ async function createAndConfirmOrder(order, syncVariantId) {
   if (!recipient) {
     throw new Error('shipping address incomplete — cannot create Printful order');
   }
-  const created = await api('POST', '/orders', {
-    external_id: order.order_ref,
-    recipient,
-    items: [{ sync_variant_id: syncVariantId, quantity: order.quantity }],
-  });
-  const confirmed = await api('POST', `/orders/${created.id}/confirm`);
-  return { id: created.id, status: confirmed.status || 'confirmed' };
+  let created;
+  try {
+    created = await api('POST', '/orders', {
+      external_id: order.order_ref,
+      recipient,
+      items: [{ sync_variant_id: syncVariantId, quantity: order.quantity }],
+    });
+  } catch (err) {
+    // Duplicate external_id: a previous attempt created the order but the
+    // id never made it back to us. Recover that order instead of failing.
+    if (!/external_id/i.test(err.message)) throw err;
+    const existing = await getOrderByExternalId(order.order_ref);
+    if (!existing) throw err;
+    created = existing;
+  }
+  if (created.status === 'draft') {
+    const confirmed = await api('POST', `/orders/${created.id}/confirm`);
+    return { id: created.id, status: confirmed.status || 'confirmed' };
+  }
+  // Already confirmed (or further along) by the earlier attempt.
+  return { id: created.id, status: created.status || 'confirmed' };
 }
 
-module.exports = { createAndConfirmOrder, toRecipient };
+module.exports = { createAndConfirmOrder, getOrderByExternalId, toRecipient };

@@ -264,12 +264,64 @@ function getStoreOrderByPrintfulId(printfulOrderId) {
     .get(printfulOrderId);
 }
 
+function getStoreOrderById(id) {
+  return getDb().prepare('SELECT * FROM store_orders WHERE id = ?').get(id);
+}
+
+/**
+ * Paged roster for the admin portal Store Orders tab, plus fleet stats.
+ * Stats count money only on orders that actually reached payment (pending
+ * checkouts are pipeline, not revenue).
+ */
+function listStoreOrders({ limit = 50, offset = 0, status = null } = {}) {
+  const db = getDb();
+  const where = status ? 'WHERE status = ?' : '';
+  const args = status ? [status] : [];
+  const total = db.prepare(`SELECT COUNT(*) AS n FROM store_orders ${where}`).get(...args).n;
+  const items = db
+    .prepare(`SELECT * FROM store_orders ${where} ORDER BY id DESC LIMIT ? OFFSET ?`)
+    .all(...args, limit, offset);
+  const rows = db
+    .prepare('SELECT status, COUNT(*) AS n, COALESCE(SUM(gross_cents), 0) AS gross FROM store_orders GROUP BY status')
+    .all();
+  const byStatus = {};
+  for (const r of rows) byStatus[r.status] = { count: r.n, grossCents: r.gross };
+  const revenue = db
+    .prepare(
+      `SELECT COALESCE(SUM(gross_cents), 0) AS gross, COUNT(*) AS n FROM store_orders
+       WHERE status NOT IN ('pending_payment', 'cancelled', 'refunded')`
+    )
+    .get();
+  const revenue30d = db
+    .prepare(
+      `SELECT COALESCE(SUM(gross_cents), 0) AS gross, COUNT(*) AS n FROM store_orders
+       WHERE status NOT IN ('pending_payment', 'cancelled', 'refunded')
+         AND created_at >= datetime('now', '-30 days')`
+    )
+    .get();
+  return {
+    items,
+    total,
+    limit,
+    offset,
+    stats: {
+      totalOrders: revenue.n,
+      revenueCents: revenue.gross,
+      orders30d: revenue30d.n,
+      revenue30dCents: revenue30d.gross,
+      byStatus,
+    },
+  };
+}
+
 module.exports = {
   createStoreOrder,
   resolveProduct,
   validateOrder,
   unitPriceFor,
   getStoreOrderByRef,
+  getStoreOrderById,
+  listStoreOrders,
   getStoreOrderBySessionId,
   getStoreOrderByPrintfulId,
   attachStripeSession,

@@ -31,7 +31,7 @@ const CATEGORY_BY_TYPE = {
 function toStoreProduct(row) {
   return {
     id: `creator-${row.id}`,
-    temple: null,
+    temple: row.inspiration_entry_id || null,
     name: row.title,
     category: CATEGORY_BY_TYPE[row.product_type] || 'art-prints',
     price: row.price_cents / 100,

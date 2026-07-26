@@ -1,0 +1,28 @@
+/**
+ * /api/admin/portal/store-orders/:id
+ *
+ * Leasing permission. Single merch order detail (shipping, Printful ids,
+ * tracking, error) for the Store Orders tab expander.
+ */
+
+const { setPortalCors, sendError, parseIdParam, portalAuth } = require('../../_portal.js');
+const { getStoreOrderById } = require('../../../../../platform/api/store-orders.js');
+
+module.exports = async (req, res) => {
+  setPortalCors(req, res);
+  if (req.method === 'OPTIONS') return res.status(200).end();
+  if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' });
+
+  try {
+    const auth = await portalAuth.requirePortal(req, res, 'leasing');
+    if (!auth) return;
+
+    const id = parseIdParam(req);
+    if (id === null) return res.status(400).json({ error: 'Invalid order id' });
+    const order = getStoreOrderById(id);
+    if (!order) return res.status(404).json({ error: 'Unknown store order' });
+    return res.json({ order });
+  } catch (err) {
+    sendError(res, err);
+  }
+};
