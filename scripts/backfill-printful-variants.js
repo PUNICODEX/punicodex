@@ -62,6 +62,23 @@ function variantLabel(v) {
   return [color, size].filter(Boolean).join(' / ') || 'One size';
 }
 
+// The sync-product and catalog APIs describe the same variant with cosmetic
+// drifts ("20oz" vs "20 oz"; a single-variant notebook whose sync variant
+// carries neither colour nor size). Normalize so the printfulVariants keys
+// equal the variantPricing keys the checkout prices from.
+function normalizeLabels(map, product) {
+  const out = {};
+  for (const [label, id] of Object.entries(map)) {
+    out[label.replace(/(\d)\s?(oz)\b/i, '$1 $2')] = id;
+  }
+  const keys = Object.keys(out);
+  if (keys.length === 1 && keys[0] === 'One size') {
+    const priced = Object.keys(product.variantPricing || {});
+    if (priced.length === 1) return { [priced[0]]: out['One size'] };
+  }
+  return out;
+}
+
 async function main() {
   if (!KEY) {
     console.error('PRINTFUL_API_KEY is not set.');
@@ -81,7 +98,7 @@ async function main() {
       const variants = detail.sync_variants || [];
       const map = {};
       for (const v of variants) map[variantLabel(v)] = v.id;
-      product.printfulVariants = map;
+      product.printfulVariants = normalizeLabels(map, product);
       product.printfulVariantCount = variants.length;
       state.done[product.id] = true;
       saveState(state);
