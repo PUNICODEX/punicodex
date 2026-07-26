@@ -42,6 +42,10 @@ function collectHtml(dir) {
         ].includes(entry.name)
       )
         continue;
+      // Sacred-texts source audit trails (platform/texts/{id}/src/) hold raw
+      // third-party downloads, not site pages — their relative links point at
+      // the source site, not this repo.
+      if (entry.name === 'src' && dir.includes(`platform${path.sep}texts`)) continue;
       collectHtml(fullPath);
     } else if (entry.name.endsWith('.html')) {
       HTML_FILES.push(fullPath);
