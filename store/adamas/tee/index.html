@@ -175,13 +175,13 @@ a:hover{color:var(--gold-bright)}
     <script src="/js/main.js?v=perf12" defer></script>
 <div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <a href="/store/adamas/">Adámas</a> · <span style="color:var(--gold)">Temple Tee</span></div>
 <div class="wrap pdp">
-  <div><div class="stage"><img id="stage-img" src="https://punycodex-masters.vercel.app/mockups/adamas-tee.jpg" alt="Adámas Temple Tee"></div></div>
+  <div><div class="stage"><img id="stage-img" src="https://punycodex-masters.vercel.app/mockups/adamas-tee.jpg" alt="Adámas Temple Tee"></div><p style="color:var(--dim);font-size:.82rem;margin-top:.6rem">Shown in Black — the design prints the same on every colour.</p></div>
   <div>
     <span class="pill">Temple Tee</span> <span class="pill">Adámas</span>
     <h1>Adámas Temple Tee</h1>
     <p style="color:var(--dim)">Heavyweight organic cotton — the deity across the chest, the lockup riding the shoulders.</p>
-    <div class="price">$38.00</div>
-    
+    <div class="price" id="pdp-price">from $38.00</div>
+    <div class="opt-group"><div class="lbl">Colour</div><div class="opts" id="opts-color"><button class="opt active" data-c="Black">Black</button><button class="opt" data-c="White">White</button></div></div>
     <div class="opt-group"><div class="lbl">Size</div><div class="opts" id="opts-size"><button class="opt active" data-s="S">S</button><button class="opt" data-s="M">M</button><button class="opt" data-s="L">L</button><button class="opt" data-s="XL">XL</button><button class="opt" data-s="2XL">2XL</button><button class="opt" data-s="3XL">3XL</button><button class="opt" data-s="4XL">4XL</button><button class="opt" data-s="5XL">5XL</button></div></div>
     <div class="opt-group">
       <div class="lbl">Quantity</div>
@@ -210,7 +210,7 @@ a:hover{color:var(--gold-bright)}
   sizes.forEach(function(b){ b.addEventListener('click', function(){ pick(sizes, b); updatePrice(); }); });
   document.getElementById('q-down').addEventListener('click', function(){ qty = Math.max(1, qty - 1); qtyEl.textContent = qty; });
   document.getElementById('q-up').addEventListener('click', function(){ qty = Math.min(5, qty + 1); qtyEl.textContent = qty; });
-  var LABELS = ["2XL","3XL","4XL","5XL","L","M","S","XL"];
+  var LABELS = ["Black / 2XL","Black / 3XL","Black / 4XL","Black / 5XL","Black / L","Black / M","Black / S","Black / XL","White / 2XL","White / 3XL","White / 4XL","White / 5XL","White / L","White / M","White / S","White / XL"];
   function currentLabel(){
     var c = document.querySelector('#opts-color .opt.active');
     var s = document.querySelector('#opts-size .opt.active');
@@ -221,7 +221,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = null;
+  var PRICES = {"Black / 2XL":4000,"Black / 3XL":4300,"Black / 4XL":4500,"Black / 5XL":4400,"Black / L":3800,"Black / M":3800,"Black / S":3800,"Black / XL":3800,"White / 2XL":4000,"White / 3XL":4300,"White / 4XL":4100,"White / 5XL":4400,"White / L":3800,"White / M":3800,"White / S":3800,"White / XL":3800};
   var FLAT_PRICE = "$38.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');
