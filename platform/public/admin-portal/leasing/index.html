@@ -1174,20 +1174,27 @@
         }
 
         // Populate the per-temple target selector from the public names API so a
-        // code can never be aimed at a mistyped temple id.
+        // code can never be aimed at a mistyped temple id. The API caps limit
+        // at 100, so page through the directory.
         async function populateDcTemples() {
             var sel = document.getElementById('dc-applies-to');
             if (!sel || sel.getAttribute('data-populated')) return;
             sel.setAttribute('data-populated', '1');
             try {
-                var res = await Portal.api('/api/v1/names/?limit=300');
-                var names = (res && res.data && res.data.names) || (res && res.names) || [];
-                names.forEach(function (n) {
-                    var opt = document.createElement('option');
-                    opt.value = n.id;
-                    opt.textContent = (n.unicode || n.ascii || n.id) + ' (' + n.id + ')';
-                    sel.appendChild(opt);
-                });
+                var offset = 0;
+                for (;;) {
+                    var res = await Portal.api('/api/v1/names/?limit=100&offset=' + offset);
+                    var names = (res && res.data && res.data.names) || (res && res.names) || (res && res.data) || [];
+                    if (!Array.isArray(names) || !names.length) break;
+                    names.forEach(function (n) {
+                        var opt = document.createElement('option');
+                        opt.value = n.id;
+                        opt.textContent = (n.unicode || n.ascii || n.id) + ' (' + n.id + ')';
+                        sel.appendChild(opt);
+                    });
+                    if (names.length < 100) break;
+                    offset += 100;
+                }
             } catch (err) {
                 // Leave the All-temples option alone if the directory is unreachable.
             }
