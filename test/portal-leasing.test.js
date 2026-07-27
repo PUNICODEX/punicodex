@@ -520,6 +520,34 @@ async function runTests() {
     }
   });
 
+  await test('leasing page: all five tab panels are direct children of portal-main', async () => {
+    // Regression: tab-patrons was never closed, so tab-discounts and
+    // tab-orders became its children — activating either hid their parent
+    // and the panels rendered blank in production.
+    const fs = require('node:fs');
+    const cheerio = require('cheerio');
+    for (const file of [
+      'platform/public/admin-portal/leasing/index.html',
+      'admin-portal/leasing/index.html',
+    ]) {
+      const $ = cheerio.load(fs.readFileSync(file, 'utf8'));
+      for (const id of ['tab-bookings', 'tab-tenants', 'tab-patrons', 'tab-discounts', 'tab-orders']) {
+        const panel = $(`#${id}`);
+        assert.strictEqual(panel.length, 1, `${file}: #${id} missing`);
+        assert.strictEqual(
+          panel.parent().attr('id'),
+          'portal-main',
+          `${file}: #${id} must be a direct child of portal-main (found inside #${panel.parent().attr('id') || 'unknown'})`
+        );
+      }
+      assert.strictEqual(
+        $('#portal-main [id^="tab-"] [id^="tab-"]').length,
+        0,
+        `${file}: tab panels must never nest`
+      );
+    }
+  });
+
   console.log('\n✓ All portal leasing tests passed');
 }
 
