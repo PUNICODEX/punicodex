@@ -9,6 +9,14 @@
 
 const { setPortalCors, sendError, parseIdParam, portalAuth } = require('../../../_portal.js');
 
+// Idempotent migration on serverless cold start (Vercel SQLite is ephemeral).
+const { getDb } = require('../../../../../../platform/db/connection.js');
+try {
+  require('../../../../../../platform/db/migrate-store-orders.js').migrate(getDb());
+} catch (err) {
+  console.error('[admin/store-orders/:id/retry] migration failed:', err.message);
+}
+
 module.exports = async (req, res) => {
   setPortalCors(req, res);
   if (req.method === 'OPTIONS') return res.status(200).end();
