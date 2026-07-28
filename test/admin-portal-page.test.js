@@ -92,6 +92,7 @@ const API_ROUTES = [
   '/api/admin/portal/merch/',
   '/api/admin/portal/merch/:id/withdraw/',
   '/api/v1/names/',
+  '/api/flagships/',
   '/api/admin/portal/careers/',
   '/api/admin/portal/careers/:id/status/',
   '/api/admin/portal/arbitrage/',

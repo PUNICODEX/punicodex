@@ -1220,29 +1220,34 @@
             }
         }
 
-        // Populate the per-temple target selector from the public names API so a
-        // code can never be aimed at a mistyped temple id. The API caps limit
-        // at 100, so page through the directory.
+        // Populate the per-temple target selector from the flagship fleet
+        // (the only temples sponsorship can be booked on), alphabetized —
+        // never the raw lexicon API, which returns ~900 non-flagship entries
+        // in search-ranking order.
         async function populateDcTemples() {
             var sel = document.getElementById('dc-applies-to');
             if (!sel || sel.getAttribute('data-populated')) return;
             sel.setAttribute('data-populated', '1');
             try {
-                var offset = 0;
-                for (;;) {
-                    var res = await Portal.api('/api/v1/names/?limit=100&offset=' + offset);
-                    var names = (res && res.data && res.data.names) || (res && res.names) || (res && res.data) || [];
-                    if (!Array.isArray(names) || names.length === 0) break;
-                    names.forEach(function (n) {
+                var res = await Portal.api('/api/flagships/');
+                var flagships = Array.isArray(res) ? res : (res && (res.data || res.flagships)) || [];
+                flagships
+                    .slice()
+                    .sort(function (a, b) {
+                        return String(a.unicode || a.ascii || a.id).localeCompare(
+                            String(b.unicode || b.ascii || b.id),
+                            'en',
+                            { sensitivity: 'base' }
+                        );
+                    })
+                    .forEach(function (n) {
                         var opt = document.createElement('option');
                         opt.value = n.id;
                         opt.textContent = (n.unicode || n.ascii || n.id) + ' (' + n.id + ')';
                         sel.appendChild(opt);
                     });
-                    offset += names.length;
-                }
             } catch (err) {
-                // Leave the All-temples option alone if the directory is unreachable.
+                // Leave the All-temples option alone if the fleet is unreachable.
             }
         }
 
