@@ -135,9 +135,37 @@ async function exec(sql) {
   db.exec(sql);
 }
 
+// Wrap the postgres driver's TransactionSql into the {get, all, run, insert}
+// helper contract the SQLite transaction path provides and every caller
+// destructures. Pure and exported for tests (the driver itself is mocked by
+// suites that exercise this).
+function wrapTransactionSql(tsql) {
+  const exec = (query, params = []) => tsql(...toTaggedTemplate(query, params));
+  return {
+    get: async (query, params) => (await exec(query, params))[0],
+    all: (query, params) => exec(query, params),
+    run: async (query, params) => {
+      const result = await exec(query, params);
+      return { changes: result.count ?? 0 };
+    },
+    insert: async (query, params) => {
+      if (!/RETURNING\s+id/i.test(query)) {
+        throw new Error('insert() requires RETURNING id in the SQL');
+      }
+      const rows = await exec(query, params);
+      return rows[0]?.id;
+    },
+  };
+}
+
 async function transaction(fn, opts = {}) {
   if (isPostgres()) {
-    return (await getPgClient()).begin(fn);
+    const client = await getPgClient();
+    // The postgres driver's sql.begin() hands the callback a raw TransactionSql
+    // function — NOT the {get, all, run, insert} helper shape the SQLite path
+    // provides and every caller destructures. Wrap it so both backends honour
+    // the same contract (found via the production booking 500s).
+    return client.begin(async (tsql) => fn(wrapTransactionSql(tsql)));
   }
   // Use a dedicated connection per SQLite transaction. The shared connection
   // cannot nest or interleave transactions, and Node's async model would
@@ -200,5 +228,6 @@ module.exports = {
   insert,
   exec,
   transaction,
+  wrapTransactionSql,
   closeDb,
 };
