@@ -572,7 +572,14 @@ async function runTests() {
     assert.strictEqual(ok.headers['x-ratelimit-limit'], '5', 'public-strict bucket');
     assert.strictEqual(ok.body.valid, true);
     assert.strictEqual(ok.body.code, 'LAUNCH25');
-    assert.deepStrictEqual(Object.keys(ok.body).sort(), ['code', 'pricing', 'terms', 'valid']);
+    assert.deepStrictEqual(Object.keys(ok.body).sort(), [
+      'code',
+      'complimentary',
+      'pricing',
+      'terms',
+      'valid',
+    ]);
+    assert.strictEqual(ok.body.complimentary, false, 'partial discount is not complimentary');
     assert.deepStrictEqual(Object.keys(ok.body.terms).sort(), [
       'fixedCents',
       'freeMonths',
@@ -615,12 +622,61 @@ async function runTests() {
     const expired = await invoke(validateHandler, 'POST', '/api/discount/validate/', {
       headers: { 'x-forwarded-for': nextIp() },
       body: { code: 'OLD-CODE', temple: 'nike', leaseMonths: 1 },
-    });
-    assert.deepStrictEqual(
+    });    assert.deepStrictEqual(
       expired.body,
       { valid: false, reason: 'invalid_code' },
       'no expiry leak'
     );
+  });
+
+  await test('validate endpoint: slotId prices per-frame, slot scoping, and the complimentary flag', async () => {
+    const bundle = getBundleSlotId(__filename, 'zeus'); // $2,500/mo takeover
+    const frame = db()
+      .prepare("SELECT id, price_cents FROM ad_slots WHERE site_slug = 'zeus' AND (is_bundle = 0 OR is_bundle IS NULL) ORDER BY sort_order LIMIT 1")
+      .get();
+
+    // Slot-scoped code valid on its named frame…
+    await discountService.createCode(
+      {
+        code: 'FRAME-ONLY',
+        kind: 'percent_off',
+        percent: 100,
+        appliesTo: 'zeus',
+        appliesSlots: [frame.id],
+      },
+      null
+    );
+    const onFrame = await invoke(validateHandler, 'POST', '/api/discount/validate/', {
+      headers: { 'x-forwarded-for': nextIp() },
+      body: { code: 'FRAME-ONLY', temple: 'zeus', leaseMonths: 1, slotId: frame.id },
+    });
+    assert.strictEqual(onFrame.status, 200, JSON.stringify(onFrame.body));
+    assert.strictEqual(onFrame.body.valid, true);
+    assert.strictEqual(
+      onFrame.body.pricing.originalCents,
+      frame.price_cents,
+      'per-frame price, never the bundle price'
+    );
+    assert.strictEqual(onFrame.body.complimentary, true, '100% is complimentary');
+
+    // …but the same code on the takeover is a generic invalid (no scope leak).
+    const onBundle = await invoke(validateHandler, 'POST', '/api/discount/validate/', {
+      headers: { 'x-forwarded-for': nextIp() },
+      body: { code: 'FRAME-ONLY', temple: 'zeus', leaseMonths: 1, slotId: bundle },
+    });
+    assert.deepStrictEqual(onBundle.body, { valid: false, reason: 'invalid_code' });
+
+    // A slot from another temple is a clean 404, and a junk slotId a 400.
+    const wrongTemple = await invoke(validateHandler, 'POST', '/api/discount/validate/', {
+      headers: { 'x-forwarded-for': nextIp() },
+      body: { code: 'FRAME-ONLY', temple: 'athena', leaseMonths: 1, slotId: frame.id },
+    });
+    assert.strictEqual(wrongTemple.status, 404);
+    const junk = await invoke(validateHandler, 'POST', '/api/discount/validate/', {
+      headers: { 'x-forwarded-for': nextIp() },
+      body: { code: 'FRAME-ONLY', temple: 'zeus', leaseMonths: 1, slotId: 'abc' },
+    });
+    assert.strictEqual(junk.status, 400);
   });
 
   // ── approveApplication integration ───────────────────────────

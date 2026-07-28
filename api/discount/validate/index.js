@@ -65,14 +65,32 @@ module.exports = async (req, res) => {
     const code = typeof body.code === 'string' ? body.code.trim().slice(0, 40) : '';
     const temple = typeof body.temple === 'string' ? body.temple.trim().toLowerCase() : '';
     const leaseMonths = parseInt(body.leaseMonths, 10);
+    const slotId = body.slotId == null || body.slotId === '' ? null : parseInt(body.slotId, 10);
 
     if (!code || !/^[a-z0-9-]{1,64}$/.test(temple) || ![1, 12].includes(leaseMonths)) {
       return res
         .status(400)
         .json({ error: 'code, temple, and leaseMonths (1 or 12) are required' });
     }
+    if (body.slotId != null && body.slotId !== '' && !Number.isInteger(slotId)) {
+      return res.status(400).json({ error: 'slotId must be an integer when provided' });
+    }
 
-    const priceCents = await templePriceCents(temple);
+    // Per-slot pricing when a frame is named (slot-scoped codes need it);
+    // otherwise the temple's bundle (takeover) reference price.
+    let priceCents = null;
+    if (slotId !== null) {
+      const slot = await get('SELECT price_cents FROM ad_slots WHERE id = $1 AND site_slug = $2', [
+        slotId,
+        temple,
+      ]);
+      if (!slot) {
+        return res.status(404).json({ error: 'Unknown slot for this temple' });
+      }
+      priceCents = slot.price_cents;
+    } else {
+      priceCents = await templePriceCents(temple);
+    }
     if (priceCents == null) {
       return res.status(404).json({ error: 'Unknown temple' });
     }
@@ -82,6 +100,7 @@ module.exports = async (req, res) => {
       siteSlug: temple,
       leaseMonths,
       priceCents,
+      slotId,
     });
     if (!result.valid) {
       // One generic shape for every failure — never reveal whether the code
@@ -94,6 +113,8 @@ module.exports = async (req, res) => {
       code: result.code,
       terms: result.terms,
       pricing: result.pricing,
+      // A nil term is complimentary: no card, no checkout, no auto-renewal.
+      complimentary: result.pricing.finalCents === 0,
     });
   } catch (err) {
     handleError(res, err);

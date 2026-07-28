@@ -125,6 +125,9 @@ const els = {
   slotName: document.getElementById('booking-slot-name'),
   slotDims: document.getElementById('booking-slot-dims'),
   price: document.getElementById('booking-price'),
+  priceOriginal: document.getElementById('booking-price-original'),
+  discount: document.getElementById('booking-discount'),
+  discountNote: document.getElementById('booking-discount-note'),
   email: document.getElementById('booking-email'),
   company: document.getElementById('booking-company'),
   website: document.getElementById('booking-website'),
@@ -167,6 +170,8 @@ let selectedFile = null;
 let selectedFileBase64 = null;
 let verificationToken = '';
 let isBundleApplication = false;
+let currentDiscount = null;
+let discountTimer = null;
 let currentUploadSlot = null;
 
 // Fetch slots and update UI
@@ -427,6 +432,9 @@ function openModal(slotOrId) {
     currentSlotPriceCents = slot.price_cents || 0;
     currentLeaseMonths = 1;
     isBundleApplication = Boolean(slot.is_bundle) || false;
+    currentDiscount = null;
+    if (els.discount) els.discount.value = '';
+    if (els.discountNote) els.discountNote.style.display = 'none';
     if (els.leaseMonthly) els.leaseMonthly.classList.add('active');
     if (els.leaseYearly) els.leaseYearly.classList.remove('active');
     updatePriceDisplay();
@@ -447,15 +455,98 @@ function openModal(slotOrId) {
   }
 }
 
+function discountBaseCents() {
+  return currentLeaseMonths === 12
+    ? Math.round(currentSlotPriceCents * 12 * 0.9)
+    : currentSlotPriceCents * currentLeaseMonths;
+}
+
+// Mirrors discount-service.computePrice for the display: what we show is
+// what the server will charge (same base, same math).
+function computeDisplayPrice(baseCents, terms) {
+  if (!terms) return baseCents;
+  if (terms.kind === 'percent_off') return Math.round(baseCents * (1 - Number(terms.percent) / 100));
+  if (terms.kind === 'fixed_off') return Math.max(0, baseCents - Math.round(Number(terms.fixedCents) || 0));
+  return baseCents; // free-month kinds adjust the trial, not the sticker price
+}
+
 function updatePriceDisplay() {
-  let total;
-  if (currentLeaseMonths === 12) {
-    total = Math.round(currentSlotPriceCents * 12 * 0.9);
-  } else {
-    total = currentSlotPriceCents * currentLeaseMonths;
-  }
+  const base = discountBaseCents();
   const label = currentLeaseMonths === 12 ? '/yr' : '/mo';
-  els.price.innerHTML = `$${(total / 100).toLocaleString()}<span>${label}</span>`;
+  if (currentDiscount && currentDiscount.valid) {
+    const final = computeDisplayPrice(base, currentDiscount.terms);
+    if (final !== base) {
+      els.priceOriginal.style.display = '';
+      els.priceOriginal.textContent = `$${(base / 100).toLocaleString()}`;
+      els.price.innerHTML = final === 0
+        ? `$0<span> · complimentary</span>`
+        : `$${(final / 100).toLocaleString()}<span>${label}</span>`;
+      return;
+    }
+  }
+  els.priceOriginal.style.display = 'none';
+  els.price.innerHTML = `$${(base / 100).toLocaleString()}<span>${label}</span>`;
+}
+
+function discountTermsText() {
+  const t = currentDiscount.terms;
+  const code = currentDiscount.code;
+  if (currentDiscount.complimentary) {
+    return `${code} — complimentary placement: no card, no checkout, no auto-renewal.`;
+  }
+  if (t.kind === 'percent_off') return `${code} — ${t.percent}% off applied.`;
+  if (t.kind === 'fixed_off') return `${code} — $${(t.fixedCents / 100).toLocaleString()} off applied.`;
+  if (t.kind === 'free_months') return `${code} — ${t.freeMonths} month${t.freeMonths === 1 ? '' : 's'} free applied.`;
+  if (t.kind === 'trial_extension') return `${code} — trial extended by ${t.freeMonths} month${t.freeMonths === 1 ? '' : 's'}.`;
+  if (t.kind === 'free_months_then_price') {
+    return `${code} — ${t.freeMonths} months free, then $${(t.thenPriceCents / 100).toLocaleString()}/mo.`;
+  }
+  return `${code} applied.`;
+}
+
+async function validateDiscountCode() {
+  const code = els.discount ? els.discount.value.trim() : '';
+  currentDiscount = null;
+  if (!code) {
+    if (els.discountNote) els.discountNote.style.display = 'none';
+    updatePriceDisplay();
+    return;
+  }
+  try {
+    const payload = { code, temple: 'oshun', leaseMonths: currentLeaseMonths };
+    if (currentSlotId != null && Number.isInteger(Number(currentSlotId))) {
+      payload.slotId = Number(currentSlotId);
+    }
+    const res = await fetch(`${API_BASE}/api/discount/validate/`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    const data = await res.json();
+    if (data && data.valid) {
+      currentDiscount = data;
+      if (els.discountNote) {
+        els.discountNote.textContent = discountTermsText();
+        els.discountNote.style.color = '#7ee2a0';
+        els.discountNote.style.display = 'block';
+      }
+    } else if (els.discountNote) {
+      els.discountNote.textContent = "That code doesn't apply here.";
+      els.discountNote.style.color = '#f28b8b';
+      els.discountNote.style.display = 'block';
+    }
+  } catch {
+    // Validation is advisory; the server re-validates authoritatively at booking.
+    if (els.discountNote) els.discountNote.style.display = 'none';
+  }
+  updatePriceDisplay();
+}
+
+if (els.discount) {
+  els.discount.addEventListener('input', () => {
+    clearTimeout(discountTimer);
+    discountTimer = setTimeout(validateDiscountCode, 450);
+  });
 }
 
 function closeModal() {
@@ -540,6 +631,7 @@ if (els.leaseMonthly) {
     els.leaseMonthly.classList.add('active');
     if (els.leaseYearly) els.leaseYearly.classList.remove('active');
     updatePriceDisplay();
+    validateDiscountCode();
   });
 }
 if (els.leaseYearly) {
@@ -548,6 +640,7 @@ if (els.leaseYearly) {
     els.leaseYearly.classList.add('active');
     if (els.leaseMonthly) els.leaseMonthly.classList.remove('active');
     updatePriceDisplay();
+    validateDiscountCode();
   });
 }
 
@@ -658,6 +751,7 @@ els.verifyBtn.addEventListener('click', async () => {
     }
 
     // Code verified — create booking and redirect to Stripe
+    const discountCode = els.discount ? els.discount.value.trim() : '';
     const res = await fetch(`${API_BASE}/api/bookings/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -669,12 +763,20 @@ els.verifyBtn.addEventListener('click', async () => {
         customHeading: els.heading ? els.heading.value.trim() : '',
         customSubtitle: els.subtitle ? els.subtitle.value.trim() : '',
         leaseMonths: currentLeaseMonths,
+        discountCode: discountCode || undefined,
         verificationToken,
       }),
     });
     const data = await res.json();
     if (data.stripeUrl) {
       window.location.href = data.stripeUrl;
+    } else if (data.complimentary) {
+      // Complimentary term: no Stripe at all — the placement is approved;
+      // the sponsor goes straight to the creative upload.
+      currentBooking = { token: data.token, analytics_token: data.token, slot_id: currentSlotId };
+      const slot = slotsData.find((s) => String(s.id) === String(currentSlotId));
+      if (slot) setupUploadStep(slot);
+      showStep('2');
     } else {
       showBookingError(data.error || 'Something went wrong');
       showStep('1');

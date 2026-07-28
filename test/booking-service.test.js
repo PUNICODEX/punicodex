@@ -17,6 +17,7 @@ prepareTestDb(__filename);
 
 // Mock stripe SDK before booking-service loads.
 const stripeModulePath = require.resolve('stripe');
+const sessionsCreated = [];
 require.cache[stripeModulePath] = {
   id: stripeModulePath,
   filename: stripeModulePath,
@@ -24,15 +25,26 @@ require.cache[stripeModulePath] = {
   exports: (/* secretKey */) => ({
     checkout: {
       sessions: {
-        create: async (config) => ({
-          id: 'cs_test_mock',
-          url: 'https://checkout.stripe.com/mock',
-          mode: config.mode || 'payment',
-        }),
+        create: async (config) => {
+          sessionsCreated.push(config);
+          return {
+            id: 'cs_test_mock',
+            url: 'https://checkout.stripe.com/mock',
+            mode: config.mode || 'payment',
+          };
+        },
       },
     },
   }),
 };
+
+// Discount codes schema on the isolated copy (same as production cold starts).
+{
+  const Database2 = require('better-sqlite3');
+  const tmpDb = new Database2(getTestDbPath(__filename));
+  require('../platform/db/migrate-discount-codes.js').migrate(tmpDb);
+  tmpDb.close();
+}
 
 // Capture verification codes at the email boundary before booking-service
 // loads. Codes are stored hashed in the DB, so tests observe the code where
@@ -404,7 +416,7 @@ test('updateBookingMeta validates heading length', async () => {
 test('cancelBooking and uncancelBooking toggle cancel_at_end', async () => {
   const token = await makeVerifiedEmail('cancel-test@example.com');
   const result = await createBookingRequest({
-    slotId: getSlotId(__filename, 'nike', 6),
+    slotId: getSlotId(__filename, 'hermes', 8),
     email: 'cancel-test@example.com',
     companyName: 'Cancel Co',
     leaseMonths: 1,
@@ -507,5 +519,143 @@ test('createBooking handles concurrent attempts for the same slot', async () => 
   assert.strictEqual(rejected.length, 1, 'exactly one concurrent attempt should fail');
   assert.strictEqual(rejected[0].reason.status, 409);
 });
+
+// ── Discount codes at booking creation (flow 1: pay-now slots) ─────────────
+
+test('createBookingRequest: 25% code discounts the Stripe session to the cent', async () => {
+  const slotId = getSlotId(__filename, 'nike', 2); // $300/mo
+  await discountService.createCode(
+    { code: 'SPRING-25', kind: 'percent_off', percent: 25, appliesTo: 'nike' },
+    null
+  );
+  const token = await makeVerifiedEmail('pct25@example.com');
+  const result = await createBookingRequest({
+    slotId,
+    email: 'pct25@example.com',
+    companyName: 'Percent Co',
+    leaseMonths: 1,
+    trialMonths: 0,
+    verificationToken: token,
+    discountCode: 'SPRING-25',
+  });
+  assert.strictEqual(result.discount.finalCents, 22500);
+  const config = sessionsCreated[sessionsCreated.length - 1];
+  assert.strictEqual(
+    config.line_items[0].price_data.unit_amount,
+    22500,
+    'Stripe charges exactly the discounted price'
+  );
+  const redemption = new Database(getTestDbPath(__filename))
+    .prepare('SELECT * FROM discount_redemptions WHERE booking_id = ?')
+    .get(result.bookingId);
+  assert.ok(redemption, 'redemption recorded at creation');
+  assert.strictEqual(redemption.final_cents, 22500);
+});
+
+test('createBookingRequest: fixed_off prices off the yearly base, not the monthly price', async () => {
+  const slotId = getSlotId(__filename, 'hermes', 3); // $78/mo → yearly $842.40
+  await discountService.createCode(
+    { code: 'YEAR-FIXED', kind: 'fixed_off', fixedCents: 24000, appliesTo: 'hermes' },
+    null
+  );
+  const token = await makeVerifiedEmail('fixed@example.com');
+  const result = await createBookingRequest({
+    slotId,
+    email: 'fixed@example.com',
+    companyName: 'Fixed Co',
+    leaseMonths: 12,
+    trialMonths: 0,
+    verificationToken: token,
+    discountCode: 'YEAR-FIXED',
+  });
+  // 26000 × 12 × 0.9 = 280800 base; minus 24000 → 256800. Consistent with the
+  // approval path, so the modal display always equals the charge.
+  assert.strictEqual(result.discount.finalCents, 256800);
+});
+
+test('createBookingRequest: a 100% code is complimentary — no Stripe, booking approved', async () => {
+  const slotId = getSlotId(__filename, 'hermes', 4);
+  await discountService.createCode(
+    { code: 'HERMES-FOUNDING', kind: 'percent_off', percent: 100, appliesTo: 'hermes' },
+    null
+  );
+  const token = await makeVerifiedEmail('founding@example.com');
+  const sessionsBefore = sessionsCreated.length;
+  const result = await createBookingRequest({
+    slotId,
+    email: 'founding@example.com',
+    companyName: 'Founding Co',
+    leaseMonths: 12,
+    trialMonths: 0,
+    verificationToken: token,
+    discountCode: 'HERMES-FOUNDING',
+  });
+  assert.strictEqual(result.complimentary, true);
+  assert.strictEqual(result.totalCents, 0);
+  assert.strictEqual(sessionsCreated.length, sessionsBefore, 'no Stripe session for a nil term');
+  const db = new Database(getTestDbPath(__filename));
+  const booking = db.prepare('SELECT status FROM bookings WHERE id = ?').get(result.bookingId);
+  assert.strictEqual(booking.status, 'approved', 'goes straight to the post-payment state');
+  const redemption = db
+    .prepare('SELECT * FROM discount_redemptions WHERE booking_id = ?')
+    .get(result.bookingId);
+  assert.ok(redemption, 'redemption recorded');
+  assert.strictEqual(redemption.final_cents, 0);
+  db.close();
+});
+
+test('createBookingRequest: slot-restricted code on the wrong frame charges full price', async () => {
+  const scopedSlot = getSlotId(__filename, 'hermes', 1);
+  await discountService.createCode(
+    {
+      code: 'TOP-FRAME',
+      kind: 'percent_off',
+      percent: 100,
+      appliesTo: 'hermes',
+      appliesSlots: [scopedSlot],
+    },
+    null
+  );
+  const otherSlot = getSlotId(__filename, 'hermes', 5); // $200/mo
+  const token = await makeVerifiedEmail('wrongframe@example.com');
+  const result = await createBookingRequest({
+    slotId: otherSlot,
+    email: 'wrongframe@example.com',
+    companyName: 'Wrong Frame Co',
+    leaseMonths: 1,
+    trialMonths: 0,
+    verificationToken: token,
+    discountCode: 'TOP-FRAME',
+  });
+  assert.strictEqual(result.complimentary, undefined, 'no complimentary on the wrong frame');
+  const config = sessionsCreated[sessionsCreated.length - 1];
+  assert.strictEqual(
+    config.line_items[0].price_data.unit_amount,
+    20000,
+    'full price charged — the code never touches other frames'
+  );
+  const redemption = new Database(getTestDbPath(__filename))
+    .prepare('SELECT * FROM discount_redemptions WHERE booking_id = ?')
+    .get(result.bookingId);
+  assert.strictEqual(redemption, undefined, 'no redemption when the code does not apply');
+});
+
+test('createBookingRequest: an unknown code falls back to full price, no redemption', async () => {
+  const token = await makeVerifiedEmail('badcode@example.com');
+  const result = await createBookingRequest({
+    slotId: getSlotId(__filename, 'hermes', 9),
+    email: 'badcode@example.com',
+    companyName: 'Bad Code Co',
+    leaseMonths: 1,
+    trialMonths: 0,
+    verificationToken: token,
+    discountCode: 'DOES-NOT-EXIST',
+  });
+  assert.strictEqual(result.discount, undefined);
+  const config = sessionsCreated[sessionsCreated.length - 1];
+  assert.strictEqual(config.line_items[0].price_data.unit_amount, 9000);
+});
+
+const discountService = require('../platform/api/discount-service.js');
 
 run();

@@ -10,10 +10,12 @@ const {
   updateBookingStripeSession,
   markBookingPaid,
   setCancelAtEnd,
+  setBookingStatus,
   updateSlotMeta,
   isBundleSlot,
   getSlotCreatives,
 } = require('./bookings');
+const discountService = require('./discount-service');
 const { createBookingCheckoutSession, createRenewalCheckoutSession } = require('./stripe');
 const { createVerifiedSession, consumeVerifiedSession } = require('./verified-sessions');
 const { validateMeta } = require('./booking-validation');
@@ -82,6 +84,7 @@ async function createBookingRequest({
   leaseMonths = 1,
   trialMonths = 0,
   verificationToken,
+  discountCode = null,
 }) {
   if (!slotId || !email) {
     throw new BookingError(400, 'slotId and email required');
@@ -107,6 +110,21 @@ async function createBookingRequest({
 
   const siteSlug = slot.site_slug || 'nike';
   const siteName = siteSlug === 'hermes' ? 'Hermês' : 'Níkē';
+
+  // Sponsorship discount codes, validated authoritatively at creation: the
+  // sponsor pays the discounted amount right here (or nothing at all).
+  let appliedDiscount = null;
+  if (discountCode && typeof discountCode === 'string' && discountCode.trim()) {
+    const check = await discountService.validateCode({
+      code: discountCode.trim(),
+      siteSlug,
+      leaseMonths: months,
+      priceCents: slot.price_cents,
+      slotId,
+    });
+    if (check.valid) appliedDiscount = check;
+  }
+
   let bookingResult;
   try {
     bookingResult = await createBooking({
@@ -119,6 +137,7 @@ async function createBookingRequest({
       leaseMonths: months,
       trialMonths: trial,
       siteSlug,
+      discountCode: discountCode && typeof discountCode === 'string' ? discountCode.trim() : null,
     });
   } catch (err) {
     if (err.status === 409) {
@@ -130,11 +149,70 @@ async function createBookingRequest({
 
   const isTrial = trial > 0;
   const isYearly = months === 12 && !isTrial;
-  const amountCents = isTrial
+  const baseAmountCents = isTrial
     ? slot.price_cents
     : isYearly
       ? Math.round(slot.price_cents * 12 * 0.9)
       : slot.price_cents * months;
+
+  let amountCents = baseAmountCents;
+  let effectiveTrial = trial;
+  if (appliedDiscount) {
+    const terms = appliedDiscount.terms;
+    if (terms.kind === 'free_months_then_price') {
+      effectiveTrial = terms.freeMonths;
+      amountCents = terms.thenPriceCents;
+    } else if (terms.kind === 'free_months' || terms.kind === 'trial_extension') {
+      effectiveTrial = trial + terms.freeMonths;
+      amountCents = slot.price_cents;
+    } else {
+      // percent_off / fixed_off price off the lease base — identical to the
+      // approval path, so what the modal displays is what Stripe charges.
+      amountCents = discountService.computePrice({
+        priceCents: baseAmountCents,
+        leaseMonths: months,
+        ...terms,
+      }).finalCents;
+    }
+  }
+
+  // ── Complimentary redemption ──────────────────────────────────────────
+  // A code that reduces the term to nil never touches Stripe: the booking
+  // goes straight to 'approved' (the post-payment state), the sponsor gets
+  // their dashboard link, and creative review proceeds as normal.
+  if (appliedDiscount && amountCents === 0) {
+    await setBookingStatus(id, 'approved');
+    const redemption = await discountService.redeem({
+      codeId: appliedDiscount.codeId,
+      bookingId: id,
+      email,
+      originalCents: baseAmountCents,
+      finalCents: 0,
+    });
+    if (!redemption.ok) {
+      console.error(`Discount code ${appliedDiscount.code} redemption failed for booking ${id}`);
+    }
+    sendDashboardLinks({
+      email,
+      bookings: [
+        {
+          slot_name: slot.name,
+          status: 'approved (complimentary — no payment required)',
+          analytics_token: token,
+          site_slug: siteSlug,
+        },
+      ],
+    }).catch(() => {});
+    return {
+      bookingId: id,
+      token,
+      complimentary: true,
+      leaseMonths: months,
+      trialMonths: effectiveTrial,
+      totalCents: 0,
+      discount: { code: appliedDiscount.code, originalCents: baseAmountCents, finalCents: 0 },
+    };
+  }
 
   let stripeResult;
   try {
@@ -145,7 +223,7 @@ async function createBookingRequest({
       amountCents,
       token,
       leaseMonths: months,
-      trialMonths: trial,
+      trialMonths: effectiveTrial,
       siteSlug,
       siteName,
     });
@@ -158,18 +236,31 @@ async function createBookingRequest({
     );
   }
 
+  if (appliedDiscount) {
+    const redemption = await discountService.redeem({
+      codeId: appliedDiscount.codeId,
+      bookingId: id,
+      email,
+      originalCents: baseAmountCents,
+      finalCents: amountCents,
+    });
+    if (!redemption.ok) {
+      console.error(`Discount code ${appliedDiscount.code} redemption failed for booking ${id}`);
+    }
+  }
+
   await updateBookingStripeSession(id, stripeResult.sessionId);
 
   sendBookingConfirmation({
     email,
     slotName: slot.name,
     companyName,
-    amountCents: isTrial ? amountCents * (months - trial) : amountCents,
+    amountCents: effectiveTrial > 0 ? amountCents * (months - effectiveTrial) : amountCents,
     token,
     customHeading,
     customSubtitle,
     leaseMonths: months,
-    trialMonths: trial,
+    trialMonths: effectiveTrial,
     siteSlug,
   }).catch(() => {});
 
@@ -178,9 +269,18 @@ async function createBookingRequest({
     token,
     stripeUrl: stripeResult.sessionUrl,
     leaseMonths: months,
-    trialMonths: trial,
+    trialMonths: effectiveTrial,
     totalCents: amountCents,
     mode: stripeResult.mode,
+    ...(appliedDiscount
+      ? {
+          discount: {
+            code: appliedDiscount.code,
+            originalCents: baseAmountCents,
+            finalCents: amountCents,
+          },
+        }
+      : {}),
   };
 }
 
