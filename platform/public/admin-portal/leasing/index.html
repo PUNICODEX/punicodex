@@ -181,8 +181,8 @@
                         </select>
                     </div>
                     <div class="field" data-dc-field="percent">
-                        <label for="dc-percent">Percent off (1–99)</label>
-                        <input type="number" id="dc-percent" min="1" max="99" step="1" placeholder="25">
+                        <label for="dc-percent">Percent off (1–100)</label>
+                        <input type="number" id="dc-percent" min="1" max="100" step="1" placeholder="25">
                     </div>
                     <div class="field" data-dc-field="fixed" hidden>
                         <label for="dc-fixed">Amount off (USD)</label>
@@ -201,6 +201,10 @@
                         <select id="dc-applies-to">
                             <option value="all">All temples</option>
                         </select>
+                    </div>
+                    <div class="field" id="dc-slots-field" hidden>
+                        <label>Slots (none checked = whole temple)</label>
+                        <div id="dc-slots" style="display:flex;flex-wrap:wrap;gap:0.35rem 1rem;max-height:7.5rem;overflow-y:auto;"></div>
                     </div>
                     <div class="field">
                         <label for="dc-max-uses">Max uses (optional)</label>
@@ -805,7 +809,11 @@
                             (d.note ? '<div class="cell-sub">' + Portal.escapeHtml(d.note) + '</div>' : '') +
                             '</td>' +
                             '<td>' + Portal.escapeHtml(discountKindSummary(d)) + '</td>' +
-                            '<td><span class="badge badge--gold">' + Portal.escapeHtml(d.applies_to || 'all') + '</span></td>' +
+                            '<td><span class="badge badge--gold">' + Portal.escapeHtml(d.applies_to || 'all') + '</span>' +
+                            (Array.isArray(d.applies_slots) && d.applies_slots.length
+                                ? '<div class="cell-sub">' + d.applies_slots.length + ' slot' + (d.applies_slots.length === 1 ? '' : 's') + ' only</div>'
+                                : '') +
+                            '</td>' +
                             '<td>' + Portal.escapeHtml(discountUses(d)) + '</td>' +
                             '<td>' + expiry + '</td>' +
                             '<td>' + status + '</td>' +
@@ -867,14 +875,53 @@
             return Number.isFinite(n) && n > 0 ? Math.round(n * 100) : null;
         }
 
+        // Load the selected temple's slots as checkbox scoping for the code.
+        async function loadDcSlots() {
+            var wrap = document.getElementById('dc-slots-field');
+            var box = document.getElementById('dc-slots');
+            var temple = document.getElementById('dc-applies-to').value;
+            box.innerHTML = '';
+            if (!temple || temple === 'all') {
+                wrap.hidden = true;
+                return;
+            }
+            wrap.hidden = false;
+            try {
+                var res = await Portal.api('/api/v1/names/' + encodeURIComponent(temple) + '/slots/');
+                var slots = (res && res.data && res.data.slots) || [];
+                slots.forEach(function (s) {
+                    var label = document.createElement('label');
+                    label.style.cssText = 'display:flex;align-items:center;gap:0.3rem;font-size:0.8rem;color:var(--text-muted);';
+                    label.innerHTML =
+                        '<input type="checkbox" class="dc-slot" value="' + s.id + '"> ' +
+                        Portal.escapeHtml(s.name) + ' <span class="cell-sub">($' + (s.priceCents / 100).toFixed(0) + ')</span>';
+                    box.appendChild(label);
+                });
+            } catch (err) {
+                box.innerHTML = '<span class="cell-sub">Slots unavailable — the code will cover the whole temple.</span>';
+            }
+        }
+
+        function dcSelectedSlots() {
+            var checked = document.querySelectorAll('#dc-slots .dc-slot:checked');
+            var ids = [];
+            for (var i = 0; i < checked.length; i++) ids.push(Number(checked[i].value));
+            return ids;
+        }
+
         async function createDiscount() {
             var kind = document.getElementById('dc-kind').value;
+            var temple = document.getElementById('dc-applies-to').value.trim() || 'all';
             var body = {
                 code: document.getElementById('dc-code').value.trim(),
                 kind: kind,
-                appliesTo: document.getElementById('dc-applies-to').value.trim() || 'all',
+                appliesTo: temple,
                 note: document.getElementById('dc-note').value.trim() || undefined,
             };
+            if (temple !== 'all') {
+                var slotIds = dcSelectedSlots();
+                if (slotIds.length) body.appliesSlots = slotIds;
+            }
             var maxUses = parseInt(document.getElementById('dc-max-uses').value, 10);
             if (maxUses > 0) body.maxUses = maxUses;
             var expires = document.getElementById('dc-expires').value;
@@ -1185,15 +1232,14 @@
                 for (;;) {
                     var res = await Portal.api('/api/v1/names/?limit=100&offset=' + offset);
                     var names = (res && res.data && res.data.names) || (res && res.names) || (res && res.data) || [];
-                    if (!Array.isArray(names) || !names.length) break;
+                    if (!Array.isArray(names) || names.length === 0) break;
                     names.forEach(function (n) {
                         var opt = document.createElement('option');
                         opt.value = n.id;
                         opt.textContent = (n.unicode || n.ascii || n.id) + ' (' + n.id + ')';
                         sel.appendChild(opt);
                     });
-                    if (names.length < 100) break;
-                    offset += 100;
+                    offset += names.length;
                 }
             } catch (err) {
                 // Leave the All-temples option alone if the directory is unreachable.
@@ -1258,6 +1304,7 @@
             }
             syncDiscountForm();
             document.getElementById('dc-kind').addEventListener('change', syncDiscountForm);
+            document.getElementById('dc-applies-to').addEventListener('change', loadDcSlots);
             document.getElementById('dc-create').addEventListener('click', createDiscount);
             document.getElementById('dc-include-inactive').addEventListener('change', function (e) {
                 dcState.includeInactive = Boolean(e.target.checked);

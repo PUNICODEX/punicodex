@@ -213,6 +213,7 @@ async function approveApplication(id, adminToken) {
       siteSlug,
       leaseMonths: months,
       priceCents: slot.price_cents,
+      slotId: booking.slot_id,
     });
     if (check.valid) {
       const terms = check.terms;
@@ -237,6 +238,68 @@ async function approveApplication(id, adminToken) {
     } else {
       discountNote = `Discount code ${booking.discount_code} not applied (${check.reason}); full price charged.`;
     }
+  }
+
+  // ── Complimentary redemption (founding-sponsor pitches) ────────────────
+  // A code that reduces the term to nil never touches Stripe: no card, no
+  // checkout, no auto-renewal. The booking goes straight to 'approved' (the
+  // same state a paid booking reaches after payment) and the sponsor
+  // receives their dashboard link instead of a payment page.
+  if (appliedDiscount && amountCents === 0) {
+    const note = discountNote ? [booking.admin_note, discountNote].filter(Boolean).join(' | ') : null;
+    await setBookingStatus(booking.id, 'approved', note);
+
+    const redemption = await discountService.redeem({
+      codeId: appliedDiscount.codeId,
+      bookingId: booking.id,
+      email: booking.email,
+      originalCents: baseAmountCents,
+      finalCents: 0,
+    });
+    if (!redemption.ok) {
+      console.error(
+        `Discount code ${booking.discount_code} redemption failed (${redemption.reason}) for complimentary booking ${booking.id}`
+      );
+    }
+
+    const { sendDashboardLinks } = require('./email');
+    const updated = await getBookingById(booking.id);
+    sendDashboardLinks({
+      email: booking.email,
+      bookings: [
+        {
+          slot_name: slot.name,
+          status: 'approved (complimentary — no payment required)',
+          analytics_token: booking.analytics_token,
+          site_slug: siteSlug,
+        },
+      ],
+    }).catch(() => {});
+
+    await logAction({
+      ...auditActor(adminToken),
+      action: 'admin.booking.approve-application',
+      bookingId: booking.id,
+      payload: {
+        amountCents: 0,
+        complimentary: true,
+        discountCode: appliedDiscount.code,
+        originalCents: baseAmountCents,
+      },
+    });
+
+    return {
+      success: true,
+      status: 'approved',
+      complimentary: true,
+      discount: {
+        code: appliedDiscount.code,
+        kind: appliedDiscount.terms.kind,
+        originalCents: baseAmountCents,
+        finalCents: 0,
+      },
+      booking: updated,
+    };
   }
 
   const stripeResult = await createBookingCheckoutSession({

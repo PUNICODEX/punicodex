@@ -170,8 +170,11 @@ async function runTests() {
       discountService.computePrice({ priceCents: 5000, kind: 'percent_off', percent: 0 }),
       null
     );
+    // 100% is the complimentary term: the price reduces to nil, not null.
+    const nil = discountService.computePrice({ priceCents: 5000, kind: 'percent_off', percent: 100 });
+    assert.strictEqual(nil.finalCents, 0);
     assert.strictEqual(
-      discountService.computePrice({ priceCents: 5000, kind: 'percent_off', percent: 100 }),
+      discountService.computePrice({ priceCents: 5000, kind: 'percent_off', percent: 101 }),
       null
     );
   });
@@ -270,8 +273,8 @@ async function runTests() {
   });
 
   // ── Admin create validation ──────────────────────────────────
-  await test('admin create rejects percent 0 and percent 100', async () => {
-    for (const percent of [0, 100]) {
+  await test('admin create rejects percent 0 and 101; percent 100 is the complimentary term', async () => {
+    for (const percent of [0, 101]) {
       const res = await invoke(discountsHandler, 'POST', '/api/admin/portal/discounts/', {
         headers: adminHeader(superToken),
         body: { code: `PCT${percent}`, kind: 'percent_off', percent },
@@ -282,6 +285,11 @@ async function runTests() {
         `percent ${percent} → ${res.status}: ${JSON.stringify(res.body)}`
       );
     }
+    const full = await invoke(discountsHandler, 'POST', '/api/admin/portal/discounts/', {
+      headers: adminHeader(superToken),
+      body: { code: 'FOUNDING100', kind: 'percent_off', percent: 100, appliesTo: 'zeus' },
+    });
+    assert.strictEqual(full.status, 201, JSON.stringify(full.body));
   });
 
   await test('admin create rejects then_price ≥ the temple price', async () => {
@@ -676,6 +684,107 @@ async function runTests() {
     const used = db().prepare('SELECT used_count FROM discount_codes WHERE id = ?').get(code.id);
     assert.strictEqual(used.used_count, 1);
     seeded.approvedBookingId = bookingId;
+  });
+
+  await test('slot scoping: appliesSlots restricts redemption to the named slots only', async () => {
+    const slotA = getBundleSlotId(__filename, 'zeus');
+    const other = db()
+      .prepare("SELECT id FROM ad_slots WHERE site_slug = 'zeus' AND (is_bundle = 0 OR is_bundle IS NULL) LIMIT 1")
+      .get();
+
+    const created = await invoke(discountsHandler, 'POST', '/api/admin/portal/discounts/', {
+      headers: adminHeader(superToken),
+      body: {
+        code: 'ZEUS-FRAME',
+        kind: 'percent_off',
+        percent: 50,
+        appliesTo: 'zeus',
+        appliesSlots: [slotA],
+      },
+    });
+    assert.strictEqual(created.status, 201, JSON.stringify(created.body));
+    assert.deepStrictEqual(created.body.applies_slots, [slotA], 'slots parsed in the response');
+
+    const inScope = await discountService.validateCode({
+      code: 'ZEUS-FRAME',
+      siteSlug: 'zeus',
+      priceCents: 10000,
+      slotId: slotA,
+    });
+    assert.strictEqual(inScope.valid, true, 'named slot validates');
+
+    if (other) {
+      const outOfScope = await discountService.validateCode({
+        code: 'ZEUS-FRAME',
+        siteSlug: 'zeus',
+        priceCents: 10000,
+        slotId: other.id,
+      });
+      assert.strictEqual(outOfScope.valid, false);
+      assert.strictEqual(outOfScope.reason, 'slot_restricted');
+    }
+
+    const wrongTemple = await discountService.validateCode({
+      code: 'ZEUS-FRAME',
+      siteSlug: 'athena',
+      priceCents: 10000,
+      slotId: slotA,
+    });
+    assert.strictEqual(wrongTemple.valid, false);
+    assert.strictEqual(wrongTemple.reason, 'temple_mismatch');
+
+    const badShape = await invoke(discountsHandler, 'POST', '/api/admin/portal/discounts/', {
+      headers: adminHeader(superToken),
+      body: { code: 'BAD-SLOTS', kind: 'percent_off', percent: 10, appliesSlots: 'zeus' },
+    });
+    assert.strictEqual(badShape.status, 400, 'non-array appliesSlots rejected');
+    const allTemple = await invoke(discountsHandler, 'POST', '/api/admin/portal/discounts/', {
+      headers: adminHeader(superToken),
+      body: { code: 'ALL-SLOTS', kind: 'percent_off', percent: 10, appliesTo: 'all', appliesSlots: [1] },
+    });
+    assert.strictEqual(allTemple.status, 400, 'slot scoping requires a temple');
+  });
+
+  await test('approveApplication: a 100% code activates complimentary — no Stripe, status approved', async () => {
+    const slotId = getBundleSlotId(__filename, 'ra');
+    const slot = db().prepare('SELECT price_cents FROM ad_slots WHERE id = ?').get(slotId);
+    await discountService.createCode(
+      { code: 'RA-FOUNDING', kind: 'percent_off', percent: 100, appliesTo: 'ra' },
+      null
+    );
+
+    const { id: bookingId } = await createBooking({
+      slotId,
+      email: 'founder@example.com',
+      companyName: 'Founding Co',
+      leaseMonths: 12,
+      trialMonths: 0,
+      siteSlug: 'ra',
+      status: 'pending_application',
+      discountCode: 'RA-FOUNDING',
+    });
+
+    const sessionsBefore = sessionsCreated.length;
+    const result = await approveApplication(bookingId, 'test-admin-token');
+    assert.strictEqual(result.success, true);
+    assert.strictEqual(result.complimentary, true, 'complimentary flag returned');
+    assert.strictEqual(result.status, 'approved');
+    assert.strictEqual(result.discount.finalCents, 0);
+    assert.strictEqual(
+      sessionsCreated.length,
+      sessionsBefore,
+      'no Stripe session is created for a nil term'
+    );
+
+    const updated = await getBookingById(bookingId);
+    assert.strictEqual(updated.status, 'approved', 'booking goes straight to approved');
+
+    const redemption = db()
+      .prepare('SELECT * FROM discount_redemptions WHERE booking_id = ?')
+      .get(bookingId);
+    assert.ok(redemption, 'redemption recorded');
+    assert.strictEqual(redemption.final_cents, 0);
+    assert.strictEqual(redemption.original_cents, Math.round(slot.price_cents * 12 * 0.9));
   });
 
   await test('approveApplication: a dead code falls back to full price with an admin note', async () => {

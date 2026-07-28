@@ -82,7 +82,9 @@ function computePrice({ priceCents, kind, percent, fixedCents, freeMonths, thenP
   switch (kind) {
     case 'percent_off': {
       const p = Number(percent);
-      if (!(p > 0 && p < 100)) return null;
+      // 100% is legitimate: it reduces a term to nil and routes approval
+      // down the complimentary (zero-payment, no-Stripe) path.
+      if (!(p > 0 && p <= 100)) return null;
       pricing.finalCents = Math.round(base * (1 - p / 100));
       return pricing;
     }
@@ -122,7 +124,7 @@ function computePrice({ priceCents, kind, percent, fixedCents, freeMonths, thenP
  * internal reason string — public callers must normalize every failure to a
  * single generic reason so the response never reveals whether a code exists.
  */
-async function validateCode({ code, siteSlug, leaseMonths = 1, priceCents, context = 'booking' }) {
+async function validateCode({ code, siteSlug, leaseMonths = 1, priceCents, slotId = null, context = 'booking' }) {
   await ensureSchema();
   const invalid = (reason) => ({ valid: false, reason });
 
@@ -146,6 +148,20 @@ async function validateCode({ code, siteSlug, leaseMonths = 1, priceCents, conte
     return invalid('temple_mismatch');
   }
 
+  // Slot-level scoping: when the code names specific slots, the booking must
+  // target one of them. NULL applies_slots means every slot of the temple.
+  if (row.applies_slots) {
+    let allowed = [];
+    try {
+      allowed = JSON.parse(row.applies_slots) || [];
+    } catch {
+      allowed = [];
+    }
+    if (allowed.length > 0 && !allowed.map(Number).includes(Number(slotId))) {
+      return invalid('slot_restricted');
+    }
+  }
+
   const terms = {
     kind: row.kind,
     percent: row.percent,
@@ -160,6 +176,16 @@ async function validateCode({ code, siteSlug, leaseMonths = 1, priceCents, conte
 }
 
 // ─── Admin: list / stats ────────────────────────────────────────
+
+function parseSlots(row) {
+  if (!row) return row;
+  if (!row.applies_slots) return { ...row, applies_slots: null };
+  try {
+    return { ...row, applies_slots: JSON.parse(row.applies_slots) || null };
+  } catch {
+    return { ...row, applies_slots: null };
+  }
+}
 
 async function listCodes({ limit = 100, offset = 0, includeInactive = false } = {}) {
   await ensureSchema();
@@ -184,7 +210,7 @@ async function listCodes({ limit = 100, offset = 0, includeInactive = false } = 
     ),
   ]);
   return {
-    items,
+    items: items.map(parseSlots),
     total: Number(totalRow?.c ?? 0),
     limit,
     offset,
@@ -227,7 +253,7 @@ async function referencePriceCents(appliesTo) {
 }
 
 async function getCodeById(id) {
-  return get('SELECT * FROM discount_codes WHERE id = $1', [id]);
+  return parseSlots(await get('SELECT * FROM discount_codes WHERE id = $1', [id]));
 }
 
 async function createCode(fields, actor) {
@@ -267,10 +293,27 @@ async function createCode(fields, actor) {
     throw discountError(400, 'maxUses must be at least 1');
   }
 
+  // Optional slot-level scoping: a non-empty array of ad_slots.id the code is
+  // valid for within its temple. Null/absent means every slot of the temple.
+  let appliesSlots = null;
+  if (input.appliesSlots != null && input.appliesSlots !== '') {
+    if (!Array.isArray(input.appliesSlots)) {
+      throw discountError(400, 'appliesSlots must be an array of slot ids');
+    }
+    const ids = [...new Set(input.appliesSlots.map(Number))];
+    if (!ids.length || ids.length > 32 || !ids.every((n) => Number.isInteger(n) && n > 0)) {
+      throw discountError(400, 'appliesSlots must be 1–32 positive integer slot ids');
+    }
+    if (appliesTo === 'all') {
+      throw discountError(400, 'slot-scoped codes must name a temple (appliesTo)');
+    }
+    appliesSlots = JSON.stringify(ids);
+  }
+
   if (kind === 'percent_off') {
     if (!(percent > 0)) throw discountError(400, 'percent is required for percent_off');
-    if (percent < 1 || percent > 99) {
-      throw discountError(400, 'percent must be between 1 and 99');
+    if (percent < 1 || percent > 100) {
+      throw discountError(400, 'percent must be between 1 and 100');
     }
   }
   if (kind === 'fixed_off' && (fixedCents == null || fixedCents < 1)) {
@@ -311,8 +354,8 @@ async function createCode(fields, actor) {
   try {
     id = await insert(
       `INSERT INTO discount_codes
-         (code, kind, percent, fixed_cents, free_months, then_price_cents, applies_to, max_uses, expires_at, note, created_by)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+         (code, kind, percent, fixed_cents, free_months, then_price_cents, applies_to, applies_slots, max_uses, expires_at, note, created_by)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
        RETURNING id`,
       [
         code,
@@ -322,6 +365,7 @@ async function createCode(fields, actor) {
         freeMonths,
         thenPriceCents,
         appliesTo,
+        appliesSlots,
         maxUses,
         expiresAt,
         note,

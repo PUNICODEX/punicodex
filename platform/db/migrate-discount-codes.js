@@ -76,6 +76,9 @@ function migrate(db) {
   if (tableExists(db, 'bookings')) {
     addColumnIfMissing(db, 'bookings', 'discount_code', 'discount_code TEXT');
   }
+  // Optional slot-level scoping: JSON array of ad_slots.id the code is valid
+  // for within its temple; NULL means every slot of the temple.
+  addColumnIfMissing(db, 'discount_codes', 'applies_slots', 'applies_slots TEXT');
   db.exec(`
     CREATE INDEX IF NOT EXISTS idx_discount_redemptions_code ON discount_redemptions(code_id);
     CREATE INDEX IF NOT EXISTS idx_discount_redemptions_booking ON discount_redemptions(booking_id);
