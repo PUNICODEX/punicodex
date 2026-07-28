@@ -501,6 +501,7 @@ async function validateDiscountCode() {
   currentDiscount = null;
   if (!code) {
     if (els.discountNote) els.discountNote.style.display = 'none';
+    syncVerifyButtonLabel();
     updatePriceDisplay();
     return;
   }
@@ -531,7 +532,17 @@ async function validateDiscountCode() {
     // Validation is advisory; the server re-validates authoritatively at booking.
     if (els.discountNote) els.discountNote.style.display = 'none';
   }
+  syncVerifyButtonLabel();
   updatePriceDisplay();
+}
+
+// The verify button must never promise payment for a complimentary term.
+function syncVerifyButtonLabel() {
+  if (!els.verifyBtn) return;
+  els.verifyBtn.textContent =
+    currentDiscount && currentDiscount.complimentary
+      ? 'Verify & Continue'
+      : 'Verify & Proceed to Payment';
 }
 
 if (els.discount) {
