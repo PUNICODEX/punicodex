@@ -127,6 +127,11 @@ function buildTableSql(sqliteDb, tableName) {
   if (hasCompositePk) {
     const pkNames = pkColumns.map((c) => c.name).join(', ');
     columnDefs.push(`PRIMARY KEY (${pkNames})`);
+  } else if (pkColumns.length === 1 && pkColumns[0].type.toUpperCase() !== 'INTEGER') {
+    // Single TEXT (or other non-INTEGER) primary key: sqliteToPostgresType
+    // only inlines INTEGER pks, so emit it here or upserts like
+    // ON CONFLICT (email) fail at runtime.
+    columnDefs.push(`PRIMARY KEY (${pkColumns[0].name})`);
   }
 
   return `CREATE TABLE ${tableName} (\n  ${columnDefs.join(',\n  ')}\n)`;
@@ -219,16 +224,21 @@ async function main() {
   );
 
   // Text primary keys that the schema translator cannot infer (it only maps
-  // INTEGER pks): tenant_sessions.token and tenant_tokens.token.
-  for (const table of ['tenant_sessions', 'tenant_tokens']) {
+  // INTEGER pks): tenant_sessions.token, tenant_tokens.token, and
+  // email_verifications.email (the verification upsert needs it).
+  for (const [table, column] of [
+    ['tenant_sessions', 'token'],
+    ['tenant_tokens', 'token'],
+    ['email_verifications', 'email'],
+  ]) {
     const hasPk = await sql.query(
       `SELECT 1 FROM information_schema.table_constraints
        WHERE table_name = $1 AND constraint_type = 'PRIMARY KEY'`,
       [table]
     );
     if (hasPk.length === 0) {
-      await sql.query(`ALTER TABLE ${table} ADD PRIMARY KEY (token)`);
-      console.log(`  Added PRIMARY KEY on ${table}(token)`);
+      await sql.query(`ALTER TABLE ${table} ADD PRIMARY KEY (${column})`);
+      console.log(`  Added PRIMARY KEY on ${table}(${column})`);
     }
   }
 
