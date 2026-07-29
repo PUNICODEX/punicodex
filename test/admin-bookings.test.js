@@ -157,11 +157,12 @@ async function runTests() {
 
   let rejectedId;
 
-  await test('POST /api/admin/bookings/:id/reject', async () => {
+  await test('POST /api/admin/bookings/:id/reject frees the slot', async () => {
+    const slotId = getSlotId(__filename, 'nike', 4);
     const createRes = await invoke(bookingsHandler, 'POST', '/api/admin/bookings', {
       headers: adminHeader(adminToken),
       body: {
-        slotId: getSlotId(__filename, 'nike', 4),
+        slotId,
         email: 'rejected@example.com',
         companyName: 'Bad Actor',
         leaseMonths: 1,
@@ -169,6 +170,14 @@ async function runTests() {
       },
     });
     rejectedId = createRes.body.bookingId;
+
+    const Database = require('better-sqlite3');
+    const { getTestDbPath } = require('./helpers/test-db.js');
+    const before = new Database(getTestDbPath(__filename), { readonly: true })
+      .prepare('SELECT status, current_booking_id FROM ad_slots WHERE id = ?')
+      .get(slotId);
+    assert.strictEqual(before.status, 'reserved', 'slot is reserved after booking');
+    assert.strictEqual(before.current_booking_id, rejectedId);
 
     const handler = require('../api/admin/bookings/[id]/reject/index.js');
     const res = await invoke(handler, 'POST', `/api/admin/bookings/${rejectedId}/reject`, {
@@ -178,6 +187,13 @@ async function runTests() {
     });
     assert.strictEqual(res.status, 200);
     assert.strictEqual(res.body.status, 'rejected');
+    assert.strictEqual(res.body.slotReleased, true);
+
+    const after = new Database(getTestDbPath(__filename), { readonly: true })
+      .prepare('SELECT status, current_booking_id FROM ad_slots WHERE id = ?')
+      .get(slotId);
+    assert.strictEqual(after.status, 'available', 'rejection must free the slot');
+    assert.strictEqual(after.current_booking_id, null, 'booking link cleared');
   });
 
   await test('GET /api/admin/revenue returns revenue stats', async () => {

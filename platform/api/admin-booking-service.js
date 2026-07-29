@@ -11,6 +11,8 @@ const {
   endBooking,
   getDashboardMetrics,
   updateBookingStripeSession,
+  isBundleSlot,
+  getBundleMembers,
 } = require('./bookings');
 const { createBookingCheckoutSession } = require('./stripe');
 const { logAction } = require('./admin-actions');
@@ -419,6 +421,23 @@ async function rejectBooking(id, note, adminToken) {
   if (!booking) throw new AdminBookingError(404, 'Booking not found');
   const reason = note || 'Does not meet guidelines';
   await setBookingStatus(id, 'rejected', reason);
+
+  // Rejecting always frees the frame — a rejected booking must never keep a
+  // slot reserved. Bundles release every member frame too.
+  await run(
+    `UPDATE ad_slots SET status = 'available', current_booking_id = NULL, updated_at = CURRENT_TIMESTAMP WHERE id = $1`,
+    [booking.slot_id]
+  );
+  if (await isBundleSlot(booking.slot_id)) {
+    const members = await getBundleMembers(booking.slot_id);
+    for (const memberId of members) {
+      await run(
+        `UPDATE ad_slots SET status = 'available', current_booking_id = NULL, updated_at = CURRENT_TIMESTAMP WHERE id = $1`,
+        [memberId]
+      );
+    }
+  }
+
   await logAction({
     ...auditActor(adminToken),
     action: 'admin.booking.reject',
@@ -433,7 +452,7 @@ async function rejectBooking(id, note, adminToken) {
     bookingToken: booking.analytics_token,
     siteSlug: booking.site_slug,
   }).catch(() => {});
-  return { success: true, status: 'rejected' };
+  return { success: true, status: 'rejected', slotReleased: true };
 }
 
 async function goLiveBooking(id, adminToken) {
