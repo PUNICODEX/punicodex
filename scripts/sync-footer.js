@@ -28,6 +28,7 @@ const EXPLORE = [
   ['/patterns/', 'Patterns'],
   ['/trending/', 'Trending'],
   ['/tiers/', 'Tier System'],
+  ['/rulebook/', 'Rulebook'],
   ['/type/', 'Type'],
   ['/search.html', 'Search'],
 ];
@@ -67,6 +68,7 @@ const TARGETS = [
   path.join('blog', 'index.html'),
   path.join('texts', 'index.html'),
   path.join('texts', 'theogony', 'index.html'),
+  path.join('rulebook', 'index.html'),
   path.join('trending', 'index.html'),
   path.join('patterns', 'index.html'),
   path.join('patterns', 'methodology', 'index.html'),

@@ -39,6 +39,7 @@ const PRIMARY = [
 const MORE = [
   ['/patterns/', 'Patterns'],
   ['/tiers/', 'Tier System'],
+  ['/rulebook/', 'Rulebook'],
   ['/oracle.html', 'Oracle'],
   ['/extension/', 'Extension'],
   ['/app/', 'App'],
@@ -71,6 +72,7 @@ const TARGETS = [
   { page: path.join('blog', 'index.html'), active: '/blog/' },
   { page: path.join('texts', 'index.html'), active: '/texts/' },
   { page: path.join('texts', 'theogony', 'index.html'), active: '/texts/' },
+  { page: path.join('rulebook', 'index.html'), active: '/rulebook/' },
   { page: path.join('trending', 'index.html'), active: '/trending/' },
   { page: path.join('patterns', 'index.html'), active: '/patterns/' },
   { page: path.join('patterns', 'methodology', 'index.html'), active: '/patterns/' },

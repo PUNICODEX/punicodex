@@ -304,7 +304,7 @@ mismatches it reports.
 21. University collaborator injection (`inject-university-collaborators.js`)
 22. Mobile menu sync (`sync-mobile-menu.js`)
 23. Desktop nav sync (`sync-desktop-nav.js`) — canonical desktop nav
-    (6 primary links + 14-item More dropdown + Enter CTA) across all
+    (6 primary links + 17-item More dropdown (Patterns, Tier System, Rulebook, Oracle, Extension, App, Texts, Trending, Codex, Blog, Creatives, Scholars, API, Appraise, Store, About, Contact) + Enter CTA) across all
     non-temple root pages; `css/nav-more.css` + `css/mobile-menu.css`
     carry the component styles for pages without `main.css`. Guarded by
     `test/menu-consistency.test.js`. The blog index generator
