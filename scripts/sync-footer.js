@@ -36,6 +36,7 @@ const RESOURCES = [
   ['/codex/', 'Codex'],
   ['/blog/', 'Blog'],
   ['/texts/', 'Texts'],
+  ['/cards/', 'Cards'],
   ['/creatives/', 'Creatives'],
   ['/scholars/', 'Scholars'],
   ['/api/v1/docs/', 'API'],

@@ -1,0 +1,126 @@
+/* Mythic Cards — TCG frame system (The First Restoration Set) */
+
+.cards-wrap { max-width: 1400px; margin: 0 auto; padding: 0 1.5rem 4rem; }
+
+.cards-hero { text-align: center; padding: 8rem 1rem 2.5rem; }
+.cards-eyebrow { font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold, #D4AF37); margin: 0 0 1rem; }
+.cards-hero h1 { font-family: 'Cinzel', serif; font-size: clamp(2.4rem, 6vw, 4rem); color: var(--gold, #D4AF37); margin: 0 0 1rem; }
+.cards-lede { max-width: 52rem; margin: 0 auto; color: var(--dim, #9a948a); line-height: 1.8; }
+.cards-stats { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem 2.5rem; margin-top: 2rem; }
+.cards-stat { text-align: center; }
+.cards-stat-value { display: block; font-family: 'Cinzel', serif; font-size: 1.6rem; color: var(--gold, #D4AF37); }
+.cards-stat-label { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim, #9a948a); opacity: 0.75; }
+
+.cards-toolbar { display: flex; flex-direction: column; gap: 0.75rem; padding: 1.25rem 0; border-top: 1px solid var(--line, rgba(212,175,55,.18)); }
+.cards-search { background: #0e0e12; border: 1px solid var(--line, rgba(212,175,55,.18)); border-radius: 10px; color: var(--ink, #E8E4DC); padding: 0.8rem 1.1rem; font-size: 0.95rem; font-family: inherit; width: min(560px, 100%); margin: 0 auto; }
+.cards-search:focus { outline: none; border-color: var(--gold, #D4AF37); }
+.cards-pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.4rem; }
+.cards-pill { background: none; border: 1px solid var(--line, rgba(212,175,55,.18)); color: var(--dim, #9a948a); border-radius: 999px; padding: 0.35rem 0.85rem; font-size: 0.76rem; letter-spacing: 0.04em; cursor: pointer; font-family: inherit; transition: color .15s, border-color .15s; }
+.cards-pill:hover { color: var(--gold, #D4AF37); border-color: var(--gold, #D4AF37); }
+.cards-pill.active { color: var(--gold, #D4AF37); border-color: var(--gold, #D4AF37); background: rgba(212,175,55,.08); }
+.foil-pill { color: #c9b3ff; border-color: rgba(155, 89, 182, 0.5); }
+.foil-pill.active, .foil-pill:hover { color: #d9c8ff; border-color: #b48cff; background: rgba(155,89,182,.1); }
+
+.cards-count { text-align: center; color: var(--dim, #9a948a); font-size: 0.82rem; letter-spacing: 0.06em; margin: 0.25rem 0 1rem; }
+.cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(215px, 1fr)); gap: 1.4rem; }
+.cards-loading { grid-column: 1 / -1; text-align: center; color: var(--dim, #9a948a); padding: 3rem 0; }
+.cards-more { display: block; margin: 2rem auto 0; background: none; border: 1px solid var(--gold, #D4AF37); color: var(--gold, #D4AF37); border-radius: 999px; padding: 0.7rem 2.2rem; font-family: 'Cinzel', serif; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; }
+.cards-more:hover { background: rgba(212,175,55,.1); }
+
+/* ── The frame ── */
+.mcard {
+  position: relative;
+  border-radius: 12px;
+  padding: 7px;
+  background: linear-gradient(165deg, var(--mc1, #1a1a24), #0a0a0e 70%);
+  border: 1px solid rgba(212,175,55,0.22);
+  cursor: pointer;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  font-family: 'Spectral', Georgia, serif;
+}
+.mcard:hover { transform: translateY(-5px) scale(1.015); border-color: var(--gold, #D4AF37); box-shadow: 0 14px 34px rgba(0,0,0,.55), 0 0 22px rgba(212,175,55,.12); z-index: 2; }
+.mcard-inner { border: 1px solid rgba(255,255,255,.08); border-radius: 8px; overflow: hidden; background: #0c0c12; display: flex; flex-direction: column; }
+
+.mcard-banner {
+  display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;
+  padding: 0.42rem 0.6rem;
+  background: linear-gradient(180deg, var(--mc2, #2a2a38), var(--mc1, #1a1a24));
+  border-bottom: 1px solid rgba(212,175,55,0.25);
+}
+.mcard-name { font-family: 'Cinzel', serif; font-weight: 700; font-size: 0.95rem; color: #fff; letter-spacing: 0.02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mcard-sigil { font-size: 0.85rem; color: var(--gold, #D4AF37); }
+
+.mcard-art { position: relative; height: 150px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: radial-gradient(ellipse at 50% 35%, var(--mc2, #2a2a38) 0%, #0a0a10 78%); }
+.mcard-art img { max-width: 88%; max-height: 88%; object-fit: contain; filter: drop-shadow(0 6px 14px rgba(0,0,0,.6)); }
+.mcard-tier { position: absolute; top: 5px; left: 6px; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold, #D4AF37); background: rgba(0,0,0,.55); border: 1px solid rgba(212,175,55,.3); border-radius: 4px; padding: 0.12rem 0.4rem; }
+.mcard-cat { position: absolute; top: 5px; right: 6px; font-size: 0.72rem; color: var(--gold, #D4AF37); background: rgba(0,0,0,.55); border: 1px solid rgba(212,175,55,.3); border-radius: 999px; padding: 0.1rem 0.45rem; }
+
+.mcard-ability { flex: 1; padding: 0.5rem 0.6rem; border-top: 1px solid rgba(212,175,55,0.15); min-height: 74px; }
+.mcard-ability-name { font-family: 'Cinzel', serif; font-size: 0.72rem; color: var(--gold, #D4AF37); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 0.2rem; }
+.mcard-ability-text { font-size: 0.74rem; line-height: 1.45; color: var(--ink, #E8E4DC); opacity: 0.88; font-style: italic; }
+
+.mcard-stats { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid rgba(212,175,55,0.2); background: linear-gradient(180deg, var(--mc1, #1a1a24), #0a0a0e); }
+.mcard-stat { text-align: center; padding: 0.3rem 0.1rem; }
+.mcard-stat b { display: block; font-family: 'Cinzel', serif; font-size: 0.85rem; color: #fff; }
+.mcard-stat span { font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim, #9a948a); }
+
+.mcard-foot { display: flex; align-items: center; justify-content: space-between; padding: 0.32rem 0.55rem; border-top: 1px solid rgba(255,255,255,.06); }
+.mcard-set { font-size: 0.58rem; letter-spacing: 0.08em; color: var(--dim, #9a948a); text-transform: uppercase; }
+
+/* Rarity gem */
+.mgem { font-size: 0.95rem; line-height: 1; }
+.mgem--legendary { color: #FFD700; text-shadow: 0 0 8px rgba(255,215,0,.7); }
+.mgem--mythic { color: #c77dff; text-shadow: 0 0 8px rgba(199,125,255,.7); }
+.mgem--rare { color: #8ab4f8; text-shadow: 0 0 8px rgba(138,180,248,.5); }
+.mgem--uncommon { color: #9ec98f; }
+.mgem--common { color: #8a8599; }
+
+/* Foil treatment (original-script chase cards) */
+.mcard--foil { border-color: rgba(199,125,255,.55); }
+.mcard--foil::after {
+  content: ''; position: absolute; inset: 0; border-radius: 12px; pointer-events: none;
+  background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,.16) 46%, rgba(155,89,182,.2) 52%, rgba(80,180,255,.14) 58%, transparent 74%);
+  background-size: 250% 250%;
+  animation: foil-sheen 3.2s ease-in-out infinite;
+  mix-blend-mode: screen;
+}
+.mcard--foil .mcard-banner { background: linear-gradient(180deg, #3a2a4a, #1d1226); }
+@keyframes foil-sheen { 0%,100% { background-position: 0% 0%; } 50% { background-position: 100% 100%; } }
+@media (prefers-reduced-motion: reduce) { .mcard--foil::after { animation: none; } }
+
+/* ── Modal ── */
+.card-modal { position: fixed; inset: 0; z-index: 3000; display: flex; align-items: center; justify-content: center; padding: 1rem; }
+.card-modal[hidden] { display: none; }
+.card-modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.82); backdrop-filter: blur(6px); }
+.card-modal-panel { position: relative; max-width: 860px; width: 100%; max-height: 92vh; overflow-y: auto; background: #0d0d13; border: 1px solid rgba(212,175,55,.3); border-radius: 16px; padding: 1.5rem; }
+.card-modal-close { position: absolute; top: 0.6rem; right: 0.8rem; background: none; border: none; color: var(--dim, #9a948a); font-size: 1.8rem; cursor: pointer; line-height: 1; }
+.card-modal-close:hover { color: var(--gold, #D4AF37); }
+.card-modal-body { display: grid; grid-template-columns: 300px 1fr; gap: 1.75rem; align-items: start; }
+.card-modal-frame { max-width: 300px; }
+.card-modal-info h2 { font-family: 'Cinzel', serif; color: var(--gold, #D4AF37); font-size: 1.7rem; margin: 0 0 0.2rem; }
+.card-modal-original { font-size: 1.25rem; color: var(--ink, #E8E4DC); opacity: 0.9; margin-bottom: 0.75rem; }
+.card-modal-domain { color: var(--dim, #9a948a); font-size: 0.9rem; margin-bottom: 1rem; }
+.card-modal-flavor { border-left: 3px solid var(--gold, #D4AF37); background: rgba(212,175,55,.06); padding: 0.85rem 1rem; border-radius: 0 8px 8px 0; font-style: italic; color: var(--ink, #E8E4DC); line-height: 1.7; margin: 1rem 0; }
+.card-modal-row { display: flex; gap: 0.5rem; color: var(--dim, #9a948a); font-size: 0.88rem; margin: 0.35rem 0; }
+.card-modal-row b { color: var(--ink, #E8E4DC); font-weight: 600; }
+.card-modal-links { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.25rem; }
+.card-modal-link { border: 1px solid var(--gold, #D4AF37); color: var(--gold, #D4AF37); border-radius: 999px; padding: 0.5rem 1.3rem; font-size: 0.82rem; text-decoration: none; letter-spacing: 0.05em; }
+.card-modal-link:hover { background: rgba(212,175,55,.12); color: var(--gold-bright, #F0D878); }
+.card-modal-link--ghost { border-color: rgba(255,255,255,.2); color: var(--dim, #9a948a); }
+.card-variant-toggle { display: inline-flex; border: 1px solid rgba(212,175,55,.3); border-radius: 999px; overflow: hidden; margin-top: 1rem; }
+.card-variant-toggle button { background: none; border: none; color: var(--dim, #9a948a); padding: 0.4rem 1rem; font-size: 0.78rem; cursor: pointer; font-family: inherit; }
+.card-variant-toggle button.active { background: rgba(212,175,55,.14); color: var(--gold, #D4AF37); }
+
+.cards-foot { text-align: center; margin-top: 4rem; padding: 2.5rem 1rem 0; border-top: 1px solid var(--line, rgba(212,175,55,.18)); }
+.cards-foot h2 { font-family: 'Cinzel', serif; color: var(--gold, #D4AF37); font-size: 1.5rem; margin-bottom: 0.75rem; }
+.cards-foot p { max-width: 48rem; margin: 0 auto; color: var(--dim, #9a948a); line-height: 1.8; }
+.cards-foot a { color: var(--gold, #D4AF37); }
+
+@media (max-width: 900px) { .card-modal-body { grid-template-columns: 1fr; } .card-modal-frame { max-width: 250px; margin: 0 auto; } }
+@media (max-width: 640px) {
+  .cards-hero { padding-top: 6rem; }
+  .cards-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 0.9rem; }
+  .mcard-art { height: 118px; }
+  .mcard-ability { min-height: 84px; }
+  .card-modal-panel { padding: 1rem; }
+}

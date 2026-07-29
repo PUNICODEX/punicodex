@@ -858,6 +858,25 @@ supporting source(s).
 
 ---
 
+## Mythic Cards (TCG)
+
+`/cards/` is the public collector gallery for the canonical **First
+Restoration (FR1)** set — 1,156 cards derived by `scripts/generate-cards.js`
+from the lexicon (never hand-edited: `game/cards.json`,
+`platform/api/cards.json`). Rarity is mechanical: flagship → legendary (271),
+dual → epic (dormant), tier-1 → rare, notable-domain → uncommon, else common;
+232 original-script variants are **mythic chase foils**. The gallery
+(`cards/index.html` + `cards/cards.js` + `css/cards.css`) fetches
+`/game/cards.json` client-side and renders TCG frames with
+pantheon/rarity/variant filters, lazy paging, and a detail modal
+(Standard/Foil toggle, temple cross-link, `/game/` duel link). Contract:
+`test/cards-gallery.test.js`. The confidential print specification (rarity
+algorithm, treatments, pack collation, print runs, QC) lives in
+`extended flagship materials/PUNICODEX_FR1_Print_Specification_CONFIDENTIAL.md`
+— never publish its numbers on the site.
+
+---
+
 ## The Reliquary (Print-on-Demand Store)
 
 `/store/` is the merch storefront (Printful-backed print-on-demand). The
