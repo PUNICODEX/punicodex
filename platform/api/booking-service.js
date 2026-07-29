@@ -26,6 +26,7 @@ const {
   sendDashboardLinks,
   notifyAdminApplication,
   getSiteDisplayName,
+  sandboxPanelUrl,
 } = require('./email');
 
 class BookingError extends Error {
@@ -155,6 +156,11 @@ async function createBookingRequest({
   }
   const { id, token } = bookingResult;
 
+  // Provision the sponsor's sandbox account now, serialized with the booking
+  // writes (a fire-and-forget provision raced the next write under WAL and
+  // locked the database). The returned setup link rides in the email.
+  const panelUrl = await sandboxPanelUrl(email);
+
   const isTrial = trial > 0;
   const isYearly = months0 === 12 && !isTrial;
   const baseAmountCents = isTrial
@@ -215,6 +221,7 @@ async function createBookingRequest({
       trialMonths: 0,
       siteSlug,
       complimentary: true,
+      panelUrlOverride: panelUrl,
     }).catch(() => {});
     return {
       bookingId: id,
@@ -275,6 +282,7 @@ async function createBookingRequest({
     leaseMonths: months,
     trialMonths: effectiveTrial,
     siteSlug,
+    panelUrlOverride: panelUrl,
   }).catch(() => {});
 
   return {

@@ -23,6 +23,7 @@ const {
   sendAnalyticsReport,
   sendBookingConfirmation,
   getSiteDisplayName,
+  sandboxPanelUrl,
 } = require('./email');
 const { getAllBookings, getBookingCount, getBookingStats, getRevenueStats } = require('./admin');
 const { run } = require('../db/operational');
@@ -275,6 +276,7 @@ async function approveApplication(id, adminToken) {
     }
 
     const updated = await getBookingById(booking.id);
+    const panelUrl = await sandboxPanelUrl(booking.email);
     sendBookingConfirmation({
       email: booking.email,
       slotName: slot.name,
@@ -287,6 +289,7 @@ async function approveApplication(id, adminToken) {
       trialMonths: 0,
       siteSlug,
       complimentary: true,
+      panelUrlOverride: panelUrl,
     }).catch(() => {});
 
     await logAction({

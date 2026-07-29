@@ -3,6 +3,21 @@ const FROM_EMAIL = process.env.FROM_EMAIL || 'bookings@punicodex.com';
 const REPLY_TO_EMAIL = process.env.REPLY_TO_EMAIL || 'support@punicodex.com';
 const PLATFORM_URL = process.env.PLATFORM_URL || 'https://punicodex.com';
 
+// Provisions the sponsor's sandbox account (find-or-create by email, link
+// their bookings) and returns the best panel URL: a one-time set-password
+// link for a new account, the plain login page for an established one.
+// Never throws — the email must send even if provisioning hiccups.
+async function sandboxPanelUrl(email) {
+  try {
+    const { provisionTenantAccount } = require('./tenant-portal');
+    const { token } = await provisionTenantAccount(email);
+    if (token) return `${PLATFORM_URL}/account/login/?token=${encodeURIComponent(token)}`;
+  } catch (err) {
+    console.error('[EMAIL] sandbox provisioning failed:', err.message);
+  }
+  return `${PLATFORM_URL}/account/login/`;
+}
+
 function escapeHtml(text) {
   return String(text ?? '')
     .replace(/&/g, '&amp;')
@@ -323,10 +338,11 @@ async function sendBookingConfirmation({
   trialMonths = 0,
   siteSlug,
   complimentary = false,
+  panelUrlOverride = null,
 }) {
   const siteName = getSiteDisplayName(siteSlug);
   const dashboardUrl = getDashboardUrl(token, siteSlug);
-  const panelUrl = `${PLATFORM_URL}/advertiser-panel.html?token=${token}`;
+  const panelUrl = panelUrlOverride || `${PLATFORM_URL}/account/login/`;
   const durationLabel = leaseMonths === 12 ? '12 months' : `${leaseMonths} month${leaseMonths === 1 ? '' : 's'}`;
   const trialLabel = trialMonths > 0 ? `${trialMonths}-month free trial, then ` : '';
   const priceLabel =
@@ -889,4 +905,5 @@ module.exports = {
   getSiteDisplayName,
   resolveSiteSlug,
   escapeHtml,
+  sandboxPanelUrl,
 };
