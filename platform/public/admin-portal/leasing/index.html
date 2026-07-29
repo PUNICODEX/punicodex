@@ -175,9 +175,9 @@
                         <select id="dc-kind">
                             <option value="percent_off">Percent off (100% = fully complimentary — no card)</option>
                             <option value="fixed_off">Fixed amount off</option>
-                            <option value="free_months">Free months as trial (card required after trial)</option>
-                            <option value="free_months_then_price">Free months, then a set price</option>
-                            <option value="trial_extension">Trial extension</option>
+                            <option value="free_months">Free months (fully complimentary — no card, ends after)</option>
+                            <option value="free_months_then_price">Free months, then a set price (carded)</option>
+                            <option value="trial_extension">Trial extension (carded subscription)</option>
                         </select>
                     </div>
                     <p class="field-hint" id="dc-comp-hint" style="margin:0.35rem 0 0;color:#7ee2a0;" hidden>Complimentary: the sponsor pays nothing and never enters card details — the placement activates on approval for the term.</p>
@@ -875,9 +875,9 @@
         function syncCompHint() {
             var hint = document.getElementById('dc-comp-hint');
             if (!hint) return;
-            var isPercent = document.getElementById('dc-kind').value === 'percent_off';
-            var isFull = Number(document.getElementById('dc-percent').value) === 100;
-            hint.hidden = !(isPercent && isFull);
+            var kind = document.getElementById('dc-kind').value;
+            var isPercent100 = kind === 'percent_off' && Number(document.getElementById('dc-percent').value) === 100;
+            hint.hidden = !(isPercent100 || kind === 'free_months');
         }
 
         function dollarsToCents(value) {

@@ -25,6 +25,7 @@ const {
   sendBookingConfirmation,
   sendDashboardLinks,
   notifyAdminApplication,
+  getSiteDisplayName,
 } = require('./email');
 
 class BookingError extends Error {
@@ -93,9 +94,9 @@ async function createBookingRequest({
     throw new BookingError(400, 'Email not verified. Please request a new code.');
   }
 
-  const months = parseLeaseMonths(leaseMonths);
+  const months0 = parseLeaseMonths(leaseMonths);
   const trial = parseTrialMonths(trialMonths);
-  if (trial >= months) {
+  if (trial >= months0) {
     throw new BookingError(400, 'trialMonths must be less than leaseMonths');
   }
 
@@ -109,7 +110,7 @@ async function createBookingRequest({
   if (metaError) throw new BookingError(400, metaError);
 
   const siteSlug = slot.site_slug || 'nike';
-  const siteName = siteSlug === 'hermes' ? 'Hermês' : 'Níkē';
+  const siteName = getSiteDisplayName(siteSlug);
 
   // Sponsorship discount codes, validated authoritatively at creation: the
   // sponsor pays the discounted amount right here (or nothing at all).
@@ -118,11 +119,18 @@ async function createBookingRequest({
     const check = await discountService.validateCode({
       code: discountCode.trim(),
       siteSlug,
-      leaseMonths: months,
+      leaseMonths: months0,
       priceCents: slot.price_cents,
       slotId,
     });
     if (check.valid) appliedDiscount = check;
+  }
+
+  // The placement's term. A free_months code means the placement itself IS
+  // the free term — N months, no card, then it ends.
+  let months = months0;
+  if (appliedDiscount && appliedDiscount.terms.kind === 'free_months') {
+    months = appliedDiscount.terms.freeMonths;
   }
 
   let bookingResult;
@@ -148,21 +156,24 @@ async function createBookingRequest({
   const { id, token } = bookingResult;
 
   const isTrial = trial > 0;
-  const isYearly = months === 12 && !isTrial;
+  const isYearly = months0 === 12 && !isTrial;
   const baseAmountCents = isTrial
     ? slot.price_cents
     : isYearly
       ? Math.round(slot.price_cents * 12 * 0.9)
-      : slot.price_cents * months;
+      : slot.price_cents * months0;
 
   let amountCents = baseAmountCents;
   let effectiveTrial = trial;
   if (appliedDiscount) {
     const terms = appliedDiscount.terms;
-    if (terms.kind === 'free_months_then_price') {
+    if (terms.kind === 'free_months') {
+      // Complimentary for the free term: nothing is ever charged.
+      amountCents = 0;
+    } else if (terms.kind === 'free_months_then_price') {
       effectiveTrial = terms.freeMonths;
       amountCents = terms.thenPriceCents;
-    } else if (terms.kind === 'free_months' || terms.kind === 'trial_extension') {
+    } else if (terms.kind === 'trial_extension') {
       effectiveTrial = trial + terms.freeMonths;
       amountCents = slot.price_cents;
     } else {
@@ -170,7 +181,7 @@ async function createBookingRequest({
       // approval path, so what the modal displays is what Stripe charges.
       amountCents = discountService.computePrice({
         priceCents: baseAmountCents,
-        leaseMonths: months,
+        leaseMonths: months0,
         ...terms,
       }).finalCents;
     }
@@ -534,7 +545,7 @@ async function renewBooking(token, extensionMonthsInput) {
     ? Math.round(slot.price_cents * 12 * 0.9)
     : slot.price_cents * extensionMonths;
   const siteSlug = slot.site_slug || 'nike';
-  const siteName = siteSlug === 'hermes' ? 'Hermês' : 'Níkē';
+  const siteName = getSiteDisplayName(siteSlug);
 
   const stripeResult = await createRenewalCheckoutSession({
     bookingId: booking.id,

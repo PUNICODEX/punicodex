@@ -496,7 +496,9 @@ function discountTermsText() {
   }
   if (t.kind === 'percent_off') return `${code} — ${t.percent}% off applied.`;
   if (t.kind === 'fixed_off') return `${code} — $${(t.fixedCents / 100).toLocaleString()} off applied.`;
-  if (t.kind === 'free_months') return `${code} — ${t.freeMonths} month${t.freeMonths === 1 ? '' : 's'} free applied.`;
+  if (t.kind === 'free_months') {
+    return `${code} — ${t.freeMonths} month${t.freeMonths === 1 ? '' : 's'} complimentary: no card, no checkout, then the placement ends.`;
+  }
   if (t.kind === 'trial_extension') return `${code} — trial extended by ${t.freeMonths} month${t.freeMonths === 1 ? '' : 's'}.`;
   if (t.kind === 'free_months_then_price') {
     return `${code} — ${t.freeMonths} months free, then $${(t.thenPriceCents / 100).toLocaleString()}/mo.`;

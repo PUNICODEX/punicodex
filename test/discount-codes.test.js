@@ -198,20 +198,20 @@ async function runTests() {
     );
   });
 
-  await test('computePrice: free_months keeps the price and carries the free period', async () => {
+  await test('computePrice: free_months is a nil-price complimentary term; trial_extension keeps the price', async () => {
     const p = discountService.computePrice({
       priceCents: 250000,
       kind: 'free_months',
       freeMonths: 3,
     });
-    assert.strictEqual(p.finalCents, 250000);
+    assert.strictEqual(p.finalCents, 0, 'free_months is complimentary — nothing is charged');
     assert.strictEqual(p.freeMonths, 3);
     const t = discountService.computePrice({
       priceCents: 250000,
       kind: 'trial_extension',
       freeMonths: 6,
     });
-    assert.strictEqual(t.finalCents, 250000);
+    assert.strictEqual(t.finalCents, 250000, 'trial_extension is a carded subscription at full price');
     assert.strictEqual(t.freeMonths, 6);
   });
 
@@ -680,7 +680,7 @@ async function runTests() {
   });
 
   // ── approveApplication integration ───────────────────────────
-  await test('approveApplication: a valid free-months code produces trial terms and a redemption', async () => {
+  await test('approveApplication: a free_months code is complimentary — no Stripe, lease forced to the free term', async () => {
     const code = await discountService.createCode(
       { code: 'SPRING-FREE', kind: 'free_months', freeMonths: 2, appliesTo: 'nike' },
       null
@@ -693,7 +693,7 @@ async function runTests() {
       email: 'spring@example.com',
       companyName: 'Spring Co',
       leaseMonths: 12,
-      trialMonths: 3,
+      trialMonths: 0,
       siteSlug: 'nike',
       status: 'pending_application',
       discountCode: '  SPRING-FREE  ',
@@ -704,25 +704,12 @@ async function runTests() {
     const before = sessionsCreated.length;
     const result = await approveApplication(bookingId, 'test-admin-token');
     assert.strictEqual(result.success, true);
-    assert.ok(result.discount, 'discount block returned');
+    assert.strictEqual(result.complimentary, true, 'free_months is complimentary');
+    assert.strictEqual(result.status, 'approved');
     assert.strictEqual(result.discount.code, 'SPRING-FREE');
     assert.strictEqual(result.discount.kind, 'free_months');
-    assert.strictEqual(result.discount.freeMonths, 2);
-
-    const config = sessionsCreated[sessionsCreated.length - 1];
-    assert.ok(sessionsCreated.length > before, 'stripe session created');
-    assert.strictEqual(config.mode, 'subscription', 'free-month terms become a subscription');
-    assert.strictEqual(
-      config.subscription_data.trial_period_days,
-      (3 + 2) * 30,
-      'trial extended by the free months'
-    );
-    assert.strictEqual(
-      config.line_items[0].price_data.unit_amount,
-      slot.price_cents,
-      'recurring amount stays the slot price'
-    );
-    assert.strictEqual(config.line_items[0].price_data.recurring.interval, 'month');
+    assert.strictEqual(result.discount.finalCents, 0);
+    assert.strictEqual(sessionsCreated.length, before, 'no Stripe session for a nil term');
 
     const redemption = db()
       .prepare('SELECT * FROM discount_redemptions WHERE booking_id = ?')
@@ -730,12 +717,12 @@ async function runTests() {
     assert.ok(redemption, 'redemption row recorded');
     assert.strictEqual(redemption.code_id, code.id);
     assert.strictEqual(redemption.email, 'spring@example.com');
-    assert.strictEqual(redemption.original_cents, slot.price_cents);
-    assert.strictEqual(redemption.final_cents, slot.price_cents);
+    assert.strictEqual(redemption.original_cents, Math.round(slot.price_cents * 12 * 0.9));
+    assert.strictEqual(redemption.final_cents, 0);
 
     const updated = await getBookingById(bookingId);
-    assert.strictEqual(updated.status, 'pending_payment');
-    assert.strictEqual(updated.trial_months, 5, 'adjusted trial persisted on the booking');
+    assert.strictEqual(updated.status, 'approved');
+    assert.strictEqual(updated.lease_months, 2, 'lease forced to the free term for goLive');
 
     const used = db().prepare('SELECT used_count FROM discount_codes WHERE id = ?').get(code.id);
     assert.strictEqual(used.used_count, 1);

@@ -640,6 +640,34 @@ test('createBookingRequest: slot-restricted code on the wrong frame charges full
   assert.strictEqual(redemption, undefined, 'no redemption when the code does not apply');
 });
 
+test('createBookingRequest: free_months is complimentary with the lease forced to the free term', async () => {
+  const slotId = getSlotId(__filename, 'hermes', 10); // $160/mo
+  await discountService.createCode(
+    { code: 'HERMES-3FREE', kind: 'free_months', freeMonths: 3, appliesTo: 'hermes' },
+    null
+  );
+  const token = await makeVerifiedEmail('freemonths@example.com');
+  const sessionsBefore = sessionsCreated.length;
+  const result = await createBookingRequest({
+    slotId,
+    email: 'freemonths@example.com',
+    companyName: 'Free Months Co',
+    leaseMonths: 12,
+    trialMonths: 0,
+    verificationToken: token,
+    discountCode: 'HERMES-3FREE',
+  });
+  assert.strictEqual(result.complimentary, true, 'free_months never touches Stripe');
+  assert.strictEqual(result.totalCents, 0);
+  assert.strictEqual(result.leaseMonths, 3, 'the placement IS the free term');
+  assert.strictEqual(sessionsCreated.length, sessionsBefore, 'no Stripe session');
+  const db = new Database(getTestDbPath(__filename));
+  const booking = db.prepare('SELECT status, lease_months FROM bookings WHERE id = ?').get(result.bookingId);
+  assert.strictEqual(booking.status, 'approved');
+  assert.strictEqual(booking.lease_months, 3);
+  db.close();
+});
+
 test('createBookingRequest: an unknown code falls back to full price, no redemption', async () => {
   const token = await makeVerifiedEmail('badcode@example.com');
   const result = await createBookingRequest({

@@ -21,6 +21,7 @@ const {
   notifyLive,
   notifyTrialStarted,
   sendAnalyticsReport,
+  getSiteDisplayName,
 } = require('./email');
 const { getAllBookings, getBookingCount, getBookingStats, getRevenueStats } = require('./admin');
 const { run } = require('../db/operational');
@@ -192,11 +193,12 @@ async function approveApplication(id, adminToken) {
   const slot = await getSlotById(booking.slot_id);
   if (!slot) throw new AdminBookingError(404, 'Slot not found');
 
-  const months = booking.lease_months || 1;
+  let months = booking.lease_months || 1;
   const trial = booking.trial_months || 0;
-  const baseAmountCents = computeBookingAmount(slot, months, trial);
+  const originalMonths = months;
+  const baseAmountCents = computeBookingAmount(slot, originalMonths, trial);
   const siteSlug = slot.site_slug || 'nike';
-  const siteName = siteSlug === 'hermes' ? 'Hermês' : 'Níkē';
+  const siteName = getSiteDisplayName(siteSlug);
 
   // Sponsorship discount codes (bookings only — this system never touches
   // patrons). The code was stored unvalidated at application time;
@@ -211,26 +213,32 @@ async function approveApplication(id, adminToken) {
     const check = await discountService.validateCode({
       code: booking.discount_code,
       siteSlug,
-      leaseMonths: months,
+      leaseMonths: originalMonths,
       priceCents: slot.price_cents,
       slotId: booking.slot_id,
     });
     if (check.valid) {
       const terms = check.terms;
-      if (terms.kind === 'free_months_then_price') {
+      if (terms.kind === 'free_months') {
+        // Complimentary for N months: the placement IS the free term — no
+        // Stripe, no card, ends with the term. Persist the adjusted lease so
+        // goLive ends it correctly.
+        months = terms.freeMonths;
+        amountCents = 0;
+      } else if (terms.kind === 'free_months_then_price') {
         // Stripe subscription with free_months×30 trial days, recurring
         // then_price_cents/mo.
         effectiveTrial = terms.freeMonths;
         amountCents = terms.thenPriceCents;
-      } else if (terms.kind === 'free_months' || terms.kind === 'trial_extension') {
-        // Trial-month terms: extend the booking's trial; the recurring
-        // subscription price is the slot's monthly price.
+      } else if (terms.kind === 'trial_extension') {
+        // Trial-month terms on a carded subscription: extend the booking's
+        // trial; the recurring price is the slot's monthly price.
         effectiveTrial = trial + terms.freeMonths;
         amountCents = slot.price_cents;
       } else {
         amountCents = discountService.computePrice({
           priceCents: baseAmountCents,
-          leaseMonths: months,
+          leaseMonths: originalMonths,
           ...terms,
         }).finalCents;
       }
@@ -248,6 +256,9 @@ async function approveApplication(id, adminToken) {
   if (appliedDiscount && amountCents === 0) {
     const note = discountNote ? [booking.admin_note, discountNote].filter(Boolean).join(' | ') : null;
     await setBookingStatus(booking.id, 'approved', note);
+    if (months !== originalMonths) {
+      await run('UPDATE bookings SET lease_months = $1 WHERE id = $2', [months, booking.id]);
+    }
 
     const redemption = await discountService.redeem({
       codeId: appliedDiscount.codeId,

@@ -94,10 +94,20 @@ function computePrice({ priceCents, kind, percent, fixedCents, freeMonths, thenP
       pricing.finalCents = Math.max(0, base - fixed);
       return pricing;
     }
-    case 'free_months':
+    case 'free_months': {
+      const free = toInt(freeMonths);
+      if (free == null || free < 1) return null;
+      // Complimentary term: N months free, no card, no checkout, no renewal —
+      // the placement activates on approval and ends with the term.
+      pricing.finalCents = 0;
+      pricing.freeMonths = free;
+      return pricing;
+    }
     case 'trial_extension': {
       const free = toInt(freeMonths);
       if (free == null || free < 1) return null;
+      // Trial months on a carded subscription: full price, billing starts
+      // after the extended trial.
       pricing.finalCents = base;
       pricing.freeMonths = free;
       return pricing;
