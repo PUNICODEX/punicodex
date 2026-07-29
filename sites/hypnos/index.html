@@ -509,7 +509,10 @@
                         <button type="button" class="booking-toggle-btn" data-months="12" id="lease-yearly">Yearly</button>
                     </div>
                     <label class="booking-label">Discount code <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-muted);">(optional)</span></label>
-                    <input type="text" class="booking-input" id="booking-discount" placeholder="Founding code" aria-label="Discount code" maxlength="40" autocomplete="off" spellcheck="false">
+                    <div style="display:flex;gap:0.5rem;align-items:stretch;">
+                        <input type="text" class="booking-input" id="booking-discount" placeholder="Founding code" aria-label="Discount code" maxlength="40" autocomplete="off" spellcheck="false" style="flex:1;">
+                        <button type="button" class="booking-submit" id="booking-discount-apply" style="margin-top:0;padding-left:1.1rem;padding-right:1.1rem;white-space:nowrap;" aria-label="Apply discount code">Apply</button>
+                    </div>
                     <p class="booking-discount-note" id="booking-discount-note" style="display:none;margin:0.35rem 0 0;font-size:0.78rem;text-align:left;"></p>
                     <div class="booking-price-row">
                         <span class="booking-price-label">Total</span>

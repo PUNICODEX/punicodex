@@ -582,7 +582,7 @@ async function validateDiscountCode() {
         els.discountNote.style.display = 'block';
       }
     } else if (els.discountNote) {
-      els.discountNote.textContent = "That code doesn't apply here.";
+      els.discountNote.textContent = "That code doesn't apply to this frame.";
       els.discountNote.style.color = '#f28b8b';
       els.discountNote.style.display = 'block';
     }
@@ -607,6 +607,20 @@ if (els.discount) {
   els.discount.addEventListener('input', () => {
     clearTimeout(discountTimer);
     discountTimer = setTimeout(validateDiscountCode, 450);
+  });
+  els.discount.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      clearTimeout(discountTimer);
+      validateDiscountCode();
+    }
+  });
+}
+const discountApplyBtn = document.getElementById('booking-discount-apply');
+if (discountApplyBtn) {
+  discountApplyBtn.addEventListener('click', () => {
+    clearTimeout(discountTimer);
+    validateDiscountCode();
   });
 }
 
