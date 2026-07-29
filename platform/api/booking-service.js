@@ -203,16 +203,18 @@ async function createBookingRequest({
     if (!redemption.ok) {
       console.error(`Discount code ${appliedDiscount.code} redemption failed for booking ${id}`);
     }
-    sendDashboardLinks({
+    sendBookingConfirmation({
       email,
-      bookings: [
-        {
-          slot_name: slot.name,
-          status: 'approved (complimentary — no payment required)',
-          analytics_token: token,
-          site_slug: siteSlug,
-        },
-      ],
+      slotName: slot.name,
+      companyName,
+      amountCents: 0,
+      token,
+      customHeading,
+      customSubtitle,
+      leaseMonths: months,
+      trialMonths: 0,
+      siteSlug,
+      complimentary: true,
     }).catch(() => {});
     return {
       bookingId: id,

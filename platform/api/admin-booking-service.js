@@ -21,6 +21,7 @@ const {
   notifyLive,
   notifyTrialStarted,
   sendAnalyticsReport,
+  sendBookingConfirmation,
   getSiteDisplayName,
 } = require('./email');
 const { getAllBookings, getBookingCount, getBookingStats, getRevenueStats } = require('./admin');
@@ -273,18 +274,19 @@ async function approveApplication(id, adminToken) {
       );
     }
 
-    const { sendDashboardLinks } = require('./email');
     const updated = await getBookingById(booking.id);
-    sendDashboardLinks({
+    sendBookingConfirmation({
       email: booking.email,
-      bookings: [
-        {
-          slot_name: slot.name,
-          status: 'approved (complimentary — no payment required)',
-          analytics_token: booking.analytics_token,
-          site_slug: siteSlug,
-        },
-      ],
+      slotName: slot.name,
+      companyName: booking.company_name,
+      amountCents: 0,
+      token: booking.analytics_token,
+      customHeading: booking.custom_heading,
+      customSubtitle: booking.custom_subtitle,
+      leaseMonths: months,
+      trialMonths: 0,
+      siteSlug,
+      complimentary: true,
     }).catch(() => {});
 
     await logAction({

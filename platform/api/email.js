@@ -1,7 +1,7 @@
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const FROM_EMAIL = process.env.FROM_EMAIL || 'bookings@punicodex.com';
 const REPLY_TO_EMAIL = process.env.REPLY_TO_EMAIL || 'support@punicodex.com';
-const PLATFORM_URL = process.env.PLATFORM_URL || 'http://localhost:3456';
+const PLATFORM_URL = process.env.PLATFORM_URL || 'https://punicodex.com';
 
 function escapeHtml(text) {
   return String(text ?? '')
@@ -83,10 +83,10 @@ function getSiteDisplayName(siteSlug) {
 function getDashboardUrl(token, siteSlug) {
   const slug = resolveSiteSlug(siteSlug);
   if (!slug) {
-    // Last-resort legacy fallback (the first temples were all nike). Loud on
-    // purpose: a wrong temple in a customer email is worse than a log line.
-    console.warn('[EMAIL] dashboard link built without a site slug — falling back to nike');
-    return `${PLATFORM_URL}/sites/nike/dashboard/?token=${token}`;
+    // Last-resort fallback: the account index, never a wrong temple (a wrong
+    // temple in a customer email is worse than a generic page).
+    console.warn('[EMAIL] dashboard link built without a site slug — falling back to /account/');
+    return `${PLATFORM_URL}/account/?token=${token}`;
   }
   return `${PLATFORM_URL}/sites/${slug}/dashboard/?token=${token}`;
 }
@@ -322,11 +322,12 @@ async function sendBookingConfirmation({
   leaseMonths = 1,
   trialMonths = 0,
   siteSlug,
+  complimentary = false,
 }) {
   const siteName = getSiteDisplayName(siteSlug);
   const dashboardUrl = getDashboardUrl(token, siteSlug);
   const panelUrl = `${PLATFORM_URL}/advertiser-panel.html?token=${token}`;
-  const durationLabel = leaseMonths === 12 ? '12 months' : '1 month';
+  const durationLabel = leaseMonths === 12 ? '12 months' : `${leaseMonths} month${leaseMonths === 1 ? '' : 's'}`;
   const trialLabel = trialMonths > 0 ? `${trialMonths}-month free trial, then ` : '';
   const priceLabel =
     leaseMonths === 12
@@ -336,14 +337,24 @@ async function sendBookingConfirmation({
     trialMonths > 0
       ? `<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:1rem;margin:1rem 0;"><strong>Free trial:</strong> Your first ${escapeHtml(trialMonths)} month${trialMonths > 1 ? 's' : ''} are free. Billing begins after the trial ends.</div>`
       : '';
+  const complimentaryBadge = complimentary
+    ? `<div style="background:#fdf8e7;border:1px solid #d4af37;border-radius:8px;padding:1rem;margin:1rem 0;"><strong>Complimentary placement:</strong> No card was taken, no billing will ever occur, and nothing renews. The placement runs for ${escapeHtml(durationLabel)} and then ends.</div>`
+    : '';
   return sendEmail({
     to: email,
-    subject: `Your reservation for ${slotName} — Complete your setup`,
+    subject: complimentary
+      ? `Your complimentary ${siteName} placement is confirmed`
+      : `Your reservation for ${slotName} — Complete your setup`,
     html: `
       <div style="font-family:system-ui,sans-serif;max-width:520px;margin:0 auto;color:#111;">
-        <h2 style="color:#d4af37;">${escapeHtml(siteName)} — Reservation Confirmed</h2>
+        <h2 style="color:#d4af37;">${escapeHtml(siteName)} — ${complimentary ? 'Placement Confirmed' : 'Reservation Confirmed'}</h2>
         <p>Hi ${escapeHtml(companyName || 'there')},</p>
-        <p>You've reserved <strong>${escapeHtml(slotName)}</strong> for <strong>${escapeHtml(durationLabel)}</strong> at <strong>${escapeHtml(trialLabel)}${escapeHtml(priceLabel)}</strong>.</p>
+        ${
+          complimentary
+            ? `<p>Your placement on <strong>${escapeHtml(slotName)}</strong> is confirmed for <strong>${escapeHtml(durationLabel)}</strong> — complimentary.</p>`
+            : `<p>You've reserved <strong>${escapeHtml(slotName)}</strong> for <strong>${escapeHtml(durationLabel)}</strong> at <strong>${escapeHtml(trialLabel)}${escapeHtml(priceLabel)}</strong>.</p>`
+        }
+        ${complimentaryBadge}
         ${trialBadge}
         ${customHeading ? `<p><strong>Heading:</strong> ${escapeHtml(customHeading)}</p>` : ''}
         ${customSubtitle ? `<p><strong>Subtitle:</strong> ${escapeHtml(customSubtitle)}</p>` : ''}
