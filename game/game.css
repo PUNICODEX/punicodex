@@ -1893,6 +1893,7 @@ body.game-body::after {
   border-radius: 1.2rem;
   border: 1px solid rgba(212, 175, 55, 0.2);
   background:
+    radial-gradient(ellipse 62% 42% at 50% 82%, var(--arena-glow, transparent), transparent 72%),
     radial-gradient(ellipse 90% 55% at 50% 0%, rgba(212, 175, 55, 0.07), transparent 60%),
     linear-gradient(180deg, #0e1220 0%, #0a0d16 50%, #080a11 100%);
   box-shadow:
@@ -2161,4 +2162,69 @@ body.game-body ::-webkit-scrollbar-thumb:hover { background-color: rgba(212, 175
   .minion.summon { animation-duration: 0.01s; }
   #hit-vignette.flash-self,
   #hit-vignette.flash-foe { animation-duration: 0.15s; }
+}
+
+/* ── The moves, visible ──────────────────────────────────────────────────── */
+.hand-ability {
+  margin-top: 0.25rem;
+  font-size: 0.56rem;
+  line-height: 1.3;
+  color: var(--text-dim);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.hand-card { width: 108px; }
+
+.minion-ability {
+  font-size: 0.54rem;
+  line-height: 1.2;
+  color: rgba(212, 175, 55, 0.75);
+  font-style: italic;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: -0.15rem 0 0.25rem;
+}
+
+/* The Grimoire */
+.help-btn {
+  min-width: 2.4rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--accent);
+  border-color: rgba(212, 175, 55, 0.4);
+}
+
+.help-btn:hover:not(:disabled) {
+  color: #f3dfa0;
+  border-color: var(--accent);
+  box-shadow: 0 0 14px rgba(212, 175, 55, 0.25);
+}
+
+.grimoire {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-top: 0.75rem;
+}
+
+.grimoire-row {
+  border-left: 2px solid rgba(212, 175, 55, 0.4);
+  padding-left: 0.75rem;
+}
+
+.grimoire-term {
+  font-family: var(--font-display);
+  color: var(--accent);
+  font-size: 0.85rem;
+  margin-bottom: 0.15rem;
+}
+
+.grimoire-def {
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  line-height: 1.5;
 }

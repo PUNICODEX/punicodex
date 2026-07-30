@@ -1120,6 +1120,10 @@
     $('deck-select').hidden = true;
     $('battlefield-wrap').hidden = false;
     $('reward-overlay').hidden = true;
+    // The arena takes the champion's own aura.
+    if (heroes[0].card && heroes[0].card.art && heroes[0].card.art.colors && heroes[0].card.art.colors.glow) {
+      $('battlefield-wrap').style.setProperty('--arena-glow', heroes[0].card.art.colors.glow);
+    }
     ensureFx();
     var wrap = $('battlefield-wrap');
     wrap.querySelectorAll('.hero-panel').forEach(function (n) { n.remove(); });
@@ -1205,6 +1209,13 @@
     art.appendChild(buildMinionEl(m));
     node.appendChild(art);
     node.appendChild(el('div', 'minion-name', m.name));
+    // The move, visible on the board — with the full text on hover/focus.
+    if (m.ability) {
+      node.appendChild(el('div', 'minion-ability', m.ability.name));
+      node.title = m.ability.name + ' — ' + m.ability.description;
+    } else {
+      node.title = m.name;
+    }
 
     var stats = el('div', 'minion-stats');
     stats.appendChild(el('span', 'atk', String(Engine.effectivePower(battle, playerIdx, m))));
@@ -1227,6 +1238,19 @@
     return node;
   }
 
+  // Resolve a board minion's DOM node from its uid — the click handler owns
+  // no node reference of its own (a free `node` here was a ReferenceError
+  // that silently killed every minion-on-minion attack and targeted play).
+  function minionNode(uid) {
+    if (!fxCanvas || uid == null) return null;
+    return fxCanvas.parentElement.querySelector('.minion[data-uid="' + uid + '"]');
+  }
+
+  function minionPos(uid) {
+    var n = minionNode(uid);
+    return n ? centerOf(n) : null;
+  }
+
   function onMinionClick(m, playerIdx) {
     if (!battle || battle.winner || ui.aiThinking) return;
     var isMine = playerIdx === 0;
@@ -1239,7 +1263,7 @@
       if ((side === 'enemy') !== isMine) {
         var target = side === 'enemy' ? index : { side: 'ally', index: index };
         var playedCard = battle.players[0].hand[ui.pendingPlay.handIndex];
-        withFx(playedCard, function () { return centerOf(node); }, function () {
+        withFx(playedCard, function () { return minionPos(m.uid); }, function () {
           return Engine.playCard(battle, ui.pendingPlay.handIndex, target);
         });
         ui.pendingPlay = null;
@@ -1251,12 +1275,18 @@
     // Resolving an attack on an enemy minion?
     if (ui.selectedAttacker != null && !isMine) {
       var attacker = battle.players[0].board[ui.selectedAttacker];
-      var res = withFx(attacker, function () { return centerOf(node); }, function () {
+      var res = withFx(attacker, function () { return minionPos(m.uid); }, function () {
         return Engine.attack(battle, ui.selectedAttacker, index);
       });
       if (res && res.ok === false) showToast(res.error || 'That strike failed.');
       ui.selectedAttacker = null;
       afterPlayerAction();
+      return;
+    }
+
+    // Inspecting an enemy minion with no attacker armed: open its record.
+    if (!isMine && ui.selectedAttacker == null && !ui.pendingPlay) {
+      openCardModal(m.def || m);
       return;
     }
 
@@ -1330,6 +1360,34 @@
   function afterPlayerAction() {
     renderBattle();
     if (battle.winner !== null) finishBattle();
+  }
+
+  // The Grimoire: every keyword and mechanic on the battlefield, explained.
+  function openBattleHelp() {
+    openModal(function (content) {
+      content.appendChild(el('h2', 'modal-title', 'The Grimoire of Duel'));
+      content.appendChild(el('p', 'modal-sub', 'Every mark on the field, deciphered.'));
+      var rows = [
+        ['✦ Ink', 'The price of playing a card. You gain one Ink per turn, up to ten, and refill each turn.'],
+        ['⚔ Power · ♥ Health · ≫ Speed', 'Power is the damage a minion deals. Health is what it survives. Speed decides the exchange: a striker faster than its defender takes only half the counter-damage.'],
+        ['Recovering', 'A freshly played minion cannot strike until your next turn. Its frame is dimmed until it recovers.'],
+        ['⛨ Shield', 'Absorbs damage before health does. The number beside ♥ includes it.'],
+        ['💫 Stunned', 'Cannot attack while stunned.'],
+        ['❓ Confused', 'Attacks a random target instead of the chosen one.'],
+        ['Abilities', 'Every card carries a move, printed on it: some trigger when played, some when attacking, some when destroyed, some are always on. Full-Art and Secret printings upgrade the move.'],
+        ['Hero Power', 'Your champion’s pantheon grants a power: 2✦, once per turn. Find it under your champion’s portrait.'],
+        ['The object of the duel', 'Reduce the enemy champion to 0. Arm one of your ready minions (tap it), then strike: an enemy minion, or their champion.'],
+        ['Inspecting', 'Tap any enemy minion with nothing armed to read its full scholarly record and move text.'],
+      ];
+      var list = el('div', 'grimoire');
+      rows.forEach(function (row) {
+        var item = el('div', 'grimoire-row');
+        item.appendChild(el('div', 'grimoire-term', row[0]));
+        item.appendChild(el('div', 'grimoire-def', row[1]));
+        list.appendChild(item);
+      });
+      content.appendChild(list);
+    });
   }
 
   function onEndTurn() {
@@ -1525,6 +1583,10 @@
       node.appendChild(art);
       node.appendChild(el('div', 'hand-name', card.name));
       node.appendChild(el('div', 'hand-stats', card.power + ' / ' + card.health + ' · ≫' + card.speed));
+      // The move, on the card — nobody should have to guess what a card does.
+      node.appendChild(
+        el('div', 'hand-ability', card.ability ? card.ability.name + ' — ' + card.ability.description : 'No ability.')
+      );
       node.addEventListener('click', function () {
         onHandClick(index);
       });
@@ -1596,6 +1658,7 @@
       renderDeckEditor();
     });
     $('start-battle').addEventListener('click', startBattle);
+    $('battle-help').addEventListener('click', openBattleHelp);
     $('end-turn').addEventListener('click', onEndTurn);
     $('concede').addEventListener('click', function () {
       if (!battle || battle.winner) return;

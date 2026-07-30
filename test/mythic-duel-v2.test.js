@@ -102,6 +102,50 @@ test('every pantheon in the card set has a hero power (or the default)', () => {
   for (const [p, power] of Object.entries(HeroPowers.POWERS)) checkEffect(power.effect, p);
 });
 
+test('attack: minion trade resolves damage and halved counter for the faster striker', () => {
+  const battle = makeBattle();
+  const c = SET.cards[0];
+  const mk = (uid, power, health, speed) => ({
+    uid, def: c, name: 'T' + uid, cost: 1, power, maxHealth: health, health, speed,
+    shield: 0, sick: false, attacksUsed: false, stunned: 0, confused: 0, tempPowerDown: 0,
+    ability: null, domain: '', rarity: 'common',
+  });
+  battle.players[0].board.push(mk(801, 4, 6, 8));
+  battle.players[1].board.push(mk(901, 3, 5, 2));
+  const res = Engine.attack(battle, 0, 0);
+  assert.strictEqual(res.ok, true);
+  assert.strictEqual(battle.players[1].board[0].health, 1, 'defender takes full power: 5 - 4');
+  assert.strictEqual(battle.players[0].board[0].health, 5, 'faster striker halves the counter: floor(3/2)');
+  const again = Engine.attack(battle, 0, 0);
+  assert.strictEqual(again.ok, false, 'second strike in a turn refused');
+  battle.players[0].board[0].attacksUsed = false;
+  const kill = Engine.attack(battle, 0, 0);
+  assert.strictEqual(kill.ok, true);
+  assert.strictEqual(battle.players[1].board.length, 0, 'lethal trade removes the defender');
+});
+
+test('attack: hero target and confused random targeting', () => {
+  const battle = makeBattle();
+  const c = SET.cards[0];
+  const mk = (uid, power, health, speed) => ({
+    uid, def: c, name: 'T' + uid, cost: 1, power, maxHealth: health, health, speed,
+    shield: 0, sick: false, attacksUsed: false, stunned: 0, confused: 0, tempPowerDown: 0,
+    ability: null, domain: '', rarity: 'common',
+  });
+  battle.players[0].board.push(mk(802, 4, 6, 5));
+  const face = Engine.attack(battle, 0, 'hero');
+  assert.strictEqual(face.ok, true);
+  assert.strictEqual(battle.players[1].hero.hp, 26, 'hero takes full power');
+  battle.players[0].board[0].attacksUsed = false;
+  battle.players[0].board[0].confused = 1;
+  battle.players[1].board.push(mk(902, 2, 8, 3));
+  const wild = Engine.attack(battle, 0, 0); // requested the minion; confusion may override
+  assert.strictEqual(wild.ok, true);
+  const heroHit = battle.players[1].hero.hp < 26;
+  const minionHit = battle.players[1].board.length === 0 || battle.players[1].board[0].health < 8;
+  assert.ok(heroHit || minionHit, 'confused strike landed somewhere legal');
+});
+
 test('archetype assignment is deterministic and domain-first', () => {
   assert.strictEqual(Sequences.archetypeFor({ pantheon: 'greek', domain: 'Sky, Thunder' }), 'bolt');
   assert.strictEqual(Sequences.archetypeFor({ pantheon: 'greek', domain: 'Sea, Earthquakes' }), 'flood');
@@ -117,6 +161,61 @@ test('archetype assignment is deterministic and domain-first', () => {
       ['bolt', 'blade', 'flood', 'flame', 'shadow', 'bloom', 'storm', 'decay', 'radiance', 'song', 'quake', 'gale', 'veil', 'warhorn'].includes(a),
       `unknown archetype ${a}`
     );
+  }
+});
+
+test('every attack-sequence builder runs clean frames (no undefined vars)', () => {
+  // A blade-builder ReferenceError killed the fx loop for every war-god
+  // strike in production. Exercise all 14 builders through real frames
+  // against a mock canvas — any undefined variable throws here, not live.
+  const anyFn = new Proxy(function () {}, {
+    get: () => anyFn,
+    apply: () => anyFn,
+  });
+  const ctx = new Proxy(
+    {},
+    {
+      get: (t, k) => (k in t ? t[k] : anyFn),
+      set: (t, k, v) => ((t[k] = v), true),
+    }
+  );
+  const canvas = {
+    width: 800,
+    height: 600,
+    getContext: () => ctx,
+    getBoundingClientRect: () => ({ left: 0, top: 0, width: 800, height: 600 }),
+  };
+  let rafCb = null;
+  const oldRaf = global.requestAnimationFrame;
+  global.requestAnimationFrame = (cb) => {
+    rafCb = cb;
+    return 1;
+  };
+  try {
+    const fx = Sequences.attach(canvas);
+    const archetypes = [
+      'bolt', 'blade', 'flood', 'flame', 'shadow', 'bloom', 'storm',
+      'decay', 'radiance', 'song', 'quake', 'gale', 'veil', 'warhorn',
+    ];
+    let t = 1000;
+    for (const a of archetypes) {
+      fx.attack({
+        archetype: a,
+        from: { x: 10, y: 10 },
+        to: { x: 200, y: 200 },
+        colors: { glow: '#ffe9b0' },
+        power: 6,
+        onImpact() {},
+      });
+      assert.ok(rafCb, `fx loop scheduled for ${a}`);
+      for (let f = 0; f < 90 && rafCb; f++) {
+        const cb = rafCb;
+        rafCb = null;
+        cb((t += 16.7));
+      }
+    }
+  } finally {
+    global.requestAnimationFrame = oldRaf;
   }
 });
 
@@ -165,6 +264,31 @@ test('battle UI contract: hero strikes are reachable, failures speak, AI pool is
   // First-battle coaching exists and the enemy turn replays visible strikes.
   assert.ok(js.includes('coachSeen'), 'coach marks missing');
   assert.ok(js.includes('replayAiStrikes'), 'AI strike replay missing');
+});
+
+test('battle UI contract: minion attacks resolve, moves are visible, help exists', () => {
+  const html = fs.readFileSync(path.join(ROOT, 'game/index.html'), 'utf8');
+  const js = fs.readFileSync(path.join(ROOT, 'game/game.js'), 'utf8');
+  const css = fs.readFileSync(path.join(ROOT, 'game/game.css'), 'utf8');
+
+  // The ReferenceError that killed every minion attack: target positions come
+  // from uid lookups, never a free `node` variable inside the click handler.
+  assert.ok(js.includes('minionNode('), 'uid-based minion node lookup missing');
+  const clickBody = js.slice(js.indexOf('function onMinionClick'));
+  const clickFn = clickBody.slice(0, clickBody.indexOf('\n  function '));
+  assert.ok(!clickFn.includes('centerOf(node)'), 'free `node` reference is back in onMinionClick — minion attacks will throw');
+
+  // The moves are printed: hand cards carry full ability text, board minions
+  // carry the ability name, enemy minions open their record on tap.
+  assert.ok(js.includes('hand-ability'), 'hand ability text missing');
+  assert.ok(js.includes('minion-ability'), 'board ability line missing');
+  assert.ok(js.includes('openCardModal(m.def || m)'), 'enemy minion inspection missing');
+  assert.ok(css.includes('.hand-ability'), 'hand ability styles missing');
+
+  // The Grimoire explains every keyword, and the arena takes the champion's aura.
+  assert.ok(js.includes('openBattleHelp'), 'grimoire modal missing');
+  assert.ok(html.includes('battle-help'), 'help button missing');
+  assert.ok(js.includes('--arena-glow'), 'arena champion tint missing');
 });
 
 (async () => {

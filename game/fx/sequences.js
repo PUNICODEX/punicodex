@@ -141,6 +141,7 @@
     },
 
     blade: function (o) {
+      var parts = [];
       var dur = REDUCED ? 0.25 : 0.55;
       return {
         duration: dur, shake: 4 + Math.min(4, o.power / 16),
@@ -252,7 +253,7 @@
           ctx.strokeStyle = 'rgba(140,230,160,0.6)'; ctx.lineWidth = 2;
           for (var i = 0; i < 3; i++) {
             ctx.globalAlpha = Math.max(0, 1 - p) * 0.8;
-            ctx.beginPath(); ctx.arc(o.to.x, o.to.y, 8 + (p * 60 + i * 16) % 84, 0, Math.PI * 2); ctx.stroke();
+            ctx.beginPath(); ctx.arc(o.to.x, o.to.y, 8 + (((p * 60 + i * 16) % 84) + 84) % 84, 0, Math.PI * 2); ctx.stroke();
           }
           ctx.restore();
           step(parts, 1 / 60); drawParts(ctx, parts);
@@ -330,7 +331,7 @@
           ctx.save();
           ctx.strokeStyle = 'rgba(212,175,55,' + (0.7 * (1 - p)) + ')'; ctx.lineWidth = 2;
           for (var i = 0; i < 3; i++) {
-            var r = (t * 220 + i * 46) % 160;
+            var r = (((t * 220 + i * 46) % 160) + 160) % 160;
             ctx.globalAlpha = Math.max(0, 1 - r / 160);
             ctx.beginPath(); ctx.arc(o.from.x, o.from.y, r, 0, Math.PI * 2); ctx.stroke();
           }
@@ -440,7 +441,7 @@
 
     function loop(t) {
       resize();
-      var dt = Math.min(0.05, (t - lastT) / 1000 || 0.016);
+      var dt = Math.max(0, Math.min(0.05, (t - lastT) / 1000 || 0.016));
       lastT = t;
       var W = canvas.width, H = canvas.height;
       ctx.clearRect(0, 0, W, H);
