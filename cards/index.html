@@ -138,11 +138,11 @@
         <header class="cards-hero">
             <p class="cards-eyebrow">The First Restoration Set · FR1</p>
             <h1>Mythic Cards</h1>
-            <p class="cards-lede">Every temple of the Pantheon, restored as a collectible card — 1,156 cards across 25 pantheons: 271 legendaries, 232 original-script chase foils, and the full depth of the lexicon beneath them.</p>
+            <p class="cards-lede">Every flagship of the Pantheon in four printings — Common, Holo, Full-Art, and the original-script Secret Rares — 1,698 cards across 25 pantheons, with the full lexicon preserved in the Archive.</p>
             <div class="cards-stats" id="cards-stats">
                 <div class="cards-stat"><span class="cards-stat-value" id="stat-total">—</span><span class="cards-stat-label">Cards</span></div>
-                <div class="cards-stat"><span class="cards-stat-value" id="stat-legendary">—</span><span class="cards-stat-label">Legendary</span></div>
-                <div class="cards-stat"><span class="cards-stat-value" id="stat-mythic">—</span><span class="cards-stat-label">Chase Foils</span></div>
+                <div class="cards-stat"><span class="cards-stat-value" id="stat-fullart">—</span><span class="cards-stat-label">Full-Arts</span></div>
+                <div class="cards-stat"><span class="cards-stat-value" id="stat-secret">—</span><span class="cards-stat-label">Secret Rares</span></div>
                 <div class="cards-stat"><span class="cards-stat-value" id="stat-pantheons">—</span><span class="cards-stat-label">Pantheons</span></div>
             </div>
         </header>
@@ -151,10 +151,13 @@
             <input type="search" id="cards-q" class="cards-search" placeholder="Search the set — a god, a realm, an ability…" aria-label="Search cards">
             <div class="cards-pills" id="pantheon-pills" role="group" aria-label="Filter by pantheon"></div>
             <div class="cards-pills" id="rarity-pills" role="group" aria-label="Filter by rarity"></div>
-            <div class="cards-pills" role="group" aria-label="Filter by variant">
-                <button class="cards-pill active" data-variant="all">All variants</button>
-                <button class="cards-pill" data-variant="standard">Standard</button>
-                <button class="cards-pill foil-pill" data-variant="original-script">✦ Foils</button>
+            <div class="cards-pills" role="group" aria-label="Filter by printing">
+                <button class="cards-pill active" data-edition="all">All printings</button>
+                <button class="cards-pill" data-edition="common">Common</button>
+                <button class="cards-pill" data-edition="holo">✦ Holo</button>
+                <button class="cards-pill" data-edition="full-art">◆ Full-Art</button>
+                <button class="cards-pill foil-pill" data-edition="secret">✧ Secret Rare</button>
+                <button class="cards-pill" data-edition="archive">Archive</button>
             </div>
         </div>
 

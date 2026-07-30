@@ -16,7 +16,7 @@
 
   var STORAGE_KEY = 'punicodex.cards.v1';
   var STARTER_INK = 150;
-  var STARTER_UNIQUE = 24;
+  var STARTER_UNIQUE = 26;
   var REWARDS = { win: 50, loss: 15, draw: 15 };
   var RARITY_LADDER = ['mythic', 'legendary', 'epic', 'rare', 'uncommon', 'common'];
   var RARITIES = ['common', 'uncommon', 'rare', 'epic', 'legendary', 'mythic'];
@@ -135,6 +135,27 @@
     };
   }
 
+  // The Edition Ladder renamed flagship printings: {id}-standard →
+  // {id}-common, {id}-original-script → {id}-secret. Migrate saved
+  // collections and decks on load so no player is ever bricked by the set.
+  function migrateIds(map) {
+    var migrated = {};
+    Object.keys(map || {}).forEach(function (id) {
+      var count = map[id];
+      var next = id;
+      if (!byId[id]) {
+        var m = id.match(/^(.+)-standard$/);
+        if (m && byId[m[1] + '-common']) next = m[1] + '-common';
+        else {
+          var f = id.match(/^(.+)-original-script$/);
+          if (f && byId[f[1] + '-secret']) next = f[1] + '-secret';
+        }
+      }
+      migrated[next] = Math.max(migrated[next] || 0, count);
+    });
+    return migrated;
+  }
+
   function loadSave() {
     try {
       var raw = localStorage.getItem(STORAGE_KEY);
@@ -142,7 +163,10 @@
       var data = JSON.parse(raw);
       if (!data || data.v !== 1 || !data.collection || !data.stats) return null;
       data.ink = Math.max(0, Math.floor(Number(data.ink) || 0));
+      data.collection = migrateIds(data.collection);
       if (!Array.isArray(data.deck)) data.deck = [];
+      else data.deck = migrateIds(Object.fromEntries(data.deck.map(function (id) { return [id, 1]; })));
+      data.deck = Object.keys(data.deck);
       return data;
     } catch (e) {
       return null;
@@ -157,25 +181,41 @@
     }
   }
 
-  // First visit: 1 random rare + commons/uncommons up to 24 unique cards.
+  // First visit: 1 holo chase + commons/uncommons up to STARTER_UNIQUE unique
+  // cards (plus 2 bonus copies), always enough to complete a deck after one
+  // Seeker Pack. Starter printings come from the flagship commons — every
+  // starter card has a face and a temple.
   function starterGrant() {
     var rand = Engine.mulberry32((Date.now() ^ 0x9e3779b9) >>> 0);
     var grant = {};
 
-    var rares = cards.filter(function (c) {
-      return c.rarity === 'rare';
+    var holos = cards.filter(function (c) {
+      return c.flagship && c.edition === 'holo';
     });
-    if (rares.length > 0) {
-      grant[rares[Math.floor(rand() * rares.length)].id] = 1;
+    if (holos.length > 0) {
+      grant[holos[Math.floor(rand() * holos.length)].id] = 1;
     }
-    var commons = poolByRarity(cards, 'common');
-    var uncommons = poolByRarity(cards, 'uncommon');
+    var commons = cards.filter(function (c) {
+      return c.flagship && c.edition === 'common';
+    });
+    var uncommons = cards.filter(function (c) {
+      return c.flagship && c.edition === 'holo';
+    });
     var guard = 0;
     while (Object.keys(grant).length < STARTER_UNIQUE && guard++ < 500) {
       var pool = rand() < 0.75 ? commons : uncommons; // weighted 75 / 25
       if (pool.length === 0) continue;
       var pick = pool[Math.floor(rand() * pool.length)];
       if (!grant[pick.id]) grant[pick.id] = 1;
+    }
+    // Two bonus copies: the starter archive always completes a deck after
+    // one Seeker Pack (26 unique + 2 copies + 5 = 30+ physical cards).
+    var commonIds = commons.map(function (c) {
+      return c.id;
+    });
+    for (var bonus = 0; bonus < 2 && commonIds.length; bonus++) {
+      var dup = commonIds[Math.floor(rand() * commonIds.length)];
+      grant[dup] = (grant[dup] || 0) + 1;
     }
     save.collection = grant;
     persist();
@@ -461,11 +501,10 @@
 
   function drawPackCards(def, pantheon) {
     var rand = Engine.mulberry32((Date.now() ^ (Math.random() * 0xffffffff)) >>> 0);
-    var pool = pantheon
-      ? cards.filter(function (c) {
-          return c.pantheon === pantheon;
-        })
-      : cards;
+    // Packs print flagship editions only — every pull has a face and a temple.
+    var pool = cards.filter(function (c) {
+      return c.flagship && (!pantheon || c.pantheon === pantheon);
+    });
     var results = [];
     for (var slot = 0; slot < def.size; slot++) {
       var weights = def.forcedSlot && slot === def.size - 1 ? FORCED_WEIGHTS : STANDARD_WEIGHTS;
@@ -475,6 +514,85 @@
       results.push(rarityPool[Math.floor(rand() * rarityPool.length)]);
     }
     return results;
+  }
+
+  var INK_BUNDLES = [
+    { id: 'spark', name: 'Spark of Ink', ink: 500, price: '$4.99', desc: 'Five Seeker Packs in one spark.' },
+    { id: 'flare', name: 'Flare of Ink', ink: 1200, price: '$9.99', desc: 'Twelve packs — or four Mythic Packs.' },
+    { id: 'inferno', name: 'Inferno of Ink', ink: 3300, price: '$19.99', desc: 'The full pantheon at once — 10% bonus included.' },
+  ];
+
+  function renderInkShop() {
+    var shop = $('ink-shop');
+    if (!shop) return;
+    shop.replaceChildren();
+    INK_BUNDLES.forEach(function (b) {
+      var option = el('div', 'pack-option ink-option');
+      option.appendChild(el('div', 'pack-name', b.name));
+      option.appendChild(el('div', 'pack-desc', b.desc));
+      option.appendChild(el('div', 'pack-cost', b.ink.toLocaleString('en-US') + ' ✦ Ink · ' + b.price));
+      var btn = el('button', 'btn primary', 'Buy for ' + b.price);
+      btn.addEventListener('click', function () {
+        buyInk(b, btn);
+      });
+      option.appendChild(btn);
+      shop.appendChild(option);
+    });
+  }
+
+  async function buyInk(bundle, btn) {
+    btn.disabled = true;
+    btn.textContent = 'Opening checkout…';
+    try {
+      var res = await fetch('/api/game/ink/checkout/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ bundle: bundle.id }),
+      });
+      var data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+        return;
+      }
+      throw new Error(data.error || 'Checkout failed');
+    } catch (err) {
+      showToast(err.message || 'Checkout failed — try again.');
+      btn.disabled = false;
+      btn.textContent = 'Buy for ' + bundle.price;
+    }
+  }
+
+  // Returning from Stripe with ?ink_session=cs_...: verify once, credit ink.
+  async function redeemInkSession() {
+    var params = new URLSearchParams(window.location.search);
+    var sessionId = params.get('ink_session');
+    if (!sessionId) return;
+    try {
+      var res = await fetch('/api/game/ink/redeem/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sessionId: sessionId }),
+      });
+      var data = await res.json();
+      if (data.ok && data.ink > 0) {
+        save.ink += data.ink;
+        persist();
+        renderCurrencies();
+        showToast(
+          data.alreadyRedeemed
+            ? 'This Ink was already credited — the Archive remembers.'
+            : '+' + data.ink.toLocaleString('en-US') + ' ✦ Ink restored to your archive.'
+        );
+      } else {
+        showToast(data.error || 'That checkout could not be verified.');
+      }
+    } catch (err) {
+      showToast('Ink verification failed — your purchase is safe; try again shortly.');
+    }
+    // Clean the URL so a refresh never re-credits.
+    params.delete('ink_session');
+    var clean = window.location.pathname + (params.toString() ? '?' + params.toString() : '') + window.location.hash;
+    window.history.replaceState(null, '', clean);
   }
 
   function renderPackShop() {
@@ -648,7 +766,10 @@
     }
 
     $('deck-size').textContent = save.deck.length + ' / ' + Engine.RULES.DECK_SIZE;
-    $('start-battle').disabled = save.deck.length !== Engine.RULES.DECK_SIZE;
+    // Start is allowed with a full deck, or with a collection of 25+ physical
+    // cards — the Archive completes any shortfall (see startBattle).
+    $('start-battle').disabled =
+      save.deck.length !== Engine.RULES.DECK_SIZE && physicalCards(save.collection) < 25;
   }
 
   function autoBuild() {
@@ -844,10 +965,51 @@
   }
 
 
-  function startBattle() {
-    var playerDeck = save.deck.map(function (id) {
-      return Engine.toBattleCard(byId[id]);
+  function physicalCards(collection) {
+    var total = 0;
+    Object.keys(collection || {}).forEach(function (id) {
+      total += Math.min(collection[id], Engine.RULES.MAX_COPIES);
     });
+    return total;
+  }
+
+  function startBattle() {
+    var deckIds = save.deck.slice();
+    // Backstop: a player who can't quite finish a deck never hits a wall —
+    // auto-build from their collection, then let the Archive lend the rest.
+    if (deckIds.length < Engine.RULES.DECK_SIZE) {
+      var physical = [];
+      Object.keys(save.collection).forEach(function (id) {
+        if (!byId[id]) return;
+        var copies = Math.min(save.collection[id], Engine.RULES.MAX_COPIES);
+        for (var i = 0; i < copies; i++) physical.push(byId[id]);
+      });
+      if (physical.length >= 25) {
+        var built = Engine.autoBuildDeck(physical, (Date.now() ^ (Math.random() * 0xffffffff)) >>> 0);
+        deckIds = built.map(function (c) {
+          return c.id;
+        });
+      }
+      var flagshipCommons = cards.filter(function (c) {
+        return c.flagship && c.edition === 'common' && deckIds.indexOf(c.id) === -1;
+      });
+      var fi = 0;
+      while (deckIds.length < Engine.RULES.DECK_SIZE && fi < flagshipCommons.length) {
+        deckIds.push(flagshipCommons[fi++].id);
+      }
+    }
+
+    var playerDeck = deckIds
+      .filter(function (id) {
+        if (!byId[id]) {
+          console.warn('[DUEL] dropping unknown card id from the battle deck:', id);
+          return false;
+        }
+        return true;
+      })
+      .map(function (id) {
+        return Engine.toBattleCard(byId[id]);
+      });
     var seed = (Date.now() ^ (Math.random() * 0xffffffff)) >>> 0;
     var aiDeck = Engine.autoBuildDeck(cards, seed ^ 0x5bd1e995);
     battle = Engine.createGame({ playerDeck: playerDeck, aiDeck: aiDeck, seed: seed });
@@ -1294,6 +1456,9 @@
     cards = data.cards.map(function (raw) {
       var display = Engine.toBattleCard(raw);
       display.foil = !!raw.foil;
+      display.edition = raw.edition || 'common';
+      display.baseCardId = raw.baseCardId || null;
+      display.patternFoil = raw.patternFoil || null;
       return display;
     });
     cards.forEach(function (c) {
@@ -1323,7 +1488,9 @@
     renderPantheonSelect();
     renderLobby();
     renderPackShop();
+    renderInkShop();
     renderDeckEditor();
+    redeemInkSession();
   }
 
   fetch('/game/cards.json')

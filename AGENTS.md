@@ -861,19 +861,45 @@ supporting source(s).
 ## Mythic Cards (TCG)
 
 `/cards/` is the public collector gallery for the canonical **First
-Restoration (FR1)** set — 1,156 cards derived by `scripts/generate-cards.js`
+Restoration (FR1)** set — 1,698 cards derived by `scripts/generate-cards.js`
 from the lexicon (never hand-edited: `game/cards.json`,
-`platform/api/cards.json`). Rarity is mechanical: flagship → legendary (271),
-dual → epic (dormant), tier-1 → rare, notable-domain → uncommon, else common;
-232 original-script variants are **mythic chase foils**. The gallery
-(`cards/index.html` + `cards/cards.js` + `css/cards.css`) fetches
-`/game/cards.json` client-side and renders TCG frames with
-pantheon/rarity/variant filters, lazy paging, and a detail modal
-(Standard/Foil toggle, temple cross-link, `/game/` duel link). Contract:
-`test/cards-gallery.test.js`. The confidential print specification (rarity
-algorithm, treatments, pack collation, print runs, QC) lives in
+`platform/api/cards.json`). Rarity is a property of the **printing**, never
+of ownership — the **Edition Ladder**: every flagship archetype is printed
+as `common` (271) → `holo` (271, pattern foil, +5/+5) → `full-art` (271,
+borderless composite-canvas art, +5/+5, upgraded ability), plus a `secret`
+original-script foil (232, full-art stats) when a verified script exists.
+Edition → rarity mirror: common→common, holo→rare, full-art→legendary,
+secret→mythic. Non-flagship entries enter as single `archive` printings
+(653, tier-derived rarity) and climb the ladder the day their domain is
+acquired and the temple is promoted — `scripts/promote-to-flagship.js` +
+`npm run generate` re-issue their cards automatically. Card ids carry the
+edition (`{entryId}-{edition}`, `baseCardId` → the common printing; archive
+keeps `{entryId}-standard`). The gallery (`cards/index.html` +
+`cards/cards.js` + `css/cards.css`) fetches `/game/cards.json` client-side
+and renders TCG frames with pantheon/rarity/edition filters, lazy paging,
+and a detail modal (temple cross-link, `/game/` duel link). Contracts:
+`test/cards-gallery.test.js`, `test/cards-editions.test.js`. The
+confidential print specification (edition ladder, treatments, pack
+collation, print runs, QC) lives in
 `extended flagship materials/PUNICODEX_FR1_Print_Specification_CONFIDENTIAL.md`
 — never publish its numbers on the site.
+
+### Mythic Duel (`/game/`)
+
+The battle game runs on `game/engine.js` (deterministic seeded engine),
+`game/game.js` (UI), `game/fx/hero-powers.js` (21 pantheon hero powers) and
+`game/fx/sequences.js` (archetype attack sequences). Design doc:
+`docs/mythic-duel-v2-design.md`. Onboarding: first visit grants a starter
+archive (26 unique flagship printings + 2 bonus copies + 150 ✦ Ink) so a
+legal deck is always reachable after one Seeker Pack; saves from the old
+rarity-band model are migrated (`-standard` → `-common`, `-original-script`
+→ `-secret`). Packs draw from **flagship editions only** (never archive
+printings). Ink is purchasable: `POST /api/game/ink/checkout/` (Stripe
+bundle, metadata `type: 'game_ink'`) → `POST /api/game/ink/redeem/`
+verifies the session with Stripe and credits Ink exactly once per checkout
+(`game_ink_purchases` table, `platform/db/migrate-game-ink.js`; insert-or-
+ignore + single redeem flip). Suites: `test/mythic-duel-v2.test.js`,
+`test/cards-editions.test.js` (onboarding + ink contract).
 
 ---
 

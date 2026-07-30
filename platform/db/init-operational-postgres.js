@@ -41,6 +41,7 @@ const OPERATIONAL_TABLES = [
   'creator_order_ledger',
   'creative_assets',
   'store_orders',
+  'game_ink_purchases',
   'abuse_reports',
   'dsar_requests',
   'lawful_access_requests',

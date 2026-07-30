@@ -181,6 +181,7 @@ const SUITES = [
   },
   { name: 'Texts Chapters Tests', cmd: 'node test/texts-chapters.test.js', timeout: 60000 },
   { name: 'Cards Gallery Tests', cmd: 'node test/cards-gallery.test.js', timeout: 30000 },
+  { name: 'Cards Editions Tests', cmd: 'node --test test/cards-editions.test.js', timeout: 30000 },
   { name: 'Mythic Duel v2 Tests', cmd: 'node test/mythic-duel-v2.test.js', timeout: 30000 },
   { name: 'Portal System Tests', cmd: 'node test/portal-system.test.js', timeout: 60000 },
   { name: 'Tenant Portal Tests', cmd: 'node test/tenant-portal.test.js', timeout: 60000 },

@@ -599,16 +599,65 @@ function deriveFlavor(entry, archetype, lore) {
 
 // ── Card assembly ───────────────────────────────────────────────────────────
 
-function buildCard(entry, { variant, rarity, archetype, lore, flagship }) {
+const MASTERS_BASE = 'https://punycodex-masters.vercel.app';
+
+// ── The Edition Ladder (rarity = printing, never ownership) ─────────────────
+// Every flagship archetype is printed in four editions of escalating scarcity
+// and spectacle: common, holo, full-art, and the original-script secret rare.
+// A character's tier sets stat bands; the EDITION sets the rarity. Base
+// lexicon entries enter as single Archive printings until they are promoted.
+const EDITIONS = ['common', 'holo', 'full-art', 'secret'];
+const EDITION_META = {
+  common: { rarity: 'common', bump: { power: 0, health: 0 } },
+  holo: { rarity: 'rare', bump: { power: 5, health: 5 } },
+  'full-art': { rarity: 'legendary', bump: { power: 5, health: 5 } },
+  secret: { rarity: 'mythic', bump: { power: 5, health: 5 } },
+};
+
+// Full-art upgrades the ability into the card's special attack: a numeric
+// power effect gains +2; anything else gains a small combo flourish.
+function upgradeAbility(ability, edition) {
+  if (!ability) return ability;
+  if (edition !== 'full-art' && edition !== 'secret') return ability;
+  const effect = ability.effect;
+  if (effect && typeof effect.power === 'number') {
+    return {
+      ...ability,
+      name: ability.name,
+      description: `${ability.description} +2 power (Full-Art).`,
+      effect: { ...effect, power: effect.power + 2 },
+    };
+  }
+  if (effect && effect.kind && effect.kind !== 'combo') {
+    return {
+      ...ability,
+      description: `${ability.description} Its bearer also rallies the pantheon (Full-Art).`,
+      effect: {
+        kind: 'combo',
+        effects: [effect, { kind: 'buff-allies', power: 1, health: 1 }],
+      },
+    };
+  }
+  return ability;
+}
+
+function buildCard(entry, { variant, rarity, archetype, lore, flagship, edition = null }) {
   const seed = hashString(entry.id);
   const category = deriveCategory(entry);
   const categoryMeta = CATEGORY_META[category] || { label: 'Mythic', icon: '◎' };
-  const ability = deriveAbility(entry, category);
   const script = hasOriginalScript(entry) ? getOriginalScript(entry) : null;
+  const ed = edition ? EDITION_META[edition] : null;
+  const bump = ed ? ed.bump : { power: 0, health: 0 };
+  const editionRarity = ed ? ed.rarity : rarity;
+
+  const baseAbility = deriveAbility(entry, category);
+  const ability = edition ? upgradeAbility(baseAbility, edition) : baseAbility;
 
   const card = {
-    id: `${entry.id}-${variant}`,
+    id: edition ? `${entry.id}-${edition}` : `${entry.id}-${variant}`,
     entryId: entry.id,
+    baseCardId: edition ? `${entry.id}-common` : `${entry.id}-${variant}`,
+    edition: edition || 'archive',
     variant,
     setId: SET.id,
     name: entry.unicode || entry.ascii,
@@ -621,11 +670,11 @@ function buildCard(entry, { variant, rarity, archetype, lore, flagship }) {
     tier: entry.tier,
     tierLabel: entry.tierLabel || (entry.tier === 'dual' ? 'Dual-Tier' : `Tier-${entry.tier}`),
     domain: entry.domain || 'Mythic',
-    rarity,
-    rarityOrder: RARITY_ORDER[rarity],
-    cost: rarityCost(rarity, seed),
-    power: basePower(entry.tier, seed),
-    health: domainHealth(entry.domain, seed),
+    rarity: editionRarity,
+    rarityOrder: RARITY_ORDER[editionRarity],
+    cost: rarityCost(editionRarity, seed),
+    power: basePower(entry.tier, seed) + bump.power,
+    health: domainHealth(entry.domain, seed) + bump.health,
     speed: pantheonSpeed(entry.pantheon, seed),
     ability,
     flavor: deriveFlavor(entry, archetype, lore),
@@ -635,14 +684,21 @@ function buildCard(entry, { variant, rarity, archetype, lore, flagship }) {
       ? {
           mascot: archetype.mascotPath || null,
           logomark: archetype.logomarkPath || null,
+          fullArt:
+            edition === 'full-art' || edition === 'secret'
+              ? `${MASTERS_BASE}/${entry.id}_comp-canvas.png`
+              : null,
           colors: archetype.colors || null,
           artist: null,
         }
-      : { mascot: null, logomark: null, colors: null, artist: null },
+      : { mascot: null, logomark: null, fullArt: null, colors: null, artist: null },
   };
 
   if (variant === 'original-script') {
     card.foil = true;
+  }
+  if (edition === 'holo') {
+    card.patternFoil = true;
   }
 
   return card;
@@ -657,26 +713,44 @@ function generateCards() {
     const lore = LORE_CATALOG[entry.id] || null;
     const flagship = Boolean(archetype);
 
-    cards.push(
-      buildCard(entry, {
-        variant: 'standard',
-        rarity: deriveRarity(entry, { flagship }),
-        archetype,
-        lore,
-        flagship,
-      })
-    );
-
-    // Mythic chase variant: original-script foil, flagship entries only, and
-    // only when a real original script exists to display (spec §5).
-    if (flagship && hasOriginalScript(entry)) {
+    if (flagship) {
+      // The Edition Ladder: common → holo → full-art, then the original-script
+      // secret rare when a real script exists to display.
+      for (const edition of ['common', 'holo', 'full-art']) {
+        cards.push(
+          buildCard(entry, {
+            variant: 'standard',
+            rarity: deriveRarity(entry, { flagship }),
+            archetype,
+            lore,
+            flagship,
+            edition,
+          })
+        );
+      }
+      if (hasOriginalScript(entry)) {
+        cards.push(
+          buildCard(entry, {
+            variant: 'original-script',
+            rarity: 'mythic',
+            archetype,
+            lore,
+            flagship,
+            edition: 'secret',
+          })
+        );
+      }
+    } else {
+      // Archive printing (single, common) until the entry is promoted to a
+      // flagship — the ladder opens to it the day its domain is acquired.
       cards.push(
         buildCard(entry, {
-          variant: 'original-script',
-          rarity: 'mythic',
+          variant: 'standard',
+          rarity: deriveRarity(entry, { flagship }),
           archetype,
           lore,
           flagship,
+          edition: null,
         })
       );
     }
@@ -695,9 +769,11 @@ function main() {
     standard: cards.filter((c) => c.variant === 'standard').length,
     originalScript: cards.filter((c) => c.variant === 'original-script').length,
     flagship: cards.filter((c) => c.flagship && c.variant === 'standard').length,
+    byEdition: {},
     byRarity: {},
   };
   for (const card of cards) {
+    counts.byEdition[card.edition] = (counts.byEdition[card.edition] || 0) + 1;
     counts.byRarity[card.rarity] = (counts.byRarity[card.rarity] || 0) + 1;
   }
 

@@ -12,12 +12,20 @@
 
   var RARITY = {
     legendary: { gem: '◆', cls: 'legendary', label: 'Legendary' },
-    mythic: { gem: '✦', cls: 'mythic', label: 'Mythic Foil' },
+    mythic: { gem: '✦', cls: 'mythic', label: 'Secret Rare' },
     rare: { gem: '◇', cls: 'rare', label: 'Rare' },
     uncommon: { gem: '◈', cls: 'uncommon', label: 'Uncommon' },
     common: { gem: '·', cls: 'common', label: 'Common' },
   };
   var RARITY_ORDER = ['legendary', 'mythic', 'rare', 'uncommon', 'common'];
+  var EDITIONS = [
+    ['all', 'All printings'],
+    ['common', 'Common'],
+    ['holo', '✦ Holo'],
+    ['full-art', '◆ Full-Art'],
+    ['secret', '✧ Secret Rare'],
+    ['archive', 'Archive'],
+  ];
 
   var state = {
     cards: [],
@@ -26,7 +34,7 @@
     q: '',
     pantheon: 'all',
     rarity: 'all',
-    variant: 'all',
+    edition: 'all',
     byEntry: new Map(),
   };
 
@@ -94,17 +102,20 @@
   function frameHtml(card) {
     var r = gemFor(card);
     var col = colors(card);
-    var foil = card.variant === 'original-script';
+    var edition = card.edition || 'archive';
+    var foil = card.variant === 'original-script' || edition === 'secret';
+    var fullArt = edition === 'full-art' || edition === 'secret';
+    var art = fullArt && card.art && card.art.fullArt ? card.art.fullArt : artUrl(card);
     var ability = card.ability || {};
     return (
-      '<article class="mcard' + (foil ? ' mcard--foil' : '') + '" data-card-id="' + esc(card.id) + '" tabindex="0" role="button" aria-label="' + esc(card.name) + ' card — open details" style="--mc1:' + esc(col.primary) + ';--mc2:' + esc(col.secondary) + '">' +
+      '<article class="mcard' + (foil ? ' mcard--foil' : '') + (edition === 'holo' ? ' mcard--pattern' : '') + (fullArt ? ' mcard--fullart' : '') + '" data-card-id="' + esc(card.id) + '" tabindex="0" role="button" aria-label="' + esc(card.name) + ' card — open details" style="--mc1:' + esc(col.primary) + ';--mc2:' + esc(col.secondary) + '">' +
         '<div class="mcard-inner">' +
           '<div class="mcard-banner"><span class="mcard-name">' + esc(card.name) + '</span><span class="mcard-sigil" title="' + esc(card.pantheon) + '">' + esc(card.categoryIcon || '✦') + '</span></div>' +
           '<div class="mcard-art">' +
             '<span class="mcard-tier">' + esc(card.tierLabel || '') + '</span>' +
             '<span class="mcard-cat" title="' + esc(card.categoryLabel || '') + '">' + esc(card.categoryIcon || '') + '</span>' +
-            (artUrl(card)
-              ? '<img src="' + esc(artUrl(card)) + '" alt="' + esc(card.name) + ' mascot" loading="lazy">'
+            (art
+              ? '<img src="' + esc(art) + '" alt="' + esc(card.name) + (fullArt ? ' full-art' : ' mascot') + '" loading="lazy"' + (fullArt ? ' class="mcard-art--full"' : '') + '>'
               : '<span class="mcard-sigil-fallback" aria-hidden="true" style="font-size:3rem;color:var(--gold,#D4AF37);text-shadow:0 0 22px rgba(212,175,55,.35)">' + esc(card.categoryIcon || '✦') + '</span>') +
           '</div>' +
           '<div class="mcard-ability">' +
@@ -128,7 +139,7 @@
     state.filtered = state.cards.filter(function (c) {
       if (state.pantheon !== 'all' && c.pantheon !== state.pantheon) return false;
       if (state.rarity !== 'all' && c.rarity !== state.rarity) return false;
-      if (state.variant !== 'all' && c.variant !== state.variant) return false;
+      if (state.edition !== 'all' && c.edition !== state.edition) return false;
       if (!q) return true;
       return (
         String(c.name || '').toLowerCase().includes(q) ||
@@ -203,9 +214,9 @@
     RARITY_ORDER.forEach(function (r) {
       rarityWrap.appendChild(pill(RARITY[r].label, r, 'rarity'));
     });
-    document.querySelectorAll('[data-variant]').forEach(function (b) {
+    document.querySelectorAll('[data-edition]').forEach(function (b) {
       b.addEventListener('click', function () {
-        state.variant = b.dataset.variant;
+        state.edition = b.dataset.edition;
         b.parentElement.querySelectorAll('.cards-pill').forEach(function (s) { s.classList.remove('active'); });
         b.classList.add('active');
         applyFilters();
@@ -218,12 +229,16 @@
     return state.byEntry.get(entryId) || [];
   }
 
+  function editionLabel(card) {
+    return { common: 'Common', holo: '✦ Holo', 'full-art': '◆ Full-Art', secret: '✧ Secret Rare', archive: 'Archive' }[card.edition || 'archive'] || 'Common';
+  }
+
   function openModal(card) {
-    var foil = card.variant === 'original-script';
     var variants = variantsFor(card.entryId);
     var r = gemFor(card);
     var rows = [
       ['Set', SET_CODE + ' · First Restoration · ' + cardNumber(card) + '/' + state.cards.length],
+      ['Printing', editionLabel(card)],
       ['Rarity', r.label],
       ['Tier', card.tierLabel || '—'],
       ['Pantheon', (card.pantheon || '').replace(/-/g, ' ')],
@@ -242,7 +257,7 @@
         (variants.length > 1
           ? '<div class="card-variant-toggle">' +
             variants.map(function (v, i) {
-              return '<button type="button" data-variant-idx="' + i + '"' + (v.id === card.id ? ' class="active"' : '') + '>' + (v.variant === 'original-script' ? '✦ Foil' : 'Standard') + '</button>';
+              return '<button type="button" data-variant-idx="' + i + '"' + (v.id === card.id ? ' class="active"' : '') + '>' + esc(editionLabel(v)) + '</button>';
             }).join('') +
             '</div>'
           : '') +
@@ -311,8 +326,8 @@
         v.sort(function (a, b) { return (a.variant === 'standard' ? -1 : 1) - (b.variant === 'standard' ? -1 : 1); });
       });
       document.getElementById('stat-total').textContent = state.cards.length.toLocaleString('en-US');
-      document.getElementById('stat-legendary').textContent = state.cards.filter(function (c) { return c.rarity === 'legendary'; }).length;
-      document.getElementById('stat-mythic').textContent = state.cards.filter(function (c) { return c.variant === 'original-script'; }).length;
+      document.getElementById('stat-fullart').textContent = state.cards.filter(function (c) { return c.edition === 'full-art'; }).length;
+      document.getElementById('stat-secret').textContent = state.cards.filter(function (c) { return c.edition === 'secret'; }).length;
       document.getElementById('stat-pantheons').textContent = new Set(state.cards.map(function (c) { return c.pantheon; })).size;
       buildPills();
       applyFilters();
