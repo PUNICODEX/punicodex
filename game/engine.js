@@ -58,6 +58,7 @@
   var RULES = {
     HERO_HP: 30,
     HERO_POWER_COST: 2,
+    SPECIAL_COST: 2,
     DECK_SIZE: 30,
     MAX_INK: 10,
     HAND_LIMIT: 10,
@@ -368,6 +369,7 @@
     for (var j = 0; j < player.board.length; j++) {
       player.board[j].sick = false;
       player.board[j].attacksUsed = false;
+      player.board[j].specialUsed = false;
     }
 
     // Start-of-turn passives.
@@ -843,6 +845,7 @@
       shield: 0,
       sick: true,
       attacksUsed: false,
+      specialUsed: false,
       stunned: 0,
       confused: 0,
       tempPowerDown: 0,
@@ -956,6 +959,64 @@
     return { ok: true };
   }
 
+  /* ── The kit: every character has a Strike AND a Special ───────────────── */
+
+  // canSpecialWith(state, playerIdx, minion) — a minion's special is its
+  // card ability as an activated move: ready (recovered, not stunned),
+  // once per turn, SPECIAL_COST ink. Passives cannot be activated.
+  function canSpecialWith(state, playerIdx, minion) {
+    return (
+      !isOver(state) &&
+      state.activePlayer === playerIdx &&
+      minion.ability &&
+      minion.ability.effect &&
+      minion.ability.trigger !== 'passive' &&
+      !minion.sick &&
+      minion.stunned <= 0 &&
+      !minion.specialUsed &&
+      state.players[playerIdx].ink >= RULES.SPECIAL_COST
+    );
+  }
+
+  // useSpecial(state, boardIndex, target) — unleash the minion's special
+  // move. Target rules mirror card plays: 'enemy' abilities take an enemy
+  // board index, 'ally' abilities take { side: 'ally', index }.
+  function useSpecial(state, boardIndex, target) {
+    if (isOver(state)) return { ok: false, error: 'The duel is over.' };
+    var playerIdx = state.activePlayer;
+    var player = state.players[playerIdx];
+    var minion = player.board[boardIndex];
+    if (!minion) return { ok: false, error: 'No minion at board index ' + boardIndex + '.' };
+    if (!minion.ability || !minion.ability.effect) {
+      return { ok: false, error: minion.name + ' has no special move.' };
+    }
+    if (minion.ability.trigger === 'passive') {
+      return { ok: false, error: minion.name + "'s gift is always active — it needs no command." };
+    }
+    if (minion.sick) return { ok: false, error: minion.name + ' is recovering — its special unlocks next turn.' };
+    if (minion.stunned > 0) return { ok: false, error: minion.name + ' is stunned.' };
+    if (minion.specialUsed) return { ok: false, error: minion.name + ' has already unleashed its special this turn.' };
+    if (player.ink < RULES.SPECIAL_COST) {
+      return { ok: false, error: 'Not enough ink — specials cost ' + RULES.SPECIAL_COST + '.' };
+    }
+    var side = effectTargetSide(minion.ability.effect);
+    if (side === 'enemy') {
+      if (typeof target !== 'number' || !state.players[1 - playerIdx].board[target]) {
+        return { ok: false, error: 'Choose an enemy minion for that special.' };
+      }
+    } else if (side === 'ally') {
+      if (!target || target.side !== 'ally' || !player.board[target.index]) {
+        return { ok: false, error: 'Choose a friendly minion for that special.' };
+      }
+    }
+    player.ink -= RULES.SPECIAL_COST;
+    minion.specialUsed = true;
+    log(state, playerIdx, 'special', minion.name + ' unleashes ' + minion.ability.name + '!');
+    resolveEffect(state, playerIdx, minion.ability.effect, { target: target, sourceUid: minion.uid });
+    checkDeaths(state);
+    return { ok: true };
+  }
+
   /* ── Legal actions (UI enablement) ───────────────────────────────────── */
 
   function getLegalActions(state) {
@@ -966,6 +1027,7 @@
 
     var plays = [];
     var attacks = [];
+    var specials = [];
     if (!over) {
       for (var i = 0; i < player.hand.length; i++) {
         var card = player.hand[i];
@@ -987,14 +1049,32 @@
       }
       for (var b = 0; b < player.board.length; b++) {
         var minion = player.board[b];
-        if (!canAttackWith(state, playerIdx, minion)) continue;
-        var t2 = ['hero'];
-        for (var x = 0; x < enemy.board.length; x++) t2.push(x);
-        attacks.push({ attackerIndex: b, targets: t2, confused: minion.confused > 0 });
+        if (canAttackWith(state, playerIdx, minion)) {
+          var t2 = ['hero'];
+          for (var x = 0; x < enemy.board.length; x++) t2.push(x);
+          attacks.push({ attackerIndex: b, targets: t2, confused: minion.confused > 0 });
+        }
+        if (canSpecialWith(state, playerIdx, minion)) {
+          var sSide = effectTargetSide(minion.ability.effect);
+          var sTargets = [];
+          if (sSide === 'enemy') {
+            for (var se = 0; se < enemy.board.length; se++) sTargets.push(se);
+          } else if (sSide === 'ally') {
+            for (var sa = 0; sa < player.board.length; sa++) sTargets.push(sa);
+          }
+          specials.push({
+            boardIndex: b,
+            cost: RULES.SPECIAL_COST,
+            name: minion.ability.name,
+            needsTarget: sSide != null && sTargets.length > 0,
+            targetSide: sSide,
+            targets: sTargets,
+          });
+        }
       }
     }
 
-    return { over: over, activePlayer: playerIdx, plays: plays, attacks: attacks, canEndTurn: !over };
+    return { over: over, activePlayer: playerIdx, plays: plays, attacks: attacks, specials: specials, canEndTurn: !over };
   }
 
   /* ── AI ──────────────────────────────────────────────────────────────── */
@@ -1028,11 +1108,11 @@
     var holdBack = mercyRounds > 0 && state.halfTurns < mercyRounds * 2;
     var playerIdx = state.activePlayer;
 
-    // The rubber band: an Oracle 8+ HP ahead stops executing the player's
-    // board and starts trading instead of pushing face — a trailing
-    // commander always has a window to come back through.
+    // The rubber band: an Oracle 12+ HP ahead stops spending removal on the
+    // player's board — a trailing commander always has a window to come back
+    // through. Trades and pressure continue; the Oracle never throws a game.
     var hpDiff = state.players[playerIdx].hero.hp - state.players[1 - playerIdx].hero.hp;
-    var crueltyOff = holdBack || (opts && opts.rubberBand && hpDiff >= 8);
+    var crueltyOff = holdBack || (opts && opts.rubberBand && hpDiff >= 12);
 
     // Play phase (bounded by hand size).
     for (var guard = 0; guard < RULES.HAND_LIMIT + 2; guard++) {
@@ -1054,6 +1134,30 @@
       if (isOver(state)) return state;
     }
 
+    // Special phase: spend spare ink on aggressive specials, biggest threat
+    // first. Mercy windows shelter the board from this too.
+    if (!crueltyOff) {
+      for (var sGuard = 0; sGuard < RULES.BOARD_LIMIT + 2; sGuard++) {
+        var sp = state.players[playerIdx];
+        if (sp.ink < RULES.SPECIAL_COST) break;
+        var specialUsed = false;
+        for (var s = 0; s < sp.board.length; s++) {
+          var sm = sp.board[s];
+          if (!canSpecialWith(state, playerIdx, sm)) continue;
+          var kind = sm.ability.effect.kind || '';
+          if (!/damage|destroy|stun|debuff|slow/.test(kind)) continue; // aggressive specials only
+          var sTarget = aiChooseTarget(state, playerIdx, sm);
+          var sRes = useSpecial(state, s, sTarget);
+          if (sRes.ok) {
+            specialUsed = true;
+            break;
+          }
+        }
+        if (!specialUsed) break;
+        if (isOver(state)) return state;
+      }
+    }
+
     // Attack phase.
     var enemyIdx = 1 - playerIdx;
     var lethal = 0;
@@ -1064,8 +1168,6 @@
       }
     }
     var goFace = lethal >= state.players[enemyIdx].hero.hp;
-    // Never trade away a win, but never stomp a trailing commander either.
-    var tradeOverFace = opts && opts.rubberBand && hpDiff >= 8 && !goFace;
 
     for (var g2 = 0; g2 < RULES.BOARD_LIMIT + 2; g2++) {
       // Re-fetch each iteration: indices shift as minions die.
@@ -1083,7 +1185,7 @@
       var enemy = state.players[enemyIdx];
       var target = 'hero';
 
-      if (enemy.board.length > 0 && attacker.confused <= 0 && (!goFace || tradeOverFace)) {
+      if (!goFace && enemy.board.length > 0 && attacker.confused <= 0) {
         var atk = effectivePower(state, playerIdx, attacker) + passiveAmount(attacker, 'buff-self-attacking', 'power');
         var best = -1;
         for (var d = 0; d < enemy.board.length; d++) {
@@ -1093,7 +1195,7 @@
           if (effectiveHealth > atk) continue; // cannot kill it
           var counter = attacker.speed > defender.speed ? Math.floor(defPower / 2) : defPower;
           var survives = attacker.health + attacker.shield > counter || counter <= 0;
-          var worthIt = survives || defPower >= effectivePower(state, playerIdx, attacker) || tradeOverFace;
+          var worthIt = survives || defPower >= effectivePower(state, playerIdx, attacker);
           if (!worthIt) continue;
           if (best === -1 || defPower > effectivePower(state, enemyIdx, enemy.board[best])) best = d;
         }
@@ -1140,6 +1242,8 @@
     autoBuildDeck: autoBuildDeck,
     createGame: createGame,
     mulligan: mulligan,
+    useSpecial: useSpecial,
+    canSpecialWith: canSpecialWith,
     playCard: playCard,
     attack: attack,
     endTurn: endTurn,

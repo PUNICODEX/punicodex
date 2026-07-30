@@ -56,12 +56,12 @@ test('stats escalate monotonically with edition; ability upgrades only at Full-A
     const secret = ladder.find((c) => c.edition === 'secret');
     if (!common) continue;
     if (holo) {
-      assert.strictEqual(holo.power, common.power + 5, `${id}: holo power bump`);
-      assert.strictEqual(holo.health, common.health + 5, `${id}: holo health bump`);
+      assert.strictEqual(holo.power, common.power + 12, `${id}: holo power bump`);
+      assert.strictEqual(holo.health, common.health + 12, `${id}: holo health bump`);
       assert.strictEqual(holo.rarity, 'rare');
     }
     if (fullArt) {
-      assert.strictEqual(fullArt.power, common.power + 5, `${id}: full-art power`);
+      assert.strictEqual(fullArt.power, common.power + 12, `${id}: full-art power`);
       assert.strictEqual(fullArt.rarity, 'legendary');
       assert.ok(fullArt.art && fullArt.art.fullArt, `${id}: full-art face present`);
       if (common.ability && common.ability.effect && typeof common.ability.effect.power === 'number') {

@@ -148,6 +148,10 @@
       tone('sine', 220, t, 0.5, 0.12);
       tone('sine', 330, t + 0.02, 0.45, 0.07);
     },
+    special: function (t) {
+      chime([392, 523.25, 659.25], t, 0.05, 0.22, 0.11, 'triangle');
+      noise(t + 0.12, 0.16, 0.1, 'bandpass', 1400, 500);
+    },
   };
 
   return {

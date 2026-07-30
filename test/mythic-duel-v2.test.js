@@ -353,7 +353,7 @@ test('mulligan: redraws the opening hand once, then the window closes', () => {
   assert.strictEqual(late.ok, false, 'window closed after the first turn');
 });
 
-test('rubber band: an Oracle far ahead holds removal and trades instead of stomping', () => {
+test('rubber band: an Oracle far ahead holds removal but never throws', () => {
   const battle = makeBattle();
   Engine.endTurn(battle); // AI active
   const ai = battle.players[1];
@@ -372,10 +372,10 @@ test('rubber band: an Oracle far ahead holds removal and trades instead of stomp
   });
   ai.board.push(mk(901, 4, 6, 5));
   me.board.push(mk(801, 2, 3, 5));
-  const hpBefore = me.hero.hp;
   Engine.runAiTurn(battle, { rubberBand: true });
   assert.strictEqual(ai.board.filter((m) => m.uid !== 901).length, 0, 'removal stayed in hand while far ahead');
-  assert.strictEqual(me.hero.hp, hpBefore, 'the Oracle traded instead of stomping face');
+  // The band never throws: a clearly favorable trade still happens normally.
+  assert.strictEqual(me.board.length, 0, 'favorable trades continue under the band');
 });
 
 test('page wiring: fx libraries load before game.js; hidden-attribute overlays exist', () => {
@@ -422,7 +422,127 @@ test('battle UI contract: hero strikes are reachable, failures speak, AI pool is
 
   // First-battle coaching exists and the enemy turn replays visible strikes.
   assert.ok(js.includes('coachSeen'), 'coach marks missing');
-  assert.ok(js.includes('replayAiStrikes'), 'AI strike replay missing');
+  assert.ok(js.includes('replayStrikes'), 'strike replay missing');
+});
+
+test('the kit: useSpecial validates readiness, ink, and targets — then unleashes', () => {
+  const battle = makeBattle();
+  const c = SET.cards[0];
+  const ability = { id: 'ab', entryId: 'x', name: 'Test Bolt', description: 'Deal 3.', trigger: 'on_play', effect: { kind: 'damage', amount: 3, target: 'enemy-minion' } };
+  const mk = (uid, power, health, speed, ab) => ({
+    uid, def: c, name: 'T' + uid, cost: 1, power, maxHealth: health, health, speed,
+    shield: 0, sick: false, attacksUsed: false, specialUsed: false, stunned: 0, confused: 0, tempPowerDown: 0,
+    ability: ab || null, domain: '', rarity: 'common',
+  });
+  battle.players[0].board.push(mk(801, 4, 6, 5, ability));
+  battle.players[1].board.push(mk(901, 2, 8, 3));
+
+  // Ink too poor (turn 1 = 1 ink, special costs 2).
+  let res = Engine.useSpecial(battle, 0, 0);
+  assert.strictEqual(res.ok, false, 'ink-poor refused');
+  battle.players[0].ink = 4;
+
+  // Wrong target side refused.
+  res = Engine.useSpecial(battle, 0, { side: 'ally', index: 0 });
+  assert.strictEqual(res.ok, false, 'ally target on an enemy special refused');
+
+  // The unleash: 3 damage to the chosen enemy minion.
+  res = Engine.useSpecial(battle, 0, 0);
+  assert.strictEqual(res.ok, true);
+  assert.strictEqual(battle.players[1].board[0].health, 5, 'special damage applied');
+  assert.strictEqual(battle.players[0].ink, 2, 'ink spent');
+  assert.strictEqual(battle.players[0].board[0].specialUsed, true);
+
+  // Once per turn.
+  res = Engine.useSpecial(battle, 0, 0);
+  assert.strictEqual(res.ok, false, 'second unleash refused');
+
+  // Sick minions cannot special.
+  battle.players[0].board[0].specialUsed = false;
+  battle.players[0].board[0].sick = true;
+  res = Engine.useSpecial(battle, 0, 0);
+  assert.strictEqual(res.ok, false, 'recovering refused');
+  battle.players[0].board[0].sick = false;
+
+  // Passives cannot be activated.
+  battle.players[0].board[0].ability = { id: 'p', entryId: 'x', name: 'Aura', description: '', trigger: 'passive', effect: { kind: 'aura-allies', power: 1 } };
+  res = Engine.useSpecial(battle, 0, 0);
+  assert.strictEqual(res.ok, false, 'passive refused');
+
+  // Reset at the owner's next turn.
+  battle.players[0].board[0].specialUsed = true;
+  battle.players[0].board[0].ability = ability;
+  Engine.endTurn(battle);
+  Engine.runAiTurn(battle);
+  assert.strictEqual(battle.players[0].board[0].specialUsed, false, 'startTurn resets the special');
+});
+
+test('the kit: the AI unleashes aggressive specials (but not under mercy)', () => {
+  const battle = makeBattle();
+  Engine.endTurn(battle); // AI active
+  const c = SET.cards[0];
+  const ability = { id: 'ab', entryId: 'x', name: 'Smite', description: 'Deal 3.', trigger: 'on_play', effect: { kind: 'damage', amount: 3, target: 'enemy-minion' } };
+  const mk = (uid, power, health, speed, ab) => ({
+    uid, def: c, name: 'T' + uid, cost: 1, power, maxHealth: health, health, speed,
+    shield: 0, sick: false, attacksUsed: false, specialUsed: false, stunned: 0, confused: 0, tempPowerDown: 0,
+    ability: ab || null, domain: '', rarity: 'common',
+  });
+  battle.players[1].board.push(mk(901, 4, 6, 5, ability));
+  battle.players[0].board.push(mk(801, 2, 8, 3));
+  battle.players[1].hand = [];
+  battle.players[1].ink = 6;
+  Engine.runAiTurn(battle);
+  assert.strictEqual(battle.players[0].board[0].health, 5, 'AI special dealt its damage');
+
+  const battle2 = makeBattle();
+  Engine.endTurn(battle2);
+  battle2.players[1].board.push(mk(902, 4, 6, 5, ability));
+  battle2.players[0].board.push(mk(802, 2, 8, 3));
+  battle2.players[1].hand = [];
+  battle2.players[1].ink = 6;
+  Engine.runAiTurn(battle2, { holdBack: true });
+  assert.strictEqual(battle2.players[0].board[0].health, 8, 'mercy shelters the board from specials');
+});
+
+test('the kit UI: action bar, pips, targeting, sound', () => {
+  const html = fs.readFileSync(path.join(ROOT, 'game/index.html'), 'utf8');
+  const js = fs.readFileSync(path.join(ROOT, 'game/game.js'), 'utf8');
+  const css = fs.readFileSync(path.join(ROOT, 'game/game.css'), 'utf8');
+  const sound = require('../game/fx/sound.js');
+  assert.ok(sound.RECIPES.special, 'special recipe missing');
+  assert.ok(html.includes('action-bar'), 'action bar element missing');
+  assert.ok(js.includes('renderActionBar'), 'action bar renderer missing');
+  assert.ok(js.includes('Engine.useSpecial(battle'), 'useSpecial not wired');
+  assert.ok(js.includes('pendingSpecial'), 'special targeting state missing');
+  assert.ok(js.includes('special-pip'), 'special-ready pip missing');
+  assert.ok(js.includes("sfx('special')"), 'special sound not wired');
+  assert.ok(css.includes('.action-bar'), 'action bar styles missing');
+  assert.ok(js.includes('canSpecialWith'), 'special legality not surfaced');
+});
+
+test('regression: the battle deck is never double-scaled', () => {
+  // The 1-health bug: startBattle re-ran toBattleCard on already-scaled
+  // display cards, flooring every player minion to 1/1. Guard the assembly.
+  const js = fs.readFileSync(path.join(ROOT, 'game/game.js'), 'utf8');
+  assert.ok(!js.includes('toBattleCard(byId'), 'startBattle double-scales the player deck again');
+  assert.ok(js.includes('return byId[id];'), 'deck assembly must use the already-scaled display cards');
+  // And at the data layer: a tier-1 common must hold real battle stats after
+  // exactly one transform.
+  const t1 = SET.cards.find((c) => c.flagship && c.edition === 'common' && c.tier === '1');
+  const once = Engine.toBattleCard(t1);
+  assert.ok(once.power >= 4 && once.health >= 4, 'single transform keeps battle stats');
+  const twice = Engine.toBattleCard(once);
+  assert.ok(twice.power < once.power, 'double transform provably destroys stats — guard above must hold');
+});
+
+test('autopilot: toggle, loop, and spectate wiring exist', () => {
+  const html = fs.readFileSync(path.join(ROOT, 'game/index.html'), 'utf8');
+  const js = fs.readFileSync(path.join(ROOT, 'game/game.js'), 'utf8');
+  assert.ok(html.includes('autopilot-toggle'), 'autopilot button missing');
+  assert.ok(js.includes('setAutopilot'), 'autopilot toggle handler missing');
+  assert.ok(js.includes('autopilotLoop'), 'autopilot loop missing');
+  assert.ok(js.includes("banner.textContent = 'Autopilot'"), 'autopilot banner missing');
+  assert.ok(js.includes('ui.autopilot) autopilotLoop()'), 'loop does not resume across battles');
 });
 
 test('battle UI contract: minion attacks resolve, moves are visible, help exists', () => {

@@ -66,8 +66,10 @@
     rarity: 'all',
     deckSearch: '',
     pendingPlay: null, // { handIndex, targetSide }
+    pendingSpecial: null, // { boardIndex, targetSide, needsTarget }
     selectedAttacker: null, // board index
     aiThinking: false,
+    autopilot: false, // the bot plays your side; toggle off to take over
   };
 
   /* ── Tiny DOM helpers ────────────────────────────────────────────────── */
@@ -189,9 +191,10 @@
      a home pantheon, a mana curve, guaranteed removal, a holo champion —
      and the Oracle fields the mirrored build on a deliberately slower curve
      with early-game mercy. */
-  // Cost buckets in the pool: flagship commons cost 1–4, holos cost 6–7.
-  var STARTER_CURVE = { 1: 4, 2: 6, 3: 6, 4: 6, 6: 4, 7: 4 }; // 30
-  var ORACLE_CURVE = { 1: 3, 2: 5, 3: 6, 4: 6, 6: 6, 7: 4 }; // 30, a touch slower
+  // Cost ladders 1–8 by weight-percentile within each edition cohort — every
+  // bucket is always stocked. The curves below match that ladder.
+  var STARTER_CURVE = { 1: 3, 2: 5, 3: 5, 4: 5, 5: 4, 6: 4, 7: 2, 8: 2 }; // 30
+  var ORACLE_CURVE = { 1: 2, 2: 4, 3: 5, 4: 6, 5: 5, 6: 4, 7: 2, 8: 2 }; // 30, a touch slower
 
   function tierRank(card) {
     return card.tier === 'dual' ? 3 : card.tier === '1' ? 2 : 1;
@@ -1208,7 +1211,10 @@
         return true;
       })
       .map(function (id) {
-        return Engine.toBattleCard(byId[id]);
+        // byId cards are ALREADY battle-scaled (toBattleCard ran at init) —
+        // transforming them again floors every stat to 1. This was the
+        // "all my cards have 1 health" bug: player 1/1s vs Oracle 4-8s.
+        return byId[id];
       });
     var seed = (Date.now() ^ (Math.random() * 0xffffffff)) >>> 0;
     // The Oracle mirrors the player's build — and AWAKENS with their record:
@@ -1223,6 +1229,7 @@
     var aiDeck = buildCuratedDeck(aiHome, aiCurve, aiRand);
     battle = Engine.createGame({ playerDeck: playerDeck, aiDeck: aiDeck, seed: seed });
     ui.pendingPlay = null;
+    ui.pendingSpecial = null;
     ui.selectedAttacker = null;
     ui.aiThinking = false;
     seenMinions = {}; // fresh stage: every minion arrives with the summon ceremony
@@ -1269,11 +1276,15 @@
       setTimeout(function () { showToast('Tap your minion, then tap an enemy — minion or champion — to attack.'); }, 3900);
       setTimeout(function () { showToast('Freshly played minions recover for one turn before they can strike.'); }, 6800);
     }
+
+    // Autopilot stays engaged across battles — it is the playtest pathway.
+    if (ui.autopilot) autopilotLoop();
   }
 
   function exitToDeck() {
     battle = null;
     ui.pendingPlay = null;
+    ui.pendingSpecial = null;
     ui.selectedAttacker = null;
     $('battlefield-wrap').hidden = true;
     $('reward-overlay').hidden = true;
@@ -1318,6 +1329,9 @@
     if (ui.pendingPlay && ((ui.pendingPlay.targetSide === 'enemy') !== isMine)) {
       node.classList.add('targetable');
     }
+    if (ui.pendingSpecial && ((ui.pendingSpecial.targetSide === 'enemy') !== isMine)) {
+      node.classList.add('targetable');
+    }
     if (ui.selectedAttacker != null && !isMine) {
       node.classList.add('targetable');
       // The exchange, before you commit: what you deal, what you take.
@@ -1349,11 +1363,16 @@
     stats.appendChild(hp);
     node.appendChild(stats);
 
-    if (m.shield > 0 || m.stunned > 0 || m.confused > 0) {
+    if (m.shield > 0 || m.stunned > 0 || m.confused > 0 || (isMine && Engine.canSpecialWith(battle, 0, m))) {
       var status = el('div', 'minion-status');
       if (m.shield > 0) status.appendChild(el('span', 'badge', '⛨'));
       if (m.stunned > 0) status.appendChild(el('span', 'badge', '💫'));
       if (m.confused > 0) status.appendChild(el('span', 'badge', '❓'));
+      if (isMine && Engine.canSpecialWith(battle, 0, m)) {
+        var pip = el('span', 'badge special-pip', '✦');
+        pip.title = 'Special ready: ' + m.ability.name;
+        status.appendChild(pip);
+      }
       node.appendChild(status);
     }
 
@@ -1376,12 +1395,122 @@
     return n ? centerOf(n) : null;
   }
 
+  /* ── The action bar: Strike + Special, the minion's kit ────────────────── */
+
+  function renderActionBar() {
+    var bar = $('action-bar');
+    if (!bar) return;
+    if (!battle || battle.winner || ui.selectedAttacker == null || battle.activePlayer !== 0) {
+      bar.hidden = true;
+      bar.replaceChildren();
+      return;
+    }
+    var m = battle.players[0].board[ui.selectedAttacker];
+    if (!m) {
+      bar.hidden = true;
+      bar.replaceChildren();
+      return;
+    }
+    bar.hidden = false;
+    bar.replaceChildren();
+    bar.appendChild(el('span', 'action-title', m.name));
+
+    var strike = el('button', 'btn secondary action-btn' + (ui.pendingSpecial ? '' : ' armed'), '⚔ Strike');
+    strike.type = 'button';
+    strike.title = 'Attack a minion or the enemy champion — free, once per turn.';
+    strike.addEventListener('click', function () {
+      ui.pendingSpecial = null;
+      renderBattle();
+    });
+    bar.appendChild(strike);
+
+    var special = el('button', 'btn primary action-btn');
+    special.type = 'button';
+    var canSpecial = Engine.canSpecialWith(battle, 0, m);
+    if (m.ability && m.ability.trigger !== 'passive') {
+      special.textContent = '✦ ' + m.ability.name + ' · ' + Engine.RULES.SPECIAL_COST + '✦';
+      special.title = m.ability.description;
+    } else {
+      special.textContent = '✦ No special';
+      special.title = m.ability ? 'This gift is always active.' : 'This minion has no special move.';
+    }
+    special.disabled = !canSpecial;
+    if (!canSpecial) {
+      special.title = m.sick
+        ? 'Recovering — the special unlocks next turn.'
+        : m.specialUsed
+          ? 'Already unleashed this turn.'
+          : m.stunned > 0
+            ? 'Stunned.'
+            : battle.players[0].ink < Engine.RULES.SPECIAL_COST
+              ? 'Not enough ink.'
+              : special.title;
+    }
+    special.addEventListener('click', function () {
+      if (!Engine.canSpecialWith(battle, 0, m)) return;
+      var legal = Engine.getLegalActions(battle);
+      var sp = null;
+      for (var i = 0; i < legal.specials.length; i++) {
+        if (legal.specials[i].boardIndex === ui.selectedAttacker) {
+          sp = legal.specials[i];
+          break;
+        }
+      }
+      if (!sp) return;
+      if (sp.needsTarget) {
+        ui.pendingSpecial = { boardIndex: ui.selectedAttacker, targetSide: sp.targetSide, needsTarget: true };
+        showToast(sp.targetSide === 'enemy' ? 'Choose an enemy minion for ' + sp.name + '.' : 'Choose a friendly minion for ' + sp.name + '.');
+        renderBattle();
+        return;
+      }
+      var res = withFx(m, function () {
+        var p = heroEl(1);
+        return p ? centerOf(p) : null;
+      }, function () {
+        return Engine.useSpecial(battle, ui.selectedAttacker);
+      });
+      if (!res || res.ok !== false) sfx('special');
+      if (res && res.ok === false) showToast(res.error || 'The special failed.');
+      ui.pendingSpecial = null;
+      ui.selectedAttacker = null;
+      afterPlayerAction();
+    });
+    bar.appendChild(special);
+
+    var disarm = el('button', 'btn secondary action-btn action-disarm', '✕');
+    disarm.type = 'button';
+    disarm.title = 'Stand down';
+    disarm.addEventListener('click', function () {
+      ui.selectedAttacker = null;
+      ui.pendingSpecial = null;
+      renderBattle();
+    });
+    bar.appendChild(disarm);
+  }
+
   function onMinionClick(m, playerIdx) {
     if (!battle || battle.winner || ui.aiThinking) return;
     var isMine = playerIdx === 0;
     var board = battle.players[playerIdx].board;
     var index = board.indexOf(m);
 
+    // Resolving a special move on a minion?
+    if (ui.pendingSpecial) {
+      var spSide = ui.pendingSpecial.targetSide;
+      if ((spSide === 'enemy') !== isMine || spSide == null) {
+        var spTarget = spSide === 'ally' ? { side: 'ally', index: index } : index;
+        var spMinion = battle.players[0].board[ui.pendingSpecial.boardIndex];
+        var spRes = withFx(spMinion, function () { return minionPos(m.uid); }, function () {
+          return Engine.useSpecial(battle, ui.pendingSpecial.boardIndex, spTarget);
+        });
+        if (!spRes || spRes.ok !== false) sfx('special');
+        if (spRes && spRes.ok === false) showToast(spRes.error || 'The special failed.');
+        ui.pendingSpecial = null;
+        ui.selectedAttacker = null;
+        afterPlayerAction();
+        return;
+      }
+    }
     // Resolving a targeted card play?
     if (ui.pendingPlay) {
       var side = ui.pendingPlay.targetSide;
@@ -1393,6 +1522,7 @@
         });
         sfx('cardPlay');
         ui.pendingPlay = null;
+    ui.pendingSpecial = null;
         afterPlayerAction();
         return;
       }
@@ -1436,6 +1566,7 @@
         return;
       }
       ui.pendingPlay = null;
+    ui.pendingSpecial = null;
       ui.selectedAttacker = ui.selectedAttacker === index ? null : index;
       if (ui.selectedAttacker != null) {
         sfx('select');
@@ -1452,7 +1583,8 @@
     if (!card) return;
 
     if (ui.pendingPlay && ui.pendingPlay.handIndex === index) {
-      ui.pendingPlay = null; // tap again to cancel
+      ui.pendingPlay = null;
+    ui.pendingSpecial = null; // tap again to cancel
       renderBattle();
       return;
     }
@@ -1504,6 +1636,7 @@
         ['💫 Stunned', 'Cannot attack while stunned.'],
         ['❓ Confused', 'Attacks a random target instead of the chosen one.'],
         ['Abilities', 'Every card carries a move, printed on it: some trigger when played, some when attacking, some when destroyed, some are always on. Full-Art and Secret printings upgrade the move.'],
+        ['Special Move', 'A recovered minion can unleash its ability as a special: 2✦, once per turn. Arm the minion (tap it) and choose ✦ in the action bar — the gold pip marks specials that are ready.'],
         ['Hero Power', 'Your champion’s pantheon grants a power: 2✦, once per turn. Find it under your champion’s portrait.'],
         ['The object of the duel', 'Reduce the enemy champion to 0. Arm one of your ready minions (tap it), then strike: an enemy minion, or their champion.'],
         ['Inspecting', 'Tap any enemy minion with nothing armed to read its full scholarly record and move text.'],
@@ -1519,9 +1652,74 @@
     });
   }
 
+  /* ── Autopilot: the bot plays your side, visibly ───────────────────────── */
+
+  function setAutopilot(on) {
+    ui.autopilot = on;
+    var btn = $('autopilot-toggle');
+    if (btn) {
+      btn.classList.toggle('active', on);
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    }
+    if (on) {
+      showToast('Autopilot engaged — the Archive plays your side. Tap again to take over.');
+      if (battle && !battle.winner && battle.activePlayer === 0 && !ui.aiThinking) autopilotLoop();
+    } else {
+      showToast('Manual control — the duel is yours.');
+      renderBattle();
+    }
+  }
+
+  function autopilotLoop() {
+    if (!ui.autopilot || !battle || battle.winner || ui.aiThinking) return;
+    if (battle.activePlayer !== 0) return;
+    ui.aiThinking = true;
+    if (fx) fx.banner('Autopilot', 'The Archive commands your pantheon.');
+    renderBattle();
+    setTimeout(function () {
+      var before = fxSnapshot();
+      var mark = battle.log.length;
+      // The player's side, played with the standard heuristics — no mercy,
+      // no band; the Oracle keeps its own rules.
+      Engine.runAiTurn(battle);
+      var entries = battle.log.slice(mark).filter(function (e) {
+        return e.player === 0;
+      });
+      if (fx) replayStrikes(entries, before, 0);
+      renderBattle();
+      if (battle.winner !== null) {
+        ui.aiThinking = false;
+        finishBattle();
+        return;
+      }
+      // The Oracle answers, then the loop continues while engaged.
+      setTimeout(function () {
+        if (fx) fx.banner('Enemy turn', 'The Archive answers…');
+        renderBattle();
+        setTimeout(function () {
+          var before2 = fxSnapshot();
+          var mark2 = battle.log.length;
+          Engine.runAiTurn(battle, { holdBackRounds: aiMercyRounds, rubberBand: true });
+          var entries2 = battle.log.slice(mark2).filter(function (e) {
+            return e.player === 1;
+          });
+          if (fx) replayStrikes(entries2, before2, 1);
+          ui.aiThinking = false;
+          renderBattle();
+          if (battle.winner !== null) {
+            finishBattle();
+            return;
+          }
+          if (ui.autopilot) autopilotLoop();
+        }, 750);
+      }, 650);
+    }, 800);
+  }
+
   function onEndTurn() {
     if (!battle || battle.winner || ui.aiThinking || battle.activePlayer !== 0) return;
     ui.pendingPlay = null;
+    ui.pendingSpecial = null;
     ui.selectedAttacker = null;
     ui.aiThinking = true;
     Engine.endTurn(battle);
@@ -1537,7 +1735,7 @@
         return e.player === 1;
       });
       if (fx) {
-        replayAiStrikes(newEntries, before);
+        replayStrikes(newEntries, before, 1);
         fx.banner('Your turn', 'Command your pantheon.');
       }
       renderBattle();
@@ -1545,21 +1743,22 @@
     }, 600);
   }
 
-  // The AI's turn resolves in one engine pass — replay its strikes as visible
-  // sequences so the enemy turn never feels like the board teleported.
-  function replayAiStrikes(entries, before) {
+  // A side's turn resolves in one engine pass — replay its strikes as visible
+  // sequences so the turn never feels like the board teleported.
+  function replayStrikes(entries, before, side) {
     var strikes = entries.filter(function (e) {
       return e.type === 'attack';
     });
+    var fromSel = side === 0 ? '#player-board .minion' : '#enemy-board .minion';
+    var toBoardSel = side === 0 ? '#enemy-board .minion' : '#player-board .minion';
+    var fromHero = side === 0 ? 0 : 1;
+    var toHero = 1 - side;
     strikes.forEach(function (entry, i) {
       setTimeout(function () {
         if (!fxCanvas) return;
         var face = entry.text.indexOf('strikes the enemy hero') !== -1;
-        var fromNode =
-          fxCanvas.parentElement.querySelector('#enemy-board .minion') || heroEl(1);
-        var toNode = face
-          ? heroEl(0)
-          : fxCanvas.parentElement.querySelector('#player-board .minion') || heroEl(0);
+        var fromNode = fxCanvas.parentElement.querySelector(fromSel) || heroEl(fromHero);
+        var toNode = face ? heroEl(toHero) : fxCanvas.parentElement.querySelector(toBoardSel) || heroEl(toHero);
         if (!fromNode || !toNode) return;
         var card = null;
         for (var k = 0; k < cards.length; k++) {
@@ -1569,7 +1768,9 @@
           }
         }
         fx.attack({
+          entryId: card ? card.entryId : null,
           archetype: Sequences.archetypeFor(card || {}),
+          super: !!(card && (card.edition === 'full-art' || card.edition === 'secret')),
           from: centerOf(fromNode),
           to: centerOf(toNode),
           colors: (card && card.art && card.art.colors) || {},
@@ -1691,6 +1892,7 @@
     if (battle.winner === 0) banner.textContent = 'Victory';
     else if (battle.winner === 1) banner.textContent = 'Defeat';
     else if (battle.winner === 'draw') banner.textContent = 'Draw';
+    else if (ui.autopilot && battle.activePlayer === 0) banner.textContent = 'Autopilot';
     else banner.textContent = battle.activePlayer === 0 ? 'Your Turn' : "Oracle's Turn";
     banner.classList.toggle('enemy-turn', battle.winner === null && battle.activePlayer !== 0);
 
@@ -1734,6 +1936,7 @@
 
     $('end-turn').disabled = battle.winner !== null || battle.activePlayer !== 0 || ui.aiThinking;
     $('mulligan').hidden = !(battle.winner === null && battle.halfTurns === 0 && battle.activePlayer === 0 && !ui.aiThinking);
+    renderActionBar();
 
     var log = $('game-log');
     log.replaceChildren();
@@ -1810,6 +2013,9 @@
       renderBattle();
     });
     $('battle-help').addEventListener('click', openBattleHelp);
+    $('autopilot-toggle').addEventListener('click', function () {
+      setAutopilot(!ui.autopilot);
+    });
     $('sound-toggle').addEventListener('click', function () {
       save.soundMuted = !save.soundMuted;
       persist();
@@ -1847,6 +2053,7 @@
         closeModal();
         if (battle && (ui.pendingPlay || ui.selectedAttacker != null)) {
           ui.pendingPlay = null;
+    ui.pendingSpecial = null;
           ui.selectedAttacker = null;
           renderBattle();
         }

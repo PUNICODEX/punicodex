@@ -155,6 +155,25 @@ function rarityCost(rarity, seed) {
   }
 }
 
+// Cost follows the card's weight WITHIN its edition cohort: after all cards
+// are built, each edition's cards are ranked by (power + health) and the
+// cost ladder 1–8 is assigned by percentile. Every curve bucket is always
+// stocked for every cohort, and rebalancing is automatic as the set grows.
+function assignCosts(cards) {
+  const byEdition = new Map();
+  for (const card of cards) {
+    if (!byEdition.has(card.edition)) byEdition.set(card.edition, []);
+    byEdition.get(card.edition).push(card);
+  }
+  for (const cohort of byEdition.values()) {
+    cohort.sort((a, b) => a.power + a.health - (b.power + b.health) || a.id.localeCompare(b.id));
+    const n = cohort.length;
+    cohort.forEach((card, i) => {
+      card.cost = n <= 1 ? 1 : 1 + Math.floor((i / (n - 1)) * 8);
+    });
+  }
+}
+
 function pantheonSpeed(pantheon, seed) {
   if (pantheon === 'norse' || pantheon === 'greek') return pickBand(seed + 3, 6, 3);
   if (pantheon === 'egyptian' || pantheon === 'mesopotamian') return pickBand(seed + 3, 3, 3);
@@ -609,9 +628,11 @@ const MASTERS_BASE = 'https://punycodex-masters.vercel.app';
 const EDITIONS = ['common', 'holo', 'full-art', 'secret'];
 const EDITION_META = {
   common: { rarity: 'common', bump: { power: 0, health: 0 } },
-  holo: { rarity: 'rare', bump: { power: 5, health: 5 } },
-  'full-art': { rarity: 'legendary', bump: { power: 5, health: 5 } },
-  secret: { rarity: 'mythic', bump: { power: 5, health: 5 } },
+  // +12 raw = a guaranteed +1 at the battle scale (STAT_SCALE 12): edition
+  // strength must be felt in the duel, not just seen in the gallery.
+  holo: { rarity: 'rare', bump: { power: 12, health: 12 } },
+  'full-art': { rarity: 'legendary', bump: { power: 12, health: 12 } },
+  secret: { rarity: 'mythic', bump: { power: 12, health: 12 } },
 };
 
 // Full-art upgrades the ability into the card's special attack: a numeric
@@ -652,6 +673,8 @@ function buildCard(entry, { variant, rarity, archetype, lore, flagship, edition 
 
   const baseAbility = deriveAbility(entry, category);
   const ability = edition ? upgradeAbility(baseAbility, edition) : baseAbility;
+  const finalPower = basePower(entry.tier, seed) + bump.power;
+  const finalHealth = domainHealth(entry.domain, seed) + bump.health;
 
   const card = {
     id: edition ? `${entry.id}-${edition}` : `${entry.id}-${variant}`,
@@ -672,9 +695,9 @@ function buildCard(entry, { variant, rarity, archetype, lore, flagship, edition 
     domain: entry.domain || 'Mythic',
     rarity: editionRarity,
     rarityOrder: RARITY_ORDER[editionRarity],
-    cost: rarityCost(editionRarity, seed),
-    power: basePower(entry.tier, seed) + bump.power,
-    health: domainHealth(entry.domain, seed) + bump.health,
+    cost: 0, // assigned by assignCosts() once the whole cohort exists
+    power: finalPower,
+    health: finalHealth,
     speed: pantheonSpeed(entry.pantheon, seed),
     ability,
     flavor: deriveFlavor(entry, archetype, lore),
@@ -707,7 +730,6 @@ function buildCard(entry, { variant, rarity, archetype, lore, flagship, edition 
 function generateCards() {
   const archetypeById = new Map(ARCHETYPES.map((a) => [a.id, a]));
   const cards = [];
-
   for (const entry of LEXICON) {
     const archetype = archetypeById.get(entry.id) || null;
     const lore = LORE_CATALOG[entry.id] || null;
@@ -756,6 +778,7 @@ function generateCards() {
     }
   }
 
+  assignCosts(cards);
   return cards;
 }
 

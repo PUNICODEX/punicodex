@@ -2257,3 +2257,63 @@ body.game-body ::-webkit-scrollbar-thumb:hover { background-color: rgba(212, 175
   border-color: rgba(212, 175, 55, 0.55);
   color: #f3dfa0;
 }
+
+/* ── The action bar: a minion's kit ──────────────────────────────────────── */
+.action-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 0.5rem auto 0;
+  padding: 0.5rem 0.75rem;
+  max-width: 640px;
+  background: linear-gradient(180deg, rgba(20, 20, 30, 0.92), rgba(10, 10, 16, 0.92));
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: 0.9rem;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+  animation: actionbar-rise 0.18s ease;
+}
+
+@keyframes actionbar-rise {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.action-title {
+  font-family: var(--font-display);
+  color: var(--accent);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  margin-right: 0.25rem;
+}
+
+.action-btn {
+  padding: 0.42rem 0.9rem;
+  font-size: 0.78rem;
+}
+
+.action-btn.armed {
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+}
+
+.action-disarm { min-width: 2.2rem; }
+
+.minion-status .badge.special-pip {
+  color: #1a1405;
+  background: linear-gradient(180deg, #eed27e, #c39a2b);
+  border-color: rgba(255, 230, 150, 0.7);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.55);
+  animation: special-pip-glow 2s ease-in-out infinite;
+}
+
+@keyframes special-pip-glow {
+  0%, 100% { box-shadow: 0 0 6px rgba(212, 175, 55, 0.35); }
+  50% { box-shadow: 0 0 14px rgba(212, 175, 55, 0.7); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .minion-status .badge.special-pip { animation: none; }
+}
