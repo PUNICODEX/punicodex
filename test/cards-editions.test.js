@@ -117,6 +117,24 @@ test('ink economy: bundles, checkout, and redeem-once contract', () => {
   assert.ok(game.includes('ink-shop'), 'ink shop rendered');
 });
 
+test('ink endpoints: every relative require resolves to a real file', () => {
+  // Static string checks cannot catch a require path that resolves to nothing
+  // (the FUNCTION_INVOCATION_FAILED class of bug) — resolve each one for real.
+  for (const f of ['api/game/ink/checkout/index.js', 'api/game/ink/redeem/index.js']) {
+    const abs = path.join(ROOT, f);
+    const src = fs.readFileSync(abs, 'utf8');
+    const reqs = [...src.matchAll(/require\('(\.[^']+)'\)/g)].map((m) => m[1]);
+    assert.ok(reqs.length > 0, `${f} should have relative requires`);
+    for (const r of reqs) {
+      const resolved = path.resolve(path.dirname(abs), r);
+      assert.ok(
+        fs.existsSync(resolved) || fs.existsSync(`${resolved}.js`),
+        `${f}: require('${r}') resolves to nothing`
+      );
+    }
+  }
+});
+
 test('the gallery presents the edition ladder', () => {
   const js = fs.readFileSync(path.join(ROOT, 'cards/cards.js'), 'utf8');
   for (const e of ['common', 'holo', 'full-art', 'secret', 'archive']) {
