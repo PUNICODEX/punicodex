@@ -57,6 +57,7 @@
 
   var RULES = {
     HERO_HP: 30,
+    HERO_POWER_COST: 2,
     DECK_SIZE: 30,
     MAX_INK: 10,
     HAND_LIMIT: 10,
@@ -315,6 +316,7 @@
     player.ink = player.maxInk + gen; // ink-gen may exceed the hard cap
 
     player.playedCount = 0;
+    player.heroPowerUsed = false;
     for (var j = 0; j < player.board.length; j++) {
       player.board[j].sick = false;
       player.board[j].attacksUsed = false;
@@ -507,14 +509,36 @@
 
     switch (effect.kind) {
       case 'damage': {
+        var dmgAmount = Number(effect.amount) || 0;
+        // Hero power targets (Pantheon Protocol): the whole enemy board, or
+        // the enemy hero directly. Domain doubling applies to minion targets.
+        if (effect.target === 'enemy-hero') {
+          if (domainMatches('', effect.bonusVsDomains)) dmgAmount *= 0;
+          damageHero(state, enemyIdx, dmgAmount);
+          log(state, playerIdx, 'effect', 'The enemy hero takes ' + dmgAmount + ' damage.');
+          checkWin(state);
+          break;
+        }
+        if (effect.target === 'enemy-board') {
+          var foes = state.players[enemyIdx].board.slice();
+          if (!foes.length) {
+            log(state, playerIdx, 'fizzle', 'No enemy minions to strike.');
+            break;
+          }
+          for (var fi = 0; fi < foes.length; fi++) {
+            var fdealt = applyDamage(state, foes[fi], dmgAmount);
+            log(state, playerIdx, 'effect', foes[fi].name + ' takes ' + fdealt + ' damage.');
+          }
+          checkDeaths(state);
+          break;
+        }
         t = pickTarget(state, playerIdx, effect, ctx.target, ctx.sourceUid);
         if (!t) {
           log(state, playerIdx, 'fizzle', 'No enemy minion to strike.');
           break;
         }
-        var amount = Number(effect.amount) || 0;
-        if (domainMatches(t.domain, effect.bonusVsDomains)) amount *= 2;
-        var dealt = applyDamage(state, t, amount);
+        if (domainMatches(t.domain, effect.bonusVsDomains)) dmgAmount *= 2;
+        var dealt = applyDamage(state, t, dmgAmount);
         log(state, playerIdx, 'effect', t.name + ' takes ' + dealt + ' damage.');
         checkDeaths(state);
         break;
@@ -1025,6 +1049,25 @@
     return clone(state);
   }
 
+  // useHeroPower(state, power) — Pantheon Protocol hero powers. Costs
+  // RULES.HERO_POWER_COST ink, once per turn (startTurn resets the flag).
+  // `power` is a hero-power definition (game/fx/hero-powers.js): { name,
+  // effect, target? } where effect uses the standard DSL.
+  function useHeroPower(state, power) {
+    if (isOver(state)) return { ok: false, error: 'The duel is over.' };
+    if (!power || !power.effect) return { ok: false, error: 'No such hero power.' };
+    var playerIdx = state.activePlayer;
+    var player = state.players[playerIdx];
+    if (player.ink < RULES.HERO_POWER_COST) return { ok: false, error: 'Not enough ink.' };
+    if (player.heroPowerUsed) return { ok: false, error: 'Hero power already used this turn.' };
+    player.ink = Math.max(0, player.ink - RULES.HERO_POWER_COST);
+    player.heroPowerUsed = true;
+    log(state, playerIdx, 'effect', 'Player ' + (playerIdx + 1) + ' channels ' + (power.name || 'their hero power') + '!');
+    resolveEffect(state, playerIdx, power.effect, { sourceUid: null, target: power.target });
+    checkDeaths(state);
+    return { ok: true };
+  }
+
   return {
     RULES: RULES,
     mulberry32: mulberry32,
@@ -1036,6 +1079,7 @@
     endTurn: endTurn,
     getLegalActions: getLegalActions,
     runAiTurn: runAiTurn,
+    useHeroPower: useHeroPower,
     serialize: serialize,
     effectivePower: effectivePower,
   };

@@ -1468,3 +1468,133 @@ body.game-body {
     animation-duration: 0.01s;
   }
 }
+
+/* ── Mythic Duel v2: hero panels + spectacle layer ───────────────────────── */
+
+#battlefield-wrap { position: relative; }
+
+#battle-fx {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 40;
+}
+
+.hero-panel {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.65rem 0.9rem;
+  margin: 0.4rem 0;
+  background: linear-gradient(180deg, rgba(20, 20, 30, 0.9), rgba(10, 10, 16, 0.9));
+  border: 1px solid var(--card-border, #2a2a3a);
+  border-radius: 12px;
+}
+
+.hero-panel .hero-art {
+  width: 58px;
+  height: 58px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 35%, #2a2a3a 0%, #0c0c14 80%);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-panel .hero-art img { width: 100%; height: 100%; object-fit: contain; }
+.hero-panel .hero-sigil { font-size: 2rem; color: var(--accent, #D4AF37); }
+
+.hero-panel .hero-info { flex: 1; min-width: 0; }
+
+.hero-panel .hero-name {
+  font-family: var(--font-display, 'Cinzel', serif);
+  font-size: 0.98rem;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 0.3rem;
+}
+
+.hero-panel .hero-hpbar {
+  height: 12px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.hero-panel .hero-hpfill {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #58c76a, #a8e6a0);
+  border-radius: 999px;
+  transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1), background 0.3s;
+}
+
+.hero-panel .hero-hpfill.low { background: linear-gradient(90deg, #d85656, #ff9d7a); }
+
+.hero-panel .hero-hptext {
+  font-size: 0.72rem;
+  color: var(--text-dim, #8a8599);
+  margin-top: 0.2rem;
+  letter-spacing: 0.06em;
+}
+
+.hero-power {
+  margin-top: 0.45rem;
+  background: none;
+  border: 1px solid var(--accent-dim, rgba(212, 175, 55, 0.3));
+  color: var(--text-dim, #8a8599);
+  border-radius: 999px;
+  padding: 0.3rem 0.9rem;
+  font-size: 0.75rem;
+  font-family: inherit;
+  letter-spacing: 0.04em;
+  cursor: not-allowed;
+  transition: all 0.2s ease;
+}
+
+.hero-power.usable {
+  color: var(--accent, #D4AF37);
+  border-color: var(--accent, #D4AF37);
+  cursor: pointer;
+  box-shadow: 0 0 14px rgba(212, 175, 55, 0.25);
+  animation: power-glow 2.2s ease-in-out infinite;
+}
+
+.hero-power.usable:hover { background: rgba(212, 175, 55, 0.12); }
+
+.hero-power.used { opacity: 0.45; }
+
+@keyframes power-glow {
+  0%, 100% { box-shadow: 0 0 8px rgba(212, 175, 55, 0.18); }
+  50% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-power.usable { animation: none; }
+}
+
+@media (max-width: 640px) {
+  .hero-panel { gap: 0.6rem; padding: 0.5rem 0.65rem; }
+  .hero-panel .hero-art { width: 44px; height: 44px; }
+}
+
+/* The hidden attribute must always win over the overlay's display. */
+.reward-overlay[hidden] {
+  display: none !important;
+}
+
+/* The hidden attribute must always win over every overlay's display. */
+.modal-overlay[hidden],
+.reward-overlay[hidden],
+.pack-overlay[hidden],
+.modal[hidden] {
+  display: none !important;
+}

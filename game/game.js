@@ -672,7 +672,177 @@
     showToast('The Oracle has assembled a 30-card deck for you.');
   }
 
-  /* ── Battle ──────────────────────────────────────────────────────────── */
+  /* ── Battle FX (v2: hero panels + attack sequences) ───────────────────── */
+
+  var fx = null; // Sequences instance, created with the battlefield
+  var heroes = [null, null]; // { card, power } per side
+  var fxCanvas = null;
+
+  function heroCardFor(deck) {
+    // The deck's champion: the highest-rarity lead, legendary first, then
+    // highest power. Deterministic so replays and ghosts agree.
+    var RANK = { legendary: 5, mythic: 6, epic: 4, rare: 3, uncommon: 2, common: 1 };
+    var best = null;
+    for (var i = 0; i < deck.length; i++) {
+      var c = deck[i];
+      if (!best) { best = c; continue; }
+      var r = (RANK[c.rarity] || 1) - (RANK[best.rarity] || 1);
+      if (r > 0 || (r === 0 && (c.power || 0) > (best.power || 0))) best = c;
+    }
+    return best;
+  }
+
+  function ensureFx() {
+    if (fx) return;
+    var wrap = $('battlefield-wrap');
+    if (!wrap) return;
+    fxCanvas = document.createElement('canvas');
+    fxCanvas.id = 'battle-fx';
+    fxCanvas.setAttribute('aria-hidden', 'true');
+    wrap.insertBefore(fxCanvas, wrap.firstChild);
+    fx = Sequences.attach(fxCanvas);
+  }
+
+  function heroPanel(side, heroCard, power) {
+    var panel = el('div', 'hero-panel side-' + side);
+    var art = el('div', 'hero-art');
+    if (heroCard && heroCard.art && heroCard.art.mascot) {
+      var img = document.createElement('img');
+      img.src = heroCard.art.mascot;
+      img.alt = heroCard.name;
+      art.appendChild(img);
+    } else {
+      art.appendChild(el('span', 'hero-sigil', (heroCard && heroCard.categoryIcon) || '✦'));
+    }
+    panel.appendChild(art);
+    var info = el('div', 'hero-info');
+    info.appendChild(el('div', 'hero-name', heroCard ? heroCard.name : '—'));
+    var hpWrap = el('div', 'hero-hpbar');
+    var hpFill = el('div', 'hero-hpfill');
+    hpWrap.appendChild(hpFill);
+    info.appendChild(hpWrap);
+    var hpText = el('div', 'hero-hptext', '30');
+    info.appendChild(hpText);
+    if (side === 0 && power) {
+      var btn = el('button', 'hero-power', power.name + ' · 2✦');
+      btn.type = 'button';
+      btn.title = power.text;
+      btn.addEventListener('click', onHeroPower);
+      info.appendChild(btn);
+    }
+    panel.appendChild(info);
+    return panel;
+  }
+
+  function centerOf(node) {
+    var r = node.getBoundingClientRect();
+    var c = fxCanvas.getBoundingClientRect();
+    return { x: r.left + r.width / 2 - c.left, y: r.top + r.height / 2 - c.top };
+  }
+
+  function fxSnapshot() {
+    if (!battle) return null;
+    return {
+      hp: [battle.players[0].hero.hp, battle.players[1].hero.hp],
+      boards: battle.players.map(function (p) {
+        return p.board.map(function (m) { return { uid: m.uid, health: m.health, shield: m.shield, cardId: m.cardId, name: m.name }; });
+      }),
+    };
+  }
+
+  function heroEl(side) {
+    var panels = document.querySelectorAll('.hero-panel.side-' + side);
+    return panels[0];
+  }
+
+  function fxDiff(before) {
+    if (!before || !battle) return;
+    // Hero HP deltas → floaters + shake on the damaged side.
+    for (var side = 0; side < 2; side++) {
+      var delta = battle.players[side].hero.hp - before.hp[side];
+      if (delta !== 0) {
+        var panel = heroEl(side);
+        if (panel) {
+          var pos = centerOf(panel);
+          fx.floatText({ x: pos.x, y: pos.y - 20, text: (delta > 0 ? '+' : '') + delta, kind: delta > 0 ? 'heal' : 'damage', size: 26 });
+        }
+        if (delta < 0) fx.shake(Math.min(10, 3 + Math.abs(delta)));
+      }
+    }
+    // Minion deaths.
+    for (var p = 0; p < 2; p++) {
+      var after = {};
+      battle.players[p].board.forEach(function (m) { after[m.uid] = true; });
+      before.boards[p].forEach(function (m) {
+        if (!after[m.uid]) {
+          var node = fxCanvas.parentElement.querySelector('.minion[data-uid="' + m.uid + '"]');
+          var pos = node ? centerOf(node) : centerOf(heroEl(p));
+          fx.floatText({ x: pos.x, y: pos.y, text: '☠', kind: 'damage', size: 22 });
+        }
+      });
+    }
+    // Minion health deltas (non-fatal hits & heals) → small floaters.
+    for (var q = 0; q < 2; q++) {
+      var afterMap = {};
+      battle.players[q].board.forEach(function (m) { afterMap[m.uid] = m.health + m.shield; });
+      before.boards[q].forEach(function (m) {
+        var afterVal = afterMap[m.uid];
+        if (afterVal == null) return; // death handled above
+        var beforeVal = m.health + m.shield;
+        var d = afterVal - beforeVal;
+        if (d !== 0) {
+          var n = fxCanvas.parentElement.querySelector('.minion[data-uid="' + m.uid + '"]');
+          if (n) {
+            var pp = centerOf(n);
+            fx.floatText({ x: pp.x, y: pp.y - 14, text: (d > 0 ? '+' : '') + d, kind: d > 0 ? 'heal' : 'damage', size: 18 });
+          }
+        }
+      });
+    }
+  }
+
+  // withFx(attackerCard, getTargetPos, action) — runs the action with a
+  // before/after diff and plays the archetype sequence between them.
+  function withFx(attackerCard, getTargetPos, action) {
+    if (!fx) return action();
+    var before = fxSnapshot();
+    var targetPos = getTargetPos ? getTargetPos() : null;
+    var fromPos = null;
+    if (attackerCard && attackerCard.uid != null) {
+      var node = fxCanvas.parentElement.querySelector('.minion[data-uid="' + attackerCard.uid + '"]');
+      if (node) fromPos = centerOf(node);
+    }
+    if (!fromPos) fromPos = centerOf(heroEl(0)) || { x: 60, y: 60 };
+    var result = action();
+    if (targetPos) {
+      fx.attack({
+        archetype: Sequences.archetypeFor(attackerCard || {}),
+        from: fromPos,
+        to: targetPos,
+        colors: (attackerCard && attackerCard.art && attackerCard.art.colors) || {},
+        power: attackerCard ? attackerCard.power || 4 : 4,
+        onImpact: function () { fxDiff(before); },
+      });
+      // Fallback if the sequence is reduced-motion: resolve diff immediately.
+      fxDiff(before);
+    } else {
+      fxDiff(before);
+    }
+    return result;
+  }
+
+  function onHeroPower() {
+    if (!battle || battle.winner || ui.aiThinking || battle.activePlayer !== 0) return;
+    var power = heroes[0] && heroes[0].power;
+    if (!power) return;
+    var heroCard = heroes[0] && heroes[0].card;
+    var targetPanel = heroEl(1);
+    withFx(heroCard, targetPanel ? function () { return centerOf(targetPanel); } : null, function () {
+      return Engine.useHeroPower(battle, power);
+    });
+    afterPlayerAction();
+  }
+
 
   function startBattle() {
     var playerDeck = save.deck.map(function (id) {
@@ -684,9 +854,24 @@
     ui.pendingPlay = null;
     ui.selectedAttacker = null;
     ui.aiThinking = false;
+
+    // v2: champions, hero panels, and the spectacle layer.
+    var myChampion = heroCardFor(playerDeck);
+    var aiChampion = heroCardFor(aiDeck);
+    heroes = [
+      { card: myChampion, power: myChampion ? HeroPowers.forPantheon(myChampion.pantheon) : null },
+      { card: aiChampion, power: aiChampion ? HeroPowers.forPantheon(aiChampion.pantheon) : null },
+    ];
     $('deck-select').hidden = true;
     $('battlefield-wrap').hidden = false;
     $('reward-overlay').hidden = true;
+    ensureFx();
+    var wrap = $('battlefield-wrap');
+    wrap.querySelectorAll('.hero-panel').forEach(function (n) { n.remove(); });
+    var board = wrap.querySelector('.battlefield');
+    wrap.insertBefore(heroPanel(1, heroes[1].card, heroes[1].power), board);
+    board.after(heroPanel(0, heroes[0].card, heroes[0].power));
+    if (fx) fx.banner('The duel begins', (heroes[0].card ? heroes[0].card.name : 'You') + ' vs ' + (heroes[1].card ? heroes[1].card.name : 'the Archive'));
     renderBattle();
   }
 
@@ -715,6 +900,7 @@
 
   function renderBoardMinion(m, playerIdx, legal) {
     var node = el('div', 'minion');
+    node.dataset.uid = String(m.uid);
     var isMine = playerIdx === 0;
     var ready =
       isMine &&
@@ -773,7 +959,10 @@
       var side = ui.pendingPlay.targetSide;
       if ((side === 'enemy') !== isMine) {
         var target = side === 'enemy' ? index : { side: 'ally', index: index };
-        Engine.playCard(battle, ui.pendingPlay.handIndex, target);
+        var playedCard = battle.players[0].hand[ui.pendingPlay.handIndex];
+        withFx(playedCard, function () { return centerOf(node); }, function () {
+          return Engine.playCard(battle, ui.pendingPlay.handIndex, target);
+        });
         ui.pendingPlay = null;
         afterPlayerAction();
         return;
@@ -782,7 +971,10 @@
 
     // Resolving an attack on an enemy minion?
     if (ui.selectedAttacker != null && !isMine) {
-      Engine.attack(battle, ui.selectedAttacker, index);
+      var attacker = battle.players[0].board[ui.selectedAttacker];
+      withFx(attacker, function () { return centerOf(node); }, function () {
+        return Engine.attack(battle, ui.selectedAttacker, index);
+      });
       ui.selectedAttacker = null;
       afterPlayerAction();
       return;
@@ -826,7 +1018,13 @@
       showToast(play.targetSide === 'enemy' ? 'Choose an enemy minion.' : 'Choose a friendly minion.');
       return;
     }
-    Engine.playCard(battle, index);
+    withFx(card, function () {
+      var played = battle.players[0].board[battle.players[0].board.length - 1];
+      var n = played ? fxCanvas.parentElement.querySelector('.minion[data-uid="' + played.uid + '"]') : null;
+      return n ? centerOf(n) : centerOf(heroEl(0));
+    }, function () {
+      return Engine.playCard(battle, index);
+    });
     afterPlayerAction();
   }
 
@@ -841,10 +1039,16 @@
     ui.selectedAttacker = null;
     ui.aiThinking = true;
     Engine.endTurn(battle);
+    if (fx) fx.banner('Enemy turn', 'The Archive answers…');
     renderBattle();
     setTimeout(function () {
+      var before = fxSnapshot();
       Engine.runAiTurn(battle);
       ui.aiThinking = false;
+      if (fx) {
+        fxDiff(before);
+        fx.banner('Your turn', 'Command your pantheon.');
+      }
       renderBattle();
       if (battle.winner !== null) finishBattle();
     }, 600);
@@ -859,6 +1063,14 @@
     else save.stats.draws++;
     persist();
     renderCurrencies();
+
+    if (fx) {
+      var titles2 = { win: 'VICTORY', loss: 'Defeat', draw: 'A Storied Draw' };
+      fx.banner(
+        titles2[outcome],
+        outcome === 'win' ? 'The archive yields ' + reward + ' ✦ Ink' : 'The pantheon remembers.'
+      );
+    }
 
     var overlay = $('reward-overlay');
     var content = $('reward-content');
@@ -894,6 +1106,36 @@
     $('player-deck').textContent = String(me.deck.length);
     $('enemy-deck').textContent = String(foe.deck.length);
     $('enemy-hand').textContent = String(foe.hand.length);
+
+    // v2 hero panels: animated HP bars and the hero-power state.
+    for (var side = 0; side < 2; side++) {
+      var panel = heroEl(side);
+      if (panel) {
+        var hero = battle.players[side].hero;
+        var fill = panel.querySelector('.hero-hpfill');
+        var text = panel.querySelector('.hero-hptext');
+        if (fill) {
+          var pct = Math.max(0, Math.min(1, hero.hp / hero.maxHp));
+          fill.style.width = (pct * 100).toFixed(1) + '%';
+          fill.classList.toggle('low', pct <= 0.3);
+        }
+        if (text) text.textContent = hero.hp + ' / ' + hero.maxHp;
+        if (side === 0) {
+          var powerBtn = panel.querySelector('.hero-power');
+          if (powerBtn) {
+            var usable =
+              !battle.winner &&
+              battle.activePlayer === 0 &&
+              !me.heroPowerUsed &&
+              me.ink >= Engine.RULES.HERO_POWER_COST &&
+              !ui.aiThinking;
+            powerBtn.disabled = !usable;
+            powerBtn.classList.toggle('usable', usable);
+            powerBtn.classList.toggle('used', Boolean(me.heroPowerUsed));
+          }
+        }
+      }
+    }
 
     var pips = $('ink-pips');
     pips.replaceChildren();
