@@ -826,6 +826,7 @@
 
   function heroPanel(side, heroCard, power) {
     var panel = el('div', 'hero-panel side-' + side);
+    panel.id = side === 1 ? 'enemy-hero-panel' : 'player-hero-panel';
     var art = el('div', 'hero-art');
     if (heroCard && heroCard.art && heroCard.art.mascot) {
       var img = document.createElement('img');
@@ -844,6 +845,21 @@
     info.appendChild(hpWrap);
     var hpText = el('div', 'hero-hptext', '30');
     info.appendChild(hpText);
+    var meta = el('div', 'hero-meta');
+    if (side === 1) {
+      meta.appendChild(el('span', 'js-deck-count', 'Deck: 30'));
+      meta.appendChild(el('span', 'js-hand-count', 'Hand: 4'));
+      panel.setAttribute('role', 'button');
+      panel.setAttribute('aria-label', 'Enemy champion — select one of your ready minions, then tap here to strike');
+      panel.addEventListener('click', onEnemyHeroClick);
+    } else {
+      var pips = el('div', 'ink-pips');
+      pips.id = 'ink-pips';
+      pips.setAttribute('aria-label', 'Ink');
+      meta.appendChild(pips);
+      meta.appendChild(el('span', 'js-deck-count', 'Deck: 30'));
+    }
+    info.appendChild(meta);
     if (side === 0 && power) {
       var btn = el('button', 'hero-power', power.name + ' · 2✦');
       btn.type = 'button';
@@ -853,6 +869,24 @@
     }
     panel.appendChild(info);
     return panel;
+  }
+
+  // Striking the enemy champion: the engine has always supported target
+  // 'hero' — this is the UI path to it.
+  function onEnemyHeroClick() {
+    if (!battle || battle.winner || ui.aiThinking || battle.activePlayer !== 0) return;
+    if (ui.selectedAttacker == null) {
+      showToast('Select one of your ready minions first — then strike the champion.');
+      return;
+    }
+    var attacker = battle.players[0].board[ui.selectedAttacker];
+    var panel = heroEl(1);
+    var res = withFx(attacker, panel ? function () { return centerOf(panel); } : null, function () {
+      return Engine.attack(battle, ui.selectedAttacker, 'hero');
+    });
+    if (res && res.ok === false) showToast(res.error || 'That strike failed.');
+    ui.selectedAttacker = null;
+    afterPlayerAction();
   }
 
   function centerOf(node) {
@@ -1011,7 +1045,14 @@
         return Engine.toBattleCard(byId[id]);
       });
     var seed = (Date.now() ^ (Math.random() * 0xffffffff)) >>> 0;
-    var aiDeck = Engine.autoBuildDeck(cards, seed ^ 0x5bd1e995);
+    // The Archive fields printings a new player could actually own — flagship
+    // commons and holos. Full-art and secret printings (+5/+5, upgraded
+    // abilities) stay out of the AI pool so a starter archive always faces a
+    // fair curve.
+    var aiPool = cards.filter(function (c) {
+      return c.flagship && (c.edition === 'common' || c.edition === 'holo');
+    });
+    var aiDeck = Engine.autoBuildDeck(aiPool, seed ^ 0x5bd1e995);
     battle = Engine.createGame({ playerDeck: playerDeck, aiDeck: aiDeck, seed: seed });
     ui.pendingPlay = null;
     ui.selectedAttacker = null;
@@ -1035,6 +1076,15 @@
     board.after(heroPanel(0, heroes[0].card, heroes[0].power));
     if (fx) fx.banner('The duel begins', (heroes[0].card ? heroes[0].card.name : 'You') + ' vs ' + (heroes[1].card ? heroes[1].card.name : 'the Archive'));
     renderBattle();
+
+    // First-battle coaching: the three ideas a new commander needs, once.
+    if (!save.coachSeen) {
+      save.coachSeen = true;
+      persist();
+      setTimeout(function () { showToast('Tap a glowing card in your hand to play it.'); }, 1400);
+      setTimeout(function () { showToast('Tap your minion, then tap an enemy — minion or champion — to attack.'); }, 3900);
+      setTimeout(function () { showToast('Freshly played minions recover for one turn before they can strike.'); }, 6800);
+    }
   }
 
   function exitToDeck() {
@@ -1134,9 +1184,10 @@
     // Resolving an attack on an enemy minion?
     if (ui.selectedAttacker != null && !isMine) {
       var attacker = battle.players[0].board[ui.selectedAttacker];
-      withFx(attacker, function () { return centerOf(node); }, function () {
+      var res = withFx(attacker, function () { return centerOf(node); }, function () {
         return Engine.attack(battle, ui.selectedAttacker, index);
       });
+      if (res && res.ok === false) showToast(res.error || 'That strike failed.');
       ui.selectedAttacker = null;
       afterPlayerAction();
       return;
@@ -1144,8 +1195,27 @@
 
     // Selecting one of my ready minions as an attacker.
     if (isMine && battle.activePlayer === 0) {
+      var legal = Engine.getLegalActions(battle);
+      var canFight = legal.attacks.some(function (a) {
+        return a.attackerIndex === index;
+      });
+      if (!canFight) {
+        // Never fail silently — say exactly why this minion cannot strike.
+        var reason = m.sick
+          ? m.name + ' is recovering — it can strike next turn.'
+          : m.stunned > 0
+            ? m.name + ' is stunned.'
+            : m.attacksUsed
+              ? m.name + ' has already struck this turn.'
+              : m.name + ' cannot attack right now.';
+        showToast(reason);
+        return;
+      }
       ui.pendingPlay = null;
       ui.selectedAttacker = ui.selectedAttacker === index ? null : index;
+      if (ui.selectedAttacker != null) {
+        showToast('Now tap an enemy minion — or their champion — to strike.');
+      }
       renderBattle();
     }
   }
@@ -1205,15 +1275,60 @@
     renderBattle();
     setTimeout(function () {
       var before = fxSnapshot();
+      var logMark = battle.log.length;
       Engine.runAiTurn(battle);
       ui.aiThinking = false;
+      var newEntries = battle.log.slice(logMark).filter(function (e) {
+        return e.player === 1;
+      });
       if (fx) {
-        fxDiff(before);
+        replayAiStrikes(newEntries, before);
         fx.banner('Your turn', 'Command your pantheon.');
       }
       renderBattle();
       if (battle.winner !== null) finishBattle();
     }, 600);
+  }
+
+  // The AI's turn resolves in one engine pass — replay its strikes as visible
+  // sequences so the enemy turn never feels like the board teleported.
+  function replayAiStrikes(entries, before) {
+    var strikes = entries.filter(function (e) {
+      return e.type === 'attack';
+    });
+    strikes.forEach(function (entry, i) {
+      setTimeout(function () {
+        if (!fxCanvas) return;
+        var face = entry.text.indexOf('strikes the enemy hero') !== -1;
+        var fromNode =
+          fxCanvas.parentElement.querySelector('#enemy-board .minion') || heroEl(1);
+        var toNode = face
+          ? heroEl(0)
+          : fxCanvas.parentElement.querySelector('#player-board .minion') || heroEl(0);
+        if (!fromNode || !toNode) return;
+        var card = null;
+        for (var k = 0; k < cards.length; k++) {
+          if (entry.text.indexOf(cards[k].name) === 0) {
+            card = cards[k];
+            break;
+          }
+        }
+        fx.attack({
+          archetype: Sequences.archetypeFor(card || {}),
+          from: centerOf(fromNode),
+          to: centerOf(toNode),
+          colors: (card && card.art && card.art.colors) || {},
+          power: card ? card.power || 4 : 4,
+          onImpact: function () {},
+        });
+      }, 420 * i);
+    });
+    setTimeout(
+      function () {
+        fxDiff(before);
+      },
+      420 * strikes.length + 120
+    );
   }
 
   function finishBattle() {
@@ -1263,13 +1378,7 @@
     var foe = battle.players[1];
     var legal = Engine.getLegalActions(battle);
 
-    $('player-health').textContent = String(me.hero.hp);
-    $('enemy-health').textContent = String(foe.hero.hp);
-    $('player-deck').textContent = String(me.deck.length);
-    $('enemy-deck').textContent = String(foe.deck.length);
-    $('enemy-hand').textContent = String(foe.hand.length);
-
-    // v2 hero panels: animated HP bars and the hero-power state.
+    // v2 hero panels: animated HP bars, deck/hand counts, hero-power state.
     for (var side = 0; side < 2; side++) {
       var panel = heroEl(side);
       if (panel) {
@@ -1282,6 +1391,13 @@
           fill.classList.toggle('low', pct <= 0.3);
         }
         if (text) text.textContent = hero.hp + ' / ' + hero.maxHp;
+        var deckCount = panel.querySelector('.js-deck-count');
+        if (deckCount) deckCount.textContent = 'Deck: ' + battle.players[side].deck.length;
+        var handCount = panel.querySelector('.js-hand-count');
+        if (handCount) handCount.textContent = 'Hand: ' + battle.players[side].hand.length;
+        if (side === 1) {
+          panel.classList.toggle('targetable', ui.selectedAttacker != null && !battle.winner);
+        }
         if (side === 0) {
           var powerBtn = panel.querySelector('.hero-power');
           if (powerBtn) {
@@ -1323,9 +1439,6 @@
     me.board.forEach(function (m) {
       playerBoard.appendChild(renderBoardMinion(m, 0, legal));
     });
-
-    var enemyHero = $('enemy-hero-card');
-    enemyHero.classList.toggle('targetable', ui.selectedAttacker != null && !battle.winner);
 
     var hand = $('player-hand');
     hand.replaceChildren();

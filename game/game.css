@@ -1586,6 +1586,42 @@ body.game-body {
   .hero-panel .hero-art { width: 44px; height: 44px; }
 }
 
+/* Unified hero panels: counts line, ink pips, and the strike target state. */
+.hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+  margin-top: 0.3rem;
+  font-size: 0.72rem;
+  color: var(--text-dim, #8a8599);
+  letter-spacing: 0.05em;
+}
+
+#enemy-hero-panel { cursor: default; transition: border-color 0.15s ease, box-shadow 0.15s ease; }
+
+#enemy-hero-panel.targetable {
+  cursor: crosshair;
+  border-color: var(--danger, #ef4444);
+  box-shadow: 0 0 18px rgba(239, 68, 68, 0.35);
+  animation: target-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes target-pulse {
+  0%, 100% { box-shadow: 0 0 10px rgba(239, 68, 68, 0.22); }
+  50% { box-shadow: 0 0 22px rgba(239, 68, 68, 0.45); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #enemy-hero-panel.targetable { animation: none; }
+}
+
+/* Tap feedback: every interactive battle element declares its cursor. */
+.minion { cursor: pointer; }
+.minion.sick { cursor: not-allowed; }
+.hand-card.playable { cursor: pointer; }
+.hand-card.unplayable { cursor: not-allowed; }
+
 /* The hidden attribute must always win over the overlay's display. */
 .reward-overlay[hidden] {
   display: none !important;

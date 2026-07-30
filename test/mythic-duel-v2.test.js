@@ -134,6 +134,39 @@ test('page wiring: fx libraries load before game.js; hidden-attribute overlays e
   }
 });
 
+test('battle UI contract: hero strikes are reachable, failures speak, AI pool is fair', () => {
+  const html = fs.readFileSync(path.join(ROOT, 'game/index.html'), 'utf8');
+  const js = fs.readFileSync(path.join(ROOT, 'game/game.js'), 'utf8');
+  const css = fs.readFileSync(path.join(ROOT, 'game/game.css'), 'utf8');
+
+  // The legacy duplicated hero rows are gone; the panels are the single hero UI.
+  for (const dead of ['enemy-hero-card', 'player-hero-card', 'player-health', 'enemy-health']) {
+    assert.ok(!html.includes(dead), `index.html still carries legacy ${dead}`);
+    assert.ok(!js.includes(dead), `game.js still references legacy ${dead}`);
+  }
+
+  // Striking the enemy champion is wired: click handler → Engine.attack(..., 'hero').
+  assert.ok(js.includes('onEnemyHeroClick'), 'enemy hero click handler missing');
+  assert.ok(js.includes("'hero'"), 'hero attack target path missing');
+  assert.ok(js.includes('id = side === 1'), 'panel ids missing');
+  assert.ok(css.includes('#enemy-hero-panel.targetable'), 'targetable hero styles missing');
+
+  // Attack failures never die silently: readiness gate + engine error toasts.
+  assert.ok(js.includes('is recovering'), 'summoning-sickness explanation missing');
+  assert.ok(js.includes('has already struck'), 'attacks-used explanation missing');
+  assert.ok(js.includes('res.ok === false'), 'engine error toast missing');
+
+  // The AI fields printings a new player could own — no full-art/secret +5/+5.
+  assert.ok(
+    js.includes("c.edition === 'common' || c.edition === 'holo'"),
+    'AI deck pool is not restricted to fair editions'
+  );
+
+  // First-battle coaching exists and the enemy turn replays visible strikes.
+  assert.ok(js.includes('coachSeen'), 'coach marks missing');
+  assert.ok(js.includes('replayAiStrikes'), 'AI strike replay missing');
+});
+
 (async () => {
   let failures = 0;
   for (const { name, fn } of tests) {

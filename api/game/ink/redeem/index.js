@@ -40,7 +40,16 @@ module.exports = async (req, res) => {
     }
 
     const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-    const session = await stripe.checkout.sessions.retrieve(sessionId);
+    let session = null;
+    try {
+      session = await stripe.checkout.sessions.retrieve(sessionId);
+    } catch (stripeErr) {
+      // Unknown/expired session ids are client errors, not server faults.
+      if (stripeErr && (stripeErr.code === 'resource_missing' || stripeErr.statusCode === 404)) {
+        return res.status(400).json({ error: 'Unknown checkout session' });
+      }
+      throw stripeErr;
+    }
     if (!session || session.payment_status !== 'paid') {
       return res.status(402).json({ error: 'This checkout has not been paid' });
     }
