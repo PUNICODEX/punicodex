@@ -227,6 +227,8 @@
       return c.pantheon !== home;
     });
     var counts = {};
+    var removalCount = 0;
+    var REMOVAL_CAP = 5; // boards must be allowed to exist
     var deck = [];
     Object.keys(curve).forEach(function (costKey) {
       var cost = Number(costKey);
@@ -234,19 +236,24 @@
         var pick = null;
         for (var tryPool of [homePool, awayPool, pool]) {
           var cand = tryPool.filter(function (c) {
-            return c.cost === cost && (counts[c.id] || 0) < Engine.RULES.MAX_COPIES;
+            return (
+              c.cost === cost &&
+              (counts[c.id] || 0) < Engine.RULES.MAX_COPIES &&
+              (removalCount < REMOVAL_CAP || removalScore(c) === 0)
+            );
           });
           if (cand.length === 0) continue;
-          // Strongest first (tier, then removal), then a light random spread
-          // across the top few so two starters never match.
+          // Strongest first (tier), then a light random spread across the
+          // top few so two starters never match.
           cand.sort(function (a, b) {
-            return tierRank(b) - tierRank(a) || removalScore(b) - removalScore(a);
+            return tierRank(b) - tierRank(a);
           });
           pick = cand[Math.floor(rand() * Math.min(3, cand.length))];
           break;
         }
         if (!pick) continue;
         counts[pick.id] = (counts[pick.id] || 0) + 1;
+        if (removalScore(pick)) removalCount++;
         deck.push(pick);
       }
     });
@@ -257,7 +264,7 @@
       var fill = null;
       for (var fillPool of [homePool, pool]) {
         var fillCand = fillPool.filter(function (c) {
-          return (counts[c.id] || 0) < Engine.RULES.MAX_COPIES;
+          return (counts[c.id] || 0) < Engine.RULES.MAX_COPIES && (removalCount < REMOVAL_CAP || removalScore(c) === 0);
         });
         if (fillCand.length === 0) continue;
         fillCand.sort(function (a, b) {
@@ -268,6 +275,7 @@
       }
       if (!fill) break;
       counts[fill.id] = (counts[fill.id] || 0) + 1;
+      if (removalScore(fill)) removalCount++;
       deck.push(fill);
     }
     return deck;
@@ -1523,7 +1531,7 @@
     setTimeout(function () {
       var before = fxSnapshot();
       var logMark = battle.log.length;
-      Engine.runAiTurn(battle, { holdBackRounds: aiMercyRounds });
+      Engine.runAiTurn(battle, { holdBackRounds: aiMercyRounds, rubberBand: true });
       ui.aiThinking = false;
       var newEntries = battle.log.slice(logMark).filter(function (e) {
         return e.player === 1;
@@ -1725,6 +1733,7 @@
     });
 
     $('end-turn').disabled = battle.winner !== null || battle.activePlayer !== 0 || ui.aiThinking;
+    $('mulligan').hidden = !(battle.winner === null && battle.halfTurns === 0 && battle.activePlayer === 0 && !ui.aiThinking);
 
     var log = $('game-log');
     log.replaceChildren();
@@ -1789,6 +1798,17 @@
       renderDeckEditor();
     });
     $('start-battle').addEventListener('click', startBattle);
+    $('mulligan').addEventListener('click', function () {
+      if (!battle || battle.winner || ui.aiThinking) return;
+      var res = Engine.mulligan(battle);
+      if (res && res.ok === false) {
+        showToast(res.error || 'The mulligan window has closed.');
+        return;
+      }
+      sfx('draw');
+      showToast('A new hand rises from the archive.');
+      renderBattle();
+    });
     $('battle-help').addEventListener('click', openBattleHelp);
     $('sound-toggle').addEventListener('click', function () {
       save.soundMuted = !save.soundMuted;

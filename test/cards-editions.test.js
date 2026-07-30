@@ -98,7 +98,7 @@ test('starter grant: a curated deck with a real curve and a holo champion', () =
   assert.ok(js.includes('physicalCards'), 'autofill backstop present');
   // The Oracle mirrors the build and awakens with the player's record.
   assert.ok(js.includes('aiMercyRounds = wins < 2 ? 2 : wins < 5 ? 1 : 0'), 'adaptive mercy ladder missing');
-  assert.ok(js.includes('runAiTurn(battle, { holdBackRounds: aiMercyRounds })'), 'AI mercy not wired');
+  assert.ok(js.includes('runAiTurn(battle, { holdBackRounds: aiMercyRounds, rubberBand: true })'), 'AI mercy + rubber band not wired');
 });
 
 test('stale ids migrate: standard→common, original-script→secret', () => {

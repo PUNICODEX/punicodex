@@ -242,9 +242,57 @@
     drawCards(state, 0, RULES.START_HAND_FIRST);
     drawCards(state, 1, RULES.START_HAND_SECOND);
 
+    // Nobody bricks turn one: if an opening hand's cheapest card costs more
+    // than 2, trade the dearest card for the cheapest left in the deck.
+    smoothOpening(state, 0);
+    smoothOpening(state, 1);
+
     log(state, -1, 'start', 'The duel begins. Player 1 takes the first turn.');
     startTurn(state, 0);
     return state;
+  }
+
+  // smoothOpening(state, playerIdx) — see createGame. Deterministic via the
+  // deck's shuffled order; used again after a mulligan redraw.
+  function smoothOpening(state, playerIdx) {
+    var pl = state.players[playerIdx];
+    if (pl.hand.length === 0 || pl.deck.length === 0) return;
+    var minCost = null;
+    var dearIdx = 0;
+    for (var h = 0; h < pl.hand.length; h++) {
+      if (minCost === null || pl.hand[h].cost < minCost) minCost = pl.hand[h].cost;
+      if (pl.hand[h].cost > pl.hand[dearIdx].cost) dearIdx = h;
+    }
+    if (minCost <= 2) return;
+    var cheapIdx = -1;
+    for (var d = 0; d < pl.deck.length; d++) {
+      if (cheapIdx === -1 || pl.deck[d].cost < pl.deck[cheapIdx].cost) cheapIdx = d;
+    }
+    if (cheapIdx === -1 || pl.deck[cheapIdx].cost >= pl.hand[dearIdx].cost) return;
+    var tmp = pl.hand[dearIdx];
+    pl.hand[dearIdx] = pl.deck[cheapIdx];
+    pl.deck[cheapIdx] = tmp;
+    log(state, -1, 'start', 'The archive smooths an opening hand.');
+  }
+
+  // mulligan(state) — the first-turn option: set your hand back into the
+  // archive, shuffle, draw the same number (smoothed again). Player 0 only,
+  // only before their first turn ends.
+  function mulligan(state) {
+    if (state.halfTurns !== 0 || state.activePlayer !== 0 || isOver(state)) {
+      return { ok: false, error: 'The mulligan window has closed.' };
+    }
+    var player = state.players[0];
+    var n = player.hand.length;
+    for (var i = 0; i < n; i++) player.deck.push(player.hand[i]);
+    player.hand = [];
+    shuffleInPlace(player.deck, function () {
+      return rngNext(state);
+    });
+    drawCards(state, 0, n);
+    smoothOpening(state, 0);
+    log(state, 0, 'mulligan', 'You set your hand back into the archive and draw anew.');
+    return { ok: true };
   }
 
   /* ── Core queries ────────────────────────────────────────────────────── */
@@ -980,6 +1028,12 @@
     var holdBack = mercyRounds > 0 && state.halfTurns < mercyRounds * 2;
     var playerIdx = state.activePlayer;
 
+    // The rubber band: an Oracle 8+ HP ahead stops executing the player's
+    // board and starts trading instead of pushing face — a trailing
+    // commander always has a window to come back through.
+    var hpDiff = state.players[playerIdx].hero.hp - state.players[1 - playerIdx].hero.hp;
+    var crueltyOff = holdBack || (opts && opts.rubberBand && hpDiff >= 8);
+
     // Play phase (bounded by hand size).
     for (var guard = 0; guard < RULES.HAND_LIMIT + 2; guard++) {
       var player = state.players[playerIdx];
@@ -988,7 +1042,7 @@
         if (player.board.length >= RULES.BOARD_LIMIT) break;
         var card = player.hand[i];
         if (card.cost > player.ink) continue;
-        if (holdBack && card.ability && card.ability.effect && /destroy|damage|stun|slow|debuff/.test(card.ability.effect.kind)) {
+        if (crueltyOff && card.ability && card.ability.effect && /destroy|damage|stun|slow|debuff/.test(card.ability.effect.kind)) {
           continue; // mercy: the removal stays in hand for now
         }
         if (playIdx === -1 || card.cost > player.hand[playIdx].cost) playIdx = i;
@@ -1010,6 +1064,8 @@
       }
     }
     var goFace = lethal >= state.players[enemyIdx].hero.hp;
+    // Never trade away a win, but never stomp a trailing commander either.
+    var tradeOverFace = opts && opts.rubberBand && hpDiff >= 8 && !goFace;
 
     for (var g2 = 0; g2 < RULES.BOARD_LIMIT + 2; g2++) {
       // Re-fetch each iteration: indices shift as minions die.
@@ -1027,7 +1083,7 @@
       var enemy = state.players[enemyIdx];
       var target = 'hero';
 
-      if (!goFace && enemy.board.length > 0 && attacker.confused <= 0) {
+      if (enemy.board.length > 0 && attacker.confused <= 0 && (!goFace || tradeOverFace)) {
         var atk = effectivePower(state, playerIdx, attacker) + passiveAmount(attacker, 'buff-self-attacking', 'power');
         var best = -1;
         for (var d = 0; d < enemy.board.length; d++) {
@@ -1037,7 +1093,7 @@
           if (effectiveHealth > atk) continue; // cannot kill it
           var counter = attacker.speed > defender.speed ? Math.floor(defPower / 2) : defPower;
           var survives = attacker.health + attacker.shield > counter || counter <= 0;
-          var worthIt = survives || defPower >= effectivePower(state, playerIdx, attacker);
+          var worthIt = survives || defPower >= effectivePower(state, playerIdx, attacker) || tradeOverFace;
           if (!worthIt) continue;
           if (best === -1 || defPower > effectivePower(state, enemyIdx, enemy.board[best])) best = d;
         }
@@ -1083,6 +1139,7 @@
     toBattleCard: toBattleCard,
     autoBuildDeck: autoBuildDeck,
     createGame: createGame,
+    mulligan: mulligan,
     playCard: playCard,
     attack: attack,
     endTurn: endTurn,

@@ -315,6 +315,69 @@ test('combat previews: the exchange math renders on targets', () => {
   assert.ok(css.includes('.preview-chip'), 'preview chip styles missing');
 });
 
+test('fair-fight mechanics: mulligan UI, rubber band wired, removal capped', () => {
+  const html = fs.readFileSync(path.join(ROOT, 'game/index.html'), 'utf8');
+  const js = fs.readFileSync(path.join(ROOT, 'game/game.js'), 'utf8');
+  assert.ok(html.includes('id="mulligan"'), 'mulligan button missing');
+  assert.ok(js.includes('Engine.mulligan(battle)'), 'mulligan not wired');
+  assert.ok(js.includes('rubberBand: true'), 'rubber band not passed to the Oracle');
+  assert.ok(js.includes('REMOVAL_CAP'), 'deck builder removal cap missing');
+});
+
+test('opening hands never brick: curve smoothing guarantees a playable card', () => {
+  // A deck of 29 top-end holos (cost 6-7) and a single 1-2 cost common:
+  // over 20 seeds, every opening hand must still contain a <=2-cost card.
+  const cheap = SET.cards.find((c) => c.flagship && c.edition === 'common' && c.cost <= 2);
+  const dear = SET.cards.filter((c) => c.flagship && c.edition === 'holo' && c.cost >= 6).slice(0, 29);
+  assert.ok(cheap && dear.length === 29, 'test fixtures exist');
+  for (let seed = 1; seed <= 20; seed++) {
+    const deck = [...dear.map(Engine.toBattleCard), Engine.toBattleCard(cheap)];
+    const battle = Engine.createGame({ playerDeck: deck, aiDeck: deck, seed });
+    for (const p of [0, 1]) {
+      const min = Math.min(...battle.players[p].hand.map((c) => c.cost));
+      assert.ok(min <= 2, `seed ${seed} player ${p}: opening hand bricked (min cost ${min})`);
+    }
+  }
+});
+
+test('mulligan: redraws the opening hand once, then the window closes', () => {
+  const battle = makeBattle();
+  const before = battle.players[0].hand.length;
+  const res = Engine.mulligan(battle);
+  assert.strictEqual(res.ok, true);
+  assert.strictEqual(battle.players[0].hand.length, before, 'same count redrawn');
+  const min = Math.min(...battle.players[0].hand.map((c) => c.cost));
+  assert.ok(min <= 2, 'mulligan hand is also smoothed');
+  Engine.endTurn(battle);
+  const late = Engine.mulligan(battle);
+  assert.strictEqual(late.ok, false, 'window closed after the first turn');
+});
+
+test('rubber band: an Oracle far ahead holds removal and trades instead of stomping', () => {
+  const battle = makeBattle();
+  Engine.endTurn(battle); // AI active
+  const ai = battle.players[1];
+  const me = battle.players[0];
+  ai.hero.hp = 30;
+  me.hero.hp = 18; // 12 ahead → the band engages
+  const removal = SET.cards.find((c) => c.ability && c.ability.effect && /destroy|damage|stun/.test(c.ability.effect.kind || ''));
+  ai.hand = [Engine.toBattleCard(removal)];
+  ai.ink = 10;
+  // A ready AI attacker and a killable player minion, face wide open.
+  const c = SET.cards[0];
+  const mk = (uid, power, health, speed) => ({
+    uid, def: c, name: 'T' + uid, cost: 1, power, maxHealth: health, health, speed,
+    shield: 0, sick: false, attacksUsed: false, stunned: 0, confused: 0, tempPowerDown: 0,
+    ability: null, domain: '', rarity: 'common',
+  });
+  ai.board.push(mk(901, 4, 6, 5));
+  me.board.push(mk(801, 2, 3, 5));
+  const hpBefore = me.hero.hp;
+  Engine.runAiTurn(battle, { rubberBand: true });
+  assert.strictEqual(ai.board.filter((m) => m.uid !== 901).length, 0, 'removal stayed in hand while far ahead');
+  assert.strictEqual(me.hero.hp, hpBefore, 'the Oracle traded instead of stomping face');
+});
+
 test('page wiring: fx libraries load before game.js; hidden-attribute overlays exist', () => {
   const html = fs.readFileSync(path.join(ROOT, 'game/index.html'), 'utf8');
   const fxIdx = html.indexOf('/game/fx/sequences.js');
