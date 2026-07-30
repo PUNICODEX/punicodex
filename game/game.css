@@ -1471,7 +1471,7 @@ body.game-body {
 
 /* ── Mythic Duel v2: hero panels + spectacle layer ───────────────────────── */
 
-#battlefield-wrap { position: relative; }
+#battlefield-wrap { position: relative; scroll-margin-top: 72px; }
 
 #battle-fx {
   position: absolute;
@@ -1582,6 +1582,7 @@ body.game-body {
 }
 
 @media (max-width: 640px) {
+  #battlefield-wrap { scroll-margin-top: 148px; }
   .hero-panel { gap: 0.6rem; padding: 0.5rem 0.65rem; }
   .hero-panel .hero-art { width: 44px; height: 44px; }
 }
@@ -1654,4 +1655,510 @@ body.game-body {
 }
 .ink-option {
   border-color: rgba(212, 175, 55, 0.4);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ELITE PRESENTATION LAYER — "The Obsidian Arena"
+   A ceremonial temple-tableau: ambient stage, engraved arena, medallion
+   champions, breathing minions, gilded controls. Transform/opacity-only
+   motion; every flourish bows to prefers-reduced-motion.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Ambient stage ───────────────────────────────────────────────────────── */
+body.game-body {
+  background:
+    radial-gradient(ellipse 900px 500px at 15% -10%, rgba(59, 46, 109, 0.28), transparent 60%),
+    radial-gradient(ellipse 800px 460px at 85% -5%, rgba(212, 175, 55, 0.10), transparent 55%),
+    radial-gradient(ellipse 1000px 700px at 50% 115%, rgba(20, 32, 64, 0.35), transparent 60%),
+    var(--game-bg);
+  background-attachment: fixed;
+}
+
+/* Slow aurora drift — a single fixed layer, transform-only. */
+body.game-body::before {
+  content: '';
+  position: fixed;
+  inset: -20%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 40% 28% at 30% 25%, rgba(212, 175, 55, 0.05), transparent 70%),
+    radial-gradient(ellipse 36% 26% at 72% 60%, rgba(96, 125, 212, 0.05), transparent 70%);
+  animation: aurora-drift 36s ease-in-out infinite alternate;
+}
+
+/* Starfield + vignette — static, one repaint. */
+body.game-body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1px 1px at 12% 22%, rgba(255, 255, 255, 0.5), transparent 100%),
+    radial-gradient(1px 1px at 78% 12%, rgba(255, 255, 255, 0.35), transparent 100%),
+    radial-gradient(1.5px 1.5px at 55% 8%, rgba(255, 235, 190, 0.45), transparent 100%),
+    radial-gradient(1px 1px at 32% 68%, rgba(255, 255, 255, 0.28), transparent 100%),
+    radial-gradient(1px 1px at 88% 78%, rgba(255, 235, 190, 0.3), transparent 100%),
+    radial-gradient(1.5px 1.5px at 6% 85%, rgba(255, 255, 255, 0.3), transparent 100%),
+    radial-gradient(ellipse at 50% 50%, transparent 62%, rgba(3, 5, 9, 0.55) 100%);
+}
+
+@keyframes aurora-drift {
+  from { transform: translate3d(-2.5%, -1.5%, 0) scale(1); }
+  to { transform: translate3d(2.5%, 2%, 0) scale(1.06); }
+}
+
+.game-layout { position: relative; z-index: 1; }
+
+/* ── Nav refinement ──────────────────────────────────────────────────────── */
+.game-nav .brand {
+  background: linear-gradient(100deg, #f3dfa0 10%, var(--accent) 45%, #9c7a1e 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
+}
+
+.game-nav .nav-tab.active {
+  box-shadow: 0 0 16px rgba(212, 175, 55, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  background: linear-gradient(180deg, #ecd07a, #c39a2b);
+}
+
+/* ── Buttons: engraved gold plate ────────────────────────────────────────── */
+.btn.primary {
+  background: linear-gradient(180deg, #eed27e 0%, #d4af37 55%, #a8842a 100%);
+  border-color: rgba(255, 230, 150, 0.55);
+  color: #221a05;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -2px 4px rgba(90, 64, 8, 0.35),
+    0 6px 20px rgba(212, 175, 55, 0.22);
+  text-shadow: 0 1px 0 rgba(255, 240, 200, 0.5);
+}
+
+.btn.primary:hover:not(:disabled) {
+  filter: none;
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    inset 0 -2px 4px rgba(90, 64, 8, 0.35),
+    0 10px 26px rgba(212, 175, 55, 0.34);
+}
+
+.btn.primary:active:not(:disabled) { transform: translateY(0); }
+
+#end-turn:not(:disabled) {
+  animation: endturn-breathe 2.6s ease-in-out infinite;
+}
+
+@keyframes endturn-breathe {
+  0%, 100% { box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), inset 0 -2px 4px rgba(90,64,8,0.35), 0 6px 20px rgba(212,175,55,0.22); }
+  50% { box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), inset 0 -2px 4px rgba(90,64,8,0.35), 0 8px 30px rgba(212,175,55,0.45); }
+}
+
+/* ── Lobby: rotating golden corona ───────────────────────────────────────── */
+.lobby-hero { position: relative; overflow: hidden; }
+
+.lobby-hero::before {
+  content: '';
+  position: absolute;
+  inset: -60%;
+  pointer-events: none;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg, rgba(212, 175, 55, 0.22) 35deg, transparent 80deg,
+    transparent 170deg, rgba(212, 175, 55, 0.14) 210deg, transparent 260deg
+  );
+  animation: arena-spin 14s linear infinite;
+}
+
+.lobby-hero > * { position: relative; }
+
+@keyframes arena-spin {
+  to { transform: rotate(360deg); }
+}
+
+.lobby-hero h1 {
+  background: linear-gradient(100deg, #f7e7b0 5%, var(--accent) 40%, #8f721c 85%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 14px rgba(212, 175, 55, 0.3));
+}
+
+.stat-card {
+  backdrop-filter: blur(6px);
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--card-hover);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Game cards: gem, edition badge, art glow, holo shimmer ─────────────── */
+.game-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+}
+
+.game-card .card-art::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 55%, var(--card-glow, rgba(212, 175, 55, 0.12)), transparent 75%);
+  pointer-events: none;
+}
+
+.game-card .card-art img { position: relative; filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.55)); }
+
+.rarity-gem {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  width: 0.8rem;
+  height: 0.8rem;
+  transform: rotate(45deg);
+  border-radius: 2px;
+  background: var(--rarity-common);
+  box-shadow: 0 0 8px currentColor, inset 0 1px 1px rgba(255, 255, 255, 0.5);
+  z-index: 3;
+}
+
+.rarity-uncommon .rarity-gem { background: var(--rarity-uncommon); color: var(--rarity-uncommon); }
+.rarity-rare .rarity-gem { background: var(--rarity-rare); color: var(--rarity-rare); }
+.rarity-epic .rarity-gem { background: var(--rarity-epic); color: var(--rarity-epic); }
+.rarity-legendary .rarity-gem { background: var(--rarity-legendary); color: var(--rarity-legendary); }
+.rarity-mythic .rarity-gem { background: var(--rarity-mythic); color: var(--rarity-mythic); }
+
+.edition-badge {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 3;
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(8, 11, 18, 0.78);
+  border: 1px solid var(--card-border);
+  color: var(--text-dim);
+  backdrop-filter: blur(4px);
+}
+
+.edition-badge.ed-holo { color: #7db8ff; border-color: rgba(96, 165, 250, 0.5); }
+.edition-badge.ed-full-art { color: #f5c451; border-color: rgba(245, 158, 11, 0.55); }
+.edition-badge.ed-secret { color: #fb7ea0; border-color: rgba(244, 63, 94, 0.5); }
+
+/* Holo & secret: light sweeps across the art. */
+.game-card.edition-holo .card-art::after,
+.game-card.edition-secret .card-art::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 30%, rgba(160, 200, 255, 0.22) 46%, rgba(255, 255, 255, 0.3) 50%, rgba(160, 200, 255, 0.22) 54%, transparent 70%);
+  background-size: 280% 100%;
+  animation: holo-sweep 4.5s ease-in-out infinite;
+}
+
+.game-card.edition-secret .card-art::after {
+  background: linear-gradient(115deg, transparent 30%, rgba(244, 114, 182, 0.2) 46%, rgba(255, 215, 230, 0.32) 50%, rgba(244, 114, 182, 0.2) 54%, transparent 70%);
+  background-size: 280% 100%;
+}
+
+@keyframes holo-sweep {
+  0%, 20% { background-position: 120% 0; }
+  60%, 100% { background-position: -60% 0; }
+}
+
+.game-card .card-stats span {
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  padding: 0.12rem 0.5rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* ── The Arena ───────────────────────────────────────────────────────────── */
+.battlefield {
+  position: relative;
+  margin: 0.4rem 0;
+  padding: 1rem 1.1rem;
+  border-radius: 1.2rem;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  background:
+    radial-gradient(ellipse 90% 55% at 50% 0%, rgba(212, 175, 55, 0.07), transparent 60%),
+    linear-gradient(180deg, #0e1220 0%, #0a0d16 50%, #080a11 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    inset 0 -24px 48px rgba(0, 0, 0, 0.55),
+    0 30px 70px rgba(0, 0, 0, 0.5);
+}
+
+/* Corner filigree: four small golden embers at the arena corners. */
+.battlefield::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border-radius: 0.9rem;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle 3px at 14px 14px, rgba(212, 175, 55, 0.7), transparent 100%),
+    radial-gradient(circle 3px at calc(100% - 14px) 14px, rgba(212, 175, 55, 0.7), transparent 100%),
+    radial-gradient(circle 3px at 14px calc(100% - 14px), rgba(212, 175, 55, 0.45), transparent 100%),
+    radial-gradient(circle 3px at calc(100% - 14px) calc(100% - 14px), rgba(212, 175, 55, 0.45), transparent 100%);
+  border: 1px solid rgba(212, 175, 55, 0.08);
+}
+
+/* Lane seams. */
+.board-row {
+  position: relative;
+  min-height: 118px;
+  padding: 0.55rem 0.25rem;
+}
+
+#enemy-board { border-bottom: 1px solid rgba(212, 175, 55, 0.1); }
+#player-board { border-top: 1px solid rgba(212, 175, 55, 0.1); }
+
+/* Turn banner: engraved plate. */
+.turn-banner {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  font-size: 0.78rem;
+  text-align: center;
+  padding: 0.5rem 0.5rem 0.5rem 0.74rem;
+  margin: 0.15rem 0;
+  color: var(--accent);
+  background: linear-gradient(180deg, rgba(212, 175, 55, 0.13), rgba(212, 175, 55, 0.04));
+  border-top: 1px solid rgba(212, 175, 55, 0.28);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.28);
+  text-shadow: 0 0 16px rgba(212, 175, 55, 0.45);
+}
+
+.turn-banner.enemy-turn {
+  color: #c9a0a0;
+  border-color: rgba(190, 90, 90, 0.3);
+  background: linear-gradient(180deg, rgba(190, 90, 90, 0.12), rgba(190, 90, 90, 0.03));
+  text-shadow: 0 0 16px rgba(220, 100, 100, 0.4);
+}
+
+/* ── Champions: medallion portraits + active-turn corona ────────────────── */
+.hero-panel {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.hero-panel .hero-art {
+  position: relative;
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.25), 0 6px 16px rgba(0, 0, 0, 0.5);
+}
+
+.hero-panel.active-turn { border-color: rgba(212, 175, 55, 0.55); }
+
+.hero-panel.active-turn::before {
+  content: '';
+  position: absolute;
+  inset: -60%;
+  pointer-events: none;
+  background: conic-gradient(from 0deg, transparent 0deg, rgba(212, 175, 55, 0.3) 30deg, transparent 75deg, transparent 180deg, rgba(212, 175, 55, 0.18) 210deg, transparent 255deg);
+  animation: arena-spin 9s linear infinite;
+}
+
+.hero-panel.active-turn > * { position: relative; }
+
+.hero-panel .hero-hpbar { box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.6); }
+
+.hero-panel .hero-hpfill { position: relative; overflow: hidden; }
+
+.hero-panel .hero-hpfill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, transparent 45%);
+  border-radius: inherit;
+}
+
+.hero-panel .hero-hpfill.low { animation: lowhp-pulse 1.4s ease-in-out infinite; }
+
+@keyframes lowhp-pulse {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.35); }
+}
+
+/* ── Minions: engraved frames, breathing readiness, summon ceremony ─────── */
+.minion {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 40%),
+    var(--card-bg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(0, 0, 0, 0.4);
+}
+
+.minion .minion-stats span {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.minion.ready {
+  animation: ready-breathe 2.4s ease-in-out infinite;
+}
+
+@keyframes ready-breathe {
+  0%, 100% { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 6px rgba(34, 197, 94, 0.12); }
+  50% { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 18px rgba(34, 197, 94, 0.38); }
+}
+
+.minion.selected {
+  box-shadow: 0 0 0 1px var(--accent), 0 0 26px rgba(212, 175, 55, 0.55), 0 10px 24px rgba(0, 0, 0, 0.5);
+}
+
+.minion.summon {
+  animation: summon-rise 0.45s cubic-bezier(0.2, 1.4, 0.4, 1) both;
+}
+
+@keyframes summon-rise {
+  from { opacity: 0; transform: translateY(14px) scale(0.6); }
+  60% { opacity: 1; transform: translateY(-3px) scale(1.06); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ── Hand: lift on playable, snap-scroll on small screens ───────────────── */
+.hand-card { transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease; }
+
+.hand-card.playable {
+  border-color: rgba(212, 175, 55, 0.4);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4), 0 0 10px rgba(212, 175, 55, 0.1);
+}
+
+.hand-card.playable:hover {
+  transform: translateY(-9px) scale(1.04);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.55), 0 0 18px rgba(212, 175, 55, 0.28);
+}
+
+@media (max-width: 640px) {
+  #player-hand {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 1.1rem;
+    -webkit-overflow-scrolling: touch;
+  }
+  #player-hand .hand-card { scroll-snap-align: center; flex-shrink: 0; }
+}
+
+/* ── Hero-hit vignette ───────────────────────────────────────────────────── */
+#hit-vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0;
+}
+
+#hit-vignette.flash-self {
+  animation: hit-self 0.55s ease-out;
+}
+
+#hit-vignette.flash-foe {
+  animation: hit-foe 0.55s ease-out;
+}
+
+@keyframes hit-self {
+  0% { opacity: 0; }
+  18% { opacity: 1; box-shadow: inset 0 0 120px 40px rgba(220, 60, 60, 0.5); }
+  100% { opacity: 0; box-shadow: inset 0 0 160px 60px rgba(220, 60, 60, 0); }
+}
+
+@keyframes hit-foe {
+  0% { opacity: 0; }
+  18% { opacity: 1; box-shadow: inset 0 0 120px 40px rgba(212, 175, 55, 0.45); }
+  100% { opacity: 0; box-shadow: inset 0 0 160px 60px rgba(212, 175, 55, 0); }
+}
+
+/* ── Packs & reveal ceremony ─────────────────────────────────────────────── */
+.pack-option {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.pack-option:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5), 0 0 20px rgba(212, 175, 55, 0.12);
+}
+
+.pack-option::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 35%, rgba(212, 175, 55, 0.14) 50%, transparent 65%);
+  background-size: 260% 100%;
+  animation: holo-sweep 5.5s ease-in-out infinite;
+}
+
+.pack-reveal .reveal-card {
+  filter: drop-shadow(0 12px 30px rgba(0, 0, 0, 0.6));
+}
+
+.pack-reveal .reveal-card.rarity-legendary { filter: drop-shadow(0 0 26px rgba(245, 158, 11, 0.4)); }
+.pack-reveal .reveal-card.rarity-mythic { filter: drop-shadow(0 0 30px rgba(244, 63, 94, 0.45)); }
+
+/* ── Modal & toast: engraved glass ───────────────────────────────────────── */
+.modal-overlay { backdrop-filter: blur(6px); }
+
+.modal-card {
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.toast {
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(8px);
+}
+
+/* ── Scrollbar ───────────────────────────────────────────────────────────── */
+body.game-body ::-webkit-scrollbar { width: 9px; height: 9px; }
+body.game-body ::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.03); }
+body.game-body ::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 55, 0.3);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+body.game-body ::-webkit-scrollbar-thumb:hover { background-color: rgba(212, 175, 55, 0.5); }
+
+/* ── Focus visibility ────────────────────────────────────────────────────── */
+.game-body :focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ── Reduced motion: the arena goes still ────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  body.game-body::before,
+  .lobby-hero::before,
+  .hero-panel.active-turn::before,
+  .pack-option::after,
+  .game-card.edition-holo .card-art::after,
+  .game-card.edition-secret .card-art::after {
+    animation: none;
+  }
+  .minion.ready,
+  .hero-panel .hero-hpfill.low,
+  #end-turn:not(:disabled) {
+    animation: none;
+  }
+  .minion.summon { animation-duration: 0.01s; }
+  #hit-vignette.flash-self,
+  #hit-vignette.flash-foe { animation-duration: 0.15s; }
 }

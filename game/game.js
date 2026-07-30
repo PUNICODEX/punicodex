@@ -247,10 +247,43 @@
     return wrap;
   }
 
+  /* ── Elite presentation: 3D tilt (fine pointers, motion-tolerant) ──────── */
+  var TILT_ENABLED =
+    typeof window !== 'undefined' &&
+    window.matchMedia &&
+    window.matchMedia('(pointer: fine)').matches &&
+    !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function attachTilt(node, maxDeg) {
+    if (!TILT_ENABLED) return;
+    var max = maxDeg || 7;
+    node.addEventListener('pointermove', function (ev) {
+      var r = node.getBoundingClientRect();
+      if (r.width === 0 || r.height === 0) return;
+      var px = (ev.clientX - r.left) / r.width - 0.5;
+      var py = (ev.clientY - r.top) / r.height - 0.5;
+      node.style.transform =
+        'perspective(720px) rotateY(' + (px * max * 2).toFixed(2) + 'deg) rotateX(' + (-py * max * 2).toFixed(2) + 'deg) translateY(-3px)';
+    });
+    node.addEventListener('pointerleave', function () {
+      node.style.transform = '';
+    });
+  }
+
+  var EDITION_LABELS = { common: 'Common', holo: 'Holo', 'full-art': 'Full-Art', secret: 'Secret', archive: 'Archive' };
+
   function buildCardEl(card, opts) {
     opts = opts || {};
-    var node = el('div', 'game-card rarity-' + card.rarity + (card.foil ? ' foil' : ''));
+    var edition = card.edition || 'archive';
+    var node = el('div', 'game-card rarity-' + card.rarity + (card.foil ? ' foil' : '') + ' edition-' + edition);
     node.setAttribute('tabindex', '0');
+    if (card.art && card.art.colors && card.art.colors.glow) {
+      node.style.setProperty('--card-glow', card.art.colors.glow);
+    }
+    var gem = el('span', 'rarity-gem');
+    gem.setAttribute('title', card.rarity.charAt(0).toUpperCase() + card.rarity.slice(1));
+    node.appendChild(gem);
+    node.appendChild(el('span', 'edition-badge ed-' + edition, EDITION_LABELS[edition] || edition));
     node.appendChild(buildArt(card));
 
     var body = el('div', 'card-body');
@@ -283,6 +316,7 @@
         open();
       }
     });
+    attachTilt(node);
     return node;
   }
 
@@ -798,6 +832,20 @@
   var fx = null; // Sequences instance, created with the battlefield
   var heroes = [null, null]; // { card, power } per side
   var fxCanvas = null;
+  var seenMinions = {}; // uids already on stage — new arrivals get the summon ceremony
+  var hitVignette = null;
+
+  function flashHitVignette(side) {
+    if (!hitVignette) {
+      hitVignette = el('div');
+      hitVignette.id = 'hit-vignette';
+      hitVignette.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(hitVignette);
+    }
+    hitVignette.className = '';
+    void hitVignette.offsetWidth; // restart the flash animation
+    hitVignette.className = side === 0 ? 'flash-self' : 'flash-foe';
+  }
 
   function heroCardFor(deck) {
     // The deck's champion: the highest-rarity lead, legendary first, then
@@ -921,7 +969,10 @@
           var pos = centerOf(panel);
           fx.floatText({ x: pos.x, y: pos.y - 20, text: (delta > 0 ? '+' : '') + delta, kind: delta > 0 ? 'heal' : 'damage', size: 26 });
         }
-        if (delta < 0) fx.shake(Math.min(10, 3 + Math.abs(delta)));
+        if (delta < 0) {
+          fx.shake(Math.min(10, 3 + Math.abs(delta)));
+          flashHitVignette(side);
+        }
       }
     }
     // Minion deaths.
@@ -1057,6 +1108,7 @@
     ui.pendingPlay = null;
     ui.selectedAttacker = null;
     ui.aiThinking = false;
+    seenMinions = {}; // fresh stage: every minion arrives with the summon ceremony
 
     // v2: champions, hero panels, and the spectacle layer.
     var myChampion = heroCardFor(playerDeck);
@@ -1076,6 +1128,17 @@
     board.after(heroPanel(0, heroes[0].card, heroes[0].power));
     if (fx) fx.banner('The duel begins', (heroes[0].card ? heroes[0].card.name : 'You') + ' vs ' + (heroes[1].card ? heroes[1].card.name : 'the Archive'));
     renderBattle();
+
+    // The deck editor is tall; without this the arena opens scrolled past the
+    // enemy champion on phones.
+    var wrapEl = $('battlefield-wrap');
+    if (wrapEl && wrapEl.scrollIntoView) {
+      wrapEl.scrollIntoView({
+        behavior:
+          window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+        block: 'start',
+      });
+    }
 
     // First-battle coaching: the three ideas a new commander needs, once.
     if (!save.coachSeen) {
@@ -1123,6 +1186,10 @@
       });
 
     if (m.sick) node.classList.add('sick');
+    if (!seenMinions[m.uid]) {
+      seenMinions[m.uid] = true;
+      node.classList.add('summon');
+    }
     if (ready) node.classList.add('ready');
     if (ui.selectedAttacker != null && isMine && battle.players[0].board[ui.selectedAttacker] === m) {
       node.classList.add('selected');
@@ -1398,6 +1465,7 @@
         if (side === 1) {
           panel.classList.toggle('targetable', ui.selectedAttacker != null && !battle.winner);
         }
+        panel.classList.toggle('active-turn', battle.winner === null && battle.activePlayer === side);
         if (side === 0) {
           var powerBtn = panel.querySelector('.hero-power');
           if (powerBtn) {
