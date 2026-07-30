@@ -966,12 +966,18 @@
     return side === 'enemy' ? best : { side: 'ally', index: best };
   }
 
-  // runAiTurn(state) — plays out the active player's turn with heuristics:
+  // runAiTurn(state, opts) — plays out the active player's turn with heuristics:
   // cast affordable cards (expensive first, targeted abilities aimed at the
   // biggest threat), then attack — lethal if available, otherwise take
   // favorable trades, else go face. Ends the turn. Deterministic via state RNG.
-  function runAiTurn(state) {
+  // opts.holdBackRounds N: story-mode mercy — the Oracle keeps its removal
+  // in hand for the first N rounds while a new commander learns the field
+  // (opts.holdBack: true is shorthand for 2). Trades still happen: the duel
+  // is real, just not cruel.
+  function runAiTurn(state, opts) {
     if (isOver(state)) return state;
+    var mercyRounds = opts && opts.holdBackRounds ? opts.holdBackRounds : opts && opts.holdBack ? 2 : 0;
+    var holdBack = mercyRounds > 0 && state.halfTurns < mercyRounds * 2;
     var playerIdx = state.activePlayer;
 
     // Play phase (bounded by hand size).
@@ -982,6 +988,9 @@
         if (player.board.length >= RULES.BOARD_LIMIT) break;
         var card = player.hand[i];
         if (card.cost > player.ink) continue;
+        if (holdBack && card.ability && card.ability.effect && /destroy|damage|stun|slow|debuff/.test(card.ability.effect.kind)) {
+          continue; // mercy: the removal stays in hand for now
+        }
         if (playIdx === -1 || card.cost > player.hand[playIdx].cost) playIdx = i;
       }
       if (playIdx === -1) break;

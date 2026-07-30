@@ -2228,3 +2228,32 @@ body.game-body ::-webkit-scrollbar-thumb:hover { background-color: rgba(212, 175
   font-size: 0.8rem;
   line-height: 1.5;
 }
+
+/* ── Combat previews: the exchange, before you commit ────────────────────── */
+.preview-chip {
+  position: absolute;
+  top: -1.35rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 6;
+  pointer-events: none;
+  white-space: nowrap;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  padding: 0.14rem 0.45rem;
+  border-radius: 999px;
+  background: rgba(8, 11, 18, 0.92);
+  border: 1px solid rgba(239, 68, 68, 0.55);
+  color: #fca5a5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.hero-panel .preview-chip.hero-preview {
+  top: -0.5rem;
+  right: 0.6rem;
+  left: auto;
+  transform: none;
+  border-color: rgba(212, 175, 55, 0.55);
+  color: #f3dfa0;
+}

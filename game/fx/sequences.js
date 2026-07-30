@@ -103,6 +103,9 @@
   function jitter(n) { return (Math.random() - 0.5) * n; }
 
   // Each builder returns { duration, shake, update(t, ctx, W, H, parts) }
+  // Bespoke per-god moves, registered by game/fx/signatures.js at load.
+  var SIGNATURES = {};
+
   var BUILDERS = {
     bolt: function (o) {
       var parts = [];
@@ -521,11 +524,39 @@
 
     return {
       archetypeFor: archetypeFor,
+      registerSignature: function (entryId, builder) {
+        SIGNATURES[entryId] = builder;
+      },
+      signatureFor: function (entryId) {
+        return SIGNATURES[entryId] || null;
+      },
       attack: function (opts) {
-        var builder = BUILDERS[opts.archetype] || BUILDERS.warhorn;
+        // Bespoke beats archetype: a god with a signature plays THEIR move.
+        var builder =
+          (opts.entryId && SIGNATURES[opts.entryId]) || BUILDERS[opts.archetype] || BUILDERS.warhorn;
         var seq = builder(opts);
         seq.t = 0;
         seq.onImpact = opts.onImpact;
+        if (opts.super) {
+          // Edition supers: a full-screen wind-up flash, a longer sequence,
+          // a heavier stage shake.
+          var baseUpdate = seq.update;
+          var flashT = REDUCED ? 0.08 : 0.22;
+          var glow = (opts.colors && opts.colors.glow) || '#ffe9b0';
+          seq.update = function (t, ctx, W, H) {
+            if (t < flashT) {
+              ctx.save();
+              ctx.globalAlpha = 0.8 * (1 - t / flashT);
+              ctx.fillStyle = glow;
+              ctx.fillRect(0, 0, W, H);
+              ctx.restore();
+              return;
+            }
+            baseUpdate(t - flashT, ctx, W, H);
+          };
+          seq.duration = seq.duration * 1.3 + flashT;
+          seq.shake = (seq.shake || 0) + 4;
+        }
         live.push(seq);
         shakeAmt = Math.max(shakeAmt, seq.shake || 0);
         wake();
@@ -555,5 +586,26 @@
     };
   }
 
-  return { attach: attach, archetypeFor: archetypeFor };
+  return {
+    attach: attach,
+    archetypeFor: archetypeFor,
+    registerSignature: function (entryId, builder) {
+      SIGNATURES[entryId] = builder;
+    },
+    signatureFor: function (entryId) {
+      return SIGNATURES[entryId] || null;
+    },
+    // Shared paint kit for the signature registry (game/fx/signatures.js).
+    _fx: {
+      P: P,
+      step: step,
+      drawParts: drawParts,
+      jitter: jitter,
+      lerp: lerp,
+      easeOut: easeOut,
+      reduced: function () {
+        return REDUCED;
+      },
+    },
+  };
 });

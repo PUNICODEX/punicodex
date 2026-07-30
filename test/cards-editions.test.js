@@ -86,14 +86,19 @@ test('packs print flagship editions only', () => {
   assert.ok(js.includes("c.flagship && c.edition === 'common'"), 'starter grant uses flagship commons');
 });
 
-test('starter grant completes a 30-card deck: 26 unique + 2 copies + one pack ≥ 30', () => {
+test('starter grant: a curated deck with a real curve and a holo champion', () => {
   assert.ok(SET.cards.filter((c) => c.edition === 'common' && c.flagship).length >= 26, 'enough flagship commons exist');
-  // The grant math: 26 unique + 2 bonus copies + 5 from a Seeker Pack.
-  assert.ok(26 + 2 + 5 >= 30, 'guaranteed 30+ physical after one pack');
   const js = fs.readFileSync(path.join(ROOT, 'game/game.js'), 'utf8');
-  assert.ok(js.includes('STARTER_UNIQUE = 26'), 'starter unique raised to 26');
+  // The curated system: home pantheon, mana curve, champion seated, deck saved.
+  assert.ok(js.includes('STARTER_CURVE'), 'starter curve missing');
+  assert.ok(js.includes('ORACLE_CURVE'), 'oracle curve missing');
+  assert.ok(js.includes('buildCuratedDeck'), 'curated builder missing');
+  assert.ok(js.includes('pickHomePantheon'), 'home pantheon picker missing');
+  assert.ok(js.includes('save.starterHome = home'), 'starter home persisted');
   assert.ok(js.includes('physicalCards'), 'autofill backstop present');
-  assert.ok(js.includes('autoBuildDeck'), 'auto-build path present');
+  // The Oracle mirrors the build and awakens with the player's record.
+  assert.ok(js.includes('aiMercyRounds = wins < 2 ? 2 : wins < 5 ? 1 : 0'), 'adaptive mercy ladder missing');
+  assert.ok(js.includes('runAiTurn(battle, { holdBackRounds: aiMercyRounds })'), 'AI mercy not wired');
 });
 
 test('stale ids migrate: standard→common, original-script→secret', () => {

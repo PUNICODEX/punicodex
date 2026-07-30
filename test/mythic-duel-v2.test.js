@@ -219,6 +219,102 @@ test('every attack-sequence builder runs clean frames (no undefined vars)', () =
   }
 });
 
+test('AI mercy: holdBack shelters a new commander for three rounds, then lifts', () => {
+  const battle = makeBattle();
+  const removal = SET.cards.find(
+    (c) => c.ability && c.ability.effect && /destroy|damage|stun/.test(c.ability.effect.kind || '')
+  );
+  assert.ok(removal, 'a removal card exists in the set for this test');
+  Engine.endTurn(battle); // AI becomes active; halfTurns small → mercy window
+  const ai = battle.players[1];
+  ai.hand = [Engine.toBattleCard(removal)];
+  ai.ink = 10;
+  const before = battle.players[0].board.length + battle.players[0].hero.hp;
+  Engine.runAiTurn(battle, { holdBack: true });
+  assert.strictEqual(ai.board.length, 0, 'removal card held back during the mercy window');
+  assert.ok(before >= 0, 'battle state intact');
+
+  // Late game: mercy lifts, the same card is playable again.
+  const battle2 = makeBattle();
+  Engine.endTurn(battle2);
+  battle2.halfTurns = 12;
+  const ai2 = battle2.players[1];
+  ai2.hand = [Engine.toBattleCard(removal)];
+  ai2.ink = 10;
+  Engine.runAiTurn(battle2, { holdBack: true });
+  assert.strictEqual(ai2.board.length, 1, 'removal card played once the mercy window closes');
+});
+
+test('signature moves: registered for real flagships and frame-clean, supers included', () => {
+  const Signatures = require('../game/fx/signatures.js');
+  assert.ok(Signatures.count >= 20, 'at least 20 signatures registered');
+  const flagshipIds = new Set(SET.cards.filter((c) => c.flagship).map((c) => c.entryId));
+  for (const id of Signatures.ids) assert.ok(flagshipIds.has(id), `signature for unknown entry ${id}`);
+  assert.ok(Sequences.signatureFor('zeus'), 'zeus signature resolvable');
+
+  const anyFn = new Proxy(function () {}, { get: () => anyFn, apply: () => anyFn });
+  const ctx = new Proxy(
+    {},
+    { get: (t, k) => (k in t ? t[k] : anyFn), set: (t, k, v) => ((t[k] = v), true) }
+  );
+  const canvas = {
+    width: 800,
+    height: 600,
+    getContext: () => ctx,
+    getBoundingClientRect: () => ({ left: 0, top: 0, width: 800, height: 600 }),
+  };
+  let rafCb = null;
+  const oldRaf = global.requestAnimationFrame;
+  global.requestAnimationFrame = (cb) => {
+    rafCb = cb;
+    return 1;
+  };
+  try {
+    const fx = Sequences.attach(canvas);
+    let t = 5000;
+    const run = (opts) => {
+      fx.attack({ from: { x: 20, y: 20 }, to: { x: 300, y: 240 }, colors: { glow: '#ffd97a' }, power: 8, onImpact() {}, ...opts });
+      assert.ok(rafCb, 'loop scheduled');
+      for (let f = 0; f < 100 && rafCb; f++) {
+        const cb = rafCb;
+        rafCb = null;
+        cb((t += 16.7));
+      }
+    };
+    for (const id of Signatures.ids) run({ entryId: id, archetype: 'warhorn' });
+    run({ entryId: 'athena', super: true }); // edition super wind-up
+    run({ archetype: 'blade' }); // archetype fallback still clean
+  } finally {
+    global.requestAnimationFrame = oldRaf;
+  }
+});
+
+test('sound: the synth engine is wired and persisted', () => {
+  const Sound = require('../game/fx/sound.js');
+  for (const name of ['select', 'cardPlay', 'attack', 'impact', 'heroHit', 'heal', 'turn', 'victory', 'defeat', 'pack', 'ink', 'banner']) {
+    assert.ok(Sound.RECIPES[name], `missing recipe ${name}`);
+  }
+  const html = fs.readFileSync(path.join(ROOT, 'game/index.html'), 'utf8');
+  const soundIdx = html.indexOf('/game/fx/sound.js');
+  const gameIdx = html.indexOf('/game/game.js');
+  const sigIdx = html.indexOf('/game/fx/signatures.js');
+  assert.ok(soundIdx !== -1 && soundIdx < gameIdx, 'sound.js loads before game.js');
+  assert.ok(sigIdx !== -1 && sigIdx < gameIdx, 'signatures.js loads before game.js');
+  assert.ok(html.includes('sound-toggle'), 'sound toggle button missing');
+  const js = fs.readFileSync(path.join(ROOT, 'game/game.js'), 'utf8');
+  for (const needle of ["sfx('attack')", "sfx('cardPlay')", "sfx('heroHit')", "sfx(outcome === 'win'", 'soundMuted', 'renderSoundToggle']) {
+    assert.ok(js.includes(needle), `game.js missing ${needle}`);
+  }
+});
+
+test('combat previews: the exchange math renders on targets', () => {
+  const js = fs.readFileSync(path.join(ROOT, 'game/game.js'), 'utf8');
+  const css = fs.readFileSync(path.join(ROOT, 'game/game.css'), 'utf8');
+  assert.ok(js.includes('preview-chip'), 'preview chips missing');
+  assert.ok(js.includes('armed.speed > m.speed'), 'counter preview ignores speed');
+  assert.ok(css.includes('.preview-chip'), 'preview chip styles missing');
+});
+
 test('page wiring: fx libraries load before game.js; hidden-attribute overlays exist', () => {
   const html = fs.readFileSync(path.join(ROOT, 'game/index.html'), 'utf8');
   const fxIdx = html.indexOf('/game/fx/sequences.js');

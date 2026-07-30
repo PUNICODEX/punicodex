@@ -16,7 +16,6 @@
 
   var STORAGE_KEY = 'punicodex.cards.v1';
   var STARTER_INK = 150;
-  var STARTER_UNIQUE = 26;
   var REWARDS = { win: 50, loss: 15, draw: 15 };
   var RARITY_LADDER = ['mythic', 'legendary', 'epic', 'rare', 'uncommon', 'common'];
   var RARITIES = ['common', 'uncommon', 'rare', 'epic', 'legendary', 'mythic'];
@@ -82,6 +81,10 @@
 
   function $(id) {
     return document.getElementById(id);
+  }
+
+  function sfx(name) {
+    if (typeof Sound !== 'undefined' && Sound && Sound.play) Sound.play(name);
   }
 
   function showToast(text) {
@@ -181,45 +184,137 @@
     }
   }
 
-  // First visit: 1 holo chase + commons/uncommons up to STARTER_UNIQUE unique
-  // cards (plus 2 bonus copies), always enough to complete a deck after one
-  // Seeker Pack. Starter printings come from the flagship commons — every
-  // starter card has a face and a temple.
+  /* ── Curated decks (the win-condition fix) ───────────────────────────────
+     A random pile cannot fight a curved deck. The starter archive is BUILT:
+     a home pantheon, a mana curve, guaranteed removal, a holo champion —
+     and the Oracle fields the mirrored build on a deliberately slower curve
+     with early-game mercy. */
+  // Cost buckets in the pool: flagship commons cost 1–4, holos cost 6–7.
+  var STARTER_CURVE = { 1: 4, 2: 6, 3: 6, 4: 6, 6: 4, 7: 4 }; // 30
+  var ORACLE_CURVE = { 1: 3, 2: 5, 3: 6, 4: 6, 6: 6, 7: 4 }; // 30, a touch slower
+
+  function tierRank(card) {
+    return card.tier === 'dual' ? 3 : card.tier === '1' ? 2 : 1;
+  }
+
+  function removalScore(card) {
+    if (!card.ability || !card.ability.effect) return 0;
+    return /destroy|damage|stun|slow|debuff/.test(card.ability.effect.kind || '') ? 1 : 0;
+  }
+
+  function pickHomePantheon(rand, exclude) {
+    var counts = {};
+    cards.forEach(function (c) {
+      if (c.flagship && c.edition === 'common' && c.pantheon !== exclude) {
+        counts[c.pantheon] = (counts[c.pantheon] || 0) + 1;
+      }
+    });
+    var eligible = Object.keys(counts).filter(function (p) {
+      return counts[p] >= 8;
+    });
+    if (eligible.length === 0) eligible = Object.keys(counts);
+    return eligible[Math.floor(rand() * eligible.length)];
+  }
+
+  function buildCuratedDeck(home, curve, rand) {
+    var pool = cards.filter(function (c) {
+      return c.flagship && (c.edition === 'common' || c.edition === 'holo');
+    });
+    var homePool = pool.filter(function (c) {
+      return c.pantheon === home;
+    });
+    var awayPool = pool.filter(function (c) {
+      return c.pantheon !== home;
+    });
+    var counts = {};
+    var deck = [];
+    Object.keys(curve).forEach(function (costKey) {
+      var cost = Number(costKey);
+      for (var n = 0; n < curve[cost]; n++) {
+        var pick = null;
+        for (var tryPool of [homePool, awayPool, pool]) {
+          var cand = tryPool.filter(function (c) {
+            return c.cost === cost && (counts[c.id] || 0) < Engine.RULES.MAX_COPIES;
+          });
+          if (cand.length === 0) continue;
+          // Strongest first (tier, then removal), then a light random spread
+          // across the top few so two starters never match.
+          cand.sort(function (a, b) {
+            return tierRank(b) - tierRank(a) || removalScore(b) - removalScore(a);
+          });
+          pick = cand[Math.floor(rand() * Math.min(3, cand.length))];
+          break;
+        }
+        if (!pick) continue;
+        counts[pick.id] = (counts[pick.id] || 0) + 1;
+        deck.push(pick);
+      }
+    });
+    // Self-heal any curve/pool mismatch: top up to a full deck with the
+    // cheapest home picks remaining.
+    var topUpGuard = 0;
+    while (deck.length < Engine.RULES.DECK_SIZE && topUpGuard++ < 200) {
+      var fill = null;
+      for (var fillPool of [homePool, pool]) {
+        var fillCand = fillPool.filter(function (c) {
+          return (counts[c.id] || 0) < Engine.RULES.MAX_COPIES;
+        });
+        if (fillCand.length === 0) continue;
+        fillCand.sort(function (a, b) {
+          return a.cost - b.cost || tierRank(b) - tierRank(a);
+        });
+        fill = fillCand[Math.floor(rand() * Math.min(4, fillCand.length))];
+        break;
+      }
+      if (!fill) break;
+      counts[fill.id] = (counts[fill.id] || 0) + 1;
+      deck.push(fill);
+    }
+    return deck;
+  }
+
+  // First visit: a curated starter deck (home pantheon, real curve, holo
+  // champion), its cards granted to the collection, and the deck pre-built.
   function starterGrant() {
     var rand = Engine.mulberry32((Date.now() ^ 0x9e3779b9) >>> 0);
-    var grant = {};
+    var home = pickHomePantheon(rand);
+    var deck = buildCuratedDeck(home, STARTER_CURVE, rand);
 
-    var holos = cards.filter(function (c) {
-      return c.flagship && c.edition === 'holo';
+    // The champion: a holo from home, guaranteed a seat in the deck.
+    var homeHolos = cards.filter(function (c) {
+      return c.flagship && c.edition === 'holo' && c.pantheon === home;
     });
-    if (holos.length > 0) {
-      grant[holos[Math.floor(rand() * holos.length)].id] = 1;
+    if (homeHolos.length > 0) {
+      var champion = homeHolos[Math.floor(rand() * homeHolos.length)];
+      var seated = deck.some(function (c) {
+        return c.id === champion.id;
+      });
+      if (!seated && deck.length > 0) {
+        deck[deck.length - 1] = champion; // swap the top-end slot
+      }
     }
+
+    var grant = {};
+    deck.forEach(function (c) {
+      grant[c.id] = (grant[c.id] || 0) + 1;
+    });
+    // A taste of the wider archive beyond the deck itself.
     var commons = cards.filter(function (c) {
-      return c.flagship && c.edition === 'common';
+      return c.flagship && c.edition === 'common' && !grant[c.id];
     });
-    var uncommons = cards.filter(function (c) {
-      return c.flagship && c.edition === 'holo';
-    });
-    var guard = 0;
-    while (Object.keys(grant).length < STARTER_UNIQUE && guard++ < 500) {
-      var pool = rand() < 0.75 ? commons : uncommons; // weighted 75 / 25
-      if (pool.length === 0) continue;
-      var pick = pool[Math.floor(rand() * pool.length)];
-      if (!grant[pick.id]) grant[pick.id] = 1;
+    for (var bonus = 0; bonus < 4 && commons.length > 0; bonus++) {
+      grant[commons[Math.floor(rand() * commons.length)].id] = 1;
     }
-    // Two bonus copies: the starter archive always completes a deck after
-    // one Seeker Pack (26 unique + 2 copies + 5 = 30+ physical cards).
-    var commonIds = commons.map(function (c) {
+
+    save.collection = grant;
+    save.deck = deck.map(function (c) {
       return c.id;
     });
-    for (var bonus = 0; bonus < 2 && commonIds.length; bonus++) {
-      var dup = commonIds[Math.floor(rand() * commonIds.length)];
-      grant[dup] = (grant[dup] || 0) + 1;
-    }
-    save.collection = grant;
+    save.starterHome = home;
     persist();
-    showToast('Welcome, scholar — a starter archive of ' + Object.keys(grant).length + ' cards and ' + STARTER_INK + ' ✦ Ink awaits you.');
+    showToast(
+      'Welcome, commander — the ' + home.charAt(0).toUpperCase() + home.slice(1) + ' archive is yours: a curated deck, ready for its first duel.'
+    );
   }
 
   /* ── Shared render helpers ───────────────────────────────────────────── */
@@ -688,6 +783,7 @@
     }
     save.ink -= def.cost;
     save.stats.packsOpened++;
+    sfx('pack');
     packResults = drawPackCards(def, pantheon);
     packResults.forEach(function (c) {
       save.collection[c.id] = (save.collection[c.id] || 0) + 1;
@@ -831,6 +927,7 @@
 
   var fx = null; // Sequences instance, created with the battlefield
   var heroes = [null, null]; // { card, power } per side
+  var aiMercyRounds = 0; // the Oracle's shelter, set from the player's record
   var fxCanvas = null;
   var seenMinions = {}; // uids already on stage — new arrivals get the summon ceremony
   var hitVignette = null;
@@ -932,6 +1029,7 @@
     var res = withFx(attacker, panel ? function () { return centerOf(panel); } : null, function () {
       return Engine.attack(battle, ui.selectedAttacker, 'hero');
     });
+    if (!res || res.ok !== false) sfx('attack');
     if (res && res.ok === false) showToast(res.error || 'That strike failed.');
     ui.selectedAttacker = null;
     afterPlayerAction();
@@ -972,6 +1070,9 @@
         if (delta < 0) {
           fx.shake(Math.min(10, 3 + Math.abs(delta)));
           flashHitVignette(side);
+          sfx('heroHit');
+        } else {
+          sfx('heal');
         }
       }
     }
@@ -1021,13 +1122,19 @@
     if (!fromPos) fromPos = centerOf(heroEl(0)) || { x: 60, y: 60 };
     var result = action();
     if (targetPos) {
+      var def = (attackerCard && attackerCard.def) || attackerCard || {};
       fx.attack({
+        entryId: def.entryId || null,
         archetype: Sequences.archetypeFor(attackerCard || {}),
+        super: def.edition === 'full-art' || def.edition === 'secret',
         from: fromPos,
         to: targetPos,
         colors: (attackerCard && attackerCard.art && attackerCard.art.colors) || {},
         power: attackerCard ? attackerCard.power || 4 : 4,
-        onImpact: function () { fxDiff(before); },
+        onImpact: function () {
+          sfx('impact');
+          fxDiff(before);
+        },
       });
       // Fallback if the sequence is reduced-motion: resolve diff immediately.
       fxDiff(before);
@@ -1096,14 +1203,16 @@
         return Engine.toBattleCard(byId[id]);
       });
     var seed = (Date.now() ^ (Math.random() * 0xffffffff)) >>> 0;
-    // The Archive fields printings a new player could actually own — flagship
-    // commons and holos. Full-art and secret printings (+5/+5, upgraded
-    // abilities) stay out of the AI pool so a starter archive always faces a
-    // fair curve.
-    var aiPool = cards.filter(function (c) {
-      return c.flagship && (c.edition === 'common' || c.edition === 'holo');
-    });
-    var aiDeck = Engine.autoBuildDeck(aiPool, seed ^ 0x5bd1e995);
+    // The Oracle mirrors the player's build — and AWAKENS with their record:
+    // opening duels are sheltered (slow curve, removal mercy), then the curve
+    // tightens and the mercy lifts until the duel is a true mirror.
+    var playerHome = (heroCardFor(playerDeck) && heroCardFor(playerDeck).pantheon) || save.starterHome || null;
+    var aiRand = Engine.mulberry32(seed ^ 0x5bd1e995);
+    var aiHome = pickHomePantheon(aiRand, playerHome);
+    var wins = save.stats && save.stats.wins ? save.stats.wins : 0;
+    aiMercyRounds = wins < 2 ? 2 : wins < 5 ? 1 : 0;
+    var aiCurve = wins < 3 ? ORACLE_CURVE : STARTER_CURVE;
+    var aiDeck = buildCuratedDeck(aiHome, aiCurve, aiRand);
     battle = Engine.createGame({ playerDeck: playerDeck, aiDeck: aiDeck, seed: seed });
     ui.pendingPlay = null;
     ui.selectedAttacker = null;
@@ -1203,6 +1312,14 @@
     }
     if (ui.selectedAttacker != null && !isMine) {
       node.classList.add('targetable');
+      // The exchange, before you commit: what you deal, what you take.
+      var armed = battle.players[0].board[ui.selectedAttacker];
+      if (armed) {
+        var deal = Engine.effectivePower(battle, 0, armed);
+        var take = Engine.effectivePower(battle, 1, m);
+        if (armed.speed > m.speed) take = Math.floor(take / 2);
+        node.appendChild(el('div', 'preview-chip', '⚔' + deal + ' ⇄ ' + take));
+      }
     }
 
     var art = el('div', 'minion-art');
@@ -1266,6 +1383,7 @@
         withFx(playedCard, function () { return minionPos(m.uid); }, function () {
           return Engine.playCard(battle, ui.pendingPlay.handIndex, target);
         });
+        sfx('cardPlay');
         ui.pendingPlay = null;
         afterPlayerAction();
         return;
@@ -1278,6 +1396,7 @@
       var res = withFx(attacker, function () { return minionPos(m.uid); }, function () {
         return Engine.attack(battle, ui.selectedAttacker, index);
       });
+      if (!res || res.ok !== false) sfx('attack');
       if (res && res.ok === false) showToast(res.error || 'That strike failed.');
       ui.selectedAttacker = null;
       afterPlayerAction();
@@ -1311,6 +1430,7 @@
       ui.pendingPlay = null;
       ui.selectedAttacker = ui.selectedAttacker === index ? null : index;
       if (ui.selectedAttacker != null) {
+        sfx('select');
         showToast('Now tap an enemy minion — or their champion — to strike.');
       }
       renderBattle();
@@ -1354,6 +1474,7 @@
     }, function () {
       return Engine.playCard(battle, index);
     });
+    sfx('cardPlay');
     afterPlayerAction();
   }
 
@@ -1396,12 +1517,13 @@
     ui.selectedAttacker = null;
     ui.aiThinking = true;
     Engine.endTurn(battle);
+    sfx('turn');
     if (fx) fx.banner('Enemy turn', 'The Archive answers…');
     renderBattle();
     setTimeout(function () {
       var before = fxSnapshot();
       var logMark = battle.log.length;
-      Engine.runAiTurn(battle);
+      Engine.runAiTurn(battle, { holdBackRounds: aiMercyRounds });
       ui.aiThinking = false;
       var newEntries = battle.log.slice(logMark).filter(function (e) {
         return e.player === 1;
@@ -1459,6 +1581,7 @@
   function finishBattle() {
     var outcome = battle.winner === 'draw' ? 'draw' : battle.winner === 0 ? 'win' : 'loss';
     var reward = REWARDS[outcome];
+    sfx(outcome === 'win' ? 'victory' : outcome === 'loss' ? 'defeat' : 'banner');
     save.ink += reward;
     if (outcome === 'win') save.stats.wins++;
     else if (outcome === 'loss') save.stats.losses++;
@@ -1522,6 +1645,14 @@
         if (handCount) handCount.textContent = 'Hand: ' + battle.players[side].hand.length;
         if (side === 1) {
           panel.classList.toggle('targetable', ui.selectedAttacker != null && !battle.winner);
+          var oldChip = panel.querySelector('.preview-chip');
+          if (oldChip) oldChip.remove();
+          if (ui.selectedAttacker != null && !battle.winner) {
+            var armedHero = battle.players[0].board[ui.selectedAttacker];
+            if (armedHero) {
+              panel.appendChild(el('div', 'preview-chip hero-preview', '⚔' + Engine.effectivePower(battle, 0, armedHero)));
+            }
+          }
         }
         panel.classList.toggle('active-turn', battle.winner === null && battle.activePlayer === side);
         if (side === 0) {
@@ -1659,6 +1790,13 @@
     });
     $('start-battle').addEventListener('click', startBattle);
     $('battle-help').addEventListener('click', openBattleHelp);
+    $('sound-toggle').addEventListener('click', function () {
+      save.soundMuted = !save.soundMuted;
+      persist();
+      if (typeof Sound !== 'undefined' && Sound && Sound.setMuted) Sound.setMuted(!!save.soundMuted);
+      renderSoundToggle();
+      if (!save.soundMuted) sfx('select');
+    });
     $('end-turn').addEventListener('click', onEndTurn);
     $('concede').addEventListener('click', function () {
       if (!battle || battle.winner) return;
@@ -1696,6 +1834,11 @@
     });
   }
 
+  function renderSoundToggle() {
+    var btn = $('sound-toggle');
+    if (btn) btn.textContent = save.soundMuted ? '🔇' : '🔊';
+  }
+
   function init(data) {
     cards = data.cards.map(function (raw) {
       var display = Engine.toBattleCard(raw);
@@ -1720,6 +1863,8 @@
     save = loadSave();
     var firstVisit = !save;
     if (firstVisit) save = defaultSave();
+    if (typeof Sound !== 'undefined' && Sound && Sound.setMuted) Sound.setMuted(!!save.soundMuted);
+    renderSoundToggle();
     // Drop deck entries the player no longer owns.
     save.deck = save.deck.filter(function (id) {
       return save.collection[id];
