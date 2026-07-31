@@ -210,6 +210,15 @@
 
   /* ── Texture loading ───────────────────────────────────────────────────── */
 
+  // The masters host serves CORS-enabled PNGs that decode on every browser
+  // (old Safari cannot decode webp into a GL texture — the invisible-mascot
+  // bug). Same-shape URL for every temple's mascot.
+  var MASTERS = 'https://punycodex-masters.vercel.app';
+
+  function mascotUrl(entryId) {
+    return MASTERS + '/' + entryId + '_mascot.png';
+  }
+
   function loadTexture(gl, url) {
     var tex = gl.createTexture();
     gl.bindTexture(gl.TEXTURE_2D, tex);
@@ -219,7 +228,9 @@
     img.crossOrigin = 'anonymous';
     img.onload = function () {
       gl.bindTexture(gl.TEXTURE_2D, tex);
+      gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
       gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
+      gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
@@ -350,11 +361,15 @@
           uid: 'throne-' + side,
           side: side,
           center: thronePos(side),
+          home: thronePos(side),
           size: [1.7, 2.55],
-          tex: c.art && c.art.mascot ? loadTexture(gl, c.art.mascot) : null,
+          tex: c.entryId ? loadTexture(gl, mascotUrl(c.entryId)) : null,
+          baseDim: 1,
           dim: 1,
           tint: hexToRgb(c.art && c.art.colors && c.art.colors.primary, [1, 1, 1]),
           bobPhase: side * 1.7,
+          state: 'idle',
+          stateT: 0,
         };
       }
       var gc = champions[0] && champions[0].art && champions[0].art.colors && champions[0].art.colors.glow;
@@ -384,7 +399,7 @@
               center: [pos[0], pos[1] - 0.8, pos[2]],
               home: pos.slice(),
               size: [1.1, 1.65],
-              tex: art && art.mascot ? loadTexture(gl, art.mascot) : null,
+              tex: m.def && m.def.entryId ? loadTexture(gl, mascotUrl(m.def.entryId)) : null,
               baseDim: m.sick ? 0.45 : 1,
               dim: 0,
               tint: tint,

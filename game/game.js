@@ -198,6 +198,31 @@
   var STARTER_CURVE = { 1: 3, 2: 5, 3: 5, 4: 5, 5: 4, 6: 4, 7: 2, 8: 2 }; // 30
   var ORACLE_CURVE = { 1: 2, 2: 4, 3: 5, 4: 6, 5: 5, 6: 4, 7: 2, 8: 2 }; // 30, a touch slower
 
+  /* ── Card levels: stacked copies forge upward ─────────────────────────────
+     2 copies → Level II (+1/+1), 4 copies → Level III (+2/+2), applied at
+     battle scale. The Oracle mirrors the player's average level so a forged
+     collection stays a fair fight, never a stomp. */
+  function cardLevel(id) {
+    var copies = save.collection[id] || 0;
+    return copies >= 4 ? 3 : copies >= 2 ? 2 : 1;
+  }
+
+  function applyLevels(deck, levelFor) {
+    deck.forEach(function (c) {
+      c.level = levelFor(c);
+    });
+    return deck;
+  }
+
+  function averageLevel(deck) {
+    if (deck.length === 0) return 1;
+    var sum = 0;
+    deck.forEach(function (c) {
+      sum += c.level || 1;
+    });
+    return Math.max(1, Math.round(sum / deck.length));
+  }
+
   function tierRank(card) {
     return card.tier === 'dual' ? 3 : card.tier === '1' ? 2 : 1;
   }
@@ -221,10 +246,12 @@
     return eligible[Math.floor(rand() * eligible.length)];
   }
 
-  function buildCuratedDeck(home, curve, rand) {
-    var pool = cards.filter(function (c) {
-      return c.flagship && (c.edition === 'common' || c.edition === 'holo');
-    });
+  function buildCuratedDeck(home, curve, rand, poolOverride) {
+    var pool =
+      poolOverride ||
+      cards.filter(function (c) {
+        return c.flagship && (c.edition === 'common' || c.edition === 'holo');
+      });
     var homePool = pool.filter(function (c) {
       return c.pantheon === home;
     });
@@ -412,6 +439,10 @@
 
     if (opts.count != null && opts.count > 1) {
       node.appendChild(el('div', 'card-count', '×' + opts.count));
+      var lvl = cardLevel(card.id);
+      if (lvl > 1) {
+        node.appendChild(el('div', 'card-level lvl-' + lvl, lvl === 3 ? 'III' : 'II'));
+      }
     }
 
     function open() {
@@ -1105,6 +1136,10 @@
         mini.appendChild(el('div', 'pool-mini-stats', c.power + ' / ' + c.health + ' · ≫' + c.speed));
         mini.appendChild(el('div', 'pool-mini-ability', c.ability ? c.ability.name : '—'));
         mini.appendChild(el('div', 'pool-mini-count', inDeck + '/' + cap));
+        var miniLvl = cardLevel(c.id);
+        if (miniLvl > 1) {
+          mini.appendChild(el('div', 'card-level lvl-' + miniLvl, miniLvl === 3 ? 'III' : 'II'));
+        }
         if (!maxed) {
           mini.addEventListener('click', function () {
             save.deck.push(c.id);
@@ -1160,24 +1195,36 @@
   }
 
   function autoBuild() {
-    var physical = [];
-    Object.keys(save.collection).forEach(function (id) {
-      var copies = Math.min(save.collection[id], Engine.RULES.MAX_COPIES);
-      for (var i = 0; i < copies; i++) {
-        if (byId[id]) physical.push(byId[id]);
-      }
+    // The strategic auto-build: the curated builder aimed at the player's own
+    // collection — their deepest pantheon as home, real curve, removal cap,
+    // self-healing top-up. The naive shuffler is retired.
+    var owned = cards.filter(function (c) {
+      return save.collection[c.id] && c.flagship && (c.edition === 'common' || c.edition === 'holo');
     });
-    if (physical.length < Engine.RULES.DECK_SIZE) {
+    if (owned.length < Engine.RULES.DECK_SIZE) {
       showToast('Not enough cards to auto-build — open more packs first.');
       return;
     }
-    var built = Engine.autoBuildDeck(physical, (Date.now() ^ (Math.random() * 0xffffffff)) >>> 0);
-    save.deck = built.map(function (c) {
+    var counts = {};
+    Object.keys(save.collection).forEach(function (id) {
+      var c = byId[id];
+      if (c) counts[c.pantheon] = (counts[c.pantheon] || 0) + save.collection[id];
+    });
+    var home = Object.keys(counts).sort(function (a, b) {
+      return counts[b] - counts[a];
+    })[0];
+    var rand = Engine.mulberry32((Date.now() ^ (Math.random() * 0xffffffff)) >>> 0);
+    var deck = buildCuratedDeck(home, STARTER_CURVE, rand, owned);
+    if (deck.length < Engine.RULES.DECK_SIZE) {
+      showToast('Your collection needs more variety to curve out — try a few more packs.');
+      return;
+    }
+    save.deck = deck.map(function (c) {
       return c.id;
     });
     persist();
     renderDeckEditor();
-    showToast('The Oracle has assembled a 30-card deck for you.');
+    showToast('The lab has assembled a 30-card ' + prettyPantheon(home) + ' deck — curved, capped, and battle-ready.');
   }
 
   /* ── Battle FX (v2: hero panels + attack sequences) ───────────────────── */
@@ -1919,6 +1966,9 @@
         // "all my cards have 1 health" bug: player 1/1s vs Oracle 4-8s.
         return byId[id];
       });
+    // Stacked copies forge the deck upward; the Oracle mirrors the average.
+    applyLevels(playerDeck, cardLevel);
+    var playerAvgLevel = averageLevel(playerDeck);
     var seed = (Date.now() ^ (Math.random() * 0xffffffff)) >>> 0;
     // The Oracle mirrors the player's build — and AWAKENS with their record:
     // opening duels are sheltered (slow curve, removal mercy), then the curve
@@ -1931,6 +1981,9 @@
     aiBandThreshold = dd.band;
     aiNoSpecials = !dd.specials;
     var aiDeck = buildCuratedDeck(aiHome, dd.curve === 'starter' ? STARTER_CURVE : ORACLE_CURVE, aiRand);
+    applyLevels(aiDeck, function () {
+      return playerAvgLevel;
+    });
     battle = Engine.createGame({ playerDeck: playerDeck, aiDeck: aiDeck, seed: seed });
     lastInk = battle.players[0].ink;
     ui.pendingPlay = null;
@@ -2854,7 +2907,8 @@
       art.appendChild(buildMinionEl(card));
       node.appendChild(art);
       node.appendChild(el('div', 'hand-name', card.name));
-      node.appendChild(el('div', 'hand-stats', card.power + ' / ' + card.health + ' · ≫' + card.speed));
+      var lvlTag = card.level && card.level > 1 ? ' ᴸ' + card.level : '';
+      node.appendChild(el('div', 'hand-stats', card.power + ' / ' + card.health + ' · ≫' + card.speed + lvlTag));
       // The move, on the card — nobody should have to guess what a card does.
       node.appendChild(
         el('div', 'hand-ability', card.ability ? card.ability.name + ' — ' + card.ability.description : 'No ability.')

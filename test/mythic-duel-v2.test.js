@@ -626,6 +626,45 @@ test('archetype sound bank: every strike has its own register and is wired', () 
   assert.ok(js.includes("sfx('atk_' + archetype)"), 'archetype sound not wired into withFx');
 });
 
+test('card levels: stacked copies forge stats; the Oracle mirrors the average', () => {
+  // Engine: level bonus applies at battle scale.
+  const battle = makeBattle();
+  const c = SET.cards[0];
+  const leveled = Engine.toBattleCard(c);
+  leveled.level = 3;
+  battle.players[0].hand = [leveled];
+  battle.players[0].ink = 10;
+  const base = Engine.toBattleCard(c);
+  Engine.playCard(battle, 0);
+  const m = battle.players[0].board[0];
+  assert.strictEqual(m.power, base.power + 2, 'Level III grants +2 power');
+  assert.strictEqual(m.maxHealth, base.health + 2, 'Level III grants +2 health');
+  assert.strictEqual(m.health, base.health + 2);
+  // Game-side contracts: thresholds, mirroring, display.
+  const js = fs.readFileSync(path.join(ROOT, 'game/game.js'), 'utf8');
+  const css = fs.readFileSync(path.join(ROOT, 'game/game.css'), 'utf8');
+  assert.ok(js.includes("copies >= 4 ? 3 : copies >= 2 ? 2 : 1"), 'level thresholds missing');
+  assert.ok(js.includes('applyLevels(playerDeck, cardLevel)'), 'player levels not applied');
+  assert.ok(js.includes('playerAvgLevel'), 'AI level mirror missing');
+  assert.ok(js.includes('card-level'), 'level pips missing');
+  assert.ok(css.includes('.card-level.lvl-3'), 'level styles missing');
+});
+
+test('strategic auto-build uses the curated builder on the player collection', () => {
+  const js = fs.readFileSync(path.join(ROOT, 'game/game.js'), 'utf8');
+  assert.ok(js.includes('buildCuratedDeck(home, STARTER_CURVE, rand, owned)'), 'auto-build is not curated');
+  assert.ok(js.includes('poolOverride'), 'builder is not parameterizable');
+});
+
+test('arena mascots load from the CORS-open PNG masters (the invisible-mascot fix)', () => {
+  const arena = fs.readFileSync(path.join(ROOT, 'game/fx/arena3d.js'), 'utf8');
+  assert.ok(arena.includes('punycodex-masters.vercel.app'), 'masters host missing');
+  assert.ok(arena.includes('_mascot.png'), 'PNG mascot pattern missing');
+  assert.ok(!arena.includes('loadTexture(gl, c.art.mascot)'), 'webp path still in use');
+  assert.ok(arena.includes('UNPACK_FLIP_Y_WEBGL'), 'flip handling missing');
+  assert.ok(arena.includes("crossOrigin = 'anonymous'"), 'CORS mode missing');
+});
+
 test('pantheon ascendant: three kin lift each other; two do not', () => {
   const battle = makeBattle();
   const c = SET.cards[0];

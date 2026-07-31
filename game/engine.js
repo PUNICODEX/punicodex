@@ -862,15 +862,19 @@
   /* ── Playing cards ───────────────────────────────────────────────────── */
 
   function makeMinion(state, def) {
+    // Card levels: stacked copies forge the card upward (+1/+1 per level
+    // beyond the first, applied at battle scale).
+    var levelBonus = Math.max(0, (def.level || 1) - 1);
     return {
       uid: state.uidCounter++,
       def: def,
       cardId: def.id,
       name: def.name,
       cost: def.cost,
-      power: def.power,
-      maxHealth: def.health,
-      health: def.health,
+      power: def.power + levelBonus,
+      maxHealth: def.health + levelBonus,
+      health: def.health + levelBonus,
+      speed: def.speed,
       speed: def.speed,
       shield: 0,
       sick: true,
