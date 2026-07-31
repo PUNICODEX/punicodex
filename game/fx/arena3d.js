@@ -300,6 +300,10 @@
     var floor = makeFloor(gl);
     var pedestal = makePedestal(gl);
     var quad = makeQuad(gl);
+    // Persistent particle buffer: deleting a buffer an enabled attribute
+    // still points at poisons EVERY later drawArrays ("no buffer is bound")
+    // — the invisible-arena bug. One dynamic buffer, never deleted.
+    var particleBuf = gl.createBuffer();
 
     gl.enable(gl.DEPTH_TEST);
     gl.enable(gl.BLEND);
@@ -749,8 +753,7 @@
         if (data.length > 0) {
           gl.useProgram(partProg);
           gl.uniformMatrix4fv(gl.getUniformLocation(partProg, 'uVP'), false, vp);
-          var pbuf = gl.createBuffer();
-          gl.bindBuffer(gl.ARRAY_BUFFER, pbuf);
+          gl.bindBuffer(gl.ARRAY_BUFFER, particleBuf);
           gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(data), gl.DYNAMIC_DRAW);
           var pp = gl.getAttribLocation(partProg, 'aPos');
           var ps = gl.getAttribLocation(partProg, 'aSize');
@@ -762,7 +765,6 @@
           gl.enableVertexAttribArray(pc);
           gl.vertexAttribPointer(pc, 4, gl.FLOAT, false, 32, 16);
           gl.drawArrays(gl.POINTS, 0, data.length / 8);
-          gl.deleteBuffer(pbuf);
         }
       }
     }
