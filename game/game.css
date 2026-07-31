@@ -2867,3 +2867,81 @@ body.game-body ::-webkit-scrollbar-thumb:hover { background-color: rgba(212, 175
 @media (pointer: coarse) {
   .drag-arrow { display: none; }
 }
+
+/* ── Recent duels + phantom gate ─────────────────────────────────────────── */
+.recent-duels {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 2rem;
+}
+
+.recent-empty { color: var(--text-muted); font-size: 0.85rem; }
+
+.recent-row {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.45rem 0.75rem;
+  border: 1px solid var(--card-border);
+  border-radius: 0.55rem;
+  background: var(--card-bg);
+  font-size: 0.78rem;
+}
+
+.recent-outcome {
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.72rem;
+}
+
+.recent-row.win .recent-outcome { background: rgba(34, 197, 94, 0.2); color: var(--success); border: 1px solid rgba(34, 197, 94, 0.5); }
+.recent-row.loss .recent-outcome { background: rgba(239, 68, 68, 0.15); color: var(--danger); border: 1px solid rgba(239, 68, 68, 0.4); }
+.recent-row.draw .recent-outcome { background: rgba(212, 175, 55, 0.15); color: var(--accent); border: 1px solid rgba(212, 175, 55, 0.4); }
+
+.recent-foe { flex: 1; color: var(--text-main); }
+.recent-score { color: var(--accent); font-weight: 700; }
+.recent-date { color: var(--text-muted); font-size: 0.68rem; }
+
+/* Phantom gate */
+.phantom-label {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0.9rem 0 0.35rem;
+}
+
+.phantom-code {
+  font-family: ui-monospace, monospace;
+  font-size: 0.62rem;
+  word-break: break-all;
+  color: var(--text-dim);
+  background: rgba(8, 11, 18, 0.7);
+  border: 1px solid var(--card-border);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.6rem;
+  max-height: 76px;
+  overflow-y: auto;
+  margin-bottom: 0.45rem;
+}
+
+.phantom-input { width: 100%; margin-bottom: 0.5rem; }
+
+.phantom-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.4rem 0.2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.phantom-row:last-child { border-bottom: none; }
+.phantom-name { flex: 1; color: var(--text-main); font-size: 0.82rem; }
+.phantom-level { font-size: 0.66rem; color: var(--text-muted); font-style: italic; }

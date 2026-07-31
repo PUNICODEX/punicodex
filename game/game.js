@@ -511,6 +511,24 @@
 
     renderOraclePath();
 
+    var recent = $('recent-duels');
+    if (recent) {
+      recent.replaceChildren();
+      var history = save.history || [];
+      if (history.length === 0) {
+        recent.appendChild(el('p', 'recent-empty', 'No duels yet — your first battle writes the first line.'));
+      } else {
+        history.slice(0, 5).forEach(function (h) {
+          var row = el('div', 'recent-row ' + h.outcome);
+          row.appendChild(el('span', 'recent-outcome', h.outcome === 'win' ? 'W' : h.outcome === 'loss' ? 'L' : 'D'));
+          row.appendChild(el('span', 'recent-foe', h.foe));
+          row.appendChild(el('span', 'recent-score', h.myHp + '–' + h.foeHp));
+          row.appendChild(el('span', 'recent-date', h.at));
+          recent.appendChild(row);
+        });
+      }
+    }
+
     var featured = $('featured-cards');
     featured.replaceChildren();
     cards
@@ -1191,6 +1209,19 @@
     return DIFFICULTY[difficultyLevel()];
   }
 
+  function recordHistory(outcome) {
+    if (!save.history) save.history = [];
+    save.history.unshift({
+      outcome: outcome,
+      foe: battle.phantomName || difficultyDef().label,
+      myHp: Math.max(0, battle.players[0].hero.hp),
+      foeHp: Math.max(0, battle.players[1].hero.hp),
+      turns: battle.halfTurns,
+      at: new Date().toISOString().slice(0, 10),
+    });
+    if (save.history.length > 10) save.history.length = 10;
+  }
+
   function recordBattleOutcome(outcome) {
     if (!save.difficulty) save.difficulty = { level: 2, streak: 0 };
     if (!save.oraclePath) save.oraclePath = { cleared: [] };
@@ -1532,6 +1563,8 @@
     if (!power) return;
     var heroCard = heroes[0] && heroes[0].card;
     var targetPanel = heroEl(1);
+    // The champion itself takes the stage for its power.
+    if (arena3d && arena3d.attackChoreo) arena3d.attackChoreo({ fromUid: 'throne-0', toSide: 1 });
     withFx(heroCard, targetPanel ? function () { return centerOf(targetPanel); } : null, function () {
       return Engine.useHeroPower(battle, power);
     });
@@ -1634,6 +1667,216 @@
       var target = document.querySelector(s.selector);
       if (target) target.classList.add('tutorial-hl');
     }
+  }
+
+  /* ── Phantom Duels: asynchronous PvP without a server ──────────────────────
+     A phantom is a portable ghost: your exact deck and your Oracle level,
+     encoded. Another commander battles your ghost; you battle theirs. The
+     deterministic engine adjudicates both sides, so a phantom plays exactly
+     the way its owner built it — today, offline, at any scale. */
+
+  var PHANTOM_PREFIX = 'PX1.';
+
+  function encodePhantom() {
+    var payload = {
+      deck: save.deck.slice(),
+      level: difficultyLevel(),
+      name: (save.starterHome ? prettyPantheon(save.starterHome) : 'Unknown') + ' Phantom',
+    };
+    var json = JSON.stringify(payload);
+    // URL-safe base64.
+    var b64 = btoa(unescape(encodeURIComponent(json))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    return PHANTOM_PREFIX + b64;
+  }
+
+  function decodePhantom(code) {
+    if (typeof code !== 'string' || code.indexOf(PHANTOM_PREFIX) !== 0) return null;
+    try {
+      var b64 = code.slice(PHANTOM_PREFIX.length).replace(/-/g, '+').replace(/_/g, '/');
+      var json = decodeURIComponent(escape(atob(b64)));
+      var payload = JSON.parse(json);
+      if (!payload || !Array.isArray(payload.deck) || payload.deck.length !== Engine.RULES.DECK_SIZE) return null;
+      // Every id must resolve to a real card.
+      for (var i = 0; i < payload.deck.length; i++) {
+        if (!byId[payload.deck[i]]) return null;
+      }
+      var level = Math.max(1, Math.min(5, Number(payload.level) || 2));
+      return { deck: payload.deck, level: level, name: String(payload.name || 'Unknown Phantom') };
+    } catch (e) {
+      return null;
+    }
+  }
+
+  // Built-in community ghosts — curated phantoms, one per gate, always online.
+  var COMMUNITY_GHOSTS = [
+    { name: 'Initiate of the First Gate', level: 1, home: null },
+    { name: 'Watcher of the Second Gate', level: 2, home: null },
+    { name: 'Voice of the Third Gate', level: 3, home: null },
+    { name: 'Herald of the Fourth Gate', level: 4, home: null },
+    { name: 'Sovereign of the Fifth Gate', level: 5, home: null },
+  ];
+
+  function buildPhantomDeck(level, rand) {
+    var home = pickHomePantheon(rand);
+    var def = DIFFICULTY[level];
+    return buildCuratedDeck(home, def.curve === 'starter' ? STARTER_CURVE : ORACLE_CURVE, rand);
+  }
+
+  function startPhantomBattle(phantom) {
+    // Assemble the player's deck exactly as startBattle does.
+    var deckIds = save.deck.slice();
+    if (deckIds.length < Engine.RULES.DECK_SIZE) {
+      var physical = [];
+      Object.keys(save.collection).forEach(function (id) {
+        if (!byId[id]) return;
+        var copies = Math.min(save.collection[id], Engine.RULES.MAX_COPIES);
+        for (var i = 0; i < copies; i++) physical.push(byId[id]);
+      });
+      if (physical.length >= 25) {
+        var built = Engine.autoBuildDeck(physical, (Date.now() ^ (Math.random() * 0xffffffff)) >>> 0);
+        deckIds = built.map(function (c) {
+          return c.id;
+        });
+      }
+      var flagshipCommons = cards.filter(function (c) {
+        return c.flagship && c.edition === 'common' && deckIds.indexOf(c.id) === -1;
+      });
+      var fi = 0;
+      while (deckIds.length < Engine.RULES.DECK_SIZE && fi < flagshipCommons.length) {
+        deckIds.push(flagshipCommons[fi++].id);
+      }
+    }
+    var playerDeck = deckIds
+      .filter(function (id) {
+        return byId[id];
+      })
+      .map(function (id) {
+        return byId[id];
+      });
+    var seed = (Date.now() ^ (Math.random() * 0xffffffff)) >>> 0;
+    var ghostDeck = phantom.deck.map(function (id) {
+      return byId[id];
+    });
+    battle = Engine.createGame({ playerDeck: playerDeck, aiDeck: ghostDeck, seed: seed });
+    lastInk = battle.players[0].ink;
+    ui.pendingPlay = null;
+    ui.pendingSpecial = null;
+    ui.selectedAttacker = null;
+    ui.aiThinking = false;
+    seenMinions = {};
+
+    var myChampion = heroCardFor(playerDeck);
+    var ghostChampion = heroCardFor(ghostDeck);
+    heroes = [
+      { card: myChampion, power: myChampion ? HeroPowers.forPantheon(myChampion.pantheon) : null },
+      { card: ghostChampion, power: ghostChampion ? HeroPowers.forPantheon(ghostChampion.pantheon) : null },
+    ];
+    // The phantom fights at ITS owner's level, not yours.
+    var gd = DIFFICULTY[phantom.level];
+    aiMercyRounds = gd.mercy;
+    aiBandThreshold = gd.band;
+    aiNoSpecials = !gd.specials;
+    aiHeroPowerDef = gd.heroPower ? heroes[1].power : null;
+    battle.players[0].bondPantheon = myChampion ? myChampion.pantheon : null;
+    battle.players[1].bondPantheon = ghostChampion ? ghostChampion.pantheon : null;
+    battle.phantomName = phantom.name;
+
+    $('deck-select').hidden = true;
+    $('battlefield-wrap').hidden = false;
+    $('reward-overlay').hidden = true;
+    if (heroes[0].card && heroes[0].card.art && heroes[0].card.art.colors && heroes[0].card.art.colors.glow) {
+      $('battlefield-wrap').style.setProperty('--arena-glow', heroes[0].card.art.colors.glow);
+    }
+    ensureFx();
+    mountArena();
+    var wrap = $('battlefield-wrap');
+    wrap.querySelectorAll('.hero-panel').forEach(function (n) {
+      n.remove();
+    });
+    var board = wrap.querySelector('.battlefield');
+    wrap.insertBefore(heroPanel(1, heroes[1].card, heroes[1].power), board);
+    board.after(heroPanel(0, heroes[0].card, heroes[0].power));
+    if (fx) fx.banner('Phantom Duel', (heroes[0].card ? heroes[0].card.name : 'You') + ' vs ' + phantom.name);
+    renderBattle();
+  }
+
+  function openPhantomGate() {
+    openModal(function (content) {
+      content.appendChild(el('h2', 'modal-title', 'Phantom Duels'));
+      content.appendChild(
+        el(
+          'p',
+          'modal-sub',
+          'Battle a ghost: another commander’s deck, played at their Oracle level. Yours travels the same way — share your phantom code and others duel it.'
+        )
+      );
+
+      // Your phantom.
+      if (save.deck.length === Engine.RULES.DECK_SIZE) {
+        var mine = el('div', 'phantom-mine');
+        mine.appendChild(el('div', 'phantom-label', 'Your phantom code'));
+        var code = encodePhantom();
+        var codeBox = el('div', 'phantom-code', code);
+        mine.appendChild(codeBox);
+        var copyBtn = el('button', 'btn secondary', 'Copy code');
+        copyBtn.addEventListener('click', function () {
+          if (navigator.clipboard) {
+            navigator.clipboard.writeText(code);
+            copyBtn.textContent = 'Copied ✓';
+            setTimeout(function () {
+              copyBtn.textContent = 'Copy code';
+            }, 1600);
+          }
+        });
+        mine.appendChild(copyBtn);
+        content.appendChild(mine);
+      }
+
+      // Challenge a phantom.
+      var challenge = el('div', 'phantom-challenge');
+      challenge.appendChild(el('div', 'phantom-label', 'Challenge a phantom code'));
+      var input = el('input', 'search-input phantom-input');
+      input.placeholder = 'PX1.…';
+      input.setAttribute('aria-label', 'Phantom code');
+      challenge.appendChild(input);
+      var fight = el('button', 'btn primary', 'Duel this Phantom');
+      fight.addEventListener('click', function () {
+        var phantom = decodePhantom(input.value.trim());
+        if (!phantom) {
+          showToast('That code is not a valid phantom.');
+          return;
+        }
+        closeModal();
+        showSection('battle');
+        setTimeout(function () {
+          startPhantomBattle(phantom);
+        }, 60);
+      });
+      challenge.appendChild(fight);
+      content.appendChild(challenge);
+
+      // Community ghosts.
+      content.appendChild(el('div', 'phantom-label', 'Community ghosts'));
+      var list = el('div', 'phantom-list');
+      COMMUNITY_GHOSTS.forEach(function (ghost) {
+        var row = el('div', 'phantom-row');
+        row.appendChild(el('span', 'phantom-name', ghost.name));
+        row.appendChild(el('span', 'phantom-level', DIFFICULTY[ghost.level].label));
+        var duel = el('button', 'btn secondary', 'Duel');
+        duel.addEventListener('click', function () {
+          var rand = Engine.mulberry32((Date.now() ^ (Math.random() * 0xffffffff)) >>> 0);
+          var deck = buildPhantomDeck(ghost.level, rand);
+          closeModal();
+          showSection('battle');
+          setTimeout(function () {
+            startPhantomBattle({ deck: deck.map(function (c) { return c.id; }), level: ghost.level, name: ghost.name });
+          }, 60);
+        });
+        row.appendChild(duel);
+        list.appendChild(row);
+      });
+      content.appendChild(list);
+    });
   }
 
   function startBattle() {
@@ -2386,6 +2629,7 @@
     var reward = REWARDS[outcome];
     sfx(outcome === 'win' ? 'sting' : outcome === 'loss' ? 'defeat' : 'banner');
     recordBattleOutcome(outcome);
+    recordHistory(outcome);
     save.ink += reward;
     if (outcome === 'win') save.stats.wins++;
     else if (outcome === 'loss') save.stats.losses++;
@@ -2406,6 +2650,9 @@
     content.replaceChildren();
     var titles = { win: 'Victory', loss: 'Defeat', draw: 'A Storied Draw' };
     content.appendChild(el('h2', 'reward-title ' + outcome, titles[outcome]));
+    if (battle.phantomName) {
+      content.appendChild(el('p', 'modal-sub', 'Phantom Duel vs ' + battle.phantomName));
+    }
     var amount = el('p', 'reward-amount');
     amount.appendChild(document.createTextNode('The archive pays you '));
     amount.appendChild(el('strong', null, '+' + reward + ' ✦ Ink'));
@@ -2671,6 +2918,8 @@
     $('lobby-packs-btn').addEventListener('click', function () {
       showSection('packs');
     });
+    $('lobby-phantom-btn').addEventListener('click', openPhantomGate);
+    $('phantom-gate').addEventListener('click', openPhantomGate);
 
     var searchTimer = null;
     $('collection-search').addEventListener('input', function (ev) {
@@ -2819,6 +3068,16 @@
     if (typeof Sound !== 'undefined' && Sound && Sound.setMuted) Sound.setMuted(!!save.soundMuted);
     renderSoundToggle();
     renderPresentationToggle();
+    // The daily tribute: the Archive rewards those who return.
+    var today = new Date().toISOString().slice(0, 10);
+    if (save.lastDaily !== today) {
+      save.lastDaily = today;
+      save.ink += 50;
+      persist();
+      setTimeout(function () {
+        showToast('The Archive pays its daily tribute: +50 ✦ Ink.');
+      }, 1200);
+    }
     // Drop deck entries the player no longer owns.
     save.deck = save.deck.filter(function (id) {
       return save.collection[id];

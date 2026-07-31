@@ -430,7 +430,10 @@
 
     /* Public: attack choreography */
     function attackChoreo(opts) {
-      var from = opts.fromUid && sprites.get(opts.fromUid) ? sprites.get(opts.fromUid) : null;
+      var from = null;
+      if (opts.fromUid === 'throne-0') from = thrones[0];
+      else if (opts.fromUid === 'throne-1') from = thrones[1];
+      else if (opts.fromUid) from = sprites.get(opts.fromUid) || null;
       var to = null;
       if (opts.toUid && sprites.get(opts.toUid)) to = sprites.get(opts.toUid).center;
       else if (opts.toSide != null) to = thronePos(opts.toSide);
@@ -673,7 +676,10 @@
         drawPedestal(s.home, 1, s.side === 0 ? [0.10, 0.09, 0.13] : [0.13, 0.10, 0.12]);
       });
       thrones.forEach(function (s) {
-        if (s) drawPedestal(s.center, 2.2, [0.12, 0.10, 0.15]);
+        if (s) {
+          advanceSprite(s, dt);
+          drawPedestal(s.home, 2.2, [0.12, 0.10, 0.15]);
+        }
       });
 
       // Billboards.

@@ -687,6 +687,33 @@ test('the P-series contracts: tutorial, drag, chips, deck-lab, oracle path, soun
   assert.ok(css.includes('.minion.ascendant'), 'ascendant styles missing');
 });
 
+test('phantom duels: encode/decode roundtrip, community ghosts, entry points', () => {
+  const js = fs.readFileSync(path.join(ROOT, 'game/game.js'), 'utf8');
+  const html = fs.readFileSync(path.join(ROOT, 'game/index.html'), 'utf8');
+  const css = fs.readFileSync(path.join(ROOT, 'game/game.css'), 'utf8');
+  // Entry points.
+  assert.ok(html.includes('lobby-phantom-btn'), 'lobby phantom button missing');
+  assert.ok(html.includes('phantom-gate'), 'deck phantom button missing');
+  assert.ok(js.includes('openPhantomGate'), 'phantom gate missing');
+  // Codec.
+  assert.ok(js.includes("PHANTOM_PREFIX = 'PX1.'"), 'phantom prefix missing');
+  assert.ok(js.includes('encodePhantom'), 'phantom encoder missing');
+  assert.ok(js.includes('decodePhantom'), 'phantom decoder missing');
+  assert.ok(js.includes('startPhantomBattle'), 'phantom battle start missing');
+  assert.ok(js.includes('COMMUNITY_GHOSTS'), 'community ghosts missing');
+  assert.ok(css.includes('.phantom-row'), 'phantom styles missing');
+  // The phantom fights at its owner's level, and the deck must be full + resolvable.
+  assert.ok(js.includes('DIFFICULTY[phantom.level]'), 'phantom level not honored');
+  assert.ok(js.includes('battle.phantomName'), 'phantom name not recorded');
+  // History + daily tribute + champion strike.
+  assert.ok(js.includes('recordHistory'), 'match history missing');
+  assert.ok(js.includes('recent-duels') || html.includes('recent-duels'), 'recent duels UI missing');
+  assert.ok(js.includes('lastDaily'), 'daily tribute missing');
+  assert.ok(js.includes("'throne-0'"), 'champion strike not wired');
+  const arena = fs.readFileSync(path.join(ROOT, 'game/fx/arena3d.js'), 'utf8');
+  assert.ok(arena.includes("opts.fromUid === 'throne-0'"), 'arena throne choreo missing');
+});
+
 test('the Arena 3D: renderer, integration, presentation toggle, fallback', () => {
   const arena = fs.readFileSync(path.join(ROOT, 'game/fx/arena3d.js'), 'utf8');
   for (const needle of ['setChampions', 'syncBoard', 'attackChoreo', 'project', 'heroHit', 'FLOOR_FS', 'BILL_FS']) {
