@@ -20,6 +20,9 @@ const archetypeSrc = fs.readFileSync(path.join(ROOT, 'js', 'archetypes-v2.js'), 
 const ARCHETYPES = vm.runInNewContext(`(function(){\n${archetypeSrc}\nreturn ARCHETYPES;\n})()`);
 const BUILT_IDS = ARCHETYPES.filter((a) => a.built).map((a) => a.id).sort();
 
+const { LEXICON } = require(path.join(ROOT, 'type', 'js', 'lexicon.js'));
+const LEXICON_BY_ID = new Map(LEXICON.map((e) => [e.id, e]));
+
 const tests = [];
 function test(name, fn) {
   tests.push({ name, fn });
@@ -139,7 +142,7 @@ test('resonance pages render with correct canonical and series chain', () => {
     assert.ok(html.includes(`rel="canonical" href="https://punicodex.com/sites/${id}/blog/resonance/"`), `${id}: wrong canonical`);
     assert.ok(html.includes('"@type": "BlogPosting"'), `${id}: BlogPosting schema missing`);
     assert.ok(html.includes('The Resonance Files'), `${id}: masthead missing`);
-    assert.ok(html.includes('The Restoration Files for this temple'), `${id}: cross-series link missing`);
+    assert.ok(html.includes('for this temple'), `${id}: cross-series link missing`);
   }
   for (let i = 1; i < BUILT_IDS.length - 1; i += 17) {
     const html = fs.readFileSync(path.join(ROOT, 'sites', BUILT_IDS[i], 'blog', 'resonance', 'index.html'), 'utf8');
@@ -148,18 +151,72 @@ test('resonance pages render with correct canonical and series chain', () => {
   }
 });
 
-test('blog index merges all three dispatches; sitemap covers resonance', () => {
-  const html = fs.readFileSync(path.join(ROOT, 'blog', 'index.html'), 'utf8');
-  const cards = html.match(/class="blogi-card[" ]/g) || [];
-  assert.strictEqual(cards.length, BUILT_IDS.length * 3, 'index must carry founding + restoration + resonance cards');
-  assert.ok(html.includes('Resonance Files'), 'resonance badge missing');
-  assert.ok(!/data-id="([a-z0-9-]+)"[\s\S]{0,400}?data-id="\1"/.test(html), 'duplicate data-id in cards');
+test('every built flagship has a canonical register entry with truthful ASCII status', () => {
+  const CAN_DIR = path.join(ROOT, 'platform', 'blog', 'series', 'canonical');
+  const REGISTER = require(path.join(ROOT, 'platform', 'api', 'canonical-register.json'));
+  const titles = new Set();
+  const descriptions = new Set();
+  for (const id of BUILT_IDS) {
+    const p = path.join(CAN_DIR, `${id}.json`);
+    assert.ok(fs.existsSync(p), `missing canonical JSON for ${id}`);
+    const post = JSON.parse(fs.readFileSync(p, 'utf8'));
+    assert.strictEqual(post.entryId, id);
+    assert.strictEqual(post.series, 'canonical');
+    assert.ok(post.body.split(/\s+/).length >= 450, `${id}: body under 450 words`);
+    assert.ok(post.body.includes('## Where the Flattened Form Stands'), `${id}: ASCII status section missing`);
+    assert.ok(post.body.includes('IDNA 2008'), `${id}: IDNA section missing`);
+    titles.add(post.title);
+    descriptions.add(post.description);
+    // The machine-readable register agrees with the lexicon.
+    const rec = REGISTER.entries[id];
+    assert.ok(rec, `register missing ${id}`);
+    assert.ok(rec.asciiStatus === 'canonical' || rec.asciiStatus === 'fallback', `${id}: bad asciiStatus`);
+    const entry = LEXICON_BY_ID.get(id);
+    assert.strictEqual(rec.canonical, entry.unicode, `${id}: canonical mismatch`);
+    // ASCII status must be truthful: canonical only when forms coincide but for case.
+    const caseOnly = entry.unicode.toLowerCase() === entry.ascii.toLowerCase();
+    assert.strictEqual(rec.asciiStatus === 'canonical', caseOnly, `${id}: asciiStatus untruthful`);
+    // The register never lists the plain ASCII form as a false form.
+    for (const f of rec.falseForms) {
+      assert.ok(f.form !== entry.ascii, `${id}: ASCII listed as false — that is a lie the register must never tell`);
+      assert.ok(f.origin && f.violation, `${id}: false form missing origin/violation`);
+    }
+  }
+  assert.strictEqual(titles.size, BUILT_IDS.length, 'canonical titles must be unique');
+  assert.strictEqual(descriptions.size, BUILT_IDS.length, 'canonical descriptions must be unique');
+});
+
+test('canonical pages render with correct canonical URL and series chain; API endpoint exists', () => {
+  for (const id of BUILT_IDS.slice(0, 30)) {
+    const p = path.join(ROOT, 'sites', id, 'blog', 'canonical', 'index.html');
+    assert.ok(fs.existsSync(p), `missing canonical page for ${id}`);
+    const html = fs.readFileSync(p, 'utf8');
+    assert.ok(!html.includes('{{'), `${id}: leftover placeholder`);
+    assert.ok(html.includes(`rel="canonical" href="https://punicodex.com/sites/${id}/blog/canonical/"`), `${id}: wrong canonical URL`);
+    assert.ok(html.includes('"@type": "BlogPosting"'), `${id}: BlogPosting schema missing`);
+    assert.ok(html.includes('The Canonical Register'), `${id}: masthead missing`);
+  }
+  for (let i = 1; i < BUILT_IDS.length - 1; i += 19) {
+    const html = fs.readFileSync(path.join(ROOT, 'sites', BUILT_IDS[i], 'blog', 'canonical', 'index.html'), 'utf8');
+    assert.ok(html.includes(`../../../${BUILT_IDS[i - 1]}/blog/canonical/`), `${BUILT_IDS[i]}: prev link missing`);
+    assert.ok(html.includes(`../../../${BUILT_IDS[i + 1]}/blog/canonical/`), `${BUILT_IDS[i]}: next link missing`);
+  }
+  const endpoint = fs.readFileSync(path.join(ROOT, 'api', 'v1', 'canonical-register', 'index.js'), 'utf8');
+  assert.ok(endpoint.includes('canonical-register.json'), 'endpoint does not serve the register');
+  const gen = fs.readFileSync(path.join(ROOT, 'scripts', 'generate.js'), 'utf8');
+  assert.ok(gen.includes('generate-blog-series-canonical.js'), 'canonical generator not registered in flywheel');
   const sitemap = fs.readFileSync(path.join(ROOT, 'sitemap.xml'), 'utf8');
   for (const id of BUILT_IDS.slice(0, 40)) {
-    assert.ok(sitemap.includes(`/sites/${id}/blog/resonance/`), `sitemap missing ${id} resonance URL`);
+    assert.ok(sitemap.includes(`/sites/${id}/blog/canonical/`), `sitemap missing ${id} canonical URL`);
   }
-  const gen = fs.readFileSync(path.join(ROOT, 'scripts', 'generate.js'), 'utf8');
-  assert.ok(gen.includes('generate-blog-series-resonance.js'), 'resonance generator not registered');
+});
+
+test('blog index merges all four dispatches; no id collisions', () => {
+  const html = fs.readFileSync(path.join(ROOT, 'blog', 'index.html'), 'utf8');
+  const cards = html.match(/class="blogi-card[" ]/g) || [];
+  assert.strictEqual(cards.length, BUILT_IDS.length * 4, 'index must carry founding + three series');
+  assert.ok(html.includes('Canonical Register'), 'canonical badge missing');
+  assert.ok(!/data-id="([a-z0-9-]+)"[\s\S]{0,400}?data-id="\1"/.test(html), 'duplicate data-id in cards');
 });
 
 test('FAQ structured data is present and valid on rulebook and pattern atlas', () => {

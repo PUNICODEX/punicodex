@@ -844,6 +844,151 @@
     return n;
   }
 
+  /* ── The Deck Lab: archetype detection, grades, and counsel ────────────── */
+
+  var ARCHETYPES_DECK = [
+    {
+      id: 'storm-aggro',
+      name: 'Storm Aggro',
+      desc: 'Low curve, fast strikes — win before the Oracle stabilizes.',
+      match: function (s) {
+        return s.avgCost <= 3.4 && s.lowCurve >= 14;
+      },
+    },
+    {
+      id: 'death-control',
+      name: 'Death Control',
+      desc: 'Removal and late power — own the long game.',
+      match: function (s) {
+        return s.deathDomains >= 4 && s.avgCost >= 3.8;
+      },
+    },
+    {
+      id: 'wisdom-combo',
+      name: 'Wisdom Combo',
+      desc: 'Draw engines and card advantage — out-resource the field.',
+      match: function (s) {
+        return s.drawEffects >= 5;
+      },
+    },
+    {
+      id: 'war-banner',
+      name: 'War Banner',
+      desc: 'Buffs and board-wide pressure — the army grows together.',
+      match: function (s) {
+        return s.buffEffects >= 5;
+      },
+    },
+    {
+      id: 'tribal-ascendant',
+      name: 'Tribal Ascendant',
+      desc: 'One pantheon, stacked deep — bond and ascendance both fire.',
+      match: function (s) {
+        return s.topPantheonCount >= 18;
+      },
+    },
+    {
+      id: 'nature-midrange',
+      name: 'Nature Midrange',
+      desc: 'Shields and steady stats — the forest holds the middle.',
+      match: function (s) {
+        return s.shieldEffects >= 4;
+      },
+    },
+  ];
+
+  function deckLab() {
+    var stats = {
+      avgCost: 0,
+      lowCurve: 0,
+      deathDomains: 0,
+      drawEffects: 0,
+      buffEffects: 0,
+      shieldEffects: 0,
+      topPantheon: null,
+      topPantheonCount: 0,
+      pantheonCount: {},
+      removalCount: 0,
+    };
+    if (save.deck.length === 0) return stats;
+    var costSum = 0;
+    save.deck.forEach(function (id) {
+      var c = byId[id];
+      if (!c) return;
+      costSum += c.cost;
+      if (c.cost <= 2) stats.lowCurve++;
+      var domain = (c.domain || '').toLowerCase();
+      if (/death|underworld|doom|grave/.test(domain)) stats.deathDomains++;
+      if (c.ability && c.ability.effect) {
+        var kind = c.ability.effect.kind || '';
+        if (/draw|copy/.test(kind)) stats.drawEffects++;
+        if (/buff|aura/.test(kind)) stats.buffEffects++;
+        if (/shield|damage-reduction/.test(kind)) stats.shieldEffects++;
+        if (/destroy|damage|stun/.test(kind)) stats.removalCount++;
+      }
+      stats.pantheonCount[c.pantheon] = (stats.pantheonCount[c.pantheon] || 0) + 1;
+      if (stats.pantheonCount[c.pantheon] > stats.topPantheonCount) {
+        stats.topPantheonCount = stats.pantheonCount[c.pantheon];
+        stats.topPantheon = c.pantheon;
+      }
+    });
+    stats.avgCost = costSum / save.deck.length;
+    return stats;
+  }
+
+  function detectArchetype(stats) {
+    for (var i = 0; i < ARCHETYPES_DECK.length; i++) {
+      if (ARCHETYPES_DECK[i].match(stats)) return ARCHETYPES_DECK[i];
+    }
+    return null;
+  }
+
+  function deckLabCounsel(stats) {
+    var tips = [];
+    if (save.deck.length < Engine.RULES.DECK_SIZE) {
+      tips.push('Seat ' + (Engine.RULES.DECK_SIZE - save.deck.length) + ' more cards to complete the deck.');
+    }
+    if (stats.lowCurve < 8) {
+      tips.push('Sharpen the early game — 8+ cards costing 2 or less keeps your first turns alive (you have ' + stats.lowCurve + ').');
+    }
+    if (stats.topPantheonCount >= 12 && stats.topPantheonCount < 18) {
+      tips.push('Deepen ' + prettyPantheon(stats.topPantheon) + ' to 18+ cards and the Tribal Ascendant identity comes online.');
+    }
+    if (stats.drawEffects < 3) {
+      tips.push('Add card draw — 3+ draw or copy effects keeps your hand full past turn five.');
+    }
+    if (stats.removalCount < 3) {
+      tips.push('Pack at least 3 answers (damage, destroy, or stun) for the Oracle’s threats.');
+    }
+    if (tips.length === 0) {
+      tips.push('The lab finds no fault — this deck is ready to duel.');
+    }
+    return tips;
+  }
+
+  function renderDeckLab() {
+    var box = $('deck-analysis');
+    if (!box || save.deck.length === 0) return;
+    var stats = deckLab();
+    var archetype = detectArchetype(stats);
+    var lab = el('div', 'deck-lab');
+    lab.appendChild(
+      el(
+        'div',
+        'deck-lab-archetype',
+        archetype ? '⚗ ' + archetype.name + ' — ' + archetype.desc : '⚗ No clear identity yet — the lab suggests:'
+      )
+    );
+    if (!archetype) {
+      deckLabCounsel(stats)
+        .slice(0, 2)
+        .forEach(function (tip) {
+          lab.appendChild(el('div', 'deck-lab-tip', '· ' + tip));
+        });
+    }
+    box.appendChild(lab);
+  }
+
   function renderDeckAnalysis() {
     var box = $('deck-analysis');
     if (!box) return;
@@ -1135,11 +1280,14 @@
     }
     arena3d.setChampions({ player: heroes[0].card, enemy: heroes[1].card });
     wrap.classList.add('cinematic');
+    syncArenaChips();
+    arenaChipsLoop();
   }
 
   function unmountArena() {
     var wrap = $('battlefield-wrap');
     if (wrap) wrap.classList.remove('cinematic');
+    stopArenaChips();
     if (arena3d) {
       arena3d.destroy();
       arena3d = null;
@@ -1263,6 +1411,7 @@
       battle.players[p].board.forEach(function (m) { after[m.uid] = true; });
       before.boards[p].forEach(function (m) {
         if (!after[m.uid]) {
+          if (arena3d) arena3d.spriteDeath('m' + m.uid);
           var node = fxCanvas.parentElement.querySelector('.minion[data-uid="' + m.uid + '"]');
           var pos = node ? centerOf(node) : centerOf(heroEl(p));
           fx.floatText({ x: pos.x, y: pos.y, text: '☠', kind: 'damage', size: 22 });
@@ -1279,6 +1428,7 @@
         var beforeVal = m.health + m.shield;
         var d = afterVal - beforeVal;
         if (d !== 0) {
+          if (arena3d && d < 0) arena3d.spriteFlinch('m' + m.uid);
           var n = fxCanvas.parentElement.querySelector('.minion[data-uid="' + m.uid + '"]');
           if (n) {
             var pp = centerOf(n);
@@ -1478,6 +1628,7 @@
     ui.pendingPlay = null;
     ui.pendingSpecial = null;
     ui.selectedAttacker = null;
+    stopArenaChips();
     unmountArena();
     $('battlefield-wrap').hidden = true;
     $('reward-overlay').hidden = true;
@@ -1513,6 +1664,10 @@
     if (m.sick) node.classList.add('sick');
     if (m.def && battle.players[playerIdx].bondPantheon && m.def.pantheon === battle.players[playerIdx].bondPantheon) {
       node.classList.add('bonded');
+    }
+    if (Engine.isAscendant(battle, playerIdx, m)) {
+      node.classList.add('ascendant');
+      node.title = (node.title || m.name) + ' · Pantheon Ascendant +1';
     }
     if (!seenMinions[m.uid]) {
       seenMinions[m.uid] = true;
@@ -1834,6 +1989,7 @@
         ['Abilities', 'Every card carries a move, printed on it: some trigger when played, some when attacking, some when destroyed, some are always on. Full-Art and Secret printings upgrade the move.'],
         ['Special Move', 'A recovered minion can unleash its ability as a special: 2✦, once per turn. Arm the minion (tap it) and choose ✦ in the action bar — the gold pip marks specials that are ready.'],
         ['Pantheon Bond', 'Your champion’s kin fight harder beside it: minions sharing the champion’s pantheon gain +1 power, marked by the golden bond frame.'],
+        ['Pantheon Ascendant', 'Three or more minions of one pantheon on your field lift each other: +1 power each, on top of the bond. Tribal decks are real decks.'],
         ['Mulligan', 'Twice per duel, across your first two turns, you may set your hand back into the archive and draw anew.'],
         ['Hero Power', 'Your champion’s pantheon grants a power: 2✦, once per turn. Find it under your champion’s portrait.'],
         ['The object of the duel', 'Reduce the enemy champion to 0. Arm one of your ready minions (tap it), then strike: an enemy minion, or their champion.'],
@@ -2028,12 +2184,91 @@
     overlay.hidden = false;
   }
 
+  /* ── Projected chips: stats pinned to the characters themselves ────────── */
+
+  var arenaChipEls = new Map(); // uid → element
+  var arenaChipRaf = null;
+
+  function syncArenaChips() {
+    var layer = $('arena-chips');
+    if (!layer || !arena3d || !battle) return;
+    var seen = {};
+    for (var side = 0; side < 2; side++) {
+      battle.players[side].board.forEach(function (m) {
+        var key = 'm' + m.uid;
+        seen[key] = true;
+        if (!arenaChipEls.has(key)) {
+          var chip = el('div', 'arena-chip');
+          chip.dataset.uid = key;
+          layer.appendChild(chip);
+          arenaChipEls.set(key, chip);
+        }
+      });
+    }
+    arenaChipEls.forEach(function (chip, key) {
+      if (!seen[key]) {
+        chip.remove();
+        arenaChipEls.delete(key);
+      }
+    });
+  }
+
+  function arenaChipsLoop() {
+    if (arenaChipRaf) cancelAnimationFrame(arenaChipRaf);
+    var tick = function () {
+      arenaChipRaf = requestAnimationFrame(tick);
+      if (!arena3d || !battle) return;
+      for (var side = 0; side < 2; side++) {
+        battle.players[side].board.forEach(function (m) {
+          var key = 'm' + m.uid;
+          var chip = arenaChipEls.get(key);
+          if (!chip) return;
+          var pos = arena3d.project(key);
+          if (!pos) {
+            chip.style.opacity = '0';
+            return;
+          }
+          chip.style.opacity = '1';
+          chip.style.left = pos.x + 'px';
+          chip.style.top = pos.y + 'px';
+          var power = Engine.effectivePower(battle, side, m);
+          var html =
+            '<span class="chip-atk">' +
+            power +
+            '</span><span class="chip-hp' +
+            (m.health < m.maxHealth ? ' damaged' : '') +
+            '">' +
+            (m.health + m.shield) +
+            '</span>' +
+            (m.sick ? '<span class="chip-sick">recovering</span>' : '');
+          if (chip._last !== html) {
+            chip.innerHTML = html;
+            chip._last = html;
+          }
+        });
+      }
+    };
+    tick();
+  }
+
+  function stopArenaChips() {
+    if (arenaChipRaf) cancelAnimationFrame(arenaChipRaf);
+    arenaChipRaf = null;
+    arenaChipEls.forEach(function (chip) {
+      chip.remove();
+    });
+    arenaChipEls.clear();
+  }
+
   function renderBattle() {
     if (!battle) return;
     var me = battle.players[0];
     var foe = battle.players[1];
     var legal = Engine.getLegalActions(battle);
-    if (arena3d) arena3d.syncBoard(battle.players);
+    if (arena3d) {
+      arena3d.syncBoard(battle.players);
+      syncArenaChips();
+    }
 
     // v2 hero panels: animated HP bars, deck/hand counts, hero-power state.
     for (var side = 0; side < 2; side++) {

@@ -60,6 +60,14 @@ const SERIES = [
     urlPath: 'blog/resonance/',
     titleSuffix: 'The Resonance Files',
     masthead: 'The Resonance Files',
+    cross: { urlPath: 'blog/canonical/', masthead: 'The Canonical Register' },
+  },
+  {
+    id: 'canonical',
+    contentDir: path.join(ROOT, 'platform', 'blog', 'series', 'canonical'),
+    urlPath: 'blog/canonical/',
+    titleSuffix: 'The Canonical Register',
+    masthead: 'The Canonical Register',
     cross: { urlPath: 'blog/restoration/', masthead: 'The Restoration Files' },
   },
 ];

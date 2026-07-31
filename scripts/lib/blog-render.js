@@ -331,6 +331,14 @@ function buildSeriesLink(id) {
             <p>The third dispatch, where the myths meet the markets: <a href="./resonance/">${escapeHtml(post.title)}</a> — the archetype at work in real industries.</p>
         </aside>`);
   }
+  const canonicalPath = path.join(ROOT, 'platform', 'blog', 'series', 'canonical', `${id}.json`);
+  if (fs.existsSync(canonicalPath)) {
+    const post = JSON.parse(fs.readFileSync(canonicalPath, 'utf8'));
+    asides.push(`<aside class="blog-series-nav reveal-up">
+            <h2 class="blog-cta-title">The Canonical Register</h2>
+            <p>The authoritative reference for this name: <a href="./canonical/">${escapeHtml(post.title)}</a> — the one true spelling, and every form that fails it.</p>
+        </aside>`);
+  }
   return asides.join('\n');
 }
 

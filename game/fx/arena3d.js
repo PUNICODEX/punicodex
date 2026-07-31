@@ -381,19 +381,21 @@
             sprites.set(uid, {
               uid: uid,
               side: side,
-              center: pos.slice(),
+              center: [pos[0], pos[1] - 0.8, pos[2]],
               home: pos.slice(),
               size: [1.1, 1.65],
               tex: art && art.mascot ? loadTexture(gl, art.mascot) : null,
-              dim: m.sick ? 0.45 : 1,
+              baseDim: m.sick ? 0.45 : 1,
+              dim: 0,
               tint: tint,
               bobPhase: Math.random() * Math.PI * 2,
               born: time,
+              state: 'summon',
+              stateT: 0,
             });
           } else {
-            existing.center = pos.slice();
             existing.home = pos.slice();
-            existing.dim += ((m.sick ? 0.45 : 1) - existing.dim) * 0.2;
+            existing.baseDim = m.sick ? 0.45 : 1;
           }
         }
       }
@@ -428,7 +430,7 @@
 
     /* Public: attack choreography */
     function attackChoreo(opts) {
-      var from = opts.fromUid && sprites.get(opts.fromUid) ? sprites.get(opts.fromUid).center : null;
+      var from = opts.fromUid && sprites.get(opts.fromUid) ? sprites.get(opts.fromUid) : null;
       var to = null;
       if (opts.toUid && sprites.get(opts.toUid)) to = sprites.get(opts.toUid).center;
       else if (opts.toSide != null) to = thronePos(opts.toSide);
@@ -436,7 +438,12 @@
         if (opts.onImpact) opts.onImpact();
         return;
       }
-      var midEye = [(from[0] + to[0]) / 2, 4.4, (from[2] + to[2]) / 2 + (from[2] > 0 ? 4.4 : -4.4) * 0.55];
+      // The actor itself strikes: lean back, fly to the target, return home.
+      from.state = 'windup';
+      from.stateT = 0;
+      from.strikeFrom = from.home.slice();
+      from.strikeTo = [to[0], to[1] + 0.1, to[2] + (from.side === 0 ? 0.9 : -0.9)];
+      var midEye = [(from.home[0] + to[0]) / 2, 4.4, (from.home[2] + to[2]) / 2 + (from.home[2] > 0 ? 4.4 : -4.4) * 0.55];
       cam.choreo = {
         t: 0,
         dur: 0.55,
@@ -444,10 +451,110 @@
         fromEye: cam.eye.slice(),
         midEye: midEye,
         fromT: cam.target.slice(),
-        midT: [(from[0] + to[0]) / 2, 0.9, (from[2] + to[2]) / 2],
+        midT: [(from.home[0] + to[0]) / 2, 0.9, (from.home[2] + to[2]) / 2],
         onImpact: opts.onImpact || null,
         impacted: false,
       };
+    }
+
+    /* Public: flinch (damage taken) and death (destroyed) */
+    function spriteFlinch(uid) {
+      var s = sprites.get(uid);
+      if (!s || s.state === 'death' || s.state === 'strike' || s.state === 'windup') return;
+      s.state = 'flinch';
+      s.stateT = 0;
+    }
+
+    function spriteDeath(uid) {
+      var s = sprites.get(uid);
+      if (!s) return;
+      s.state = 'death';
+      s.stateT = 0;
+      burst([s.center[0], s.center[1] + 0.5, s.center[2]], [0.9, 0.85, 0.7, 0.8], 18, 1.1);
+    }
+
+    function spriteDamaged(uid) {
+      spriteFlinch(uid);
+    }
+
+    /* Sprite state machine: summon → idle → windup → strike → return → idle,
+       with flinch and death as interrupts. The actors act. */
+    function advanceSprite(s, dt) {
+      s.stateT += dt;
+      var base = s.baseDim;
+      if (s.state === 'summon') {
+        var k = Math.min(1, s.stateT / 0.5);
+        var e = 1 - Math.pow(1 - k, 3);
+        s.center[0] = s.home[0];
+        s.center[1] = s.home[1] - 0.8 * (1 - e);
+        s.center[2] = s.home[2];
+        s.dim = base * e;
+        if (k >= 1) {
+          s.state = 'idle';
+          s.dim = base;
+          burst([s.home[0], s.home[1] + 0.2, s.home[2]], s.tint.concat([0.7]), 12, 0.8);
+        }
+        return;
+      }
+      if (s.state === 'windup') {
+        var w = Math.min(1, s.stateT / 0.22);
+        var dx = s.strikeTo[0] - s.strikeFrom[0];
+        var dz = s.strikeTo[2] - s.strikeFrom[2];
+        s.center[0] = s.strikeFrom[0] - dx * 0.1 * w;
+        s.center[2] = s.strikeFrom[2] - dz * 0.1 * w;
+        if (s.stateT >= 0.22) {
+          s.state = 'strike';
+          s.stateT = 0;
+        }
+        return;
+      }
+      if (s.state === 'strike') {
+        var k2 = Math.min(1, s.stateT / 0.26);
+        var e2 = 1 - Math.pow(1 - k2, 3);
+        s.center[0] = s.strikeFrom[0] + (s.strikeTo[0] - s.strikeFrom[0]) * e2;
+        s.center[2] = s.strikeFrom[2] + (s.strikeTo[2] - s.strikeFrom[2]) * e2;
+        s.center[1] = s.home[1] + Math.sin(k2 * Math.PI) * 0.75;
+        if (k2 >= 1) {
+          s.state = 'return';
+          s.stateT = 0;
+        }
+        return;
+      }
+      if (s.state === 'return') {
+        var k3 = Math.min(1, s.stateT / 0.34);
+        var e3 = 1 - Math.pow(1 - k3, 3);
+        s.center[0] = s.strikeTo[0] + (s.home[0] - s.strikeTo[0]) * e3;
+        s.center[2] = s.strikeTo[2] + (s.home[2] - s.strikeTo[2]) * e3;
+        s.center[1] = s.home[1] + Math.sin((1 - k3) * Math.PI) * 0.3;
+        if (k3 >= 1) {
+          s.state = 'idle';
+          s.center = s.home.slice();
+        }
+        return;
+      }
+      if (s.state === 'flinch') {
+        var f = s.stateT / 0.24;
+        if (f >= 1) {
+          s.state = 'idle';
+          s.dim = base;
+          s.center[2] = s.home[2];
+        } else {
+          s.dim = base + (1 - f) * 1.5;
+          s.center[2] = s.home[2] + (s.side === 0 ? 1 : -1) * 0.16 * (1 - f);
+        }
+        return;
+      }
+      if (s.state === 'death') {
+        var d = Math.min(1, s.stateT / 0.55);
+        s.center[1] = s.home[1] - d * 0.95;
+        s.dim = Math.max(0, base * (1 - d));
+        return;
+      }
+      // idle: gentle re-centering after board shifts.
+      s.center[0] += (s.home[0] - s.center[0]) * 0.12;
+      s.center[1] += (s.home[1] - s.center[1]) * 0.12;
+      s.center[2] += (s.home[2] - s.center[2]) * 0.12;
+      s.dim += (base - s.dim) * 0.2;
     }
 
     /* Public: hero-hit flash particles */
@@ -562,7 +669,8 @@
       }
 
       sprites.forEach(function (s) {
-        drawPedestal(s.center, 1, s.side === 0 ? [0.10, 0.09, 0.13] : [0.13, 0.10, 0.12]);
+        advanceSprite(s, dt);
+        drawPedestal(s.home, 1, s.side === 0 ? [0.10, 0.09, 0.13] : [0.13, 0.10, 0.12]);
       });
       thrones.forEach(function (s) {
         if (s) drawPedestal(s.center, 2.2, [0.12, 0.10, 0.15]);
@@ -645,6 +753,8 @@
       project: project,
       attackChoreo: attackChoreo,
       heroHit: heroHit,
+      spriteFlinch: spriteFlinch,
+      spriteDeath: spriteDeath,
       burst: burst,
       slotPos: slotPos,
       thronePos: thronePos,

@@ -60,6 +60,7 @@ const scripts = [
   'scripts/generate-blog-content.js',
   'scripts/generate-blog-series-restoration.js',
   'scripts/generate-blog-series-resonance.js',
+  'scripts/generate-blog-series-canonical.js',
   'scripts/generate-blog-pages.js',
   'scripts/generate-blog-series-pages.js',
   'scripts/generate-blog-index.js',

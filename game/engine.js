@@ -320,10 +320,32 @@
     return bonus;
   }
 
+  // Pantheon ascendance: three or more kin of one pantheon on the field lift
+  // every one of them (+1 power each, stacking with the champion's bond).
+  function ascendantPantheons(state, playerIdx) {
+    var counts = {};
+    var board = state.players[playerIdx].board;
+    for (var i = 0; i < board.length; i++) {
+      var p = board[i].def && board[i].def.pantheon;
+      if (p) counts[p] = (counts[p] || 0) + 1;
+    }
+    return counts;
+  }
+
+  function isAscendant(state, playerIdx, minion) {
+    var p = minion.def && minion.def.pantheon;
+    if (!p) return false;
+    return ascendantPantheons(state, playerIdx)[p] >= 3;
+  }
+
   function effectivePower(state, playerIdx, minion) {
     var p = minion.power - (minion.tempPowerDown || 0) + auraBonus(state, playerIdx, minion);
     // Pantheon bond: the champion's kin fight harder beside it.
     if (state.players[playerIdx].bondPantheon && minion.def && minion.def.pantheon === state.players[playerIdx].bondPantheon) {
+      p += 1;
+    }
+    // Pantheon ascendance: 3+ of the same pantheon on the field.
+    if (isAscendant(state, playerIdx, minion)) {
       p += 1;
     }
     return Math.max(0, p);
@@ -1256,6 +1278,7 @@
     toBattleCard: toBattleCard,
     autoBuildDeck: autoBuildDeck,
     createGame: createGame,
+    isAscendant: isAscendant,
     mulligan: mulligan,
     useSpecial: useSpecial,
     canSpecialWith: canSpecialWith,

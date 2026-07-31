@@ -98,6 +98,7 @@ for (const id of BUILT_IDS) {
 const SERIES = [
   { id: 'restoration', dir: path.join(ROOT, 'platform', 'blog', 'series', 'restoration'), url: (id) => `/sites/${id}/blog/restoration/`, badge: 'Restoration Files', alias: 'the restoration files' },
   { id: 'resonance', dir: path.join(ROOT, 'platform', 'blog', 'series', 'resonance'), url: (id) => `/sites/${id}/blog/resonance/`, badge: 'Resonance Files', alias: 'the resonance files patterns industries' },
+  { id: 'canonical', dir: path.join(ROOT, 'platform', 'blog', 'series', 'canonical'), url: (id) => `/sites/${id}/blog/canonical/`, badge: 'Canonical Register', alias: 'the canonical register false transliteration' },
 ];
 for (const series of SERIES) {
   for (const id of BUILT_IDS) {
