@@ -140,12 +140,23 @@
             <div class="deck-panel">
               <div class="deck-panel-head">
                 <h3>Collection</h3>
-                <input type="text" class="search-input" id="deck-search" placeholder="Search your cards…" aria-label="Search your cards">
+                <div class="deck-filters">
+                  <input type="text" class="search-input" id="deck-search" placeholder="Search your cards…" aria-label="Search your cards">
+                  <select class="filter-select" id="deck-pantheon" aria-label="Filter by pantheon"><option value="all">All pantheons</option></select>
+                  <select class="filter-select" id="deck-cost" aria-label="Filter by cost">
+                    <option value="all">Any cost</option>
+                    <option value="1-2">Cost 1–2</option>
+                    <option value="3-4">Cost 3–4</option>
+                    <option value="5-6">Cost 5–6</option>
+                    <option value="7+">Cost 7+</option>
+                  </select>
+                </div>
               </div>
               <div class="deck-pool" id="deck-pool-grid"></div>
             </div>
             <div class="deck-panel">
               <h3>Current Deck <span id="deck-size">0 / 30</span></h3>
+              <div class="deck-analysis" id="deck-analysis"></div>
               <div class="deck-slots" id="deck-slots"></div>
               <div class="deck-actions">
                 <button class="btn primary" id="start-battle" disabled>Start Duel</button>

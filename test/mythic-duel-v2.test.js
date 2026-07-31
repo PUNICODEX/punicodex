@@ -520,6 +520,134 @@ test('the kit UI: action bar, pips, targeting, sound', () => {
   assert.ok(js.includes('canSpecialWith'), 'special legality not surfaced');
 });
 
+test('difficulty hooks: band threshold, noSpecials, and AI hero power', () => {
+  const c = SET.cards[0];
+  const mk = (uid, power, health, speed) => ({
+    uid, def: c, name: 'T' + uid, cost: 1, power, maxHealth: health, health, speed,
+    shield: 0, sick: false, attacksUsed: false, specialUsed: false, stunned: 0, confused: 0, tempPowerDown: 0,
+    ability: null, domain: '', rarity: 'common',
+  });
+  // Band threshold: at 6 the band engages at 8+; at 999 it never does.
+  for (const [threshold, expectHeld] of [[6, true], [999, false]]) {
+    const battle = makeBattle();
+    Engine.endTurn(battle);
+    const ai = battle.players[1];
+    battle.players[0].hero.hp = 20; // AI leads by 10: band active at 6, not at 999
+    ai.hero.hp = 30;
+    const removal = SET.cards.find((x) => x.ability && x.ability.effect && /destroy|damage|stun/.test(x.ability.effect.kind || ''));
+    ai.hand = [Engine.toBattleCard(removal)];
+    ai.ink = 10;
+    Engine.runAiTurn(battle, { rubberBand: true, bandThreshold: threshold });
+    const played = ai.board.length > 0;
+    assert.strictEqual(played, !expectHeld, `threshold ${threshold}: removal ${expectHeld ? 'held' : 'played'}`);
+  }
+  // noSpecials: the special phase never fires.
+  const battle2 = makeBattle();
+  Engine.endTurn(battle2);
+  const ability = { id: 'ab', entryId: 'x', name: 'Smite', description: 'Deal 3.', trigger: 'on_play', effect: { kind: 'damage', amount: 3, target: 'enemy-minion' } };
+  const smiter = mk(901, 4, 6, 5);
+  smiter.ability = ability;
+  battle2.players[1].board.push(smiter);
+  battle2.players[0].board.push(mk(801, 2, 8, 3));
+  battle2.players[1].hand = [];
+  battle2.players[1].ink = 6;
+  Engine.runAiTurn(battle2, { noSpecials: true });
+  assert.strictEqual(battle2.players[0].board[0].health, 8, 'noSpecials disables the AI special phase');
+  // heroPowerDef: the AI wields its power when the difficulty grants it.
+  const battle3 = makeBattle();
+  Engine.endTurn(battle3);
+  battle3.players[1].ink = 6;
+  battle3.players[1].hand = [];
+  const hpBefore = battle3.players[0].hero.hp;
+  Engine.runAiTurn(battle3, { heroPowerDef: HeroPowers.forPantheon('greek') });
+  assert.strictEqual(battle3.players[0].hero.hp, hpBefore - 2, 'AI hero power fired for 2');
+});
+
+test('mulligan ×2: two redraws granted, the third refused, the window closes', () => {
+  const battle = makeBattle();
+  const first = Engine.mulligan(battle);
+  assert.strictEqual(first.ok, true);
+  assert.strictEqual(first.remaining, 1);
+  const second = Engine.mulligan(battle);
+  assert.strictEqual(second.ok, true);
+  assert.strictEqual(second.remaining, 0);
+  const third = Engine.mulligan(battle);
+  assert.strictEqual(third.ok, false, 'third mulligan refused');
+  battle.halfTurns = 4;
+  const battle2 = makeBattle();
+  battle2.halfTurns = 4;
+  assert.strictEqual(Engine.mulligan(battle2).ok, false, 'window closed after turn two');
+});
+
+test('pantheon bond: kin of the champion fight at +1 power', () => {
+  const battle = makeBattle();
+  const c = SET.cards[0];
+  battle.players[0].bondPantheon = 'greek';
+  const kin = {
+    uid: 801, def: { ...c, pantheon: 'greek' }, name: 'Kin', cost: 1, power: 4, maxHealth: 5, health: 5, speed: 3,
+    shield: 0, sick: false, attacksUsed: false, specialUsed: false, stunned: 0, confused: 0, tempPowerDown: 0,
+    ability: null, domain: '', rarity: 'common',
+  };
+  const other = { ...kin, uid: 802, name: 'Other', def: { ...c, pantheon: 'norse' } };
+  battle.players[0].board.push(kin, other);
+  assert.strictEqual(Engine.effectivePower(battle, 0, kin), 5, 'bonded minion gains +1');
+  assert.strictEqual(Engine.effectivePower(battle, 0, other), 4, 'unbonded minion unchanged');
+});
+
+test('bespoke abilities: the set names hundreds of moves, flagships wear epithets', () => {
+  const names = new Set();
+  for (const card of SET.cards) if (card.ability) names.add(card.ability.name);
+  assert.ok(names.size >= 400, `only ${names.size} distinct ability names`);
+  // Flagship abilities come from the lore catalog's epithets (per-entry
+  // overrides excepted — they are bespoke by definition).
+  const genSrc = fs.readFileSync(path.join(ROOT, 'scripts', 'generate-cards.js'), 'utf8');
+  const overrideKeys = new Set([...genSrc.matchAll(/^\s{2}([a-z0-9-]+):/gm)].map((m) => m[1]));
+  const LORE = require('../scripts/lore-catalog.json');
+  let checked = 0;
+  for (const card of SET.cards) {
+    if (!card.flagship || card.edition !== 'common' || overrideKeys.has(card.entryId)) continue;
+    const lore = LORE[card.entryId];
+    if (lore && lore.domains && lore.domains.title) {
+      assert.strictEqual(card.ability.name, lore.domains.title, `${card.entryId} should wear its epithet`);
+      checked++;
+      if (checked >= 40) break;
+    }
+  }
+  assert.ok(checked >= 40, 'epithet coverage check ran on too few flagships');
+});
+
+test('archetype sound bank: every strike has its own register and is wired', () => {
+  const Sound = require('../game/fx/sound.js');
+  const archetypes = ['bolt', 'blade', 'flood', 'flame', 'shadow', 'bloom', 'storm', 'decay', 'radiance', 'song', 'quake', 'gale', 'veil', 'warhorn'];
+  for (const a of archetypes) {
+    assert.ok(Sound.RECIPES['atk_' + a], `missing atk_${a} recipe`);
+  }
+  const js = fs.readFileSync(path.join(ROOT, 'game/game.js'), 'utf8');
+  assert.ok(js.includes("sfx('atk_' + archetype)"), 'archetype sound not wired into withFx');
+});
+
+test('enterprise UI contracts: difficulty badge, deckhand, bond frame', () => {
+  const html = fs.readFileSync(path.join(ROOT, 'game/index.html'), 'utf8');
+  const js = fs.readFileSync(path.join(ROOT, 'game/game.js'), 'utf8');
+  const css = fs.readFileSync(path.join(ROOT, 'game/game.css'), 'utf8');
+  // Difficulty manager + badge.
+  assert.ok(js.includes('DIFFICULTY'), 'difficulty table missing');
+  assert.ok(js.includes('recordBattleOutcome'), 'outcome tracker missing');
+  assert.ok(js.includes('aiTurnOpts'), 'difficulty opts not unified');
+  assert.ok(js.includes('oracle-tier'), 'difficulty badge missing');
+  assert.ok(js.includes('heroPowerDef'), 'AI hero power path missing');
+  // Deckhand.
+  assert.ok(html.includes('deck-pantheon'), 'pantheon filter missing');
+  assert.ok(html.includes('deck-analysis'), 'analysis panel missing');
+  assert.ok(js.includes('pool-mini'), 'pool mini-cards missing');
+  assert.ok(js.includes('curve-hist'), 'curve histogram missing');
+  assert.ok(css.includes('.curve-bar'), 'histogram styles missing');
+  // Bond.
+  assert.ok(js.includes('bonded'), 'bond frame missing');
+  assert.ok(css.includes('.minion.bonded'), 'bond styles missing');
+  assert.ok(js.includes('Pantheon Bond'), 'grimoire bond row missing');
+});
+
 test('regression: the battle deck is never double-scaled', () => {
   // The 1-health bug: startBattle re-ran toBattleCard on already-scaled
   // display cards, flooring every player minion to 1/1. Guard the assembly.

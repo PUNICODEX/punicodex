@@ -152,6 +152,66 @@
       chime([392, 523.25, 659.25], t, 0.05, 0.22, 0.11, 'triangle');
       noise(t + 0.12, 0.16, 0.1, 'bandpass', 1400, 500);
     },
+
+    /* ── Archetype attack voices: every god strikes in its own register ──── */
+    atk_bolt: function (t) {
+      noise(t, 0.05, 0.2, 'highpass', 3200);
+      tone('sawtooth', 1200, t, 0.16, 0.14, 180);
+      tone('sine', 90, t + 0.05, 0.2, 0.18, 55);
+    },
+    atk_blade: function (t) {
+      noise(t, 0.06, 0.16, 'bandpass', 2600);
+      tone('triangle', 1900, t + 0.02, 0.14, 0.08);
+    },
+    atk_flood: function (t) {
+      noise(t, 0.3, 0.16, 'lowpass', 1200, 300);
+      tone('sine', 130, t + 0.08, 0.24, 0.12, 70);
+    },
+    atk_flame: function (t) {
+      noise(t, 0.22, 0.16, 'bandpass', 600, 1800);
+      noise(t + 0.1, 0.08, 0.1, 'highpass', 2800);
+    },
+    atk_shadow: function (t) {
+      tone('sine', 110, t, 0.34, 0.16, 70);
+      noise(t, 0.3, 0.06, 'lowpass', 400);
+    },
+    atk_bloom: function (t) {
+      chime([523.25, 587.33, 783.99], t, 0.06, 0.16, 0.07, 'triangle');
+      tone('sine', 2093, t + 0.16, 0.07, 0.05, 1800);
+    },
+    atk_storm: function (t) {
+      noise(t, 0.26, 0.13, 'bandpass', 500, 1600);
+      tone('sine', 72, t + 0.14, 0.3, 0.2, 46);
+    },
+    atk_decay: function (t) {
+      tone('sawtooth', 80, t, 0.4, 0.1, 60);
+      tone('sawtooth', 84, t, 0.4, 0.1, 62);
+      noise(t, 0.3, 0.06, 'lowpass', 300);
+    },
+    atk_radiance: function (t) {
+      chime([1046.5, 1318.5, 1568, 2093], t, 0.05, 0.2, 0.08, 'sine');
+      noise(t, 0.25, 0.04, 'highpass', 6400);
+    },
+    atk_song: function (t) {
+      chime([659.25, 783.99, 987.77], t, 0.09, 0.24, 0.1, 'sine');
+    },
+    atk_quake: function (t) {
+      tone('sine', 50, t, 0.42, 0.26, 34);
+      noise(t, 0.3, 0.12, 'lowpass', 200);
+    },
+    atk_gale: function (t) {
+      noise(t, 0.2, 0.12, 'bandpass', 900, 2600);
+      noise(t + 0.18, 0.14, 0.08, 'bandpass', 2200, 800);
+    },
+    atk_veil: function (t) {
+      tone('sine', 440, t, 0.3, 0.1, 880);
+      chime([1174.7, 1568], t + 0.1, 0.09, 0.16, 0.05, 'sine');
+    },
+    atk_warhorn: function (t) {
+      tone('sawtooth', 196, t, 0.34, 0.14);
+      tone('sawtooth', 294, t, 0.34, 0.1);
+      noise(t, 0.1, 0.06, 'lowpass', 900);
+    },
   };
 
   return {

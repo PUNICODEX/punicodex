@@ -276,14 +276,17 @@
     log(state, -1, 'start', 'The archive smooths an opening hand.');
   }
 
-  // mulligan(state) — the first-turn option: set your hand back into the
-  // archive, shuffle, draw the same number (smoothed again). Player 0 only,
-  // only before their first turn ends.
+  // mulligan(state) — up to two opening redraws, usable across your first
+  // two turns. Set the hand back, shuffle, draw the same number (smoothed).
   function mulligan(state) {
-    if (state.halfTurns !== 0 || state.activePlayer !== 0 || isOver(state)) {
+    if (state.halfTurns > 2 || state.activePlayer !== 0 || isOver(state)) {
       return { ok: false, error: 'The mulligan window has closed.' };
     }
     var player = state.players[0];
+    player.mulligansUsed = player.mulligansUsed || 0;
+    if (player.mulligansUsed >= 2) {
+      return { ok: false, error: 'No mulligans remain — the archive has answered twice already.' };
+    }
     var n = player.hand.length;
     for (var i = 0; i < n; i++) player.deck.push(player.hand[i]);
     player.hand = [];
@@ -292,8 +295,9 @@
     });
     drawCards(state, 0, n);
     smoothOpening(state, 0);
+    player.mulligansUsed++;
     log(state, 0, 'mulligan', 'You set your hand back into the archive and draw anew.');
-    return { ok: true };
+    return { ok: true, remaining: 2 - player.mulligansUsed };
   }
 
   /* ── Core queries ────────────────────────────────────────────────────── */
@@ -318,6 +322,10 @@
 
   function effectivePower(state, playerIdx, minion) {
     var p = minion.power - (minion.tempPowerDown || 0) + auraBonus(state, playerIdx, minion);
+    // Pantheon bond: the champion's kin fight harder beside it.
+    if (state.players[playerIdx].bondPantheon && minion.def && minion.def.pantheon === state.players[playerIdx].bondPantheon) {
+      p += 1;
+    }
     return Math.max(0, p);
   }
 
@@ -1108,11 +1116,12 @@
     var holdBack = mercyRounds > 0 && state.halfTurns < mercyRounds * 2;
     var playerIdx = state.activePlayer;
 
-    // The rubber band: an Oracle 12+ HP ahead stops spending removal on the
-    // player's board — a trailing commander always has a window to come back
-    // through. Trades and pressure continue; the Oracle never throws a game.
+    // The rubber band: an Oracle far enough ahead (bandThreshold, default 12)
+    // stops spending removal on the player's board — a trailing commander
+    // always has a window to come back through.
     var hpDiff = state.players[playerIdx].hero.hp - state.players[1 - playerIdx].hero.hp;
-    var crueltyOff = holdBack || (opts && opts.rubberBand && hpDiff >= 12);
+    var bandThreshold = (opts && opts.bandThreshold) || 12;
+    var crueltyOff = holdBack || (opts && opts.rubberBand && hpDiff >= bandThreshold);
 
     // Play phase (bounded by hand size).
     for (var guard = 0; guard < RULES.HAND_LIMIT + 2; guard++) {
@@ -1135,8 +1144,9 @@
     }
 
     // Special phase: spend spare ink on aggressive specials, biggest threat
-    // first. Mercy windows shelter the board from this too.
-    if (!crueltyOff) {
+    // first. Mercy windows shelter the board from this too, and lower
+    // difficulties disable it outright (opts.noSpecials).
+    if (!crueltyOff && !(opts && opts.noSpecials)) {
       for (var sGuard = 0; sGuard < RULES.BOARD_LIMIT + 2; sGuard++) {
         var sp = state.players[playerIdx];
         if (sp.ink < RULES.SPECIAL_COST) break;
@@ -1156,6 +1166,11 @@
         if (!specialUsed) break;
         if (isOver(state)) return state;
       }
+    }
+
+    // Hero power: only when the difficulty grants it (opts.heroPowerDef).
+    if (opts && opts.heroPowerDef && !isOver(state)) {
+      useHeroPower(state, opts.heroPowerDef);
     }
 
     // Attack phase.

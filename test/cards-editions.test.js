@@ -96,9 +96,11 @@ test('starter grant: a curated deck with a real curve and a holo champion', () =
   assert.ok(js.includes('pickHomePantheon'), 'home pantheon picker missing');
   assert.ok(js.includes('save.starterHome = home'), 'starter home persisted');
   assert.ok(js.includes('physicalCards'), 'autofill backstop present');
-  // The Oracle mirrors the build and awakens with the player's record.
-  assert.ok(js.includes('aiMercyRounds = wins < 2 ? 2 : wins < 5 ? 1 : 0'), 'adaptive mercy ladder missing');
-  assert.ok(js.includes('runAiTurn(battle, { holdBackRounds: aiMercyRounds, rubberBand: true })'), 'AI mercy + rubber band not wired');
+  // The Oracle mirrors the build and awakens with the player's record
+  // (adaptive difficulty ladder, loss-aware).
+  assert.ok(js.includes('DIFFICULTY'), 'adaptive difficulty table missing');
+  assert.ok(js.includes('recordBattleOutcome'), 'outcome tracker missing');
+  assert.ok(js.includes('runAiTurn(battle, aiTurnOpts())'), 'difficulty opts not wired');
 });
 
 test('stale ids migrate: standard→common, original-script→secret', () => {

@@ -65,6 +65,8 @@
     tier: 'all',
     rarity: 'all',
     deckSearch: '',
+    deckPantheon: 'all',
+    deckCost: 'all',
     pendingPlay: null, // { handIndex, targetSide }
     pendingSpecial: null, // { boardIndex, targetSide, needsTarget }
     selectedAttacker: null, // board index
@@ -842,13 +844,74 @@
     return n;
   }
 
+  function renderDeckAnalysis() {
+    var box = $('deck-analysis');
+    if (!box) return;
+    box.replaceChildren();
+    if (save.deck.length === 0) return;
+    var buckets = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+    var pantheonCount = {};
+    var costSum = 0;
+    var n = 0;
+    save.deck.forEach(function (id) {
+      var c = byId[id];
+      if (!c) return;
+      buckets[Math.min(8, c.cost)]++;
+      pantheonCount[c.pantheon] = (pantheonCount[c.pantheon] || 0) + 1;
+      costSum += c.cost;
+      n++;
+    });
+    var max = Math.max.apply(null, buckets.concat([1]));
+    var hist = el('div', 'curve-hist');
+    for (var cost = 1; cost <= 8; cost++) {
+      var col = el('div', 'curve-col');
+      var bar = el('div', 'curve-bar');
+      bar.style.height = Math.max(4, Math.round((buckets[cost] / max) * 100)) + '%';
+      bar.title = 'Cost ' + (cost === 8 ? '8+' : cost) + ': ' + buckets[cost];
+      col.appendChild(bar);
+      col.appendChild(el('span', 'curve-num', String(buckets[cost])));
+      col.appendChild(el('span', 'curve-label', cost === 8 ? '8+' : String(cost)));
+      hist.appendChild(col);
+    }
+    box.appendChild(hist);
+    var split = Object.keys(pantheonCount)
+      .sort(function (a, b) {
+        return pantheonCount[b] - pantheonCount[a];
+      })
+      .slice(0, 3)
+      .map(function (p) {
+        return prettyPantheon(p) + ' ' + pantheonCount[p];
+      })
+      .join(' · ');
+    box.appendChild(el('div', 'deck-split', split + (n ? ' · avg cost ' + (costSum / n).toFixed(1) : '')));
+  }
+
   function renderDeckEditor() {
+    // Populate the pantheon filter once.
+    var pantheonSel = $('deck-pantheon');
+    if (pantheonSel && pantheonSel.options.length === 1) {
+      pantheons.forEach(function (p) {
+        var opt = document.createElement('option');
+        opt.value = p;
+        opt.textContent = prettyPantheon(p);
+        pantheonSel.appendChild(opt);
+      });
+    }
+    var query = ui.deckSearch.toLowerCase();
     var pool = $('deck-pool-grid');
     pool.replaceChildren();
-    var query = ui.deckSearch.toLowerCase();
     cards
       .filter(function (c) {
         if (!save.collection[c.id]) return false;
+        if (ui.deckPantheon !== 'all' && c.pantheon !== ui.deckPantheon) return false;
+        if (ui.deckCost !== 'all') {
+          if (ui.deckCost === '7+') {
+            if (c.cost < 7) return false;
+          } else {
+            var parts = ui.deckCost.split('-').map(Number);
+            if (c.cost < parts[0] || c.cost > parts[1]) return false;
+          }
+        }
         if (query && c.name.toLowerCase().indexOf(query) === -1 && (c.ascii || '').indexOf(query) === -1) return false;
         return true;
       })
@@ -859,18 +922,33 @@
         var inDeck = deckCount(c.id);
         var cap = Math.min(save.collection[c.id], Engine.RULES.MAX_COPIES);
         var maxed = inDeck >= cap || save.deck.length >= Engine.RULES.DECK_SIZE;
-        var row = el('div', 'pool-row' + (maxed ? ' maxed' : ''));
-        row.appendChild(el('span', 'pool-cost', String(c.cost)));
-        row.appendChild(el('span', 'pool-name', c.name));
-        row.appendChild(el('span', 'pool-meta', c.rarity + ' · ' + inDeck + '/' + cap));
+        var mini = el('div', 'pool-mini edition-' + (c.edition || 'archive') + (maxed ? ' maxed' : ''));
+        var art = el('div', 'pool-mini-art');
+        if (c.art && c.art.mascot) {
+          var img = document.createElement('img');
+          img.src = c.art.mascot;
+          img.alt = c.name;
+          img.loading = 'lazy';
+          art.appendChild(img);
+        } else {
+          art.appendChild(el('span', null, c.categoryIcon || '✦'));
+        }
+        mini.appendChild(art);
+        mini.appendChild(el('span', 'pool-mini-cost', String(c.cost)));
+        mini.appendChild(el('div', 'pool-mini-name', c.name));
+        mini.appendChild(el('div', 'pool-mini-stats', c.power + ' / ' + c.health + ' · ≫' + c.speed));
+        mini.appendChild(el('div', 'pool-mini-ability', c.ability ? c.ability.name : '—'));
+        mini.appendChild(el('div', 'pool-mini-count', inDeck + '/' + cap));
         if (!maxed) {
-          row.addEventListener('click', function () {
+          mini.addEventListener('click', function () {
             save.deck.push(c.id);
             persist();
             renderDeckEditor();
           });
+        } else {
+          mini.title = inDeck >= cap ? 'All copies seated' : 'Deck is full';
         }
-        pool.appendChild(row);
+        pool.appendChild(mini);
       });
 
     var slots = $('deck-slots');
@@ -894,8 +972,9 @@
           var row = el('div', 'deck-slot');
           row.appendChild(el('span', 'slot-cost', String(c.cost)));
           row.appendChild(el('span', 'slot-name', c.name));
+          row.appendChild(el('span', 'slot-stats', c.power + '/' + c.health));
           row.appendChild(el('span', 'slot-count', '×' + grouped[c.id]));
-          row.title = 'Click to remove one copy';
+          row.title = (c.ability ? c.ability.name + ' — ' + c.ability.description + ' · ' : '') + 'Click to remove one copy';
           row.addEventListener('click', function () {
             var idx = save.deck.indexOf(c.id);
             if (idx !== -1) save.deck.splice(idx, 1);
@@ -906,6 +985,7 @@
         });
     }
 
+    renderDeckAnalysis();
     $('deck-size').textContent = save.deck.length + ' / ' + Engine.RULES.DECK_SIZE;
     // Start is allowed with a full deck, or with a collection of 25+ physical
     // cards — the Archive completes any shortfall (see startBattle).
@@ -939,6 +1019,52 @@
   var fx = null; // Sequences instance, created with the battlefield
   var heroes = [null, null]; // { card, power } per side
   var aiMercyRounds = 0; // the Oracle's shelter, set from the player's record
+  var aiBandThreshold = 12; // rubber-band engagement point, difficulty-scaled
+  var aiNoSpecials = false; // lower difficulties: the AI holds its specials
+  var aiHeroPowerDef = null; // higher difficulties: the AI wields its power
+
+  /* ── Adaptive difficulty: the Oracle reads your record ─────────────────── */
+  var DIFFICULTY = [
+    null,
+    { label: 'The Oracle stirs', mercy: 3, band: 6, specials: false, heroPower: false, curve: 'oracle' },
+    { label: 'The Oracle watches', mercy: 2, band: 8, specials: false, heroPower: false, curve: 'oracle' },
+    { label: 'The Oracle answers', mercy: 1, band: 12, specials: true, heroPower: false, curve: 'oracle' },
+    { label: 'The Oracle rises', mercy: 0, band: 16, specials: true, heroPower: true, curve: 'starter' },
+    { label: 'The Oracle reigns', mercy: 0, band: 24, specials: true, heroPower: true, curve: 'starter' },
+  ];
+
+  function difficultyLevel() {
+    return (save.difficulty && save.difficulty.level) || 2;
+  }
+
+  function difficultyDef() {
+    return DIFFICULTY[difficultyLevel()];
+  }
+
+  function recordBattleOutcome(outcome) {
+    if (!save.difficulty) save.difficulty = { level: 2, streak: 0 };
+    var d = save.difficulty;
+    if (outcome === 'win') d.streak = d.streak > 0 ? d.streak + 1 : 1;
+    else if (outcome === 'loss') d.streak = d.streak < 0 ? d.streak - 1 : -1;
+    else d.streak = 0;
+    if (d.streak >= 2 && d.level < 5) {
+      d.level++;
+      d.streak = 0;
+    } else if (d.streak <= -2 && d.level > 1) {
+      d.level--;
+      d.streak = 0;
+    }
+  }
+
+  function aiTurnOpts() {
+    return {
+      holdBackRounds: aiMercyRounds,
+      rubberBand: true,
+      bandThreshold: aiBandThreshold,
+      noSpecials: aiNoSpecials,
+      heroPowerDef: aiHeroPowerDef,
+    };
+  }
   var fxCanvas = null;
   var seenMinions = {}; // uids already on stage — new arrivals get the summon ceremony
   var hitVignette = null;
@@ -1005,6 +1131,9 @@
     if (side === 1) {
       meta.appendChild(el('span', 'js-deck-count', 'Deck: 30'));
       meta.appendChild(el('span', 'js-hand-count', 'Hand: 4'));
+      var tier = el('span', 'oracle-tier js-oracle-tier', difficultyDef().label);
+      tier.title = 'The Oracle reads your record — win twice in a row and it rises; lose twice and it relents.';
+      meta.appendChild(tier);
       panel.setAttribute('role', 'button');
       panel.setAttribute('aria-label', 'Enemy champion — select one of your ready minions, then tap here to strike');
       panel.addEventListener('click', onEnemyHeroClick);
@@ -1134,9 +1263,10 @@
     var result = action();
     if (targetPos) {
       var def = (attackerCard && attackerCard.def) || attackerCard || {};
+      var archetype = Sequences.archetypeFor(attackerCard || {});
       fx.attack({
         entryId: def.entryId || null,
-        archetype: Sequences.archetypeFor(attackerCard || {}),
+        archetype: archetype,
         super: def.edition === 'full-art' || def.edition === 'secret',
         from: fromPos,
         to: targetPos,
@@ -1147,6 +1277,9 @@
           fxDiff(before);
         },
       });
+      // Every god strikes in its own register.
+      if (Sound && Sound.RECIPES && Sound.RECIPES['atk_' + archetype]) sfx('atk_' + archetype);
+      else sfx('attack');
       // Fallback if the sequence is reduced-motion: resolve diff immediately.
       fxDiff(before);
     } else {
@@ -1223,10 +1356,11 @@
     var playerHome = (heroCardFor(playerDeck) && heroCardFor(playerDeck).pantheon) || save.starterHome || null;
     var aiRand = Engine.mulberry32(seed ^ 0x5bd1e995);
     var aiHome = pickHomePantheon(aiRand, playerHome);
-    var wins = save.stats && save.stats.wins ? save.stats.wins : 0;
-    aiMercyRounds = wins < 2 ? 2 : wins < 5 ? 1 : 0;
-    var aiCurve = wins < 3 ? ORACLE_CURVE : STARTER_CURVE;
-    var aiDeck = buildCuratedDeck(aiHome, aiCurve, aiRand);
+    var dd = difficultyDef();
+    aiMercyRounds = dd.mercy;
+    aiBandThreshold = dd.band;
+    aiNoSpecials = !dd.specials;
+    var aiDeck = buildCuratedDeck(aiHome, dd.curve === 'starter' ? STARTER_CURVE : ORACLE_CURVE, aiRand);
     battle = Engine.createGame({ playerDeck: playerDeck, aiDeck: aiDeck, seed: seed });
     ui.pendingPlay = null;
     ui.pendingSpecial = null;
@@ -1241,6 +1375,10 @@
       { card: myChampion, power: myChampion ? HeroPowers.forPantheon(myChampion.pantheon) : null },
       { card: aiChampion, power: aiChampion ? HeroPowers.forPantheon(aiChampion.pantheon) : null },
     ];
+    aiHeroPowerDef = dd.heroPower ? heroes[1].power : null;
+    // Pantheon bonds: the champions' kin fight harder beside them.
+    battle.players[0].bondPantheon = myChampion ? myChampion.pantheon : null;
+    battle.players[1].bondPantheon = aiChampion ? aiChampion.pantheon : null;
     $('deck-select').hidden = true;
     $('battlefield-wrap').hidden = false;
     $('reward-overlay').hidden = true;
@@ -1318,6 +1456,9 @@
       });
 
     if (m.sick) node.classList.add('sick');
+    if (m.def && battle.players[playerIdx].bondPantheon && m.def.pantheon === battle.players[playerIdx].bondPantheon) {
+      node.classList.add('bonded');
+    }
     if (!seenMinions[m.uid]) {
       seenMinions[m.uid] = true;
       node.classList.add('summon');
@@ -1637,6 +1778,8 @@
         ['❓ Confused', 'Attacks a random target instead of the chosen one.'],
         ['Abilities', 'Every card carries a move, printed on it: some trigger when played, some when attacking, some when destroyed, some are always on. Full-Art and Secret printings upgrade the move.'],
         ['Special Move', 'A recovered minion can unleash its ability as a special: 2✦, once per turn. Arm the minion (tap it) and choose ✦ in the action bar — the gold pip marks specials that are ready.'],
+        ['Pantheon Bond', 'Your champion’s kin fight harder beside it: minions sharing the champion’s pantheon gain +1 power, marked by the golden bond frame.'],
+        ['Mulligan', 'Twice per duel, across your first two turns, you may set your hand back into the archive and draw anew.'],
         ['Hero Power', 'Your champion’s pantheon grants a power: 2✦, once per turn. Find it under your champion’s portrait.'],
         ['The object of the duel', 'Reduce the enemy champion to 0. Arm one of your ready minions (tap it), then strike: an enemy minion, or their champion.'],
         ['Inspecting', 'Tap any enemy minion with nothing armed to read its full scholarly record and move text.'],
@@ -1699,7 +1842,7 @@
         setTimeout(function () {
           var before2 = fxSnapshot();
           var mark2 = battle.log.length;
-          Engine.runAiTurn(battle, { holdBackRounds: aiMercyRounds, rubberBand: true });
+          Engine.runAiTurn(battle, aiTurnOpts());
           var entries2 = battle.log.slice(mark2).filter(function (e) {
             return e.player === 1;
           });
@@ -1729,7 +1872,7 @@
     setTimeout(function () {
       var before = fxSnapshot();
       var logMark = battle.log.length;
-      Engine.runAiTurn(battle, { holdBackRounds: aiMercyRounds, rubberBand: true });
+      Engine.runAiTurn(battle, aiTurnOpts());
       ui.aiThinking = false;
       var newEntries = battle.log.slice(logMark).filter(function (e) {
         return e.player === 1;
@@ -1791,6 +1934,7 @@
     var outcome = battle.winner === 'draw' ? 'draw' : battle.winner === 0 ? 'win' : 'loss';
     var reward = REWARDS[outcome];
     sfx(outcome === 'win' ? 'victory' : outcome === 'loss' ? 'defeat' : 'banner');
+    recordBattleOutcome(outcome);
     save.ink += reward;
     if (outcome === 'win') save.stats.wins++;
     else if (outcome === 'loss') save.stats.losses++;
@@ -1852,6 +1996,8 @@
         if (deckCount) deckCount.textContent = 'Deck: ' + battle.players[side].deck.length;
         var handCount = panel.querySelector('.js-hand-count');
         if (handCount) handCount.textContent = 'Hand: ' + battle.players[side].hand.length;
+        var oracleTier = panel.querySelector('.js-oracle-tier');
+        if (oracleTier) oracleTier.textContent = difficultyDef().label;
         if (side === 1) {
           panel.classList.toggle('targetable', ui.selectedAttacker != null && !battle.winner);
           var oldChip = panel.querySelector('.preview-chip');
@@ -1935,7 +2081,16 @@
     });
 
     $('end-turn').disabled = battle.winner !== null || battle.activePlayer !== 0 || ui.aiThinking;
-    $('mulligan').hidden = !(battle.winner === null && battle.halfTurns === 0 && battle.activePlayer === 0 && !ui.aiThinking);
+    var mulligansLeft = 2 - (battle.players[0].mulligansUsed || 0);
+    var mulliganBtn = $('mulligan');
+    mulliganBtn.hidden = !(
+      battle.winner === null &&
+      battle.halfTurns <= 2 &&
+      battle.activePlayer === 0 &&
+      mulligansLeft > 0 &&
+      !ui.aiThinking
+    );
+    mulliganBtn.textContent = 'Mulligan · ' + mulligansLeft + ' left';
     renderActionBar();
 
     var log = $('game-log');
@@ -1992,6 +2147,14 @@
 
     $('deck-search').addEventListener('input', function (ev) {
       ui.deckSearch = ev.target.value.trim();
+      renderDeckEditor();
+    });
+    $('deck-pantheon').addEventListener('change', function (ev) {
+      ui.deckPantheon = ev.target.value;
+      renderDeckEditor();
+    });
+    $('deck-cost').addEventListener('change', function (ev) {
+      ui.deckCost = ev.target.value;
       renderDeckEditor();
     });
     $('auto-build').addEventListener('click', autoBuild);

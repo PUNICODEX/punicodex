@@ -42,6 +42,7 @@ const { getOriginalScript, hasOriginalScript } = require('../type/js/original-sc
 
 const ARCHETYPES_MODULE = require('../js/archetypes-v2.js');
 const ARCHETYPES = ARCHETYPES_MODULE.ARCHETYPES || ARCHETYPES_MODULE.archetypes || ARCHETYPES_MODULE;
+const ARCHETYPE_IDS = new Set(ARCHETYPES.filter((a) => a.built !== false).map((a) => a.id));
 const LORE_CATALOG = require('../scripts/lore-catalog.json');
 
 const root = path.join(__dirname, '..');
@@ -559,25 +560,138 @@ const CATEGORY_ABILITIES = {
   },
 };
 
+// ── The bespoke ability engine ──────────────────────────────────────────────
+// Every flagship names its ability after its epithet in the lore catalog
+// (271 unique names by construction); archives compose class + pantheon
+// suffix names. Effects come from a fine-grained domain grammar with small
+// deterministic value variation per entry — no two cards read alike.
+const PANTHEON_SUFFIX = {
+  greek: 'of Olympos', norse: 'of the Nine Realms', egyptian: 'of the Two Lands',
+  mesopotamian: 'of the Great Above', sanskrit: 'of the Devas', japanese: 'of Takamagahara',
+  chinese: 'of the Celestial Court', taoist: 'of the Tao', yoruba: 'of the Orisha',
+  polynesian: 'of the Great Ocean', zoroastrian: 'of the Amesha Spenta', buddhist: 'of the Pure Land',
+  roman: 'of the Capitoline', canaanite: 'of Zaphon', abrahamic: 'of the Host',
+  slavic: 'of the Three Worlds', celtic: 'of the Otherworld', baltic: 'of the Groves',
+  phoenician: 'of the Harbors', nahuatl: 'of the Fifth Sun',
+};
+
+// [regex, complement, trigger, makeEffect(seed) → effect, describe(effect)]
+const ABILITY_GRAMMAR = [
+  [/thunder|lightning|storm|sky wind|tempest/, 'Thunderclap', 'on_play', (s) => ({ kind: 'damage', target: 'enemy-minion', amount: 3 + (s % 2) }), (e) => `Deal ${e.amount} damage to an enemy card.`],
+  [/sun|light|dawn|day\b/, 'Dawnlance', 'on_play', (s) => (s % 2 ? { kind: 'damage', target: 'enemy-minion', amount: 3 } : { kind: 'slow-enemy', target: 'enemy-minion' }), (e) => (e.kind === 'damage' ? `Deal ${e.amount} damage to an enemy card.` : 'Halve an enemy card’s speed.')],
+  [/sea|ocean|water|river|flood|rain|wave|tide/, 'Undertow', 'on_play', () => ({ kind: 'damage', target: 'enemy-board', amount: 2 }), () => 'Deal 2 damage to all enemy cards.'],
+  [/healing|medicine|health|physician|remedy/, 'Mending Hand', 'on_play', (s) => (s % 2 ? { kind: 'heal-hero', amount: 4 } : { kind: 'heal-allies', amount: 2 }), (e) => (e.kind === 'heal-hero' ? 'Restore 4 health to your hero.' : 'Restore 2 health to your allies.')],
+  [/death|underworld|afterlife|grave/, 'The Toll', 'on_play', (s) => (s % 2 ? { kind: 'destroy-weakest-enemy' } : { kind: 'drain-hero', amount: 3 }), (e) => (e.kind === 'drain-hero' ? 'Drain 3 health from the enemy hero.' : 'Destroy the weakest enemy card.')],
+  [/wisdom|knowledge|writing|scribe|magic|sorcery|lore|runes/, 'Deep Study', 'on_play', () => ({ kind: 'draw', count: 2 }), () => 'Draw 2 cards.'],
+  [/war|battle|courage|valor|army|warfare/, 'War Cry', 'on_play', () => ({ kind: 'buff-allies', power: 1, health: 0 }), () => 'Your allies gain +1 power.'],
+  [/victory|triumph|contest|glory/, 'Crown of Victory', 'on_play', () => ({ kind: 'buff-allies', power: 1, health: 1 }), () => 'Your allies gain +1/+1.'],
+  [/love|beauty|desire|passion|fertility/, 'Irresistible Charm', 'on_play', () => ({ kind: 'stun', target: 'enemy-minion' }), () => 'Stun an enemy card.'],
+  [/fire|flame|forge|ember|volcanic/, 'Brand', 'on_play', (s) => (s % 2 ? { kind: 'damage', target: 'enemy-minion', amount: 3 } : { kind: 'ink-gen', amount: 1 }), (e) => (e.kind === 'damage' ? 'Deal 3 damage to an enemy card.' : 'Gain +1 ink each turn while in play.')],
+  [/earth|mountain|harvest|nature|forest|growth|spring|fertility of the soil/, 'Stonecradle', 'on_play', () => ({ kind: 'shield-allies', amount: 2 }), () => 'Your allies gain a 2 shield.'],
+  [/moon|night|dream|sleep|darkness|shadow/, 'Nightveil', 'on_play', (s) => (s % 2 ? { kind: 'confuse', target: 'enemy-minion' } : { kind: 'shield-ally', amount: 3 }), (e) => (e.kind === 'confuse' ? 'Confuse an enemy card.' : 'An ally gains a 3 shield.')],
+  [/hunt|wild|beast|animals|forest beasts/, "Hunter's Mark", 'on_play', () => ({ kind: 'damage', target: 'enemy-minion', amount: 4 }), () => 'Deal 4 damage to an enemy card.'],
+  [/justice|law|order|judgment|truth|oath/, 'Edict', 'on_play', (s) => (s % 2 ? { kind: 'stun', target: 'enemy-minion' } : { kind: 'destroy-weakest-enemy' }), (e) => (e.kind === 'stun' ? 'Stun an enemy card.' : 'Destroy the weakest enemy card.')],
+  [/messenger|travel|roads|thieves|trade|commerce|wealth|gold|mercy/, 'Free Passage', 'on_play', () => ({ kind: 'copy-top-card' }), () => 'Copy the top card of your deck into your hand.'],
+  [/trick|chaos|lies|mischief|deception/, 'The Kind Lie', 'on_play', () => ({ kind: 'confuse', target: 'enemy-minion' }), () => 'Confuse an enemy card.'],
+  [/time|fate|destiny|prophecy|oracle|foresight|stars of fate/, 'Foretelling', 'on_play', (s) => (s % 2 ? { kind: 'draw', count: 2 } : { kind: 'slow-all-enemies' }), (e) => (e.kind === 'draw' ? 'Draw 2 cards.' : 'Halve the speed of all enemy cards.')],
+  [/king|queen|royal|command|kingship|rule|sovereign|throne/, 'Royal Mandate', 'on_play', () => ({ kind: 'buff-allies', power: 1, health: 0 }), () => 'Your allies gain +1 power.'],
+  [/craft|smith|artisan|builder|making|invention/, 'Masterwork', 'on_play', (s) => (s % 2 ? { kind: 'shield-allies', amount: 2 } : { kind: 'shield-ally', amount: 4 }), (e) => (e.kind === 'shield-allies' ? 'Your allies gain a 2 shield.' : 'An ally gains a 4 shield.')],
+  [/music|song|poetry|art|dance|lyre/, 'Refrain', 'on_play', (s) => (s % 2 ? { kind: 'heal-allies', amount: 2 } : { kind: 'draw', count: 1 }), (e) => (e.kind === 'heal-allies' ? 'Restore 2 health to your allies.' : 'Draw a card.')],
+  [/serpent|dragon|monster|snake|hydra/, 'Coiling Strike', 'on_play', () => ({ kind: 'damage', target: 'enemy-minion', amount: 4 }), () => 'Deal 4 damage to an enemy card.'],
+  [/disease|plague|rot|decay|famine/, 'Blight', 'on_play', () => ({ kind: 'debuff-enemy', power: 3 }), () => 'Weaken an enemy card by 3 until end of turn.'],
+  [/void|abyss|primordial|nothing|unmaking/, 'Unmaking', 'on_play', () => ({ kind: 'destroy-weakest-enemy' }), () => 'Destroy the weakest enemy card.'],
+  [/creation|cosmos|cosmogony|genesis|beginning/, 'Genesis', 'on_play', () => ({ kind: 'copy-top-card' }), () => 'Copy the top card of your deck into your hand.'],
+  [/protect|guardian|shield|defense|defence|aegis/, 'Aegis', 'passive', () => ({ kind: 'damage-reduction', amount: 2 }), () => 'Reduce all incoming damage by 2.'],
+  [/doom|inevitable|end of days/, 'Inevitable', 'on_death', () => ({ kind: 'damage', target: 'enemy-hero', amount: 5 }), () => 'On death, deal 5 damage to the enemy hero.'],
+  [/hero|quest|journey|voyage|adventure/, 'The Long Road', 'on_play', (s) => (s % 2 ? { kind: 'draw', count: 1 } : { kind: 'copy-top-card' }), (e) => (e.kind === 'draw' ? 'Draw a card.' : 'Copy the top card of your deck into your hand.')],
+  [/star|celestial|heaven|sky\b/, 'Celestial Cycle', 'passive', () => ({ kind: 'heal-hero-turn', amount: 3 }), () => 'Restore 3 health to your hero each turn while in play.'],
+  [/crossroads|mystery|veil|secret|hidden|mist/, 'Old Presence', 'passive', () => ({ kind: 'aura-allies', power: 1 }), () => 'Your allies gain +1 power while this is in play.'],
+];
+
 function deriveAbility(entry, category) {
   const override = ABILITY_OVERRIDES[entry.id];
   if (override) return { id: `ability-${entry.id}`, entryId: entry.id, ...override };
 
+  const seed = hashString(entry.id);
   const domain = (entry.domain || '').toLowerCase();
-  for (const [re, ability] of DOMAIN_ABILITIES) {
-    if (re.test(domain)) return { id: `ability-${entry.id}`, entryId: entry.id, ...ability };
+  const flagship = Boolean(ARCHETYPE_IDS.has(entry.id));
+  const lore = LORE_CATALOG[entry.id];
+
+  // Find the grammar class for this domain.
+  let rule = null;
+  for (const [re, complement, trigger, makeEffect] of ABILITY_GRAMMAR) {
+    if (re.test(domain)) {
+      rule = { complement, trigger, makeEffect };
+      break;
+    }
   }
-  if (CATEGORY_ABILITIES[category]) {
-    return { id: `ability-${entry.id}`, entryId: entry.id, ...CATEGORY_ABILITIES[category] };
+  // Category fallbacks for unmatched domains.
+  let composedDefault = null;
+  if (!rule) {
+    const catRules = {
+      place: ['Free Passage', 'passive', () => ({ kind: 'ink-gen', amount: 2 })],
+      mineral: ['Adamantine', 'passive', () => ({ kind: 'damage-reduction', amount: 3 })],
+      celestial: ['Celestial Cycle', 'passive', () => ({ kind: 'heal-hero-turn', amount: 3 })],
+      primordial: ['First Breath', 'on_death', () => ({ kind: 'damage', target: 'enemy-hero', amount: 5 })],
+      concept: ['Epiphany', 'on_play', () => ({ kind: 'copy-top-card' })],
+    };
+    const cr = catRules[category];
+    if (cr) {
+      rule = { complement: cr[0], trigger: cr[1], makeEffect: cr[2] };
+    } else {
+      // Deities whose domain escapes the grammar: compose the name from the
+      // entry's own domain words and deal the effect from a varied pool.
+      const firstWord = ((entry.domain || 'Divine').match(/[A-Za-zÀ-ɏ]+/) || ['Divine'])[0];
+      composedDefault = firstWord.charAt(0).toUpperCase() + firstWord.slice(1).toLowerCase();
+      const pool = [
+        ['passive', () => ({ kind: 'aura-allies', power: 1 })],
+        ['on_play', () => ({ kind: 'draw', count: 1 })],
+        ['on_play', () => ({ kind: 'shield-allies', amount: 2 })],
+        ['on_play', () => ({ kind: 'heal-hero', amount: 3 })],
+        ['on_play', () => ({ kind: 'buff-allies', power: 1, health: 0 })],
+      ];
+      const pr = pool[seed % pool.length];
+      rule = { complement: composedDefault, trigger: pr[0], makeEffect: pr[1] };
+    }
   }
-  return {
-    id: `ability-${entry.id}`,
-    entryId: entry.id,
-    name: 'Divine Presence',
-    description: 'Grant your allies +1 power while in play.',
-    trigger: 'passive',
-    effect: { kind: 'aura-allies', power: 1 },
-  };
+
+  const effect = rule.makeEffect(seed);
+  const grammar = ABILITY_GRAMMAR.find(([re]) => re.test(domain));
+  const describe = grammar ? grammar[4] : null;
+
+  // Name: the flagship's epithet from the lore catalog (unique per temple);
+  // archives compose class + pantheon suffix.
+  let name;
+  if (flagship && lore?.domains?.title) {
+    name = lore.domains.title;
+  } else {
+    const suffix = PANTHEON_SUFFIX[entry.pantheon] || 'of the Pantheon';
+    name = `${rule.complement} ${suffix}`;
+  }
+
+  const description = describe
+    ? describe(effect)
+    : effect.kind === 'ink-gen'
+      ? 'Gain +2 ink each turn while in play.'
+      : effect.kind === 'damage-reduction'
+        ? `Reduce incoming damage by ${effect.amount}.`
+        : effect.kind === 'heal-hero-turn'
+          ? `Restore ${effect.amount} health to your hero each turn while in play.`
+          : effect.kind === 'copy-top-card'
+            ? 'Copy the top card of your deck into your hand.'
+            : effect.kind === 'damage'
+              ? `On death, deal ${effect.amount} damage to the enemy hero.`
+              : effect.kind === 'draw'
+                ? 'Draw a card.'
+                : effect.kind === 'shield-allies'
+                  ? 'Your allies gain a 2 shield.'
+                  : effect.kind === 'heal-hero'
+                    ? 'Restore 3 health to your hero.'
+                    : effect.kind === 'buff-allies'
+                      ? 'Your allies gain +1 power.'
+                      : 'Your allies gain +1 power while this is in play.';
+
+  return { id: `ability-${entry.id}`, entryId: entry.id, name, description, trigger: rule.trigger, effect };
 }
 
 // ── Flavor text ─────────────────────────────────────────────────────────────
