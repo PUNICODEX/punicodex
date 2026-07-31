@@ -205,6 +205,57 @@ ${list}
     .join('\n');
 }
 
+function buildAtlasFaq(graph) {
+  const m = graph.meta;
+  const faq = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'What is the PuniCodex pattern atlas?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: `The pattern atlas maps all ${m.entryCount} flagship temples to the modern world: ${m.industryCount} industries across ${m.sectorCount} sectors, with primary and resonant temple seats. Each temple takes seats in the industries its archetype genuinely resonates with — prophecy to forecasting, forge-gods to manufacturing, psychopomps to logistics — and every seat carries its reasoning.`,
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How are temples matched to industries?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: "Mechanically and openly. Every match is argued from the deity's documented domains, myths, and functions — weighted, published, and open to challenge. No match is made for marketing value alone, and the full method is published on the methodology page so any reader can audit or contest a seat.",
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How do I find which temples match my industry or profession?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: `Use the Find My Pattern bar: type your trade as you would say it — plumber, poet, founder, winemaker, dentist, pastor — and the atlas resolves it through a curated vocabulary of ${m.aliasCount} aliases to the larger industry categories, then shows the temples that hold seats there. You never need to know the taxonomy; the atlas speaks your language first.`,
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can a pattern match be challenged or corrected?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes — that is the point of publishing the method. Every seat in the atlas is falsifiable: the methodology page states how matches are derived and how to challenge one. A match that cannot be argued aloud does not survive review; the atlas is a scholarly claim, not an advertisement.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Why do some industries have more temples than others?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'The atlas was built outward from mythology, not inward from advertising markets. Traditions rich in sea-gods produce deep maritime coverage; traditions rich in craft-gods produce deep manufacturing coverage. That asymmetry is what defends the whole system: the patterns describe the archetypes as they are, and the counts are published openly for scrutiny.',
+        },
+      },
+    ],
+  };
+  return `<script type="application/ld+json">\n${JSON.stringify(faq, null, 4).replace(/</g, '\\u003c')}\n</script>`;
+}
+
 function renderAtlas(graph, registry) {
   const graphJson = JSON.stringify(graph).replace(/<\//g, '<\\/');
   const registryJson = JSON.stringify(registry).replace(/<\//g, '<\\/');
@@ -231,6 +282,7 @@ ${FAVICON_CLUSTER}
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <style>${ATLAS_CSS}</style>
 ${MARKER_BLOCKS}
+${buildAtlasFaq(graph)}
 </head>
 <body>
     <!-- Navigation (canonical — built by scripts/sync-desktop-nav.js) -->

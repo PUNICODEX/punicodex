@@ -110,6 +110,8 @@ a:hover{color:var(--gold-bright)}
                     <div class="nav-more-menu">
                         <a href="/patterns/" class="nav-link">Patterns</a>
                         <a href="/tiers/" class="nav-link">Tier System</a>
+                        <a href="/rulebook/" class="nav-link">Rulebook</a>
+                        <a href="/cards/" class="nav-link">Cards</a>
                         <a href="/oracle.html" class="nav-link">Oracle</a>
                         <a href="/extension/" class="nav-link">Extension</a>
                         <a href="/app/" class="nav-link">App</a>
@@ -153,6 +155,8 @@ a:hover{color:var(--gold-bright)}
                 <a href="/type/">Type</a>
                 <a href="/search.html">Search</a>
                 <a href="/tiers/">Tier System</a>
+                <a href="/rulebook/">Rulebook</a>
+                <a href="/cards/">Cards</a>
                 <a href="/oracle.html">Oracle</a>
                 <a href="/extension/">Extension</a>
                 <a href="/app/">App</a>
@@ -185,12 +189,12 @@ a:hover{color:var(--gold-bright)}
     <script src="/js/main.js?v=perf12" defer></script>
 <div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <a href="/store/vulcanus/">Vulcānus</a> · <span style="color:var(--gold)">Phone Case</span></div>
 <div class="wrap pdp">
-  <div><div class="stage"><img id="stage-img" src="https://punycodex-masters.vercel.app/mockups/vulcanus-phonecase.jpg" alt="Vulcānus Mascot Phone Case"></div></div>
+  <div><div class="stage"><img id="stage-img" src="/sites/vulcanus/assets/vulcanus_mascot.webp" alt="Vulcānus Mascot Phone Case"></div></div>
   <div>
     <span class="pill">Phone Case</span> <span class="pill">Vulcānus</span>
     <h1>Vulcānus Mascot Phone Case</h1>
     <p style="color:var(--dim)">Slim impact case — the deity, edge to edge.</p>
-    <div class="price" id="pdp-price">$24.00</div>
+    <div class="price">$24.00</div>
     <div class="opt-group"><div class="lbl">Colour</div><div class="opts" id="opts-color"><button class="opt active" data-c="Glossy">Glossy</button></div></div>
     <div class="opt-group"><div class="lbl">Option</div><div class="opts" id="opts-size"><button class="opt active" data-s="iPhone 11">iPhone 11</button><button class="opt" data-s="iPhone 11 Pro">iPhone 11 Pro</button><button class="opt" data-s="iPhone 11 Pro Max">iPhone 11 Pro Max</button><button class="opt" data-s="iPhone 12 Mini">iPhone 12 Mini</button><button class="opt" data-s="iPhone 12 Pro">iPhone 12 Pro</button><button class="opt" data-s="iPhone 12 Pro Max">iPhone 12 Pro Max</button></div></div>
     <div class="opt-group">
@@ -207,7 +211,7 @@ a:hover{color:var(--gold-bright)}
     </div>
   </div>
 </div>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Vulcānus Mascot Phone Case","image":"https://punycodex-masters.vercel.app/mockups/vulcanus-phonecase.jpg","description":"Slim impact case — the deity, edge to edge.","brand":{"@type":"Brand","name":"PuniCodex"},"offers":{"@type":"Offer","price":"24.00","priceCurrency":"USD","availability":"https://schema.org/InStock"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Vulcānus Mascot Phone Case","image":"/sites/vulcanus/assets/vulcanus_mascot.webp","description":"Slim impact case — the deity, edge to edge.","brand":{"@type":"Brand","name":"PuniCodex"},"offers":{"@type":"Offer","price":"24.00","priceCurrency":"USD","availability":"https://schema.org/InStock"}}</script>
 <script>
 (function(){
   var colors = Array.prototype.slice.call(document.querySelectorAll('#opts-color .opt'));
@@ -230,7 +234,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = {"Glossy / iPhone 11 Pro Max":2400,"Glossy / iPhone 11 Pro":2400,"Glossy / iPhone 11":2400,"Glossy / iPhone 12 Mini":2400,"Glossy / iPhone 12 Pro Max":2400,"Glossy / iPhone 12 Pro":2400};
+  var PRICES = null;
   var FLAT_PRICE = "$24.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');
@@ -274,6 +278,7 @@ a:hover{color:var(--gold-bright)}
                     <a href="/patterns/">Patterns</a>
                     <a href="/trending/">Trending</a>
                     <a href="/tiers/">Tier System</a>
+                    <a href="/rulebook/">Rulebook</a>
                     <a href="/type/">Type</a>
                     <a href="/search.html">Search</a>
                 </div>
@@ -282,6 +287,7 @@ a:hover{color:var(--gold-bright)}
                     <a href="/codex/">Codex</a>
                     <a href="/blog/">Blog</a>
                     <a href="/texts/">Texts</a>
+                    <a href="/cards/">Cards</a>
                     <a href="/creatives/">Creatives</a>
                     <a href="/scholars/">Scholars</a>
                     <a href="/api/v1/docs/">API</a>

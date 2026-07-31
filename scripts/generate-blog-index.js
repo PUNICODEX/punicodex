@@ -86,9 +86,50 @@ for (const id of BUILT_IDS) {
     readingTime: post.readingTime || '',
     readMin: readMinutes(post.readingTime),
     publishedAt: post.publishedAt || '',
+    url: `/sites/${id}/blog/`,
+    badge: entry.tierLabel || `Tier ${entry.tier || '2'}`,
+    series: false,
+    uid: id,
   });
 }
-posts.sort((a, b) => a.unicode.localeCompare(b.unicode, 'en'));
+
+// The Restoration Files + The Resonance Files: the second and third
+// dispatches from every temple.
+const SERIES = [
+  { id: 'restoration', dir: path.join(ROOT, 'platform', 'blog', 'series', 'restoration'), url: (id) => `/sites/${id}/blog/restoration/`, badge: 'Restoration Files', alias: 'the restoration files' },
+  { id: 'resonance', dir: path.join(ROOT, 'platform', 'blog', 'series', 'resonance'), url: (id) => `/sites/${id}/blog/resonance/`, badge: 'Resonance Files', alias: 'the resonance files patterns industries' },
+];
+for (const series of SERIES) {
+  for (const id of BUILT_IDS) {
+    const p = path.join(series.dir, `${id}.json`);
+    if (!fs.existsSync(p)) continue;
+    const post = JSON.parse(fs.readFileSync(p, 'utf8'));
+    const entry = LEXICON_BY_ID.get(id) || {};
+    const pantheon = entry.pantheon || '';
+    posts.push({
+      id,
+      unicode: entry.unicode || id,
+      ascii: entry.ascii || id,
+      pantheon,
+      pantheonDisplay: displayPantheon(pantheon),
+      tier: entry.tier || '2',
+      tierLabel: entry.tierLabel || `Tier ${entry.tier || '2'}`,
+      title: post.title,
+      description: post.description,
+      tags: post.tags || [],
+      keywords: post.keywords || [],
+      readingTime: post.readingTime || '',
+      readMin: readMinutes(post.readingTime),
+      publishedAt: post.publishedAt || '',
+      url: series.url(id),
+      badge: series.badge,
+      series: true,
+      seriesAlias: series.alias,
+      uid: `${id}-${series.id}`,
+    });
+  }
+}
+posts.sort((a, b) => a.unicode.localeCompare(b.unicode, 'en') || Number(a.series) - Number(b.series));
 
 // ── Stats ───────────────────────────────────────────────────────────────────
 
@@ -109,13 +150,13 @@ const cardsHtml = posts
       .slice(0, 4)
       .map((t) => `<span class="blogi-card-tag">${escapeHtml(t)}</span>`)
       .join('');
-    return `                <article class="blogi-card" data-id="${escapeHtml(p.id)}" data-pantheon="${escapeHtml(p.pantheon)}" data-tier="${escapeHtml(p.tier)}" data-read="${p.readMin}">
+    return `                <article class="blogi-card${p.series ? ' blogi-card-series' : ''}" data-id="${escapeHtml(p.uid)}" data-pantheon="${escapeHtml(p.pantheon)}" data-tier="${escapeHtml(p.tier)}" data-read="${p.readMin}">
                     <div class="blogi-card-head">
                         <a class="blogi-card-unicode" href="/sites/${escapeHtml(p.id)}/">${escapeHtml(p.unicode)}</a>
-                        <span class="blogi-card-badge">${escapeHtml(p.tierLabel)}</span>
+                        <span class="blogi-card-badge">${escapeHtml(p.badge)}</span>
                     </div>
                     <p class="blogi-card-pantheon">${escapeHtml(p.pantheonDisplay)}</p>
-                    <h2 class="blogi-card-title"><a href="/sites/${escapeHtml(p.id)}/blog/">${escapeHtml(p.title)}</a></h2>
+                    <h2 class="blogi-card-title"><a href="${escapeHtml(p.url)}">${escapeHtml(p.title)}</a></h2>
                     <p class="blogi-card-desc">${escapeHtml(p.description)}</p>
                     <div class="blogi-card-tags">${tags}</div>
                     <p class="blogi-card-meta">${escapeHtml(p.readingTime)} &middot; ${escapeHtml(p.publishedAt)}</p>
@@ -126,12 +167,12 @@ const cardsHtml = posts
 // ── Baked payload for search/sort (no runtime fetches) ─────────────────────
 
 const payload = posts.map((p) => ({
-  id: p.id,
+  id: p.uid,
   u: p.unicode,
   p: p.pantheon,
   t: p.tier,
   r: p.readMin,
-  s: [p.unicode, p.ascii, p.title, p.description, p.pantheonDisplay, p.tierLabel, ...p.tags, ...p.keywords]
+  s: [p.unicode, p.ascii, p.title, p.description, p.pantheonDisplay, p.tierLabel, ...(p.seriesAlias ? [p.seriesAlias] : []), ...p.tags, ...p.keywords]
     .join(' ')
     .toLowerCase(),
 }));
@@ -154,7 +195,7 @@ const jsonLd = JSON.stringify(
       itemListElement: posts.map((p, i) => ({
         '@type': 'ListItem',
         position: i + 1,
-        url: `https://punicodex.com/sites/${p.id}/blog/`,
+        url: `https://punicodex.com${p.url}`,
         name: p.title,
       })),
     },
@@ -241,6 +282,7 @@ const html = `<!DOCTYPE html>
         .blogi-card-unicode { font-family: var(--font-display, Cinzel, serif); font-size: 1.3rem; color: var(--primary, #d4af37); text-decoration: none; }
         .blogi-card-unicode:hover { color: var(--primary-bright, #f0d878); }
         .blogi-card-badge { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.25rem 0.6rem; border-radius: 999px; border: 1px solid rgba(212,175,55,0.3); color: var(--primary, #d4af37); white-space: nowrap; }
+        .blogi-card-series .blogi-card-badge { background: linear-gradient(180deg, rgba(212,175,55,0.22), rgba(212,175,55,0.08)); border-color: rgba(212,175,55,0.55); }
         .blogi-card-pantheon { margin: 0.35rem 0 0.6rem; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white-dim, #e8e4dc); opacity: 0.65; }
         .blogi-card-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.1rem; line-height: 1.35; margin: 0 0 0.6rem; }
         .blogi-card-title a { color: var(--white, #fff); text-decoration: none; }

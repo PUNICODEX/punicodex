@@ -58,7 +58,10 @@ const scripts = [
   'scripts/generate-scholars-manifests.js',
   'scripts/generate-scholars.js',
   'scripts/generate-blog-content.js',
+  'scripts/generate-blog-series-restoration.js',
+  'scripts/generate-blog-series-resonance.js',
   'scripts/generate-blog-pages.js',
+  'scripts/generate-blog-series-pages.js',
   'scripts/generate-blog-index.js',
   // Sacred Texts (/texts/): registry-driven library + reading pages. Must run
   // before the injectors so its fresh pages keep their beacon/consent blocks.

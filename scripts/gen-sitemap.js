@@ -133,6 +133,8 @@ for (const entry of LEXICON) {
     xml += urlEntry(`/sites/${entry.id}/lore/extended/`, '0.6', 'monthly');
     xml += urlEntry(`/sites/${entry.id}/gallery/`, '0.5', 'monthly');
     xml += urlEntry(`/sites/${entry.id}/blog/`, '0.6', 'monthly');
+    xml += urlEntry(`/sites/${entry.id}/blog/restoration/`, '0.6', 'monthly');
+    xml += urlEntry(`/sites/${entry.id}/blog/resonance/`, '0.6', 'monthly');
     xml += urlEntry(`/sites/${entry.id}/patterns/`, '0.5', 'monthly');
     xml += urlEntry(`/sites/${entry.id}/scholars/`, '0.7', 'monthly');
     xml += urlEntry(`/sites/${entry.id}/creatives/`, '0.5', 'monthly');

@@ -4,21 +4,21 @@
     <meta charset="UTF-8">
     <meta name="google" content="notranslate">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{POST_TITLE}} | {{UNICODE}} Blog | PUNICODEX</title>
+    <title>{{POST_TITLE}} | {{TITLE_SUFFIX}} | PUNICODEX</title>
     <meta name="description" content="{{POST_DESCRIPTION}}">
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
-    <link rel="canonical" href="https://punicodex.com/sites/{{TEMPLE_ID}}/blog/">
-    <meta property="og:title" content="{{POST_TITLE}} | {{UNICODE}} Blog | PUNICODEX">
+    <link rel="stylesheet" href="{{REL}}/styles.css?v=perf20">
+    <link rel="canonical" href="https://punicodex.com/sites/{{TEMPLE_ID}}/{{POST_PATH}}">
+    <meta property="og:title" content="{{POST_TITLE}} | {{TITLE_SUFFIX}} | PUNICODEX">
     <meta property="og:description" content="{{POST_DESCRIPTION}}">
-    <meta property="og:url" content="https://punicodex.com/sites/{{TEMPLE_ID}}/blog/">
+    <meta property="og:url" content="https://punicodex.com/sites/{{TEMPLE_ID}}/{{POST_PATH}}">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="PUNICODEX">
     <meta property="og:image" content="https://punicodex.com/assets/og/{{TEMPLE_ID}}.jpg">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://punicodex.com/assets/og/{{TEMPLE_ID}}.jpg">
-    <meta name="twitter:title" content="{{POST_TITLE}} | {{UNICODE}} Blog | PUNICODEX">
+    <meta name="twitter:title" content="{{POST_TITLE}} | {{TITLE_SUFFIX}} | PUNICODEX">
     <meta name="twitter:description" content="{{POST_DESCRIPTION}}">
     <script type="application/ld+json">
     {
@@ -39,11 +39,11 @@
         },
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://punicodex.com/sites/{{TEMPLE_ID}}/blog/"
+            "@id": "https://punicodex.com/sites/{{TEMPLE_ID}}/{{POST_PATH}}"
         },
         "articleSection": "Blog",
         "keywords": [{{POST_KEYWORDS_JSON}}],
-        "url": "https://punicodex.com/sites/{{TEMPLE_ID}}/blog/",
+        "url": "https://punicodex.com/sites/{{TEMPLE_ID}}/{{POST_PATH}}",
         "image": "https://punicodex.com/assets/og/{{TEMPLE_ID}}.jpg"
     }
     </script>
@@ -113,18 +113,18 @@
     <nav class="main-nav tab-nav" id="tab-nav">
         <div class="nav-inner">
             <a href="../" class="nav-logo">
-                <picture><source srcset="../assets/{{TEMPLE_ID}}_logolockup.webp" type="image/webp"><img src="../assets/{{TEMPLE_ID}}_logolockup.png" alt="{{UNICODE}}" class="nav-logo-img" width="1536" height="1024"></picture>
+                <picture><source srcset="{{REL}}/assets/{{TEMPLE_ID}}_logolockup.webp" type="image/webp"><img src="{{REL}}/assets/{{TEMPLE_ID}}_logolockup.png" alt="{{UNICODE}}" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links tab-nav-links">
                 <a href="../" class="nav-link">Home</a>
-                <a href="../lore/index.html" class="nav-link">Lore</a>
-                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="{{REL}}/lore/index.html" class="nav-link">Lore</a>
+                <a href="{{REL}}/gallery/index.html" class="nav-link">Gallery</a>
                 {{EXTENDED_TAB}}
                 {{PATTERNS_TAB}}
-                <a href="./" class="nav-link active">Blog</a>
-                <a href="../scholars/index.html" class="nav-link">Scholars</a>
-                <a href="../creatives/index.html" class="nav-link">Creatives</a>
-                <a href="../patron/index.html" class="nav-link">Patrons</a>
+                <a href="{{BLOG_URL}}" class="nav-link active">Blog</a>
+                <a href="{{REL}}/scholars/index.html" class="nav-link">Scholars</a>
+                <a href="{{REL}}/creatives/index.html" class="nav-link">Creatives</a>
+                <a href="{{REL}}/patron/index.html" class="nav-link">Patrons</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -135,21 +135,21 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
         <a href="../" class="nav-link">Home</a>
-        <a href="../lore/index.html" class="nav-link">Lore</a>
-        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="{{REL}}/lore/index.html" class="nav-link">Lore</a>
+        <a href="{{REL}}/gallery/index.html" class="nav-link">Gallery</a>
         {{EXTENDED_TAB}}
         {{PATTERNS_TAB}}
-        <a href="./" class="nav-link active">Blog</a>
-        <a href="../scholars/index.html" class="nav-link">Scholars</a>
-        <a href="../creatives/index.html" class="nav-link">Creatives</a>
-        <a href="../patron/index.html" class="nav-link">Patrons</a>
+        <a href="{{BLOG_URL}}" class="nav-link active">Blog</a>
+        <a href="{{REL}}/scholars/index.html" class="nav-link">Scholars</a>
+        <a href="{{REL}}/creatives/index.html" class="nav-link">Creatives</a>
+        <a href="{{REL}}/patron/index.html" class="nav-link">Patrons</a>
     </div>
 
     <!-- Hero -->
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">{{UNICODE}} — Blog</p>
+                <p class="hero-eyebrow reveal-up">{{EYEBROW}}</p>
                 <p class="hero-title reveal-up">{{POST_TITLE}}</p>
                 <p class="hero-subtitle reveal-up">{{DOMAIN}}</p>
                 <div class="hero-meta reveal-up">
@@ -158,7 +158,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../assets/{{TEMPLE_ID}}_mascot.webp" type="image/webp"><img src="../assets/{{TEMPLE_ID}}_mascot.webp" alt="{{UNICODE}} — {{DOMAIN}}" class="mascot-img" width="1024" height="1536"></picture>
+                <picture><source srcset="{{REL}}/assets/{{TEMPLE_ID}}_mascot.webp" type="image/webp"><img src="{{REL}}/assets/{{TEMPLE_ID}}_mascot.webp" alt="{{UNICODE}} — {{DOMAIN}}" class="mascot-img" width="1024" height="1536"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -182,8 +182,9 @@
         </div>
         <aside class="blog-cta reveal-up">
             <h2 class="blog-cta-title">Go deeper</h2>
-            <p>The Scholarly Edition for {{UNICODE}} collects the sources, pronunciation, and revision history behind this restoration. <a href="../scholars/">Read the Scholarly Edition</a>.</p>
+            <p>The Scholarly Edition for {{UNICODE}} collects the sources, pronunciation, and revision history behind this restoration. <a href="{{REL}}/scholars/">Read the Scholarly Edition</a>.</p>
         </aside>
+        {{SERIES_NAV_HTML}}
     </article>
 
     {{FOOTER}}
@@ -191,7 +192,7 @@
     <script src="/js/flagship-canvas.js"></script>
     <script src="/js/px-core.js?v=perf21"></script>
     <script src="/js/temple-base.js?v=perf20"></script>
-    <script src="../script.js?v=perf20"></script>
+    <script src="{{REL}}/script.js?v=perf20"></script>
     <script src="/js/newsletter.js?v=1" defer></script>
 </body>
 </html>

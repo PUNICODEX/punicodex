@@ -110,6 +110,8 @@ a:hover{color:var(--gold-bright)}
                     <div class="nav-more-menu">
                         <a href="/patterns/" class="nav-link">Patterns</a>
                         <a href="/tiers/" class="nav-link">Tier System</a>
+                        <a href="/rulebook/" class="nav-link">Rulebook</a>
+                        <a href="/cards/" class="nav-link">Cards</a>
                         <a href="/oracle.html" class="nav-link">Oracle</a>
                         <a href="/extension/" class="nav-link">Extension</a>
                         <a href="/app/" class="nav-link">App</a>
@@ -153,6 +155,8 @@ a:hover{color:var(--gold-bright)}
                 <a href="/type/">Type</a>
                 <a href="/search.html">Search</a>
                 <a href="/tiers/">Tier System</a>
+                <a href="/rulebook/">Rulebook</a>
+                <a href="/cards/">Cards</a>
                 <a href="/oracle.html">Oracle</a>
                 <a href="/extension/">Extension</a>
                 <a href="/app/">App</a>
@@ -185,12 +189,12 @@ a:hover{color:var(--gold-bright)}
     <script src="/js/main.js?v=perf12" defer></script>
 <div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <a href="/store/aer/">Aḗr</a> · <span style="color:var(--gold)">Hoodie</span></div>
 <div class="wrap pdp">
-  <div><div class="stage"><img id="stage-img" src="https://punycodex-masters.vercel.app/mockups/aer-hoodie.jpg" alt="Aḗr Temple Hoodie"></div></div>
+  <div><div class="stage"><img id="stage-img" src="/sites/aer/assets/aer_mascot.webp" alt="Aḗr Temple Hoodie"></div></div>
   <div>
     <span class="pill">Hoodie</span> <span class="pill">Aḗr</span>
     <h1>Aḗr Temple Hoodie</h1>
     <p style="color:var(--dim)">Pullover fleece — seal over the heart, the deity across the back.</p>
-    <div class="price" id="pdp-price">from $58.00</div>
+    <div class="price">$58.00</div>
     <div class="opt-group"><div class="lbl">Colour</div><div class="opts" id="opts-color"><button class="opt active" data-c="Black">Black</button></div></div>
     <div class="opt-group"><div class="lbl">Size</div><div class="opts" id="opts-size"><button class="opt active" data-s="S">S</button><button class="opt" data-s="M">M</button><button class="opt" data-s="L">L</button><button class="opt" data-s="XL">XL</button><button class="opt" data-s="2XL">2XL</button></div></div>
     <div class="opt-group">
@@ -208,7 +212,7 @@ a:hover{color:var(--gold-bright)}
     </div>
   </div>
 </div>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Aḗr Temple Hoodie","image":"https://punycodex-masters.vercel.app/mockups/aer-hoodie.jpg","description":"Pullover fleece — seal over the heart, the deity across the back.","brand":{"@type":"Brand","name":"PuniCodex"},"offers":{"@type":"Offer","price":"58.00","priceCurrency":"USD","availability":"https://schema.org/InStock"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Aḗr Temple Hoodie","image":"/sites/aer/assets/aer_mascot.webp","description":"Pullover fleece — seal over the heart, the deity across the back.","brand":{"@type":"Brand","name":"PuniCodex"},"offers":{"@type":"Offer","price":"58.00","priceCurrency":"USD","availability":"https://schema.org/InStock"}}</script>
 <script>
 (function(){
   var colors = Array.prototype.slice.call(document.querySelectorAll('#opts-color .opt'));
@@ -231,7 +235,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = {"Black / 2XL":6100,"Black / L":5800,"Black / M":5800,"Black / S":5800,"Black / XL":5800};
+  var PRICES = null;
   var FLAT_PRICE = "$58.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');
@@ -275,6 +279,7 @@ a:hover{color:var(--gold-bright)}
                     <a href="/patterns/">Patterns</a>
                     <a href="/trending/">Trending</a>
                     <a href="/tiers/">Tier System</a>
+                    <a href="/rulebook/">Rulebook</a>
                     <a href="/type/">Type</a>
                     <a href="/search.html">Search</a>
                 </div>
@@ -283,6 +288,7 @@ a:hover{color:var(--gold-bright)}
                     <a href="/codex/">Codex</a>
                     <a href="/blog/">Blog</a>
                     <a href="/texts/">Texts</a>
+                    <a href="/cards/">Cards</a>
                     <a href="/creatives/">Creatives</a>
                     <a href="/scholars/">Scholars</a>
                     <a href="/api/v1/docs/">API</a>
