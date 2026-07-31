@@ -509,6 +509,8 @@
       stats.appendChild(cell);
     });
 
+    renderOraclePath();
+
     var featured = $('featured-cards');
     featured.replaceChildren();
     cards
@@ -1029,6 +1031,7 @@
       })
       .join(' · ');
     box.appendChild(el('div', 'deck-split', split + (n ? ' · avg cost ' + (costSum / n).toFixed(1) : '')));
+    renderDeckLab();
   }
 
   function renderDeckEditor() {
@@ -1164,6 +1167,7 @@
   var fx = null; // Sequences instance, created with the battlefield
   var arena3d = null; // The Arena 3D diorama (cinematic presentation)
   var heroes = [null, null]; // { card, power } per side
+  var lastInk = 0; // for the ink clink when the pip refills
   var aiMercyRounds = 0; // the Oracle's shelter, set from the player's record
   var aiBandThreshold = 12; // rubber-band engagement point, difficulty-scaled
   var aiNoSpecials = false; // lower difficulties: the AI holds its specials
@@ -1189,16 +1193,45 @@
 
   function recordBattleOutcome(outcome) {
     if (!save.difficulty) save.difficulty = { level: 2, streak: 0 };
+    if (!save.oraclePath) save.oraclePath = { cleared: [] };
     var d = save.difficulty;
     if (outcome === 'win') d.streak = d.streak > 0 ? d.streak + 1 : 1;
     else if (outcome === 'loss') d.streak = d.streak < 0 ? d.streak - 1 : -1;
     else d.streak = 0;
     if (d.streak >= 2 && d.level < 5) {
+      var clearedLevel = d.level;
       d.level++;
       d.streak = 0;
+      // The Oracle Path: clearing a gate pays tribute in ink.
+      if (save.oraclePath.cleared.indexOf(clearedLevel) === -1) {
+        save.oraclePath.cleared.push(clearedLevel);
+        var tribute = clearedLevel * 50;
+        save.ink += tribute;
+        if (fx) fx.banner('The Oracle rises', 'Gate cleared — +' + tribute + ' ✦ tribute, and a harder Oracle awaits.');
+        else showToast('Gate cleared — +' + tribute + ' ✦. The Oracle rises: ' + difficultyDef().label + '.');
+      }
     } else if (d.streak <= -2 && d.level > 1) {
       d.level--;
       d.streak = 0;
+    }
+  }
+
+  function renderOraclePath() {
+    var path = $('oracle-path');
+    if (!path) return;
+    if (!save.oraclePath) save.oraclePath = { cleared: [] };
+    if (!save.difficulty) save.difficulty = { level: 2, streak: 0 };
+    path.replaceChildren();
+    for (var level = 1; level <= 5; level++) {
+      var def = DIFFICULTY[level];
+      var cleared = save.oraclePath.cleared.indexOf(level) !== -1;
+      var current = difficultyLevel() === level;
+      var node = el('div', 'oracle-gate' + (cleared ? ' cleared' : '') + (current ? ' current' : ''));
+      node.appendChild(el('div', 'gate-sigil', cleared ? '✦' : current ? '⚡' : '·'));
+      node.appendChild(el('div', 'gate-name', def.label));
+      node.appendChild(el('div', 'gate-tribute', cleared ? 'Tribute paid' : '+' + level * 50 + ' ✦ on clear'));
+      path.appendChild(node);
+      if (level < 5) path.appendChild(el('div', 'gate-link'));
     }
   }
 
@@ -1411,7 +1444,7 @@
       battle.players[p].board.forEach(function (m) { after[m.uid] = true; });
       before.boards[p].forEach(function (m) {
         if (!after[m.uid]) {
-          if (arena3d) arena3d.spriteDeath('m' + m.uid);
+          if (arena3d && arena3d.spriteDeath) arena3d.spriteDeath('m' + m.uid);
           var node = fxCanvas.parentElement.querySelector('.minion[data-uid="' + m.uid + '"]');
           var pos = node ? centerOf(node) : centerOf(heroEl(p));
           fx.floatText({ x: pos.x, y: pos.y, text: '☠', kind: 'damage', size: 22 });
@@ -1428,7 +1461,7 @@
         var beforeVal = m.health + m.shield;
         var d = afterVal - beforeVal;
         if (d !== 0) {
-          if (arena3d && d < 0) arena3d.spriteFlinch('m' + m.uid);
+          if (arena3d && arena3d.spriteFlinch && d < 0) arena3d.spriteFlinch('m' + m.uid);
           var n = fxCanvas.parentElement.querySelector('.minion[data-uid="' + m.uid + '"]');
           if (n) {
             var pp = centerOf(n);
@@ -1476,7 +1509,9 @@
         colors: (attackerCard && attackerCard.art && attackerCard.art.colors) || {},
         power: attackerCard ? attackerCard.power || 4 : 4,
         onImpact: function () {
-          sfx('impact');
+          if (Sound && Sound.RECIPES && Sound.RECIPES['imp_' + archetype]) sfx('imp_' + archetype);
+          else sfx('impact');
+          if (navigator.vibrate) navigator.vibrate(18);
           fxDiff(before);
         },
       });
@@ -1510,6 +1545,95 @@
       total += Math.min(collection[id], Engine.RULES.MAX_COPIES);
     });
     return total;
+  }
+
+  /* ── The guided first duel ─────────────────────────────────────────────── */
+
+  var tutorial = null; // { step: 1|2|3, sinceHalfTurns }
+
+  function startTutorial() {
+    if (save.tutorialDone) return;
+    tutorial = { step: 1, sinceHalfTurns: battle ? battle.halfTurns : 0 };
+    renderTutorial();
+  }
+
+  function completeTutorial(quiet) {
+    save.tutorialDone = true;
+    persist();
+    tutorial = null;
+    var bubble = $('tutorial-bubble');
+    if (bubble) bubble.hidden = true;
+    document.querySelectorAll('.tutorial-hl').forEach(function (n) {
+      n.classList.remove('tutorial-hl');
+    });
+    if (!quiet) showToast('Training complete — the duel is yours. The Archive pays 50 ✦ for a victory.');
+  }
+
+  function renderTutorial() {
+    var bubble = $('tutorial-bubble');
+    if (!bubble) return;
+    if (!tutorial || save.tutorialDone || !battle || battle.winner || ui.autopilot) {
+      bubble.hidden = true;
+      return;
+    }
+    // Step progression from the live record.
+    if (tutorial.step === 1 && battle.players[0].playedCount > 0) tutorial.step = 2;
+    if (
+      tutorial.step === 2 &&
+      battle.log.some(function (e) {
+        return e.player === 0 && e.type === 'attack';
+      })
+    ) {
+      tutorial.step = 3;
+    }
+    if (
+      tutorial.step === 3 &&
+      (battle.log.some(function (e) {
+        return e.player === 0 && e.type === 'special';
+      }) ||
+        battle.halfTurns >= tutorial.sinceHalfTurns + 6)
+    ) {
+      completeTutorial(false);
+      return;
+    }
+
+    var steps = {
+      1: {
+        title: 'Play a card',
+        text: 'Tap a glowing card in your hand — it takes the field, recovering for one turn before it can strike.',
+        selector: '#player-hand .hand-card.playable',
+      },
+      2: {
+        title: 'Arm and strike',
+        text: 'Tap your recovered minion (the green glow), then tap an enemy minion — or their champion — to strike.',
+        selector: '#player-board .minion.ready',
+      },
+      3: {
+        title: 'Unleash the special',
+        text: 'The gold ✦ pip means a special move is ready. Arm the minion and choose ✦ in the action bar.',
+        selector: null,
+      },
+    };
+    var s = steps[tutorial.step];
+    bubble.hidden = false;
+    bubble.replaceChildren();
+    bubble.appendChild(el('div', 'tutorial-step', 'Training ' + tutorial.step + ' of 3'));
+    bubble.appendChild(el('div', 'tutorial-title', s.title));
+    bubble.appendChild(el('div', 'tutorial-text', s.text));
+    var skip = el('button', 'tutorial-skip', 'Skip training');
+    skip.type = 'button';
+    skip.addEventListener('click', function () {
+      completeTutorial(true);
+    });
+    bubble.appendChild(skip);
+
+    document.querySelectorAll('.tutorial-hl').forEach(function (n) {
+      n.classList.remove('tutorial-hl');
+    });
+    if (s.selector) {
+      var target = document.querySelector(s.selector);
+      if (target) target.classList.add('tutorial-hl');
+    }
   }
 
   function startBattle() {
@@ -1565,6 +1689,7 @@
     aiNoSpecials = !dd.specials;
     var aiDeck = buildCuratedDeck(aiHome, dd.curve === 'starter' ? STARTER_CURVE : ORACLE_CURVE, aiRand);
     battle = Engine.createGame({ playerDeck: playerDeck, aiDeck: aiDeck, seed: seed });
+    lastInk = battle.players[0].ink;
     ui.pendingPlay = null;
     ui.pendingSpecial = null;
     ui.selectedAttacker = null;
@@ -1621,6 +1746,9 @@
 
     // Autopilot stays engaged across battles — it is the playtest pathway.
     if (ui.autopilot) autopilotLoop();
+
+    // The guided first duel: three steps, then the gloves come off.
+    if (!save.tutorialDone) startTutorial();
   }
 
   function exitToDeck() {
@@ -1839,8 +1967,120 @@
     bar.appendChild(disarm);
   }
 
+  /* ── Drag-to-attack: the desktop gesture ───────────────────────────────── */
+
+  var drag = null; // { fromIndex, arrow }
+  var lastDragEnd = 0;
+
+  function positionDragArrow(ev) {
+    if (!drag || !drag.arrow) return;
+    var node = document.querySelector('#player-board .minion.selected') || document.querySelector('#player-board .minion.ready');
+    if (!node) return;
+    var r = node.getBoundingClientRect();
+    var x1 = r.left + r.width / 2;
+    var y1 = r.top + r.height / 2;
+    var x2 = ev.clientX;
+    var y2 = ev.clientY;
+    var len = Math.hypot(x2 - x1, y2 - y1);
+    var ang = (Math.atan2(y2 - y1, x2 - x1) * 180) / Math.PI;
+    drag.arrow.style.width = Math.max(0, len - 20) + 'px';
+    drag.arrow.style.transform = 'rotate(' + ang + 'deg)';
+    drag.arrow.style.left = x1 + 'px';
+    drag.arrow.style.top = y1 + 'px';
+  }
+
+  function initDragAttack() {
+    if (!window.matchMedia || !window.matchMedia('(pointer: fine)').matches) return;
+    var wrap = $('battlefield-wrap');
+    var candidate = null; // { fromIndex, x, y } — becomes a drag past 6px
+    wrap.addEventListener('pointerdown', function (ev) {
+      if (!battle || battle.winner || ui.aiThinking || battle.activePlayer !== 0) return;
+      var minionEl = ev.target.closest('#player-board .minion.ready');
+      if (!minionEl) return;
+      var m = null;
+      battle.players[0].board.forEach(function (bm) {
+        if (String(bm.uid) === minionEl.dataset.uid) m = bm;
+      });
+      if (!m) return;
+      var index = battle.players[0].board.indexOf(m);
+      var legal = Engine.getLegalActions(battle);
+      var canFight = legal.attacks.some(function (a) {
+        return a.attackerIndex === index;
+      });
+      if (!canFight) return;
+      candidate = { fromIndex: index, x: ev.clientX, y: ev.clientY };
+    });
+    document.addEventListener('pointermove', function (ev) {
+      if (candidate && !drag) {
+        var moved = Math.hypot(ev.clientX - candidate.x, ev.clientY - candidate.y);
+        if (moved > 6) {
+          drag = { fromIndex: candidate.fromIndex, arrow: el('div', 'drag-arrow') };
+          document.body.appendChild(drag.arrow);
+          ui.selectedAttacker = candidate.fromIndex;
+          candidate = null;
+          renderBattle();
+        }
+      }
+      if (drag) {
+        positionDragArrow(ev);
+        ev.preventDefault();
+      }
+    });
+    document.addEventListener('pointerup', function (ev) {
+      if (candidate) {
+        candidate = null; // a plain click — the normal click flow owns it
+        return;
+      }
+      if (!drag) return;
+      var from = drag.fromIndex;
+      drag.arrow.remove();
+      drag = null;
+      lastDragEnd = Date.now();
+      var target = document.elementFromPoint(ev.clientX, ev.clientY);
+      if (!battle || !target) {
+        ui.selectedAttacker = null;
+        if (battle) renderBattle();
+        return;
+      }
+      var enemyMinion = target.closest('#enemy-board .minion');
+      var enemyHero = target.closest('#enemy-hero-panel');
+      if (enemyMinion) {
+        var m = null;
+        battle.players[1].board.forEach(function (bm) {
+          if (String(bm.uid) === enemyMinion.dataset.uid) m = bm;
+        });
+        if (m) {
+          var idx = battle.players[1].board.indexOf(m);
+          ui.selectedAttacker = from;
+          var res = withFx(
+            battle.players[0].board[from],
+            function () {
+              return minionPos(m.uid);
+            },
+            function () {
+              return Engine.attack(battle, from, idx);
+            },
+            { targetMinion: m }
+          );
+          if (res && res.ok === false) showToast(res.error || 'That strike failed.');
+          ui.selectedAttacker = null;
+          afterPlayerAction();
+          return;
+        }
+      }
+      if (enemyHero) {
+        ui.selectedAttacker = from;
+        onEnemyHeroClick();
+        return;
+      }
+      ui.selectedAttacker = null;
+      renderBattle();
+    });
+  }
+
   function onMinionClick(m, playerIdx) {
     if (!battle || battle.winner || ui.aiThinking) return;
+    if (Date.now() - lastDragEnd < 300) return; // a drag just resolved — not a click
     var isMine = playerIdx === 0;
     var board = battle.players[playerIdx].board;
     var index = board.indexOf(m);
@@ -2094,7 +2334,7 @@
       }
       renderBattle();
       if (battle.winner !== null) finishBattle();
-    }, 600);
+    }, 450);
   }
 
   // A side's turn resolves in one engine pass — replay its strikes as visible
@@ -2144,7 +2384,7 @@
   function finishBattle() {
     var outcome = battle.winner === 'draw' ? 'draw' : battle.winner === 0 ? 'win' : 'loss';
     var reward = REWARDS[outcome];
-    sfx(outcome === 'win' ? 'victory' : outcome === 'loss' ? 'defeat' : 'banner');
+    sfx(outcome === 'win' ? 'sting' : outcome === 'loss' ? 'defeat' : 'banner');
     recordBattleOutcome(outcome);
     save.ink += reward;
     if (outcome === 'win') save.stats.wins++;
@@ -2319,6 +2559,8 @@
     }
 
     var pips = $('ink-pips');
+    if (me.ink > lastInk && battle.activePlayer === 0 && !battle.winner) sfx('ink');
+    lastInk = me.ink;
     pips.replaceChildren();
     for (var i = 0; i < me.maxInk; i++) {
       pips.appendChild(el('span', 'pip' + (i < me.ink ? ' full' : '')));
@@ -2354,6 +2596,11 @@
         card.cost <= me.ink &&
         me.board.length < Engine.RULES.BOARD_LIMIT;
       var node = el('div', 'hand-card ' + (playable ? 'playable' : 'unplayable'));
+      if (playable && window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
+        node.addEventListener('pointerenter', function () {
+          sfx('tick');
+        });
+      }
       if (ui.pendingPlay && ui.pendingPlay.handIndex === index) node.classList.add('selected');
       node.appendChild(el('span', 'hand-cost', String(card.cost)));
       var art = el('div', 'minion-art');
@@ -2383,6 +2630,7 @@
     );
     mulliganBtn.textContent = 'Mulligan · ' + mulligansLeft + ' left';
     renderActionBar();
+    renderTutorial();
 
     var log = $('game-log');
     log.replaceChildren();
@@ -2396,6 +2644,7 @@
 
   function showSection(name) {
     ui.section = name;
+    sfx('page');
     document.querySelectorAll('.nav-tab').forEach(function (tab) {
       tab.classList.toggle('active', tab.getAttribute('data-section') === name);
     });
@@ -2467,6 +2716,7 @@
       renderBattle();
     });
     $('battle-help').addEventListener('click', openBattleHelp);
+    initDragAttack();
     $('autopilot-toggle').addEventListener('click', function () {
       setAutopilot(!ui.autopilot);
     });

@@ -626,6 +626,67 @@ test('archetype sound bank: every strike has its own register and is wired', () 
   assert.ok(js.includes("sfx('atk_' + archetype)"), 'archetype sound not wired into withFx');
 });
 
+test('pantheon ascendant: three kin lift each other; two do not', () => {
+  const battle = makeBattle();
+  const c = SET.cards[0];
+  const mk = (uid, pantheon) => ({
+    uid, def: { ...c, pantheon }, name: 'T' + uid, cost: 1, power: 3, maxHealth: 4, health: 4, speed: 3,
+    shield: 0, sick: false, attacksUsed: false, specialUsed: false, stunned: 0, confused: 0, tempPowerDown: 0,
+    ability: null, domain: '', rarity: 'common',
+  });
+  battle.players[0].board.push(mk(801, 'norse'), mk(802, 'norse'));
+  assert.strictEqual(Engine.effectivePower(battle, 0, battle.players[0].board[0]), 3, 'two kin: no ascendance');
+  battle.players[0].board.push(mk(803, 'norse'));
+  assert.strictEqual(Engine.effectivePower(battle, 0, battle.players[0].board[0]), 4, 'three kin: ascendant +1');
+  assert.strictEqual(Engine.isAscendant(battle, 0, battle.players[0].board[0]), true);
+  // And it stacks with the champion's bond.
+  battle.players[0].bondPantheon = 'norse';
+  assert.strictEqual(Engine.effectivePower(battle, 0, battle.players[0].board[0]), 5, 'bond + ascendant stack');
+});
+
+test('the P-series contracts: tutorial, drag, chips, deck-lab, oracle path, sound pass', () => {
+  const html = fs.readFileSync(path.join(ROOT, 'game/index.html'), 'utf8');
+  const js = fs.readFileSync(path.join(ROOT, 'game/game.js'), 'utf8');
+  const css = fs.readFileSync(path.join(ROOT, 'game/game.css'), 'utf8');
+  const sound = require('../game/fx/sound.js');
+  // Tutorial.
+  assert.ok(html.includes('tutorial-bubble'), 'tutorial bubble missing');
+  assert.ok(js.includes('startTutorial'), 'tutorial start missing');
+  assert.ok(js.includes('completeTutorial'), 'tutorial completion missing');
+  assert.ok(js.includes('tutorialDone'), 'tutorial persistence missing');
+  assert.ok(css.includes('.tutorial-hl'), 'tutorial highlight styles missing');
+  // Drag-to-attack.
+  assert.ok(js.includes('initDragAttack'), 'drag attack init missing');
+  assert.ok(js.includes('lastDragEnd'), 'drag/click dedup missing');
+  assert.ok(css.includes('.drag-arrow'), 'drag arrow styles missing');
+  // Projected chips.
+  assert.ok(html.includes('arena-chips'), 'chip layer missing');
+  assert.ok(js.includes('syncArenaChips'), 'chip sync missing');
+  assert.ok(js.includes('arenaChipsLoop'), 'chip loop missing');
+  assert.ok(css.includes('.arena-chip'), 'chip styles missing');
+  // Deck lab.
+  assert.ok(js.includes('ARCHETYPES_DECK'), 'archetype table missing');
+  assert.ok(js.includes('deckLabCounsel'), 'deck counsel missing');
+  assert.ok(js.includes('renderDeckLab'), 'deck lab render missing');
+  assert.ok(css.includes('.deck-lab'), 'deck lab styles missing');
+  // Oracle Path.
+  assert.ok(html.includes('oracle-path'), 'oracle path section missing');
+  assert.ok(js.includes('renderOraclePath'), 'oracle path render missing');
+  assert.ok(js.includes('oraclePath.cleared'), 'gate clearing missing');
+  assert.ok(js.includes('tribute'), 'tribute rewards missing');
+  assert.ok(css.includes('.oracle-gate'), 'gate styles missing');
+  // Sound pass.
+  for (const name of ['imp_bolt', 'imp_flood', 'imp_blade', 'tick', 'page', 'sting']) {
+    assert.ok(sound.RECIPES[name], `missing ${name} recipe`);
+  }
+  assert.ok(js.includes("sfx('imp_' + archetype)"), 'impact variants not wired');
+  assert.ok(js.includes("sfx('page')"), 'section foley not wired');
+  assert.ok(js.includes('navigator.vibrate'), 'haptics missing');
+  // Ascendant.
+  assert.ok(js.includes('isAscendant'), 'ascendant not surfaced');
+  assert.ok(css.includes('.minion.ascendant'), 'ascendant styles missing');
+});
+
 test('the Arena 3D: renderer, integration, presentation toggle, fallback', () => {
   const arena = fs.readFileSync(path.join(ROOT, 'game/fx/arena3d.js'), 'utf8');
   for (const needle of ['setChampions', 'syncBoard', 'attackChoreo', 'project', 'heroHit', 'FLOOR_FS', 'BILL_FS']) {

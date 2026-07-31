@@ -212,6 +212,48 @@
       tone('sawtooth', 294, t, 0.34, 0.1);
       noise(t, 0.1, 0.06, 'lowpass', 900);
     },
+
+    /* ── Impact voices: the landing, matched to the strike ───────────────── */
+    imp_bolt: function (t) {
+      tone('sine', 70, t, 0.26, 0.26, 40);
+      noise(t, 0.12, 0.16, 'lowpass', 700);
+      tone('sawtooth', 320, t, 0.06, 0.08, 120);
+    },
+    imp_flood: function (t) {
+      noise(t, 0.22, 0.18, 'lowpass', 900, 250);
+      tone('sine', 160, t + 0.05, 0.14, 0.08, 90);
+    },
+    imp_blade: function (t) {
+      tone('triangle', 2400, t, 0.1, 0.1);
+      tone('triangle', 3100, t + 0.03, 0.08, 0.06);
+      noise(t, 0.05, 0.1, 'highpass', 3600);
+    },
+    imp_flame: function (t) {
+      noise(t, 0.18, 0.18, 'bandpass', 500, 1400);
+      noise(t + 0.06, 0.1, 0.12, 'highpass', 2400);
+    },
+    imp_shadow: function (t) {
+      tone('sine', 65, t, 0.34, 0.2, 42);
+      noise(t, 0.24, 0.07, 'lowpass', 350);
+    },
+    imp_quake: function (t) {
+      tone('sine', 46, t, 0.5, 0.28, 30);
+      noise(t, 0.36, 0.14, 'lowpass', 180);
+    },
+
+    /* ── UI foley ────────────────────────────────────────────────────────── */
+    tick: function (t) {
+      tone('sine', 1250, t, 0.025, 0.05);
+    },
+    page: function (t) {
+      noise(t, 0.08, 0.06, 'highpass', 1800, 3600);
+      tone('sine', 620, t + 0.02, 0.05, 0.05);
+    },
+    sting: function (t) {
+      chime([523.25, 659.25, 783.99, 1046.5], t, 0.09, 0.3, 0.13, 'triangle');
+      tone('sine', 65, t, 0.4, 0.2, 45);
+      noise(t + 0.35, 0.6, 0.06, 'highpass', 4800);
+    },
   };
 
   return {
