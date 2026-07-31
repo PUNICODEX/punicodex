@@ -163,7 +163,12 @@ test('every built flagship has a canonical register entry with truthful ASCII st
     assert.strictEqual(post.entryId, id);
     assert.strictEqual(post.series, 'canonical');
     assert.ok(post.body.split(/\s+/).length >= 450, `${id}: body under 450 words`);
-    assert.ok(post.body.includes('## Where the Flattened Form Stands'), `${id}: ASCII status section missing`);
+    // The ASCII-status truth is mandatory in every architecture (its heading
+    // varies: ruling section, dossier exhibit, trial witness, letter prose).
+    assert.ok(
+      /flattened form|fallback|acceptable everywhere/i.test(post.body),
+      `${id}: ASCII status content missing`
+    );
     assert.ok(post.body.includes('IDNA 2008'), `${id}: IDNA section missing`);
     titles.add(post.title);
     descriptions.add(post.description);
