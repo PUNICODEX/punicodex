@@ -168,6 +168,7 @@
         </div>
 
         <div id="battlefield-wrap" hidden>
+          <canvas id="arena-3d" aria-hidden="true"></canvas>
           <div class="battlefield">
             <div class="board-row" id="enemy-board"></div>
 
@@ -185,6 +186,7 @@
             <button id="mulligan" class="btn secondary" hidden>Mulligan</button>
             <button id="concede" class="btn secondary">Concede</button>
             <button id="battle-help" class="btn secondary help-btn" type="button" aria-label="The Grimoire — how the duel works" title="The Grimoire — how the duel works">?</button>
+            <button id="presentation-toggle" class="btn secondary help-btn" type="button" aria-label="Toggle cinematic 3D arena" title="Toggle cinematic 3D arena">🎬</button>
             <button id="autopilot-toggle" class="btn secondary help-btn" type="button" aria-label="Autopilot — the Archive plays your side" aria-pressed="false" title="Autopilot — the Archive plays your side">🤖</button>
             <button id="sound-toggle" class="btn secondary help-btn" type="button" aria-label="Toggle sound" title="Toggle sound">🔊</button>
             <div class="game-log" id="game-log"></div>
@@ -217,6 +219,7 @@
   <script src="/game/fx/sequences.js"></script>
   <script src="/game/fx/signatures.js"></script>
   <script src="/game/fx/sound.js"></script>
+  <script src="/game/fx/arena3d.js"></script>
   <script src="/game/game.js"></script>
 </body>
 </html>

@@ -1017,6 +1017,7 @@
   /* ── Battle FX (v2: hero panels + attack sequences) ───────────────────── */
 
   var fx = null; // Sequences instance, created with the battlefield
+  var arena3d = null; // The Arena 3D diorama (cinematic presentation)
   var heroes = [null, null]; // { card, power } per side
   var aiMercyRounds = 0; // the Oracle's shelter, set from the player's record
   var aiBandThreshold = 12; // rubber-band engagement point, difficulty-scaled
@@ -1104,6 +1105,45 @@
     fxCanvas.setAttribute('aria-hidden', 'true');
     wrap.insertBefore(fxCanvas, wrap.firstChild);
     fx = Sequences.attach(fxCanvas);
+  }
+
+  function isCinematic() {
+    return (
+      save.presentation !== 'classic' &&
+      typeof Arena3D !== 'undefined' &&
+      !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+    );
+  }
+
+  function mountArena() {
+    var wrap = $('battlefield-wrap');
+    if (!isCinematic()) {
+      wrap.classList.remove('cinematic');
+      return;
+    }
+    var canvas = $('arena-3d');
+    if (!canvas) return;
+    if (!arena3d) {
+      // A previous mount may have lost its GL context — begin from a fresh canvas.
+      var fresh = canvas.cloneNode(false);
+      canvas.parentNode.replaceChild(fresh, canvas);
+      arena3d = Arena3D.mount(fresh);
+      if (!arena3d) {
+        wrap.classList.remove('cinematic');
+        return; // no WebGL2 — the classic arena stands
+      }
+    }
+    arena3d.setChampions({ player: heroes[0].card, enemy: heroes[1].card });
+    wrap.classList.add('cinematic');
+  }
+
+  function unmountArena() {
+    var wrap = $('battlefield-wrap');
+    if (wrap) wrap.classList.remove('cinematic');
+    if (arena3d) {
+      arena3d.destroy();
+      arena3d = null;
+    }
   }
 
   function heroPanel(side, heroCard, power) {
@@ -1211,6 +1251,7 @@
           fx.shake(Math.min(10, 3 + Math.abs(delta)));
           flashHitVignette(side);
           sfx('heroHit');
+          if (arena3d) arena3d.heroHit(side);
         } else {
           sfx('heal');
         }
@@ -1248,9 +1289,10 @@
     }
   }
 
-  // withFx(attackerCard, getTargetPos, action) — runs the action with a
+  // withFx(attackerCard, getTargetPos, action, opts?) — runs the action with a
   // before/after diff and plays the archetype sequence between them.
-  function withFx(attackerCard, getTargetPos, action) {
+  // opts.targetMinion: the defending minion (for the 3D camera choreo).
+  function withFx(attackerCard, getTargetPos, action, opts) {
     if (!fx) return action();
     var before = fxSnapshot();
     var targetPos = getTargetPos ? getTargetPos() : null;
@@ -1264,6 +1306,17 @@
     if (targetPos) {
       var def = (attackerCard && attackerCard.def) || attackerCard || {};
       var archetype = Sequences.archetypeFor(attackerCard || {});
+      // The Arena 3D sweeps the camera to the strike; the 2D sequence plays above.
+      if (arena3d && attackerCard && attackerCard.uid != null) {
+        var targetMinionRef = opts && opts.targetMinion;
+        var toMinion = targetMinionRef && targetMinionRef.uid != null ? 'm' + targetMinionRef.uid : null;
+        arena3d.attackChoreo({
+          fromUid: 'm' + attackerCard.uid,
+          toUid: toMinion,
+          toSide: toMinion ? null : 1,
+          archetype: archetype,
+        });
+      }
       fx.attack({
         entryId: def.entryId || null,
         archetype: archetype,
@@ -1387,6 +1440,7 @@
       $('battlefield-wrap').style.setProperty('--arena-glow', heroes[0].card.art.colors.glow);
     }
     ensureFx();
+    mountArena();
     var wrap = $('battlefield-wrap');
     wrap.querySelectorAll('.hero-panel').forEach(function (n) { n.remove(); });
     var board = wrap.querySelector('.battlefield');
@@ -1424,6 +1478,7 @@
     ui.pendingPlay = null;
     ui.pendingSpecial = null;
     ui.selectedAttacker = null;
+    unmountArena();
     $('battlefield-wrap').hidden = true;
     $('reward-overlay').hidden = true;
     $('deck-select').hidden = false;
@@ -1643,7 +1698,7 @@
         var spMinion = battle.players[0].board[ui.pendingSpecial.boardIndex];
         var spRes = withFx(spMinion, function () { return minionPos(m.uid); }, function () {
           return Engine.useSpecial(battle, ui.pendingSpecial.boardIndex, spTarget);
-        });
+        }, { targetMinion: m });
         if (!spRes || spRes.ok !== false) sfx('special');
         if (spRes && spRes.ok === false) showToast(spRes.error || 'The special failed.');
         ui.pendingSpecial = null;
@@ -1660,7 +1715,7 @@
         var playedCard = battle.players[0].hand[ui.pendingPlay.handIndex];
         withFx(playedCard, function () { return minionPos(m.uid); }, function () {
           return Engine.playCard(battle, ui.pendingPlay.handIndex, target);
-        });
+        }, { targetMinion: m });
         sfx('cardPlay');
         ui.pendingPlay = null;
     ui.pendingSpecial = null;
@@ -1674,7 +1729,7 @@
       var attacker = battle.players[0].board[ui.selectedAttacker];
       var res = withFx(attacker, function () { return minionPos(m.uid); }, function () {
         return Engine.attack(battle, ui.selectedAttacker, index);
-      });
+      }, { targetMinion: m });
       if (!res || res.ok !== false) sfx('attack');
       if (res && res.ok === false) showToast(res.error || 'That strike failed.');
       ui.selectedAttacker = null;
@@ -1978,6 +2033,7 @@
     var me = battle.players[0];
     var foe = battle.players[1];
     var legal = Engine.getLegalActions(battle);
+    if (arena3d) arena3d.syncBoard(battle.players);
 
     // v2 hero panels: animated HP bars, deck/hand counts, hero-power state.
     for (var side = 0; side < 2; side++) {
@@ -2179,6 +2235,19 @@
     $('autopilot-toggle').addEventListener('click', function () {
       setAutopilot(!ui.autopilot);
     });
+    $('presentation-toggle').addEventListener('click', function () {
+      save.presentation = save.presentation === 'classic' ? 'cinematic' : 'classic';
+      persist();
+      if (save.presentation === 'classic') {
+        unmountArena();
+        showToast('The classic arena — cards on the obsidian table.');
+      } else {
+        showToast('The cinematic arena — the gods take the stage.');
+        if (battle) mountArena();
+      }
+      renderPresentationToggle();
+      if (battle) renderBattle();
+    });
     $('sound-toggle').addEventListener('click', function () {
       save.soundMuted = !save.soundMuted;
       persist();
@@ -2229,6 +2298,15 @@
     if (btn) btn.textContent = save.soundMuted ? '🔇' : '🔊';
   }
 
+  function renderPresentationToggle() {
+    var btn = $('presentation-toggle');
+    if (!btn) return;
+    var cinematic = isCinematic();
+    btn.textContent = cinematic ? '🎬' : '🂠';
+    btn.classList.toggle('active', cinematic);
+    btn.title = cinematic ? 'Cinematic 3D arena — click for the classic table' : 'Classic arena — click for the cinematic 3D stage';
+  }
+
   function init(data) {
     cards = data.cards.map(function (raw) {
       var display = Engine.toBattleCard(raw);
@@ -2255,6 +2333,7 @@
     if (firstVisit) save = defaultSave();
     if (typeof Sound !== 'undefined' && Sound && Sound.setMuted) Sound.setMuted(!!save.soundMuted);
     renderSoundToggle();
+    renderPresentationToggle();
     // Drop deck entries the player no longer owns.
     save.deck = save.deck.filter(function (id) {
       return save.collection[id];

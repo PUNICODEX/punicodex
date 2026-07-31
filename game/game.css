@@ -2499,3 +2499,93 @@ body.game-body ::-webkit-scrollbar-thumb:hover { background-color: rgba(212, 175
   margin-left: auto;
   margin-right: 0.4rem;
 }
+
+/* ── The Arena 3D: cinematic presentation ────────────────────────────────── */
+#arena-3d {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  border-radius: 1.2rem;
+  display: none;
+}
+
+#battlefield-wrap.cinematic #arena-3d { display: block; }
+
+/* The 3D stage replaces the engraved table; interaction floats above it. */
+#battlefield-wrap.cinematic .battlefield {
+  position: relative;
+  z-index: 2;
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
+#battlefield-wrap.cinematic .battlefield::before { display: none; }
+
+#battlefield-wrap.cinematic .hero-panel,
+#battlefield-wrap.cinematic .controls,
+#battlefield-wrap.cinematic .action-bar,
+#battlefield-wrap.cinematic .hand-row {
+  position: relative;
+  z-index: 2;
+}
+
+#battlefield-wrap.cinematic .turn-banner {
+  background: linear-gradient(180deg, rgba(8, 10, 16, 0.82), rgba(8, 10, 16, 0.55));
+  border-radius: 0.5rem;
+  backdrop-filter: blur(2px);
+}
+
+/* Minion frames go transparent — the characters stand in the world below. */
+#battlefield-wrap.cinematic .minion {
+  background: none;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+#battlefield-wrap.cinematic .minion .minion-art {
+  opacity: 0;
+  height: 64px;
+}
+
+#battlefield-wrap.cinematic .minion .minion-name {
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9), 0 0 10px rgba(0, 0, 0, 0.7);
+}
+
+#battlefield-wrap.cinematic .minion .minion-stats span {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+/* Selection and targeting read as light on the stage itself. */
+#battlefield-wrap.cinematic .minion.selected {
+  box-shadow: none;
+  border-radius: 0.6rem;
+  background: radial-gradient(ellipse at 50% 20%, rgba(212, 175, 55, 0.22), transparent 70%);
+}
+
+#battlefield-wrap.cinematic .minion.targetable {
+  border-radius: 0.6rem;
+  background: radial-gradient(ellipse at 50% 20%, rgba(239, 68, 68, 0.22), transparent 70%);
+}
+
+#battlefield-wrap.cinematic .minion.ready {
+  animation: none;
+  border-radius: 0.6rem;
+  background: radial-gradient(ellipse at 50% 20%, rgba(34, 197, 94, 0.12), transparent 70%);
+}
+
+#battlefield-wrap.cinematic .minion.sick {
+  opacity: 0.55;
+}
+
+#presentation-toggle.active {
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #battlefield-wrap.cinematic #arena-3d { display: none; }
+}

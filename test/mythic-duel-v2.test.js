@@ -626,6 +626,29 @@ test('archetype sound bank: every strike has its own register and is wired', () 
   assert.ok(js.includes("sfx('atk_' + archetype)"), 'archetype sound not wired into withFx');
 });
 
+test('the Arena 3D: renderer, integration, presentation toggle, fallback', () => {
+  const arena = fs.readFileSync(path.join(ROOT, 'game/fx/arena3d.js'), 'utf8');
+  for (const needle of ['setChampions', 'syncBoard', 'attackChoreo', 'project', 'heroHit', 'FLOOR_FS', 'BILL_FS']) {
+    assert.ok(arena.includes(needle), `arena3d.js missing ${needle}`);
+  }
+  const html = fs.readFileSync(path.join(ROOT, 'game/index.html'), 'utf8');
+  const arenaIdx = html.indexOf('/game/fx/arena3d.js');
+  const gameIdx = html.indexOf('/game/game.js');
+  assert.ok(arenaIdx !== -1 && arenaIdx < gameIdx, 'arena3d.js must load before game.js');
+  assert.ok(html.includes('arena-3d'), 'arena canvas missing');
+  assert.ok(html.includes('presentation-toggle'), 'presentation toggle missing');
+  const js = fs.readFileSync(path.join(ROOT, 'game/game.js'), 'utf8');
+  for (const needle of ['mountArena', 'unmountArena', 'arena3d.syncBoard', 'arena3d.attackChoreo', 'arena3d.heroHit', 'save.presentation', 'cloneNode(false)']) {
+    assert.ok(js.includes(needle), `game.js missing ${needle}`);
+  }
+  // Remount after a lost GL context starts from a fresh canvas (the toggle
+  // round-trip that broke before).
+  assert.ok(js.includes('Arena3D.mount(fresh)'), 'fresh-canvas remount missing');
+  const css = fs.readFileSync(path.join(ROOT, 'game/game.css'), 'utf8');
+  assert.ok(css.includes('#battlefield-wrap.cinematic'), 'cinematic styles missing');
+  assert.ok(css.includes('prefers-reduced-motion'), 'reduced-motion fallback missing');
+});
+
 test('enterprise UI contracts: difficulty badge, deckhand, bond frame', () => {
   const html = fs.readFileSync(path.join(ROOT, 'game/index.html'), 'utf8');
   const js = fs.readFileSync(path.join(ROOT, 'game/game.js'), 'utf8');
