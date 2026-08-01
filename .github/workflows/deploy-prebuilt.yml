@@ -41,9 +41,18 @@ jobs:
       - name: Deploy prebuilt output
         id: deploy
         run: |
-          URL=$(npx vercel@latest deploy --prebuilt --prod --archive=tgz --token=${{ secrets.VERCEL_TOKEN }})
-          echo "url=$URL" >> "$GITHUB_OUTPUT"
-          echo "Deployed: $URL"
+          for attempt in 1 2 3; do
+            echo "Deploy attempt $attempt of 3"
+            if URL=$(npx vercel@latest deploy --prebuilt --prod --archive=tgz --token=${{ secrets.VERCEL_TOKEN }}); then
+              echo "url=$URL" >> "$GITHUB_OUTPUT"
+              echo "Deployed: $URL"
+              exit 0
+            fi
+            echo "Attempt $attempt failed — retrying in 20s"
+            sleep 20
+          done
+          echo "All deploy attempts failed"
+          exit 1
 
       - name: Alias production domains
         run: |
