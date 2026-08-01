@@ -2517,10 +2517,20 @@ body.game-body ::-webkit-scrollbar-thumb:hover { background-color: rgba(212, 175
 #battlefield-wrap.cinematic .battlefield {
   position: relative;
   z-index: 2;
+  min-height: clamp(430px, 56vh, 620px);
   background: none;
   border: none;
   box-shadow: none;
 }
+
+@media (max-width: 640px) {
+  #battlefield-wrap.cinematic .battlefield {
+    min-height: clamp(340px, 52vh, 480px);
+  }
+}
+
+/* The 3D scene + projected chips own the stage — the DOM rows stand down. */
+#battlefield-wrap.cinematic .board-row { display: none; }
 
 #battlefield-wrap.cinematic .battlefield::before { display: none; }
 
@@ -2532,10 +2542,83 @@ body.game-body ::-webkit-scrollbar-thumb:hover { background-color: rgba(212, 175
   z-index: 2;
 }
 
+/* Hero panels float as compact corner cards above the arena floor. */
+#battlefield-wrap.cinematic .hero-panel {
+  position: absolute;
+  z-index: 3;
+  width: 190px;
+  gap: 0.5rem;
+  padding: 0.45rem 0.55rem;
+  margin: 0;
+  background: linear-gradient(180deg, rgba(14, 15, 24, 0.82), rgba(8, 9, 14, 0.82));
+  backdrop-filter: blur(3px);
+}
+
+#battlefield-wrap.cinematic .hero-panel.side-1 { top: 10px; left: 10px; }
+
+/* side-0 keeps its static y (just under the stage), then lifts by its own
+   height into the stage's bottom-left corner — anchored bottom:10px of the
+   wrap it would cover the controls, and unshifted it would cover the hand. */
+#battlefield-wrap.cinematic .hero-panel.side-0 {
+  left: 10px;
+  transform: translateY(calc(-100% - 10px));
+}
+
+#battlefield-wrap.cinematic .hero-panel .hero-art {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+}
+
+#battlefield-wrap.cinematic .hero-panel .hero-name {
+  font-size: 0.78rem;
+  margin-bottom: 0.2rem;
+}
+
+#battlefield-wrap.cinematic .hero-panel .hero-hpbar { height: 7px; }
+
+#battlefield-wrap.cinematic .hero-panel .hero-hptext {
+  font-size: 0.62rem;
+  margin-top: 0.12rem;
+}
+
+#battlefield-wrap.cinematic .hero-panel .hero-meta {
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  font-size: 0.62rem;
+}
+
+#battlefield-wrap.cinematic .hero-panel .hero-power {
+  margin-top: 0.3rem;
+  padding: 0.18rem 0.55rem;
+  font-size: 0.62rem;
+}
+
+#battlefield-wrap.cinematic .hero-panel .ink-pips .pip {
+  width: 8px;
+  height: 8px;
+}
+
+/* The turn banner floats as a small pill mirroring the enemy corner card —
+   never across the mascots' central space. */
 #battlefield-wrap.cinematic .turn-banner {
-  background: linear-gradient(180deg, rgba(8, 10, 16, 0.82), rgba(8, 10, 16, 0.55));
-  border-radius: 0.5rem;
-  backdrop-filter: blur(2px);
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  z-index: 3;
+  padding: 0.28rem 0.75rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: 999px;
+  background: rgba(8, 10, 16, 0.72);
+  backdrop-filter: blur(3px);
+}
+
+#battlefield-wrap.cinematic .turn-banner.enemy-turn {
+  color: var(--danger);
+  border-color: rgba(239, 68, 68, 0.45);
 }
 
 /* Minion frames go transparent — the characters stand in the world below. */
@@ -2607,8 +2690,49 @@ body.game-body ::-webkit-scrollbar-thumb:hover { background-color: rgba(212, 175
   display: flex;
   align-items: center;
   gap: 0.3rem;
-  transition: opacity 0.2s ease;
-  pointer-events: none;
+  padding: 0.15rem 0.3rem;
+  border-radius: 999px;
+  background: rgba(6, 8, 14, 0.55);
+  backdrop-filter: blur(2px);
+  transition: opacity 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.arena-chip:hover { transform: translate(-50%, -124%); }
+
+/* Board states mirrored from the DOM minions: bond ring, strike-ready,
+   armed attacker, legal target. */
+.arena-chip.bonded { box-shadow: 0 0 0 1.5px rgba(212, 175, 55, 0.85); }
+
+.arena-chip.ready {
+  box-shadow: 0 0 0 1.5px rgba(34, 197, 94, 0.9), 0 0 10px rgba(34, 197, 94, 0.5);
+}
+
+.arena-chip.selected {
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 1), 0 0 14px rgba(212, 175, 55, 0.65);
+}
+
+.arena-chip.targetable {
+  box-shadow: 0 0 0 1.5px rgba(239, 68, 68, 0.9), 0 0 12px rgba(239, 68, 68, 0.55);
+  cursor: crosshair;
+}
+
+.arena-chip .preview-chip {
+  border-radius: 999px;
+  height: auto;
+  padding: 0.12rem 0.5rem;
+  font-size: 0.62rem;
+  font-weight: 700;
+  white-space: nowrap;
+  background: rgba(30, 22, 8, 0.92);
+  border: 1px solid rgba(212, 175, 55, 0.6);
+  color: var(--accent, #d4af37);
+}
+
+@media (max-width: 640px) {
+  .arena-chip { transform: translate(-50%, -118%) scale(0.85); }
+  .arena-chip:hover { transform: translate(-50%, -124%) scale(0.85); }
 }
 
 .arena-chip span {

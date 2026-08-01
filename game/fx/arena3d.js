@@ -317,8 +317,10 @@
     var glow = [0.83, 0.69, 0.22];
     var cam = {
       fov: (42 * Math.PI) / 180,
-      eye: [0, 6.4, 11.5],
-      target: [0, 0.6, 0],
+      // Framed slightly higher and further back so both lanes and thrones
+      // compose into the clear stage above the hand, not beneath it.
+      eye: [0, 15.0, 11.0],
+      target: [0, 0.5, 0],
       choreo: null, // { t, dur, fromEye, toEye, fromT, toT, hold }
     };
     var running = true;
