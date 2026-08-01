@@ -27,7 +27,7 @@ require.cache[emailModulePath].exports = {
   },
 };
 
-const handler = require('../api/arbitrage/apply/index.js');
+const handler = require('../platform/api-handlers/root/arbitrage/apply/index.js');
 
 let passed = 0;
 let failed = 0;

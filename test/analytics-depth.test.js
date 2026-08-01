@@ -159,8 +159,8 @@ async function main() {
   });
 
   await test('temple endpoint serves the public envelope and degrades safely', async () => {
-    delete require.cache[require.resolve('../api/analytics/temple/index.js')];
-    const handler = require('../api/analytics/temple/index.js');
+    delete require.cache[require.resolve('../platform/api-handlers/analytics/temple/index.js')];
+    const handler = require('../platform/api-handlers/analytics/temple/index.js');
     const invoke = (query) =>
       new Promise((resolve) => {
         const req = { method: 'GET', query, headers: {}, socket: {} };

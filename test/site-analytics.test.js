@@ -33,7 +33,7 @@ const { isBotBasic, classifyUserAgent } = require(
 );
 const analytics = require(path.join(ROOT, 'platform', 'api', 'site-analytics'));
 const { all, closeDb } = require(path.join(ROOT, 'platform', 'db', 'operational'));
-const collectHandler = require(path.join(ROOT, 'api', 'analytics', 'collect'));
+const collectHandler = require(path.join(ROOT, 'platform', 'api-handlers', 'analytics', 'collect'));
 
 const CHROME_DESKTOP =
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36';

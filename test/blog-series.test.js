@@ -206,7 +206,7 @@ test('canonical pages render with correct canonical URL and series chain; API en
     assert.ok(html.includes(`../../../${BUILT_IDS[i - 1]}/blog/canonical/`), `${BUILT_IDS[i]}: prev link missing`);
     assert.ok(html.includes(`../../../${BUILT_IDS[i + 1]}/blog/canonical/`), `${BUILT_IDS[i]}: next link missing`);
   }
-  const endpoint = fs.readFileSync(path.join(ROOT, 'api', 'v1', 'canonical-register', 'index.js'), 'utf8');
+  const endpoint = fs.readFileSync(path.join(ROOT, 'platform', 'api-handlers', 'v1', 'canonical-register', 'index.js'), 'utf8');
   assert.ok(endpoint.includes('canonical-register.json'), 'endpoint does not serve the register');
   const gen = fs.readFileSync(path.join(ROOT, 'scripts', 'generate.js'), 'utf8');
   assert.ok(gen.includes('generate-blog-series-canonical.js'), 'canonical generator not registered in flywheel');

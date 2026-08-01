@@ -8,7 +8,7 @@ const { URL } = require('node:url');
 const partners = require('../platform/api/partners.js');
 const ecosystem = require('../platform/api/ecosystem-service.js');
 
-const handler = require('../api/ecosystem/index.js');
+const handler = require('../platform/api-handlers/root/ecosystem/index.js');
 
 function invoke(method, url, options = {}) {
   return new Promise((resolve) => {

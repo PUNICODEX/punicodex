@@ -58,10 +58,10 @@ require.cache[emailModulePath].exports = {
 
 const { invoke, jsonBody } = require('./helpers/http.js');
 const { resetLimiters } = require('../platform/api/api-rate-limiter.js');
-const crawlEventsHandler = require('../api/crawl/events/index.js');
-const gamificationHandler = require('../api/gamification/index.js');
-const agentsHandler = require('../api/agents/index.js');
-const workspaceHandler = require('../api/workspace/index.js');
+const crawlEventsHandler = require('../platform/api-handlers/root/crawl/events/index.js');
+const gamificationHandler = require('../platform/api-handlers/root/gamification/index.js');
+const agentsHandler = require('../platform/api-handlers/root/agents/index.js');
+const workspaceHandler = require('../platform/api-handlers/root/workspace/index.js');
 const bookingService = require('../platform/api/booking-service.js');
 const { handleError } = require('../api/_utils.js');
 const { handleApiError } = require('../platform/api/api-response.js');

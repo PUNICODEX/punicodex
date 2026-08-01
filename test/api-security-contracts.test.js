@@ -71,7 +71,13 @@ function test(name, fn) {
   }
 }
 
-const apiFiles = walk(path.join(ROOT, 'api'));
+// Handlers consolidated behind the catch-all routers live under
+// platform/api-handlers/ — scan both trees so the contract keeps covering
+// every endpoint file.
+const apiFiles = [
+  ...walk(path.join(ROOT, 'api')),
+  ...walk(path.join(ROOT, 'platform', 'api-handlers')),
+];
 
 function run() {
   console.log('\n▸ API Security Contracts\n');

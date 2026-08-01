@@ -58,7 +58,7 @@ migrateScholarsCreatives(getDb());
 migrateCreatorMerch(getDb());
 migrateStoreOrders(getDb());
 
-const checkoutHandler = require('../api/store/checkout');
+const checkoutHandler = require('../platform/api-handlers/root/store/checkout');
 const PRODUCT_CATALOG = require('../store/products.json');
 
 PRODUCT_CATALOG.products.push({

@@ -29,7 +29,7 @@ const tenantPortal = require('../platform/api/tenant-portal.js');
 const { createBooking, goLive, recordEvent } = require('../platform/api/bookings.js');
 const { getIndividualSlotIds } = require('./helpers/slots.js');
 
-const pixelHandler = require('../api/analytics/pixel.gif/index.js');
+const pixelHandler = require('../platform/api-handlers/analytics/pixel.gif/index.js');
 const accountHandler = require('../api/account/[[...slug]].js');
 
 const HUMAN_UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0';

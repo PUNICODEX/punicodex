@@ -7,7 +7,7 @@ const http = require('node:http');
 const { URL } = require('node:url');
 const { getProtocolSpec } = require('../platform/api/protocol-service.js');
 
-const handler = require('../api/protocol/index.js');
+const handler = require('../platform/api-handlers/root/protocol/index.js');
 
 function invoke(method, url, options = {}) {
   return new Promise((resolve) => {

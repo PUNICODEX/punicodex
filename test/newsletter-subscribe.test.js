@@ -30,7 +30,7 @@ require.cache[emailModulePath].exports = {
   },
 };
 
-const handler = require('../api/newsletter/subscribe.js');
+const handler = require('../platform/api-handlers/root/newsletter/subscribe.js');
 
 let passed = 0;
 let failed = 0;

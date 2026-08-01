@@ -21,7 +21,7 @@ require.cache[emailModulePath].exports = {
   },
 };
 
-const handler = require('../api/contact.js');
+const handler = require('../platform/api-handlers/root/contact.js');
 
 let passed = 0;
 let failed = 0;

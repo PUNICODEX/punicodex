@@ -27,7 +27,7 @@ require.cache[emailModulePath].exports = {
   },
 };
 
-const handler = require('../api/careers/apply/index.js');
+const handler = require('../platform/api-handlers/root/careers/apply/index.js');
 const { getDb } = require('../platform/db/connection.js');
 
 // Direct table assertions run before any request triggers ensureDb().

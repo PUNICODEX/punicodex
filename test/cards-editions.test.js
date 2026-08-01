@@ -111,11 +111,11 @@ test('stale ids migrate: standard→common, original-script→secret', () => {
 });
 
 test('ink economy: bundles, checkout, and redeem-once contract', () => {
-  const checkout = fs.readFileSync(path.join(ROOT, 'api/game/ink/checkout/index.js'), 'utf8');
+  const checkout = fs.readFileSync(path.join(ROOT, 'platform/api-handlers/root/game/ink/checkout/index.js'), 'utf8');
   for (const b of ['spark', 'flare', 'inferno']) assert.ok(checkout.includes(b), `bundle ${b}`);
   assert.ok(checkout.includes("type: 'game_ink'"), 'metadata marks game_ink');
   assert.ok(checkout.includes('ink_session={CHECKOUT_SESSION_ID}'), 'success URL carries the session');
-  const redeem = fs.readFileSync(path.join(ROOT, 'api/game/ink/redeem/index.js'), 'utf8');
+  const redeem = fs.readFileSync(path.join(ROOT, 'platform/api-handlers/root/game/ink/redeem/index.js'), 'utf8');
   assert.ok(redeem.includes('redeemed = 0'), 'redeem-once guard');
   assert.ok(redeem.includes('ON CONFLICT'), 'idempotent insert');
   assert.ok(redeem.includes('payment_status'), 'verifies payment with Stripe');
@@ -127,7 +127,7 @@ test('ink economy: bundles, checkout, and redeem-once contract', () => {
 test('ink endpoints: every relative require resolves to a real file', () => {
   // Static string checks cannot catch a require path that resolves to nothing
   // (the FUNCTION_INVOCATION_FAILED class of bug) — resolve each one for real.
-  for (const f of ['api/game/ink/checkout/index.js', 'api/game/ink/redeem/index.js']) {
+  for (const f of ['platform/api-handlers/root/game/ink/checkout/index.js', 'platform/api-handlers/root/game/ink/redeem/index.js']) {
     const abs = path.join(ROOT, f);
     const src = fs.readFileSync(abs, 'utf8');
     const reqs = [...src.matchAll(/require\('(\.[^']+)'\)/g)].map((m) => m[1]);

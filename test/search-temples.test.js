@@ -29,7 +29,7 @@ setupDb.exec('DELETE FROM temple_content');
 const seeded = seedTempleContent({ db: setupDb, temples: FIXTURE_TEMPLES });
 setupDb.close();
 
-const handler = require('../api/search/temples/index.js');
+const handler = require('../platform/api-handlers/search/temples/index.js');
 
 let passed = 0;
 let failed = 0;

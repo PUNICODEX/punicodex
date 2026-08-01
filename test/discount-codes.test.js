@@ -75,7 +75,7 @@ const loginHandler = require('../platform/api-handlers/admin/portal/login/index.
 const discountsHandler = require('../platform/api-handlers/admin/portal/discounts/index.js');
 const discountByIdHandler = require('../platform/api-handlers/admin/portal/discounts/[id]/index.js');
 const redemptionsHandler = require('../platform/api-handlers/admin/portal/discounts/[id]/redemptions/index.js');
-const validateHandler = require('../api/discount/validate/index.js');
+const validateHandler = require('../platform/api-handlers/root/discount/validate/index.js');
 
 function db() {
   return new Database(getTestDbPath(__filename));

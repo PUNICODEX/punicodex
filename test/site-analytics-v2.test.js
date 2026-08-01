@@ -187,8 +187,8 @@ async function main() {
   });
 
   await test('collect endpoint routes pv and eng payloads correctly', async () => {
-    delete require.cache[require.resolve('../api/analytics/collect/index.js')];
-    const handler = require('../api/analytics/collect/index.js');
+    delete require.cache[require.resolve('../platform/api-handlers/analytics/collect/index.js')];
+    const handler = require('../platform/api-handlers/analytics/collect/index.js');
     const invoke = (body) =>
       new Promise((resolve) => {
         const req = {
@@ -233,8 +233,8 @@ async function main() {
   });
 
   await test('trending endpoint serves the public aggregate envelope', async () => {
-    delete require.cache[require.resolve('../api/analytics/trending/index.js')];
-    const handler = require('../api/analytics/trending/index.js');
+    delete require.cache[require.resolve('../platform/api-handlers/analytics/trending/index.js')];
+    const handler = require('../platform/api-handlers/analytics/trending/index.js');
     const res = await new Promise((resolve) => {
       const req = { method: 'GET', query: { days: '7', limit: '5' }, headers: {}, socket: {} };
       const out = {

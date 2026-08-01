@@ -51,7 +51,7 @@ function createMockRes() {
 function fetchStoreProducts() {
   // Required lazily: the handler runs its idempotent migration at load time,
   // which needs PUNICODEX_TEST_DB_PATH and the creatives tables in place.
-  const handler = require('../api/store/products');
+  const handler = require('../platform/api-handlers/root/store/products');
   const res = createMockRes();
   handler({ method: 'GET', headers: {} }, res);
   assert.strictEqual(res.statusCode, 200);

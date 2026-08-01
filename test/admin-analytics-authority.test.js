@@ -63,7 +63,7 @@ const { runMigration } = require('../platform/db/migrate-site-analytics.js');
 
 const loginHandler = require('../platform/api-handlers/admin/portal/login/index.js');
 const dashboardHandler = require('../platform/api-handlers/admin/portal/dashboard/index.js');
-const overviewHandler = require('../api/analytics/overview/index.js');
+const overviewHandler = require('../platform/api-handlers/analytics/overview/index.js');
 const observabilityHandler = require('../platform/api-handlers/admin/observability/index.js');
 
 const TODAY = new Date().toISOString().slice(0, 10);
