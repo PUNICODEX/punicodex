@@ -36,6 +36,9 @@
     top: calc(100% + 8px);
     right: 0;
     min-width: 180px;
+    max-height: calc(100vh - 96px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
     background: var(--surface-raised, #121216);
     border: 1px solid rgba(212, 175, 55, 0.15);
     border-radius: var(--radius-md, 8px);
@@ -49,6 +52,13 @@
     transition: all 0.2s ease;
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
     z-index: 1011;
+}
+
+.nav-more-menu::-webkit-scrollbar { width: 6px; }
+.nav-more-menu::-webkit-scrollbar-track { background: transparent; }
+.nav-more-menu::-webkit-scrollbar-thumb {
+    background: rgba(212, 175, 55, 0.3);
+    border-radius: 999px;
 }
 
 .nav-more:hover .nav-more-menu,

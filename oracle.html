@@ -38,6 +38,7 @@
   <!-- Styles -->
   <link rel="stylesheet" href="/css/design-system.css">
   <link rel="stylesheet" href="/css/oracle.css">
+  <link rel="stylesheet" href="/css/oracle-v2.css?v=1">
   <link rel="stylesheet" href="/css/punicodex-tokens.css">
   <link rel="stylesheet" href="/css/brand-overrides.css">
   <style>
@@ -178,7 +179,7 @@
         </picture>
       </div>
       <div class="oracle-hero-content">
-        <div class="oracle-hero-eyebrow reveal-fade">Launching Soon</div>
+        <div class="oracle-hero-eyebrow reveal-fade">In Development</div>
         <h1 class="reveal-up">The PuniCodex Oracle</h1>
         <p class="oracle-hero-lead reveal-up">
           A specialized intelligence for mythological names, Unicode restorations, original scripts,
@@ -197,80 +198,102 @@
       </div>
     </section>
 
-    <!-- Manifesto -->
-    <section class="oracle-section oracle-section-dark">
+    <!-- Statement -->
+    <section class="oracle-section oracle-section-dark oracle-statement-section">
       <div class="oracle-container">
-        <div class="oracle-manifesto">
-          <div class="reveal-up">
-            <p class="section-eyebrow">The Difference</p>
-            <h2 class="manifesto-lead">The Oracle is not a chatbot. It is a <em>restoration engine</em> with memory of the sacred.</h2>
-            <p class="manifesto-body">
-              General-purpose models treat names as strings. The Oracle treats them as living philological objects:
-              every acute accent, every macron, every hieroglyph, every punycode mutation, every citation.
-              It knows when <em>Apóllōn</em> is not <em>apollon</em>, and it knows why that distinction matters
-              to scholars, security teams, linguists, and creators.
-            </p>
+        <div class="oracle-statement reveal-up">
+          <p class="section-eyebrow">The Difference</p>
+          <h2 class="statement-lead">Not a chatbot.<br>A <em>restoration engine</em><br>with a memory of the sacred.</h2>
+          <p class="statement-body">
+            General-purpose models treat names as strings. The Oracle treats them as living philological
+            objects — every acute accent, every macron, every hieroglyph, every punycode mutation, every
+            citation. It knows when <em>Apóllōn</em> is not <em>apollon</em>, and it knows why that
+            distinction matters to scholars, security teams, linguists, and creators.
+          </p>
+        </div>
+        <div class="os-stats" data-stagger>
+          <div class="os-stat reveal-up">
+            <span class="os-stat-number" data-count="895">0</span>
+            <span class="os-stat-label">Canonical lexicon entries</span>
           </div>
-          <div class="manifesto-stat reveal-scale">
-            <span class="manifesto-stat-number" data-count="894">0</span>
-            <span class="manifesto-stat-label">Canonical entries feeding the model</span>
+          <div class="os-stat reveal-up">
+            <span class="os-stat-number" data-count="271">0</span>
+            <span class="os-stat-label">Flagship temples</span>
+          </div>
+          <div class="os-stat reveal-up">
+            <span class="os-stat-number" data-count="1084">0</span>
+            <span class="os-stat-label">Archive dispatches</span>
+          </div>
+          <div class="os-stat reveal-up">
+            <span class="os-stat-number" data-count="21">0</span>
+            <span class="os-stat-label">Sacred texts</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Differentiators -->
+    <!-- Three Pillars -->
     <section class="oracle-section oracle-section-glow">
       <div class="oracle-container">
         <div class="oracle-section-header reveal-up">
           <p class="section-eyebrow">Capabilities</p>
-          <h2>What makes the Oracle different?</h2>
+          <h2>Three pillars of the Oracle</h2>
           <p>General-purpose models know names as words. The Oracle knows them as restorations — with stress, length, script, source, and safety context.</p>
         </div>
-        <div class="bento-grid" data-stagger>
-          <article class="oracle-feature-card reveal-up">
-            <div class="feature-icon">&#x1F4DC;</div>
-            <h3>Canonical, not generic</h3>
-            <p>Every answer is grounded in the PuniCodex canonical sources — LSJ, Beekes, Faulkner, KTU, the Avesta, the Kojiki, and 170+ scholarly references — not scraped forum posts or Wikipedia summaries.</p>
+        <div class="pillar-grid" data-stagger>
+          <article class="pillar-card reveal-up">
+            <div class="pillar-visual" aria-hidden="true">
+              <div class="pv-rings">
+                <span class="pv-ring pv-ring-1"></span>
+                <span class="pv-ring pv-ring-2"></span>
+                <span class="pv-ring pv-ring-3"></span>
+                <span class="pv-core">Α</span>
+              </div>
+            </div>
+            <h3>Canonical by construction</h3>
+            <p>Every answer is grounded in the PuniCodex canonical sources — LSJ, Beekes, Faulkner, KTU, the Avesta, the Kojiki, and 170+ scholarly references — never scraped forum posts or Wikipedia summaries. Unicode and punycode are native tongues: the Oracle reads, writes, and converts between restorations and their domain forms.</p>
           </article>
-          <article class="oracle-feature-card reveal-up">
-            <div class="feature-icon">&#x1F523;</div>
-            <h3>Unicode &amp; punycode native</h3>
-            <p>The Oracle reads, writes, and converts between Unicode restorations and their punycode domain forms. It understands why <em>Apóllōn</em> is not the same as <em>apollon</em>.</p>
-          </article>
-          <article class="oracle-feature-card reveal-up">
-            <div class="feature-icon">&#x1F6E1;&#xFE0F;</div>
+          <article class="pillar-card reveal-up">
+            <div class="pillar-visual" aria-hidden="true">
+              <div class="pv-shield">
+                <span class="pv-shield-glyph">&#x26E8;</span>
+              </div>
+            </div>
             <h3>Homograph defense</h3>
-            <p>It detects mixed-script deception, normalization tricks, invisible characters, and lookalike domains — and refuses to help with spoofing, impersonation, or trademark abuse.</p>
+            <p>It detects mixed-script deception, normalization tricks, invisible characters, and lookalike domains — and refuses to assist with spoofing, impersonation, or trademark abuse. Safety is not a filter bolted on afterwards; it is trained into the weights.</p>
           </article>
-          <article class="oracle-feature-card reveal-up">
-            <div class="feature-icon">&#x1F5E3;&#xFE0F;</div>
-            <h3>Pronunciation &amp; original script</h3>
-            <p>Ask for IPA, phoneme breakdowns, or the original hieroglyphic, cuneiform, runic, Greek, Devanagari, or CJK form — with provenance for every step.</p>
-          </article>
-          <article class="oracle-feature-card reveal-up">
-            <div class="feature-icon">&#x1F701;</div>
-            <h3>Symbolic &amp; scientific depth</h3>
-            <p>It maps planetary, elemental, alchemical, and tarot correspondences, and draws careful analogies to physics, biology, neuroscience, and philosophy — always labeling confidence.</p>
-          </article>
-          <article class="oracle-feature-card reveal-up">
-            <div class="feature-icon">&#x1F309;</div>
-            <h3>Pattern recognition across traditions</h3>
-            <p>It can trace how chaos echoes the Big Bang, how Apollo and Ra speak to light, and how biblical figures connect to older mythic patterns — without flattening their differences.</p>
+          <article class="pillar-card reveal-up">
+            <div class="pillar-visual" aria-hidden="true">
+              <div class="pv-orbit">
+                <span class="pv-orbit-core">Ψ</span>
+                <span class="pv-orbit-dot pv-orbit-dot-1"></span>
+                <span class="pv-orbit-dot pv-orbit-dot-2"></span>
+                <span class="pv-orbit-dot pv-orbit-dot-3"></span>
+              </div>
+            </div>
+            <h3>Pattern recognition</h3>
+            <p>It traces how Kháos echoes the Big Bang, how Apóllōn and Ra speak to light, and how figures connect across traditions — mapping planetary, elemental, alchemical, and symbolic correspondences while always labelling confidence and never flattening difference.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- Interactive Demo -->
+    <!-- The Console -->
     <section class="oracle-section oracle-section-surface">
       <div class="oracle-container">
         <div class="oracle-section-header reveal-up">
           <p class="section-eyebrow">Live Preview</p>
-          <h2>Ask the Oracle</h2>
+          <h2>The Console</h2>
           <p>Tap a question to see how the Oracle reasons across Unicode, script, etymology, and safety.</p>
         </div>
-        <div class="oracle-demo reveal-up" id="oracle-demo">
+        <div class="oracle-console reveal-up">
+          <div class="console-chrome" aria-hidden="true">
+            <span class="console-dot"></span>
+            <span class="console-dot"></span>
+            <span class="console-dot"></span>
+            <span class="console-title">oracle.punicodex — consult</span>
+          </div>
+          <div class="oracle-demo" id="oracle-demo">
           <div class="demo-queries">
             <button class="demo-query" data-query="apollon" type="button">Restore "apollon"</button>
             <button class="demo-query" data-query="domain" type="button">Check xn--zes-9na.com</button>
@@ -286,144 +309,53 @@
             </div>
             <div class="demo-answer-content" aria-live="polite"></div>
           </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Training Corpus -->
-    <section class="oracle-section oracle-section-glow">
-      <div class="oracle-container">
-        <div class="oracle-section-header reveal-up">
-          <p class="section-eyebrow">Training Data</p>
-          <h2>Trained on the PuniCodex flywheel</h2>
-          <p>The model is being built from the same canonical sources that power the website, API, browser extension, and mobile app.</p>
-        </div>
-        <div class="oracle-stats-grid" data-stagger>
-          <div class="oracle-stat-card reveal-up">
-            <span class="oracle-stat-number" data-count="894">0</span>
-            <span class="oracle-stat-label">Lexicon entries</span>
-          </div>
-          <div class="oracle-stat-card reveal-up">
-            <span class="oracle-stat-number" data-count="69" data-suffix="k+">0</span>
-            <span class="oracle-stat-label">Chat-format examples</span>
-          </div>
-          <div class="oracle-stat-card reveal-up">
-            <span class="oracle-stat-number" data-count="5.4" data-suffix="k+" data-decimals="1">0</span>
-            <span class="oracle-stat-label">Pretraining documents</span>
-          </div>
-          <div class="oracle-stat-card reveal-up">
-            <span class="oracle-stat-number" data-count="181">0</span>
-            <span class="oracle-stat-label">Source works cited</span>
-          </div>
-        </div>
-        <div class="corpus-header reveal-up">
-          <p class="section-eyebrow">Corpus Categories</p>
-        </div>
-        <div class="corpus-rail reveal-up">
-          <div class="corpus-chip">&#x1F4D6; Mythology Synthesis <span class="count">12k+</span></div>
-          <div class="corpus-chip">&#x262F;&#xFE0F; Symbolic Correspondences <span class="count">8k+</span></div>
-          <div class="corpus-chip">&#x1F52C; Scientific Analogies <span class="count">6k+</span></div>
-          <div class="corpus-chip">&#x1F5E8;&#xFE0F; Dialogue Pairs <span class="count">69k+</span></div>
-          <div class="corpus-chip">&#x1F4DD; Etymology &amp; Scripts <span class="count">15k+</span></div>
-          <div class="corpus-chip">&#x1F6E1;&#xFE0F; Homograph Safety <span class="count">4k+</span></div>
-          <div class="corpus-chip">&#x1F3A4; Pronunciation Guides <span class="count">3k+</span></div>
-          <div class="corpus-chip">&#x1F4DA; Source Citations <span class="count">181</span></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Capabilities -->
+    <!-- The Forge -->
     <section class="oracle-section oracle-section-dark">
       <div class="oracle-container">
         <div class="oracle-section-header reveal-up">
-          <p class="section-eyebrow">Use Cases</p>
-          <h2>What you will be able to ask</h2>
-        </div>
-        <div class="capabilities-grid" data-stagger>
-          <div class="capability-card reveal-up">
-            <span class="capability-number">01</span>
-            <div>
-              <h4>Restore a name</h4>
-              <p>"What is the scholarly Unicode form of apollon, and why is it dual-tier?"</p>
-            </div>
-          </div>
-          <div class="capability-card reveal-up">
-            <span class="capability-number">02</span>
-            <div>
-              <h4>Check a domain</h4>
-              <p>"Is this punycode domain a canonical PuniCodex name or a spoof?"</p>
-            </div>
-          </div>
-          <div class="capability-card reveal-up">
-            <span class="capability-number">03</span>
-            <div>
-              <h4>Hear it aloud</h4>
-              <p>"How do I pronounce Hádēs in Attic Greek, and what does each sound signify?"</p>
-            </div>
-          </div>
-          <div class="capability-card reveal-up">
-            <span class="capability-number">04</span>
-            <div>
-              <h4>Read the original script</h4>
-              <p>"Show me the hieroglyphic or cuneiform original for this name."</p>
-            </div>
-          </div>
-          <div class="capability-card reveal-up">
-            <span class="capability-number">05</span>
-            <div>
-              <h4>Compare myths</h4>
-              <p>"How does the Babylonian Tiamat relate to the Greek Kháos and modern cosmology?"</p>
-            </div>
-          </div>
-          <div class="capability-card reveal-up">
-            <span class="capability-number">06</span>
-            <div>
-              <h4>Map correspondences</h4>
-              <p>"What are the planetary, elemental, and alchemical associations of Venus/Aphrodítē?"</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Roadmap -->
-    <section class="oracle-section oracle-section-glow">
-      <div class="oracle-container">
-        <div class="oracle-section-header reveal-up">
-          <p class="section-eyebrow">Roadmap</p>
-          <h2>Path to the Oracle</h2>
+          <p class="section-eyebrow">The Forge</p>
+          <h2>How the Oracle is being built</h2>
           <p>Each phase is gated by data quality, safety review, and scholarly sign-off.</p>
         </div>
-        <div class="roadmap">
-          <div class="roadmap-item reveal-up">
-            <div class="roadmap-node complete"></div>
-            <div class="roadmap-phase">Phase 01 — Complete</div>
-            <h3 class="roadmap-title">Canonical Corpus</h3>
-            <p class="roadmap-desc">894 lexicon entries, original-script provenance, source citations, and etymological threads structured for model training.</p>
+        <div class="forge-timeline">
+          <div class="forge-step reveal-up">
+            <span class="forge-num">01</span>
+            <h3>Canonical Corpus</h3>
+            <p>895 lexicon entries, original-script provenance, source citations, and etymological threads structured for model training.</p>
+            <span class="forge-status forge-status-done">Complete</span>
           </div>
-          <div class="roadmap-item reveal-up">
-            <div class="roadmap-node complete"></div>
-            <div class="roadmap-phase">Phase 02 — Complete</div>
-            <h3 class="roadmap-title">Synthetic Training Sets</h3>
-            <p class="roadmap-desc">Dialogue, mythology synthesis, scientific analogies, pronunciation, and homograph-safety examples generated deterministically.</p>
+          <div class="forge-link" aria-hidden="true"></div>
+          <div class="forge-step reveal-up">
+            <span class="forge-num">02</span>
+            <h3>Synthetic Sets</h3>
+            <p>Dialogue, mythology synthesis, scientific analogies, pronunciation, and homograph-safety examples generated deterministically from the canon.</p>
+            <span class="forge-status forge-status-done">Complete</span>
           </div>
-          <div class="roadmap-item reveal-up">
-            <div class="roadmap-node"></div>
-            <div class="roadmap-phase">Phase 03 — In Progress</div>
-            <h3 class="roadmap-title">Scholarly Review Layer</h3>
-            <p class="roadmap-desc">University reviewers validate outputs per pantheon, flag hallucinations, and approve canonical answer templates.</p>
+          <div class="forge-link" aria-hidden="true"></div>
+          <div class="forge-step reveal-up">
+            <span class="forge-num">03</span>
+            <h3>Scholarly Review</h3>
+            <p>University reviewers validate outputs per pantheon, flag hallucinations, and approve canonical answer templates.</p>
+            <span class="forge-status forge-status-active">In progress</span>
           </div>
-          <div class="roadmap-item reveal-up">
-            <div class="roadmap-node"></div>
-            <div class="roadmap-phase">Phase 04 — Next</div>
-            <h3 class="roadmap-title">Safety &amp; Alignment</h3>
-            <p class="roadmap-desc">Refusal training for impersonation, trademark abuse, and harmful homograph generation; adversarial red-teaming.</p>
+          <div class="forge-link" aria-hidden="true"></div>
+          <div class="forge-step reveal-up">
+            <span class="forge-num">04</span>
+            <h3>Safety &amp; Alignment</h3>
+            <p>Refusal training for impersonation, trademark abuse, and harmful homograph generation; adversarial red-teaming.</p>
+            <span class="forge-status">Next</span>
           </div>
-          <div class="roadmap-item reveal-up">
-            <div class="roadmap-node"></div>
-            <div class="roadmap-phase">Phase 05 — Future</div>
-            <h3 class="roadmap-title">Dedicated Training Run</h3>
-            <p class="roadmap-desc">Full fine-tuning on dedicated hardware, followed by API access, browser integration, and a waitlist release.</p>
+          <div class="forge-link" aria-hidden="true"></div>
+          <div class="forge-step reveal-up">
+            <span class="forge-num">05</span>
+            <h3>Dedicated Run</h3>
+            <p>Full fine-tuning on dedicated hardware, followed by API access, browser integration, and a waitlist release.</p>
+            <span class="forge-status">Future</span>
           </div>
         </div>
       </div>

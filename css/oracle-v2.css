@@ -1,0 +1,476 @@
+/* ============================================================
+   PuniCodex — Oracle page v2
+   Statement, Three Pillars, Console chrome, Forge timeline.
+   Loaded after oracle.css; layered overrides only.
+   ============================================================ */
+
+/* ─── Statement ─────────────────────────────────────────── */
+
+.oracle-statement-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.oracle-statement-section::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  width: min(900px, 120vw);
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(var(--gold-rgb), 0.07) 0%, transparent 62%);
+  pointer-events: none;
+}
+
+.oracle-statement {
+  position: relative;
+  max-width: 920px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.statement-lead {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 7vw, 4.5rem);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: 0.01em;
+  margin: var(--space-5, 1.25rem) 0 var(--space-6, 1.5rem);
+  text-shadow: var(--gold-text-shadow);
+}
+
+.statement-lead em {
+  font-style: italic;
+  color: var(--gold-bright);
+}
+
+.statement-body {
+  max-width: 640px;
+  margin: 0 auto;
+  color: var(--text-secondary);
+  font-size: var(--text-lg);
+  line-height: 1.75;
+}
+
+.statement-body em {
+  color: var(--text-primary);
+  font-style: normal;
+  border-bottom: 1px solid rgba(var(--gold-rgb), 0.4);
+}
+
+.os-stats {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-5, 1.25rem);
+  max-width: 920px;
+  margin: var(--space-8, 2rem) auto 0;
+}
+
+.os-stat {
+  padding: var(--space-5, 1.25rem) var(--space-4, 1rem);
+  background: linear-gradient(180deg, rgba(var(--gold-rgb), 0.05), transparent 70%);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  text-align: center;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.os-stat:hover {
+  border-color: rgba(var(--gold-rgb), 0.35);
+  transform: translateY(-3px);
+}
+
+.os-stat-number {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 4vw, 2.75rem);
+  font-weight: 600;
+  color: var(--gold-bright);
+  line-height: 1.1;
+}
+
+.os-stat-label {
+  display: block;
+  margin-top: var(--space-2, 0.5rem);
+  font-size: var(--text-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+/* ─── Three Pillars ─────────────────────────────────────── */
+
+.pillar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6, 1.5rem);
+}
+
+.pillar-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-7, 1.75rem) var(--space-6, 1.5rem);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+}
+
+.pillar-card:hover {
+  border-color: rgba(var(--gold-rgb), 0.4);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45), 0 0 40px rgba(var(--gold-rgb), 0.08);
+  transform: translateY(-4px);
+}
+
+.pillar-card h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  margin: var(--space-5, 1.25rem) 0 var(--space-3, 0.75rem);
+}
+
+.pillar-card p {
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.pillar-visual {
+  display: grid;
+  place-items: center;
+  width: 148px;
+  height: 148px;
+}
+
+/* Pillar 1 — concentric canon rings */
+.pv-rings {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.pv-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(var(--gold-rgb), 0.55);
+  border-top-color: transparent;
+  border-bottom-color: rgba(var(--gold-rgb), 0.18);
+}
+
+.pv-ring-1 {
+  inset: 0;
+  animation: pv-spin 14s linear infinite;
+}
+
+.pv-ring-2 {
+  inset: 18px;
+  border-color: rgba(var(--gold-rgb), 0.35);
+  border-left-color: transparent;
+  animation: pv-spin 9s linear infinite reverse;
+}
+
+.pv-ring-3 {
+  inset: 36px;
+  border-style: dashed;
+  border-color: rgba(var(--gold-rgb), 0.45);
+  border-right-color: transparent;
+  animation: pv-spin 20s linear infinite;
+}
+
+.pv-core {
+  font-family: var(--font-display);
+  font-size: 2.1rem;
+  color: var(--gold-bright);
+  text-shadow: 0 0 24px rgba(var(--gold-rgb), 0.6);
+}
+
+@keyframes pv-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Pillar 2 — shield medallion */
+.pv-shield {
+  display: grid;
+  place-items: center;
+  width: 108px;
+  height: 108px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(var(--gold-rgb), 0.22), rgba(var(--gold-rgb), 0.04) 65%),
+    var(--surface-raised);
+  border: 1px solid rgba(var(--gold-rgb), 0.4);
+  box-shadow: 0 0 0 6px rgba(var(--gold-rgb), 0.05), 0 0 44px rgba(var(--gold-rgb), 0.12);
+  animation: pv-pulse 4.5s ease-in-out infinite;
+}
+
+.pv-shield-glyph {
+  font-size: 2.6rem;
+  color: var(--gold-bright);
+  text-shadow: 0 0 26px rgba(var(--gold-rgb), 0.65);
+}
+
+@keyframes pv-pulse {
+  0%, 100% { box-shadow: 0 0 0 6px rgba(var(--gold-rgb), 0.05), 0 0 44px rgba(var(--gold-rgb), 0.12); }
+  50% { box-shadow: 0 0 0 10px rgba(var(--gold-rgb), 0.08), 0 0 64px rgba(var(--gold-rgb), 0.22); }
+}
+
+/* Pillar 3 — orbital patterns */
+.pv-orbit {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.pv-orbit-core {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 35%, rgba(var(--gold-rgb), 0.3), rgba(var(--gold-rgb), 0.05) 70%);
+  border: 1px solid rgba(var(--gold-rgb), 0.45);
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--gold-bright);
+  text-shadow: 0 0 20px rgba(var(--gold-rgb), 0.6);
+}
+
+.pv-orbit-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  margin: -4.5px 0 0 -4.5px;
+  border-radius: 50%;
+  background: var(--gold-bright);
+  box-shadow: 0 0 12px rgba(var(--gold-rgb), 0.8);
+}
+
+.pv-orbit-dot-1 { animation: pv-orbit-1 7s linear infinite; }
+.pv-orbit-dot-2 { animation: pv-orbit-2 10s linear infinite; background: #9EA2B3; }
+.pv-orbit-dot-3 { animation: pv-orbit-3 13s linear infinite; width: 6px; height: 6px; margin: -3px 0 0 -3px; }
+
+@keyframes pv-orbit-1 {
+  from { transform: rotate(0deg) translateX(52px) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(52px) rotate(-360deg); }
+}
+
+@keyframes pv-orbit-2 {
+  from { transform: rotate(120deg) translateX(66px) rotate(-120deg); }
+  to { transform: rotate(480deg) translateX(66px) rotate(-480deg); }
+}
+
+@keyframes pv-orbit-3 {
+  from { transform: rotate(240deg) translateX(40px) rotate(-240deg); }
+  to { transform: rotate(600deg) translateX(40px) rotate(-600deg); }
+}
+
+/* ─── Console chrome ────────────────────────────────────── */
+
+.oracle-console {
+  max-width: 980px;
+  margin: 0 auto;
+  border: 1px solid var(--border-strong);
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--surface);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55), 0 0 60px rgba(var(--gold-rgb), 0.06);
+}
+
+.console-chrome {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  background: #0c0c12;
+  border-bottom: 1px solid var(--border);
+}
+
+.console-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--text-faint);
+  flex: none;
+}
+
+.console-dot:nth-child(1) { background: rgba(214, 69, 69, 0.75); }
+.console-dot:nth-child(2) { background: rgba(var(--gold-rgb), 0.75); }
+.console-dot:nth-child(3) { background: rgba(62, 180, 137, 0.75); }
+
+.console-title {
+  margin-left: 10px;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.oracle-console .oracle-demo {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* ─── The Forge timeline ────────────────────────────────── */
+
+.forge-timeline {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.forge-step {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-6, 1.5rem) var(--space-4, 1rem);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.forge-step:hover {
+  border-color: rgba(var(--gold-rgb), 0.4);
+  transform: translateY(-3px);
+}
+
+.forge-num {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(var(--gold-rgb), 0.7);
+  margin-bottom: var(--space-4, 1rem);
+}
+
+.forge-step h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: 600;
+  margin: 0 0 var(--space-2, 0.5rem);
+}
+
+.forge-step p {
+  flex: 1;
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  line-height: 1.65;
+  margin: 0 0 var(--space-4, 1rem);
+}
+
+.forge-status {
+  align-self: flex-start;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  color: var(--text-dim);
+}
+
+.forge-status-done {
+  color: #3EB489;
+  border-color: rgba(62, 180, 137, 0.4);
+  background: rgba(62, 180, 137, 0.08);
+}
+
+.forge-status-active {
+  color: var(--gold-bright);
+  border-color: rgba(var(--gold-rgb), 0.45);
+  background: rgba(var(--gold-rgb), 0.08);
+  animation: forge-active-glow 2.6s ease-in-out infinite;
+}
+
+@keyframes forge-active-glow {
+  0%, 100% { box-shadow: 0 0 0 rgba(var(--gold-rgb), 0); }
+  50% { box-shadow: 0 0 18px rgba(var(--gold-rgb), 0.35); }
+}
+
+.forge-link {
+  align-self: center;
+  flex: 0 0 26px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(var(--gold-rgb), 0.5), rgba(var(--gold-rgb), 0.12));
+  position: relative;
+}
+
+.forge-link::after {
+  content: '';
+  position: absolute;
+  right: -1px;
+  top: -2.5px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(var(--gold-rgb), 0.5);
+}
+
+/* ─── Responsive ────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .pillar-grid {
+    grid-template-columns: 1fr;
+    max-width: 460px;
+    margin: 0 auto;
+  }
+
+  .forge-timeline {
+    flex-direction: column;
+    max-width: 460px;
+  }
+
+  .forge-link {
+    flex: 0 0 26px;
+    width: 1px;
+    background: linear-gradient(180deg, rgba(var(--gold-rgb), 0.5), rgba(var(--gold-rgb), 0.12));
+  }
+
+  .forge-link::after {
+    right: -2.5px;
+    top: auto;
+    bottom: -1px;
+  }
+}
+
+@media (max-width: 640px) {
+  .os-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .statement-lead {
+    font-size: clamp(2.1rem, 9vw, 3rem);
+  }
+}
+
+/* ─── Reduced motion ────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .pv-ring,
+  .pv-shield,
+  .pv-orbit-dot,
+  .forge-status-active {
+    animation: none;
+  }
+}
