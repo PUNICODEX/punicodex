@@ -7,9 +7,9 @@
  */
 
 const crypto = require('node:crypto');
-const { notifyCareersApplication } = require('../../../platform/api/email.js');
-const { getDb } = require('../../../platform/db/connection.js');
-const { migrate } = require('../../../platform/db/migrate-careers.js');
+const { notifyCareersApplication } = require('../../../../api/email.js');
+const { getDb } = require('../../../../db/connection.js');
+const { migrate } = require('../../../../db/migrate-careers.js');
 
 const RATE_LIMIT = 5; // applications per IP per hour
 const WINDOW_MS = 60 * 60 * 1000;

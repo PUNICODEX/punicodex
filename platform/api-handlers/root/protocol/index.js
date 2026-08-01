@@ -4,8 +4,8 @@
  * Returns the Unicode Web Index Protocol (UWIP) specification as JSON.
  */
 
-const { getProtocolSpec } = require('../../platform/api/protocol-service.js');
-const { handleError, setCors } = require('../_utils');
+const { getProtocolSpec } = require('../../../api/protocol-service.js');
+const { handleError, setCors } = require('../../../../api/_utils');
 
 module.exports = async (req, res) => {
   setCors(req, res);

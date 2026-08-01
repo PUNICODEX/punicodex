@@ -1,6 +1,6 @@
 const Database = require('better-sqlite3');
-const { getDbPath } = require('../../platform/db/db');
-const { handleError, setCors } = require('../_utils');
+const { getDbPath } = require('../../../db/db');
+const { handleError, setCors } = require('../../../../api/_utils');
 
 const db = new Database(getDbPath());
 

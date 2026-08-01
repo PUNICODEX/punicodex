@@ -1,5 +1,5 @@
-const { recordTenantAdEvent } = require('../../../../platform/api/tenant-ads-service');
-const { handleError, setCors } = require('../../../../_utils');
+const { recordTenantAdEvent } = require('../../../../../api/tenant-ads-service');
+const { handleError, setCors } = require('../../../../../../api/_utils');
 
 module.exports = async (req, res) => {
   setCors(req, res);

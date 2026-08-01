@@ -8,9 +8,9 @@
  */
 
 const crypto = require('node:crypto');
-const { sendEmail } = require('../../../platform/api/email.js');
-const { getDb } = require('../../../platform/db/connection.js');
-const { runMigration } = require('../../../platform/db/migrate-arbitrage.js');
+const { sendEmail } = require('../../../../api/email.js');
+const { getDb } = require('../../../../db/connection.js');
+const { runMigration } = require('../../../../db/migrate-arbitrage.js');
 
 const ARBITRAGE_TO = process.env.ARBITRAGE_EMAIL || 'punicodex@gmail.com';
 const RATE_LIMIT = 5; // applications per IP per hour

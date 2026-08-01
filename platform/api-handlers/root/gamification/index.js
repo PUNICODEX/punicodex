@@ -1,20 +1,20 @@
-const { awardXp, getXpSummary } = require('../../platform/api/ink-xp');
-const { getBadges, checkAndAward, getBadgeDefinitions } = require('../../platform/api/badges');
+const { awardXp, getXpSummary } = require('../../../api/ink-xp');
+const { getBadges, checkAndAward, getBadgeDefinitions } = require('../../../api/badges');
 const {
   getOrCreateChallenge,
   attemptSolution,
   getStreak,
-} = require('../../platform/api/daily-challenge');
-const { getLeaderboards } = require('../../platform/api/leaderboards');
-const { getSessionToken, getOrCreateSession } = require('../../platform/api/search-v2');
-const { checkPublicRateLimitByReq } = require('../../platform/api/public-rate-limiter');
-const { handleError, setCors } = require('../_utils');
+} = require('../../../api/daily-challenge');
+const { getLeaderboards } = require('../../../api/leaderboards');
+const { getSessionToken, getOrCreateSession } = require('../../../api/search-v2');
+const { checkPublicRateLimitByReq } = require('../../../api/public-rate-limiter');
+const { handleError, setCors } = require('../../../../api/_utils');
 
 const ENTRIES = loadEntries();
 
 function loadEntries() {
   try {
-    const db = require('../../platform/db/db');
+    const db = require('../../../db/db');
     const Database = require('better-sqlite3');
     const database = new Database(db.getDbPath());
     return database
@@ -90,7 +90,7 @@ module.exports = async (req, res) => {
 function isSolved(sessionToken, date) {
   try {
     const Database = require('better-sqlite3');
-    const { getDbPath } = require('../../platform/db/db');
+    const { getDbPath } = require('../../../db/db');
     const database = new Database(getDbPath());
     const row = database
       .prepare('SELECT 1 FROM challenge_attempts WHERE session_token = ? AND challenge_date = ?')
@@ -104,7 +104,7 @@ function isSolved(sessionToken, date) {
 function solvedCount(sessionToken) {
   try {
     const Database = require('better-sqlite3');
-    const { getDbPath } = require('../../platform/db/db');
+    const { getDbPath } = require('../../../db/db');
     const database = new Database(getDbPath());
     return database
       .prepare('SELECT COUNT(*) as c FROM challenge_attempts WHERE session_token = ?')

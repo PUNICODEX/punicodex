@@ -10,14 +10,14 @@
  * ephemeral /tmp.
  */
 
-const { handleError, setCors } = require('../_utils');
-const { getDb } = require('../../platform/db/connection');
-const { migrate: migrateStoreOrders } = require('../../platform/db/migrate-store-orders');
-const { migrate: migrateCreatorMerch } = require('../../platform/db/migrate-creator-merch');
-const { createStoreOrder, attachStripeSession } = require('../../platform/api/store-orders');
-const { createStoreCheckoutSession } = require('../../platform/api/stripe');
-const { checkRateLimit } = require('../../platform/api/api-rate-limiter');
-const { getClientIp } = require('../../platform/api/client-ip');
+const { handleError, setCors } = require('../../../../api/_utils');
+const { getDb } = require('../../../db/connection');
+const { migrate: migrateStoreOrders } = require('../../../db/migrate-store-orders');
+const { migrate: migrateCreatorMerch } = require('../../../db/migrate-creator-merch');
+const { createStoreOrder, attachStripeSession } = require('../../../api/store-orders');
+const { createStoreCheckoutSession } = require('../../../api/stripe');
+const { checkRateLimit } = require('../../../api/api-rate-limiter');
+const { getClientIp } = require('../../../api/client-ip');
 
 try {
   migrateStoreOrders(getDb());

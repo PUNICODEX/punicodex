@@ -1,5 +1,5 @@
-const { listSpamSites, setSiteSpam } = require('../../../platform/api/spam-classifier');
-const { handleError, setCors, requireAdmin } = require('../../_utils');
+const { listSpamSites, setSiteSpam } = require('../../../../api/spam-classifier');
+const { handleError, setCors, requireAdmin } = require('../../../../../api/_utils');
 
 module.exports = async (req, res) => {
   setCors(req, res);

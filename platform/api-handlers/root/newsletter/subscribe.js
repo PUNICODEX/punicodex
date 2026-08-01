@@ -6,9 +6,9 @@
  */
 
 const crypto = require('node:crypto');
-const { sendEmail } = require('../../platform/api/email.js');
-const { getDb } = require('../../platform/db/connection.js');
-const migrateNewsletter = require('../../platform/db/migrate-newsletter.js');
+const { sendEmail } = require('../../../api/email.js');
+const { getDb } = require('../../../db/connection.js');
+const migrateNewsletter = require('../../../db/migrate-newsletter.js');
 
 const RATE_LIMIT = 4; // subscriptions per IP per hour
 const WINDOW_MS = 60 * 60 * 1000;

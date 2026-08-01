@@ -1,7 +1,7 @@
 const Database = require('better-sqlite3');
-const { UnicodeCrawler } = require('../../platform/crawler');
-const { getDbPath } = require('../../platform/db/db');
-const { handleError, setCors, requireAdmin } = require('../_utils');
+const { UnicodeCrawler } = require('../../../crawler');
+const { getDbPath } = require('../../../db/db');
+const { handleError, setCors, requireAdmin } = require('../../../../api/_utils');
 
 const db = new Database(getDbPath());
 const crawler = new UnicodeCrawler(db);

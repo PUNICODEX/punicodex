@@ -9,8 +9,8 @@
  * → { url } (Stripe Checkout session URL)
  */
 
-const { handleError, setCors } = require('../../../_utils');
-const { checkPublicRateLimitByReq } = require('../../../../platform/api/public-rate-limiter');
+const { handleError, setCors } = require('../../../../../../api/_utils');
+const { checkPublicRateLimitByReq } = require('../../../../../api/public-rate-limiter');
 
 const BUNDLES = {
   spark: { id: 'spark', name: 'Spark of Ink — 500 ✦', ink: 500, amountCents: 499 },

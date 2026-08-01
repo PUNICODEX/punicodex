@@ -1,5 +1,5 @@
-const { searchByGlyph, describeGlyph } = require('../../platform/api/glyph-search');
-const { handleError, setCors } = require('../_utils');
+const { searchByGlyph, describeGlyph } = require('../../../api/glyph-search');
+const { handleError, setCors } = require('../../../../api/_utils');
 
 module.exports = async (req, res) => {
   setCors(req, res);

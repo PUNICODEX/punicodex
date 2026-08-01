@@ -3,8 +3,8 @@
  * POST /api/ecosystem/usage — Report partner endpoint usage (Bearer partner key)
  */
 
-const { getEcosystemDirectory, recordUsage } = require('../../platform/api/ecosystem-service.js');
-const { handleError, setCors } = require('../_utils');
+const { getEcosystemDirectory, recordUsage } = require('../../../api/ecosystem-service.js');
+const { handleError, setCors } = require('../../../../api/_utils');
 
 function getBearer(req) {
   const auth = req.headers.authorization || '';

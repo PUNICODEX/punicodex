@@ -1,9 +1,6 @@
-const {
-  enqueueEvent,
-  processPendingEvents,
-} = require('../../../platform/api/event-crawler-service');
-const { handleError, setCors, requireAdmin } = require('../../_utils');
-const { checkPublicRateLimitByReq } = require('../../../platform/api/public-rate-limiter');
+const { enqueueEvent, processPendingEvents } = require('../../../../api/event-crawler-service');
+const { handleError, setCors, requireAdmin } = require('../../../../../api/_utils');
+const { checkPublicRateLimitByReq } = require('../../../../api/public-rate-limiter');
 
 // Priority is caller-influenceable queue ordering (ASC = sooner). Clamp it to
 // a small integer range so a public caller cannot starve or jump the queue.

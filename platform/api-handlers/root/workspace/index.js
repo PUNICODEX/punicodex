@@ -10,10 +10,10 @@ const {
   removeFromReadingList,
   recordTimelineEvent,
   getTimeline,
-} = require('../../platform/api/workspaces');
-const { getSessionToken, getOrCreateSession } = require('../../platform/api/search-v2');
-const { checkPublicRateLimitByReq } = require('../../platform/api/public-rate-limiter');
-const { handleError, setCors } = require('../_utils');
+} = require('../../../api/workspaces');
+const { getSessionToken, getOrCreateSession } = require('../../../api/search-v2');
+const { checkPublicRateLimitByReq } = require('../../../api/public-rate-limiter');
+const { handleError, setCors } = require('../../../../api/_utils');
 
 module.exports = async (req, res) => {
   setCors(req, res);

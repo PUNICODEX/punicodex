@@ -1,6 +1,6 @@
-const { askOracle } = require('../../platform/api/oracle');
-const { handleError, setCors } = require('../_utils');
-const { checkPublicRateLimitByReq } = require('../../platform/api/public-rate-limiter');
+const { askOracle } = require('../../../api/oracle');
+const { handleError, setCors } = require('../../../../api/_utils');
+const { checkPublicRateLimitByReq } = require('../../../api/public-rate-limiter');
 
 function safeParseHistory(raw) {
   if (!raw) return [];

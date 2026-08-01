@@ -1,7 +1,7 @@
 const Database = require('better-sqlite3');
-const { getDbPath } = require('../../../../platform/db/db');
-const { extractAndSave, getKeywords } = require('../../../../platform/api/keyword-extractor');
-const { handleError, setCors } = require('../../../_utils');
+const { getDbPath } = require('../../../../../db/db');
+const { extractAndSave, getKeywords } = require('../../../../../api/keyword-extractor');
+const { handleError, setCors } = require('../../../../../../api/_utils');
 
 const db = new Database(getDbPath());
 

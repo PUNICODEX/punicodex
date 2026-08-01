@@ -1,7 +1,7 @@
-const marketplace = require('../../platform/api/marketplace');
-const { getSessionToken, getOrCreateSession } = require('../../platform/api/search-v2');
-const { handleError, setCors } = require('../_utils');
-const { checkPublicRateLimitByReq } = require('../../platform/api/public-rate-limiter');
+const marketplace = require('../../../api/marketplace');
+const { getSessionToken, getOrCreateSession } = require('../../../api/search-v2');
+const { handleError, setCors } = require('../../../../api/_utils');
+const { checkPublicRateLimitByReq } = require('../../../api/public-rate-limiter');
 
 module.exports = async (req, res) => {
   setCors(req, res);

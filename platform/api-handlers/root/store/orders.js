@@ -6,11 +6,11 @@
  * order (it is only ever shown to the buyer in the checkout redirect).
  */
 
-const { handleError, setCors } = require('../_utils');
-const { getDb } = require('../../platform/db/connection');
-const { migrate: migrateStoreOrders } = require('../../platform/db/migrate-store-orders');
-const { getStoreOrderByRef } = require('../../platform/api/store-orders');
-const { checkPublicRateLimitByReq } = require('../../platform/api/public-rate-limiter');
+const { handleError, setCors } = require('../../../../api/_utils');
+const { getDb } = require('../../../db/connection');
+const { migrate: migrateStoreOrders } = require('../../../db/migrate-store-orders');
+const { getStoreOrderByRef } = require('../../../api/store-orders');
+const { checkPublicRateLimitByReq } = require('../../../api/public-rate-limiter');
 
 try {
   migrateStoreOrders(getDb());

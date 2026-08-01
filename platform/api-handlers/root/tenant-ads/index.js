@@ -2,8 +2,8 @@ const {
   listTenantAds,
   createTenantAd,
   findTenantAdsForQuery,
-} = require('../../platform/api/tenant-ads-service');
-const { handleError, setCors, requireAdmin } = require('../_utils');
+} = require('../../../api/tenant-ads-service');
+const { handleError, setCors, requireAdmin } = require('../../../../api/_utils');
 
 module.exports = async (req, res) => {
   setCors(req, res);

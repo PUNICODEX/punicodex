@@ -18,10 +18,10 @@
  * CORS is pinned to https://punicodex.com (the sponsor form's origin).
  */
 
-const { handleError } = require('../../_utils');
-const { checkPublicRateLimitByReq } = require('../../../platform/api/public-rate-limiter');
-const discountService = require('../../../platform/api/discount-service');
-const { get } = require('../../../platform/db/operational');
+const { handleError } = require('../../../../../api/_utils');
+const { checkPublicRateLimitByReq } = require('../../../../api/public-rate-limiter');
+const discountService = require('../../../../api/discount-service');
+const { get } = require('../../../../db/operational');
 
 const ALLOWED_ORIGIN = 'https://punicodex.com';
 

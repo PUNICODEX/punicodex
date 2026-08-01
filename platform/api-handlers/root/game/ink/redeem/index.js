@@ -9,16 +9,16 @@
  * Body: { sessionId } → { ok, ink, bundle, alreadyRedeemed? }
  */
 
-const { handleError, setCors } = require('../../../_utils');
-const { checkPublicRateLimitByReq } = require('../../../../platform/api/public-rate-limiter');
-const { get, run } = require('../../../../platform/db/operational');
+const { handleError, setCors } = require('../../../../../../api/_utils');
+const { checkPublicRateLimitByReq } = require('../../../../../api/public-rate-limiter');
+const { get, run } = require('../../../../../db/operational');
 
 const BUNDLE_INK = { spark: 500, flare: 1200, inferno: 3300 };
 
 // Idempotent migration on serverless cold start (Vercel SQLite is ephemeral).
-const { getDb } = require('../../../../platform/db/connection.js');
+const { getDb } = require('../../../../../db/connection.js');
 try {
-  require('../../../../platform/db/migrate-game-ink.js').migrate(getDb());
+  require('../../../../../db/migrate-game-ink.js').migrate(getDb());
 } catch (err) {
   console.error('[game/ink/redeem] migration failed:', err.message);
 }

@@ -1,6 +1,6 @@
-const { submitDomain } = require('../../platform/api/crawler-db');
-const { handleError, setCors } = require('../_utils');
-const { checkPublicRateLimitByReq } = require('../../platform/api/public-rate-limiter');
+const { submitDomain } = require('../../../api/crawler-db');
+const { handleError, setCors } = require('../../../../api/_utils');
+const { checkPublicRateLimitByReq } = require('../../../api/public-rate-limiter');
 
 module.exports = async (req, res) => {
   setCors(req, res);

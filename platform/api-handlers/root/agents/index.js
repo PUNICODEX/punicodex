@@ -1,14 +1,10 @@
-const { discoverCandidates } = require('../../platform/agents/scout');
-const { verifyAvailability } = require('../../platform/agents/sentinel');
-const { findGaps, suggestSources } = require('../../platform/agents/lore-curator');
-const {
-  createReport,
-  completeReport,
-  getReports,
-} = require('../../platform/agents/research-assistant');
-const { getSessionToken, getOrCreateSession } = require('../../platform/api/search-v2');
-const { checkPublicRateLimitByReq } = require('../../platform/api/public-rate-limiter');
-const { handleError, setCors } = require('../_utils');
+const { discoverCandidates } = require('../../../agents/scout');
+const { verifyAvailability } = require('../../../agents/sentinel');
+const { findGaps, suggestSources } = require('../../../agents/lore-curator');
+const { createReport, completeReport, getReports } = require('../../../agents/research-assistant');
+const { getSessionToken, getOrCreateSession } = require('../../../api/search-v2');
+const { checkPublicRateLimitByReq } = require('../../../api/public-rate-limiter');
+const { handleError, setCors } = require('../../../../api/_utils');
 
 // verifyAvailability performs real DNS lookups per row; cap the batch so an
 // anonymous caller cannot turn this endpoint into an outbound DNS amplifier.

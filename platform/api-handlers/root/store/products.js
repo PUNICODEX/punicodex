@@ -8,10 +8,10 @@
  * docs/creator-merch.md for the pipeline and revenue split.
  */
 
-const { getDb } = require('../../platform/db/connection');
-const { migrate: migrateCreatorMerch } = require('../../platform/db/migrate-creator-merch');
-const { listLiveCreatorProducts } = require('../../platform/api/creator-merch');
-const { existingWebpFor } = require('../../platform/api/image-webp');
+const { getDb } = require('../../../db/connection');
+const { migrate: migrateCreatorMerch } = require('../../../db/migrate-creator-merch');
+const { listLiveCreatorProducts } = require('../../../api/creator-merch');
+const { existingWebpFor } = require('../../../api/image-webp');
 
 // Idempotent migration; safe to run on every serverless cold start. Guarded
 // so a migration hiccup degrades the endpoint instead of breaking the require.
