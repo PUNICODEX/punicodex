@@ -12,6 +12,10 @@
  *  7. decorative <canvas> elements are aria-hidden (or carry role/aria-label)
  *
  * Source templates are excluded (they contain placeholders, not pages).
+ * Also excluded by rule: corpus source archives under platform/texts/* /src/
+ * (raw upstream captures — wayback snapshots and per-chapter source dumps
+ * kept as provenance, never served as site pages) and Marketing/ (XHTML
+ * email collateral, not a web page).
  * Calibrated clean 2026-07-22 after the fix-forward pass.
  */
 
@@ -27,7 +31,9 @@ const files = execSync('git ls-files "*.html"', { encoding: 'utf8' })
       f &&
       !f.includes('/.backup/') &&
       !f.startsWith('docs/') &&
-      !f.startsWith('templates/')
+      !f.startsWith('templates/') &&
+      !/^platform\/texts\/[^/]+\/src\//.test(f) &&
+      !f.startsWith('Marketing/')
   );
 
 let passed = 0;
