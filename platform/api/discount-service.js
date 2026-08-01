@@ -498,6 +498,7 @@ module.exports = {
   validateCode,
   listCodes,
   createCode,
+  getCodeById,
   setCodeActive,
   deleteCode,
   redemptions,

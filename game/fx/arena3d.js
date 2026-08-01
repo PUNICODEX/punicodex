@@ -352,8 +352,20 @@
 
     function vpMatrix() {
       var aspect = canvas.width / Math.max(1, canvas.height);
-      var proj = mat4Perspective(cam.fov, aspect, 0.1, 60);
-      var view = mat4LookAt(cam.eye, cam.target, [0, 1, 0]);
+      // Portrait stages are narrow: widen the lens and lift/pull the eye so
+      // both lanes and both thrones compose into the band instead of stacking
+      // under each other. Offsets layer over the live (choreo-driven) eye.
+      var fov = cam.fov;
+      var eye = cam.eye;
+      if (aspect < 0.75) {
+        fov = (52 * Math.PI) / 180;
+        eye = [cam.eye[0], cam.eye[1] + 2.5, cam.eye[2] + 3.5];
+      } else if (aspect < 1.1) {
+        fov = (47 * Math.PI) / 180;
+        eye = [cam.eye[0], cam.eye[1] + 1.0, cam.eye[2] + 1.5];
+      }
+      var proj = mat4Perspective(fov, aspect, 0.1, 60);
+      var view = mat4LookAt(eye, cam.target, [0, 1, 0]);
       return mat4Mul(proj, view);
     }
 

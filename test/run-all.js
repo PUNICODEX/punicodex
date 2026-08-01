@@ -167,6 +167,7 @@ const SUITES = [
   { name: 'Portal Endpoints Tests', cmd: 'node test/portal-endpoints.test.js', timeout: 60000 },
   { name: 'Portal Leasing Tests', cmd: 'node test/portal-leasing.test.js', timeout: 60000 },
   { name: 'Discount Codes Tests', cmd: 'node test/discount-codes.test.js', timeout: 60000 },
+  { name: 'Pitch Email Tests', cmd: 'node test/pitch-email.test.js', timeout: 60000 },
   {
     name: 'Portal Store Orders Tests',
     cmd: 'node test/portal-store-orders.test.js',
