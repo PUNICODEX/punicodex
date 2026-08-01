@@ -39,6 +39,31 @@ const BUILT_IDS = Array.from(
 ).sort();
 const BUILT_SET = new Set(BUILT_IDS);
 
+// The generator publishes the main dispatch per built temple plus one
+// dispatch per series whose content JSON exists (see the SERIES table in
+// scripts/generate-blog-index.js). Mirror that accounting here so the
+// expected counts track the canonical content, not a hardcoded number.
+const SERIES = [
+  { id: 'restoration', dir: path.join(ROOT, 'platform', 'blog', 'series', 'restoration') },
+  { id: 'resonance', dir: path.join(ROOT, 'platform', 'blog', 'series', 'resonance') },
+  { id: 'canonical', dir: path.join(ROOT, 'platform', 'blog', 'series', 'canonical') },
+];
+const EXPECTED_POSTS = [];
+for (const id of BUILT_IDS) {
+  if (fs.existsSync(path.join(BLOG_DIR, `${id}.json`))) {
+    EXPECTED_POSTS.push({ uid: id, templeId: id, file: path.join(BLOG_DIR, `${id}.json`) });
+  }
+  for (const s of SERIES) {
+    const f = path.join(s.dir, `${id}.json`);
+    if (fs.existsSync(f)) {
+      EXPECTED_POSTS.push({ uid: `${id}-${s.id}`, templeId: id, series: s.id, file: f });
+    }
+  }
+}
+const EXPECTED_COUNT = EXPECTED_POSTS.length;
+const EXPECTED_UIDS = EXPECTED_POSTS.map((p) => p.uid).sort();
+const EXPECTED_MAIN_COUNT = EXPECTED_POSTS.filter((p) => !p.series).length;
+
 function readIndex() {
   return fs.readFileSync(INDEX_PATH, 'utf8');
 }
@@ -75,7 +100,7 @@ test('blog/index.html exists with a complete SEO head', () => {
 
   assert.match(
     html,
-    new RegExp(`<title>Blog — ${BUILT_IDS.length} Unicode Restoration Essays \\| PUNICODEX</title>`)
+    new RegExp(`<title>Blog — ${EXPECTED_COUNT} Unicode Restoration Essays \\| PUNICODEX</title>`)
   );
   assert.match(html, /<meta name="description" content="[^"]+">/, 'missing meta description');
   assert.match(
@@ -106,8 +131,8 @@ test('analytics markers are present', () => {
   );
 });
 
-test(`JSON-LD is a CollectionPage with an ItemList of exactly ${BUILT_IDS.length} items`, () => {
-  assert.ok(BUILT_IDS.length > 0, 'expected built flagship archetypes');
+test(`JSON-LD is a CollectionPage with an ItemList of exactly ${EXPECTED_COUNT} items`, () => {
+  assert.ok(EXPECTED_COUNT > 0, 'expected blog posts');
   const ld = extractJsonLd(readIndex());
   assert.ok(ld, 'JSON-LD is missing or invalid');
   assert.equal(ld['@type'], 'CollectionPage');
@@ -116,16 +141,18 @@ test(`JSON-LD is a CollectionPage with an ItemList of exactly ${BUILT_IDS.length
   const list = ld.mainEntity;
   assert.ok(list, 'JSON-LD missing mainEntity');
   assert.equal(list['@type'], 'ItemList');
-  assert.equal(list.numberOfItems, BUILT_IDS.length);
+  assert.equal(list.numberOfItems, EXPECTED_COUNT);
   assert.ok(Array.isArray(list.itemListElement), 'ItemList missing itemListElement');
-  assert.equal(list.itemListElement.length, BUILT_IDS.length);
+  assert.equal(list.itemListElement.length, EXPECTED_COUNT);
 
   const seen = new Set();
   for (const [i, item] of list.itemListElement.entries()) {
     assert.equal(item['@type'], 'ListItem');
     assert.equal(item.position, i + 1, 'ListItem positions must be 1-based and sequential');
     assert.ok(typeof item.name === 'string' && item.name.length > 0, 'ListItem missing name');
-    const m = String(item.url).match(/^https:\/\/punicodex\.com\/sites\/([^/]+)\/blog\/$/);
+    const m = String(item.url).match(
+      /^https:\/\/punicodex\.com\/sites\/([^/]+)\/blog\/(?:(restoration|resonance|canonical)\/)?$/
+    );
     assert.ok(m, `ListItem url has unexpected shape: ${item.url}`);
     assert.ok(BUILT_SET.has(m[1]), `ListItem url points at non-built id: ${m[1]}`);
     seen.add(m[1]);
@@ -133,13 +160,13 @@ test(`JSON-LD is a CollectionPage with an ItemList of exactly ${BUILT_IDS.length
   assert.deepEqual([...seen].sort(), BUILT_IDS, 'ItemList must cover every built flagship');
 });
 
-test(`all ${BUILT_IDS.length} card hrefs resolve to built archetype blog pages on disk`, () => {
+test(`all ${EXPECTED_MAIN_COUNT} main-dispatch card hrefs resolve to built archetype blog pages on disk`, () => {
   const html = readIndex();
   const hrefs = [...html.matchAll(/href="\/sites\/([^/]+)\/blog\/"/g)].map((m) => m[1]);
   assert.equal(
     hrefs.length,
-    BUILT_IDS.length,
-    `expected ${BUILT_IDS.length} blog card hrefs, got ${hrefs.length}`
+    EXPECTED_MAIN_COUNT,
+    `expected ${EXPECTED_MAIN_COUNT} main blog card hrefs, got ${hrefs.length}`
   );
 
   const ids = [...new Set(hrefs)].sort();
@@ -149,19 +176,35 @@ test(`all ${BUILT_IDS.length} card hrefs resolve to built archetype blog pages o
     const pagePath = path.join(SITES_DIR, id, 'blog', 'index.html');
     assert.ok(fs.existsSync(pagePath), `card target ${pagePath} does not exist`);
   }
+
+  // Series dispatch cards link to their own tab pages.
+  const seriesHrefs = [
+    ...html.matchAll(/href="\/sites\/([^/]+)\/blog\/(restoration|resonance|canonical)\/"/g),
+  ];
+  assert.equal(
+    seriesHrefs.length,
+    EXPECTED_COUNT - EXPECTED_MAIN_COUNT,
+    `expected ${EXPECTED_COUNT - EXPECTED_MAIN_COUNT} series card hrefs, got ${seriesHrefs.length}`
+  );
+  for (const m of seriesHrefs) {
+    const pagePath = path.join(SITES_DIR, m[1], 'blog', m[2], 'index.html');
+    assert.ok(fs.existsSync(pagePath), `series card target ${pagePath} does not exist`);
+  }
 });
 
-test(`embedded JSON payload covers all ${BUILT_IDS.length} posts with canonical field fidelity`, () => {
+test(`embedded JSON payload covers all ${EXPECTED_COUNT} posts with canonical field fidelity`, () => {
   const payload = extractPayload(readIndex());
   assert.ok(payload, 'embedded POSTS payload is missing or invalid');
   assert.equal(
     payload.length,
-    BUILT_IDS.length,
-    `expected ${BUILT_IDS.length} payload entries, got ${payload.length}`
+    EXPECTED_COUNT,
+    `expected ${EXPECTED_COUNT} payload entries, got ${payload.length}`
   );
 
   const payloadIds = payload.map((p) => p.id).sort();
-  assert.deepEqual(payloadIds, BUILT_IDS, 'payload ids must match the built archetype ids');
+  assert.deepEqual(payloadIds, EXPECTED_UIDS, 'payload uids must match the expected dispatch set');
+
+  const sourceByUid = new Map(EXPECTED_POSTS.map((p) => [p.uid, p]));
 
   // The payload uses compact keys: id, u (unicode), p (pantheon), t (tier),
   // r (read minutes), s (lowercased search string carrying title + description).
@@ -170,9 +213,11 @@ test(`embedded JSON payload covers all ${BUILT_IDS.length} posts with canonical 
       assert.ok(Object.hasOwn(entry, key), `payload entry ${entry.id} missing key "${key}"`);
     }
 
-    const lexiconEntry = LEXICON_BY_ID.get(entry.id);
-    assert.ok(lexiconEntry, `payload id ${entry.id} not present in the lexicon`);
-    const post = JSON.parse(fs.readFileSync(path.join(BLOG_DIR, `${entry.id}.json`), 'utf8'));
+    const expected = sourceByUid.get(entry.id);
+    assert.ok(expected, `payload uid ${entry.id} has no canonical dispatch`);
+    const lexiconEntry = LEXICON_BY_ID.get(expected.templeId);
+    assert.ok(lexiconEntry, `payload uid ${entry.id} not present in the lexicon`);
+    const post = JSON.parse(fs.readFileSync(expected.file, 'utf8'));
 
     assert.ok(post.title, `canonical post ${entry.id} missing title`);
     assert.ok(post.description, `canonical post ${entry.id} missing description`);
