@@ -98,9 +98,10 @@ test('service: variant, pantheon, flagship, q filters', () => {
   assert.ok(greek.items.every((c) => c.pantheon === 'greek'));
 
   const flags = cardsService.listCards({ flagship: 'true', variant: 'standard', limit: 200 });
-  assert.strictEqual(flags.total, ARCHETYPES.length);
+  // Edition ladder: common + holo + full-art standard-variant printings per flagship.
+  assert.strictEqual(flags.total, 3 * ARCHETYPES.length);
   const allFlags = cardsService.listCards({ flagship: 'true', limit: 200 });
-  assert.ok(allFlags.total >= ARCHETYPES.length, 'flagship foils included');
+  assert.ok(allFlags.total >= 3 * ARCHETYPES.length, 'secret foils included');
 
   const search = cardsService.listCards({ q: 'thunder', limit: 50 });
   assert.ok(search.total > 0);
@@ -125,10 +126,15 @@ test('service: getCardsForEntry returns all variants', () => {
   assert.ok(zeus);
   assert.strictEqual(zeus.entryId, 'zeus');
   assert.ok(zeus.variants.length >= 1);
-  const standard = zeus.variants.find((v) => v.variant === 'standard');
-  assert.ok(standard);
-  assert.strictEqual(standard.rarity, 'legendary');
-  assert.ok(standard.links.temple === '/sites/zeus/');
+  // Edition ladder: the common printing is the base card; the legendary
+  // printing is the full-art (rarity belongs to the printing, not the entry).
+  const common = zeus.variants.find((v) => v.edition === 'common');
+  assert.ok(common, 'zeus has a common printing');
+  assert.strictEqual(common.rarity, 'common');
+  const fullArt = zeus.variants.find((v) => v.edition === 'full-art');
+  assert.ok(fullArt, 'zeus has a full-art printing');
+  assert.strictEqual(fullArt.rarity, 'legendary');
+  assert.ok(common.links.temple === '/sites/zeus/');
 
   assert.strictEqual(cardsService.getCardsForEntry('definitely-not-an-entry'), null);
 });
@@ -192,9 +198,9 @@ test('every flagship entry resolves through the API detail route', async () => {
       `/api/v1/cards/${arch.id}?id=${arch.id}`
     );
     assert.strictEqual(status, 200, `${arch.id} resolves`);
-    const standard = body.data.variants.find((v) => v.variant === 'standard');
-    assert.ok(standard, `${arch.id} has standard variant`);
-    assert.strictEqual(standard.rarity, 'legendary', `${arch.id} legendary via API`);
+    const fullArt = body.data.variants.find((v) => v.edition === 'full-art');
+    assert.ok(fullArt, `${arch.id} has a full-art printing`);
+    assert.strictEqual(fullArt.rarity, 'legendary', `${arch.id} legendary full-art via API`);
   }
 });
 

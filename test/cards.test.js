@@ -2,12 +2,14 @@
  * PuniCodex — Generated card set tests
  *
  * Validates the canon-derived card set produced by scripts/generate-cards.js
- * against docs/card-game-spec.md:
- *   - one standard card per lexicon entry
- *   - every flagship has a complete legendary card (stats, ability, flavor, art)
- *   - mythic original-script foils exist exactly where a real original script exists
- *   - stat bands, rarity rules, ability DSL enums
- *   - art paths resolve to real files on disk
+ * against docs/card-game-spec.md and the Edition Ladder (see AGENTS.md):
+ *   - every flagship archetype is printed common → holo → full-art, plus a
+ *     secret original-script foil when a verified script exists; rarity is a
+ *     property of the PRINTING (common→common, holo→rare, full-art→legendary,
+ *     secret→mythic), never of ownership
+ *   - every non-flagship entry gets a single archive printing with
+ *     tier-derived rarity (dual→epic, tier-1→rare, tier-2→common/uncommon)
+ *   - stat bands, ability DSL enums, art paths resolving to real files
  *   - both published copies are byte-identical and generation is deterministic
  */
 
@@ -34,6 +36,8 @@ const SET = JSON.parse(fs.readFileSync(GAME_CARDS, 'utf8'));
 const CARDS = SET.cards;
 const STANDARD = CARDS.filter((c) => c.variant === 'standard');
 const FOILS = CARDS.filter((c) => c.variant === 'original-script');
+// Single printings for non-flagship entries (tier-derived rarity).
+const ARCHIVE = CARDS.filter((c) => c.edition === 'archive');
 
 const VALID_RARITIES = new Set(['common', 'uncommon', 'rare', 'epic', 'legendary', 'mythic']);
 const VALID_TRIGGERS = new Set(['on_play', 'on_attack', 'on_death', 'passive']);
@@ -73,14 +77,24 @@ const VALID_CATEGORIES = new Set([
   'primordial',
 ]);
 
-function standardCard(entryId) {
-  return STANDARD.find((c) => c.entryId === entryId);
-}
-
-test('card set has set metadata and one standard card per lexicon entry', () => {
+test('card set has set metadata and one archive printing per non-flagship entry', () => {
   assert.ok(SET._meta, 'set has _meta header marking it generated');
   assert.ok(SET.set && SET.set.id, 'set has set metadata');
-  assert.strictEqual(STANDARD.length, LEXICON.length);
+  assert.strictEqual(ARCHIVE.length, LEXICON.length - ARCHETYPES.length);
+});
+
+test('every flagship is printed on the full edition ladder', () => {
+  for (const arch of ARCHETYPES) {
+    const printings = CARDS.filter((c) => c.entryId === arch.id);
+    const editions = new Set(printings.map((c) => c.edition));
+    for (const ed of ['common', 'holo', 'full-art']) {
+      assert.ok(editions.has(ed), `${arch.id} has a ${ed} printing`);
+    }
+    assert.ok(
+      printings.every((c) => c.baseCardId === `${arch.id}-common`),
+      `${arch.id} printings point baseCardId at the common printing`
+    );
+  }
 });
 
 test('card ids are unique', () => {
@@ -112,41 +126,41 @@ test('every card conforms to the spec schema', () => {
   }
 });
 
-test('power follows the spec tier bands', () => {
-  for (const card of STANDARD) {
-    if (card.tier === 'dual') {
-      assert.ok(card.power >= 90 && card.power <= 100, `${card.id} dual power ${card.power}`);
-    } else if (card.tier === '1') {
-      assert.ok(card.power >= 70 && card.power <= 85, `${card.id} tier-1 power ${card.power}`);
-    } else {
-      assert.ok(card.power >= 40 && card.power <= 65, `${card.id} tier-2 power ${card.power}`);
-    }
+test('power follows the spec tier bands (holo/full-art/secret bump +12)', () => {
+  for (const card of CARDS) {
+    const bump = card.edition === 'common' || card.edition === 'archive' ? 0 : 12;
+    const [lo, hi] = card.tier === 'dual' ? [90, 100] : card.tier === '1' ? [70, 85] : [40, 65];
+    assert.ok(
+      card.power >= lo + bump && card.power <= hi + bump,
+      `${card.id} ${card.tier} power ${card.power} outside band ${lo + bump}-${hi + bump}`
+    );
   }
 });
 
-test('rarity follows the spec rules', () => {
-  for (const card of STANDARD) {
-    if (card.flagship) {
-      assert.strictEqual(card.rarity, 'legendary', `${card.id} flagship is legendary`);
+test('rarity mirrors the printing edition (archive keeps tier-derived rarity)', () => {
+  const EDITION_RARITY = { common: 'common', holo: 'rare', 'full-art': 'legendary', secret: 'mythic' };
+  for (const card of CARDS) {
+    if (card.edition !== 'archive') {
+      assert.strictEqual(card.rarity, EDITION_RARITY[card.edition], `${card.id}`);
     } else if (card.tier === 'dual') {
-      assert.strictEqual(card.rarity, 'epic', `${card.id} dual non-flagship is epic`);
+      assert.strictEqual(card.rarity, 'epic', `${card.id} dual archive is epic`);
     } else if (card.tier === '1') {
-      assert.strictEqual(card.rarity, 'rare', `${card.id} tier-1 non-flagship is rare`);
+      assert.strictEqual(card.rarity, 'rare', `${card.id} tier-1 archive is rare`);
     } else {
       assert.ok(
         card.rarity === 'common' || card.rarity === 'uncommon',
-        `${card.id} tier-2 is common/uncommon`
+        `${card.id} tier-2 archive is common/uncommon`
       );
     }
   }
 });
 
-test('every flagship has a complete spec-valid legendary card', () => {
+test('every flagship has a complete spec-valid legendary full-art printing', () => {
   assert.ok(ARCHETYPES.length >= 190, 'archetype registry loaded');
   for (const arch of ARCHETYPES) {
-    const card = standardCard(arch.id);
-    assert.ok(card, `${arch.id} has a standard card`);
-    assert.strictEqual(card.rarity, 'legendary', `${arch.id} legendary`);
+    const card = CARDS.find((c) => c.entryId === arch.id && c.edition === 'full-art');
+    assert.ok(card, `${arch.id} has a full-art printing`);
+    assert.strictEqual(card.rarity, 'legendary', `${arch.id} full-art is legendary`);
     assert.strictEqual(card.flagship, true, `${arch.id} flagged flagship`);
     assert.ok(card.flavor && card.flavor.length >= 20, `${arch.id} grounded flavor text`);
     assert.ok(card.ability && card.ability.name, `${arch.id} named ability`);

@@ -38,6 +38,8 @@ function toApiCard(card) {
     id: card.id,
     entryId: card.entryId,
     variant: card.variant,
+    edition: card.edition,
+    baseCardId: card.baseCardId,
     setId: card.setId,
     name: card.name,
     ascii: card.ascii,
