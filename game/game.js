@@ -2221,6 +2221,14 @@
   }
 
   function minionPos(uid) {
+    // Cinematic: the DOM rows stand down (display:none), so anchor FX to the
+    // 3D character instead — arena3d.project returns canvas-relative CSS px,
+    // the same coordinate space as fxCanvas (both are inset-0 in the wrap).
+    var wrap = $('battlefield-wrap');
+    if (wrap && wrap.classList.contains('cinematic') && arena3d) {
+      var p = arena3d.project('m' + uid);
+      if (p) return { x: p.x, y: p.y };
+    }
     var n = minionNode(uid);
     return n ? centerOf(n) : null;
   }
@@ -2795,6 +2803,20 @@
         if (!arenaChipEls.has(key)) {
           var chip = el('div', 'arena-chip');
           chip.dataset.uid = key;
+          chip.addEventListener('click', function () {
+            // Chips carry no board state of their own — resolve the uid to
+            // the live minion and hand the click to the DOM minions' handler.
+            if (!battle) return;
+            for (var s = 0; s < 2; s++) {
+              var bm = battle.players[s].board.find(function (x) {
+                return 'm' + x.uid === key;
+              });
+              if (bm) {
+                onMinionClick(bm, s);
+                return;
+              }
+            }
+          });
           layer.appendChild(chip);
           arenaChipEls.set(key, chip);
         }
@@ -2813,6 +2835,7 @@
     var tick = function () {
       arenaChipRaf = requestAnimationFrame(tick);
       if (!arena3d || !battle) return;
+      var legal = null;
       for (var side = 0; side < 2; side++) {
         battle.players[side].board.forEach(function (m) {
           var key = 'm' + m.uid;
@@ -2826,6 +2849,29 @@
           chip.style.opacity = '1';
           chip.style.left = pos.x + 'px';
           chip.style.top = pos.y + 'px';
+          // Mirror the DOM minion's state classes (renderBoardMinion's rules)
+          // onto the chip floating over the character.
+          var isMine = side === 0;
+          var ready = false;
+          if (isMine && battle.activePlayer === 0 && !battle.winner) {
+            if (!legal) legal = Engine.getLegalActions(battle);
+            ready = legal.attacks.some(function (a) {
+              return a.attackerIndex === battle.players[0].board.indexOf(m);
+            });
+          }
+          var selected =
+            ui.selectedAttacker != null && isMine && battle.players[0].board[ui.selectedAttacker] === m;
+          var targetable =
+            (ui.pendingPlay && (ui.pendingPlay.targetSide === 'enemy') !== isMine) ||
+            (ui.pendingSpecial && (ui.pendingSpecial.targetSide === 'enemy') !== isMine) ||
+            (ui.selectedAttacker != null && !isMine);
+          chip.classList.toggle(
+            'bonded',
+            !!(m.def && battle.players[side].bondPantheon && m.def.pantheon === battle.players[side].bondPantheon)
+          );
+          chip.classList.toggle('ready', !!ready);
+          chip.classList.toggle('selected', !!selected);
+          chip.classList.toggle('targetable', !!targetable);
           var power = Engine.effectivePower(battle, side, m);
           var html =
             '<span class="chip-atk">' +
@@ -2836,6 +2882,16 @@
             (m.health + m.shield) +
             '</span>' +
             (m.sick ? '<span class="chip-sick">recovering</span>' : '');
+          // The exchange, before you commit: what you deal, what you take.
+          if (ui.selectedAttacker != null && !isMine) {
+            var armed = battle.players[0].board[ui.selectedAttacker];
+            if (armed) {
+              var deal = Engine.effectivePower(battle, 0, armed);
+              var take = Engine.effectivePower(battle, 1, m);
+              if (armed.speed > m.speed) take = Math.floor(take / 2);
+              html += '<span class="preview-chip">⚔' + deal + ' ⇄ ' + take + '</span>';
+            }
+          }
           if (chip._last !== html) {
             chip.innerHTML = html;
             chip._last = html;
