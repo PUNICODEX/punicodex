@@ -91,6 +91,8 @@ const mainPages = [
   { loc: '/careers/', priority: '0.5', changefreq: 'monthly' },
   { loc: '/about/founder/', priority: '0.5', changefreq: 'monthly' },
   { loc: '/arbitrage/', priority: '0.6', changefreq: 'monthly' },
+  { loc: '/cards/', priority: '0.6', changefreq: 'weekly' },
+  { loc: '/rulebook/', priority: '0.6', changefreq: 'monthly' },
 ];
 
 function escapeXml(str) {
