@@ -58,6 +58,82 @@
     {
       "source": "/api/account/:slug*",
       "destination": "/api/account/[[...slug]]"
+    },
+    {
+      "source": "/api/v1/openapi.json",
+      "destination": "/api/v1/openapi.json.js"
+    },
+    {
+      "source": "/api/admin/:path*/",
+      "destination": "/api/admin/[[...slug]]"
+    },
+    {
+      "source": "/api/admin/:path*",
+      "destination": "/api/admin/[[...slug]]"
+    },
+    {
+      "source": "/api/v1/:path*/",
+      "destination": "/api/v1/[[...slug]]"
+    },
+    {
+      "source": "/api/v1/:path*",
+      "destination": "/api/v1/[[...slug]]"
+    },
+    {
+      "source": "/api/v2/:path*/",
+      "destination": "/api/v2/[[...slug]]"
+    },
+    {
+      "source": "/api/v2/:path*",
+      "destination": "/api/v2/[[...slug]]"
+    },
+    {
+      "source": "/api/search/:path*/",
+      "destination": "/api/search/[[...slug]]"
+    },
+    {
+      "source": "/api/search/:path*",
+      "destination": "/api/search/[[...slug]]"
+    },
+    {
+      "source": "/api/analytics/:path*/",
+      "destination": "/api/analytics/[[...slug]]"
+    },
+    {
+      "source": "/api/analytics/:path*",
+      "destination": "/api/analytics/[[...slug]]"
+    },
+    {
+      "source": "/api/crawler/:path*/",
+      "destination": "/api/crawler/[[...slug]]"
+    },
+    {
+      "source": "/api/crawler/:path*",
+      "destination": "/api/crawler/[[...slug]]"
+    },
+    {
+      "source": "/api/cron/:path*/",
+      "destination": "/api/cron/:path*"
+    },
+    {
+      "source": "/api/cron/:path*",
+      "destination": "/api/cron/:path*"
+    },
+    {
+      "source": "/api/webhook/:path*/",
+      "destination": "/api/webhook/:path*"
+    },
+    {
+      "source": "/api/webhook/:path*",
+      "destination": "/api/webhook/:path*"
+    },
+    {
+      "source": "/api/:path*/",
+      "destination": "/api/[[...slug]]"
+    },
+    {
+      "source": "/api/:path*",
+      "destination": "/api/[[...slug]]"
     }
   ],
   "crons": [
