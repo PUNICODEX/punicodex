@@ -111,12 +111,12 @@ test('hero section exists with canvas and fallback', () => {
 
 test('page contains all required content sections', () => {
   const required = [
-    '.oracle-manifesto',
-    '.bento-grid',
+    '.oracle-statement',
+    '.os-stats',
+    '.pillar-grid',
+    '.oracle-console',
     '#oracle-demo',
-    '.oracle-stats-grid',
-    '.capabilities-grid',
-    '.roadmap',
+    '.forge-timeline',
     '.safety-grid',
     '.oracle-cta-section',
   ];

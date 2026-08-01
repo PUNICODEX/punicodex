@@ -450,7 +450,7 @@ ${groupsHtml}
   var templeId = ${JSON.stringify(id)};
   var grid = document.getElementById('ce-grid');
   if (!grid || !window.fetch) return;
-  fetch('/api/store/products').then(function(r){ return r.ok ? r.json() : null; }).then(function(data){
+  fetch('/api/store/products/').then(function(r){ return r.ok ? r.json() : null; }).then(function(data){
     if (!data || !data.products) return;
     var editions = data.products.filter(function(p){ return p.temple === templeId; });
     if (!editions.length) return;
