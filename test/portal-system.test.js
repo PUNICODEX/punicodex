@@ -79,20 +79,12 @@ function extractApiLiterals(source) {
 // Resolve an /api/ path literal to a serverless handler file under api/.
 // Literals are route prefixes at runtime (ids are concatenated by the pages),
 // so the literal itself must map to an index.js (or direct .js) handler.
+// Paths served by the consolidated catch-all routers resolve through their
+// route tables (see test/helpers/api-routes.js).
+const { resolveApiHandler } = require('./helpers/api-routes.js');
+
 function resolveHandler(literalBase) {
-  const rel = literalBase.replace(/^\/+/, '').replace(/\/+$/, '');
-  const asIndex = path.join(ROOT, rel, 'index.js');
-  if (fs.existsSync(asIndex)) return asIndex;
-  const asFile = path.join(ROOT, `${rel}.js`);
-  if (fs.existsSync(asFile)) return asFile;
-  // /api/admin/* is served by the single catch-all router function; the
-  // literal resolves iff the router has a matching route in its table.
-  if (rel.startsWith('api/admin/')) {
-    const catchAll = path.join(ROOT, 'api', 'admin', '[[...slug]].js');
-    const { matchRoute } = require(catchAll);
-    if (matchRoute(rel.slice('api/admin/'.length).split('/'))) return catchAll;
-  }
-  return null;
+  return resolveApiHandler(literalBase);
 }
 
 const results = [];

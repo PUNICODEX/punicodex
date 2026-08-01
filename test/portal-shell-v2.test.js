@@ -32,6 +32,7 @@ process.env.STRIPE_SECRET_KEY = 'sk_test_dummy';
 
 const Database = require('better-sqlite3');
 const { prepareTestDb } = require('./helpers/test-db.js');
+const { resolveApiHandler } = require('./helpers/api-routes.js');
 
 const testDbPath = prepareTestDb(__filename);
 
@@ -252,8 +253,8 @@ async function runTests() {
     for (const literal of literals) {
       const base = literal.split('?')[0];
       assert.ok(base.endsWith('/'), `${literal} is missing the trailing slash (bare paths 308)`);
-      const handler = path.join(ROOT, base, 'index.js');
-      assert.ok(fs.existsSync(handler), `${literal} has no deployed handler at ${handler}`);
+      const handler = resolveApiHandler(base);
+      assert.ok(handler, `${literal} has no deployed handler`);
     }
   });
 

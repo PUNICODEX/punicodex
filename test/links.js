@@ -6,6 +6,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { resolveApiHandler } = require('./helpers/api-routes.js');
 
 const C = {
   reset: '\x1b[0m',
@@ -106,10 +107,9 @@ function resolveLink(fromFile, href) {
 }
 
 function isKnownApiRoute(cleanHref) {
-  const routePath = path.join(ROOT, cleanHref.slice(1));
-  const exactJs = `${routePath}.js`;
-  const indexJs = path.join(routePath, 'index.js');
-  return fs.existsSync(exactJs) || fs.existsSync(indexJs);
+  // Resolves real per-path files and the consolidated catch-all routers
+  // (platform/api-handlers/* route tables) — see test/helpers/api-routes.js.
+  return resolveApiHandler(cleanHref) !== null;
 }
 
 HTML_FILES.forEach((file) => {
