@@ -26,7 +26,10 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          # Must match the Vercel project's Node.js version (24.x) — native
+          # modules (better-sqlite3, bcrypt, sharp) fetch prebuilds for the
+          # ABI of THIS Node, and the Lambda runtime must match it.
+          node-version: 24
           cache: npm
 
       - name: Install dependencies
