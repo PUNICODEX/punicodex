@@ -14,6 +14,9 @@
  */
 
 const ROUTES = [
+  // The bare namespace path (/api/search/) — api/search/index.js served it
+  // under filesystem routing, so the empty segment list maps here too.
+  { segments: [], load: () => require('../../platform/api-handlers/search/index.js') },
   { segments: ['click'], load: () => require('../../platform/api-handlers/search/click/index.js') },
   {
     segments: ['didyoumean'],
@@ -95,11 +98,14 @@ function selfCheck() {
     }
   })(base);
   const expected = new Set(
-    found.map((f) => {
+    found.flatMap((f) => {
       const rel = path.relative(base, f).split(path.sep).join('/');
+      // A root-level index.js served both the bare namespace path and the
+      // literal /index path under filesystem routing — register both keys.
+      if (rel === 'index.js') return ['', 'index'];
       return rel.endsWith('/index.js')
-        ? rel.slice(0, -'/index.js'.length)
-        : rel.slice(0, -'.js'.length);
+        ? [rel.slice(0, -'/index.js'.length)]
+        : [rel.slice(0, -'.js'.length)];
     })
   );
   const seen = new Set();

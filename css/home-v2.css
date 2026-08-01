@@ -909,3 +909,50 @@
 .um-oracle-a{display:flex;gap:.6rem;align-items:flex-start;color:#d8d2c4;font-size:.74rem;line-height:1.65}
 .um-oracle-sigil{color:#d4af37;font-size:1.3rem;line-height:1;flex-shrink:0;text-shadow:0 0 16px rgba(212,175,55,.5)}
 .um-oracle-src{margin-top:.6rem;font-family:'JetBrains Mono','Fira Code',monospace;font-size:.58rem;color:#8a8577;border-top:1px solid rgba(212,175,55,.14);padding-top:.5rem}
+
+/* Work-ahead teasers — three compact columns on small screens.
+   The browser-frame mocks are designed ~320px wide; zoom (Baseline 2024)
+   scales them into the narrow column while affecting layout correctly. */
+@media (max-width: 640px) {
+  .wa-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.55rem;
+  }
+
+  .wa-card {
+    padding: 0.55rem;
+  }
+
+  .wa-card .browser-frame {
+    zoom: 0.36;
+    margin-bottom: 0.4rem;
+  }
+
+  .wa-card .wa-name {
+    font-size: 0.8rem;
+    margin: 0.3rem 0 0.1rem;
+  }
+
+  .wa-card .wa-label {
+    font-size: 0.56rem;
+    letter-spacing: 0.1em;
+    margin: 0;
+  }
+
+  .wa-card .wa-desc,
+  .wa-card .tier-examples {
+    display: none;
+  }
+
+  .wa-card .wa-link {
+    font-size: 0.62rem;
+  }
+}
+
+@media (max-width: 640px) {
+  /* Let the 3 tracks shrink below the mocks' intrinsic min-content width. */
+  .wa-grid > .wa-card,
+  .wa-card .browser-frame {
+    min-width: 0;
+  }
+}
