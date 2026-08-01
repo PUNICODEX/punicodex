@@ -275,4 +275,14 @@ try {
   process.exit(1);
 }
 
+// Founding discount codes (idempotent — CI-built deployments get the same
+// durable codes as the developer DB)
+try {
+  const { execSync } = require('node:child_process');
+  execSync(`node "${path.join(__dirname, 'seed-founding-codes.js')}"`, { stdio: 'inherit' });
+} catch (err) {
+  console.error('Founding codes seed failed:', err.message);
+  process.exit(1);
+}
+
 db.close();

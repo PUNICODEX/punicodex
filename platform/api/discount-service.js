@@ -44,7 +44,15 @@ let schemaReady = false;
 async function ensureSchema() {
   if (schemaReady) return;
   schemaReady = true;
-  if (!isPostgres()) runMigration();
+  if (!isPostgres()) {
+    runMigration();
+    try {
+      // Durable founding codes survive ephemeral cold starts (insert-or-ignore).
+      require('../db/seed-founding-codes.js').seed(require('../db/connection.js').getDb());
+    } catch (err) {
+      console.error('Founding codes seed skipped:', err.message);
+    }
+  }
 }
 
 function discountError(status, message, code) {
