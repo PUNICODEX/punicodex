@@ -1432,6 +1432,32 @@
           }
         }
       }
+    },
+    "/canonical-register": {
+      "get": {
+        "summary": "Get the Canonical Register (or a single entry by id)",
+        "description": "Machine-readable Canonical Register: for every flagship temple, the canonical transliteration, the status of the plain ASCII form (canonical | fallback), the tradition convention, the false forms on record with their origins and violations, accepted conventions, contested scholarly variants, and temple/blog links. Pass ?id={entryId} for a single entry.",
+        "operationId": "getCanonicalRegister",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "description": "Lexicon entry id (e.g. zeus). When present, returns just that entry.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/CanonicalRegisterResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -2392,6 +2418,26 @@
                   }
                 }
               ]
+            }
+          }
+        }
+      },
+      "CanonicalRegisterResponse": {
+        "description": "The full Canonical Register: per-temple canonical transliterations, ASCII-form status, false forms on record, and accepted conventions",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
+      },
+      "CanonicalRegisterEntryResponse": {
+        "description": "A single Canonical Register entry",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
             }
           }
         }
