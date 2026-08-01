@@ -479,7 +479,7 @@ const BODY_WAVE_FILES = [
   'css/university-collaborators.css',
   'js/home.js',
   'js/pantheon.js',
-  'api/v1/docs/index.js',
+  'platform/api-handlers/v1/docs/index.js',
   'platform/public/scholars/apply/index.html',
   'platform/public/admin-portal/portal.js',
   'platform/public/admin-portal/index.html',
