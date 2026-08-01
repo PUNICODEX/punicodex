@@ -6,7 +6,9 @@
  *     historical duplicate-"redirects" incident broke all routing)
  *  2. no domain redirects/rewrites in vercel.json — middleware.js owns all
  *     domain routing (the other half of that incident)
- *  3. rewrites only ever point at api/ destinations
+ *  3. rewrites only ever point at api/ destinations — with one whitelisted
+ *     exception: static-asset offload proxies (source path under /assets/)
+ *     to our own media hosts, which serve files, not routes
  *  4. required security headers are present on all routes with exact values
  *  5. cron entries reference existing api/cron handlers with valid schedules
  */
@@ -39,6 +41,20 @@ const REQUIRED_HEADERS = {
   'strict-transport-security': 'max-age=63072000; includeSubDomains; preload',
 };
 
+// Static-media offload hosts: our own static deployments serving print
+// masters and other heavy assets. Proxying /assets/ paths to them is file
+// hosting, not domain routing (deity/unicode domains stay in middleware.js).
+const MEDIA_PROXY_HOSTS = new Set(['punycodex-masters.vercel.app']);
+
+function isStaticAssetProxy(rw) {
+  if (!rw.source.includes('/assets/')) return false;
+  try {
+    return MEDIA_PROXY_HOSTS.has(new URL(rw.destination).host);
+  } catch {
+    return false;
+  }
+}
+
 function run() {
   console.log('\n▸ Vercel Config Contract\n');
   const raw = fs.readFileSync(path.join(ROOT, 'vercel.json'), 'utf8');
@@ -60,7 +76,7 @@ function run() {
     );
     for (const rw of config.rewrites || []) {
       assert.ok(
-        rw.destination.startsWith('/api/'),
+        rw.destination.startsWith('/api/') || isStaticAssetProxy(rw),
         `rewrite to non-api destination: ${rw.destination}`
       );
     }
