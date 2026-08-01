@@ -632,15 +632,74 @@ Three GitHub Actions workflows in `.github/workflows/`:
 
 - Static pages + `api/**/*.js` serverless functions (function bundles include
   `platform/db/**` so SQLite migrations/seed can run on cold start).
+
+### Deploy routes (since 2026-08-01)
+
+- **Standard route — CI prebuilt** (`.github/workflows/deploy-prebuilt.yml`,
+  manual `workflow_dispatch` from the Actions tab): GitHub's Linux runner runs
+  `npm ci` → `npm run db-init` (builds the seed SQLite DB — see below) →
+  `vercel pull` → `vercel build` → `vercel deploy --prebuilt --archive=tgz`
+  (up to 3 attempts; the finalize step is flaky on large archives) → aliases
+  `punicodex.com` + `www`. Consumes **zero Vercel build CPU**; Linux builds
+  produce correct native binaries (bcrypt, better-sqlite3, sharp) — never run
+  `--prebuilt` from Windows, where traced binaries are win32 and Lambdas die.
+  Requires repo secrets `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`
+  (IDs live in `.vercel/project.json`).
+- **Fallback route — local CLI**: `vercel deploy --prod --yes --archive=tgz`,
+  then alias manually. `--archive=tgz` is mandatory (the tree exceeds the
+  15,000 per-file upload limit). Never write to the tree during the upload
+  phase. Local deploys bundle the developer's gitignored
+  `platform/db/punicodex.db` as the seed; CI rebuilds an equivalent one via
+  `npm run db-init`.
+- **Build machine**: Standard is correct again. The 2026-08 consolidation
+  (216 → 28 routed functions) dropped the build phase from ~42 min to <1 min;
+  Standard's 8 GB RAM OOMed only on the old 219-function tree. Elastic/Enhanced
+  is only needed if function count balloons again.
+
+### Function architecture (post-consolidation)
+
+Only **28 routed functions** exist. Most endpoints are served by catch-all
+routers (`api/[[...slug]].js`, `api/admin/`, `api/v1/`, `api/v2/`,
+`api/search/`, `api/analytics/`, `api/crawler/` `[[...slug]].js`) whose
+handlers live in `platform/api-handlers/{admin,v1,v2,search,analytics,crawler,root}/`
+(not routed themselves). Routers lazy-require only the matched handler.
+Hard-won Vercel contracts, guarded by `test/vercel-config.test.js` and the
+API suites:
+
+- Catch-all functions do **not** receive subpaths automatically: each needs an
+  explicit `vercel.json` rewrite to its literal bracket path
+  (`/api/v1/:slug* → /api/v1/[[...slug]]`).
+- Capture with `:slug*` (not `:path*`) — Vercel forwards the capture as
+  `?slug=$1`, and routers read `req.query.slug`.
+- The rewrite delivers `slug` as **one slash-joined string**, not an array —
+  routers split it (`parts.split('/')`).
+- A directory `index.js` historically also served the bare parent path, so
+  router tables carry a `segments: []` alias (see `api/search/[[...slug]].js`).
+- New real files always win precedence over catch-alls; escape-hatch rewrites
+  protect `/api/cron/*` and `/api/webhook/*` from the root router.
+
 - `middleware.js` runs at the edge and maps owned Unicode/punycode domains to
   `/sites/{id}`; it also rewrites `punicodex.com/{id}/*` clean URLs.
 - `vercel.json`: security headers on all routes (`X-Frame-Options: DENY`,
   `X-Content-Type-Options: nosniff`, `Referrer-Policy`), `must-revalidate` on
   HTML and service workers, immutable 1-year caching on `/css`, `/js`,
-  `/assets`; API rewrites for scholars/creatives/slots/bookings; 8 cron jobs.
+  `/assets`; API rewrites for the catch-all routers plus a static-media proxy
+  (`/sites/:id/assets/*` → `punycodex-masters.vercel.app`, the temple-media
+  offload host); 11 cron jobs.
+- Temple media (mascots/logomarks/videos) is served from the dedicated static
+  deployment `punycodex-masters.vercel.app` (content: gitignored `.masters/`,
+  deployed from inside that directory). The proxy rewrite activates fully once
+  `sites/{id}/assets/` moves out of the main deployment — the CLI's ignore
+  engine only honors plain directory rules up to two path segments (glob
+  patterns like `sites/**/assets/` are silently ignored), so payload slimming
+  requires that restructure, not `.vercelignore` edits. **CSS/JS edits must
+  always ship with a `?v=` version bump** — `/css`, `/js`, `/assets` are
+  immutable-cached for a year.
 - SQLite on Vercel lives in `/tmp` and is **ephemeral** — API handlers
   re-migrate and re-seed on cold start (idempotent migrations). Durable
   production persistence requires an external DB (Postgres deps are present).
+  The rich crawler search index currently rides inside the local seed DB file;
+  CI-built deployments start with a fresh index the crawler crons rebuild.
 - `REDIS_URL` enables globally consistent Redis-backed rate limits;
   otherwise limiters fall back to per-process in-memory counters.
 - Root `sw.js` (registered from `js/main.js`) caches shell pages and assets.
