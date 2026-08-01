@@ -138,7 +138,12 @@ test('power follows the spec tier bands (holo/full-art/secret bump +12)', () => 
 });
 
 test('rarity mirrors the printing edition (archive keeps tier-derived rarity)', () => {
-  const EDITION_RARITY = { common: 'common', holo: 'rare', 'full-art': 'legendary', secret: 'mythic' };
+  const EDITION_RARITY = {
+    common: 'common',
+    holo: 'rare',
+    'full-art': 'legendary',
+    secret: 'mythic',
+  };
   for (const card of CARDS) {
     if (card.edition !== 'archive') {
       assert.strictEqual(card.rarity, EDITION_RARITY[card.edition], `${card.id}`);
