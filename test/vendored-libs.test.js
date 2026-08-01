@@ -93,7 +93,7 @@ const CONSUMERS = [
   ['platform/public/temple-3d.html', ['/vendor/three/three.min.js']],
   ['connections/index.html', ['/vendor/d3/d3.v7.min.js']],
   [
-    'api/v1/docs/index.js',
+    'platform/api-handlers/v1/docs/index.js',
     ['/vendor/swagger-ui/swagger-ui.css', '/vendor/swagger-ui/swagger-ui-bundle.js'],
   ],
   ['oracle.html', ['/vendor/three/three.module.js', '/vendor/three/addons/']],
