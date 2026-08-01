@@ -1,0 +1,33 @@
+/**
+ * POST /api/admin/portal/bookings/:id/report
+ *
+ * Leasing permission. Emails the advertiser their analytics report
+ * (impressions/clicks/CTR + dashboard link for the booking's temple).
+ * Audit rows record the portal user.
+ */
+
+const {
+  setPortalCors,
+  sendError,
+  parseIdParam,
+  portalAuth,
+} = require('../../../../../../../api/admin/portal/_portal.js');
+const { sendBookingReport } = require('../../../../../../api/admin-booking-service.js');
+
+module.exports = async (req, res) => {
+  setPortalCors(req, res);
+  if (req.method === 'OPTIONS') return res.status(200).end();
+  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
+
+  try {
+    const auth = await portalAuth.requirePortal(req, res, 'leasing');
+    if (!auth) return;
+
+    const id = parseIdParam(req);
+    if (id == null) return res.status(400).json({ error: 'Invalid booking id' });
+
+    return res.json(await sendBookingReport(id, auth));
+  } catch (err) {
+    sendError(res, err);
+  }
+};
