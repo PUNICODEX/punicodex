@@ -32,6 +32,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Build the seed SQLite DB (schema + seed data)
+        # Local CLI deploys bundle the developer's gitignored platform/db/punicodex.db;
+        # a fresh CI checkout has none, so create the equivalent seed DB here.
+        run: npm run db-init
+
       - name: Pull Vercel project settings
         run: npx vercel@latest pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
 

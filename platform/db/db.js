@@ -14,9 +14,12 @@ function getDbPath() {
     const src = path.join(process.cwd(), 'platform', 'db', 'punicodex.db');
     const tmpDir = process.env.TMPDIR || process.env.TEMP || '/tmp';
     const tmpDb = path.join(tmpDir, 'punicodex.db');
-    if (!fs.existsSync(tmpDb)) {
+    if (!fs.existsSync(tmpDb) && fs.existsSync(src)) {
       fs.copyFileSync(src, tmpDb);
     }
+    // No bundled seed DB (CI-built deployments, where the gitignored local
+    // DB file is absent): leave tmpDb absent — better-sqlite3 creates it and
+    // the idempotent migrations build the schema on cold start.
     return tmpDb;
   }
   // Local development: use the project DB directly
