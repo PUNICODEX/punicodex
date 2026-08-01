@@ -57,7 +57,10 @@ require.cache[stripeModulePath] = {
 const { invoke } = require('./helpers/http.js');
 const { resetLimiters } = require('../platform/api/api-rate-limiter.js');
 
-const API_ADMIN_ROOT = path.join(__dirname, '..', 'api', 'admin');
+// Handlers live under platform/api-handlers/admin (the single
+// api/admin/[[...slug]].js catch-all routes to them); the relative tree is
+// identical to the public /api/admin/* URL space.
+const API_ADMIN_ROOT = path.join(__dirname, '..', 'platform', 'api-handlers', 'admin');
 const METHODS = ['GET', 'POST', 'PATCH', 'PUT', 'DELETE'];
 
 function collectHandlers(dir) {

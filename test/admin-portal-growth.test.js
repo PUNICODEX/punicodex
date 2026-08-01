@@ -60,13 +60,13 @@ const { migrate: migrateCreatives } = require('../platform/db/migrate-scholars-c
 const creatorMerch = require('../platform/api/creator-merch.js');
 const dbApi = require('../platform/db/scholars');
 
-const loginHandler = require('../api/admin/portal/login/index.js');
-const logoutHandler = require('../api/admin/portal/logout/index.js');
-const usersHandler = require('../api/admin/portal/users/index.js');
-const newsletterHandler = require('../api/admin/portal/newsletter/index.js');
-const newsletterExportHandler = require('../api/admin/portal/newsletter/export/index.js');
-const merchHandler = require('../api/admin/portal/merch/index.js');
-const merchWithdrawHandler = require('../api/admin/portal/merch/[id]/withdraw/index.js');
+const loginHandler = require('../platform/api-handlers/admin/portal/login/index.js');
+const logoutHandler = require('../platform/api-handlers/admin/portal/logout/index.js');
+const usersHandler = require('../platform/api-handlers/admin/portal/users/index.js');
+const newsletterHandler = require('../platform/api-handlers/admin/portal/newsletter/index.js');
+const newsletterExportHandler = require('../platform/api-handlers/admin/portal/newsletter/export/index.js');
+const merchHandler = require('../platform/api-handlers/admin/portal/merch/index.js');
+const merchWithdrawHandler = require('../platform/api-handlers/admin/portal/merch/[id]/withdraw/index.js');
 
 // Distinct source IPs per login so the shared 'admin-login' rate-limit
 // bucket (10/min/IP) never trips inside this suite.

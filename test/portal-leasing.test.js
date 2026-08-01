@@ -64,10 +64,10 @@ const { getSlotId } = require('./helpers/slots.js');
 const { createBooking, setBookingStatus } = require('../platform/api/bookings.js');
 const tenantPortal = require('../platform/api/tenant-portal.js');
 
-const loginHandler = require('../api/admin/portal/login/index.js');
-const usersHandler = require('../api/admin/portal/users/index.js');
-const bookingsHandler = require('../api/admin/portal/bookings/index.js');
-const tenantsHandler = require('../api/admin/portal/tenants/index.js');
+const loginHandler = require('../platform/api-handlers/admin/portal/login/index.js');
+const usersHandler = require('../platform/api-handlers/admin/portal/users/index.js');
+const bookingsHandler = require('../platform/api-handlers/admin/portal/bookings/index.js');
+const tenantsHandler = require('../platform/api-handlers/admin/portal/tenants/index.js');
 
 let ipCounter = 0;
 function nextIp() {
@@ -330,12 +330,12 @@ async function runTests() {
     };
 
     try {
-      const approveHandler = require('../api/admin/portal/bookings/[id]/approve/index.js');
-      const approveAppHandler = require('../api/admin/portal/bookings/[id]/approve-application/index.js');
-      const rejectHandler = require('../api/admin/portal/bookings/[id]/reject/index.js');
-      const goliveHandler = require('../api/admin/portal/bookings/[id]/golive/index.js');
-      const endHandler = require('../api/admin/portal/bookings/[id]/end/index.js');
-      const reportHandler = require('../api/admin/portal/bookings/[id]/report/index.js');
+      const approveHandler = require('../platform/api-handlers/admin/portal/bookings/[id]/approve/index.js');
+      const approveAppHandler = require('../platform/api-handlers/admin/portal/bookings/[id]/approve-application/index.js');
+      const rejectHandler = require('../platform/api-handlers/admin/portal/bookings/[id]/reject/index.js');
+      const goliveHandler = require('../platform/api-handlers/admin/portal/bookings/[id]/golive/index.js');
+      const endHandler = require('../platform/api-handlers/admin/portal/bookings/[id]/end/index.js');
+      const reportHandler = require('../platform/api-handlers/admin/portal/bookings/[id]/report/index.js');
 
       // 401 without a token even with the service mocked.
       const noAuth = await invoke(goliveHandler, 'POST', '/api/admin/portal/bookings/5/golive/', {

@@ -163,7 +163,7 @@ test('getRevenueStats returns daily series', async () => {
 });
 
 test('admin threat feed endpoints require authentication', async () => {
-  const listSpoofs = require('../api/admin/authenticity/spoofs/index.js');
+  const listSpoofs = require('../platform/api-handlers/admin/authenticity/spoofs/index.js');
   const { status, body } = await invoke(listSpoofs, 'GET', '/api/admin/authenticity/spoofs');
   assert.strictEqual(status, 401);
   assert.strictEqual(body.error, 'Unauthorized');
@@ -171,7 +171,7 @@ test('admin threat feed endpoints require authentication', async () => {
 
 test('admin can list unreviewed spoofs', async () => {
   const { token } = await login(process.env.ADMIN_PASSWORD);
-  const listSpoofs = require('../api/admin/authenticity/spoofs/index.js');
+  const listSpoofs = require('../platform/api-handlers/admin/authenticity/spoofs/index.js');
   const { status, body } = await invoke(listSpoofs, 'GET', '/api/admin/authenticity/spoofs', {
     headers: { 'x-admin-token': token },
   });
@@ -192,7 +192,7 @@ test('admin can review a spoof', async () => {
   });
 
   const { token } = await login(process.env.ADMIN_PASSWORD);
-  const reviewHandler = require('../api/admin/authenticity/spoofs/[id]/review/index.js');
+  const reviewHandler = require('../platform/api-handlers/admin/authenticity/spoofs/[id]/review/index.js');
   const { status, body } = await invoke(
     reviewHandler,
     'POST',

@@ -64,9 +64,9 @@ const { run } = require('../platform/db/operational.js');
 
 const accountHandler = require('../api/account/[[...slug]].js');
 const webhookHandler = require('../api/webhook/index.js');
-const adminListHandler = require('../api/admin/portal/tenant-requests/index.js');
-const adminApproveHandler = require('../api/admin/portal/tenant-requests/[id]/approve/index.js');
-const adminRejectHandler = require('../api/admin/portal/tenant-requests/[id]/reject/index.js');
+const adminListHandler = require('../platform/api-handlers/admin/portal/tenant-requests/index.js');
+const adminApproveHandler = require('../platform/api-handlers/admin/portal/tenant-requests/[id]/approve/index.js');
+const adminRejectHandler = require('../platform/api-handlers/admin/portal/tenant-requests/[id]/reject/index.js');
 
 // Raw-body invoke for the webhook handler (same rationale as patrons-api tests).
 function invokeRaw(handler, method, url, { headers = {}, rawBody } = {}) {

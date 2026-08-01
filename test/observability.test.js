@@ -216,7 +216,7 @@ async function runTests() {
   });
 
   await test('GET /api/admin/observability requires admin token', async () => {
-    const handler = require('../api/admin/observability/index.js');
+    const handler = require('../platform/api-handlers/admin/observability/index.js');
     const noAuth = await invoke(handler, 'GET', '/api/admin/observability');
     assert.strictEqual(noAuth.status, 401);
 

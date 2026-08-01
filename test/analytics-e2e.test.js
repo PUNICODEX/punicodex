@@ -41,7 +41,7 @@ prepareTestDb(__filename);
 const { invoke, adminHeader, jsonBody } = require('./helpers/http.js');
 const collectHandler = require('../api/analytics/collect');
 const overviewHandler = require('../api/analytics/overview');
-const adminLoginHandler = require('../api/admin/login');
+const adminLoginHandler = require('../platform/api-handlers/admin/login');
 const { all, run, closeDb } = require('../platform/db/operational.js');
 const { runMigration } = require('../platform/db/migrate-site-analytics.js');
 const { resetLimiters } = require('../platform/api/api-rate-limiter.js');

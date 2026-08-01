@@ -42,10 +42,10 @@ const {
 } = require('../platform/api/store-orders.js');
 const PRODUCT_CATALOG = require('../store/products.json');
 
-const loginHandler = require('../api/admin/portal/login/index.js');
-const listHandler = require('../api/admin/portal/store-orders/index.js');
-const detailHandler = require('../api/admin/portal/store-orders/[id]/index.js');
-const retryHandler = require('../api/admin/portal/store-orders/[id]/retry-fulfillment/index.js');
+const loginHandler = require('../platform/api-handlers/admin/portal/login/index.js');
+const listHandler = require('../platform/api-handlers/admin/portal/store-orders/index.js');
+const detailHandler = require('../platform/api-handlers/admin/portal/store-orders/[id]/index.js');
+const retryHandler = require('../platform/api-handlers/admin/portal/store-orders/[id]/retry-fulfillment/index.js');
 
 // A catalog product with a live variant map for order creation.
 PRODUCT_CATALOG.products.push({

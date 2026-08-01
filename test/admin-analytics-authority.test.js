@@ -61,10 +61,10 @@ const { get, run } = require('../platform/db/operational.js');
 const { recordPageView } = require('../platform/api/site-analytics.js');
 const { runMigration } = require('../platform/db/migrate-site-analytics.js');
 
-const loginHandler = require('../api/admin/portal/login/index.js');
-const dashboardHandler = require('../api/admin/portal/dashboard/index.js');
+const loginHandler = require('../platform/api-handlers/admin/portal/login/index.js');
+const dashboardHandler = require('../platform/api-handlers/admin/portal/dashboard/index.js');
 const overviewHandler = require('../api/analytics/overview/index.js');
-const observabilityHandler = require('../api/admin/observability/index.js');
+const observabilityHandler = require('../platform/api-handlers/admin/observability/index.js');
 
 const TODAY = new Date().toISOString().slice(0, 10);
 const CHROME_DESKTOP =

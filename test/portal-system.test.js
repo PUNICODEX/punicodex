@@ -85,6 +85,13 @@ function resolveHandler(literalBase) {
   if (fs.existsSync(asIndex)) return asIndex;
   const asFile = path.join(ROOT, `${rel}.js`);
   if (fs.existsSync(asFile)) return asFile;
+  // /api/admin/* is served by the single catch-all router function; the
+  // literal resolves iff the router has a matching route in its table.
+  if (rel.startsWith('api/admin/')) {
+    const catchAll = path.join(ROOT, 'api', 'admin', '[[...slug]].js');
+    const { matchRoute } = require(catchAll);
+    if (matchRoute(rel.slice('api/admin/'.length).split('/'))) return catchAll;
+  }
   return null;
 }
 
@@ -223,12 +230,12 @@ async function runStaticTests() {
 
 // ── Live endpoint contract ────────────────────────────────────
 
-const loginHandler = require('../api/admin/portal/login/index.js');
-const usersHandler = require('../api/admin/portal/users/index.js');
-const careersHandler = require('../api/admin/portal/careers/index.js');
-const careerStatusHandler = require('../api/admin/portal/careers/[id]/status/index.js');
-const arbitrageHandler = require('../api/admin/portal/arbitrage/index.js');
-const arbitrageStatusHandler = require('../api/admin/portal/arbitrage/[id]/status/index.js');
+const loginHandler = require('../platform/api-handlers/admin/portal/login/index.js');
+const usersHandler = require('../platform/api-handlers/admin/portal/users/index.js');
+const careersHandler = require('../platform/api-handlers/admin/portal/careers/index.js');
+const careerStatusHandler = require('../platform/api-handlers/admin/portal/careers/[id]/status/index.js');
+const arbitrageHandler = require('../platform/api-handlers/admin/portal/arbitrage/index.js');
+const arbitrageStatusHandler = require('../platform/api-handlers/admin/portal/arbitrage/[id]/status/index.js');
 
 function db() {
   return new Database(getTestDbPath(__filename));

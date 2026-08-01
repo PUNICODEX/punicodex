@@ -69,24 +69,24 @@ const { createPatronCheckoutRecord, markPatronPaid } = require('../platform/api/
 const { resetLimiters } = require('../platform/api/api-rate-limiter.js');
 const dbApi = require('../platform/db/scholars');
 
-const loginHandler = require('../api/admin/portal/login/index.js');
-const meHandler = require('../api/admin/portal/me/index.js');
-const passwordHandler = require('../api/admin/portal/me/password/index.js');
-const dashboardHandler = require('../api/admin/portal/dashboard/index.js');
-const analyticsHandler = require('../api/admin/portal/analytics/index.js');
-const usersHandler = require('../api/admin/portal/users/index.js');
-const userPatchHandler = require('../api/admin/portal/users/[id]/index.js');
-const userDisableHandler = require('../api/admin/portal/users/[id]/disable/index.js');
-const userResetHandler = require('../api/admin/portal/users/[id]/reset-password/index.js');
-const applicationsHandler = require('../api/admin/portal/applications/index.js');
-const appApproveHandler = require('../api/admin/portal/applications/[kind]/[id]/approve/index.js');
-const appRejectHandler = require('../api/admin/portal/applications/[kind]/[id]/reject/index.js');
-const patronsHandler = require('../api/admin/portal/patrons/index.js');
-const patronStatsHandler = require('../api/admin/portal/patrons/stats/index.js');
-const patronPatchHandler = require('../api/admin/portal/patrons/[id]/index.js');
-const scholarsPendingHandler = require('../api/admin/portal/scholars/pending/index.js');
-const scholarApproveHandler = require('../api/admin/portal/scholars/[kind]/[id]/approve/index.js');
-const scholarRejectHandler = require('../api/admin/portal/scholars/[kind]/[id]/reject/index.js');
+const loginHandler = require('../platform/api-handlers/admin/portal/login/index.js');
+const meHandler = require('../platform/api-handlers/admin/portal/me/index.js');
+const passwordHandler = require('../platform/api-handlers/admin/portal/me/password/index.js');
+const dashboardHandler = require('../platform/api-handlers/admin/portal/dashboard/index.js');
+const analyticsHandler = require('../platform/api-handlers/admin/portal/analytics/index.js');
+const usersHandler = require('../platform/api-handlers/admin/portal/users/index.js');
+const userPatchHandler = require('../platform/api-handlers/admin/portal/users/[id]/index.js');
+const userDisableHandler = require('../platform/api-handlers/admin/portal/users/[id]/disable/index.js');
+const userResetHandler = require('../platform/api-handlers/admin/portal/users/[id]/reset-password/index.js');
+const applicationsHandler = require('../platform/api-handlers/admin/portal/applications/index.js');
+const appApproveHandler = require('../platform/api-handlers/admin/portal/applications/[kind]/[id]/approve/index.js');
+const appRejectHandler = require('../platform/api-handlers/admin/portal/applications/[kind]/[id]/reject/index.js');
+const patronsHandler = require('../platform/api-handlers/admin/portal/patrons/index.js');
+const patronStatsHandler = require('../platform/api-handlers/admin/portal/patrons/stats/index.js');
+const patronPatchHandler = require('../platform/api-handlers/admin/portal/patrons/[id]/index.js');
+const scholarsPendingHandler = require('../platform/api-handlers/admin/portal/scholars/pending/index.js');
+const scholarApproveHandler = require('../platform/api-handlers/admin/portal/scholars/[kind]/[id]/approve/index.js');
+const scholarRejectHandler = require('../platform/api-handlers/admin/portal/scholars/[kind]/[id]/reject/index.js');
 
 // Distinct source IPs per login so the shared 'admin-login' rate-limit bucket
 // (10/min/IP) never trips outside the dedicated rate-limit test.

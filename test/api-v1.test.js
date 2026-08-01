@@ -126,9 +126,9 @@ async function runTests() {
   const openapi = require('../api/v1/openapi.json.js');
   const docs = require('../api/v1/docs/index.js');
   const version = require('../api/v1/version/index.js');
-  const adminListKeys = require('../api/admin/api-keys/index.js');
+  const adminListKeys = require('../platform/api-handlers/admin/api-keys/index.js');
   const adminCreateKey = adminListKeys;
-  const adminRevokeKey = require('../api/admin/api-keys/[id]/revoke.js');
+  const adminRevokeKey = require('../platform/api-handlers/admin/api-keys/[id]/revoke.js');
 
   let createdKey = null;
 

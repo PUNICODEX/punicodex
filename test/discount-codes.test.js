@@ -71,10 +71,10 @@ const discountService = require('../platform/api/discount-service.js');
 const { createBooking, getBookingById } = require('../platform/api/bookings.js');
 const { approveApplication } = require('../platform/api/admin-booking-service.js');
 
-const loginHandler = require('../api/admin/portal/login/index.js');
-const discountsHandler = require('../api/admin/portal/discounts/index.js');
-const discountByIdHandler = require('../api/admin/portal/discounts/[id]/index.js');
-const redemptionsHandler = require('../api/admin/portal/discounts/[id]/redemptions/index.js');
+const loginHandler = require('../platform/api-handlers/admin/portal/login/index.js');
+const discountsHandler = require('../platform/api-handlers/admin/portal/discounts/index.js');
+const discountByIdHandler = require('../platform/api-handlers/admin/portal/discounts/[id]/index.js');
+const redemptionsHandler = require('../platform/api-handlers/admin/portal/discounts/[id]/redemptions/index.js');
 const validateHandler = require('../api/discount/validate/index.js');
 
 function db() {

@@ -34,7 +34,7 @@ async function runTests() {
 
   adminToken = (await adminLogin(process.env.ADMIN_PASSWORD)).token;
 
-  const bookingsHandler = require('../api/admin/bookings/index.js');
+  const bookingsHandler = require('../platform/api-handlers/admin/bookings/index.js');
 
   await test('GET /api/admin/bookings requires admin token', async () => {
     const noAuth = await invoke(bookingsHandler, 'GET', '/api/admin/bookings');
@@ -73,7 +73,7 @@ async function runTests() {
   });
 
   await test('POST /api/admin/bookings/:id/approve', async () => {
-    const handler = require('../api/admin/bookings/[id]/approve/index.js');
+    const handler = require('../platform/api-handlers/admin/bookings/[id]/approve/index.js');
     const res = await invoke(handler, 'POST', `/api/admin/bookings/${createdId}/approve`, {
       headers: adminHeader(adminToken),
       body: { note: 'Looks good' },
@@ -84,7 +84,7 @@ async function runTests() {
   });
 
   await test('POST /api/admin/bookings/:id/golive', async () => {
-    const handler = require('../api/admin/bookings/[id]/golive/index.js');
+    const handler = require('../platform/api-handlers/admin/bookings/[id]/golive/index.js');
     const res = await invoke(handler, 'POST', `/api/admin/bookings/${createdId}/golive`, {
       headers: adminHeader(adminToken),
       params: { id: String(createdId) },
@@ -94,7 +94,7 @@ async function runTests() {
   });
 
   await test('POST /api/admin/bookings/:id/end', async () => {
-    const handler = require('../api/admin/bookings/[id]/end/index.js');
+    const handler = require('../platform/api-handlers/admin/bookings/[id]/end/index.js');
     const res = await invoke(handler, 'POST', `/api/admin/bookings/${createdId}/end`, {
       headers: adminHeader(adminToken),
       params: { id: String(createdId) },
@@ -142,7 +142,7 @@ async function runTests() {
     });
     assert.strictEqual(createRes.status, 201);
 
-    const handler = require('../api/admin/bookings/[id]/golive/index.js');
+    const handler = require('../platform/api-handlers/admin/bookings/[id]/golive/index.js');
     const res = await invoke(
       handler,
       'POST',
@@ -179,7 +179,7 @@ async function runTests() {
     assert.strictEqual(before.status, 'reserved', 'slot is reserved after booking');
     assert.strictEqual(before.current_booking_id, rejectedId);
 
-    const handler = require('../api/admin/bookings/[id]/reject/index.js');
+    const handler = require('../platform/api-handlers/admin/bookings/[id]/reject/index.js');
     const res = await invoke(handler, 'POST', `/api/admin/bookings/${rejectedId}/reject`, {
       headers: adminHeader(adminToken),
       body: { note: 'Policy violation' },
@@ -197,7 +197,7 @@ async function runTests() {
   });
 
   await test('GET /api/admin/revenue returns revenue stats', async () => {
-    const handler = require('../api/admin/revenue/index.js');
+    const handler = require('../platform/api-handlers/admin/revenue/index.js');
     const res = await invoke(handler, 'GET', '/api/admin/revenue?days=7', {
       headers: adminHeader(adminToken),
     });
@@ -207,7 +207,7 @@ async function runTests() {
   });
 
   await test('POST /api/admin/trial-reminders returns counts', async () => {
-    const handler = require('../api/admin/trial-reminders/index.js');
+    const handler = require('../platform/api-handlers/admin/trial-reminders/index.js');
     const res = await invoke(handler, 'POST', '/api/admin/trial-reminders', {
       headers: adminHeader(adminToken),
     });
