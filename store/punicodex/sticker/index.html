@@ -189,12 +189,12 @@ a:hover{color:var(--gold-bright)}
     <script src="/js/main.js?v=perf12" defer></script>
 <div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <a href="/store/punicodex/">PuniCodex</a> · <span style="color:var(--gold)">Sticker Set</span></div>
 <div class="wrap pdp">
-  <div><div class="stage"><img id="stage-img" src="/assets/brand/01-logos/punicodex-emblem-gold.webp" alt="PuniCodex Brand Sticker Set"></div></div>
+  <div><div class="stage"><img id="stage-img" src="https://punycodex-masters.vercel.app/mockups/punicodex-sticker.jpg" alt="PuniCodex Brand Sticker Set"></div></div>
   <div>
     <span class="pill">Sticker Set</span> <span class="pill">PuniCodex</span>
     <h1>PuniCodex Brand Sticker Set</h1>
     <p style="color:var(--dim)">Wordmark, emblem, and glyph — three die-cut vinyl seals of the house.</p>
-    <div class="price">$8.00</div>
+    <div class="price" id="pdp-price">$8.00</div>
     <div class="opt-group"><div class="lbl">Colour</div><div class="opts" id="opts-color"><button class="opt active" data-c="White">White</button></div></div>
     
     <div class="opt-group">
@@ -211,7 +211,7 @@ a:hover{color:var(--gold-bright)}
     </div>
   </div>
 </div>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"PuniCodex Brand Sticker Set","image":"/assets/brand/01-logos/punicodex-emblem-gold.webp","description":"Wordmark, emblem, and glyph — three die-cut vinyl seals of the house.","brand":{"@type":"Brand","name":"PuniCodex"},"offers":{"@type":"Offer","price":"8.00","priceCurrency":"USD","availability":"https://schema.org/InStock"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"PuniCodex Brand Sticker Set","image":"https://punycodex-masters.vercel.app/mockups/punicodex-sticker.jpg","description":"Wordmark, emblem, and glyph — three die-cut vinyl seals of the house.","brand":{"@type":"Brand","name":"PuniCodex"},"offers":{"@type":"Offer","price":"8.00","priceCurrency":"USD","availability":"https://schema.org/InStock"}}</script>
 <script>
 (function(){
   var colors = Array.prototype.slice.call(document.querySelectorAll('#opts-color .opt'));
@@ -234,7 +234,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = null;
+  var PRICES = {"White / 5.83″×8.27″":800};
   var FLAT_PRICE = "$8.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');

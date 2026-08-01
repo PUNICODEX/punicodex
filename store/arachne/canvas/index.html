@@ -189,12 +189,12 @@ a:hover{color:var(--gold-bright)}
     <script src="/js/main.js?v=perf12" defer></script>
 <div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <a href="/store/arachne/">Arachnē</a> · <span style="color:var(--gold)">Canvas</span></div>
 <div class="wrap pdp">
-  <div><div class="stage"><img id="stage-img" src="/sites/arachne/assets/arachne_mascot.webp" alt="Arachnē Mascot Canvas"></div></div>
+  <div><div class="stage"><img id="stage-img" src="https://punycodex-masters.vercel.app/mockups/arachne-canvas.jpg" alt="Arachnē Mascot Canvas"></div></div>
   <div>
     <span class="pill">Canvas</span> <span class="pill">Arachnē</span>
     <h1>Arachnē Mascot Canvas</h1>
     <p style="color:var(--dim)">Gallery-wrapped canvas, 45×60 cm — the deity, sealed in the corner.</p>
-    <div class="price">$49.00</div>
+    <div class="price" id="pdp-price">from $49.00</div>
     
     <div class="opt-group"><div class="lbl">Option</div><div class="opts" id="opts-size"><button class="opt active" data-s="10″×10″">10″×10″</button><button class="opt" data-s="10″×20″">10″×20″</button><button class="opt" data-s="11″×14″">11″×14″</button><button class="opt" data-s="12″×18″">12″×18″</button><button class="opt" data-s="12″×24″">12″×24″</button><button class="opt" data-s="12″×36″">12″×36″</button></div></div>
     <div class="opt-group">
@@ -211,7 +211,7 @@ a:hover{color:var(--gold-bright)}
     </div>
   </div>
 </div>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Arachnē Mascot Canvas","image":"/sites/arachne/assets/arachne_mascot.webp","description":"Gallery-wrapped canvas, 45×60 cm — the deity, sealed in the corner.","brand":{"@type":"Brand","name":"PuniCodex"},"offers":{"@type":"Offer","price":"49.00","priceCurrency":"USD","availability":"https://schema.org/InStock"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Arachnē Mascot Canvas","image":"https://punycodex-masters.vercel.app/mockups/arachne-canvas.jpg","description":"Gallery-wrapped canvas, 45×60 cm — the deity, sealed in the corner.","brand":{"@type":"Brand","name":"PuniCodex"},"offers":{"@type":"Offer","price":"49.00","priceCurrency":"USD","availability":"https://schema.org/InStock"}}</script>
 <script>
 (function(){
   var colors = Array.prototype.slice.call(document.querySelectorAll('#opts-color .opt'));
@@ -234,7 +234,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = null;
+  var PRICES = {"10″×10″":4900,"10″×20″":6200,"11″×14″":5000,"12″×18″":6100,"12″×24″":6600,"12″×36″":9300};
   var FLAT_PRICE = "$49.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');

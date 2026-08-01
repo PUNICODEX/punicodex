@@ -189,12 +189,12 @@ a:hover{color:var(--gold-bright)}
     <script src="/js/main.js?v=perf12" defer></script>
 <div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <a href="/store/ganga/">Gaṅgā</a> · <span style="color:var(--gold)">Tote</span></div>
 <div class="wrap pdp">
-  <div><div class="stage"><img id="stage-img" src="/sites/ganga/assets/ganga_mascot.webp" alt="Gaṅgā Temple Tote"></div><p style="color:var(--dim);font-size:.82rem;margin-top:.6rem">Shown in Black — the design prints the same on every colour.</p></div>
+  <div><div class="stage"><img id="stage-img" src="https://punycodex-masters.vercel.app/mockups/ganga-tote.jpg" alt="Gaṅgā Temple Tote"></div><p style="color:var(--dim);font-size:.82rem;margin-top:.6rem">Shown in Black — the design prints the same on every colour.</p></div>
   <div>
     <span class="pill">Tote</span> <span class="pill">Gaṅgā</span>
     <h1>Gaṅgā Temple Tote</h1>
     <p style="color:var(--dim)">Heavy canvas carry-all — the lockup large, the deity tagged below.</p>
-    <div class="price">$26.00</div>
+    <div class="price" id="pdp-price">$26.00</div>
     <div class="opt-group"><div class="lbl">Colour</div><div class="opts" id="opts-color"><button class="opt active" data-c="Black">Black</button><button class="opt" data-c="Camel">Camel</button><button class="opt" data-c="White">White</button></div></div>
     
     <div class="opt-group">
@@ -211,7 +211,7 @@ a:hover{color:var(--gold-bright)}
     </div>
   </div>
 </div>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Gaṅgā Temple Tote","image":"/sites/ganga/assets/ganga_mascot.webp","description":"Heavy canvas carry-all — the lockup large, the deity tagged below.","brand":{"@type":"Brand","name":"PuniCodex"},"offers":{"@type":"Offer","price":"26.00","priceCurrency":"USD","availability":"https://schema.org/InStock"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Gaṅgā Temple Tote","image":"https://punycodex-masters.vercel.app/mockups/ganga-tote.jpg","description":"Heavy canvas carry-all — the lockup large, the deity tagged below.","brand":{"@type":"Brand","name":"PuniCodex"},"offers":{"@type":"Offer","price":"26.00","priceCurrency":"USD","availability":"https://schema.org/InStock"}}</script>
 <script>
 (function(){
   var colors = Array.prototype.slice.call(document.querySelectorAll('#opts-color .opt'));
@@ -234,7 +234,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = null;
+  var PRICES = {"Black":2600,"Camel":2600,"White":2600};
   var FLAT_PRICE = "$26.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');

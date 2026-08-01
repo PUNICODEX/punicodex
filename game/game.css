@@ -2979,3 +2979,101 @@ body.game-body ::-webkit-scrollbar-thumb:hover { background-color: rgba(212, 175
 
 .pool-mini { position: relative; }
 .game-card .card-level { bottom: auto; top: 2.1rem; right: 0.5rem; position: absolute; }
+
+/* ── Published odds + the Archive Exchange ───────────────────────────────── */
+.pack-odds { margin: 1.5rem 0; }
+
+.odds-table {
+  border: 1px solid var(--card-border);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  font-size: 0.72rem;
+}
+
+.odds-row {
+  display: grid;
+  grid-template-columns: 1.8fr repeat(6, 0.7fr);
+  gap: 0.25rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--card-bg);
+  align-items: center;
+  text-align: center;
+}
+
+.odds-row span:first-child { text-align: left; color: var(--text-dim); }
+.odds-row span { color: var(--text-main); }
+.odds-row:nth-child(even) { background: rgba(255, 255, 255, 0.025); }
+.odds-head { font-weight: 800; color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.62rem; }
+
+.exchange-section { margin: 1.5rem 0; }
+
+.exchange-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  max-height: 560px;
+  overflow-y: auto;
+  padding-right: 0.25rem;
+}
+
+.exchange-row {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.4rem 0.55rem;
+  border: 1px solid var(--card-border);
+  border-radius: 0.55rem;
+  background: var(--card-bg);
+}
+
+.exchange-row.maxed { opacity: 0.55; }
+
+.exchange-cost {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.8rem;
+  background: linear-gradient(180deg, #3b82f6, #1d4ed8);
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.exchange-name {
+  flex: 1;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.exchange-edition {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.exchange-buy {
+  flex-shrink: 0;
+  background: linear-gradient(180deg, #eed27e, #c39a2b);
+  border: 1px solid rgba(255, 230, 150, 0.5);
+  border-radius: 999px;
+  color: #221a05;
+  font-weight: 700;
+  font-size: 0.72rem;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  font-family: inherit;
+  transition: filter 0.15s ease;
+}
+
+.exchange-buy:hover:not(:disabled) { filter: brightness(1.1); }
+.exchange-buy:disabled { opacity: 0.6; cursor: not-allowed; background: var(--card-bg); color: var(--text-dim); border-color: var(--card-border); }

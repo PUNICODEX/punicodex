@@ -67,6 +67,23 @@ test('the renderer honors every rarity and variant in the set', () => {
   assert.ok(js.includes('/sites/'), 'temple cross-link present');
 });
 
+test('the gallery is server-rendered: 1,698 static frames + payload, no empty shell', () => {
+  const html = read('cards/index.html');
+  const frames = html.match(/class="mcard[ "]/g) || [];
+  assert.strictEqual(frames.length, 1698, 'every card has a static frame in the raw HTML');
+  assert.ok(!html.includes('Restoring the set…'), 'no client-only loading shell remains');
+  assert.ok(html.includes('CARDS-GRID-START'), 'grid markers present for regeneration');
+  const m = html.match(/window\.__CARDS_PAYLOAD = (\[[\s\S]*?\]);/);
+  assert.ok(m, 'payload baked into the page');
+  const payload = JSON.parse(m[1].replace(/\\u003c/g, '<'));
+  assert.strictEqual(payload.length, 1698, 'payload carries the full set');
+  assert.ok(html.includes('id="stat-total">1,698'), 'stat count server-filled');
+  assert.ok(!html.includes('id="stat-total">—'), 'no placeholder dash in stats');
+  const js = read('cards/cards.js');
+  assert.ok(js.includes('window.__CARDS_PAYLOAD'), 'renderer uses the baked payload first');
+  assert.ok(js.includes('/game/cards.json'), 'fetch fallback preserved');
+});
+
 test('the frame CSS carries the foil treatment and rarity gems', () => {
   const css = read('css/cards.css');
   assert.ok(css.includes('.mcard--foil'), 'foil treatment');

@@ -494,10 +494,16 @@ function generateTempleHTML(entry, related) {
   const domainStatus = getDomainStatus(entry);
   const asciiBanner = getAsciiBanner(entry, domainStatus);
 
-  // Meta
+  // Meta — SERP discipline: titles 45–60, descriptions 120–160 characters.
+  const truncate = (s, max) => {
+    if (s.length <= max) return s;
+    const cut = s.slice(0, max);
+    return `${cut.slice(0, cut.lastIndexOf(' ')).trim()}…`;
+  };
+  const shortMeaning = truncate(entry.meaning || entry.domain, 48);
   const pageTitle = domainStatus.isOwned
     ? `${hasOriginal ? `${originalScript} — ` : ''}${entry.unicode} | ${entry.domain} | PUNICODEX`
-    : `${entry.unicode} — ${entry.meaning || entry.domain} | PUNICODEX`;
+    : `${entry.unicode} — ${shortMeaning} | PUNICODEX`;
   const hasStressForDesc = entry.breakdown.some((b) => b.type === 'stress');
   const hasLengthForDesc = entry.breakdown.some((b) => b.type === 'length');
   const distinctiveClause =
@@ -508,9 +514,13 @@ function generateTempleHTML(entry, related) {
         : hasLengthForDesc
           ? 'The restoration records the vowel length the ASCII form drops.'
           : '';
-  const pageDesc = domainStatus.isOwned
-    ? `Discover ${entry.unicode}.com — the authentic Unicode domain for ${hasOriginal ? `${originalScript}, ` : ''}${entry.domain}. ${distinctiveClause} Scholarly orthography, Punycode encoding, and sources: ${entry.sources.join(', ')}.`.replace(/\s{2,}/g, ' ')
-    : `Scholarly profile of ${entry.unicode} — ${entry.meaning || entry.domain}. ${distinctiveClause} PUNICODEX documents the authentic Unicode orthography. Sources: ${entry.sources.join(', ')}.`.replace(/\s{2,}/g, ' ');
+  const pageDesc = truncate(
+    (domainStatus.isOwned
+      ? `Discover ${entry.unicode}.com — the authentic Unicode domain for ${hasOriginal ? `${originalScript}, ` : ''}${entry.domain}. ${distinctiveClause} Scholarly orthography, Punycode encoding, and sources: ${entry.sources.join(', ')}.`
+      : `Scholarly profile of ${entry.unicode} — ${entry.meaning || entry.domain}. ${distinctiveClause} PUNICODEX documents the authentic Unicode orthography. Sources: ${entry.sources.join(', ')}.`
+    ).replace(/\s{2,}/g, ' '),
+    156
+  );
   const canonicalUrl = `https://punicodex.com/sites/${entry.id}/`;
 
   // Tier feature cards

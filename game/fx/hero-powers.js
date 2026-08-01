@@ -128,8 +128,8 @@
       archetype: 'veil',
     },
     polynesian: {
-      id: 'mana-tide',
-      name: 'Mana Tide',
+      id: 'ink-tide',
+      name: 'Ink Tide',
       text: 'Restore 3 health to your hero.',
       effect: { kind: 'heal-hero', amount: 3 },
       archetype: 'flood',

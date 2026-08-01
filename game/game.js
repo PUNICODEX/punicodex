@@ -788,6 +788,61 @@
     window.history.replaceState(null, '', clean);
   }
 
+  /* ── The Archive Exchange: specific cards at fixed prices ──────────────── */
+  var EXCHANGE_PRICES = { common: 40, uncommon: 60, rare: 150, epic: 250, legendary: 300, mythic: 450 };
+  var EXCHANGE_CAP = 4; // Level III ceiling — the exchange cannot overforge a card
+
+  function renderExchange() {
+    var grid = $('exchange-grid');
+    if (!grid) return;
+    grid.replaceChildren();
+    var query = (ui.exchangeSearch || '').toLowerCase();
+    var matches = cards.filter(function (c) {
+      if (!c.flagship) return false;
+      if (!query) return true;
+      return (
+        c.name.toLowerCase().indexOf(query) !== -1 ||
+        (c.ascii || '').indexOf(query) !== -1 ||
+        (c.original || '').toLowerCase().indexOf(query) !== -1 ||
+        (c.edition || '').indexOf(query) !== -1
+      );
+    });
+    if (matches.length === 0) {
+      grid.appendChild(el('p', 'deck-empty', 'No cards match — try another name.'));
+      return;
+    }
+    matches.slice(0, 48).forEach(function (c) {
+      var price = EXCHANGE_PRICES[c.rarity] || 100;
+      var owned = save.collection[c.id] || 0;
+      var maxed = owned >= EXCHANGE_CAP || save.ink < price;
+      var row = el('div', 'exchange-row' + (maxed ? ' maxed' : ''));
+      row.appendChild(el('span', 'exchange-cost', String(c.cost)));
+      row.appendChild(el('span', 'exchange-name', c.name));
+      row.appendChild(el('span', 'exchange-edition', c.edition || 'archive'));
+      var btn = el('button', 'exchange-buy', maxed ? (owned >= EXCHANGE_CAP ? 'Forged III' : price + ' ✦') : 'Buy ' + price + ' ✦');
+      btn.type = 'button';
+      btn.disabled = maxed;
+      btn.title = c.ability ? c.ability.name + ' — ' + c.ability.description : c.name;
+      if (!maxed) {
+        btn.addEventListener('click', function () {
+          if (save.ink < price) return;
+          save.ink -= price;
+          save.collection[c.id] = (save.collection[c.id] || 0) + 1;
+          persist();
+          renderCurrencies();
+          sfx('ink');
+          showToast(c.name + ' joins your archive (×' + save.collection[c.id] + ').');
+          renderExchange();
+        });
+      }
+      row.appendChild(btn);
+      grid.appendChild(row);
+    });
+    if (matches.length > 48) {
+      grid.appendChild(el('p', 'deck-empty', matches.length - 48 + ' more — refine the search to see them.'));
+    }
+  }
+
   function renderPackShop() {
     var shop = $('pack-shop');
     shop.replaceChildren();
@@ -915,8 +970,8 @@
       },
     },
     {
-      id: 'wisdom-combo',
-      name: 'Wisdom Combo',
+      id: 'wisdom-syzygy',
+      name: 'Wisdom Syzygy',
       desc: 'Draw engines and card advantage — out-resource the field.',
       match: function (s) {
         return s.drawEffects >= 5;
@@ -2954,7 +3009,10 @@
     });
     if (name === 'lobby') renderLobby();
     if (name === 'collection') renderCollection();
-    if (name === 'packs') renderPackShop();
+    if (name === 'packs') {
+      renderPackShop();
+      renderExchange();
+    }
     if (name === 'battle' && !battle) renderDeckEditor();
   }
 
@@ -2986,6 +3044,14 @@
     $('collection-pantheon').addEventListener('change', function (ev) {
       ui.pantheon = ev.target.value;
       renderCollection();
+    });
+    var exchangeSearchTimer = null;
+    $('exchange-search').addEventListener('input', function (ev) {
+      clearTimeout(exchangeSearchTimer);
+      exchangeSearchTimer = setTimeout(function () {
+        ui.exchangeSearch = ev.target.value.trim();
+        renderExchange();
+      }, 200);
     });
 
     $('deck-search').addEventListener('input', function (ev) {

@@ -296,7 +296,7 @@ function renderStoreIndex(colls) {
   const pills = ['All', ...new Set([...colls.keys()].map((id) => templeMeta(id).pantheon).filter(Boolean))].sort();
 
   return `${head({
-    title: 'The Reliquary — Collections | PUNICODEX',
+    title: 'The Reliquary — Temple Collections & Prints | PUNICODEX',
     description: `Print-on-demand relics of the Unicode Pantheon — ${colls.size} temple collections, each with its own line of apparel, prints, drinkware and relics.`,
     path: '/store/',
     css: `.store-hero{text-align:center;padding:5.5rem 0 2.5rem}.store-hero .pc-fx-stage{margin:0 auto 1.5rem}.store-hero h1{font-size:2.6rem;margin:.4rem 0 .6rem}.store-hero .tag{max-width:62ch;margin:0 auto}`,

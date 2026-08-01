@@ -834,7 +834,7 @@
 
       case 'combo': {
         if (!ctx.comboActive) {
-          log(state, playerIdx, 'fizzle', 'Combo not active — no card played earlier this turn.');
+          log(state, playerIdx, 'fizzle', 'Syzygy not aligned — no card played earlier this turn.');
           break;
         }
         var subs = Array.isArray(effect.effects) ? effect.effects : [];

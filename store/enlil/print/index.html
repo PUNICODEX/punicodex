@@ -189,12 +189,12 @@ a:hover{color:var(--gold-bright)}
     <script src="/js/main.js?v=perf12" defer></script>
 <div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <a href="/store/enlil/">Enlīl</a> · <span style="color:var(--gold)">Art Print</span></div>
 <div class="wrap pdp">
-  <div><div class="stage"><img id="stage-img" src="/sites/enlil/assets/enlil_mascot.webp" alt="Enlīl Mascot Art Print"></div></div>
+  <div><div class="stage"><img id="stage-img" src="https://punycodex-masters.vercel.app/mockups/enlil-print.jpg" alt="Enlīl Mascot Art Print"></div></div>
   <div>
     <span class="pill">Art Print</span> <span class="pill">Enlīl</span>
     <h1>Enlīl Mascot Art Print</h1>
     <p style="color:var(--dim)">Museum-grade matte poster, 30×40 cm, ready to frame.</p>
-    <div class="price">$29.00</div>
+    <div class="price" id="pdp-price">from $29.00</div>
     
     <div class="opt-group"><div class="lbl">Option</div><div class="opts" id="opts-size"><button class="opt active" data-s="21×30 cm">21×30 cm</button><button class="opt" data-s="30×40 cm">30×40 cm</button><button class="opt" data-s="50×70 cm">50×70 cm</button><button class="opt" data-s="61×91 cm">61×91 cm</button><button class="opt" data-s="A1 (59.4×84.1 cm)">A1 (59.4×84.1 cm)</button><button class="opt" data-s="A2 (42×59.4 cm)">A2 (42×59.4 cm)</button></div></div>
     <div class="opt-group">
@@ -211,7 +211,7 @@ a:hover{color:var(--gold-bright)}
     </div>
   </div>
 </div>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Enlīl Mascot Art Print","image":"/sites/enlil/assets/enlil_mascot.webp","description":"Museum-grade matte poster, 30×40 cm, ready to frame.","brand":{"@type":"Brand","name":"PuniCodex"},"offers":{"@type":"Offer","price":"29.00","priceCurrency":"USD","availability":"https://schema.org/InStock"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Enlīl Mascot Art Print","image":"https://punycodex-masters.vercel.app/mockups/enlil-print.jpg","description":"Museum-grade matte poster, 30×40 cm, ready to frame.","brand":{"@type":"Brand","name":"PuniCodex"},"offers":{"@type":"Offer","price":"29.00","priceCurrency":"USD","availability":"https://schema.org/InStock"}}</script>
 <script>
 (function(){
   var colors = Array.prototype.slice.call(document.querySelectorAll('#opts-color .opt'));
@@ -234,7 +234,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = null;
+  var PRICES = {"A1 (59.4×84.1 cm)":3900,"A2 (42×59.4 cm)":3300,"21×30 cm":2900,"30×40 cm":3400,"50×70 cm":3800,"61×91 cm":4400};
   var FLAT_PRICE = "$29.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');

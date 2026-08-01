@@ -436,6 +436,24 @@ function makeTitle(entry, arch) {
   return V.pick(entry.id, 91, pools[arch]);
 }
 
+// SERP window: descriptions land in 120–160 chars, padded or trimmed at word
+// boundaries with the series number appended when padding.
+function serpDescription(desc, seriesName, no, total) {
+  if (desc.length > 160) {
+    const cut = desc.slice(0, 157);
+    return `${cut.slice(0, cut.lastIndexOf(' ')).trim()}…`;
+  }
+  if (desc.length < 120) {
+    desc = `${desc} ${seriesName}, No. ${no} of ${total} — from the canonical record of the temple.`;
+    if (desc.length < 120) desc = `${desc} Every claim cited, every form weighed.`;
+    if (desc.length > 160) {
+      const cut = desc.slice(0, 157);
+      return `${cut.slice(0, cut.lastIndexOf(' ')).trim()}…`;
+    }
+  }
+  return desc;
+}
+
 function makeDescription(entry, arch) {
   const u = entry.unicode;
   const pools = {
@@ -457,7 +475,7 @@ function makeDescription(entry, arch) {
     ],
   };
   const desc = V.pick(entry.id, 92, pools[arch]);
-  return desc.length >= 100 ? desc : `${desc} The Restoration Files, No. ${BUILT_IDS.indexOf(entry.id) + 1}.`;
+  return serpDescription(desc, 'The Restoration Files', BUILT_IDS.indexOf(entry.id) + 1, BUILT_IDS.length);
 }
 
 // ── Main ────────────────────────────────────────────────────────────────────

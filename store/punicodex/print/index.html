@@ -189,12 +189,12 @@ a:hover{color:var(--gold-bright)}
     <script src="/js/main.js?v=perf12" defer></script>
 <div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <a href="/store/punicodex/">PuniCodex</a> · <span style="color:var(--gold)">Art Print</span></div>
 <div class="wrap pdp">
-  <div><div class="stage"><img id="stage-img" src="/assets/brand/01-logos/punicodex-emblem-gold.webp" alt="PuniCodex Pantheon Poster"></div></div>
+  <div><div class="stage"><img id="stage-img" src="https://punycodex-masters.vercel.app/mockups/punicodex-print.jpg" alt="PuniCodex Pantheon Poster"></div></div>
   <div>
     <span class="pill">Art Print</span> <span class="pill">PuniCodex</span>
     <h1>PuniCodex Pantheon Poster</h1>
     <p style="color:var(--dim)">The solid wordmark over the glyph — the house creed, 30×40 cm.</p>
-    <div class="price">$24.00</div>
+    <div class="price" id="pdp-price">from $24.00</div>
     
     <div class="opt-group"><div class="lbl">Option</div><div class="opts" id="opts-size"><button class="opt active" data-s="21×30 cm">21×30 cm</button><button class="opt" data-s="30×40 cm">30×40 cm</button><button class="opt" data-s="50×70 cm">50×70 cm</button><button class="opt" data-s="61×91 cm">61×91 cm</button><button class="opt" data-s="A1 (59.4×84.1 cm)">A1 (59.4×84.1 cm)</button><button class="opt" data-s="A2 (42×59.4 cm)">A2 (42×59.4 cm)</button></div></div>
     <div class="opt-group">
@@ -211,7 +211,7 @@ a:hover{color:var(--gold-bright)}
     </div>
   </div>
 </div>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"PuniCodex Pantheon Poster","image":"/assets/brand/01-logos/punicodex-emblem-gold.webp","description":"The solid wordmark over the glyph — the house creed, 30×40 cm.","brand":{"@type":"Brand","name":"PuniCodex"},"offers":{"@type":"Offer","price":"24.00","priceCurrency":"USD","availability":"https://schema.org/InStock"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"PuniCodex Pantheon Poster","image":"https://punycodex-masters.vercel.app/mockups/punicodex-print.jpg","description":"The solid wordmark over the glyph — the house creed, 30×40 cm.","brand":{"@type":"Brand","name":"PuniCodex"},"offers":{"@type":"Offer","price":"24.00","priceCurrency":"USD","availability":"https://schema.org/InStock"}}</script>
 <script>
 (function(){
   var colors = Array.prototype.slice.call(document.querySelectorAll('#opts-color .opt'));
@@ -234,7 +234,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = null;
+  var PRICES = {"A1 (59.4×84.1 cm)":3400,"A2 (42×59.4 cm)":2800,"21×30 cm":2400,"30×40 cm":2900,"50×70 cm":3300,"61×91 cm":3900};
   var FLAT_PRICE = "$24.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');

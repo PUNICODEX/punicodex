@@ -189,12 +189,12 @@ a:hover{color:var(--gold-bright)}
     <script src="/js/main.js?v=perf12" defer></script>
 <div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <a href="/store/ahuramazda/">AhuraMazdā</a> · <span style="color:var(--gold)">Mug</span></div>
 <div class="wrap pdp">
-  <div><div class="stage"><img id="stage-img" src="/sites/ahuramazda/assets/ahuramazda_mascot.webp" alt="AhuraMazdā Temple Mug"></div></div>
+  <div><div class="stage"><img id="stage-img" src="https://punycodex-masters.vercel.app/mockups/ahuramazda-mug.jpg" alt="AhuraMazdā Temple Mug"></div></div>
   <div>
     <span class="pill">Mug</span> <span class="pill">AhuraMazdā</span>
     <h1>AhuraMazdā Temple Mug</h1>
     <p style="color:var(--dim)">325 ml ceramic — the seal at your thumb, the deity facing the room.</p>
-    <div class="price">$22.00</div>
+    <div class="price" id="pdp-price">from $22.00</div>
     <div class="opt-group"><div class="lbl">Colour</div><div class="opts" id="opts-color"><button class="opt active" data-c="Black">Black</button></div></div>
     <div class="opt-group"><div class="lbl">Option</div><div class="opts" id="opts-size"><button class="opt active" data-s="11 oz">11 oz</button><button class="opt" data-s="15 oz">15 oz</button></div></div>
     <div class="opt-group">
@@ -211,7 +211,7 @@ a:hover{color:var(--gold-bright)}
     </div>
   </div>
 </div>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"AhuraMazdā Temple Mug","image":"/sites/ahuramazda/assets/ahuramazda_mascot.webp","description":"325 ml ceramic — the seal at your thumb, the deity facing the room.","brand":{"@type":"Brand","name":"PuniCodex"},"offers":{"@type":"Offer","price":"22.00","priceCurrency":"USD","availability":"https://schema.org/InStock"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"AhuraMazdā Temple Mug","image":"https://punycodex-masters.vercel.app/mockups/ahuramazda-mug.jpg","description":"325 ml ceramic — the seal at your thumb, the deity facing the room.","brand":{"@type":"Brand","name":"PuniCodex"},"offers":{"@type":"Offer","price":"22.00","priceCurrency":"USD","availability":"https://schema.org/InStock"}}</script>
 <script>
 (function(){
   var colors = Array.prototype.slice.call(document.querySelectorAll('#opts-color .opt'));
@@ -234,7 +234,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = null;
+  var PRICES = {"Black / 11 oz":2200,"Black / 15 oz":2400};
   var FLAT_PRICE = "$22.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');

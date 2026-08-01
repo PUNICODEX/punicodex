@@ -189,12 +189,12 @@ a:hover{color:var(--gold-bright)}
     <script src="/js/main.js?v=perf12" defer></script>
 <div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <a href="/store/david/">Dāwîḏ</a> · <span style="color:var(--gold)">Sticker Set</span></div>
 <div class="wrap pdp">
-  <div><div class="stage"><img id="stage-img" src="/sites/david/assets/david_mascot.webp" alt="Dāwîḏ Seal Sticker Set"></div></div>
+  <div><div class="stage"><img id="stage-img" src="https://punycodex-masters.vercel.app/mockups/david-sticker.jpg" alt="Dāwîḏ Seal Sticker Set"></div></div>
   <div>
     <span class="pill">Sticker Set</span> <span class="pill">Dāwîḏ</span>
     <h1>Dāwîḏ Seal Sticker Set</h1>
     <p style="color:var(--dim)">Three weatherproof vinyl seals — the deity, the mark, and the lockup.</p>
-    <div class="price">$9.00</div>
+    <div class="price" id="pdp-price">$9.00</div>
     <div class="opt-group"><div class="lbl">Colour</div><div class="opts" id="opts-color"><button class="opt active" data-c="White">White</button></div></div>
     
     <div class="opt-group">
@@ -211,7 +211,7 @@ a:hover{color:var(--gold-bright)}
     </div>
   </div>
 </div>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Dāwîḏ Seal Sticker Set","image":"/sites/david/assets/david_mascot.webp","description":"Three weatherproof vinyl seals — the deity, the mark, and the lockup.","brand":{"@type":"Brand","name":"PuniCodex"},"offers":{"@type":"Offer","price":"9.00","priceCurrency":"USD","availability":"https://schema.org/InStock"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Dāwîḏ Seal Sticker Set","image":"https://punycodex-masters.vercel.app/mockups/david-sticker.jpg","description":"Three weatherproof vinyl seals — the deity, the mark, and the lockup.","brand":{"@type":"Brand","name":"PuniCodex"},"offers":{"@type":"Offer","price":"9.00","priceCurrency":"USD","availability":"https://schema.org/InStock"}}</script>
 <script>
 (function(){
   var colors = Array.prototype.slice.call(document.querySelectorAll('#opts-color .opt'));
@@ -234,7 +234,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = null;
+  var PRICES = {"White / 5.83″×8.27″":900};
   var FLAT_PRICE = "$9.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');

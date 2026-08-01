@@ -189,12 +189,12 @@ a:hover{color:var(--gold-bright)}
     <script src="/js/main.js?v=perf12" defer></script>
 <div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <a href="/store/punicodex/">PuniCodex</a> · <span style="color:var(--gold)">Tote</span></div>
 <div class="wrap pdp">
-  <div><div class="stage"><img id="stage-img" src="/assets/brand/01-logos/punicodex-emblem-gold.webp" alt="PuniCodex Stacked Tote"></div><p style="color:var(--dim);font-size:.82rem;margin-top:.6rem">Shown in Black — the design prints the same on every colour.</p></div>
+  <div><div class="stage"><img id="stage-img" src="https://punycodex-masters.vercel.app/mockups/punicodex-tote.jpg" alt="PuniCodex Stacked Tote"></div><p style="color:var(--dim);font-size:.82rem;margin-top:.6rem">Shown in Black — the design prints the same on every colour.</p></div>
   <div>
     <span class="pill">Tote</span> <span class="pill">PuniCodex</span>
     <h1>PuniCodex Stacked Tote</h1>
     <p style="color:var(--dim)">Heavy canvas carry-all with the stacked gold lockup.</p>
-    <div class="price">$24.00</div>
+    <div class="price" id="pdp-price">$24.00</div>
     <div class="opt-group"><div class="lbl">Colour</div><div class="opts" id="opts-color"><button class="opt active" data-c="Black">Black</button><button class="opt" data-c="Camel">Camel</button><button class="opt" data-c="White">White</button></div></div>
     
     <div class="opt-group">
@@ -211,7 +211,7 @@ a:hover{color:var(--gold-bright)}
     </div>
   </div>
 </div>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"PuniCodex Stacked Tote","image":"/assets/brand/01-logos/punicodex-emblem-gold.webp","description":"Heavy canvas carry-all with the stacked gold lockup.","brand":{"@type":"Brand","name":"PuniCodex"},"offers":{"@type":"Offer","price":"24.00","priceCurrency":"USD","availability":"https://schema.org/InStock"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"PuniCodex Stacked Tote","image":"https://punycodex-masters.vercel.app/mockups/punicodex-tote.jpg","description":"Heavy canvas carry-all with the stacked gold lockup.","brand":{"@type":"Brand","name":"PuniCodex"},"offers":{"@type":"Offer","price":"24.00","priceCurrency":"USD","availability":"https://schema.org/InStock"}}</script>
 <script>
 (function(){
   var colors = Array.prototype.slice.call(document.querySelectorAll('#opts-color .opt'));
@@ -234,7 +234,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = null;
+  var PRICES = {"Black":2400,"Camel":2400,"White":2400};
   var FLAT_PRICE = "$24.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');

@@ -189,12 +189,12 @@ a:hover{color:var(--gold-bright)}
     <script src="/js/main.js?v=perf12" defer></script>
 <div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <a href="/store/iuno/">Iūnō</a> · <span style="color:var(--gold)">Hoodie</span></div>
 <div class="wrap pdp">
-  <div><div class="stage"><img id="stage-img" src="/sites/iuno/assets/iuno_mascot.webp" alt="Iūnō Temple Hoodie"></div></div>
+  <div><div class="stage"><img id="stage-img" src="https://punycodex-masters.vercel.app/mockups/iuno-hoodie.jpg" alt="Iūnō Temple Hoodie"></div></div>
   <div>
     <span class="pill">Hoodie</span> <span class="pill">Iūnō</span>
     <h1>Iūnō Temple Hoodie</h1>
     <p style="color:var(--dim)">Pullover fleece — seal over the heart, the deity across the back.</p>
-    <div class="price">$58.00</div>
+    <div class="price" id="pdp-price">from $58.00</div>
     <div class="opt-group"><div class="lbl">Colour</div><div class="opts" id="opts-color"><button class="opt active" data-c="Black">Black</button></div></div>
     <div class="opt-group"><div class="lbl">Size</div><div class="opts" id="opts-size"><button class="opt active" data-s="S">S</button><button class="opt" data-s="M">M</button><button class="opt" data-s="L">L</button><button class="opt" data-s="XL">XL</button><button class="opt" data-s="2XL">2XL</button></div></div>
     <div class="opt-group">
@@ -212,7 +212,7 @@ a:hover{color:var(--gold-bright)}
     </div>
   </div>
 </div>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Iūnō Temple Hoodie","image":"/sites/iuno/assets/iuno_mascot.webp","description":"Pullover fleece — seal over the heart, the deity across the back.","brand":{"@type":"Brand","name":"PuniCodex"},"offers":{"@type":"Offer","price":"58.00","priceCurrency":"USD","availability":"https://schema.org/InStock"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Iūnō Temple Hoodie","image":"https://punycodex-masters.vercel.app/mockups/iuno-hoodie.jpg","description":"Pullover fleece — seal over the heart, the deity across the back.","brand":{"@type":"Brand","name":"PuniCodex"},"offers":{"@type":"Offer","price":"58.00","priceCurrency":"USD","availability":"https://schema.org/InStock"}}</script>
 <script>
 (function(){
   var colors = Array.prototype.slice.call(document.querySelectorAll('#opts-color .opt'));
@@ -235,7 +235,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = null;
+  var PRICES = {"Black / 2XL":6100,"Black / L":5800,"Black / M":5800,"Black / S":5800,"Black / XL":5800};
   var FLAT_PRICE = "$58.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');

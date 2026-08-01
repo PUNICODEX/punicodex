@@ -25,6 +25,7 @@ const {
   buildPatternsTab,
   buildSeriesLink,
   extractFromHomePage,
+  serpTitle,
 } = require('./lib/blog-render.js');
 
 const ROOT = path.join(__dirname, '..');
@@ -106,6 +107,7 @@ for (const id of BUILT_IDS) {
     BLOG_URL: './',
     TITLE_SUFFIX: `${escapeHtml(unicode)} Blog`,
     EYEBROW: `${escapeHtml(unicode)} — Blog`,
+    SERP_TITLE: escapeHtml(serpTitle(post.title, `${unicode} Blog`)),
     SERIES_NAV_HTML: buildSeriesLink(id),
     EXTENDED_TAB: buildExtendedTab(id, hasExtended, '..'),
     PATTERNS_TAB: buildPatternsTab(id, hasPatterns, '..'),

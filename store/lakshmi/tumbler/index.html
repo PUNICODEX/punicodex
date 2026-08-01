@@ -189,12 +189,12 @@ a:hover{color:var(--gold-bright)}
     <script src="/js/main.js?v=perf12" defer></script>
 <div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <a href="/store/lakshmi/">Lakṣmī</a> · <span style="color:var(--gold)">Tumbler</span></div>
 <div class="wrap pdp">
-  <div><div class="stage"><img id="stage-img" src="/sites/lakshmi/assets/lakshmi_mascot.webp" alt="Lakṣmī Temple Tumbler"></div></div>
+  <div><div class="stage"><img id="stage-img" src="https://punycodex-masters.vercel.app/mockups/lakshmi-tumbler.jpg" alt="Lakṣmī Temple Tumbler"></div></div>
   <div>
     <span class="pill">Tumbler</span> <span class="pill">Lakṣmī</span>
     <h1>Lakṣmī Temple Tumbler</h1>
     <p style="color:var(--dim)">Insulated 590 ml steel — the lockup wrapped vertical in gold.</p>
-    <div class="price">$32.00</div>
+    <div class="price" id="pdp-price">$32.00</div>
     <div class="opt-group"><div class="lbl">Colour</div><div class="opts" id="opts-color"><button class="opt active" data-c="White">White</button></div></div>
     
     <div class="opt-group">
@@ -211,7 +211,7 @@ a:hover{color:var(--gold-bright)}
     </div>
   </div>
 </div>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Lakṣmī Temple Tumbler","image":"/sites/lakshmi/assets/lakshmi_mascot.webp","description":"Insulated 590 ml steel — the lockup wrapped vertical in gold.","brand":{"@type":"Brand","name":"PuniCodex"},"offers":{"@type":"Offer","price":"32.00","priceCurrency":"USD","availability":"https://schema.org/InStock"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Lakṣmī Temple Tumbler","image":"https://punycodex-masters.vercel.app/mockups/lakshmi-tumbler.jpg","description":"Insulated 590 ml steel — the lockup wrapped vertical in gold.","brand":{"@type":"Brand","name":"PuniCodex"},"offers":{"@type":"Offer","price":"32.00","priceCurrency":"USD","availability":"https://schema.org/InStock"}}</script>
 <script>
 (function(){
   var colors = Array.prototype.slice.call(document.querySelectorAll('#opts-color .opt'));
@@ -234,7 +234,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = null;
+  var PRICES = {"White / 20 oz":3200};
   var FLAT_PRICE = "$32.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');

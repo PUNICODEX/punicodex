@@ -286,6 +286,22 @@ function archStressTest(entry, seats, lore) {
 
 // ── Titles & descriptions ───────────────────────────────────────────────────
 
+function serpDescription(desc, seriesName, no, total) {
+  if (desc.length > 160) {
+    const cut = desc.slice(0, 157);
+    return `${cut.slice(0, cut.lastIndexOf(' ')).trim()}…`;
+  }
+  if (desc.length < 120) {
+    desc = `${desc} ${seriesName}, No. ${no} of ${total} — from the canonical record of the temple.`;
+    if (desc.length < 120) desc = `${desc} Every claim cited, every form weighed.`;
+    if (desc.length > 160) {
+      const cut = desc.slice(0, 157);
+      return `${cut.slice(0, cut.lastIndexOf(' ')).trim()}…`;
+    }
+  }
+  return desc;
+}
+
 function makeTitle(entry, arch, seats) {
   const u = entry.unicode;
   const top = seats[0];
@@ -349,7 +365,8 @@ function makeDescription(entry, arch, seats) {
       `We stress-tested ${u}'s pattern seats — ${industries}. What held, and why.`,
     ],
   };
-  return V.pick(entry.id, 242, pools[arch]);
+  const desc = V.pick(entry.id, 242, pools[arch]);
+  return serpDescription(desc, 'The Resonance Files', BUILT_IDS.indexOf(entry.id) + 1, BUILT_IDS.length);
 }
 
 // ── Main ────────────────────────────────────────────────────────────────────

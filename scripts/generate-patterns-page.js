@@ -273,8 +273,8 @@ function renderAtlas(graph, registry) {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google" content="notranslate">
-<title>The Pattern Atlas — Every Industry the Pantheon Answers To | PUNICODEX</title>
-<meta name="description" content="The whole PuniCodex pattern graph in one map: ${graph.meta.industryCount} industries, ${graph.meta.sectorCount} sectors, ${graph.meta.entryCount} temples, and a ${graph.meta.aliasCount}-term alias vocabulary. Type your trade and find the temples that carry it.">
+<title>The Pattern Atlas — Industries of the Pantheon | PUNICODEX</title>
+<meta name="description" content="The PuniCodex pattern graph in one map: ${graph.meta.industryCount} industries, ${graph.meta.sectorCount} sectors, ${graph.meta.entryCount} temples, ${graph.meta.aliasCount} aliases. Type your trade; find its temples.">
 <link rel="canonical" href="https://punicodex.com/patterns/">
 ${FAVICON_CLUSTER}
 <link rel="stylesheet" href="/assets/fonts/fonts.css">

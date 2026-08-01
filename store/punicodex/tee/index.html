@@ -189,12 +189,12 @@ a:hover{color:var(--gold-bright)}
     <script src="/js/main.js?v=perf12" defer></script>
 <div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <a href="/store/punicodex/">PuniCodex</a> · <span style="color:var(--gold)">Temple Tee</span></div>
 <div class="wrap pdp">
-  <div><div class="stage"><img id="stage-img" src="/assets/brand/01-logos/punicodex-emblem-gold.webp" alt="PuniCodex Wordmark Tee"></div><p style="color:var(--dim);font-size:.82rem;margin-top:.6rem">Shown in Black — the design prints the same on every colour.</p></div>
+  <div><div class="stage"><img id="stage-img" src="https://punycodex-masters.vercel.app/mockups/punicodex-tee.jpg" alt="PuniCodex Wordmark Tee"></div><p style="color:var(--dim);font-size:.82rem;margin-top:.6rem">Shown in Black — the design prints the same on every colour.</p></div>
   <div>
     <span class="pill">Temple Tee</span> <span class="pill">PuniCodex</span>
     <h1>PuniCodex Wordmark Tee</h1>
     <p style="color:var(--dim)">The camel-gold wordmark across the chest, the glyph at the nape.</p>
-    <div class="price">$34.00</div>
+    <div class="price" id="pdp-price">from $34.00</div>
     <div class="opt-group"><div class="lbl">Colour</div><div class="opts" id="opts-color"><button class="opt active" data-c="Black">Black</button><button class="opt" data-c="White">White</button></div></div>
     <div class="opt-group"><div class="lbl">Size</div><div class="opts" id="opts-size"><button class="opt active" data-s="S">S</button><button class="opt" data-s="M">M</button><button class="opt" data-s="L">L</button><button class="opt" data-s="XL">XL</button><button class="opt" data-s="2XL">2XL</button><button class="opt" data-s="3XL">3XL</button><button class="opt" data-s="4XL">4XL</button><button class="opt" data-s="5XL">5XL</button></div></div>
     <div class="opt-group">
@@ -212,7 +212,7 @@ a:hover{color:var(--gold-bright)}
     </div>
   </div>
 </div>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"PuniCodex Wordmark Tee","image":"/assets/brand/01-logos/punicodex-emblem-gold.webp","description":"The camel-gold wordmark across the chest, the glyph at the nape.","brand":{"@type":"Brand","name":"PuniCodex"},"offers":{"@type":"Offer","price":"34.00","priceCurrency":"USD","availability":"https://schema.org/InStock"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"PuniCodex Wordmark Tee","image":"https://punycodex-masters.vercel.app/mockups/punicodex-tee.jpg","description":"The camel-gold wordmark across the chest, the glyph at the nape.","brand":{"@type":"Brand","name":"PuniCodex"},"offers":{"@type":"Offer","price":"34.00","priceCurrency":"USD","availability":"https://schema.org/InStock"}}</script>
 <script>
 (function(){
   var colors = Array.prototype.slice.call(document.querySelectorAll('#opts-color .opt'));
@@ -235,7 +235,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = null;
+  var PRICES = {"Black / 2XL":3600,"Black / 3XL":3900,"Black / 4XL":4100,"Black / 5XL":4000,"Black / L":3400,"Black / M":3400,"Black / S":3400,"Black / XL":3400,"White / 2XL":3600,"White / 3XL":3900,"White / 4XL":3700,"White / 5XL":4000,"White / L":3400,"White / M":3400,"White / S":3400,"White / XL":3400};
   var FLAT_PRICE = "$34.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');

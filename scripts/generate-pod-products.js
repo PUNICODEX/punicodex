@@ -305,13 +305,18 @@ const HOUSE_LINES = [
 function main() {
   const file = path.join(ROOT, 'store', 'products.json');
 
-  // Preserve phase-2 sync results (printful* fields) across regenerations.
+  // Preserve phase-2 sync results across regenerations. printful* fields are
+  // the obvious synced data — but mockupImage and variantPricing are synced
+  // operational fields too (written by generate-printful-mockups.js and
+  // build-variant-pricing.js), and they must survive every regeneration
+  // just the same. Dropping them is the recurring "mockups vanished" bug.
+  const PRESERVE_FIELDS = new Set(['mockupImage', 'variantPricing']);
   const preserved = new Map();
   try {
     const prev = JSON.parse(fs.readFileSync(file, 'utf8'));
     for (const p of prev.products || []) {
       const sync = Object.fromEntries(
-        Object.entries(p).filter(([k]) => k.startsWith('printful') && p[k] != null)
+        Object.entries(p).filter(([k]) => (k.startsWith('printful') || PRESERVE_FIELDS.has(k)) && p[k] != null)
       );
       if (Object.keys(sync).length) preserved.set(p.id, sync);
     }

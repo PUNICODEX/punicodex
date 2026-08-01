@@ -189,12 +189,12 @@ a:hover{color:var(--gold-bright)}
     <script src="/js/main.js?v=perf12" defer></script>
 <div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <a href="/store/hermod/">Hermóðr</a> · <span style="color:var(--gold)">Crewneck</span></div>
 <div class="wrap pdp">
-  <div><div class="stage"><img id="stage-img" src="/sites/hermod/assets/hermod_mascot.webp" alt="Hermóðr Temple Crewneck"></div></div>
+  <div><div class="stage"><img id="stage-img" src="https://punycodex-masters.vercel.app/mockups/hermod-crewneck.jpg" alt="Hermóðr Temple Crewneck"></div></div>
   <div>
     <span class="pill">Crewneck</span> <span class="pill">Hermóðr</span>
     <h1>Hermóðr Temple Crewneck</h1>
     <p style="color:var(--dim)">Garment-dyed crewneck carrying the full name lockup.</p>
-    <div class="price">$52.00</div>
+    <div class="price" id="pdp-price">from $52.00</div>
     <div class="opt-group"><div class="lbl">Colour</div><div class="opts" id="opts-color"><button class="opt active" data-c="Black">Black</button></div></div>
     <div class="opt-group"><div class="lbl">Size</div><div class="opts" id="opts-size"><button class="opt active" data-s="S">S</button><button class="opt" data-s="M">M</button><button class="opt" data-s="L">L</button><button class="opt" data-s="XL">XL</button><button class="opt" data-s="2XL">2XL</button><button class="opt" data-s="3XL">3XL</button><button class="opt" data-s="4XL">4XL</button><button class="opt" data-s="5XL">5XL</button></div></div>
     <div class="opt-group">
@@ -211,7 +211,7 @@ a:hover{color:var(--gold-bright)}
     </div>
   </div>
 </div>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Hermóðr Temple Crewneck","image":"/sites/hermod/assets/hermod_mascot.webp","description":"Garment-dyed crewneck carrying the full name lockup.","brand":{"@type":"Brand","name":"PuniCodex"},"offers":{"@type":"Offer","price":"52.00","priceCurrency":"USD","availability":"https://schema.org/InStock"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Hermóðr Temple Crewneck","image":"https://punycodex-masters.vercel.app/mockups/hermod-crewneck.jpg","description":"Garment-dyed crewneck carrying the full name lockup.","brand":{"@type":"Brand","name":"PuniCodex"},"offers":{"@type":"Offer","price":"52.00","priceCurrency":"USD","availability":"https://schema.org/InStock"}}</script>
 <script>
 (function(){
   var colors = Array.prototype.slice.call(document.querySelectorAll('#opts-color .opt'));
@@ -234,7 +234,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = null;
+  var PRICES = {"Black / 2XL":5400,"Black / 3XL":5700,"Black / 4XL":5900,"Black / 5XL":6100,"Black / L":5200,"Black / M":5200,"Black / S":5200,"Black / XL":5200};
   var FLAT_PRICE = "$52.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');

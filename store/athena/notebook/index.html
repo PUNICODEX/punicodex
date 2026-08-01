@@ -189,12 +189,12 @@ a:hover{color:var(--gold-bright)}
     <script src="/js/main.js?v=perf12" defer></script>
 <div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <a href="/store/athena/">Athēnâ</a> · <span style="color:var(--gold)">Notebook</span></div>
 <div class="wrap pdp">
-  <div><div class="stage"><img id="stage-img" src="/sites/athena/assets/athena_mascot.webp" alt="Athēnâ Temple Notebook"></div></div>
+  <div><div class="stage"><img id="stage-img" src="https://punycodex-masters.vercel.app/mockups/athena-notebook.jpg" alt="Athēnâ Temple Notebook"></div></div>
   <div>
     <span class="pill">Notebook</span> <span class="pill">Athēnâ</span>
     <h1>Athēnâ Temple Notebook</h1>
     <p style="color:var(--dim)">A5 dotted journal — lockup on the cover, the seal on the spine.</p>
-    <div class="price">$18.00</div>
+    <div class="price" id="pdp-price">$18.00</div>
     <div class="opt-group"><div class="lbl">Colour</div><div class="opts" id="opts-color"><button class="opt active" data-c="Dotted">Dotted</button></div></div>
     
     <div class="opt-group">
@@ -211,7 +211,7 @@ a:hover{color:var(--gold-bright)}
     </div>
   </div>
 </div>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Athēnâ Temple Notebook","image":"/sites/athena/assets/athena_mascot.webp","description":"A5 dotted journal — lockup on the cover, the seal on the spine.","brand":{"@type":"Brand","name":"PuniCodex"},"offers":{"@type":"Offer","price":"18.00","priceCurrency":"USD","availability":"https://schema.org/InStock"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Athēnâ Temple Notebook","image":"https://punycodex-masters.vercel.app/mockups/athena-notebook.jpg","description":"A5 dotted journal — lockup on the cover, the seal on the spine.","brand":{"@type":"Brand","name":"PuniCodex"},"offers":{"@type":"Offer","price":"18.00","priceCurrency":"USD","availability":"https://schema.org/InStock"}}</script>
 <script>
 (function(){
   var colors = Array.prototype.slice.call(document.querySelectorAll('#opts-color .opt'));
@@ -234,7 +234,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = null;
+  var PRICES = {"Dotted / 5.5″×8.5″":1800};
   var FLAT_PRICE = "$18.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');

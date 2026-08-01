@@ -26,6 +26,7 @@ const {
   buildExtendedTab,
   buildPatternsTab,
   extractFromHomePage,
+  serpTitle,
 } = require('./lib/blog-render.js');
 
 const ROOT = path.join(__dirname, '..');
@@ -161,6 +162,7 @@ for (const series of SERIES) {
       BLOG_URL: '../',
       TITLE_SUFFIX: series.titleSuffix,
       EYEBROW: `${series.masthead} · No. ${post.seriesNo}`,
+      SERP_TITLE: escapeHtml(serpTitle(post.title, series.titleSuffix)),
       SERIES_NAV_HTML: buildSeriesNav(id, series),
       EXTENDED_TAB: buildExtendedTab(id, hasExtended, '../..'),
       PATTERNS_TAB: buildPatternsTab(id, hasPatterns, '../..'),

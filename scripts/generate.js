@@ -43,6 +43,7 @@ const scripts = [
   'scripts/build-original-script-lookup.js',
   'scripts/export-lore-catalog.js',
   'scripts/generate-cards.js',
+  'scripts/generate-cards-page.js',
   'scripts/sync-middleware-domains.js',
   'scripts/sync-public-copy.js',
   'scripts/generate-temples.js',

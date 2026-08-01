@@ -7,7 +7,7 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PuniCodex — Mythic Duel</title>
+  <title>Mythic Duel — The Pantheon Trading-Card Game | PUNICODEX</title>
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/game/game.css">
   <link rel="stylesheet" href="/assets/fonts/fonts.css">
@@ -92,7 +92,7 @@
           </div>
           <div class="rule-card">
             <h3>✧ Abilities</h3>
-            <p>Battlecries fire when played, deathrattles when destroyed, passives while on board. Combo cards reward playing multiple cards in one turn. All 25 scholarly effect kinds are live.</p>
+            <p>Invocations fire when played, katabases when destroyed, epithets while on board. Syzygy cards reward playing multiple cards in one turn. All 25 scholarly effect kinds are live.</p>
           </div>
         </div>
       </section>
@@ -130,6 +130,24 @@
         </div>
 
         <div class="pack-shop" id="pack-shop"></div>
+
+        <div class="pack-odds" id="pack-odds">
+          <h3 class="ink-shop-title">Published Odds</h3>
+          <p class="ink-shop-sub">Every pack discloses its contents before you spend. Ink is earned by dueling (50 ✦ a win, 15 ✦ a loss) or purchased — and the Archive Exchange below sells specific cards at fixed prices, no randomness required.</p>
+          <div class="odds-table">
+            <div class="odds-row odds-head"><span>Slot odds</span><span>Common</span><span>Uncommon</span><span>Rare</span><span>Epic</span><span>Legendary</span><span>Secret Rare</span></div>
+            <div class="odds-row"><span>Seeker &amp; Pantheon Packs (per slot)</span><span>68%</span><span>22%</span><span>7%</span><span>2.4%</span><span>0.55%</span><span>0.05%</span></div>
+            <div class="odds-row"><span>Mythic Pack — 4 standard slots</span><span>68%</span><span>22%</span><span>7%</span><span>2.4%</span><span>0.55%</span><span>0.05%</span></div>
+            <div class="odds-row"><span>Mythic Pack — 5th slot (guaranteed Rare+)</span><span>—</span><span>—</span><span>70%</span><span>22%</span><span>7%</span><span>1%</span></div>
+          </div>
+        </div>
+
+        <div class="exchange-section">
+          <h3 class="ink-shop-title">The Archive Exchange</h3>
+          <p class="ink-shop-sub">Specific cards at fixed Ink prices — the deterministic path: no packs, no odds, just the card you choose. Prices scale with rarity.</p>
+          <input type="text" class="search-input" id="exchange-search" placeholder="Search the Exchange — a god, an ability, an edition…" aria-label="Search the Exchange">
+          <div class="exchange-grid" id="exchange-grid"></div>
+        </div>
 
         <div class="pack-stage" id="pack-stage" hidden>
           <div class="pack" id="pack-item">

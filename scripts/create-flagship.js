@@ -2299,25 +2299,39 @@ function cleanSectionContent(html) {
 function buildMetaDescription(entry, catalogEntry) {
   // Lore-grade descriptions: the strongest opening of the cultural-legacy
   // narrative when the catalog has one; otherwise the templated fallback.
+  // SERP discipline: 120–160 characters, single quotes only (the description
+  // lives in a double-quoted HTML attribute AND inside a JSON-LD string).
+  const closer =
+    ' Explore the original script, pronunciation, mythology, and the restored Unicode temple.';
+  let desc = '';
   if (catalogEntry?.culturalLegacy) {
     const plain = catalogEntry.culturalLegacy
       .replace(/<[^>]+>/g, ' ')
       .replace(/\s+/g, ' ')
       .trim();
     const sentences = plain.match(/[^.!?]+[.!?]/g) || [plain];
-    let desc = '';
     for (const s of sentences) {
-      if ((desc + s).trim().length > 155) break;
+      if ((desc + s).trim().length > 130) break;
       desc = `${desc}${s.trim()} `;
     }
     desc = desc.trim();
-    if (desc.length >= 60) {
-      // Single quotes only: the description lives in a double-quoted HTML
-      // attribute AND inside a JSON-LD string — double quotes break both.
-      return desc.replace(/"/g, "'");
+  }
+  if (desc.length < 120) {
+    const fallback = `Scholarly restoration of ${entry.unicode}, the ${entry.domain}.`;
+    desc = desc.length
+      ? `${desc}${closer}`.trim()
+      : `${fallback}${closer}`.trim();
+    // Still short (very terse legacy lead): prepend the fallback and let the
+    // truncation below settle it inside the window.
+    if (desc.length < 120) {
+      desc = `${fallback} ${desc}`.trim();
     }
   }
-  return `Scholarly restoration of ${entry.unicode}, the ${entry.domain}. Explore original script, pronunciation, and Unicode orthography.`;
+  if (desc.length > 157) {
+    desc = desc.slice(0, 157);
+    desc = `${desc.slice(0, desc.lastIndexOf(' ')).trim()}…`;
+  }
+  return desc.replace(/"/g, "'");
 }
 
 function generateHomePage(entry, palette, slotNames, templateDir, rentalTier = 'B', catalogEntry = null) {
@@ -2331,6 +2345,27 @@ function generateHomePage(entry, palette, slotNames, templateDir, rentalTier = '
     MEANING: entry.meaning || '',
     TAGLINE: entry.tagline || '',
     DESCRIPTION: buildMetaDescription(entry, catalogEntry),
+    TITLE_TAG: (() => {
+      const label = PANTHEON_META[entry.pantheon]?.label || entry.pantheon;
+      const firstClause = (entry.domain || '').split(',')[0].trim() || entry.domain;
+      const candidates = [
+        `${entry.unicode} — ${entry.domain} · Restored ${label} Temple | PUNICODEX`,
+        `${entry.unicode} — ${entry.domain} · ${label} Temple | PUNICODEX`,
+        `${entry.unicode} — ${entry.domain} · Restored ${label} | PUNICODEX`,
+        `${entry.unicode} — ${firstClause} · Restored ${label} Temple | PUNICODEX`,
+        `${entry.unicode} — ${firstClause} · ${label} Temple | PUNICODEX`,
+        `${entry.unicode} — ${firstClause} · Restored ${label} | PUNICODEX`,
+        `${entry.unicode} — ${firstClause} · ${label} | PUNICODEX`,
+        `${entry.unicode} — ${firstClause} | PUNICODEX`,
+      ];
+      for (const c of candidates) {
+        if (c.length >= 45 && c.length <= 60) return c;
+      }
+      // Nothing in the window (very short names): take the last ≤60 and pad.
+      const fits = candidates.filter((c) => c.length <= 60);
+      const best = fits[fits.length - 1];
+      return best.length >= 45 ? best : best.replace(' | PUNICODEX', ' · Restored Temple | PUNICODEX');
+    })(),
     SAME_AS_JSON: (() => {
       const url = wikidataUrlFor(entry.id);
       return url ? `,\n            "sameAs": ["${url}"]` : '';

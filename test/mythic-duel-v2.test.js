@@ -726,6 +726,37 @@ test('the P-series contracts: tutorial, drag, chips, deck-lab, oracle path, soun
   assert.ok(css.includes('.minion.ascendant'), 'ascendant styles missing');
 });
 
+test('loot-box compliance: published odds and a deterministic exchange path', () => {
+  const html = fs.readFileSync(path.join(ROOT, 'game/index.html'), 'utf8');
+  const js = fs.readFileSync(path.join(ROOT, 'game/game.js'), 'utf8');
+  const css = fs.readFileSync(path.join(ROOT, 'game/game.css'), 'utf8');
+  assert.ok(html.includes('Published Odds'), 'odds block missing');
+  for (const pct of ['68%', '22%', '7%', '2.4%', '0.55%', '0.05%', '70%', '1%']) {
+    assert.ok(html.includes(pct), `odds ${pct} missing`);
+  }
+  assert.ok(html.includes('Archive Exchange'), 'exchange section missing');
+  assert.ok(html.includes('exchange-search'), 'exchange search missing');
+  assert.ok(js.includes('EXCHANGE_PRICES'), 'exchange prices missing');
+  assert.ok(js.includes('EXCHANGE_CAP = 4'), 'exchange forge cap missing');
+  assert.ok(js.includes('renderExchange'), 'exchange renderer missing');
+  assert.ok(css.includes('.exchange-row'), 'exchange styles missing');
+});
+
+test('the vocabulary is ours: Invocation, Katabasis, Epithet, Syzygy, Ink Tide', () => {
+  const html = fs.readFileSync(path.join(ROOT, 'game/index.html'), 'utf8');
+  const engine = fs.readFileSync(path.join(ROOT, 'game/engine.js'), 'utf8');
+  const powers = fs.readFileSync(path.join(ROOT, 'game/fx/hero-powers.js'), 'utf8');
+  const js = fs.readFileSync(path.join(ROOT, 'game/game.js'), 'utf8');
+  assert.ok(html.includes('Invocations fire when played'), 'invocation vocabulary missing');
+  assert.ok(html.includes('katabases when destroyed'), 'katabasis vocabulary missing');
+  assert.ok(html.includes('epithets while on board'), 'epithet vocabulary missing');
+  assert.ok(!html.includes('Battlecries'), 'battlecry survived in the lobby');
+  assert.ok(engine.includes('Syzygy not aligned'), 'syzygy log missing');
+  assert.ok(powers.includes('ink-tide'), 'ink tide rename missing');
+  assert.ok(js.includes('wisdom-syzygy'), 'wisdom syzygy archetype missing');
+  assert.ok(!html.includes('deathrattles'), 'deathrattle survived in the lobby');
+});
+
 test('phantom duels: encode/decode roundtrip, community ghosts, entry points', () => {
   const js = fs.readFileSync(path.join(ROOT, 'game/game.js'), 'utf8');
   const html = fs.readFileSync(path.join(ROOT, 'game/index.html'), 'utf8');

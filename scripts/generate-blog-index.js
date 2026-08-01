@@ -228,7 +228,7 @@ const html = `<!DOCTYPE html>
 
     <!-- Open Graph -->
     <meta property="og:title" content="Blog — ${total} Unicode Restoration Essays | PUNICODEX">
-    <meta property="og:description" content="Long-read essays on ${total} flagship Unicode restorations across ${pantheonCount} pantheons.">
+    <meta property="og:description" content="Long-read essays on ${total} flagship Unicode restorations across ${pantheonCount} flagship pantheons (25 in the full lexicon).">
     <meta property="og:url" content="https://punicodex.com/blog/">
     <meta property="og:image" content="https://punicodex.com/assets/brand/05-social/punicodex-og-image-1200x630.png">
     <meta name="twitter:image" content="https://punicodex.com/assets/brand/05-social/punicodex-og-image-1200x630.png">
@@ -238,7 +238,7 @@ const html = `<!DOCTYPE html>
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Blog — ${total} Unicode Restoration Essays | PUNICODEX">
-    <meta name="twitter:description" content="Long-read essays on ${total} flagship Unicode restorations across ${pantheonCount} pantheons.">
+    <meta name="twitter:description" content="Long-read essays on ${total} flagship Unicode restorations across ${pantheonCount} flagship pantheons (25 in the full lexicon).">
 
     <!-- Schema.org -->
     <script type="application/ld+json">

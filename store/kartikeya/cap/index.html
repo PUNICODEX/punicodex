@@ -189,12 +189,12 @@ a:hover{color:var(--gold-bright)}
     <script src="/js/main.js?v=perf12" defer></script>
 <div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <a href="/store/kartikeya/">Kārttikeya</a> · <span style="color:var(--gold)">Cap</span></div>
 <div class="wrap pdp">
-  <div><div class="stage"><img id="stage-img" src="/sites/kartikeya/assets/kartikeya_mascot.webp" alt="Kārttikeya Temple Cap"></div><p style="color:var(--dim);font-size:.82rem;margin-top:.6rem">Shown in Black — the design prints the same on every colour.</p></div>
+  <div><div class="stage"><img id="stage-img" src="https://punycodex-masters.vercel.app/mockups/kartikeya-cap.jpg" alt="Kārttikeya Temple Cap"></div><p style="color:var(--dim);font-size:.82rem;margin-top:.6rem">Shown in Black — the design prints the same on every colour.</p></div>
   <div>
     <span class="pill">Cap</span> <span class="pill">Kārttikeya</span>
     <h1>Kārttikeya Temple Cap</h1>
     <p style="color:var(--dim)">Six-panel dad cap, the temple mark embroidered in gold.</p>
-    <div class="price">$28.00</div>
+    <div class="price" id="pdp-price">$28.00</div>
     <div class="opt-group"><div class="lbl">Colour</div><div class="opts" id="opts-color"><button class="opt active" data-c="Black">Black</button><button class="opt" data-c="White">White</button></div></div>
     
     <div class="opt-group">
@@ -211,7 +211,7 @@ a:hover{color:var(--gold-bright)}
     </div>
   </div>
 </div>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Kārttikeya Temple Cap","image":"/sites/kartikeya/assets/kartikeya_mascot.webp","description":"Six-panel dad cap, the temple mark embroidered in gold.","brand":{"@type":"Brand","name":"PuniCodex"},"offers":{"@type":"Offer","price":"28.00","priceCurrency":"USD","availability":"https://schema.org/InStock"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Kārttikeya Temple Cap","image":"https://punycodex-masters.vercel.app/mockups/kartikeya-cap.jpg","description":"Six-panel dad cap, the temple mark embroidered in gold.","brand":{"@type":"Brand","name":"PuniCodex"},"offers":{"@type":"Offer","price":"28.00","priceCurrency":"USD","availability":"https://schema.org/InStock"}}</script>
 <script>
 (function(){
   var colors = Array.prototype.slice.call(document.querySelectorAll('#opts-color .opt'));
@@ -234,7 +234,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = null;
+  var PRICES = {"Black":2800,"White":2800};
   var FLAT_PRICE = "$28.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');

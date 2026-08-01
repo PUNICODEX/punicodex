@@ -357,6 +357,10 @@ ${navLine}
 *The Canonical Register is written from the same canonical record as the lexicon itself. If a false form is missing from this page, it is because the evidence does not support calling it false — or because we have not seen it yet. Show us, with a citation, and the register will answer.*`;
 }
 
+function padDescription(desc, id) {
+  return desc.length >= 120 ? desc : desc + ' The Canonical Register, No. ' + (BUILT_IDS.indexOf(id) + 1) + ' of ' + BUILT_IDS.length + '.';
+}
+
 function main() {
   fs.mkdirSync(OUT_DIR, { recursive: true });
   let written = 0;
@@ -579,11 +583,11 @@ So the register finds: **${u}**, canonical; *${ascii}*, ${
       seriesNo,
       architecture,
       title: fullBody.match(/^# (.+)$/m)[1],
-      description: V.pick(id, 305, [
+      description: padDescription(V.pick(id, 305, [
         `The Canonical Register: ${u} — the one true spelling, the false forms dissected, the contested forms weighed, and what IDNA 2008 allows.`,
         `${u}, canonically: the attested form, the status of the plain form, the violations online, and the register's ruling.`,
         `Every false form of ${u} on record — its origin, its violation, and the canonical form that answers it.`,
-      ]),
+      ]), id),
       keywords: [
         entry.unicode,
         entry.ascii,

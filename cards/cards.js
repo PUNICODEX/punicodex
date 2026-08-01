@@ -311,28 +311,35 @@
     }, 250);
   });
 
-  fetch('/game/cards.json')
-    .then(function (res) {
-      if (!res.ok) throw new Error('cards.json ' + res.status);
-      return res.json();
-    })
-    .then(function (data) {
-      state.cards = (data.cards || []).slice();
-      state.cards.forEach(function (c) {
-        if (!state.byEntry.has(c.entryId)) state.byEntry.set(c.entryId, []);
-        state.byEntry.get(c.entryId).push(c);
-      });
-      state.byEntry.forEach(function (v) {
-        v.sort(function (a, b) { return (a.variant === 'standard' ? -1 : 1) - (b.variant === 'standard' ? -1 : 1); });
-      });
-      document.getElementById('stat-total').textContent = state.cards.length.toLocaleString('en-US');
-      document.getElementById('stat-fullart').textContent = state.cards.filter(function (c) { return c.edition === 'full-art'; }).length;
-      document.getElementById('stat-secret').textContent = state.cards.filter(function (c) { return c.edition === 'secret'; }).length;
-      document.getElementById('stat-pantheons').textContent = new Set(state.cards.map(function (c) { return c.pantheon; })).size;
-      buildPills();
-      applyFilters();
-    })
-    .catch(function (err) {
-      grid.innerHTML = '<div class="cards-loading">The set could not be restored (' + esc(err.message) + '). Try again shortly.</div>';
+  function init(data) {
+    state.cards = (data || []).slice();
+    state.cards.forEach(function (c) {
+      if (!state.byEntry.has(c.entryId)) state.byEntry.set(c.entryId, []);
+      state.byEntry.get(c.entryId).push(c);
     });
+    state.byEntry.forEach(function (v) {
+      v.sort(function (a, b) { return (a.variant === 'standard' ? -1 : 1) - (b.variant === 'standard' ? -1 : 1); });
+    });
+    buildPills();
+    applyFilters();
+  }
+
+  // The gallery is server-rendered: the payload is baked into the page, and
+  // the static frames are already in the grid for crawlers. The interactive
+  // layer re-renders from the same data on first filter — no fetch needed.
+  if (window.__CARDS_PAYLOAD && window.__CARDS_PAYLOAD.length) {
+    init(window.__CARDS_PAYLOAD);
+  } else {
+    fetch('/game/cards.json')
+      .then(function (res) {
+        if (!res.ok) throw new Error('cards.json ' + res.status);
+        return res.json();
+      })
+      .then(function (data) {
+        init(data.cards || []);
+      })
+      .catch(function (err) {
+        grid.innerHTML = '<div class="cards-loading">The set could not be restored (' + esc(err.message) + '). Try again shortly.</div>';
+      });
+  }
 })();

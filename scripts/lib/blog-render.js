@@ -342,6 +342,17 @@ function buildSeriesLink(id) {
   return asides.join('\n');
 }
 
+// SERP-disciplined <title>: full title when it fits, word-boundary ellipsis
+// when the composed title would exceed 60 characters.
+function serpTitle(postTitle, suffix) {
+  const full = `${postTitle} | ${suffix} | PUNICODEX`;
+  if (full.length <= 60) return full;
+  const overhead = ` | ${suffix} | PUNICODEX`.length;
+  const budget = Math.max(20, 57 - overhead);
+  const cut = postTitle.slice(0, budget);
+  return `${cut.slice(0, cut.lastIndexOf(' ')).trim()}… | ${suffix} | PUNICODEX`;
+}
+
 module.exports = {
   displayPantheon,
   getCanvasEffect,
@@ -353,4 +364,5 @@ module.exports = {
   buildExtendedTab,
   buildPatternsTab,
   buildSeriesLink,
+  serpTitle,
 };

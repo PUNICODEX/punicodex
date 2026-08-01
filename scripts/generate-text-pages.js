@@ -746,7 +746,7 @@ const PAGE_SCRIPT = `
 
 // ── Page shell ──────────────────────────────────────────────────────────────
 
-function headHtml({ title, description, canonical, ogDescription, jsonLd }) {
+function headHtml({ title, description, canonical, ogDescription, jsonLd, jsonLdExtra = '' }) {
   return `<head>
 <!-- PUNICODEX-ANALYTICS-START -->
 <script src="/js/analytics-beacon.js" defer></script>
@@ -778,6 +778,7 @@ function headHtml({ title, description, canonical, ogDescription, jsonLd }) {
     <script type="application/ld+json">
     ${jsonLd}
     </script>
+    ${jsonLdExtra}
 
     <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
@@ -1205,7 +1206,60 @@ function buildIndexPage(texts, computedById) {
 <!-- GENERATED FILE — do not edit by hand. Regenerate with: node scripts/generate-text-pages.js -->
 <html lang="en">
 ${headHtml({
-  title: 'The Library — Sacred Texts | PUNICODEX',
+  title: 'The Library — 21 Sacred Texts & Manuscripts | PUNICODEX',
+  description: `The primary sources behind the Pantheon: ${texts.length} sacred texts with translations, deep-linked by line and cross-linked to the temples of the gods they name.`,
+  jsonLdExtra: `<script type="application/ld+json">
+${JSON.stringify(
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Which sacred texts does the PuniCodex Library hold?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: `The Library holds ${texts.length} sacred texts and manuscripts: the Theogony and Homeric Hymns, the Eddas, the Book of the Dead, Enūma Eliš, the Epic of Gilgamesh, the Avesta, the Rig Veda, the Ramayana, the Lotus Sutra, the Sukhāvatīvyūha Sūtras, the Kojiki and Nihon Shoki, the Kumulipo, Grey's Polynesian Mythology, the Tao Te Ching, and more — the primary sources of every pantheon in the lexicon.`,
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can I read the texts in the original language or in translation?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Both. Every reading page offers the native script and the translation side by side — Greek with Evelyn-White\u2019s 1914 English for Hesiod, original and rendered forms for each tradition — with the ability to switch or run them in parallel.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How are the texts connected to the temples?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Deeply. Deity names are cross-linked inside the text itself: a god named in the Theogony links to that god\u2019s temple, and each temple links back to the texts that mention it. First-mention line numbers are recorded, so every name is citable to the line.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What translations and sources does the Library use?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Public-domain and openly licensed scholarly editions: the Perseus TEI for the Greek texts, the Evelyn-White 1914 translation of Hesiod, and each tradition\u2019s standard public-domain translation. Every page states its source and license precisely.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Are the texts free to read and cite?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes — the Library is free to read and the underlying texts are public domain. Cite them as you would any scholarly edition: title, translator, and the line number, which every block of the Library displays.',
+        },
+      },
+    ],
+  },
+  null,
+  2
+).replace(/</g, '\\u003c')}
+</script>`,
   description: `The primary sources behind the Pantheon: critical editions and translations of ${texts.length} sacred text${texts.length === 1 ? '' : 's'}, deep-linked by line and cross-linked to ${linkedTemples} temples.`,
   canonical: 'https://punicodex.com/texts/',
   ogDescription: `The primary sources behind the Pantheon — critical editions, translations, and line-level cross-links to ${linkedTemples} temples.`,
