@@ -106,7 +106,7 @@ if (!process.env.VERCEL && process.env.NODE_ENV !== 'production') selfCheck();
 
 module.exports = async (req, res) => {
   let parts = req.query.slug || [];
-  if (typeof parts === 'string') parts = [parts];
+  if (typeof parts === 'string') parts = parts.split('/').filter(Boolean);
 
   const match = matchRoute(parts);
   if (!match) {
