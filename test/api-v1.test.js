@@ -101,31 +101,31 @@ async function runTests() {
 
   adminAuth = await adminLogin(process.env.ADMIN_PASSWORD);
 
-  const namesList = require('../api/v1/names/index.js');
-  const nameDetail = require('../api/v1/names/[id]/index.js');
-  const nameVariants = require('../api/v1/names/[id]/variants.js');
-  const nameBreakdown = require('../api/v1/names/[id]/breakdown.js');
-  const nameOriginalScript = require('../api/v1/names/[id]/original-script.js');
-  const pantheons = require('../api/v1/pantheons/index.js');
-  const pantheon = require('../api/v1/pantheons/[name]/index.js');
-  const tiers = require('../api/v1/tiers/index.js');
-  const autocomplete = require('../api/v1/autocomplete/index.js');
-  const convert = require('../api/v1/convert/index.js');
-  const convertBatch = require('../api/v1/convert/batch.js');
-  const authenticityCheck = require('../api/v1/authenticity/check/index.js');
-  const authenticityBatch = require('../api/v1/authenticity/check/batch/index.js');
-  const authenticityReport = require('../api/v1/authenticity/report/index.js');
-  const v1Policy = require('../api/v1/policy/index.js');
-  const v1PolicyEvaluate = require('../api/v1/policy/evaluate/index.js');
-  const v1Appraise = require('../api/v1/appraise/index.js');
-  const v1AppraiseBatch = require('../api/v1/appraise/batch/index.js');
-  const nameSimilarities = require('../api/v1/names/[id]/similarities.js');
-  const nameGraph = require('../api/v1/names/[id]/graph.js');
-  const similarities = require('../api/v1/similarities/index.js');
-  const similaritiesRelationships = require('../api/v1/similarities/relationships.js');
+  const namesList = require('../platform/api-handlers/v1/names/index.js');
+  const nameDetail = require('../platform/api-handlers/v1/names/[id]/index.js');
+  const nameVariants = require('../platform/api-handlers/v1/names/[id]/variants.js');
+  const nameBreakdown = require('../platform/api-handlers/v1/names/[id]/breakdown.js');
+  const nameOriginalScript = require('../platform/api-handlers/v1/names/[id]/original-script.js');
+  const pantheons = require('../platform/api-handlers/v1/pantheons/index.js');
+  const pantheon = require('../platform/api-handlers/v1/pantheons/[name]/index.js');
+  const tiers = require('../platform/api-handlers/v1/tiers/index.js');
+  const autocomplete = require('../platform/api-handlers/v1/autocomplete/index.js');
+  const convert = require('../platform/api-handlers/v1/convert/index.js');
+  const convertBatch = require('../platform/api-handlers/v1/convert/batch.js');
+  const authenticityCheck = require('../platform/api-handlers/v1/authenticity/check/index.js');
+  const authenticityBatch = require('../platform/api-handlers/v1/authenticity/check/batch/index.js');
+  const authenticityReport = require('../platform/api-handlers/v1/authenticity/report/index.js');
+  const v1Policy = require('../platform/api-handlers/v1/policy/index.js');
+  const v1PolicyEvaluate = require('../platform/api-handlers/v1/policy/evaluate/index.js');
+  const v1Appraise = require('../platform/api-handlers/v1/appraise/index.js');
+  const v1AppraiseBatch = require('../platform/api-handlers/v1/appraise/batch/index.js');
+  const nameSimilarities = require('../platform/api-handlers/v1/names/[id]/similarities.js');
+  const nameGraph = require('../platform/api-handlers/v1/names/[id]/graph.js');
+  const similarities = require('../platform/api-handlers/v1/similarities/index.js');
+  const similaritiesRelationships = require('../platform/api-handlers/v1/similarities/relationships.js');
   const openapi = require('../api/v1/openapi.json.js');
-  const docs = require('../api/v1/docs/index.js');
-  const version = require('../api/v1/version/index.js');
+  const docs = require('../platform/api-handlers/v1/docs/index.js');
+  const version = require('../platform/api-handlers/v1/version/index.js');
   const adminListKeys = require('../platform/api-handlers/admin/api-keys/index.js');
   const adminCreateKey = adminListKeys;
   const adminRevokeKey = require('../platform/api-handlers/admin/api-keys/[id]/revoke.js');
@@ -610,13 +610,13 @@ async function runTests() {
   });
 
   // Consistency-audit regressions (see docs/api/api-audit-2026-07.md)
-  const nameSlots = require('../api/v1/names/[id]/slots.js');
-  const authenticityIndex = require('../api/v1/authenticity/index.js');
-  const transparencyReport = require('../api/v1/transparency-report/index.js');
-  const canary = require('../api/v1/canary/index.js');
-  const threatFeed = require('../api/v1/threat-feed/index.js');
-  const threatFeedStats = require('../api/v1/threat-feed/stats/index.js');
-  const threatFeedIngest = require('../api/v1/threat-feed/ingest/index.js');
+  const nameSlots = require('../platform/api-handlers/v1/names/[id]/slots.js');
+  const authenticityIndex = require('../platform/api-handlers/v1/authenticity/index.js');
+  const transparencyReport = require('../platform/api-handlers/v1/transparency-report/index.js');
+  const canary = require('../platform/api-handlers/v1/canary/index.js');
+  const threatFeed = require('../platform/api-handlers/v1/threat-feed/index.js');
+  const threatFeedStats = require('../platform/api-handlers/v1/threat-feed/stats/index.js');
+  const threatFeedIngest = require('../platform/api-handlers/v1/threat-feed/ingest/index.js');
 
   await test('GET /api/v1/names/:id/slots returns slot inventory', async () => {
     const { status, body } = await invoke(nameSlots, 'GET', '/api/v1/names/zeus/slots', {

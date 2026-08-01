@@ -317,32 +317,32 @@ app.get('/api/flagships', publicReadLimit, async (_req, res) => {
 
 // ============ API v1: ENTERPRISE UNICODE NAMES API ============
 
-const v1NamesList = require('../api/v1/names');
-const v1NamesBatch = require('../api/v1/names/batch');
-const v1NameDetail = require('../api/v1/names/[id]');
-const v1NameVariants = require('../api/v1/names/[id]/variants');
-const v1NameBreakdown = require('../api/v1/names/[id]/breakdown');
-const v1NameOriginalScript = require('../api/v1/names/[id]/original-script');
-const v1NameEtymology = require('../api/v1/names/[id]/etymology');
-const v1NameAvailability = require('../api/v1/names/[id]/availability');
-const v1NameSite = require('../api/v1/names/[id]/site');
-const v1NameSlots = require('../api/v1/names/[id]/slots');
-const v1NameSimilarities = require('../api/v1/names/[id]/similarities');
-const v1NameGraph = require('../api/v1/names/[id]/graph');
-const v1Similarities = require('../api/v1/similarities');
-const v1SimilaritiesRelationships = require('../api/v1/similarities/relationships');
-const v1Pantheons = require('../api/v1/pantheons');
-const v1Pantheon = require('../api/v1/pantheons/[name]');
-const v1Tiers = require('../api/v1/tiers');
-const v1Autocomplete = require('../api/v1/autocomplete');
-const v1Convert = require('../api/v1/convert');
-const v1ConvertBatch = require('../api/v1/convert/batch');
-const v1Docs = require('../api/v1/docs');
+const v1NamesList = require('./api-handlers/v1/names');
+const v1NamesBatch = require('./api-handlers/v1/names/batch');
+const v1NameDetail = require('./api-handlers/v1/names/[id]');
+const v1NameVariants = require('./api-handlers/v1/names/[id]/variants');
+const v1NameBreakdown = require('./api-handlers/v1/names/[id]/breakdown');
+const v1NameOriginalScript = require('./api-handlers/v1/names/[id]/original-script');
+const v1NameEtymology = require('./api-handlers/v1/names/[id]/etymology');
+const v1NameAvailability = require('./api-handlers/v1/names/[id]/availability');
+const v1NameSite = require('./api-handlers/v1/names/[id]/site');
+const v1NameSlots = require('./api-handlers/v1/names/[id]/slots');
+const v1NameSimilarities = require('./api-handlers/v1/names/[id]/similarities');
+const v1NameGraph = require('./api-handlers/v1/names/[id]/graph');
+const v1Similarities = require('./api-handlers/v1/similarities');
+const v1SimilaritiesRelationships = require('./api-handlers/v1/similarities/relationships');
+const v1Pantheons = require('./api-handlers/v1/pantheons');
+const v1Pantheon = require('./api-handlers/v1/pantheons/[name]');
+const v1Tiers = require('./api-handlers/v1/tiers');
+const v1Autocomplete = require('./api-handlers/v1/autocomplete');
+const v1Convert = require('./api-handlers/v1/convert');
+const v1ConvertBatch = require('./api-handlers/v1/convert/batch');
+const v1Docs = require('./api-handlers/v1/docs');
 const v1Openapi = require('../api/v1/openapi.json.js');
-const v1Policy = require('../api/v1/policy');
-const v1PolicyEvaluate = require('../api/v1/policy/evaluate');
-const v1Appraise = require('../api/v1/appraise');
-const v1AppraiseBatch = require('../api/v1/appraise/batch');
+const v1Policy = require('./api-handlers/v1/policy');
+const v1PolicyEvaluate = require('./api-handlers/v1/policy/evaluate');
+const v1Appraise = require('./api-handlers/v1/appraise');
+const v1AppraiseBatch = require('./api-handlers/v1/appraise/batch');
 const v2Router = require('./api/api-v2-router');
 const governanceRoutes = require('./api/governance-routes');
 
@@ -382,11 +382,11 @@ app.all(/^\/api\/v2\/(.*)$/, publicReadLimit, (req, res) => {
 });
 
 // ============ API v1: THREAT INTELLIGENCE FEED ============
-const v1ThreatFeed = require('../api/v1/threat-feed/index.js');
-const v1ThreatFeedStats = require('../api/v1/threat-feed/stats/index.js');
-const v1ThreatFeedIngest = require('../api/v1/threat-feed/ingest/index.js');
-const v1ThreatFeedClusterReview = require('../api/v1/threat-feed/cluster/[clusterId]/review/index.js');
-const v1ThreatFeedCampaigns = require('../api/v1/threat-feed/campaigns/[identityId]/index.js');
+const v1ThreatFeed = require('./api-handlers/v1/threat-feed/index.js');
+const v1ThreatFeedStats = require('./api-handlers/v1/threat-feed/stats/index.js');
+const v1ThreatFeedIngest = require('./api-handlers/v1/threat-feed/ingest/index.js');
+const v1ThreatFeedClusterReview = require('./api-handlers/v1/threat-feed/cluster/[clusterId]/review/index.js');
+const v1ThreatFeedCampaigns = require('./api-handlers/v1/threat-feed/campaigns/[identityId]/index.js');
 const scholarsApi = require('../platform/scholars/router');
 const creativeMarketplaceApi = require('../platform/api/creative-marketplace');
 

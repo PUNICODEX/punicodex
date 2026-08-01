@@ -105,19 +105,29 @@ function invokeV2(method, url, options = {}) {
 // Route discovery helpers
 // ---------------------------------------------------------------------------
 
-// Convert an OpenAPI path to the handler module path under api/v1.
-// '/names/{id}/variants' -> 'api/v1/names/[id]/variants'
+// Convert an OpenAPI path to the handler module path under
+// platform/api-handlers/v1 (handlers moved out of api/ behind the catch-all).
+// '/names/{id}/variants' -> 'platform/api-handlers/v1/names/[id]/variants'
 function v1HandlerPath(specPath) {
   const rel = specPath.replace(/\{(\w+)\}/g, '[$1]');
-  const base = path.join(__dirname, '..', 'api', 'v1', ...rel.split('/').filter(Boolean));
+  const base = path.join(
+    __dirname,
+    '..',
+    'platform',
+    'api-handlers',
+    'v1',
+    ...rel.split('/').filter(Boolean)
+  );
   if (fs.existsSync(`${base}.js`)) return `${base}.js`;
   return path.join(base, 'index.js');
 }
 
-// Walk api/v1 for implemented route files and derive { route, method } pairs.
+// Walk platform/api-handlers/v1 for implemented route files and derive
+// { route, method } pairs (same relative tree as the public /api/v1 space;
+// the kept scholars/creatives/openapi.json bundles are spec-excluded anyway).
 // Method is read from the handler's own method guard (`req.method !== 'X'`).
 function discoverV1Routes() {
-  const root = path.join(__dirname, '..', 'api', 'v1');
+  const root = path.join(__dirname, '..', 'platform', 'api-handlers', 'v1');
   const routes = [];
   const walk = (dir) => {
     for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
