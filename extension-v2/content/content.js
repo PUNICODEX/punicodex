@@ -38,16 +38,41 @@ function createIcon(type) {
   return span;
 }
 
+// Banner styles must live inside the closed shadow root — page-level CSS
+// (including a flagged page's own stylesheets) cannot reach or restyle them.
+const BANNER_SHADOW_CSS = `
+  .wrap { position: fixed; top: 0; left: 0; right: 0; z-index: 2147483647;
+    padding: 12px 16px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 14px; line-height: 1.4; display: flex; align-items: center; gap: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); }
+  .punicodex-risk-high { background: #fff1f2; color: #881337; border-bottom: 3px solid #e11d48; }
+  .punicodex-risk-medium { background: #fffbeb; color: #78350f; border-bottom: 3px solid #f59e0b; }
+  .punicodex-risk-low { background: #fefce8; color: #713f12; border-bottom: 3px solid #eab308; }
+  .reason { flex: 1; }
+  .close { background: transparent; border: none; font-size: 22px; line-height: 1;
+    cursor: pointer; color: inherit; padding: 0 4px; }
+`;
+
 function showBanner(verdict) {
   const url = location.href;
   if (isDismissed(url, BANNER_STORAGE_KEY)) return;
 
-  const existing = document.getElementById('punicodex-authenticity-banner');
+  const existing = document.getElementById('punicodex-authenticity-banner-host');
   if (existing) return;
 
+  // Closed shadow root: the flagged page's JS can neither read nor restyle
+  // the banner's internals — its only move is removing the host, which the
+  // MutationObserver below immediately reverses.
+  const host = document.createElement('div');
+  host.id = 'punicodex-authenticity-banner-host';
+  const shadow = host.attachShadow({ mode: 'closed' });
+
+  const style = document.createElement('style');
+  style.textContent = BANNER_SHADOW_CSS;
+
   const banner = document.createElement('div');
-  banner.id = 'punicodex-authenticity-banner';
-  banner.className = `punicodex-banner ${severityClass(verdict.severity)}`;
+  banner.className = `wrap ${severityClass(verdict.severity)}`;
   banner.setAttribute('role', 'alert');
   banner.setAttribute('aria-live', 'polite');
 
@@ -56,23 +81,35 @@ function showBanner(verdict) {
   title.textContent = verdict.label || verdict.verdict;
 
   const reason = document.createElement('span');
-  reason.className = 'punicodex-banner-reason';
+  reason.className = 'reason';
   reason.textContent = verdict.reason || verdict.explanation || '';
 
   const close = document.createElement('button');
-  close.className = 'punicodex-banner-close';
+  close.className = 'close';
   close.setAttribute('aria-label', 'Dismiss warning');
   close.textContent = '×';
   close.addEventListener('click', () => {
     markDismissed(url, BANNER_STORAGE_KEY);
-    banner.remove();
+    host.remove();
   });
 
   banner.appendChild(icon);
   banner.appendChild(title);
   banner.appendChild(reason);
   banner.appendChild(close);
-  document.body.prepend(banner);
+  shadow.appendChild(style);
+  shadow.appendChild(banner);
+  document.body.prepend(host);
+
+  // If the flagged page removes the host element, put it straight back.
+  const guard = new MutationObserver(() => {
+    if (!document.getElementById(host.id)) {
+      guard.disconnect();
+      document.body.prepend(host);
+      guard.observe(document.body, { childList: true });
+    }
+  });
+  guard.observe(document.body, { childList: true });
 }
 
 function showModal(verdict) {
@@ -135,9 +172,25 @@ function showModal(verdict) {
   backBtn.focus();
 }
 
+// Only http(s) URLs leave the browser for a verdict — and never with their
+// query string or fragment, which can carry tokens, session ids, and other
+// secrets. Scheme handlers like mailto:, tel:, javascript:, and data: are
+// never sent anywhere.
+function sanitizableHref(raw) {
+  try {
+    const u = new URL(raw);
+    if (u.protocol !== 'http:' && u.protocol !== 'https:') return null;
+    u.search = '';
+    u.hash = '';
+    return u.toString();
+  } catch {
+    return null;
+  }
+}
+
 async function highlightLink(anchor) {
-  const href = anchor.href;
-  if (!href || href.startsWith('#') || anchor.dataset.punicodexChecked === 'true') {
+  const href = sanitizableHref(anchor.href);
+  if (!href || anchor.dataset.punicodexChecked === 'true') {
     return;
   }
   anchor.dataset.punicodexChecked = 'true';

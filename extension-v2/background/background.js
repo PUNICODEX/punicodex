@@ -2,8 +2,8 @@
  * PuniCodex Authenticity Extension v2 — Background service worker
  */
 
-import { getAll, DEFAULTS } from '../shared/storage.js';
 import { evaluatePolicy, normalizePolicy } from '../shared/policy.js';
+import { DEFAULTS, getAll } from '../shared/storage.js';
 
 const CACHE_TTL_MS = 5 * 60 * 1000;
 const FETCH_TIMEOUT_MS = 8000;
@@ -89,10 +89,19 @@ async function checkUrl(url) {
   return verdict;
 }
 
+// Trigger at 'loading' (navigation start) rather than 'complete': a block
+// verdict redirects to the interstitial BEFORE the flagged page's scripts
+// execute. MV3 cannot suspend a navigation for an async verdict, so this is
+// the earliest enforceable point; cached verdicts block near-instantly.
+const pendingTabChecks = new Set();
+chrome.tabs.onRemoved?.addListener?.((tabId) => pendingTabChecks.delete(tabId));
+
 function handleTabUpdate(tabId, changeInfo, tab) {
-  if (changeInfo.status !== 'complete' || !tab.url || !isCheckableUrl(tab.url)) {
+  if (changeInfo.status !== 'loading' || !tab.url || !isCheckableUrl(tab.url)) {
     return;
   }
+  if (pendingTabChecks.has(tabId)) return;
+  pendingTabChecks.add(tabId);
 
   checkUrl(tab.url)
     .then(async (verdict) => {
@@ -116,7 +125,8 @@ function handleTabUpdate(tabId, changeInfo, tab) {
         }
       }
     })
-    .catch(() => {});
+    .catch(() => {})
+    .finally(() => pendingTabChecks.delete(tabId));
 }
 
 function handleMessage(request, _sender, sendResponse) {
@@ -191,12 +201,12 @@ chrome.tabs.onUpdated.addListener(handleTabUpdate);
 chrome.runtime.onMessage.addListener(handleMessage);
 
 export {
-  isCheckableUrl,
+  buildInterstitialUrl,
+  checkUrl,
+  decideActionFromSettings,
   getApiBase,
   getApiUrl,
-  buildInterstitialUrl,
-  decideActionFromSettings,
-  checkUrl,
-  handleTabUpdate,
   handleMessage,
+  handleTabUpdate,
+  isCheckableUrl,
 };

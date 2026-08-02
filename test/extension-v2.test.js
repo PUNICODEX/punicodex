@@ -211,7 +211,7 @@ test('handleTabUpdate redirects to interstitial on critical+block', async () => 
   globalThis.chrome = chromeMock;
   mockFetch(() => ({ body: { data: { verdict: 'unsafe', severity: 'critical' } } }));
   const mod = await import('../extension-v2/background/background.js');
-  mod.handleTabUpdate(42, { status: 'complete' }, { url: 'https://critical.example', id: 42 });
+  mod.handleTabUpdate(42, { status: 'loading' }, { url: 'https://critical.example', id: 42 });
   await new Promise((r) => setTimeout(r, 20));
   assert.strictEqual(chromeMock.tabs._updates.length, 1);
   assert.ok(chromeMock.tabs._updates[0].options.url.includes('interstitial.html'));
@@ -223,7 +223,7 @@ test('handleTabUpdate sends banner message on high+warn', async () => {
   globalThis.chrome = chromeMock;
   mockFetch(() => ({ body: { data: { verdict: 'homograph-spoof', severity: 'high' } } }));
   const mod = await import('../extension-v2/background/background.js');
-  mod.handleTabUpdate(43, { status: 'complete' }, { url: 'https://high.example', id: 43 });
+  mod.handleTabUpdate(43, { status: 'loading' }, { url: 'https://high.example', id: 43 });
   await new Promise((r) => setTimeout(r, 20));
   assert.strictEqual(chromeMock.tabs._sent.length, 1);
   assert.strictEqual(chromeMock.tabs._sent[0].message.action, 'showBanner');
@@ -297,7 +297,7 @@ test('handleTabUpdate fails open when the API is unreachable', async () => {
     throw new TypeError('fetch failed');
   });
   const mod = await import('../extension-v2/background/background.js');
-  mod.handleTabUpdate(44, { status: 'complete' }, { url: 'https://offline.example', id: 44 });
+  mod.handleTabUpdate(44, { status: 'loading' }, { url: 'https://offline.example', id: 44 });
   await new Promise((r) => setTimeout(r, 20));
   // No redirect to the interstitial and no banner: navigation proceeds untouched.
   assert.strictEqual(chromeMock.tabs._updates.length, 0);
@@ -310,7 +310,7 @@ test('handleTabUpdate fails open on API 500', async () => {
   globalThis.chrome = chromeMock;
   mockFetch(() => ({ ok: false, status: 500, text: 'server error' }));
   const mod = await import('../extension-v2/background/background.js');
-  mod.handleTabUpdate(45, { status: 'complete' }, { url: 'https://api-down.example', id: 45 });
+  mod.handleTabUpdate(45, { status: 'loading' }, { url: 'https://api-down.example', id: 45 });
   await new Promise((r) => setTimeout(r, 20));
   assert.strictEqual(chromeMock.tabs._updates.length, 0);
   assert.strictEqual(chromeMock.tabs._sent.length, 0);
