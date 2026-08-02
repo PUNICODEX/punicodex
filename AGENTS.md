@@ -635,16 +635,19 @@ Three GitHub Actions workflows in `.github/workflows/`:
 
 ### Deploy routes (since 2026-08-01)
 
-- **Standard route — CI prebuilt** (`.github/workflows/deploy-prebuilt.yml`,
-  manual `workflow_dispatch` from the Actions tab): GitHub's Linux runner runs
-  `npm ci` → `npm run db-init` (builds the seed SQLite DB — see below) →
-  `vercel pull` → `vercel build` → `vercel deploy --prebuilt --archive=tgz`
-  (up to 3 attempts; the finalize step is flaky on large archives) → aliases
-  `punicodex.com` + `www`. Consumes **zero Vercel build CPU**; Linux builds
-  produce correct native binaries (bcrypt, better-sqlite3, sharp) — never run
-  `--prebuilt` from Windows, where traced binaries are win32 and Lambdas die.
-  Requires repo secrets `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`
-  (IDs live in `.vercel/project.json`).
+- **Standard route — CI prebuilt** (`.github/workflows/deploy-prebuilt.yml`):
+  automatic on every master push once the CI workflow's full battery passes
+  (`workflow_run` chain), or manually via Actions → deploy-prebuilt. The
+  GitHub runner runs `npm ci` → `npm run db-init` (builds the seed SQLite DB —
+  see below) → `vercel pull` → `vercel build` → `vercel deploy --prebuilt
+  --archive=tgz` (up to 3 attempts; the finalize step is flaky on large
+  archives) → aliases `punicodex.com` + `www`. Consumes **zero Vercel build
+  CPU**; Linux builds produce correct native binaries (bcrypt, better-sqlite3,
+  sharp) — never run `--prebuilt` from Windows, where traced binaries are
+  win32 and Lambdas die. Requires repo secrets `VERCEL_TOKEN`,
+  `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID` (IDs live in `.vercel/project.json`).
+  **Do not also run a local CLI deploy of the same commits** — the chain
+  handles it; a failed battery means no deploy, by design.
 - **Fallback route — local CLI**: `vercel deploy --prod --yes --archive=tgz`,
   then alias manually. `--archive=tgz` is mandatory (the tree exceeds the
   15,000 per-file upload limit). Never write to the tree during the upload
