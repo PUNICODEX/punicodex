@@ -44,6 +44,23 @@ async function requireAdmin(req, res) {
     res.status(401).json({ error: 'Unauthorized' });
     return false;
   }
+  // Role floor (2026-08 audit): a portal-issued session carries
+  // admin_sessions.admin_user_id; only a superadmin may drive the legacy
+  // admin surface (API-key minting, booking mutations, …). Legacy
+  // shared-password tokens (admin_user_id NULL) are the legacy superuser
+  // credential and keep full access. Lazy-require so public handlers that
+  // share this module never pay for the portal auth stack.
+  const { getSessionAdminUserId, getUserById } = require('../platform/api/admin-portal-auth.js');
+  const adminUserId = await getSessionAdminUserId(token);
+  if (adminUserId != null) {
+    const user = await getUserById(adminUserId);
+    if (!user || user.status !== 'active' || user.role !== 'superadmin') {
+      res.status(403).json({ error: 'Forbidden', required: 'superadmin' });
+      return false;
+    }
+  }
+  // Stash the audit actor for handlers that log mutations (api-key-admin).
+  req.adminActor = adminUserId != null ? { adminUserId } : { adminToken: token };
   return true;
 }
 

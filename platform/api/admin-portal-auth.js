@@ -204,6 +204,22 @@ async function deleteSessionsForUser(userId) {
 }
 
 /**
+ * Return the admin_user_id linked to an admin session token (portal
+ * sessions), or null for legacy shared-password sessions and unknown tokens.
+ * The idempotent schema ensure runs first so the admin_user_id column exists
+ * even on cold starts that have not touched the portal yet. Used by the
+ * legacy requireAdmin guard to apply the portal role floor.
+ */
+async function getSessionAdminUserId(token) {
+  if (!token || typeof token !== 'string') return null;
+  ensureAuthSchema();
+  const row = await get('SELECT admin_user_id FROM admin_sessions WHERE token = $1', [
+    hashToken(token),
+  ]);
+  return row ? row.admin_user_id : null;
+}
+
+/**
  * Resolve an x-admin-token to a portal user. Returns { user, role } or null.
  * Legacy shared-password sessions (admin_user_id NULL) are not portal
  * sessions and resolve to null here — they still work on legacy endpoints.
@@ -599,6 +615,7 @@ module.exports = {
   bootstrap,
   login,
   logout,
+  getSessionAdminUserId,
   resolveUser,
   requirePortal,
   listUsers,
