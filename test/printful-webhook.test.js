@@ -140,6 +140,46 @@ test('order_cancelled flips the order to cancelled', async () => {
   assert.strictEqual(getStoreOrderByRef(order.order_ref).status, 'cancelled');
 });
 
+test('forged transitions are refused: shipped only from sent_to_fulfillment', async () => {
+  // A paid order that never went to the print house cannot be "shipped" by
+  // a webhook event.
+  const { order } = createStoreOrder({ productId: 'pw-tee', variantLabel: 'M', quantity: 1 });
+  setStoreOrderStatus(order.id, 'paid');
+  const res = createMockRes();
+  await handler(
+    req({
+      type: 'package_shipped',
+      data: {
+        order: { external_id: order.order_ref },
+        shipment: { carrier: 'DHL', tracking_url: 'https://track.example/forged' },
+      },
+    }),
+    res
+  );
+  assert.strictEqual(res.statusCode, 200);
+  assert.strictEqual(res.body.ignored, 'package_shipped');
+  const after = getStoreOrderByRef(order.order_ref);
+  assert.strictEqual(after.status, 'paid', 'status unchanged');
+  assert.strictEqual(after.tracking_url, null, 'no tracking recorded');
+});
+
+test('forged transitions are refused: cancellation never resurrects a shipped order', async () => {
+  const { order } = createStoreOrder({ productId: 'pw-tee', variantLabel: 'M', quantity: 1 });
+  setStoreOrderStatus(order.id, 'sent_to_fulfillment', { printfulOrderId: 8686 });
+  setStoreOrderStatus(order.id, 'shipped', {
+    printfulOrderId: 8686,
+    trackingUrl: 'https://track.example/real',
+    carrier: 'UPS',
+  });
+  const res = createMockRes();
+  await handler(req({ type: 'order_cancelled', data: { order: { id: 8686 } } }), res);
+  assert.strictEqual(res.statusCode, 200);
+  assert.strictEqual(res.body.ignored, 'order_cancelled');
+  const after = getStoreOrderByRef(order.order_ref);
+  assert.strictEqual(after.status, 'shipped', 'shipped orders are never cancelled by webhook');
+  assert.strictEqual(after.tracking_url, 'https://track.example/real');
+});
+
 test('unhandled event types are acknowledged gracefully', async () => {
   const { order } = createStoreOrder({ productId: 'pw-tee', variantLabel: 'M', quantity: 1 });
   setStoreOrderStatus(order.id, 'sent_to_fulfillment', { printfulOrderId: 8484 });

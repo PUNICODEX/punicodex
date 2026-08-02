@@ -15,6 +15,7 @@ const {
 } = require('../../../../../../../api/admin/portal/_portal.js');
 const discountService = require('../../../../../../api/discount-service.js');
 const { sendEmail } = require('../../../../../../api/email.js');
+const { logAction } = require('../../../../../../api/admin-actions.js');
 const { buildPitchEmail, loadTemple, buildResonanceBullets } = require('../../../../../../api/pitch-email.js');
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -52,6 +53,16 @@ module.exports = async (req, res) => {
 
     const codeRow = await discountService.getCodeById(id);
     if (!codeRow) return res.status(404).json({ error: 'Discount code not found' });
+    // A dead code must never be emailed to a prospect: the pitch quotes the
+    // code verbatim and redeeming it would fail at the temple checkout. Same
+    // liveness rules as discount-service.validateCode.
+    if (!codeRow.active) return res.status(400).json({ error: 'Discount code is inactive' });
+    if (codeRow.expires_at && new Date(codeRow.expires_at).getTime() < Date.now()) {
+      return res.status(400).json({ error: 'Discount code has expired' });
+    }
+    if (codeRow.max_uses != null && codeRow.used_count >= codeRow.max_uses) {
+      return res.status(400).json({ error: 'Discount code has no uses remaining' });
+    }
     if (codeRow.applies_to === 'all') {
       return res.status(400).json({ error: 'Pitch emails need a temple-scoped code' });
     }
@@ -66,6 +77,15 @@ module.exports = async (req, res) => {
     if (!sent.success) {
       return res.status(502).json({ error: 'Email delivery failed', detail: sent.error });
     }
+
+    // Audit trail: who pitched which code to whom (mocked sends included —
+    // they are still operator actions taken against a prospect).
+    await logAction({
+      adminUserId: auth.user?.id ?? null,
+      action: 'portal.discount.pitch',
+      target: `discount_code:${id}`,
+      meta: { codeId: id, to, code: codeRow.code, mocked: sent.mocked === true, by: auth.user?.email ?? null },
+    });
 
     return res.json({
       sent: true,

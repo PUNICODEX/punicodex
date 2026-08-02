@@ -13,6 +13,7 @@
  *   order_cancelled → cancelled
  */
 
+const crypto = require('node:crypto');
 const { handleError, setCors } = require('../_utils');
 const { getDb } = require('../../platform/db/connection');
 const { migrate: migrateStoreOrders } = require('../../platform/db/migrate-store-orders');
@@ -28,6 +29,16 @@ try {
   // retried on next cold start
 }
 
+// Constant-time token compare (length-guarded: timingSafeEqual throws on
+// unequal buffers).
+function tokenMatches(provided, expected) {
+  if (typeof provided !== 'string' || typeof expected !== 'string') return false;
+  const a = Buffer.from(provided);
+  const b = Buffer.from(expected);
+  if (a.length !== b.length) return false;
+  return crypto.timingSafeEqual(a, b);
+}
+
 module.exports = async (req, res) => {
   setCors(req, res);
   if (req.method === 'OPTIONS') return res.status(200).end();
@@ -36,7 +47,7 @@ module.exports = async (req, res) => {
   try {
     const token = req.query?.token;
     const expected = process.env.PRINTFUL_WEBHOOK_TOKEN;
-    if (!expected || token !== expected) {
+    if (!expected || !tokenMatches(token, expected)) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
 
@@ -55,6 +66,12 @@ module.exports = async (req, res) => {
     }
 
     if (type === 'package_shipped') {
+      // Transition guard: only sent_to_fulfillment → shipped. A forged or
+      // replayed event must never ship an order that never went to the
+      // print house (or resurrect one already delivered/cancelled).
+      if (order.status !== 'sent_to_fulfillment') {
+        return res.json({ received: true, ignored: type, status: order.status });
+      }
       const shipment = data?.shipment || {};
       const updated = setStoreOrderStatus(order.id, 'shipped', {
         trackingUrl: shipment.tracking_url || null,
@@ -82,6 +99,12 @@ module.exports = async (req, res) => {
     }
 
     if (type === 'order_cancelled' || type === 'order_canceled') {
+      // Transition guard: never cancel an order that already shipped or was
+      // delivered — a cancellation must not resurrect/refund a fulfilled
+      // order behind the operator's back.
+      if (order.status === 'shipped' || order.status === 'delivered') {
+        return res.json({ received: true, ignored: type, status: order.status });
+      }
       setStoreOrderStatus(order.id, 'cancelled');
       return res.json({ received: true, status: 'cancelled' });
     }
