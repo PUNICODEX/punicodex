@@ -749,7 +749,7 @@ const PAGE_SCRIPT = `
 function headHtml({ title, description, canonical, ogDescription, jsonLd, jsonLdExtra = '' }) {
   return `<head>
 <!-- PUNICODEX-ANALYTICS-START -->
-<script src="/js/analytics-beacon.js" defer></script>
+<script src="/js/analytics-beacon.js?v=1" defer></script>
 <!-- PUNICODEX-ANALYTICS-END -->
 
     <meta charset="UTF-8">

@@ -1864,6 +1864,18 @@ async function requireAdmin(req, res, next) {
   if (!(await validateAdminToken(token))) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
+  // Role floor (2026-08 audit, mirrors api/_utils.js): portal-issued sessions
+  // require an active superadmin; legacy shared-password tokens
+  // (admin_user_id NULL) keep full access.
+  const { getSessionAdminUserId, getUserById } = require('./api/admin-portal-auth.js');
+  const adminUserId = await getSessionAdminUserId(token);
+  if (adminUserId != null) {
+    const user = await getUserById(adminUserId);
+    if (user?.status !== 'active' || user.role !== 'superadmin') {
+      return res.status(403).json({ error: 'Forbidden', required: 'superadmin' });
+    }
+  }
+  req.adminActor = adminUserId != null ? { adminUserId } : { adminToken: token };
   next();
 }
 

@@ -192,6 +192,9 @@ async function runTests() {
           ),
       },
       '../platform/api/admin.js': {
+        // Extend, don't replace: the role-floor in requireAdmin consumes
+        // hashToken/validateAdminToken from this module too.
+        ...require('../platform/api/admin.js'),
         getRevenueStats: () => Promise.reject(new Error('revenue unavailable')),
       },
       '../platform/api/patron-service.js': {

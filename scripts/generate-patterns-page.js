@@ -267,7 +267,7 @@ function renderAtlas(graph, registry) {
 <html lang="en">
 <head>
 <!-- PUNICODEX-ANALYTICS-START -->
-<script src="/js/analytics-beacon.js" defer></script>
+<script src="/js/analytics-beacon.js?v=1" defer></script>
 <!-- PUNICODEX-ANALYTICS-END -->
 
 <meta charset="UTF-8">
@@ -365,7 +365,7 @@ function renderMethodology(graph) {
 <html lang="en">
 <head>
 <!-- PUNICODEX-ANALYTICS-START -->
-<script src="/js/analytics-beacon.js" defer></script>
+<script src="/js/analytics-beacon.js?v=1" defer></script>
 <!-- PUNICODEX-ANALYTICS-END -->
 
 <meta charset="UTF-8">

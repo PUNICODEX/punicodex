@@ -106,7 +106,7 @@ async function run() {
   await test('external-redirect domain goes to its canonical target', async () => {
     const res = await middleware(req('https://xn--kxaqik.com/'));
     assert.strictEqual(res.status, 301);
-    assert.strictEqual(res.headers.get('Location'), 'https://punicodex.com/nike');
+    assert.strictEqual(res.headers.get('Location'), 'https://punicodex.com/nike/');
   });
 
   await test('direct-serve domain serves the temple in place (no redirect)', async () => {
