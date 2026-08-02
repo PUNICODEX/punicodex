@@ -18,7 +18,7 @@ module.exports = async (req, res) => {
     }
     if (req.method === 'POST') {
       const { name, tier, scopes, rateLimit } = req.body || {};
-      const key = await createKey({ name, tier, scopes, rateLimit });
+      const key = await createKey({ name, tier, scopes, rateLimit }, req.adminActor);
       return res.status(201).json({ success: true, key });
     }
     res.status(405).json({ error: 'Method not allowed' });

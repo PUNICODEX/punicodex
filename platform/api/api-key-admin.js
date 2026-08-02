@@ -5,6 +5,23 @@
 const crypto = require('node:crypto');
 const { get, all, run, insert } = require('../db/operational');
 const { hashKey } = require('./api-auth.js');
+const { logAction } = require('./admin-actions.js');
+
+/**
+ * Normalize the audit actor into logAction fields. The Vercel handlers pass
+ * requireAdmin's req.adminActor ({ adminUserId } for portal superadmins,
+ * { adminToken } for legacy tokens); the local platform server passes the
+ * raw x-admin-token string (hashed at rest by logAction).
+ */
+function auditActorFields(actor) {
+  if (actor && typeof actor === 'object') {
+    if (actor.adminUserId != null) return { adminUserId: actor.adminUserId };
+    if (actor.user?.id != null) return { adminUserId: actor.user.id };
+    if (actor.adminToken) return { adminToken: actor.adminToken };
+  }
+  if (typeof actor === 'string' && actor) return { adminToken: actor };
+  return {};
+}
 
 const VALID_SCOPES = new Set(['names:read', 'names:write', 'admin']);
 const VALID_TIERS = new Set(['free', 'hobby', 'pro', 'enterprise']);
@@ -92,7 +109,7 @@ async function getKeyById(id) {
   return row ? toKeyRow(row) : null;
 }
 
-async function createKey({ name, tier = 'free', scopes = ['names:read'], rateLimit = null }) {
+async function createKey({ name, tier = 'free', scopes = ['names:read'], rateLimit = null }, actor = null) {
   const tierValidation = validateTier(tier);
   if (!tierValidation.valid) throw new Error(tierValidation.error);
 
@@ -112,6 +129,15 @@ async function createKey({ name, tier = 'free', scopes = ['names:read'], rateLim
     [keyHash, name || null, tier, serializeScopes(scopes), finalRateLimit]
   );
 
+  // Audit the mutation — key id + action + non-secret metadata, NEVER the
+  // plaintext secret (it is shown to the caller exactly once, below).
+  await logAction({
+    ...auditActorFields(actor),
+    action: 'admin.api-keys.create',
+    target: `api_key:${id}`,
+    meta: { name: name || null, tier, scopes, rateLimit: finalRateLimit },
+  });
+
   return {
     id,
     plaintext,
@@ -122,7 +148,7 @@ async function createKey({ name, tier = 'free', scopes = ['names:read'], rateLim
   };
 }
 
-async function updateKey(id, { name, tier, scopes, rateLimit }) {
+async function updateKey(id, { name, tier, scopes, rateLimit }, actor = null) {
   const key = await getKeyById(id);
   if (!key) return null;
 
@@ -146,8 +172,16 @@ async function updateKey(id, { name, tier, scopes, rateLimit }) {
     params.push(serializeScopes(scopes));
   }
   if (rateLimit !== undefined) {
+    // Coerce to a positive integer; garbage is a client error (400), never
+    // something we silently persist into the rate-limit column.
+    const parsed = Number(rateLimit);
+    if (!Number.isInteger(parsed) || parsed < 1) {
+      const err = new Error('rateLimit must be a positive integer');
+      err.status = 400;
+      throw err;
+    }
     updates.push(`rate_limit = $${params.length + 1}`);
-    params.push(rateLimit);
+    params.push(parsed);
   }
 
   if (updates.length === 0) return key;
@@ -155,16 +189,44 @@ async function updateKey(id, { name, tier, scopes, rateLimit }) {
   params.push(id);
   await run(`UPDATE api_keys SET ${updates.join(', ')} WHERE id = $${params.length}`, params);
 
+  const meta = {};
+  if (name !== undefined) meta.name = name || null;
+  if (tier !== undefined) meta.tier = tier;
+  if (scopes !== undefined) meta.scopes = scopes;
+  if (rateLimit !== undefined) meta.rateLimit = Number(rateLimit);
+  await logAction({
+    ...auditActorFields(actor),
+    action: 'admin.api-keys.update',
+    target: `api_key:${id}`,
+    meta,
+  });
+
   return getKeyById(id);
 }
 
-async function revokeKey(id) {
+async function revokeKey(id, actor = null) {
+  const existing = await getKeyById(id);
+  if (!existing) return null;
   await run('UPDATE api_keys SET revoked_at = CURRENT_TIMESTAMP WHERE id = $1', [id]);
+  await logAction({
+    ...auditActorFields(actor),
+    action: 'admin.api-keys.revoke',
+    target: `api_key:${id}`,
+    meta: { name: existing.name, tier: existing.tier },
+  });
   return getKeyById(id);
 }
 
-async function unrevokeKey(id) {
+async function unrevokeKey(id, actor = null) {
+  const existing = await getKeyById(id);
+  if (!existing) return null;
   await run('UPDATE api_keys SET revoked_at = NULL WHERE id = $1', [id]);
+  await logAction({
+    ...auditActorFields(actor),
+    action: 'admin.api-keys.unrevoke',
+    target: `api_key:${id}`,
+    meta: { name: existing.name, tier: existing.tier },
+  });
   return getKeyById(id);
 }
 

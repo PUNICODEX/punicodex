@@ -2443,7 +2443,7 @@ app.get('/api/admin/api-keys', requireAdmin, async (_req, res) => {
 app.post('/api/admin/api-keys', requireAdmin, async (req, res) => {
   try {
     const { name, tier, scopes, rateLimit } = req.body;
-    const key = await createKey({ name, tier, scopes, rateLimit });
+    const key = await createKey({ name, tier, scopes, rateLimit }, req.headers['x-admin-token']);
     res.status(201).json({ success: true, key });
   } catch (err) {
     res.status(400).json({ error: err.message });
@@ -2455,7 +2455,11 @@ app.patch('/api/admin/api-keys/:id', requireAdmin, async (req, res) => {
     const id = parseInt(req.params.id, 10);
     if (Number.isNaN(id)) return res.status(400).json({ error: 'Invalid key id' });
     const { name, tier, scopes, rateLimit } = req.body;
-    const key = await updateKey(id, { name, tier, scopes, rateLimit });
+    const key = await updateKey(
+      id,
+      { name, tier, scopes, rateLimit },
+      req.headers['x-admin-token']
+    );
     if (!key) return res.status(404).json({ error: 'Key not found' });
     res.json({ success: true, key });
   } catch (err) {
@@ -2467,7 +2471,7 @@ app.post('/api/admin/api-keys/:id/revoke', requireAdmin, async (req, res) => {
   try {
     const id = parseInt(req.params.id, 10);
     if (Number.isNaN(id)) return res.status(400).json({ error: 'Invalid key id' });
-    const key = await revokeKey(id);
+    const key = await revokeKey(id, req.headers['x-admin-token']);
     if (!key) return res.status(404).json({ error: 'Key not found' });
     res.json({ success: true, key });
   } catch (err) {
@@ -2479,7 +2483,7 @@ app.post('/api/admin/api-keys/:id/unrevoke', requireAdmin, async (req, res) => {
   try {
     const id = parseInt(req.params.id, 10);
     if (Number.isNaN(id)) return res.status(400).json({ error: 'Invalid key id' });
-    const key = await unrevokeKey(id);
+    const key = await unrevokeKey(id, req.headers['x-admin-token']);
     if (!key) return res.status(404).json({ error: 'Key not found' });
     res.json({ success: true, key });
   } catch (err) {

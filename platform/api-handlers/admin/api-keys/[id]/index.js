@@ -23,10 +23,11 @@ module.exports = async (req, res) => {
     if (Number.isNaN(id)) return res.status(400).json({ error: 'Invalid key id' });
 
     const { name, tier, scopes, rateLimit } = req.body || {};
-    const key = await updateKey(id, { name, tier, scopes, rateLimit });
+    const key = await updateKey(id, { name, tier, scopes, rateLimit }, req.adminActor);
     if (!key) return res.status(404).json({ error: 'Key not found' });
     return res.json({ success: true, key });
   } catch (err) {
+    if (err.status) return res.status(err.status).json({ error: err.message });
     handleError(res, err);
   }
 };
