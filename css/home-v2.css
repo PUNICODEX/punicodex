@@ -956,3 +956,81 @@
     min-width: 0;
   }
 }
+
+/* ─── From the archive (homepage) ───────────────────────── */
+
+.section-archive {
+  padding: clamp(3rem, 7vw, 5rem) 0;
+}
+
+.archive-head {
+  text-align: center;
+  max-width: 620px;
+  margin: 0 auto 2rem;
+}
+
+.archive-head .body-md {
+  color: var(--text-secondary);
+}
+
+.archive-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.archive-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.5rem 1.4rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  text-decoration: none;
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.archive-card:hover {
+  border-color: rgba(var(--gold-rgb), 0.45);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.4);
+}
+
+.archive-pantheon {
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold-bright);
+}
+
+.archive-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  line-height: 1.4;
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.archive-more {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+.archive-card:hover .archive-more {
+  color: var(--gold-bright);
+}
+
+.archive-foot {
+  text-align: center;
+  margin-top: 1.75rem;
+}
+
+@media (max-width: 720px) {
+  .archive-grid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+  }
+}
