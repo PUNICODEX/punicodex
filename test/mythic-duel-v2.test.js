@@ -89,11 +89,11 @@ test('every pantheon in the card set has a hero power (or the default)', () => {
     'destroy-filter', 'stun', 'stun-filter', 'confuse', 'slow-enemy',
     'slow-all-enemies', 'ink-gen', 'heal-hero-turn', 'aura-allies',
     'buff-self-attacking', 'damage-reduction', 'return-to-hand', 'copy-top-card',
-    'combo', 'random-choice',
+    'combo', 'all', 'charge', 'random-choice',
   ]);
   const checkEffect = (eff, where) => {
     if (!eff) return;
-    if (eff.kind === 'combo') {
+    if (eff.kind === 'combo' || eff.kind === 'all') {
       for (const sub of eff.effects || []) checkEffect(sub, where);
       return;
     }
@@ -122,6 +122,44 @@ test('attack: minion trade resolves damage and halved counter for the faster str
   const kill = Engine.attack(battle, 0, 0);
   assert.strictEqual(kill.ok, true);
   assert.strictEqual(battle.players[1].board.length, 0, 'lethal trade removes the defender');
+});
+
+test('attack: the arena exchange preview formula matches the engine counter rule across speeds', () => {
+  // game/game.js previews a committed attack as:
+  //   take = Engine.effectivePower(battle, 1, defender)
+  //   if (attacker.speed > defender.speed) take = Math.floor(take / 2)
+  // — a deliberate duplicate of the engine's outmaneuver rule inside attack()
+  // (counter = effectivePower(...); if (attacker.speed > defender.speed)
+  // counter = Math.floor(counter / 2)). Drive the real attack across a speed
+  // matrix and assert both formulas always agree on what the attacker takes.
+  const c = SET.cards[0];
+  const mk = (uid, power, health, speed) => ({
+    uid, def: c, name: 'T' + uid, cost: 1, power, maxHealth: health, health, speed,
+    shield: 0, sick: false, attacksUsed: false, stunned: 0, confused: 0, tempPowerDown: 0,
+    ability: null, domain: '', rarity: 'common',
+  });
+  for (const atkSpeed of [1, 2, 5, 8, 10]) {
+    for (const defSpeed of [1, 2, 5, 8, 10]) {
+      const battle = makeBattle();
+      battle.players[0].board.push(mk(811, 2, 20, atkSpeed));
+      battle.players[1].board.push(mk(911, 5, 20, defSpeed));
+      const attacker = battle.players[0].board[0];
+      const defender = battle.players[1].board[0];
+      // Literal reimplementation of the game.js exchange-preview formula.
+      let previewTake = Engine.effectivePower(battle, 1, defender);
+      if (attacker.speed > defender.speed) previewTake = Math.floor(previewTake / 2);
+      const healthBefore = attacker.health;
+      const res = Engine.attack(battle, 0, 0);
+      assert.strictEqual(res.ok, true, `speed ${atkSpeed} vs ${defSpeed}`);
+      assert.ok(defender.health > 0, 'defender survives so the counter fires');
+      const actualTake = healthBefore - battle.players[0].board[0].health;
+      assert.strictEqual(
+        actualTake,
+        previewTake,
+        `preview/engine mismatch at speed ${atkSpeed} vs ${defSpeed}`
+      );
+    }
+  }
 });
 
 test('attack: hero target and confused random targeting', () => {
@@ -877,6 +915,200 @@ test('battle UI contract: minion attacks resolve, moves are visible, help exists
   assert.ok(js.includes('openBattleHelp'), 'grimoire modal missing');
   assert.ok(html.includes('battle-help'), 'help button missing');
   assert.ok(js.includes('--arena-glow'), 'arena champion tint missing');
+});
+
+/* ── Container semantics: `all` vs `combo` ──────────────────────────────────
+   Regression guard for a defect that made the rarest printings weaker than
+   the commons they were forged from. The edition upgrade grafts a rider onto
+   the base effect; when it used the CONDITIONAL `combo` container the base
+   effect silently vanished everywhere that condition is not evaluated —
+   passives (never resolved at all), deathrattles, specials, hero powers. */
+
+function mkMinion(def, over) {
+  return Object.assign(
+    {
+      uid: 700, def: def, name: 'M', cost: 1, power: 2, maxHealth: 5, health: 5, speed: 3,
+      shield: 0, sick: false, attacksUsed: false, specialUsed: false, stunned: 0,
+      confused: 0, tempPowerDown: 0, ability: null, domain: '', rarity: 'common',
+    },
+    over || {}
+  );
+}
+
+test('passives survive an edition upgrade: `all` containers are read off the board', () => {
+  const battle = makeBattle();
+  const c = SET.cards[0];
+  const upgraded = {
+    id: 'ab', entryId: 'x', name: 'Forge Mastery', description: '', trigger: 'passive',
+    effect: {
+      kind: 'all',
+      effects: [{ kind: 'damage-reduction', amount: 3 }, { kind: 'buff-allies', power: 1, health: 1 }],
+    },
+  };
+  battle.players[0].board.push(mkMinion(c, { uid: 701, ability: upgraded, health: 9, maxHealth: 9 }));
+  battle.players[1].board.push(mkMinion(c, { uid: 901, power: 5 }));
+  // 5 power - 3 reduction = 2 damage. Under the old `combo` wrap the reduction
+  // was invisible and the defender took the full 5.
+  Engine.attack(battle, 0, 0);
+  assert.strictEqual(battle.players[0].board[0].health, 7, 'wrapped damage-reduction still applies');
+});
+
+test('aura-allies still buffs through an `all` container', () => {
+  const battle = makeBattle();
+  const c = SET.cards[0];
+  const aura = {
+    id: 'ab2', entryId: 'x', name: 'Old Presence', description: '', trigger: 'passive',
+    effect: { kind: 'all', effects: [{ kind: 'aura-allies', power: 2 }, { kind: 'buff-allies', power: 1, health: 1 }] },
+  };
+  battle.players[0].board.push(mkMinion(c, { uid: 702, ability: aura }));
+  const ally = mkMinion(c, { uid: 703, power: 4 });
+  battle.players[0].board.push(ally);
+  assert.strictEqual(Engine.effectivePower(battle, 0, ally), 6, 'aura reaches through the container');
+});
+
+test('ink-gen survives the upgrade and still refills at start of turn', () => {
+  const battle = makeBattle();
+  const c = SET.cards[0];
+  const wrapped = {
+    id: 'ab3', entryId: 'x', name: 'Domain Advantage', description: '', trigger: 'passive',
+    effect: { kind: 'all', effects: [{ kind: 'ink-gen', amount: 2 }, { kind: 'buff-allies', power: 1, health: 1 }] },
+  };
+  battle.players[0].board.push(mkMinion(c, { uid: 704, ability: wrapped }));
+  Engine.endTurn(battle);
+  Engine.runAiTurn(battle);
+  const p = battle.players[0];
+  assert.strictEqual(p.ink, p.maxInk + 2, 'ink-gen inside the container still pays out');
+});
+
+test('a deathrattle resolves its container without needing a combo condition', () => {
+  const battle = makeBattle();
+  const c = SET.cards[0];
+  const rattle = {
+    id: 'ab4', entryId: 'x', name: 'Two Thrones', description: '', trigger: 'on_death',
+    effect: {
+      kind: 'all',
+      effects: [{ kind: 'return-to-hand', healthBonus: 5 }, { kind: 'buff-allies', power: 1, health: 1 }],
+    },
+  };
+  // Die for real: strike a bigger body and take the lethal counter-attack,
+  // which is what sweeps deaths and fires the rattle.
+  battle.players[0].board.push(
+    mkMinion(c, { uid: 705, ability: rattle, power: 1, health: 1, maxHealth: 1, speed: 1 })
+  );
+  battle.players[1].board.push(mkMinion(c, { uid: 904, power: 5, health: 20, maxHealth: 20, speed: 5 }));
+  const handBefore = battle.players[0].hand.length;
+  Engine.attack(battle, 0, 0);
+  assert.strictEqual(battle.players[0].board.length, 0, 'the counter-attack killed it');
+  assert.strictEqual(battle.players[0].hand.length, handBefore + 1, 'the deathrattle returned it to hand');
+});
+
+test('an activated special resolves a container-wrapped ability', () => {
+  const battle = makeBattle();
+  const c = SET.cards[0];
+  const wrapped = {
+    id: 'ab5', entryId: 'x', name: 'Thunderclap', description: '', trigger: 'on_play',
+    effect: {
+      kind: 'all',
+      effects: [
+        { kind: 'damage', target: 'enemy-minion', amount: 3 },
+        { kind: 'buff-allies', power: 1, health: 1 },
+      ],
+    },
+  };
+  battle.players[0].board.push(mkMinion(c, { uid: 706, ability: wrapped }));
+  battle.players[1].board.push(mkMinion(c, { uid: 902, health: 8, maxHealth: 8 }));
+  battle.players[0].ink = 6;
+  const res = Engine.useSpecial(battle, 0, 0);
+  assert.strictEqual(res.ok, true, 'special unleashed');
+  assert.strictEqual(battle.players[1].board[0].health, 5, 'wrapped damage landed (8 - 3)');
+});
+
+test('`combo` stays conditional: a battlecry fizzles as the first card of a turn', () => {
+  const battle = makeBattle();
+  const c = SET.cards[0];
+  const mkCombo = () =>
+    Object.assign({}, Engine.toBattleCard(c), {
+      cost: 1,
+      ability: {
+        id: 'ab6', entryId: 'x', name: 'Syzygy', description: '', trigger: 'on_play',
+        effect: { kind: 'combo', effects: [{ kind: 'damage', target: 'enemy-minion', amount: 4 }] },
+      },
+    });
+  battle.players[1].board.push(mkMinion(c, { uid: 903, health: 9, maxHealth: 9 }));
+  battle.players[0].ink = 9;
+  battle.players[0].hand.unshift(mkCombo());
+  Engine.playCard(battle, 0);
+  assert.strictEqual(battle.players[1].board[0].health, 9, 'first card of the turn: combo holds');
+  battle.players[0].hand.unshift(mkCombo());
+  Engine.playCard(battle, 0);
+  assert.strictEqual(battle.players[1].board[0].health, 5, 'second card of the turn: combo fires');
+});
+
+test('charge clears summoning sickness for the card that arrives with it', () => {
+  const battle = makeBattle();
+  const c = SET.cards[0];
+  const hermes = Object.assign({}, Engine.toBattleCard(c), {
+    cost: 1,
+    ability: {
+      id: 'ab7', entryId: 'x', name: 'Wayfinder', description: '', trigger: 'on_play',
+      effect: { kind: 'all', effects: [{ kind: 'draw', count: 1 }, { kind: 'charge' }] },
+    },
+  });
+  battle.players[0].hand.unshift(hermes);
+  battle.players[0].ink = 9;
+  const res = Engine.playCard(battle, 0);
+  assert.strictEqual(res.ok, true);
+  const summoned = battle.players[0].board[battle.players[0].board.length - 1];
+  assert.strictEqual(summoned.sick, false, 'charge lets it strike the turn it lands');
+});
+
+test('the shipped card set honours the trigger/effect invariants', () => {
+  const CONTINUOUS = new Set([
+    'ink-gen', 'heal-hero-turn', 'aura-allies', 'buff-self-attacking', 'damage-reduction',
+  ]);
+  const offenders = [];
+  for (const card of SET.cards) {
+    const a = card.ability;
+    if (!a) continue;
+    // A continuous effect is only ever read off the board, so it must be passive.
+    if (CONTINUOUS.has(a.effect.kind) && a.trigger !== 'passive') {
+      offenders.push(card.id + ': continuous ' + a.effect.kind + ' under ' + a.trigger);
+    }
+    // `combo` is battlecry-only; anywhere else its condition can never be met.
+    if (a.effect.kind === 'combo' && a.trigger !== 'on_play') {
+      offenders.push(card.id + ': combo under ' + a.trigger);
+    }
+  }
+  assert.deepStrictEqual(offenders.slice(0, 5), [], 'cards with unreachable abilities');
+});
+
+test('no edition upgrade is weaker than the printing it was forged from', () => {
+  const byId = new Map(SET.cards.map((c) => [c.id, c]));
+  const flatten = (eff, out) => {
+    out = out || [];
+    if (!eff) return out;
+    if (eff.kind === 'all' || eff.kind === 'combo') {
+      for (const sub of eff.effects || []) flatten(sub, out);
+      return out;
+    }
+    out.push(eff.kind);
+    return out;
+  };
+  const losses = [];
+  for (const card of SET.cards) {
+    if (card.edition !== 'full-art' && card.edition !== 'secret') continue;
+    const base = byId.get(card.entryId + '-common');
+    if (!base || !base.ability || !card.ability) continue;
+    const had = new Set(flatten(base.ability.effect));
+    const has = new Set(flatten(card.ability.effect));
+    for (const kind of had) {
+      if (!has.has(kind)) losses.push(card.id + ' lost ' + kind);
+    }
+    if (base.ability.trigger !== card.ability.trigger) {
+      losses.push(card.id + ' trigger drifted ' + base.ability.trigger + '→' + card.ability.trigger);
+    }
+  }
+  assert.deepStrictEqual(losses.slice(0, 5), [], 'upgraded printings that lost their base effect');
 });
 
 (async () => {

@@ -72,18 +72,52 @@ function compilePattern(pattern) {
   return { type, value, test: (input) => regex.test(input) };
 }
 
+/**
+ * The forms a policy entry may legitimately match.
+ *
+ * Tenants write bare domains ("evil.com") into their allow/blocklists, but the
+ * inputs reaching this engine are frequently full URLs. Testing only the whole
+ * string and the scheme-stripped string meant "evil.com" matched
+ * "https://evil.com" yet missed "https://evil.com/path" and
+ * "https://www.evil.com/" — so a tenant's blocklist quietly failed on almost
+ * every real URL.
+ *
+ * Matching is anchored to the host, never to a substring of the URL, so an
+ * allowlist entry cannot be widened by an attacker-chosen path or query.
+ */
+function matchCandidates(input) {
+  const normalized = String(input || '')
+    .trim()
+    .toLowerCase();
+  if (!normalized) return [];
+
+  const candidates = [normalized];
+  if (normalized.includes('://')) {
+    candidates.push(normalized.replace(/^[^/:]+:\/\//, ''));
+  }
+
+  let host = null;
+  try {
+    host = new URL(normalized.includes('://') ? normalized : `https://${normalized}`).hostname;
+  } catch {
+    host = null;
+  }
+  if (host) {
+    candidates.push(host);
+    if (host.startsWith('www.')) candidates.push(host.slice(4));
+  }
+
+  return Array.from(new Set(candidates.filter(Boolean)));
+}
+
 function matchesList(input, list) {
-  const normalized = String(input || '').toLowerCase();
-  if (!normalized) return false;
+  const candidates = matchCandidates(input);
+  if (!candidates.length) return false;
 
   for (const item of list || []) {
     const pattern = compilePattern(item);
-    if (pattern.test(normalized)) return true;
-
-    // Also match without scheme for URL inputs.
-    if (normalized.includes('://')) {
-      const withoutScheme = normalized.replace(/^[^/:]+:\/\//, '');
-      if (pattern.test(withoutScheme)) return true;
+    for (const candidate of candidates) {
+      if (pattern.test(candidate)) return true;
     }
   }
   return false;

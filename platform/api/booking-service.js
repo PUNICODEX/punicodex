@@ -14,11 +14,12 @@ const {
   updateSlotMeta,
   isBundleSlot,
   getSlotCreatives,
+  releaseSlotsForBooking,
 } = require('./bookings');
 const discountService = require('./discount-service');
 const { createBookingCheckoutSession, createRenewalCheckoutSession } = require('./stripe');
 const { createVerifiedSession, consumeVerifiedSession } = require('./verified-sessions');
-const { validateMeta } = require('./booking-validation');
+const { validateMeta, validateCompanyName } = require('./booking-validation');
 const { existingWebpFor } = require('./image-webp');
 const {
   sendVerificationCode: emailSendVerificationCode,
@@ -109,6 +110,8 @@ async function createBookingRequest({
 
   const metaError = validateMeta(slot.width, customHeading, customSubtitle);
   if (metaError) throw new BookingError(400, metaError);
+  const nameError = validateCompanyName(companyName);
+  if (nameError) throw new BookingError(400, nameError);
 
   const siteSlug = slot.site_slug || 'nike';
   const siteName = getSiteDisplayName(siteSlug);
@@ -248,6 +251,11 @@ async function createBookingRequest({
       siteName,
     });
   } catch (stripeErr) {
+    // Order matters: release the slots BEFORE deleting the booking. The
+    // release matches on ad_slots.current_booking_id, so dropping the booking
+    // row first would still leave the slots reserved — permanently unsellable
+    // inventory pointing at an id that no longer exists.
+    await releaseSlotsForBooking(id);
     await run('DELETE FROM bookings WHERE id = $1', [id]);
     console.error('Stripe error:', stripeErr.message);
     throw new BookingError(
@@ -343,6 +351,8 @@ async function applyBookingRequest({
 
   const metaError = validateMeta(slot.width, customHeading, customSubtitle);
   if (metaError) throw new BookingError(400, metaError);
+  const nameError = validateCompanyName(companyName);
+  if (nameError) throw new BookingError(400, nameError);
 
   const siteSlug = slot.site_slug || 'nike';
   let bookingResult;

@@ -8,7 +8,11 @@ module.exports = async (req, res) => {
   if (req.method === 'OPTIONS') return res.status(200).end();
 
   try {
-    const slugParts = req.query.slug || [];
+    // Vercel delivers the catch-all capture as one slash-joined STRING. Left
+    // unsplit, `slugParts.length` is a character count and `slugParts[0]` is a
+    // single letter, so every subpath here silently missed its route.
+    let slugParts = req.query.slug || [];
+    if (typeof slugParts === 'string') slugParts = slugParts.split('/').filter(Boolean);
     const body = req.body || {};
 
     // POST /api/bookings (create)

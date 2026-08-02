@@ -220,6 +220,51 @@ async function createBooking({
   });
 }
 
+/**
+ * Compensating action for createBooking: put back every slot this booking
+ * reserved. createBooking stamps `current_booking_id` on the slot AND, for a
+ * bundle, on each member slot, so matching on that column releases exactly
+ * what was taken — no bundle lookup required, and nothing else can match
+ * because the column is set from a fresh booking id.
+ *
+ * Callers that abandon a booking after reservation (a payment provider that
+ * refuses the checkout session, say) MUST call this. Deleting the booking row
+ * alone strands the slot in 'reserved' pointing at an id that no longer
+ * exists, and nothing in the system ever puts it back.
+ */
+async function releaseSlotsForBooking(bookingId) {
+  const result = await run(
+    `UPDATE ad_slots
+        SET status = 'available', current_booking_id = NULL, updated_at = CURRENT_TIMESTAMP
+      WHERE current_booking_id = $1`,
+    [bookingId]
+  );
+  return result?.changes ?? 0;
+}
+
+/**
+ * Cancel unpaid reservations older than `olderThanHours` and release their
+ * slots. Without this sweep a booking that never reaches payment leaves its
+ * slot 'reserved' forever — unsellable inventory.
+ */
+async function sweepStaleReservations({ olderThanHours = 48 } = {}) {
+  const stale = await all(
+    `SELECT id FROM bookings
+      WHERE status = 'pending_payment'
+        AND created_at < datetime('now', ?)`,
+    [`-${olderThanHours} hours`]
+  );
+  let slotsReleased = 0;
+  for (const row of stale) {
+    await run(
+      `UPDATE bookings SET status = 'cancelled', updated_at = CURRENT_TIMESTAMP WHERE id = $1`,
+      [row.id]
+    );
+    slotsReleased += await releaseSlotsForBooking(row.id);
+  }
+  return { canceled: stale.length, slotsReleased };
+}
+
 async function getBookingByToken(token) {
   return get(
     `
@@ -483,7 +528,7 @@ async function extendBooking(bookingId, extensionMonths, amountCents) {
 async function endBooking(bookingId) {
   const booking = await getBookingById(bookingId);
   await run(
-    `UPDATE bookings SET status = 'ended', billing_status = 'canceled', updated_at = CURRENT_TIMESTAMP WHERE id = $1`,
+    `UPDATE bookings SET status = 'ended', billing_status = 'cancelled', updated_at = CURRENT_TIMESTAMP WHERE id = $1`,
     [bookingId]
   );
   // Free bundle slot
@@ -762,6 +807,8 @@ module.exports = {
   getSlots,
   getSlotBySlug,
   getSlotById,
+  releaseSlotsForBooking,
+  sweepStaleReservations,
   createBooking,
   getBookingByToken,
   getBookingByPublicId,

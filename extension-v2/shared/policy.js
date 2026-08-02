@@ -64,17 +64,52 @@ function compilePattern(pattern) {
   return { type, value, test: (input) => regex.test(input) };
 }
 
+/**
+ * The forms a policy entry may legitimately match.
+ *
+ * Callers pass whatever they have — usually a full tab URL
+ * ("https://www.evil.com/a?b=c") — while users type a bare domain
+ * ("evil.com") into the allow/blocklist. Testing only the full string and the
+ * scheme-stripped string meant a bare-domain entry equalled neither, so both
+ * lists were silently inert: nothing a user blocked was ever blocked.
+ *
+ * Host forms are added so the entry people actually write is the entry that
+ * works. Matching stays anchored to the host (never a substring of the URL),
+ * so an allowlist entry cannot be widened by an attacker-chosen path or query.
+ */
+function matchCandidates(input) {
+  const normalized = String(input || '')
+    .trim()
+    .toLowerCase();
+  if (!normalized) return [];
+
+  const candidates = [normalized];
+  if (normalized.includes('://')) {
+    candidates.push(normalized.replace(/^[^/:]+:\/\//, ''));
+  }
+
+  let host = null;
+  try {
+    host = new URL(normalized.includes('://') ? normalized : `https://${normalized}`).hostname;
+  } catch {
+    host = null;
+  }
+  if (host) {
+    candidates.push(host);
+    if (host.startsWith('www.')) candidates.push(host.slice(4));
+  }
+
+  return Array.from(new Set(candidates.filter(Boolean)));
+}
+
 function matchesList(input, list) {
-  const normalized = String(input || '').toLowerCase();
-  if (!normalized) return false;
+  const candidates = matchCandidates(input);
+  if (!candidates.length) return false;
 
   for (const item of list || []) {
     const pattern = compilePattern(item);
-    if (pattern.test(normalized)) return true;
-
-    if (normalized.includes('://')) {
-      const withoutScheme = normalized.replace(/^[^/:]+:\/\//, '');
-      if (pattern.test(withoutScheme)) return true;
+    for (const candidate of candidates) {
+      if (pattern.test(candidate)) return true;
     }
   }
   return false;

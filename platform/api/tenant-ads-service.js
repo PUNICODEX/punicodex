@@ -96,9 +96,10 @@ function listTenantAds({ entryId, status, limit = 50, offset = 0 } = {}) {
 }
 
 /**
- * Get a single tenant ad by ID.
+ * Get a single tenant ad by ID. The analytics token rides only when the
+ * caller is an admin-gated owner path (create/update responses).
  */
-function getTenantAd(id) {
+function getTenantAd(id, { withSecret = false } = {}) {
   const db = getDb();
   const row = db
     .prepare(
@@ -110,7 +111,8 @@ function getTenantAd(id) {
     `
     )
     .get(id);
-  return row ? enrichAd(row) : null;
+  if (!row) return null;
+  return withSecret ? enrichAdWithSecret(row) : enrichAd(row);
 }
 
 /**
@@ -161,7 +163,7 @@ function createTenantAd({
       toSqliteDateTime(activeUntil) || null,
       token
     );
-  return getTenantAd(result.lastInsertRowid);
+  return getTenantAd(result.lastInsertRowid, { withSecret: true });
 }
 
 /**
@@ -196,12 +198,12 @@ function updateTenantAd(id, updates) {
       }
     }
   }
-  if (sets.length === 0) return getTenantAd(id);
+  if (sets.length === 0) return getTenantAd(id, { withSecret: true });
 
   sets.push('updated_at = CURRENT_TIMESTAMP');
   values.push(id);
   db.prepare(`UPDATE tenant_search_ads SET ${sets.join(', ')} WHERE id = ?`).run(...values);
-  return getTenantAd(id);
+  return getTenantAd(id, { withSecret: true });
 }
 
 /**
@@ -318,9 +320,15 @@ function enrichAd(row) {
     weight: row.weight,
     activeFrom: row.active_from,
     activeUntil: row.active_until,
-    analyticsToken: row.analytics_token,
     createdAt: row.created_at,
   };
+}
+
+// The analytics token is the owner's event-recording credential — it is only
+// ever returned on the admin-gated create/update responses, never through the
+// public ad-serving paths (GET list/single, search serving).
+function enrichAdWithSecret(row) {
+  return { ...enrichAd(row), analyticsToken: row.analytics_token };
 }
 
 module.exports = {

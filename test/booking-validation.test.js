@@ -3,7 +3,12 @@
  */
 
 const assert = require('node:assert');
-const { getCharLimits, validateMeta } = require('../platform/api/booking-validation.js');
+const {
+  getCharLimits,
+  validateMeta,
+  validateCompanyName,
+  COMPANY_NAME_MAX,
+} = require('../platform/api/booking-validation.js');
 
 const tests = [];
 function test(name, fn) {
@@ -55,6 +60,44 @@ test('validateMeta rejects subtitles that are too long', () => {
 
 test('validateMeta allows empty optional values', () => {
   assert.strictEqual(validateMeta(1200, null, undefined), null);
+});
+
+/* company_name is the one booking field an unpaid sponsor can put in front of
+   every visitor: it renders on public temple pages while the booking is still
+   only 'reserved'. The renderer's textContent is the defence against markup;
+   these guard the second layer. */
+
+test('validateCompanyName accepts ordinary trade names', () => {
+  for (const name of ['Coca-Cola', 'Ac & Me (Ltd)', 'Ø Studio', '日本電気', "O'Neill", '']) {
+    assert.strictEqual(validateCompanyName(name), null, `rejected a legitimate name: ${name}`);
+  }
+  assert.strictEqual(validateCompanyName(null), null, 'absent name is allowed');
+  assert.strictEqual(validateCompanyName(undefined), null, 'absent name is allowed');
+});
+
+test('validateCompanyName rejects control characters', () => {
+  // Built from char codes so the bytes survive editing: NUL, unit separator,
+  // newline, DEL, and a C1 control.
+  for (const code of [0x00, 0x1f, 0x0a, 0x7f, 0x85]) {
+    const bad = `Acme${String.fromCharCode(code)}Corp`;
+    const err = validateCompanyName(bad);
+    assert.ok(err, `accepted control char U+${code.toString(16).padStart(4, '0')}`);
+    assert.ok(err.includes('control'), err);
+  }
+});
+
+test('validateCompanyName bounds length and type', () => {
+  assert.strictEqual(validateCompanyName('a'.repeat(COMPANY_NAME_MAX)), null, 'at the limit is fine');
+  const tooLong = validateCompanyName('a'.repeat(COMPANY_NAME_MAX + 1));
+  assert.ok(tooLong && tooLong.includes('exceeds'), tooLong);
+  const wrongType = validateCompanyName(42);
+  assert.ok(wrongType && wrongType.includes('string'), wrongType);
+});
+
+test('validateCompanyName leaves markup to the renderer rather than mangling names', () => {
+  // Deliberate: angle brackets are legal in a name and stripping them here
+  // would give false confidence. Escaping belongs at the sink (textContent).
+  assert.strictEqual(validateCompanyName('<script>alert(1)</script>'), null);
 });
 
 run();

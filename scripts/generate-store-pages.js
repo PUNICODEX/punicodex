@@ -231,7 +231,7 @@ function head({ title, description, path: pagePath, css = '', collaborators = fa
 <html lang="en">
 <head>
 <!-- PUNICODEX-ANALYTICS-START -->
-<script src="/js/analytics-beacon.js" defer></script>
+<script src="/js/analytics-beacon.js?v=1" defer></script>
 <!-- PUNICODEX-ANALYTICS-END -->
 ${
   collaborators

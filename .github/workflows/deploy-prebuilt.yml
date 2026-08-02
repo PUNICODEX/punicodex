@@ -74,3 +74,17 @@ jobs:
         run: |
           npx vercel@latest alias "${{ steps.deploy.outputs.url }}" punicodex.com --token=${{ secrets.VERCEL_TOKEN }}
           npx vercel@latest alias "${{ steps.deploy.outputs.url }}" www.punicodex.com --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Notify founder on failure
+        if: failure()
+        env:
+          RESEND_KEY: ${{ secrets.RESEND_API_KEY }}
+        run: |
+          printf '{"from":"PuniCodex CI <bookings@punicodex.com>","to":["punicodex@gmail.com"],"subject":"Deploy chain failed (deploy-prebuilt)","text":"Commit %s failed the deploy-prebuilt chain. Run: %s"}' \
+            "${{ github.sha }}" \
+            "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
+            > payload.json
+          curl -s -X POST https://api.resend.com/emails \
+            -H "Authorization: Bearer $RESEND_KEY" \
+            -H 'Content-Type: application/json' \
+            -d @payload.json

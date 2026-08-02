@@ -374,6 +374,76 @@ async function runTests() {
     assert.strictEqual(body.error.code, 'UNAUTHORIZED');
   });
 
+  // The helper above pre-splits req.query.slug into an array. Vercel does NOT:
+  // a catch-all rewrite delivers ONE slash-joined string. That gap is why the
+  // whole of /api/v2 could be dead in production with every test green, so
+  // these two drive the router with the real production shape.
+  await test('the router resolves a string slug exactly like a pre-split array', async () => {
+    const router = require('../platform/api/api-v2-router.js');
+    const route = router.route || router;
+
+    function capture() {
+      const res = { statusCode: 200, body: null };
+      res.status = (code) => {
+        res.statusCode = code;
+        return res;
+      };
+      res.setHeader = () => {};
+      res.json = (data) => {
+        res.body = data;
+        return res;
+      };
+      res.end = () => res;
+      return res;
+    }
+
+    async function call(slug) {
+      const res = capture();
+      await route({ method: 'GET', query: { slug }, headers: {}, url: '/api/v2/pantheons' }, res);
+      return res;
+    }
+
+    const asString = await call('pantheons');
+    const asArray = await call(['pantheons']);
+    assert.strictEqual(asString.statusCode, 200, 'string slug must resolve');
+    assert.strictEqual(asArray.statusCode, asString.statusCode, 'both shapes agree on status');
+    assert.ok(asString.body && asString.body.data, 'string slug reached the pantheons resource');
+    assert.deepStrictEqual(
+      Object.keys(asString.body).sort(),
+      Object.keys(asArray.body).sort(),
+      'string and array slugs must produce the same response shape'
+    );
+  });
+
+  await test('a multi-segment string slug is split, not treated as one segment', async () => {
+    const router = require('../platform/api/api-v2-router.js');
+    const route = router.route || router;
+    const res = {
+      statusCode: 200,
+      body: null,
+      status(code) {
+        this.statusCode = code;
+        return this;
+      },
+      setHeader() {},
+      json(data) {
+        this.body = data;
+        return this;
+      },
+      end() {
+        return this;
+      },
+    };
+    await route(
+      { method: 'GET', query: { slug: 'tenants/acme/audit' }, headers: {}, url: '/api/v2/tenants/acme/audit' },
+      res
+    );
+    // Reaching the auth check proves the three segments were parsed; an
+    // unsplit slug would have fallen through to the root docs with a 200.
+    assert.strictEqual(res.statusCode, 401, 'multi-segment string slug should reach the route');
+    assert.strictEqual(res.body.error.code, 'UNAUTHORIZED');
+  });
+
   console.log(`\nAPI v2: ${passed} passed, ${failed} failed`);
   if (failed > 0) process.exit(1);
 }

@@ -9,7 +9,8 @@ module.exports = async (req, res) => {
   if (!(await requireAdmin(req, res))) return;
 
   try {
-    const punycode = req.query.punycode || req.params.punycode;
+    // req.params is undefined on Vercel — see the sibling keywords handler.
+    const punycode = req.query.punycode || req.params?.punycode;
     markSiteSpam(punycode);
     res.json({ success: true, punycode, status: 'spam' });
   } catch (err) {

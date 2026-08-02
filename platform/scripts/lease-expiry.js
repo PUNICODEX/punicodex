@@ -1,5 +1,5 @@
 const { all } = require('../db/operational');
-const { endBooking } = require('../api/bookings');
+const { endBooking, sweepStaleReservations } = require('../api/bookings');
 
 async function getLiveExpiredBookings() {
   return all(
@@ -29,7 +29,17 @@ async function runLeaseExpiry() {
     }
   }
 
-  return { checked: expired.length, ended, errors };
+  // Reclaim inventory abandoned at checkout: unpaid reservations older than
+  // 48h are canceled and their slots released back to available.
+  let swept = { canceled: 0, slotsReleased: 0 };
+  try {
+    swept = await sweepStaleReservations({ olderThanHours: 48 });
+  } catch (err) {
+    console.error('Stale-reservation sweep failed:', err.message);
+    errors++;
+  }
+
+  return { checked: expired.length, ended, errors, staleCanceled: swept.canceled, slotsReleased: swept.slotsReleased };
 }
 
 if (require.main === module) {

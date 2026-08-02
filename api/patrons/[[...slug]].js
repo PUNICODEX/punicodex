@@ -67,8 +67,10 @@ module.exports = async (req, res) => {
   if (req.method === 'OPTIONS') return res.status(200).end();
 
   try {
+    // SPLIT, not wrap. Today every patrons route is single-segment so the wrap
+    // happened to work; it would break the first time one gained a subpath.
     let slugParts = req.query.slug || [];
-    if (typeof slugParts === 'string') slugParts = [slugParts];
+    if (typeof slugParts === 'string') slugParts = slugParts.split('/').filter(Boolean);
     const body = req.body || {};
 
     // POST /api/patrons/checkout (and the trailing-slash variant)

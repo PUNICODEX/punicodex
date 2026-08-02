@@ -6,7 +6,10 @@ module.exports = async (req, res) => {
   if (req.method === 'OPTIONS') return res.status(200).end();
 
   try {
-    const slugParts = req.query.slug || [];
+    // Vercel delivers the catch-all capture as one slash-joined STRING; see
+    // the root router. Without the split, GET /api/slots/:id never matches.
+    let slugParts = req.query.slug || [];
+    if (typeof slugParts === 'string') slugParts = slugParts.split('/').filter(Boolean);
     const siteSlug = req.query.site || null;
 
     if (slugParts.length === 0 && req.method === 'GET') {

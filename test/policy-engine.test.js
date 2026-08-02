@@ -175,6 +175,40 @@ test('matchesList supports both exact strings and pattern objects', () => {
   assert.strictEqual(matchesList('good.com', [{ type: 'regex', value: '^bad' }]), false);
 });
 
+// Tenants type bare domains; the engine is handed full URLs. Matching only the
+// whole string and the scheme-stripped string made a blocklist entry miss any
+// URL that carried a path or a www. host — i.e. nearly every real one.
+test('a bare-domain entry matches the real URLs a tenant browses', () => {
+  const list = ['evil.com'];
+  for (const input of [
+    'evil.com',
+    'https://evil.com',
+    'https://evil.com/path?q=1',
+    'http://www.evil.com/',
+    'HTTPS://EVIL.COM/Path',
+  ]) {
+    assert.strictEqual(matchesList(input, list), true, `should match: ${input}`);
+  }
+});
+
+test('host matching cannot be widened by a path, query, or lookalike suffix', () => {
+  const list = ['evil.com'];
+  for (const input of [
+    'https://safe.com/?ref=evil.com',
+    'https://evil.com.attacker.net/',
+    'https://notevil.com/',
+    'https://evilxcom/',
+  ]) {
+    assert.strictEqual(matchesList(input, list), false, `must not match: ${input}`);
+  }
+});
+
+test('glob entries still work against the host of a full URL', () => {
+  const list = [{ type: 'glob', value: '*.evil.com' }];
+  assert.strictEqual(matchesList('https://sub.evil.com/deep/path', list), true);
+  assert.strictEqual(matchesList('https://sub.safe.com/', list), false);
+});
+
 test('normalizePolicy validates invalid actions and themes', () => {
   const policy = normalizePolicy({
     defaultAction: 'invalid',

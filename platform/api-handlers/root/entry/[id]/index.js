@@ -10,7 +10,9 @@ module.exports = (req, res) => {
   if (req.method === 'OPTIONS') return res.status(200).end();
 
   try {
-    const id = req.query.id || req.params.id;
+    // req.params is undefined on Vercel — optional chaining keeps the fallback
+    // from throwing when the query segment is absent.
+    const id = req.query.id || req.params?.id;
     const entry = getEntry(id);
     if (!entry) return res.status(404).json({ error: 'Not found' });
 

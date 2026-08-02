@@ -47,3 +47,17 @@ jobs:
         run: |
           npm run generate
           git diff --exit-code
+
+      - name: Notify founder on failure
+        if: failure()
+        env:
+          RESEND_KEY: ${{ secrets.RESEND_API_KEY }}
+        run: |
+          printf '{"from":"PuniCodex CI <bookings@punicodex.com>","to":["punicodex@gmail.com"],"subject":"CI battery failed (master)","text":"Commit %s failed the CI test battery — no deploy will follow. Run: %s"}' \
+            "${{ github.sha }}" \
+            "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
+            > payload.json
+          curl -s -X POST https://api.resend.com/emails \
+            -H "Authorization: Bearer $RESEND_KEY" \
+            -H 'Content-Type: application/json' \
+            -d @payload.json

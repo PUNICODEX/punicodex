@@ -4,12 +4,13 @@
  * Covers:
  * - Template: offer headline/sentence math for every discount kind; the full
  *   email carries the code, temple, business, CTAs, terms, and custom note.
- * - loadTemple / loadPatternBullets: canonical temple resolution and
- *   pattern-driven resonance bullets.
+ * - loadTemple / loadPatternBullets / buildResonanceBullets: canonical temple
+ *   resolution and pattern/lore-driven resonance bullets.
  * - Endpoint: 401 without a portal token; 400 on missing/invalid recipient,
- *   missing business name, applies_to=all codes; 404 unknown code; happy
- *   path renders + "sends" (mocked without RESEND_API_KEY) with the temple
- *   and business in the subject.
+ *   missing business name, applies_to=all codes, and dead codes (expired,
+ *   inactive, exhausted — a dead code must never be emailed); 404 unknown
+ *   code; 502 when delivery fails; happy path renders + "sends" (mocked
+ *   without RESEND_API_KEY) with the temple and business in the subject.
  */
 
 const assert = require('node:assert');
@@ -30,8 +31,27 @@ const testDb = prepareTestDb(__filename);
 }
 
 const { invoke, adminHeader } = require('./helpers/http.js');
+
+// Capture sendEmail at the module boundary before the pitch handler loads
+// (same require.cache injection discount-codes.test.js uses for stripe): the
+// delivery-failure test flips emailDeliveryFails, every other test delegates
+// to the real console mock (RESEND_API_KEY is deleted above).
+const emailModulePath = require.resolve('../platform/api/email.js');
+const realEmail = require(emailModulePath);
+const emailCalls = [];
+let emailDeliveryFails = false;
+require.cache[emailModulePath].exports = {
+  ...realEmail,
+  sendEmail: async (payload) => {
+    emailCalls.push(payload);
+    if (emailDeliveryFails) return { success: false, error: 'resend delivery refused (stub)' };
+    return realEmail.sendEmail(payload);
+  },
+};
+
 const {
   buildPitchEmail,
+  buildResonanceBullets,
   loadTemple,
   loadPatternBullets,
   offerHeadline,
@@ -85,6 +105,32 @@ async function run() {
     assert.ok(bullets.length >= 1, 'expected at least one bullet');
     assert.match(bullets[0].why, /Feather Exchange/);
     assert.match(bullets[0].why, /Industry Patterns/);
+  });
+
+  await test('buildResonanceBullets: a lore-backed temple returns 3-5 clean bullets', () => {
+    const bullets = buildResonanceBullets('quetzalcoatl', 'Feather Exchange');
+    assert.ok(
+      bullets.length >= 3 && bullets.length <= 5,
+      `expected 3-5 bullets, got ${bullets.length}`
+    );
+    for (const b of bullets) {
+      assert.ok(!/<[a-z][^>]*>/i.test(b.lead), `HTML tag in lead: ${b.lead}`);
+      assert.ok(!/<[a-z][^>]*>/i.test(b.why), `HTML tag in why: ${b.why.slice(0, 60)}`);
+      assert.match(b.why, /^[\p{L}\p{N}]/u, `leading quote debris in why: ${b.why.slice(0, 40)}`);
+      assert.ok(b.why.length <= 500, `why over 500 chars (${b.why.length})`);
+    }
+  });
+
+  await test('buildResonanceBullets: a temple with no lore falls back to the lexicon meaning', () => {
+    // tethys has no lore-catalog entry and no industry-pattern seats, so the
+    // only possible bullet is the lexicon-meaning fallback.
+    const bullets = buildResonanceBullets('tethys', 'Acme Corp');
+    assert.strictEqual(bullets.length, 1);
+    assert.strictEqual(bullets[0].lead, 'The archetype itself.');
+    assert.ok(bullets[0].why.includes('Tēthys'), 'fallback carries the Unicode name');
+    assert.ok(bullets[0].why.includes('Grandmother'), 'fallback carries the lexicon meaning');
+    assert.ok(bullets[0].why.includes('Acme Corp'), 'fallback carries the business name');
+    assert.ok(bullets[0].why.length <= 500, `why over 500 chars (${bullets[0].why.length})`);
   });
 
   // ── Full template render ─────────────────────────────────────
@@ -212,6 +258,75 @@ async function run() {
     assert.strictEqual(res.body.mocked, true);
     assert.match(res.body.subject, /Quetzalcōātl/);
     assert.match(res.body.subject, /Feather Exchange/);
+  });
+
+  // ── Endpoint: a dead code must never be emailed ──────────────
+  await test('pitch endpoint: 400 for expired, inactive, and exhausted codes; nothing is emailed', async () => {
+    const Database = require('better-sqlite3');
+    const cases = [
+      {
+        code: 'PITCHEXPIRED100',
+        mutate: 'SET expires_at = ?',
+        params: [new Date(Date.now() - 60 * 1000).toISOString()],
+        error: /expired/,
+      },
+      { code: 'PITCHINACTIVE100', mutate: 'SET active = 0', params: [], error: /inactive/ },
+      {
+        code: 'PITCHEXHAUSTED100',
+        mutate: 'SET max_uses = 1, used_count = 1',
+        params: [],
+        error: /no uses remaining/,
+      },
+    ];
+    for (const c of cases) {
+      const created = await invoke(discountsHandler, 'POST', '/api/admin/portal/discounts/', {
+        headers: adminHeader(superToken),
+        body: {
+          code: c.code,
+          kind: 'percent_off',
+          percent: 100,
+          appliesTo: 'quetzalcoatl',
+        },
+      });
+      assert.strictEqual(created.status, 201, JSON.stringify(created.body));
+      const conn = new Database(testDb);
+      conn.prepare(`UPDATE discount_codes ${c.mutate} WHERE id = ?`).run(...c.params, created.body.id);
+      conn.close();
+
+      const callsBefore = emailCalls.length;
+      const res = await invoke(
+        pitchHandler,
+        'POST',
+        `/api/admin/portal/discounts/${created.body.id}/pitch/`,
+        {
+          headers: adminHeader(superToken),
+          params: { id: String(created.body.id) },
+          body: { to: 'team@featherexchange.com', businessName: 'Feather Exchange' },
+        }
+      );
+      assert.strictEqual(res.status, 400, `${c.code}: ${JSON.stringify(res.body)}`);
+      assert.match(res.body.error, c.error, `${c.code}: error message`);
+      assert.strictEqual(
+        emailCalls.length,
+        callsBefore,
+        `${c.code}: a dead code must never reach sendEmail`
+      );
+    }
+  });
+
+  await test('pitch endpoint: 502 when email delivery fails', async () => {
+    emailDeliveryFails = true;
+    try {
+      const res = await invoke(pitchHandler, 'POST', `/api/admin/portal/discounts/${codeId}/pitch/`, {
+        headers: adminHeader(superToken),
+        params: { id: String(codeId) },
+        body: { to: 'team@featherexchange.com', businessName: 'Feather Exchange' },
+      });
+      assert.strictEqual(res.status, 502, JSON.stringify(res.body));
+      assert.strictEqual(res.body.error, 'Email delivery failed');
+    } finally {
+      emailDeliveryFails = false;
+    }
   });
 }
 

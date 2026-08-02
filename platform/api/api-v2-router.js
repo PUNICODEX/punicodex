@@ -122,7 +122,10 @@ async function handleNameDetail(_req, res, id) {
   success(res, rewriteLinks(row));
 }
 
-async function handleNameSubresource(_req, res, id, subresource) {
+// The parameter is `req`, not `_req`: the similarities and graph branches read
+// req.query for their limit/strength/relationship filters, so an underscore
+// here turned both subresources into a ReferenceError → 500.
+async function handleNameSubresource(req, res, id, subresource) {
   if (!VALID_NAME_SUBRESOURCES.has(subresource)) {
     error(res, 'NOT_FOUND', `Unknown subresource '${subresource}'.`, { status: 404 });
     return;
@@ -531,7 +534,13 @@ function getOpenApiSpec() {
 }
 
 async function route(req, res) {
-  const slug = Array.isArray(req.query.slug) ? req.query.slug : [];
+  // Vercel delivers a catch-all capture as ONE slash-joined string, not an
+  // array — only the tests ever hand this router a pre-split array. Accepting
+  // just the array shape meant every real request arrived with an empty slug
+  // and fell through to the root docs page. `path` is tolerated because that
+  // is the capture name older rewrites used.
+  const raw = req.query.slug ?? req.query.path ?? [];
+  const slug = Array.isArray(raw) ? raw : String(raw).split('/').filter(Boolean);
   const method = req.method;
 
   // Root docs

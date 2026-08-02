@@ -2,7 +2,9 @@
  * Public Booking Service Tests
  *
  * Covers the advertiser-facing booking lifecycle end-to-end with a mocked
- * Stripe SDK so no live payment calls are made.
+ * Stripe SDK so no live payment calls are made — including the Stripe-failure
+ * compensation path (slots released, booking deleted) exercised by making the
+ * mock throw on checkout-session creation.
  */
 
 const assert = require('node:assert');
@@ -18,6 +20,9 @@ prepareTestDb(__filename);
 // Mock stripe SDK before booking-service loads.
 const stripeModulePath = require.resolve('stripe');
 const sessionsCreated = [];
+// When set, checkout-session creation throws with this error — the
+// Stripe-failure compensation tests at the bottom flip it on and off.
+let stripeCreateError = null;
 require.cache[stripeModulePath] = {
   id: stripeModulePath,
   filename: stripeModulePath,
@@ -26,6 +31,7 @@ require.cache[stripeModulePath] = {
     checkout: {
       sessions: {
         create: async (config) => {
+          if (stripeCreateError) throw stripeCreateError;
           sessionsCreated.push(config);
           return {
             id: 'cs_test_mock',
@@ -682,6 +688,91 @@ test('createBookingRequest: an unknown code falls back to full price, no redempt
   assert.strictEqual(result.discount, undefined);
   const config = sessionsCreated[sessionsCreated.length - 1];
   assert.strictEqual(config.line_items[0].price_data.unit_amount, 9000);
+});
+
+// ── Stripe failure compensation ──────────────────────────────────────────────
+// When checkout-session creation throws, createBookingRequest must release the
+// reserved slot(s) BEFORE deleting the booking row — otherwise the slots stay
+// 'reserved' forever, pointing at a booking id that no longer exists.
+
+test('createBookingRequest: a Stripe failure releases the slot and deletes the booking', async () => {
+  const slotId = getSlotId(__filename, 'hermes', 2);
+  const token = await makeVerifiedEmail('stripe-fail@example.com');
+  const sessionsBefore = sessionsCreated.length;
+  stripeCreateError = new Error('Stripe API key not configured');
+  try {
+    await createBookingRequest({
+      slotId,
+      email: 'stripe-fail@example.com',
+      companyName: 'Doomed Co',
+      leaseMonths: 1,
+      trialMonths: 0,
+      verificationToken: token,
+    });
+    assert.fail('expected a 400 BookingError');
+  } catch (err) {
+    assert.strictEqual(err.status, 400);
+    assert.match(err.message, /Payment provider not configured/);
+  } finally {
+    stripeCreateError = null;
+  }
+  assert.strictEqual(sessionsCreated.length, sessionsBefore, 'no Stripe session was created');
+  const db = new Database(getTestDbPath(__filename));
+  const slot = db
+    .prepare('SELECT status, current_booking_id FROM ad_slots WHERE id = ?')
+    .get(slotId);
+  assert.strictEqual(slot.status, 'available', 'slot released back to available');
+  assert.strictEqual(slot.current_booking_id, null, 'current_booking_id cleared');
+  const bySlot = db.prepare('SELECT COUNT(*) AS c FROM bookings WHERE slot_id = ?').get(slotId);
+  assert.strictEqual(bySlot.c, 0, 'booking row deleted');
+  const byEmail = db
+    .prepare('SELECT COUNT(*) AS c FROM bookings WHERE email = ?')
+    .get('stripe-fail@example.com');
+  assert.strictEqual(byEmail.c, 0, 'no booking left behind for the failed email');
+  db.close();
+});
+
+test('createBookingRequest: a Stripe failure on a bundle releases every member slot', async () => {
+  const bundleId = getBundleSlotId(__filename, 'athena');
+  const token = await makeVerifiedEmail('stripe-fail-bundle@example.com');
+  stripeCreateError = new Error('Stripe API key not configured');
+  try {
+    await createBookingRequest({
+      slotId: bundleId,
+      email: 'stripe-fail-bundle@example.com',
+      companyName: 'Doomed Bundle Co',
+      leaseMonths: 1,
+      trialMonths: 0,
+      verificationToken: token,
+    });
+    assert.fail('expected a 400 BookingError');
+  } catch (err) {
+    assert.strictEqual(err.status, 400);
+    assert.match(err.message, /Payment provider not configured/);
+  } finally {
+    stripeCreateError = null;
+  }
+  const db = new Database(getTestDbPath(__filename));
+  const memberIds = db
+    .prepare('SELECT member_slot_id FROM bundle_members WHERE bundle_slot_id = ?')
+    .all(bundleId)
+    .map((r) => r.member_slot_id);
+  assert.ok(memberIds.length > 0, 'athena bundle has member slots');
+  const stillReserved = db
+    .prepare(
+      `SELECT id FROM ad_slots
+       WHERE (id = ? OR id IN (SELECT member_slot_id FROM bundle_members WHERE bundle_slot_id = ?))
+         AND (status != 'available' OR current_booking_id IS NOT NULL)`
+    )
+    .all(bundleId, bundleId);
+  assert.deepStrictEqual(
+    stillReserved,
+    [],
+    'bundle slot and every member slot released back to available'
+  );
+  const bySlot = db.prepare('SELECT COUNT(*) AS c FROM bookings WHERE slot_id = ?').get(bundleId);
+  assert.strictEqual(bySlot.c, 0, 'booking row deleted');
+  db.close();
 });
 
 const discountService = require('../platform/api/discount-service.js');

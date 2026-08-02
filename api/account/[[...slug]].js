@@ -58,8 +58,11 @@ module.exports = async (req, res) => {
   if (req.method === 'OPTIONS') return res.status(200).end();
 
   try {
+    // SPLIT, not wrap: Vercel joins the capture with slashes, so wrapping
+    // turned "analytics/abc" into the single segment ["analytics/abc"] and no
+    // multi-segment account route ever matched.
     let slugParts = req.query.slug || [];
-    if (typeof slugParts === 'string') slugParts = [slugParts];
+    if (typeof slugParts === 'string') slugParts = slugParts.split('/').filter(Boolean);
     const body = req.body || {};
 
     // ── Auth ──────────────────────────────────────────────────

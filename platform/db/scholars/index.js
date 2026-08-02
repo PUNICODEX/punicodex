@@ -963,11 +963,14 @@ function createHistoryRecord({ sectionId, editId, body, sources, media, attribut
   return stmt.run(sectionId, editId, body, json(sources), json(media), json(attribution), diff);
 }
 
+// NOTE: this feeds the PUBLIC, unauthenticated GET /sections/:id/history.
+// Public attribution is a display name; the contributor's email address is
+// not attribution, it is PII, and it must never appear in this projection.
 function getHistoryForSection(sectionId, { limit = 100, offset = 0 } = {}) {
   const db = getDb();
   const rows = db
     .prepare(`
-    SELECT h.*, u.email, u.display_name
+    SELECT h.*, u.display_name
     FROM scholars_history h
     LEFT JOIN scholars_edits e ON h.edit_id = e.id
     LEFT JOIN scholars_users u ON e.user_id = u.id

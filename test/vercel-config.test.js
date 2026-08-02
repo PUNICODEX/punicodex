@@ -112,6 +112,76 @@ function run() {
     assert.strictEqual(config.trailingSlash, true, 'trailingSlash must stay true');
   });
 
+  // Vercel forwards a rewrite capture under the NAME used in the source
+  // pattern: ":slug*" arrives as ?slug=..., ":path*" as ?path=.... A
+  // [[...slug]] router reads req.query.slug, so a ":path*" capture leaves it
+  // undefined and every request falls through to the router's empty-slug
+  // branch. That is exactly how all of /api/v2 was dead in production while
+  // every test passed (tests inject the slug directly).
+  test('catch-all rewrites capture under the name their router reads', () => {
+    const offenders = [];
+    for (const rewrite of config.rewrites || []) {
+      if (!/\[\[\.\.\.slug\]\]$/.test(rewrite.destination || '')) continue;
+      const capture = (rewrite.source.match(/:(\w+)\*/) || [])[1];
+      if (capture && capture !== 'slug') {
+        offenders.push(`${rewrite.source} -> ${rewrite.destination} (captures :${capture}*)`);
+      }
+    }
+    assert.deepStrictEqual(offenders, [], 'catch-all rewrites with a mismatched capture name');
+  });
+
+  // Vercel populates req.query (the catch-all routers restore bracket segments
+  // there); it never populates req.params. An unguarded req.params.x throws a
+  // TypeError on every request, which handleError turns into a silent 500 —
+  // exactly how tenant-ad impression tracking was dead.
+  test('no handler dereferences req.params without a guard', () => {
+    const handlers = [];
+    (function walk(dir) {
+      for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+        const full = path.join(dir, entry.name);
+        if (entry.isDirectory()) walk(full);
+        else if (entry.name.endsWith('.js')) handlers.push(full);
+      }
+    })(path.join(ROOT, 'platform', 'api-handlers'));
+
+    const offenders = [];
+    for (const file of handlers) {
+      const src = fs.readFileSync(file, 'utf8');
+      src.split(/\r?\n/).forEach((line, i) => {
+        if (line.trim().startsWith('//') || line.trim().startsWith('*')) return;
+        // Bare `req.params.foo` — no `?.`, no `req.params &&` guard.
+        if (/(?<!\?)\breq\.params\.\w+/.test(line) && !/req\.params\s*&&/.test(line)) {
+          offenders.push(`${path.relative(ROOT, file)}:${i + 1}`);
+        }
+      });
+    }
+    assert.deepStrictEqual(offenders, [], 'handlers dereferencing req.params unguarded');
+  });
+
+  test('every [[...slug]] router splits a string slug', () => {
+    // The capture arrives as ONE slash-joined string. A router that treats it
+    // as an array reads a character count for .length and a single letter for
+    // [0], so no multi-segment route ever matches.
+    const routers = [];
+    (function walk(dir) {
+      for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+        const full = path.join(dir, entry.name);
+        if (entry.isDirectory()) walk(full);
+        else if (entry.name === '[[...slug]].js') routers.push(full);
+      }
+    })(path.join(ROOT, 'api'));
+    assert.ok(routers.length > 0, 'no catch-all routers found');
+
+    const offenders = [];
+    for (const file of routers) {
+      const src = fs.readFileSync(file, 'utf8');
+      const splits = /typeof\s+(\w+)\s*===\s*'string'\)?\s*\1\s*=\s*\1\.split\('\/'\)/.test(src);
+      const delegates = /createApiHandler\(/.test(src);
+      if (!splits && !delegates) offenders.push(path.relative(ROOT, file));
+    }
+    assert.deepStrictEqual(offenders, [], 'catch-all routers that never split a string slug');
+  });
+
   console.log(`\nVercel Config: ${passed} passed, ${failed} failed`);
   process.exit(failed > 0 ? 1 : 0);
 }

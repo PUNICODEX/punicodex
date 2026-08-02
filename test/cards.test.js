@@ -42,9 +42,13 @@ const ARCHIVE = CARDS.filter((c) => c.edition === 'archive');
 const VALID_RARITIES = new Set(['common', 'uncommon', 'rare', 'epic', 'legendary', 'mythic']);
 const VALID_TRIGGERS = new Set(['on_play', 'on_attack', 'on_death', 'passive']);
 const VALID_EFFECT_KINDS = new Set([
+  // `all` is the unconditional container (edition upgrades graft their rider
+  // with it); `combo` is the conditional one, reserved for battlecry synergy.
+  'all',
   'aura-allies',
   'buff-allies',
   'buff-self-attacking',
+  'charge',
   'combo',
   'confuse',
   'copy-top-card',

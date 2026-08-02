@@ -25,10 +25,13 @@
    • Combat: attacker and defender deal damage simultaneously (counter-attack).
      Shields absorb damage before health. damage-reduction lowers all incoming
      damage (after halving), floored at 0.
-   • Abilities: full effect-DSL implementation (all 25 kinds present in
+   • Abilities: full effect-DSL implementation (every kind present in
      game/cards.json). Triggers: on_play (battlecry), on_death (deathrattle),
-     passive (continuous while on board). `combo` effects fire only if another
-     card was already played this turn. `random-choice` picks via the seeded
+     passive (continuous while on board). Two container kinds: `all` resolves
+     its sub-effects unconditionally (mechanical composition — how an edition
+     upgrade grafts a rider onto a base effect, and the only container a
+     passive may be wrapped in), while `combo` fires only if another card was
+     already played this turn (designed synergy, battlecries only). `random-choice` picks via the seeded
      RNG. Targeted on_play effects fizzle harmlessly if no legal target exists.
    • Turn cap: 100 half-turns (50 full rounds); on expiry the game is a draw.
 
@@ -313,9 +316,7 @@
     for (var i = 0; i < board.length; i++) {
       var m = board[i];
       if (m.uid === minion.uid) continue;
-      if (m.ability && m.ability.trigger === 'passive' && m.ability.effect.kind === 'aura-allies') {
-        bonus += Number(m.ability.effect.power) || 0;
-      }
+      bonus += passiveAmount(m, 'aura-allies', 'power');
     }
     return bonus;
   }
@@ -351,11 +352,28 @@
     return Math.max(0, p);
   }
 
-  function passiveAmount(minion, kind, field) {
-    if (minion.ability && minion.ability.trigger === 'passive' && minion.ability.effect.kind === kind) {
-      return Number(minion.ability.effect[field || 'amount']) || 0;
+  // A passive may sit directly on the ability effect or inside a container:
+  // 'all' (mechanical composition, e.g. an edition upgrade that adds a rider)
+  // or 'combo' (designed synergy). Containers are read structurally so an
+  // upgraded printing keeps every passive its base printing had — a legendary
+  // must never be weaker than the common it was forged from.
+  function passiveEffectAmount(effect, kind, field) {
+    if (!effect) return 0;
+    if (effect.kind === kind) return Number(effect[field || 'amount']) || 0;
+    if (effect.kind === 'all' || effect.kind === 'combo') {
+      var subs = Array.isArray(effect.effects) ? effect.effects : [];
+      var total = 0;
+      for (var i = 0; i < subs.length; i++) {
+        total += passiveEffectAmount(subs[i], kind, field);
+      }
+      return total;
     }
     return 0;
+  }
+
+  function passiveAmount(minion, kind, field) {
+    if (!minion.ability || minion.ability.trigger !== 'passive') return 0;
+    return passiveEffectAmount(minion.ability.effect, kind, field);
   }
 
   function findMinion(state, uid) {
@@ -494,10 +512,15 @@
         var m = dead[d];
         log(state, p, 'death', m.name + ' is destroyed.');
         if (m.ability && m.ability.trigger === 'on_death') {
+          // A deathrattle fires whenever the minion dies — often on the
+          // opponent's turn, where "did you play another card this turn"
+          // is not a question the dying card can answer. The combo gate is
+          // a battlecry concept; death effects resolve unconditionally.
           resolveEffect(state, p, m.ability.effect, {
             sourceUid: m.uid,
             fromDeath: true,
             deadMinion: m,
+            comboActive: true,
           });
         }
       }
@@ -593,7 +616,6 @@
         // Hero power targets (Pantheon Protocol): the whole enemy board, or
         // the enemy hero directly. Domain doubling applies to minion targets.
         if (effect.target === 'enemy-hero') {
-          if (domainMatches('', effect.bonusVsDomains)) dmgAmount *= 0;
           damageHero(state, enemyIdx, dmgAmount);
           log(state, playerIdx, 'effect', 'The enemy hero takes ' + dmgAmount + ' damage.');
           checkWin(state);
@@ -832,6 +854,31 @@
         break;
       }
 
+      case 'all': {
+        // Unconditional sequence. This is the container for MECHANICAL
+        // composition (an edition upgrade grafting a rider onto a base
+        // effect); 'combo' below stays reserved for designed synergy that
+        // must be earned. Keeping the two apart is what stops an upgraded
+        // printing from silently fizzling outside a battlecry.
+        var allSubs = Array.isArray(effect.effects) ? effect.effects : [];
+        for (i = 0; i < allSubs.length; i++) {
+          resolveEffect(state, playerIdx, allSubs[i], ctx);
+        }
+        break;
+      }
+
+      case 'charge': {
+        // The bearer joins the line already swinging.
+        var hasted = ctx.sourceUid == null ? null : findMinion(state, ctx.sourceUid);
+        if (!hasted) {
+          log(state, playerIdx, 'fizzle', 'There is no one to hasten.');
+          break;
+        }
+        hasted.minion.sick = false;
+        log(state, playerIdx, 'effect', hasted.minion.name + ' charges the moment it arrives.');
+        break;
+      }
+
       case 'combo': {
         if (!ctx.comboActive) {
           log(state, playerIdx, 'fizzle', 'Syzygy not aligned — no card played earlier this turn.');
@@ -874,7 +921,6 @@
       power: def.power + levelBonus,
       maxHealth: def.health + levelBonus,
       health: def.health + levelBonus,
-      speed: def.speed,
       speed: def.speed,
       shield: 0,
       sick: true,
@@ -1046,7 +1092,14 @@
     player.ink -= RULES.SPECIAL_COST;
     minion.specialUsed = true;
     log(state, playerIdx, 'special', minion.name + ' unleashes ' + minion.ability.name + '!');
-    resolveEffect(state, playerIdx, minion.ability.effect, { target: target, sourceUid: minion.uid });
+    // An activated special is already paid for in ink and limited to once per
+    // turn; it carries its own cost, so it does not additionally have to earn
+    // a battlecry's combo condition.
+    resolveEffect(state, playerIdx, minion.ability.effect, {
+      target: target,
+      sourceUid: minion.uid,
+      comboActive: true,
+    });
     checkDeaths(state);
     return { ok: true };
   }
@@ -1271,7 +1324,12 @@
     player.ink = Math.max(0, player.ink - RULES.HERO_POWER_COST);
     player.heroPowerUsed = true;
     log(state, playerIdx, 'effect', 'Player ' + (playerIdx + 1) + ' channels ' + (power.name || 'their hero power') + '!');
-    resolveEffect(state, playerIdx, power.effect, { sourceUid: null, target: power.target });
+    // Same reasoning as an activated special: the ink cost is the condition.
+    resolveEffect(state, playerIdx, power.effect, {
+      sourceUid: null,
+      target: power.target,
+      comboActive: true,
+    });
     checkDeaths(state);
     return { ok: true };
   }

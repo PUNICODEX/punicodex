@@ -53,6 +53,7 @@
   var cards = []; // display cards (battle-scale stats + foil flag)
   var byId = {};
   var pantheons = [];
+  var packPantheons = []; // pantheons that actually have a flagship pool to draw from
   var save = null;
   var battle = null;
   var packResults = null;
@@ -145,20 +146,21 @@
   // The Edition Ladder renamed flagship printings: {id}-standard →
   // {id}-common, {id}-original-script → {id}-secret. Migrate saved
   // collections and decks on load so no player is ever bricked by the set.
+  // Rename a single saved printing to its Edition Ladder name.
+  function migrateOneId(id) {
+    if (byId[id]) return id;
+    var m = String(id).match(/^(.+)-standard$/);
+    if (m && byId[m[1] + '-common']) return m[1] + '-common';
+    var f = String(id).match(/^(.+)-original-script$/);
+    if (f && byId[f[1] + '-secret']) return f[1] + '-secret';
+    return id;
+  }
+
   function migrateIds(map) {
     var migrated = {};
     Object.keys(map || {}).forEach(function (id) {
-      var count = map[id];
-      var next = id;
-      if (!byId[id]) {
-        var m = id.match(/^(.+)-standard$/);
-        if (m && byId[m[1] + '-common']) next = m[1] + '-common';
-        else {
-          var f = id.match(/^(.+)-original-script$/);
-          if (f && byId[f[1] + '-secret']) next = f[1] + '-secret';
-        }
-      }
-      migrated[next] = Math.max(migrated[next] || 0, count);
+      var next = migrateOneId(id);
+      migrated[next] = Math.max(migrated[next] || 0, map[id]);
     });
     return migrated;
   }
@@ -171,9 +173,24 @@
       if (!data || data.v !== 1 || !data.collection || !data.stats) return null;
       data.ink = Math.max(0, Math.floor(Number(data.ink) || 0));
       data.collection = migrateIds(data.collection);
-      if (!Array.isArray(data.deck)) data.deck = [];
-      else data.deck = migrateIds(Object.fromEntries(data.deck.map(function (id) { return [id, 1]; })));
-      data.deck = Object.keys(data.deck);
+      // A deck is an ORDERED list that legally holds up to MAX_COPIES of an
+      // id. Round-tripping it through an object keyed by id collapsed every
+      // duplicate, so a legal 30-card deck shrank a little on every load until
+      // it was no longer playable. Migrate element-wise instead, keeping order
+      // and multiplicity, and drop ids the current set no longer prints.
+      if (!Array.isArray(data.deck)) {
+        data.deck = [];
+      } else {
+        var maxCopies = (Engine && Engine.RULES && Engine.RULES.MAX_COPIES) || 2;
+        var deckCounts = {};
+        data.deck = data.deck
+          .map(migrateOneId)
+          .filter(function (id) {
+            if (!byId[id]) return false;
+            deckCounts[id] = (deckCounts[id] || 0) + 1;
+            return deckCounts[id] <= maxCopies;
+          });
+      }
       return data;
     } catch (e) {
       return null;
@@ -760,6 +777,24 @@
     var params = new URLSearchParams(window.location.search);
     var sessionId = params.get('ink_session');
     if (!sessionId) return;
+
+    save.inkSessions = save.inkSessions || {};
+
+    function cleanUrl() {
+      params.delete('ink_session');
+      var clean = window.location.pathname + (params.toString() ? '?' + params.toString() : '') + window.location.hash;
+      window.history.replaceState(null, '', clean);
+    }
+
+    // A session this browser has already banked is never credited twice, no
+    // matter how the URL comes back (bookmark, history, shared link). Cleaning
+    // the address bar alone was never a real guard.
+    if (save.inkSessions[sessionId]) {
+      showToast('This Ink was already credited — the Archive remembers.');
+      cleanUrl();
+      return;
+    }
+
     try {
       var res = await fetch('/api/game/ink/redeem/', {
         method: 'POST',
@@ -768,7 +803,11 @@
       });
       var data = await res.json();
       if (data.ok && data.ink > 0) {
+        // alreadyRedeemed still credits HERE exactly once: the server may have
+        // flipped the row on an earlier attempt whose response this browser
+        // never persisted. The local ledger is what makes that safe to repeat.
         save.ink += data.ink;
+        save.inkSessions[sessionId] = true;
         persist();
         renderCurrencies();
         showToast(
@@ -776,16 +815,19 @@
             ? 'This Ink was already credited — the Archive remembers.'
             : '+' + data.ink.toLocaleString('en-US') + ' ✦ Ink restored to your archive.'
         );
+        cleanUrl();
       } else {
+        // A definitive rejection: the token is worthless, so retiring it is
+        // correct and keeps the player from looping on the same error.
         showToast(data.error || 'That checkout could not be verified.');
+        cleanUrl();
       }
     } catch (err) {
-      showToast('Ink verification failed — your purchase is safe; try again shortly.');
+      // Network/parse failure only. The checkout may well be paid, so the
+      // session id is LEFT in the URL — it is the only handle on that money,
+      // and a refresh must be able to retry it.
+      showToast('Ink verification failed — your purchase is safe; refresh to try again.');
     }
-    // Clean the URL so a refresh never re-credits.
-    params.delete('ink_session');
-    var clean = window.location.pathname + (params.toString() ? '?' + params.toString() : '') + window.location.hash;
-    window.history.replaceState(null, '', clean);
   }
 
   /* ── The Archive Exchange: specific cards at fixed prices ──────────────── */
@@ -873,7 +915,7 @@
       var select = document.createElement('select');
       select.className = 'filter-select';
       select.style.width = '100%';
-      pantheons.forEach(function (p) {
+      packPantheons.forEach(function (p) {
         var opt = document.createElement('option');
         opt.value = p;
         opt.textContent = prettyPantheon(p);
@@ -900,10 +942,24 @@
       showToast('Not enough Ink — win battles to earn more.');
       return;
     }
+    // Draw BEFORE charging, and never charge for an empty pull. An exhausted
+    // pool used to yield undefined cards after the ink was already gone.
+    var drawn = drawPackCards(def, pantheon);
+    var complete =
+      Array.isArray(drawn) &&
+      drawn.length === def.size &&
+      drawn.every(function (c) {
+        return c && c.id;
+      });
+    if (!complete) {
+      showToast('That pack has nothing to print right now — your Ink is untouched.');
+      return;
+    }
+
     save.ink -= def.cost;
     save.stats.packsOpened++;
     sfx('pack');
-    packResults = drawPackCards(def, pantheon);
+    packResults = drawn;
     packResults.forEach(function (c) {
       save.collection[c.id] = (save.collection[c.id] || 0) + 1;
     });
@@ -3237,6 +3293,18 @@
       }
     });
     pantheons.sort();
+
+    // Packs print flagship editions only (see drawPackCards), so a pantheon
+    // with no flagship cards has an empty pool. Offering it in the Pantheon
+    // Pack picker charged the player and then drew nothing.
+    var seenPack = {};
+    cards.forEach(function (c) {
+      if (c.flagship && c.pantheon && !seenPack[c.pantheon]) {
+        seenPack[c.pantheon] = true;
+        packPantheons.push(c.pantheon);
+      }
+    });
+    packPantheons.sort();
 
     save = loadSave();
     var firstVisit = !save;
