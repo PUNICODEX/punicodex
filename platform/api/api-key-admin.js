@@ -109,7 +109,10 @@ async function getKeyById(id) {
   return row ? toKeyRow(row) : null;
 }
 
-async function createKey({ name, tier = 'free', scopes = ['names:read'], rateLimit = null }, actor = null) {
+async function createKey(
+  { name, tier = 'free', scopes = ['names:read'], rateLimit = null },
+  actor = null
+) {
   const tierValidation = validateTier(tier);
   if (!tierValidation.valid) throw new Error(tierValidation.error);
 

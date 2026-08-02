@@ -54,7 +54,7 @@ async function requireAdmin(req, res) {
   const adminUserId = await getSessionAdminUserId(token);
   if (adminUserId != null) {
     const user = await getUserById(adminUserId);
-    if (!user || user.status !== 'active' || user.role !== 'superadmin') {
+    if (user?.status !== 'active' || user.role !== 'superadmin') {
       res.status(403).json({ error: 'Forbidden', required: 'superadmin' });
       return false;
     }

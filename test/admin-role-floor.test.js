@@ -141,7 +141,9 @@ test('a disabled portal user is refused even with a live session row', async () 
   const Database = require('better-sqlite3');
   const { getTestDbPath } = require('./helpers/test-db.js');
   const db = new Database(getTestDbPath(__filename));
-  db.prepare("UPDATE admin_users SET status = 'disabled' WHERE email = ?").run('doomed@portal.test');
+  db.prepare("UPDATE admin_users SET status = 'disabled' WHERE email = ?").run(
+    'doomed@portal.test'
+  );
   db.close();
 
   const res = await invoke(apiKeysHandler, 'GET', '/api/admin/api-keys', {
