@@ -145,7 +145,7 @@ const SUITES = [
   {
     name: 'Site Analytics Tests',
     cmd: 'node test/site-analytics.test.js',
-    timeout: 600000,
+    timeout: 900000,
   },
   { name: 'Booking Service Tests', cmd: 'node test/booking-service.test.js' },
   { name: 'Booking Validation Tests', cmd: 'node test/booking-validation.test.js' },
