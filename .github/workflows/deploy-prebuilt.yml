@@ -11,7 +11,14 @@ name: deploy-prebuilt
 #   VERCEL_PROJECT_ID  — prj_OPmo5PZQZRO8ou4tADJr47WaYwwk (same file)
 
 on:
+  # Manual: Actions → deploy-prebuilt → Run workflow.
   workflow_dispatch:
+  # Automatic: fires when the CI workflow (full test battery + divergence
+  # gate) completes on master — deploys only if the battery is green.
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
+    branches: [master]
 
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
@@ -19,6 +26,7 @@ env:
 
 jobs:
   build-and-deploy:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     timeout-minutes: 120
     steps:
