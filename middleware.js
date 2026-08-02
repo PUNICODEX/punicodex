@@ -1337,8 +1337,12 @@ export default function middleware(request) {
   const directId = DIRECT_SERVE_MAP[host];
   if (directId) {
     // Shared static assets live at the project root, not inside /sites/{id}.
-    // Serve them from the root so root-relative /js/... and /css/... links work.
-    if (/^\/(js|css)\//.test(url.pathname)) {
+    // Serve them from the root so root-relative links work: /js/...,
+    // /css/..., the self-hosted webfonts (/assets/fonts/), and the brand
+    // wordmark (/assets/brand/). Do NOT blanket-allow /assets/ — temple
+    // pages reference mascots/composites relative to /sites/{id}/assets/,
+    // and those depend on the prefixing below.
+    if (/^\/(js|css)\//.test(url.pathname) || /^\/assets\/(fonts|brand)\//.test(url.pathname)) {
       return fetch(url);
     }
     url.pathname = '/sites/' + directId + url.pathname;
@@ -1356,10 +1360,13 @@ export default function middleware(request) {
   };
   const externalTarget = EXTERNAL_REDIRECT_DOMAINS[host];
   if (externalTarget) {
+    // Preserve path + query (νίκη.com/lore/?utm=x →
+    // https://punicodex.com/nike/lore/?utm=x) so deep links and campaign
+    // parameters survive the redirect to the canonical domain.
     return new Response(null, {
       status: 301,
       headers: {
-        'Location': externalTarget,
+        'Location': externalTarget + url.pathname + url.search,
         'Cache-Control': 'public, max-age=0, must-revalidate',
       },
     });
