@@ -1,7 +1,7 @@
 /**
  * PUNICODEX — Service Worker
  * Lightweight: precache shell pages, stale-while-revalidate for assets.
- * Cache-bust revision: v3-2026-07-26
+ * Cache-bust revision: v5-2026-08-02 (document branch no longer caches error pages)
  *
  * Hard rules (learned from production failures):
  * - NEVER intercept /api/ or /admin-portal/ requests. Admin tooling and
@@ -13,8 +13,8 @@
  *   and breaks the page's own fetch handling.
  */
 
-const SHELL_CACHE = 'punicodex-shell-v4';
-const ASSET_CACHE = 'punicodex-assets-v4';
+const SHELL_CACHE = 'punicodex-shell-v5';
+const ASSET_CACHE = 'punicodex-assets-v5';
 
 // Precache critical shell HTML pages only.
 // Versioned JS/CSS are fetched on demand and will update when their query
@@ -85,6 +85,9 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
       fetch(request)
         .then(response => {
+          // Never cache error responses (404/500 HTML): a cached error page
+          // would keep being served as the document until eviction.
+          if (!response || !response.ok) return response;
           const clone = response.clone();
           caches.open(SHELL_CACHE).then(cache => cache.put(request, clone)).catch(() => {});
           return response;
