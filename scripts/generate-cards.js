@@ -558,7 +558,9 @@ const EDITION_META = {
 };
 
 // Full-art upgrades the ability into the card's special attack: a numeric
-// power effect gains +2; anything else gains a small rallying flourish.
+// power effect gains +2; a passive amount-keyed effect (ink-gen,
+// heal-hero-turn, damage-reduction — read off the board every turn, never
+// resolved) gains +1 amount; anything else gains a small rallying flourish.
 //
 // The rider is grafted with the `all` container, never `combo`. `combo` is a
 // CONDITIONAL container — the engine resolves it only when another card was
@@ -578,6 +580,18 @@ function upgradeAbility(ability, edition) {
       name: ability.name,
       description: `${ability.description} +2 power (Full-Art).`,
       effect: { ...effect, power: effect.power + 2 },
+    };
+  }
+  // Audit fix: for PASSIVE amount-keyed effects the rally rider below is dead
+  // text — the engine only resolves on_play/on_death/activated specials, and
+  // no passiveAmount call site queries buff-allies, so the grafted ally buff
+  // never fired. Grow the number the passive actually pays out instead
+  // (mirrors the +2-power branch's additive "+1 (Full-Art)." reading).
+  if (effect && ability.trigger === 'passive' && typeof effect.amount === 'number') {
+    return {
+      ...ability,
+      description: `${ability.description} +1 (Full-Art).`,
+      effect: { ...effect, amount: effect.amount + 1 },
     };
   }
   if (effect && effect.kind && effect.kind !== 'all' && effect.kind !== 'combo') {
