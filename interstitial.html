@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <!-- PUNICODEX-ANALYTICS-START -->
-<script src="/js/analytics-beacon.js" defer></script>
+<script src="/js/analytics-beacon.js?v=1" defer></script>
 <!-- PUNICODEX-ANALYTICS-END -->
 
 <!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
@@ -11,6 +11,7 @@
 <!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
   <title data-i18n="aria.warning">Potential spoof — PuniCodex Authenticity Shield</title>
   <style>
     :root {
@@ -398,6 +399,21 @@
 
       const params = new URLSearchParams(location.search);
       const targetUrl = params.get('url') || '';
+
+      // Only ever NAVIGATE to a real web address. This page is reached with an
+      // attacker-influenced ?url=, and a script-initiated assignment of a
+      // `javascript:` URL runs in THIS origin — which would turn the block
+      // page into one-click XSS on punicodex.com, the same origin as the admin
+      // portal. The raw string is still shown to the user (via textContent, so
+      // it cannot execute); only the Proceed navigation is gated.
+      const safeTargetUrl = (function () {
+        try {
+          const parsed = new URL(targetUrl);
+          return parsed.protocol === 'http:' || parsed.protocol === 'https:' ? parsed.href : null;
+        } catch (err) {
+          return null;
+        }
+      })();
       const verdict = params.get('verdict') || 'unknown';
       const severity = params.get('severity') || 'none';
       const reason = params.get('reason') || '';
@@ -508,12 +524,23 @@
           }
         }
 
+        // Nothing to proceed to when the address is not a web URL: say so
+        // plainly rather than leaving a button that silently does nothing.
+        if (!safeTargetUrl) {
+          const proceedBtn = document.getElementById('proceed-btn');
+          if (proceedBtn) {
+            proceedBtn.disabled = true;
+            proceedBtn.setAttribute('aria-disabled', 'true');
+            proceedBtn.title = 'This address uses an unsupported scheme and cannot be opened.';
+          }
+        }
+
         applyI18n();
       }
 
       document.getElementById('proceed-btn').addEventListener('click', () => {
-        if (targetUrl) {
-          location.href = targetUrl;
+        if (safeTargetUrl) {
+          location.href = safeTargetUrl;
         }
       });
 

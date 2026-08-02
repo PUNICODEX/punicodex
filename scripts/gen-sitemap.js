@@ -79,7 +79,6 @@ const mainPages = [
   { loc: '/oracle.html', priority: '0.6', changefreq: 'monthly' },
   { loc: '/search-v2.html', priority: '0.7', changefreq: 'weekly' },
   { loc: '/lexicon/cognates.html', priority: '0.6', changefreq: 'monthly' },
-  { loc: '/interstitial.html', priority: '0.3', changefreq: 'yearly' },
   { loc: '/terms/data-use/', priority: '0.4', changefreq: 'yearly' },
   { loc: '/terms/store/', priority: '0.4', changefreq: 'yearly' },
   { loc: '/terms/creatives/', priority: '0.4', changefreq: 'yearly' },
