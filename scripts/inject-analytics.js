@@ -7,7 +7,7 @@
  *   GA_MEASUREMENT_ID   — e.g. G-XXXXXXXXXX
  *   GSC_VERIFICATION    — e.g. abcdefg123456
  *
- * The first-party beacon (<script src="/js/analytics-beacon.js" defer>) is
+ * The first-party beacon (<script src="/js/analytics-beacon.js?v=1" defer>) is
  * ALWAYS injected. GA4/GSC tags are only added when the env vars are set.
  * Injection is idempotent: the previously injected block (between the
  * PUNICODEX-ANALYTICS markers) is stripped before re-injecting.
@@ -22,7 +22,9 @@ const GSC = process.env.GSC_VERIFICATION;
 
 const MARKER_START = '<!-- PUNICODEX-ANALYTICS-START -->';
 const MARKER_END = '<!-- PUNICODEX-ANALYTICS-END -->';
-const BEACON_TAG = '<script src="/js/analytics-beacon.js" defer></script>';
+// Versioned asset ref: /js is immutable-cached for a year, so this ?v= MUST
+// bump whenever js/analytics-beacon.js changes, or clients keep the stale file.
+const BEACON_TAG = '<script src="/js/analytics-beacon.js?v=1" defer></script>';
 
 function buildSnippet() {
   const parts = [];

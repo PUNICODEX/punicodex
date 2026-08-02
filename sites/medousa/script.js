@@ -604,16 +604,46 @@ function updateSlotUI() {
       const slotParam = slot.slug ? `&slot=${encodeURIComponent(slot.slug)}` : '';
       const pixelUrl = `${API_BASE}/api/analytics/pixel.gif/?b=${slot.public_id}${slotParam}`;
       const clickUrl = `${API_BASE}/api/analytics/click/?b=${slot.public_id}&url=${encodeURIComponent(slot.website_url || '#')}${slotParam}`;
-      const adImg = `<img src="${API_BASE}${slot.creative_path}" alt="${slot.company_name || 'Advertisement'}" style="width:100%;height:100%;object-fit:cover;display:block;">`;
-      const adMedia = slot.creative_webp_path
-        ? `<picture><source type="image/webp" srcset="${API_BASE}${slot.creative_webp_path}">${adImg}</picture>`
-        : adImg;
-      frame.innerHTML = `
-        <a href="${clickUrl}" target="_blank" rel="noopener" class="space-live-ad" style="display:block;width:100%;height:100%;position:relative;z-index:2;">
-          ${adMedia}
-        </a>
-        <img class="space-pixel" src="${pixelUrl}" width="1" height="1" style="position:absolute;opacity:0;pointer-events:none;" alt="">
-      `;
+      // Built with DOM calls, not an HTML string: company_name is
+      // sponsor-supplied and reaches this page before any payment clears, so
+      // interpolating it into markup (even inside an alt="") is a stored-XSS
+      // sink in the same origin as the admin portal. Property assignment
+      // cannot break out of its attribute.
+      const link = document.createElement('a');
+      link.href = clickUrl;
+      link.target = '_blank';
+      link.rel = 'noopener';
+      link.className = 'space-live-ad';
+      link.style.cssText = 'display:block;width:100%;height:100%;position:relative;z-index:2;';
+
+      const adImg = document.createElement('img');
+      adImg.src = `${API_BASE}${slot.creative_path}`;
+      adImg.alt = slot.company_name || 'Advertisement';
+      adImg.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+
+      if (slot.creative_webp_path) {
+        const picture = document.createElement('picture');
+        const source = document.createElement('source');
+        source.type = 'image/webp';
+        source.srcset = `${API_BASE}${slot.creative_webp_path}`;
+        picture.appendChild(source);
+        picture.appendChild(adImg);
+        link.appendChild(picture);
+      } else {
+        link.appendChild(adImg);
+      }
+
+      const pixel = document.createElement('img');
+      pixel.className = 'space-pixel';
+      pixel.src = pixelUrl;
+      pixel.width = 1;
+      pixel.height = 1;
+      pixel.alt = '';
+      pixel.style.cssText = 'position:absolute;opacity:0;pointer-events:none;';
+
+      frame.innerHTML = '';
+      frame.appendChild(link);
+      frame.appendChild(pixel);
       // Re-add glow if it was removed
       if (!frame.querySelector('.space-frame-glow')) {
         const glow = document.createElement('div');
@@ -627,10 +657,16 @@ function updateSlotUI() {
       // RESERVED: hide button, show overlay inside frame
       const overlay = document.createElement('div');
       overlay.className = 'space-frame-overlay';
-      overlay.innerHTML = `
-        <span class="space-frame-overlay-text">${slot.status === 'live' ? 'LIVE' : 'RESERVED'}</span>
-        <span class="space-frame-overlay-sub">${slot.company_name || ''}</span>
-      `;
+      // textContent, not innerHTML: a sponsor controls company_name and this
+      // overlay renders while the booking is still merely 'reserved'.
+      const overlayText = document.createElement('span');
+      overlayText.className = 'space-frame-overlay-text';
+      overlayText.textContent = slot.status === 'live' ? 'LIVE' : 'RESERVED';
+      const overlaySub = document.createElement('span');
+      overlaySub.className = 'space-frame-overlay-sub';
+      overlaySub.textContent = slot.company_name || '';
+      overlay.appendChild(overlayText);
+      overlay.appendChild(overlaySub);
       frame.appendChild(overlay);
 
       if (!slotEl.querySelector('.space-reserved-badge')) {

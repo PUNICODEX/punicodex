@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <!-- PUNICODEX-ANALYTICS-START -->
-<script src="/js/analytics-beacon.js" defer></script>
+<script src="/js/analytics-beacon.js?v=1" defer></script>
 <!-- PUNICODEX-ANALYTICS-END -->
 
     <meta charset="UTF-8">
@@ -219,7 +219,20 @@
                         <label for="dc-note">Note (optional)</label>
                         <input type="text" id="dc-note" placeholder="Internal note" maxlength="500">
                     </div>
+                    <div class="field">
+                        <label for="dc-pitch-to">Email pitch to (optional)</label>
+                        <input type="email" id="dc-pitch-to" placeholder="prospect@business.com" maxlength="254">
+                    </div>
+                    <div class="field">
+                        <label for="dc-pitch-name">Business name for the pitch</label>
+                        <input type="text" id="dc-pitch-name" placeholder="e.g. Feather Exchange" maxlength="120">
+                    </div>
+                    <div class="field">
+                        <label for="dc-pitch-note">Personal line in the pitch (optional)</label>
+                        <input type="text" id="dc-pitch-note" placeholder="One founder's sentence, woven into the email" maxlength="600">
+                    </div>
                     <button type="button" class="btn btn-primary" id="dc-create">Create Code</button>
+                    <p class="cell-sub" style="margin:0.35rem 0 0 0;">With a recipient and business name, creating the code also sends the founding-sponsorship pitch email. Temple-scoped codes only.</p>
                 </div>
             </section>
 
@@ -945,8 +958,30 @@
                 body.thenPriceCents = dollarsToCents(document.getElementById('dc-then-price').value);
             }
             try {
-                await Portal.api('/api/admin/portal/discounts/', { method: 'POST', body: body });
+                var created = await Portal.api('/api/admin/portal/discounts/', { method: 'POST', body: body });
                 Portal.toast('Discount code created', 'success');
+                var pitchTo = document.getElementById('dc-pitch-to').value.trim();
+                var pitchName = document.getElementById('dc-pitch-name').value.trim();
+                if (pitchTo && pitchName && created && created.id != null) {
+                    try {
+                        var pitch = await Portal.api('/api/admin/portal/discounts/' + created.id + '/pitch/', {
+                            method: 'POST',
+                            body: {
+                                to: pitchTo,
+                                businessName: pitchName,
+                                customNote: document.getElementById('dc-pitch-note').value.trim() || undefined,
+                            },
+                        });
+                        Portal.toast(
+                            pitch.mocked
+                                ? 'Pitch rendered but not sent — RESEND_API_KEY is not configured'
+                                : 'Founding pitch emailed to ' + pitchTo,
+                            pitch.mocked ? 'error' : 'success'
+                        );
+                    } catch (pitchErr) {
+                        Portal.toast('Code created, but the pitch failed: ' + pitchErr.message, 'error');
+                    }
+                }
                 document.getElementById('dc-code').value = '';
                 document.getElementById('dc-note').value = '';
                 loadDiscounts();
