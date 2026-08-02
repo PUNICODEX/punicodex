@@ -15,13 +15,13 @@
  * ability overrides for the spec's named exemplars, ABILITY_OVERRIDES below,
  * which are themselves keyed to scholarly domain data).
  *
- * Rarity ladder (docs/card-game-spec.md §2):
- *   common    — tier-2 entries
- *   uncommon  — tier-2 entries with a notable domain
- *   rare      — tier-1 entries (non-flagship)
- *   epic      — dual-tier entries (non-flagship)
- *   legendary — flagship / owned-domain entries (standard variant)
- *   mythic    — original-script foil variants (chase cards)
+ * Rarity is a property of the PRINTING, never of ownership — the Edition
+ * Ladder (see EDITION_META below): every flagship archetype is printed as
+ * common → holo → full-art, plus a secret original-script foil when a
+ * verified script exists; edition mirrors to rarity (common→common,
+ * holo→rare, full-art→legendary, secret→mythic). Non-flagship entries
+ * enter as single archive printings with tier-derived rarity and climb
+ * the ladder when their temple is promoted to flagship.
  *
  * Outputs (byte-identical copies; consumed by the API and the web client):
  *   - platform/api/cards.json
@@ -276,8 +276,8 @@ const ABILITY_OVERRIDES = {
   hermes: {
     name: 'Wayfinder',
     description: 'Draw a card. Hermes may attack the turn he is played.',
-    trigger: 'passive',
-    effect: { kind: 'combo', effects: [{ kind: 'draw', count: 1 }, { kind: 'charge' }] },
+    trigger: 'on_play',
+    effect: { kind: 'all', effects: [{ kind: 'draw', count: 1 }, { kind: 'charge' }] },
   },
   demeter: {
     name: 'Harvest Blessing',
@@ -335,231 +335,6 @@ const ABILITY_OVERRIDES = {
   },
 };
 
-// Domain-derived abilities for entries without an override. Ordered: first
-// match wins, so more specific domains come first.
-const DOMAIN_ABILITIES = [
-  [/thunder|lightning/, {
-    name: 'Thunderstrike',
-    description: 'Deal 10 damage to an enemy; double against Sea or Sky domains.',
-    trigger: 'on_play',
-    effect: { kind: 'damage', target: 'enemy-minion', amount: 10, bonusVsDomains: ['sea', 'sky'] },
-  }],
-  [/war|battle|strife/, {
-    name: 'Battle Fury',
-    description: 'Gains +5 power when attacking.',
-    trigger: 'passive',
-    effect: { kind: 'buff-self-attacking', power: 5 },
-  }],
-  [/sea|ocean|tidal|flood/, {
-    name: 'Tidal Wave',
-    description: 'Deal 5 damage to all enemy cards when played.',
-    trigger: 'on_play',
-    effect: { kind: 'damage', target: 'all-enemy-minions', amount: 5 },
-  }],
-  [/wisdom|tactical|knowledge|writing|scribal/, {
-    name: 'Tactical Counsel',
-    description: 'Draw a card when played.',
-    trigger: 'on_play',
-    effect: { kind: 'draw', count: 1 },
-  }],
-  [/magic|crossroads|mystery|witchcraft|sorcery/, {
-    name: 'Crossroads',
-    description: 'Choose one of three random effects on play.',
-    trigger: 'on_play',
-    effect: {
-      kind: 'random-choice',
-      options: [
-        { kind: 'draw', count: 1 },
-        { kind: 'damage', target: 'enemy-minion', amount: 6 },
-        { kind: 'heal-hero', amount: 6 },
-      ],
-    },
-  }],
-  [/love|beauty|charm|desire/, {
-    name: 'Charm',
-    description: 'An enemy card loses 10 power until end of turn.',
-    trigger: 'on_play',
-    effect: { kind: 'debuff-enemy', target: 'enemy-minion', power: 10, untilEndOfTurn: true },
-  }],
-  [/death|underworld|shadow|grave/, {
-    name: 'Grasp of Shadows',
-    description: 'Drain 5 health from the enemy hero.',
-    trigger: 'on_play',
-    effect: { kind: 'drain-hero', amount: 5 },
-  }],
-  [/victory|triumph/, {
-    name: 'Triumph',
-    description: 'Inspire your allies for +3 power while in play.',
-    trigger: 'passive',
-    effect: { kind: 'aura-allies', power: 3 },
-  }],
-  [/sun|light|fire|flame|dawn/, {
-    name: 'Radiance',
-    description: 'Blind an enemy, halving its speed.',
-    trigger: 'on_play',
-    effect: { kind: 'slow-enemy', target: 'enemy-minion' },
-  }],
-  [/moon|night|dream/, {
-    name: 'Lunar Veil',
-    description: 'Shield an ally from the next 6 damage.',
-    trigger: 'on_play',
-    effect: { kind: 'shield-ally', target: 'ally-minion', amount: 6 },
-  }],
-  [/earth|grain|harvest|agriculture|fertility/, {
-    name: 'Harvest Blessing',
-    description: 'Restore 3 health to all friendly cards.',
-    trigger: 'on_play',
-    effect: { kind: 'heal-allies', amount: 3 },
-  }],
-  [/wine|ecstasy|madness|revelry/, {
-    name: 'Ecstatic Madness',
-    description: 'Confuse an enemy card for a turn.',
-    trigger: 'on_play',
-    effect: { kind: 'confuse', target: 'enemy-minion' },
-  }],
-  [/hunt|wild|wilderness|beast/, {
-    name: 'Hunter’s Mark',
-    description: 'Deal 7 damage to the strongest enemy card.',
-    trigger: 'on_play',
-    effect: { kind: 'damage', target: 'strongest-enemy-minion', amount: 7 },
-  }],
-  [/forge|craft|smith|artisan|metalwork/, {
-    name: 'Forge Mastery',
-    description: 'Reduce incoming damage by 3.',
-    trigger: 'passive',
-    effect: { kind: 'damage-reduction', amount: 3 },
-  }],
-  [/heal|medicine|physician/, {
-    name: 'Panacea',
-    description: 'Restore 8 health to your hero.',
-    trigger: 'on_play',
-    effect: { kind: 'heal-hero', amount: 8 },
-  }],
-  [/music|poetry|song|lyre/, {
-    name: 'Hymn',
-    description: 'Restore 5 health to your hero and draw a card.',
-    trigger: 'on_play',
-    effect: { kind: 'combo', effects: [{ kind: 'heal-hero', amount: 5 }, { kind: 'draw', count: 1 }] },
-  }],
-  [/storm|wind|tempest|rain/, {
-    name: 'Storm Call',
-    description: 'Deal 4 damage to all enemy cards.',
-    trigger: 'on_play',
-    effect: { kind: 'damage', target: 'all-enemy-minions', amount: 4 },
-  }],
-  [/river|water|spring|well/, {
-    name: 'Flowing Renewal',
-    description: 'Restore 4 health to your hero each turn while in play.',
-    trigger: 'passive',
-    effect: { kind: 'heal-hero-turn', amount: 4 },
-  }],
-  [/fate|destiny|oracle|prophecy/, {
-    name: 'Foresight',
-    description: 'Look ahead: draw two cards.',
-    trigger: 'on_play',
-    effect: { kind: 'draw', count: 2 },
-  }],
-  [/justice|law|order|judgment|judgement/, {
-    name: 'Decree',
-    description: 'Stun an enemy card.',
-    trigger: 'on_play',
-    effect: { kind: 'stun', target: 'enemy-minion' },
-  }],
-  [/king|ruler|sovereign|empire|authority/, {
-    name: 'Royal Mandate',
-    description: 'Grant your allies +2 power and +2 health.',
-    trigger: 'on_play',
-    effect: { kind: 'buff-allies', power: 2, health: 2 },
-  }],
-  [/queen|marriage|hearth|home/, {
-    name: 'Hearth Guard',
-    description: 'Shield all friendly cards from the next 3 damage.',
-    trigger: 'on_play',
-    effect: { kind: 'shield-allies', amount: 3 },
-  }],
-  [/sky|heaven|celestial|star/, {
-    name: 'Celestial Cycle',
-    description: 'Restore 5 health to your hero each turn while in play.',
-    trigger: 'passive',
-    effect: { kind: 'heal-hero-turn', amount: 5 },
-  }],
-  [/serpent|snake|dragon/, {
-    name: 'Coiling Strike',
-    description: 'Deal 8 damage to an enemy card.',
-    trigger: 'on_play',
-    effect: { kind: 'damage', target: 'enemy-minion', amount: 8 },
-  }],
-  [/chaos|void|abyss|primordial/, {
-    name: 'Unmaking',
-    description: 'Destroy the weakest enemy card.',
-    trigger: 'on_play',
-    effect: { kind: 'destroy-weakest-enemy' },
-  }],
-  [/creation|cosmos|cosmogony/, {
-    name: 'Genesis',
-    description: 'Copy the top card of your deck into your hand.',
-    trigger: 'on_play',
-    effect: { kind: 'copy-top-card' },
-  }],
-  [/trickster|messenger|thief|cunning/, {
-    name: 'Sleight',
-    description: 'Draw a card; this card may attack immediately.',
-    trigger: 'passive',
-    effect: { kind: 'combo', effects: [{ kind: 'draw', count: 1 }, { kind: 'charge' }] },
-  }],
-  [/time|eternity|age/, {
-    name: 'Sands of Time',
-    description: 'Reduce all enemy cards’ speed by half.',
-    trigger: 'on_play',
-    effect: { kind: 'slow-all-enemies' },
-  }],
-  [/protect|guardian|shield|defense|defence/, {
-    name: 'Aegis',
-    description: 'Reduce all incoming damage by 2.',
-    trigger: 'passive',
-    effect: { kind: 'damage-reduction', amount: 2 },
-  }],
-  [/death|fate|doom/, {
-    name: 'Inevitable',
-    description: 'On death, deal 6 damage to the enemy hero.',
-    trigger: 'on_death',
-    effect: { kind: 'damage', target: 'enemy-hero', amount: 6 },
-  }],
-];
-
-const CATEGORY_ABILITIES = {
-  concept: {
-    name: 'Epiphany',
-    description: 'Reveal and copy the top card of your deck.',
-    trigger: 'on_play',
-    effect: { kind: 'copy-top-card' },
-  },
-  place: {
-    name: 'Domain Advantage',
-    description: 'Gain +2 ink at the start of your turn while this card is in play.',
-    trigger: 'passive',
-    effect: { kind: 'ink-gen', amount: 2 },
-  },
-  mineral: {
-    name: 'Adamantine',
-    description: 'Reduce incoming damage by 3.',
-    trigger: 'passive',
-    effect: { kind: 'damage-reduction', amount: 3 },
-  },
-  celestial: {
-    name: 'Celestial Cycle',
-    description: 'Restore 5 health to your hero each turn while in play.',
-    trigger: 'passive',
-    effect: { kind: 'heal-hero-turn', amount: 5 },
-  },
-  primordial: {
-    name: 'First Breath',
-    description: 'On death, deal 5 damage to the enemy hero.',
-    trigger: 'on_death',
-    effect: { kind: 'damage', target: 'enemy-hero', amount: 5 },
-  },
-};
-
 // ── The bespoke ability engine ──────────────────────────────────────────────
 // Every flagship names its ability after its epithet in the lore catalog
 // (271 unique names by construction); archives compose class + pantheon
@@ -608,9 +383,35 @@ const ABILITY_GRAMMAR = [
   [/crossroads|mystery|veil|secret|hidden|mist/, 'Old Presence', 'passive', () => ({ kind: 'aura-allies', power: 1 }), () => 'Your allies gain +1 power while this is in play.'],
 ];
 
+// Continuous effects are read off the board every turn (passiveAmount in
+// game/engine.js) and are never resolved on play. Pairing one with an
+// on_play/on_death trigger yields a card that does nothing whatsoever: the
+// resolver treats the kind as a no-op and the board reader skips it for not
+// being passive. The trigger is therefore DERIVED from the effect rather than
+// trusted, so a mis-declared grammar row or override cannot ship a dead card.
+const CONTINUOUS_KINDS = new Set([
+  'ink-gen',
+  'heal-hero-turn',
+  'aura-allies',
+  'buff-self-attacking',
+  'damage-reduction',
+]);
+
+function triggerForEffect(effect, declaredTrigger) {
+  if (effect && CONTINUOUS_KINDS.has(effect.kind)) return 'passive';
+  return declaredTrigger;
+}
+
 function deriveAbility(entry, category) {
   const override = ABILITY_OVERRIDES[entry.id];
-  if (override) return { id: `ability-${entry.id}`, entryId: entry.id, ...override };
+  if (override) {
+    return {
+      id: `ability-${entry.id}`,
+      entryId: entry.id,
+      ...override,
+      trigger: triggerForEffect(override.effect, override.trigger),
+    };
+  }
 
   const seed = hashString(entry.id);
   const domain = (entry.domain || '').toLowerCase();
@@ -691,7 +492,14 @@ function deriveAbility(entry, category) {
                       ? 'Your allies gain +1 power.'
                       : 'Your allies gain +1 power while this is in play.';
 
-  return { id: `ability-${entry.id}`, entryId: entry.id, name, description, trigger: rule.trigger, effect };
+  return {
+    id: `ability-${entry.id}`,
+    entryId: entry.id,
+    name,
+    description,
+    trigger: triggerForEffect(effect, rule.trigger),
+    effect,
+  };
 }
 
 // ── Flavor text ─────────────────────────────────────────────────────────────
@@ -750,7 +558,16 @@ const EDITION_META = {
 };
 
 // Full-art upgrades the ability into the card's special attack: a numeric
-// power effect gains +2; anything else gains a small combo flourish.
+// power effect gains +2; anything else gains a small rallying flourish.
+//
+// The rider is grafted with the `all` container, never `combo`. `combo` is a
+// CONDITIONAL container — the engine resolves it only when another card was
+// already played this turn (and only for battlecries). Wrapping a base effect
+// in `combo` therefore silently disabled it everywhere that condition is not
+// evaluated: passives (never resolved at all), deathrattles, activated
+// specials, and hero powers. That made the rarest printing strictly weaker
+// than the common it was forged from. `all` resolves unconditionally, so an
+// upgrade can only ever add.
 function upgradeAbility(ability, edition) {
   if (!ability) return ability;
   if (edition !== 'full-art' && edition !== 'secret') return ability;
@@ -763,12 +580,12 @@ function upgradeAbility(ability, edition) {
       effect: { ...effect, power: effect.power + 2 },
     };
   }
-  if (effect && effect.kind && effect.kind !== 'combo') {
+  if (effect && effect.kind && effect.kind !== 'all' && effect.kind !== 'combo') {
     return {
       ...ability,
       description: `${ability.description} Its bearer also rallies the pantheon (Full-Art).`,
       effect: {
-        kind: 'combo',
+        kind: 'all',
         effects: [effect, { kind: 'buff-allies', power: 1, health: 1 }],
       },
     };
