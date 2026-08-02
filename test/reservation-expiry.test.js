@@ -17,7 +17,11 @@ const testDb = prepareTestDb(__filename);
 void testDb;
 
 const { getBundleSlotId } = require('./helpers/slots.js');
-const { createBooking, sweepStaleReservations, releaseSlotsForBooking } = require('../platform/api/bookings.js');
+const {
+  createBooking,
+  sweepStaleReservations,
+  releaseSlotsForBooking,
+} = require('../platform/api/bookings.js');
 
 function rawDb() {
   const Database = require('better-sqlite3');
@@ -34,9 +38,9 @@ async function run() {
       status: 'pending_payment',
     });
     const db = rawDb();
-    db.prepare(
-      `UPDATE bookings SET created_at = datetime('now', '-3 days') WHERE id = ?`
-    ).run(booking.id);
+    db.prepare(`UPDATE bookings SET created_at = datetime('now', '-3 days') WHERE id = ?`).run(
+      booking.id
+    );
     db.prepare(`UPDATE ad_slots SET status = 'reserved', current_booking_id = ? WHERE id = ?`).run(
       booking.id,
       slotId
@@ -95,9 +99,9 @@ async function run() {
       status: 'live',
     });
     const db = rawDb();
-    db.prepare(
-      `UPDATE bookings SET created_at = datetime('now', '-30 days') WHERE id = ?`
-    ).run(booking.id);
+    db.prepare(`UPDATE bookings SET created_at = datetime('now', '-30 days') WHERE id = ?`).run(
+      booking.id
+    );
     db.close();
 
     await sweepStaleReservations({ olderThanHours: 48 });

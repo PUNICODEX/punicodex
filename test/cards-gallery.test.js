@@ -52,7 +52,10 @@ test('the FR1 set honors the spec rarity classes and card frame fields', () => {
   assert.strictEqual(legendaries.length, 271, 'the flagship fleet is exactly 271 legendaries');
   const foils = SET.cards.filter((c) => c.variant === 'original-script');
   assert.ok(foils.length > 200, 'chase foils present');
-  assert.ok(foils.every((c) => c.rarity === 'mythic'), 'every foil is mythic');
+  assert.ok(
+    foils.every((c) => c.rarity === 'mythic'),
+    'every foil is mythic'
+  );
 });
 
 test('the renderer honors every rarity and variant in the set', () => {

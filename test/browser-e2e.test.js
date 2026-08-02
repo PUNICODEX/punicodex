@@ -62,7 +62,9 @@ function serveStatic() {
       res.end('not found');
       return;
     }
-    res.writeHead(200, { 'Content-Type': MIME[path.extname(file).toLowerCase()] || 'application/octet-stream' });
+    res.writeHead(200, {
+      'Content-Type': MIME[path.extname(file).toLowerCase()] || 'application/octet-stream',
+    });
     fs.createReadStream(file).pipe(res);
   });
   return new Promise((resolve) => {
@@ -81,7 +83,12 @@ async function test(name, fn) {
   } catch (err) {
     failed++;
     console.error(`  ✗ ${name}`);
-    console.error(`    ${String(err.message || err).split('\n').slice(0, 4).join('\n    ')}`);
+    console.error(
+      `    ${String(err.message || err)
+        .split('\n')
+        .slice(0, 4)
+        .join('\n    ')}`
+    );
   }
 }
 
@@ -123,8 +130,12 @@ async function run() {
 
     await test('lexicon: filter narrows the grid and pantheon labels render', async () => {
       await page.goto(`${base}/lexicon/`, { waitUntil: 'domcontentloaded' });
-      await page.waitForSelector('#lexicon-grid .lexicon-card, .lexicon-grid a', { timeout: 15000 });
-      const cardsBefore = await page.locator('#lexicon-grid .lexicon-card, #lexicon-grid a').count();
+      await page.waitForSelector('#lexicon-grid .lexicon-card, .lexicon-grid a', {
+        timeout: 15000,
+      });
+      const cardsBefore = await page
+        .locator('#lexicon-grid .lexicon-card, #lexicon-grid a')
+        .count();
       if (cardsBefore < 50) throw new Error(`grid too sparse: ${cardsBefore}`);
       await page.locator('#filter-search').fill('zeús');
       await page.waitForTimeout(800);
@@ -139,7 +150,9 @@ async function run() {
       // those by design (documented on the page), so it must NOT appear.
       await page.locator('#filter-search').fill('baiame');
       await page.waitForTimeout(800);
-      const baiameCards = await page.locator('#lexicon-grid .lexicon-card, #lexicon-grid a').count();
+      const baiameCards = await page
+        .locator('#lexicon-grid .lexicon-card, #lexicon-grid a')
+        .count();
       if (baiameCards !== 0) throw new Error('hidden-by-default rule broken for Baiame');
     });
 
@@ -195,7 +208,9 @@ async function run() {
       // After navigation the menu must be hidden again (fresh page state).
       const after = await menuState();
       if (!after.missing && after.opacity !== '0') {
-        throw new Error(`menu persisted after navigation (T3 regression): ${JSON.stringify(after)}`);
+        throw new Error(
+          `menu persisted after navigation (T3 regression): ${JSON.stringify(after)}`
+        );
       }
       await mob.close();
     });

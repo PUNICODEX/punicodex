@@ -39,7 +39,13 @@ async function runLeaseExpiry() {
     errors++;
   }
 
-  return { checked: expired.length, ended, errors, staleCanceled: swept.canceled, slotsReleased: swept.slotsReleased };
+  return {
+    checked: expired.length,
+    ended,
+    errors,
+    staleCanceled: swept.canceled,
+    slotsReleased: swept.slotsReleased,
+  };
 }
 
 if (require.main === module) {

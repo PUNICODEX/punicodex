@@ -10,9 +10,20 @@ const RESIDUAL_LOG = '.tmp-sre/residual-log.txt';
 // ── text cleaning ────────────────────────────────────────────────────────────
 
 const ENTITY = {
-  amp: '&', lt: '<', gt: '>', quot: '"', nbsp: ' ',
-  acirc: 'â', ecirc: 'ê', icirc: 'î', ocirc: 'ô', ucirc: 'û',
-  atilde: 'ã', ntilde: 'ñ', Atilde: 'Ã', iexcl: '¡',
+  amp: '&',
+  lt: '<',
+  gt: '>',
+  quot: '"',
+  nbsp: ' ',
+  acirc: 'â',
+  ecirc: 'ê',
+  icirc: 'î',
+  ocirc: 'ô',
+  ucirc: 'û',
+  atilde: 'ã',
+  ntilde: 'ñ',
+  Atilde: 'Ã',
+  iexcl: '¡',
 };
 
 function decodeEntities(s) {
@@ -42,14 +53,85 @@ let residualUnderscoreTokens = 0;
 const residualByLetter = new Map();
 
 const STOP = new Set([
-  'the', 'an', 'of', 'to', 'in', 'on', 'and', 'or', 'by', 'is', 'at', 'as',
-  'we', 'thou', 'thee', 'thy', 'my', 'his', 'her', 'its', 'our',
-  'your', 'their', 'this', 'that', 'with', 'from', 'for', 'not', 'all', 'who',
-  'he', 'it', 'so', 'do', 'did', 'may', 'shall', 'will', 'would', 'if',
-  'then', 'than', 'but', 'nor', 'yet', 'unto', 'upon', 'when', 'which', 'what',
-  'whose', 'whom', 'how', 'why', 'also', 'even', 'only', 'more', 'most', 'some',
-  'such', 'no', 'yes', 'said', 'say', 'says', 'thus', 'there', 'here', 'they',
-  'them', 'these', 'those', 'was', 'were', 'been', 'being', 'perishes',
+  'the',
+  'an',
+  'of',
+  'to',
+  'in',
+  'on',
+  'and',
+  'or',
+  'by',
+  'is',
+  'at',
+  'as',
+  'we',
+  'thou',
+  'thee',
+  'thy',
+  'my',
+  'his',
+  'her',
+  'its',
+  'our',
+  'your',
+  'their',
+  'this',
+  'that',
+  'with',
+  'from',
+  'for',
+  'not',
+  'all',
+  'who',
+  'he',
+  'it',
+  'so',
+  'do',
+  'did',
+  'may',
+  'shall',
+  'will',
+  'would',
+  'if',
+  'then',
+  'than',
+  'but',
+  'nor',
+  'yet',
+  'unto',
+  'upon',
+  'when',
+  'which',
+  'what',
+  'whose',
+  'whom',
+  'how',
+  'why',
+  'also',
+  'even',
+  'only',
+  'more',
+  'most',
+  'some',
+  'such',
+  'no',
+  'yes',
+  'said',
+  'say',
+  'says',
+  'thus',
+  'there',
+  'here',
+  'they',
+  'them',
+  'these',
+  'those',
+  'was',
+  'were',
+  'been',
+  'being',
+  'perishes',
   'unseen',
 ]);
 
@@ -108,20 +190,27 @@ function cleanInline(s, logCtx) {
     let prev;
     do {
       prev = t;
-      t = t.replace(/([\p{L}-]+) ?_([a-zA-Z]{1,3})_ ?(?=\p{L})/gu, (m, left, tok, offset, string) => {
-        // reject = no-op so the engine re-scans from the token itself
-        if (!/\p{L}/u.test(left)) return m;
-        if (STOP.has(left.toLowerCase())) return m;
-        if (!joinableLeft(left)) return m;
-        // capital residual tokens are emendation italics that START a new
-        // word ("Mount _Hv_ anvaṉṭ", "Râman _Hv_ âstra") — never left-join
-        if (![...tok].every((ch) => ch in DIA || ch === ch.toLowerCase())) return m;
-        // a following English word means a real word boundary
-        // ("Dru _g_ will" -> "Druǧ will", "Kinva _t_ Bridge" -> "Kinvaṭ Bridge")
-        const wm = string.slice(offset + m.length).match(/^(\p{L}+)/u);
-        if (wm && (STOP.has(wm[1].toLowerCase()) || (/^\p{Lu}/u.test(wm[1]) && wm[1].length >= 2))) return m;
-        return left + diaToken(tok);
-      });
+      t = t.replace(
+        /([\p{L}-]+) ?_([a-zA-Z]{1,3})_ ?(?=\p{L})/gu,
+        (m, left, tok, offset, string) => {
+          // reject = no-op so the engine re-scans from the token itself
+          if (!/\p{L}/u.test(left)) return m;
+          if (STOP.has(left.toLowerCase())) return m;
+          if (!joinableLeft(left)) return m;
+          // capital residual tokens are emendation italics that START a new
+          // word ("Mount _Hv_ anvaṉṭ", "Râman _Hv_ âstra") — never left-join
+          if (![...tok].every((ch) => ch in DIA || ch === ch.toLowerCase())) return m;
+          // a following English word means a real word boundary
+          // ("Dru _g_ will" -> "Druǧ will", "Kinva _t_ Bridge" -> "Kinvaṭ Bridge")
+          const wm = string.slice(offset + m.length).match(/^(\p{L}+)/u);
+          if (
+            wm &&
+            (STOP.has(wm[1].toLowerCase()) || (/^\p{Lu}/u.test(wm[1]) && wm[1].length >= 2))
+          )
+            return m;
+          return left + diaToken(tok);
+        }
+      );
     } while (t !== prev);
   };
   // Phase A2: word-start tokens. UPPERCASE-starting residual tokens are
@@ -130,59 +219,78 @@ function cleanInline(s, logCtx) {
   // Lowercase tokens only join right when the preceding word is NOT a
   // transliteration chunk ("Kinva _t_ Bridge" is phase B2's job).
   const phaseA2 = () => {
-    t = t.replace(/(^|[^\p{L}\p{M}])_([a-zA-Z]{1,3})_ ?(\p{L})/gu, (m, pre, tok, right, offset, string) => {
-      if (/^\p{Lu}/u.test(tok)) return pre + diaToken(tok) + right;
-      const tail = string.slice(0, offset);
-      const wm = tail.match(/(?:_([a-zA-Z]{1,3})_ ?)?(\p{L}+)$/u);
-      if (wm) {
-        const word = (wm[1] ? diaToken(wm[1]) : '') + wm[2];
-        if (!STOP.has(word.toLowerCase()) && joinableLeft(word)) return m;
+    t = t.replace(
+      /(^|[^\p{L}\p{M}])_([a-zA-Z]{1,3})_ ?(\p{L})/gu,
+      (m, pre, tok, right, offset, string) => {
+        if (/^\p{Lu}/u.test(tok)) return pre + diaToken(tok) + right;
+        const tail = string.slice(0, offset);
+        const wm = tail.match(/(?:_([a-zA-Z]{1,3})_ ?)?(\p{L}+)$/u);
+        if (wm) {
+          const word = (wm[1] ? diaToken(wm[1]) : '') + wm[2];
+          if (!STOP.has(word.toLowerCase()) && joinableLeft(word)) return m;
+        }
+        return pre + diaToken(tok) + right;
       }
-      return pre + diaToken(tok) + right;
-    });
+    );
   };
   phaseA();
   // Phase B: word-final diacritics ("Haurvatâ _t_," / "Haurvatâ _t_ and").
   // A token followed by space+lowercase is only a boundary when the next
   // word is English (stopword); otherwise it is sacred-texts' padding
   // inside a transliteration chain (handled by the exact fixes below).
-  t = t.replace(/([\p{L}-]*\p{L}) ?_([a-zA-Z]{1,3})_(.|$)/gsu, (m, left, tok, next, offset, string) => {
-    if (STOP.has(left.toLowerCase())) return m;
-    // an English left word means the token STARTS a new word (phase A2's job)
-    if (!joinableLeft(left)) return m;
-    if (next === '') return left + diaToken(tok);
-    if (/[\p{L}\p{M}_]/u.test(next)) return m;
-    if (next === ' ') {
-      const rest = string.slice(offset + m.length);
-      const wm = rest.match(/^(\p{L}+)/u);
-      const nextWord = wm ? wm[1] : '';
-      // boundary: English word, capitalized word, digit, or punctuation
-      if (nextWord === '' || STOP.has(nextWord.toLowerCase()) || /^\p{Lu}/u.test(nextWord) || /^\d/.test(nextWord)) {
-        return left + diaToken(tok) + ' ';
+  t = t.replace(
+    /([\p{L}-]*\p{L}) ?_([a-zA-Z]{1,3})_(.|$)/gsu,
+    (m, left, tok, next, offset, string) => {
+      if (STOP.has(left.toLowerCase())) return m;
+      // an English left word means the token STARTS a new word (phase A2's job)
+      if (!joinableLeft(left)) return m;
+      if (next === '') return left + diaToken(tok);
+      if (/[\p{L}\p{M}_]/u.test(next)) return m;
+      if (next === ' ') {
+        const rest = string.slice(offset + m.length);
+        const wm = rest.match(/^(\p{L}+)/u);
+        const nextWord = wm ? wm[1] : '';
+        // boundary: English word, capitalized word, digit, or punctuation
+        if (
+          nextWord === '' ||
+          STOP.has(nextWord.toLowerCase()) ||
+          /^\p{Lu}/u.test(nextWord) ||
+          /^\d/.test(nextWord)
+        ) {
+          return left + diaToken(tok) + ' ';
+        }
+        return m;
       }
-      return m;
+      return left + diaToken(tok) + next; // punctuation
     }
-    return left + diaToken(tok) + next; // punctuation
-  });
+  );
   phaseA2();
   phaseA();
   // second word-final pass for chains revealed by A2 ("Mount Hvanva _nt_.")
-  t = t.replace(/([\p{L}-]*\p{L}) ?_([a-zA-Z]{1,3})_(.|$)/gsu, (m, left, tok, next, offset, string) => {
-    if (STOP.has(left.toLowerCase())) return m;
-    if (!joinableLeft(left)) return m;
-    if (next === '') return left + diaToken(tok);
-    if (/[\p{L}\p{M}_]/u.test(next)) return m;
-    if (next === ' ') {
-      const rest = string.slice(offset + m.length);
-      const wm = rest.match(/^(\p{L}+)/u);
-      const nextWord = wm ? wm[1] : '';
-      if (nextWord === '' || STOP.has(nextWord.toLowerCase()) || /^\p{Lu}/u.test(nextWord) || /^\d/.test(nextWord)) {
-        return left + diaToken(tok) + ' ';
+  t = t.replace(
+    /([\p{L}-]*\p{L}) ?_([a-zA-Z]{1,3})_(.|$)/gsu,
+    (m, left, tok, next, offset, string) => {
+      if (STOP.has(left.toLowerCase())) return m;
+      if (!joinableLeft(left)) return m;
+      if (next === '') return left + diaToken(tok);
+      if (/[\p{L}\p{M}_]/u.test(next)) return m;
+      if (next === ' ') {
+        const rest = string.slice(offset + m.length);
+        const wm = rest.match(/^(\p{L}+)/u);
+        const nextWord = wm ? wm[1] : '';
+        if (
+          nextWord === '' ||
+          STOP.has(nextWord.toLowerCase()) ||
+          /^\p{Lu}/u.test(nextWord) ||
+          /^\d/.test(nextWord)
+        ) {
+          return left + diaToken(tok) + ' ';
+        }
+        return m;
       }
-      return m;
+      return left + diaToken(tok) + next;
     }
-    return left + diaToken(tok) + next;
-  });
+  );
   t = t.replace(/_([a-zA-Z]{1,3})_/g, (_, tok) => diaToken(tok));
   // ṉ -> ñ inside the Speñta word-family (visually confirmed tilde)
   t = t.replace(/ṉ(?=ta|tô)/g, (m, off) => (/[Ss]pe$/.test(t.slice(0, off)) ? 'ñ' : m));
@@ -194,7 +302,9 @@ function cleanInline(s, logCtx) {
 }
 
 const isNavLine = (l) =>
-  /^\[(Sacred Texts|Zoroastrianism|Index|Previous|Next|Contents|Buy this Book|« Previous|Start Reading)/.test(l) ||
+  /^\[(Sacred Texts|Zoroastrianism|Index|Previous|Next|Contents|Buy this Book|« Previous|Start Reading)/.test(
+    l
+  ) ||
   /^\* \* \*$/.test(l) ||
   /^\[« Previous/.test(l) ||
   /^!\[/.test(l);
@@ -209,7 +319,9 @@ function extractBody(file) {
   if (mc >= 0) lines = lines.slice(mc + 1);
 
   // cut at Footnotes
-  const fn = lines.findIndex((l) => /^#{1,4}\s*Footnotes/i.test(l.trim()) || /^Footnotes\s*$/i.test(l.trim()));
+  const fn = lines.findIndex(
+    (l) => /^#{1,4}\s*Footnotes/i.test(l.trim()) || /^Footnotes\s*$/i.test(l.trim())
+  );
   if (fn >= 0) lines = lines.slice(0, fn);
 
   // find body start
@@ -296,9 +408,14 @@ const SECTIONS = [
     id: 'yasna-1-8',
     title: 'Yasna I–VIII: The Sacrifice Commences',
     chapters: [
-      Y('sbe31023', 'YASNA I.'), Y('sbe31024', 'YASNA II.'), Y('sbe31025', 'YASNA III.'),
-      Y('sbe31026', 'YASNA IV.'), Y('sbe31027', 'YASNA V.', 'wb31027'), Y('sbe31028', 'YASNA VI.'),
-      Y('sbe31029', 'YASNA VII.'), Y('sbe31030', 'YASNA VIII.'),
+      Y('sbe31023', 'YASNA I.'),
+      Y('sbe31024', 'YASNA II.'),
+      Y('sbe31025', 'YASNA III.'),
+      Y('sbe31026', 'YASNA IV.'),
+      Y('sbe31027', 'YASNA V.', 'wb31027'),
+      Y('sbe31028', 'YASNA VI.'),
+      Y('sbe31029', 'YASNA VII.'),
+      Y('sbe31030', 'YASNA VIII.'),
     ],
   },
   {
@@ -315,11 +432,21 @@ const SECTIONS = [
     id: 'yasna-13-27',
     title: 'Yasna XIII–XXVII: Invocations and Dedications',
     chapters: [
-      Y('sbe31035', 'YASNA XIII.'), Y('sbe31036', 'YASNA XIV.'), Y('sbe31037', 'YASNA XV.'),
-      Y('sbe31038', 'YASNA XVI.'), Y('sbe31039', 'YASNA XVII.'), Y('sbe31040', 'YASNA XVIII.'),
-      Y('sbe31041', 'YASNA XIX.'), Y('sbe31042', 'YASNA XX.'), Y('sbe31043', 'YASNA XXI.'),
-      Y('sbe31044', 'YASNA XXII.'), Y('sbe31045', 'YASNA XXIII.'), Y('sbe31046', 'YASNA XXIV.'),
-      Y('sbe31047', 'YASNA XXV.'), Y('sbe31048', 'YASNA XXVI.'), Y('sbe31049', 'YASNA XXVII.'),
+      Y('sbe31035', 'YASNA XIII.'),
+      Y('sbe31036', 'YASNA XIV.'),
+      Y('sbe31037', 'YASNA XV.'),
+      Y('sbe31038', 'YASNA XVI.'),
+      Y('sbe31039', 'YASNA XVII.'),
+      Y('sbe31040', 'YASNA XVIII.'),
+      Y('sbe31041', 'YASNA XIX.'),
+      Y('sbe31042', 'YASNA XX.'),
+      Y('sbe31043', 'YASNA XXI.'),
+      Y('sbe31044', 'YASNA XXII.'),
+      Y('sbe31045', 'YASNA XXIII.'),
+      Y('sbe31046', 'YASNA XXIV.'),
+      Y('sbe31047', 'YASNA XXV.'),
+      Y('sbe31048', 'YASNA XXVI.'),
+      Y('sbe31049', 'YASNA XXVII.'),
     ],
   },
   {
@@ -327,8 +454,12 @@ const SECTIONS = [
     title: 'The Gâtha Ahunavaiti (Yasna XXVIII–XXXIV)',
     chapters: [
       // Mills prints Y. XXIX before Y. XXVIII ("in a more natural order").
-      Y('sbe31006', 'YASNA XXIX.'), Y('sbe31007', 'YASNA XXVIII.'), Y('sbe31008', 'YASNA XXX.'),
-      Y('sbe31009', 'YASNA XXXI.'), Y('sbe31010', 'YASNA XXXII.'), Y('sbe31011', 'YASNA XXXIII.'),
+      Y('sbe31006', 'YASNA XXIX.'),
+      Y('sbe31007', 'YASNA XXVIII.'),
+      Y('sbe31008', 'YASNA XXX.'),
+      Y('sbe31009', 'YASNA XXXI.'),
+      Y('sbe31010', 'YASNA XXXII.'),
+      Y('sbe31011', 'YASNA XXXIII.'),
       Y('sbe31012', 'YASNA XXXIV.'),
     ],
   },
@@ -336,25 +467,34 @@ const SECTIONS = [
     id: 'yasna-35-42',
     title: 'The Yasna Haptanghâiti (Yasna XXXV–XLII)',
     chapters: [
-      Y('sbe31050', 'YASNA XXXV.'), Y('sbe31051', 'YASNA XXXVI.'), Y('sbe31052', 'YASNA XXXVII.'),
-      Y('sbe31053', 'YASNA XXXVIII.'), Y('sbe31054', 'YASNA XXXIX.'), Y('sbe31055', 'YASNA XL.'),
-      Y('sbe31056', 'YASNA XLI.'), Y('sbe31057', 'YASNA XLII.'),
+      Y('sbe31050', 'YASNA XXXV.'),
+      Y('sbe31051', 'YASNA XXXVI.'),
+      Y('sbe31052', 'YASNA XXXVII.'),
+      Y('sbe31053', 'YASNA XXXVIII.'),
+      Y('sbe31054', 'YASNA XXXIX.'),
+      Y('sbe31055', 'YASNA XL.'),
+      Y('sbe31056', 'YASNA XLI.'),
+      Y('sbe31057', 'YASNA XLII.'),
     ],
   },
   {
     id: 'yasna-43-46',
     title: 'The Gâtha Uṣtavaiti (Yasna XLIII–XLVI)',
     chapters: [
-      Y('sbe31013', 'YASNA XLIII.'), Y('sbe31014', 'YASNA XLIV.'),
-      Y('sbe31015', 'YASNA XLV.'), Y('sbe31016', 'YASNA XLVI.'),
+      Y('sbe31013', 'YASNA XLIII.'),
+      Y('sbe31014', 'YASNA XLIV.'),
+      Y('sbe31015', 'YASNA XLV.'),
+      Y('sbe31016', 'YASNA XLVI.'),
     ],
   },
   {
     id: 'yasna-47-50',
     title: 'The Gâtha Speñtâ-mainyu (Yasna XLVII–L)',
     chapters: [
-      Y('sbe31017', 'YASNA XLVII.'), Y('sbe31018', 'YASNA XLVIII.'),
-      Y('sbe31019', 'YASNA XLIX.'), Y('sbe31020', 'YASNA XLIX, 12–L.'),
+      Y('sbe31017', 'YASNA XLVII.'),
+      Y('sbe31018', 'YASNA XLVIII.'),
+      Y('sbe31019', 'YASNA XLIX.'),
+      Y('sbe31020', 'YASNA XLIX, 12–L.'),
     ],
   },
   {
@@ -376,13 +516,25 @@ const SECTIONS = [
     id: 'yasna-54-72',
     title: 'Yasna LIV–LXXII: The Sacrifice Concluded',
     chapters: [
-      Y('sbe31059', 'YASNA LIV.'), Y('sbe31060', 'YASNA LV.'), Y('sbe31061', 'YASNA LVI.'),
-      Y('sbe31062', 'YASNA LVII.'), Y('sbe31063', 'YASNA LVIII.'), Y('sbe31064', 'YASNA LIX.'),
-      Y('sbe31065', 'YASNA LX.'), Y('sbe31066', 'YASNA LXI.'), Y('sbe31067', 'YASNA LXII.'),
-      Y('sbe31068', 'YASNA LXIII.', 'wb31068'), Y('sbe31069', 'YASNA LXIV.', 'wb31069'),
-      Y('sbe31070', 'YASNA LXV.'), Y('sbe31071', 'YASNA LXVI.'), Y('sbe31072', 'YASNA LXVII.', 'wb31072'),
-      Y('sbe31073', 'YASNA LXVIII.'), Y('sbe31074', 'YASNA LXIX.', 'wb31074'),
-      Y('sbe31075', 'YASNA LXX.'), Y('sbe31076', 'YASNA LXXI.'), Y('sbe31077', 'YASNA LXXII.', 'wb31077'),
+      Y('sbe31059', 'YASNA LIV.'),
+      Y('sbe31060', 'YASNA LV.'),
+      Y('sbe31061', 'YASNA LVI.'),
+      Y('sbe31062', 'YASNA LVII.'),
+      Y('sbe31063', 'YASNA LVIII.'),
+      Y('sbe31064', 'YASNA LIX.'),
+      Y('sbe31065', 'YASNA LX.'),
+      Y('sbe31066', 'YASNA LXI.'),
+      Y('sbe31067', 'YASNA LXII.'),
+      Y('sbe31068', 'YASNA LXIII.', 'wb31068'),
+      Y('sbe31069', 'YASNA LXIV.', 'wb31069'),
+      Y('sbe31070', 'YASNA LXV.'),
+      Y('sbe31071', 'YASNA LXVI.'),
+      Y('sbe31072', 'YASNA LXVII.', 'wb31072'),
+      Y('sbe31073', 'YASNA LXVIII.'),
+      Y('sbe31074', 'YASNA LXIX.', 'wb31074'),
+      Y('sbe31075', 'YASNA LXX.'),
+      Y('sbe31076', 'YASNA LXXI.'),
+      Y('sbe31077', 'YASNA LXXII.', 'wb31077'),
     ],
   },
   // ── Yashts (Darmesteter, SBE 23) ──
@@ -414,7 +566,9 @@ for (const sec of SECTIONS) {
   }
   const text = paras.join('\n\n');
   const words = text.split(/\s+/).length;
-  console.log(`${sec.id.padEnd(14)} ${String(paras.length).padStart(4)} paras  ${String(words).padStart(6)} words`);
+  console.log(
+    `${sec.id.padEnd(14)} ${String(paras.length).padStart(4)} paras  ${String(words).padStart(6)} words`
+  );
   sections.push({ id: sec.id, title: sec.title, text });
 }
 
@@ -422,4 +576,7 @@ const corpus = { lang: 'eng', sections };
 fs.writeFileSync('platform/texts/avesta/eng.json', `${JSON.stringify(corpus, null, 2)}\n`);
 console.log(`\nwrote platform/texts/avesta/eng.json: ${sections.length} sections`);
 console.log(`residual underscore tokens (dropped): ${residualUnderscoreTokens}`);
-console.log('by letter:', JSON.stringify(Object.fromEntries([...residualByLetter.entries()].sort((a, b) => b[1] - a[1]))));
+console.log(
+  'by letter:',
+  JSON.stringify(Object.fromEntries([...residualByLetter.entries()].sort((a, b) => b[1] - a[1])))
+);

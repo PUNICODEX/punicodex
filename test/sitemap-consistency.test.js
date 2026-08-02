@@ -109,9 +109,7 @@ function run() {
   });
 
   test('every sitemap URL uses the trailing-slash convention', () => {
-    const bad = urls.filter(
-      (u) => !u.endsWith('/') && !u.endsWith('.html') && !u.endsWith('.xml')
-    );
+    const bad = urls.filter((u) => !u.endsWith('/') && !u.endsWith('.html') && !u.endsWith('.xml'));
     assert.deepStrictEqual(bad.slice(0, 10), [], `${bad.length} non-canonical URLs`);
   });
 
@@ -137,7 +135,10 @@ function run() {
     const robots = fs.readFileSync(path.join(ROOT, 'robots.txt'), 'utf8');
     assert.ok(/User-agent:\s*\*/i.test(robots), 'must target all agents');
     assert.ok(/Allow:\s*\//i.test(robots), 'must allow crawling');
-    assert.ok(/Sitemap:\s*https:\/\/punicodex\.com\/sitemap\.xml/i.test(robots), 'must reference sitemap.xml');
+    assert.ok(
+      /Sitemap:\s*https:\/\/punicodex\.com\/sitemap\.xml/i.test(robots),
+      'must reference sitemap.xml'
+    );
   });
 
   console.log(`\nSitemap & Robots: ${passed} passed, ${failed} failed (${urls.length} URLs)`);

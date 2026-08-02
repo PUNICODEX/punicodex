@@ -258,7 +258,9 @@ async function approveApplication(id, adminToken) {
   // same state a paid booking reaches after payment) and the sponsor
   // receives their dashboard link instead of a payment page.
   if (appliedDiscount && amountCents === 0) {
-    const note = discountNote ? [booking.admin_note, discountNote].filter(Boolean).join(' | ') : null;
+    const note = discountNote
+      ? [booking.admin_note, discountNote].filter(Boolean).join(' | ')
+      : null;
     await setBookingStatus(booking.id, 'approved', note);
     if (months !== originalMonths) {
       await run('UPDATE bookings SET lease_months = $1 WHERE id = $2', [months, booking.id]);

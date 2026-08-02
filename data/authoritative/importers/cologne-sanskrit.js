@@ -464,8 +464,7 @@ const CITATION_RE =
 
 // Residual dictionary-fragment markers: definitions that are still raw
 // Monier-Williams matter rather than a curated English gloss.
-const DICTIONARY_STYLE_RE =
-  /(^|\b)N\.\s*of\s|accord\.|˚|vArz|\[\s*RV|\s&c\.|^of\s+(a|the)\s/i;
+const DICTIONARY_STYLE_RE = /(^|\b)N\.\s*of\s|accord\.|˚|vArz|\[\s*RV|\s&c\.|^of\s+(a|the)\s/i;
 
 function balanceParentheses(gloss) {
   let depth = 0;

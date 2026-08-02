@@ -531,7 +531,13 @@ async function runTests() {
       'admin-portal/leasing/index.html',
     ]) {
       const $ = cheerio.load(fs.readFileSync(file, 'utf8'));
-      for (const id of ['tab-bookings', 'tab-tenants', 'tab-patrons', 'tab-discounts', 'tab-orders']) {
+      for (const id of [
+        'tab-bookings',
+        'tab-tenants',
+        'tab-patrons',
+        'tab-discounts',
+        'tab-orders',
+      ]) {
         const panel = $(`#${id}`);
         assert.strictEqual(panel.length, 1, `${file}: #${id} missing`);
         assert.strictEqual(

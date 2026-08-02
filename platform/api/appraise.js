@@ -424,7 +424,8 @@ function isFlagshipLexiconEntry(entry) {
 function semanticMultiplier(entry) {
   if (!entry) return 1.0;
 
-  const tierPoints = entry.tier === 'dual' ? 1.5 : entry.tier === '1' ? 1.0 : entry.tier === '2' ? 0.5 : 0;
+  const tierPoints =
+    entry.tier === 'dual' ? 1.5 : entry.tier === '1' ? 1.0 : entry.tier === '2' ? 0.5 : 0;
 
   const sources = Array.isArray(entry.sources) ? entry.sources : [];
   const sourcePoints = Math.min(sources.length * 0.15, 0.5);
@@ -1087,9 +1088,7 @@ function appraise(domain, options = {}) {
   // discounts), hard-capped only by the absolute IDN ceiling. ASCII forms
   // stand at their estimated value. Deceptive brand-lookalike forms are
   // suppressed; legitimate lexicon restorations are never brand-adjusted.
-  let domainValue = profile.hasUnicode
-    ? premium.value * tm.factor
-    : asciiControlValue * tm.factor;
+  let domainValue = profile.hasUnicode ? premium.value * tm.factor : asciiControlValue * tm.factor;
   if (profile.hasUnicode) {
     domainValue = Math.min(domainValue, IDN_VALUE_CEILING_USD);
   } else {

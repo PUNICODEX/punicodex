@@ -259,10 +259,13 @@ async function run() {
     );
     // Clean up uploaded files.
     const rel = slot.creative_path.replace('/uploads/', '');
-    fs.rmSync(path.join(__dirname, '..', 'platform', 'api', 'public', 'uploads', rel.split('/')[0]), {
-      recursive: true,
-      force: true,
-    });
+    fs.rmSync(
+      path.join(__dirname, '..', 'platform', 'api', 'public', 'uploads', rel.split('/')[0]),
+      {
+        recursive: true,
+        force: true,
+      }
+    );
   });
 
   console.log(`\nBooking Lifecycle E2E: ${passed} passed, ${failed} failed`);

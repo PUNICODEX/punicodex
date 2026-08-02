@@ -171,7 +171,11 @@ async function runTests() {
       null
     );
     // 100% is the complimentary term: the price reduces to nil, not null.
-    const nil = discountService.computePrice({ priceCents: 5000, kind: 'percent_off', percent: 100 });
+    const nil = discountService.computePrice({
+      priceCents: 5000,
+      kind: 'percent_off',
+      percent: 100,
+    });
     assert.strictEqual(nil.finalCents, 0);
     assert.strictEqual(
       discountService.computePrice({ priceCents: 5000, kind: 'percent_off', percent: 101 }),
@@ -211,7 +215,11 @@ async function runTests() {
       kind: 'trial_extension',
       freeMonths: 6,
     });
-    assert.strictEqual(t.finalCents, 250000, 'trial_extension is a carded subscription at full price');
+    assert.strictEqual(
+      t.finalCents,
+      250000,
+      'trial_extension is a carded subscription at full price'
+    );
     assert.strictEqual(t.freeMonths, 6);
   });
 
@@ -622,7 +630,8 @@ async function runTests() {
     const expired = await invoke(validateHandler, 'POST', '/api/discount/validate/', {
       headers: { 'x-forwarded-for': nextIp() },
       body: { code: 'OLD-CODE', temple: 'nike', leaseMonths: 1 },
-    });    assert.deepStrictEqual(
+    });
+    assert.deepStrictEqual(
       expired.body,
       { valid: false, reason: 'invalid_code' },
       'no expiry leak'
@@ -632,7 +641,9 @@ async function runTests() {
   await test('validate endpoint: slotId prices per-frame, slot scoping, and the complimentary flag', async () => {
     const bundle = getBundleSlotId(__filename, 'zeus'); // $2,500/mo takeover
     const frame = db()
-      .prepare("SELECT id, price_cents FROM ad_slots WHERE site_slug = 'zeus' AND (is_bundle = 0 OR is_bundle IS NULL) ORDER BY sort_order LIMIT 1")
+      .prepare(
+        "SELECT id, price_cents FROM ad_slots WHERE site_slug = 'zeus' AND (is_bundle = 0 OR is_bundle IS NULL) ORDER BY sort_order LIMIT 1"
+      )
       .get();
 
     // Slot-scoped code valid on its named frame…
@@ -732,7 +743,9 @@ async function runTests() {
   await test('slot scoping: appliesSlots restricts redemption to the named slots only', async () => {
     const slotA = getBundleSlotId(__filename, 'zeus');
     const other = db()
-      .prepare("SELECT id FROM ad_slots WHERE site_slug = 'zeus' AND (is_bundle = 0 OR is_bundle IS NULL) LIMIT 1")
+      .prepare(
+        "SELECT id FROM ad_slots WHERE site_slug = 'zeus' AND (is_bundle = 0 OR is_bundle IS NULL) LIMIT 1"
+      )
       .get();
 
     const created = await invoke(discountsHandler, 'POST', '/api/admin/portal/discounts/', {
@@ -783,7 +796,13 @@ async function runTests() {
     assert.strictEqual(badShape.status, 400, 'non-array appliesSlots rejected');
     const allTemple = await invoke(discountsHandler, 'POST', '/api/admin/portal/discounts/', {
       headers: adminHeader(superToken),
-      body: { code: 'ALL-SLOTS', kind: 'percent_off', percent: 10, appliesTo: 'all', appliesSlots: [1] },
+      body: {
+        code: 'ALL-SLOTS',
+        kind: 'percent_off',
+        percent: 10,
+        appliesTo: 'all',
+        appliesSlots: [1],
+      },
     });
     assert.strictEqual(allTemple.status, 400, 'slot scoping requires a temple');
   });

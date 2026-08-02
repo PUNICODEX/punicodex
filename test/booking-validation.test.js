@@ -87,7 +87,11 @@ test('validateCompanyName rejects control characters', () => {
 });
 
 test('validateCompanyName bounds length and type', () => {
-  assert.strictEqual(validateCompanyName('a'.repeat(COMPANY_NAME_MAX)), null, 'at the limit is fine');
+  assert.strictEqual(
+    validateCompanyName('a'.repeat(COMPANY_NAME_MAX)),
+    null,
+    'at the limit is fine'
+  );
   const tooLong = validateCompanyName('a'.repeat(COMPANY_NAME_MAX + 1));
   assert.ok(tooLong && tooLong.includes('exceeds'), tooLong);
   const wrongType = validateCompanyName(42);

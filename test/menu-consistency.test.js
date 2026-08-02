@@ -79,7 +79,9 @@ test('pages mark their own item aria-current="page"', () => {
   assert.ok(cases.length >= 15, 'expected most pages to have an active item');
   for (const { page, active } of cases) {
     const html = read(page);
-    const tagRe = new RegExp(`<a href="${active.replace(/[./]/g, '\\$&')}" class="nav-link[^"]*"[^>]*aria-current="page"`);
+    const tagRe = new RegExp(
+      `<a href="${active.replace(/[./]/g, '\\$&')}" class="nav-link[^"]*"[^>]*aria-current="page"`
+    );
     assert.ok(tagRe.test(html), `${page}: expected aria-current="page" on ${active}`);
   }
   // Spot: codex articles inherit the codex hub's current marker.
@@ -142,10 +144,7 @@ test('no page script double-handles the mobile toggle (open→close in one click
   // handler alongside px-core's; both toggled per click, so the menu opened
   // and closed instantly. Page scripts must defer to px-core's single
   // canonical handler.
-  const pageScripts = [
-    path.join('realms', 'script.js'),
-    path.join('lexicon', 'js', 'lexicon.js'),
-  ];
+  const pageScripts = [path.join('realms', 'script.js'), path.join('lexicon', 'js', 'lexicon.js')];
   for (const rel of pageScripts) {
     const full = path.join(root, rel);
     if (!fs.existsSync(full)) continue;
@@ -164,7 +163,9 @@ test('temple-base.css hides desktop nav-links at mobile widths (cascade order)',
   // desktop link list rendered as an undismissable overlay on mobile
   // (blog/creatives/lexicon/cognates phantom menu).
   const css = read('css/temple-base.css');
-  const mediaBlock = css.match(/@media\s*\(max-width:\s*768px\)\s*\{[\s\S]*?\.base-nav-links,\s*\n?\s*\.main-nav \.nav-links\s*\{\s*display:\s*none/);
+  const mediaBlock = css.match(
+    /@media\s*\(max-width:\s*768px\)\s*\{[\s\S]*?\.base-nav-links,\s*\n?\s*\.main-nav \.nav-links\s*\{\s*display:\s*none/
+  );
   assert.ok(
     mediaBlock,
     'css/temple-base.css: the 768px media block must hide `.main-nav .nav-links` (specificity 0,2,0 beats the later base rule)'

@@ -1081,7 +1081,8 @@ function tierBadgesHtml(entry) {
   return `<span class="meta-badge">${entry.tierLabel || `Tier ${entry.tier}`}</span>`;
 }
 
-function generateTierExplanation(entry) {  const source = originalScript(entry);
+function generateTierExplanation(entry) {
+  const source = originalScript(entry);
   const sourceLabel = isGreekEntry(entry) ? 'Greek original' : 'original form';
   if (isGreekEntry(entry)) {
     if (entry.tier === 'dual') {
@@ -2318,9 +2319,7 @@ function buildMetaDescription(entry, catalogEntry) {
   }
   if (desc.length < 120) {
     const fallback = `Scholarly restoration of ${entry.unicode}, the ${entry.domain}.`;
-    desc = desc.length
-      ? `${desc}${closer}`.trim()
-      : `${fallback}${closer}`.trim();
+    desc = desc.length ? `${desc}${closer}`.trim() : `${fallback}${closer}`.trim();
     // Still short (very terse legacy lead): prepend the fallback and let the
     // truncation below settle it inside the window.
     if (desc.length < 120) {
@@ -2334,7 +2333,14 @@ function buildMetaDescription(entry, catalogEntry) {
   return desc.replace(/"/g, "'");
 }
 
-function generateHomePage(entry, palette, slotNames, templateDir, rentalTier = 'B', catalogEntry = null) {
+function generateHomePage(
+  entry,
+  palette,
+  slotNames,
+  templateDir,
+  rentalTier = 'B',
+  catalogEntry = null
+) {
   let html = fs.readFileSync(path.join(templateDir, 'index.html'), 'utf8');
   const templeId = entry.id;
   const vars = {
@@ -2364,7 +2370,9 @@ function generateHomePage(entry, palette, slotNames, templateDir, rentalTier = '
       // Nothing in the window (very short names): take the last ≤60 and pad.
       const fits = candidates.filter((c) => c.length <= 60);
       const best = fits[fits.length - 1];
-      return best.length >= 45 ? best : best.replace(' | PUNICODEX', ' · Restored Temple | PUNICODEX');
+      return best.length >= 45
+        ? best
+        : best.replace(' | PUNICODEX', ' · Restored Temple | PUNICODEX');
     })(),
     SAME_AS_JSON: (() => {
       const url = wikidataUrlFor(entry.id);
@@ -2809,10 +2817,14 @@ function safeRenameSync(src, dest, retries = 5) {
 
 function substituteTempleVars(content, entry) {
   return content
-    .split('{{TEMPLE_ID}}').join(entry.id)
-    .split('{{UNICODE}}').join(entry.unicode)
-    .split('{{ASCII}}').join(entry.ascii)
-    .split('{{DOMAIN}}').join(entry.domain || '');
+    .split('{{TEMPLE_ID}}')
+    .join(entry.id)
+    .split('{{UNICODE}}')
+    .join(entry.unicode)
+    .split('{{ASCII}}')
+    .join(entry.ascii)
+    .split('{{DOMAIN}}')
+    .join(entry.domain || '');
 }
 
 function copyCreativesTemplate(siteDir, templateDir, entry) {

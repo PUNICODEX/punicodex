@@ -11,10 +11,7 @@ const http = require('node:http');
 const os = require('node:os');
 const path = require('node:path');
 
-process.env.PUNICODEX_TEST_DB_PATH = path.join(
-  os.tmpdir(),
-  `newsletter-test-${process.pid}.db`
-);
+process.env.PUNICODEX_TEST_DB_PATH = path.join(os.tmpdir(), `newsletter-test-${process.pid}.db`);
 
 // Capture outgoing email at the boundary.
 const emailModulePath = require.resolve('../platform/api/email.js');
@@ -135,7 +132,9 @@ async function run() {
     assert.strictEqual(res.body.ok, true);
     const { getDb } = require('../platform/db/connection.js');
     assert.ok(
-      getDb().prepare('SELECT id FROM newsletter_subscribers WHERE email = ?').get('resilient@example.com'),
+      getDb()
+        .prepare('SELECT id FROM newsletter_subscribers WHERE email = ?')
+        .get('resilient@example.com'),
       'row persisted despite email failure'
     );
   });

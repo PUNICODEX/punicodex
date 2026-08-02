@@ -16,7 +16,11 @@ const {
 const discountService = require('../../../../../../api/discount-service.js');
 const { sendEmail } = require('../../../../../../api/email.js');
 const { logAction } = require('../../../../../../api/admin-actions.js');
-const { buildPitchEmail, loadTemple, buildResonanceBullets } = require('../../../../../../api/pitch-email.js');
+const {
+  buildPitchEmail,
+  loadTemple,
+  buildResonanceBullets,
+} = require('../../../../../../api/pitch-email.js');
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -34,7 +38,8 @@ module.exports = async (req, res) => {
 
     const body = req.body || {};
     const to = typeof body.to === 'string' ? body.to.trim() : '';
-    if (!EMAIL_RE.test(to)) return res.status(400).json({ error: 'A valid recipient email is required' });
+    if (!EMAIL_RE.test(to))
+      return res.status(400).json({ error: 'A valid recipient email is required' });
 
     const businessName =
       typeof body.businessName === 'string' && body.businessName.trim()
@@ -71,9 +76,21 @@ module.exports = async (req, res) => {
     if (!temple) return res.status(400).json({ error: `Unknown temple: ${codeRow.applies_to}` });
 
     const patterns = buildResonanceBullets(temple.slug, businessName);
-    const pitch = buildPitchEmail({ codeRow, temple, businessName, recipientSite, customNote, patterns });
+    const pitch = buildPitchEmail({
+      codeRow,
+      temple,
+      businessName,
+      recipientSite,
+      customNote,
+      patterns,
+    });
 
-    const sent = await sendEmail({ to, subject: pitch.subject, html: pitch.html, text: pitch.text });
+    const sent = await sendEmail({
+      to,
+      subject: pitch.subject,
+      html: pitch.html,
+      text: pitch.text,
+    });
     if (!sent.success) {
       return res.status(502).json({ error: 'Email delivery failed', detail: sent.error });
     }
@@ -84,7 +101,13 @@ module.exports = async (req, res) => {
       adminUserId: auth.user?.id ?? null,
       action: 'portal.discount.pitch',
       target: `discount_code:${id}`,
-      meta: { codeId: id, to, code: codeRow.code, mocked: sent.mocked === true, by: auth.user?.email ?? null },
+      meta: {
+        codeId: id,
+        to,
+        code: codeRow.code,
+        mocked: sent.mocked === true,
+        by: auth.user?.email ?? null,
+      },
     });
 
     return res.json({

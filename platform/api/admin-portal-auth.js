@@ -567,9 +567,7 @@ async function resetPassword(id, actor) {
   // One-time credential, delivered by transactional email (fire-and-forget;
   // a delivery failure never blocks the reset). The temp password is also
   // returned exactly once as a fallback relay channel.
-  emailModule
-    .notifyAdminPasswordReset({ email: target.email, tempPassword })
-    .catch(() => {});
+  emailModule.notifyAdminPasswordReset({ email: target.email, tempPassword }).catch(() => {});
   return { user: sanitizeUser(await getUserById(id)), tempPassword };
 }
 

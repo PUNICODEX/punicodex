@@ -150,7 +150,7 @@ async function runTests() {
     }
     // Patrons lives as a tab of the Leasing page — the nav item deep-links it.
     assert.ok(
-      shell.includes("href: `${PREFIX}leasing/?tab=patrons`"),
+      shell.includes('href: `${PREFIX}leasing/?tab=patrons`'),
       'expected the patrons nav item to deep-link the Leasing patrons tab'
     );
     assert.ok(

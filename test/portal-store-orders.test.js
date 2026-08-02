@@ -123,7 +123,10 @@ test('setup: seed orders across the status ladder', () => {
   baseline = listStoreOrders({ limit: 50, offset: 0 });
   seeded.pending = seedOrder('pending_payment');
   seeded.paid = seedOrder('paid');
-  seeded.sent = seedOrder('sent_to_fulfillment', { printfulOrderId: 777001, printfulStatus: 'confirmed' });
+  seeded.sent = seedOrder('sent_to_fulfillment', {
+    printfulOrderId: 777001,
+    printfulStatus: 'confirmed',
+  });
   seeded.failed = seedOrder('fulfillment_failed', { error: 'simulated printful outage' });
   seeded.shipped = seedOrder('shipped', {
     printfulOrderId: 777002,
@@ -188,9 +191,14 @@ test('routes: list envelope shape + status filter', async () => {
   assert.strictEqual(res.body.items[0].status, 'paid');
   assert.ok(res.body.stats.revenueCents > 0);
 
-  const bogus = await invoke(listHandler, 'GET', '/api/admin/portal/store-orders/?status=nonsense', {
-    headers: { ...adminHeader(superToken), 'x-forwarded-for': '10.99.0.3' },
-  });
+  const bogus = await invoke(
+    listHandler,
+    'GET',
+    '/api/admin/portal/store-orders/?status=nonsense',
+    {
+      headers: { ...adminHeader(superToken), 'x-forwarded-for': '10.99.0.3' },
+    }
+  );
   assert.strictEqual(bogus.status, 200);
   // An unrecognised status falls back to the unfiltered roster.
   assert.strictEqual(bogus.body.total, listStoreOrders({ limit: 50, offset: 0 }).total);
@@ -208,10 +216,15 @@ test('routes: detail 400 on bad id, 404 on unknown, 200 with order', async () =>
     params: { id: '999999' },
   });
   assert.strictEqual(missing.status, 404);
-  const ok = await invoke(detailHandler, 'GET', `/api/admin/portal/store-orders/${seeded.shipped.id}/`, {
-    headers,
-    params: { id: String(seeded.shipped.id) },
-  });
+  const ok = await invoke(
+    detailHandler,
+    'GET',
+    `/api/admin/portal/store-orders/${seeded.shipped.id}/`,
+    {
+      headers,
+      params: { id: String(seeded.shipped.id) },
+    }
+  );
   assert.strictEqual(ok.status, 200);
   assert.strictEqual(ok.body.order.tracking_url, 'https://track.example/1');
   assert.strictEqual(ok.body.order.carrier, 'DHL');
@@ -220,10 +233,15 @@ test('routes: detail 400 on bad id, 404 on unknown, 200 with order', async () =>
 
 test('routes: retry 404 unknown, 409 for any non-failed status', async () => {
   const headers = { ...adminHeader(superToken), 'x-forwarded-for': '10.99.0.5' };
-  const missing = await invoke(retryHandler, 'POST', '/api/admin/portal/store-orders/999999/retry-fulfillment/', {
-    headers,
-    params: { id: '999999' },
-  });
+  const missing = await invoke(
+    retryHandler,
+    'POST',
+    '/api/admin/portal/store-orders/999999/retry-fulfillment/',
+    {
+      headers,
+      params: { id: '999999' },
+    }
+  );
   assert.strictEqual(missing.status, 404);
   for (const key of ['pending', 'paid', 'sent', 'shipped']) {
     const res = await invoke(
@@ -330,7 +348,10 @@ test('printful client: duplicate external_id self-heals via lookup + confirm', a
 });
 
 test('printful client: non-duplicate create errors rethrow; 404 lookup → null', async () => {
-  const { createAndConfirmOrder, getOrderByExternalId } = require('../platform/api/printful-orders.js');
+  const {
+    createAndConfirmOrder,
+    getOrderByExternalId,
+  } = require('../platform/api/printful-orders.js');
   const originalFetch = global.fetch;
   global.fetch = async (url, opts = {}) => {
     if (url.endsWith('/orders') && opts.method === 'POST') {

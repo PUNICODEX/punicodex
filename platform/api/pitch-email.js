@@ -330,7 +330,13 @@ function loadTemple(slug) {
   const entry = (LEXICON || []).find((e) => e.id === slug);
   if (!entry) return null;
   const tierLabel =
-    entry.tier === 'dual' ? 'DUAL-TIER' : entry.tier === '1' ? 'TIER 1' : entry.tier === '2' ? 'TIER 2' : '';
+    entry.tier === 'dual'
+      ? 'DUAL-TIER'
+      : entry.tier === '1'
+        ? 'TIER 1'
+        : entry.tier === '2'
+          ? 'TIER 2'
+          : '';
   return {
     slug: entry.id,
     unicode: entry.unicode,
@@ -423,7 +429,7 @@ function buildResonanceBullets(slug, businessName) {
   if (patternBullets.length) bullets.push(patternBullets[0]);
 
   // 2 — the mythology.
-  const myth = firstSentences(lore && (lore.mythology && lore.mythology.lead), 2);
+  const myth = firstSentences(lore && lore.mythology && lore.mythology.lead, 2);
   if (myth) bullets.push({ lead: 'The god, in his own story.', why: myth });
 
   // 3 — archaeology / syncretism: the quotable fact.

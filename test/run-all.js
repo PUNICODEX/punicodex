@@ -17,6 +17,9 @@ const C = {
 };
 
 const SUITES = [
+  // CI parity gates first: format/lint drift must fail locally, not on GitHub.
+  { name: 'Format Check', cmd: 'npm run format:check', timeout: 180000 },
+  { name: 'Biome Lint', cmd: 'npm run lint', timeout: 180000 },
   { name: 'Lexicon Validator', cmd: 'node type/js/validate.js' },
   { name: 'Engine Unit Tests', cmd: 'node type/js/test-engine.js' },
   { name: 'Card Engine Tests', cmd: 'node --test test/card-engine.test.js' },
@@ -185,7 +188,11 @@ const SUITES = [
     cmd: 'node test/portal-store-orders.test.js',
     timeout: 60000,
   },
-  { name: 'Service Worker Contract Tests', cmd: 'node test/service-worker.test.js', timeout: 30000 },
+  {
+    name: 'Service Worker Contract Tests',
+    cmd: 'node test/service-worker.test.js',
+    timeout: 30000,
+  },
   { name: 'Discount Modal Tests', cmd: 'node test/discount-modal.test.js', timeout: 60000 },
   {
     name: 'Operational Transaction Contract Tests',

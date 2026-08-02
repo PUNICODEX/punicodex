@@ -17,7 +17,10 @@ function handleError(res, err) {
 }
 
 const ALLOWED_ORIGINS = new Set(
-  (process.env.ALLOWED_ORIGINS || 'https://punicodex.com,https://punycodex.com,http://localhost:3456')
+  (
+    process.env.ALLOWED_ORIGINS ||
+    'https://punicodex.com,https://punycodex.com,http://localhost:3456'
+  )
     .split(',')
     .map((s) => s.trim())
     .filter(Boolean)

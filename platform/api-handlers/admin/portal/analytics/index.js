@@ -28,7 +28,8 @@ module.exports = async (req, res) => {
     if (!auth) return;
 
     const days = req.query.days;
-    const temple = typeof req.query.temple === 'string' && req.query.temple ? req.query.temple : null;
+    const temple =
+      typeof req.query.temple === 'string' && req.query.temple ? req.query.temple : null;
 
     const [overview, engagement, depth] = await Promise.all([
       temple ? getTempleTraffic(temple, { days }) : getOverview({ days }),

@@ -38,7 +38,8 @@ function registryFrom(html) {
 }
 
 test('generator is idempotent (byte-identical output across runs)', () => {
-  const hash = () => require('node:crypto').createHash('sha256').update(fs.readFileSync(PAGE)).digest('hex');
+  const hash = () =>
+    require('node:crypto').createHash('sha256').update(fs.readFileSync(PAGE)).digest('hex');
   const committed = hash();
   execFileSync(process.execPath, [GENERATOR], { cwd: root, stdio: 'pipe' });
   assert.strictEqual(hash(), committed, 'first regeneration changed the page');
@@ -98,8 +99,11 @@ test('client engine is wired to the trending API and escapes all values', () => 
   // every dynamic interpolation into innerHTML must pass through escapeHtml
   const inner = js.match(/innerHTML\s*=[\s\S]*?;/g) || [];
   assert.ok(inner.length >= 2, 'expected board render assignments');
-  assert.ok(js.includes("visibilityState"), 'auto-refresh must respect tab visibility');
-  assert.ok(read('trending/index.html').includes('/js/trending.js?v='), 'page does not load the engine');
+  assert.ok(js.includes('visibilityState'), 'auto-refresh must respect tab visibility');
+  assert.ok(
+    read('trending/index.html').includes('/js/trending.js?v='),
+    'page does not load the engine'
+  );
 });
 
 test('generator is registered in the pipeline', () => {

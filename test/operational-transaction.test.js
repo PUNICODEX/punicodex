@@ -56,7 +56,10 @@ test('all() returns every row', async () => {
 test('run() maps the driver count to {changes}', async () => {
   const tsql = makeFakeTsql({});
   const t = wrapTransactionSql(tsql);
-  const out = await t.run('UPDATE discount_codes SET used_count = used_count + 1 WHERE id = $1 AND used_count < $2', [7, 3]);
+  const out = await t.run(
+    'UPDATE discount_codes SET used_count = used_count + 1 WHERE id = $1 AND used_count < $2',
+    [7, 3]
+  );
   assert.deepStrictEqual(out, { changes: 0 });
   assert.deepStrictEqual(tsql.calls[0].values, [7, 3]);
 });
@@ -64,20 +67,24 @@ test('run() maps the driver count to {changes}', async () => {
 test('insert() requires RETURNING id and returns the id', async () => {
   const tsql = makeFakeTsql({ 'INSERT INTO bookings': [{ id: 42 }] });
   const t = wrapTransactionSql(tsql);
-  const id = await t.insert(
-    'INSERT INTO bookings (slot_id, email) VALUES ($1, $2) RETURNING id',
-    [57, 'x@example.com']
-  );
+  const id = await t.insert('INSERT INTO bookings (slot_id, email) VALUES ($1, $2) RETURNING id', [
+    57,
+    'x@example.com',
+  ]);
   assert.strictEqual(id, 42);
-  await assert.rejects(() => t.insert('INSERT INTO bookings (slot_id) VALUES ($1)', [57]), /RETURNING id/);
+  await assert.rejects(
+    () => t.insert('INSERT INTO bookings (slot_id) VALUES ($1)', [57]),
+    /RETURNING id/
+  );
 });
 
 test('multi-param SQL keeps placeholders aligned after conversion', async () => {
   const tsql = makeFakeTsql({ 'FROM discount_codes': [{ id: 3 }] });
   const t = wrapTransactionSql(tsql);
-  const row = await t.get('SELECT * FROM discount_codes WHERE code = $1 AND applies_to = $2 AND id = $3', [
-    'X', 'ares', 3,
-  ]);
+  const row = await t.get(
+    'SELECT * FROM discount_codes WHERE code = $1 AND applies_to = $2 AND id = $3',
+    ['X', 'ares', 3]
+  );
   assert.deepStrictEqual(row, { id: 3 });
   assert.deepStrictEqual(tsql.calls[0].values, ['X', 'ares', 3]);
 });

@@ -317,7 +317,15 @@ async function searchWeb(q, options = {}) {
     filters.push(
       'AND (LOWER(s.archetype_signals) LIKE ? OR LOWER(s.tenant_category) LIKE ? OR LOWER(s.meta_keywords) LIKE ? OR LOWER(e.meaning) LIKE ? OR LOWER(e.domain) LIKE ? OR LOWER(s.title) LIKE ? OR LOWER(s.description) LIKE ?)'
     );
-    params.push(conceptLike, conceptLike, conceptLike, conceptLike, conceptLike, conceptLike, conceptLike);
+    params.push(
+      conceptLike,
+      conceptLike,
+      conceptLike,
+      conceptLike,
+      conceptLike,
+      conceptLike,
+      conceptLike
+    );
   }
 
   // Trust-tier filtering. Default 'safe' excludes unsafe + suspicious.

@@ -162,7 +162,9 @@ async function run() {
   });
 
   globalThis.fetch = realFetch;
-  console.log(`\nMiddleware Execution: ${passed} passed, ${failed} failed (${domainMap.size} domains swept)`);
+  console.log(
+    `\nMiddleware Execution: ${passed} passed, ${failed} failed (${domainMap.size} domains swept)`
+  );
   process.exit(failed > 0 ? 1 : 0);
 }
 

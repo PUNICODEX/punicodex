@@ -65,7 +65,10 @@ async function main() {
       await analytics.recordEngagement({ path: '/x', visibleMs: 31 * 60 * 1000 }),
       null
     );
-    assert.strictEqual(await analytics.recordEngagement({ path: 'not-a-path', visibleMs: 5000 }), null);
+    assert.strictEqual(
+      await analytics.recordEngagement({ path: 'not-a-path', visibleMs: 5000 }),
+      null
+    );
     assert.strictEqual(await analytics.recordEngagement({ path: '/x', visibleMs: 'NaN' }), null);
   });
 

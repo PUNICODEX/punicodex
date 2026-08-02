@@ -144,7 +144,10 @@ function run() {
       'handler must require the signature header and delegate to processWebhook'
     );
     const stripe = fs.readFileSync(path.join(ROOT, 'platform', 'api', 'stripe.js'), 'utf8');
-    assert.ok(stripe.includes('constructEvent'), 'platform stripe module must verify via constructEvent');
+    assert.ok(
+      stripe.includes('constructEvent'),
+      'platform stripe module must verify via constructEvent'
+    );
     assert.ok(
       /STRIPE_WEBHOOK_SECRET|webhookSecret/i.test(stripe),
       'signature verification must use the signing secret'

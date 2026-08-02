@@ -69,11 +69,7 @@ function run() {
   const config = JSON.parse(raw);
 
   test('no domain redirects live in vercel.json (middleware owns routing)', () => {
-    assert.strictEqual(
-      config.redirects,
-      undefined,
-      'vercel.json must not carry a redirects array'
-    );
+    assert.strictEqual(config.redirects, undefined, 'vercel.json must not carry a redirects array');
     for (const rw of config.rewrites || []) {
       assert.ok(
         rw.destination.startsWith('/api/') || isStaticAssetProxy(rw),
@@ -97,14 +93,8 @@ function run() {
     for (const cron of config.crons) {
       const file = path.join(ROOT, cron.path, 'index.js');
       const alt = path.join(ROOT, `${cron.path}.js`);
-      assert.ok(
-        fs.existsSync(file) || fs.existsSync(alt),
-        `missing handler for cron ${cron.path}`
-      );
-      assert.ok(
-        /^(\S+\s+){4}\S+$/.test(cron.schedule),
-        `invalid cron schedule: ${cron.schedule}`
-      );
+      assert.ok(fs.existsSync(file) || fs.existsSync(alt), `missing handler for cron ${cron.path}`);
+      assert.ok(/^(\S+\s+){4}\S+$/.test(cron.schedule), `invalid cron schedule: ${cron.schedule}`);
     }
   });
 

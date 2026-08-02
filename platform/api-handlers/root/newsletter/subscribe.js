@@ -64,7 +64,9 @@ module.exports = async (req, res) => {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   if (rateLimited(clientIp(req))) {
-    return res.status(429).json({ error: 'Too many attempts — please wait a while and try again.' });
+    return res
+      .status(429)
+      .json({ error: 'Too many attempts — please wait a while and try again.' });
   }
 
   const { email, phone, source, _hp } = req.body || {};
@@ -76,7 +78,9 @@ module.exports = async (req, res) => {
     return res.status(400).json({ error: 'Please provide a valid email address.' });
   }
   if (phone && (typeof phone !== 'string' || phone.replace(/[^\d+]/g, '').length < 7)) {
-    return res.status(400).json({ error: 'That phone number looks incomplete — it is optional, so you can also leave it empty.' });
+    return res.status(400).json({
+      error: 'That phone number looks incomplete — it is optional, so you can also leave it empty.',
+    });
   }
 
   const ipHash = crypto.createHash('sha256').update(clientIp(req)).digest('hex').slice(0, 16);
@@ -90,8 +94,15 @@ module.exports = async (req, res) => {
   }
 
   database
-    .prepare('INSERT INTO newsletter_subscribers (email, phone, source, confirmed, ip_hash) VALUES (?, ?, ?, 1, ?)')
-    .run(normalized, phone ? phone.trim().slice(0, 32) : null, (source || 'site').slice(0, 40), ipHash);
+    .prepare(
+      'INSERT INTO newsletter_subscribers (email, phone, source, confirmed, ip_hash) VALUES (?, ?, ?, 1, ?)'
+    )
+    .run(
+      normalized,
+      phone ? phone.trim().slice(0, 32) : null,
+      (source || 'site').slice(0, 40),
+      ipHash
+    );
 
   const snippet = WELCOME_SNIPPETS[crypto.randomInt(WELCOME_SNIPPETS.length)];
   // Best-effort: the subscription is the primary action; a welcome-email

@@ -178,8 +178,7 @@ const ROUTES = [
   },
   {
     segments: ['portal', 'discounts', '[id]', 'pitch'],
-    load: () =>
-      require('../../platform/api-handlers/admin/portal/discounts/[id]/pitch/index.js'),
+    load: () => require('../../platform/api-handlers/admin/portal/discounts/[id]/pitch/index.js'),
   },
   {
     segments: ['portal', 'login'],

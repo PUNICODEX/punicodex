@@ -77,10 +77,16 @@ const codeRow = {
 async function run() {
   // ── Template: offer math ─────────────────────────────────────
   await test('offer headlines and sentences track the discount kind', () => {
-    assert.strictEqual(offerHeadline({ kind: 'percent_off', percent: 100 }), 'COMPLIMENTARY PLACEMENT');
+    assert.strictEqual(
+      offerHeadline({ kind: 'percent_off', percent: 100 }),
+      'COMPLIMENTARY PLACEMENT'
+    );
     assert.strictEqual(offerHeadline({ kind: 'percent_off', percent: 25 }), '25% OFF');
     assert.strictEqual(offerHeadline({ kind: 'fixed_off', fixed_cents: 5000 }), '$50 OFF');
-    assert.strictEqual(offerHeadline({ kind: 'free_months', free_months: 3 }), '3 MONTHS — COMPLIMENTARY');
+    assert.strictEqual(
+      offerHeadline({ kind: 'free_months', free_months: 3 }),
+      '3 MONTHS — COMPLIMENTARY'
+    );
     assert.strictEqual(
       offerHeadline({ kind: 'free_months_then_price', free_months: 6, then_price_cents: 15000 }),
       '6 MONTHS FREE — THEN $150/MO'
@@ -187,7 +193,13 @@ async function run() {
 
     const created = await invoke(discountsHandler, 'POST', '/api/admin/portal/discounts/', {
       headers: adminHeader(superToken),
-      body: { code: 'PITCHTEST100', kind: 'percent_off', percent: 100, appliesTo: 'quetzalcoatl', maxUses: 1 },
+      body: {
+        code: 'PITCHTEST100',
+        kind: 'percent_off',
+        percent: 100,
+        appliesTo: 'quetzalcoatl',
+        maxUses: 1,
+      },
     });
     assert.strictEqual(created.status, 201, JSON.stringify(created.body));
     codeId = created.body.id;
@@ -202,17 +214,27 @@ async function run() {
   });
 
   await test('pitch endpoint: 400 on invalid recipient and missing business name', async () => {
-    const badEmail = await invoke(pitchHandler, 'POST', `/api/admin/portal/discounts/${codeId}/pitch/`, {
-      headers: adminHeader(superToken),
-      params: { id: String(codeId) },
-      body: { to: 'not-an-email', businessName: 'Feather Exchange' },
-    });
+    const badEmail = await invoke(
+      pitchHandler,
+      'POST',
+      `/api/admin/portal/discounts/${codeId}/pitch/`,
+      {
+        headers: adminHeader(superToken),
+        params: { id: String(codeId) },
+        body: { to: 'not-an-email', businessName: 'Feather Exchange' },
+      }
+    );
     assert.strictEqual(badEmail.status, 400);
-    const noName = await invoke(pitchHandler, 'POST', `/api/admin/portal/discounts/${codeId}/pitch/`, {
-      headers: adminHeader(superToken),
-      params: { id: String(codeId) },
-      body: { to: 'team@featherexchange.com' },
-    });
+    const noName = await invoke(
+      pitchHandler,
+      'POST',
+      `/api/admin/portal/discounts/${codeId}/pitch/`,
+      {
+        headers: adminHeader(superToken),
+        params: { id: String(codeId) },
+        body: { to: 'team@featherexchange.com' },
+      }
+    );
     assert.strictEqual(noName.status, 400);
   });
 
@@ -290,7 +312,9 @@ async function run() {
       });
       assert.strictEqual(created.status, 201, JSON.stringify(created.body));
       const conn = new Database(testDb);
-      conn.prepare(`UPDATE discount_codes ${c.mutate} WHERE id = ?`).run(...c.params, created.body.id);
+      conn
+        .prepare(`UPDATE discount_codes ${c.mutate} WHERE id = ?`)
+        .run(...c.params, created.body.id);
       conn.close();
 
       const callsBefore = emailCalls.length;
@@ -317,11 +341,16 @@ async function run() {
   await test('pitch endpoint: 502 when email delivery fails', async () => {
     emailDeliveryFails = true;
     try {
-      const res = await invoke(pitchHandler, 'POST', `/api/admin/portal/discounts/${codeId}/pitch/`, {
-        headers: adminHeader(superToken),
-        params: { id: String(codeId) },
-        body: { to: 'team@featherexchange.com', businessName: 'Feather Exchange' },
-      });
+      const res = await invoke(
+        pitchHandler,
+        'POST',
+        `/api/admin/portal/discounts/${codeId}/pitch/`,
+        {
+          headers: adminHeader(superToken),
+          params: { id: String(codeId) },
+          body: { to: 'team@featherexchange.com', businessName: 'Feather Exchange' },
+        }
+      );
       assert.strictEqual(res.status, 502, JSON.stringify(res.body));
       assert.strictEqual(res.body.error, 'Email delivery failed');
     } finally {

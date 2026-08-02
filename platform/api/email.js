@@ -343,7 +343,8 @@ async function sendBookingConfirmation({
   const siteName = getSiteDisplayName(siteSlug);
   const dashboardUrl = getDashboardUrl(token, siteSlug);
   const panelUrl = panelUrlOverride || `${PLATFORM_URL}/account/login/`;
-  const durationLabel = leaseMonths === 12 ? '12 months' : `${leaseMonths} month${leaseMonths === 1 ? '' : 's'}`;
+  const durationLabel =
+    leaseMonths === 12 ? '12 months' : `${leaseMonths} month${leaseMonths === 1 ? '' : 's'}`;
   const trialLabel = trialMonths > 0 ? `${trialMonths}-month free trial, then ` : '';
   const priceLabel =
     leaseMonths === 12

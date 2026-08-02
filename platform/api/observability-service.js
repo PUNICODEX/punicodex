@@ -189,8 +189,9 @@ async function getHealthSummary() {
        ORDER BY created_at DESC
        LIMIT 1`
     ),
-    operational.get(`SELECT COUNT(*) as sites FROM indexed_sites WHERE status = 'active'`).catch(
-      (err) => {
+    operational
+      .get(`SELECT COUNT(*) as sites FROM indexed_sites WHERE status = 'active'`)
+      .catch((err) => {
         // indexed_sites belongs to the crawler DB and is intentionally not part
         // of the operational Postgres provisioning set (see
         // platform/db/init-operational-postgres.js). On a Postgres-only deploy
@@ -198,8 +199,7 @@ async function getHealthSummary() {
         // instead of failing the whole health summary.
         if (err && err.code === '42P01') return null;
         throw err;
-      }
-    ),
+      }),
   ]);
 
   return {

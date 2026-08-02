@@ -142,7 +142,14 @@ function computePrice({ priceCents, kind, percent, fixedCents, freeMonths, thenP
  * internal reason string — public callers must normalize every failure to a
  * single generic reason so the response never reveals whether a code exists.
  */
-async function validateCode({ code, siteSlug, leaseMonths = 1, priceCents, slotId = null, context = 'booking' }) {
+async function validateCode({
+  code,
+  siteSlug,
+  leaseMonths = 1,
+  priceCents,
+  slotId = null,
+  context = 'booking',
+}) {
   await ensureSchema();
   const invalid = (reason) => ({ valid: false, reason });
 

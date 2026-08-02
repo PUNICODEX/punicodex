@@ -31,14 +31,7 @@ function seed(db) {
   );
   let added = 0;
   for (const row of FOUNDING_CODES) {
-    const res = insert.run(
-      row.code,
-      row.kind,
-      row.percent,
-      row.applies_to,
-      row.max_uses,
-      row.note
-    );
+    const res = insert.run(row.code, row.kind, row.percent, row.applies_to, row.max_uses, row.note);
     added += res.changes;
   }
   return { added, total: FOUNDING_CODES.length };

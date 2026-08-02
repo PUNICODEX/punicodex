@@ -857,7 +857,10 @@ async function getCountryStats({ days = 30, limit = 30 } = {}) {
         .slice(0, max);
       return { periodDays: window, countries };
     } catch (err) {
-      console.error('[site-analytics] Redis country read failed, falling back to SQLite:', err.message);
+      console.error(
+        '[site-analytics] Redis country read failed, falling back to SQLite:',
+        err.message
+      );
       disableRedis();
     }
   }
@@ -890,8 +893,7 @@ async function getCountryStats({ days = 30, limit = 30 } = {}) {
  * can hide them honestly.
  */
 async function getTempleAnalytics(templeId, { days = 30 } = {}) {
-  const tid =
-    typeof templeId === 'string' && /^[a-z0-9-]{1,64}$/.test(templeId) ? templeId : null;
+  const tid = typeof templeId === 'string' && /^[a-z0-9-]{1,64}$/.test(templeId) ? templeId : null;
   if (!tid) return null;
   const window = clampDays(days);
   const dayList = lastNDays(window);
@@ -938,7 +940,10 @@ async function getTempleAnalytics(templeId, { days = 30 } = {}) {
             .slice(0, 12)
         : null;
     } catch (err) {
-      console.error('[site-analytics] Redis temple read failed, falling back to SQLite:', err.message);
+      console.error(
+        '[site-analytics] Redis temple read failed, falling back to SQLite:',
+        err.message
+      );
       disableRedis();
     }
   }
@@ -1082,7 +1087,9 @@ async function getTempleAnalytics(templeId, { days = 30 } = {}) {
   const engagements = series.reduce((sum, row) => sum + (row.avgVisibleMs > 0 ? 1 : 0), 0);
   const attentionDays = series.filter((row) => row.avgVisibleMs > 0);
   const avgVisibleMs = attentionDays.length
-    ? Math.round(attentionDays.reduce((sum, row) => sum + row.avgVisibleMs, 0) / attentionDays.length)
+    ? Math.round(
+        attentionDays.reduce((sum, row) => sum + row.avgVisibleMs, 0) / attentionDays.length
+      )
     : 0;
 
   return {

@@ -18,10 +18,28 @@ function unescapeXml(s) {
 }
 
 function cleanLine(s) {
-  return unescapeXml(s.replace(/<[^>]+>/g, '')).replace(/\s+/g, ' ').trim();
+  return unescapeXml(s.replace(/<[^>]+>/g, ''))
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
-const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
+const ROMAN = [
+  'I',
+  'II',
+  'III',
+  'IV',
+  'V',
+  'VI',
+  'VII',
+  'VIII',
+  'IX',
+  'X',
+  'XI',
+  'XII',
+  'XIII',
+  'XIV',
+  'XV',
+];
 
 // Locate the book divs in document order (Perseus quirk: book 3 uses subtype="BOOK").
 const marks = [...xml.matchAll(/<div type="textpart" subtype="(?:book|BOOK)" n="(\d+)">/g)].map(
@@ -58,7 +76,9 @@ for (let k = 0; k < marks.length; k++) {
 
   const text = paras.map((p) => p.join('\n')).join('\n\n');
   const words = text.split(/\s+/).length;
-  console.log(`book ${String(n).padStart(2)}: ${lineCount} lines, ${paras.length} paragraphs, ${words} words`);
+  console.log(
+    `book ${String(n).padStart(2)}: ${lineCount} lines, ${paras.length} paragraphs, ${words} words`
+  );
   sections.push({ id: `book-${n}`, title: `Book ${ROMAN[n - 1]}`, text });
 }
 

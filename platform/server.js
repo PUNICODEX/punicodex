@@ -1748,7 +1748,14 @@ app.get('/api/analytics/click', analyticsClickLimit, async (req, res) => {
 
 app.post('/api/analytics/viewability', analyticsPixelLimit, async (req, res) => {
   const { token, visibleSeconds, visiblePercent, slotSlug, slot } = req.body || {};
-  await adAnalytics.trackViewability(token, visibleSeconds, visiblePercent, req, res, slotSlug || slot);
+  await adAnalytics.trackViewability(
+    token,
+    visibleSeconds,
+    visiblePercent,
+    req,
+    res,
+    slotSlug || slot
+  );
 });
 
 app.get('/api/analytics/dashboard', publicReadLimit, async (req, res) => {

@@ -24,7 +24,9 @@ const {
 } = require('../scripts/lib/chapter-corpus.js');
 
 const ARCHETYPES = require('../js/archetypes-v2.js');
-const BUILT = new Set((ARCHETYPES.ARCHETYPES || ARCHETYPES).filter((a) => a.built).map((a) => a.id));
+const BUILT = new Set(
+  (ARCHETYPES.ARCHETYPES || ARCHETYPES).filter((a) => a.built).map((a) => a.id)
+);
 
 const tests = [];
 function test(name, fn) {
@@ -40,13 +42,25 @@ test('registry: 21 texts total — the Theogony plus 20 chaptered texts', () => 
   assert.strictEqual(chapterTexts.length, 20);
   assert.strictEqual(registry.texts[0].id, 'theogony');
   for (const t of chapterTexts) {
-    for (const field of ['id', 'title', 'titleNative', 'author', 'composed', 'language', 'summary', 'sectionCount']) {
+    for (const field of [
+      'id',
+      'title',
+      'titleNative',
+      'author',
+      'composed',
+      'language',
+      'summary',
+      'sectionCount',
+    ]) {
       assert.ok(t[field] !== undefined && t[field] !== '', `${t.id}: missing ${field}`);
     }
     assert.ok(Array.isArray(t.editions) && t.editions.length === 1, `${t.id}: exactly one edition`);
     const ed = t.editions[0];
     assert.strictEqual(ed.lang, 'eng', `${t.id}: edition must be English`);
-    assert.ok(ed.label && ed.source && ed.sourceUrl && ed.license && ed.file, `${t.id}: edition fields`);
+    assert.ok(
+      ed.label && ed.source && ed.sourceUrl && ed.license && ed.file,
+      `${t.id}: edition fields`
+    );
   }
 });
 
@@ -69,7 +83,10 @@ test('every xref validates: forms attested capitalized in the corpus, temples bu
     validateXref(xref, corpus, { id: t.id });
     for (const link of xref.links) {
       assert.ok(BUILT.has(link.temple), `${t.id}: ${link.temple} is not a built flagship`);
-      assert.ok(exists(`sites/${link.temple}/index.html`), `${t.id}: no temple page for ${link.temple}`);
+      assert.ok(
+        exists(`sites/${link.temple}/index.html`),
+        `${t.id}: no temple page for ${link.temple}`
+      );
     }
   }
 });
@@ -102,7 +119,9 @@ test('reading pages exist with hero, TOC matching sections, and chrome', () => {
 test('every temple chip on every reading page resolves to an existing temple', () => {
   for (const t of chapterTexts) {
     const html = read(`texts/${t.id}/index.html`);
-    const hrefs = [...html.matchAll(/class="tx-chip" href="\/sites\/([a-z0-9-]+)\/"/g)].map((m) => m[1]);
+    const hrefs = [...html.matchAll(/class="tx-chip" href="\/sites\/([a-z0-9-]+)\/"/g)].map(
+      (m) => m[1]
+    );
     assert.ok(hrefs.length > 0, `${t.id}: no chips rendered`);
     for (const id of new Set(hrefs)) {
       assert.ok(exists(`sites/${id}/index.html`), `${t.id}: chip to missing temple ${id}`);
@@ -113,7 +132,10 @@ test('every temple chip on every reading page resolves to an existing temple', (
     );
     assert.ok(mentioned.length > 0, `${t.id}: no mentioned index`);
     for (const id of new Set(mentioned)) {
-      assert.ok(exists(`sites/${id}/index.html`), `${t.id}: mentioned card to missing temple ${id}`);
+      assert.ok(
+        exists(`sites/${id}/index.html`),
+        `${t.id}: mentioned card to missing temple ${id}`
+      );
     }
   }
 });
@@ -158,7 +180,12 @@ test('generator is idempotent for the whole library (regeneration is byte-identi
     } catch (err) {
       failures++;
       console.error(`  ✗ ${name}`);
-      console.error(`    ${String(err.message || err).split('\n').slice(0, 8).join('\n    ')}`);
+      console.error(
+        `    ${String(err.message || err)
+          .split('\n')
+          .slice(0, 8)
+          .join('\n    ')}`
+      );
     }
   }
   if (failures) {

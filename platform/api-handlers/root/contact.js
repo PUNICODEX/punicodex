@@ -46,7 +46,9 @@ module.exports = async (req, res) => {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   if (rateLimited(clientIp(req))) {
-    return res.status(429).json({ error: 'Too many messages — please wait a while and try again.' });
+    return res
+      .status(429)
+      .json({ error: 'Too many messages — please wait a while and try again.' });
   }
 
   const { name, email, subject, message, company, _hp } = req.body || {};
@@ -61,7 +63,10 @@ module.exports = async (req, res) => {
     !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) ||
     message.trim().length < 10
   ) {
-    return res.status(400).json({ error: 'Please complete all fields with a valid email and a message of at least 10 characters.' });
+    return res.status(400).json({
+      error:
+        'Please complete all fields with a valid email and a message of at least 10 characters.',
+    });
   }
 
   const safeName = escapeHtml(name).slice(0, 120);

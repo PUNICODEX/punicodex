@@ -62,12 +62,20 @@ test('scholars content carries no citation-fragment sentences', () => {
     const content = JSON.parse(fs.readFileSync(path.join(dir, file), 'utf8'));
     for (const [sectionId, section] of Object.entries(content.sections || {})) {
       const body = section.body || '';
-      if (/swiftgoer|personified and considered|,\s*(MBh|Hariv|Kāv)\.|N\.\s*of\s*a?\s*(monkeychief|river|Tīrtha|grammar)/.test(body)) {
+      if (
+        /swiftgoer|personified and considered|,\s*(MBh|Hariv|Kāv)\.|N\.\s*of\s*a?\s*(monkeychief|river|Tīrtha|grammar)/.test(
+          body
+        )
+      ) {
         offenders.push(`${file}::${sectionId}`);
       }
     }
   }
-  assert.deepStrictEqual(offenders, [], `raw fragments in scholars content: ${offenders.join(', ')}`);
+  assert.deepStrictEqual(
+    offenders,
+    [],
+    `raw fragments in scholars content: ${offenders.join(', ')}`
+  );
 });
 
 test('cologne extraction strips citations and balances parentheses', () => {
@@ -81,9 +89,16 @@ test('cologne extraction strips citations and balances parentheses', () => {
   assert.ok(src.includes('balanceParentheses'), 'importer lost its paren guard');
   assert.ok(src.includes('dictionaryStyle'), 'importer lost its quarantine flag');
   // The scoring must penalise, never reward, dictionary style.
-  const scoreBlock = src.slice(src.indexOf('function scoreGloss'), src.indexOf('function pickBestGlossCandidate'));
+  const scoreBlock = src.slice(
+    src.indexOf('function scoreGloss'),
+    src.indexOf('function pickBestGlossCandidate')
+  );
   assert.ok(!scoreBlock.includes('score += 15;\n  if (/\\bN\\.'), '"N. of" must not be rewarded');
-  assert.ok(/N\.\s\*of.*score -= 25/.test(scoreBlock.replace(/\n/g, ' ')) || scoreBlock.includes('score -= 25'), '"N. of" must be penalised');
+  assert.ok(
+    /N\.\s\*of.*score -= 25/.test(scoreBlock.replace(/\n/g, ' ')) ||
+      scoreBlock.includes('score -= 25'),
+    '"N. of" must be penalised'
+  );
 });
 
 test('apply-suggestions refuses dictionary-style meanings at any confidence', () => {

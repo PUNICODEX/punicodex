@@ -140,7 +140,9 @@ test('matchIndustryAliases lands sponsors on the right industry', () => {
 // 5. Match endpoint — 400 on empty q, envelope shape
 // ---------------------------------------------------------------------------
 
-const handler = require(path.join(root, 'platform', 'api-handlers', 'v1', 'industry-patterns', 'match.js'));
+const handler = require(
+  path.join(root, 'platform', 'api-handlers', 'v1', 'industry-patterns', 'match.js')
+);
 let ipCounter = 0;
 
 function invoke(query, method = 'GET') {

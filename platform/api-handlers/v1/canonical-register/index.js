@@ -39,15 +39,19 @@ module.exports = createApiHandler(async (req, res) => {
     return;
   }
 
-  success(res, {
-    count: REGISTER._meta.count,
-    entries: Object.values(REGISTER.entries),
-  }, {
-    links: {
-      self: '/api/v1/canonical-register',
-      entry: '/api/v1/canonical-register?id={entryId}',
-      blog: '/blog/',
-      rulebook: '/rulebook/',
+  success(
+    res,
+    {
+      count: REGISTER._meta.count,
+      entries: Object.values(REGISTER.entries),
     },
-  });
+    {
+      links: {
+        self: '/api/v1/canonical-register',
+        entry: '/api/v1/canonical-register?id={entryId}',
+        blog: '/blog/',
+        rulebook: '/rulebook/',
+      },
+    }
+  );
 });

@@ -79,7 +79,10 @@ test('pages without main.css link the shared footer stylesheet', () => {
 
 test('mobile compaction rules exist (2-column grid + compact brand row)', () => {
   const shared = read(path.join('css', 'footer.css'));
-  assert.ok(shared.includes('grid-template-columns: 1fr 1fr'), 'footer.css missing 2-col mobile grid');
+  assert.ok(
+    shared.includes('grid-template-columns: 1fr 1fr'),
+    'footer.css missing 2-col mobile grid'
+  );
   assert.ok(shared.includes('width: 150px'), 'footer.css missing compact mobile wordmark');
   const main = read(path.join('css', 'main.css'));
   const mobileBlock = main.slice(main.lastIndexOf('@media (max-width: 768px)'));

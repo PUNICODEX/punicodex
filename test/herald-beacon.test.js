@@ -24,7 +24,12 @@ async function test(name, fn) {
   } catch (err) {
     failed++;
     console.error(`  ✗ ${name}`);
-    console.error(`    ${String(err.message || err).split('\n').slice(0, 4).join('\n    ')}`);
+    console.error(
+      `    ${String(err.message || err)
+        .split('\n')
+        .slice(0, 4)
+        .join('\n    ')}`
+    );
   }
 }
 
@@ -64,7 +69,9 @@ function serveStatic() {
       res.end();
       return;
     }
-    res.writeHead(200, { 'Content-Type': MIME[path.extname(file).toLowerCase()] || 'application/octet-stream' });
+    res.writeHead(200, {
+      'Content-Type': MIME[path.extname(file).toLowerCase()] || 'application/octet-stream',
+    });
     fs.createReadStream(file).pipe(res);
   });
   return new Promise((resolve) => {
@@ -85,7 +92,10 @@ async function run() {
     assert.ok(after.includes('PUNICODEX-HERALD-BEACON-START'), 'markers on home page');
     const herald = fs.readFileSync(path.join(ROOT, 'herald', 'index.html'), 'utf8');
     assert.ok(!herald.includes('PUNICODEX-HERALD-BEACON-START'), 'no beacon on the Herald page');
-    const admin = fs.readFileSync(path.join(ROOT, 'platform', 'public', 'admin-portal', 'index.html'), 'utf8');
+    const admin = fs.readFileSync(
+      path.join(ROOT, 'platform', 'public', 'admin-portal', 'index.html'),
+      'utf8'
+    );
     assert.ok(!admin.includes('PUNICODEX-HERALD-BEACON-START'), 'no beacon in admin portal');
 
     // The herald injector is last-writer-wins before </head>, so these two
@@ -146,7 +156,11 @@ async function run() {
       const state = await page.evaluate(() => localStorage.getItem('punicodex.herald.state'));
       assert.strictEqual(state, 'dismissed');
       await page.reload({ waitUntil: 'domcontentloaded' });
-      assert.strictEqual(await page.locator('.herald-beacon__seal').count(), 0, 'no remount after dismiss');
+      assert.strictEqual(
+        await page.locator('.herald-beacon__seal').count(),
+        0,
+        'no remount after dismiss'
+      );
       await ctx.close();
     });
 
@@ -177,7 +191,9 @@ async function run() {
       await page.locator('.herald-beacon__submit').click();
       await page.waitForTimeout(250);
       assert.strictEqual(requests, 0, 'no request on invalid email');
-      assert.ok((await page.locator('.herald-beacon__error').textContent()).includes('valid email'));
+      assert.ok(
+        (await page.locator('.herald-beacon__error').textContent()).includes('valid email')
+      );
       await ctx.close();
     });
 
@@ -202,7 +218,10 @@ async function run() {
       assert.strictEqual(payload.email, 'herald.fan@example.com');
       assert.strictEqual(payload.phone, '+61 400 111 222');
       assert.strictEqual(payload.source, 'herald-beacon');
-      assert.ok((await page.locator('.herald-beacon__success').count()) >= 1, 'success state shown');
+      assert.ok(
+        (await page.locator('.herald-beacon__success').count()) >= 1,
+        'success state shown'
+      );
       const state = await page.evaluate(() => localStorage.getItem('punicodex.herald.state'));
       assert.strictEqual(state, 'subscribed');
       await ctx.close();

@@ -79,7 +79,11 @@ function run() {
     }
     assert.ok(withLinks >= 30, `expected 30+ defensible sameAs links, got ${withLinks}`);
     // The known bad matches must never pass the filter.
-    assert.strictEqual(wikidataUrlFor('apollon'), null, 'apollon naval-vessel mismatch must be filtered');
+    assert.strictEqual(
+      wikidataUrlFor('apollon'),
+      null,
+      'apollon naval-vessel mismatch must be filtered'
+    );
   });
 
   test('og:image meta tags point at the per-temple card on sample pages', () => {

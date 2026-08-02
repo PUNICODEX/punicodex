@@ -9,9 +9,12 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const ROOT = path.join(__dirname, '..');
-const { PANTHEON_META, pantheonLabel, pantheonEmoji, pantheonColor } = require(
-  '../type/js/pantheon-meta.js'
-);
+const {
+  PANTHEON_META,
+  pantheonLabel,
+  pantheonEmoji,
+  pantheonColor,
+} = require('../type/js/pantheon-meta.js');
 const { LEXICON } = require('../type/js/lexicon.js');
 
 let passed = 0;
@@ -86,10 +89,7 @@ function run() {
   test('engine emoji resolves through the meta module', () => {
     const engine = require('../type/js/engine.js');
     assert.strictEqual(engine.getPantheonEmoji('norse'), PANTHEON_META.norse.emoji);
-    assert.strictEqual(
-      engine.getPantheonEmoji('aboriginal'),
-      PANTHEON_META.aboriginal.emoji
-    );
+    assert.strictEqual(engine.getPantheonEmoji('aboriginal'), PANTHEON_META.aboriginal.emoji);
   });
 
   test('validator allowed set derives from the meta registry', () => {

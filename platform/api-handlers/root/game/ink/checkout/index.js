@@ -24,14 +24,18 @@ module.exports = async (req, res) => {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   try {
-    if (!(await checkPublicRateLimitByReq(req, res, 'game-ink-checkout', { tier: 'public-strict' }))) {
+    if (
+      !(await checkPublicRateLimitByReq(req, res, 'game-ink-checkout', { tier: 'public-strict' }))
+    ) {
       return;
     }
 
     const body = req.body || {};
     const bundle = BUNDLES[body.bundle];
     if (!bundle) {
-      return res.status(400).json({ error: `bundle must be one of: ${Object.keys(BUNDLES).join(', ')}` });
+      return res
+        .status(400)
+        .json({ error: `bundle must be one of: ${Object.keys(BUNDLES).join(', ')}` });
     }
 
     const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);

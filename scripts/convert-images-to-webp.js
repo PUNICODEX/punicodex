@@ -59,7 +59,9 @@ function writeFileAtomic(filePath, data, encoding = 'utf8') {
         throw err;
       }
       const ms = 100 * attempt;
-      console.warn(`  transient rename error for ${filePath} (${err.code}), retrying in ${ms}ms...`);
+      console.warn(
+        `  transient rename error for ${filePath} (${err.code}), retrying in ${ms}ms...`
+      );
       Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
     }
   }

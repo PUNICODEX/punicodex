@@ -61,10 +61,9 @@ function run() {
   });
 
   test('never links inside anchors, code, headings, or <head>', () => {
-    const out = autoLink(
-      '<p><a href="/x">Óðinn</a> <code>Óðinn</code></p><h2>Óðinn</h2>',
-      { selfId: null }
-    );
+    const out = autoLink('<p><a href="/x">Óðinn</a> <code>Óðinn</code></p><h2>Óðinn</h2>', {
+      selfId: null,
+    });
     assert.strictEqual((out.match(/data-crosslink/g) || []).length, 0);
     const doc = autoLink(
       '<!DOCTYPE html><html><head><title>Óðinn</title></head><body><p>Óðinn</p></body></html>',
@@ -136,7 +135,10 @@ function run() {
   });
 
   test('coverage: ragnarok blog crosslinks the gods it names', () => {
-    const html = fs.readFileSync(path.join(ROOT, 'sites', 'ragnarok', 'blog', 'index.html'), 'utf8');
+    const html = fs.readFileSync(
+      path.join(ROOT, 'sites', 'ragnarok', 'blog', 'index.html'),
+      'utf8'
+    );
     for (const id of ['fenrir', 'odinn', 'thor', 'surtr', 'baldr']) {
       assert.ok(html.includes(`data-crosslink="${id}"`), `missing crosslink: ${id}`);
     }

@@ -39,7 +39,9 @@ test('Similar button is wired to the lexicon similarity API with entry id', () =
     'showSimilar must call /api/v1/names/:id/similarities'
   );
   assert.ok(
-    html.includes("showSimilar('${escapeHtml(r.punycode)}','${escapeHtml(r.lexiconEntryId)}',this)"),
+    html.includes(
+      "showSimilar('${escapeHtml(r.punycode)}','${escapeHtml(r.lexiconEntryId)}',this)"
+    ),
     'Similar button must pass the lexicon entry id'
   );
   assert.ok(!html.includes('alert('), 'alert() UX must be gone');
@@ -49,9 +51,15 @@ test('search state is deep-linkable (read on load, synced on change)', () => {
   assert.ok(html.includes('function syncUrl()'), 'syncUrl missing');
   assert.ok(html.includes('function applyInitialState()'), 'applyInitialState missing');
   assert.ok(html.includes('history.replaceState'), 'syncUrl must use replaceState');
-  assert.ok(html.includes('loadPantheons().then(() => applyInitialState())'), 'initial state must apply after pantheons load');
+  assert.ok(
+    html.includes('loadPantheons().then(() => applyInitialState())'),
+    'initial state must apply after pantheons load'
+  );
   for (const param of ['q', 'mode', 'pantheon', 'type', 'tier', 'sort']) {
-    assert.ok(html.includes(`params.get('${param}')`) || html.includes(`params.set('${param}'`), `param ${param} not handled`);
+    assert.ok(
+      html.includes(`params.get('${param}')`) || html.includes(`params.set('${param}'`),
+      `param ${param} not handled`
+    );
   }
 });
 

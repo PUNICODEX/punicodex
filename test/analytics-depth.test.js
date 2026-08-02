@@ -49,10 +49,15 @@ async function main() {
 
   await test('v3 migration adds the country column and rollup table', () => {
     const db = new Database(testDb);
-    const cols = db.prepare('PRAGMA table_info(site_analytics_events)').all().map((c) => c.name);
+    const cols = db
+      .prepare('PRAGMA table_info(site_analytics_events)')
+      .all()
+      .map((c) => c.name);
     assert.ok(cols.includes('country'), 'country column missing');
     const tables = db
-      .prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='site_analytics_countries_daily'")
+      .prepare(
+        "SELECT name FROM sqlite_master WHERE type='table' AND name='site_analytics_countries_daily'"
+      )
       .all();
     assert.strictEqual(tables.length, 1);
     db.close();
@@ -102,7 +107,9 @@ async function main() {
       ['GR:1', 'US:2']
     );
     const junkRow = db
-      .prepare("SELECT country FROM site_analytics_events WHERE path = '/sites/zeus/' ORDER BY id DESC LIMIT 1")
+      .prepare(
+        "SELECT country FROM site_analytics_events WHERE path = '/sites/zeus/' ORDER BY id DESC LIMIT 1"
+      )
       .get();
     assert.strictEqual(junkRow.country, null);
     db.close();
@@ -143,7 +150,10 @@ async function main() {
     const data = await analytics.getTempleAnalytics('hades', { days: 7 });
     assert.strictEqual(data.templeId, 'hades');
     assert.ok(data.totals.views >= 3, `expected >= 3 views, got ${data.totals.views}`);
-    assert.ok(data.totals.uniqueSessions >= 3, `expected >= 3 uniques, got ${data.totals.uniqueSessions}`);
+    assert.ok(
+      data.totals.uniqueSessions >= 3,
+      `expected >= 3 uniques, got ${data.totals.uniqueSessions}`
+    );
     assert.strictEqual(data.totals.avgVisibleMs, 45000);
     assert.ok(data.byDay.length === 7);
     const today = data.byDay[data.byDay.length - 1];
@@ -216,7 +226,10 @@ async function main() {
   });
 
   await test('drill-down page contract: chrome, registry, noindex, engine', () => {
-    const html = fs.readFileSync(path.join(__dirname, '..', 'trending', 'temple', 'index.html'), 'utf8');
+    const html = fs.readFileSync(
+      path.join(__dirname, '..', 'trending', 'temple', 'index.html'),
+      'utf8'
+    );
     for (const marker of [
       'PUNICODEX-ANALYTICS-START',
       'PUNICODEX-COOKIE-CONSENT-START',

@@ -282,7 +282,9 @@ function listStoreOrders({ limit = 50, offset = 0, status = null } = {}) {
     .prepare(`SELECT * FROM store_orders ${where} ORDER BY id DESC LIMIT ? OFFSET ?`)
     .all(...args, limit, offset);
   const rows = db
-    .prepare('SELECT status, COUNT(*) AS n, COALESCE(SUM(gross_cents), 0) AS gross FROM store_orders GROUP BY status')
+    .prepare(
+      'SELECT status, COUNT(*) AS n, COALESCE(SUM(gross_cents), 0) AS gross FROM store_orders GROUP BY status'
+    )
     .all();
   const byStatus = {};
   for (const r of rows) byStatus[r.status] = { count: r.n, grossCents: r.gross };

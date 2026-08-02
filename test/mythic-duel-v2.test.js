@@ -47,8 +47,44 @@ test('useHeroPower: board-target damage hits every enemy minion; ink-poor refusa
   // Put two enemy minions on the board directly.
   const c = SET.cards[40];
   battle.players[1].board.push(
-    { uid: 901, def: c, name: c.name, cost: c.cost, power: 3, maxHealth: 5, health: 5, speed: 3, shield: 0, sick: false, attacksUsed: false, stunned: 0, confused: 0, tempPowerDown: 0, ability: null, domain: c.domain || '', rarity: c.rarity },
-    { uid: 902, def: c, name: c.name, cost: c.cost, power: 3, maxHealth: 5, health: 5, speed: 3, shield: 0, sick: false, attacksUsed: false, stunned: 0, confused: 0, tempPowerDown: 0, ability: null, domain: c.domain || '', rarity: c.rarity }
+    {
+      uid: 901,
+      def: c,
+      name: c.name,
+      cost: c.cost,
+      power: 3,
+      maxHealth: 5,
+      health: 5,
+      speed: 3,
+      shield: 0,
+      sick: false,
+      attacksUsed: false,
+      stunned: 0,
+      confused: 0,
+      tempPowerDown: 0,
+      ability: null,
+      domain: c.domain || '',
+      rarity: c.rarity,
+    },
+    {
+      uid: 902,
+      def: c,
+      name: c.name,
+      cost: c.cost,
+      power: 3,
+      maxHealth: 5,
+      health: 5,
+      speed: 3,
+      shield: 0,
+      sick: false,
+      attacksUsed: false,
+      stunned: 0,
+      confused: 0,
+      tempPowerDown: 0,
+      ability: null,
+      domain: c.domain || '',
+      rarity: c.rarity,
+    }
   );
   battle.players[0].ink = 1;
   const gale = HeroPowers.forPantheon('japanese');
@@ -61,7 +97,7 @@ test('useHeroPower: board-target damage hits every enemy minion; ink-poor refusa
   assert.strictEqual(battle.players[1].board[1].health, 4);
 });
 
-test('heroPowerUsed resets at the start of the player\'s next turn', () => {
+test("heroPowerUsed resets at the start of the player's next turn", () => {
   const battle = makeBattle();
   battle.players[0].ink = 10;
   Engine.useHeroPower(battle, HeroPowers.forPantheon('greek'));
@@ -84,12 +120,33 @@ test('every pantheon in the card set has a hero power (or the default)', () => {
   }
   // Every power uses only effect kinds the engine implements.
   const implemented = new Set([
-    'damage', 'draw', 'heal-hero', 'drain-hero', 'heal-allies', 'shield-allies',
-    'shield-ally', 'buff-allies', 'debuff-enemy', 'destroy-weakest-enemy',
-    'destroy-filter', 'stun', 'stun-filter', 'confuse', 'slow-enemy',
-    'slow-all-enemies', 'ink-gen', 'heal-hero-turn', 'aura-allies',
-    'buff-self-attacking', 'damage-reduction', 'return-to-hand', 'copy-top-card',
-    'combo', 'all', 'charge', 'random-choice',
+    'damage',
+    'draw',
+    'heal-hero',
+    'drain-hero',
+    'heal-allies',
+    'shield-allies',
+    'shield-ally',
+    'buff-allies',
+    'debuff-enemy',
+    'destroy-weakest-enemy',
+    'destroy-filter',
+    'stun',
+    'stun-filter',
+    'confuse',
+    'slow-enemy',
+    'slow-all-enemies',
+    'ink-gen',
+    'heal-hero-turn',
+    'aura-allies',
+    'buff-self-attacking',
+    'damage-reduction',
+    'return-to-hand',
+    'copy-top-card',
+    'combo',
+    'all',
+    'charge',
+    'random-choice',
   ]);
   const checkEffect = (eff, where) => {
     if (!eff) return;
@@ -106,16 +163,34 @@ test('attack: minion trade resolves damage and halved counter for the faster str
   const battle = makeBattle();
   const c = SET.cards[0];
   const mk = (uid, power, health, speed) => ({
-    uid, def: c, name: 'T' + uid, cost: 1, power, maxHealth: health, health, speed,
-    shield: 0, sick: false, attacksUsed: false, stunned: 0, confused: 0, tempPowerDown: 0,
-    ability: null, domain: '', rarity: 'common',
+    uid,
+    def: c,
+    name: 'T' + uid,
+    cost: 1,
+    power,
+    maxHealth: health,
+    health,
+    speed,
+    shield: 0,
+    sick: false,
+    attacksUsed: false,
+    stunned: 0,
+    confused: 0,
+    tempPowerDown: 0,
+    ability: null,
+    domain: '',
+    rarity: 'common',
   });
   battle.players[0].board.push(mk(801, 4, 6, 8));
   battle.players[1].board.push(mk(901, 3, 5, 2));
   const res = Engine.attack(battle, 0, 0);
   assert.strictEqual(res.ok, true);
   assert.strictEqual(battle.players[1].board[0].health, 1, 'defender takes full power: 5 - 4');
-  assert.strictEqual(battle.players[0].board[0].health, 5, 'faster striker halves the counter: floor(3/2)');
+  assert.strictEqual(
+    battle.players[0].board[0].health,
+    5,
+    'faster striker halves the counter: floor(3/2)'
+  );
   const again = Engine.attack(battle, 0, 0);
   assert.strictEqual(again.ok, false, 'second strike in a turn refused');
   battle.players[0].board[0].attacksUsed = false;
@@ -134,9 +209,23 @@ test('attack: the arena exchange preview formula matches the engine counter rule
   // matrix and assert both formulas always agree on what the attacker takes.
   const c = SET.cards[0];
   const mk = (uid, power, health, speed) => ({
-    uid, def: c, name: 'T' + uid, cost: 1, power, maxHealth: health, health, speed,
-    shield: 0, sick: false, attacksUsed: false, stunned: 0, confused: 0, tempPowerDown: 0,
-    ability: null, domain: '', rarity: 'common',
+    uid,
+    def: c,
+    name: 'T' + uid,
+    cost: 1,
+    power,
+    maxHealth: health,
+    health,
+    speed,
+    shield: 0,
+    sick: false,
+    attacksUsed: false,
+    stunned: 0,
+    confused: 0,
+    tempPowerDown: 0,
+    ability: null,
+    domain: '',
+    rarity: 'common',
   });
   for (const atkSpeed of [1, 2, 5, 8, 10]) {
     for (const defSpeed of [1, 2, 5, 8, 10]) {
@@ -166,9 +255,23 @@ test('attack: hero target and confused random targeting', () => {
   const battle = makeBattle();
   const c = SET.cards[0];
   const mk = (uid, power, health, speed) => ({
-    uid, def: c, name: 'T' + uid, cost: 1, power, maxHealth: health, health, speed,
-    shield: 0, sick: false, attacksUsed: false, stunned: 0, confused: 0, tempPowerDown: 0,
-    ability: null, domain: '', rarity: 'common',
+    uid,
+    def: c,
+    name: 'T' + uid,
+    cost: 1,
+    power,
+    maxHealth: health,
+    health,
+    speed,
+    shield: 0,
+    sick: false,
+    attacksUsed: false,
+    stunned: 0,
+    confused: 0,
+    tempPowerDown: 0,
+    ability: null,
+    domain: '',
+    rarity: 'common',
   });
   battle.players[0].board.push(mk(802, 4, 6, 5));
   const face = Engine.attack(battle, 0, 'hero');
@@ -186,17 +289,46 @@ test('attack: hero target and confused random targeting', () => {
 
 test('archetype assignment is deterministic and domain-first', () => {
   assert.strictEqual(Sequences.archetypeFor({ pantheon: 'greek', domain: 'Sky, Thunder' }), 'bolt');
-  assert.strictEqual(Sequences.archetypeFor({ pantheon: 'greek', domain: 'Sea, Earthquakes' }), 'flood');
-  assert.strictEqual(Sequences.archetypeFor({ pantheon: 'egyptian', domain: 'Death, Underworld' }), 'shadow');
+  assert.strictEqual(
+    Sequences.archetypeFor({ pantheon: 'greek', domain: 'Sea, Earthquakes' }),
+    'flood'
+  );
+  assert.strictEqual(
+    Sequences.archetypeFor({ pantheon: 'egyptian', domain: 'Death, Underworld' }),
+    'shadow'
+  );
   assert.strictEqual(Sequences.archetypeFor({ pantheon: 'norse', domain: 'Wisdom' }), 'song');
-  assert.strictEqual(Sequences.archetypeFor({ pantheon: 'norse', domain: '' }), 'storm', 'pantheon fallback');
-  assert.strictEqual(Sequences.archetypeFor({ pantheon: 'zzz-unknown', domain: '' }), 'warhorn', 'default fallback');
+  assert.strictEqual(
+    Sequences.archetypeFor({ pantheon: 'norse', domain: '' }),
+    'storm',
+    'pantheon fallback'
+  );
+  assert.strictEqual(
+    Sequences.archetypeFor({ pantheon: 'zzz-unknown', domain: '' }),
+    'warhorn',
+    'default fallback'
+  );
   // Every card in the set resolves to a real archetype.
   const seen = new Set();
   for (const c of SET.cards) seen.add(Sequences.archetypeFor(c));
   for (const a of seen) {
     assert.ok(
-      ['bolt', 'blade', 'flood', 'flame', 'shadow', 'bloom', 'storm', 'decay', 'radiance', 'song', 'quake', 'gale', 'veil', 'warhorn'].includes(a),
+      [
+        'bolt',
+        'blade',
+        'flood',
+        'flame',
+        'shadow',
+        'bloom',
+        'storm',
+        'decay',
+        'radiance',
+        'song',
+        'quake',
+        'gale',
+        'veil',
+        'warhorn',
+      ].includes(a),
       `unknown archetype ${a}`
     );
   }
@@ -232,8 +364,20 @@ test('every attack-sequence builder runs clean frames (no undefined vars)', () =
   try {
     const fx = Sequences.attach(canvas);
     const archetypes = [
-      'bolt', 'blade', 'flood', 'flame', 'shadow', 'bloom', 'storm',
-      'decay', 'radiance', 'song', 'quake', 'gale', 'veil', 'warhorn',
+      'bolt',
+      'blade',
+      'flood',
+      'flame',
+      'shadow',
+      'bloom',
+      'storm',
+      'decay',
+      'radiance',
+      'song',
+      'quake',
+      'gale',
+      'veil',
+      'warhorn',
     ];
     let t = 1000;
     for (const a of archetypes) {
@@ -287,7 +431,8 @@ test('signature moves: registered for real flagships and frame-clean, supers inc
   const Signatures = require('../game/fx/signatures.js');
   assert.ok(Signatures.count >= 20, 'at least 20 signatures registered');
   const flagshipIds = new Set(SET.cards.filter((c) => c.flagship).map((c) => c.entryId));
-  for (const id of Signatures.ids) assert.ok(flagshipIds.has(id), `signature for unknown entry ${id}`);
+  for (const id of Signatures.ids)
+    assert.ok(flagshipIds.has(id), `signature for unknown entry ${id}`);
   assert.ok(Sequences.signatureFor('zeus'), 'zeus signature resolvable');
 
   const anyFn = new Proxy(function () {}, { get: () => anyFn, apply: () => anyFn });
@@ -311,7 +456,14 @@ test('signature moves: registered for real flagships and frame-clean, supers inc
     const fx = Sequences.attach(canvas);
     let t = 5000;
     const run = (opts) => {
-      fx.attack({ from: { x: 20, y: 20 }, to: { x: 300, y: 240 }, colors: { glow: '#ffd97a' }, power: 8, onImpact() {}, ...opts });
+      fx.attack({
+        from: { x: 20, y: 20 },
+        to: { x: 300, y: 240 },
+        colors: { glow: '#ffd97a' },
+        power: 8,
+        onImpact() {},
+        ...opts,
+      });
       assert.ok(rafCb, 'loop scheduled');
       for (let f = 0; f < 100 && rafCb; f++) {
         const cb = rafCb;
@@ -329,7 +481,20 @@ test('signature moves: registered for real flagships and frame-clean, supers inc
 
 test('sound: the synth engine is wired and persisted', () => {
   const Sound = require('../game/fx/sound.js');
-  for (const name of ['select', 'cardPlay', 'attack', 'impact', 'heroHit', 'heal', 'turn', 'victory', 'defeat', 'pack', 'ink', 'banner']) {
+  for (const name of [
+    'select',
+    'cardPlay',
+    'attack',
+    'impact',
+    'heroHit',
+    'heal',
+    'turn',
+    'victory',
+    'defeat',
+    'pack',
+    'ink',
+    'banner',
+  ]) {
     assert.ok(Sound.RECIPES[name], `missing recipe ${name}`);
   }
   const html = fs.readFileSync(path.join(ROOT, 'game/index.html'), 'utf8');
@@ -340,7 +505,14 @@ test('sound: the synth engine is wired and persisted', () => {
   assert.ok(sigIdx !== -1 && sigIdx < gameIdx, 'signatures.js loads before game.js');
   assert.ok(html.includes('sound-toggle'), 'sound toggle button missing');
   const js = fs.readFileSync(path.join(ROOT, 'game/game.js'), 'utf8');
-  for (const needle of ["sfx('attack')", "sfx('cardPlay')", "sfx('heroHit')", "sfx(outcome === 'win'", 'soundMuted', 'renderSoundToggle']) {
+  for (const needle of [
+    "sfx('attack')",
+    "sfx('cardPlay')",
+    "sfx('heroHit')",
+    "sfx(outcome === 'win'",
+    'soundMuted',
+    'renderSoundToggle',
+  ]) {
     assert.ok(js.includes(needle), `game.js missing ${needle}`);
   }
 });
@@ -366,7 +538,9 @@ test('opening hands never brick: curve smoothing guarantees a playable card', ()
   // A deck of 29 top-end holos (cost 6-7) and a single 1-2 cost common:
   // over 20 seeds, every opening hand must still contain a <=2-cost card.
   const cheap = SET.cards.find((c) => c.flagship && c.edition === 'common' && c.cost <= 2);
-  const dear = SET.cards.filter((c) => c.flagship && c.edition === 'holo' && c.cost >= 6).slice(0, 29);
+  const dear = SET.cards
+    .filter((c) => c.flagship && c.edition === 'holo' && c.cost >= 6)
+    .slice(0, 29);
   assert.ok(cheap && dear.length === 29, 'test fixtures exist');
   for (let seed = 1; seed <= 20; seed++) {
     const deck = [...dear.map(Engine.toBattleCard), Engine.toBattleCard(cheap)];
@@ -398,20 +572,40 @@ test('rubber band: an Oracle far ahead holds removal but never throws', () => {
   const me = battle.players[0];
   ai.hero.hp = 30;
   me.hero.hp = 18; // 12 ahead → the band engages
-  const removal = SET.cards.find((c) => c.ability && c.ability.effect && /destroy|damage|stun/.test(c.ability.effect.kind || ''));
+  const removal = SET.cards.find(
+    (c) => c.ability && c.ability.effect && /destroy|damage|stun/.test(c.ability.effect.kind || '')
+  );
   ai.hand = [Engine.toBattleCard(removal)];
   ai.ink = 10;
   // A ready AI attacker and a killable player minion, face wide open.
   const c = SET.cards[0];
   const mk = (uid, power, health, speed) => ({
-    uid, def: c, name: 'T' + uid, cost: 1, power, maxHealth: health, health, speed,
-    shield: 0, sick: false, attacksUsed: false, stunned: 0, confused: 0, tempPowerDown: 0,
-    ability: null, domain: '', rarity: 'common',
+    uid,
+    def: c,
+    name: 'T' + uid,
+    cost: 1,
+    power,
+    maxHealth: health,
+    health,
+    speed,
+    shield: 0,
+    sick: false,
+    attacksUsed: false,
+    stunned: 0,
+    confused: 0,
+    tempPowerDown: 0,
+    ability: null,
+    domain: '',
+    rarity: 'common',
   });
   ai.board.push(mk(901, 4, 6, 5));
   me.board.push(mk(801, 2, 3, 5));
   Engine.runAiTurn(battle, { rubberBand: true });
-  assert.strictEqual(ai.board.filter((m) => m.uid !== 901).length, 0, 'removal stayed in hand while far ahead');
+  assert.strictEqual(
+    ai.board.filter((m) => m.uid !== 901).length,
+    0,
+    'removal stayed in hand while far ahead'
+  );
   // The band never throws: a clearly favorable trade still happens normally.
   assert.strictEqual(me.board.length, 0, 'favorable trades continue under the band');
 });
@@ -466,11 +660,33 @@ test('battle UI contract: hero strikes are reachable, failures speak, AI pool is
 test('the kit: useSpecial validates readiness, ink, and targets — then unleashes', () => {
   const battle = makeBattle();
   const c = SET.cards[0];
-  const ability = { id: 'ab', entryId: 'x', name: 'Test Bolt', description: 'Deal 3.', trigger: 'on_play', effect: { kind: 'damage', amount: 3, target: 'enemy-minion' } };
+  const ability = {
+    id: 'ab',
+    entryId: 'x',
+    name: 'Test Bolt',
+    description: 'Deal 3.',
+    trigger: 'on_play',
+    effect: { kind: 'damage', amount: 3, target: 'enemy-minion' },
+  };
   const mk = (uid, power, health, speed, ab) => ({
-    uid, def: c, name: 'T' + uid, cost: 1, power, maxHealth: health, health, speed,
-    shield: 0, sick: false, attacksUsed: false, specialUsed: false, stunned: 0, confused: 0, tempPowerDown: 0,
-    ability: ab || null, domain: '', rarity: 'common',
+    uid,
+    def: c,
+    name: 'T' + uid,
+    cost: 1,
+    power,
+    maxHealth: health,
+    health,
+    speed,
+    shield: 0,
+    sick: false,
+    attacksUsed: false,
+    specialUsed: false,
+    stunned: 0,
+    confused: 0,
+    tempPowerDown: 0,
+    ability: ab || null,
+    domain: '',
+    rarity: 'common',
   });
   battle.players[0].board.push(mk(801, 4, 6, 5, ability));
   battle.players[1].board.push(mk(901, 2, 8, 3));
@@ -503,7 +719,14 @@ test('the kit: useSpecial validates readiness, ink, and targets — then unleash
   battle.players[0].board[0].sick = false;
 
   // Passives cannot be activated.
-  battle.players[0].board[0].ability = { id: 'p', entryId: 'x', name: 'Aura', description: '', trigger: 'passive', effect: { kind: 'aura-allies', power: 1 } };
+  battle.players[0].board[0].ability = {
+    id: 'p',
+    entryId: 'x',
+    name: 'Aura',
+    description: '',
+    trigger: 'passive',
+    effect: { kind: 'aura-allies', power: 1 },
+  };
   res = Engine.useSpecial(battle, 0, 0);
   assert.strictEqual(res.ok, false, 'passive refused');
 
@@ -519,11 +742,33 @@ test('the kit: the AI unleashes aggressive specials (but not under mercy)', () =
   const battle = makeBattle();
   Engine.endTurn(battle); // AI active
   const c = SET.cards[0];
-  const ability = { id: 'ab', entryId: 'x', name: 'Smite', description: 'Deal 3.', trigger: 'on_play', effect: { kind: 'damage', amount: 3, target: 'enemy-minion' } };
+  const ability = {
+    id: 'ab',
+    entryId: 'x',
+    name: 'Smite',
+    description: 'Deal 3.',
+    trigger: 'on_play',
+    effect: { kind: 'damage', amount: 3, target: 'enemy-minion' },
+  };
   const mk = (uid, power, health, speed, ab) => ({
-    uid, def: c, name: 'T' + uid, cost: 1, power, maxHealth: health, health, speed,
-    shield: 0, sick: false, attacksUsed: false, specialUsed: false, stunned: 0, confused: 0, tempPowerDown: 0,
-    ability: ab || null, domain: '', rarity: 'common',
+    uid,
+    def: c,
+    name: 'T' + uid,
+    cost: 1,
+    power,
+    maxHealth: health,
+    health,
+    speed,
+    shield: 0,
+    sick: false,
+    attacksUsed: false,
+    specialUsed: false,
+    stunned: 0,
+    confused: 0,
+    tempPowerDown: 0,
+    ability: ab || null,
+    domain: '',
+    rarity: 'common',
   });
   battle.players[1].board.push(mk(901, 4, 6, 5, ability));
   battle.players[0].board.push(mk(801, 2, 8, 3));
@@ -539,7 +784,11 @@ test('the kit: the AI unleashes aggressive specials (but not under mercy)', () =
   battle2.players[1].hand = [];
   battle2.players[1].ink = 6;
   Engine.runAiTurn(battle2, { holdBack: true });
-  assert.strictEqual(battle2.players[0].board[0].health, 8, 'mercy shelters the board from specials');
+  assert.strictEqual(
+    battle2.players[0].board[0].health,
+    8,
+    'mercy shelters the board from specials'
+  );
 });
 
 test('the kit UI: action bar, pips, targeting, sound', () => {
@@ -561,28 +810,60 @@ test('the kit UI: action bar, pips, targeting, sound', () => {
 test('difficulty hooks: band threshold, noSpecials, and AI hero power', () => {
   const c = SET.cards[0];
   const mk = (uid, power, health, speed) => ({
-    uid, def: c, name: 'T' + uid, cost: 1, power, maxHealth: health, health, speed,
-    shield: 0, sick: false, attacksUsed: false, specialUsed: false, stunned: 0, confused: 0, tempPowerDown: 0,
-    ability: null, domain: '', rarity: 'common',
+    uid,
+    def: c,
+    name: 'T' + uid,
+    cost: 1,
+    power,
+    maxHealth: health,
+    health,
+    speed,
+    shield: 0,
+    sick: false,
+    attacksUsed: false,
+    specialUsed: false,
+    stunned: 0,
+    confused: 0,
+    tempPowerDown: 0,
+    ability: null,
+    domain: '',
+    rarity: 'common',
   });
   // Band threshold: at 6 the band engages at 8+; at 999 it never does.
-  for (const [threshold, expectHeld] of [[6, true], [999, false]]) {
+  for (const [threshold, expectHeld] of [
+    [6, true],
+    [999, false],
+  ]) {
     const battle = makeBattle();
     Engine.endTurn(battle);
     const ai = battle.players[1];
     battle.players[0].hero.hp = 20; // AI leads by 10: band active at 6, not at 999
     ai.hero.hp = 30;
-    const removal = SET.cards.find((x) => x.ability && x.ability.effect && /destroy|damage|stun/.test(x.ability.effect.kind || ''));
+    const removal = SET.cards.find(
+      (x) =>
+        x.ability && x.ability.effect && /destroy|damage|stun/.test(x.ability.effect.kind || '')
+    );
     ai.hand = [Engine.toBattleCard(removal)];
     ai.ink = 10;
     Engine.runAiTurn(battle, { rubberBand: true, bandThreshold: threshold });
     const played = ai.board.length > 0;
-    assert.strictEqual(played, !expectHeld, `threshold ${threshold}: removal ${expectHeld ? 'held' : 'played'}`);
+    assert.strictEqual(
+      played,
+      !expectHeld,
+      `threshold ${threshold}: removal ${expectHeld ? 'held' : 'played'}`
+    );
   }
   // noSpecials: the special phase never fires.
   const battle2 = makeBattle();
   Engine.endTurn(battle2);
-  const ability = { id: 'ab', entryId: 'x', name: 'Smite', description: 'Deal 3.', trigger: 'on_play', effect: { kind: 'damage', amount: 3, target: 'enemy-minion' } };
+  const ability = {
+    id: 'ab',
+    entryId: 'x',
+    name: 'Smite',
+    description: 'Deal 3.',
+    trigger: 'on_play',
+    effect: { kind: 'damage', amount: 3, target: 'enemy-minion' },
+  };
   const smiter = mk(901, 4, 6, 5);
   smiter.ability = ability;
   battle2.players[1].board.push(smiter);
@@ -590,7 +871,11 @@ test('difficulty hooks: band threshold, noSpecials, and AI hero power', () => {
   battle2.players[1].hand = [];
   battle2.players[1].ink = 6;
   Engine.runAiTurn(battle2, { noSpecials: true });
-  assert.strictEqual(battle2.players[0].board[0].health, 8, 'noSpecials disables the AI special phase');
+  assert.strictEqual(
+    battle2.players[0].board[0].health,
+    8,
+    'noSpecials disables the AI special phase'
+  );
   // heroPowerDef: the AI wields its power when the difficulty grants it.
   const battle3 = makeBattle();
   Engine.endTurn(battle3);
@@ -622,9 +907,24 @@ test('pantheon bond: kin of the champion fight at +1 power', () => {
   const c = SET.cards[0];
   battle.players[0].bondPantheon = 'greek';
   const kin = {
-    uid: 801, def: { ...c, pantheon: 'greek' }, name: 'Kin', cost: 1, power: 4, maxHealth: 5, health: 5, speed: 3,
-    shield: 0, sick: false, attacksUsed: false, specialUsed: false, stunned: 0, confused: 0, tempPowerDown: 0,
-    ability: null, domain: '', rarity: 'common',
+    uid: 801,
+    def: { ...c, pantheon: 'greek' },
+    name: 'Kin',
+    cost: 1,
+    power: 4,
+    maxHealth: 5,
+    health: 5,
+    speed: 3,
+    shield: 0,
+    sick: false,
+    attacksUsed: false,
+    specialUsed: false,
+    stunned: 0,
+    confused: 0,
+    tempPowerDown: 0,
+    ability: null,
+    domain: '',
+    rarity: 'common',
   };
   const other = { ...kin, uid: 802, name: 'Other', def: { ...c, pantheon: 'norse' } };
   battle.players[0].board.push(kin, other);
@@ -646,7 +946,11 @@ test('bespoke abilities: the set names hundreds of moves, flagships wear epithet
     if (!card.flagship || card.edition !== 'common' || overrideKeys.has(card.entryId)) continue;
     const lore = LORE[card.entryId];
     if (lore && lore.domains && lore.domains.title) {
-      assert.strictEqual(card.ability.name, lore.domains.title, `${card.entryId} should wear its epithet`);
+      assert.strictEqual(
+        card.ability.name,
+        lore.domains.title,
+        `${card.entryId} should wear its epithet`
+      );
       checked++;
       if (checked >= 40) break;
     }
@@ -656,7 +960,22 @@ test('bespoke abilities: the set names hundreds of moves, flagships wear epithet
 
 test('archetype sound bank: every strike has its own register and is wired', () => {
   const Sound = require('../game/fx/sound.js');
-  const archetypes = ['bolt', 'blade', 'flood', 'flame', 'shadow', 'bloom', 'storm', 'decay', 'radiance', 'song', 'quake', 'gale', 'veil', 'warhorn'];
+  const archetypes = [
+    'bolt',
+    'blade',
+    'flood',
+    'flame',
+    'shadow',
+    'bloom',
+    'storm',
+    'decay',
+    'radiance',
+    'song',
+    'quake',
+    'gale',
+    'veil',
+    'warhorn',
+  ];
   for (const a of archetypes) {
     assert.ok(Sound.RECIPES['atk_' + a], `missing atk_${a} recipe`);
   }
@@ -681,7 +1000,7 @@ test('card levels: stacked copies forge stats; the Oracle mirrors the average', 
   // Game-side contracts: thresholds, mirroring, display.
   const js = fs.readFileSync(path.join(ROOT, 'game/game.js'), 'utf8');
   const css = fs.readFileSync(path.join(ROOT, 'game/game.css'), 'utf8');
-  assert.ok(js.includes("copies >= 4 ? 3 : copies >= 2 ? 2 : 1"), 'level thresholds missing');
+  assert.ok(js.includes('copies >= 4 ? 3 : copies >= 2 ? 2 : 1'), 'level thresholds missing');
   assert.ok(js.includes('applyLevels(playerDeck, cardLevel)'), 'player levels not applied');
   assert.ok(js.includes('playerAvgLevel'), 'AI level mirror missing');
   assert.ok(js.includes('card-level'), 'level pips missing');
@@ -690,7 +1009,10 @@ test('card levels: stacked copies forge stats; the Oracle mirrors the average', 
 
 test('strategic auto-build uses the curated builder on the player collection', () => {
   const js = fs.readFileSync(path.join(ROOT, 'game/game.js'), 'utf8');
-  assert.ok(js.includes('buildCuratedDeck(home, STARTER_CURVE, rand, owned)'), 'auto-build is not curated');
+  assert.ok(
+    js.includes('buildCuratedDeck(home, STARTER_CURVE, rand, owned)'),
+    'auto-build is not curated'
+  );
   assert.ok(js.includes('poolOverride'), 'builder is not parameterizable');
 });
 
@@ -707,18 +1029,45 @@ test('pantheon ascendant: three kin lift each other; two do not', () => {
   const battle = makeBattle();
   const c = SET.cards[0];
   const mk = (uid, pantheon) => ({
-    uid, def: { ...c, pantheon }, name: 'T' + uid, cost: 1, power: 3, maxHealth: 4, health: 4, speed: 3,
-    shield: 0, sick: false, attacksUsed: false, specialUsed: false, stunned: 0, confused: 0, tempPowerDown: 0,
-    ability: null, domain: '', rarity: 'common',
+    uid,
+    def: { ...c, pantheon },
+    name: 'T' + uid,
+    cost: 1,
+    power: 3,
+    maxHealth: 4,
+    health: 4,
+    speed: 3,
+    shield: 0,
+    sick: false,
+    attacksUsed: false,
+    specialUsed: false,
+    stunned: 0,
+    confused: 0,
+    tempPowerDown: 0,
+    ability: null,
+    domain: '',
+    rarity: 'common',
   });
   battle.players[0].board.push(mk(801, 'norse'), mk(802, 'norse'));
-  assert.strictEqual(Engine.effectivePower(battle, 0, battle.players[0].board[0]), 3, 'two kin: no ascendance');
+  assert.strictEqual(
+    Engine.effectivePower(battle, 0, battle.players[0].board[0]),
+    3,
+    'two kin: no ascendance'
+  );
   battle.players[0].board.push(mk(803, 'norse'));
-  assert.strictEqual(Engine.effectivePower(battle, 0, battle.players[0].board[0]), 4, 'three kin: ascendant +1');
+  assert.strictEqual(
+    Engine.effectivePower(battle, 0, battle.players[0].board[0]),
+    4,
+    'three kin: ascendant +1'
+  );
   assert.strictEqual(Engine.isAscendant(battle, 0, battle.players[0].board[0]), true);
   // And it stacks with the champion's bond.
   battle.players[0].bondPantheon = 'norse';
-  assert.strictEqual(Engine.effectivePower(battle, 0, battle.players[0].board[0]), 5, 'bond + ascendant stack');
+  assert.strictEqual(
+    Engine.effectivePower(battle, 0, battle.players[0].board[0]),
+    5,
+    'bond + ascendant stack'
+  );
 });
 
 test('the P-series contracts: tutorial, drag, chips, deck-lab, oracle path, sound pass', () => {
@@ -815,7 +1164,10 @@ test('phantom duels: encode/decode roundtrip, community ghosts, entry points', (
   assert.ok(js.includes('battle.phantomName'), 'phantom name not recorded');
   // History + daily tribute + champion strike.
   assert.ok(js.includes('recordHistory'), 'match history missing');
-  assert.ok(js.includes('recent-duels') || html.includes('recent-duels'), 'recent duels UI missing');
+  assert.ok(
+    js.includes('recent-duels') || html.includes('recent-duels'),
+    'recent duels UI missing'
+  );
   assert.ok(js.includes('lastDaily'), 'daily tribute missing');
   assert.ok(js.includes("'throne-0'"), 'champion strike not wired');
   const arena = fs.readFileSync(path.join(ROOT, 'game/fx/arena3d.js'), 'utf8');
@@ -824,7 +1176,15 @@ test('phantom duels: encode/decode roundtrip, community ghosts, entry points', (
 
 test('the Arena 3D: renderer, integration, presentation toggle, fallback', () => {
   const arena = fs.readFileSync(path.join(ROOT, 'game/fx/arena3d.js'), 'utf8');
-  for (const needle of ['setChampions', 'syncBoard', 'attackChoreo', 'project', 'heroHit', 'FLOOR_FS', 'BILL_FS']) {
+  for (const needle of [
+    'setChampions',
+    'syncBoard',
+    'attackChoreo',
+    'project',
+    'heroHit',
+    'FLOOR_FS',
+    'BILL_FS',
+  ]) {
     assert.ok(arena.includes(needle), `arena3d.js missing ${needle}`);
   }
   const html = fs.readFileSync(path.join(ROOT, 'game/index.html'), 'utf8');
@@ -834,7 +1194,15 @@ test('the Arena 3D: renderer, integration, presentation toggle, fallback', () =>
   assert.ok(html.includes('arena-3d'), 'arena canvas missing');
   assert.ok(html.includes('presentation-toggle'), 'presentation toggle missing');
   const js = fs.readFileSync(path.join(ROOT, 'game/game.js'), 'utf8');
-  for (const needle of ['mountArena', 'unmountArena', 'arena3d.syncBoard', 'arena3d.attackChoreo', 'arena3d.heroHit', 'save.presentation', 'cloneNode(false)']) {
+  for (const needle of [
+    'mountArena',
+    'unmountArena',
+    'arena3d.syncBoard',
+    'arena3d.attackChoreo',
+    'arena3d.heroHit',
+    'save.presentation',
+    'cloneNode(false)',
+  ]) {
     assert.ok(js.includes(needle), `game.js missing ${needle}`);
   }
   // Remount after a lost GL context starts from a fresh canvas (the toggle
@@ -872,14 +1240,20 @@ test('regression: the battle deck is never double-scaled', () => {
   // display cards, flooring every player minion to 1/1. Guard the assembly.
   const js = fs.readFileSync(path.join(ROOT, 'game/game.js'), 'utf8');
   assert.ok(!js.includes('toBattleCard(byId'), 'startBattle double-scales the player deck again');
-  assert.ok(js.includes('return byId[id];'), 'deck assembly must use the already-scaled display cards');
+  assert.ok(
+    js.includes('return byId[id];'),
+    'deck assembly must use the already-scaled display cards'
+  );
   // And at the data layer: a tier-1 common must hold real battle stats after
   // exactly one transform.
   const t1 = SET.cards.find((c) => c.flagship && c.edition === 'common' && c.tier === '1');
   const once = Engine.toBattleCard(t1);
   assert.ok(once.power >= 4 && once.health >= 4, 'single transform keeps battle stats');
   const twice = Engine.toBattleCard(once);
-  assert.ok(twice.power < once.power, 'double transform provably destroys stats — guard above must hold');
+  assert.ok(
+    twice.power < once.power,
+    'double transform provably destroys stats — guard above must hold'
+  );
 });
 
 test('autopilot: toggle, loop, and spectate wiring exist', () => {
@@ -902,7 +1276,10 @@ test('battle UI contract: minion attacks resolve, moves are visible, help exists
   assert.ok(js.includes('minionNode('), 'uid-based minion node lookup missing');
   const clickBody = js.slice(js.indexOf('function onMinionClick'));
   const clickFn = clickBody.slice(0, clickBody.indexOf('\n  function '));
-  assert.ok(!clickFn.includes('centerOf(node)'), 'free `node` reference is back in onMinionClick — minion attacks will throw');
+  assert.ok(
+    !clickFn.includes('centerOf(node)'),
+    'free `node` reference is back in onMinionClick — minion attacks will throw'
+  );
 
   // The moves are printed: hand cards carry full ability text, board minions
   // carry the ability name, enemy minions open their record on tap.
@@ -927,9 +1304,24 @@ test('battle UI contract: minion attacks resolve, moves are visible, help exists
 function mkMinion(def, over) {
   return Object.assign(
     {
-      uid: 700, def: def, name: 'M', cost: 1, power: 2, maxHealth: 5, health: 5, speed: 3,
-      shield: 0, sick: false, attacksUsed: false, specialUsed: false, stunned: 0,
-      confused: 0, tempPowerDown: 0, ability: null, domain: '', rarity: 'common',
+      uid: 700,
+      def: def,
+      name: 'M',
+      cost: 1,
+      power: 2,
+      maxHealth: 5,
+      health: 5,
+      speed: 3,
+      shield: 0,
+      sick: false,
+      attacksUsed: false,
+      specialUsed: false,
+      stunned: 0,
+      confused: 0,
+      tempPowerDown: 0,
+      ability: null,
+      domain: '',
+      rarity: 'common',
     },
     over || {}
   );
@@ -939,39 +1331,76 @@ test('passives survive an edition upgrade: `all` containers are read off the boa
   const battle = makeBattle();
   const c = SET.cards[0];
   const upgraded = {
-    id: 'ab', entryId: 'x', name: 'Forge Mastery', description: '', trigger: 'passive',
+    id: 'ab',
+    entryId: 'x',
+    name: 'Forge Mastery',
+    description: '',
+    trigger: 'passive',
     effect: {
       kind: 'all',
-      effects: [{ kind: 'damage-reduction', amount: 3 }, { kind: 'buff-allies', power: 1, health: 1 }],
+      effects: [
+        { kind: 'damage-reduction', amount: 3 },
+        { kind: 'buff-allies', power: 1, health: 1 },
+      ],
     },
   };
-  battle.players[0].board.push(mkMinion(c, { uid: 701, ability: upgraded, health: 9, maxHealth: 9 }));
+  battle.players[0].board.push(
+    mkMinion(c, { uid: 701, ability: upgraded, health: 9, maxHealth: 9 })
+  );
   battle.players[1].board.push(mkMinion(c, { uid: 901, power: 5 }));
   // 5 power - 3 reduction = 2 damage. Under the old `combo` wrap the reduction
   // was invisible and the defender took the full 5.
   Engine.attack(battle, 0, 0);
-  assert.strictEqual(battle.players[0].board[0].health, 7, 'wrapped damage-reduction still applies');
+  assert.strictEqual(
+    battle.players[0].board[0].health,
+    7,
+    'wrapped damage-reduction still applies'
+  );
 });
 
 test('aura-allies still buffs through an `all` container', () => {
   const battle = makeBattle();
   const c = SET.cards[0];
   const aura = {
-    id: 'ab2', entryId: 'x', name: 'Old Presence', description: '', trigger: 'passive',
-    effect: { kind: 'all', effects: [{ kind: 'aura-allies', power: 2 }, { kind: 'buff-allies', power: 1, health: 1 }] },
+    id: 'ab2',
+    entryId: 'x',
+    name: 'Old Presence',
+    description: '',
+    trigger: 'passive',
+    effect: {
+      kind: 'all',
+      effects: [
+        { kind: 'aura-allies', power: 2 },
+        { kind: 'buff-allies', power: 1, health: 1 },
+      ],
+    },
   };
   battle.players[0].board.push(mkMinion(c, { uid: 702, ability: aura }));
   const ally = mkMinion(c, { uid: 703, power: 4 });
   battle.players[0].board.push(ally);
-  assert.strictEqual(Engine.effectivePower(battle, 0, ally), 6, 'aura reaches through the container');
+  assert.strictEqual(
+    Engine.effectivePower(battle, 0, ally),
+    6,
+    'aura reaches through the container'
+  );
 });
 
 test('ink-gen survives the upgrade and still refills at start of turn', () => {
   const battle = makeBattle();
   const c = SET.cards[0];
   const wrapped = {
-    id: 'ab3', entryId: 'x', name: 'Domain Advantage', description: '', trigger: 'passive',
-    effect: { kind: 'all', effects: [{ kind: 'ink-gen', amount: 2 }, { kind: 'buff-allies', power: 1, health: 1 }] },
+    id: 'ab3',
+    entryId: 'x',
+    name: 'Domain Advantage',
+    description: '',
+    trigger: 'passive',
+    effect: {
+      kind: 'all',
+      effects: [
+        { kind: 'ink-gen', amount: 2 },
+        { kind: 'buff-allies', power: 1, health: 1 },
+      ],
+    },
   };
   battle.players[0].board.push(mkMinion(c, { uid: 704, ability: wrapped }));
   Engine.endTurn(battle);
@@ -984,10 +1413,17 @@ test('a deathrattle resolves its container without needing a combo condition', (
   const battle = makeBattle();
   const c = SET.cards[0];
   const rattle = {
-    id: 'ab4', entryId: 'x', name: 'Two Thrones', description: '', trigger: 'on_death',
+    id: 'ab4',
+    entryId: 'x',
+    name: 'Two Thrones',
+    description: '',
+    trigger: 'on_death',
     effect: {
       kind: 'all',
-      effects: [{ kind: 'return-to-hand', healthBonus: 5 }, { kind: 'buff-allies', power: 1, health: 1 }],
+      effects: [
+        { kind: 'return-to-hand', healthBonus: 5 },
+        { kind: 'buff-allies', power: 1, health: 1 },
+      ],
     },
   };
   // Die for real: strike a bigger body and take the lethal counter-attack,
@@ -995,18 +1431,28 @@ test('a deathrattle resolves its container without needing a combo condition', (
   battle.players[0].board.push(
     mkMinion(c, { uid: 705, ability: rattle, power: 1, health: 1, maxHealth: 1, speed: 1 })
   );
-  battle.players[1].board.push(mkMinion(c, { uid: 904, power: 5, health: 20, maxHealth: 20, speed: 5 }));
+  battle.players[1].board.push(
+    mkMinion(c, { uid: 904, power: 5, health: 20, maxHealth: 20, speed: 5 })
+  );
   const handBefore = battle.players[0].hand.length;
   Engine.attack(battle, 0, 0);
   assert.strictEqual(battle.players[0].board.length, 0, 'the counter-attack killed it');
-  assert.strictEqual(battle.players[0].hand.length, handBefore + 1, 'the deathrattle returned it to hand');
+  assert.strictEqual(
+    battle.players[0].hand.length,
+    handBefore + 1,
+    'the deathrattle returned it to hand'
+  );
 });
 
 test('an activated special resolves a container-wrapped ability', () => {
   const battle = makeBattle();
   const c = SET.cards[0];
   const wrapped = {
-    id: 'ab5', entryId: 'x', name: 'Thunderclap', description: '', trigger: 'on_play',
+    id: 'ab5',
+    entryId: 'x',
+    name: 'Thunderclap',
+    description: '',
+    trigger: 'on_play',
     effect: {
       kind: 'all',
       effects: [
@@ -1030,7 +1476,11 @@ test('`combo` stays conditional: a battlecry fizzles as the first card of a turn
     Object.assign({}, Engine.toBattleCard(c), {
       cost: 1,
       ability: {
-        id: 'ab6', entryId: 'x', name: 'Syzygy', description: '', trigger: 'on_play',
+        id: 'ab6',
+        entryId: 'x',
+        name: 'Syzygy',
+        description: '',
+        trigger: 'on_play',
         effect: { kind: 'combo', effects: [{ kind: 'damage', target: 'enemy-minion', amount: 4 }] },
       },
     });
@@ -1050,7 +1500,11 @@ test('charge clears summoning sickness for the card that arrives with it', () =>
   const hermes = Object.assign({}, Engine.toBattleCard(c), {
     cost: 1,
     ability: {
-      id: 'ab7', entryId: 'x', name: 'Wayfinder', description: '', trigger: 'on_play',
+      id: 'ab7',
+      entryId: 'x',
+      name: 'Wayfinder',
+      description: '',
+      trigger: 'on_play',
       effect: { kind: 'all', effects: [{ kind: 'draw', count: 1 }, { kind: 'charge' }] },
     },
   });
@@ -1064,7 +1518,11 @@ test('charge clears summoning sickness for the card that arrives with it', () =>
 
 test('the shipped card set honours the trigger/effect invariants', () => {
   const CONTINUOUS = new Set([
-    'ink-gen', 'heal-hero-turn', 'aura-allies', 'buff-self-attacking', 'damage-reduction',
+    'ink-gen',
+    'heal-hero-turn',
+    'aura-allies',
+    'buff-self-attacking',
+    'damage-reduction',
   ]);
   const offenders = [];
   for (const card of SET.cards) {
@@ -1105,7 +1563,9 @@ test('no edition upgrade is weaker than the printing it was forged from', () => 
       if (!has.has(kind)) losses.push(card.id + ' lost ' + kind);
     }
     if (base.ability.trigger !== card.ability.trigger) {
-      losses.push(card.id + ' trigger drifted ' + base.ability.trigger + '→' + card.ability.trigger);
+      losses.push(
+        card.id + ' trigger drifted ' + base.ability.trigger + '→' + card.ability.trigger
+      );
     }
   }
   assert.deepStrictEqual(losses.slice(0, 5), [], 'upgraded printings that lost their base effect');

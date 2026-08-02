@@ -65,11 +65,18 @@ test('every public page carries the consent block between its markers', () => {
     const html = read(rel);
     const start = html.indexOf(START);
     const end = html.indexOf(END);
-    assert.ok(start !== -1 && end !== -1 && end > start, `${rel}: consent markers missing or inverted`);
+    assert.ok(
+      start !== -1 && end !== -1 && end > start,
+      `${rel}: consent markers missing or inverted`
+    );
     const block = html.slice(start, end);
     assert.ok(block.includes(CSS), `${rel}: consent css link missing`);
     assert.ok(block.includes(JS), `${rel}: consent script missing`);
-    assert.strictEqual(html.indexOf(START), html.lastIndexOf(START), `${rel}: duplicate consent blocks`);
+    assert.strictEqual(
+      html.indexOf(START),
+      html.lastIndexOf(START),
+      `${rel}: duplicate consent blocks`
+    );
   }
 });
 

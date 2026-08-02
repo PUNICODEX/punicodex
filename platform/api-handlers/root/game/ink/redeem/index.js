@@ -29,7 +29,9 @@ module.exports = async (req, res) => {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   try {
-    if (!(await checkPublicRateLimitByReq(req, res, 'game-ink-redeem', { tier: 'public-strict' }))) {
+    if (
+      !(await checkPublicRateLimitByReq(req, res, 'game-ink-redeem', { tier: 'public-strict' }))
+    ) {
       return;
     }
 
@@ -81,10 +83,16 @@ module.exports = async (req, res) => {
     );
 
     if (claimed.changes === 0) {
-      const row = await get('SELECT ink_granted, bundle FROM game_ink_purchases WHERE stripe_session_id = $1', [
-        sessionId,
-      ]);
-      return res.json({ ok: true, ink: row?.ink_granted || 0, bundle: row?.bundle || bundle, alreadyRedeemed: true });
+      const row = await get(
+        'SELECT ink_granted, bundle FROM game_ink_purchases WHERE stripe_session_id = $1',
+        [sessionId]
+      );
+      return res.json({
+        ok: true,
+        ink: row?.ink_granted || 0,
+        bundle: row?.bundle || bundle,
+        alreadyRedeemed: true,
+      });
     }
 
     return res.json({ ok: true, ink, bundle });

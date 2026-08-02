@@ -668,7 +668,9 @@ test('createBookingRequest: free_months is complimentary with the lease forced t
   assert.strictEqual(result.leaseMonths, 3, 'the placement IS the free term');
   assert.strictEqual(sessionsCreated.length, sessionsBefore, 'no Stripe session');
   const db = new Database(getTestDbPath(__filename));
-  const booking = db.prepare('SELECT status, lease_months FROM bookings WHERE id = ?').get(result.bookingId);
+  const booking = db
+    .prepare('SELECT status, lease_months FROM bookings WHERE id = ?')
+    .get(result.bookingId);
   assert.strictEqual(booking.status, 'approved');
   assert.strictEqual(booking.lease_months, 3);
   db.close();

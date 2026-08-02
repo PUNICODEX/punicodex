@@ -209,9 +209,13 @@ async function runTests() {
   await test('appraise keeps premium ASCII in defensible real-world bands', () => {
     // Anchor calibration: short dictionary .coms trade five-to-six figures.
     const zeus = appraise('zeus.com');
-    assert.ok(zeus.appraisal.asciiControlValue >= 50_000 && zeus.appraisal.asciiControlValue <= 500_000);
+    assert.ok(
+      zeus.appraisal.asciiControlValue >= 50_000 && zeus.appraisal.asciiControlValue <= 500_000
+    );
     const god = appraise('god.com');
-    assert.ok(god.appraisal.asciiControlValue >= 20_000 && god.appraisal.asciiControlValue <= 200_000);
+    assert.ok(
+      god.appraisal.asciiControlValue >= 20_000 && god.appraisal.asciiControlValue <= 200_000
+    );
     const randomLong = appraise('verylongrandomname12345.com');
     assert.ok(randomLong.appraisal.asciiControlValue < 100);
   });

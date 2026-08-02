@@ -64,7 +64,11 @@ test('stats escalate monotonically with edition; ability upgrades only at Full-A
       assert.strictEqual(fullArt.power, common.power + 12, `${id}: full-art power`);
       assert.strictEqual(fullArt.rarity, 'legendary');
       assert.ok(fullArt.art && fullArt.art.fullArt, `${id}: full-art face present`);
-      if (common.ability && common.ability.effect && typeof common.ability.effect.power === 'number') {
+      if (
+        common.ability &&
+        common.ability.effect &&
+        typeof common.ability.effect.power === 'number'
+      ) {
         assert.strictEqual(
           fullArt.ability.effect.power,
           common.ability.effect.power + 2,
@@ -73,7 +77,11 @@ test('stats escalate monotonically with edition; ability upgrades only at Full-A
       }
     }
     if (secret && fullArt) {
-      assert.strictEqual(secret.power, fullArt.power, `${id}: secret matches full-art (cosmetic apex)`);
+      assert.strictEqual(
+        secret.power,
+        fullArt.power,
+        `${id}: secret matches full-art (cosmetic apex)`
+      );
       assert.strictEqual(secret.rarity, 'mythic');
       assert.ok(secret.foil, `${id}: secret rare is a foil`);
     }
@@ -82,12 +90,21 @@ test('stats escalate monotonically with edition; ability upgrades only at Full-A
 
 test('packs print flagship editions only', () => {
   const js = fs.readFileSync(path.join(ROOT, 'game/game.js'), 'utf8');
-  assert.ok(js.includes('c.flagship && (!pantheon || c.pantheon === pantheon)'), 'pack pool is flagship-only');
-  assert.ok(js.includes("c.flagship && c.edition === 'common'"), 'starter grant uses flagship commons');
+  assert.ok(
+    js.includes('c.flagship && (!pantheon || c.pantheon === pantheon)'),
+    'pack pool is flagship-only'
+  );
+  assert.ok(
+    js.includes("c.flagship && c.edition === 'common'"),
+    'starter grant uses flagship commons'
+  );
 });
 
 test('starter grant: a curated deck with a real curve and a holo champion', () => {
-  assert.ok(SET.cards.filter((c) => c.edition === 'common' && c.flagship).length >= 26, 'enough flagship commons exist');
+  assert.ok(
+    SET.cards.filter((c) => c.edition === 'common' && c.flagship).length >= 26,
+    'enough flagship commons exist'
+  );
   const js = fs.readFileSync(path.join(ROOT, 'game/game.js'), 'utf8');
   // The curated system: home pantheon, mana curve, champion seated, deck saved.
   assert.ok(js.includes('STARTER_CURVE'), 'starter curve missing');
@@ -106,16 +123,25 @@ test('starter grant: a curated deck with a real curve and a holo champion', () =
 test('stale ids migrate: standard→common, original-script→secret', () => {
   const js = fs.readFileSync(path.join(ROOT, 'game/game.js'), 'utf8');
   assert.ok(js.includes('migrateIds'), 'migration present');
-  assert.ok(js.includes("-standard$/") && js.includes("'-common'"), 'standard → common mapping');
+  assert.ok(js.includes('-standard$/') && js.includes("'-common'"), 'standard → common mapping');
   assert.ok(js.includes('-original-script') && js.includes("'-secret'"), 'foil → secret mapping');
 });
 
 test('ink economy: bundles, checkout, and redeem-once contract', () => {
-  const checkout = fs.readFileSync(path.join(ROOT, 'platform/api-handlers/root/game/ink/checkout/index.js'), 'utf8');
+  const checkout = fs.readFileSync(
+    path.join(ROOT, 'platform/api-handlers/root/game/ink/checkout/index.js'),
+    'utf8'
+  );
   for (const b of ['spark', 'flare', 'inferno']) assert.ok(checkout.includes(b), `bundle ${b}`);
   assert.ok(checkout.includes("type: 'game_ink'"), 'metadata marks game_ink');
-  assert.ok(checkout.includes('ink_session={CHECKOUT_SESSION_ID}'), 'success URL carries the session');
-  const redeem = fs.readFileSync(path.join(ROOT, 'platform/api-handlers/root/game/ink/redeem/index.js'), 'utf8');
+  assert.ok(
+    checkout.includes('ink_session={CHECKOUT_SESSION_ID}'),
+    'success URL carries the session'
+  );
+  const redeem = fs.readFileSync(
+    path.join(ROOT, 'platform/api-handlers/root/game/ink/redeem/index.js'),
+    'utf8'
+  );
   assert.ok(redeem.includes('redeemed = 0'), 'redeem-once guard');
   assert.ok(redeem.includes('ON CONFLICT'), 'idempotent insert');
   assert.ok(redeem.includes('payment_status'), 'verifies payment with Stripe');
@@ -127,7 +153,10 @@ test('ink economy: bundles, checkout, and redeem-once contract', () => {
 test('ink endpoints: every relative require resolves to a real file', () => {
   // Static string checks cannot catch a require path that resolves to nothing
   // (the FUNCTION_INVOCATION_FAILED class of bug) — resolve each one for real.
-  for (const f of ['platform/api-handlers/root/game/ink/checkout/index.js', 'platform/api-handlers/root/game/ink/redeem/index.js']) {
+  for (const f of [
+    'platform/api-handlers/root/game/ink/checkout/index.js',
+    'platform/api-handlers/root/game/ink/redeem/index.js',
+  ]) {
     const abs = path.join(ROOT, f);
     const src = fs.readFileSync(abs, 'utf8');
     const reqs = [...src.matchAll(/require\('(\.[^']+)'\)/g)].map((m) => m[1]);

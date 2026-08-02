@@ -42,7 +42,10 @@ test('API and admin-portal requests are never intercepted', () => {
 test('every failure path resolves to a guaranteed Response', () => {
   assert.ok(sw.includes('function offlineDocumentResponse()'), 'offline fallback exists');
   assert.ok(sw.includes('new Response('), 'fallback constructs a real Response');
-  assert.ok(sw.includes('.catch(() => offlineDocumentResponse())'), 'final catch guarantees Response');
+  assert.ok(
+    sw.includes('.catch(() => offlineDocumentResponse())'),
+    'final catch guarantees Response'
+  );
 });
 
 test('cache revision is bumped so broken workers are flushed', () => {

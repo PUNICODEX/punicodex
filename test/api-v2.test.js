@@ -435,7 +435,12 @@ async function runTests() {
       },
     };
     await route(
-      { method: 'GET', query: { slug: 'tenants/acme/audit' }, headers: {}, url: '/api/v2/tenants/acme/audit' },
+      {
+        method: 'GET',
+        query: { slug: 'tenants/acme/audit' },
+        headers: {},
+        url: '/api/v2/tenants/acme/audit',
+      },
       res
     );
     // Reaching the auth check proves the three segments were parsed; an
