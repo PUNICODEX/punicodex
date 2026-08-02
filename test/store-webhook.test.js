@@ -75,7 +75,11 @@ migrateStoreOrders(getDb());
 
 const { handleWebhook } = require('../platform/api/stripe');
 const { processWebhook } = require('../platform/api/webhook-handler');
-const { createStoreOrder, getStoreOrderByRef } = require('../platform/api/store-orders');
+const {
+  createStoreOrder,
+  getStoreOrderByRef,
+  setStoreOrderStatus,
+} = require('../platform/api/store-orders');
 const PRODUCT_CATALOG = require('../store/products.json');
 
 PRODUCT_CATALOG.products.push({
@@ -219,6 +223,43 @@ test('creator merch order queues fulfillment and settles the ledger once', async
     .prepare('SELECT COUNT(*) AS c FROM creator_order_ledger WHERE order_ref = ?')
     .get(order.order_ref);
   assert.strictEqual(rows.c, 1);
+});
+
+test('duplicate delivery against an already-shipped order changes nothing', async () => {
+  const { order } = createStoreOrder({ productId: 'wh-tee', variantLabel: 'M', quantity: 1 });
+  stripeEvent = storeOrderEvent(order.order_ref);
+  await processWebhook('{}', 'sig');
+  assert.strictEqual(getStoreOrderByRef(order.order_ref).status, 'sent_to_fulfillment');
+
+  // Printful subsequently shipped the order (via its own webhook).
+  setStoreOrderStatus(order.id, 'shipped', {
+    trackingUrl: 'https://track.example/dup1',
+    carrier: 'DHL',
+  });
+
+  // Spy the confirmation email and count further Printful calls: a
+  // duplicate checkout.session.completed must not regress the status,
+  // re-email the customer, or re-create the fulfillment order.
+  const emailApi = require('../platform/api/email');
+  const originalNotify = emailApi.notifyStoreOrderConfirmation;
+  let confirmationEmails = 0;
+  emailApi.notifyStoreOrderConfirmation = async () => {
+    confirmationEmails += 1;
+    return { mocked: true };
+  };
+  printfulCalls.length = 0;
+  try {
+    stripeEvent = storeOrderEvent(order.order_ref);
+    await processWebhook('{}', 'sig');
+  } finally {
+    emailApi.notifyStoreOrderConfirmation = originalNotify;
+  }
+
+  const after = getStoreOrderByRef(order.order_ref);
+  assert.strictEqual(after.status, 'shipped', 'status must not regress');
+  assert.strictEqual(after.tracking_url, 'https://track.example/dup1');
+  assert.strictEqual(confirmationEmails, 0, 'no second confirmation email');
+  assert.strictEqual(printfulCalls.length, 0, 'no second Printful order');
 });
 
 test('handleWebhook returns the store_order branch payload', async () => {

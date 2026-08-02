@@ -18,6 +18,18 @@ const { setStoreOrderStatus, resolveProduct, getStoreOrderById } = require('./st
 async function fulfillStoreOrder(order) {
   const { notifyStoreOrderConfirmation } = require('./email');
 
+  // Idempotency guard: Stripe re-delivers checkout.session.completed, and
+  // the webhook pipeline calls us on EVERY delivery. Only a freshly-paid
+  // order may enter fulfillment — without this guard a duplicate delivery
+  // regresses shipped → sent_to_fulfillment, re-sends the confirmation
+  // email, and re-queues creator merch for the operator (double-ship risk).
+  // Legitimate re-entry after a failure goes through
+  // retryStoreOrderFulfillment, which gates on fulfillment_failed — that is
+  // the only other state allowed in here.
+  if (order.status !== 'paid' && order.status !== 'fulfillment_failed') {
+    return order;
+  }
+
   let fulfilled = order;
   try {
     if (order.creator_product_id) {
