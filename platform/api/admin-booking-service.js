@@ -320,6 +320,29 @@ async function approveApplication(id, adminToken) {
     };
   }
 
+  // ── Redeem BEFORE creating the Stripe session ──────────────────────────
+  // redeem() is atomic (guarded UPDATE + transaction): when two approvals
+  // race over the same single-use code, exactly one wins. The loser must
+  // abort here — before any checkout session exists, before the status
+  // flips, before the sponsor is emailed — otherwise both sides produce
+  // discounted sessions for one code use. (The complimentary path above
+  // keeps its own semantics: no Stripe session is ever created there.)
+  if (appliedDiscount) {
+    const redemption = await discountService.redeem({
+      codeId: appliedDiscount.codeId,
+      bookingId: booking.id,
+      email: booking.email,
+      originalCents: baseAmountCents,
+      finalCents: amountCents,
+    });
+    if (!redemption.ok) {
+      throw new AdminBookingError(
+        409,
+        `Discount code ${booking.discount_code} could not be redeemed (${redemption.reason}); approval aborted, no checkout session created`
+      );
+    }
+  }
+
   const stripeResult = await createBookingCheckoutSession({
     bookingId: booking.id,
     email: booking.email,
@@ -339,21 +362,6 @@ async function approveApplication(id, adminToken) {
   await setBookingStatus(booking.id, 'pending_payment', note);
   if (effectiveTrial !== trial) {
     await run('UPDATE bookings SET trial_months = $1 WHERE id = $2', [effectiveTrial, booking.id]);
-  }
-
-  if (appliedDiscount) {
-    const redemption = await discountService.redeem({
-      codeId: appliedDiscount.codeId,
-      bookingId: booking.id,
-      email: booking.email,
-      originalCents: baseAmountCents,
-      finalCents: amountCents,
-    });
-    if (!redemption.ok) {
-      console.error(
-        `Discount code ${booking.discount_code} redemption failed (${redemption.reason}) after checkout session creation for booking ${booking.id}`
-      );
-    }
   }
 
   notifyApplicationApproved({
