@@ -879,7 +879,8 @@
     },
     "/names/{id}/pronunciation": {
       "get": {
-        "summary": "Get pronunciation guide",
+        "summary": "Get derived pronunciation (IPA, respelling, SSML, mora timing)",
+        "description": "Pronunciation derived from the restored orthography by the pronunciation rules engine: IPA with syllable boundaries, stress index, voiceover respelling, SSML phoneme element, reading notes for non-English phones, and the full mora-based timing model (per-syllable morae, beat string, stress-pitch contour, moraMs, durationMs, perSyllable). Fallback traditions return derived:false with timing:null; Egyptian returns conventional:true. Also available as /names/pronunciation?id={id}.",
         "operationId": "getPronunciation",
         "parameters": [
           {
@@ -889,6 +890,35 @@
         "responses": {
           "200": {
             "$ref": "#/components/responses/PronunciationResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/names/pronunciation": {
+      "get": {
+        "summary": "Get derived pronunciation by query id",
+        "description": "Query-string form of /names/{id}/pronunciation for clients that cannot build paths. Pass ?id={entryId}.",
+        "operationId": "getPronunciationByQuery",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "description": "Lexicon entry id (e.g. zeus).",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/PronunciationResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationError"
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
@@ -2025,7 +2055,7 @@
         }
       },
       "PronunciationResponse": {
-        "description": "Pronunciation guide",
+        "description": "Derived pronunciation: ipa, ipaLabel, syllables, stressIndex, respelling, ssml, notes, timing (morae, totalMorae, contour, beats, rhythm, moraMs, durationMs, perSyllable), derived, conventional",
         "content": {
           "application/json": {
             "schema": {

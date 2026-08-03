@@ -164,6 +164,10 @@ const ROUTES = [
     load: () => require('../../platform/api-handlers/v1/names/batch.js'),
   },
   {
+    segments: ['names', 'pronunciation'],
+    load: () => require('../../platform/api-handlers/v1/names/pronunciation/index.js'),
+  },
+  {
     segments: ['pantheons'],
     load: () => require('../../platform/api-handlers/v1/pantheons/index.js'),
   },
