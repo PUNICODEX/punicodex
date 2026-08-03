@@ -198,11 +198,30 @@ function needsPictureWrap(src) {
   return ['.png', '.jpg', '.jpeg'].includes(ext);
 }
 
-function wrapImgInPicture(match) {
+// The webp <source> is a promise that the file exists. Verify it before
+// wrapping: local paths resolve from the html file's directory; the masters
+// host maps onto the gitignored .masters/ tree; anything unverifiable stays a
+// plain <img> rather than shipping a guaranteed-broken <picture>.
+function webpExistsFor(src, htmlDir) {
+  const webpRel = src.replace(/\.(png|jpe?g)$/i, '.webp');
+  if (/^https?:\/\//i.test(webpRel)) {
+    const mastersPrefix = 'https://punycodex-masters.vercel.app/';
+    if (webpRel.startsWith(mastersPrefix)) {
+      return fs.existsSync(path.join(ROOT, '.masters', webpRel.slice(mastersPrefix.length)));
+    }
+    // Other remote URLs can't be verified — don't wrap.
+    return false;
+  }
+  if (webpRel.startsWith('/')) return fs.existsSync(path.join(ROOT, webpRel));
+  return fs.existsSync(path.resolve(htmlDir, webpRel));
+}
+
+function wrapImgInPicture(match, htmlDir) {
   const fullTag = match[0];
   const srcMatch = fullTag.match(/\bsrc="([^"]+)"/);
   const src = srcMatch ? srcMatch[1] : null;
   if (!needsPictureWrap(src)) return fullTag;
+  if (!webpExistsFor(src, htmlDir || ROOT)) return fullTag;
 
   const webpSrc = src.replace(/\.(png|jpe?g)$/i, '.webp');
   return `<picture><source srcset="${webpSrc}" type="image/webp">${fullTag}</picture>`;
@@ -238,7 +257,7 @@ function updateHtmlFile(filePath, dimCache) {
 
   // 2. Wrap standalone raster <img> tags in <picture> and update attributes.
   updated = updated.replace(/<img\b[^>]*>/gi, (tag) => {
-    const wrapped = wrapImgInPicture({ 0: tag, index: 0, input: '' });
+    const wrapped = wrapImgInPicture({ 0: tag, index: 0, input: '' }, htmlDir);
     const block = wrapped === tag ? tag : wrapped;
     return updatePictureBlock(block, htmlDir, dimCache);
   });
