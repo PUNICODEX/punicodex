@@ -18,8 +18,8 @@ const C = {
 
 const SUITES = [
   // CI parity gates first: format/lint drift must fail locally, not on GitHub.
-  { name: 'Format Check', cmd: 'npm run format:check', timeout: 600000 },
-  { name: 'Biome Lint', cmd: 'npm run lint', timeout: 600000 },
+  { name: 'Format Check', cmd: 'npm run format:check', timeout: 600000, shell: true },
+  { name: 'Biome Lint', cmd: 'npm run lint', timeout: 600000, shell: true },
   { name: 'Lexicon Validator', cmd: 'node type/js/validate.js' },
   { name: 'Engine Unit Tests', cmd: 'node type/js/test-engine.js' },
   { name: 'Card Engine Tests', cmd: 'node --test test/card-engine.test.js' },
@@ -385,6 +385,8 @@ function runSuiteCmd(suite) {
         timeout: suite.timeout || 30000,
         maxBuffer: 64 * 1024 * 1024,
         killSignal: 'SIGTERM',
+        // npm is a .cmd shim on Windows — execFile can only spawn it via a shell.
+        shell: suite.shell === true,
       },
       (error, stdout, stderr) => {
         resolve({ suite, ok: !error, output: `${stdout || ''}${stderr || ''}` });
