@@ -35,9 +35,7 @@ test('no reference to the retired /api/sites/duplicates endpoint remains', () =>
 
 test('Similar button is wired to the lexicon similarity API with entry id', () => {
   assert.ok(
-    html.includes(
-      '/api/v1/names/' + '$' + '{encodeURIComponent(entryId)}/similarities/'
-    ),
+    html.includes('/api/v1/names/' + '$' + '{encodeURIComponent(entryId)}/similarities/'),
     'showSimilar must call /api/v1/names/:id/similarities'
   );
   assert.ok(
