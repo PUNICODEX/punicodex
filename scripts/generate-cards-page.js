@@ -163,9 +163,20 @@ function main() {
   }
 
   // Payload + static stats, replacing any prior baked block.
-  html = html.replace(/window\.__CARDS_PAYLOAD\s*=\s*[^;]*;/, `window.__CARDS_PAYLOAD = ${payloadJson};`);
+  // The old regex (`[^;]*`) stopped at the first `;` INSIDE the payload
+  // (flavor prose contains semicolons), leaving the old payload's tail
+  // appended after the new one — every generate added another full stale
+  // copy of the set (an 18MB invalid-JS script after 13 runs). Match the
+  // whole <script> element instead, and use a replacement function so `$`
+  // sequences in the JSON are never treated as replace-patterns.
+  html = html.replace(/<script>window\.__CARDS_PAYLOAD[\s\S]*?<\/script>/, () => {
+    return `<script>window.__CARDS_PAYLOAD = ${payloadJson};</script>`;
+  });
   if (!html.includes('window.__CARDS_PAYLOAD')) {
-    html = html.replace('</main>', `</main>\n    <script>window.__CARDS_PAYLOAD = ${payloadJson};</script>`);
+    html = html.replace(
+      '</main>',
+      () => `</main>\n    <script>window.__CARDS_PAYLOAD = ${payloadJson};</script>`
+    );
   }
   html = html.replace(/(<span class="cards-stat-value" id="stat-total">)[^<]*/, `$1${total.toLocaleString('en-US')}`);
   html = html.replace(/(<span class="cards-stat-value" id="stat-fullart">)[^<]*/, `$1${fullArts}`);

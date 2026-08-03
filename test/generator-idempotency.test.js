@@ -98,6 +98,22 @@ test('generate-og-images.js is idempotent (committed bakes win, no re-render)', 
   runGeneratorTwice('scripts/generate-og-images.js', outputs);
 });
 
+test('generate-cards-page.js is idempotent and the payload has no stale copies', () => {
+  // Regression: the payload replace regex stopped at the first semicolon
+  // inside flavor prose, so every run appended another stale copy of the set
+  // (22k card objects of invalid JS after 13 runs, 18MB script).
+  runGeneratorTwice('scripts/generate-cards-page.js', [path.join(ROOT, 'cards/index.html')]);
+  const html = fs.readFileSync(path.join(ROOT, 'cards/index.html'), 'utf8');
+  assert.strictEqual(
+    (html.match(/window\.__CARDS_PAYLOAD/g) || []).length,
+    1,
+    'exactly one payload script'
+  );
+  const payload = JSON.parse(html.split('window.__CARDS_PAYLOAD = ')[1].split(';</script>')[0]);
+  const ids = new Set(payload.map((c) => c.id));
+  assert.strictEqual(ids.size, payload.length, 'payload contains duplicate cards');
+});
+
 async function runSuite() {
   let passed = 0;
   let failed = 0;
