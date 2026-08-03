@@ -38,12 +38,21 @@ function itemListBlock(entries) {
 function bake(relPath, entries) {
   const file = path.join(ROOT, relPath);
   let html = fs.readFileSync(file, 'utf8');
-  // Strip any prior block (idempotent).
+  // Strip any prior block (idempotent). The insert phase writes
+  // `    {block}\n` immediately before </head>, so the strip must consume
+  // that same surrounding whitespace — otherwise every generate leaves one
+  // extra blank line behind and the CI divergence gate (npm run generate +
+  // git diff --exit-code) fails on a perpetually growing file.
   const startIdx = html.indexOf(START);
   if (startIdx !== -1) {
     const endIdx = html.indexOf(END, startIdx);
     if (endIdx === -1) throw new Error(`${relPath}: unterminated ItemList marker`);
-    html = html.slice(0, startIdx) + html.slice(endIdx + END.length);
+    let cutStart = startIdx;
+    while (cutStart > 0 && (html[cutStart - 1] === ' ' || html[cutStart - 1] === '\t')) cutStart--;
+    if (cutStart > 0 && html[cutStart - 1] === '\n') cutStart--;
+    let cutEnd = endIdx + END.length;
+    if (html[cutEnd] === '\n') cutEnd++;
+    html = `${html.slice(0, cutStart)}\n${html.slice(cutEnd)}`;
   }
   const block = itemListBlock(entries);
   const headEnd = html.indexOf('</head>');

@@ -81,6 +81,23 @@ test('sync-middleware-domains.js is idempotent when domain set is unchanged', ()
   runGeneratorTwice('scripts/sync-middleware-domains.js', [output]);
 });
 
+test('generate-itemlist-schemas.js is idempotent (no blank-line growth)', () => {
+  // Regression: the strip phase used to leave the insert-phase newline
+  // behind, adding one blank line before the ItemList block on every run —
+  // which failed the CI divergence gate (npm run generate + git diff).
+  const outputs = ['lexicon/index.html', 'pantheon/index.html'].map((f) => path.join(ROOT, f));
+  runGeneratorTwice('scripts/generate-itemlist-schemas.js', outputs);
+});
+
+test('generate-og-images.js is idempotent (committed bakes win, no re-render)', () => {
+  // The OG cards are platform-specific bakes (host fonts); the generator must
+  // skip existing files so a generate on any OS leaves them untouched.
+  const outputs = ['assets/og/ares.jpg', 'assets/og/zeus.jpg', 'assets/og/aaru.jpg'].map((f) =>
+    path.join(ROOT, f)
+  );
+  runGeneratorTwice('scripts/generate-og-images.js', outputs);
+});
+
 async function runSuite() {
   let passed = 0;
   let failed = 0;

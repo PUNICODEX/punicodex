@@ -149,6 +149,11 @@ uses **canonical sources** and **generated outputs**.
 - `type/js/source-catalog.js` — Rich citation metadata for scholarly reference
   works (182 entries).
 - `type/js/pronunciation-atlas.js` — Pronunciation data (873 entries).
+- `type/js/pronunciation-rules.js` — Pronunciation rules engine: per-pantheon
+  phoneme inventories, orthography→phoneme mappings, stress/quantity rules,
+  and mora-based timing (beats, morae, pitch contour, segment durations).
+  Derives IPA, respellings, and SSML for every entry; validated against the
+  atlas by `scripts/validate-pronunciation-rules.js`.
 - `type/js/glyph-atlas.js` — Glyph render data (672 entries).
 - `js/archetypes-v2.js` — Hand-built flagship archetypes (196), including
   domain ownership and canvas assignments.
@@ -214,6 +219,14 @@ READMEs marking them as generated:
 - Root `admin-portal/` — Synced copy of the canonical
   `platform/public/admin-portal/` (by `scripts/sync-admin-portal.js`)
 - `data/corpus/*` AI datasets, `data-version.json`, DataCite metadata
+- `assets/og/{id}.jpg` OG share cards and `assets/images/og-default.{png,webp}`
+  — **platform-specific bakes** (SVG text rendered with host fonts: Georgia/
+  Arial on Windows, substitutes on Linux). Both generators therefore SKIP
+  existing outputs during `npm run generate`; committed bytes always win.
+  Re-bake deliberately with `node scripts/generate-og-images.js --force`
+  (or `--only <id>`) and `PUNICODEX_OG_FORCE=1` for the og-default pair,
+  then commit. Never let a Linux runner re-bake them — the CI divergence
+  gate depends on it.
 
 ### Workflow
 
@@ -328,8 +341,12 @@ mismatches it reports.
 25. AI corpora (14 scripts: synthetic QA, safety, dialogue, tool-use,
     multimodal, preference, reasoning, benchmark suite, mythology synthesis,
     oracle, symbolic, scientific analogies, pretrain, unified)
-26. Eval benchmark (`generate-eval-benchmark.js`)
-27. Data card (`generate-data-card.js`)
+26. Pronunciation corpus (`generate-pronunciation-corpus.js`) —
+    `data/corpus/pronunciation.jsonl`, per-entry records for voice/TTS
+    consumers (IPA, respelling, mora timing, SSML) derived from the
+    pronunciation rules engine + atlas. MUST follow the model corpus export.
+27. Eval benchmark (`generate-eval-benchmark.js`)
+28. Data card (`generate-data-card.js`)
 
 ### Scholarly Edition
 
@@ -920,6 +937,43 @@ supporting source(s).
 
 ---
 
+## Pronunciation Engine
+
+A rules-based pronunciation system (`type/js/pronunciation-rules.js`,
+canonical) that derives **how each restored name is actually said** —
+built so voice/TTS systems, video voiceovers, and AI consumers stop
+butchering deity names. It is derivation, not a recording: per-pantheon
+phoneme inventories and orthography→phoneme mappings produce IPA, a
+plain-English respelling, syllable boundaries, stress position, and a
+**mora-based timing model** (beats, morae per syllable, pitch contour,
+per-segment durations in ms) so consumers render not just the right
+phonemes but the right rhythm (Greek pitch accent and vowel quantity,
+Norse quantity, Nahuatl penult weight, Japanese flat contour, …).
+Egyptian names are explicitly labelled **Conventional reading** (the
+vocalization is a scholarly convention, not attested pronunciation).
+
+**Contracts and consumers:**
+
+- `scripts/validate-pronunciation-rules.js` — validates the engine against
+  `type/js/pronunciation-atlas.js` (coverage and mora-agreement thresholds).
+- **Flagship temples** — a "Say it right" panel (respelling + beats +
+  timing chips) injected by `scripts/create-flagship.js`
+  (`buildPronunciationPanel`, `{{PRONUNCIATION_PANEL}}` in
+  `templates/flagship/index.html`, styles in `flagship.css`); Egyptian
+  temples carry the Conventional reading badge; pantheons without rules
+  omit the panel.
+- **API** — `GET /api/v1/names/:id/pronunciation` returns the full payload
+  including timing and SSML (handler
+  `platform/api-handlers/v1/names/pronunciation/`). Registered as a static
+  route in the v1 router so it never collides with `names/[id]`.
+- **Corpus** — `data/corpus/pronunciation.jsonl` (generated; one record per
+  entry for voice/TTS training consumers).
+- **Doctrine page** — `/pronunciation/` (the Pronunciation Standard).
+- Tests: `test/pronunciation.test.js` (engine derivations, route
+  resolution, endpoint contract, temple panels).
+
+---
+
 ## Mythic Cards (TCG)
 
 `/cards/` is the public collector gallery for the canonical **First
@@ -1088,7 +1142,7 @@ Core tables: `entries`, `breakdowns`, `entries_fts` (FTS5), `indexed_sites`,
 
 **`/api/v1` (Enterprise Unicode Names API):** `names` (+ `/:id/variants`,
 `/breakdown`, `/original-script`, `/etymology`, `/availability`, `/site`,
-`/slots`), `pantheons`, `tiers`, `autocomplete`, `convert` (+ `/batch`),
+`/slots`, `/pronunciation`), `pantheons`, `tiers`, `autocomplete`, `convert` (+ `/batch`),
 `appraise`, `authenticity`, `threat-feed`, `policy`, `canary`,
 `transparency-report`, `similarities`, `industry-patterns` (+ `/industries`,
 `/match`), `connections`,`cards`, `creatives`, `scholars`, `version`, `docs` (Swagger UI),
@@ -1194,7 +1248,8 @@ names (IDN homographs, confusables, typosquats).
 The lexicon is also exported as AI training data (generated, under
 `data/corpus/`): pretrain, instructions, chat, dialogue, tool-use,
 multimodal, preference, reasoning, safety, oracle, mythology-synthesis,
-symbolic, scientific-analogies JSONL files, plus unified/pretrain manifests,
+symbolic, scientific-analogies, pronunciation JSONL files, plus
+unified/pretrain manifests,
 `benchmark.jsonl`, `eval.jsonl`, `chat-eval.jsonl`, a Hugging Face export,
 `DATA_CARD.md`, and `MODEL_CARD.md`. These are produced by the last ~18
 scripts of `npm run generate` (`generate-synthetic-qa.js` …

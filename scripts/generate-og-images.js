@@ -14,7 +14,15 @@
  * names, Arial for badges) which is fine because the cards are baked, committed
  * artifacts — no runtime font dependency.
  *
- * Run: node scripts/generate-og-images.js [--only <id>]
+ * Because the fonts come from the build machine, the JPEG bytes are
+ * platform-specific (Windows renders Georgia/Arial; Linux runners substitute
+ * DejaVu). Re-baking on every generate would therefore dirty the tree on any
+ * machine but the one that last committed the cards — and the CI divergence
+ * gate (`npm run generate` + `git diff --exit-code`) would fail on every run.
+ * So existing cards are SKIPPED by default; delete assets/og/ or pass --force
+ * after changing cardSvg() or a mascot, then commit the re-baked output.
+ *
+ * Run: node scripts/generate-og-images.js [--only <id>] [--force]
  */
 
 const fs = require('node:fs');
@@ -114,6 +122,7 @@ function cardSvg({ entry, meta, mascotUri, emblemUri, flagship }) {
 async function main() {
   const onlyIdx = process.argv.indexOf('--only');
   const only = onlyIdx > -1 ? process.argv[onlyIdx + 1] : null;
+  const force = process.argv.includes('--force');
   fs.mkdirSync(OUT_DIR, { recursive: true });
   const emblemUri = await pngDataUri(
     path.join(ROOT, 'assets', 'brand', '01-logos', 'punicodex-emblem-gold.png')
@@ -123,6 +132,12 @@ async function main() {
   let skipped = 0;
   for (const entry of LEXICON) {
     if (only && entry.id !== only) continue;
+    const out = path.join(OUT_DIR, `${entry.id}.jpg`);
+    if (!force && !only && fs.existsSync(out)) {
+      // Baked bytes are platform-specific (host fonts); committed cards win.
+      skipped++;
+      continue;
+    }
     const arch = flagshipById.get(entry.id);
     const meta = PANTHEON_META[entry.pantheon] || { label: entry.pantheon, color: '#D4AF37' };
 
@@ -135,7 +150,6 @@ async function main() {
     }
 
     const svg = cardSvg({ entry, meta, mascotUri, emblemUri, flagship: Boolean(arch) });
-    const out = path.join(OUT_DIR, `${entry.id}.jpg`);
     await sharp(Buffer.from(svg)).jpeg({ quality: JPEG_QUALITY }).toFile(out);
     written++;
     if (written % 100 === 0) console.log(`   ✓ ${written} cards...`);

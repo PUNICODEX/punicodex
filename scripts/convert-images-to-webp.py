@@ -37,7 +37,16 @@ def draw_letter_spaced_text(draw, pos, text, font, fill, spacing):
 
 
 def render_og_default():
-    """Render assets/images/og-default.svg to PNG + WebP."""
+    """Render assets/images/og-default.svg to PNG + WebP.
+
+    The render is font-dependent (Georgia on Windows, DejaVu on Linux CI), so
+    like the per-temple OG cards it must be treated as a baked, committed
+    artifact: once both outputs exist we never re-render during generate —
+    otherwise a fresh checkout (where the PNG can sort older than the SVG)
+    would re-render with substitute fonts and fail the CI divergence gate.
+    After editing the SVG, delete og-default.png/.webp (or run with
+    PUNICODEX_OG_FORCE=1) and commit the re-rendered pair.
+    """
     svg_path = ROOT / "assets" / "images" / "og-default.svg"
     png_path = ROOT / "assets" / "images" / "og-default.png"
     webp_path = ROOT / "assets" / "images" / "og-default.webp"
@@ -48,8 +57,7 @@ def render_og_default():
     if (
         png_path.exists()
         and webp_path.exists()
-        and png_path.stat().st_mtime >= svg_path.stat().st_mtime
-        and webp_path.stat().st_mtime >= svg_path.stat().st_mtime
+        and os.environ.get("PUNICODEX_OG_FORCE") != "1"
     ):
         return []
 
