@@ -11,7 +11,6 @@
 const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
-const { execSync } = require('node:child_process');
 
 const ROOT = path.join(__dirname, '..');
 const { transformWikilinks, autoLink, BY_ID } = require('../scripts/lib/crosslink.js');

@@ -172,7 +172,7 @@ test('GET /api/v1/cards rejects non-GET methods', async () => {
 });
 
 test('GET /api/v1/cards/:id returns every variant for an entry', async () => {
-  const { status, body } = await invoke(listHandler, 'GET', '/api/v1/cards?variant=standard');
+  const { status } = await invoke(listHandler, 'GET', '/api/v1/cards?variant=standard');
   assert.strictEqual(status, 200);
 
   const detail = await invoke(detailHandler, 'GET', '/api/v1/cards/zeus?id=zeus');
