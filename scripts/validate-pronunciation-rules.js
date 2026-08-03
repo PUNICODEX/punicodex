@@ -60,13 +60,23 @@
  * captures transcriptions that agree phonemically but differ in style.
  *
  * Usage: node scripts/validate-pronunciation-rules.js
+ *
+ * Output sections: phoneme coverage (above), then a TIMING section that
+ * checks mora consistency — every ː-marked nucleus in the atlas IPA must
+ * map to a derived syllable of >= 2 morae — reported across all entries
+ * and across the built flagship set (js/archetypes-v2.js built:true),
+ * plus a 15-entry sample rhythm table.
  */
 
 'use strict';
 
 const { PRONUNCIATION_ATLAS } = require('../type/js/pronunciation-atlas.js');
 const { LEXICON } = require('../type/js/lexicon.js');
+const { ARCHETYPES } = require('../js/archetypes-v2.js');
 const { derivePronunciation } = require('../type/js/pronunciation-rules.js');
+
+// The 271 built flagship temples — the headline set for the timing check.
+const FLAGSHIP_IDS = new Set(ARCHETYPES.filter((a) => a.built).map((a) => a.id));
 
 // ---------------------------------------------------------------------------
 // Normalization
@@ -160,6 +170,50 @@ function levenshtein(a, b) {
 }
 
 // ---------------------------------------------------------------------------
+// Timing validation (mora prosody layer)
+// ---------------------------------------------------------------------------
+
+// Scan an IPA string into vowel nuclei, marking which carry an explicit
+// length mark (ː). A vowel followed by U+032F is a glide of the current
+// nucleus, not a new one; r + U+0329 is a syllabic-r nucleus. This runs on
+// the RAW atlas/derived IPA (not the coverage normalization) so syllable
+// and length structure is preserved.
+// Diacritics that may sit between a nucleus vowel and its length mark.
+const NUCLEUS_MARKS = new Set(['ː', '́', '̀', '̂', '̌', '̩']);
+
+function scanNuclei(ipa) {
+  const chars = [...String(ipa).normalize('NFD')];
+  const nuclei = [];
+  const isVowelChar = (i) => VOWELS.has(chars[i]) || (chars[i] === 'r' && chars[i + 1] === '̩');
+  for (let i = 0; i < chars.length; i++) {
+    if (!isVowelChar(i)) continue;
+    if (chars[i + 1] === '̯') {
+      // Offglide: a stray ː after the glide still belongs to this nucleus.
+      if (chars[i + 2] === 'ː' && nuclei.length > 0) nuclei[nuclei.length - 1].long = true;
+      continue;
+    }
+    const nucleus = { long: false };
+    for (let j = i + 1; j < chars.length && NUCLEUS_MARKS.has(chars[j]); j++) {
+      if (chars[j] === 'ː') nucleus.long = true;
+    }
+    nuclei.push(nucleus);
+  }
+  return nuclei;
+}
+
+// Map each derived nucleus (same scanner over the derived syllable strings)
+// to the index of its syllable, so an atlas nucleus can be aligned by
+// position. Nucleus-free syllables (Egyptian skeletons) still get a slot.
+function derivedNucleusSyllables(derived) {
+  const map = [];
+  derived.syllables.forEach((syllable, sIdx) => {
+    const count = Math.max(1, scanNuclei(syllable).length);
+    for (let k = 0; k < count; k++) map.push(sIdx);
+  });
+  return map;
+}
+
+// ---------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------
 
@@ -168,6 +222,8 @@ function main() {
   const perPantheon = new Map();
   const mismatches = [];
   const skipped = [];
+  const timingStats = { anchors: 0, aligned: 0, agree: 0, fAnchors: 0, fAligned: 0, fAgree: 0 };
+  const flagshipSamples = [];
   let total = 0;
   let exact = 0;
   let near = 0;
@@ -201,6 +257,25 @@ function main() {
         atlas: atlas.ipa,
         derived: derived.ipa,
       });
+    }
+    // Timing: align each ː-marked atlas nucleus by position and require the
+    // derived syllable to carry >= 2 morae.
+    if (derived.timing) {
+      const nucleusMap = derivedNucleusSyllables(derived);
+      const flagship = FLAGSHIP_IDS.has(id);
+      scanNuclei(atlas.ipa).forEach((nucleus, k) => {
+        if (!nucleus.long) return;
+        timingStats.anchors += 1;
+        if (flagship) timingStats.fAnchors += 1;
+        if (k >= nucleusMap.length) return;
+        timingStats.aligned += 1;
+        if (flagship) timingStats.fAligned += 1;
+        if (derived.timing.morae[nucleusMap[k]] >= 2) {
+          timingStats.agree += 1;
+          if (flagship) timingStats.fAgree += 1;
+        }
+      });
+      if (flagship) flagshipSamples.push({ id, pantheon: entry.pantheon, derived });
     }
   }
 
@@ -252,6 +327,53 @@ function main() {
     console.log(`${m.id} (${m.pantheon}) — dist ${m.dist}`);
     console.log(`  atlas:   ${m.atlas}`);
     console.log(`  derived: ${m.derived}`);
+  }
+
+  console.log('');
+  console.log('TIMING — MORA CONSISTENCY (ː-marked atlas nuclei vs derived morae)');
+  console.log('-'.repeat(78));
+  console.log(
+    `ː-marked atlas nuclei:  ${timingStats.anchors} ` +
+      `(aligned to a derived nucleus: ${timingStats.aligned}, ` +
+      `unaligned: ${timingStats.anchors - timingStats.aligned})`
+  );
+  console.log(
+    `All entries:       ${timingStats.agree}/${timingStats.aligned} agree ` +
+      `(derived morae >= 2) = ${pct(timingStats.agree, timingStats.aligned)}%`
+  );
+  console.log(
+    `Flagship headlines (${FLAGSHIP_IDS.size} built ids):  ` +
+      `${timingStats.fAgree}/${timingStats.fAligned} = ` +
+      `${pct(timingStats.fAgree, timingStats.fAligned)}%   <== headline`
+  );
+
+  console.log('');
+  console.log('15 SAMPLE FLAGSHIP RHYTHMS');
+  console.log('-'.repeat(78));
+  console.log(
+    'id'.padEnd(18) +
+      'ipa'.padEnd(26) +
+      'beats'.padEnd(13) +
+      'morae'.padEnd(11) +
+      'contour'.padEnd(11) +
+      'durationMs'
+  );
+  flagshipSamples.sort((a, b) => a.pantheon.localeCompare(b.pantheon) || a.id.localeCompare(b.id));
+  const stride = Math.max(1, Math.floor(flagshipSamples.length / 15));
+  const picked = [];
+  for (let i = 0; i < flagshipSamples.length && picked.length < 15; i += stride) {
+    picked.push(flagshipSamples[i]);
+  }
+  for (const s of picked) {
+    const t = s.derived.timing;
+    console.log(
+      s.id.padEnd(18) +
+        s.derived.ipa.padEnd(26) +
+        t.beats.padEnd(13) +
+        `[${t.morae.join(',')}]`.padEnd(11) +
+        t.contour.padEnd(11) +
+        String(t.durationMs)
+    );
   }
 
   if (skipped.length > 0) {
