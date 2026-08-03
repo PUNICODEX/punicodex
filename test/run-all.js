@@ -105,6 +105,11 @@ const SUITES = [
   { name: 'Multimodal Tests', cmd: 'node test/multimodal.test.js' },
   { name: 'Partner Tests', cmd: 'node test/partners.test.js' },
   { name: 'API v1 Integration Tests', cmd: 'node test/api-v1.test.js' },
+  {
+    name: 'Pronunciation Engine Tests',
+    cmd: 'node --test test/pronunciation.test.js',
+    timeout: 60000,
+  },
   { name: 'API Auth Tests', cmd: 'node test/api-auth.test.js' },
   { name: 'API Utils Tests', cmd: 'node test/api-utils.test.js' },
   { name: 'Client IP Tests', cmd: 'node test/client-ip.test.js' },
