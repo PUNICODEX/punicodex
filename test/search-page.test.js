@@ -35,14 +35,16 @@ test('no reference to the retired /api/sites/duplicates endpoint remains', () =>
 
 test('Similar button is wired to the lexicon similarity API with entry id', () => {
   assert.ok(
-    // biome-ignore lint/suspicious/noTemplateCurlyInString: asserting the route template is emitted literally
     html.includes('/api/v1/names/${encodeURIComponent(entryId)}/similarities/'),
     'showSimilar must call /api/v1/names/:id/similarities'
   );
   assert.ok(
-    // biome-ignore lint/suspicious/noTemplateCurlyInString: asserting the call template is emitted literally
     html.includes(
-      "showSimilar('${escapeHtml(r.punycode)}','${escapeHtml(r.lexiconEntryId)}',this)"
+      "showSimilar('" +
+        '$' +
+        "{escapeHtml(r.punycode)}','" +
+        '$' +
+        "{escapeHtml(r.lexiconEntryId)}',this)"
     ),
     'Similar button must pass the lexicon entry id'
   );

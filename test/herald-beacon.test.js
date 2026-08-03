@@ -118,8 +118,9 @@ async function run() {
   try {
     browser = await chromium.launch({ executablePath: exe, headless: true });
 
+    let ctx = null;
     async function newPage(storageState) {
-      const ctx = await browser.newContext({ viewport: { width: 1280, height: 860 } });
+      ctx = await browser.newContext({ viewport: { width: 1280, height: 860 } });
       const page = await ctx.newPage();
       if (storageState) {
         await page.addInitScript((v) => {
