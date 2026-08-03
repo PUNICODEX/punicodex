@@ -21,6 +21,7 @@ const { autoLink } = require('./lib/crosslink.js');
 const { templeBreadcrumb } = require('./lib/breadcrumb.js');
 const { wikidataUrlFor } = require('./lib/wikidata-links.js');
 const { PANTHEON_META } = require('../type/js/pantheon-meta.js');
+const { derivePronunciation } = require('../type/js/pronunciation-rules.js');
 
 const ROOT = path.join(__dirname, '..');
 const TEMPLATE_DIR = path.join(ROOT, 'templates', 'flagship');
@@ -1229,6 +1230,75 @@ function buildOriginalScriptCardNote(entry) {
   return '';
 }
 
+// ---------------------------------------------------------------------------
+// "Say it right" pronunciation panel (home page)
+//
+// Compact static panel for voiceover readers, derived at generation time by
+// the pronunciation rules engine (type/js/pronunciation-rules.js). Omitted
+// entirely for fallback pantheons (derived: false); Egyptian temples carry an
+// honest "Conventional reading" badge (hieroglyphs write no vowels).
+// ---------------------------------------------------------------------------
+
+const PRONUNCIATION_RULE_LINES = {
+  greek: 'Final -ē is never silent in Greek — every vowel is sounded.',
+  'greek-location': 'Final -ē is never silent in Greek — every vowel is sounded.',
+  nahuatl: 'tl is one sound in Nahuatl — a single lateral affricate, never t + l.',
+  norse: 'Old Norse stress always falls on the first syllable.',
+  sanskrit: 'Aspirates are single consonants — bh, dh, gh are one breathy sound each.',
+  japanese: 'Japanese is mora-timed — every beat takes the same time, long vowels count two.',
+  egyptian: 'Hieroglyphs write no vowels — any vocalization is a scholarly convention.',
+};
+
+function buildPronunciationPanel(entry) {
+  const derived = derivePronunciation(entry);
+  if (!derived.derived || !derived.timing) return '';
+  const timing = derived.timing;
+  const chips = timing.perSyllable
+    .map((syll) => {
+      const cls = syll.stressed ? 'pronunciation-chip stressed' : 'pronunciation-chip';
+      const moraLabel = `${syll.morae} mora${syll.morae === 1 ? '' : 'e'}`;
+      return (
+        `<span class="${cls}">` +
+        `<span class="chip-syllable">${escapeHtml(syll.syllable)}</span>` +
+        `<span class="chip-morae">${moraLabel} · ${escapeHtml(syll.contour)}</span>` +
+        `</span>`
+      );
+    })
+    .join('\n                    ');
+  const notes = derived.notes
+    .slice(0, 3)
+    .map((note) => `<li>${escapeHtml(note)}</li>`)
+    .join('\n                        ');
+  const rule = PRONUNCIATION_RULE_LINES[entry.pantheon] || '';
+  const conventionalBadge = derived.conventional
+    ? '<span class="pronunciation-conventional">Conventional reading</span>'
+    : '';
+  return `    <!-- Say it right -->
+    <section class="section pronunciation-section" id="say-it-right">
+        <div class="container">
+            <div class="pronunciation-panel reveal-up">
+                <div class="pronunciation-head">
+                    <p class="section-eyebrow">Say it right</p>
+                    ${conventionalBadge}
+                </div>
+                <p class="pronunciation-respelling">${escapeHtml(derived.respelling)}</p>
+                <p class="pronunciation-ipa"><span class="pronunciation-ipa-value">${escapeHtml(derived.ipa)}</span> <span class="pronunciation-ipa-label">${escapeHtml(derived.ipaLabel)}</span></p>
+                <div class="pronunciation-rhythm">
+                    <span class="pronunciation-beats">${escapeHtml(timing.beats)}</span>
+                    <span class="pronunciation-duration">${timing.totalMorae} morae · ≈${timing.durationMs} ms</span>
+                </div>
+                <div class="pronunciation-chips">
+                    ${chips}
+                </div>
+                <ul class="pronunciation-notes">
+                        ${notes}
+                </ul>
+                <p class="pronunciation-rule">${escapeHtml(rule)}</p>
+            </div>
+        </div>
+    </section>`;
+}
+
 function buildOriginalScriptProvenanceSection(entry) {
   return buildRichProvenanceSection(entry);
 }
@@ -2352,6 +2422,7 @@ function generateHomePage(
     MEANING: entry.meaning || '',
     TAGLINE: entry.tagline || '',
     BREADCRUMB_JSONLD: templeBreadcrumb(entry),
+    PRONUNCIATION_PANEL: buildPronunciationPanel(entry),
     DESCRIPTION: buildMetaDescription(entry, catalogEntry),
     TITLE_TAG: (() => {
       const label = PANTHEON_META[entry.pantheon]?.label || entry.pantheon;
