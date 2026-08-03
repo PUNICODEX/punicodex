@@ -318,6 +318,7 @@ test('(b) every root page og:image/twitter:image uses the kit OG PNG', () => {
   const gen = read('scripts/generate-temples.js');
   assert.strictEqual((gen.match(/assets\/images\/og-default/g) || []).length, 0);
   // Base temples use the per-entry OG card convention.
+  // biome-ignore lint/suspicious/noTemplateCurlyInString: the assertion checks for the literal unfilled placeholder
   assert.ok(gen.includes('/assets/og/${entry.id}.jpg'));
 });
 

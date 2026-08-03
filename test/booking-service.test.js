@@ -89,7 +89,6 @@ const {
   getSlotId,
   getSlotSlug,
   getBundleSlotId,
-  getIndividualSlotIds,
 } = require('./helpers/slots.js');
 
 function getDeliveredCode(email) {
