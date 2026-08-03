@@ -281,8 +281,8 @@ ${FAVICON_CLUSTER}
 <link rel="stylesheet" href="/css/main.css?v=perf23">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <style>${ATLAS_CSS}</style>
-${MARKER_BLOCKS}
 ${buildAtlasFaq(graph)}
+${MARKER_BLOCKS}
 </head>
 <body>
     <!-- Navigation (canonical — built by scripts/sync-desktop-nav.js) -->
