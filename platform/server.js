@@ -79,7 +79,6 @@ const {
 } = require('./api/admin');
 const { logAction } = require('./api/admin-actions');
 const { createPublicRateLimit } = require('./api/public-rate-limiter');
-const { validateCreativeDimensions } = require('./api/image-meta');
 const { createVerifiedSession, consumeVerifiedSession } = require('./api/verified-sessions');
 const {
   listKeys,

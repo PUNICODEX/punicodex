@@ -536,8 +536,8 @@ test('(j) built cards render mascot imgs and the medallion overlay is gone', () 
   // Mascot invariant: built archetypes render their mascot <img>; the kit
   // empty portrait remains only the unbuilt/error fallback path.
   const pantheon = read('js/pantheon.js');
-  // biome-ignore lint/suspicious/noTemplateCurlyInString: asserting the generator emits the literal placeholder, not a filled value
   assert.ok(
+    // biome-ignore lint/suspicious/noTemplateCurlyInString: asserting the generator emits the literal placeholder, not a filled value
     pantheon.includes('data-fallback="${a.mascotFallback || a.mascotPath}"'),
     'js/pantheon.js no longer renders the mascot thumb img with mascotPath fallback'
   );
@@ -549,8 +549,8 @@ test('(j) built cards render mascot imgs and the medallion overlay is gone', () 
   // Home renders the weight-optimised small thumb as the primary source, with
   // the full mascotPath as the onerror fallback and the kit empty portrait
   // last — the same thumb-primary pattern the pantheon page uses.
-  // biome-ignore lint/suspicious/noTemplateCurlyInString: asserting the generator emits the literal placeholders, not filled values
   assert.ok(
+    // biome-ignore lint/suspicious/noTemplateCurlyInString: asserting the generator emits the literal placeholders, not filled values
     home.includes('thumbs/small/${a.id}_thumb.webp') && home.includes("this.src='${a.mascotPath}'"),
     'js/home.js no longer renders the mascot thumb with mascotPath fallback for built archetypes'
   );
