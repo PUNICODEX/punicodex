@@ -120,7 +120,7 @@ async function run() {
 
     let ctx = null;
     let page = null;
-    async function newPage(storageState) {
+    const newPage = async (storageState) => {
       ctx = await browser.newContext({ viewport: { width: 1280, height: 860 } });
       page = await ctx.newPage();
       if (storageState) {
@@ -129,7 +129,7 @@ async function run() {
         }, storageState);
       }
       return { ctx, page };
-    }
+    };
 
     await test('renders on first visit; exactly one seal; opens with focus + aria', async () => {
       const { ctx, page } = await newPage(null);
