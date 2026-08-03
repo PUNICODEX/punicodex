@@ -2040,3 +2040,157 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* =====================================================
+   Say it right — pronunciation panel
+   Static, engine-derived at generation time.
+   ===================================================== */
+.pronunciation-section {
+    padding: 2.5rem 0 1rem;
+}
+.pronunciation-panel {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 2.5rem clamp(1.5rem, 4vw, 3rem);
+    background: rgba(220,20,60,0.04);
+    border: 1px solid rgba(220,20,60,0.18);
+    border-radius: 14px;
+}
+.pronunciation-head {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.9rem;
+    margin-bottom: 1.2rem;
+}
+.pronunciation-panel .section-eyebrow {
+    margin: 0;
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--primary);
+}
+.pronunciation-conventional {
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(245,245,245,0.75);
+    border: 1px solid rgba(220,20,60,0.35);
+    border-radius: 100px;
+    padding: 0.2rem 0.7rem;
+}
+.pronunciation-respelling {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.9rem, 5vw, 2.9rem);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--white);
+    margin: 0 0 0.5rem;
+}
+.pronunciation-ipa {
+    font-family: 'Consolas', monospace;
+    font-size: 1rem;
+    color: rgba(245,245,245,0.82);
+    margin: 0 0 1.4rem;
+}
+.pronunciation-ipa-label {
+    display: block;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: rgba(245,245,245,0.45);
+    margin-top: 0.25rem;
+}
+.pronunciation-rhythm {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+}
+.pronunciation-beats {
+    font-size: 1.5rem;
+    letter-spacing: 0.35em;
+    color: var(--primary);
+}
+.pronunciation-duration {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(245,245,245,0.5);
+}
+.pronunciation-chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.55rem;
+    margin-bottom: 1.4rem;
+}
+.pronunciation-chip {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+    padding: 0.5rem 0.9rem;
+    border: 1px solid rgba(220,20,60,0.22);
+    border-radius: 10px;
+    background: rgba(10,10,10,0.45);
+}
+.pronunciation-chip.stressed {
+    border-color: var(--primary);
+    box-shadow: 0 0 14px rgba(220,20,60,0.22);
+}
+.chip-syllable {
+    font-family: 'Consolas', monospace;
+    font-size: 1.05rem;
+    color: var(--white);
+}
+.pronunciation-chip.stressed .chip-syllable {
+    color: var(--primary-bright);
+}
+.chip-morae {
+    font-size: 0.66rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(245,245,245,0.5);
+}
+.pronunciation-notes {
+    list-style: none;
+    margin: 0 auto 1.2rem;
+    padding: 0;
+    max-width: 560px;
+    text-align: left;
+}
+.pronunciation-notes li {
+    position: relative;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: rgba(245,245,245,0.72);
+    padding-left: 1.2rem;
+    margin-bottom: 0.35rem;
+}
+.pronunciation-notes li::before {
+    content: '◆';
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 0.6rem;
+    color: var(--primary);
+    line-height: 2.2;
+}
+.pronunciation-rule {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--primary);
+    margin: 0;
+}
+@media (max-width: 640px) {
+    .pronunciation-panel {
+        padding: 1.75rem 1.1rem;
+    }
+    .pronunciation-beats {
+        letter-spacing: 0.2em;
+    }
+}
