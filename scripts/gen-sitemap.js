@@ -92,6 +92,7 @@ const mainPages = [
   { loc: '/arbitrage/', priority: '0.6', changefreq: 'monthly' },
   { loc: '/cards/', priority: '0.6', changefreq: 'weekly' },
   { loc: '/rulebook/', priority: '0.6', changefreq: 'monthly' },
+  { loc: '/pronunciation/', priority: '0.6', changefreq: 'monthly' },
 ];
 
 function escapeXml(str) {

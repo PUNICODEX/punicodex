@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index, follow">
+  <title>The Pronunciation Standard — How the Names Actually Sound | PUNICODEX</title>
+  <meta name="description" content="The mechanical rules for pronouncing restored mythological names: stress marks, vowel length, mora timing, and per-language tables — for voiceover artists and machines alike.">
+  <link rel="canonical" href="https://punicodex.com/pronunciation/">
+  <meta property="og:title" content="The Pronunciation Standard | PUNICODEX">
+  <meta property="og:description" content="Acute = stress. Macron = length. Circumflex = both, with a falling pitch. The rules that make a name sound like itself — for voiceover artists and machines alike.">
+  <meta property="og:url" content="https://punicodex.com/pronunciation/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PUNICODEX">
+  <meta property="og:image" content="https://punicodex.com/assets/brand/05-social/punicodex-og-image-1200x630.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "The Pronunciation Standard — How the Names Actually Sound",
+    "description": "The mechanical rules for pronouncing restored mythological names: stress marks, vowel length, mora timing, and per-language tables.",
+    "url": "https://punicodex.com/pronunciation/",
+    "author": { "@type": "Organization", "name": "PuniCodex", "url": "https://punicodex.com/" },
+    "about": { "@type": "Thing", "name": "Pronunciation rules engine" }
+  }
+  </script>
+  <link rel="stylesheet" href="/assets/fonts/fonts.css">
+  <link rel="stylesheet" href="/css/main.css?v=perf23">
+  <link rel="stylesheet" href="/css/nav-more.css?v=4">
+  <link rel="stylesheet" href="/css/mobile-menu.css?v=1">
+  <link rel="stylesheet" href="/css/footer.css?v=2">
+  <style>
+    :root { --gold: #D4AF37; --gold-bright: #F2D56F; --ink: #e8e4da; --dim: #9EA2B3; --line: rgba(212,175,55,.18); --card: #14141c; }
+    .ps-hero { padding: 9rem 0 3.5rem; text-align: center; }
+    .ps-hero h1 { font-family: 'Cinzel', Georgia, serif; font-size: clamp(2.2rem, 5.5vw, 3.6rem); letter-spacing: .04em; margin: 0 0 1rem; }
+    .ps-hero h1 em { color: var(--gold-bright); font-style: italic; }
+    .ps-hero p { max-width: 640px; margin: 0 auto; color: var(--dim); font-size: 1.05rem; line-height: 1.75; }
+    .ps-section { max-width: 980px; margin: 0 auto; padding: 2.5rem 1.25rem; }
+    .ps-eyebrow { font-size: .72rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: .6rem; }
+    .ps-h2 { font-family: 'Cinzel', Georgia, serif; font-size: 1.6rem; letter-spacing: .03em; margin: 0 0 1.1rem; }
+    .ps-lead { color: var(--dim); line-height: 1.8; max-width: 760px; }
+    .ps-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-top: 1.4rem; }
+    .ps-card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 1.25rem 1.2rem; }
+    .ps-card h3 { font-family: 'Cinzel', Georgia, serif; font-size: 1.02rem; margin: 0 0 .55rem; color: var(--gold-bright); }
+    .ps-card p, .ps-card li { font-size: .9rem; color: var(--dim); line-height: 1.7; }
+    .ps-table { width: 100%; border-collapse: collapse; margin-top: 1.1rem; font-size: .88rem; }
+    .ps-table th { text-align: left; color: var(--gold); font-weight: 600; letter-spacing: .06em; font-size: .72rem; text-transform: uppercase; padding: .55rem .6rem; border-bottom: 1px solid var(--line); }
+    .ps-table td { padding: .55rem .6rem; border-bottom: 1px solid rgba(212,175,55,.08); color: var(--ink); vertical-align: top; }
+    .ps-table td:first-child { font-family: 'Cinzel', Georgia, serif; color: var(--gold-bright); white-space: nowrap; }
+    .ps-note { font-size: .82rem; color: var(--dim); margin-top: .8rem; }
+    .ps-example { display: grid; grid-template-columns: 1fr; gap: .55rem; margin-top: 1.2rem; }
+    .ps-exrow { display: grid; grid-template-columns: 130px 1fr; gap: .8rem; align-items: baseline; padding: .7rem .9rem; background: var(--card); border: 1px solid var(--line); border-radius: 10px; }
+    .ps-exrow b { font-family: 'Cinzel', Georgia, serif; color: var(--gold-bright); font-weight: 600; }
+    .ps-exrow code { color: var(--ink); font-size: .86rem; }
+    .ps-exrow span { color: var(--dim); font-size: .8rem; }
+    .ps-badge { display: inline-block; font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--line); border-radius: 999px; padding: .15rem .6rem; margin-left: .5rem; }
+    .ps-cta { text-align: center; padding: 2.5rem 1.25rem 5rem; }
+    .ps-cta a { display: inline-block; margin: 0 .4rem; padding: .8rem 1.6rem; border: 1px solid var(--gold); border-radius: 999px; color: var(--gold-bright); text-decoration: none; font-size: .85rem; letter-spacing: .12em; text-transform: uppercase; }
+    .ps-cta a:hover { background: rgba(212,175,55,.08); }
+    @media (max-width: 640px) { .ps-exrow { grid-template-columns: 1fr; gap: .25rem; } }
+  </style>
+</head>
+<body>
+
+  <section class="ps-hero">
+    <p class="ps-eyebrow">The Doctrine of Sound</p>
+    <h1>The Pronunciation <em>Standard</em></h1>
+    <p>AI voices flatten the gods into English reading rules. This is the mechanical system that says each name the way it was meant to be said — the same marks we restore, decoded into sound and time.</p>
+  </section>
+
+  <section class="ps-section">
+    <p class="ps-eyebrow">The Meta-Rule</p>
+    <h2 class="ps-h2">The marks are the pronunciation</h2>
+    <p class="ps-lead">Every restored name on PuniCodex carries its own speaking instructions. Three marks do all the work — and they are read mechanically, never by editorial mood.</p>
+    <div class="ps-cards">
+      <div class="ps-card">
+        <h3>Acute ( á )</h3>
+        <p>Stress this syllable. Zeús is ZE-oos, never "zoose". The accent is where the voice rises.</p>
+      </div>
+      <div class="ps-card">
+        <h3>Macron ( ā )</h3>
+        <p>Hold the vowel double — one extra beat of time. Apóllōn holds the final ō twice as long as the rest.</p>
+      </div>
+      <div class="ps-card">
+        <h3>Circumflex ( â )</h3>
+        <p>Stress <em>and</em> length in one mark, with a falling pitch contour across the long syllable — Athēnâ's final vowel.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ps-section">
+    <p class="ps-eyebrow">The Timing Model</p>
+    <h2 class="ps-h2">Names are measured in morae</h2>
+    <p class="ps-lead">A name is not a string of sounds but a string of <em>time</em>. Each syllable earns morae — the unit classical Greek, Japanese, and Sanskrit all independently use:</p>
+    <table class="ps-table">
+      <thead><tr><th>Shape</th><th>Morae</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td>Short vowel</td><td>1</td><td><code>a</code> in <em>Apóllōn</em> — a flicker of time</td></tr>
+        <tr><td>Long vowel / diphthong</td><td>2</td><td><code>ō</code> in <em>Apóllōn</em> — double the hold</td></tr>
+        <tr><td>Geminate consonant</td><td>+1</td><td><code>ll</code> in <em>Apóllōn</em> — the held liquid</td></tr>
+        <tr><td>Heavy coda</td><td>+0.5</td><td>closed syllable tails, rounded per syllable</td></tr>
+      </tbody>
+    </table>
+    <p class="ps-note">Read our beat strings as: <code>˘</code> = one mora, <code>¯</code> = two, <code>¯˘</code> = three. Apóllōn = <code>˘ ¯ ¯˘</code> — 1, 2, 3 morae, ~660&nbsp;ms, stress rising on the middle syllable.</p>
+  </section>
+
+  <section class="ps-section">
+    <p class="ps-eyebrow">The Language Tables</p>
+    <h2 class="ps-h2">One engine, five rulebooks</h2>
+    <p class="ps-lead">The same tokenizer reads the restored form and applies the language's own rules — no English assumptions anywhere.</p>
+
+    <h3 style="color:var(--gold-bright);font-family:'Cinzel',Georgia,serif;margin:1.6rem 0 .4rem;">Greek (Attic values)</h3>
+    <table class="ps-table">
+      <tbody>
+        <tr><td>ā ē ī ō ū</td><td>long vowels — ē = open "eh" held, ō = "aw" held</td></tr>
+        <tr><td>acute / circumflex</td><td>stress (circumflex adds length + falling pitch)</td></tr>
+        <tr><td>z · x · ps</td><td>zd · ks · ps — Zeús begins with the voiced affricate</td></tr>
+        <tr><td>ph th kh</td><td>aspirated p/t/k — a breath after the stop, never "f/th/x"</td></tr>
+        <tr><td>final -ē, -e</td><td>always sounded — "Hekátē" ends in "tay", never silent "e"</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="color:var(--gold-bright);font-family:'Cinzel',Georgia,serif;margin:1.6rem 0 .4rem;">Nahuatl</h3>
+    <table class="ps-table">
+      <tbody>
+        <tr><td>tl</td><td>one affricate — the "whispered l" /t͡ɬ/, never "tul"</td></tr>
+        <tr><td>tz</td><td>/t͡s/ as in "cats"</td></tr>
+        <tr><td>qu (e/i)</td><td>plain /k/ — Quetzalcōātl starts "keh", not "kwet"</td></tr>
+        <tr><td>hu</td><td>/w/ before vowels</td></tr>
+        <tr><td>stress</td><td>penultimate syllable, unless marked otherwise</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="color:var(--gold-bright);font-family:'Cinzel',Georgia,serif;margin:1.6rem 0 .4rem;">Norse</h3>
+    <table class="ps-table">
+      <tbody>
+        <tr><td>þ</td><td>/θ/ — "th" of <em>think</em>: Thór</td></tr>
+        <tr><td>ð</td><td>/ð/ — "th" of <em>breathe</em>: Óðinn</td></tr>
+        <tr><td>ǫ</td><td>/ɔ/ — the open o of Ragnarǫk</td></tr>
+        <tr><td>acute vowels</td><td>long: á é í ó ú ý</td></tr>
+        <tr><td>stress</td><td>first syllable, Germanic initial</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="color:var(--gold-bright);font-family:'Cinzel',Georgia,serif;margin:1.6rem 0 .4rem;">Sanskrit (IAST)</h3>
+    <table class="ps-table">
+      <tbody>
+        <tr><td>ś ṣ</td><td>ɕ / ʂ — two distinct sh-sounds: Śiva vs Viṣṇu</td></tr>
+        <tr><td>ṭ ḍ ṇ</td><td>retroflex — tongue curled back</td></tr>
+        <tr><td>ṛ</td><td>syllabic r — a vowel made of r</td></tr>
+        <tr><td>bh dh gh th ph</td><td>breathy stops — h is a feature, not a letter</td></tr>
+        <tr><td>ā ī ū</td><td>long vowels, counted as mātrā</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="color:var(--gold-bright);font-family:'Cinzel',Georgia,serif;margin:1.6rem 0 .4rem;">Japanese</h3>
+    <table class="ps-table">
+      <tbody>
+        <tr><td>ō ū</td><td>double-beat vowels — Kyōto is Kyo-o-to, four beats</td></tr>
+        <tr><td>r</td><td>ɾ — a single tap, between l and d</td></tr>
+        <tr><td>sh ch ts</td><td>ɕ · t͡ɕ · t͡s</td></tr>
+        <tr><td>rhythm</td><td>strict isochrony — every mora equal (~80&nbsp;ms)</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="color:var(--gold-bright);font-family:'Cinzel',Georgia,serif;margin:1.6rem 0 .4rem;">Egyptian <span class="ps-badge">Conventional</span></h3>
+    <p class="ps-lead" style="font-size:.92rem;">Hieroglyphs write consonants, not vowels. Egyptological readings (Rꜥ as "Ra", Ḥr as "Hor") are <em>conventions of the field</em>, not derivations — and they are labelled "Conventional reading" wherever they appear. We do not fake certainty the script doesn't offer.</p>
+  </section>
+
+  <section class="ps-section">
+    <p class="ps-eyebrow">For Voices</p>
+    <h2 class="ps-h2">How to read our respellings</h2>
+    <p class="ps-lead">Every flagship temple carries a "Say it right" panel: the respelling (stressed syllable in CAPS), the IPA, the beats, and the one or two sounds English mouths get wrong.</p>
+    <div class="ps-example">
+      <div class="ps-exrow"><b>Árēs</b><code>AH-rays · /ˈa.rɛːs/ · ˘ ¯˘ · rise</code><span>sharp first syllable, long open "eh" at the end</span></div>
+      <div class="ps-exrow"><b>Quetzalcōātl</b><code>keh-tsahl-KOH-ahtl · ˘ ¯ ¯ ¯˘ · heavy</code><span>tl is one sound; the ō and ā each hold double</span></div>
+      <div class="ps-exrow"><b>Óðinn</b><code>OH-theen · ¯ ¯ · heavy</code><span>soft "th" of <em>breathe</em>, never a hard d</span></div>
+      <div class="ps-exrow"><b>Amaterasu</b><code>ah-mah-teh-rah-soo · ˘ ˘ ˘ ˘ ˘ · flat</code><span>five even beats, tapped r, no stress at all</span></div>
+    </div>
+  </section>
+
+  <section class="ps-section">
+    <p class="ps-eyebrow">For Machines</p>
+    <h2 class="ps-h2">Speakable by contract</h2>
+    <p class="ps-lead">Every name in the lexicon ships a machine-ready pronunciation record:</p>
+    <div class="ps-cards">
+      <div class="ps-card">
+        <h3>API</h3>
+        <p><code>GET /api/v1/names/{id}/pronunciation</code> — IPA, respelling, syllables, stress, SSML markup, and the full timing object (morae, beats, contour, durations).</p>
+      </div>
+      <div class="ps-card">
+        <h3>SSML</h3>
+        <p>Each record carries <code>&lt;phoneme alphabet="ipa"&gt;</code> payloads that ElevenLabs, Google TTS, Amazon Polly, and Azure accept natively.</p>
+      </div>
+      <div class="ps-card">
+        <h3>Corpus</h3>
+        <p><code>data/corpus/pronunciation.jsonl</code> — 900+ records for training and evaluation, refreshed with every dataset generation.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ps-section">
+    <p class="ps-eyebrow">The Honest Boundary</p>
+    <h2 class="ps-h2">Derived, conventional, or curated</h2>
+    <p class="ps-lead">Most flagship names are derived mechanically from their restored marks (and validated against the curated pronunciation atlas — currently ~82% exact-or-near across 893 entries, 89% mora agreement on flagships). Egyptian readings are labelled conventional. Everything else falls back to the curated atlas rather than a guessed rule. Where the rules end, we say so.</p>
+  </section>
+
+  <div class="ps-cta">
+    <a href="/pantheon/">Enter the Pantheon</a>
+    <a href="/api/v1/docs/">The API</a>
+    <a href="/rulebook/">The Rulebook</a>
+  </div>
+
+</body>
+</html>

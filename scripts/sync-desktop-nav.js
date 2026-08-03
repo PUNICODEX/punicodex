@@ -40,6 +40,7 @@ const MORE = [
   ['/patterns/', 'Patterns'],
   ['/tiers/', 'Tier System'],
   ['/rulebook/', 'Rulebook'],
+  ['/pronunciation/', 'Pronunciation'],
   ['/cards/', 'Cards'],
   ['/oracle.html', 'Oracle'],
   ['/extension/', 'Extension'],

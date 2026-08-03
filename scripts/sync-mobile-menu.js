@@ -52,6 +52,7 @@ const CANONICAL_MENU = `<div class="mobile-menu" id="mobile-menu">
                 <a href="/search.html">Search</a>
                 <a href="/tiers/">Tier System</a>
                 <a href="/rulebook/">Rulebook</a>
+                <a href="/pronunciation/">Pronunciation</a>
                 <a href="/cards/">Cards</a>
                 <a href="/oracle.html">Oracle</a>
                 <a href="/extension/">Extension</a>
