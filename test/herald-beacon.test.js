@@ -119,9 +119,10 @@ async function run() {
     browser = await chromium.launch({ executablePath: exe, headless: true });
 
     let ctx = null;
+    let page = null;
     async function newPage(storageState) {
       ctx = await browser.newContext({ viewport: { width: 1280, height: 860 } });
-      const page = await ctx.newPage();
+      page = await ctx.newPage();
       if (storageState) {
         await page.addInitScript((v) => {
           window.localStorage.setItem('punicodex.herald.state', v);
