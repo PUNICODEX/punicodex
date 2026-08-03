@@ -150,6 +150,7 @@ async function runTests() {
     }
     // Patrons lives as a tab of the Leasing page — the nav item deep-links it.
     assert.ok(
+      // biome-ignore lint/suspicious/noTemplateCurlyInString: asserting the generator emits the literal route template, not a filled path
       shell.includes('href: `${PREFIX}leasing/?tab=patrons`'),
       'expected the patrons nav item to deep-link the Leasing patrons tab'
     );

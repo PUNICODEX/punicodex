@@ -346,7 +346,10 @@ test('every attack-sequence builder runs clean frames (no undefined vars)', () =
     {},
     {
       get: (t, k) => (k in t ? t[k] : anyFn),
-      set: (t, k, v) => ((t[k] = v), true),
+      set: (t, k, v) => {
+        t[k] = v;
+        return true;
+      },
     }
   );
   const canvas = {
@@ -438,7 +441,13 @@ test('signature moves: registered for real flagships and frame-clean, supers inc
   const anyFn = new Proxy(function () {}, { get: () => anyFn, apply: () => anyFn });
   const ctx = new Proxy(
     {},
-    { get: (t, k) => (k in t ? t[k] : anyFn), set: (t, k, v) => ((t[k] = v), true) }
+    {
+      get: (t, k) => (k in t ? t[k] : anyFn),
+      set: (t, k, v) => {
+        t[k] = v;
+        return true;
+      },
+    }
   );
   const canvas = {
     width: 800,

@@ -35,10 +35,12 @@ test('no reference to the retired /api/sites/duplicates endpoint remains', () =>
 
 test('Similar button is wired to the lexicon similarity API with entry id', () => {
   assert.ok(
+    // biome-ignore lint/suspicious/noTemplateCurlyInString: asserting the route template is emitted literally
     html.includes('/api/v1/names/${encodeURIComponent(entryId)}/similarities/'),
     'showSimilar must call /api/v1/names/:id/similarities'
   );
   assert.ok(
+    // biome-ignore lint/suspicious/noTemplateCurlyInString: asserting the call template is emitted literally
     html.includes(
       "showSimilar('${escapeHtml(r.punycode)}','${escapeHtml(r.lexiconEntryId)}',this)"
     ),
@@ -74,7 +76,11 @@ test('autocomplete is an ARIA combobox', () => {
 
 test('search failure shows a friendly message, not a raw error', () => {
   assert.ok(html.includes('Search is temporarily unavailable'), 'friendly error title missing');
-  assert.ok(!html.includes('${e.message}</div>'), 'raw error message still rendered');
+  assert.ok(
+    // biome-ignore lint/suspicious/noTemplateCurlyInString: asserting raw error markup is gone
+    !html.includes('${e.message}</div>'),
+    'raw error message still rendered'
+  );
 });
 
 console.log(`\nSearch Page Features: ${passed} passed, ${failed} failed`);

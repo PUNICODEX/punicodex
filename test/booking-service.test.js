@@ -85,11 +85,7 @@ const {
 const { createBooking } = require('../platform/api/bookings.js');
 const { invoke } = require('./helpers/http.js');
 const slotsHandler = require('../api/slots/[[...slug]].js');
-const {
-  getSlotId,
-  getSlotSlug,
-  getBundleSlotId,
-} = require('./helpers/slots.js');
+const { getSlotId, getSlotSlug, getBundleSlotId } = require('./helpers/slots.js');
 
 function getDeliveredCode(email) {
   return deliveredCodes.get(email);
