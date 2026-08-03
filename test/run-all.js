@@ -372,6 +372,9 @@ const SERIAL_SUITES = new Set([
   // parallel with tree-mutating suites makes them flag transient writes.
   'Format Check',
   'Biome Lint',
+  // Login writes admin_sessions; golden-DB copies race in the parallel phase
+  // (torn WAL state → "attempt to write a readonly database").
+  'API v1 Integration Tests',
 ]);
 
 function runSuiteCmd(suite) {
