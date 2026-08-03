@@ -39,10 +39,11 @@ function bake(relPath, entries) {
   const file = path.join(ROOT, relPath);
   let html = fs.readFileSync(file, 'utf8');
   // Strip any prior block (idempotent). The insert phase writes
-  // `    {block}\n` immediately before </head>, so the strip must consume
-  // that same surrounding whitespace — otherwise every generate leaves one
-  // extra blank line behind and the CI divergence gate (npm run generate +
-  // git diff --exit-code) fails on a perpetually growing file.
+  // `    {block}\n` immediately before its anchor (see below), so the strip
+  // must consume that same surrounding whitespace — otherwise every generate
+  // leaves one extra blank line behind and the CI divergence gate
+  // (npm run generate + git diff --exit-code) fails on a perpetually growing
+  // file.
   const startIdx = html.indexOf(START);
   if (startIdx !== -1) {
     const endIdx = html.indexOf(END, startIdx);
@@ -55,9 +56,19 @@ function bake(relPath, entries) {
     html = `${html.slice(0, cutStart)}\n${html.slice(cutEnd)}`;
   }
   const block = itemListBlock(entries);
-  const headEnd = html.indexOf('</head>');
-  if (headEnd === -1) throw new Error(`${relPath}: no </head>`);
-  html = `${html.slice(0, headEnd)}    ${block}\n${html.slice(headEnd)}`;
+  // Pipeline order is ItemList -> herald beacon -> cookie consent -> </head>
+  // (the injectors run after this script and place their blocks last). When
+  // run standalone AFTER those injectors — tests, evolve — inserting before
+  // </head> would leapfrog their blocks and reorder the file, failing the
+  // divergence gate. Anchor to the earliest downstream marker instead.
+  const anchors = [
+    html.indexOf('<!-- PUNICODEX-HERALD-BEACON-START -->'),
+    html.indexOf('<!-- PUNICODEX-COOKIE-CONSENT-START -->'),
+    html.indexOf('</head>'),
+  ].filter((i) => i !== -1);
+  if (anchors.length === 0) throw new Error(`${relPath}: no </head>`);
+  const insertAt = Math.min(...anchors);
+  html = `${html.slice(0, insertAt)}    ${block}\n${html.slice(insertAt)}`;
   fs.writeFileSync(file, html, 'utf8');
   console.log(`${relPath}: ItemList baked (${entries.length} items)`);
 }
