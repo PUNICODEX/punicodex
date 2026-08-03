@@ -75,6 +75,7 @@ const TARGETS = [
   { page: path.join('texts', 'index.html'), active: '/texts/' },
   { page: path.join('texts', 'theogony', 'index.html'), active: '/texts/' },
   { page: path.join('rulebook', 'index.html'), active: '/rulebook/' },
+  { page: path.join('pronunciation', 'index.html'), active: '/pronunciation/', insertNav: true },
   { page: path.join('cards', 'index.html'), active: '/cards/' },
   { page: path.join('trending', 'index.html'), active: '/trending/' },
   { page: path.join('patterns', 'index.html'), active: '/patterns/' },
