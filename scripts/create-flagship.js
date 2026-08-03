@@ -2437,8 +2437,8 @@ function generateDashboardPage(entry, palette, templateDir, archetype = {}) {
   const templeId = entry.id;
   const domainUnicode = archetype.domainUnicode || `${entry.unicode}.com`;
   const vars = {
-        BREADCRUMB_JSONLD: templeBreadcrumb(entry, { name: 'Dashboard', path: 'dashboard/' }),
-UNICODE: entry.unicode,
+    BREADCRUMB_JSONLD: templeBreadcrumb(entry, { name: 'Dashboard', path: 'dashboard/' }),
+    UNICODE: entry.unicode,
     ASCII: entry.ascii,
     DOMAIN: entry.domain,
     DOMAIN_UNICODE: domainUnicode,
@@ -2580,8 +2580,8 @@ function generateLorePage(entry, palette, loreSections, templateDir, catalog) {
   // The rich provenance builder always emits section 02 (placeholder or curated).
   const sectionOffset = 1;
   const vars = {
-        BREADCRUMB_JSONLD: templeBreadcrumb(entry, { name: 'Lore', path: 'lore/' }),
-UNICODE: entry.unicode,
+    BREADCRUMB_JSONLD: templeBreadcrumb(entry, { name: 'Lore', path: 'lore/' }),
+    UNICODE: entry.unicode,
     ASCII: entry.ascii,
     GREEK: getOriginalScript(entry) || '—',
     ORIGINAL_SCRIPT: getOriginalScript(entry) || entry.unicode,
@@ -2732,8 +2732,8 @@ function generateGalleryPage(entry, palette, templateDir) {
   let html = fs.readFileSync(path.join(templateDir, 'gallery', 'index.html'), 'utf8');
   const templeId = entry.id;
   const vars = {
-        BREADCRUMB_JSONLD: templeBreadcrumb(entry, { name: 'Gallery', path: 'gallery/' }),
-UNICODE: entry.unicode,
+    BREADCRUMB_JSONLD: templeBreadcrumb(entry, { name: 'Gallery', path: 'gallery/' }),
+    UNICODE: entry.unicode,
     ASCII: entry.ascii,
     GREEK: getOriginalScript(entry) || '—',
     DOMAIN: entry.domain,
@@ -2934,8 +2934,8 @@ function generatePatternsPage(entry, palette, templateDir) {
   const html0 = fs.readFileSync(path.join(templateDir, 'patterns', 'index.html'), 'utf8');
   const payload = buildPatternsPayload(entry);
   const vars = {
-        BREADCRUMB_JSONLD: templeBreadcrumb(entry, { name: 'Patterns', path: 'patterns/' }),
-UNICODE: entry.unicode,
+    BREADCRUMB_JSONLD: templeBreadcrumb(entry, { name: 'Patterns', path: 'patterns/' }),
+    UNICODE: entry.unicode,
     ASCII: entry.ascii,
     TEMPLE_ID: entry.id,
     DOMAIN: entry.domain || '',
@@ -2950,8 +2950,8 @@ function generateExtendedPage(entry, palette, templateDir, catalog) {
   const templeId = entry.id;
   const catalogEntry = catalog?.[entry.id];
   const vars = {
-        BREADCRUMB_JSONLD: templeBreadcrumb(entry, { name: 'Extended Lore', path: 'lore/extended/' }),
-UNICODE: entry.unicode,
+    BREADCRUMB_JSONLD: templeBreadcrumb(entry, { name: 'Extended Lore', path: 'lore/extended/' }),
+    UNICODE: entry.unicode,
     ASCII: entry.ascii,
     GREEK: getOriginalScript(entry) || '—',
     DOMAIN: entry.domain,
