@@ -9,6 +9,11 @@
  * Rule-based, deterministic, no dependencies beyond Node builtins. This is a
  * canonical source: edit by hand, never generated.
  *
+ * The engine also carries a MORA-BASED TIMING layer (see the Prosody section
+ * below): per-syllable mora counts, stress-pitch contours, a beat string, a
+ * doubled-letter rhythm notation, and millisecond duration estimates from a
+ * per-language base mora duration. Fallback entries carry `timing: null`.
+ *
  * Language coverage (selected by entry.pantheon):
  *   greek / greek-location → classical Greek rules (Attic-Ionic values)
  *   nahuatl                → classical Nahuatl
@@ -89,22 +94,32 @@ function graphemes(form) {
 }
 
 function marksOf(g) {
+  let accent = null;
+  if (g.marks.includes(MARK.CIRCUMFLEX) || g.marks.includes(MARK.PERISPOMENI)) {
+    accent = 'circumflex';
+  } else if (g.marks.includes(MARK.GRAVE)) {
+    accent = 'grave';
+  } else if (g.marks.includes(MARK.ACUTE) || g.marks.includes(MARK.CARON)) {
+    accent = 'acute';
+  }
   return {
-    stress:
-      g.marks.includes(MARK.ACUTE) ||
-      g.marks.includes(MARK.GRAVE) ||
-      g.marks.includes(MARK.CARON) ||
-      g.marks.includes(MARK.CIRCUMFLEX) ||
-      g.marks.includes(MARK.PERISPOMENI),
+    stress: accent !== null,
     long:
       g.marks.includes(MARK.MACRON) ||
       g.marks.includes(MARK.CIRCUMFLEX) ||
       g.marks.includes(MARK.PERISPOMENI),
+    accent,
   };
 }
 
-const C = (p) => ({ p, vowel: false, long: false, stressed: false });
-const V = (p, long, stressed) => ({ p, vowel: true, long: !!long, stressed: !!stressed });
+const C = (p) => ({ p, vowel: false, long: false, stressed: false, accent: null });
+const V = (p, long, stressed, accent = null) => ({
+  p,
+  vowel: true,
+  long: !!long,
+  stressed: !!stressed,
+  accent,
+});
 
 // ---------------------------------------------------------------------------
 // Greek
@@ -172,13 +187,13 @@ function tokenizeGreek(form) {
     // Diphthongs (vowel pairs) — checked before single vowels.
     if (GREEK_VOWELS[g.base] && next && GREEK_DIPHTHONGS[pair]) {
       const m2 = marksOf(next);
-      tokens.push(V(GREEK_DIPHTHONGS[pair], true, m.stress || m2.stress));
+      tokens.push(V(GREEK_DIPHTHONGS[pair], true, m.stress || m2.stress, m.accent || m2.accent));
       i += 2;
       continue;
     }
     if (GREEK_VOWELS[g.base]) {
       const [short, long] = GREEK_VOWELS[g.base];
-      tokens.push(V(m.long ? long : short, m.long, m.stress));
+      tokens.push(V(m.long ? long : short, m.long, m.stress, m.accent));
       i += 1;
       continue;
     }
@@ -269,7 +284,7 @@ function tokenizeNahuatl(form) {
     const third = gs[i + 2];
     if (NAHUATL_VOWELS[g.base]) {
       const [short, long] = NAHUATL_VOWELS[g.base];
-      tokens.push(V(m.long ? long : short, m.long, m.stress));
+      tokens.push(V(m.long ? long : short, m.long, m.stress, m.accent));
       i += 1;
       continue;
     }
@@ -379,7 +394,7 @@ function tokenizeNorse(form) {
       continue;
     }
     if (next && NORSE_DIPHTHONGS[pair]) {
-      tokens.push(V(NORSE_DIPHTHONGS[pair], true, m.stress || marksOf(next).stress));
+      tokens.push(V(NORSE_DIPHTHONGS[pair], true, m.stress || marksOf(next).stress, null));
       i += 2;
       continue;
     }
@@ -457,20 +472,25 @@ function tokenizeSanskrit(form) {
     const next = gs[i + 1];
     // Diphthongs ai / au.
     if (g.base === 'a' && next && (next.base === 'i' || next.base === 'u') && !m.long) {
-      tokens.push(V(next.base === 'i' ? 'aj' : 'au̯', true, m.stress || marksOf(next).stress));
+      tokens.push(
+        V(next.base === 'i' ? 'aj' : 'au̯', true, m.stress || marksOf(next).stress, m.accent)
+      );
       i += 2;
       continue;
     }
     if (SANSKRIT_VOWELS[g.base]) {
       const [short, long] = SANSKRIT_VOWELS[g.base];
-      tokens.push(V(m.long ? long : short, m.long, m.stress));
+      // e and o are phonemically long in Sanskrit — the token must carry the
+      // length even without a macron, or the mora layer undercounts.
+      const isLong = m.long || short === long;
+      tokens.push(V(isLong ? long : short, isLong, m.stress, m.accent));
       i += 1;
       continue;
     }
     // Vocalic r: ṛ / r̥.
     if (g.base === 'r' && (g.marks.includes(MARK.DOT_BELOW) || g.marks.includes(MARK.RING_BELOW))) {
       const isLong = g.marks.includes(MARK.MACRON);
-      tokens.push(V(isLong ? 'r̩ː' : 'r̩', isLong, m.stress));
+      tokens.push(V(isLong ? 'r̩ː' : 'r̩', isLong, m.stress, m.accent));
       i += 1;
       continue;
     }
@@ -665,7 +685,7 @@ function tokenizeEgyptian(form) {
     const m = marksOf(g);
     // Vowels occasionally appear in modern spellings; keep them honest.
     if ('aeiou'.includes(g.base)) {
-      tokens.push(V(m.long ? `${g.base}ː` : g.base, m.long, m.stress));
+      tokens.push(V(m.long ? `${g.base}ː` : g.base, m.long, m.stress, m.accent));
       continue;
     }
     if (g.base === 'ꜣ') {
@@ -719,7 +739,7 @@ function tokenizeFallback(form) {
   for (const g of gs) {
     const m = marksOf(g);
     if ('aeiou'.includes(g.base)) {
-      tokens.push(V(m.long ? `${g.base}ː` : g.base, m.long, m.stress));
+      tokens.push(V(m.long ? `${g.base}ː` : g.base, m.long, m.stress, m.accent));
     } else if (/[a-z]/.test(g.base)) {
       tokens.push(C(g.base));
     }
@@ -822,6 +842,309 @@ function renderIpa(syllableTokens, stressIndex) {
   const parts = syllableTokens.map((syll) => syll.map((t) => t.p).join(''));
   const body = parts.map((p, i) => (i === stressIndex ? `ˈ${p}` : p)).join('.');
   return `/${body}/`;
+}
+
+// ---------------------------------------------------------------------------
+// Prosody: mora-based timing
+//
+// The timing layer reads the SAME syllable token structures the phoneme
+// layer produced (single source of truth — nothing is re-derived from the
+// written form). Mora accounting per syllable:
+//
+//   short vowel nucleus          = 1 mora
+//   long vowel / true diphthong  = 2 morae (the token's own `long` flag)
+//   geminate consonant           = +1 (coda+onset pair across the syllable
+//                                  boundary, or a long-consonant token lː/rː)
+//   heavy coda consonant         = +0.5 each, rounded at syllable level
+//
+// Per-language prosody tunes which kinds count:
+//   japanese — strict isochrony: every mora equal; the sokuon geminate and
+//              the moraic nasal (coda n) each count a full mora; no 0.5
+//              coda weight.
+//   greek    — classical mora-timed: long = double; circumflex marks a
+//              rise-fall pitch contour over the long syllable.
+//   sanskrit — mātrā-counted: guru (long or closed) = 2, laghu = 1.
+//   nahuatl  — weight-based; penultimate stress.
+//   norse    — quantity-sensitive: long vowels and geminates add morae.
+//   egyptian — conventional rhythm, flagged (hieroglyphs write no vowels;
+//              a vowel-less skeleton gets one conventional beat per
+//              consonant pair).
+//
+// Stress contours: 'rise' (acute), 'fall' (grave), 'rise-fall' (circumflex),
+// 'heavy' (weight-rule stress without an accent mark), 'flat' (unstressed,
+// and the Japanese/Egyptian no-lexical-stress default).
+// ---------------------------------------------------------------------------
+
+const PROSODY = {
+  greek: {
+    moraMs: 110,
+    geminate: true,
+    codaWeight: 0.5,
+    codaNasalMora: false,
+    conventional: false,
+    model: 'classical mora-timed (long = 2 morae; closed syllables heavy; circumflex = rise-fall)',
+  },
+  nahuatl: {
+    moraMs: 95,
+    geminate: true,
+    codaWeight: 0.5,
+    codaNasalMora: false,
+    conventional: false,
+    model: 'weight-based (penultimate stress)',
+  },
+  norse: {
+    moraMs: 105,
+    geminate: true,
+    codaWeight: 0.5,
+    codaNasalMora: false,
+    conventional: false,
+    model: 'quantity-sensitive (long vowels and geminates add morae)',
+  },
+  sanskrit: {
+    moraMs: 100,
+    geminate: true,
+    codaWeight: 0.5,
+    codaNasalMora: false,
+    conventional: false,
+    model: 'mātrā-counted (guru = 2, laghu = 1)',
+  },
+  japanese: {
+    moraMs: 80,
+    geminate: true,
+    codaWeight: 0,
+    codaNasalMora: true,
+    conventional: false,
+    model: 'strict mora isochrony (sokuon geminate and moraic nasal count full morae)',
+  },
+  egyptian: {
+    moraMs: 100,
+    geminate: true,
+    codaWeight: 0.5,
+    codaNasalMora: false,
+    conventional: true,
+    model: 'conventional rhythm (hieroglyphs write no vowels)',
+  },
+};
+
+function prosodyFor(language) {
+  return PROSODY[language === 'greek-location' ? 'greek' : language];
+}
+
+function syllableContour(syllable, stressed) {
+  if (!stressed) return 'flat';
+  const nucleus = syllable.find((t) => t.vowel);
+  if (nucleus?.accent === 'acute') return 'rise';
+  if (nucleus?.accent === 'grave') return 'fall';
+  if (nucleus?.accent === 'circumflex') return 'rise-fall';
+  return 'heavy';
+}
+
+function syllableMorae(syllable, nextSyllable, prosody) {
+  const nucleusIdx = syllable.findIndex((t) => t.vowel);
+  if (nucleusIdx === -1) {
+    // Vowel-less skeleton (Egyptian): one conventional beat per consonant pair.
+    return Math.max(1, Math.round(syllable.length * 0.5));
+  }
+  const nucleus = syllable[nucleusIdx];
+  const coda = syllable.slice(nucleusIdx + 1);
+  let morae = nucleus.long ? 2 : 1;
+  let codaConsonants = 0;
+  // Geminate across the boundary: coda consonant identical to the next
+  // syllable's onset (ll → l.l, kk → k.k) counts one full mora.
+  let boundaryGeminate = false;
+  if (
+    prosody.geminate &&
+    coda.length > 0 &&
+    nextSyllable &&
+    nextSyllable.length > 0 &&
+    !nextSyllable[0].vowel &&
+    coda[coda.length - 1].p === nextSyllable[0].p
+  ) {
+    boundaryGeminate = true;
+    morae += 1;
+  }
+  coda.forEach((t, idx) => {
+    if (boundaryGeminate && idx === coda.length - 1) return; // already counted
+    if (prosody.geminate && t.p.length > 1 && t.p.endsWith('ː')) {
+      morae += 1; // long-consonant token (Norse lː, rː, nː, mː)
+      return;
+    }
+    if (prosody.codaNasalMora && t.p === 'n') {
+      morae += 1; // Japanese moraic nasal
+      return;
+    }
+    codaConsonants += 1;
+  });
+  return Math.max(1, Math.round(morae + codaConsonants * prosody.codaWeight));
+}
+
+const BEAT_SYMBOLS = { 1: '˘', 2: '¯', 3: '¯˘', 4: '¯¯' };
+
+function beatSymbol(morae) {
+  return BEAT_SYMBOLS[morae] || `×${morae}`;
+}
+
+// Rhythm notation for voiceover readers: quasi-spelling with CAPS on the
+// stressed syllable and doubled letters for long nuclei ('a-POL-LOON').
+// Rendered from the same syllable tokens — long vowels double their base
+// letter, long consonants double (lː → ll).
+const RHYTHM_VOWEL = {
+  a: 'a',
+  e: 'e',
+  i: 'i',
+  o: 'o',
+  u: 'u',
+  y: 'y',
+  ɛ: 'e',
+  ɔ: 'o',
+  ɐ: 'a',
+  ɑ: 'a',
+  ə: 'e',
+  ʊ: 'u',
+  ɪ: 'i',
+  ɯ: 'u',
+  ø: 'o',
+  œ: 'e',
+  æ: 'e',
+  ʉ: 'u',
+  r̩: 'r',
+  aj: 'ai',
+  ej: 'ei',
+  oj: 'oi',
+  uj: 'ui',
+  au̯: 'au',
+  eu̯: 'eu',
+  ey̯: 'ey',
+};
+
+const RHYTHM_CONS = {
+  p: 'p',
+  b: 'b',
+  t: 't',
+  d: 'd',
+  k: 'k',
+  ɡ: 'g',
+  g: 'g',
+  m: 'm',
+  n: 'n',
+  l: 'l',
+  r: 'r',
+  s: 's',
+  z: 'z',
+  h: 'h',
+  f: 'f',
+  v: 'v',
+  w: 'w',
+  j: 'y',
+  ŋ: 'ng',
+  ɲ: 'ny',
+  ɳ: 'n',
+  q: 'k',
+  pʰ: 'p',
+  tʰ: 't',
+  kʰ: 'k',
+  bʱ: 'b',
+  dʱ: 'd',
+  ɡʱ: 'g',
+  ʈʰ: 't',
+  ɖʱ: 'd',
+  ʃ: 'sh',
+  ɕ: 'sh',
+  ʂ: 'sh',
+  x: 'kh',
+  χ: 'kh',
+  ħ: 'h',
+  θ: 'th',
+  ð: 'th',
+  ɬ: 'l',
+  ɾ: 'r',
+  ʈ: 't',
+  ɖ: 'd',
+  ʋ: 'v',
+  ɸ: 'f',
+  ʔ: '',
+  ʕ: '',
+  t͡s: 'ts',
+  t͡ɬ: 'tl',
+  t͡ʃ: 'ch',
+  d͡ʒ: 'j',
+  t͡ɕ: 'ch',
+  d͡ʑ: 'j',
+  t͡ɕʰ: 'ch',
+  d͡ʑʱ: 'j',
+  ps: 'ps',
+  ks: 'ks',
+  zd: 'zd',
+  ŋg: 'ng',
+  ŋk: 'nk',
+  lː: 'll',
+  rː: 'rr',
+  nː: 'nn',
+  mː: 'mm',
+  kʲ: 'ky',
+  nʲ: 'ny',
+  rʲ: 'ry',
+  mʲ: 'my',
+  pʲ: 'py',
+  bʲ: 'by',
+  ɡʲ: 'gy',
+  hʲ: 'hy',
+};
+
+function rhythmSyllable(syllable) {
+  return syllable
+    .map((t) => {
+      if (t.vowel) {
+        const key = t.p.replace(/ː/g, '');
+        const base = RHYTHM_VOWEL[key] || '';
+        // Diphthongs are inherently bimoraic — only plain vowels double.
+        const isDiphthong = key.length > 1 && 'aeiouy'.includes(key[0]);
+        return t.long && !isDiphthong ? base + base : base;
+      }
+      return RHYTHM_CONS[t.p] ?? '';
+    })
+    .join('');
+}
+
+/**
+ * Compute the mora-based timing for an entry from its syllable tokens.
+ * Returns null when the language has no prosody model (fallback entries).
+ */
+function computeTiming(language, syllableTokens, stressIndex) {
+  const prosody = prosodyFor(language);
+  if (!prosody) return null;
+  const morae = syllableTokens.map((syll, i) =>
+    syllableMorae(syll, syllableTokens[i + 1], prosody)
+  );
+  const totalMorae = morae.reduce((a, b) => a + b, 0);
+  const perSyllable = syllableTokens.map((syll, i) => {
+    const stressed = i === stressIndex;
+    return {
+      syllable: syll.map((t) => t.p).join(''),
+      morae: morae[i],
+      stressed,
+      contour: syllableContour(syll, stressed),
+      ms: Math.round(morae[i] * prosody.moraMs),
+    };
+  });
+  const stressed = perSyllable.find((s) => s.stressed);
+  return {
+    morae,
+    totalMorae,
+    contour: stressed ? stressed.contour : 'flat',
+    beats: morae.map(beatSymbol).join(' '),
+    rhythm: perSyllable
+      .map((s, i) => {
+        const r = rhythmSyllable(syllableTokens[i]);
+        return s.stressed ? r.toUpperCase() : r;
+      })
+      .join('-'),
+    moraMs: prosody.moraMs,
+    durationMs: Math.round(totalMorae * prosody.moraMs),
+    perSyllable,
+    model: prosody.model,
+    conventional: prosody.conventional,
+  };
 }
 
 // English-analogy respelling, longest IPA keys first. Deliberately lossy:
@@ -940,14 +1263,49 @@ const RESPELL = {
 
 const RESPELL_KEYS = Object.keys(RESPELL).sort((a, b) => b.length - a.length);
 
-function respellSyllable(ipaSyllable) {
+// Length-marking overrides for the timed respelling mode. Choice (documented
+// in deriveRespelling): long nuclei are marked by selecting the naturally
+// LONG English analogy ('ah' vs short 'a', 'ee' vs 'i', 'oo' vs 'u',
+// 'aw'/'oh' vs 'o', 'ay' vs 'e') — never by blind letter doubling, which
+// produces non-words like 'naaay'.
+const TIMED_RESPELL = {
+  aː: 'ah',
+  a: 'a',
+  eː: 'ay',
+  e: 'e',
+  ɛː: 'ay',
+  ɛ: 'e',
+  iː: 'ee',
+  i: 'i',
+  ɪ: 'i',
+  oː: 'oh',
+  o: 'o',
+  ɔː: 'aw',
+  ɔ: 'o',
+  uː: 'oo',
+  u: 'u',
+  ʊ: 'u',
+  ɯ: 'u',
+  yː: 'ee',
+  y: 'i',
+  øː: 'ur',
+  ø: 'ur',
+  œ: 'oy',
+  æ: 'a',
+  ɐ: 'u',
+  ɑ: 'ah',
+  ə: 'uh',
+  ʉ: 'u',
+};
+
+function respellSyllable(ipaSyllable, timed) {
   let s = ipaSyllable.replace(/^ˈ/, '');
   let out = '';
   while (s.length > 0) {
     let matched = false;
     for (const key of RESPELL_KEYS) {
       if (s.startsWith(key)) {
-        out += RESPELL[key];
+        out += timed && TIMED_RESPELL[key] ? TIMED_RESPELL[key] : RESPELL[key];
         s = s.slice(key.length);
         matched = true;
         break;
@@ -965,11 +1323,21 @@ function respellSyllable(ipaSyllable) {
  * Voiceover-style respelling of an array of IPA syllable strings; the
  * stressed syllable (stressIdx) is upper-cased. e.g. ['a','rɔːk','nɛː'], 1
  * → 'ah-RAWK-nay'.
+ *
+ * Optional third argument `timing` (the object returned in
+ * derivePronunciation().timing, or any truthy value to request the mode):
+ * switches vowels to length-marking analogies — short 'a/i/u/o/e' vs long
+ * 'ah/ee/oo/aw/ay' — so long nuclei read long naturally in English
+ * ('a-POL-loon' reads as 'a-POHL-lawn'; 'ah-RAWK-naaay' stays wrong and is
+ * never produced). Blind doubling is avoided on purpose: the default
+ * analogies already imply length, and the doubled-letter rhythm notation
+ * lives separately in timing.rhythm.
  */
-function deriveRespelling(phonemes, stressIdx) {
+function deriveRespelling(phonemes, stressIdx, timing) {
+  const timed = !!timing;
   return phonemes
     .map((syll, i) => {
-      const r = respellSyllable(syll);
+      const r = respellSyllable(syll, timed);
       return i === stressIdx ? r.toUpperCase() : r;
     })
     .join('-');
@@ -1108,6 +1476,9 @@ function derivePronunciation(entry) {
   const syllables = syllableTokens.map((syll) => syll.map((t) => t.p).join(''));
   const ipa = renderIpa(syllableTokens, stressIndex);
   const respelling = syllables.length > 0 ? deriveRespelling(syllables, stressIndex) : '';
+  // The mora timing layer reads the same token/syllable structures; fallback
+  // entries honestly carry no timing.
+  const timing = spec ? computeTiming(language, syllableTokens, stressIndex) : null;
   const conventional = language === 'egyptian';
   const extra = [];
   if (conventional) {
@@ -1126,6 +1497,7 @@ function derivePronunciation(entry) {
     respelling,
     ssml: buildSsml(ipa, entry.unicode || entry.ascii || ''),
     notes: collectNotes(tokens, extra),
+    timing,
     derived: language !== 'fallback',
     conventional,
   };
@@ -1140,6 +1512,7 @@ module.exports = {
     graphemes,
     syllabify,
     greekOriginalStressIndex,
+    computeTiming,
     LANGUAGES,
   },
 };
