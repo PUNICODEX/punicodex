@@ -316,9 +316,18 @@ function auditTabPlacement() {
       const html = fs.readFileSync(pagePath, 'utf8');
       const labels = navLabels(html);
       // Desktop and mobile navs each repeat the tab list.
-      const extendedIdxs = labels.reduce((acc, l, i) => (l === 'Extended' ? [...acc, i] : acc), []);
-      const patternsIdxs = labels.reduce((acc, l, i) => (l === 'Patterns' ? [...acc, i] : acc), []);
-      const scholarsIdxs = labels.reduce((acc, l, i) => (l === 'Scholars' ? [...acc, i] : acc), []);
+      const extendedIdxs = labels.reduce((acc, l, i) => {
+        if (l === 'Extended') acc.push(i);
+        return acc;
+      }, []);
+      const patternsIdxs = labels.reduce((acc, l, i) => {
+        if (l === 'Patterns') acc.push(i);
+        return acc;
+      }, []);
+      const scholarsIdxs = labels.reduce((acc, l, i) => {
+        if (l === 'Scholars') acc.push(i);
+        return acc;
+      }, []);
       ok(
         extendedIdxs.length >= 2,
         `sites/${id}/${sub} shows the Extended tab in desktop and mobile navs`

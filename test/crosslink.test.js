@@ -13,7 +13,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const ROOT = path.join(__dirname, '..');
-const { transformWikilinks, autoLink, BY_ID } = require('../scripts/lib/crosslink.js');
+const { transformWikilinks, autoLink } = require('../scripts/lib/crosslink.js');
 
 let passed = 0;
 let failed = 0;

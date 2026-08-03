@@ -646,15 +646,13 @@ test('(n) no emoji remain in search.html badge/filter rows', () => {
     '🔒 Leased', // lease-badge leased
     '🔑 Available', // lease-badge available
     '🌐 Unicode', // unicode-badge
-    // biome-ignore lint/suspicious/noTemplateCurlyInString: asserting the old dynamic template is gone
-    '📑 ${r.sitemapEntries} pages', // serp-sitemap-badge
+    '📑 ' + '$' + '{r.sitemapEntries} pages', // serp-sitemap-badge
     '▶️ Video', // serp-sitemap-badge video
-    // biome-ignore lint/suspicious/noTemplateCurlyInString: asserting the old dynamic template is gone
-    '>⚡ ${r.scoreBreakdown', // score-breakdown badge
+    '>⚡ ' + '$' + '{r.scoreBreakdown', // score-breakdown badge
     'trust-warning">⚠️ ', // trust-warning badge
     '🏪 Tenant', // tenant-label + kp-tenant-label
     '🧠 semantic match', // semantic fallback badge
-    'query-trust-${data.queryTrust.severity}">⚠️ ', // query trust banner
+    'query-trust-' + '$' + '{data.queryTrust.severity}">⚠️ ', // query trust banner
   ];
   for (const s of REMOVED) {
     assert.ok(!search.includes(s), `search.html still has badge/filter-row emoji: ${s}`);
