@@ -74,7 +74,7 @@ const PUBLIC_UPLOADS_ROOT = path.join(__dirname, 'public', 'uploads');
  */
 function existingWebpFor(publicPath) {
   const sibling = webpSiblingPath(publicPath);
-  if (!sibling || !sibling.startsWith('/uploads/')) return null;
+  if (!sibling?.startsWith('/uploads/')) return null;
   const abs = path.join(PUBLIC_UPLOADS_ROOT, sibling.slice('/uploads/'.length));
   try {
     return fs.existsSync(abs) ? sibling : null;

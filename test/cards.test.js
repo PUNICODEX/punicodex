@@ -34,7 +34,7 @@ const ARCHETYPES = Array.isArray(ARCHETYPES_MODULE)
 
 const SET = JSON.parse(fs.readFileSync(GAME_CARDS, 'utf8'));
 const CARDS = SET.cards;
-const STANDARD = CARDS.filter((c) => c.variant === 'standard');
+const _STANDARD = CARDS.filter((c) => c.variant === 'standard');
 const FOILS = CARDS.filter((c) => c.variant === 'original-script');
 // Single printings for non-flagship entries (tier-derived rarity).
 const ARCHIVE = CARDS.filter((c) => c.edition === 'archive');
@@ -83,7 +83,7 @@ const VALID_CATEGORIES = new Set([
 
 test('card set has set metadata and one archive printing per non-flagship entry', () => {
   assert.ok(SET._meta, 'set has _meta header marking it generated');
-  assert.ok(SET.set && SET.set.id, 'set has set metadata');
+  assert.ok(SET.set?.id, 'set has set metadata');
   assert.strictEqual(ARCHIVE.length, LEXICON.length - ARCHETYPES.length);
 });
 
@@ -119,12 +119,12 @@ test('every card conforms to the spec schema', () => {
     assert.ok(Number.isInteger(card.power) && card.power > 0, 'power positive int');
     assert.ok(Number.isInteger(card.health) && card.health > 0, 'health positive int');
     assert.ok(Number.isInteger(card.speed) && card.speed > 0, 'speed positive int');
-    assert.ok(card.ability && card.ability.name, 'ability name');
+    assert.ok(card.ability?.name, 'ability name');
     assert.ok(card.ability.description, 'ability description');
     assert.ok(VALID_TRIGGERS.has(card.ability.trigger), `trigger ${card.ability.trigger}`);
     assert.ok(
       card.ability.effect && VALID_EFFECT_KINDS.has(card.ability.effect.kind),
-      `effect kind ${card.ability.effect && card.ability.effect.kind}`
+      `effect kind ${card.ability.effect?.kind}`
     );
     assert.ok(card.setId === SET.set.id, 'card references its set');
   }
@@ -172,10 +172,10 @@ test('every flagship has a complete spec-valid legendary full-art printing', () 
     assert.strictEqual(card.rarity, 'legendary', `${arch.id} full-art is legendary`);
     assert.strictEqual(card.flagship, true, `${arch.id} flagged flagship`);
     assert.ok(card.flavor && card.flavor.length >= 20, `${arch.id} grounded flavor text`);
-    assert.ok(card.ability && card.ability.name, `${arch.id} named ability`);
+    assert.ok(card.ability?.name, `${arch.id} named ability`);
     assert.ok(card.ownedDomain, `${arch.id} owned domain shown`);
-    assert.ok(card.art && card.art.mascot, `${arch.id} mascot art`);
-    assert.ok(card.art && card.art.logomark, `${arch.id} logomark art`);
+    assert.ok(card.art?.mascot, `${arch.id} mascot art`);
+    assert.ok(card.art?.logomark, `${arch.id} logomark art`);
     assert.ok(
       fs.existsSync(path.join(ROOT, card.art.mascot)),
       `${arch.id} mascot exists on disk: ${card.art.mascot}`

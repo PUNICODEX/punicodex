@@ -193,4 +193,4 @@ function evaluatePolicy(verdict, options = {}) {
   };
 }
 
-export { DEFAULT_POLICY, normalizePolicy, evaluatePolicy, matchesList };
+export { DEFAULT_POLICY, evaluatePolicy, matchesList, normalizePolicy };

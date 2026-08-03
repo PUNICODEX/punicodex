@@ -58,12 +58,12 @@ module.exports = (req, res) => {
 
   if (pathPart === PREFIX || pathPart === PREFIX_WITH_SLASH) {
     // Vercel rewrite destination: use the captured path from the query param.
-    subPath = queryPath ? '/' + queryPath : '/';
+    subPath = queryPath ? `/${queryPath}` : '/';
   } else if (pathPart.startsWith(PREFIX_WITH_SLASH)) {
     // Original URL preserved: strip the function prefix.
     subPath = pathPart.slice(PREFIX.length) || '/';
   } else if (queryPath) {
-    subPath = '/' + queryPath;
+    subPath = `/${queryPath}`;
   } else {
     subPath = '/';
   }

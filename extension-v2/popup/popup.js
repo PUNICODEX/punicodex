@@ -2,7 +2,7 @@
  * PuniCodex Authenticity Extension v2 — Popup
  */
 
-import { getAll, DEFAULTS } from '../shared/storage.js';
+import { DEFAULTS, getAll } from '../shared/storage.js';
 
 const elements = {
   input: document.getElementById('check-input'),

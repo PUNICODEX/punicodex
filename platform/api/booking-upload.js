@@ -95,7 +95,7 @@ async function uploadSlotCreative(token, slotId, { image, filename }) {
   if (!booking) return { status: 404, body: { error: 'Booking not found' } };
 
   const bundleSlot = await getSlotById(booking.slot_id);
-  if (!bundleSlot || bundleSlot.is_bundle !== 1) {
+  if (bundleSlot?.is_bundle !== 1) {
     return { status: 400, body: { error: 'Per-slot upload only available for bundle bookings' } };
   }
 

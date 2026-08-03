@@ -165,7 +165,7 @@ test('attack: minion trade resolves damage and halved counter for the faster str
   const mk = (uid, power, health, speed) => ({
     uid,
     def: c,
-    name: 'T' + uid,
+    name: `T${uid}`,
     cost: 1,
     power,
     maxHealth: health,
@@ -211,7 +211,7 @@ test('attack: the arena exchange preview formula matches the engine counter rule
   const mk = (uid, power, health, speed) => ({
     uid,
     def: c,
-    name: 'T' + uid,
+    name: `T${uid}`,
     cost: 1,
     power,
     maxHealth: health,
@@ -257,7 +257,7 @@ test('attack: hero target and confused random targeting', () => {
   const mk = (uid, power, health, speed) => ({
     uid,
     def: c,
-    name: 'T' + uid,
+    name: `T${uid}`,
     cost: 1,
     power,
     maxHealth: health,
@@ -404,7 +404,7 @@ test('every attack-sequence builder runs clean frames (no undefined vars)', () =
 test('AI mercy: holdBack shelters a new commander for three rounds, then lifts', () => {
   const battle = makeBattle();
   const removal = SET.cards.find(
-    (c) => c.ability && c.ability.effect && /destroy|damage|stun/.test(c.ability.effect.kind || '')
+    (c) => c.ability?.effect && /destroy|damage|stun/.test(c.ability.effect.kind || '')
   );
   assert.ok(removal, 'a removal card exists in the set for this test');
   Engine.endTurn(battle); // AI becomes active; halfTurns small → mercy window
@@ -573,7 +573,7 @@ test('rubber band: an Oracle far ahead holds removal but never throws', () => {
   ai.hero.hp = 30;
   me.hero.hp = 18; // 12 ahead → the band engages
   const removal = SET.cards.find(
-    (c) => c.ability && c.ability.effect && /destroy|damage|stun/.test(c.ability.effect.kind || '')
+    (c) => c.ability?.effect && /destroy|damage|stun/.test(c.ability.effect.kind || '')
   );
   ai.hand = [Engine.toBattleCard(removal)];
   ai.ink = 10;
@@ -582,7 +582,7 @@ test('rubber band: an Oracle far ahead holds removal but never throws', () => {
   const mk = (uid, power, health, speed) => ({
     uid,
     def: c,
-    name: 'T' + uid,
+    name: `T${uid}`,
     cost: 1,
     power,
     maxHealth: health,
@@ -671,7 +671,7 @@ test('the kit: useSpecial validates readiness, ink, and targets — then unleash
   const mk = (uid, power, health, speed, ab) => ({
     uid,
     def: c,
-    name: 'T' + uid,
+    name: `T${uid}`,
     cost: 1,
     power,
     maxHealth: health,
@@ -753,7 +753,7 @@ test('the kit: the AI unleashes aggressive specials (but not under mercy)', () =
   const mk = (uid, power, health, speed, ab) => ({
     uid,
     def: c,
-    name: 'T' + uid,
+    name: `T${uid}`,
     cost: 1,
     power,
     maxHealth: health,
@@ -812,7 +812,7 @@ test('difficulty hooks: band threshold, noSpecials, and AI hero power', () => {
   const mk = (uid, power, health, speed) => ({
     uid,
     def: c,
-    name: 'T' + uid,
+    name: `T${uid}`,
     cost: 1,
     power,
     maxHealth: health,
@@ -840,8 +840,7 @@ test('difficulty hooks: band threshold, noSpecials, and AI hero power', () => {
     battle.players[0].hero.hp = 20; // AI leads by 10: band active at 6, not at 999
     ai.hero.hp = 30;
     const removal = SET.cards.find(
-      (x) =>
-        x.ability && x.ability.effect && /destroy|damage|stun/.test(x.ability.effect.kind || '')
+      (x) => x.ability?.effect && /destroy|damage|stun/.test(x.ability.effect.kind || '')
     );
     ai.hand = [Engine.toBattleCard(removal)];
     ai.ink = 10;
@@ -945,7 +944,7 @@ test('bespoke abilities: the set names hundreds of moves, flagships wear epithet
   for (const card of SET.cards) {
     if (!card.flagship || card.edition !== 'common' || overrideKeys.has(card.entryId)) continue;
     const lore = LORE[card.entryId];
-    if (lore && lore.domains && lore.domains.title) {
+    if (lore?.domains?.title) {
       assert.strictEqual(
         card.ability.name,
         lore.domains.title,
@@ -977,7 +976,7 @@ test('archetype sound bank: every strike has its own register and is wired', () 
     'warhorn',
   ];
   for (const a of archetypes) {
-    assert.ok(Sound.RECIPES['atk_' + a], `missing atk_${a} recipe`);
+    assert.ok(Sound.RECIPES[`atk_${a}`], `missing atk_${a} recipe`);
   }
   const js = fs.readFileSync(path.join(ROOT, 'game/game.js'), 'utf8');
   assert.ok(js.includes("sfx('atk_' + archetype)"), 'archetype sound not wired into withFx');
@@ -1031,7 +1030,7 @@ test('pantheon ascendant: three kin lift each other; two do not', () => {
   const mk = (uid, pantheon) => ({
     uid,
     def: { ...c, pantheon },
-    name: 'T' + uid,
+    name: `T${uid}`,
     cost: 1,
     power: 3,
     maxHealth: 4,
@@ -1530,11 +1529,11 @@ test('the shipped card set honours the trigger/effect invariants', () => {
     if (!a) continue;
     // A continuous effect is only ever read off the board, so it must be passive.
     if (CONTINUOUS.has(a.effect.kind) && a.trigger !== 'passive') {
-      offenders.push(card.id + ': continuous ' + a.effect.kind + ' under ' + a.trigger);
+      offenders.push(`${card.id}: continuous ${a.effect.kind} under ${a.trigger}`);
     }
     // `combo` is battlecry-only; anywhere else its condition can never be met.
     if (a.effect.kind === 'combo' && a.trigger !== 'on_play') {
-      offenders.push(card.id + ': combo under ' + a.trigger);
+      offenders.push(`${card.id}: combo under ${a.trigger}`);
     }
   }
   assert.deepStrictEqual(offenders.slice(0, 5), [], 'cards with unreachable abilities');
@@ -1555,17 +1554,15 @@ test('no edition upgrade is weaker than the printing it was forged from', () => 
   const losses = [];
   for (const card of SET.cards) {
     if (card.edition !== 'full-art' && card.edition !== 'secret') continue;
-    const base = byId.get(card.entryId + '-common');
-    if (!base || !base.ability || !card.ability) continue;
+    const base = byId.get(`${card.entryId}-common`);
+    if (!base?.ability || !card.ability) continue;
     const had = new Set(flatten(base.ability.effect));
     const has = new Set(flatten(card.ability.effect));
     for (const kind of had) {
-      if (!has.has(kind)) losses.push(card.id + ' lost ' + kind);
+      if (!has.has(kind)) losses.push(`${card.id} lost ${kind}`);
     }
     if (base.ability.trigger !== card.ability.trigger) {
-      losses.push(
-        card.id + ' trigger drifted ' + base.ability.trigger + '→' + card.ability.trigger
-      );
+      losses.push(`${card.id} trigger drifted ${base.ability.trigger}→${card.ability.trigger}`);
     }
   }
   assert.deepStrictEqual(losses.slice(0, 5), [], 'upgraded printings that lost their base effect');

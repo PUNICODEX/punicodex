@@ -103,7 +103,7 @@ test('behavior: API/admin fall through; document failure still yields a Response
   await dispatch('https://punicodex.com/admin-portal/leasing/?tab=orders');
   assert.strictEqual(intercepted.length, 0, 'no respondWith for API or admin requests');
 
-  const doc = await dispatch('https://punicodex.com/sites/zeus/', { destination: 'document' });
+  const _doc = await dispatch('https://punicodex.com/sites/zeus/', { destination: 'document' });
   assert.strictEqual(intercepted.length, 1, 'document is intercepted');
   const res = await intercepted[0];
   assert.ok(res instanceof sandbox.Response, 'document failure still resolves a Response');

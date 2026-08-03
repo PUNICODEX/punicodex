@@ -137,7 +137,7 @@ function run() {
       const wrongTier = canon === '1' ? '2' : '1';
       const $ = cheerio.load(html);
       const badge = $(`.meta-badge, [class*="tier"]`).first().text();
-      if (badge && badge.includes(`Tier ${wrongTier}`) && !badge.includes(`Tier ${canon}`)) {
+      if (badge?.includes(`Tier ${wrongTier}`) && !badge.includes(`Tier ${canon}`)) {
         bad.push(`${id}: badge shows Tier ${wrongTier}, canon Tier ${canon}`);
       }
       // Footer classification.

@@ -14,7 +14,7 @@ module.exports = createApiHandler(async (req, res) => {
     return;
   }
 
-  const fromQuery = (req.query && req.query.id) || (req.params && req.params.id);
+  const fromQuery = req.query?.id || req.params?.id;
   const pathname = (req.url || '').split('?')[0].replace(/\/+$/, '');
   const entryId = fromQuery || pathname.split('/').pop();
   if (!entryId || typeof entryId !== 'string') {

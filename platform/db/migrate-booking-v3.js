@@ -122,7 +122,7 @@ function parseSlotsFromHtml(siteSlug) {
   }
 
   const bundle = slots.find((s) => s.isBundle);
-  if (!bundle || bundle.sortOrder !== 14) {
+  if (bundle?.sortOrder !== 14) {
     throw new Error(`${siteSlug}: bundle must be at sort_order 14`);
   }
 

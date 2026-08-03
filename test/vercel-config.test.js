@@ -61,7 +61,7 @@ function run() {
 
   test('vercel.json is valid JSON with unique top-level keys', () => {
     JSON.parse(raw); // throws on invalid JSON
-    const keys = [...raw.matchAll(/^  "([a-zA-Z]+)":/gm)].map((m) => m[1]);
+    const keys = [...raw.matchAll(/^ {2}"([a-zA-Z]+)":/gm)].map((m) => m[1]);
     const dupes = keys.filter((k, i) => keys.indexOf(k) !== i);
     assert.deepStrictEqual([...new Set(dupes)], [], 'duplicate top-level keys');
   });

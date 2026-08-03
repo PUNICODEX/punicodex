@@ -10,7 +10,7 @@ const createSql = db
   .prepare("SELECT sql FROM sqlite_master WHERE type='table' AND name='bookings'")
   .get()?.sql;
 
-const needsStatusFix = !createSql || !createSql.includes('pending_application');
+const needsStatusFix = !createSql?.includes('pending_application');
 const columns = db
   .prepare('PRAGMA table_info(bookings)')
   .all()

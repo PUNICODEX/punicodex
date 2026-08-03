@@ -53,4 +53,4 @@ async function reset() {
   });
 }
 
-export { DEFAULTS, get, set, getAll, reset };
+export { DEFAULTS, get, getAll, reset, set };

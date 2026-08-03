@@ -257,7 +257,7 @@ function cleanInline(s, logCtx) {
           /^\p{Lu}/u.test(nextWord) ||
           /^\d/.test(nextWord)
         ) {
-          return left + diaToken(tok) + ' ';
+          return `${left + diaToken(tok)} `;
         }
         return m;
       }
@@ -284,7 +284,7 @@ function cleanInline(s, logCtx) {
           /^\p{Lu}/u.test(nextWord) ||
           /^\d/.test(nextWord)
         ) {
-          return left + diaToken(tok) + ' ';
+          return `${left + diaToken(tok)} `;
         }
         return m;
       }
@@ -354,7 +354,7 @@ function toParagraphs(bodyLines, logCtx) {
   const paras = [];
   let cur = null;
   const pushCur = () => {
-    if (cur !== null && cur.trim()) paras.push(cur.trim());
+    if (cur?.trim()) paras.push(cur.trim());
     cur = null;
   };
   for (const raw of bodyLines) {
@@ -377,7 +377,7 @@ function toParagraphs(bodyLines, logCtx) {
     } else if (cur === null) {
       cur = line;
     } else {
-      cur += ' ' + line;
+      cur += ` ${line}`;
     }
   }
   pushCur();

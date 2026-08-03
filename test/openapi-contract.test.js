@@ -173,6 +173,7 @@ const PATH_SAMPLES = {
 const QUERY_SAMPLES = {
   q: 'zeus',
   input: 'ares.com',
+  id: 'ares',
 };
 // Routes whose required query sample must be a full domain (not a bare name).
 const ROUTE_QUERY_OVERRIDES = {

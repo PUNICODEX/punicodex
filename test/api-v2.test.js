@@ -407,7 +407,7 @@ async function runTests() {
     const asArray = await call(['pantheons']);
     assert.strictEqual(asString.statusCode, 200, 'string slug must resolve');
     assert.strictEqual(asArray.statusCode, asString.statusCode, 'both shapes agree on status');
-    assert.ok(asString.body && asString.body.data, 'string slug reached the pantheons resource');
+    assert.ok(asString.body?.data, 'string slug reached the pantheons resource');
     assert.deepStrictEqual(
       Object.keys(asString.body).sort(),
       Object.keys(asArray.body).sort(),

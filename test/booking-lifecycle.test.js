@@ -137,7 +137,7 @@ async function run() {
       leaseMonths: 1,
       verificationToken,
     });
-    assert.ok(result && result.bookingId, 'booking id returned');
+    assert.ok(result?.bookingId, 'booking id returned');
     booking = { id: result.bookingId, token: result.token };
     const row = await get('SELECT * FROM bookings WHERE id = $1', [booking.id]);
     assert.strictEqual(row.email, EMAIL);
@@ -243,7 +243,7 @@ async function run() {
     assert.ok(slot, 'slot present in listing');
     assert.ok(slot.creative_path, 'creative path public');
     assert.ok(
-      slot.creative_webp_path && slot.creative_webp_path.endsWith('.webp'),
+      slot.creative_webp_path?.endsWith('.webp'),
       'webp rendition advertised to the display layer'
     );
     // Audit trail recorded the approval.

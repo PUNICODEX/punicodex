@@ -128,7 +128,7 @@ function run() {
         const html = fs.readFileSync(f, 'utf8');
         if (/<a [^>]*>(?:(?!<\/a>)*?)<a /.test(html)) bad.push(`${id}/${sub} nested`);
         const title = html.match(/<title>([\s\S]*?)<\/title>/i);
-        if (title && title[1].includes('<a ')) bad.push(`${id}/${sub} title-link`);
+        if (title?.[1].includes('<a ')) bad.push(`${id}/${sub} title-link`);
       }
     }
     assert.deepStrictEqual(bad.slice(0, 8), [], `${bad.length} structural violations`);

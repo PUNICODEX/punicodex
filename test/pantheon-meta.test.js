@@ -52,7 +52,7 @@ function run() {
     const used = new Set(LEXICON.map((e) => e.pantheon));
     const missing = [...used].filter((p) => {
       const m = PANTHEON_META[p];
-      return !m || !m.label || !m.emoji || !m.color;
+      return !m?.label || !m.emoji || !m.color;
     });
     assert.deepStrictEqual(missing, [], 'pantheons without meta');
   });

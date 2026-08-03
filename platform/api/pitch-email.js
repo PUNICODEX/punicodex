@@ -84,7 +84,7 @@ function buildPitchEmail({ codeRow, temple, businessName, recipientSite, customN
   const site = recipientSite ? escapeHtml(recipientSite) : null;
   const code = escapeHtml(codeRow.code);
   const templeUnicode = escapeHtml(temple.unicode);
-  const templeSlug = escapeHtml(temple.slug);
+  const _templeSlug = escapeHtml(temple.slug);
   const script = temple.script ? escapeHtml(temple.script) : null;
   const domain = escapeHtml(temple.domain || '');
   const headline = escapeHtml(offerHeadline(codeRow));
@@ -350,7 +350,7 @@ function loadTemple(slug) {
 function loadPatternBullets(slug, businessName) {
   try {
     const patterns = require('./industry-patterns.json');
-    const seats = (patterns.byEntry && patterns.byEntry[slug]) || [];
+    const seats = patterns.byEntry?.[slug] || [];
     return seats.slice(0, 3).map((s, i) => ({
       lead:
         i === 0
@@ -386,7 +386,7 @@ function firstSentences(text, n = 2, maxLen = 420) {
   const parts = clean.match(/[^.!?]+[.!?]+(?:\s|$)|[^.!?]+$/g) || [clean];
   let out = '';
   for (const part of parts) {
-    if (out && (out + ' ' + part).length > maxLen) break;
+    if (out && `${out} ${part}`.length > maxLen) break;
     out = out ? `${out} ${part.trim()}` : part.trim();
     if ((out.match(/[.!?]/g) || []).length >= n) break;
   }
@@ -429,7 +429,7 @@ function buildResonanceBullets(slug, businessName) {
   if (patternBullets.length) bullets.push(patternBullets[0]);
 
   // 2 — the mythology.
-  const myth = firstSentences(lore && lore.mythology && lore.mythology.lead, 2);
+  const myth = firstSentences(lore?.mythology?.lead, 2);
   if (myth) bullets.push({ lead: 'The god, in his own story.', why: myth });
 
   // 3 — archaeology / syncretism: the quotable fact.
@@ -437,14 +437,11 @@ function buildResonanceBullets(slug, businessName) {
   if (fact) bullets.push({ lead: 'Attested, not invented.', why: fact });
 
   // 4 — the name itself (the Ares pitch's "sounds like a blade drawn" bullet).
-  const note = firstSentences(
-    lore && (lore.originalScriptNote || (lore.pronunciation && lore.pronunciation.note)),
-    2
-  );
+  const note = firstSentences(lore && (lore.originalScriptNote || lore.pronunciation?.note), 2);
   if (note) bullets.push({ lead: 'A name worth saying correctly.', why: note });
 
   // 5 — cultural legacy.
-  const legacy = firstSentences(lore && lore.culturalLegacy, 1);
+  const legacy = firstSentences(lore?.culturalLegacy, 1);
   if (legacy) bullets.push({ lead: 'Still current, centuries on.', why: legacy });
 
   // 6 — second pattern seat, if we have room and one exists.

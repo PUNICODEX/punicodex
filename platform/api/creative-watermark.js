@@ -70,7 +70,7 @@ async function loadImageFromBuffer(buffer) {
   return loadImage(buffer);
 }
 
-function canvasFromImage(image, width, height) {
+function _canvasFromImage(image, width, height) {
   const canvas = createCanvas(width, height);
   const ctx = canvas.getContext('2d');
   ctx.drawImage(image, 0, 0, width, height);

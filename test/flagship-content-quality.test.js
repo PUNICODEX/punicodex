@@ -160,7 +160,7 @@ function auditGeneratedPages() {
     }
 
     // --- Tier/canonical explanation ---
-    if (entry && entry.tier) {
+    if (entry?.tier) {
       const pageText = $lore('body').text();
       if (entry.tier === 'dual') {
         if (
@@ -207,7 +207,7 @@ function main() {
   auditCatalogCoverage();
   auditCatalogSchema();
   auditGeneratedPages();
-  const totalIssues = printReport();
+  const _totalIssues = printReport();
 
   assert.strictEqual(
     ISSUES.missingCatalog.length,

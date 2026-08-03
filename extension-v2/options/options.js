@@ -2,7 +2,7 @@
  * PuniCodex Authenticity Extension v2 — Options page
  */
 
-import { getAll, set, reset, DEFAULTS } from '../shared/storage.js';
+import { DEFAULTS, getAll, reset, set } from '../shared/storage.js';
 
 const fields = {
   enabled: document.getElementById('enabled'),

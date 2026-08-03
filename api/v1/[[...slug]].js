@@ -274,13 +274,13 @@ function selfCheck() {
   const seen = new Set();
   for (const route of ROUTES) {
     const pattern = route.segments.join('/');
-    if (seen.has(pattern)) throw new Error('duplicate v1 route: ' + pattern);
+    if (seen.has(pattern)) throw new Error(`duplicate v1 route: ${pattern}`);
     seen.add(pattern);
-    if (!expected.has(pattern)) throw new Error('v1 route has no handler file: ' + pattern);
+    if (!expected.has(pattern)) throw new Error(`v1 route has no handler file: ${pattern}`);
     expected.delete(pattern);
   }
   for (const missing of expected) {
-    throw new Error('v1 handler not registered in catch-all router: ' + missing);
+    throw new Error(`v1 handler not registered in catch-all router: ${missing}`);
   }
 }
 

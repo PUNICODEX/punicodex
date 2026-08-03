@@ -3001,7 +3001,7 @@ function buildPatternsPayload(entry) {
   };
 }
 
-function generatePatternsPage(entry, palette, templateDir) {
+function generatePatternsPage(entry, _palette, templateDir) {
   const html0 = fs.readFileSync(path.join(templateDir, 'patterns', 'index.html'), 'utf8');
   const payload = buildPatternsPayload(entry);
   const vars = {

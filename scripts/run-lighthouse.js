@@ -94,7 +94,7 @@ function startServer() {
     };
     if (useGzip) {
       headers['Content-Encoding'] = 'gzip';
-      headers['Vary'] = 'Accept-Encoding';
+      headers.Vary = 'Accept-Encoding';
       res.writeHead(200, headers);
       fs.createReadStream(filePath).pipe(zlib.createGzip()).pipe(res);
     } else {

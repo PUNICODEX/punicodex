@@ -7,7 +7,7 @@
 const assert = require('node:assert');
 const fs = require('node:fs');
 const http = require('node:http');
-const os = require('node:os');
+const _os = require('node:os');
 const path = require('node:path');
 const { execSync } = require('node:child_process');
 

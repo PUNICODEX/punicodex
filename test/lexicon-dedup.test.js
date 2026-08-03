@@ -62,7 +62,7 @@ function run() {
     for (const e of LEXICON) {
       for (const v of e.variants || []) {
         if (!v.unicode || !v.type) bad.push(`${e.id}: malformed variant ${JSON.stringify(v)}`);
-        if (v.type === 'alt' && !(v.sources && v.sources.length)) {
+        if (v.type === 'alt' && !v.sources?.length) {
           bad.push(`${e.id}: alt variant '${v.unicode}' lacks sources`);
         }
       }

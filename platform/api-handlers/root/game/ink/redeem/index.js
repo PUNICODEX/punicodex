@@ -52,7 +52,7 @@ module.exports = async (req, res) => {
       }
       throw stripeErr;
     }
-    if (!session || session.payment_status !== 'paid') {
+    if (session?.payment_status !== 'paid') {
       return res.status(402).json({ error: 'This checkout has not been paid' });
     }
     if (session.metadata?.type !== 'game_ink') {

@@ -469,7 +469,7 @@ router.get(
         editorNotes: dbSection.editor_notes || '',
         status: dbSection.status || section.status,
         lastModifiedAt: dbSection.updated_at || null,
-        lastModifiedBy: (updater && updater.display_name) || null,
+        lastModifiedBy: updater?.display_name || null,
       };
     });
     res.json(success(manifest));

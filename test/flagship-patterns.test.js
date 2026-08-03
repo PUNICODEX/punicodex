@@ -215,7 +215,7 @@ function auditGenerated() {
 /* 4. Generated Patterns pages                                        */
 /* ------------------------------------------------------------------ */
 
-function extractPayload(html, id) {
+function extractPayload(html, _id) {
   const marker = 'window.TEMPLE_PATTERNS = ';
   const start = html.indexOf(marker);
   if (start === -1) return null;

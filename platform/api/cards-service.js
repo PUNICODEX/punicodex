@@ -119,7 +119,7 @@ function listCards(query = {}) {
       (c) =>
         c.name.toLowerCase().includes(needle) ||
         c.ascii.toLowerCase().includes(needle) ||
-        (c.domain && c.domain.toLowerCase().includes(needle)) ||
+        c.domain?.toLowerCase().includes(needle) ||
         c.pantheon.toLowerCase().includes(needle)
     );
   }

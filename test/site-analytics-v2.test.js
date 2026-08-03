@@ -7,8 +7,8 @@
  */
 
 const assert = require('node:assert');
-const fs = require('node:fs');
-const path = require('node:path');
+const _fs = require('node:fs');
+const _path = require('node:path');
 const { prepareTestDb } = require('./helpers/test-db.js');
 
 const testDb = prepareTestDb(__filename);

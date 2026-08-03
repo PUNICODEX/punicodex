@@ -63,12 +63,8 @@ test('stats escalate monotonically with edition; ability upgrades only at Full-A
     if (fullArt) {
       assert.strictEqual(fullArt.power, common.power + 12, `${id}: full-art power`);
       assert.strictEqual(fullArt.rarity, 'legendary');
-      assert.ok(fullArt.art && fullArt.art.fullArt, `${id}: full-art face present`);
-      if (
-        common.ability &&
-        common.ability.effect &&
-        typeof common.ability.effect.power === 'number'
-      ) {
+      assert.ok(fullArt.art?.fullArt, `${id}: full-art face present`);
+      if (common.ability?.effect && typeof common.ability.effect.power === 'number') {
         assert.strictEqual(
           fullArt.ability.effect.power,
           common.ability.effect.power + 2,

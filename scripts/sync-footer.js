@@ -96,6 +96,7 @@ const TARGETS = [
   path.join('type', 'index.html'),
   path.join('university-sponsorship', 'index.html'),
   path.join('scholars', 'index.html'),
+  path.join('pronunciation', 'index.html'),
 ];
 
 function columnHtml(title, links) {

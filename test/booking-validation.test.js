@@ -93,9 +93,9 @@ test('validateCompanyName bounds length and type', () => {
     'at the limit is fine'
   );
   const tooLong = validateCompanyName('a'.repeat(COMPANY_NAME_MAX + 1));
-  assert.ok(tooLong && tooLong.includes('exceeds'), tooLong);
+  assert.ok(tooLong?.includes('exceeds'), tooLong);
   const wrongType = validateCompanyName(42);
-  assert.ok(wrongType && wrongType.includes('string'), wrongType);
+  assert.ok(wrongType?.includes('string'), wrongType);
 });
 
 test('validateCompanyName leaves markup to the renderer rather than mangling names', () => {

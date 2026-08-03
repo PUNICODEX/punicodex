@@ -38,7 +38,7 @@ const taxonomy = loadTaxonomy();
 const relationshipToConcept = new Map();
 
 function buildConceptIndex() {
-  if (!taxonomy || !taxonomy.concepts) return;
+  if (!taxonomy?.concepts) return;
   for (const concept of Object.values(taxonomy.concepts)) {
     for (const rel of concept.relationships || []) {
       relationshipToConcept.set(rel, concept);

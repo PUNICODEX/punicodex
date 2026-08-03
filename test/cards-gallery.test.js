@@ -44,7 +44,7 @@ test('the FR1 set honors the spec rarity classes and card frame fields', () => {
       `${card.id}: neither art nor a sigil fallback`
     );
     if (card.art && (card.art.mascot || card.art.logomark)) {
-      assert.ok(card.art.colors && card.art.colors.primary, `${card.id}: brand art without colors`);
+      assert.ok(card.art.colors?.primary, `${card.id}: brand art without colors`);
     }
     assert.ok(Number.isInteger(card.cost) && Number.isInteger(card.power), `${card.id}: stats`);
   }

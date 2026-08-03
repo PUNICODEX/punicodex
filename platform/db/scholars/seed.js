@@ -164,7 +164,7 @@ function ensureDemoIdentity(db) {
 }
 
 function seedTemple(manifest, stats) {
-  let temple = dbApi.getTempleByEntryId(manifest.entryId);
+  const temple = dbApi.getTempleByEntryId(manifest.entryId);
   if (temple) {
     stats.templesSkipped += 1;
     return temple;

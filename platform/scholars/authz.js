@@ -55,7 +55,7 @@ function isActiveUser(user) {
 }
 
 function isActiveSponsorship(institution) {
-  if (!institution || institution.sponsorship_status !== 'active') return false;
+  if (institution?.sponsorship_status !== 'active') return false;
   // Sponsorship expiry: NULL means no expiry; a past timestamp lapses the
   // sponsorship even if the status column has not been flipped yet. Enforced
   // at read time so access ends the moment the term does.
