@@ -16,6 +16,7 @@ const path = require('node:path');
 const vm = require('node:vm');
 const { writeFileWithRetry } = require('./write-file-retry.js');
 const { autoLink } = require('./lib/crosslink.js');
+const { templeBreadcrumb } = require('./lib/breadcrumb.js');
 const {
   escapeHtml,
   mdToHtml,
@@ -105,6 +106,10 @@ for (const id of BUILT_IDS) {
     POST_PATH: 'blog/',
     REL: '..',
     BLOG_URL: './',
+    BREADCRUMB_JSONLD: templeBreadcrumb(
+      { id, unicode },
+      { name: 'Blog', path: 'blog/' }
+    ),
     TITLE_SUFFIX: `${escapeHtml(unicode)} Blog`,
     EYEBROW: `${escapeHtml(unicode)} — Blog`,
     SERP_TITLE: escapeHtml(serpTitle(post.title, `${unicode} Blog`)),

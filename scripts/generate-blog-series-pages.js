@@ -18,6 +18,7 @@ const path = require('node:path');
 const vm = require('node:vm');
 const { writeFileWithRetry } = require('./write-file-retry.js');
 const { autoLink } = require('./lib/crosslink.js');
+const { templeBreadcrumb } = require('./lib/breadcrumb.js');
 const {
   escapeHtml,
   mdToHtml,
@@ -160,6 +161,10 @@ for (const series of SERIES) {
       POST_PATH: series.urlPath,
       REL: '../..',
       BLOG_URL: '../',
+      BREADCRUMB_JSONLD: templeBreadcrumb(
+        { id, unicode },
+        { name: series.masthead, path: series.urlPath }
+      ),
       TITLE_SUFFIX: series.titleSuffix,
       EYEBROW: `${series.masthead} · No. ${post.seriesNo}`,
       SERP_TITLE: escapeHtml(serpTitle(post.title, series.titleSuffix)),

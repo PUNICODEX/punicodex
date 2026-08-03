@@ -18,6 +18,7 @@ const cheerio = require('cheerio');
 const url = require('node:url');
 const { unicodeName } = require('unicode-name');
 const { autoLink } = require('./lib/crosslink.js');
+const { templeBreadcrumb } = require('./lib/breadcrumb.js');
 const { wikidataUrlFor } = require('./lib/wikidata-links.js');
 const { PANTHEON_META } = require('../type/js/pantheon-meta.js');
 
@@ -2350,6 +2351,7 @@ function generateHomePage(
     DOMAIN: entry.domain,
     MEANING: entry.meaning || '',
     TAGLINE: entry.tagline || '',
+    BREADCRUMB_JSONLD: templeBreadcrumb(entry),
     DESCRIPTION: buildMetaDescription(entry, catalogEntry),
     TITLE_TAG: (() => {
       const label = PANTHEON_META[entry.pantheon]?.label || entry.pantheon;
@@ -2435,7 +2437,8 @@ function generateDashboardPage(entry, palette, templateDir, archetype = {}) {
   const templeId = entry.id;
   const domainUnicode = archetype.domainUnicode || `${entry.unicode}.com`;
   const vars = {
-    UNICODE: entry.unicode,
+        BREADCRUMB_JSONLD: templeBreadcrumb(entry, { name: 'Dashboard', path: 'dashboard/' }),
+UNICODE: entry.unicode,
     ASCII: entry.ascii,
     DOMAIN: entry.domain,
     DOMAIN_UNICODE: domainUnicode,
@@ -2577,7 +2580,8 @@ function generateLorePage(entry, palette, loreSections, templateDir, catalog) {
   // The rich provenance builder always emits section 02 (placeholder or curated).
   const sectionOffset = 1;
   const vars = {
-    UNICODE: entry.unicode,
+        BREADCRUMB_JSONLD: templeBreadcrumb(entry, { name: 'Lore', path: 'lore/' }),
+UNICODE: entry.unicode,
     ASCII: entry.ascii,
     GREEK: getOriginalScript(entry) || '—',
     ORIGINAL_SCRIPT: getOriginalScript(entry) || entry.unicode,
@@ -2728,7 +2732,8 @@ function generateGalleryPage(entry, palette, templateDir) {
   let html = fs.readFileSync(path.join(templateDir, 'gallery', 'index.html'), 'utf8');
   const templeId = entry.id;
   const vars = {
-    UNICODE: entry.unicode,
+        BREADCRUMB_JSONLD: templeBreadcrumb(entry, { name: 'Gallery', path: 'gallery/' }),
+UNICODE: entry.unicode,
     ASCII: entry.ascii,
     GREEK: getOriginalScript(entry) || '—',
     DOMAIN: entry.domain,
@@ -2815,7 +2820,7 @@ function safeRenameSync(src, dest, retries = 5) {
   throw lastError;
 }
 
-function substituteTempleVars(content, entry) {
+function substituteTempleVars(content, entry, tab = null) {
   return content
     .split('{{TEMPLE_ID}}')
     .join(entry.id)
@@ -2824,7 +2829,9 @@ function substituteTempleVars(content, entry) {
     .split('{{ASCII}}')
     .join(entry.ascii)
     .split('{{DOMAIN}}')
-    .join(entry.domain || '');
+    .join(entry.domain || '')
+    .split('{{BREADCRUMB_JSONLD}}')
+    .join(templeBreadcrumb(entry, tab));
 }
 
 function copyCreativesTemplate(siteDir, templateDir, entry) {
@@ -2837,7 +2844,11 @@ function copyCreativesTemplate(siteDir, templateDir, entry) {
     const dest = path.join(destDir, file.name);
     if (file.name.endsWith('.html')) {
       const content = fs.readFileSync(path.join(srcDir, file.name), 'utf8');
-      safeWriteFileSync(dest, substituteTempleVars(content, entry), 'utf8');
+      safeWriteFileSync(
+        dest,
+        substituteTempleVars(content, entry, { name: 'Creatives', path: 'creatives/' }),
+        'utf8'
+      );
     } else {
       safeCopyFileSync(path.join(srcDir, file.name), dest);
     }
@@ -2854,7 +2865,11 @@ function copyPatronTemplate(siteDir, templateDir, entry) {
     const dest = path.join(destDir, file.name);
     if (file.name.endsWith('.html')) {
       const content = fs.readFileSync(path.join(srcDir, file.name), 'utf8');
-      safeWriteFileSync(dest, substituteTempleVars(content, entry), 'utf8');
+      safeWriteFileSync(
+        dest,
+        substituteTempleVars(content, entry, { name: 'Patron', path: 'patron/' }),
+        'utf8'
+      );
     } else {
       safeCopyFileSync(path.join(srcDir, file.name), dest);
     }
@@ -2919,7 +2934,8 @@ function generatePatternsPage(entry, palette, templateDir) {
   const html0 = fs.readFileSync(path.join(templateDir, 'patterns', 'index.html'), 'utf8');
   const payload = buildPatternsPayload(entry);
   const vars = {
-    UNICODE: entry.unicode,
+        BREADCRUMB_JSONLD: templeBreadcrumb(entry, { name: 'Patterns', path: 'patterns/' }),
+UNICODE: entry.unicode,
     ASCII: entry.ascii,
     TEMPLE_ID: entry.id,
     DOMAIN: entry.domain || '',
@@ -2934,7 +2950,8 @@ function generateExtendedPage(entry, palette, templateDir, catalog) {
   const templeId = entry.id;
   const catalogEntry = catalog?.[entry.id];
   const vars = {
-    UNICODE: entry.unicode,
+        BREADCRUMB_JSONLD: templeBreadcrumb(entry, { name: 'Extended Lore', path: 'lore/extended/' }),
+UNICODE: entry.unicode,
     ASCII: entry.ascii,
     GREEK: getOriginalScript(entry) || '—',
     DOMAIN: entry.domain,

@@ -176,7 +176,9 @@
       .map((a) => {
         const thumb = a.thumbnail_path ? escapeHtml(a.thumbnail_path) : '';
         const thumbWebp = a.thumbnail_webp_path ? escapeHtml(a.thumbnail_webp_path) : '';
-        const thumbImg = thumb ? `<img src="${thumb}" alt="" class="cre-asset-thumb" loading="lazy">` : '';
+        const thumbImg = thumb
+          ? `<img src="${thumb}" alt="" class="cre-asset-thumb" loading="lazy">`
+          : '';
         return `
         <div class="cre-asset-card" data-asset-id="${a.id}">
           ${thumb ? (thumbWebp ? `<picture><source type="image/webp" srcset="${thumbWebp}">${thumbImg}</picture>` : thumbImg) : '<div class="cre-asset-thumb" style="display:flex;align-items:center;justify-content:center;color:var(--cre-white-dim);">—</div>'}

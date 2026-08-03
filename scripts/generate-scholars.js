@@ -22,6 +22,7 @@ const SITES_DIR = path.join(ROOT, 'sites');
 
 const { ARCHETYPES } = require(path.join(ROOT, 'js', 'archetypes-v2.js'));
 const { LEXICON } = require(path.join(ROOT, 'type', 'js', 'lexicon.js'));
+const { templeBreadcrumb } = require('./lib/breadcrumb.js');
 const {
   getOriginalScript,
   hasOriginalScript,
@@ -319,6 +320,10 @@ function generateScholarsPage(templeId, manifestOverride) {
     GREEK: getGreekOrOriginal(entry),
     DOMAIN: getDomain(entry),
     MEANING: getMeaning(entry),
+    BREADCRUMB_JSONLD: templeBreadcrumb(
+      { id: templeId, unicode: getUnicode(entry) },
+      { name: 'Scholars', path: 'scholars/' }
+    ),
     PRIMARY: palette.primary,
     SECONDARY: palette.secondary,
     EFFECT: getEffect(templeId),

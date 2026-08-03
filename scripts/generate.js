@@ -70,6 +70,8 @@ const scripts = [
   'scripts/generate-text-pages.js',
   'scripts/generate-trending-page.js',
   'scripts/generate-trending-temple-page.js',
+  // ItemList JSON-LD on /lexicon/ + /pantheon/ (SEO structured data).
+  'scripts/generate-itemlist-schemas.js',
   // Pattern Atlas (/patterns/ + /patterns/methodology/): reads the generated
   // industry-patterns.json produced at step 5; before the injectors so the
   // fresh pages keep their beacon/consent blocks.
