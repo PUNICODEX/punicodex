@@ -114,6 +114,8 @@ const scripts = [
   'scripts/generate-scientific-analogies-corpus.js',
   'scripts/generate-pretrain-corpus.js',
   'scripts/generate-unified-corpus.js',
+  // Pronunciation records for voice/TTS consumers (rules engine + atlas).
+  'scripts/generate-pronunciation-corpus.js',
   'scripts/generate-eval-benchmark.js',
   'scripts/generate-data-card.js',
 ];
