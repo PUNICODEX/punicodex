@@ -75,6 +75,10 @@ module.exports = async (req, res) => {
     const temple = loadTemple(codeRow.applies_to);
     if (!temple) return res.status(400).json({ error: `Unknown temple: ${codeRow.applies_to}` });
 
+    // Slot-scoped codes name their frame(s) in the pitch itself — the email
+    // must never ask the prospect to choose what was already chosen.
+    const slots = await discountService.slotsForCode(codeRow);
+
     const patterns = buildResonanceBullets(temple.slug, businessName);
     const pitch = buildPitchEmail({
       codeRow,
@@ -83,6 +87,7 @@ module.exports = async (req, res) => {
       recipientSite,
       customNote,
       patterns,
+      slots: slots.length ? slots : null,
     });
 
     const sent = await sendEmail({
@@ -90,6 +95,12 @@ module.exports = async (req, res) => {
       subject: pitch.subject,
       html: pitch.html,
       text: pitch.text,
+      // A personal sender + opt-out header: one-to-one founding pitches land
+      // in the inbox far more reliably than bare marketing blasts.
+      fromName: 'Martin Khoury (PuniCodex)',
+      headers: {
+        'List-Unsubscribe': '<mailto:support@punicodex.com?subject=not-for-us>',
+      },
     });
     if (!sent.success) {
       return res.status(502).json({ error: 'Email delivery failed', detail: sent.error });

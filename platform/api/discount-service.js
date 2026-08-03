@@ -281,6 +281,33 @@ async function getCodeById(id) {
   return parseSlots(await get('SELECT * FROM discount_codes WHERE id = $1', [id]));
 }
 
+/**
+ * Resolve a code's applies_slots into the temple's space names for the pitch
+ * email ([{ id, name, isBundle }], in the operator's chosen order). Returns []
+ * when the code is open-choice or nothing resolves — the email then keeps its
+ * generic "chosen frame" copy. Never throws: ad_slots may be absent in lean
+ * test/provisioning databases, and a pitch must never fail on a slot lookup.
+ */
+async function slotsForCode(row) {
+  if (!row || !Array.isArray(row.applies_slots) || row.applies_slots.length === 0) return [];
+  try {
+    const rows = await all('SELECT id, name, is_bundle FROM ad_slots WHERE site_slug = $1', [
+      row.applies_to,
+    ]);
+    const byId = new Map(rows.map((s) => [Number(s.id), s]));
+    return row.applies_slots
+      .map((id) => byId.get(Number(id)))
+      .filter(Boolean)
+      .map((s) => ({ id: Number(s.id), name: s.name, isBundle: s.is_bundle === 1 }));
+  } catch (err) {
+    console.error(
+      'slotsForCode: ad_slots lookup failed (treating code as open-choice):',
+      err.message
+    );
+    return [];
+  }
+}
+
 async function createCode(fields, actor) {
   await ensureSchema();
   const input = fields || {};
@@ -514,6 +541,7 @@ module.exports = {
   listCodes,
   createCode,
   getCodeById,
+  slotsForCode,
   setCodeActive,
   deleteCode,
   redemptions,

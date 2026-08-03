@@ -11,6 +11,10 @@
  *   inactive, exhausted — a dead code must never be emailed); 404 unknown
  *   code; 502 when delivery fails; happy path renders + "sends" (mocked
  *   without RESEND_API_KEY) with the temple and business in the subject.
+ * - Slot awareness: codes bound to specific frames (applies_slots) name the
+ *   chosen frame(s) in subject, body, and plain text, drop the open-choice
+ *   copy entirely, and every pitch carries the personal sender name +
+ *   List-Unsubscribe header for deliverability.
  */
 
 const assert = require('node:assert');
@@ -56,6 +60,7 @@ const {
   loadPatternBullets,
   offerHeadline,
   offerSentence,
+  frameReference,
 } = require('../platform/api/pitch-email.js');
 const loginHandler = require('../platform/api-handlers/admin/portal/login/index.js');
 const discountsHandler = require('../platform/api-handlers/admin/portal/discounts/index.js');
@@ -164,10 +169,13 @@ async function run() {
       'https://punicodex.com/terms/advertising/',
       'Martin Khoury',
       'Your grading eye is the reason this temple exists.',
-      'No credit card. No payment details.',
+      'We take no card details',
+      'not for us',
     ]) {
       assert.ok(html.includes(needle), `email missing: ${needle}`);
     }
+    // The generic open-choice copy appears only when no slots are bound.
+    assert.ok(html.includes('naming your chosen frame'), 'open-choice copy for slotless codes');
     assert.ok(text.includes('FATHERFEATHER'), 'plain-text part carries the code');
     // Injection safety: business input is escaped.
     const evil = buildPitchEmail({
@@ -177,6 +185,93 @@ async function run() {
       patterns: [],
     });
     assert.ok(!evil.html.includes('<script>alert'), 'business name is escaped');
+  });
+
+  // ── Slot-aware copy ──────────────────────────────────────────
+  await test('frameReference: null for open choice; single, bundle, and multi shapes', () => {
+    assert.strictEqual(frameReference(null), null);
+    assert.strictEqual(frameReference([]), null);
+    assert.strictEqual(
+      frameReference([{ name: 'Feathered Box', isBundle: false }]),
+      'the Feathered Box frame'
+    );
+    assert.strictEqual(
+      frameReference([{ name: 'Full Page Takeover', isBundle: true }]),
+      'the Full Page Takeover — every frame of the temple front, held as one'
+    );
+    assert.strictEqual(
+      frameReference([
+        { name: 'Wind Banner', isBundle: false },
+        { name: 'Wisdom Box', isBundle: false },
+      ]),
+      'a combination of frames — the Wind Banner and the Wisdom Box'
+    );
+    assert.strictEqual(
+      frameReference([
+        { name: 'Wind Banner', isBundle: false },
+        { name: 'Wisdom Box', isBundle: false },
+        { name: 'Feathered Box', isBundle: false },
+      ]),
+      'a combination of frames — the Wind Banner, the Wisdom Box and the Feathered Box'
+    );
+  });
+
+  await test('a slot-scoped code names the chosen frame and drops the open-choice copy', () => {
+    const temple = loadTemple('quetzalcoatl');
+    const { subject, html, text } = buildPitchEmail({
+      codeRow,
+      temple,
+      businessName: 'Feather Exchange',
+      patterns: [],
+      slots: [{ name: 'Feathered Box', isBundle: false }],
+    });
+    assert.match(subject, /Feather Exchange/);
+    assert.match(subject, /Quetzalcōātl/);
+    for (const needle of [
+      'the Feathered Box frame is already chosen',
+      'Your frame is set aside',
+      'FRAME: FEATHERED BOX',
+      'reduces the full term on the Feathered Box frame to nil',
+      'your founding code answers to this frame alone',
+    ]) {
+      assert.ok(html.includes(needle), `slot email missing: ${needle}`);
+    }
+    assert.ok(
+      !html.includes('naming your chosen frame'),
+      'slot email must never ask the prospect to choose again'
+    );
+    assert.ok(text.includes('the Feathered Box frame'), 'plain-text part names the frame');
+  });
+
+  await test('a bundle slot reads as the whole temple front; multi-slot lists the frames', () => {
+    const temple = loadTemple('quetzalcoatl');
+    const bundle = buildPitchEmail({
+      codeRow,
+      temple,
+      businessName: 'Feather Exchange',
+      patterns: [],
+      slots: [{ name: 'Full Page Takeover', isBundle: true }],
+    });
+    assert.ok(
+      bundle.html.includes('the Full Page Takeover — every frame of the temple front'),
+      'bundle copy'
+    );
+    const multi = buildPitchEmail({
+      codeRow,
+      temple,
+      businessName: 'Feather Exchange',
+      patterns: [],
+      slots: [
+        { name: 'Wind Banner', isBundle: false },
+        { name: 'Wisdom Box', isBundle: false },
+      ],
+    });
+    assert.ok(multi.html.includes('Your frames are set aside'), 'multi heading');
+    assert.ok(multi.html.includes('the Wind Banner and the Wisdom Box'), 'multi lists both frames');
+    assert.ok(
+      multi.html.includes('your founding code answers to these frames alone'),
+      'multi binding line'
+    );
   });
 
   // ── Endpoint: auth + validation ──────────────────────────────
@@ -280,6 +375,61 @@ async function run() {
     assert.strictEqual(res.body.mocked, true);
     assert.match(res.body.subject, /Quetzalcōātl/);
     assert.match(res.body.subject, /Feather Exchange/);
+    // Deliverability contract: every pitch goes out with a personal sender
+    // name and a List-Unsubscribe header.
+    const sent0 = emailCalls[emailCalls.length - 1];
+    assert.strictEqual(sent0.fromName, 'Martin Khoury (PuniCodex)');
+    assert.ok(sent0.headers['List-Unsubscribe'].includes('mailto:support@punicodex.com'));
+  });
+
+  await test('pitch endpoint: a slot-scoped code emails the chosen frame by name', async () => {
+    // The golden test DB carries the real seeded ad_slots — take the temple's
+    // actual first frame and bundle so the assertions track the seed data.
+    const Database = require('better-sqlite3');
+    const conn = new Database(testDb, { readonly: true });
+    const frame = conn
+      .prepare(
+        "SELECT id, name FROM ad_slots WHERE site_slug = 'quetzalcoatl' AND is_bundle = 0 ORDER BY sort_order LIMIT 1"
+      )
+      .get();
+    conn.close();
+    assert.ok(frame, 'test DB must carry quetzalcoatl slots');
+
+    const created = await invoke(discountsHandler, 'POST', '/api/admin/portal/discounts/', {
+      headers: adminHeader(superToken),
+      body: {
+        code: 'PITCHSLOT100',
+        kind: 'percent_off',
+        percent: 100,
+        appliesTo: 'quetzalcoatl',
+        appliesSlots: [frame.id],
+        maxUses: 1,
+      },
+    });
+    assert.strictEqual(created.status, 201, JSON.stringify(created.body));
+
+    const res = await invoke(
+      pitchHandler,
+      'POST',
+      `/api/admin/portal/discounts/${created.body.id}/pitch/`,
+      {
+        headers: adminHeader(superToken),
+        params: { id: String(created.body.id) },
+        body: { to: 'team@featherexchange.com', businessName: 'Feather Exchange' },
+      }
+    );
+    assert.strictEqual(res.status, 200, JSON.stringify(res.body));
+    const sent = emailCalls[emailCalls.length - 1];
+    assert.ok(
+      sent.html.includes(`the ${frame.name} frame is already chosen`),
+      `frame named (${frame.name})`
+    );
+    assert.ok(sent.html.includes('Your frame is set aside'), 'set-aside heading');
+    assert.ok(
+      !sent.html.includes('naming your chosen frame'),
+      'never asks the prospect to choose again'
+    );
+    assert.ok(sent.text.includes(`the ${frame.name} frame`), 'plain-text names the frame');
   });
 
   // ── Endpoint: a dead code must never be emailed ──────────────

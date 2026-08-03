@@ -27,13 +27,19 @@ function escapeHtml(text) {
     .replace(/'/g, '&#39;');
 }
 
-async function sendEmail({ to, subject, html, text }) {
+async function sendEmail({ to, subject, html, text, fromName, headers }) {
   if (!RESEND_API_KEY) {
     console.log('[EMAIL] No RESEND_API_KEY configured. Would send:');
     console.log(`  To: ${to}`);
     console.log(`  Subject: ${subject}`);
     return { success: true, mocked: true };
   }
+
+  // Display names are quoted per RFC 5322 and stripped of characters that
+  // could break out of the quoted string (header-injection guard).
+  const displayName = String(fromName || 'PuniCodex')
+    .replace(/["\\\r\n]/g, '')
+    .slice(0, 80);
 
   try {
     const res = await fetch('https://api.resend.com/emails', {
@@ -43,12 +49,13 @@ async function sendEmail({ to, subject, html, text }) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: `PuniCodex <${FROM_EMAIL}>`,
+        from: `"${displayName}" <${FROM_EMAIL}>`,
         to: [to],
         reply_to: REPLY_TO_EMAIL,
         subject,
         html,
         text: text || html.replace(/<[^>]*>/g, ''),
+        ...(headers && typeof headers === 'object' ? { headers } : {}),
       }),
     });
 

@@ -38,18 +38,19 @@ function offerHeadline(codeRow) {
 }
 
 /** Sentence-form description of what the code does at redemption. */
-function offerSentence(codeRow) {
+function offerSentence(codeRow, frameRef) {
+  const frame = frameRef || 'your chosen frame';
   switch (codeRow.kind) {
     case 'percent_off':
       return codeRow.percent >= 100
-        ? 'your founding code reduces the full term on your chosen frame to nil'
-        : `your founding code takes ${codeRow.percent}% off your chosen frame`;
+        ? `your founding code reduces the full term on ${frame} to nil`
+        : `your founding code takes ${codeRow.percent}% off ${frame}`;
     case 'fixed_off':
-      return `your founding code takes ${dollars(codeRow.fixed_cents)} off your chosen frame`;
+      return `your founding code takes ${dollars(codeRow.fixed_cents)} off ${frame}`;
     case 'free_months':
       return `your founding code provides ${codeRow.free_months} month${
         codeRow.free_months === 1 ? '' : 's'
-      } of your chosen frame in full`;
+      } of ${frame} in full`;
     case 'trial_extension':
       return `your founding code adds ${codeRow.free_months} month${
         codeRow.free_months === 1 ? '' : 's'
@@ -57,10 +58,32 @@ function offerSentence(codeRow) {
     case 'free_months_then_price':
       return `your founding code provides ${codeRow.free_months} month${
         codeRow.free_months === 1 ? '' : 's'
-      } in full, then holds your rate at ${dollars(codeRow.then_price_cents)}/month`;
+      } of ${frame} in full, then holds your rate at ${dollars(codeRow.then_price_cents)}/month`;
     default:
       return 'your founding code is ready at the temple checkout';
   }
+}
+
+/**
+ * Inline reference to the frame(s) a code is bound to — or null when the
+ * code leaves the choice open (applies_slots unset). The names are the
+ * temple's own space names ("Feathered Box", "Wind Banner"), so the sentence
+ * reads bespoke to the temple no matter which flagship it fires for.
+ */
+function frameReference(slots) {
+  if (!Array.isArray(slots) || slots.length === 0) return null;
+  if (slots.length === 1) {
+    const s = slots[0];
+    return s.isBundle
+      ? `the ${s.name} — every frame of the temple front, held as one`
+      : `the ${s.name} frame`;
+  }
+  const names = slots.map((s) => `the ${s.name}`);
+  const list =
+    names.length === 2
+      ? names.join(' and ')
+      : `${names.slice(0, -1).join(', ')} and ${names[names.length - 1]}`;
+  return `a combination of frames — ${list}`;
 }
 
 function slotLine(codeRow) {
@@ -78,8 +101,17 @@ function slotLine(codeRow) {
  * @param {string} [opts.recipientSite] — the prospect's domain, shown in the hero
  * @param {string} [opts.customNote]    — one personal paragraph, placed as the final resonance bullet
  * @param {Array}  [opts.patterns]      — industry-pattern seats [{ name, why }] (already templated)
+ * @param {Array}  [opts.slots]         — frames the code is bound to [{ name, isBundle }]; null/empty = open choice
  */
-function buildPitchEmail({ codeRow, temple, businessName, recipientSite, customNote, patterns }) {
+function buildPitchEmail({
+  codeRow,
+  temple,
+  businessName,
+  recipientSite,
+  customNote,
+  patterns,
+  slots,
+}) {
   const biz = escapeHtml(businessName);
   const site = recipientSite ? escapeHtml(recipientSite) : null;
   const code = escapeHtml(codeRow.code);
@@ -87,8 +119,10 @@ function buildPitchEmail({ codeRow, temple, businessName, recipientSite, customN
   const _templeSlug = escapeHtml(temple.slug);
   const script = temple.script ? escapeHtml(temple.script) : null;
   const domain = escapeHtml(temple.domain || '');
+  const frameRef = frameReference(slots);
+  const frameRefHtml = frameRef ? escapeHtml(frameRef) : null;
   const headline = escapeHtml(offerHeadline(codeRow));
-  const sentence = escapeHtml(offerSentence(codeRow));
+  const sentence = escapeHtml(offerSentence(codeRow, frameRef));
   const scope = escapeHtml(slotLine(codeRow));
   const tier = escapeHtml(temple.tierLabel || '');
   const templeUrl = `https://punicodex.com/sites/${temple.slug}/`;
@@ -121,9 +155,12 @@ function buildPitchEmail({ codeRow, temple, businessName, recipientSite, customN
           </tr>`
     : '';
 
-  const preheader = `${headline.charAt(0) + headline.slice(1).toLowerCase()} inside the Temple of ${temple.unicode}, prepared for ${businessName}.`;
+  const preheaderLead = headline.charAt(0) + headline.slice(1).toLowerCase();
+  const preheader = frameRef
+    ? `${preheaderLead} on ${frameRef}, prepared for ${businessName}.`
+    : `${preheaderLead} inside the Temple of ${temple.unicode}, prepared for ${businessName}.`;
 
-  const subject = `The Temple of ${temple.unicode} — A Founding Sponsorship Invitation for ${businessName}`;
+  const subject = `A founding frame for ${businessName} — the Temple of ${temple.unicode}`;
 
   const html = `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
@@ -178,7 +215,7 @@ ${escapeHtml(preheader)} &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&
         <div style="font-family:Georgia, 'Times New Roman', serif; font-size:15px; line-height:1.9; color:#d8cfb8;">
           <p style="margin:0 0 18px 0;">Dear ${biz} team,</p>
           <p style="margin:0 0 18px 0;">PUNICODEX is the Unicode Pantheon — a scholarly restoration project returning the original, accented names of myth to the digital realm. Across <strong style="color:#e8c860;">271 digital temples and 25 pantheons</strong>, each deity is served at its own restored Unicode domain, supported by a university-edited Scholarly Edition, an industry-pattern map, and a quarterly publication, <em>The Unicode Herald</em>.</p>
-          <p style="margin:0 0 18px 0;">Every temple carries thirteen sponsorship frames. As we open these to market, we are admitting a <strong style="color:#e8c860;">small, hand-selected group of founding sponsors</strong> — brands that do not merely advertise beside an archetype, but genuinely embody it.</p>
+          <p style="margin:0 0 18px 0;">Every temple carries thirteen sponsorship frames${frameRefHtml ? ` — and for ${biz}, ${frameRefHtml} is already chosen` : ''}. As we open these to market, we are admitting a <strong style="color:#e8c860;">small, hand-selected group of founding sponsors</strong> — brands that do not merely advertise beside an archetype, but genuinely embody it.</p>
           <p style="margin:0;">For the Temple of ${templeUnicode}, ${biz} was our first and most natural approach. We would like to show you why.</p>
         </div>
       </td>
@@ -212,11 +249,11 @@ ${escapeHtml(preheader)} &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&
           <tr>
             <td align="center" style="background-color:#1d1810; border:1px solid #6b5a33; padding:30px 28px;">
               <div style="font-family:Georgia, 'Times New Roman', serif; font-size:26px; letter-spacing:3px; color:#e8c860;">${headline}</div>
-              <div style="font-family:Georgia, 'Times New Roman', serif; font-size:13px; letter-spacing:2px; color:#c9b584; padding-top:10px;">FOUNDING PATRON PLACEMENT · ${scope}${tier ? ` · ${tier}` : ''}</div>
+              <div style="font-family:Georgia, 'Times New Roman', serif; font-size:13px; letter-spacing:2px; color:#c9b584; padding-top:10px;">FOUNDING PATRON PLACEMENT · ${scope}${tier ? ` · ${tier}` : ''}${slots?.length ? ` · ${slots.length > 1 ? 'FRAMES' : 'FRAME'}: ${escapeHtml(slots.map((s) => s.name.toUpperCase()).join(' · '))}` : ''}</div>
               <div style="width:48px; border-top:1px solid #6b5a33; margin:18px auto;"></div>
               <div style="font-family:Georgia, 'Times New Roman', serif; font-size:14px; line-height:1.9; color:#d8cfb8;">
                 As a founding sponsor, ${sentence}.<br/>
-                <strong style="color:#e8e0cc;">No credit card. No payment details. No auto-renewal. No obligation beyond the term.</strong><br/>
+                <strong style="color:#e8e0cc;">We take no card details, nothing renews on its own, and nothing is owed beyond the term.</strong><br/>
                 This invitation is extended to a handful of businesses, for a limited time,<br/>
                 as we build and develop the pantheon with partners who belong in it.
               </div>
@@ -229,14 +266,18 @@ ${escapeHtml(preheader)} &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&
     <tr>
       <td style="padding:32px 48px 8px 48px;">
         <div style="font-family:Georgia, 'Times New Roman', serif; font-size:11px; letter-spacing:5px; color:#8a7a52;">03 — TO PROCEED</div>
-        <div style="font-family:Georgia, 'Times New Roman', serif; font-size:24px; color:#e8c860; padding-top:10px;">Claim your frame</div>
+        <div style="font-family:Georgia, 'Times New Roman', serif; font-size:24px; color:#e8c860; padding-top:10px;">${frameRef ? (slots.length > 1 ? 'Your frames are set aside' : 'Your frame is set aside') : 'Claim your frame'}</div>
         <div style="width:48px; border-top:1px solid #6b5a33; margin:16px 0 0 0;"></div>
       </td>
     </tr>
     <tr>
       <td style="padding:24px 48px 8px 48px;">
         <div style="font-family:Georgia, 'Times New Roman', serif; font-size:15px; line-height:1.9; color:#d8cfb8;">
-          Reply to this email naming your chosen frame, and we will prepare your placement. Should you prefer to proceed directly through the temple's sponsorship checkout, ${sentence}:
+          ${
+            frameRef
+              ? `For ${biz} we have set aside ${frameRefHtml} — your founding code answers to ${slots.length > 1 ? 'these frames' : 'this frame'} alone. Reply to this email and we will prepare your placement. Should you prefer to proceed directly through the temple's sponsorship checkout, ${sentence}:`
+              : `Reply to this email naming your chosen frame, and we will prepare your placement. Should you prefer to proceed directly through the temple's sponsorship checkout, ${sentence}:`
+          }
         </div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
           <tr>
@@ -248,7 +289,7 @@ ${escapeHtml(preheader)} &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&
           </tr>
         </table>
         <div style="font-family:Georgia, 'Times New Roman', serif; font-size:13px; line-height:1.8; color:#a99b78; padding-top:14px;">
-          Visit the temple to see your frames in situ — and the Industry Patterns map that put your name on our desk:
+          Visit the temple to see your ${slots && slots.length === 1 ? 'frame' : 'frames'} in situ — and the Industry Patterns map that put your name on our desk:
         </div>
       </td>
     </tr>
@@ -291,7 +332,7 @@ ${escapeHtml(preheader)} &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&
           <a href="https://punicodex.com/terms/advertising/" style="color:#6b6046; text-decoration:underline;">Advertising Terms</a> &nbsp;·&nbsp; <a href="https://punicodex.com/tiers/" style="color:#6b6046; text-decoration:underline;">The Tier System</a>
         </div>
         <div style="font-family:Georgia, 'Times New Roman', serif; font-size:10px; color:#4d4433; line-height:1.7; padding-top:12px;">
-          This is a one-time founding invitation extended to ${biz}. Placement is subject to manual content review and the advertising terms above. The founding code is single-use and bound to its temple; no payment details are collected at redemption.
+          This is a personal, one-time founding invitation extended to ${biz}. Placement is subject to manual content review and the advertising terms above. The founding code is single-use and bound to its temple; no payment details are collected at redemption. If this has reached the wrong desk, reply with 'not for us' and we will not write again.
         </div>
       </td>
     </tr>
@@ -310,8 +351,11 @@ ${escapeHtml(preheader)} &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&
     '',
     `PUNICODEX is the Unicode Pantheon — 271 restored digital temples across 25 pantheons.`,
     `We would like to invite ${businessName} to stand as a founding sponsor of the Temple of ${temple.unicode} (${temple.domain}).`,
+    frameRef
+      ? `For you we have set aside ${frameRef} — your founding code answers to ${slots.length > 1 ? 'these frames' : 'this frame'} alone.`
+      : null,
     '',
-    `The offer: ${offerHeadline(codeRow)} — ${offerSentence(codeRow)}.`,
+    `The offer: ${offerHeadline(codeRow)} — ${offerSentence(codeRow, frameRef)}.`,
     `Your founding code: ${codeRow.code}`,
     `Redeem at ${templeUrl}`,
     `The industry pattern behind our approach: ${patternsUrl}`,
@@ -319,7 +363,11 @@ ${escapeHtml(preheader)} &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&
     'With respect,',
     'Martin Khoury — Founder, PUNICODEX',
     'support@punicodex.com · punicodex.com',
-  ].join('\n');
+    '',
+    "If this has reached the wrong desk, reply with 'not for us' and we will not write again.",
+  ]
+    .filter((line) => line !== null)
+    .join('\n');
 
   return { subject, html, text };
 }
@@ -465,4 +513,5 @@ module.exports = {
   loadLore,
   offerHeadline,
   offerSentence,
+  frameReference,
 };
