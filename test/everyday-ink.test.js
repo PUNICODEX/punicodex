@@ -78,10 +78,19 @@ test('everyday page: static cards for all words, ItemList JSON-LD, temple links'
 });
 
 test('everyday generator is idempotent', () => {
-  runScript('scripts/generate-everyday-page.js');
-  const first = hash('everyday/index.html');
-  runScript('scripts/generate-everyday-page.js');
-  assert.strictEqual(hash('everyday/index.html'), first);
+  // The generator bakes the bare page; the nav/menu/footer/injector layers
+  // are added downstream in the pipeline. Snapshot and restore the live file
+  // so the test never leaves the tree in the transient bare state.
+  const rel = 'everyday/index.html';
+  const original = read(rel);
+  try {
+    runScript('scripts/generate-everyday-page.js');
+    const first = hash(rel);
+    runScript('scripts/generate-everyday-page.js');
+    assert.strictEqual(hash(rel), first);
+  } finally {
+    fs.writeFileSync(path.join(ROOT, rel), original);
+  }
 });
 
 // ── Ink: index contract ──────────────────────────────────────────────
@@ -176,10 +185,16 @@ test('ink page: mount points, engine script, corpus fetch, myths section', () =>
 // ── Ink: idempotency ─────────────────────────────────────────────────
 
 test('ink index generator is idempotent', () => {
-  runScript('scripts/generate-ink-index.js');
-  const first = hash('data/ink-index.json');
-  runScript('scripts/generate-ink-index.js');
-  assert.strictEqual(hash('data/ink-index.json'), first);
+  const rel = 'data/ink-index.json';
+  const original = read(rel);
+  try {
+    runScript('scripts/generate-ink-index.js');
+    const first = hash(rel);
+    runScript('scripts/generate-ink-index.js');
+    assert.strictEqual(hash(rel), first);
+  } finally {
+    fs.writeFileSync(path.join(ROOT, rel), original);
+  }
 });
 
 async function runSuite() {

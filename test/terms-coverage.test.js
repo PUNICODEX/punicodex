@@ -48,7 +48,10 @@ test('every sensitive feature has a dedicated terms page with the mandatory clau
       html.includes(`<link rel="canonical" href="https://punicodex.com/terms/${slug}/">`),
       `terms/${slug}: canonical mismatch`
     );
-    assert.ok(html.includes('Plain-English summary') || slug === 'api', `terms/${slug}: missing plain-English summary`);
+    assert.ok(
+      html.includes('Plain-English summary') || slug === 'api',
+      `terms/${slug}: missing plain-English summary`
+    );
   }
 });
 
@@ -79,7 +82,10 @@ test('protective terms match their risk: ink disclaims permanence, game disclose
   assert.ok(/Gambling Help Online/i.test(game), 'game terms: AU gambling help line');
   assert.ok(/18 or older/i.test(game), 'game terms: purchase age guidance');
   const appraise = read('terms/appraise/index.html');
-  assert.ok(/not (a|be) professional valuation|not valuations/i.test(appraise), 'appraise: not-a-valuation clause');
+  assert.ok(
+    /not (a|be) professional valuation|not valuations/i.test(appraise),
+    'appraise: not-a-valuation clause'
+  );
   const auth = read('terms/authenticity/index.html');
   assert.ok(/false positive/i.test(auth), 'authenticity: false-positive disclosure');
 });
@@ -92,7 +98,10 @@ test('no new terms page is an orphan: sitemap + nav coverage', () => {
   const { TARGETS } = require('../scripts/sync-desktop-nav.js');
   const pages = new Set(TARGETS.map((t) => t.page));
   for (const slug of TERMS_PAGES) {
-    assert.ok(pages.has(path.join('terms', slug, 'index.html')), `desktop-nav TARGETS missing terms/${slug}`);
+    assert.ok(
+      pages.has(path.join('terms', slug, 'index.html')),
+      `desktop-nav TARGETS missing terms/${slug}`
+    );
   }
 });
 
@@ -107,7 +116,12 @@ async function runSuite() {
     } catch (err) {
       failed++;
       console.error(`  ✗ ${t.name}`);
-      console.error(`    ${String(err.message || err).split('\n').slice(0, 6).join('\n    ')}`);
+      console.error(
+        `    ${String(err.message || err)
+          .split('\n')
+          .slice(0, 6)
+          .join('\n    ')}`
+      );
     }
   }
   console.log(`\nTerms Coverage: ${passed} passed, ${failed} failed`);
