@@ -31,8 +31,8 @@ function test(name, fn) {
 
 const read = (rel) => fs.readFileSync(path.join(root, rel), 'utf8');
 
-test('sync-desktop-nav covers every root navigation page (47 targets)', () => {
-  assert.strictEqual(TARGETS.length, 47);
+test('sync-desktop-nav covers every root navigation page (53 targets)', () => {
+  assert.strictEqual(TARGETS.length, 53);
   assert.strictEqual(PRIMARY.length, 6);
   assert.strictEqual(MORE.length, 21);
 });
