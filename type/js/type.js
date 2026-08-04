@@ -408,8 +408,10 @@
         }
 
         const stackedForm = PUNICODEX_ENGINE.deriveStackedForm ? PUNICODEX_ENGINE.deriveStackedForm(entry) : null;
-        if (resultVariations && (entry.variants || stackedForm || (typeof StackedDiacritics !== 'undefined' && StackedDiacritics.hasStackedDiacritics(entry.unicode)))) {
-            const derivedTypes = ['owned', 'ideal', 'stacked', 'macron-only'];
+        const scriptRec = typeof ORIGINAL_SCRIPT_LOOKUP !== 'undefined' ? ORIGINAL_SCRIPT_LOOKUP[entry.id] : null;
+        const hasStacked = typeof StackedDiacritics !== 'undefined' && StackedDiacritics.hasStackedDiacritics(entry.unicode);
+        if (resultVariations) {
+            const derivedTypes = ['owned', 'ideal', 'stacked', 'macron-only', 'ascii'];
             const scholarlyTypes = ['alt-stress', 'alt'];
             const derived = (entry.variants || []).filter(v => derivedTypes.includes(v.type));
             const scholarly = (entry.variants || []).filter(v => scholarlyTypes.includes(v.type) && Array.isArray(v.sources) && v.sources.length > 0);
@@ -421,19 +423,45 @@
                     note: 'Canonical stacked form — macron (length) and acute (stress) fused on one vowel, exactly where the Greek original marks both. The fullest scholarly rendering; hard to type on phones and rarely registrable as a domain.',
                 });
             }
+            // The plain-ASCII fallback: always applicable, always last, always
+            // honestly labelled as the flattened form.
+            if (entry.ascii && entry.ascii.normalize('NFC') !== entry.unicode.normalize('NFC')) {
+                derived.push({
+                    unicode: entry.ascii,
+                    type: 'ascii',
+                    note: 'Plain ASCII — every mark flattened. The last-resort form; never the primary restoration.',
+                });
+            }
 
             derived.sort((a, b) => derivedTypes.indexOf(a.type) - derivedTypes.indexOf(b.type));
             scholarly.sort((a, b) => scholarlyTypes.indexOf(a.type) - scholarlyTypes.indexOf(b.type));
 
             let html = '';
-            if (derived.length > 0 || (typeof StackedDiacritics !== 'undefined' && StackedDiacritics.hasStackedDiacritics(entry.unicode))) {
+            // The attested original script first — hieroglyphs, cuneiform,
+            // runes, Greek, Devanagari: the form the sources actually wrote,
+            // labelled per the Original Script doctrine (never a transliteration
+            // mislabelled as a script).
+            if (scriptRec && scriptRec.originalScript) {
+                html += '<div class="result-variations-section">';
+                html += `<span class="result-variations-label">${escapeHtml(scriptRec.scriptLabel || 'Original Script')}</span>`;
+                html += '<div class="variations-list">';
+                html += renderVariationItem({
+                    unicode: scriptRec.originalScript,
+                    type: 'original-script',
+                    note: `${scriptRec.scriptName || 'Original script'} — the attested form. Copy it exactly, including every mark.`,
+                }, false);
+                html += '</div>';
+                html += `<p class="result-variations-hint">${escapeHtml(scriptRec.scriptName || 'The original script')} — the form the sources themselves recorded.</p>`;
+                html += '</div>';
+            }
+            if (derived.length > 0 || hasStacked) {
                 html += '<div class="result-variations-section">';
                 html += '<span class="result-variations-label">Derived Forms</span>';
                 html += '<div class="variations-list">';
                 for (const v of derived) {
                     html += renderVariationItem(v, false);
                 }
-                if (typeof StackedDiacritics !== 'undefined' && StackedDiacritics.hasStackedDiacritics(entry.unicode)) {
+                if (hasStacked) {
                     html += `<button type="button" class="variation-chip variation-decomposed" data-unicode="${escapeHtml(StackedDiacritics.render(entry.unicode))}" title="Decomposed view of stacked diacritics">${StackedDiacritics.render(entry.unicode)}</button>`;
                 }
                 html += '</div>';

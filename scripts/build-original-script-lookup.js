@@ -12,7 +12,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 
-const { getOriginalScript, getScriptName, hasOriginalScript } = require('../type/js/original-scripts.js');
+const { getOriginalScript, getScriptName, hasOriginalScript, getOriginalScriptLabel } = require('../type/js/original-scripts.js');
 
 // Load canonical lexicon
 const lexiconPath = path.join(__dirname, '..', 'type', 'js', 'lexicon.js');
@@ -30,6 +30,9 @@ for (const entry of LEXICON) {
   lookup[entry.id] = {
     originalScript,
     scriptName: getScriptName(entry),
+    // "Original Script" vs "Scholarly Transliteration" — the type tool's
+    // all-forms chooser must never mislabel a transliteration as the script.
+    scriptLabel: getOriginalScriptLabel(entry),
   };
 }
 
@@ -42,6 +45,9 @@ const ORIGINAL_SCRIPT_LOOKUP = ${JSON.stringify(lookup, null, 2)};
 
 if (typeof window !== 'undefined') {
   window.ORIGINAL_SCRIPT_LOOKUP = ORIGINAL_SCRIPT_LOOKUP;
+}
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = ORIGINAL_SCRIPT_LOOKUP;
 }
 `;
 

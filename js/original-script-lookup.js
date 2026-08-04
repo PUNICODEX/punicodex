@@ -5,2838 +5,3549 @@
 const ORIGINAL_SCRIPT_LOOKUP = {
   "apollon": {
     "originalScript": "Ἀπόλλων",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "hades": {
     "originalScript": "Ἅιδης",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "hekate": {
     "originalScript": "Ἑκάτη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "nike": {
     "originalScript": "Νίκη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "zeus": {
     "originalScript": "Ζεύς",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "ares": {
     "originalScript": "Ἄρης",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "aphrodite": {
     "originalScript": "Ἀφροδίτη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "athena": {
     "originalScript": "Ἀθηνᾶ",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "demeter": {
     "originalScript": "Δημήτηρ",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "hera": {
     "originalScript": "Ἥρα",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "hermes": {
     "originalScript": "Ἑρμῆς",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "hephaistos": {
     "originalScript": "Ἥφαιστος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "hestia": {
     "originalScript": "Ἑστία",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "poseidon": {
     "originalScript": "Ποσειδῶν",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "persephone": {
     "originalScript": "Περσεφόνη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "prometheus": {
     "originalScript": "Προμηθεύς",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "gaia": {
     "originalScript": "Γαῖα",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "chaos": {
     "originalScript": "Χάος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "tartaros": {
     "originalScript": "Τάρταρος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "pontos": {
     "originalScript": "Πόντος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "tethys": {
     "originalScript": "Τηθύς",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "hyperion": {
     "originalScript": "Ὑπερίων",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "leto": {
     "originalScript": "Λητώ",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "epimetheus": {
     "originalScript": "Ἐπιμηθεύς",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "herakles": {
     "originalScript": "Ἡρακλῆς",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "eros": {
     "originalScript": "Ἔρως",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "helios": {
     "originalScript": "Ἥλιος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "selene": {
     "originalScript": "Σελήνη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "eos": {
     "originalScript": "Ἠώς",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "bellerophon": {
     "originalScript": "Βελλεροφῶν",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "theseus": {
     "originalScript": "Θησεύς",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "mnemosyne": {
     "originalScript": "Μνημοσύνη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "artemis": {
     "originalScript": "Ἄρτεμις",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "atlas": {
     "originalScript": "Ἄτλας",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "dionysos": {
     "originalScript": "Διόνυσος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "medousa": {
     "originalScript": "Μέδουσα",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "kronos": {
     "originalScript": "Κρόνος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "rhea": {
     "originalScript": "Ῥέα",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "themis": {
     "originalScript": "Θέμις",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "hebe": {
     "originalScript": "Ἥβη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "pan": {
     "originalScript": "Πάν",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "moirai": {
     "originalScript": "Μοῖραι",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "olympos": {
     "originalScript": "Ὄλυμπος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "athenai": {
     "originalScript": "Ἀθῆναι",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "sparte": {
     "originalScript": "Σπάρτη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "delphoi": {
     "originalScript": "Δελφοί",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "korinthos": {
     "originalScript": "Κόρινθος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "troia": {
     "originalScript": "Τροία",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "thebai": {
     "originalScript": "Θῆβαι",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "krete": {
     "originalScript": "Κρήτη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "ithake": {
     "originalScript": "Ἰθάκη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "mykenai": {
     "originalScript": "Μυκῆναι",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "delos": {
     "originalScript": "Δῆλος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "boiotia": {
     "originalScript": "Βοιωτία",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "phokis": {
     "originalScript": "Φωκίς",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "aitolia": {
     "originalScript": "Αἰτωλία",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "epeiros": {
     "originalScript": "Ἤπειρος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "thrake": {
     "originalScript": "Θράκη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "sikyon": {
     "originalScript": "Σικυών",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "asgardr": {
     "originalScript": "ᛅᛋᚴᛅᚱᚦᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "valholl": {
     "originalScript": "ᚢᛅᛚᚼᚢᛚ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "ragnarok": {
     "originalScript": "ᚱᛅᚴᚾᛅᚱᚢᚴ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "midgardr": {
     "originalScript": "ᛘᛁᚦᚴᛅᚱᚦᛁ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "alfheimr": {
     "originalScript": "ᛅᛚᚠᚼᛁᛘᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "jotunheimr": {
     "originalScript": "ᛁᚢᛏᚢᚾᚼᛁᛘᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "helheimr": {
     "originalScript": "ᚼᛁᛚᚼᛁᛘᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "jormungandr": {
     "originalScript": "ᛁᚢᚱᛘᚢᚾᚴᛅᚾᛏᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "tyr": {
     "originalScript": "ᛏᚢᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "thor": {
     "originalScript": "ᚦᚢᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "odinn": {
     "originalScript": "ᚢᚦᛁᚾ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "baldr": {
     "originalScript": "ᛒᛅᛚᛏᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "freyr": {
     "originalScript": "ᚠᚱᛅᚢᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "freyja": {
     "originalScript": "ᚠᚱᛅᚢᛁᛅ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "frigg": {
     "originalScript": "ᚠᚱᛁᚴᚴ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "njordr": {
     "originalScript": "ᚾᛁᚢᚱᚦᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "skadi": {
     "originalScript": "ᛋᚴᛅᚦᛁ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "heimdallr": {
     "originalScript": "ᚼᛁᛘᛏᛅᛚᛚᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "vidarr": {
     "originalScript": "ᚢᛁᚦᛅᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "hel": {
     "originalScript": "ᚼᛁᛚ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "nidhogg": {
     "originalScript": "ᚾᛁᚦᚼᚢᚴᚴᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "audumla": {
     "originalScript": "ᛅᚢᚦᚢᛘᛚᛅ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "ymir": {
     "originalScript": "ᚢᛘᛁᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "fenrir": {
     "originalScript": "ᚠᛁᚾᚱᛁᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "ra": {
     "originalScript": "𓂋𓂝𓇳",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "osiris": {
     "originalScript": "𓁥",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "anubis": {
     "originalScript": "𓃢",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "horus": {
     "originalScript": "𓅃",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "isis": {
     "originalScript": "𓊨𓏏𓆇",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "thoth": {
     "originalScript": "𓅜𓏏",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "amun": {
     "originalScript": "𓇋𓏠𓈖",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "ptah": {
     "originalScript": "𓁣",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "sekhmet": {
     "originalScript": "𓃭",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "bastet": {
     "originalScript": "𓎯𓏏𓏏𓁐",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "hathor": {
     "originalScript": "𓉗",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "nut": {
     "originalScript": "𓇯",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "geb": {
     "originalScript": "𓅬",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "maat": {
     "originalScript": "𓁦",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "khonsu": {
     "originalScript": "𓁤",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "sobek": {
     "originalScript": "𓃣",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "rama": {
     "originalScript": "राम",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "durga": {
     "originalScript": "दुर्गा",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "shiva": {
     "originalScript": "शिव",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "vishnu": {
     "originalScript": "विष्णु",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "krishna": {
     "originalScript": "कृष्ण",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "ganesha": {
     "originalScript": "गणेश",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "lakshmi": {
     "originalScript": "लक्ष्मी",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "saraswati": {
     "originalScript": "सरस्वती",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "brahma": {
     "originalScript": "ब्रह्मा",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "surya": {
     "originalScript": "सूर्य",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "indra": {
     "originalScript": "इन्द्र",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "agni": {
     "originalScript": "अग्नि",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "yama": {
     "originalScript": "यम",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "kubera": {
     "originalScript": "कुबेर",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "hanuman": {
     "originalScript": "हनुमान्",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "manannan": {
     "originalScript": "Manannán mac Lir",
-    "scriptName": "Medieval Irish (Latin script)"
+    "scriptName": "Medieval Irish (Latin script)",
+    "scriptLabel": "Original Script"
   },
   "ishtar": {
     "originalScript": "𒀭𒀹𒁯",
-    "scriptName": "Cuneiform"
+    "scriptName": "Cuneiform",
+    "scriptLabel": "Original Script"
   },
   "ashur": {
     "originalScript": "𒀭𒀸𒋩",
-    "scriptName": "Cuneiform"
+    "scriptName": "Cuneiform",
+    "scriptLabel": "Original Script"
   },
   "shamash": {
     "originalScript": "𒀭𒌓",
-    "scriptName": "Cuneiform"
+    "scriptName": "Cuneiform",
+    "scriptLabel": "Original Script"
   },
   "marduk": {
     "originalScript": "𒀭𒀫𒌅",
-    "scriptName": "Cuneiform"
+    "scriptName": "Cuneiform",
+    "scriptLabel": "Original Script"
   },
   "enlil": {
     "originalScript": "𒀭𒂗𒆤",
-    "scriptName": "Cuneiform"
+    "scriptName": "Cuneiform",
+    "scriptLabel": "Original Script"
   },
   "ea": {
     "originalScript": "𒀭𒂍𒀀",
-    "scriptName": "Cuneiform"
+    "scriptName": "Cuneiform",
+    "scriptLabel": "Original Script"
   },
   "tokyo": {
     "originalScript": "東京",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "osaka": {
     "originalScript": "大阪",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "kyoto": {
     "originalScript": "京都",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "kobe": {
     "originalScript": "神戸",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "nikko": {
     "originalScript": "日光",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "hokkaido": {
     "originalScript": "北海道",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "shikoku": {
     "originalScript": "四国",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "nagoya": {
     "originalScript": "名古屋",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "amaterasu": {
     "originalScript": "天照",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "susano": {
     "originalScript": "須佐之男",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "tsukuyomi": {
     "originalScript": "月読",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "izanagi": {
     "originalScript": "伊邪那岐",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "inari": {
     "originalScript": "稲荷",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "hachiman": {
     "originalScript": "八幡",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "benzaiten": {
     "originalScript": "弁財天",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "quetzalcoatl": {
     "originalScript": "Quetzalcōātl",
-    "scriptName": "Colonial Nahuatl (Latin script)"
+    "scriptName": "Colonial Nahuatl (Latin script)",
+    "scriptLabel": "Original Script"
   },
   "oshun": {
     "originalScript": "Ọ̀ṣun",
-    "scriptName": "Yoruba (modern Latin orthography)"
+    "scriptName": "Yoruba (modern Latin orthography)",
+    "scriptLabel": "Original Script"
   },
   "eshu": {
     "originalScript": "Ẹ̀ṣù",
-    "scriptName": "Yoruba (modern Latin orthography)"
+    "scriptName": "Yoruba (modern Latin orthography)",
+    "scriptLabel": "Original Script"
   },
   "obatala": {
     "originalScript": "Ọbàtálá",
-    "scriptName": "Yoruba (modern Latin orthography)"
+    "scriptName": "Yoruba (modern Latin orthography)",
+    "scriptLabel": "Original Script"
   },
   "dazhbog": {
     "originalScript": "Дажбог",
-    "scriptName": "Church Slavonic / East Slavic Cyrillic"
+    "scriptName": "Church Slavonic / East Slavic Cyrillic",
+    "scriptLabel": "Original Script"
   },
   "peleus": {
     "originalScript": "Πηλεύς",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "telamon": {
     "originalScript": "Τελαμών",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "oileus": {
     "originalScript": "Οἰλεύς",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "diomedes": {
     "originalScript": "Διομήδης",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "philoctetes": {
     "originalScript": "Φιλοκτήτης",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "elektra": {
     "originalScript": "Ἠλέκτρα",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "orestes": {
     "originalScript": "Ὀρέστης",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "agamemnon": {
     "originalScript": "Ἀγαμέμνων",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "thersites": {
     "originalScript": "Θερσίτης",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "patroclus": {
     "originalScript": "Πάτροκλος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "ajax": {
     "originalScript": "Αἴας",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "nestor": {
     "originalScript": "Νέστωρ",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "antilochus": {
     "originalScript": "Ἀντίλοχος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "autolycus": {
     "originalScript": "Αὐτόλυκος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "montu": {
     "originalScript": "𓏠𓈖𓍿𓅱",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "anuket": {
     "originalScript": "𓂝𓈖𓈎𓏏𓁐",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "serket": {
     "originalScript": "𓊃𓂋𓈎𓏏𓁐",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "neith": {
     "originalScript": "𓈖𓏏𓋌",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "apep": {
     "originalScript": "𓂝𓊪𓊪𓆓",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "tefnut": {
     "originalScript": "𓏏𓆑𓈖𓏏𓁐",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "sia": {
     "originalScript": "𓋴𓂝",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "shu": {
     "originalScript": "𓄑",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "khnum": {
     "originalScript": "𓃞",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "eir": {
     "originalScript": "ᛁᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "garmr": {
     "originalScript": "ᚴᛅᚱᛘᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "hrungnir": {
     "originalScript": "ᚼᚱᚢᚾᚴᚾᛁᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "surtr": {
     "originalScript": "ᛋᚢᚱᛏᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "eggther": {
     "originalScript": "ᛁᚴᚴᚦᛁᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "logi": {
     "originalScript": "ᛚᚢᚴᛁ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "hraesvelgr": {
     "originalScript": "ᚼᚱᛅᛋᚠᛁᛚᚴᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "thjazi": {
     "originalScript": "ᚦᛁᛅᛋᛁ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "suttungr": {
     "originalScript": "ᛋᚢᛏᛏᚢᚾᚴᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "loki": {
     "originalScript": "ᛚᚢᚴᛁ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "chandra": {
     "originalScript": "चन्द्र",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "varuna": {
     "originalScript": "वरुण",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "ganga": {
     "originalScript": "गङ्गा",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "parvati": {
     "originalScript": "पार्वती",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "kali": {
     "originalScript": "काली",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "sita": {
     "originalScript": "सीता",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "arjuna": {
     "originalScript": "अर्जुन",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "bhima": {
     "originalScript": "भीम",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "draupadi": {
     "originalScript": "द्रौपदी",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "karna": {
     "originalScript": "कर्ण",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "ahuramazda": {
     "originalScript": "𐬀𐬵𐬎𐬭𐬀 𐬨𐬀𐬰𐬛𐬁",
-    "scriptName": "Avestan"
+    "scriptName": "Avestan",
+    "scriptLabel": "Original Script"
   },
   "angramainyu": {
     "originalScript": "𐬀𐬢𐬭𐬀 𐬨𐬀𐬌𐬥𐬌𐬌𐬎",
-    "scriptName": "Avestan"
+    "scriptName": "Avestan",
+    "scriptLabel": "Original Script"
   },
   "mithra": {
     "originalScript": "𐬨𐬌𐬚𐬭𐬀",
-    "scriptName": "Avestan"
+    "scriptName": "Avestan",
+    "scriptLabel": "Original Script"
   },
   "perseus": {
     "originalScript": "Περσεύς",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "orpheus": {
     "originalScript": "Ὀρφεύς",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "atalanta": {
     "originalScript": "Ἀταλάντη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "castor": {
     "originalScript": "Κάστωρ",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "polydeuces": {
     "originalScript": "Πολυδεύκης",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "hector": {
     "originalScript": "Ἕκτωρ",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "alexandros": {
     "originalScript": "Ἀλέξανδρος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "priamos": {
     "originalScript": "Πρίαμος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "penelope": {
     "originalScript": "Πηνελόπη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "telemachus": {
     "originalScript": "Τηλέμαχος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "megara": {
     "originalScript": "Μέγαρα",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "alcmene": {
     "originalScript": "Ἀλκμήνη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "admetus": {
     "originalScript": "Ἄδμητος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "icarus": {
     "originalScript": "Ἴκαρος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "daedalus": {
     "originalScript": "Δαίδαλος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "eurydice": {
     "originalScript": "Εὐρυδίκη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "typhon": {
     "originalScript": "Τυφῶν",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "python": {
     "originalScript": "Πύθων",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "calypso": {
     "originalScript": "Καλυψώ",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "circe": {
     "originalScript": "Κίρκη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "thetis": {
     "originalScript": "Θέτις",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "scylla": {
     "originalScript": "Σκύλλα",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "charybdis": {
     "originalScript": "Χάρυβδις",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "ariadne": {
     "originalScript": "Ἀριάδνη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "ganymede": {
     "originalScript": "Γανυμήδης",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "arachne": {
     "originalScript": "Ἀράχνη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "narcissus": {
     "originalScript": "Νάρκισσος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "pandora": {
     "originalScript": "Πανδώρα",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "sisyphus": {
     "originalScript": "Σίσυφος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "tantalus": {
     "originalScript": "Τάνταλος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "ixion": {
     "originalScript": "Ἰξίων",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "sarpedon": {
     "originalScript": "Σαρπηδών",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "protesilaus": {
     "originalScript": "Πρωτεσίλαος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "laocoon": {
     "originalScript": "Λαοκόων",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "danae": {
     "originalScript": "Δανάη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "andromeda": {
     "originalScript": "Ἀνδρομέδη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "cassiopeia": {
     "originalScript": "Κασσιόπεια",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "cepheus": {
     "originalScript": "Κηφεύς",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "ker": {
     "originalScript": "Κήρ",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "coeus": {
     "originalScript": "Κοῖος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "kreios": {
     "originalScript": "Κρεῖος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "iapetus": {
     "originalScript": "Ἰαπετός",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "theia": {
     "originalScript": "Θεία",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "phoebe": {
     "originalScript": "Φοίβη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "nyx": {
     "originalScript": "Νύξ",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "erebus": {
     "originalScript": "Ἔρεβος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "hemera": {
     "originalScript": "Ἡμέρα",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "aither": {
     "originalScript": "Αἰθήρ",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "ouranos": {
     "originalScript": "Οὐρανός",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "ananke": {
     "originalScript": "Ἀνάγκη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "phanes": {
     "originalScript": "Φάνης",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "odysseus": {
     "originalScript": "Ὀδυσσεύς",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "iason": {
     "originalScript": "Ἰάσων",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "argos": {
     "originalScript": "Ἄργος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "midas": {
     "originalScript": "Μίδας",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "menelaus": {
     "originalScript": "Μενέλαος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "aineias": {
     "originalScript": "Αἰνείας",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "cadmus": {
     "originalScript": "Κάδμος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "minos": {
     "originalScript": "Μίνως",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "aegeus": {
     "originalScript": "Αἰγεύς",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "pelops": {
     "originalScript": "Πέλοψ",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "meleagros": {
     "originalScript": "Μελέαγρος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "atreus": {
     "originalScript": "Ἀτρεύς",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "hippolytus": {
     "originalScript": "Ἱππόλυτος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "calliope": {
     "originalScript": "Καλλιόπη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "kleio": {
     "originalScript": "Κλειώ",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "thaleia": {
     "originalScript": "Θάλεια",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "euterpe": {
     "originalScript": "Εὐτέρπη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "polyhymnia": {
     "originalScript": "Πολύμνια",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "terpsichore": {
     "originalScript": "Τερψιχόρη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "erato": {
     "originalScript": "Ερατώ",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "melpomene": {
     "originalScript": "Μελπομένη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "ourania": {
     "originalScript": "Οὐρανία",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "clotho": {
     "originalScript": "Κλωθώ",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "lachesis": {
     "originalScript": "Λάχεσις",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "atropos": {
     "originalScript": "Ἄτροπος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "nemesis": {
     "originalScript": "Νέμεσις",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "iris": {
     "originalScript": "Ἶρις",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "eris": {
     "originalScript": "Ἔρις",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "hypnos": {
     "originalScript": "Ὕπνος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "thanatos": {
     "originalScript": "Θάνατος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "phobos": {
     "originalScript": "Φόβος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "deimos": {
     "originalScript": "Δεῖμος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "elpis": {
     "originalScript": "Ἐλπίς",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "ponos": {
     "originalScript": "Πόνος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "geras": {
     "originalScript": "Γῆρας",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "cerberus": {
     "originalScript": "Κέρβερος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "hydra": {
     "originalScript": "Ὕδρα",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "minotauros": {
     "originalScript": "Μινώταυρος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "chimaira": {
     "originalScript": "Χίμαιρα",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "sphinx": {
     "originalScript": "Σφίγξ",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "seiren": {
     "originalScript": "Σειρήν",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "harpyia": {
     "originalScript": "Ἅρπυια",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "phoenix": {
     "originalScript": "Φοῖνιξ",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "griffin": {
     "originalScript": "Γρύψ",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "daphne": {
     "originalScript": "Δάφνη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "echo": {
     "originalScript": "Ἠχώ",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "logos": {
     "originalScript": "Λόγος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "nous": {
     "originalScript": "Νοῦς",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "psyche": {
     "originalScript": "Ψυχή",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "pneuma": {
     "originalScript": "Πνεῦμα",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "arche": {
     "originalScript": "Ἀρχή",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "telos": {
     "originalScript": "Τέλος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "arete": {
     "originalScript": "Ἀρετή",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "hubris": {
     "originalScript": "Ὕβρις",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "moira": {
     "originalScript": "Μοῖρα",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "ethos": {
     "originalScript": "Ἦθος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "pathos": {
     "originalScript": "Πάθος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "kairos": {
     "originalScript": "Καιρός",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "kosmos": {
     "originalScript": "Κόσμος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "ullr": {
     "originalScript": "ᚢᛚᛚᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "forseti": {
     "originalScript": "ᚠᚢᚱᛋᛁᛏᛁ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "bragi": {
     "originalScript": "ᛒᚱᛅᚴᛁ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "iounn": {
     "originalScript": "ᛁᚦᚢᚾᚾ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "gefjon": {
     "originalScript": "ᚴᛁᚠᛁᚢᚾ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "sif": {
     "originalScript": "ᛋᛁᚠ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "fulla": {
     "originalScript": "ᚠᚢᛚᛚᛅ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "syn": {
     "originalScript": "ᛋᚢᚾ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "nanna": {
     "originalScript": "ᚾᛅᚾᚾᛅ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "brynhildr": {
     "originalScript": "ᛒᚱᚢᚾᚼᛁᛚᛏᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "gunnr": {
     "originalScript": "ᚴᚢᚾᚾᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "skuld": {
     "originalScript": "ᛋᚴᚢᛚᛏ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "urdr": {
     "originalScript": "ᚢᚱᚦᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "verdandi": {
     "originalScript": "ᚠᛁᚱᚦᛅᚾᛏᛁ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "thrymr": {
     "originalScript": "ᚦᚱᚢᛘᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "hymir": {
     "originalScript": "ᚼᚢᛘᛁᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "geirrodr": {
     "originalScript": "ᚴᛁᚱᚱᚢᚦᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "baugi": {
     "originalScript": "ᛒᛅᚢᚴᛁ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "andvari": {
     "originalScript": "ᛅᚾᛏᚠᛅᚱᛁ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "brokkr": {
     "originalScript": "ᛒᚱᚢᚴᚴᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "fafnir": {
     "originalScript": "ᚠᛅᚠᚾᛁᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "reginn": {
     "originalScript": "ᚱᛁᚴᛁᚾᚾ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "sindri": {
     "originalScript": "ᛋᛁᚾᛏᚱᛁ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "niflheimr": {
     "originalScript": "ᚾᛁᚠᛚᚼᛁᛘᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "muspellheimr": {
     "originalScript": "ᛘᚢᛋᛒᛁᛚᛚᚼᛁᛘᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "vanaheimr": {
     "originalScript": "ᚢᛅᚾᚼᛁᛘᛁᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "svartalfaheimr": {
     "originalScript": "ᛋᚠᛅᚱᛏᛅᛚᚠᛅᚼᛁᛘᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "yggdrasill": {
     "originalScript": "ᚢᚴᚴᛏᚱᛅᛋᛁᛚᛚ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "ginnungagap": {
     "originalScript": "ᚴᛁᚾᚾᚢᚾᚴᛅᚴᛅᛒ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "min": {
     "originalScript": "𓀽",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "bes": {
     "originalScript": "𓃀𓋴𓄜",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "heka": {
     "originalScript": "𓎛𓂓𓏛",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "nephthys": {
     "originalScript": "𓉠𓏏𓆇",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "taweret": {
     "originalScript": "𓏏𓄿𓅨𓂋𓏏𓆗",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "khepri": {
     "originalScript": "𓆣",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "wepwawet": {
     "originalScript": "𓃧",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "duat": {
     "originalScript": "𓂧𓍯𓏏𓇽",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "aaru": {
     "originalScript": "𓂝𓄿𓂋𓅱",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "nun": {
     "originalScript": "𓈗",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "renenutet": {
     "originalScript": "𓂋𓈖𓈖𓅱𓏏𓏏𓆗",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "mehetweret": {
     "originalScript": "𓎕𓎛𓇋𓇋𓏏𓆇𓆗𓅨𓂋𓏏𓆗",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "heqet": {
     "originalScript": "𓎛𓈎𓏏𓆏",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "anu": {
     "originalScript": "𒀭𒀀𒉡",
-    "scriptName": "Cuneiform"
+    "scriptName": "Cuneiform",
+    "scriptLabel": "Original Script"
   },
   "inanna": {
     "originalScript": "𒀭𒈹",
-    "scriptName": "Cuneiform"
+    "scriptName": "Cuneiform",
+    "scriptLabel": "Original Script"
   },
   "ninhursag": {
     "originalScript": "𒀭𒊩𒌆𒉺𒍇",
-    "scriptName": "Cuneiform"
+    "scriptName": "Cuneiform",
+    "scriptLabel": "Original Script"
   },
   "ninlil": {
     "originalScript": "𒀭𒊩𒌆𒆤",
-    "scriptName": "Cuneiform"
+    "scriptName": "Cuneiform",
+    "scriptLabel": "Original Script"
   },
   "nergal": {
     "originalScript": "𒀭𒄊𒀕",
-    "scriptName": "Cuneiform"
+    "scriptName": "Cuneiform",
+    "scriptLabel": "Original Script"
   },
   "ereshkigal": {
     "originalScript": "𒀭𒊕𒆠𒃲",
-    "scriptName": "Cuneiform"
+    "scriptName": "Cuneiform",
+    "scriptLabel": "Original Script"
   },
   "tiamat": {
     "originalScript": "𒀭𒋾𒊩𒆳",
-    "scriptName": "Cuneiform"
+    "scriptName": "Cuneiform",
+    "scriptLabel": "Original Script"
   },
   "apsu": {
     "originalScript": "𒀊𒍪",
-    "scriptName": "Cuneiform"
+    "scriptName": "Cuneiform",
+    "scriptLabel": "Original Script"
   },
   "dumuzid": {
     "originalScript": "𒀭𒌉𒍣",
-    "scriptName": "Cuneiform"
+    "scriptName": "Cuneiform",
+    "scriptLabel": "Original Script"
   },
   "gilgamesh": {
     "originalScript": "𒄑𒂆𒈦",
-    "scriptName": "Cuneiform"
+    "scriptName": "Cuneiform",
+    "scriptLabel": "Original Script"
   },
   "enkidu": {
     "originalScript": "𒂗𒆠𒄭",
-    "scriptName": "Cuneiform"
+    "scriptName": "Cuneiform",
+    "scriptLabel": "Original Script"
   },
   "ninurta": {
     "originalScript": "𒀭𒊩𒌆𒅁",
-    "scriptName": "Cuneiform"
+    "scriptName": "Cuneiform",
+    "scriptLabel": "Original Script"
   },
   "humbaba": {
     "originalScript": "𒀭𒄷𒈣𒁀",
-    "scriptName": "Cuneiform"
+    "scriptName": "Cuneiform",
+    "scriptLabel": "Original Script"
   },
   "kartikeya": {
     "originalScript": "कार्त्तिकेय",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "radha": {
     "originalScript": "राधा",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "sati": {
     "originalScript": "सती",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "ushas": {
     "originalScript": "उष्áस्",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "ratri": {
     "originalScript": "रात्री",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "prithvi": {
     "originalScript": "पृथिवी",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "aditi": {
     "originalScript": "अदिति",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "diti": {
     "originalScript": "दिति",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "dharma": {
     "originalScript": "धर्म",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "karma": {
     "originalScript": "कर्म",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "moksha": {
     "originalScript": "मोक्ष",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "samsara": {
     "originalScript": "संसार",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "atman": {
     "originalScript": "आत्मन्",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "brahman": {
     "originalScript": "ब्रह्मन्",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "maya": {
     "originalScript": "माया",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "yoga": {
     "originalScript": "योग",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "mantra": {
     "originalScript": "मन्त्र",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "tantra": {
     "originalScript": "तन्त्र",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "om": {
     "originalScript": "ओं",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "vyasa": {
     "originalScript": "व्यास",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "valmiki": {
     "originalScript": "वाल्मीकि",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "kashyapa": {
     "originalScript": "कश्यप",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "vashistha": {
     "originalScript": "वसिष्ठ",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "matsya": {
     "originalScript": "मत्स्य",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "narasimha": {
     "originalScript": "नरसिंह",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "izanami": {
     "originalScript": "伊邪那美",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "ninigi": {
     "originalScript": "邇邇芸命",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "raijin": {
     "originalScript": "雷神",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "fujin": {
     "originalScript": "風神",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "kannon": {
     "originalScript": "観音",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "jizo": {
     "originalScript": "地蔵",
-    "scriptName": "Japanese Kanji (Jinmeiyō)"
+    "scriptName": "Japanese Kanji (Jinmeiyō)",
+    "scriptLabel": "Original Script"
   },
   "amida": {
     "originalScript": "阿弥陀",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "fuji": {
     "originalScript": "富士",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "ise": {
     "originalScript": "伊勢",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "takachiho": {
     "originalScript": "高千穂",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "kumano": {
     "originalScript": "熊野",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "ebisu": {
     "originalScript": "恵比寿",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "okuninushi": {
     "originalScript": "大国主",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "sarutahiko": {
     "originalScript": "猿田彦",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "kagutsuchi": {
     "originalScript": "迦具土",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "orunmila": {
     "originalScript": "Ọ̀rúnmìlà",
-    "scriptName": "Yoruba (modern Latin orthography)"
+    "scriptName": "Yoruba (modern Latin orthography)",
+    "scriptLabel": "Original Script"
   },
   "ochosi": {
     "originalScript": "Ọ̀ṣọ́ọ̀sì",
-    "scriptName": "Yoruba (modern Latin orthography)"
+    "scriptName": "Yoruba (modern Latin orthography)",
+    "scriptLabel": "Original Script"
   },
   "spentamainyu": {
     "originalScript": "𐬯𐬞𐬆𐬥𐬙𐬀 𐬨𐬀𐬌𐬥𐬌𐬌𐬎",
-    "scriptName": "Avestan"
+    "scriptName": "Avestan",
+    "scriptLabel": "Original Script"
   },
   "vohumanah": {
     "originalScript": "𐬬𐬊𐬵𐬎 𐬨𐬀𐬥𐬀𐬵",
-    "scriptName": "Avestan"
+    "scriptName": "Avestan",
+    "scriptLabel": "Original Script"
   },
   "ashavahishta": {
     "originalScript": "𐬀𐬴𐬀 𐬬𐬀𐬵𐬌𐬱𐬙𐬀",
-    "scriptName": "Avestan"
+    "scriptName": "Avestan",
+    "scriptLabel": "Original Script"
   },
   "khshathravairya": {
     "originalScript": "𐬑𐬱𐬀𐬚𐬭𐬀 𐬬𐬀𐬌𐬭𐬌𐬌𐬀",
-    "scriptName": "Avestan"
+    "scriptName": "Avestan",
+    "scriptLabel": "Original Script"
   },
   "spentaarmaiti": {
     "originalScript": "𐬯𐬞𐬆𐬥𐬙𐬀 𐬁𐬭𐬨𐬀𐬌𐬙𐬌",
-    "scriptName": "Avestan"
+    "scriptName": "Avestan",
+    "scriptLabel": "Original Script"
   },
   "haurvatat": {
     "originalScript": "𐬵𐬀𐬎𐬭𐬬𐬀𐬙𐬁𐬙",
-    "scriptName": "Avestan"
+    "scriptName": "Avestan",
+    "scriptLabel": "Original Script"
   },
   "ameretat": {
     "originalScript": "𐬀𐬨𐬆𐬭𐬆𐬙𐬁𐬙",
-    "scriptName": "Avestan"
+    "scriptName": "Avestan",
+    "scriptLabel": "Original Script"
   },
   "sraosha": {
     "originalScript": "𐬯𐬭𐬀𐬊𐬱𐬀",
-    "scriptName": "Avestan"
+    "scriptName": "Avestan",
+    "scriptLabel": "Original Script"
   },
   "rashnu": {
     "originalScript": "𐬭𐬀𐬱𐬥𐬎",
-    "scriptName": "Avestan"
+    "scriptName": "Avestan",
+    "scriptLabel": "Original Script"
   },
   "anahita": {
     "originalScript": "𐬀𐬭𐬆𐬛𐬎𐬎𐬍 𐬯𐬏𐬭𐬁 𐬀𐬥𐬁𐬵𐬌𐬙𐬀",
-    "scriptName": "Avestan"
+    "scriptName": "Avestan",
+    "scriptLabel": "Original Script"
   },
   "pyr": {
     "originalScript": "Πῦρ",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "hydor": {
     "originalScript": "Ὕδωρ",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "ge": {
     "originalScript": "Γῆ",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "aer": {
     "originalScript": "Ἀήρ",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "styx": {
     "originalScript": "Στύξ",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "lethe": {
     "originalScript": "Λήθη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "acheron": {
     "originalScript": "Ἀχέρων",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "cocytus": {
     "originalScript": "Κωκυτός",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "phlegethon": {
     "originalScript": "Φλέγεθων",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "jadeemperor": {
     "originalScript": "玉皇",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "guanyin": {
     "originalScript": "觀音",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "lanling": {
     "originalScript": "蘭陵",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "taishang": {
     "originalScript": "太上",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "tianhou": {
     "originalScript": "天后",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "longwang": {
     "originalScript": "龍王",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "yamen": {
     "originalScript": "閻羅",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "bagua": {
     "originalScript": "八卦",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "taichi": {
     "originalScript": "太極",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "wuxing": {
     "originalScript": "五行",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "qi": {
     "originalScript": "氣",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "dao": {
     "originalScript": "道",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "fuxi": {
     "originalScript": "伏羲",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "nuwa": {
     "originalScript": "女媧",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "shennong": {
     "originalScript": "神農",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "huangdi": {
     "originalScript": "皇帝",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "zhurong": {
     "originalScript": "祝融",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "gonggong": {
     "originalScript": "共工",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "xian": {
     "originalScript": "仙",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "mazu": {
     "originalScript": "媽祖",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "erlang": {
     "originalScript": "二郎",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "nezha": {
     "originalScript": "哪吒",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "sunwukong": {
     "originalScript": "孫悟空",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "bingjilan": {
     "originalScript": "冰脊蘭",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "kunlun": {
     "originalScript": "崑崙",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "eileithyia": {
     "originalScript": "Εἰλείθυια",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "enyo": {
     "originalScript": "Ἐνυώ",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "paean": {
     "originalScript": "Παιών",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "hymenaeus": {
     "originalScript": "Ὑμέναιος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "automedon": {
     "originalScript": "Αὐτομέδων",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "eurypylus": {
     "originalScript": "Εὐρύπυλος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "thoas": {
     "originalScript": "Θόας",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "meriones": {
     "originalScript": "Μεριόνης",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "idomeneus": {
     "originalScript": "Ἰδομενεύς",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "teucer": {
     "originalScript": "Τεῦκρος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "neoptolemus": {
     "originalScript": "Νεοπτόλεμος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "machaon": {
     "originalScript": "Μαχάων",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "podalirius": {
     "originalScript": "Ποδαλείριος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "calchas": {
     "originalScript": "Κάλχας",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "teiresias": {
     "originalScript": "Τειρεσίας",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "cassandra": {
     "originalScript": "Κασσάνδρα",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "hecuba": {
     "originalScript": "Ἑκάβη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "andromache": {
     "originalScript": "Ἀνδρομάχη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "astyanax": {
     "originalScript": "Ἀστυάναξ",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "polyxena": {
     "originalScript": "Πολυξένη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "sinon": {
     "originalScript": "Σίνων",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "palamedes": {
     "originalScript": "Παλαμήδης",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "antigone": {
     "originalScript": "Ἀντιγόνη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "ismene": {
     "originalScript": "Ἰσμήνη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "oedipus": {
     "originalScript": "Οἰδίπους",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "jocasta": {
     "originalScript": "Ἰοκάστη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "pentheus": {
     "originalScript": "Πενθεύς",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "agave": {
     "originalScript": "Ἀγαύη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "hermione": {
     "originalScript": "Ἑρμιόνη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "creusa": {
     "originalScript": "Κρέουσα",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "medea": {
     "originalScript": "Μήδεια",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "aetes": {
     "originalScript": "Αἰήτης",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "chiron": {
     "originalScript": "Χείρων",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "ladon": {
     "originalScript": "Λάδων",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "nemeanlion": {
     "originalScript": "Νεμεῖος Λέων",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "erymanthianboar": {
     "originalScript": "Ἐρυμάνθιος Κάπρος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "stymphalianbirds": {
     "originalScript": "Στυμφαλίδες Ὄρνιθες",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "skanda": {
     "originalScript": "स्कन्द",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "nandi": {
     "originalScript": "नन्द्í",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "garuda": {
     "originalScript": "गरुड",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "jatayu": {
     "originalScript": "जटायु",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "kamsa": {
     "originalScript": "कंस",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "putana": {
     "originalScript": "पूतना",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "shakti": {
     "originalScript": "शक्ति",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "prajapati": {
     "originalScript": "प्रजापति",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "savitri": {
     "originalScript": "सावित्री",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "vishvakarman": {
     "originalScript": "विश्वकर्मन्",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "bhrigu": {
     "originalScript": "भृगु",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "narada": {
     "originalScript": "नारद",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "markandeya": {
     "originalScript": "मार्कण्डेय",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "bhishma": {
     "originalScript": "भीष्म",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "drona": {
     "originalScript": "द्रोण",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "kripa": {
     "originalScript": "कृप",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "nakula": {
     "originalScript": "नकुल",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "sahadeva": {
     "originalScript": "सहदेव",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "hodr": {
     "originalScript": "ᚼᚢᚦᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "vali": {
     "originalScript": "ᚢᛅᛚᛁ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "rig": {
     "originalScript": "ᚱᛁᚴ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "saga": {
     "originalScript": "ᛋᛅᚴᛅ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "hermod": {
     "originalScript": "ᚼᛁᚱᛘᚢᚦᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "magni": {
     "originalScript": "ᛘᛅᚴᚾᛁ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "modi": {
     "originalScript": "ᛘᚢᚦᛁ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "thrud": {
     "originalScript": "ᚦᚱᚢᚦᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "garm": {
     "originalScript": "ᚴᛅᚱᛘ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "hati": {
     "originalScript": "ᚼᛅᛏᛁ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "skoll": {
     "originalScript": "ᛋᚴᚢᛚᛚ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "ratatoskr": {
     "originalScript": "ᚱᛅᛏᛅᛏᚢᛋᚴᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "draupnir": {
     "originalScript": "ᛏᚱᛅᚢᛒᚾᛁᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "mjolnir": {
     "originalScript": "ᛘᛁᚢᛚᚾᛁᚱ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "wadjet": {
     "originalScript": "𓇅𓏏𓆗",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "nekhbet": {
     "originalScript": "𓇑𓃀𓏌𓏏𓅒",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "seshat": {
     "originalScript": "𓋇𓏏𓁐",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "mafdet": {
     "originalScript": "𓌴𓁹𓆑𓂧𓏏𓌞𓅆",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "menhit": {
     "originalScript": "𓏠𓈖𓎛𓇋𓇋𓏏𓆗",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "pakhet": {
     "originalScript": "𓊪𓐍𓏏𓃭",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "amenouzume": {
     "originalScript": "天宇受売命",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "kotoshironushi": {
     "originalScript": "事代主神",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "omononushi": {
     "originalScript": "大物忌神",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "sukunahikona": {
     "originalScript": "少彦名神",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "tajikarao": {
     "originalScript": "手力男神",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "toyotama": {
     "originalScript": "豊玉毘売命",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "ugayafukiaezu": {
     "originalScript": "鵜草葺不合命",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "hoderi": {
     "originalScript": "火照命",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "hoori": {
     "originalScript": "火折命",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "nishinakahime": {
     "originalScript": "日子波邇夜須毘売命",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "anshar": {
     "originalScript": "𒀭𒊚𒊏",
-    "scriptName": "Cuneiform"
+    "scriptName": "Cuneiform",
+    "scriptLabel": "Original Script"
   },
   "kishar": {
     "originalScript": "𒀭𒆠𒊏",
-    "scriptName": "Cuneiform"
+    "scriptName": "Cuneiform",
+    "scriptLabel": "Original Script"
   },
   "adad": {
     "originalScript": "𒀭𒅎",
-    "scriptName": "Cuneiform"
+    "scriptName": "Cuneiform",
+    "scriptLabel": "Original Script"
   },
   "sin": {
     "originalScript": "𒀭𒌍",
-    "scriptName": "Cuneiform"
+    "scriptName": "Cuneiform",
+    "scriptLabel": "Original Script"
   },
   "gnosis": {
     "originalScript": "Γνῶσις",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "sophia": {
     "originalScript": "Σοφία",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "doxa": {
     "originalScript": "Δόξα",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "episteme": {
     "originalScript": "Ἐπιστήμη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "theoria": {
     "originalScript": "Θεωρία",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "praxis": {
     "originalScript": "Πρᾶξις",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "soteria": {
     "originalScript": "Σωτηρία",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "eudaimonia": {
     "originalScript": "Εὐδαιμονία",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "jnana": {
     "originalScript": "ज्ञान",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "bhakti": {
     "originalScript": "भक्ति",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "dhyana": {
     "originalScript": "ध्यान",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "tapas": {
     "originalScript": "तपस्",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "shunya": {
     "originalScript": "शून्य",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "lingam": {
     "originalScript": "ल्íन्गम्",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "yoni": {
     "originalScript": "योनि",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "amitabha": {
     "originalScript": "अमिताभ",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "vairocana": {
     "originalScript": "महावैरोचन",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "akshobhya": {
     "originalScript": "अक्षोभ्य",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "ratnasambhava": {
     "originalScript": "रत्नसम्भव",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "amoghasiddhi": {
     "originalScript": "अमोघसिद्धि",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "maitreya": {
     "originalScript": "मैत्रेय",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "manjushri": {
     "originalScript": "मञ्जुश्री",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "samantabhadra": {
     "originalScript": "समन्तभद्र",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "ksitigarbha": {
     "originalScript": "क्षितिगर्भ",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "vajrapani": {
     "originalScript": "वज्रपाणि",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "tara": {
     "originalScript": "तारा",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "marici": {
     "originalScript": "मारीचि",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "mahakala": {
     "originalScript": "महाकाल",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "nagarjuna": {
     "originalScript": "नागार्जुन",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "asanga": {
     "originalScript": "असन्ग",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "vasubandhu": {
     "originalScript": "वसुबन्धु",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "boddhisattva": {
     "originalScript": "बोधिसत्त्व",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "arhat": {
     "originalScript": "अर्हत्",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "nirvana": {
     "originalScript": "निर्वाण",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "shakyamuni": {
     "originalScript": "शाक्यमुनि",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "mara": {
     "originalScript": "मार",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "laozi": {
     "originalScript": "老子",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "zhuangzi": {
     "originalScript": "莊子",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "zhangdaoling": {
     "originalScript": "張道陵",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "ludongbin": {
     "originalScript": "呂洞賓",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "zhongliquan": {
     "originalScript": "鐘離權",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "hexiangu": {
     "originalScript": "何仙姑",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "xiwangmu": {
     "originalScript": "西王母",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "dongwanggong": {
     "originalScript": "東王公",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "wenchang": {
     "originalScript": "文昌",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "zhenwu": {
     "originalScript": "真武",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "baal": {
     "originalScript": "𐎁𐎓𐎍",
-    "scriptName": "Ugaritic"
+    "scriptName": "Ugaritic",
+    "scriptLabel": "Original Script"
   },
   "el": {
     "originalScript": "𐎛𐎍",
-    "scriptName": "Ugaritic"
+    "scriptName": "Ugaritic",
+    "scriptLabel": "Original Script"
   },
   "anat": {
     "originalScript": "𐎓𐎐𐎚",
-    "scriptName": "Ugaritic"
+    "scriptName": "Ugaritic",
+    "scriptLabel": "Original Script"
   },
   "aseratu": {
     "originalScript": "𐤀𐤔𐤓𐤕",
-    "scriptName": "Phoenician"
+    "scriptName": "Phoenician",
+    "scriptLabel": "Original Script"
   },
   "mot": {
     "originalScript": "𐤌𐤕",
-    "scriptName": "Phoenician"
+    "scriptName": "Phoenician",
+    "scriptLabel": "Original Script"
   },
   "yammu": {
     "originalScript": "𐤉𐤌",
-    "scriptName": "Phoenician"
+    "scriptName": "Phoenician",
+    "scriptLabel": "Original Script"
   },
   "shapash": {
     "originalScript": "𐤔𐤐𐤔",
-    "scriptName": "Phoenician"
+    "scriptName": "Phoenician",
+    "scriptLabel": "Original Script"
   },
   "kothar": {
     "originalScript": "𐤊𐤕𐤓",
-    "scriptName": "Phoenician"
+    "scriptName": "Phoenician",
+    "scriptLabel": "Original Script"
   },
   "dagan": {
     "originalScript": "𐤃𐤂𐤍",
-    "scriptName": "Phoenician"
+    "scriptName": "Phoenician",
+    "scriptLabel": "Original Script"
   },
   "astartu": {
     "originalScript": "𐤀𐤔𐤕𐤓𐤕",
-    "scriptName": "Phoenician"
+    "scriptName": "Phoenician",
+    "scriptLabel": "Original Script"
   },
   "confucius": {
     "originalScript": "孔子",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "mencius": {
     "originalScript": "孟子",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "mozi": {
     "originalScript": "墨子",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "laojun": {
     "originalScript": "老君",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "sanzang": {
     "originalScript": "三藏",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "bodhidharma": {
     "originalScript": "菩提達磨",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "wudang": {
     "originalScript": "武當",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "wutai": {
     "originalScript": "五臺",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "putuo": {
     "originalScript": "普陀",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "emei": {
     "originalScript": "峨眉",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "jiuhua": {
     "originalScript": "九華",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "lingbao": {
     "originalScript": "靈寶",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "shangqing": {
     "originalScript": "上清",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "quanzhen": {
     "originalScript": "全真",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "wenshu": {
     "originalScript": "文殊",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "olympia": {
     "originalScript": "Ὀλυμπία",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "eleusis": {
     "originalScript": "Ἐλευσίς",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "knossos": {
     "originalScript": "Κνωσσός",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "uppsala": {
     "originalScript": "ᚢᛒᛒᛋᛅᛚᛅ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "varanasi": {
     "originalScript": "वाराणसी",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "kailasa": {
     "originalScript": "कैलास",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "meru": {
     "originalScript": "मेरु",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "benares": {
     "originalScript": "बेनर्éस्",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "yamuna": {
     "originalScript": "यमुना",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "sarnath": {
     "originalScript": "सर्नथ्",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "lumbini": {
     "originalScript": "लुम्बिनी",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "aeolus": {
     "originalScript": "Αἴολος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "boreas": {
     "originalScript": "Βορέας",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "notos": {
     "originalScript": "Νότος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "eurus": {
     "originalScript": "Εὖρος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "zephyros": {
     "originalScript": "Ζέφυρος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "momos": {
     "originalScript": "Μόμος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "oizys": {
     "originalScript": "Ὀιζύς",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "alastor": {
     "originalScript": "Ἀλάστωρ",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "ephiales": {
     "originalScript": "Ἐφιάλης",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "limos": {
     "originalScript": "Λιμός",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "phthonus": {
     "originalScript": "Φθόνος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "alecto": {
     "originalScript": "Ἀληκτώ",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "megaera": {
     "originalScript": "Μέγαιρα",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "tisiphone": {
     "originalScript": "Τισιφόνη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "chamunda": {
     "originalScript": "चामुण्डा",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "ravana": {
     "originalScript": "रावण",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "nal": {
     "originalScript": "ᚾᛅᛚ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "sigyn": {
     "originalScript": "ᛋᛁᚴᚢᚾ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "angrboda": {
     "originalScript": "ᛅᚾᚴᚱᛒᚢᚦᛅ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "surt": {
     "originalScript": "ᛋᚢᚱᛏ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "bestla": {
     "originalScript": "ᛒᛁᛋᛏᛚᛅ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "kebechet": {
     "originalScript": "𓈎𓃀𓎛𓏏",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "sokar": {
     "originalScript": "𓋴𓎡𓂋𓅃",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "fudo": {
     "originalScript": "不動明王",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "marishiten": {
     "originalScript": "摩利支天",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "goshin": {
     "originalScript": "五神",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
   },
   "nabu": {
     "originalScript": "𒀭𒀝",
-    "scriptName": "Cuneiform"
+    "scriptName": "Cuneiform",
+    "scriptLabel": "Original Script"
   },
   "gula": {
     "originalScript": "𒀭𒄖𒆷",
-    "scriptName": "Cuneiform"
+    "scriptName": "Cuneiform",
+    "scriptLabel": "Original Script"
   },
   "namtar": {
     "originalScript": "𒀭𒉆𒋻",
-    "scriptName": "Cuneiform"
+    "scriptName": "Cuneiform",
+    "scriptLabel": "Original Script"
   },
   "athrawan": {
     "originalScript": "𐬁𐬚𐬭𐬀𐬎𐬎𐬀𐬥",
-    "scriptName": "Avestan"
+    "scriptName": "Avestan",
+    "scriptLabel": "Original Script"
   },
   "haoma": {
     "originalScript": "𐬵𐬀𐬊𐬨𐬀",
-    "scriptName": "Avestan"
+    "scriptName": "Avestan",
+    "scriptLabel": "Original Script"
   },
   "verethragna": {
     "originalScript": "𐬬𐬆𐬭𐬆𐬚𐬭𐬀𐬖𐬥𐬀",
-    "scriptName": "Avestan"
+    "scriptName": "Avestan",
+    "scriptLabel": "Original Script"
   },
   "ma": {
     "originalScript": "𓌴𓏤",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "maa": {
     "originalScript": "𓌳𓂝",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "akh": {
     "originalScript": "𓅜𓏤",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "ab": {
     "originalScript": "𓍋𓃀𓂻",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "sa": {
     "originalScript": "𓋴𓄿",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "hm": {
     "originalScript": "𓍛",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "khp": {
     "originalScript": "𓐍𓊪",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "libye": {
     "originalScript": "Λιβύη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "aigyptos": {
     "originalScript": "Αἴγυπτος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "asia": {
     "originalScript": "Ἀσία",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "europe": {
     "originalScript": "Εὐρώπη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "rta": {
     "originalScript": "ऋत",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "ba": {
     "originalScript": "𓅡𓏤",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "ka": {
     "originalScript": "𓂓𓏤",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "astart": {
     "originalScript": "𐤏𐤔𐤕𐤓𐤕",
-    "scriptName": "Phoenician"
+    "scriptName": "Phoenician",
+    "scriptLabel": "Original Script"
   },
   "athiratu": {
     "originalScript": "𐎀𐎘𐎗𐎚",
-    "scriptName": "Ugaritic cuneiform alphabet"
+    "scriptName": "Ugaritic cuneiform alphabet",
+    "scriptLabel": "Original Script"
   },
   "asherah": {
     "originalScript": "𐎀𐎘𐎗𐎚",
-    "scriptName": "Ugaritic"
+    "scriptName": "Ugaritic",
+    "scriptLabel": "Original Script"
   },
   "okeanos": {
     "originalScript": "Ὠκεανός",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "asa": {
     "originalScript": "𐬀𐬴𐬀",
-    "scriptName": "Avestan"
+    "scriptName": "Avestan",
+    "scriptLabel": "Original Script"
   },
   "vac": {
     "originalScript": "वाच्",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "hen": {
     "originalScript": "ἕν",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "nirmata": {
     "originalScript": "निर्माता",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "leviathan": {
     "originalScript": "לִוְיָתָן",
-    "scriptName": "Hebrew"
+    "scriptName": "Hebrew",
+    "scriptLabel": "Original Script"
   },
   "ankh": {
     "originalScript": "𓋹",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "nht": {
     "originalScript": "𓈖𓎛𓏏",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "moses": {
     "originalScript": "מֹשֶׁה",
-    "scriptName": "Hebrew"
+    "scriptName": "Hebrew",
+    "scriptLabel": "Original Script"
   },
   "david": {
     "originalScript": "דָּוִד",
-    "scriptName": "Hebrew"
+    "scriptName": "Hebrew",
+    "scriptLabel": "Original Script"
   },
   "solomon": {
     "originalScript": "שְׁלֹמֹה",
-    "scriptName": "Hebrew"
+    "scriptName": "Hebrew",
+    "scriptLabel": "Original Script"
   },
   "noah": {
     "originalScript": "נֹחַ",
-    "scriptName": "Hebrew"
+    "scriptName": "Hebrew",
+    "scriptLabel": "Original Script"
   },
   "cain": {
     "originalScript": "קַיִן",
-    "scriptName": "Hebrew"
+    "scriptName": "Hebrew",
+    "scriptLabel": "Original Script"
   },
   "abel": {
     "originalScript": "הֶבֶל",
-    "scriptName": "Hebrew"
+    "scriptName": "Hebrew",
+    "scriptLabel": "Original Script"
   },
   "long": {
     "originalScript": "龍",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "wuji": {
     "originalScript": "無極",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "yinyang": {
     "originalScript": "陰陽",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "hygieia": {
     "originalScript": "Ὑγίεια",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "tiandi": {
     "originalScript": "天地",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "adamas": {
     "originalScript": "ἀδάμας",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "narke": {
     "originalScript": "Νάρκη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "eirene": {
     "originalScript": "Εἰρήνη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "atlantis": {
     "originalScript": "Ἀτλαντίς",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "elysion": {
     "originalScript": "Ἠλύσιον",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "hyperborea": {
     "originalScript": "Ὑπερβόρεα",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "phaethon": {
     "originalScript": "Φαέθων",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "smaragdos": {
     "originalScript": "Σμάραγδος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "hyakinthos": {
     "originalScript": "Ὑάκινθος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "amethystos": {
     "originalScript": "Ἀμέθυστος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "thalassa": {
     "originalScript": "Θάλασσα",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "he": {
     "originalScript": "ἡ",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "buri": {
     "originalScript": "ᛒᚢᚱᛁ",
-    "scriptName": "Younger Futhark"
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
   },
   "tian": {
     "originalScript": "天",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "achilleus": {
     "originalScript": "Ἀχιλλεύς",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "asklepios": {
     "originalScript": "Ἀσκληπιός",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "drakon": {
     "originalScript": "Δράκων",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "monokeros": {
     "originalScript": "Μονόκερως",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "pegasos": {
     "originalScript": "Πήγασος",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "tyche": {
     "originalScript": "Τύχη",
-    "scriptName": "Greek"
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   },
   "steh": {
     "originalScript": "𓋴𓏏𓐍",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "hp": {
     "originalScript": "𓎛𓂝𓊪𓏭𓈘",
-    "scriptName": "Hieroglyphs"
+    "scriptName": "Hieroglyphs",
+    "scriptLabel": "Original Script"
   },
   "amsa": {
     "originalScript": "अंश",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "daksa": {
     "originalScript": "दक्ष",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "dhatr": {
     "originalScript": "धातृ",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "pusan": {
     "originalScript": "पूषन्",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "tvastr": {
     "originalScript": "त्वष्टृ",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "guandi": {
     "originalScript": "關帝",
-    "scriptName": "Chinese characters"
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   },
   "gauri": {
     "originalScript": "गौरी",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "sani": {
     "originalScript": "शनि",
-    "scriptName": "Devanagari"
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
   },
   "oba": {
     "originalScript": "Ọbà",
-    "scriptName": "Yoruba (modern Latin orthography)"
+    "scriptName": "Yoruba (modern Latin orthography)",
+    "scriptLabel": "Original Script"
   }
 };
 
 if (typeof window !== 'undefined') {
   window.ORIGINAL_SCRIPT_LOOKUP = ORIGINAL_SCRIPT_LOOKUP;
+}
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = ORIGINAL_SCRIPT_LOOKUP;
 }
