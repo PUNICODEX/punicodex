@@ -369,6 +369,8 @@ const SERIAL_SUITES = new Set([
   'Blog Index Tests', // runs generate-blog-index.js (writes blog/index.html)
   'Herald Beacon Tests', // runs the beacon injector against the tree
   'Patterns Atlas Tests', // runs generate-patterns-page.js (writes patterns/*.html)
+  'Trending Page Tests', // idempotency check rewrites trending/index.html
+  'Everyday + Ink Tests', // idempotency checks rewrite everyday/index.html + data/ink-index.json
   // The two static-analysis gates scan the whole tree; running them in
   // parallel with tree-mutating suites makes them flag transient writes.
   'Format Check',
