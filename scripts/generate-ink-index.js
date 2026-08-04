@@ -36,6 +36,36 @@ const { INK_MYTHS } = require(path.join(ROOT, 'type', 'js', 'ink-myths.js'));
 
 const OUT = path.join(ROOT, 'data', 'ink-index.json');
 
+/**
+ * The individual-sign index: every unique sign that appears in an entry's
+ * per-sign provenance, with its attested name and value, the script it
+ * belongs to, and the entries that use it. Sign names come from the
+ * medieval sign lists and rune poems via the curated provenance — never
+ * from modern "rune meaning" tables.
+ */
+function buildSignIndex(entries) {
+  const byGlyph = new Map();
+  for (const e of entries) {
+    for (const s of e.signs) {
+      if (!s.sign) continue;
+      const rec = byGlyph.get(s.sign) || {
+        sign: s.sign,
+        name: s.name || null,
+        value: s.value || null,
+        note: s.note || null,
+        script: e.name || null,
+        entries: [],
+      };
+      if (!rec.entries.includes(e.id)) rec.entries.push(e.id);
+      if (!rec.name && s.name) rec.name = s.name;
+      byGlyph.set(s.sign, rec);
+    }
+  }
+  return [...byGlyph.values()].sort((a, b) =>
+    String(a.script || '').localeCompare(String(b.script || ''))
+  );
+}
+
 function main() {
   const entries = [];
   for (const e of LEXICON) {
@@ -44,11 +74,13 @@ function main() {
     if (!script || script === '—') continue;
     const rich = getRichProvenance(e) || {};
     const pron = derivePronunciation(e) || {};
+    const meaning = String(e.meaning || '').split(/[;.]/)[0].trim();
     entries.push({
       id: e.id,
       u: e.unicode,
       a: e.ascii,
       p: e.pantheon,
+      m: meaning.length <= 110 ? meaning : `${meaning.slice(0, 107).trimEnd()}…`,
       script,
       name: rich.scriptName || getScriptName(e) || null,
       family: rich.scriptFamily || null,
@@ -75,6 +107,7 @@ function main() {
     },
     entries,
     myths: INK_MYTHS,
+    signs: buildSignIndex(entries),
   };
 
   fs.writeFileSync(OUT, `${JSON.stringify(index)}\n`);

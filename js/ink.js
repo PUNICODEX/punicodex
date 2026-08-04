@@ -135,6 +135,103 @@
     };
   }
 
+  /* ── Gallery + Signs (inspiration sections) ────────────────────────── */
+
+  const GALLERY_PAGE = 48;
+
+  function galleryCardHtml(e) {
+    return `<div class="ik-gcard">
+      <div class="ik-gcard-script">${esc(e.script)}</div>
+      <div class="ik-gcard-name">${esc(e.u)}</div>
+      <div class="ik-gcard-meaning">${esc(e.m || '')}</div>
+      <div class="ik-gcard-meta">${esc([e.name, e.period].filter(Boolean).join(' · '))}</div>
+      <div class="ik-gcard-actions">
+        <a href="/assets/ink/${esc(e.id)}.png" download>PNG card</a>
+        <a href="/assets/ink/${esc(e.id)}.svg" download>SVG</a>
+        <a href="/sites/${esc(e.id)}/">Temple →</a>
+      </div>
+    </div>`;
+  }
+
+  function bootGallery(index) {
+    const filtersEl = document.getElementById('ik-filters');
+    const galleryEl = document.getElementById('ik-gallery');
+    const moreWrap = document.getElementById('ik-gallery-more');
+    const moreBtn = document.getElementById('ik-more-btn');
+    if (!filtersEl || !galleryEl) return;
+
+    // Filter families from the data: script names grouped coarsely.
+    const FAMILY = [
+      ['All', null],
+      ['Runes', /Futhark|runic/i],
+      ['Hieroglyphs', /Hieroglyph/i],
+      ['Cuneiform', /Cuneiform/i],
+      ['Greek', /Greek/i],
+      ['Devanagari', /Devanagari|Brahmi|Sanskrit/i],
+      ['Avestan', /Avestan/i],
+      ['CJK', /Chinese|Japanese|Han|Kanji/i],
+      ['Other', /.*/],
+    ];
+    const otherSet = new Set(['Runes', 'Hieroglyphs', 'Cuneiform', 'Greek', 'Devanagari', 'Avestan', 'CJK']);
+    let active = null;
+    let shown = GALLERY_PAGE;
+
+    function pool() {
+      if (!active) return index.entries;
+      if (active.label === 'Other') {
+        return index.entries.filter((e) => {
+          const s = `${e.name || ''} ${e.family || ''}`;
+          return !FAMILY.filter(([l]) => otherSet.has(l)).some(([, re]) => re.test(s));
+        });
+      }
+      return index.entries.filter((e) => active.re.test(`${e.name || ''} ${e.family || ''}`));
+    }
+
+    function render() {
+      const list = pool();
+      galleryEl.innerHTML = list.slice(0, shown).map(galleryCardHtml).join('');
+      moreWrap.hidden = list.length <= shown;
+    }
+
+    filtersEl.innerHTML = '';
+    for (const [label, re] of FAMILY) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = `ik-filter${label === 'All' ? ' ik-on' : ''}`;
+      btn.textContent = label;
+      btn.addEventListener('click', () => {
+        active = label === 'All' ? null : { label, re };
+        shown = GALLERY_PAGE;
+        filtersEl.querySelectorAll('.ik-filter').forEach((b) => b.classList.remove('ik-on'));
+        btn.classList.add('ik-on');
+        render();
+      });
+      filtersEl.appendChild(btn);
+    }
+    moreBtn.addEventListener('click', () => {
+      shown += GALLERY_PAGE * 2;
+      render();
+    });
+    render();
+  }
+
+  function bootSigns(index) {
+    const signsEl = document.getElementById('ik-signs');
+    if (!signsEl || !Array.isArray(index.signs)) return;
+    signsEl.innerHTML = index.signs
+      .map((s) => {
+        const first = s.entries[0];
+        return `<div class="ik-sign-card">
+          <div class="ik-sign-glyph">${esc(s.sign)}</div>
+          <div class="ik-sign-name">${esc(s.name || '—')}</div>
+          <div class="ik-sign-value">${esc(s.value || '')}</div>
+          <div class="ik-sign-script">${esc(s.script || '')}</div>
+          ${first ? `<div class="ik-sign-entries">seen in <a href="/sites/${esc(first)}/">${esc(first)}</a>${s.entries.length > 1 ? ` +${s.entries.length - 1}` : ''}</div>` : ''}
+        </div>`;
+      })
+      .join('');
+  }
+
   /* ── Rendering (browser only) ─────────────────────────────────────── */
 
   function esc(s) {
@@ -182,6 +279,7 @@
       </div>
       <div class="ik-actions">
         <button class="ik-btn" data-copy="${esc(e.script)}" type="button">Copy the attested form</button>
+        <a class="ik-btn" href="/assets/ink/${esc(e.id)}.png" download>Download the artist card (PNG)</a>
         <a class="ik-btn" href="/sites/${esc(e.id)}/">Enter the temple of ${esc(e.u)} →</a>
       </div>
     </div>`;
@@ -243,6 +341,8 @@
       .then((r) => r.json())
       .then((index) => {
         state.index = index;
+        bootGallery(index);
+        bootSigns(index);
         mythsBox.innerHTML = index.myths
           .map(
             (m) => `<div class="ik-myth" id="${esc(m.id)}">

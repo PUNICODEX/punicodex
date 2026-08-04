@@ -77,6 +77,28 @@
       .ik-myth a { color: #c9b584; }
       .ik-doctrine { background: #14110c; border: 1px solid #3a2f1a; border-radius: 8px; padding: 1.6rem 1.8rem; color: #d8cfb8; line-height: 1.8; }
       .ik-doctrine strong { color: #e8c860; }
+      .ik-filters { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.4rem; }
+      .ik-filter { background: #14110c; border: 1px solid #3a2f1a; color: #cbb98e; font-family: Georgia, serif; font-size: 0.85rem; padding: 0.45rem 1rem; border-radius: 20px; cursor: pointer; }
+      .ik-filter.ik-on { border-color: #8a6d2f; color: #e8c860; background: #1d1810; }
+      .ik-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
+      .ik-gcard { background: #14110c; border: 1px solid #3a2f1a; border-radius: 8px; padding: 1.2rem; text-align: center; display: flex; flex-direction: column; }
+      .ik-gcard-script { font-family: Georgia, serif; font-size: 2.2rem; color: #f0d878; padding: 0.6rem 0 0.3rem; overflow-wrap: anywhere; }
+      .ik-gcard-name { color: #e8e0cc; font-size: 1rem; }
+      .ik-gcard-meaning { color: #8a7a52; font-size: 0.82rem; font-style: italic; margin-top: 0.2rem; min-height: 2.1em; }
+      .ik-gcard-meta { color: #6b6046; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0.5rem 0 0.8rem; }
+      .ik-gcard-actions { display: flex; gap: 0.5rem; justify-content: center; margin-top: auto; flex-wrap: wrap; }
+      .ik-gcard-actions a { color: #c9b584; font-size: 0.78rem; text-decoration: none; border: 1px solid #3a2f1a; padding: 0.35rem 0.7rem; border-radius: 4px; }
+      .ik-gcard-actions a:hover { border-color: #8a6d2f; color: #e8c860; }
+      .ik-gallery-more { text-align: center; margin-top: 1.4rem; }
+      .ik-signs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 0.8rem; }
+      .ik-sign-card { background: #14110c; border: 1px solid #3a2f1a; border-radius: 8px; padding: 1rem 0.8rem; text-align: center; }
+      .ik-sign-glyph { font-family: Georgia, serif; font-size: 2.4rem; color: #f0d878; }
+      .ik-sign-name { color: #e8e0cc; font-size: 0.95rem; margin-top: 0.3rem; }
+      .ik-sign-value { color: #8a7a52; font-size: 0.78rem; margin-top: 0.15rem; }
+      .ik-sign-script { color: #6b6046; font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.35rem; }
+      .ik-sign-entries { margin-top: 0.4rem; font-size: 0.75rem; }
+      .ik-sign-entries a { color: #c9b584; text-decoration: none; }
+      .ik-sign-entries a:hover { color: #e8c860; text-decoration: underline; }
       @media (max-width: 640px) { .ik-hero { padding-top: 7rem; } }
     </style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
@@ -211,6 +233,20 @@
         <div class="ik-results" id="ik-script-results"></div>
       </section>
 
+      <section class="ik-sec" id="ik-gallery-sec">
+        <h2>The Gallery — Forms Worth Keeping</h2>
+        <p class="ik-sec-note">Every attested original script in the corpus, as inspiration: the name, what it means, when the form was written, and a print-ready reference card to send your artist. Filter by tradition; download the PNG for the stencil, the SVG to edit.</p>
+        <div class="ik-filters" id="ik-filters"></div>
+        <div class="ik-gallery" id="ik-gallery"></div>
+        <div class="ik-gallery-more" id="ik-gallery-more" hidden><button class="ik-btn" id="ik-more-btn" type="button">Show more forms</button></div>
+      </section>
+
+      <section class="ik-sec" id="ik-signs-sec">
+        <h2>The Signs, One by One</h2>
+        <p class="ik-sec-note">Individual signs with their <em>attested</em> names — from the medieval sign lists and rune poems, via the corpus's per-sign provenance. The "rune meaning" tables circulating online are twentieth-century occultism; what you see here is what the sources actually say. A sign alone can be a beautiful, honest mark.</p>
+        <div class="ik-signs-grid" id="ik-signs"></div>
+      </section>
+
       <section class="ik-sec" id="ik-myths-sec">
         <h2>Famous Errors, Corrected</h2>
         <p class="ik-sec-note">The five tattoo mistakes the internet repeats most — each with the correction. If your design is on this page, you just saved yourself a very permanent lesson.</p>
@@ -227,7 +263,7 @@
       </section>
     </main>
 
-    <script src="/js/ink.js?v=1" defer></script>
+    <script src="/js/ink.js?v=2" defer></script>
     <script src="/js/px-core.js?v=perf9" defer></script>
     <footer class="site-footer">
         <div class="container">

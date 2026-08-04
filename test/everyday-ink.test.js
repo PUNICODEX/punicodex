@@ -197,6 +197,69 @@ test('ink index generator is idempotent', () => {
   }
 });
 
+// ── Ink: gallery, signs, downloads ───────────────────────────────────
+
+test('ink index: signs section carries attested sign names and using-entries', () => {
+  const index = JSON.parse(read('data/ink-index.json'));
+  assert.ok(Array.isArray(index.signs) && index.signs.length >= 300, 'sign index present');
+  const thurs = index.signs.find((s) => s.sign === 'ᚦ');
+  assert.ok(thurs, 'thorn sign present');
+  assert.match(thurs.name, /^(þurs|thurs)$/, 'attested thorn name');
+  assert.ok(thurs.entries.includes('thor'), 'sign links to thor');
+  assert.match(thurs.script, /Futhark/);
+  for (const s of index.signs) {
+    assert.ok(s.sign && s.script, 'every sign carries glyph + script');
+  }
+  const fehuNote = index.entries.find((e) => e.id === 'thor');
+  assert.ok(fehuNote.m, 'entries carry the short meaning for the gallery');
+});
+
+test('ink downloads: PNG + SVG cards exist for attested entries and are real renders', () => {
+  const index = JSON.parse(read('data/ink-index.json'));
+  for (const id of ['thor', 'ra', 'tiamat', 'nike', 'vishnu']) {
+    const png = path.join(ROOT, 'assets', 'ink', `${id}.png`);
+    const svg = path.join(ROOT, 'assets', 'ink', `${id}.svg`);
+    assert.ok(fs.existsSync(png), `${id}.png baked`);
+    assert.ok(fs.existsSync(svg), `${id}.svg baked`);
+    const head = fs.readFileSync(png).subarray(0, 8);
+    assert.deepStrictEqual([...head], [137, 80, 78, 71, 13, 10, 26, 10], `${id}.png is a PNG`);
+    assert.ok(fs.statSync(png).size > 10000, `${id}.png is a real render, not a stub`);
+    assert.ok(read(`assets/ink/${id}.svg`).includes('<svg'), `${id}.svg is an SVG`);
+  }
+  // Every index entry has a card pair (the gallery links to them).
+  const missing = index.entries.filter(
+    (e) =>
+      !fs.existsSync(path.join(ROOT, 'assets', 'ink', `${e.id}.png`)) ||
+      !fs.existsSync(path.join(ROOT, 'assets', 'ink', `${e.id}.svg`))
+  );
+  assert.deepStrictEqual(missing.map((e) => e.id).slice(0, 5), [], 'every entry has both cards');
+});
+
+test('ink downloads generator skips existing bakes (committed artifacts win)', () => {
+  const rel = 'assets/ink/thor.png';
+  const before = crypto
+    .createHash('sha256')
+    .update(fs.readFileSync(path.join(ROOT, rel)))
+    .digest('hex');
+  runScript('scripts/generate-ink-downloads.js');
+  const after = crypto
+    .createHash('sha256')
+    .update(fs.readFileSync(path.join(ROOT, rel)))
+    .digest('hex');
+  assert.strictEqual(after, before, 'existing bake must not be re-rendered');
+});
+
+test('ink page: gallery and signs mounts, downloads linked from result cards', () => {
+  const html = read('ink/index.html');
+  for (const id of ['ik-gallery', 'ik-filters', 'ik-signs', 'ik-more-btn']) {
+    assert.ok(html.includes(`id="${id}"`), `missing mount #${id}`);
+  }
+  const js = read('js/ink.js');
+  assert.ok(js.includes('/assets/ink/'), 'engine links the download cards');
+  assert.ok(js.includes('bootGallery') && js.includes('bootSigns'), 'gallery + signs booted');
+  assert.ok(html.includes('/js/ink.js?v='), 'engine version-pinned');
+});
+
 async function runSuite() {
   let passed = 0;
   let failed = 0;

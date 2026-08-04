@@ -1011,7 +1011,14 @@ an honest "not in corpus — absence is not proof of error"). The five famous
 tattoo myths (Vegvísir, Elder-Futhark Vikings, cartouche names, markless
 Greek, letter-magic) live in `type/js/ink-myths.js`. Engine: `js/ink.js`
 (dual-exported for tests); corpus: `data/ink-index.json` (708 attested
-forms). Tests: `test/everyday-ink.test.js`.
+forms + a 371-sign index with attested sign names, never occult
+"meaning" tables). The **Gallery** (all forms, filterable by tradition,
+with short meanings) and the **Signs** grid make the page an inspiration
+surface as well as a verifier. `scripts/generate-ink-downloads.js` bakes
+artist-ready reference cards (`assets/ink/{id}.png` 2000×1200 with a
+provenance caption + `{id}.svg`) — platform-font renders, so the
+generator SKIPS existing bakes (`--force` / `--only <id>` to re-bake, same
+doctrine as the OG cards). Tests: `test/everyday-ink.test.js`.
 
 ---
 

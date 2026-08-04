@@ -80,6 +80,9 @@ const scripts = [
   // canonical word/script registries; before the sitemap and injectors.
   'scripts/generate-everyday-page.js',
   'scripts/generate-ink-index.js',
+  // Tattoo-artist reference cards (assets/ink/*.png|svg): reads the ink
+  // index; skips existing bakes (platform fonts — committed artifacts).
+  'scripts/generate-ink-downloads.js',
   'scripts/sync-scholars-portal.js',
   'scripts/gen-sitemap.js',
   'scripts/inject-analytics.js',
