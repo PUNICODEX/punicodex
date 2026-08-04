@@ -86,6 +86,8 @@ const mainPages = [
   { loc: '/app/', priority: '0.6', changefreq: 'monthly' },
   { loc: '/trending/', priority: '0.7', changefreq: 'weekly' },
   { loc: '/patterns/', priority: '0.8', changefreq: 'weekly' },
+  { loc: '/everyday/', priority: '0.8', changefreq: 'monthly' },
+  { loc: '/ink/', priority: '0.8', changefreq: 'monthly' },
   { loc: '/patterns/methodology/', priority: '0.6', changefreq: 'monthly' },
   { loc: '/careers/', priority: '0.5', changefreq: 'monthly' },
   { loc: '/about/founder/', priority: '0.5', changefreq: 'monthly' },

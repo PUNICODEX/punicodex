@@ -76,6 +76,10 @@ const scripts = [
   // industry-patterns.json produced at step 5; before the injectors so the
   // fresh pages keep their beacon/consent blocks.
   'scripts/generate-patterns-page.js',
+  // Everyday Words (/everyday/) + Ink verifier index (data/ink-index.json):
+  // canonical word/script registries; before the sitemap and injectors.
+  'scripts/generate-everyday-page.js',
+  'scripts/generate-ink-index.js',
   'scripts/sync-scholars-portal.js',
   'scripts/gen-sitemap.js',
   'scripts/inject-analytics.js',
@@ -83,8 +87,11 @@ const scripts = [
   'scripts/inject-herald-beacon.js',
   'scripts/sync-admin-portal.js',
   'scripts/sync-interstitial.js',
-  'scripts/sync-mobile-menu.js',
+  // Desktop nav must precede the mobile menu: fresh pages (everyday, ink)
+  // get their <nav> + nav-toggle from the desktop sync before the mobile
+  // sync inserts its menu (which requires both to exist).
   'scripts/sync-desktop-nav.js',
+  'scripts/sync-mobile-menu.js',
   'scripts/sync-footer.js',
   'scripts/generate-pod-products.js',
   // Store pages (collections/collection/product) consume products.json and

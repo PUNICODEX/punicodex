@@ -26,6 +26,8 @@ const EXPLORE = [
   ['/lexicon/', 'Lexicon'],
   ['/connections/', 'Connections'],
   ['/patterns/', 'Patterns'],
+  ['/everyday/', 'Everyday Words'],
+  ['/ink/', 'Check Before You Ink'],
   ['/trending/', 'Trending'],
   ['/tiers/', 'Tier System'],
   ['/rulebook/', 'Rulebook'],
@@ -97,6 +99,8 @@ const TARGETS = [
   path.join('university-sponsorship', 'index.html'),
   path.join('scholars', 'index.html'),
   path.join('pronunciation', 'index.html'),
+  path.join('everyday', 'index.html'),
+  path.join('ink', 'index.html'),
 ];
 
 function columnHtml(title, links) {

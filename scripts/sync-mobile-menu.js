@@ -53,6 +53,8 @@ const CANONICAL_MENU = `<div class="mobile-menu" id="mobile-menu">
                 <a href="/tiers/">Tier System</a>
                 <a href="/rulebook/">Rulebook</a>
                 <a href="/pronunciation/">Pronunciation</a>
+                <a href="/everyday/">Everyday Words</a>
+                <a href="/ink/">Check Before You Ink</a>
                 <a href="/cards/">Cards</a>
                 <a href="/oracle.html">Oracle</a>
                 <a href="/extension/">Extension</a>
@@ -117,6 +119,8 @@ const TARGETS = [
   { page: path.join('realms', 'index.html'), active: '/realms/' },
   { page: path.join('store', 'index.html'), active: '/store/' },
   { page: path.join('rulebook', 'index.html'), active: '/rulebook/' },
+  { page: path.join('everyday', 'index.html'), active: '/everyday/' },
+  { page: path.join('ink', 'index.html'), active: '/ink/' },
   { page: path.join('cards', 'index.html'), active: '/cards/' },
   { page: path.join('tiers', 'index.html'), active: '/tiers/' },
   { page: path.join('type', 'index.html'), active: '/type/' },

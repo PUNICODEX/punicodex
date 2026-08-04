@@ -104,6 +104,9 @@ const rootPages = [
   path.join('careers', 'index.html'),
   path.join('about', 'founder', 'index.html'),
   path.join('arbitrage', 'index.html'),
+  path.join('pronunciation', 'index.html'),
+  path.join('everyday', 'index.html'),
+  path.join('ink', 'index.html'),
   'search-v2.html',
 ];
 for (const p of rootPages) {

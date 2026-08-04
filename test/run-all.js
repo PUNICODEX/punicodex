@@ -182,6 +182,7 @@ const SUITES = [
   { name: 'Portal Leasing Tests', cmd: 'node test/portal-leasing.test.js', timeout: 60000 },
   { name: 'Discount Codes Tests', cmd: 'node test/discount-codes.test.js', timeout: 60000 },
   { name: 'Pitch Email Tests', cmd: 'node test/pitch-email.test.js', timeout: 60000 },
+  { name: 'Everyday + Ink Tests', cmd: 'node test/everyday-ink.test.js', timeout: 60000 },
   { name: 'Reservation Expiry Tests', cmd: 'node test/reservation-expiry.test.js', timeout: 60000 },
   {
     name: 'Founding Codes Seed Tests',

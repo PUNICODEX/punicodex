@@ -2,7 +2,7 @@
  * PuniCodex — Menu Consistency Tests
  *
  * Guards the canonical navigation system: every non-temple page must carry
- * the same desktop nav (6 primary links + 19-item More dropdown + Enter CTA)
+ * the same desktop nav (6 primary links + 21-item More dropdown + Enter CTA)
  * and the canonical sectioned mobile menu, with the page's own item marked
  * aria-current. Prevents the hand-maintained drift this audit found
  * (7 different desktop menus across 26 pages).
@@ -31,10 +31,10 @@ function test(name, fn) {
 
 const read = (rel) => fs.readFileSync(path.join(root, rel), 'utf8');
 
-test('sync-desktop-nav covers every root navigation page (45 targets)', () => {
-  assert.strictEqual(TARGETS.length, 45);
+test('sync-desktop-nav covers every root navigation page (47 targets)', () => {
+  assert.strictEqual(TARGETS.length, 47);
   assert.strictEqual(PRIMARY.length, 6);
-  assert.strictEqual(MORE.length, 19);
+  assert.strictEqual(MORE.length, 21);
 });
 
 test('every target page carries the canonical primary links in order', () => {
@@ -51,7 +51,7 @@ test('every target page carries the canonical primary links in order', () => {
   }
 });
 
-test('every target page carries the full 19-item More dropdown', () => {
+test('every target page carries the full 21-item More dropdown', () => {
   for (const { page } of TARGETS) {
     const html = read(page);
     assert.ok(html.includes('class="nav-more-toggle"'), `${page}: missing More toggle`);
@@ -120,12 +120,15 @@ test('app surfaces stay nav-free by design (game, entry)', () => {
   assert.ok(!read('entry.html').includes('class="main-nav"'));
 });
 
-test('sync-desktop-nav is registered in the generate pipeline after mobile sync', () => {
+test('sync-desktop-nav is registered in the generate pipeline before mobile sync', () => {
   const gen = read(path.join('scripts', 'generate.js'));
   const mobileIdx = gen.indexOf("'scripts/sync-mobile-menu.js'");
   const desktopIdx = gen.indexOf("'scripts/sync-desktop-nav.js'");
   assert.ok(mobileIdx !== -1 && desktopIdx !== -1, 'sync scripts missing from generate.js');
-  assert.ok(desktopIdx > mobileIdx, 'desktop nav sync must run after mobile menu sync');
+  // Fresh pages (everyday, ink, any future insertNav target) receive their
+  // <nav> + nav-toggle from the DESKTOP sync; the mobile menu sync inserts
+  // its menu only after those exist, so desktop must run first.
+  assert.ok(desktopIdx < mobileIdx, 'desktop nav sync must run before mobile menu sync');
 });
 
 test('no target page still carries retired variant link sets', () => {
