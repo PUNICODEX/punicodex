@@ -115,13 +115,28 @@ async function run() {
 
     const { uploadBookingCreative } = require('../platform/api/booking-upload');
 
-    // Wrong aspect ratio (1:1 vs the slot's ratio) must still be rejected.
+    // Wrong aspect ratio is no longer rejected: the server normalizes every
+    // sane image (crop to the slot frame) — the upload UI promised "it will
+    // be cropped to fit" and now the server keeps that promise.
     const bad = await uploadBookingCreative(
       token,
       { image: `data:image/png;base64,${PNG_1X1.toString('base64')}`, filename: 'bad.png' },
       {}
     );
-    assert.strictEqual(bad.status, 400);
+    assert.strictEqual(bad.status, 200, 'wrong-ratio uploads are cropped, not rejected');
+
+    // Genuinely unreadable data is still refused, with an honest message.
+    await run("UPDATE bookings SET status = 'pending_upload' WHERE analytics_token = $1", [token]);
+    const corrupt = await uploadBookingCreative(
+      token,
+      {
+        image: `data:image/png;base64,${Buffer.from('not-a-real-png').toString('base64')}`,
+        filename: 'corrupt.png',
+      },
+      {}
+    );
+    assert.strictEqual(corrupt.status, 400);
+    assert.match(corrupt.body.error, /could not process/i);
 
     // Exact-size PNG generated with canvas must upload and convert.
     const { createCanvas } = require('canvas');

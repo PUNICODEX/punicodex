@@ -208,6 +208,21 @@ a:hover {
   padding: 1.1rem 1.2rem;
 }
 
+a.sb-panel-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s;
+}
+
+a.sb-panel-link:hover {
+  border-color: var(--sb-gold-line, #8a6d2f);
+}
+
+a.sb-panel-link:hover > h3 {
+  color: var(--sb-gold, #c9b584);
+}
+
 .sb-panel > h3 {
   margin: 0 0 0.25rem;
   font-size: 0.95rem;
@@ -689,6 +704,12 @@ a:hover {
   display: block;
   margin-bottom: 0.75rem;
   object-fit: contain;
+}
+
+.sb-upload-note {
+  margin-top: 0.5rem;
+  font-size: 0.78rem;
+  color: var(--sb-gold, #c9b584);
 }
 
 .sb-upload-preview {

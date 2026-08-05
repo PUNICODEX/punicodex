@@ -65,7 +65,7 @@ async function writeWebpSibling(absFilePath, buffer) {
   }
 }
 
-const PUBLIC_UPLOADS_ROOT = path.join(__dirname, 'public', 'uploads');
+const { uploadsRoot } = require('./upload-storage');
 
 /**
  * Returns the public webp path when the sibling exists on disk, else null.
@@ -75,7 +75,7 @@ const PUBLIC_UPLOADS_ROOT = path.join(__dirname, 'public', 'uploads');
 function existingWebpFor(publicPath) {
   const sibling = webpSiblingPath(publicPath);
   if (!sibling?.startsWith('/uploads/')) return null;
-  const abs = path.join(PUBLIC_UPLOADS_ROOT, sibling.slice('/uploads/'.length));
+  const abs = path.join(uploadsRoot(), sibling.slice('/uploads/'.length));
   try {
     return fs.existsSync(abs) ? sibling : null;
   } catch (_err) {

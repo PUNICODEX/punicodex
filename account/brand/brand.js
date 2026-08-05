@@ -14,7 +14,7 @@
 
   var S = window.Sandbox;
   var MAX_IMAGE_BYTES = 2 * 1024 * 1024;
-  var IMAGE_CHANGEABLE_STATUSES = ['pending_upload', 'rejected', 'approved', 'live'];
+  var IMAGE_CHANGEABLE_STATUSES = ['pending_upload', 'rejected', 'approved', 'live', 'pending_approval'];
   var SOCIAL_PLATFORMS = ['x', 'instagram', 'linkedin', 'tiktok', 'youtube', 'github', 'website'];
 
   function readFileAsDataUri(file) {
@@ -40,12 +40,13 @@
       cards.push(
         '<div class="sb-panel">' +
           '<h3>Replace creative — ' + S.esc(b.slotName) + '</h3>' +
-          '<p class="sb-panel-sub">' + S.esc(b.siteSlug) + ' · PNG/JPEG/WebP under 2MB · ' + S.esc(dims) + '</p>' +
+          '<p class="sb-panel-sub">' + S.esc(b.siteSlug) + ' · any size photo — we frame it to ' + S.esc(dims) + ' · goes live after review</p>' +
           (b.creativePath ? '<img class="sb-creative-preview" src="' + S.esc(b.creativePath) + '" alt="Current creative">' : '') +
-          '<form data-booking-id="' + S.esc(b.id) + '" class="image-request-form">' +
+          '<form data-booking-id="' + S.esc(b.id) + '" data-width="' + S.esc(b.width || '') + '" data-height="' + S.esc(b.height || '') + '" class="image-request-form">' +
           '<div class="sb-field"><label>New image</label>' +
           '<input type="file" accept="image/png,image/jpeg,image/webp" required></div>' +
           '<img class="sb-upload-preview" alt="Staged preview" hidden>' +
+          '<p class="sb-upload-note" hidden></p>' +
           '<button type="submit" class="sb-btn sb-btn-primary sb-btn-sm">Submit for Review</button>' +
           '<p class="sb-form-message" role="alert"></p>' +
           '</form>' +
@@ -87,19 +88,41 @@
     Array.prototype.forEach.call(document.querySelectorAll('.image-request-form'), function (form) {
       var fileInput = form.querySelector('input[type="file"]');
       var preview = form.querySelector('.sb-upload-preview');
+      var note = form.querySelector('.sb-upload-note');
+      var slotW = Number(form.getAttribute('data-width')) || 0;
+      var slotH = Number(form.getAttribute('data-height')) || 0;
+      var staged = null; // the normalized image, exactly as it will run
 
-      // Staged preview before anything is submitted.
+      // Normalize on select (center-crop to the slot frame, downscale to 2×)
+      // and preview the processed image — what you see is what runs.
       fileInput.addEventListener('change', async function () {
         var file = fileInput.files[0];
+        staged = null;
+        note.hidden = true;
         if (!file) {
           preview.hidden = true;
           return;
         }
         try {
-          preview.src = await readFileAsDataUri(file);
+          if (window.CreativeNormalize && slotW && slotH) {
+            staged = await window.CreativeNormalize.normalizeCreative(file, slotW, slotH);
+            preview.src = staged.dataUrl;
+            note.textContent = staged.tooSmall
+              ? 'Smaller than the slot — it will run, but may print soft; a larger original is better.'
+              : staged.cropped
+                ? 'Framed to ' + staged.width + '×' + staged.height + ' from your ' + staged.originalWidth + '×' + staged.originalHeight + ' original — the preview is exactly what will run.'
+                : '';
+            note.hidden = !note.textContent;
+          } else {
+            preview.src = await readFileAsDataUri(file);
+          }
           preview.hidden = false;
-        } catch (e) {
+        } catch (err) {
+          staged = null;
           preview.hidden = true;
+          note.hidden = true;
+          var msg = form.querySelector('.sb-form-message');
+          msg.textContent = err.message || 'Could not read this image.';
         }
       });
 
@@ -117,14 +140,10 @@
           msg.textContent = 'Image must be PNG, JPEG, or WebP.';
           return;
         }
-        if (file.size > MAX_IMAGE_BYTES) {
-          msg.textContent = 'Image must be under 2MB.';
-          return;
-        }
         var btn = form.querySelector('button[type="submit"]');
         btn.disabled = true;
         try {
-          var dataUri = await readFileAsDataUri(file);
+          var dataUri = staged ? staged.dataUrl : await readFileAsDataUri(file);
           await S.api('/api/account/requests/', {
             method: 'POST',
             body: {
@@ -136,7 +155,9 @@
           msg.classList.add('success');
           msg.textContent = 'Submitted. It goes live once the team approves it.';
           form.reset();
+          staged = null;
           preview.hidden = true;
+          note.hidden = true;
           loadRequests();
         } catch (err) {
           msg.textContent = err.message;

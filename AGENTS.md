@@ -794,6 +794,29 @@ dashboard template (`templates/flagship/dashboard.html`) has no tab
 navigation at all. Those two auxiliary templates intentionally do not carry a
 Blog tab link.
 
+### Sponsor creative pipeline
+
+The sponsor-facing flow, in its final form (2026-08): the booking modal on
+each temple (`templates/flagship/flagship.js`) collects the creative with
+client-side normalization (`/js/creative-normalize.js` — center-crop to the
+slot aspect, downscale to 2×, EXIF-agnostic) and the server normalizes again
+(`platform/api/booking-upload.js#normalizeCreativeBuffer` — sharp rotate +
+cover-crop to 2× slot dims), so any sane photo fits the frame exactly as the
+UI promises. Uploads are accepted in `pending_upload`, `rejected`,
+`approved`, `live`, **and** `pending_approval` — a creative under review can
+always be replaced (the reviewer sees the latest). Base64 payloads cap at
+4MB; corrupt data gets an honest "could not process" message.
+
+**The two sponsor links have distinct roles.** The token snapshot
+(`/sites/{id}/dashboard/?token=…`, template `templates/flagship/dashboard.html`)
+is **read-only analytics** — KPIs, 30-day chart, placement summary, creative
+preview, bundle grid, and an advertiser-panel CTA; no editing lives there.
+The **advertiser panel** (`/account/`, login via one-time provisioned link)
+is the management surface: Brand page (creative replacement through the
+review queue, also client-normalized), placements analytics, patron spots,
+and a Support section (contact / report a bug). The booking-confirmation
+email frames both links by role; the modal's success step names both.
+
 ### Original Script Display
 
 - The lexicon's legacy `greek` field is reliable only for Greek, Devanagari,

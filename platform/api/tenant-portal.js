@@ -43,13 +43,21 @@ const SESSION_TTL_MS = 30 * 24 * 60 * 60 * 1000; // 30 days
 const TOKEN_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours (set-password / reset)
 const BCRYPT_ROUNDS = Number(process.env.PUNICODEX_BCRYPT_ROUNDS) || 12;
 const MIN_PASSWORD_LENGTH = 8;
-const MAX_IMAGE_BYTES = 2 * 1024 * 1024; // matches booking-upload.js
+const MAX_IMAGE_BYTES = 4 * 1024 * 1024; // matches booking-upload.js
 
-const UPLOADS_DIR = path.join(__dirname, 'public', 'uploads', 'tenant-requests');
+const { ensureUploadsDir } = require('./upload-storage');
+const { normalizeCreativeBuffer } = require('./booking-upload');
 
 // Booking statuses in which a creative swap is meaningful (mirrors the
-// allowed-upload statuses in platform/api/booking-upload.js).
-const IMAGE_CHANGEABLE_STATUSES = ['pending_upload', 'rejected', 'approved', 'live'];
+// allowed-upload statuses in platform/api/booking-upload.js; under-review
+// included — the reviewer always sees the latest).
+const IMAGE_CHANGEABLE_STATUSES = [
+  'pending_upload',
+  'rejected',
+  'approved',
+  'live',
+  'pending_approval',
+];
 
 // Social link validation mirrored from platform/api/patron-service.js
 // (SOCIAL_PLATFORMS / SOCIAL_PATTERNS are not exported there). Keep in sync
@@ -781,8 +789,7 @@ function sanitizeSocialLinks(payload) {
 async function stageImage(accountId, parsed) {
   const ext = parsed.mimeType.split('/')[1];
   const safeName = `${Date.now()}-${crypto.randomBytes(6).toString('hex')}.${ext}`;
-  const dir = path.join(UPLOADS_DIR, String(accountId));
-  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+  const dir = ensureUploadsDir(path.join('tenant-requests', String(accountId)));
   const absPath = path.join(dir, safeName);
   fs.writeFileSync(absPath, parsed.buffer);
   await writeWebpSibling(absPath, parsed.buffer);
@@ -849,9 +856,24 @@ async function createChangeRequest(account, { type, target, payload } = {}) {
       typeof payload?.filename === 'string' && payload.filename.trim()
         ? payload.filename.trim().slice(0, 200)
         : 'creative';
-    const dimError = validateCreativeDimensions(parsed.buffer, booking.width, booking.height);
+    // Same normalization as the direct upload path: EXIF rotate, center-crop
+    // to the slot frame, downscale to 2×. Any sane photo fits.
+    let finalBuffer;
+    try {
+      finalBuffer = await normalizeCreativeBuffer(parsed.buffer, booking.width, booking.height);
+    } catch (err) {
+      throw portalError(
+        400,
+        `We could not process this image (${err.message}). Try a different file.`
+      );
+    }
+    const dimError = validateCreativeDimensions(finalBuffer, booking.width, booking.height);
     if (dimError) throw portalError(400, dimError);
-    const creativePath = await stageImage(account.id, parsed);
+    const creativePath = await stageImage(account.id, {
+      ...parsed,
+      buffer: finalBuffer,
+      mimeType: 'image/png',
+    });
     storedPayload = { creativePath, originalName: filename };
   } else {
     targetKind = 'patron';

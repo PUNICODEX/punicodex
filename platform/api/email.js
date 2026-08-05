@@ -382,12 +382,14 @@ async function sendBookingConfirmation({
         ${trialBadge}
         ${customHeading ? `<p><strong>Heading:</strong> ${escapeHtml(customHeading)}</p>` : ''}
         ${customSubtitle ? `<p><strong>Subtitle:</strong> ${escapeHtml(customSubtitle)}</p>` : ''}
-        <p>Manage everything from your advertiser panel:</p>
+        <p>Two ways to look after your placement:</p>
         <div style="display:flex;flex-direction:column;gap:0.75rem;margin:1.5rem 0;">
-          <a href="${escapeHtml(panelUrl)}" style="display:block;background:#d4af37;color:#000;padding:14px;text-align:center;text-decoration:none;border-radius:8px;font-weight:600;">Open Advertiser Panel</a>
-          <a href="${escapeHtml(dashboardUrl)}" style="display:block;background:transparent;color:#d4af37;border:2px solid #d4af37;padding:14px;text-align:center;text-decoration:none;border-radius:8px;font-weight:600;">Analytics Dashboard</a>
+          <a href="${escapeHtml(panelUrl)}" style="display:block;background:#d4af37;color:#000;padding:14px;text-align:center;text-decoration:none;border-radius:8px;font-weight:600;">Open the Advertiser Panel</a>
+          <p style="margin:-0.4rem 0 0.4rem;font-size:0.78rem;color:#666;text-align:center;">Change creatives, headings, and destination URLs · detailed analytics · support</p>
+          <a href="${escapeHtml(dashboardUrl)}" style="display:block;background:transparent;color:#d4af37;border:2px solid #d4af37;padding:14px;text-align:center;text-decoration:none;border-radius:8px;font-weight:600;">View the Analytics Snapshot</a>
+          <p style="margin:-0.4rem 0 0;font-size:0.78rem;color:#666;text-align:center;">No sign-in needed — live traffic for this placement, view-only</p>
         </div>
-        <p style="color:#666;font-size:0.8rem;">Your panel link is unique to you. Keep it safe.</p>
+        <p style="color:#666;font-size:0.8rem;">The snapshot link is unique to this placement and view-only — share it freely with your team. Your panel is yours alone.</p>
       </div>
     `,
   });

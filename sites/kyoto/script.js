@@ -1207,20 +1207,64 @@ els.uploadInput.addEventListener('change', (e) => {
 });
 els.changeFile.addEventListener('click', resetUpload);
 
-function handleFileSelect(file) {
+async function handleFileSelect(file) {
   const allowed = ['image/png', 'image/jpeg', 'image/webp'];
   if (!allowed.includes(file.type)) {
     showBookingError('Please upload PNG, JPG, or WebP');
     return;
   }
-  if (file.size > 2 * 1024 * 1024) {
-    showBookingError('File must be under 2MB');
+  selectedFile = file;
+
+  // Normalize client-side (center-crop to the slot's frame, downscale to
+  // 2×). The preview shows exactly what will run — and the server performs
+  // the same normalization again, so the two can never disagree.
+  const warn = (() => {
+    let el = document.getElementById('booking-upload-warning');
+    if (!el) {
+      el = document.createElement('p');
+      el.id = 'booking-upload-warning';
+      el.style.cssText = 'margin-top:0.75rem;font-size:0.8rem;color:#e8c860;text-align:center;';
+      els.uploadZone.parentNode.insertBefore(el, els.uploadZone.nextSibling);
+    }
+    return el;
+  })();
+
+  try {
+    if (typeof CreativeNormalize === 'undefined' || !currentUploadSlot) {
+      throw new Error('normalizer unavailable');
+    }
+    warn.textContent = 'Preparing your creative…';
+    const n = await CreativeNormalize.normalizeCreative(
+      file,
+      currentUploadSlot.width,
+      currentUploadSlot.height
+    );
+    selectedFileBase64 = n.dataUrl;
+    if (n.tooSmall) {
+      warn.textContent = `Your image is ${n.originalWidth}x${n.originalHeight} — smaller than the slot's ${currentUploadSlot.width}x${currentUploadSlot.height}. It will run, but may print soft; a larger original is better.`;
+    } else if (n.cropped) {
+      warn.textContent = `Framed to ${n.width}x${n.height} from your ${n.originalWidth}x${n.originalHeight} original — the preview below is exactly what will run.`;
+    } else {
+      warn.remove();
+    }
+  } catch (err) {
+    // Fall back to the raw file: the server normalizes regardless, so this
+    // path only matters when the browser cannot decode the image at all.
+    if (file.size > 20 * 1024 * 1024) {
+      showBookingError(err.message || 'This file is too large to process');
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      selectedFileBase64 = e.target.result;
+      finishPreview();
+    };
+    reader.readAsDataURL(file);
     return;
   }
-  selectedFile = file;
-  const reader = new FileReader();
-  reader.onload = (e) => {
-    selectedFileBase64 = e.target.result;
+  finishPreview();
+
+  function finishPreview() {
     els.uploadPreview.src = selectedFileBase64;
     els.uploadPreview.style.display = 'block';
     els.uploadPrompt.style.display = 'none';
@@ -1229,32 +1273,7 @@ function handleFileSelect(file) {
     // Live preview in frame
     els.livePreview.style.display = 'block';
     els.livePreviewFrame.innerHTML = `<img src="${selectedFileBase64}" alt="Preview">`;
-
-    // Aspect-ratio sanity check against the booked slot
-    if (currentUploadSlot && currentUploadSlot.width && currentUploadSlot.height) {
-      const img = new Image();
-      img.onload = () => {
-        const expected = currentUploadSlot.width / currentUploadSlot.height;
-        const actual = img.naturalWidth / img.naturalHeight;
-        const deviation = Math.abs(expected - actual) / expected;
-        let warn = document.getElementById('booking-upload-warning');
-        if (deviation > 0.15) {
-          if (!warn) {
-            warn = document.createElement('p');
-            warn.id = 'booking-upload-warning';
-            warn.style.cssText = 'margin-top:0.75rem;font-size:0.8rem;color:#ff6b6b;text-align:center;';
-            els.uploadZone.parentNode.insertBefore(warn, els.uploadZone.nextSibling);
-          }
-          const expectedLabel = expected >= 2.9 ? '3:1 banner' : '1:1 box';
-          warn.textContent = 'Aspect ratio mismatch. Recommended ' + currentUploadSlot.width + 'x' + currentUploadSlot.height + ' (' + expectedLabel + '). Your image is ' + img.naturalWidth + 'x' + img.naturalHeight + '. It will be cropped to fit.';
-        } else if (warn) {
-          warn.remove();
-        }
-      };
-      img.src = selectedFileBase64;
-    }
-  };
-  reader.readAsDataURL(file);
+  }
 }
 
 els.submitUpload.addEventListener('click', async () => {

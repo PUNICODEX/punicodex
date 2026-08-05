@@ -12,6 +12,14 @@
       "destination": "https://punycodex-masters.vercel.app/sites/:path*/assets/:file*"
     },
     {
+      "source": "/uploads/:slug*/",
+      "destination": "/api/uploads/[[...slug]]"
+    },
+    {
+      "source": "/uploads/:slug*",
+      "destination": "/api/uploads/[[...slug]]"
+    },
+    {
       "source": "/api/v1/scholars/:path*/",
       "destination": "/api/v1/scholars"
     },

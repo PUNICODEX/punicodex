@@ -163,29 +163,9 @@
             outline: none;
         }
         .dash-input:focus { border-color: var(--gold); }
-        .dash-upload-zone {
-            border: 2px dashed var(--gold-dim);
-            border-radius: 10px;
-            padding: 2rem;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.2s;
-            position: relative;
-            overflow: hidden;
-        }
-        .dash-upload-zone:hover, .dash-upload-zone.dragover {
-            border-color: var(--gold);
-            background: rgba(255,255,255,0.02);
-        }
-        .dash-upload-input {
-            position: absolute;
-            inset: 0;
-            opacity: 0;
-            cursor: pointer;
-        }
-        .dash-upload-icon { font-size: 1.8rem; color: var(--gold); display: block; margin-bottom: 0.5rem; }
-        .dash-upload-hint { font-size: 0.75rem; color: var(--text-muted); }
-        .dash-upload-preview { max-width: 100%; max-height: 200px; border-radius: 6px; margin-top: 1rem; display: none; }
+        .dash-placement-row { display: flex; justify-content: space-between; gap: 1rem; padding: 0.6rem 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+        .dash-placement-row span { color: var(--text-muted); }
+        .dash-placement-row strong { color: var(--text); font-weight: 500; text-align: right; overflow-wrap: anywhere; }
         .dash-btn {
             background: var(--gold);
             color: #000;
@@ -305,33 +285,7 @@
         </div>
     </div>
 
-    <!-- Bundle Slot Editor Modal -->
-    <div class="dash-section" id="slot-editor" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:1000;align-items:center;justify-content:center;padding:1rem;max-width:none;border-radius:0;">
-        <div style="background:var(--bg-card);border:1px solid var(--gold-dim);border-radius:10px;padding:1.5rem;max-width:480px;width:100%;max-height:90vh;overflow-y:auto;">
-            <h2 style="font-family:'Cinzel',serif;color:var(--gold);margin-bottom:0.5rem;">Edit <span id="slot-editor-name"></span></h2>
-            <p id="slot-editor-dims" style="font-size:0.8rem;color:var(--text-muted);margin-bottom:1rem;"></p>
-            <label class="dash-form-label">Heading <span style="text-transform:none;letter-spacing:0;font-weight:400;">(max 60 banner / 36 box)</span></label>
-            <input type="text" class="dash-input" id="slot-edit-heading" aria-label="Slot heading" placeholder="Heading">
-            <label class="dash-form-label">Subtitle <span style="text-transform:none;letter-spacing:0;font-weight:400;">(max 100 banner / 60 box)</span></label>
-            <input type="text" class="dash-input" id="slot-edit-subtitle" aria-label="Slot subtitle" placeholder="Subtitle">
-            <label class="dash-form-label">Destination URL</label>
-            <input type="url" class="dash-input" id="slot-edit-url" aria-label="Slot link URL" placeholder="https://yourbrand.com">
-            <label class="dash-form-label">New Creative</label>
-            <div class="dash-upload-zone" id="slot-edit-upload-zone">
-                <input type="file" class="dash-upload-input" id="slot-edit-upload-input" aria-label="Replace slot creative image" accept="image/png,image/jpeg,image/webp">
-                <div class="dash-upload-prompt">
-                    <span class="dash-upload-icon">&#8679;</span>
-                    <p>Drag & drop or click to upload</p>
-                    <p class="dash-upload-hint">PNG, JPG, or WebP &middot; Max 2MB</p>
-                </div>
-                <img class="dash-upload-preview" id="slot-edit-preview" alt="Preview" style="display:none;">
-            </div>
-            <div class="dash-actions">
-                <button class="dash-btn" onclick="saveSlotChanges()">Save Slot</button>
-                <button class="dash-btn dash-btn--secondary" onclick="closeSlotEditor()">Cancel</button>
-            </div>
-        </div>
-    </div>
+    <!-- (Read-only by design: placement management lives in the advertiser panel.) -->
 
     <script>
         const API_BASE = window.PUNICODEX_API_BASE || '';
@@ -339,8 +293,6 @@
         const SITE_SLUG = 'thanatos';
 
         let chartInstance = null;
-        let selectedFileBase64 = null;
-        let selectedFileName = null;
         let currentBooking = null;
         let slotCreatives = [];
 
@@ -429,8 +381,6 @@
             const impData = labels.map(d => dailyMap[d]?.impressions || 0);
             const clickData = labels.map(d => dailyMap[d]?.clicks || 0);
 
-            const isEditable = b.status !== 'ended' && b.status !== 'canceled';
-
             document.getElementById('app').innerHTML = `
                 <div class="dash-header">
                     <div>
@@ -465,29 +415,16 @@
                         </div>
                     </div>
 
-                    ${isEditable ? `
+                    ${b.status !== 'ended' && b.status !== 'canceled' ? `
                     <div class="dash-section">
-                        <h2>Edit Placement</h2>
-                        <div class="dash-notice" id="dash-notice"></div>
-                        <label class="dash-form-label">Heading <span style="text-transform:none;letter-spacing:0;font-weight:400;">(max 60 for banner, 36 for box)</span></label>
-                        <input type="text" class="dash-input" id="dash-heading" aria-label="Brand heading" value="${escapeHtml(b.custom_heading || '')}" placeholder="Your brand heading">
-                        <label class="dash-form-label">Subtitle <span style="text-transform:none;letter-spacing:0;font-weight:400;">(max 100 for banner, 60 for box)</span></label>
-                        <input type="text" class="dash-input" id="dash-subtitle" value="${escapeHtml(b.custom_subtitle || '')}" placeholder="Tagline or description">
-                        <label class="dash-form-label">Destination URL</label>
-                        <input type="url" class="dash-input" id="dash-url" value="${escapeHtml(b.website_url || '')}" placeholder="https://yourbrand.com">
-                        <label class="dash-form-label">New Creative</label>
-                        <div class="dash-upload-zone" id="dash-upload-zone">
-                            <input type="file" class="dash-upload-input" id="dash-upload-input" aria-label="Upload creative image" accept="image/png,image/jpeg,image/webp">
-                            <div class="dash-upload-prompt">
-                                <span class="dash-upload-icon">&#8679;</span>
-                                <p>Drag & drop or click to swap creative</p>
-                                <p class="dash-upload-hint">PNG, JPG, or WebP &middot; Max 2MB &middot; Recommended ${b.width}×${b.height}px</p>
-                            </div>
-                            <img class="dash-upload-preview" id="dash-upload-preview" alt="Preview">
-                        </div>
+                        <h2>Your Placement</h2>
+                        ${b.custom_heading ? `<div class="dash-placement-row"><span>Heading</span><strong>${escapeHtml(b.custom_heading)}</strong></div>` : ''}
+                        ${b.custom_subtitle ? `<div class="dash-placement-row"><span>Subtitle</span><strong>${escapeHtml(b.custom_subtitle)}</strong></div>` : ''}
+                        ${b.website_url ? `<div class="dash-placement-row"><span>Destination</span><strong>${escapeHtml(b.website_url)}</strong></div>` : ''}
+                        <div class="dash-placement-row"><span>Status</span><strong>${escapeHtml(b.status)}</strong></div>
+                        <p style="font-size:0.85rem;color:var(--text-muted);margin:1rem 0 0;">To change your creative, heading, or destination URL, sign in to the advertiser panel — it manages every placement on your account.</p>
                         <div class="dash-actions">
-                            <button class="dash-btn" onclick="saveChanges()">Save Changes</button>
-                            <button class="dash-btn dash-btn--secondary" onclick="resetForm()">Reset</button>
+                            <a class="dash-btn" href="/account/login/">Open the advertiser panel →</a>
                         </div>
                     </div>
                     ` : ''}
@@ -504,7 +441,6 @@
             `;
 
             initChart(labels, impData, clickData);
-            if (isEditable) initUploadHandlers();
         }
 
         function pictureTag(path, webpPath, alt) {
@@ -531,18 +467,13 @@
                             </div>
                         </div>
                         <div class="bundle-slot-creative">${slotCreative}</div>
-                        ${b.status !== 'ended' ? `
-                            <div class="bundle-slot-actions">
-                                <button class="bundle-slot-btn dash-btn" onclick="openSlotEditor(${s.id})">Edit</button>
-                            </div>
-                        ` : ''}
                     </div>
                 `;
             }).join('');
             return `
                 <div class="dash-section">
                     <h2>Bundle Slots</h2>
-                    <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:1rem;">Manage each of the 13 slots individually. Click Edit to change heading, subtitle, URL, or creative.</p>
+                    <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:1rem;">Your current creative on each of the 13 slots. To change any of them, use the advertiser panel.</p>
                     <div class="bundle-grid">${slotGrid}</div>
                 </div>
             `;
@@ -594,183 +525,6 @@
                     }
                 }
             });
-        }
-
-        function initUploadHandlers() {
-            const zone = document.getElementById('dash-upload-zone');
-            const input = document.getElementById('dash-upload-input');
-            if (!zone || !input) return;
-            zone.addEventListener('click', () => input.click());
-            zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('dragover'); });
-            zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
-            zone.addEventListener('drop', e => {
-                e.preventDefault();
-                zone.classList.remove('dragover');
-                if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
-            });
-            input.addEventListener('change', e => {
-                if (e.target.files.length) handleFile(e.target.files[0]);
-            });
-        }
-
-        function handleFile(file) {
-            const allowed = ['image/png', 'image/jpeg', 'image/webp'];
-            if (!allowed.includes(file.type)) { showNotice('PNG, JPG, or WebP only', 'error'); return; }
-            if (file.size > 2 * 1024 * 1024) { showNotice('Max 2MB', 'error'); return; }
-            selectedFileName = file.name;
-            const reader = new FileReader();
-            reader.onload = e => {
-                selectedFileBase64 = e.target.result;
-                const preview = document.getElementById('dash-upload-preview');
-                const prompt = document.querySelector('.dash-upload-prompt');
-                preview.src = selectedFileBase64;
-                preview.style.display = 'block';
-                if (prompt) prompt.style.display = 'none';
-            };
-            reader.readAsDataURL(file);
-        }
-
-        function resetForm() {
-            selectedFileBase64 = null;
-            selectedFileName = null;
-            const preview = document.getElementById('dash-upload-preview');
-            const prompt = document.querySelector('.dash-upload-prompt');
-            const input = document.getElementById('dash-upload-input');
-            if (preview) preview.style.display = 'none';
-            if (prompt) prompt.style.display = 'block';
-            if (input) input.value = '';
-            showNotice('', '');
-        }
-
-        function showNotice(msg, type) {
-            const el = document.getElementById('dash-notice');
-            if (!el) return;
-            el.className = 'dash-notice';
-            if (!msg) { el.style.display = 'none'; return; }
-            el.classList.add(`dash-notice--${type}`);
-            el.textContent = msg;
-            el.style.display = 'block';
-        }
-
-        async function saveChanges() {
-            if (!currentBooking) return;
-            const heading = document.getElementById('dash-heading').value.trim();
-            const subtitle = document.getElementById('dash-subtitle').value.trim();
-            const url = document.getElementById('dash-url').value.trim();
-
-            showNotice('Saving...', 'pending');
-
-            try {
-                const metaRes = await api(`/api/bookings/${token}/meta`, {
-                    method: 'POST',
-                    body: JSON.stringify({ customHeading: heading, customSubtitle: subtitle, websiteUrl: url })
-                });
-                if (metaRes.error) { showNotice(metaRes.error, 'error'); return; }
-
-                if (selectedFileBase64) {
-                    const uploadRes = await api(`/api/bookings/${token}/upload`, {
-                        method: 'POST',
-                        body: JSON.stringify({ image: selectedFileBase64, filename: selectedFileName || 'creative.png' })
-                    });
-                    if (uploadRes.error) { showNotice(uploadRes.error, 'error'); return; }
-                }
-
-                showNotice('Changes saved and pending approval.', 'success');
-                resetForm();
-                setTimeout(fetchDashboard, 1200);
-            } catch (err) {
-                showNotice('Save failed. Please try again.', 'error');
-            }
-        }
-
-        let editingSlotId = null;
-        let slotSelectedFileBase64 = null;
-        let slotSelectedFileName = null;
-
-        function openSlotEditor(slotId) {
-            editingSlotId = slotId;
-            slotSelectedFileBase64 = null;
-            slotSelectedFileName = null;
-            const def = SLOT_DEFINITIONS.find(s => s.id === slotId) || {};
-            const sc = slotCreatives.find(c => c.slot_id === slotId) || {};
-            document.getElementById('slot-editor-name').textContent = def.name || `Slot ${slotId}`;
-            document.getElementById('slot-editor-dims').textContent = def.dims ? `Recommended ${def.dims}px` : '';
-            document.getElementById('slot-edit-heading').value = sc.custom_heading || '';
-            document.getElementById('slot-edit-subtitle').value = sc.custom_subtitle || '';
-            document.getElementById('slot-edit-url').value = sc.website_url || '';
-            document.getElementById('slot-edit-preview').style.display = 'none';
-            document.getElementById('slot-edit-preview').src = '';
-            document.getElementById('slot-edit-upload-input').value = '';
-            const prompt = document.querySelector('#slot-edit-upload-zone .dash-upload-prompt');
-            if (prompt) prompt.style.display = 'block';
-
-            const zone = document.getElementById('slot-edit-upload-zone');
-            const input = document.getElementById('slot-edit-upload-input');
-            zone.onclick = () => input.click();
-            zone.ondragover = e => { e.preventDefault(); zone.classList.add('dragover'); };
-            zone.ondragleave = () => zone.classList.remove('dragover');
-            zone.ondrop = e => {
-                e.preventDefault();
-                zone.classList.remove('dragover');
-                if (e.dataTransfer.files.length) handleSlotFile(e.dataTransfer.files[0]);
-            };
-            input.onchange = e => {
-                if (e.target.files.length) handleSlotFile(e.target.files[0]);
-            };
-
-            document.getElementById('slot-editor').style.display = 'flex';
-        }
-
-        function closeSlotEditor() {
-            document.getElementById('slot-editor').style.display = 'none';
-            editingSlotId = null;
-            slotSelectedFileBase64 = null;
-            slotSelectedFileName = null;
-        }
-
-        function handleSlotFile(file) {
-            const allowed = ['image/png', 'image/jpeg', 'image/webp'];
-            if (!allowed.includes(file.type)) { alert('PNG, JPG, or WebP only'); return; }
-            if (file.size > 2 * 1024 * 1024) { alert('Max 2MB'); return; }
-            slotSelectedFileName = file.name;
-            const reader = new FileReader();
-            reader.onload = e => {
-                slotSelectedFileBase64 = e.target.result;
-                const preview = document.getElementById('slot-edit-preview');
-                const prompt = document.querySelector('#slot-edit-upload-zone .dash-upload-prompt');
-                preview.src = slotSelectedFileBase64;
-                preview.style.display = 'block';
-                if (prompt) prompt.style.display = 'none';
-            };
-            reader.readAsDataURL(file);
-        }
-
-        async function saveSlotChanges() {
-            if (!editingSlotId) return;
-            const heading = document.getElementById('slot-edit-heading').value.trim();
-            const subtitle = document.getElementById('slot-edit-subtitle').value.trim();
-            const url = document.getElementById('slot-edit-url').value.trim();
-
-            try {
-                const metaRes = await api(`/api/bookings/${token}/meta`, {
-                    method: 'POST',
-                    body: JSON.stringify({ slotId: editingSlotId, customHeading: heading, customSubtitle: subtitle, websiteUrl: url })
-                });
-                if (metaRes.error) { alert(metaRes.error); return; }
-
-                if (slotSelectedFileBase64) {
-                    const uploadRes = await api(`/api/bookings/${token}/slot/${editingSlotId}/upload`, {
-                        method: 'POST',
-                        body: JSON.stringify({ image: slotSelectedFileBase64, filename: slotSelectedFileName || 'creative.png' })
-                    });
-                    if (uploadRes.error) { alert(uploadRes.error); return; }
-                }
-
-                closeSlotEditor();
-                fetchDashboard();
-            } catch (err) {
-                alert('Save failed. Please try again.');
-            }
         }
 
         fetchDashboard();

@@ -14,13 +14,31 @@ const {
 } = require('./bookings');
 const { validateCreativeDimensions } = require('./image-meta');
 const { writeWebpSibling, webpSiblingPath } = require('./image-webp');
+const { ensureUploadsDir } = require('./upload-storage');
+const sharp = require('sharp');
 
-const UPLOADS_DIR = path.join(__dirname, 'public', 'uploads');
-
-function ensureUploadsDir() {
-  if (!fs.existsSync(UPLOADS_DIR)) {
-    fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+/**
+ * Normalize any sane upload into the slot's frame: EXIF auto-rotate (phone
+ * photos), center-crop to the slot aspect ratio, downscale to at most 2× the
+ * slot dimensions (retina). Returns a PNG buffer. This is the server-side
+ * guarantee behind the page's "it will be cropped to fit" promise; the
+ * client-side normalizer is only a payload optimization.
+ */
+async function normalizeCreativeBuffer(buffer, slotWidth, slotHeight) {
+  const targetW = Math.max(1, slotWidth * 2);
+  const targetH = Math.max(1, slotHeight * 2);
+  let img = sharp(buffer, { failOn: 'none' }).rotate();
+  const meta = await img.metadata();
+  if (!meta.width || !meta.height) throw new Error('Could not read image dimensions');
+  const slotRatio = targetW / targetH;
+  const imgRatio = meta.width / meta.height;
+  if (Math.abs(slotRatio - imgRatio) / slotRatio > 0.005) {
+    // Different aspect: cover-crop to the slot frame, centered.
+    img = img.resize({ width: targetW, height: targetH, fit: 'cover', position: 'centre' });
+  } else if (meta.width > targetW) {
+    img = img.resize({ width: targetW, withoutEnlargement: true });
   }
+  return img.png().toBuffer();
 }
 
 function parseBase64Image(image) {
@@ -28,8 +46,12 @@ function parseBase64Image(image) {
   if (!match) return { error: 'Invalid image format. Must be base64 data URI.' };
   const mimeType = match[1];
   const buffer = Buffer.from(match[3], 'base64');
-  if (buffer.length > 2 * 1024 * 1024) {
-    return { error: 'Image must be under 2MB' };
+  // 4MB decoded cap: the upload surfaces normalize client-side (center-crop
+  // to slot aspect, downscale to 2× slot dims), so anything past this is a
+  // hand-rolled caller, not a sponsor — and Vercel's 4.5MB body limit caps
+  // the wire size regardless.
+  if (buffer.length > 4 * 1024 * 1024) {
+    return { error: 'Image must be under 4MB' };
   }
   return { mimeType, buffer };
 }
@@ -42,27 +64,49 @@ async function uploadBookingCreative(token, { image, filename }, { notifyAdminPe
   const booking = await getBookingByToken(token);
   if (!booking) return { status: 404, body: { error: 'Booking not found' } };
 
-  // Allow upload during initial setup, after rejection, or when updating a live placement.
-  if (!['pending_upload', 'rejected', 'approved', 'live'].includes(booking.status)) {
-    return { status: 400, body: { error: `Cannot upload in status: ${booking.status}` } };
+  // Credential matrix: the analytics token is a VIEW credential, shareable
+  // with the sponsor's team — so it may only write while nothing is public:
+  // the first creative (pending_upload, approved) and resubmission after a
+  // rejection. Anything under review or live changes through the
+  // session-authed advertiser panel, where the change is attributed to the
+  // tenant account.
+  if (!['pending_upload', 'approved', 'rejected'].includes(booking.status)) {
+    return {
+      status: 403,
+      body: {
+        error:
+          booking.status === 'pending_approval' || booking.status === 'live'
+            ? 'This placement is managed from the advertiser panel — sign in there to change your creative.'
+            : `Cannot upload in status: ${booking.status}`,
+      },
+    };
   }
 
   const parsed = parseBase64Image(image);
   if (parsed.error) return { status: 400, body: { error: parsed.error } };
 
-  const dimError = validateCreativeDimensions(parsed.buffer, booking.width, booking.height);
+  // Server-side normalization: rotate, crop to the slot frame, cap at 2× —
+  // any sane photo fits, exactly as the upload UI promises.
+  let finalBuffer;
+  try {
+    finalBuffer = await normalizeCreativeBuffer(parsed.buffer, booking.width, booking.height);
+  } catch (err) {
+    return {
+      status: 400,
+      body: { error: `We could not process this image (${err.message}). Try a different file.` },
+    };
+  }
+
+  const dimError = validateCreativeDimensions(finalBuffer, booking.width, booking.height);
   if (dimError) {
     return { status: 400, body: { error: dimError } };
   }
 
-  ensureUploadsDir();
-  const ext = parsed.mimeType.split('/')[1];
-  const safeName = `${Date.now()}.${ext}`;
-  const slotDir = path.join(UPLOADS_DIR, String(booking.id));
-  if (!fs.existsSync(slotDir)) fs.mkdirSync(slotDir, { recursive: true });
+  const slotDir = ensureUploadsDir(String(booking.id));
+  const safeName = `${Date.now()}.png`;
   const filePath = path.join(slotDir, safeName);
-  fs.writeFileSync(filePath, parsed.buffer);
-  const webpWritten = await writeWebpSibling(filePath, parsed.buffer);
+  fs.writeFileSync(filePath, finalBuffer);
+  const webpWritten = await writeWebpSibling(filePath, finalBuffer);
 
   const publicPath = `/uploads/${booking.id}/${safeName}`;
   await saveCreative(booking.id, publicPath, filename);
@@ -99,8 +143,16 @@ async function uploadSlotCreative(token, slotId, { image, filename }) {
     return { status: 400, body: { error: 'Per-slot upload only available for bundle bookings' } };
   }
 
-  if (!['pending_upload', 'rejected', 'approved', 'live'].includes(booking.status)) {
-    return { status: 400, body: { error: `Cannot upload in status: ${booking.status}` } };
+  if (!['pending_upload', 'approved', 'rejected'].includes(booking.status)) {
+    return {
+      status: 403,
+      body: {
+        error:
+          booking.status === 'pending_approval' || booking.status === 'live'
+            ? 'This placement is managed from the advertiser panel — sign in there to change your creative.'
+            : `Cannot upload in status: ${booking.status}`,
+      },
+    };
   }
 
   const members = await getBundleMembers(booking.slot_id);
@@ -114,19 +166,26 @@ async function uploadSlotCreative(token, slotId, { image, filename }) {
   const memberSlot = await getSlotById(slotId);
   if (!memberSlot) return { status: 404, body: { error: 'Slot not found' } };
 
-  const dimError = validateCreativeDimensions(parsed.buffer, memberSlot.width, memberSlot.height);
+  let finalBuffer;
+  try {
+    finalBuffer = await normalizeCreativeBuffer(parsed.buffer, memberSlot.width, memberSlot.height);
+  } catch (err) {
+    return {
+      status: 400,
+      body: { error: `We could not process this image (${err.message}). Try a different file.` },
+    };
+  }
+
+  const dimError = validateCreativeDimensions(finalBuffer, memberSlot.width, memberSlot.height);
   if (dimError) {
     return { status: 400, body: { error: dimError } };
   }
 
-  ensureUploadsDir();
-  const ext = parsed.mimeType.split('/')[1];
-  const safeName = `${Date.now()}.${ext}`;
-  const slotDir = path.join(UPLOADS_DIR, String(booking.id), String(slotId));
-  if (!fs.existsSync(slotDir)) fs.mkdirSync(slotDir, { recursive: true });
+  const slotDir = ensureUploadsDir(path.join(String(booking.id), String(slotId)));
+  const safeName = `${Date.now()}.png`;
   const filePath = path.join(slotDir, safeName);
-  fs.writeFileSync(filePath, parsed.buffer);
-  const webpWritten = await writeWebpSibling(filePath, parsed.buffer);
+  fs.writeFileSync(filePath, finalBuffer);
+  const webpWritten = await writeWebpSibling(filePath, finalBuffer);
 
   const publicPath = `/uploads/${booking.id}/${slotId}/${safeName}`;
   await saveSlotCreative(booking.id, slotId, publicPath, filename);
@@ -144,4 +203,5 @@ async function uploadSlotCreative(token, slotId, { image, filename }) {
 module.exports = {
   uploadBookingCreative,
   uploadSlotCreative,
+  normalizeCreativeBuffer,
 };
