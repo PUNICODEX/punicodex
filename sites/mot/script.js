@@ -239,7 +239,11 @@ function updateSlotUI() {
       link.style.cssText = 'display:block;width:100%;height:100%;position:relative;z-index:2;';
 
       const adImg = document.createElement('img');
-      adImg.src = `${API_BASE}${slot.creative_path}`;
+      // creative_path may be a site-relative /uploads/ path or an absolute
+      // blob URL — resolve either.
+      adImg.src = /^https?:\/\//.test(slot.creative_path)
+        ? slot.creative_path
+        : `${API_BASE}${slot.creative_path}`;
       adImg.alt = slot.company_name || 'Advertisement';
       adImg.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
 

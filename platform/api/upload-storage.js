@@ -1,22 +1,28 @@
 /**
- * Upload storage root.
+ * Creative upload storage.
  *
- * Local development serves platform/api/public/uploads statically (the
- * Express platform server). On Vercel the deployment bundle is read-only, so
- * writes go to /tmp — ephemeral per instance, exactly like the SQLite
- * booking state itself (see AGENTS.md "SQLite on Vercel lives in /tmp and is
- * ephemeral"). The /api/uploads/[[...slug]] function serves files from this
- * root in production; the local server keeps serving the directory directly.
+ * Two backends, one call:
+ *   - Vercel Blob when BLOB_READ_WRITE_TOKEN is set (production): files are
+ *     durable, served from Vercel's CDN, and the returned value is the
+ *     absolute public blob URL — stored verbatim as creative_path.
+ *   - Local disk otherwise (dev): platform/api/public/uploads, served by the
+ *     Express platform server; the returned value is the /uploads/… path.
+ *     (On Vercel without the token the root is /tmp — ephemeral per instance,
+ *     like the SQLite booking state before Postgres.)
  *
- * Durable production creative storage (Vercel Blob / external object store)
- * is a deliberate follow-up decision — the booking system's durability
- * decision (external Postgres) and this one travel together.
+ * Callers must treat creative_path as opaque: it may be a site-relative
+ * /uploads/ path or an absolute https:// blob URL. Display layers resolve
+ * both via resolveCreativeUrl below.
  */
 
 'use strict';
 
 const fs = require('node:fs');
 const path = require('node:path');
+
+function blobEnabled() {
+  return Boolean(process.env.BLOB_READ_WRITE_TOKEN);
+}
 
 function uploadsRoot() {
   return process.env.VERCEL
@@ -30,4 +36,45 @@ function ensureUploadsDir(subdir = '') {
   return dir;
 }
 
-module.exports = { uploadsRoot, ensureUploadsDir };
+/**
+ * Persist a creative buffer and return its public URL/path.
+ * @param {string} subdir — e.g. the booking id (or booking/slot id)
+ * @param {string} filename — sanitized filename with extension
+ * @param {Buffer} buffer — the normalized image bytes
+ * @param {string} contentType — e.g. 'image/png'
+ * @returns {Promise<{url: string}>}
+ */
+async function storeCreativeBuffer(subdir, filename, buffer, contentType = 'image/png') {
+  if (blobEnabled()) {
+    const { put } = require('@vercel/blob');
+    const blob = await put(`${subdir}/${filename}`, buffer, {
+      access: 'public',
+      contentType,
+      addRandomSuffix: false,
+    });
+    return { url: blob.url };
+  }
+  const dir = ensureUploadsDir(subdir);
+  const abs = path.join(dir, filename);
+  fs.writeFileSync(abs, buffer);
+  return { url: `/uploads/${subdir}/${filename}` };
+}
+
+/**
+ * Display-layer helper: a stored creative reference may be a site-relative
+ * /uploads/ path or an absolute blob URL. Resolve for rendering against an
+ * optional API base.
+ */
+function resolveCreativeUrl(creativePath, apiBase = '') {
+  if (!creativePath) return null;
+  if (/^https?:\/\//.test(creativePath)) return creativePath;
+  return `${apiBase}${creativePath}`;
+}
+
+module.exports = {
+  blobEnabled,
+  uploadsRoot,
+  ensureUploadsDir,
+  storeCreativeBuffer,
+  resolveCreativeUrl,
+};

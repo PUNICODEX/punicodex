@@ -1,5 +1,6 @@
 const { all } = require('../db/operational');
 const { endBooking, sweepStaleReservations } = require('../api/bookings');
+const { runCreativePurge } = require('../api/creative-purge');
 
 async function getLiveExpiredBookings() {
   return all(
@@ -39,12 +40,24 @@ async function runLeaseExpiry() {
     errors++;
   }
 
+  // Storage lifecycle: creatives for placements ended beyond the 30-day
+  // grace period are deleted (Blob or local), and decided/abandoned change
+  // requests lose their staged images. Purge failures never block expiry.
+  let purge = { endedCreativesPurged: 0, requestImagesPurged: 0 };
+  try {
+    purge = await runCreativePurge();
+  } catch (err) {
+    console.error('Creative purge failed:', err.message);
+    errors++;
+  }
+
   return {
     checked: expired.length,
     ended,
     errors,
     staleCanceled: swept.canceled,
     slotsReleased: swept.slotsReleased,
+    ...purge,
   };
 }
 

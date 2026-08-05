@@ -45,7 +45,7 @@ const BCRYPT_ROUNDS = Number(process.env.PUNICODEX_BCRYPT_ROUNDS) || 12;
 const MIN_PASSWORD_LENGTH = 8;
 const MAX_IMAGE_BYTES = 4 * 1024 * 1024; // matches booking-upload.js
 
-const { ensureUploadsDir } = require('./upload-storage');
+const { ensureUploadsDir, storeCreativeBuffer } = require('./upload-storage');
 const { normalizeCreativeBuffer } = require('./booking-upload');
 
 // Booking statuses in which a creative swap is meaningful (mirrors the
@@ -789,11 +789,13 @@ function sanitizeSocialLinks(payload) {
 async function stageImage(accountId, parsed) {
   const ext = parsed.mimeType.split('/')[1];
   const safeName = `${Date.now()}-${crypto.randomBytes(6).toString('hex')}.${ext}`;
-  const dir = ensureUploadsDir(path.join('tenant-requests', String(accountId)));
-  const absPath = path.join(dir, safeName);
-  fs.writeFileSync(absPath, parsed.buffer);
-  await writeWebpSibling(absPath, parsed.buffer);
-  return `/uploads/tenant-requests/${accountId}/${safeName}`;
+  const subdir = `tenant-requests/${accountId}`;
+  const stored = await storeCreativeBuffer(subdir, safeName, parsed.buffer, parsed.mimeType);
+  if (stored.url.startsWith('/uploads/')) {
+    const dir = ensureUploadsDir(subdir);
+    await writeWebpSibling(path.join(dir, safeName), parsed.buffer);
+  }
+  return stored.url;
 }
 
 function sanitizeRequest(row) {

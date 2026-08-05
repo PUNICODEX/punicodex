@@ -14,7 +14,7 @@ const {
 } = require('./bookings');
 const { validateCreativeDimensions } = require('./image-meta');
 const { writeWebpSibling, webpSiblingPath } = require('./image-webp');
-const { ensureUploadsDir } = require('./upload-storage');
+const { ensureUploadsDir, storeCreativeBuffer } = require('./upload-storage');
 const sharp = require('sharp');
 
 /**
@@ -104,11 +104,14 @@ async function uploadBookingCreative(token, { image, filename }, { notifyAdminPe
 
   const slotDir = ensureUploadsDir(String(booking.id));
   const safeName = `${Date.now()}.png`;
-  const filePath = path.join(slotDir, safeName);
-  fs.writeFileSync(filePath, finalBuffer);
-  const webpWritten = await writeWebpSibling(filePath, finalBuffer);
+  const stored = await storeCreativeBuffer(String(booking.id), safeName, finalBuffer, 'image/png');
+  // The WebP sibling is a local-file optimization; Blob serves the
+  // normalized PNG directly from the CDN.
+  const webpWritten = stored.url.startsWith('/uploads/')
+    ? await writeWebpSibling(path.join(slotDir, safeName), finalBuffer)
+    : false;
 
-  const publicPath = `/uploads/${booking.id}/${safeName}`;
+  const publicPath = stored.url;
   await saveCreative(booking.id, publicPath, filename);
 
   if (notifyAdminPending) {
@@ -181,13 +184,15 @@ async function uploadSlotCreative(token, slotId, { image, filename }) {
     return { status: 400, body: { error: dimError } };
   }
 
-  const slotDir = ensureUploadsDir(path.join(String(booking.id), String(slotId)));
+  const slotSubdir = `${booking.id}/${slotId}`;
+  const slotDir = ensureUploadsDir(slotSubdir);
   const safeName = `${Date.now()}.png`;
-  const filePath = path.join(slotDir, safeName);
-  fs.writeFileSync(filePath, finalBuffer);
-  const webpWritten = await writeWebpSibling(filePath, finalBuffer);
+  const stored = await storeCreativeBuffer(slotSubdir, safeName, finalBuffer, 'image/png');
+  const webpWritten = stored.url.startsWith('/uploads/')
+    ? await writeWebpSibling(path.join(slotDir, safeName), finalBuffer)
+    : false;
 
-  const publicPath = `/uploads/${booking.id}/${slotId}/${safeName}`;
+  const publicPath = stored.url;
   await saveSlotCreative(booking.id, slotId, publicPath, filename);
 
   return {

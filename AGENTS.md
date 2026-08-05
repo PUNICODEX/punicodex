@@ -727,10 +727,19 @@ API suites:
   always ship with a `?v=` version bump** — `/css`, `/js`, `/assets` are
   immutable-cached for a year.
 - SQLite on Vercel lives in `/tmp` and is **ephemeral** — API handlers
-  re-migrate and re-seed on cold start (idempotent migrations). Durable
-  production persistence requires an external DB (Postgres deps are present).
-  The rich crawler search index currently rides inside the local seed DB file;
-  CI-built deployments start with a fresh index the crawler crons rebuild.
+  re-migrate and re-seed on cold start (idempotent migrations). **Postgres
+  is the production operational store**: when `DATABASE_URL` is set (it is,
+  production + preview + development), `platform/db/operational.js` uses it
+  (`postgres` driver; `@neondatabase/serverless` also present), so bookings,
+  analytics, discount codes, patrons, and the portal persist durably. The
+  /tmp SQLite path remains the local-dev and no-DATABASE_URL fallback.
+- **Creative files persist to Vercel Blob** when `BLOB_READ_WRITE_TOKEN` is
+  set (the `punycodex-creatives` store): `platform/api/upload-storage.js`
+  `storeCreativeBuffer` puts the normalized PNG and returns its public CDN
+  URL, which is stored verbatim as `creative_path` (absolute). Without the
+  token, files go to the local static dir (dev) or `/tmp` (bare Vercel) and
+  serve via the `/api/uploads/[[...slug]]` function. Display layers resolve
+  both shapes through `resolveCreativeUrl` (absolute URL vs /uploads/ path).
 - `REDIS_URL` enables globally consistent Redis-backed rate limits;
   otherwise limiters fall back to per-process in-memory counters.
 - Root `sw.js` (registered from `js/main.js`) caches shell pages and assets.

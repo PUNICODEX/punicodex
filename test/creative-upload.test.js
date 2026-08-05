@@ -230,6 +230,125 @@ test('vercel.json routes /uploads/* to the serving function', () => {
   assert.ok(rw.source.includes(':slug*'), 'captures subpaths');
 });
 
+test('Blob mode: creatives persist to Vercel Blob and creative_path is the public URL', async () => {
+  // Mock the Blob SDK at the module boundary, then flip the token on.
+  const blobPath = require.resolve('@vercel/blob');
+  const realBlob = require(blobPath);
+  const puts = [];
+  require.cache[blobPath].exports = {
+    ...realBlob,
+    put: async (name, buffer, opts) => {
+      puts.push({ name, size: buffer.length, access: opts.access });
+      return { url: `https://store.public.blob.vercel-storage.com/${name}` };
+    },
+  };
+  process.env.BLOB_READ_WRITE_TOKEN = 'test-token';
+  try {
+    const { storeCreativeBuffer, blobEnabled } = require('../platform/api/upload-storage.js');
+    assert.ok(blobEnabled(), 'blob mode active with the token set');
+    const stored = await storeCreativeBuffer(
+      '42',
+      'card.png',
+      Buffer.from('png-bytes'),
+      'image/png'
+    );
+    assert.strictEqual(stored.url, 'https://store.public.blob.vercel-storage.com/42/card.png');
+    assert.strictEqual(puts.length, 1);
+    assert.strictEqual(puts[0].access, 'public', 'creatives are public reads');
+    // And an end-to-end token upload in Blob mode stores the absolute URL.
+    await run("UPDATE bookings SET status = 'pending_upload' WHERE id = $1", [booking.id]);
+    const result = await uploadBookingCreative(
+      booking.token,
+      { image: pngDataUrl(2400, 800), filename: 'blobbed.png' },
+      {}
+    );
+    assert.strictEqual(result.status, 200);
+    assert.ok(result.body.path.startsWith('https://'), 'creative_path is the blob URL');
+    assert.strictEqual(result.body.webpPath, null, 'no local webp sibling in blob mode');
+    const row = await getBookingByToken(booking.token);
+    assert.ok(row.creative_path.startsWith('https://'), 'booking carries the durable URL');
+  } finally {
+    delete process.env.BLOB_READ_WRITE_TOKEN;
+    require.cache[blobPath].exports = realBlob;
+  }
+});
+
+test('display layers resolve both /uploads/ paths and absolute blob URLs', () => {
+  const flagship = read('templates/flagship/flagship.js');
+  assert.ok(
+    flagship.includes('/^https?:\\/\\//.test(slot.creative_path)'),
+    'temple creative render is URL-aware'
+  );
+  const dash = read('templates/flagship/dashboard.html');
+  assert.ok(dash.includes('/^https?:\\/\\//.test(path)'), 'dashboard pictureTag is URL-aware');
+  const storage = require('../platform/api/upload-storage.js');
+  assert.strictEqual(
+    storage.resolveCreativeUrl('https://x.blob/a.png', 'https://site'),
+    'https://x.blob/a.png'
+  );
+  assert.strictEqual(
+    storage.resolveCreativeUrl('/uploads/1/a.png', 'https://site'),
+    'https://site/uploads/1/a.png'
+  );
+});
+
+test('creative purge: ended placements lose stored files after the grace period', async () => {
+  const {
+    purgeEndedCreatives,
+    deleteStoredCreative,
+  } = require('../platform/api/creative-purge.js');
+  const { ensureUploadsDir } = require('../platform/api/upload-storage.js');
+
+  // An ended booking past grace with a local creative file.
+  const dir = ensureUploadsDir('purge-test');
+  const file = path.join(dir, 'gone.png');
+  fs.writeFileSync(file, Buffer.from([137, 80, 78, 71]));
+  const token = `purge${Date.now()}`;
+  await run(
+    `INSERT INTO bookings (slot_id, email, company_name, analytics_token, status, site_slug, creative_path, updated_at)
+     VALUES ($1, 'purge@test.co', 'Purge Co', $2, 'ended', 'nike', '/uploads/purge-test/gone.png', '2020-01-01 00:00:00')`,
+    [booking.slot.id, token]
+  );
+  const victim = await get('SELECT id FROM bookings WHERE analytics_token = $1', [token]);
+
+  const result = await purgeEndedCreatives({ graceDays: 30 });
+  assert.ok(result.purged >= 1, 'at least the victim purged');
+  assert.ok(!fs.existsSync(file), 'the stored file was deleted');
+  const after = await get('SELECT creative_path FROM bookings WHERE id = $1', [victim.id]);
+  assert.strictEqual(after.creative_path, null, 'creative reference cleared');
+
+  // A booking ended YESTERDAY keeps its creative (grace period).
+  await run(
+    `UPDATE bookings SET status = 'ended', creative_path = '/uploads/purge-test/keep.png', updated_at = CURRENT_TIMESTAMP WHERE id = $1`,
+    [victim.id]
+  );
+  const keepFile = path.join(dir, 'keep.png');
+  fs.writeFileSync(keepFile, Buffer.from([1]));
+  await purgeEndedCreatives({ graceDays: 30 });
+  assert.ok(fs.existsSync(keepFile), 'inside grace: file kept');
+  fs.rmSync(dir, { recursive: true, force: true });
+
+  // Blob URLs delete through the SDK (mocked).
+  const blobPath = require.resolve('@vercel/blob');
+  const realBlob = require(blobPath);
+  const dels = [];
+  require.cache[blobPath].exports = { ...realBlob, del: async (url) => dels.push(url) };
+  process.env.BLOB_READ_WRITE_TOKEN = 'test-token';
+  try {
+    await deleteStoredCreative('https://store.public.blob.vercel-storage.com/9/x.png');
+    assert.deepStrictEqual(dels, ['https://store.public.blob.vercel-storage.com/9/x.png']);
+  } finally {
+    delete process.env.BLOB_READ_WRITE_TOKEN;
+    require.cache[blobPath].exports = realBlob;
+  }
+});
+
+test('lease-expiry cron runs the creative purge and reports it', () => {
+  const src = read('platform/scripts/lease-expiry.js');
+  assert.ok(src.includes('runCreativePurge'), 'purge wired into the daily cron');
+  assert.ok(src.includes('endedCreativesPurged'), 'purge results reported');
+});
+
 async function runSuite() {
   let passed = 0;
   let failed = 0;

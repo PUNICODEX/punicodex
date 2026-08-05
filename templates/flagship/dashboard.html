@@ -404,7 +404,8 @@
         }
 
         function pictureTag(path, webpPath, alt) {
-            const img = `<img src="${API_BASE}${path}" alt="${alt}">`;
+            const resolved = /^https?:\/\//.test(path) ? path : `${API_BASE}${path}`;
+            const img = `<img src="${resolved}" alt="${alt}">`;
             return webpPath
                 ? `<picture><source type="image/webp" srcset="${API_BASE}${webpPath}">${img}</picture>`
                 : img;
