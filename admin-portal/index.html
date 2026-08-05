@@ -190,7 +190,7 @@
                 statCard(a ? Portal.fmtNumber(totals.humanViews) : '—', 'Views · 7d', 'human page views') +
                 statCard(a ? Portal.fmtNumber(totals.uniqueSessions) : '—', 'Unique Sessions · 7d', '') +
                 statCard(Portal.fmtNumber(traffic.requests), 'API Calls · ' + hours + 'h', 'api request log') +
-                statCard(fmtPct(traffic.errorRate), 'Error Rate · ' + hours + 'h', Portal.fmtNumber(traffic.errorCount) + ' errors') +
+                statCard(fmtPct(traffic.serverErrorRate != null ? traffic.serverErrorRate : traffic.errorRate), 'Error Rate · ' + hours + 'h', Portal.fmtNumber(traffic.serverErrorCount || 0) + ' server · ' + Portal.fmtNumber(traffic.errorCount) + ' client') +
                 statCard(Portal.fmtNumber(d ? d.indexedSites : 0), 'Indexed Sites', 'crawler index') +
                 statCard('$' + Portal.escapeHtml(String(revenue.last30dDollars || '0.00')), 'Revenue · ' + days + 'd', Portal.fmtNumber(revenue.bookingsLast30d) + ' bookings') +
                 statCard('$' + Portal.escapeHtml(String(patrons.estimatedMrrDollars || '0.00')), 'Patron MRR', Portal.fmtNumber(patrons.active) + ' active · ' + Portal.fmtNumber(patrons.estimatedMrrCents) + ' cents/mo');
@@ -261,16 +261,17 @@
         function renderHealth(d) {
             var traffic = d.traffic || {};
             var hours = traffic.windowHours || 24;
-            var rate = Number(traffic.errorRate) || 0;
-            var apiLevel = rate < 0.01 ? 'ok' : rate < 0.05 ? 'warn' : 'bad';
+            var serverRate = Number(traffic.serverErrorRate != null ? traffic.serverErrorRate : traffic.errorRate) || 0;
+            var apiLevel = serverRate < 0.01 ? 'ok' : serverRate < 0.05 ? 'warn' : 'bad';
             var indexLevel = (Number(d.indexedSites) || 0) > 0 ? 'ok' : 'warn';
             document.getElementById('cmd-health-dots').innerHTML =
                 healthDot(apiLevel, 'API') +
                 healthDot(indexLevel, 'Index') +
                 '<span id="cmd-crawler-dot"></span>';
             document.getElementById('cmd-health-summary').textContent =
-                'Error rate ' + fmtPct(rate) + ' over ' + hours + 'h — ' +
-                Portal.fmtNumber(traffic.errorCount) + ' errors across ' +
+                'Server error rate ' + fmtPct(serverRate) + ' over ' + hours + 'h — ' +
+                Portal.fmtNumber(traffic.serverErrorCount || 0) + ' server errors and ' +
+                Portal.fmtNumber(traffic.errorCount) + ' client errors (4xx, mostly scanner noise) across ' +
                 Portal.fmtNumber(traffic.requests) + ' API calls.';
 
             var slow = Array.isArray(traffic.slowEndpoints) ? traffic.slowEndpoints : [];

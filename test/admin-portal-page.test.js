@@ -188,6 +188,15 @@ test('synced admin-portal/ copy exists and is byte-identical to canonical', () =
   }
 });
 
+test('dashboard KPIs distinguish server errors (5xx) from client noise (4xx)', () => {
+  // The error-rate KPI and the health dot must read the server-error rate —
+  // a handful of scanner 404s must never turn the API health signal red.
+  const html = readCanonical('index.html');
+  assert.ok(html.includes('traffic.serverErrorRate'), 'KPI reads serverErrorRate');
+  assert.ok(html.includes('traffic.serverErrorCount'), 'KPI reads serverErrorCount');
+  assert.ok(html.includes('Server error rate'), 'health summary leads with server errors');
+});
+
 test('legacy redirect stubs are noindex, point at their new section, and stay in sync', () => {
   for (const rel of REDIRECT_PAGES) {
     const src = readCanonical(rel);

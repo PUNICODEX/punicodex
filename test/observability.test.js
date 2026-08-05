@@ -115,6 +115,17 @@ async function runTests() {
     assert.ok(Array.isArray(metrics.statusCodes));
   });
 
+  await test('getMetrics splits server errors (5xx) from client errors (4xx)', async () => {
+    const metrics = await getMetrics({ hours: 24 });
+    assert.ok(typeof metrics.serverErrorCount === 'number', 'serverErrorCount present');
+    assert.ok(typeof metrics.serverErrorRate === 'number', 'serverErrorRate present');
+    assert.ok(
+      metrics.serverErrorCount <= metrics.errorCount,
+      'server errors are a subset of all errors'
+    );
+    assert.ok(metrics.serverErrorRate <= metrics.errorRate + 1e-9, 'rates are consistent');
+  });
+
   await test('getTopSearches returns search ranking', async () => {
     const result = await getTopSearches({ limit: 5, hours: 24 });
     assert.ok(Array.isArray(result.items));

@@ -209,6 +209,8 @@ async function getDashboard() {
       requests: metrics.totalRequests,
       errorCount: metrics.errorCount,
       errorRate: metrics.errorRate,
+      serverErrorCount: metrics.serverErrorCount ?? 0,
+      serverErrorRate: metrics.serverErrorRate ?? 0,
       todayViews,
       slowEndpoints: slowEndpoints.items,
     },

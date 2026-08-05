@@ -47,34 +47,42 @@ async function getMetrics(options = {}) {
         [cutoff]
       );
 
-  const [totalRow, errorRow, percentileResult, topPaths, statusCodes] = await Promise.all([
-    operational.get(
-      'SELECT COUNT(*) as total, AVG(duration_ms) as avg_duration FROM api_request_log WHERE created_at >= $1',
-      [cutoff]
-    ),
-    operational.get(
-      'SELECT COUNT(*) as errors FROM api_request_log WHERE status_code >= 400 AND created_at >= $1',
-      [cutoff]
-    ),
-    percentilePromise,
-    operational.all(
-      `SELECT path, COUNT(*) as requests, AVG(duration_ms) as avg_duration
+  const [totalRow, errorRow, serverErrorRow, percentileResult, topPaths, statusCodes] =
+    await Promise.all([
+      operational.get(
+        'SELECT COUNT(*) as total, AVG(duration_ms) as avg_duration FROM api_request_log WHERE created_at >= $1',
+        [cutoff]
+      ),
+      operational.get(
+        'SELECT COUNT(*) as errors FROM api_request_log WHERE status_code >= 400 AND created_at >= $1',
+        [cutoff]
+      ),
+      // 5xx are service failures — the only errors that say the API is
+      // broken. 4xx on a public API are mostly scanner probes and mistyped
+      // paths; they must not drive the health signal.
+      operational.get(
+        'SELECT COUNT(*) as errors FROM api_request_log WHERE status_code >= 500 AND created_at >= $1',
+        [cutoff]
+      ),
+      percentilePromise,
+      operational.all(
+        `SELECT path, COUNT(*) as requests, AVG(duration_ms) as avg_duration
        FROM api_request_log
        WHERE created_at >= $1
        GROUP BY path
        ORDER BY requests DESC
        LIMIT 10`,
-      [cutoff]
-    ),
-    operational.all(
-      `SELECT status_code, COUNT(*) as count
+        [cutoff]
+      ),
+      operational.all(
+        `SELECT status_code, COUNT(*) as count
        FROM api_request_log
        WHERE created_at >= $1
        GROUP BY status_code
        ORDER BY count DESC`,
-      [cutoff]
-    ),
-  ]);
+        [cutoff]
+      ),
+    ]);
 
   let latencyPercentiles;
   if (operational.isPostgres()) {
@@ -94,12 +102,15 @@ async function getMetrics(options = {}) {
 
   const total = totalRow?.total || 0;
   const errors = errorRow?.errors || 0;
+  const serverErrors = serverErrorRow?.errors || 0;
 
   return {
     windowHours: hours,
     totalRequests: total,
     errorCount: errors,
     errorRate: total > 0 ? Number((errors / total).toFixed(4)) : 0,
+    serverErrorCount: serverErrors,
+    serverErrorRate: total > 0 ? Number((serverErrors / total).toFixed(4)) : 0,
     averageDurationMs: totalRow?.avg_duration
       ? Number(Number(totalRow.avg_duration).toFixed(2))
       : 0,
