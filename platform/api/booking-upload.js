@@ -3,7 +3,6 @@
  * (platform/server.js) and the Vercel API handler (api/bookings/[[...slug]].js).
  */
 
-const fs = require('node:fs');
 const path = require('node:path');
 const {
   getBookingByToken,

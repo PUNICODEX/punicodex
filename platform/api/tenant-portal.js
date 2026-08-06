@@ -26,7 +26,6 @@
  */
 
 const crypto = require('node:crypto');
-const fs = require('node:fs');
 const path = require('node:path');
 const bcrypt = require('bcrypt');
 const { imageSize } = require('image-size');
