@@ -163,7 +163,7 @@ const SUITES = [
     timeout: 180000,
   },
   { name: 'Patron Service Tests', cmd: 'node test/patron-service.test.js' },
-  { name: 'Patron Page Tests', cmd: 'node test/patron-page.test.js' },
+  { name: 'Patron Page Tests', cmd: 'node test/patron-page.test.js', timeout: 120000 },
   { name: 'Patron Contract Tests', cmd: 'node --test test/patron-contract.test.js' },
   { name: 'Collaborators Strip Tests', cmd: 'node test/collaborators-strip.test.js' },
   { name: 'Menu Consistency Tests', cmd: 'node test/menu-consistency.test.js' },
@@ -381,6 +381,9 @@ const SERIAL_SUITES = new Set([
   // Dies silently under parallel load (no output before the runner marks it
   // failed); always green alone. Cheap suite — serializes for reliability.
   'Vendored Libs Tests',
+  // Same parallel-phase flake: reads every temple patron page; green alone,
+  // intermittently torn reads under load.
+  'Patron Page Tests',
   // The two static-analysis gates scan the whole tree; running them in
   // parallel with tree-mutating suites makes them flag transient writes.
   'Format Check',
