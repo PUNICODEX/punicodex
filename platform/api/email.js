@@ -249,6 +249,29 @@ async function notifyRejected({ email, slotName, companyName, note, bookingToken
   });
 }
 
+/**
+ * Revocation notice: a lease was ended by the operator (revoked, lapsed, or
+ * canceled for cause). The placement stops displaying immediately; the
+ * stored creative is purged after a 30-day grace period.
+ */
+async function notifyRevoked({ email, slotName, companyName, siteSlug }) {
+  const siteName = getSiteDisplayName(siteSlug);
+  return sendEmail({
+    to: email,
+    subject: `Your placement has ended — ${slotName}`,
+    html: `
+      <div style="font-family:system-ui,sans-serif;max-width:480px;margin:0 auto;color:#111;">
+        <h2 style="color:#d4af37;">${escapeHtml(siteName)} — Placement Ended</h2>
+        <p>Hi ${escapeHtml(companyName || 'there')},</p>
+        <p>Your placement on <strong>${escapeHtml(slotName)}</strong> has ended. It stops displaying immediately, and the slot returns to the temple's open inventory.</p>
+        <p>Your stored creative is kept for 30 days in case you re-lease the space, then permanently removed. Any active billing has been canceled — nothing further will be charged.</p>
+        <p>Questions, or think this is a mistake? Reply to this email and a human will look into it.</p>
+        <p style="color:#666;font-size:0.8rem;">PuniCodex · support@punicodex.com</p>
+      </div>
+    `,
+  });
+}
+
 async function notifyLive({
   email,
   slotName,
@@ -890,6 +913,7 @@ module.exports = {
   notifyAdminApplication,
   notifyApproved,
   notifyRejected,
+  notifyRevoked,
   notifyLive,
   notifyTrialStarted,
   notifyTrialEnding,

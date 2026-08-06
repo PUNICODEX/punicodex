@@ -353,6 +353,11 @@
                 btns.push('<button type="button" class="btn btn-sm btn-danger" data-action="reject" data-id="' + id + '">Reject</button>');
             } else if (b.status === 'approved') {
                 btns.push('<button type="button" class="btn btn-sm btn-success" data-action="golive" data-id="' + id + '">Go Live</button>');
+                btns.push('<button type="button" class="btn btn-sm btn-danger" data-action="end" data-id="' + id + '">End</button>');
+            } else if (b.status === 'pending_approval') {
+                btns.push('<button type="button" class="btn btn-sm btn-danger" data-action="end" data-id="' + id + '">End</button>');
+            } else if (b.status === 'trialing') {
+                btns.push('<button type="button" class="btn btn-sm btn-danger" data-action="end" data-id="' + id + '">End</button>');
             } else if (b.status === 'live') {
                 btns.push('<button type="button" class="btn btn-sm btn-secondary" data-action="report" data-id="' + id + '">Send Report</button>');
                 btns.push('<button type="button" class="btn btn-sm btn-danger" data-action="end" data-id="' + id + '">End</button>');
@@ -541,7 +546,7 @@
                 'approve-application': 'Approve this application and create a Stripe checkout session?',
                 approve: 'Approve booking #' + id + '?',
                 golive: 'Publish booking #' + id + ' live on the temple?',
-                end: 'End booking #' + id + '? This cancels billing and frees the slot.',
+                end: 'End booking #' + id + '? This cancels billing, frees the slot, and emails the sponsor a revocation notice.',
                 report: 'Email the analytics report for booking #' + id + ' to the advertiser?',
             };
             if (!window.confirm(labels[action] || 'Run ' + action + ' on booking #' + id + '?')) return;

@@ -504,6 +504,9 @@ async function goLiveBooking(id, adminToken) {
 async function endBookingAdmin(id, adminToken) {
   const booking = await getBookingById(id);
   if (!booking) throw new AdminBookingError(404, 'Booking not found');
+  if (['ended', 'cancelled', 'canceled', 'rejected'].includes(booking.status)) {
+    throw new AdminBookingError(400, `Booking is already ${booking.status}`);
+  }
 
   if (booking.stripe_subscription_id) {
     try {
@@ -515,6 +518,21 @@ async function endBookingAdmin(id, adminToken) {
   }
 
   await endBooking(id);
+
+  // The sponsor always hears about a revocation: placement ends immediately,
+  // the creative is purged after the 30-day grace period (lease-expiry cron).
+  try {
+    const { notifyRevoked } = require('./email');
+    await notifyRevoked({
+      email: booking.email,
+      slotName: booking.slot_name,
+      companyName: booking.company_name,
+      siteSlug: booking.site_slug,
+    });
+  } catch (mailErr) {
+    console.error('Revocation email failed:', mailErr.message);
+  }
+
   await logAction({
     ...auditActor(adminToken),
     action: 'admin.booking.end',

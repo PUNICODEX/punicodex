@@ -520,6 +520,27 @@ async function runTests() {
     }
   });
 
+  await test('leasing page: End is offered for every revocable status', async () => {
+    // A redeemed/accepted lease (approved, pending_approval, trialing, live)
+    // must always offer End — the master revoke. The service cancels billing,
+    // frees the slot, and emails the sponsor.
+    const fs = require('node:fs');
+    const path = require('node:path');
+    const html = fs.readFileSync(
+      path.join(__dirname, '..', 'platform', 'public', 'admin-portal', 'leasing', 'index.html'),
+      'utf8'
+    );
+    for (const status of ['approved', 'pending_approval', 'trialing', 'live']) {
+      const block = html.match(new RegExp(`status === '${status}'[\\s\\S]{0,400}`));
+      assert.ok(block, `status branch for ${status}`);
+      assert.ok(block[0].includes(`data-action="end"`), `${status} offers End`);
+    }
+    assert.ok(
+      html.includes('emails the sponsor a revocation notice'),
+      'confirm copy discloses the email'
+    );
+  });
+
   await test('leasing page: all five tab panels are direct children of portal-main', async () => {
     // Regression: tab-patrons was never closed, so tab-discounts and
     // tab-orders became its children — activating either hid their parent

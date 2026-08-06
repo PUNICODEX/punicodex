@@ -103,6 +103,37 @@ async function runTests() {
     assert.strictEqual(res.body.status, 'ended');
   });
 
+  await test('POST /api/admin/bookings/:id/end refuses an already-ended booking', async () => {
+    const handler = require('../platform/api-handlers/admin/bookings/[id]/end/index.js');
+    const res = await invoke(handler, 'POST', `/api/admin/bookings/${createdId}/end`, {
+      headers: adminHeader(adminToken),
+      params: { id: String(createdId) },
+    });
+    assert.strictEqual(res.status, 400);
+    assert.match(res.body.error, /already ended/);
+  });
+
+  await test('revocation notifies the sponsor and frees the slot', async () => {
+    const service = require('fs').readFileSync(
+      require('path').join(__dirname, '..', 'platform', 'api', 'admin-booking-service.js'),
+      'utf8'
+    );
+    assert.ok(service.includes('notifyRevoked'), 'endBookingAdmin emails the sponsor');
+    const email = require('fs').readFileSync(
+      require('path').join(__dirname, '..', 'platform', 'api', 'email.js'),
+      'utf8'
+    );
+    assert.ok(email.includes('Placement Ended'), 'revocation template present');
+    assert.ok(email.includes('30 days'), 'purge grace period disclosed');
+    // The slot freed by the end action above is back to available inventory.
+    const { get } = require('../platform/db/operational');
+    const freed = await get(
+      'SELECT s.status FROM ad_slots s JOIN bookings b ON s.id = b.slot_id WHERE b.id = $1',
+      [createdId]
+    );
+    assert.strictEqual(freed.status, 'available', 'slot returns to available inventory');
+  });
+
   await test('POST /api/admin/bookings rejects a slot that is already reserved', async () => {
     const createRes = await invoke(bookingsHandler, 'POST', '/api/admin/bookings', {
       headers: adminHeader(adminToken),
