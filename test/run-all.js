@@ -378,6 +378,9 @@ const SERIAL_SUITES = new Set([
   'Patterns Atlas Tests', // runs generate-patterns-page.js (writes patterns/*.html)
   'Trending Page Tests', // idempotency check rewrites trending/index.html
   'Everyday + Ink Tests', // idempotency checks rewrite everyday/index.html + data/ink-index.json
+  // Dies silently under parallel load (no output before the runner marks it
+  // failed); always green alone. Cheap suite — serializes for reliability.
+  'Vendored Libs Tests',
   // The two static-analysis gates scan the whole tree; running them in
   // parallel with tree-mutating suites makes them flag transient writes.
   'Format Check',

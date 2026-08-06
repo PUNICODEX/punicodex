@@ -114,13 +114,13 @@ async function runTests() {
   });
 
   await test('revocation notifies the sponsor and frees the slot', async () => {
-    const service = require('fs').readFileSync(
-      require('path').join(__dirname, '..', 'platform', 'api', 'admin-booking-service.js'),
+    const service = require('node:fs').readFileSync(
+      require('node:path').join(__dirname, '..', 'platform', 'api', 'admin-booking-service.js'),
       'utf8'
     );
     assert.ok(service.includes('notifyRevoked'), 'endBookingAdmin emails the sponsor');
-    const email = require('fs').readFileSync(
-      require('path').join(__dirname, '..', 'platform', 'api', 'email.js'),
+    const email = require('node:fs').readFileSync(
+      require('node:path').join(__dirname, '..', 'platform', 'api', 'email.js'),
       'utf8'
     );
     assert.ok(email.includes('Placement Ended'), 'revocation template present');
