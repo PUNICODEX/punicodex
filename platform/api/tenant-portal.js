@@ -265,6 +265,17 @@ async function setPassword({ token, password }) {
   await deleteSessionsForUser(account.id);
 
   const sessionToken = await createSession(account.id);
+
+  // The sponsor must never lose their way back: the one-time link is spent,
+  // so send the permanent panel URL. Fire-and-forget — email trouble must
+  // never fail a password set.
+  try {
+    const { notifyPanelReady } = require('./email');
+    notifyPanelReady({ email: account.email, companyName: account.company_name }).catch(() => {});
+  } catch {
+    // email module unavailable — ignore
+  }
+
   return { token: sessionToken, account: sanitizeAccount(await getAccountById(account.id)) };
 }
 

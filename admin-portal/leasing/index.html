@@ -349,12 +349,15 @@
             } else if (b.status === 'pending_payment') {
                 btns.push('<button type="button" class="btn btn-sm btn-danger" data-action="reject" data-id="' + id + '">Reject</button>');
             } else if (b.status === 'pending_upload') {
-                btns.push('<button type="button" class="btn btn-sm btn-primary" data-action="approve" data-id="' + id + '">Approve</button>');
-                btns.push('<button type="button" class="btn btn-sm btn-danger" data-action="reject" data-id="' + id + '">Reject</button>');
+                // Awaiting the creative — nothing to approve yet.
+                btns.push('<button type="button" class="btn btn-sm btn-danger" data-action="end" data-id="' + id + '">End</button>');
             } else if (b.status === 'approved') {
                 btns.push('<button type="button" class="btn btn-sm btn-success" data-action="golive" data-id="' + id + '">Go Live</button>');
                 btns.push('<button type="button" class="btn btn-sm btn-danger" data-action="end" data-id="' + id + '">End</button>');
             } else if (b.status === 'pending_approval') {
+                // Creative under review: approve it (→ approved) or send it back (→ rejected).
+                btns.push('<button type="button" class="btn btn-sm btn-primary" data-action="approve" data-id="' + id + '">Approve</button>');
+                btns.push('<button type="button" class="btn btn-sm btn-danger" data-action="reject" data-id="' + id + '">Reject</button>');
                 btns.push('<button type="button" class="btn btn-sm btn-danger" data-action="end" data-id="' + id + '">End</button>');
             } else if (b.status === 'trialing') {
                 btns.push('<button type="button" class="btn btn-sm btn-danger" data-action="end" data-id="' + id + '">End</button>');
@@ -544,7 +547,7 @@
             }
             var labels = {
                 'approve-application': 'Approve this application and create a Stripe checkout session?',
-                approve: 'Approve booking #' + id + '?',
+                approve: 'Approve the creative for booking #' + id + '? (Go Live publishes it next.)',
                 golive: 'Publish booking #' + id + ' live on the temple?',
                 end: 'End booking #' + id + '? This cancels billing, frees the slot, and emails the sponsor a revocation notice.',
                 report: 'Email the analytics report for booking #' + id + ' to the advertiser?',

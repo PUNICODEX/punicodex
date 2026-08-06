@@ -826,6 +826,15 @@ review queue, also client-normalized), placements analytics, patron spots,
 and a Support section (contact / report a bug). The booking-confirmation
 email frames both links by role; the modal's success step names both.
 
+**Admin review matrix (leasing tab):** `pending_application` → Approve
+Application / Reject; `pending_payment` → Reject / End; `pending_upload` →
+End (no creative to review yet); `pending_approval` → **Approve / Reject /
+End** (the creative review — Approve lands at `approved`, then Go Live
+publishes); `approved`/`trialing`/`live` → Go Live / End (+ Send Report for
+live). End cancels billing, frees the slot, and emails the sponsor a
+revocation notice; sponsors receive a panel-ready email with the permanent
+login URL after setting their password.
+
 ### Original Script Display
 
 - The lexicon's legacy `greek` field is reliable only for Greek, Devanagari,

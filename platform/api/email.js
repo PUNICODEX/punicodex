@@ -250,6 +250,27 @@ async function notifyRejected({ email, slotName, companyName, note, bookingToken
 }
 
 /**
+ * Panel-ready confirmation: fired when a sponsor sets their password from the
+ * one-time provisioned link, so they always hold the permanent panel URL.
+ */
+async function notifyPanelReady({ email, companyName }) {
+  return sendEmail({
+    to: email,
+    subject: 'Your PuniCodex advertiser panel is ready',
+    html: `
+      <div style="font-family:system-ui,sans-serif;max-width:480px;margin:0 auto;color:#111;">
+        <h2 style="color:#d4af37;">Your Advertiser Panel Is Ready</h2>
+        <p>Hi ${escapeHtml(companyName || 'there')},</p>
+        <p>Your password is set and your advertiser panel is ready whenever you need it — creatives, placements, analytics, and support, all in one place.</p>
+        <p><a href="${PLATFORM_URL}/account/login/" style="display:inline-block;background:#d4af37;color:#000;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600;">Sign in to your panel</a></p>
+        <p style="color:#666;font-size:0.8rem;">Bookmark this link — it's your permanent way back in. PuniCodex · support@punicodex.com</p>
+      </div>
+    `,
+    text: `Your advertiser panel is ready. Sign in anytime: ${PLATFORM_URL}/account/login/ — PuniCodex`,
+  });
+}
+
+/**
  * Revocation notice: a lease was ended by the operator (revoked, lapsed, or
  * canceled for cause). The placement stops displaying immediately; the
  * stored creative is purged after a 30-day grace period.
@@ -914,6 +935,7 @@ module.exports = {
   notifyApproved,
   notifyRejected,
   notifyRevoked,
+  notifyPanelReady,
   notifyLive,
   notifyTrialStarted,
   notifyTrialEnding,

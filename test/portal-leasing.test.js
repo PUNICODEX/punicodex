@@ -531,7 +531,7 @@ async function runTests() {
       'utf8'
     );
     for (const status of ['approved', 'pending_approval', 'trialing', 'live']) {
-      const block = html.match(new RegExp(`status === '${status}'[\\s\\S]{0,400}`));
+      const block = html.match(new RegExp(`status === '${status}'[\\s\\S]{0,600}`));
       assert.ok(block, `status branch for ${status}`);
       assert.ok(block[0].includes(`data-action="end"`), `${status} offers End`);
     }
@@ -539,6 +539,45 @@ async function runTests() {
       html.includes('emails the sponsor a revocation notice'),
       'confirm copy discloses the email'
     );
+  });
+
+  await test('leasing page: creative review lives at pending_approval, not pending_upload', async () => {
+    // Regression: Approve/Reject sat on pending_upload (no creative exists
+    // there) while pending_approval had no creative actions at all, so a
+    // submitted creative could never be approved — bookings stalled forever.
+    const fs = require('node:fs');
+    const path = require('node:path');
+    const html = fs.readFileSync(
+      path.join(__dirname, '..', 'platform', 'public', 'admin-portal', 'leasing', 'index.html'),
+      'utf8'
+    );
+    const review = html.match(/status === 'pending_approval'[\s\S]{0,500}/);
+    assert.ok(
+      review && review[0].includes('data-action="approve"'),
+      'pending_approval offers Approve'
+    );
+    assert.ok(review[0].includes('data-action="reject"'), 'pending_approval offers Reject');
+    const awaiting = html.match(/status === 'pending_upload'[\s\S]{0,300}/);
+    assert.ok(
+      awaiting && !awaiting[0].includes('data-action="approve"'),
+      'pending_upload cannot approve (no creative yet)'
+    );
+  });
+
+  await test('panel-ready email: sponsors receive the permanent panel URL after setting a password', async () => {
+    const fs = require('node:fs');
+    const path = require('node:path');
+    const email = fs.readFileSync(
+      path.join(__dirname, '..', 'platform', 'api', 'email.js'),
+      'utf8'
+    );
+    assert.ok(email.includes('notifyPanelReady'), 'panel-ready template exists');
+    assert.ok(email.includes('/account/login/'), 'template carries the login URL');
+    const portal = fs.readFileSync(
+      path.join(__dirname, '..', 'platform', 'api', 'tenant-portal.js'),
+      'utf8'
+    );
+    assert.ok(portal.includes('notifyPanelReady'), 'setPassword wires the follow-up email');
   });
 
   await test('leasing page: all five tab panels are direct children of portal-main', async () => {
