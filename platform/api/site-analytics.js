@@ -264,6 +264,28 @@ async function recordPageView({ path, templeId, referrer, sessionId, ip, userAge
           await client.expire(templeCountryKey, ROLLUP_TTL_SECONDS);
         }
       }
+      // Durable dual-write: Postgres is the source of truth for backfills,
+      // so it records every event even when Redis succeeds (previously the
+      // early return meant PG only saw Redis-outage windows — the 2026-08
+      // Redis rotation left no history to replay). A PG failure must never
+      // break event recording, so it is isolated and logged.
+      try {
+        await recordToSqlite({
+          day,
+          path: cleanPath,
+          templeId: cleanTempleId,
+          referrer: cleanReferrer,
+          sessionHash,
+          ipHash,
+          uaHash,
+          isBot,
+          category,
+          device,
+          country: cleanCountry,
+        });
+      } catch (pgErr) {
+        console.error('[site-analytics] durable write failed (Redis has the event):', pgErr.message);
+      }
       return { recorded: true, isBot, category, device, templeId: cleanTempleId };
     } catch (err) {
       console.error('[site-analytics] Redis write failed, falling back to SQLite:', err.message);
@@ -351,6 +373,25 @@ async function recordEngagement({ path, sessionId, visibleMs, scrollPct, userAge
         .hincrby(key, 'totalScroll', cleanScroll)
         .expire(key, ROLLUP_TTL_SECONDS)
         .exec();
+      // Durable dual-write (same doctrine as recordEvent): Postgres keeps
+      // every engagement so rollups can always be rebuilt after a Redis
+      // rotation; failures are isolated and logged, never thrown.
+      try {
+        await recordEngagementToSqlite({
+          day,
+          path: cleanPath,
+          templeId,
+          sessionHash,
+          visibleMs: cleanMs,
+          scrollPct: cleanScroll,
+          device,
+        });
+      } catch (pgErr) {
+        console.error(
+          '[site-analytics] durable engagement write failed (Redis has it):',
+          pgErr.message
+        );
+      }
       return { recorded: true, templeId };
     } catch (err) {
       console.error(
