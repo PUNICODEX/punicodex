@@ -54,6 +54,12 @@ platform/db/*.db-shm
 
 .env
 .env.local
+# Env pulls from any host (vercel env pull writes .env.<name>) — these carry
+# live secrets and must never be tracked. .env.example stays committed.
+.env.*
+!.env.example
+!.env.sample
+!.env.template
 
 # Local debug/work scratch (logs, harnesses, env pulls — may contain secrets)
 session-debug/

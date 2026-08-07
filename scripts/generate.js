@@ -128,6 +128,12 @@ const scripts = [
   'scripts/generate-pronunciation-corpus.js',
   'scripts/generate-eval-benchmark.js',
   'scripts/generate-data-card.js',
+  // Second pass: manifest.json embeds counts from pretrain-manifest.json and
+  // the other corpus manifests, which only exist in their final form after
+  // the corpus generators above. Without this closing pass the manifest lags
+  // one generate behind and the CI divergence gate fails on a fresh clone.
+  // The pass is deterministic and leaves entries.jsonl byte-identical.
+  'scripts/export-model-corpus.js',
 ];
 
 function run(script) {

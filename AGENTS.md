@@ -348,7 +348,11 @@ mismatches it reports.
 24. Model corpus export (`export-model-corpus.js`) — writes
     `data/corpus/entries.jsonl` + manifest; MUST precede the AI corpora,
     whose generators read `entries.jsonl` (otherwise corpus content lags one
-    generate behind canonical changes)
+    generate behind canonical changes). It also RE-RUNS as the final step:
+    the manifest embeds counts from the corpus manifests (pretrain tokens,
+    etc.) that only reach their final form after the corpus generators, so
+    the closing pass is what converges `manifest.json` within a single
+    generate and keeps the CI divergence gate green on fresh clones.
 25. AI corpora (14 scripts: synthetic QA, safety, dialogue, tool-use,
     multimodal, preference, reasoning, benchmark suite, mythology synthesis,
     oracle, symbolic, scientific analogies, pretrain, unified)
