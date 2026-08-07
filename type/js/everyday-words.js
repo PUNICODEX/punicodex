@@ -486,6 +486,14 @@ const EVERYDAY_WORDS = [
       'The bird\'s name descends from Phoíbē, "Bright One", the Titaness of Delphi — the same shining epithet Apóllōn wears as Phoîbos.',
   },
   {
+    word: 'zephyr',
+    entry: 'zephyros',
+    gloss: 'a gentle west breeze',
+    origin: 'Greek Zéphyros (the west wind) → Latin Zephyrus → English zephyr',
+    story:
+      'The gentlest of the Anemoi, who brings the spring and scatters flowers from his cloak, gave his name to any soft breeze. To feel a zephyr on your face is to be touched by a god of the western sky.',
+  },
+  {
     word: 'egypt',
     entry: 'aigyptos',
     gloss: 'the country itself',

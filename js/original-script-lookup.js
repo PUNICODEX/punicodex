@@ -1383,6 +1383,11 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptName": "Greek",
     "scriptLabel": "Original Script"
   },
+  "cheiron": {
+    "originalScript": "Χείρων",
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
+  },
   "chimaira": {
     "originalScript": "Χίμαιρα",
     "scriptName": "Greek",

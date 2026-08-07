@@ -10,22 +10,22 @@
     ],
     "spec": "docs/card-game-spec.md",
     "counts": {
-      "total": 1698,
-      "standard": 1466,
-      "originalScript": 232,
-      "flagship": 813,
+      "total": 1731,
+      "standard": 1488,
+      "originalScript": 243,
+      "flagship": 846,
       "byEdition": {
-        "common": 271,
-        "holo": 271,
-        "full-art": 271,
-        "secret": 232,
-        "archive": 653
+        "common": 282,
+        "holo": 282,
+        "full-art": 282,
+        "secret": 243,
+        "archive": 642
       },
       "byRarity": {
-        "common": 478,
-        "rare": 618,
-        "legendary": 271,
-        "mythic": 232,
+        "common": 486,
+        "rare": 621,
+        "legendary": 282,
+        "mythic": 243,
         "uncommon": 99
       }
     }
@@ -496,7 +496,7 @@
       "domain": "Magic, Crossroads, Moon",
       "rarity": "common",
       "rarityOrder": 1,
-      "cost": 7,
+      "cost": 8,
       "power": 95,
       "health": 66,
       "speed": 7,
@@ -559,7 +559,7 @@
       "domain": "Magic, Crossroads, Moon",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 7,
+      "cost": 8,
       "power": 107,
       "health": 78,
       "speed": 7,
@@ -623,7 +623,7 @@
       "domain": "Magic, Crossroads, Moon",
       "rarity": "legendary",
       "rarityOrder": 5,
-      "cost": 7,
+      "cost": 8,
       "power": 107,
       "health": 78,
       "speed": 7,
@@ -2233,7 +2233,7 @@
       "domain": "Marriage, Women, Queen of Gods",
       "rarity": "mythic",
       "rarityOrder": 6,
-      "cost": 4,
+      "cost": 5,
       "power": 85,
       "health": 83,
       "speed": 6,
@@ -3742,7 +3742,7 @@
       "domain": "Earth, Mother of All",
       "rarity": "mythic",
       "rarityOrder": 6,
-      "cost": 6,
+      "cost": 7,
       "power": 83,
       "health": 94,
       "speed": 8,
@@ -4480,10 +4480,59 @@
       }
     },
     {
-      "id": "hyperion-standard",
+      "id": "hyperion-common",
       "entryId": "hyperion",
-      "baseCardId": "hyperion-standard",
-      "edition": "archive",
+      "baseCardId": "hyperion-common",
+      "edition": "common",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Hyperiōn",
+      "ascii": "hyperion",
+      "original": "Ὑπερίων",
+      "pantheon": "greek",
+      "category": "celestial",
+      "categoryLabel": "Celestial",
+      "categoryIcon": "☉",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Light, Heavenly Watch",
+      "rarity": "common",
+      "rarityOrder": 1,
+      "cost": 2,
+      "power": 76,
+      "health": 56,
+      "speed": 6,
+      "ability": {
+        "id": "ability-hyperion",
+        "entryId": "hyperion",
+        "name": "The Father of Lights",
+        "description": "Halve an enemy card’s speed.",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "slow-enemy",
+          "target": "enemy-minion"
+        }
+      },
+      "flavor": "Hyperíōn is a Titan of lineage rather than adventure: Hesiod gives him a birth, a marriage, three luminous children, and a fall — and almost nothing else.",
+      "flagship": true,
+      "ownedDomain": "hyperíōn.com",
+      "art": {
+        "mascot": "/sites/hyperion/assets/hyperion_mascot.webp",
+        "logomark": "/sites/hyperion/assets/hyperion_logomark.webp",
+        "fullArt": null,
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      }
+    },
+    {
+      "id": "hyperion-holo",
+      "entryId": "hyperion",
+      "baseCardId": "hyperion-common",
+      "edition": "holo",
       "variant": "standard",
       "setId": "first-restoration",
       "name": "Hyperiōn",
@@ -4498,14 +4547,14 @@
       "domain": "Light, Heavenly Watch",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 4,
-      "power": 76,
-      "health": 56,
+      "cost": 2,
+      "power": 88,
+      "health": 68,
       "speed": 6,
       "ability": {
         "id": "ability-hyperion",
         "entryId": "hyperion",
-        "name": "Dawnlance of Olympos",
+        "name": "The Father of Lights",
         "description": "Halve an enemy card’s speed.",
         "trigger": "on_play",
         "effect": {
@@ -4513,16 +4562,140 @@
           "target": "enemy-minion"
         }
       },
-      "flavor": "He who goes above (from ὑπέρ)",
-      "flagship": false,
-      "ownedDomain": null,
+      "flavor": "Hyperíōn is a Titan of lineage rather than adventure: Hesiod gives him a birth, a marriage, three luminous children, and a fall — and almost nothing else.",
+      "flagship": true,
+      "ownedDomain": "hyperíōn.com",
       "art": {
-        "mascot": null,
-        "logomark": null,
+        "mascot": "/sites/hyperion/assets/hyperion_mascot.webp",
+        "logomark": "/sites/hyperion/assets/hyperion_logomark.webp",
         "fullArt": null,
-        "colors": null,
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      },
+      "patternFoil": true
+    },
+    {
+      "id": "hyperion-full-art",
+      "entryId": "hyperion",
+      "baseCardId": "hyperion-common",
+      "edition": "full-art",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Hyperiōn",
+      "ascii": "hyperion",
+      "original": "Ὑπερίων",
+      "pantheon": "greek",
+      "category": "celestial",
+      "categoryLabel": "Celestial",
+      "categoryIcon": "☉",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Light, Heavenly Watch",
+      "rarity": "legendary",
+      "rarityOrder": 5,
+      "cost": 2,
+      "power": 88,
+      "health": 68,
+      "speed": 6,
+      "ability": {
+        "id": "ability-hyperion",
+        "entryId": "hyperion",
+        "name": "The Father of Lights",
+        "description": "Halve an enemy card’s speed. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "slow-enemy",
+              "target": "enemy-minion"
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "Hyperíōn is a Titan of lineage rather than adventure: Hesiod gives him a birth, a marriage, three luminous children, and a fall — and almost nothing else.",
+      "flagship": true,
+      "ownedDomain": "hyperíōn.com",
+      "art": {
+        "mascot": "/sites/hyperion/assets/hyperion_mascot.webp",
+        "logomark": "/sites/hyperion/assets/hyperion_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/hyperion_comp-canvas.png",
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
         "artist": null
       }
+    },
+    {
+      "id": "hyperion-secret",
+      "entryId": "hyperion",
+      "baseCardId": "hyperion-common",
+      "edition": "secret",
+      "variant": "original-script",
+      "setId": "first-restoration",
+      "name": "Hyperiōn",
+      "ascii": "hyperion",
+      "original": "Ὑπερίων",
+      "pantheon": "greek",
+      "category": "celestial",
+      "categoryLabel": "Celestial",
+      "categoryIcon": "☉",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Light, Heavenly Watch",
+      "rarity": "mythic",
+      "rarityOrder": 6,
+      "cost": 2,
+      "power": 88,
+      "health": 68,
+      "speed": 6,
+      "ability": {
+        "id": "ability-hyperion",
+        "entryId": "hyperion",
+        "name": "The Father of Lights",
+        "description": "Halve an enemy card’s speed. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "slow-enemy",
+              "target": "enemy-minion"
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "Hyperíōn is a Titan of lineage rather than adventure: Hesiod gives him a birth, a marriage, three luminous children, and a fall — and almost nothing else.",
+      "flagship": true,
+      "ownedDomain": "hyperíōn.com",
+      "art": {
+        "mascot": "/sites/hyperion/assets/hyperion_mascot.webp",
+        "logomark": "/sites/hyperion/assets/hyperion_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/hyperion_comp-canvas.png",
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      },
+      "foil": true
     },
     {
       "id": "leto-common",
@@ -5242,7 +5415,7 @@
       "domain": "Sun, Sight, Oaths",
       "rarity": "common",
       "rarityOrder": 1,
-      "cost": 6,
+      "cost": 7,
       "power": 84,
       "health": 70,
       "speed": 7,
@@ -5291,7 +5464,7 @@
       "domain": "Sun, Sight, Oaths",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 6,
+      "cost": 7,
       "power": 96,
       "health": 82,
       "speed": 7,
@@ -5341,7 +5514,7 @@
       "domain": "Sun, Sight, Oaths",
       "rarity": "legendary",
       "rarityOrder": 5,
-      "cost": 6,
+      "cost": 7,
       "power": 96,
       "health": 82,
       "speed": 7,
@@ -7569,10 +7742,10 @@
       }
     },
     {
-      "id": "pan-standard",
+      "id": "pan-common",
       "entryId": "pan",
-      "baseCardId": "pan-standard",
-      "edition": "archive",
+      "baseCardId": "pan-common",
+      "edition": "common",
       "variant": "standard",
       "setId": "first-restoration",
       "name": "Pān",
@@ -7587,14 +7760,14 @@
       "domain": "Wilderness, Shepherds, Flocks",
       "rarity": "common",
       "rarityOrder": 1,
-      "cost": 2,
+      "cost": 1,
       "power": 62,
       "health": 56,
       "speed": 6,
       "ability": {
         "id": "ability-pan",
         "entryId": "pan",
-        "name": "Hunter's Mark of Olympos",
+        "name": "The Shepherd of the Wilds",
         "description": "Deal 4 damage to an enemy card.",
         "trigger": "on_play",
         "effect": {
@@ -7603,16 +7776,192 @@
           "amount": 4
         }
       },
-      "flavor": "God of shepherds, flocks, mountain wilds, and the panic that strikes lonely places; his name was popularly derived from Greek πᾶν (\"all\") but likely originated in Arcadian Πάων (\"shepherd\")",
-      "flagship": false,
-      "ownedDomain": null,
+      "flavor": "Pān is late to Olympus and always half outside it: a god of the threshold between pasture and wilderness, music and dread, whose stories are told by shepherds, runners, and sailors — never by kings.",
+      "flagship": true,
+      "ownedDomain": "pān.com",
       "art": {
-        "mascot": null,
-        "logomark": null,
+        "mascot": "/sites/pan/assets/pan_mascot.webp",
+        "logomark": "/sites/pan/assets/pan_logomark.webp",
         "fullArt": null,
-        "colors": null,
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
         "artist": null
       }
+    },
+    {
+      "id": "pan-holo",
+      "entryId": "pan",
+      "baseCardId": "pan-common",
+      "edition": "holo",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Pān",
+      "ascii": "pan",
+      "original": "Πάν",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "2",
+      "tierLabel": "Tier 2",
+      "domain": "Wilderness, Shepherds, Flocks",
+      "rarity": "rare",
+      "rarityOrder": 3,
+      "cost": 1,
+      "power": 74,
+      "health": 68,
+      "speed": 6,
+      "ability": {
+        "id": "ability-pan",
+        "entryId": "pan",
+        "name": "The Shepherd of the Wilds",
+        "description": "Deal 4 damage to an enemy card.",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "damage",
+          "target": "enemy-minion",
+          "amount": 4
+        }
+      },
+      "flavor": "Pān is late to Olympus and always half outside it: a god of the threshold between pasture and wilderness, music and dread, whose stories are told by shepherds, runners, and sailors — never by kings.",
+      "flagship": true,
+      "ownedDomain": "pān.com",
+      "art": {
+        "mascot": "/sites/pan/assets/pan_mascot.webp",
+        "logomark": "/sites/pan/assets/pan_logomark.webp",
+        "fullArt": null,
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      },
+      "patternFoil": true
+    },
+    {
+      "id": "pan-full-art",
+      "entryId": "pan",
+      "baseCardId": "pan-common",
+      "edition": "full-art",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Pān",
+      "ascii": "pan",
+      "original": "Πάν",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "2",
+      "tierLabel": "Tier 2",
+      "domain": "Wilderness, Shepherds, Flocks",
+      "rarity": "legendary",
+      "rarityOrder": 5,
+      "cost": 1,
+      "power": 74,
+      "health": 68,
+      "speed": 6,
+      "ability": {
+        "id": "ability-pan",
+        "entryId": "pan",
+        "name": "The Shepherd of the Wilds",
+        "description": "Deal 4 damage to an enemy card. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "damage",
+              "target": "enemy-minion",
+              "amount": 4
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "Pān is late to Olympus and always half outside it: a god of the threshold between pasture and wilderness, music and dread, whose stories are told by shepherds, runners, and sailors — never by kings.",
+      "flagship": true,
+      "ownedDomain": "pān.com",
+      "art": {
+        "mascot": "/sites/pan/assets/pan_mascot.webp",
+        "logomark": "/sites/pan/assets/pan_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/pan_comp-canvas.png",
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      }
+    },
+    {
+      "id": "pan-secret",
+      "entryId": "pan",
+      "baseCardId": "pan-common",
+      "edition": "secret",
+      "variant": "original-script",
+      "setId": "first-restoration",
+      "name": "Pān",
+      "ascii": "pan",
+      "original": "Πάν",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "2",
+      "tierLabel": "Tier 2",
+      "domain": "Wilderness, Shepherds, Flocks",
+      "rarity": "mythic",
+      "rarityOrder": 6,
+      "cost": 1,
+      "power": 74,
+      "health": 68,
+      "speed": 6,
+      "ability": {
+        "id": "ability-pan",
+        "entryId": "pan",
+        "name": "The Shepherd of the Wilds",
+        "description": "Deal 4 damage to an enemy card. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "damage",
+              "target": "enemy-minion",
+              "amount": 4
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "Pān is late to Olympus and always half outside it: a god of the threshold between pasture and wilderness, music and dread, whose stories are told by shepherds, runners, and sailors — never by kings.",
+      "flagship": true,
+      "ownedDomain": "pān.com",
+      "art": {
+        "mascot": "/sites/pan/assets/pan_mascot.webp",
+        "logomark": "/sites/pan/assets/pan_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/pan_comp-canvas.png",
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      },
+      "foil": true
     },
     {
       "id": "moirai-standard",
@@ -8578,7 +8927,7 @@
       "domain": "City of Priam",
       "rarity": "common",
       "rarityOrder": 1,
-      "cost": 4,
+      "cost": 5,
       "power": 82,
       "health": 62,
       "speed": 7,
@@ -8627,7 +8976,7 @@
       "domain": "City of Priam",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 4,
+      "cost": 5,
       "power": 94,
       "health": 74,
       "speed": 7,
@@ -8677,7 +9026,7 @@
       "domain": "City of Priam",
       "rarity": "legendary",
       "rarityOrder": 5,
-      "cost": 4,
+      "cost": 5,
       "power": 94,
       "health": 74,
       "speed": 7,
@@ -9424,7 +9773,7 @@
       "domain": "Realm of the Æsir",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 6,
+      "cost": 5,
       "power": 77,
       "health": 64,
       "speed": 7,
@@ -9469,7 +9818,7 @@
       "domain": "Hall of the Slain",
       "rarity": "common",
       "rarityOrder": 1,
-      "cost": 3,
+      "cost": 4,
       "power": 72,
       "health": 68,
       "speed": 6,
@@ -9519,7 +9868,7 @@
       "domain": "Hall of the Slain",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 3,
+      "cost": 4,
       "power": 84,
       "health": 80,
       "speed": 6,
@@ -9570,7 +9919,7 @@
       "domain": "Hall of the Slain",
       "rarity": "legendary",
       "rarityOrder": 5,
-      "cost": 3,
+      "cost": 4,
       "power": 84,
       "health": 80,
       "speed": 6,
@@ -11549,7 +11898,7 @@
       "domain": "Wisdom, War, Death, Poetry",
       "rarity": "mythic",
       "rarityOrder": 6,
-      "cost": 4,
+      "cost": 5,
       "power": 83,
       "health": 85,
       "speed": 6,
@@ -13192,7 +13541,7 @@
       "domain": "Magic, Motherhood, Throne",
       "rarity": "mythic",
       "rarityOrder": 6,
-      "cost": 2,
+      "cost": 3,
       "power": 86,
       "health": 75,
       "speed": 4,
@@ -13252,7 +13601,7 @@
       "domain": "Writing, Wisdom, Moon",
       "rarity": "common",
       "rarityOrder": 1,
-      "cost": 3,
+      "cost": 4,
       "power": 70,
       "health": 70,
       "speed": 4,
@@ -13301,7 +13650,7 @@
       "domain": "Writing, Wisdom, Moon",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 3,
+      "cost": 4,
       "power": 82,
       "health": 82,
       "speed": 4,
@@ -13351,7 +13700,7 @@
       "domain": "Writing, Wisdom, Moon",
       "rarity": "legendary",
       "rarityOrder": 5,
-      "cost": 3,
+      "cost": 4,
       "power": 82,
       "health": 82,
       "speed": 4,
@@ -15851,7 +16200,7 @@
       "domain": "Wealth, Fortune, Beauty",
       "rarity": "common",
       "rarityOrder": 1,
-      "cost": 2,
+      "cost": 3,
       "power": 85,
       "health": 52,
       "speed": 5,
@@ -15900,7 +16249,7 @@
       "domain": "Wealth, Fortune, Beauty",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 2,
+      "cost": 3,
       "power": 97,
       "health": 64,
       "speed": 5,
@@ -15950,7 +16299,7 @@
       "domain": "Wealth, Fortune, Beauty",
       "rarity": "legendary",
       "rarityOrder": 5,
-      "cost": 2,
+      "cost": 3,
       "power": 97,
       "health": 64,
       "speed": 5,
@@ -24220,7 +24569,7 @@
       "domain": "Chaos, Darkness, Serpent",
       "rarity": "mythic",
       "rarityOrder": 6,
-      "cost": 6,
+      "cost": 7,
       "power": 95,
       "health": 82,
       "speed": 3,
@@ -25838,7 +26187,7 @@
       "domain": "Sacred River, Purification",
       "rarity": "mythic",
       "rarityOrder": 6,
-      "cost": 3,
+      "cost": 4,
       "power": 96,
       "health": 68,
       "speed": 7,
@@ -28597,10 +28946,59 @@
       }
     },
     {
-      "id": "circe-standard",
+      "id": "circe-common",
       "entryId": "circe",
-      "baseCardId": "circe-standard",
-      "edition": "archive",
+      "baseCardId": "circe-common",
+      "edition": "common",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Kírkē",
+      "ascii": "circe",
+      "original": "Κίρκη",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Sorceress, Aeaea, Transformations",
+      "rarity": "common",
+      "rarityOrder": 1,
+      "cost": 3,
+      "power": 80,
+      "health": 58,
+      "speed": 8,
+      "ability": {
+        "id": "ability-circe",
+        "entryId": "circe",
+        "name": "The Dread Goddess of Aiaia",
+        "description": "Restore 3 health to your hero.",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "heal-hero",
+          "amount": 3
+        }
+      },
+      "flavor": "Kírkē's myths turn on the unstable border between human and animal — and on Homer's strangest reversal: the goddess who defeats every man she meets becomes, the hour she is beaten, the hero's most useful ally.",
+      "flagship": true,
+      "ownedDomain": "kírkē.com",
+      "art": {
+        "mascot": "/sites/circe/assets/circe_mascot.webp",
+        "logomark": "/sites/circe/assets/circe_logomark.webp",
+        "fullArt": null,
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      }
+    },
+    {
+      "id": "circe-holo",
+      "entryId": "circe",
+      "baseCardId": "circe-common",
+      "edition": "holo",
       "variant": "standard",
       "setId": "first-restoration",
       "name": "Kírkē",
@@ -28615,14 +29013,14 @@
       "domain": "Sorceress, Aeaea, Transformations",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 5,
-      "power": 80,
-      "health": 58,
+      "cost": 3,
+      "power": 92,
+      "health": 70,
       "speed": 8,
       "ability": {
         "id": "ability-circe",
         "entryId": "circe",
-        "name": "Sorceress of Olympos",
+        "name": "The Dread Goddess of Aiaia",
         "description": "Restore 3 health to your hero.",
         "trigger": "on_play",
         "effect": {
@@ -28630,16 +29028,140 @@
           "amount": 3
         }
       },
-      "flavor": "Falcon, bird of prey",
-      "flagship": false,
-      "ownedDomain": null,
+      "flavor": "Kírkē's myths turn on the unstable border between human and animal — and on Homer's strangest reversal: the goddess who defeats every man she meets becomes, the hour she is beaten, the hero's most useful ally.",
+      "flagship": true,
+      "ownedDomain": "kírkē.com",
       "art": {
-        "mascot": null,
-        "logomark": null,
+        "mascot": "/sites/circe/assets/circe_mascot.webp",
+        "logomark": "/sites/circe/assets/circe_logomark.webp",
         "fullArt": null,
-        "colors": null,
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      },
+      "patternFoil": true
+    },
+    {
+      "id": "circe-full-art",
+      "entryId": "circe",
+      "baseCardId": "circe-common",
+      "edition": "full-art",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Kírkē",
+      "ascii": "circe",
+      "original": "Κίρκη",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Sorceress, Aeaea, Transformations",
+      "rarity": "legendary",
+      "rarityOrder": 5,
+      "cost": 3,
+      "power": 92,
+      "health": 70,
+      "speed": 8,
+      "ability": {
+        "id": "ability-circe",
+        "entryId": "circe",
+        "name": "The Dread Goddess of Aiaia",
+        "description": "Restore 3 health to your hero. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "heal-hero",
+              "amount": 3
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "Kírkē's myths turn on the unstable border between human and animal — and on Homer's strangest reversal: the goddess who defeats every man she meets becomes, the hour she is beaten, the hero's most useful ally.",
+      "flagship": true,
+      "ownedDomain": "kírkē.com",
+      "art": {
+        "mascot": "/sites/circe/assets/circe_mascot.webp",
+        "logomark": "/sites/circe/assets/circe_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/circe_comp-canvas.png",
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
         "artist": null
       }
+    },
+    {
+      "id": "circe-secret",
+      "entryId": "circe",
+      "baseCardId": "circe-common",
+      "edition": "secret",
+      "variant": "original-script",
+      "setId": "first-restoration",
+      "name": "Kírkē",
+      "ascii": "circe",
+      "original": "Κίρκη",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Sorceress, Aeaea, Transformations",
+      "rarity": "mythic",
+      "rarityOrder": 6,
+      "cost": 3,
+      "power": 92,
+      "health": 70,
+      "speed": 8,
+      "ability": {
+        "id": "ability-circe",
+        "entryId": "circe",
+        "name": "The Dread Goddess of Aiaia",
+        "description": "Restore 3 health to your hero. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "heal-hero",
+              "amount": 3
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "Kírkē's myths turn on the unstable border between human and animal — and on Homer's strangest reversal: the goddess who defeats every man she meets becomes, the hour she is beaten, the hero's most useful ally.",
+      "flagship": true,
+      "ownedDomain": "kírkē.com",
+      "art": {
+        "mascot": "/sites/circe/assets/circe_mascot.webp",
+        "logomark": "/sites/circe/assets/circe_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/circe_comp-canvas.png",
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      },
+      "foil": true
     },
     {
       "id": "thetis-standard",
@@ -28706,7 +29228,7 @@
       "domain": "Monster, Strait of Messina",
       "rarity": "common",
       "rarityOrder": 1,
-      "cost": 3,
+      "cost": 2,
       "power": 47,
       "health": 74,
       "speed": 7,
@@ -30491,7 +31013,7 @@
       "domain": "Titaness of Sight",
       "rarity": "mythic",
       "rarityOrder": 6,
-      "cost": 1,
+      "cost": 2,
       "power": 86,
       "health": 68,
       "speed": 8,
@@ -30533,10 +31055,59 @@
       "foil": true
     },
     {
-      "id": "phoebe-standard",
+      "id": "phoebe-common",
       "entryId": "phoebe",
-      "baseCardId": "phoebe-standard",
-      "edition": "archive",
+      "baseCardId": "phoebe-common",
+      "edition": "common",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Phoíbē",
+      "ascii": "phoebe",
+      "original": "Φοίβη",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Titaness of Prophecy",
+      "rarity": "common",
+      "rarityOrder": 1,
+      "cost": 2,
+      "power": 70,
+      "health": 63,
+      "speed": 8,
+      "ability": {
+        "id": "ability-phoebe",
+        "entryId": "phoebe",
+        "name": "The Third Voice of Delphi",
+        "description": "Draw 2 cards.",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "draw",
+          "count": 2
+        }
+      },
+      "flavor": "Phoíbē stands quietly at the hinge of Greek myth: a Titan of the eldest generation whose role is to inherit and to hand on — the oracle to Apollo, the bloodline to Leto.",
+      "flagship": true,
+      "ownedDomain": "phoíbē.com",
+      "art": {
+        "mascot": "/sites/phoebe/assets/phoebe_mascot.webp",
+        "logomark": "/sites/phoebe/assets/phoebe_logomark.webp",
+        "fullArt": null,
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      }
+    },
+    {
+      "id": "phoebe-holo",
+      "entryId": "phoebe",
+      "baseCardId": "phoebe-common",
+      "edition": "holo",
       "variant": "standard",
       "setId": "first-restoration",
       "name": "Phoíbē",
@@ -30551,14 +31122,14 @@
       "domain": "Titaness of Prophecy",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 4,
-      "power": 70,
-      "health": 63,
+      "cost": 2,
+      "power": 82,
+      "health": 75,
       "speed": 8,
       "ability": {
         "id": "ability-phoebe",
         "entryId": "phoebe",
-        "name": "Foretelling of Olympos",
+        "name": "The Third Voice of Delphi",
         "description": "Draw 2 cards.",
         "trigger": "on_play",
         "effect": {
@@ -30566,16 +31137,140 @@
           "count": 2
         }
       },
-      "flavor": "Bright, shining",
-      "flagship": false,
-      "ownedDomain": null,
+      "flavor": "Phoíbē stands quietly at the hinge of Greek myth: a Titan of the eldest generation whose role is to inherit and to hand on — the oracle to Apollo, the bloodline to Leto.",
+      "flagship": true,
+      "ownedDomain": "phoíbē.com",
       "art": {
-        "mascot": null,
-        "logomark": null,
+        "mascot": "/sites/phoebe/assets/phoebe_mascot.webp",
+        "logomark": "/sites/phoebe/assets/phoebe_logomark.webp",
         "fullArt": null,
-        "colors": null,
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      },
+      "patternFoil": true
+    },
+    {
+      "id": "phoebe-full-art",
+      "entryId": "phoebe",
+      "baseCardId": "phoebe-common",
+      "edition": "full-art",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Phoíbē",
+      "ascii": "phoebe",
+      "original": "Φοίβη",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Titaness of Prophecy",
+      "rarity": "legendary",
+      "rarityOrder": 5,
+      "cost": 2,
+      "power": 82,
+      "health": 75,
+      "speed": 8,
+      "ability": {
+        "id": "ability-phoebe",
+        "entryId": "phoebe",
+        "name": "The Third Voice of Delphi",
+        "description": "Draw 2 cards. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "draw",
+              "count": 2
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "Phoíbē stands quietly at the hinge of Greek myth: a Titan of the eldest generation whose role is to inherit and to hand on — the oracle to Apollo, the bloodline to Leto.",
+      "flagship": true,
+      "ownedDomain": "phoíbē.com",
+      "art": {
+        "mascot": "/sites/phoebe/assets/phoebe_mascot.webp",
+        "logomark": "/sites/phoebe/assets/phoebe_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/phoebe_comp-canvas.png",
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
         "artist": null
       }
+    },
+    {
+      "id": "phoebe-secret",
+      "entryId": "phoebe",
+      "baseCardId": "phoebe-common",
+      "edition": "secret",
+      "variant": "original-script",
+      "setId": "first-restoration",
+      "name": "Phoíbē",
+      "ascii": "phoebe",
+      "original": "Φοίβη",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Titaness of Prophecy",
+      "rarity": "mythic",
+      "rarityOrder": 6,
+      "cost": 2,
+      "power": 82,
+      "health": 75,
+      "speed": 8,
+      "ability": {
+        "id": "ability-phoebe",
+        "entryId": "phoebe",
+        "name": "The Third Voice of Delphi",
+        "description": "Draw 2 cards. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "draw",
+              "count": 2
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "Phoíbē stands quietly at the hinge of Greek myth: a Titan of the eldest generation whose role is to inherit and to hand on — the oracle to Apollo, the bloodline to Leto.",
+      "flagship": true,
+      "ownedDomain": "phoíbē.com",
+      "art": {
+        "mascot": "/sites/phoebe/assets/phoebe_mascot.webp",
+        "logomark": "/sites/phoebe/assets/phoebe_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/phoebe_comp-canvas.png",
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      },
+      "foil": true
     },
     {
       "id": "nyx-standard",
@@ -31497,7 +32192,7 @@
       "domain": "Necessity, Compulsion",
       "rarity": "common",
       "rarityOrder": 1,
-      "cost": 2,
+      "cost": 3,
       "power": 81,
       "health": 57,
       "speed": 8,
@@ -31545,7 +32240,7 @@
       "domain": "Necessity, Compulsion",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 2,
+      "cost": 3,
       "power": 93,
       "health": 69,
       "speed": 8,
@@ -31594,7 +32289,7 @@
       "domain": "Necessity, Compulsion",
       "rarity": "legendary",
       "rarityOrder": 5,
-      "cost": 2,
+      "cost": 3,
       "power": 93,
       "health": 69,
       "speed": 8,
@@ -31933,7 +32628,7 @@
       "domain": "Cunning, Journey",
       "rarity": "common",
       "rarityOrder": 1,
-      "cost": 2,
+      "cost": 3,
       "power": 78,
       "health": 59,
       "speed": 7,
@@ -31982,7 +32677,7 @@
       "domain": "Cunning, Journey",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 2,
+      "cost": 3,
       "power": 90,
       "health": 71,
       "speed": 7,
@@ -32032,7 +32727,7 @@
       "domain": "Cunning, Journey",
       "rarity": "legendary",
       "rarityOrder": 5,
-      "cost": 2,
+      "cost": 3,
       "power": 90,
       "health": 71,
       "speed": 7,
@@ -32513,7 +33208,7 @@
       "domain": "Vigilance, Hera's Watcher",
       "rarity": "mythic",
       "rarityOrder": 6,
-      "cost": 2,
+      "cost": 3,
       "power": 74,
       "health": 87,
       "speed": 6,
@@ -33214,10 +33909,59 @@
       }
     },
     {
-      "id": "kleio-standard",
+      "id": "kleio-common",
       "entryId": "kleio",
-      "baseCardId": "kleio-standard",
-      "edition": "archive",
+      "baseCardId": "kleio-common",
+      "edition": "common",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Kleió",
+      "ascii": "kleio",
+      "original": "Κλειώ",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "History",
+      "rarity": "common",
+      "rarityOrder": 1,
+      "cost": 6,
+      "power": 75,
+      "health": 74,
+      "speed": 7,
+      "ability": {
+        "id": "ability-kleio",
+        "entryId": "kleio",
+        "name": "The Proclaimer of Glory",
+        "description": "Your allies gain a 2 shield.",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "shield-allies",
+          "amount": 2
+        }
+      },
+      "flavor": "Kleiṓ rarely acts in myths of her own; she is the authority behind them.",
+      "flagship": true,
+      "ownedDomain": "kleiṓ.com",
+      "art": {
+        "mascot": "/sites/kleio/assets/kleio_mascot.webp",
+        "logomark": "/sites/kleio/assets/kleio_logomark.webp",
+        "fullArt": null,
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      }
+    },
+    {
+      "id": "kleio-holo",
+      "entryId": "kleio",
+      "baseCardId": "kleio-common",
+      "edition": "holo",
       "variant": "standard",
       "setId": "first-restoration",
       "name": "Kleió",
@@ -33232,14 +33976,14 @@
       "domain": "History",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 7,
-      "power": 75,
-      "health": 74,
+      "cost": 6,
+      "power": 87,
+      "health": 86,
       "speed": 7,
       "ability": {
         "id": "ability-kleio",
         "entryId": "kleio",
-        "name": "History of Olympos",
+        "name": "The Proclaimer of Glory",
         "description": "Your allies gain a 2 shield.",
         "trigger": "on_play",
         "effect": {
@@ -33247,22 +33991,195 @@
           "amount": 2
         }
       },
-      "flavor": "Proclaimer, glorifier",
-      "flagship": false,
-      "ownedDomain": null,
+      "flavor": "Kleiṓ rarely acts in myths of her own; she is the authority behind them.",
+      "flagship": true,
+      "ownedDomain": "kleiṓ.com",
       "art": {
-        "mascot": null,
-        "logomark": null,
+        "mascot": "/sites/kleio/assets/kleio_mascot.webp",
+        "logomark": "/sites/kleio/assets/kleio_logomark.webp",
         "fullArt": null,
-        "colors": null,
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      },
+      "patternFoil": true
+    },
+    {
+      "id": "kleio-full-art",
+      "entryId": "kleio",
+      "baseCardId": "kleio-common",
+      "edition": "full-art",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Kleió",
+      "ascii": "kleio",
+      "original": "Κλειώ",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "History",
+      "rarity": "legendary",
+      "rarityOrder": 5,
+      "cost": 6,
+      "power": 87,
+      "health": 86,
+      "speed": 7,
+      "ability": {
+        "id": "ability-kleio",
+        "entryId": "kleio",
+        "name": "The Proclaimer of Glory",
+        "description": "Your allies gain a 2 shield. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "shield-allies",
+              "amount": 2
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "Kleiṓ rarely acts in myths of her own; she is the authority behind them.",
+      "flagship": true,
+      "ownedDomain": "kleiṓ.com",
+      "art": {
+        "mascot": "/sites/kleio/assets/kleio_mascot.webp",
+        "logomark": "/sites/kleio/assets/kleio_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/kleio_comp-canvas.png",
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
         "artist": null
       }
     },
     {
-      "id": "thaleia-standard",
+      "id": "kleio-secret",
+      "entryId": "kleio",
+      "baseCardId": "kleio-common",
+      "edition": "secret",
+      "variant": "original-script",
+      "setId": "first-restoration",
+      "name": "Kleió",
+      "ascii": "kleio",
+      "original": "Κλειώ",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "History",
+      "rarity": "mythic",
+      "rarityOrder": 6,
+      "cost": 6,
+      "power": 87,
+      "health": 86,
+      "speed": 7,
+      "ability": {
+        "id": "ability-kleio",
+        "entryId": "kleio",
+        "name": "The Proclaimer of Glory",
+        "description": "Your allies gain a 2 shield. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "shield-allies",
+              "amount": 2
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "Kleiṓ rarely acts in myths of her own; she is the authority behind them.",
+      "flagship": true,
+      "ownedDomain": "kleiṓ.com",
+      "art": {
+        "mascot": "/sites/kleio/assets/kleio_mascot.webp",
+        "logomark": "/sites/kleio/assets/kleio_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/kleio_comp-canvas.png",
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      },
+      "foil": true
+    },
+    {
+      "id": "thaleia-common",
       "entryId": "thaleia",
-      "baseCardId": "thaleia-standard",
-      "edition": "archive",
+      "baseCardId": "thaleia-common",
+      "edition": "common",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Tháleia",
+      "ascii": "thaleia",
+      "original": "Θάλεια",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Comedy, Idyll",
+      "rarity": "common",
+      "rarityOrder": 1,
+      "cost": 3,
+      "power": 84,
+      "health": 55,
+      "speed": 7,
+      "ability": {
+        "id": "ability-thaleia",
+        "entryId": "thaleia",
+        "name": "The Blooming Muse",
+        "description": "Your allies gain a 2 shield.",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "shield-allies",
+          "amount": 2
+        }
+      },
+      "flavor": "Tháleia rarely acts alone: her myths are the myths of the Muses as a body.",
+      "flagship": true,
+      "ownedDomain": "tháleia.com",
+      "art": {
+        "mascot": "/sites/thaleia/assets/thaleia_mascot.webp",
+        "logomark": "/sites/thaleia/assets/thaleia_logomark.webp",
+        "fullArt": null,
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      }
+    },
+    {
+      "id": "thaleia-holo",
+      "entryId": "thaleia",
+      "baseCardId": "thaleia-common",
+      "edition": "holo",
       "variant": "standard",
       "setId": "first-restoration",
       "name": "Tháleia",
@@ -33277,14 +34194,14 @@
       "domain": "Comedy, Idyll",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 5,
-      "power": 84,
-      "health": 55,
+      "cost": 3,
+      "power": 96,
+      "health": 67,
       "speed": 7,
       "ability": {
         "id": "ability-thaleia",
         "entryId": "thaleia",
-        "name": "Comedy of Olympos",
+        "name": "The Blooming Muse",
         "description": "Your allies gain a 2 shield.",
         "trigger": "on_play",
         "effect": {
@@ -33292,16 +34209,140 @@
           "amount": 2
         }
       },
-      "flavor": "Flourishing, blooming",
-      "flagship": false,
-      "ownedDomain": null,
+      "flavor": "Tháleia rarely acts alone: her myths are the myths of the Muses as a body.",
+      "flagship": true,
+      "ownedDomain": "tháleia.com",
       "art": {
-        "mascot": null,
-        "logomark": null,
+        "mascot": "/sites/thaleia/assets/thaleia_mascot.webp",
+        "logomark": "/sites/thaleia/assets/thaleia_logomark.webp",
         "fullArt": null,
-        "colors": null,
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      },
+      "patternFoil": true
+    },
+    {
+      "id": "thaleia-full-art",
+      "entryId": "thaleia",
+      "baseCardId": "thaleia-common",
+      "edition": "full-art",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Tháleia",
+      "ascii": "thaleia",
+      "original": "Θάλεια",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Comedy, Idyll",
+      "rarity": "legendary",
+      "rarityOrder": 5,
+      "cost": 3,
+      "power": 96,
+      "health": 67,
+      "speed": 7,
+      "ability": {
+        "id": "ability-thaleia",
+        "entryId": "thaleia",
+        "name": "The Blooming Muse",
+        "description": "Your allies gain a 2 shield. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "shield-allies",
+              "amount": 2
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "Tháleia rarely acts alone: her myths are the myths of the Muses as a body.",
+      "flagship": true,
+      "ownedDomain": "tháleia.com",
+      "art": {
+        "mascot": "/sites/thaleia/assets/thaleia_mascot.webp",
+        "logomark": "/sites/thaleia/assets/thaleia_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/thaleia_comp-canvas.png",
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
         "artist": null
       }
+    },
+    {
+      "id": "thaleia-secret",
+      "entryId": "thaleia",
+      "baseCardId": "thaleia-common",
+      "edition": "secret",
+      "variant": "original-script",
+      "setId": "first-restoration",
+      "name": "Tháleia",
+      "ascii": "thaleia",
+      "original": "Θάλεια",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Comedy, Idyll",
+      "rarity": "mythic",
+      "rarityOrder": 6,
+      "cost": 3,
+      "power": 96,
+      "health": 67,
+      "speed": 7,
+      "ability": {
+        "id": "ability-thaleia",
+        "entryId": "thaleia",
+        "name": "The Blooming Muse",
+        "description": "Your allies gain a 2 shield. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "shield-allies",
+              "amount": 2
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "Tháleia rarely acts alone: her myths are the myths of the Muses as a body.",
+      "flagship": true,
+      "ownedDomain": "tháleia.com",
+      "art": {
+        "mascot": "/sites/thaleia/assets/thaleia_mascot.webp",
+        "logomark": "/sites/thaleia/assets/thaleia_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/thaleia_comp-canvas.png",
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      },
+      "foil": true
     },
     {
       "id": "euterpe-standard",
@@ -34303,10 +35344,10 @@
       "foil": true
     },
     {
-      "id": "eris-standard",
+      "id": "eris-common",
       "entryId": "eris",
-      "baseCardId": "eris-standard",
-      "edition": "archive",
+      "baseCardId": "eris-common",
+      "edition": "common",
       "variant": "standard",
       "setId": "first-restoration",
       "name": "Éris",
@@ -34321,14 +35362,14 @@
       "domain": "Strife, Discord",
       "rarity": "common",
       "rarityOrder": 1,
-      "cost": 2,
+      "cost": 1,
       "power": 47,
       "health": 74,
       "speed": 7,
       "ability": {
         "id": "ability-eris",
         "entryId": "eris",
-        "name": "Strife of Olympos",
+        "name": "The Uninvited",
         "description": "Your allies gain +1 power while this is in play.",
         "trigger": "passive",
         "effect": {
@@ -34336,16 +35377,169 @@
           "power": 1
         }
       },
-      "flavor": "Strife",
-      "flagship": false,
-      "ownedDomain": null,
+      "flavor": "Éris has no temples and almost no cult — her mythology is her meaning.",
+      "flagship": true,
+      "ownedDomain": "éris.com",
       "art": {
-        "mascot": null,
-        "logomark": null,
+        "mascot": "/sites/eris/assets/eris_mascot.webp",
+        "logomark": "/sites/eris/assets/eris_logomark.webp",
         "fullArt": null,
-        "colors": null,
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
         "artist": null
       }
+    },
+    {
+      "id": "eris-holo",
+      "entryId": "eris",
+      "baseCardId": "eris-common",
+      "edition": "holo",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Éris",
+      "ascii": "eris",
+      "original": "Ἔρις",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "2",
+      "tierLabel": "Tier 2",
+      "domain": "Strife, Discord",
+      "rarity": "rare",
+      "rarityOrder": 3,
+      "cost": 1,
+      "power": 59,
+      "health": 86,
+      "speed": 7,
+      "ability": {
+        "id": "ability-eris",
+        "entryId": "eris",
+        "name": "The Uninvited",
+        "description": "Your allies gain +1 power while this is in play.",
+        "trigger": "passive",
+        "effect": {
+          "kind": "aura-allies",
+          "power": 1
+        }
+      },
+      "flavor": "Éris has no temples and almost no cult — her mythology is her meaning.",
+      "flagship": true,
+      "ownedDomain": "éris.com",
+      "art": {
+        "mascot": "/sites/eris/assets/eris_mascot.webp",
+        "logomark": "/sites/eris/assets/eris_logomark.webp",
+        "fullArt": null,
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      },
+      "patternFoil": true
+    },
+    {
+      "id": "eris-full-art",
+      "entryId": "eris",
+      "baseCardId": "eris-common",
+      "edition": "full-art",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Éris",
+      "ascii": "eris",
+      "original": "Ἔρις",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "2",
+      "tierLabel": "Tier 2",
+      "domain": "Strife, Discord",
+      "rarity": "legendary",
+      "rarityOrder": 5,
+      "cost": 1,
+      "power": 59,
+      "health": 86,
+      "speed": 7,
+      "ability": {
+        "id": "ability-eris",
+        "entryId": "eris",
+        "name": "The Uninvited",
+        "description": "Your allies gain +1 power while this is in play. +2 power (Full-Art).",
+        "trigger": "passive",
+        "effect": {
+          "kind": "aura-allies",
+          "power": 3
+        }
+      },
+      "flavor": "Éris has no temples and almost no cult — her mythology is her meaning.",
+      "flagship": true,
+      "ownedDomain": "éris.com",
+      "art": {
+        "mascot": "/sites/eris/assets/eris_mascot.webp",
+        "logomark": "/sites/eris/assets/eris_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/eris_comp-canvas.png",
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      }
+    },
+    {
+      "id": "eris-secret",
+      "entryId": "eris",
+      "baseCardId": "eris-common",
+      "edition": "secret",
+      "variant": "original-script",
+      "setId": "first-restoration",
+      "name": "Éris",
+      "ascii": "eris",
+      "original": "Ἔρις",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "2",
+      "tierLabel": "Tier 2",
+      "domain": "Strife, Discord",
+      "rarity": "mythic",
+      "rarityOrder": 6,
+      "cost": 1,
+      "power": 59,
+      "health": 86,
+      "speed": 7,
+      "ability": {
+        "id": "ability-eris",
+        "entryId": "eris",
+        "name": "The Uninvited",
+        "description": "Your allies gain +1 power while this is in play. +2 power (Full-Art).",
+        "trigger": "passive",
+        "effect": {
+          "kind": "aura-allies",
+          "power": 3
+        }
+      },
+      "flavor": "Éris has no temples and almost no cult — her mythology is her meaning.",
+      "flagship": true,
+      "ownedDomain": "éris.com",
+      "art": {
+        "mascot": "/sites/eris/assets/eris_mascot.webp",
+        "logomark": "/sites/eris/assets/eris_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/eris_comp-canvas.png",
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      },
+      "foil": true
     },
     {
       "id": "hypnos-common",
@@ -35492,10 +36686,59 @@
       }
     },
     {
-      "id": "chimaira-standard",
+      "id": "chimaira-common",
       "entryId": "chimaira",
-      "baseCardId": "chimaira-standard",
-      "edition": "archive",
+      "baseCardId": "chimaira-common",
+      "edition": "common",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Chímaira",
+      "ascii": "chimaira",
+      "original": "Χίμαιρα",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Fire-Breathing Monster",
+      "rarity": "common",
+      "rarityOrder": 1,
+      "cost": 3,
+      "power": 78,
+      "health": 60,
+      "speed": 6,
+      "ability": {
+        "id": "ability-chimaira",
+        "entryId": "chimaira",
+        "name": "The She-Goat of Fire",
+        "description": "Gain +1 ink each turn while in play.",
+        "trigger": "passive",
+        "effect": {
+          "kind": "ink-gen",
+          "amount": 1
+        }
+      },
+      "flavor": "Chímaira's myths are all one myth told at different distances: the impossible creature, and the impossible rider sent against her.",
+      "flagship": true,
+      "ownedDomain": "chímaira.com",
+      "art": {
+        "mascot": "/sites/chimaira/assets/chimaira_mascot.webp",
+        "logomark": "/sites/chimaira/assets/chimaira_logomark.webp",
+        "fullArt": null,
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      }
+    },
+    {
+      "id": "chimaira-holo",
+      "entryId": "chimaira",
+      "baseCardId": "chimaira-common",
+      "edition": "holo",
       "variant": "standard",
       "setId": "first-restoration",
       "name": "Chímaira",
@@ -35510,14 +36753,14 @@
       "domain": "Fire-Breathing Monster",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 5,
-      "power": 78,
-      "health": 60,
+      "cost": 3,
+      "power": 90,
+      "health": 72,
       "speed": 6,
       "ability": {
         "id": "ability-chimaira",
         "entryId": "chimaira",
-        "name": "Brand of Olympos",
+        "name": "The She-Goat of Fire",
         "description": "Gain +1 ink each turn while in play.",
         "trigger": "passive",
         "effect": {
@@ -35525,16 +36768,120 @@
           "amount": 1
         }
       },
-      "flavor": "She-goat",
-      "flagship": false,
-      "ownedDomain": null,
+      "flavor": "Chímaira's myths are all one myth told at different distances: the impossible creature, and the impossible rider sent against her.",
+      "flagship": true,
+      "ownedDomain": "chímaira.com",
       "art": {
-        "mascot": null,
-        "logomark": null,
+        "mascot": "/sites/chimaira/assets/chimaira_mascot.webp",
+        "logomark": "/sites/chimaira/assets/chimaira_logomark.webp",
         "fullArt": null,
-        "colors": null,
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      },
+      "patternFoil": true
+    },
+    {
+      "id": "chimaira-full-art",
+      "entryId": "chimaira",
+      "baseCardId": "chimaira-common",
+      "edition": "full-art",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Chímaira",
+      "ascii": "chimaira",
+      "original": "Χίμαιρα",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Fire-Breathing Monster",
+      "rarity": "legendary",
+      "rarityOrder": 5,
+      "cost": 3,
+      "power": 90,
+      "health": 72,
+      "speed": 6,
+      "ability": {
+        "id": "ability-chimaira",
+        "entryId": "chimaira",
+        "name": "The She-Goat of Fire",
+        "description": "Gain +1 ink each turn while in play. +1 (Full-Art).",
+        "trigger": "passive",
+        "effect": {
+          "kind": "ink-gen",
+          "amount": 2
+        }
+      },
+      "flavor": "Chímaira's myths are all one myth told at different distances: the impossible creature, and the impossible rider sent against her.",
+      "flagship": true,
+      "ownedDomain": "chímaira.com",
+      "art": {
+        "mascot": "/sites/chimaira/assets/chimaira_mascot.webp",
+        "logomark": "/sites/chimaira/assets/chimaira_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/chimaira_comp-canvas.png",
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
         "artist": null
       }
+    },
+    {
+      "id": "chimaira-secret",
+      "entryId": "chimaira",
+      "baseCardId": "chimaira-common",
+      "edition": "secret",
+      "variant": "original-script",
+      "setId": "first-restoration",
+      "name": "Chímaira",
+      "ascii": "chimaira",
+      "original": "Χίμαιρα",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Fire-Breathing Monster",
+      "rarity": "mythic",
+      "rarityOrder": 6,
+      "cost": 3,
+      "power": 90,
+      "health": 72,
+      "speed": 6,
+      "ability": {
+        "id": "ability-chimaira",
+        "entryId": "chimaira",
+        "name": "The She-Goat of Fire",
+        "description": "Gain +1 ink each turn while in play. +1 (Full-Art).",
+        "trigger": "passive",
+        "effect": {
+          "kind": "ink-gen",
+          "amount": 2
+        }
+      },
+      "flavor": "Chímaira's myths are all one myth told at different distances: the impossible creature, and the impossible rider sent against her.",
+      "flagship": true,
+      "ownedDomain": "chímaira.com",
+      "art": {
+        "mascot": "/sites/chimaira/assets/chimaira_mascot.webp",
+        "logomark": "/sites/chimaira/assets/chimaira_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/chimaira_comp-canvas.png",
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      },
+      "foil": true
     },
     {
       "id": "sphinx-common",
@@ -40451,7 +41798,7 @@
       "domain": "Hero, King of Uruk",
       "rarity": "common",
       "rarityOrder": 1,
-      "cost": 7,
+      "cost": 8,
       "power": 82,
       "health": 79,
       "speed": 5,
@@ -40501,7 +41848,7 @@
       "domain": "Hero, King of Uruk",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 7,
+      "cost": 8,
       "power": 94,
       "health": 91,
       "speed": 5,
@@ -40552,7 +41899,7 @@
       "domain": "Hero, King of Uruk",
       "rarity": "legendary",
       "rarityOrder": 5,
-      "cost": 7,
+      "cost": 8,
       "power": 94,
       "health": 91,
       "speed": 5,
@@ -42148,7 +43495,7 @@
       "domain": "Sacred Syllable, Cosmic Sound",
       "rarity": "common",
       "rarityOrder": 1,
-      "cost": 1,
+      "cost": 2,
       "power": 70,
       "health": 62,
       "speed": 4,
@@ -42197,7 +43544,7 @@
       "domain": "Sacred Syllable, Cosmic Sound",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 1,
+      "cost": 2,
       "power": 82,
       "health": 74,
       "speed": 4,
@@ -42247,7 +43594,7 @@
       "domain": "Sacred Syllable, Cosmic Sound",
       "rarity": "legendary",
       "rarityOrder": 5,
-      "cost": 1,
+      "cost": 2,
       "power": 82,
       "health": 74,
       "speed": 4,
@@ -44367,10 +45714,59 @@
       }
     },
     {
-      "id": "okuninushi-standard",
+      "id": "okuninushi-common",
       "entryId": "okuninushi",
-      "baseCardId": "okuninushi-standard",
-      "edition": "archive",
+      "baseCardId": "okuninushi-common",
+      "edition": "common",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Ōkuninushi",
+      "ascii": "okuninushi",
+      "original": "大国主",
+      "pantheon": "japanese",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Nation-building, Marriage",
+      "rarity": "common",
+      "rarityOrder": 1,
+      "cost": 2,
+      "power": 75,
+      "health": 61,
+      "speed": 6,
+      "ability": {
+        "id": "ability-okuninushi",
+        "entryId": "okuninushi",
+        "name": "The Lord of the Reed-Plain",
+        "description": "Draw a card.",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "draw",
+          "count": 1
+        }
+      },
+      "flavor": "Ōkuninushi's cycle, preserved in the Kojiki (712) and the Nihon Shoki (720), is the longest and most novelistic narrative in Japanese myth — a story of escape, ordeal, sovereignty and renunciation at the meeting-point of",
+      "flagship": true,
+      "ownedDomain": "ōkuninushi.com",
+      "art": {
+        "mascot": "/sites/okuninushi/assets/okuninushi_mascot.webp",
+        "logomark": "/sites/okuninushi/assets/okuninushi_logomark.webp",
+        "fullArt": null,
+        "colors": {
+          "primary": "#DC143C",
+          "secondary": "#1A1A1A",
+          "glow": "rgba(220,20,60,0.3)"
+        },
+        "artist": null
+      }
+    },
+    {
+      "id": "okuninushi-holo",
+      "entryId": "okuninushi",
+      "baseCardId": "okuninushi-common",
+      "edition": "holo",
       "variant": "standard",
       "setId": "first-restoration",
       "name": "Ōkuninushi",
@@ -44385,14 +45781,14 @@
       "domain": "Nation-building, Marriage",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 5,
-      "power": 75,
-      "health": 61,
+      "cost": 2,
+      "power": 87,
+      "health": 73,
       "speed": 6,
       "ability": {
         "id": "ability-okuninushi",
         "entryId": "okuninushi",
-        "name": "Nation of Takamagahara",
+        "name": "The Lord of the Reed-Plain",
         "description": "Draw a card.",
         "trigger": "on_play",
         "effect": {
@@ -44400,16 +45796,140 @@
           "count": 1
         }
       },
-      "flavor": "Great land master",
-      "flagship": false,
-      "ownedDomain": null,
+      "flavor": "Ōkuninushi's cycle, preserved in the Kojiki (712) and the Nihon Shoki (720), is the longest and most novelistic narrative in Japanese myth — a story of escape, ordeal, sovereignty and renunciation at the meeting-point of",
+      "flagship": true,
+      "ownedDomain": "ōkuninushi.com",
       "art": {
-        "mascot": null,
-        "logomark": null,
+        "mascot": "/sites/okuninushi/assets/okuninushi_mascot.webp",
+        "logomark": "/sites/okuninushi/assets/okuninushi_logomark.webp",
         "fullArt": null,
-        "colors": null,
+        "colors": {
+          "primary": "#DC143C",
+          "secondary": "#1A1A1A",
+          "glow": "rgba(220,20,60,0.3)"
+        },
+        "artist": null
+      },
+      "patternFoil": true
+    },
+    {
+      "id": "okuninushi-full-art",
+      "entryId": "okuninushi",
+      "baseCardId": "okuninushi-common",
+      "edition": "full-art",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Ōkuninushi",
+      "ascii": "okuninushi",
+      "original": "大国主",
+      "pantheon": "japanese",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Nation-building, Marriage",
+      "rarity": "legendary",
+      "rarityOrder": 5,
+      "cost": 2,
+      "power": 87,
+      "health": 73,
+      "speed": 6,
+      "ability": {
+        "id": "ability-okuninushi",
+        "entryId": "okuninushi",
+        "name": "The Lord of the Reed-Plain",
+        "description": "Draw a card. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "draw",
+              "count": 1
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "Ōkuninushi's cycle, preserved in the Kojiki (712) and the Nihon Shoki (720), is the longest and most novelistic narrative in Japanese myth — a story of escape, ordeal, sovereignty and renunciation at the meeting-point of",
+      "flagship": true,
+      "ownedDomain": "ōkuninushi.com",
+      "art": {
+        "mascot": "/sites/okuninushi/assets/okuninushi_mascot.webp",
+        "logomark": "/sites/okuninushi/assets/okuninushi_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/okuninushi_comp-canvas.png",
+        "colors": {
+          "primary": "#DC143C",
+          "secondary": "#1A1A1A",
+          "glow": "rgba(220,20,60,0.3)"
+        },
         "artist": null
       }
+    },
+    {
+      "id": "okuninushi-secret",
+      "entryId": "okuninushi",
+      "baseCardId": "okuninushi-common",
+      "edition": "secret",
+      "variant": "original-script",
+      "setId": "first-restoration",
+      "name": "Ōkuninushi",
+      "ascii": "okuninushi",
+      "original": "大国主",
+      "pantheon": "japanese",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Nation-building, Marriage",
+      "rarity": "mythic",
+      "rarityOrder": 6,
+      "cost": 2,
+      "power": 87,
+      "health": 73,
+      "speed": 6,
+      "ability": {
+        "id": "ability-okuninushi",
+        "entryId": "okuninushi",
+        "name": "The Lord of the Reed-Plain",
+        "description": "Draw a card. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "draw",
+              "count": 1
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "Ōkuninushi's cycle, preserved in the Kojiki (712) and the Nihon Shoki (720), is the longest and most novelistic narrative in Japanese myth — a story of escape, ordeal, sovereignty and renunciation at the meeting-point of",
+      "flagship": true,
+      "ownedDomain": "ōkuninushi.com",
+      "art": {
+        "mascot": "/sites/okuninushi/assets/okuninushi_mascot.webp",
+        "logomark": "/sites/okuninushi/assets/okuninushi_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/okuninushi_comp-canvas.png",
+        "colors": {
+          "primary": "#DC143C",
+          "secondary": "#1A1A1A",
+          "glow": "rgba(220,20,60,0.3)"
+        },
+        "artist": null
+      },
+      "foil": true
     },
     {
       "id": "sarutahiko-standard",
@@ -47223,7 +48743,7 @@
       "domain": "Hunting, Forest, Justice",
       "rarity": "common",
       "rarityOrder": 1,
-      "cost": 5,
+      "cost": 6,
       "power": 76,
       "health": 72,
       "speed": 4,
@@ -47272,7 +48792,7 @@
       "domain": "Hunting, Forest, Justice",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 5,
+      "cost": 6,
       "power": 88,
       "health": 84,
       "speed": 4,
@@ -47322,7 +48842,7 @@
       "domain": "Hunting, Forest, Justice",
       "rarity": "legendary",
       "rarityOrder": 5,
-      "cost": 5,
+      "cost": 6,
       "power": 88,
       "health": 84,
       "speed": 4,
@@ -52698,7 +54218,7 @@
       "domain": "Five Elements, Change",
       "rarity": "mythic",
       "rarityOrder": 6,
-      "cost": 5,
+      "cost": 6,
       "power": 92,
       "health": 79,
       "speed": 7,
@@ -53842,7 +55362,7 @@
       "domain": "Sea, Protection, Seafaring",
       "rarity": "mythic",
       "rarityOrder": 6,
-      "cost": 7,
+      "cost": 8,
       "power": 86,
       "health": 97,
       "speed": 4,
@@ -55562,10 +57082,59 @@
       }
     },
     {
-      "id": "chiron-standard",
+      "id": "chiron-common",
       "entryId": "chiron",
-      "baseCardId": "chiron-standard",
-      "edition": "archive",
+      "baseCardId": "chiron-common",
+      "edition": "common",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Chíron",
+      "ascii": "chiron",
+      "original": "Χείρων",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Wise Centaur, Teacher",
+      "rarity": "common",
+      "rarityOrder": 1,
+      "cost": 7,
+      "power": 84,
+      "health": 75,
+      "speed": 7,
+      "ability": {
+        "id": "ability-chiron",
+        "entryId": "chiron",
+        "name": "The Most Just of Centaurs",
+        "description": "Restore 3 health to your hero.",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "heal-hero",
+          "amount": 3
+        }
+      },
+      "flavor": "Cheírōn stands at the hinge of two orders: Titan-born yet honored by the Olympians, beast-bodied yet the very image of wisdom.",
+      "flagship": true,
+      "ownedDomain": "cheírōn.com",
+      "art": {
+        "mascot": "/sites/chiron/assets/chiron_mascot.webp",
+        "logomark": "/sites/chiron/assets/chiron_logomark.webp",
+        "fullArt": null,
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      }
+    },
+    {
+      "id": "chiron-holo",
+      "entryId": "chiron",
+      "baseCardId": "chiron-common",
+      "edition": "holo",
       "variant": "standard",
       "setId": "first-restoration",
       "name": "Chíron",
@@ -55580,14 +57149,14 @@
       "domain": "Wise Centaur, Teacher",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 8,
-      "power": 84,
-      "health": 75,
+      "cost": 7,
+      "power": 96,
+      "health": 87,
       "speed": 7,
       "ability": {
         "id": "ability-chiron",
         "entryId": "chiron",
-        "name": "Wise of Olympos",
+        "name": "The Most Just of Centaurs",
         "description": "Restore 3 health to your hero.",
         "trigger": "on_play",
         "effect": {
@@ -55595,16 +57164,140 @@
           "amount": 3
         }
       },
-      "flavor": "Hand",
-      "flagship": false,
-      "ownedDomain": null,
+      "flavor": "Cheírōn stands at the hinge of two orders: Titan-born yet honored by the Olympians, beast-bodied yet the very image of wisdom.",
+      "flagship": true,
+      "ownedDomain": "cheírōn.com",
       "art": {
-        "mascot": null,
-        "logomark": null,
+        "mascot": "/sites/chiron/assets/chiron_mascot.webp",
+        "logomark": "/sites/chiron/assets/chiron_logomark.webp",
         "fullArt": null,
-        "colors": null,
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      },
+      "patternFoil": true
+    },
+    {
+      "id": "chiron-full-art",
+      "entryId": "chiron",
+      "baseCardId": "chiron-common",
+      "edition": "full-art",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Chíron",
+      "ascii": "chiron",
+      "original": "Χείρων",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Wise Centaur, Teacher",
+      "rarity": "legendary",
+      "rarityOrder": 5,
+      "cost": 7,
+      "power": 96,
+      "health": 87,
+      "speed": 7,
+      "ability": {
+        "id": "ability-chiron",
+        "entryId": "chiron",
+        "name": "The Most Just of Centaurs",
+        "description": "Restore 3 health to your hero. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "heal-hero",
+              "amount": 3
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "Cheírōn stands at the hinge of two orders: Titan-born yet honored by the Olympians, beast-bodied yet the very image of wisdom.",
+      "flagship": true,
+      "ownedDomain": "cheírōn.com",
+      "art": {
+        "mascot": "/sites/chiron/assets/chiron_mascot.webp",
+        "logomark": "/sites/chiron/assets/chiron_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/chiron_comp-canvas.png",
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
         "artist": null
       }
+    },
+    {
+      "id": "chiron-secret",
+      "entryId": "chiron",
+      "baseCardId": "chiron-common",
+      "edition": "secret",
+      "variant": "original-script",
+      "setId": "first-restoration",
+      "name": "Chíron",
+      "ascii": "chiron",
+      "original": "Χείρων",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Wise Centaur, Teacher",
+      "rarity": "mythic",
+      "rarityOrder": 6,
+      "cost": 7,
+      "power": 96,
+      "health": 87,
+      "speed": 7,
+      "ability": {
+        "id": "ability-chiron",
+        "entryId": "chiron",
+        "name": "The Most Just of Centaurs",
+        "description": "Restore 3 health to your hero. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "heal-hero",
+              "amount": 3
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "Cheírōn stands at the hinge of two orders: Titan-born yet honored by the Olympians, beast-bodied yet the very image of wisdom.",
+      "flagship": true,
+      "ownedDomain": "cheírōn.com",
+      "art": {
+        "mascot": "/sites/chiron/assets/chiron_mascot.webp",
+        "logomark": "/sites/chiron/assets/chiron_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/chiron_comp-canvas.png",
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      },
+      "foil": true
     },
     {
       "id": "ladon-standard",
@@ -55942,7 +57635,7 @@
       "domain": "Vulture, Heroic Bird",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 7,
+      "cost": 6,
       "power": 84,
       "health": 63,
       "speed": 7,
@@ -60805,7 +62498,7 @@
       "domain": "Universal Illumination, Cosmic Buddha",
       "rarity": "common",
       "rarityOrder": 1,
-      "cost": 4,
+      "cost": 5,
       "power": 77,
       "health": 67,
       "speed": 5,
@@ -60854,7 +62547,7 @@
       "domain": "Universal Illumination, Cosmic Buddha",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 4,
+      "cost": 5,
       "power": 89,
       "health": 79,
       "speed": 5,
@@ -60904,7 +62597,7 @@
       "domain": "Universal Illumination, Cosmic Buddha",
       "rarity": "legendary",
       "rarityOrder": 5,
-      "cost": 4,
+      "cost": 5,
       "power": 89,
       "health": 79,
       "speed": 5,
@@ -62861,7 +64554,7 @@
       "domain": "Death, Temptation, Illusion",
       "rarity": "mythic",
       "rarityOrder": 6,
-      "cost": 3,
+      "cost": 4,
       "power": 83,
       "health": 81,
       "speed": 7,
@@ -63078,7 +64771,7 @@
       "domain": "Founder of Daoism, Sage",
       "rarity": "mythic",
       "rarityOrder": 6,
-      "cost": 3,
+      "cost": 4,
       "power": 86,
       "health": 78,
       "speed": 6,
@@ -64459,7 +66152,7 @@
       "domain": "Supreme God, Father of Gods",
       "rarity": "mythic",
       "rarityOrder": 6,
-      "cost": 3,
+      "cost": 4,
       "power": 86,
       "health": 78,
       "speed": 7,
@@ -64712,7 +66405,7 @@
       "domain": "Sea, Mother Goddess",
       "rarity": "common",
       "rarityOrder": 1,
-      "cost": 6,
+      "cost": 7,
       "power": 73,
       "health": 81,
       "speed": 5,
@@ -64762,7 +66455,7 @@
       "domain": "Sea, Mother Goddess",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 6,
+      "cost": 7,
       "power": 85,
       "health": 93,
       "speed": 5,
@@ -64813,7 +66506,7 @@
       "domain": "Sea, Mother Goddess",
       "rarity": "legendary",
       "rarityOrder": 5,
-      "cost": 6,
+      "cost": 7,
       "power": 85,
       "health": 93,
       "speed": 5,
@@ -65622,7 +67315,7 @@
       "domain": "Grain, Fertility",
       "rarity": "mythic",
       "rarityOrder": 6,
-      "cost": 4,
+      "cost": 5,
       "power": 89,
       "health": 79,
       "speed": 4,
@@ -65820,7 +67513,7 @@
       "domain": "Agriculture, Vanishing God",
       "rarity": "common",
       "rarityOrder": 1,
-      "cost": 3,
+      "cost": 4,
       "power": 56,
       "health": 73,
       "speed": 6,
@@ -67178,7 +68871,7 @@
       "domain": "Sacred City, Alternative name",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 6,
+      "cost": 5,
       "power": 80,
       "health": 61,
       "speed": 6,
@@ -67699,10 +69392,10 @@
       }
     },
     {
-      "id": "zephyros-standard",
+      "id": "zephyros-common",
       "entryId": "zephyros",
-      "baseCardId": "zephyros-standard",
-      "edition": "archive",
+      "baseCardId": "zephyros-common",
+      "edition": "common",
       "variant": "standard",
       "setId": "first-restoration",
       "name": "Zéphyros",
@@ -67724,7 +69417,7 @@
       "ability": {
         "id": "ability-zephyros",
         "entryId": "zephyros",
-        "name": "West of Olympos",
+        "name": "The Breath of Spring",
         "description": "Your allies gain a 2 shield.",
         "trigger": "on_play",
         "effect": {
@@ -67732,16 +69425,189 @@
           "amount": 2
         }
       },
-      "flavor": "The west wind",
-      "flagship": false,
-      "ownedDomain": null,
+      "flavor": "Zéphyros is a minor god with an outsized poetic life: born of Dawn, lover of flowers, father of the fastest horses ever to run.",
+      "flagship": true,
+      "ownedDomain": "zéphyros.com",
       "art": {
-        "mascot": null,
-        "logomark": null,
+        "mascot": "/sites/zephyros/assets/zephyros_mascot.webp",
+        "logomark": "/sites/zephyros/assets/zephyros_logomark.webp",
         "fullArt": null,
-        "colors": null,
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
         "artist": null
       }
+    },
+    {
+      "id": "zephyros-holo",
+      "entryId": "zephyros",
+      "baseCardId": "zephyros-common",
+      "edition": "holo",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Zéphyros",
+      "ascii": "zephyros",
+      "original": "Ζέφυρος",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "2",
+      "tierLabel": "Tier 2",
+      "domain": "West Wind",
+      "rarity": "rare",
+      "rarityOrder": 3,
+      "cost": 1,
+      "power": 53,
+      "health": 67,
+      "speed": 6,
+      "ability": {
+        "id": "ability-zephyros",
+        "entryId": "zephyros",
+        "name": "The Breath of Spring",
+        "description": "Your allies gain a 2 shield.",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "shield-allies",
+          "amount": 2
+        }
+      },
+      "flavor": "Zéphyros is a minor god with an outsized poetic life: born of Dawn, lover of flowers, father of the fastest horses ever to run.",
+      "flagship": true,
+      "ownedDomain": "zéphyros.com",
+      "art": {
+        "mascot": "/sites/zephyros/assets/zephyros_mascot.webp",
+        "logomark": "/sites/zephyros/assets/zephyros_logomark.webp",
+        "fullArt": null,
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      },
+      "patternFoil": true
+    },
+    {
+      "id": "zephyros-full-art",
+      "entryId": "zephyros",
+      "baseCardId": "zephyros-common",
+      "edition": "full-art",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Zéphyros",
+      "ascii": "zephyros",
+      "original": "Ζέφυρος",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "2",
+      "tierLabel": "Tier 2",
+      "domain": "West Wind",
+      "rarity": "legendary",
+      "rarityOrder": 5,
+      "cost": 1,
+      "power": 53,
+      "health": 67,
+      "speed": 6,
+      "ability": {
+        "id": "ability-zephyros",
+        "entryId": "zephyros",
+        "name": "The Breath of Spring",
+        "description": "Your allies gain a 2 shield. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "shield-allies",
+              "amount": 2
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "Zéphyros is a minor god with an outsized poetic life: born of Dawn, lover of flowers, father of the fastest horses ever to run.",
+      "flagship": true,
+      "ownedDomain": "zéphyros.com",
+      "art": {
+        "mascot": "/sites/zephyros/assets/zephyros_mascot.webp",
+        "logomark": "/sites/zephyros/assets/zephyros_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/zephyros_comp-canvas.png",
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      }
+    },
+    {
+      "id": "zephyros-secret",
+      "entryId": "zephyros",
+      "baseCardId": "zephyros-common",
+      "edition": "secret",
+      "variant": "original-script",
+      "setId": "first-restoration",
+      "name": "Zéphyros",
+      "ascii": "zephyros",
+      "original": "Ζέφυρος",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "2",
+      "tierLabel": "Tier 2",
+      "domain": "West Wind",
+      "rarity": "mythic",
+      "rarityOrder": 6,
+      "cost": 1,
+      "power": 53,
+      "health": 67,
+      "speed": 6,
+      "ability": {
+        "id": "ability-zephyros",
+        "entryId": "zephyros",
+        "name": "The Breath of Spring",
+        "description": "Your allies gain a 2 shield. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "shield-allies",
+              "amount": 2
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "Zéphyros is a minor god with an outsized poetic life: born of Dawn, lover of flowers, father of the fastest horses ever to run.",
+      "flagship": true,
+      "ownedDomain": "zéphyros.com",
+      "art": {
+        "mascot": "/sites/zephyros/assets/zephyros_mascot.webp",
+        "logomark": "/sites/zephyros/assets/zephyros_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/zephyros_comp-canvas.png",
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      },
+      "foil": true
     },
     {
       "id": "momos-standard",
@@ -70922,7 +72788,7 @@
       "domain": "Personified Continent of Asia",
       "rarity": "common",
       "rarityOrder": 1,
-      "cost": 3,
+      "cost": 4,
       "power": 78,
       "health": 63,
       "speed": 7,
@@ -70971,7 +72837,7 @@
       "domain": "Personified Continent of Asia",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 3,
+      "cost": 4,
       "power": 90,
       "health": 75,
       "speed": 7,
@@ -71021,7 +72887,7 @@
       "domain": "Personified Continent of Asia",
       "rarity": "legendary",
       "rarityOrder": 5,
-      "cost": 3,
+      "cost": 4,
       "power": 90,
       "health": 75,
       "speed": 7,
@@ -71536,7 +73402,7 @@
       "domain": "Soul, Personality, Manifestation",
       "rarity": "common",
       "rarityOrder": 1,
-      "cost": 3,
+      "cost": 4,
       "power": 77,
       "health": 64,
       "speed": 3,
@@ -71584,7 +73450,7 @@
       "domain": "Soul, Personality, Manifestation",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 3,
+      "cost": 4,
       "power": 89,
       "health": 76,
       "speed": 3,
@@ -71633,7 +73499,7 @@
       "domain": "Soul, Personality, Manifestation",
       "rarity": "legendary",
       "rarityOrder": 5,
-      "cost": 3,
+      "cost": 4,
       "power": 89,
       "health": 76,
       "speed": 3,
@@ -75465,7 +77331,7 @@
       "domain": "First Murderer",
       "rarity": "mythic",
       "rarityOrder": 6,
-      "cost": 3,
+      "cost": 4,
       "power": 90,
       "health": 74,
       "speed": 7,
@@ -75888,7 +77754,7 @@
       "domain": "Dragon",
       "rarity": "mythic",
       "rarityOrder": 6,
-      "cost": 4,
+      "cost": 5,
       "power": 94,
       "health": 74,
       "speed": 5,
@@ -75949,7 +77815,7 @@
       "domain": "Limitless, Ultimate Nothing",
       "rarity": "common",
       "rarityOrder": 1,
-      "cost": 3,
+      "cost": 4,
       "power": 77,
       "health": 63,
       "speed": 6,
@@ -75997,7 +77863,7 @@
       "domain": "Limitless, Ultimate Nothing",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 3,
+      "cost": 4,
       "power": 89,
       "health": 75,
       "speed": 6,
@@ -76046,7 +77912,7 @@
       "domain": "Limitless, Ultimate Nothing",
       "rarity": "legendary",
       "rarityOrder": 5,
-      "cost": 3,
+      "cost": 4,
       "power": 89,
       "health": 75,
       "speed": 6,
@@ -76899,7 +78765,7 @@
       "domain": "Cosmology, Heaven and Earth, Order",
       "rarity": "mythic",
       "rarityOrder": 6,
-      "cost": 7,
+      "cost": 8,
       "power": 88,
       "health": 95,
       "speed": 6,
@@ -77570,7 +79436,7 @@
       "domain": "Lost Island, Legendary Realm, Sea",
       "rarity": "mythic",
       "rarityOrder": 6,
-      "cost": 2,
+      "cost": 3,
       "power": 64,
       "health": 97,
       "speed": 7,
@@ -80275,7 +82141,7 @@
       "domain": "Fortune, Chance, Turning",
       "rarity": "mythic",
       "rarityOrder": 6,
-      "cost": 5,
+      "cost": 6,
       "power": 86,
       "health": 85,
       "speed": 6,
@@ -81121,7 +82987,7 @@
       "domain": "Fire, Forge, Craft",
       "rarity": "common",
       "rarityOrder": 1,
-      "cost": 4,
+      "cost": 5,
       "power": 79,
       "health": 65,
       "speed": 5,
@@ -81171,7 +83037,7 @@
       "domain": "Fire, Forge, Craft",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 4,
+      "cost": 5,
       "power": 91,
       "health": 77,
       "speed": 5,
@@ -81222,7 +83088,7 @@
       "domain": "Fire, Forge, Craft",
       "rarity": "legendary",
       "rarityOrder": 5,
-      "cost": 4,
+      "cost": 5,
       "power": 91,
       "health": 77,
       "speed": 5,
@@ -83702,7 +85568,7 @@
       "domain": "War, Loyalty, Protection",
       "rarity": "common",
       "rarityOrder": 1,
-      "cost": 5,
+      "cost": 6,
       "power": 76,
       "health": 72,
       "speed": 7,
@@ -83752,7 +85618,7 @@
       "domain": "War, Loyalty, Protection",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 5,
+      "cost": 6,
       "power": 88,
       "health": 84,
       "speed": 7,
@@ -83803,7 +85669,7 @@
       "domain": "War, Loyalty, Protection",
       "rarity": "legendary",
       "rarityOrder": 5,
-      "cost": 5,
+      "cost": 6,
       "power": 88,
       "health": 84,
       "speed": 7,

@@ -55,6 +55,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Photovoltaics, solar thermal, and the light economy.',
     note: 'Solar deities personify the energy source the renewable sector harvests; their names already brand panels, projects, and space missions.',
     entries: [
+      { id: 'hyperion', weight: 2, why: 'Father of the sun itself — Hēlios is his son; every panel on every roof harvests his household\'s daily journey.' },
       { id: 'helios', weight: 2, why: 'The sun itself, driven daily across the sky in his chariot — solar power’s oldest and most literal namesake.' },
       { id: 'ra', weight: 2, why: 'The sun ferried across the sky in his barque each day, creator and king of the gods — Egypt’s solar engine.' },
       { id: 'surya', weight: 2, why: 'The sun riding his one-wheeled chariot of seven mares across the Vedic sky — the all-seeing light of the Ṛgveda.' },
@@ -81,6 +82,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Wind farms, turbines, and atmospheric resource management.',
     note: 'Wind and air deities govern exactly the kinetic resource the turbine economy converts to power.',
     entries: [
+      { id: 'zephyros', weight: 2, why: 'The west wind himself — the gentlest Anemos, spring\'s own courier; the softest revenue stream in the sky.' },
       { id: 'fujin', weight: 2, why: 'The wind-bag on his shoulders holds every gale; when he opens it, forests tear and roofs scatter — Japan’s wind made kami.' },
       { id: 'shu', weight: 2, why: 'He holds the sky apart from the earth and fills the space between with moving air — Egypt’s wind and breath made god.' },
       { id: 'enlil', weight: 2, why: 'Lord Wind — his Sumerian name says it outright; the moving air enthroned as the commander of the gods.' },
@@ -229,6 +231,8 @@ const INDUSTRY_GROUPS = [
     tagline: 'Space agencies, astronomy, and the orbital economy.',
     note: 'The space industry already names its missions after these figures — Apollo, Artemis, and Selene are flown programs, not metaphors.',
     entries: [
+      { id: 'phoebe', weight: 1, why: '"The bright one" — the shining Titaness whose epithet the sun-god himself wears.' },
+      { id: 'hyperion', weight: 2, why: '"He who goes above" — the Titan of the upper sky; the heavenly watch made personal.' },
       { id: 'mixcoatl', weight: 2, why: 'The Milky Way as his body; the star-road personified.' },
       { id: 'sani', weight: 1, why: 'Saturn, his planet — the ringed auditor of the sky.' },
       { id: 'pangu', weight: 1, why: 'The cosmic egg and the separating sky; the creation narrative of celestial mechanics.' },
@@ -314,6 +318,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Threat defense, authentication, and digital trust.',
     note: 'Guardians, riddlers, and tricksters map the modern security stack: the monster at the gate, the riddle that admits, and the adversary who tests.',
     entries: [
+      { id: 'eris', weight: 2, why: 'One golden apple, one exploit, total systemic collapse — engineered discord is the oldest hack on record.' },
       { id: 'drakon', weight: 2, why: 'The unsleeping watcher at the perimeter; the guardian serpent of every firewall.' },
       { id: 'troia', weight: 2, why: 'The original Trojan horse; the field’s founding metaphor.' },
       { id: 'ianus', weight: 2, why: 'The gate and its keeper; access control’s oldest patron.' },
@@ -341,6 +346,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Programming languages, cloud systems, and developer tools.',
     note: 'The software industry already borrows these names — a language, a monitoring system, a resilience practice — because the myths describe the systems.',
     entries: [
+      { id: 'eris', weight: 1, why: 'The chat platform Discord wears her name outright; argument as a service.' },
       { id: 'fuxi', weight: 2, why: 'The trigrams: broken and unbroken lines — the binary alphabet three millennia early.' },
       { id: 'seshat', weight: 2, why: 'The record kept exact; the archive, the ledger, the database.' },
       { id: 'tvastr', weight: 1, why: 'The specification is destiny: a wrong accent doomed the monster; a wrong sign dooms the build.' },
@@ -364,6 +370,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Machine intelligence, analytics, and prediction markets.',
     note: 'Prophecy is ancient prediction; oracles, forethought, and divine perception are the mythic ancestors of the forecasting stack.',
     entries: [
+      { id: 'phoebe', weight: 2, why: 'The third voice of Delphi — she held the oracle before Apollo; prediction is her seat, inherited and divine.' },
       { id: 'prometheus', weight: 2, why: 'Forethought personified — the literal meaning of his name is the value proposition of predictive AI.' },
       { id: 'delphoi', weight: 2, why: 'The oracle of the ancient world; prediction as a destination service.' },
       { id: 'apollon', weight: 2, why: 'God of prophecy whose oracle answered the ancient world’s hardest queries.' },
@@ -451,6 +458,8 @@ const INDUSTRY_GROUPS = [
     tagline: 'Farming, grain, food production, and agtech.',
     note: 'Harvest deities feed civilizations; grain gods and earth mothers are the founding brand of every food economy.',
     entries: [
+      { id: 'zephyros', weight: 1, why: 'He brings the spring and wakes the bloom; the season the harvest depends on.' },
+      { id: 'pan', weight: 1, why: 'God of shepherds and flocks; the pasture economy is his oldest congregation.' },
       { id: 'ceres', weight: 2, why: 'The goddess of grain and growth whose name roots the word “cereal” — Rome’s oldest working deity of the field.' },
       { id: 'sita', weight: 1, why: 'Her name is the furrow; the Ṛgveda prays to her for crops.' },
       { id: 'hp', weight: 2, why: 'The flood that feeds; silt, season, and harvest as one god.' },
@@ -493,6 +502,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Forestry, wildlife protection, and outdoor recreation.',
     note: 'Wilderness deities guard the forests the conservation economy exists to protect.',
     entries: [
+      { id: 'pan', weight: 2, why: 'The mountain wilds made god — shepherds, flocks, and the forest\'s own dread; conservation is his daily domain.' },
       { id: 'diana', weight: 2, why: 'Mistress of the wildwood; the protected grove as sacred law.' },
       { id: 'nuwa', weight: 2, why: 'The mender of the broken sky; restoration as divinity.' },
       { id: 'artemis', weight: 2, why: 'The hunt and the wilderness; protected lands are her temples.' },
@@ -577,6 +587,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Architecture, interior design, and spatial harmony.',
     note: 'Divine architects and harmony systems — from temple builders to feng shui — shape how humans design space.',
     entries: [
+      { id: 'okuninushi', weight: 2, why: 'The nation-builder of Izumo — he raised the land itself with Sukunabikona; the architect of a whole country.' },
       { id: 'seshat', weight: 1, why: 'Lady of Builders; the stretching of the cord that sets the temple’s axis.' },
       { id: 'dhatr', weight: 1, why: 'The establisher; foundations as sacred act.' },
       { id: 'tvastr', weight: 1, why: 'Viśvakarman, All-Maker: the architect of the gods’ own cities.' },
@@ -667,6 +678,8 @@ const INDUSTRY_GROUPS = [
     tagline: 'Medicine, pharmaceuticals, and public health.',
     note: 'Healing deities and health personified; the bowl of Hygieia still stands on every pharmacy sign.',
     entries: [
+      { id: 'chiron', weight: 1, why: 'He taught Asklepios medicine itself; the physician\'s art descends from his cave.' },
+      { id: 'circe', weight: 2, why: 'Pharmakeia is her craft — herbs, potions, and transformation; the enchantress who made chemistry magic.' },
       { id: 'asklepios', weight: 2, why: 'The surgeon-son of Apóllōn whose sanctuaries were antiquity’s hospitals; his snake-entwined staff still hangs over every pharmacy.' },
       { id: 'guanyin', weight: 1, why: 'Compassion institutionalized; hospitals across East Asia bear her name.' },
       { id: 'monokeros', weight: 1, why: 'The alicorn was antiquity’s antidote; purity-testing is his oldest lore.' },
@@ -697,6 +710,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Therapy, emotional wellbeing, and mindfulness.',
     note: 'The heart weighed in the balance is the conscience examined in therapy — and the field’s own history was once named for a goddess: "mental hygiene".',
     entries: [
+      { id: 'pan', weight: 1, why: 'Panikón deima — the sudden, groundless fear of lonely places is literally his; the psychology of panic carries his name.' },
       { id: 'hanuman', weight: 1, why: 'The name that ends fear; the most-appealed courage in India.' },
       { id: 'guanyin', weight: 2, why: 'The vow to hear every cry; the patron of listening as care.' },
       { id: 'mengpo', weight: 1, why: 'The mercy of forgetting; the folk answer to grief and trauma.' },
@@ -772,6 +786,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Biotechnology, longevity research, and regenerative medicine.',
     note: 'Immortality is the industry’s stated goal; the symbols of life and the immortals who achieved it are its mythic prospectus.',
     entries: [
+      { id: 'chimaira', weight: 2, why: 'Lion, goat, and serpent in one body — the ancients\' hybrid that became modern genetics\' word for a chimeric organism.' },
       { id: 'asklepios', weight: 2, why: 'He healed so well that Zeús destroyed him for emptying the underworld — the physician who pressed the boundary of death itself.' },
       { id: 'xolotl', weight: 1, why: 'His axolotl regenerates limbs and heart — the mascot of regenerative medicine.' },
       { id: 'xian', weight: 2, why: 'The immortals; longevity research’s Taoist proof of concept.' },
@@ -883,6 +898,8 @@ const INDUSTRY_GROUPS = [
     tagline: 'Books, journalism, and content platforms.',
     note: 'The ibis invented writing; speech became scripture; the media industry runs on what these figures created.',
     entries: [
+      { id: 'thaleia', weight: 1, why: 'Idyllic poetry is her brief; the light essay and the pastoral sketch.' },
+      { id: 'kleio', weight: 2, why: 'Scrolls and the chest of books are her emblems; the proclaimer of what deserves to be remembered.' },
       { id: 'orun', weight: 1, why: 'The oral archive; scripture carried in memory.' },
       { id: 'saraswati', weight: 2, why: 'Vāk, Speech itself; the goddess of libraries and letters.' },
       { id: 'pegasos', weight: 1, why: 'The Muses’ spring-maker; poetic inspiration in heraldic form.' },
@@ -912,6 +929,8 @@ const INDUSTRY_GROUPS = [
     tagline: 'Music, theatre, dance, and the performing arts.',
     note: 'The Muses’ lineage runs through these figures — song, dance, and theatre were invented as worship.',
     entries: [
+      { id: 'thaleia', weight: 2, why: 'The Muse of Comedy — comic mask and shepherd\'s staff; the blooming of laughter into art.' },
+      { id: 'pan', weight: 2, why: 'The syrinx is his — the reed-pipes cut from a transformed nymph; pastoral music begins on his breath.' },
       { id: 'orpheus', weight: 2, why: 'The Thracian singer whose lyre moved stones and stopped rivers — music’s power made myth, the art’s own archetype.' },
       { id: 'saraswati', weight: 2, why: 'The goddess of music, arts, and eloquence — Vāk herself; every rāga opens under her patronage and her vīṇā.' },
       { id: 'seiren', weight: 2, why: 'The enchanting singer of the Odyssey, whose song no sailor could refuse — music as pure, dangerous seduction.' },
@@ -941,6 +960,9 @@ const INDUSTRY_GROUPS = [
     tagline: 'Video games, streaming franchises, and fantasy worlds.',
     note: 'The entertainment industry already licenses these realms and monsters — Ragnarök, Midgard, and Tiamat are shipped titles, not references.',
     entries: [
+      { id: 'thaleia', weight: 1, why: 'Idyll and play — the comic register the entertainment economy performs nightly.' },
+      { id: 'circe', weight: 2, why: 'The archetypal witch of Aiaia — the island boss encounter Homer wrote in the tenth century BCE.' },
+      { id: 'chimaira', weight: 2, why: 'The fire-breathing hybrid slain from the sky by Bellerophon — the boss monster three thousand years before the genre existed.' },
       { id: 'guandi', weight: 1, why: 'Dynasty Warriors made him a global gaming icon.' },
       { id: 'achilleus', weight: 1, why: 'Hero of the original war epic; the rage-and-glory archetype of combat IP.' },
       { id: 'drakon', weight: 1, why: 'Every fantasy dragon is his descendant, hoard and coil included.' },
@@ -1044,6 +1066,8 @@ const INDUSTRY_GROUPS = [
     tagline: 'Destinations, heritage tourism, and city branding.',
     note: 'Real cities, real ruins, and legendary destinations; the strongest place brands on earth are mythological names.',
     entries: [
+      { id: 'zephyros', weight: 1, why: 'The fair wind of the ancients — the breeze every departure prays for.' },
+      { id: 'circe', weight: 1, why: 'Aiaia holds visitors a year or forever; the island that tourism never quite escapes.' },
       { id: 'ashavahista', weight: 1, why: 'Takht-e Soleyman and the Yazd flame — fire-temple pilgrimage.' },
       { id: 'styx', weight: 1, why: 'The Arcadian waterfall; the oath-cliff of Nonakris.' },
       { id: 'hanuman', weight: 1, why: 'Anjaneya hill, Karol Bagh colossus, and the Hanuman pilgrimage circuit.' },
@@ -1189,6 +1213,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Law, courts, and regulatory compliance.',
     note: 'Truth, oaths, and cosmic order; the law’s oldest symbols are divine persons.',
     entries: [
+      { id: 'eris', weight: 1, why: 'Strife made institutional — the dispute that needs a court the way hers needed a judge.' },
       { id: 'styx', weight: 2, why: 'The river of the oath — the original binding agreement.' },
       { id: 'ashavahista', weight: 1, why: 'Aša, the cosmic audit; truth as an institution.' },
       { id: 'sani', weight: 2, why: 'Karmas auditor; the slow court that never errs.' },
@@ -1232,6 +1257,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Government, executive leadership, and statecraft.',
     note: 'Kingship was invented here; supreme gods and model kings are the case studies of every leadership curriculum.',
     entries: [
+      { id: 'chiron', weight: 1, why: '"Most just of the centaurs" — the mentor of kings and demigods; governance taught in a cave on Pelion.' },
       { id: 'guandi', weight: 2, why: 'The co-Sage of the empire; loyalty as governance.' },
       { id: 'mazu', weight: 1, why: 'The sea has a government, and it is her temple network.' },
       { id: 'iuppiter', weight: 2, why: 'Optimus Maximus, best and greatest — the Capitoline sovereign under whom Rome’s magistrates, triumphs, and treaties all stood.' },
@@ -1270,12 +1296,31 @@ const INDUSTRY_GROUPS = [
     ],
   },
   {
+    industry: 'history-archives',
+    name: 'History, Archives & Records',
+    sector: 'society-spirit',
+    tagline: 'Museums, archives, libraries, and the record-keeping professions.',
+    note: 'Memory itself has patrons in every pantheon — the keepers of the record, from the Muse of History to the divine scribes.',
+    entries: [
+      { id: 'kleio', weight: 2, why: 'The Muse of History herself — she who proclaims glory; every archive\'s first page is hers.' },
+      { id: 'mnemosyne', weight: 2, why: 'Memory personified, mother of the Muses — the archive is her household by birthright.' },
+      { id: 'thoth', weight: 2, why: 'The divine scribe — writing itself was his gift; every record ever kept runs on his invention.' },
+      { id: 'urdr', weight: 2, why: 'The Norn of the Past — the Norse memory of what has been, spinning the record at the well.' },
+      { id: 'calliope', weight: 1, why: 'The epic voice — the great deeds set down in verse so they outlive the doers.' },
+      { id: 'confucius', weight: 1, why: 'The great compiler — he edited the classics and preserved the record of a civilization.' },
+      { id: 'bragi', weight: 1, why: 'The skald-god — deeds held in poetry, the North\'s own way of keeping the record.' },
+    ],
+  },
+  {
     industry: 'education',
     name: 'Education, Research & Knowledge',
     sector: 'society-spirit',
     tagline: 'Schools, universities, and research institutions.',
     note: 'Wisdom has patrons in every pantheon; knowledge work is the modern priesthood of these figures.',
     entries: [
+      { id: 'chiron', weight: 2, why: 'The tutor of heroes — Achilles, Asklepios, Iason, Herakles were his pupils; the first great teacher in the Western record.' },
+      { id: 'phoebe', weight: 1, why: 'The prophetic tradition she carried from Gaia to Apollo; the study of what can be foreseen.' },
+      { id: 'kleio', weight: 2, why: 'The Muse of History — she who proclaims glory and keeps the record; her name is on every archive\'s first page.' },
       { id: 'orun', weight: 1, why: 'Ifa and the odù — the oral university of heaven.' },
       { id: 'saraswati', weight: 2, why: 'The goddess of knowledge and learning herself; students still invoke her before examinations across the Hindu world.' },
       { id: 'sita', weight: 1, why: 'The field-goddess of the Ṛgveda\'s ploughing hymns; patience as curriculum.' },
@@ -1356,6 +1401,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Genealogy, heritage research, and DNA ancestry.',
     note: 'Progenitors and patriarchs; the ancestry industry sells what these figures began.',
     entries: [
+      { id: 'kleio', weight: 1, why: 'Memory\'s daughter and the mother of Hyacinthus — lineage itself is her narration.' },
       { id: 'sita', weight: 1, why: 'Mother of Lava and Kuśa; the Rāmāyaṇa\'s own lineage-mother.' },
       { id: 'daksa', weight: 2, why: 'Father of sixty daughters; the lineage-map of gods, beasts, and stars.' },
       { id: 'nuwa', weight: 1, why: 'The clay mother; humanity’s shared origin story.' },
@@ -1408,6 +1454,9 @@ const INDUSTRY_GROUPS = [
     tagline: 'Emergency management, recovery, and business continuity.',
     note: 'Surviving the flood and rising from the ash; resilience is the industry’s word for what these figures did.',
     entries: [
+      { id: 'chiron', weight: 1, why: 'He bore the poisoned wound no art could cure and chose mortality over pain — endurance made myth.' },
+      { id: 'okuninushi', weight: 1, why: 'He survived the underworld\'s trials and returned to rule; resilience is his biography.' },
+      { id: 'chimaira', weight: 1, why: 'She ravaged Lycia until a hero answered; the catastrophe that forces the response.' },
       { id: 'mazu', weight: 2, why: 'The storm-answerer; the seas own emergency line.' },
       { id: 'ganga', weight: 1, why: 'The purifier; the river that restores.' },
       { id: 'nuwa', weight: 2, why: 'The five-colored stones; catastrophe answered with repair.' },
@@ -1504,6 +1553,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Cameras, lenses, biometrics, and imaging science.',
     note: 'Sight has patrons and the camera has ancestors: the dawn brand, the iris diaphragm, and the eye that protects kings.',
     entries: [
+      { id: 'hyperion', weight: 1, why: 'Light is his substance — the Titan who fathers every photon the lens economy captures.' },
       { id: 'tezcatlipoca', weight: 2, why: 'The obsidian smoking mirror; the first scrying lens of the Americas.' },
       { id: 'eos', weight: 2, why: 'Canon’s EOS system made the dawn an imaging brand.' },
       { id: 'iris', weight: 2, why: 'The iris of the eye and the iris diaphragm of every lens; biometrics scan her name.' },
@@ -1549,6 +1599,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Weddings, childcare, and family services.',
     note: 'Marriage and childbirth have patronesses in every pantheon; the family economy is their household.',
     entries: [
+      { id: 'okuninushi', weight: 1, why: 'The matchmaker of Izumo — marriage is among his gifts; the shrine that blesses unions bears his name.' },
       { id: 'sita', weight: 2, why: 'The Rāmāyaṇa’s devoted wife, whose fidelity survived fire — the Hindu ideal of the marriage bond personified.' },
       { id: 'iuno', weight: 2, why: 'Iūnō pronuba, the queen of the gods who presides over the marriage rite itself — Rome’s patroness of the wedding.' },
       { id: 'hera', weight: 2, why: 'Marriage itself; the queen who sanctifies the union.' },
@@ -1610,6 +1661,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Building, civil engineering, and the trades that raise the world.',
     note: 'The built world has divine architects: the forge, the foundry, and the workshop were temples before they were factories.',
     entries: [
+      { id: 'okuninushi', weight: 2, why: 'The Great Land-Master who built the reed-plain into a nation; civil engineering as a sacred office.' },
       { id: 'hephaistos', weight: 2, why: 'The divine craftsman — forge, foundry, and workshop; the original engineer of the built world.' },
       { id: 'ptah', weight: 2, why: 'The creator who made the world by craft and word; Egypt’s patron of artisans and builders.' },
       { id: 'athena', weight: 1, why: 'Techne personified — the craft of making, guided by wisdom.' },

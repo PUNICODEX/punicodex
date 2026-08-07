@@ -1478,6 +1478,7 @@ const LEXICON = [
   },
   {
     "id": "hyperion",
+    hasAdSite: true,
     "ascii": "hyperion",
     "unicode": "Hyperiōn",
     "greek": "Ὑπερίων",
@@ -1539,6 +1540,13 @@ const LEXICON = [
         "to": "n",
         "type": "same",
         "note": "Nu"
+      }
+    ],
+    "variants": [
+      {
+        "unicode": "Hyperíōn",
+        "type": "owned",
+        "note": "Owned domain form — the Greek accent of Ὑπερίων itself (acute on í plus macron on ō)"
       }
     ]
   },
@@ -17266,6 +17274,13 @@ const LEXICON = [
         "to": "ó",
         "type": "stress",
         "note": "Acute on o"
+      }
+    ],
+    "variants": [
+      {
+        "unicode": "Kleiṓ",
+        "type": "owned",
+        "note": "Owned domain form — the stacked marks echoing the circumflex of Κλειώ"
       }
     ]
   },
@@ -36452,6 +36467,13 @@ const LEXICON = [
         "to": "n",
         "type": "same",
         "note": "n same"
+      }
+    ],
+    "variants": [
+      {
+        "unicode": "Cheírōn",
+        "type": "owned",
+        "note": "Owned domain form — acute on í plus macron on ō, the fullest scholarly rendering of Χείρων"
       }
     ]
   },

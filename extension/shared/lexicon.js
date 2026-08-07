@@ -1482,6 +1482,7 @@ const LEXICON = [
   },
   {
     "id": "hyperion",
+    hasAdSite: true,
     "ascii": "hyperion",
     "unicode": "Hyperiōn",
     "greek": "Ὑπερίων",
@@ -1543,6 +1544,13 @@ const LEXICON = [
         "to": "n",
         "type": "same",
         "note": "Nu"
+      }
+    ],
+    "variants": [
+      {
+        "unicode": "Hyperíōn",
+        "type": "owned",
+        "note": "Owned domain form — the Greek accent of Ὑπερίων itself (acute on í plus macron on ō)"
       }
     ]
   },
@@ -17271,6 +17279,13 @@ const LEXICON = [
         "type": "stress",
         "note": "Acute on o"
       }
+    ],
+    "variants": [
+      {
+        "unicode": "Kleiṓ",
+        "type": "owned",
+        "note": "Owned domain form — the stacked marks echoing the circumflex of Κλειώ"
+      }
     ]
   },
   {
@@ -18613,6 +18628,68 @@ const LEXICON = [
         "to": "s",
         "type": "same",
         "note": "s same"
+      }
+    ]
+  },
+  {
+    "id": "cheiron",
+    "ascii": "cheiron",
+    "unicode": "Cheírōn",
+    "greek": "Χείρων",
+    "pantheon": "greek",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Wisdom, Teaching, Heroes",
+    "meaning": "The wisest of the centaurs, tutor of heroes (Achilles, Asklepios, Iason, Herakles); the name is traditionally linked to Greek χείρ (\"hand\"), though its true origin is uncertain",
+    "sources": [
+      "Homer",
+      "Pindar",
+      "Apollodorus",
+      "LSJ",
+      "Beekes"
+    ],
+    "breakdown": [
+      {
+        "char": "c",
+        "to": "C",
+        "type": "same",
+        "note": "C uppercase"
+      },
+      {
+        "char": "h",
+        "to": "h",
+        "type": "same",
+        "note": "h same"
+      },
+      {
+        "char": "e",
+        "to": "e",
+        "type": "same",
+        "note": "e same"
+      },
+      {
+        "char": "i",
+        "to": "í",
+        "type": "stress",
+        "note": "Acute on i"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "r same"
+      },
+      {
+        "char": "o",
+        "to": "ō",
+        "type": "length",
+        "note": "Macron on o"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "n same"
       }
     ]
   },

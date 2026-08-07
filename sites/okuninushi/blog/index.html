@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3">
+<script src="/js/university-collaborators.js?v=3" defer></script>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Ōkuninushi got its… | Ōkuninushi Blog | PUNICODEX</title>
+    <meta name="description" content="Discover Ōkuninushi: the story behind the Unicode domain, the original script, and the scholars preserving it.">
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
+    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="canonical" href="https://punicodex.com/sites/okuninushi/blog/">
+    <meta property="og:title" content="How Ōkuninushi got its accent back | Ōkuninushi Blog | PUNICODEX">
+    <meta property="og:description" content="Discover Ōkuninushi: the story behind the Unicode domain, the original script, and the scholars preserving it.">
+    <meta property="og:url" content="https://punicodex.com/sites/okuninushi/blog/">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="PUNICODEX">
+    <meta property="og:image" content="https://punicodex.com/assets/og/okuninushi.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punicodex.com/assets/og/okuninushi.jpg">
+    <meta name="twitter:title" content="How Ōkuninushi got its accent back | Ōkuninushi Blog | PUNICODEX">
+    <meta name="twitter:description" content="Discover Ōkuninushi: the story behind the Unicode domain, the original script, and the scholars preserving it.">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "How Ōkuninushi got its accent back",
+        "description": "Discover Ōkuninushi: the story behind the Unicode domain, the original script, and the scholars preserving it.",
+        "author": {
+            "@type": "Organization",
+            "name": "PuniCodex Team"
+        },
+        "datePublished": "2026-08-07",
+        "dateModified": "2026-08-07",
+        "publisher": {
+            "@type": "Organization",
+            "name": "PUNICODEX",
+            "url": "https://punicodex.com"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://punicodex.com/sites/okuninushi/blog/"
+        },
+        "articleSection": "Blog",
+        "keywords": ["Ōkuninushi", "okuninushi", "japanese mythology", "Unicode domain", "original script", "PuniCodex", "IDN", "Japanese characters restoration"],
+        "url": "https://punicodex.com/sites/okuninushi/blog/",
+        "image": "https://punicodex.com/assets/og/okuninushi.jpg"
+    }
+    </script>
+    
+    <style>
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
+        .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
+        .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
+        .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
+        .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
+        .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
+        .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
+        .blog-meta-sep { opacity: 0.4; }
+        .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
+        .blog-tag { display: inline-flex; align-items: center; padding: 0.35rem 0.8rem; border-radius: 999px; border: 1px solid rgba(212,175,55,0.25); color: var(--primary, #d4af37); font-size: 0.8rem; }
+        .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
+        .blog-cta a { color: var(--primary-bright, #f0d878); }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0C">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://punicodex.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Pantheon",
+      "item": "https://punicodex.com/pantheon/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Ōkuninushi",
+      "item": "https://punicodex.com/sites/okuninushi/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Blog",
+      "item": "https://punicodex.com/sites/okuninushi/blog/"
+    }
+  ]
+}
+    </script>
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punicodex.com/" class="global-brand"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-gold-solid.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="560" height="58"></picture></a>
+            <div class="global-links">
+                <a href="https://punicodex.com/pantheon/">Pantheon</a>
+                <a href="https://punicodex.com/lexicon/">Lexicon</a>
+                <a href="https://punicodex.com/connections/">Connections</a>
+                <a href="https://punicodex.com/type/">Type</a>
+                <a href="https://punicodex.com/search.html">Search</a>
+                <a href="https://punicodex.com/tiers/">Tiers</a>
+                <a href="https://punicodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="okuninushi-canvas" data-effect="particles" data-primary="#DC143C" data-secondary="#1A1A1A" aria-hidden="true"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/okuninushi_logolockup.webp" type="image/webp"><img src="../assets/okuninushi_logolockup.png" alt="Ōkuninushi" class="nav-logo-img" width="1536" height="1024"></picture>
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="../patterns/index.html" class="nav-link">Patterns</a>
+                <a href="./" class="nav-link active">Blog</a>
+                <a href="../scholars/index.html" class="nav-link">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="../patterns/index.html" class="nav-link">Patterns</a>
+        <a href="./" class="nav-link active">Blog</a>
+        <a href="../scholars/index.html" class="nav-link">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-eyebrow reveal-up">Ōkuninushi — Blog</p>
+                <p class="hero-title reveal-up">How Ōkuninushi got its accent back</p>
+                <p class="hero-subtitle reveal-up">Nation-building, Marriage</p>
+                <div class="hero-meta reveal-up">
+                    <span class="meta-badge">Tier 1</span>
+                    <span class="meta-domain">ōkuninushi.com</span>
+                </div>
+            </div>
+            <div class="hero-mascot reveal-scale">
+                <picture><source srcset="../assets/okuninushi_mascot.webp" type="image/webp"><img src="../assets/okuninushi_mascot.webp" alt="Ōkuninushi — Nation-building, Marriage" class="mascot-img" width="1024" height="1536"></picture>
+                <div class="mascot-glow"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article -->
+    <article class="blog-article">
+        <div class="blog-meta reveal-up">
+            <span>By PuniCodex Team</span>
+            <span class="blog-meta-sep">&middot;</span>
+            <time datetime="2026-08-07">2026-08-07</time>
+            <span class="blog-meta-sep">&middot;</span>
+            <span>14 min read</span>
+        </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#the-japanese-pantheon">The Japanese Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#typing-okuninushi">Typing Ōkuninushi</a></li>
+                <li><a href="#sister-temples">Sister Temples</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
+        <div class="blog-body reveal-up">
+            <h1>How Ōkuninushi got its accent back</h1>
+<p>The ASCII form <em>okuninushi</em> is missing something. <strong>Ōkuninushi</strong> restores the marks the source language used to distinguish this name from a thousand others — and those marks change how the name is read, pronounced, and understood. This post explains, with the full scholarly record behind it, what each restored mark preserves: the Japanese characters evidence, the reconstructed sound, the myths the name carries, and the classification logic that separates Tier 1 restorations from Tier 2. By the end, the marks in Ōkuninushi will look less like ornaments and more like what they are — recovered evidence, pinned back in its proper place.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Ōkuninushi</li>
+  <li><strong>ASCII form:</strong> okuninushi</li>
+  <li><strong>Meaning:</strong> "Great land master"</li>
+  <li><strong>Domain of influence:</strong> Nation-building, Marriage</li>
+  <li><strong>Pantheon:</strong> Japanese</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Original script:</strong> 大国主 (Japanese characters)</li>
+  <li><strong>Live domain:</strong> ōkuninushi.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Ōkuninushi</strong> (<em>okuninushi</em>) — Nation-building, Marriage · Great land master — belongs to the Japanese tradition, where it is catalogued under the domain "Nation-building, Marriage". The name means "Great land master".</p>
+<p>Ōkuninushi — the <strong>Great Land-Master</strong> — is the earthly sovereign of Japanese myth: the heir of Susanoo who subdued wild Izumo, built it into a nation with the dwarf-god Sukunabikona, and codified <strong>medicine, agriculture and the rites of marriage</strong>. His was the visible world — <strong>Ashihara no Nakatsukuni</strong>, the Central Land of Reed-Plains — until he ceded it to the heavenly line of <a href="/sites/amaterasu/" class="crosslink" data-crosslink="amaterasu">Amaterasu</a> in the act of statecraft the chronicles call <strong>kuni-yuzuri</strong>, the transfer of the land.</p>
+<p>PuniCodex restores the name as <strong>Ōkuninushi</strong> and serves its temple at <a href="https://xn--kuninushi-uxb.com">ōkuninushi.com</a>. The restoration preserves at least one distinctive feature — a diacritic or a distinctive letter — that the ASCII form loses, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>okuninushi</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Japanese characters as <strong>大国主</strong>. Etymologically it means "Great land master".</p>
+<p>The ASCII form <em>okuninushi</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Ōkuninushi</strong> recovers the vowel length of the original directly in the address bar. The restoration preserves at least one distinctive feature — a diacritic or a distinctive letter — that the ASCII form loses, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>o</strong> → <strong>Ō</strong> — Long vowel</li>
+  <li><strong>k</strong> → <strong>k</strong> — Same</li>
+  <li><strong>u</strong> → <strong>u</strong> — Same</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+  <li><strong>u</strong> → <strong>u</strong> — Same</li>
+  <li><strong>s</strong> → <strong>s</strong> — Same</li>
+  <li><strong>h</strong> → <strong>h</strong> — Same</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+</ul>
+<p>The project holds the domain <strong>ōkuninushi.com</strong> (xn--kuninushi-uxb.com) as the canonical home of this name.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is written in Japanese characters as <strong>大国主</strong>. This original script is the form against which the ASCII fallback <em>okuninushi</em> and the PuniCodex restoration <strong>Ōkuninushi</strong> are measured: the restoration preserves its vowel quantity of the written form, so that a reader typing the modern address still speaks the ancient name.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/oːkɯnʲiɲɯɕi/</strong> — Japanese Reconstruction (Old Japanese Opo-kuni-nusi).</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Ō-</strong> — from Old Japanese opo-, 'great, large' — the coalesced long vowel the macron preserves</li>
+  <li><strong>-kuni-</strong> — 'land, province, realm' — written 国 in the chronicles, phonetic 久邇 in older spellings</li>
+  <li><strong>-nushi</strong> — 主, 'lord, master, owner' — a standing title in divine names (cf. <a href="/sites/kotoshironushi/" class="crosslink" data-crosslink="kotoshironushi">Kotoshironushi</a>)</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: 'OH-koo-nee-NOO-shee' — five even morae; the long Ō is a doubled plain O, never an English diphthong; 'shi' is the soft Japanese shibilant.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Old Japanese</strong> — opo-kuni-nusi, 'great-land-master' — the 8th-century pre-coalescence form attested in the Kojiki</li>
+  <li><strong>Alternate name</strong> — Ōnamuchi-no-kami (大己貴命), 'Great-Name-Possessor' — his second primary name in the Kojiki cycle</li>
+  <li><strong>Folk reading</strong> — Daikoku-sama — the vernacular reading of 大国 that later fused him with the Buddhist Daikokuten</li>
+</ul>
+<p>Tier-1: the restoration Ōkuninushi preserves the long vowel (macron Ō) that the ASCII Okuninushi erases — the very feature that marks Ō- 'great' as distinct from a plain o-. One preserved feature, mechanically verifiable: a single-tier Tier-1 name.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Ōkuninushi's cycle, preserved in the Kojiki (712) and the Nihon Shoki (720), is the longest and most novelistic narrative in Japanese myth — a story of escape, ordeal, sovereignty and renunciation at the meeting-point of earth and heaven.</p>
+<h3 id="the-white-hare-of-inaba-the-first-prescription">The White Hare of Inaba (The First Prescription)</h3>
+<p>In the Kojiki (Book I), a hare from the isle of Oki tricks the wani sea-beasts into forming a bridge, is flayed for the deception, and meets the eighty cruel brothers of Ōnamuji, who mockingly prescribe a bath in salt sea-water — agony for its wounds. The youngest brother, Ōnamuji (later Ōkuninushi), advises instead a rinse in fresh river water and a roll in the pollen of katami, the cattail rush; the hare is healed. Grateful, the hare prophesies that Ōnamuji — not his eighty brothers — will win the hand of the princess Yakami-hime of Inaba. It is the first medical prescription in Japanese myth, and the deed that marks the future land-master out from his rivals.</p>
+<h3 id="the-trials-of-ne-no-kuni-the-ordeals-below">The Trials of Ne-no-Kuni (The Ordeals Below)</h3>
+<p>Fleeing his brothers' repeated attempts to kill him, Ōnamuji descends to Ne-no-Kuni, the root-land of Susanoo, as the Kojiki (Book I) relates. There he loves Susanoo's daughter Suseribime, and the storm-god tests him: a night in a hall of snakes, a night in a hall of centipedes and wasps — each survived through Suseribime's protective scarves — and a burning meadow where a mouse leads him to safety underground and retrieves the arrow Susanoo had fired. When Ōnamuji at last washes the great god's hair and steals away with Suseribime, Susanoo's sword, bow and heavenly lute, the pursuing god yields and proclaims him Ōkuninushi-no-kami, Great Land-Master, bidding him drive out his brothers and rule the land.</p>
+<h3 id="the-dwarf-from-across-the-sea-nation-builders">The Dwarf from Across the Sea (Nation-Builders)</h3>
+<p>While Ōkuninushi labours to order the land, the Kojiki (Book I) tells, a tiny god arrives across the waves in a skiff of kagami pod-husks, wearing the skin of a moth: Sukunabikona, son of the great producer Kamimusubi (the Nihon Shoki variants name Takamimusubi). The two make and consolidate the land together, and devise the arts of medicine and protective magic for gods, men and beasts. When the work is done, Sukunabikona departs for Tokoyo no kuni, the far land beyond the sea, leaving Ōkuninushi to guard the realm they built.</p>
+<h3 id="kuni-yuzuri-the-transfer-of-the-land-the-great-abdication">Kuni-yuzuri — the Transfer of the Land (The Great Abdication)</h3>
+<p>When Amaterasu resolves that her line shall rule the Central Land of Reed-Plains, the Kojiki (Book I; cf. the Nihon Shoki, Age of the Gods scrolls) records that the warrior-god Takemikazuchi is sent to Izumo, where he thrusts his sword into the shore and demands Ōkuninushi's answer. The land-master defers to his sons: Kotoshironushi consents at once, while Ajisuki-takahikone resists and is subdued in a divine wrestling-bout. Ōkuninushi then cedes the land — on terms: a grand palace is to be built for him with pillars raised high and crossbeams thick, and his worship is to be perpetuated by the heavenly line itself. That promised palace is Izumo no Ōyashiro, the Grand Shrine of Izumo, and the treaty-in-myth is remembered as kuni-yuzuri.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Ōkuninushi concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>White hare of Inaba</strong> — His first patient and his prophet: the flayed hare of Cape Keta whose healing proved Ōkuninushi's medicine and foretold his marriage to Yakami-hime; emblem of the province of Inaba.</li>
+  <li><strong>The great shimenawa</strong> — The colossal sacred rope hung across the halls of Izumo-taisha — among the largest in Japan — marking the boundary of his enshrined presence.</li>
+  <li><strong>Susanoo's sword, bow and lute</strong> — The regalia of lordship he carried out of Ne-no-Kuni with Susanoo's blessing — the storm-god's own charter for his rule over the land.</li>
+  <li><strong>The tiny boat of Sukunabikona</strong> — The skiff of Metaplexis pod-husks (ama-no-kagami-no-fune) and the moth-skin cloak of the dwarf-god, emblem of the small partner in nation-building.</li>
+  <li><strong>Herbs and the mortar</strong> — The pharmacology he and Sukunabikona devised for gods and men — beginning with the remedy of fresh water and katami (cattail) pollen prescribed for the hare.</li>
+  <li><strong>The high pillars of Izumo</strong> — The towering hall promised at the kuni-yuzuri, to be raised with pillars 'high as the heaven of the gods' — his eternal seat after the surrender of the land.</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Izumo-taisha (Taisha-machi, Izumo, Shimane) is among the oldest and grandest shrines of Japan; the present main hall dates to 1744, but excavations in 2000 uncovered massive clustered pillar bases confirming medieval records of a towering earlier hall — the 'high pillars' the kuni-yuzuri myth demands. The region's cultic antiquity is independently attested by the 1984 Kojindani discovery, a ritual cache of 358 bronze swords, the largest single find of its kind in Japan.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Ōkuninushi — the <strong>Great Land-Master</strong> — is the earthly sovereign of Japanese myth: the heir of Susanoo who subdued wild Izumo, built it into a nation with the dwarf-god Sukunabikona, and codified <strong>medicine, agriculture and the rites of marriage</strong>. His was the visible world — <strong>Ashihara no Nakatsukuni</strong>, the Central Land of Reed-Plains — until he ceded it to the heavenly line of Amaterasu in the act of statecraft the chronicles call <strong>kuni-yuzuri</strong>, the transfer of the land.</p>
+<h3 id="land-building">Land-Building</h3>
+<h3 id="marriage-alliance">Marriage &amp; Alliance</h3>
+<h3 id="medicine-spellcraft">Medicine &amp; Spellcraft</h3>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Japan's gods met no Roman pantheon; Ōkuninushi's later travels ran through Buddhism instead. Through the folk reading <em>Daikoku-sama</em> of the characters 大国, he was identified with <strong>Daikokuten</strong>, the Japanese form of <a href="/sites/mahakala/" class="crosslink" data-crosslink="mahakala">Mahākāla</a>, becoming the smiling god of wealth and the household hearth — one of the Seven Gods of Fortune. At Izumo the older identity survived intact: there he remains the great matchmaker of <em>en-musubi</em>, the binding of marriage fates, and in the month the rest of Japan calls Kannazuki, 'the godless month', Izumo calls it Kami-ari-zuki — 'the month the gods are here', when the eight million kami convene at his shrine.</p>
+<p>Within the Japanese tradition, closely related names in the corpus include <a href="/sites/fujin/">Fūjin</a>, <a href="/sites/hokkaido/">Hokkaidō</a>, <a href="/sites/honshu/">Honshū</a>, <a href="/sites/jizo/">Jizō</a>, <a href="/sites/kobe/">Kōbe</a>, and <a href="/sites/kyoto/">Kyōto</a>.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Ōkuninushi still anchors the Izumo region of Shimane, where Izumo-taisha draws millions of pilgrims and couples across Japan pray to him as the nation's matchmaker. The white hare of Inaba endures as the emblem of Tottori prefecture, and his son Kotoshironushi presides over the great pilgrimage shrine of Kotohira in <a href="/sites/shikoku/" class="crosslink" data-crosslink="shikoku">Shikoku</a>. The word <em>kuni-yuzuri</em> itself remains the standard term for the peaceful cession of sovereignty — the god's abdication absorbed into the political vocabulary of Japan.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Ōkuninushi given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Kojiki (Records of Ancient Matters), Translated by Basil Hall Chamberlain, 712. <a href="https://sacred-texts.com/shi/kj/index.htm">Full text</a></li>
+  <li> Nihon Shoki (Chronicles of Japan), Translated by W. G. Aston (excerpts), 720. <a href="https://sacred-texts.com/shi/nihon0.htm">Full text</a></li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>The Ōkuninushi cycle is a treaty written as myth. The 8th-century mythographers of the Yamato court preserved, almost lovingly, a rival sovereignty — an earth-line descended from Susanoo that owned the visible world — and then sanctified its surrender to the sun-line of Amaterasu. What Ōkuninushi received in exchange is telling: not power but cult, the towering shrine and the empire's perpetual worship. He is therefore the god of everything the heavenly line does not do — healing, farming, matchmaking, the pragmatic order of the reed-plain. Many scholars read the cycle as encoding real negotiations between Yamato and the old Izumo region; whether charter or memory, it makes Ōkuninushi the most humane of sovereigns: a ruler who learned kingship through ordeals beneath the earth, and who gave up his kingdom so that his land — and his god — could endure.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Ōkuninushi is classified as <strong>Tier 1</strong>: the restoration preserves at least one distinctive feature — a diacritic or a distinctive letter — that the ASCII form loses. The ASCII fallback <em>okuninushi</em> still resolves everywhere, but it is the restored form that carries the name's full information. Across the 10 characters of the name, the restoration adjusts 1: 1 mark of length (Ō). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>okuninushi</em> to <strong>Ōkuninushi</strong>, one character at a time:</p>
+<ul>
+  <li><strong>o</strong> → <strong>Ō</strong> — Long vowel</li>
+  <li><strong>k</strong> → <strong>k</strong> — Same</li>
+  <li><strong>u</strong> → <strong>u</strong> — Same</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+  <li><strong>u</strong> → <strong>u</strong> — Same</li>
+  <li><strong>s</strong> → <strong>s</strong> — Same</li>
+  <li><strong>h</strong> → <strong>h</strong> — Same</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+</ul>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>ōkuninushi.com</strong>, which the DNS carries in punycode form as xn--kuninushi-uxb.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Ōkuninushi; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Japanese characters can now be typed into any browser on earth.</p>
+<h2 id="the-japanese-pantheon">The Japanese Pantheon</h2>
+<p>Ōkuninushi is one of 45 entries the PuniCodex lexicon catalogues under the Japanese pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition's major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 925 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Ōkuninushi mean?</strong> The traditional gloss is "Great land master."</p>
+<p><strong>Which tradition does Ōkuninushi belong to?</strong> Ōkuninushi is catalogued in the Japanese pantheon of the PuniCodex lexicon.</p>
+<p><strong>Why is Ōkuninushi classified as Tier 1?</strong> Because the restoration preserves at least one distinctive feature — a diacritic or a distinctive letter — that the ASCII form loses — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Is Ōkuninushi a working domain?</strong> Yes — ōkuninushi.com resolves today and routes to this temple.</p>
+<p><strong>What is the punycode for ōkuninushi.com?</strong> The DNS encoding is xn--kuninushi-uxb.com; browsers perform the translation automatically, so visitors only ever see the restored name.</p>
+<h2 id="typing-okuninushi">Typing Ōkuninushi</h2>
+<p>You do not need a special keyboard to use this restoration. The <a href="/type/">PuniCodex Type Tool</a> converts the ASCII form <em>okuninushi</em> into <strong>Ōkuninushi</strong> as you type, and the browser extension offers the same conversion inside any text field. Copy the restored form, paste it into the address bar, and the DNS does the rest.</p>
+<h2 id="sister-temples">Sister Temples</h2>
+<p>Other temples in the Japanese pantheon include <a href="/sites/fujin/">Fūjin</a>, <a href="/sites/hoderi/">Hoderi</a>, and <a href="/sites/hoori/">Hoori</a> — each with its own restoration story, its own scholarly record, and its own place in the lexicon.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>The marks in <strong>Ōkuninushi</strong> were never lost; they were only waiting for a carrier that could hold them. Now that the carrier exists, the burden flips: every use of <em>okuninushi</em> is a choice to leave evidence on the table. The PuniCodex temple keeps the restored form in circulation — as a domain, a dataset entry, and a scholarly argument — so that the choice to use it stays easy. Accent by accent, macron by macron, that is how the original names come back: not with a single grand gesture, but with a spelling that finally works everywhere.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PuniCodex blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
+<ul>
+  <li><a href="/sites/hokkaido/">Hokkaidō</a></li>
+  <li><a href="/sites/ise/">Ise</a></li>
+  <li><a href="/sites/kagutsuchi/">Kagutsuchi</a></li>
+</ul>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
+<ul>
+  <li><a href="https://sacred-texts.com/shi/kj/index.htm">Kojiki (Records of Ancient Matters), Translated by Basil Hall Chamberlain, 712.</a></li>
+  <li><a href="https://sacred-texts.com/shi/nihon0.htm">Nihon Shoki (Chronicles of Japan), Translated by W. G. Aston (excerpts), 720.</a></li>
+  <li>Lexicon authorities for this entry: Kojiki, Nihon Shoki.</li>
+</ul>
+        </div>
+        <div class="blog-tags reveal-up" aria-label="Tags">
+            <span class="blog-tag">japanese</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>
+        </div>
+        <aside class="blog-cta reveal-up">
+            <h2 class="blog-cta-title">Go deeper</h2>
+            <p>The Scholarly Edition for Ōkuninushi collects the sources, pronunciation, and revision history behind this restoration. <a href="../scholars/">Read the Scholarly Edition</a>.</p>
+        </aside>
+        <aside class="blog-series-nav reveal-up">
+            <h2 class="blog-cta-title">The Restoration Files</h2>
+            <p>A second dispatch from this temple, No. 182 in the series: <a href="./restoration/">Why Ōkuninushi is spelled that way — and what it costs to get it right</a> — the restoration, the temple, and the world it opens.</p>
+        </aside>
+<aside class="blog-series-nav reveal-up">
+            <h2 class="blog-cta-title">The Resonance Files</h2>
+            <p>The third dispatch, where the myths meet the markets: <a href="./resonance/">Ōkuninushi and the industries that were always telling its story</a> — the archetype at work in real industries.</p>
+        </aside>
+<aside class="blog-series-nav reveal-up">
+            <h2 class="blog-cta-title">The Canonical Register</h2>
+            <p>The authoritative reference for this name: <a href="./canonical/">The register rules: Ōkuninushi</a> — the one true spelling, and every form that fails it.</p>
+        </aside>
+    </article>
+
+    
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="https://punicodex.com/" class="footer-logo">PUNICODEX</a>
+                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-block">
+                        <span class="footer-label">Owned Domains</span>
+                        <span class="footer-value">ōkuninushi.com</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Classification</span>
+                        <span class="footer-value">Tier 1</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Original Script</span>
+                        <span class="footer-value">大国主</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-seal">
+                <picture><source srcset="../assets/okuninushi_logomark.webp" type="image/webp"><img src="../assets/okuninushi_logomark.png" alt="Ōkuninushi logomark" class="footer-logomark"></picture>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/px-core.js?v=perf21"></script>
+    <script src="/js/temple-base.js?v=perf20"></script>
+    <script src="../script.js?v=perf20"></script>
+    <script src="/js/newsletter.js?v=1" defer></script>
+</body>
+</html>
