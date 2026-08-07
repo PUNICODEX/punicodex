@@ -284,7 +284,10 @@ async function recordPageView({ path, templeId, referrer, sessionId, ip, userAge
           country: cleanCountry,
         });
       } catch (pgErr) {
-        console.error('[site-analytics] durable write failed (Redis has the event):', pgErr.message);
+        console.error(
+          '[site-analytics] durable write failed (Redis has the event):',
+          pgErr.message
+        );
       }
       return { recorded: true, isBot, category, device, templeId: cleanTempleId };
     } catch (err) {
