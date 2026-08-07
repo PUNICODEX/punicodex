@@ -200,8 +200,8 @@ a:hover{color:var(--gold-bright)}
     <span class="pill">Tumbler</span> <span class="pill">Ōkuninushi</span>
     <h1>Ōkuninushi Temple Tumbler</h1>
     <p style="color:var(--dim)">Insulated 590 ml steel — the lockup wrapped vertical in gold.</p>
-    <div class="price">$32.00</div>
-    
+    <div class="price" id="pdp-price">$32.00</div>
+    <div class="opt-group"><div class="lbl">Colour</div><div class="opts" id="opts-color"><button class="opt active" data-c="White">White</button></div></div>
     
     <div class="opt-group">
       <div class="lbl">Quantity</div>
@@ -229,7 +229,7 @@ a:hover{color:var(--gold-bright)}
   sizes.forEach(function(b){ b.addEventListener('click', function(){ pick(sizes, b); updatePrice(); }); });
   document.getElementById('q-down').addEventListener('click', function(){ qty = Math.max(1, qty - 1); qtyEl.textContent = qty; });
   document.getElementById('q-up').addEventListener('click', function(){ qty = Math.min(5, qty + 1); qtyEl.textContent = qty; });
-  var LABELS = [];
+  var LABELS = ["White / 20 oz"];
   function currentLabel(){
     var c = document.querySelector('#opts-color .opt.active');
     var s = document.querySelector('#opts-size .opt.active');
@@ -240,7 +240,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = null;
+  var PRICES = {"White / 20 oz":3200};
   var FLAT_PRICE = "$32.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');

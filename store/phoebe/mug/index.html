@@ -200,9 +200,9 @@ a:hover{color:var(--gold-bright)}
     <span class="pill">Mug</span> <span class="pill">Phoíbē</span>
     <h1>Phoíbē Temple Mug</h1>
     <p style="color:var(--dim)">325 ml ceramic — the seal at your thumb, the deity facing the room.</p>
-    <div class="price">$22.00</div>
-    
-    
+    <div class="price" id="pdp-price">from $22.00</div>
+    <div class="opt-group"><div class="lbl">Colour</div><div class="opts" id="opts-color"><button class="opt active" data-c="Black">Black</button></div></div>
+    <div class="opt-group"><div class="lbl">Option</div><div class="opts" id="opts-size"><button class="opt active" data-s="11 oz">11 oz</button><button class="opt" data-s="15 oz">15 oz</button></div></div>
     <div class="opt-group">
       <div class="lbl">Quantity</div>
       <div class="qty"><button type="button" id="q-down" aria-label="Decrease quantity">−</button><span id="q-val">1</span><button type="button" id="q-up" aria-label="Increase quantity">+</button></div>
@@ -229,7 +229,7 @@ a:hover{color:var(--gold-bright)}
   sizes.forEach(function(b){ b.addEventListener('click', function(){ pick(sizes, b); updatePrice(); }); });
   document.getElementById('q-down').addEventListener('click', function(){ qty = Math.max(1, qty - 1); qtyEl.textContent = qty; });
   document.getElementById('q-up').addEventListener('click', function(){ qty = Math.min(5, qty + 1); qtyEl.textContent = qty; });
-  var LABELS = [];
+  var LABELS = ["Black / 11 oz","Black / 15 oz"];
   function currentLabel(){
     var c = document.querySelector('#opts-color .opt.active');
     var s = document.querySelector('#opts-size .opt.active');
@@ -240,7 +240,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = null;
+  var PRICES = {"Black / 11 oz":2200,"Black / 15 oz":2400};
   var FLAT_PRICE = "$22.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');

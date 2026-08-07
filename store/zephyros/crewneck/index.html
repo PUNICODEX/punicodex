@@ -200,9 +200,9 @@ a:hover{color:var(--gold-bright)}
     <span class="pill">Crewneck</span> <span class="pill">Zéphyros</span>
     <h1>Zéphyros Temple Crewneck</h1>
     <p style="color:var(--dim)">Garment-dyed crewneck carrying the full name lockup.</p>
-    <div class="price">$52.00</div>
-    
-    
+    <div class="price" id="pdp-price">from $52.00</div>
+    <div class="opt-group"><div class="lbl">Colour</div><div class="opts" id="opts-color"><button class="opt active" data-c="Black">Black</button></div></div>
+    <div class="opt-group"><div class="lbl">Size</div><div class="opts" id="opts-size"><button class="opt active" data-s="S">S</button><button class="opt" data-s="M">M</button><button class="opt" data-s="L">L</button><button class="opt" data-s="XL">XL</button><button class="opt" data-s="2XL">2XL</button><button class="opt" data-s="3XL">3XL</button><button class="opt" data-s="4XL">4XL</button><button class="opt" data-s="5XL">5XL</button></div></div>
     <div class="opt-group">
       <div class="lbl">Quantity</div>
       <div class="qty"><button type="button" id="q-down" aria-label="Decrease quantity">−</button><span id="q-val">1</span><button type="button" id="q-up" aria-label="Increase quantity">+</button></div>
@@ -229,7 +229,7 @@ a:hover{color:var(--gold-bright)}
   sizes.forEach(function(b){ b.addEventListener('click', function(){ pick(sizes, b); updatePrice(); }); });
   document.getElementById('q-down').addEventListener('click', function(){ qty = Math.max(1, qty - 1); qtyEl.textContent = qty; });
   document.getElementById('q-up').addEventListener('click', function(){ qty = Math.min(5, qty + 1); qtyEl.textContent = qty; });
-  var LABELS = [];
+  var LABELS = ["Black / 2XL","Black / 3XL","Black / 4XL","Black / 5XL","Black / L","Black / M","Black / S","Black / XL"];
   function currentLabel(){
     var c = document.querySelector('#opts-color .opt.active');
     var s = document.querySelector('#opts-size .opt.active');
@@ -240,7 +240,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = null;
+  var PRICES = {"Black / 2XL":5400,"Black / 3XL":5700,"Black / 4XL":5900,"Black / 5XL":6100,"Black / L":5200,"Black / M":5200,"Black / S":5200,"Black / XL":5200};
   var FLAT_PRICE = "$52.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');

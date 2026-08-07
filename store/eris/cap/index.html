@@ -195,13 +195,13 @@ a:hover{color:var(--gold-bright)}
     <script src="/js/main.js?v=perf12" defer></script>
 <div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <a href="/store/eris/">Éris</a> · <span style="color:var(--gold)">Cap</span></div>
 <div class="wrap pdp">
-  <div><div class="stage"><img id="stage-img" src="/sites/eris/assets/eris_mascot.webp" alt="Éris Temple Cap"></div></div>
+  <div><div class="stage"><img id="stage-img" src="/sites/eris/assets/eris_mascot.webp" alt="Éris Temple Cap"></div><p style="color:var(--dim);font-size:.82rem;margin-top:.6rem">Shown in Black — the design prints the same on every colour.</p></div>
   <div>
     <span class="pill">Cap</span> <span class="pill">Éris</span>
     <h1>Éris Temple Cap</h1>
     <p style="color:var(--dim)">Six-panel dad cap, the temple mark embroidered in gold.</p>
-    <div class="price">$28.00</div>
-    
+    <div class="price" id="pdp-price">$28.00</div>
+    <div class="opt-group"><div class="lbl">Colour</div><div class="opts" id="opts-color"><button class="opt active" data-c="Black">Black</button><button class="opt" data-c="White">White</button></div></div>
     
     <div class="opt-group">
       <div class="lbl">Quantity</div>
@@ -229,7 +229,7 @@ a:hover{color:var(--gold-bright)}
   sizes.forEach(function(b){ b.addEventListener('click', function(){ pick(sizes, b); updatePrice(); }); });
   document.getElementById('q-down').addEventListener('click', function(){ qty = Math.max(1, qty - 1); qtyEl.textContent = qty; });
   document.getElementById('q-up').addEventListener('click', function(){ qty = Math.min(5, qty + 1); qtyEl.textContent = qty; });
-  var LABELS = [];
+  var LABELS = ["Black","White"];
   function currentLabel(){
     var c = document.querySelector('#opts-color .opt.active');
     var s = document.querySelector('#opts-size .opt.active');
@@ -240,7 +240,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = null;
+  var PRICES = {"Black":2800,"White":2800};
   var FLAT_PRICE = "$28.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');

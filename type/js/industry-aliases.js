@@ -1140,7 +1140,6 @@ const INDUSTRY_ALIASES = {
     { term: 'lecturer', weight: 2 },
     { term: 'academic', weight: 2 },
     { term: 'student', weight: 1 },
-    { term: 'librarian', weight: 1 },
     { term: 'phd', weight: 1 },
     { term: 'online course', weight: 1 },
     { term: 'kindergarten', weight: 1 },
