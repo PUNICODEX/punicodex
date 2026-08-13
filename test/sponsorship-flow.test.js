@@ -36,7 +36,10 @@ require.cache[stripeModulePath] = {
   exports: () => ({
     checkout: {
       sessions: {
-        create: async () => ({ id: 'cs_test_sponsorship_mock', url: 'https://checkout.stripe.com/x' }),
+        create: async () => ({
+          id: 'cs_test_sponsorship_mock',
+          url: 'https://checkout.stripe.com/x',
+        }),
       },
     },
     webhooks: { constructEvent: (p) => JSON.parse(typeof p === 'string' ? p : p.toString('utf8')) },
@@ -103,9 +106,11 @@ test('goLive succeeds once the booking has a creative', async () => {
 test('goLive succeeds for a bundle booking whose only creative is a slot creative', async () => {
   const id = await makeApprovedBooking('gate-bundle@example.com');
   const d = db();
-  d.prepare(
-    `INSERT INTO slot_creatives (booking_id, slot_id, creative_path) VALUES (?, ?, ?)`
-  ).run(id, 1, '/uploads/test/slot-creative.png');
+  d.prepare(`INSERT INTO slot_creatives (booking_id, slot_id, creative_path) VALUES (?, ?, ?)`).run(
+    id,
+    1,
+    '/uploads/test/slot-creative.png'
+  );
   d.close();
   await goLive(id);
   const after = await getBookingById(id);
@@ -117,10 +122,12 @@ test('goLive succeeds for a bundle booking whose only creative is a slot creativ
 test('mixed-case booking emails link to the lowercase tenant account', async () => {
   const id = await makeApprovedBooking('MixedCase.Sponsor@Example.com', { withCreative: true });
   await tenantPortal.provisionTenantAccount('mixedcase.sponsor@example.com', { kind: 'sponsor' });
-  const login = await tenantPortal.login({
-    email: 'mixedcase.sponsor@example.com',
-    password: 'unused',
-  }).catch(() => null);
+  const login = await tenantPortal
+    .login({
+      email: 'mixedcase.sponsor@example.com',
+      password: 'unused',
+    })
+    .catch(() => null);
   assert.strictEqual(login, null, 'no password yet — login must fail');
   const account = await tenantPortal.getAccountByEmail('mixedcase.sponsor@example.com');
   const me = await tenantPortal.getMe(account);
@@ -205,7 +212,10 @@ test('updateCode refuses a maxUses below the current used_count', async () => {
       finalCents: 900,
     });
   }
-  await assert.rejects(() => discountService.updateCode(code.id, { maxUses: 1 }, null), /used_count/);
+  await assert.rejects(
+    () => discountService.updateCode(code.id, { maxUses: 1 }, null),
+    /used_count/
+  );
 });
 
 test('resetCodeUses rewinds the counter and keeps redemption history', async () => {
@@ -308,7 +318,8 @@ async function run() {
       process.exitCode = 1;
     }
   }
-  const failed = tests.length - (process.exitCode ? tests.length - tests.filter(() => false).length : 0);
+  const failed =
+    tests.length - (process.exitCode ? tests.length - tests.filter(() => false).length : 0);
   console.log(`\nSponsorship Flow: ${process.exitCode ? 'FAILURES' : 'all passed'}`);
 }
 

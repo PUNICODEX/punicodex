@@ -393,6 +393,10 @@ const SERIAL_SUITES = new Set([
   // Login writes admin_sessions; golden-DB copies race in the parallel phase
   // (torn WAL state → "attempt to write a readonly database").
   'API v1 Integration Tests',
+  // prepareTestDb copies the golden SQLite (incl. -shm/-wal); under parallel
+  // load the copy can hit EBUSY/readonly races on Windows. Always green alone.
+  'Admin Booking Routes',
+  'Sponsorship Flow Tests',
 ]);
 
 function runSuiteCmd(suite) {

@@ -89,7 +89,9 @@ async function runTests() {
     const { getTestDbPath } = require('./helpers/test-db.js');
     const wdb = new Database(getTestDbPath(__filename));
     wdb
-      .prepare("UPDATE bookings SET creative_path = '/uploads/test/admin-golive-creative.png' WHERE id = ?")
+      .prepare(
+        "UPDATE bookings SET creative_path = '/uploads/test/admin-golive-creative.png' WHERE id = ?"
+      )
       .run(createdId);
     wdb.close();
     const handler = require('../platform/api-handlers/admin/bookings/[id]/golive/index.js');

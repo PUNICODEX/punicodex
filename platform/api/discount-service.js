@@ -497,7 +497,10 @@ async function updateCode(id, { maxUses, expiresAt, note }, actor) {
       throw discountError(400, 'maxUses must be null (unlimited) or a positive integer');
     }
     if (n !== null && n < existing.used_count) {
-      throw discountError(409, `maxUses cannot be below the current used_count (${existing.used_count})`);
+      throw discountError(
+        409,
+        `maxUses cannot be below the current used_count (${existing.used_count})`
+      );
     }
     sets.push(`max_uses = $${params.length + 1}`);
     params.push(n);
@@ -550,7 +553,11 @@ async function resetCodeUses(id, actor) {
     adminUserId: actor?.user?.id ?? null,
     action: 'portal.discount.reset-uses',
     target: `discount_code:${id}`,
-    meta: { code: existing.code, previousUsedCount: existing.used_count, by: actor?.user?.email ?? null },
+    meta: {
+      code: existing.code,
+      previousUsedCount: existing.used_count,
+      by: actor?.user?.email ?? null,
+    },
   });
   return getCodeById(id);
 }
