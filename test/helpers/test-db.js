@@ -34,14 +34,32 @@ function prepareTestDb(suiteName) {
     throw new Error(`Golden database not found at ${GOLDEN_DB}`);
   }
 
-  fs.copyFileSync(GOLDEN_DB, testDb);
+  // On Windows the golden DB's -shm/-wal can be transiently locked by another
+  // suite reading it (parallel phase) or by the AV/indexer — retry briefly
+  // instead of dying with EBUSY (2026-08 flake class).
+  const copyWithRetry = (src, dst) => {
+    let lastErr;
+    for (let attempt = 0; attempt < 12; attempt++) {
+      try {
+        fs.copyFileSync(src, dst);
+        return;
+      } catch (err) {
+        lastErr = err;
+        if (err.code !== 'EBUSY' && err.code !== 'EPERM') throw err;
+        const start = Date.now();
+        while (Date.now() - start < 250) {} // brief spin; copies are tiny
+      }
+    }
+    throw lastErr;
+  };
+  copyWithRetry(GOLDEN_DB, testDb);
 
   // Copy WAL/shm if they exist so the copied DB is in a consistent state.
   for (const ext of ['-wal', '-shm']) {
     const src = `${GOLDEN_DB}${ext}`;
     const dst = `${testDb}${ext}`;
     if (fs.existsSync(src)) {
-      fs.copyFileSync(src, dst);
+      copyWithRetry(src, dst);
     } else if (fs.existsSync(dst)) {
       fs.unlinkSync(dst);
     }
