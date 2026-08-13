@@ -3,7 +3,7 @@
  * namespaces (contact, store/*, sites/*, crawl/*, verify/*, game/ink/*,
  * entry/:id, tenant-ads/*, spam/*, and the one-file directories).
  *
- * The 38 handlers live under platform/api-handlers/root/ (moved out of api/
+ * The 39 handlers live under platform/api-handlers/root/ (moved out of api/
  * so Vercel ships one function bundle instead of one per file).
  * Matching mirrors Vercel filesystem routing: exact static paths win over
  * [param] patterns; captured bracket values are written back to req.query
@@ -95,6 +95,10 @@ const ROUTES = [
   {
     segments: ['protocol'],
     load: () => require('../platform/api-handlers/root/protocol/index.js'),
+  },
+  {
+    segments: ['security', 'csp-report'],
+    load: () => require('../platform/api-handlers/root/security/csp-report/index.js'),
   },
   { segments: ['sites'], load: () => require('../platform/api-handlers/root/sites/index.js') },
   {

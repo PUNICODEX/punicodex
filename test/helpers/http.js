@@ -25,7 +25,9 @@ function invoke(handler, method, url, options = {}) {
     req.method = method;
     req.url = url;
     req.headers = options.headers || {};
-    req.body = options.body || null;
+    // `body` = pre-parsed object (Vercel JSON); `rawBody` = unparsed string
+    // body (e.g. application/csp-report) for handlers that read raw text.
+    req.body = options.rawBody !== undefined ? options.rawBody : options.body || null;
     req.query = Object.fromEntries(parsed.searchParams);
     if (options.params) {
       Object.assign(req.query, options.params);

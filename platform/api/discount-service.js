@@ -62,7 +62,10 @@ function discountError(status, message, code) {
 function sanitizeCode(value) {
   if (typeof value !== 'string') return null;
   const trimmed = value.trim().slice(0, 40);
-  return trimmed || null;
+  // Coupon charset only — codes flow into pitch emails, URLs, audit logs, and
+  // the admin UI. Anything outside [A-Z0-9_-] is not a code, it's payload.
+  if (!/^[A-Z0-9][A-Z0-9_-]*$/i.test(trimmed)) return null;
+  return trimmed.toUpperCase();
 }
 
 function sanitizeAppliesTo(value) {

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Admin Portal — Security | PuniCodex</title>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="../portal.css">
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+</head>
+<body data-page="security" data-depth="1">
+    <a class="skip-link" href="#portal-main">Skip to content</a>
+    <div id="portal-header"></div>
+
+    <main id="portal-main" class="portal-main">
+        <div class="portal-page-head">
+            <h1>Security</h1>
+            <p>Live attack and abuse telemetry — request-log errors, login failures, spoof discoveries, and CSP violation reports. IPs and emails appear only as truncated hashes.</p>
+            <p class="portal-updated" id="sec-updated"></p>
+        </div>
+
+        <section class="panel" aria-label="Security posture">
+            <div class="panel-head">
+                <div>
+                    <h2 class="panel-title">Posture</h2>
+                    <p class="panel-sub">Deployed security headers, parsed from vercel.json at request time.</p>
+                </div>
+            </div>
+            <div class="pz-health" id="sec-posture">
+                <div class="state-block">Loading posture…</div>
+            </div>
+        </section>
+
+        <section aria-label="Security totals">
+            <div class="stat-grid" id="sec-stats">
+                <div class="state-block">Loading telemetry…</div>
+            </div>
+            <p class="field-hint" id="sec-degraded" style="margin-top:0.75rem;" hidden></p>
+        </section>
+
+        <div class="panel-grid-2">
+            <section class="panel" aria-label="Top attacked paths">
+                <div class="panel-head">
+                    <div>
+                        <h2 class="panel-title">Top Attacked Paths</h2>
+                        <p class="panel-sub">Last 7 days, by 4xx/429 count from the API request log.</p>
+                    </div>
+                </div>
+                <div id="sec-paths">
+                    <div class="state-block">Loading paths…</div>
+                </div>
+            </section>
+
+            <section class="panel" aria-label="Top error sources">
+                <div class="panel-head">
+                    <div>
+                        <h2 class="panel-title">Top Error Sources</h2>
+                        <p class="panel-sub">Last 7 days, grouped by hashed IP (truncated to 12 characters).</p>
+                    </div>
+                </div>
+                <div id="sec-sources">
+                    <div class="state-block">Loading sources…</div>
+                </div>
+            </section>
+        </div>
+
+        <div class="panel-grid-2">
+            <section class="panel" aria-label="Recent auth failures">
+                <div class="panel-head">
+                    <div>
+                        <h2 class="panel-title">Recent Auth Failures</h2>
+                        <p class="panel-sub">Portal and tenant login failures and lockouts, from the audit trail.</p>
+                    </div>
+                </div>
+                <div id="sec-auth">
+                    <div class="state-block">Loading auth failures…</div>
+                </div>
+            </section>
+
+            <section class="panel" aria-label="Top CSP violations">
+                <div class="panel-head">
+                    <div>
+                        <h2 class="panel-title">Top CSP Violations</h2>
+                        <p class="panel-sub">Violation signatures by report count, from the report collector.</p>
+                    </div>
+                </div>
+                <div id="sec-csp">
+                    <div class="state-block">Loading CSP reports…</div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="../portal.js"></script>
+    <script>
+    (function () {
+        var REFRESH_MS = 60000;
+        var state = { data: null, loading: false };
+
+        function statCard(value, label, hint) {
+            return (
+                '<div class="stat-card"><div class="stat-card-value">' + value + '</div>' +
+                '<div class="stat-card-label">' + Portal.escapeHtml(label) + '</div>' +
+                (hint ? '<div class="stat-card-hint">' + Portal.escapeHtml(hint) + '</div>' : '') +
+                '</div>'
+            );
+        }
+
+        function emptyState(message) {
+            return '<div class="state-block">' + Portal.escapeHtml(message) + '</div>';
+        }
+
+        function fmtAgo(iso) {
+            var t = new Date(iso).getTime();
+            if (Number.isNaN(t)) return '';
+            var s = Math.max(0, Math.round((Date.now() - t) / 1000));
+            if (s < 5) return 'just now';
+            if (s < 60) return s + ' s ago';
+            var m = Math.floor(s / 60);
+            if (m < 60) return m + ' min ago';
+            var h = Math.floor(m / 60);
+            if (h < 24) return h + ' h ago';
+            return Math.floor(h / 24) + ' d ago';
+        }
+
+        // ── Posture chips ─────────────────────────────────────
+
+        // true → ok (green), false → bad (red), anything else → idle (grey).
+        function postureChip(label, value) {
+            var level = value === true ? 'ok' : value === false ? 'bad' : 'idle';
+            var text = label + ': ' + (value === true ? 'on' : value === false ? 'off' : 'unknown');
+            return (
+                '<span class="pz-health-item"><span class="pz-health-dot pz-health-dot--' + level + '"></span>' +
+                Portal.escapeHtml(text) + '</span>'
+            );
+        }
+
+        function renderPosture(posture) {
+            var wrap = document.getElementById('sec-posture');
+            var p = posture || {};
+            wrap.innerHTML =
+                postureChip('CSP enforced', p.cspEnforced) +
+                postureChip('HSTS', p.hsts) +
+                postureChip("frame-ancestors 'none'", p.frameAncestorsNone) +
+                postureChip('nosniff', p.contentTypeNosniff) +
+                postureChip('referrer-policy', p.referrerPolicy);
+        }
+
+        // ── Stat cards ────────────────────────────────────────
+
+        function renderStats(data) {
+            var r24 = (data.requests && data.requests.last24h) || {};
+            var r7d = (data.requests && data.requests.last7d) || {};
+            var auth = data.authFailures || {};
+            var auth24 = auth.last24h || { total: 0, byKind: {} };
+            var csp = data.csp || {};
+            var authenticity = data.authenticity || {};
+            var lockouts24 = (auth24.byKind && auth24.byKind['portal.login.locked'] || 0) +
+                (auth24.byKind && auth24.byKind['tenant.login.locked'] || 0);
+            document.getElementById('sec-stats').innerHTML =
+                statCard(Portal.fmtNumber(r24.total), 'Requests · 24h', Portal.fmtNumber(r7d.total) + ' in 7d') +
+                statCard(Portal.fmtNumber(r24.clientErrors), 'Errors (4xx) · 24h', Portal.fmtNumber(r24.authErrors) + ' auth (401/403)') +
+                statCard(Portal.fmtNumber(r24.rateLimited), 'Rate-limited (429) · 24h', Portal.fmtNumber(r7d.rateLimited) + ' in 7d') +
+                statCard(Portal.fmtNumber(auth24.total), 'Auth failures · 24h', Portal.fmtNumber(lockouts24) + ' lockouts') +
+                statCard(Portal.fmtNumber(csp.last24h), 'CSP reports · 24h', 'via /api/security/csp-report/') +
+                statCard(Portal.fmtNumber(authenticity.activeSpoofs), 'Active spoof domains', Portal.fmtNumber(authenticity.last7d) + ' checks in 7d');
+        }
+
+        function renderDegraded(data) {
+            var note = document.getElementById('sec-degraded');
+            var degraded = (data && data.degraded) || [];
+            if (!degraded.length) {
+                note.hidden = true;
+                note.textContent = '';
+                return;
+            }
+            note.hidden = false;
+            note.textContent = 'Some sources are degraded (showing zeros): ' + degraded.join(', ');
+        }
+
+        // ── Tables ────────────────────────────────────────────
+
+        function renderPaths(rows) {
+            var wrap = document.getElementById('sec-paths');
+            if (!rows || !rows.length) {
+                wrap.innerHTML = emptyState('No attack traffic in the window.');
+                return;
+            }
+            var body = rows
+                .map(function (row) {
+                    return (
+                        '<tr><td>' + Portal.escapeHtml(row.path || '') + '</td>' +
+                        '<td class="num">' + Portal.fmtNumber(row.errors) + '</td>' +
+                        '<td>' + Portal.escapeHtml(Portal.fmtDateTime(row.lastSeen)) + '</td></tr>'
+                    );
+                })
+                .join('');
+            wrap.innerHTML =
+                '<div class="table-wrap"><table class="portal-table"><thead><tr>' +
+                '<th>Path</th><th class="num">Errors</th><th>Last seen</th>' +
+                '</tr></thead><tbody>' + body + '</tbody></table></div>';
+        }
+
+        function renderSources(rows) {
+            var wrap = document.getElementById('sec-sources');
+            if (!rows || !rows.length) {
+                wrap.innerHTML = emptyState('No attack traffic in the window.');
+                return;
+            }
+            var body = rows
+                .map(function (row) {
+                    return (
+                        '<tr><td><code>' + Portal.escapeHtml(row.ipHash || '') + '</code></td>' +
+                        '<td class="num">' + Portal.fmtNumber(row.errors) + '</td>' +
+                        '<td class="num">' + Portal.fmtNumber(row.total) + '</td></tr>'
+                    );
+                })
+                .join('');
+            wrap.innerHTML =
+                '<div class="table-wrap"><table class="portal-table"><thead><tr>' +
+                '<th>IP hash</th><th class="num">Errors</th><th class="num">Total requests</th>' +
+                '</tr></thead><tbody>' + body + '</tbody></table></div>';
+        }
+
+        function renderAuthFailures(rows) {
+            var wrap = document.getElementById('sec-auth');
+            if (!rows || !rows.length) {
+                wrap.innerHTML = emptyState('No failed logins in the window.');
+                return;
+            }
+            var body = rows
+                .map(function (row) {
+                    return (
+                        '<tr><td>' + Portal.escapeHtml(row.kind || '') + '</td>' +
+                        '<td><code>' + Portal.escapeHtml(row.emailHash || '—') + '</code></td>' +
+                        '<td>' + Portal.escapeHtml(row.reason || '—') + '</td>' +
+                        '<td>' + Portal.escapeHtml(Portal.fmtDateTime(row.at)) + '</td></tr>'
+                    );
+                })
+                .join('');
+            wrap.innerHTML =
+                '<div class="table-wrap"><table class="portal-table"><thead><tr>' +
+                '<th>Kind</th><th>Email hash</th><th>Reason</th><th>Time</th>' +
+                '</tr></thead><tbody>' + body + '</tbody></table></div>';
+        }
+
+        function renderCsp(rows) {
+            var wrap = document.getElementById('sec-csp');
+            if (!rows || !rows.length) {
+                wrap.innerHTML = emptyState('No CSP violations reported yet.');
+                return;
+            }
+            var body = rows
+                .map(function (row) {
+                    return (
+                        '<tr><td>' + Portal.escapeHtml(row.directive || '—') + '</td>' +
+                        '<td>' + Portal.escapeHtml(row.documentPath || '—') + '</td>' +
+                        '<td>' + Portal.escapeHtml(row.blockedHost || '—') + '</td>' +
+                        '<td class="num">' + Portal.fmtNumber(row.count) + '</td>' +
+                        '<td>' + Portal.escapeHtml(Portal.fmtDateTime(row.lastSeen)) + '</td></tr>'
+                    );
+                })
+                .join('');
+            wrap.innerHTML =
+                '<div class="table-wrap"><table class="portal-table"><thead><tr>' +
+                '<th>Directive</th><th>Document path</th><th>Blocked host</th><th class="num">Reports</th><th>Last seen</th>' +
+                '</tr></thead><tbody>' + body + '</tbody></table></div>';
+        }
+
+        // ── Load & wire-up ────────────────────────────────────
+
+        function renderAll(data) {
+            renderPosture(data.posture);
+            renderStats(data);
+            renderDegraded(data);
+            renderPaths(data.topAttackPaths);
+            renderSources(data.topAttackSources);
+            renderAuthFailures(data.authFailures && data.authFailures.recent);
+            renderCsp(data.csp && data.csp.top);
+            var el = document.getElementById('sec-updated');
+            if (el) {
+                el.textContent =
+                    'Snapshot generated ' + fmtAgo(data.generatedAt) +
+                    ' (' + Portal.fmtDateTime(data.generatedAt) + ') — auto-refreshes every 60 s.';
+            }
+        }
+
+        async function loadOverview() {
+            if (state.loading) return;
+            state.loading = true;
+            try {
+                var data = await Portal.api('/api/admin/portal/security/');
+                state.data = data;
+                renderAll(data);
+            } catch (err) {
+                Portal.toast('Security telemetry load failed: ' + err.message, 'error');
+                if (!state.data) {
+                    document.getElementById('sec-stats').innerHTML =
+                        '<div class="state-block error">' + Portal.escapeHtml(err.message) + '</div>';
+                }
+            } finally {
+                state.loading = false;
+            }
+        }
+
+        function startAutoRefresh() {
+            // Pause while the tab is hidden; refresh immediately on return.
+            setInterval(function () {
+                if (document.visibilityState === 'hidden') return;
+                loadOverview();
+            }, REFRESH_MS);
+            document.addEventListener('visibilitychange', function () {
+                if (document.visibilityState === 'visible') loadOverview();
+            });
+        }
+
+        async function init() {
+            // Fire the telemetry fetch in parallel with the shell's /me round
+            // trip instead of waiting for the shell first.
+            var load = loadOverview();
+            var ctx = await Portal.initShell('security');
+            if (!ctx) {
+                load.catch(function () {});
+                return;
+            }
+            startAutoRefresh();
+            await load;
+        }
+
+        init();
+    })();
+    </script>
+</body>
+</html>

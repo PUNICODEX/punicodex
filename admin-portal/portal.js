@@ -100,6 +100,7 @@
       items: [
         { id: 'system', label: 'System', href: `${PREFIX}system/`, permission: 'read' },
         { id: 'api-keys', label: 'API Keys', href: `${PREFIX}api-keys/`, permission: 'read' },
+        { id: 'security', label: 'Security', href: `${PREFIX}security/`, permission: 'ops' },
         { id: 'legacy', label: 'Legacy Tools', href: `${PREFIX}legacy/`, permission: 'read' },
       ],
     },

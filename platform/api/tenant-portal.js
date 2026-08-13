@@ -365,6 +365,23 @@ function getDummyHash() {
   return dummyHash;
 }
 
+// Failed logins are attack telemetry for the Security tab. Privacy-first: the
+// email is stored only as a truncated sha256 — never raw, never the password.
+// Logging is fire-and-forget and can never throw into the request path.
+async function logLoginFailure(email, reason) {
+  try {
+    await logAction({
+      action: 'tenant.login.failed',
+      meta: {
+        emailHash: crypto.createHash('sha256').update(String(email)).digest('hex').slice(0, 16),
+        reason,
+      },
+    });
+  } catch (err) {
+    console.error('[tenant-portal] login-failure audit failed:', err.message);
+  }
+}
+
 async function login({ email, password }) {
   ensureSchema();
   if (typeof email !== 'string' || typeof password !== 'string') {
@@ -376,10 +393,12 @@ async function login({ email, password }) {
     // Unknown email, or an account that was provisioned but never activated
     // (password not set yet): identical generic failure either way.
     bcrypt.compareSync(password || '', getDummyHash());
+    if (normalized) await logLoginFailure(normalized, 'unknown_account');
     throw portalError(401, 'Invalid email or password', 'invalid_credentials');
   }
   const valid = bcrypt.compareSync(password, account.password_hash);
   if (!valid) {
+    await logLoginFailure(normalized, 'bad_credentials');
     throw portalError(401, 'Invalid email or password', 'invalid_credentials');
   }
   // Checked only after credentials verify, so disabled status is not leaked

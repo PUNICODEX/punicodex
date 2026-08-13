@@ -141,6 +141,7 @@ async function runTests() {
       'users/',
       'system/',
       'api-keys/',
+      'security/',
       'legacy/',
     ]) {
       assert.ok(
@@ -157,6 +158,10 @@ async function runTests() {
     assert.ok(
       /id: 'requests'[\s\S]{0,160}permission: 'ops'/.test(shell),
       'Change Requests nav item must require the ops permission (its endpoint 403s otherwise)'
+    );
+    assert.ok(
+      /id: 'security'[\s\S]{0,160}permission: 'ops'/.test(shell),
+      'Security nav item must require the ops permission (attack telemetry is ops-only)'
     );
     assert.ok(
       /id: 'users'[\s\S]{0,160}permission: 'users'/.test(shell),

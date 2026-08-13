@@ -1,8 +1,8 @@
 /**
- * Portal System Tests (B3 — Sanctum System/API Keys/Legacy + careers/arbitrage queues)
+ * Portal System Tests (B3 — Sanctum System/API Keys/Security/Legacy + careers/arbitrage queues)
  *
  * Static contract:
- * - system/, api-keys/, legacy/ pages exist in the canonical source
+ * - system/, api-keys/, security/, legacy/ pages exist in the canonical source
  *   (platform/public/admin-portal/) and the synced copy (admin-portal/),
  *   byte-identical, noindex, and wired to the shared shell (portal.css +
  *   portal.js + data-page).
@@ -35,7 +35,12 @@ const ROOT = path.join(__dirname, '..');
 const CANONICAL = path.join(ROOT, 'platform', 'public', 'admin-portal');
 const SYNCED = path.join(ROOT, 'admin-portal');
 
-const NEW_PAGES = ['system/index.html', 'api-keys/index.html', 'legacy/index.html'];
+const NEW_PAGES = [
+  'system/index.html',
+  'api-keys/index.html',
+  'security/index.html',
+  'legacy/index.html',
+];
 const LITERAL_PAGES = [...NEW_PAGES, 'applications/index.html'];
 
 const RETIRED_PAGES = [
@@ -104,7 +109,7 @@ async function test(name, fn) {
 // ── Static contract ───────────────────────────────────────────
 
 async function runStaticTests() {
-  await test('canonical system/api-keys/legacy pages exist with synced byte-identical copies', async () => {
+  await test('canonical system/api-keys/security/legacy pages exist with synced byte-identical copies', async () => {
     for (const rel of NEW_PAGES) {
       assert.ok(
         fs.existsSync(path.join(CANONICAL, rel)),
@@ -127,6 +132,7 @@ async function runStaticTests() {
     const expectedPages = {
       system: 'system/index.html',
       'api-keys': 'api-keys/index.html',
+      security: 'security/index.html',
       legacy: 'legacy/index.html',
     };
     for (const [pageId, rel] of Object.entries(expectedPages)) {

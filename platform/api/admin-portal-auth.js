@@ -297,6 +297,36 @@ function getDummyHash() {
   return dummyHash;
 }
 
+// Failed logins are attack telemetry for the Security tab. Privacy-first: the
+// email is stored only as a truncated sha256 — never raw, never the password.
+// Logging is fire-and-forget: logAction itself is failure-tolerant, and the
+// extra try/catch keeps even a synchronous throw out of the request path.
+function hashLoginEmail(email) {
+  return crypto.createHash('sha256').update(String(email)).digest('hex').slice(0, 16);
+}
+
+async function logLoginFailure(email, reason) {
+  try {
+    await logAction({
+      action: 'portal.login.failed',
+      meta: { emailHash: hashLoginEmail(email), reason },
+    });
+  } catch (err) {
+    console.error('[admin-portal-auth] login-failure audit failed:', err.message);
+  }
+}
+
+async function logLoginLocked(email) {
+  try {
+    await logAction({
+      action: 'portal.login.locked',
+      meta: { emailHash: hashLoginEmail(email), reason: 'locked' },
+    });
+  } catch (err) {
+    console.error('[admin-portal-auth] login-lock audit failed:', err.message);
+  }
+}
+
 async function login(email, password) {
   ensureAuthSchema();
   // Type guard: a truthy non-string email throws on .toLowerCase() and a
@@ -327,10 +357,12 @@ async function login(email, password) {
   const user = await getUserByEmail(normalized);
   if (!user) {
     bcrypt.compareSync(password, getDummyHash());
+    await logLoginFailure(normalized, 'unknown_account');
     return { success: false, code: 'invalid_credentials', message: 'Invalid email or password' };
   }
 
   if (user.locked_until && new Date(user.locked_until) > new Date()) {
+    await logLoginFailure(normalized, 'locked');
     return {
       success: false,
       code: 'account_locked',
@@ -358,6 +390,8 @@ async function login(email, password) {
       lockedUntil,
       user.id,
     ]);
+    await logLoginFailure(normalized, 'bad_credentials');
+    if (lockedUntil) await logLoginLocked(normalized);
     const remaining = Math.max(0, MAX_LOGIN_ATTEMPTS - attempts);
     return {
       success: false,

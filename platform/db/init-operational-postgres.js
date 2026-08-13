@@ -63,6 +63,7 @@ const OPERATIONAL_TABLES = [
   'tenant_sessions',
   'tenant_tokens',
   'tenant_change_requests',
+  'csp_reports',
 ];
 
 const sqliteTypeToPostgres = {

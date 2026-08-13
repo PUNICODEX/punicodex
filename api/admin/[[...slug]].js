@@ -1,7 +1,7 @@
 /**
  * /api/admin/* — single catch-all serverless function.
  *
- * The 64 admin handlers live under platform/api-handlers/admin/ (moved out of
+ * The 65 admin handlers live under platform/api-handlers/admin/ (moved out of
  * api/ so Vercel ships one function bundle instead of one per file). This
  * router maps the incoming path (req.query.slug) back to the original
  * handler module:
@@ -237,6 +237,10 @@ const ROUTES = [
   {
     segments: ['portal', 'scholars', 'pending'],
     load: () => require('../../platform/api-handlers/admin/portal/scholars/pending/index.js'),
+  },
+  {
+    segments: ['portal', 'security'],
+    load: () => require('../../platform/api-handlers/admin/portal/security/index.js'),
   },
   {
     segments: ['portal', 'store-orders'],

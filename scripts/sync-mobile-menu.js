@@ -53,8 +53,8 @@ const CANONICAL_MENU = `<div class="mobile-menu" id="mobile-menu">
                 <a href="/tiers/">Tier System</a>
                 <a href="/rulebook/">Rulebook</a>
                 <a href="/pronunciation/">Pronunciation</a>
-                <a href="/everyday/">Everyday Words</a>
-                <a href="/ink/">Check Before You Ink</a>
+                <a href="/everyday/">Words</a>
+                <a href="/ink/">Ink</a>
                 <a href="/cards/">Cards</a>
                 <a href="/oracle.html">Oracle</a>
                 <a href="/extension/">Extension</a>

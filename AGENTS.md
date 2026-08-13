@@ -558,7 +558,7 @@ npm test                    # master test runner: 136 suites (node test/run-all.
 npm run validate            # lexicon validator + accuracy validator + engine tests
 npm run prepush             # npm test + generate:check
 
-npm run db-init             # build SQLite DB + run all 34 migrations
+npm run db-init             # build SQLite DB + run all 35 migrations
 npm run platform            # start Express platform server on :3456
 npm run lint / lint:fix     # Biome lint
 npm run format / format:check  # Biome format
@@ -1202,12 +1202,12 @@ User Query → Lexicon Filter → Results Engine
 ### Database
 
 SQLite at `platform/db/punicodex.db` (local) / `/tmp` on Vercel. `npm run
-db-init` runs `platform/db/init.js` plus 34 migrations (crawler, booking v1–4
+db-init` runs `platform/db/init.js` plus 35 migrations (crawler, booking v1–4
 + status, trial columns, operational tables, AI columns, entity mentions, API
 keys, claims, search v2, homograph defense, workspaces, gamification,
 marketplace, agents, partners, tenant ads, event crawler, spam classifier,
 LTR, ecosystem, identities, threat graph, enterprise governance, regulatory,
-MLOps, scholars ×3, patrons).
+MLOps, scholars ×3, patrons, csp reports).
 
 Core tables: `entries`, `breakdowns`, `entries_fts` (FTS5), `indexed_sites`,
 `availability`, `api_keys` (SHA256 hashes only), `api_request_log`,

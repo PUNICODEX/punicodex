@@ -229,6 +229,34 @@ const SUITES = [
   { name: 'Analytics E2E Tests', cmd: 'node test/analytics-e2e.test.js' },
   { name: 'Vercelignore Guard', cmd: 'node test/vercelignore-guard.test.js' },
   { name: 'Secrets Guard', cmd: 'node test/secrets-guard.test.js' },
+  { name: 'Security Tab Tests', cmd: 'node test/security-tab.test.js', timeout: 60000 },
+  {
+    name: 'Attack Simulation Tests',
+    cmd: 'node test/security-attack-sim.test.js',
+    timeout: 120000,
+  },
+  {
+    name: 'Injection Extended Tests',
+    cmd: 'node test/security-injection-extended.test.js',
+    timeout: 120000,
+  },
+  {
+    name: 'Authz Matrix Tests',
+    cmd: 'node test/security-authz-matrix.test.js',
+    timeout: 120000,
+  },
+  { name: 'Session Attack Tests', cmd: 'node test/security-session.test.js', timeout: 120000 },
+  {
+    name: 'Abuse Economics Tests',
+    cmd: 'node test/security-abuse-economics.test.js',
+    timeout: 120000,
+  },
+  {
+    name: 'Security Telemetry Tests',
+    cmd: 'node test/security-telemetry.test.js',
+    timeout: 120000,
+  },
+  { name: 'Transport Posture Tests', cmd: 'node test/security-headers.test.js' },
   { name: 'Sponsorship Flow Tests', cmd: 'node test/sponsorship-flow.test.js', timeout: 120000 },
   { name: 'Vendored Libs Tests', cmd: 'node test/vendored-libs.test.js' },
   { name: 'Flagship Mobile Nav Tests', cmd: 'node test/flagship-mobile-nav.test.js' },
@@ -397,6 +425,14 @@ const SERIAL_SUITES = new Set([
   // load the copy can hit EBUSY/readonly races on Windows. Always green alone.
   'Admin Booking Routes',
   'Sponsorship Flow Tests',
+  // Same prepareTestDb golden-copy race (plus login writes admin_sessions).
+  'Security Tab Tests',
+  'Attack Simulation Tests',
+  'Injection Extended Tests',
+  'Authz Matrix Tests',
+  'Session Attack Tests',
+  'Abuse Economics Tests',
+  'Security Telemetry Tests',
 ]);
 
 function runSuiteCmd(suite) {
