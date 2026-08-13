@@ -257,6 +257,7 @@ const SUITES = [
     timeout: 120000,
   },
   { name: 'Transport Posture Tests', cmd: 'node test/security-headers.test.js' },
+  { name: 'Asset Version Tests', cmd: 'node test/asset-versions.test.js' },
   { name: 'Sponsorship Flow Tests', cmd: 'node test/sponsorship-flow.test.js', timeout: 120000 },
   { name: 'Vendored Libs Tests', cmd: 'node test/vendored-libs.test.js' },
   { name: 'Flagship Mobile Nav Tests', cmd: 'node test/flagship-mobile-nav.test.js' },
@@ -433,6 +434,8 @@ const SERIAL_SUITES = new Set([
   'Session Attack Tests',
   'Abuse Economics Tests',
   'Security Telemetry Tests',
+  // Stamps ?v= pins across tracked HTML (tree-writer).
+  'Asset Version Tests',
 ]);
 
 function runSuiteCmd(suite) {

@@ -84,6 +84,8 @@ const scripts = [
   // index; skips existing bakes (platform fonts — committed artifacts).
   'scripts/generate-ink-downloads.js',
   'scripts/sync-scholars-portal.js',
+  // Content-addressed ?v= pins for data-driven JS (self-busting cache).
+  'scripts/stamp-asset-versions.js',
   'scripts/gen-sitemap.js',
   'scripts/inject-analytics.js',
   'scripts/inject-university-collaborators.js',
