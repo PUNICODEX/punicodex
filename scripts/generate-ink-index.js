@@ -33,6 +33,7 @@ const {
 } = require(path.join(ROOT, 'type', 'js', 'original-scripts.js'));
 const { derivePronunciation } = require(path.join(ROOT, 'type', 'js', 'pronunciation-rules.js'));
 const { INK_MYTHS } = require(path.join(ROOT, 'type', 'js', 'ink-myths.js'));
+const { SIGN_NOTES } = require(path.join(ROOT, 'type', 'js', 'sign-notes.js'));
 
 const OUT = path.join(ROOT, 'data', 'ink-index.json');
 
@@ -45,19 +46,26 @@ const OUT = path.join(ROOT, 'data', 'ink-index.json');
  */
 function buildSignIndex(entries) {
   const byGlyph = new Map();
+  // Provenance notes that carry no information standalone ("Same", "—", …)
+  // count as missing so the curated registry can fill them.
+  const junk = (n) => !n || /^(same|—|-)$/i.test(String(n).trim());
   for (const e of entries) {
     for (const s of e.signs) {
       if (!s.sign) continue;
+      const reg = SIGN_NOTES[s.sign] || null;
+      const provenanceNote = junk(s.note) ? null : s.note;
       const rec = byGlyph.get(s.sign) || {
         sign: s.sign,
-        name: s.name || null,
-        value: s.value || null,
-        note: s.note || null,
+        name: s.name || reg?.name || null,
+        value: s.value || reg?.value || null,
+        note: provenanceNote || reg?.note || null,
         script: e.name || null,
         entries: [],
       };
       if (!rec.entries.includes(e.id)) rec.entries.push(e.id);
-      if (!rec.name && s.name) rec.name = s.name;
+      if (!rec.name && (s.name || reg?.name)) rec.name = s.name || reg?.name;
+      if (!rec.value && (s.value || reg?.value)) rec.value = s.value || reg?.value;
+      if (junk(rec.note) && (provenanceNote || reg?.note)) rec.note = provenanceNote || reg?.note;
       byGlyph.set(s.sign, rec);
     }
   }

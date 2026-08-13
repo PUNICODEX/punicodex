@@ -209,6 +209,11 @@ test('ink index: signs section carries attested sign names and using-entries', (
   assert.match(thurs.script, /Futhark/);
   for (const s of index.signs) {
     assert.ok(s.sign && s.script, 'every sign carries glyph + script');
+    assert.ok(
+      s.note && s.note.length > 8,
+      `sign ${s.sign} (${s.script}) carries a scholarly note — the Signs grid never shows a bare dash`
+    );
+    assert.ok(s.name, `sign ${s.sign} (${s.script}) carries its attested/conventional name`);
   }
   const fehuNote = index.entries.find((e) => e.id === 'thor');
   assert.ok(fehuNote.m, 'entries carry the short meaning for the gallery');

@@ -160,6 +160,11 @@ uses **canonical sources** and **generated outputs**.
   myth-buster false-friends. Held to the ACCURACY.md standard.
 - `type/js/ink-myths.js` — The curated famous tattoo/script errors (5 cards)
   for Check Before You Ink, each with claim, verdict, and correction.
+- `type/js/sign-notes.js` — The canonical per-sign notes registry for the
+  /ink/ Signs grid (phonetic values, conventional cuneiform readings,
+  poem-attested rune names). The ink-index generator consults it as a
+  fallback whenever per-sign provenance lacks a note; the Everyday + Ink
+  suite fails if any sign shows a bare dash.
 - `type/js/glyph-atlas.js` — Glyph render data (672 entries).
 - `js/archetypes-v2.js` — Hand-built flagship archetypes (196), including
   domain ownership and canvas assignments.
