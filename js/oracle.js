@@ -205,56 +205,130 @@
     },
   };
 
+  // Each demo button asks the REAL Oracle — the same /api/oracle/ pipeline
+  // the eval battery benchmarks. The canned demoData above is only the
+  // offline fallback when the API is unreachable.
+  const DEMO_QUESTIONS = {
+    apollon: 'Tell me about Apollon',
+    domain: 'What is xn--zes-9na.com?',
+    pronounce: 'How do you pronounce Hádēs?',
+    script: 'What is the original script of Ra?',
+    compare: 'How does Cháos relate to the Big Bang?',
+    correspondences: 'What are the correspondences of Aphrodítē?',
+  };
+
   const demoContainer = document.getElementById('oracle-demo');
   if (demoContainer) {
     const queryButtons = demoContainer.querySelectorAll('.demo-query');
     const answerContainer = demoContainer.querySelector('.demo-answer-content');
     const placeholder = demoContainer.querySelector('.demo-answer-placeholder');
 
-    function renderAnswer(key) {
+    function escapeText(value) {
+      const span = document.createElement('span');
+      span.textContent = String(value ?? '');
+      return span.innerHTML;
+    }
+
+    let activeRequest = null;
+
+    function renderCanned(key) {
       const data = demoData[key];
       if (!data) return;
-
       const tierClass =
         data.tier === 'dual' ? 'tier-dual' : data.tier === 'tier-1' ? 'tier-1' : 'tier-2';
-
       answerContainer.innerHTML = `
         <div class="answer-meta">
           <span class="answer-pill ${tierClass}">${data.tierLabel}</span>
-          <span class="answer-pill safety">Citation-backed</span>
+          <span class="answer-pill safety">Offline preview</span>
         </div>
         <div class="answer-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--space-5);">
-          <div class="answer-block">
-            <h4>Unicode Restoration</h4>
-            <p class="mono">${data.unicode}</p>
-          </div>
-          <div class="answer-block">
-            <h4>Punycode Domain</h4>
-            <p class="mono">${data.punycode}</p>
-          </div>
-          <div class="answer-block">
-            <h4>Original Script <span style="color:var(--text-dim);font-weight:400;">(${data.scriptLabel})</span></h4>
-            <p class="answer-script">${data.script}</p>
-          </div>
+          <div class="answer-block"><h4>Unicode Restoration</h4><p class="mono">${data.unicode}</p></div>
+          <div class="answer-block"><h4>Punycode Domain</h4><p class="mono">${data.punycode}</p></div>
+          <div class="answer-block"><h4>Original Script <span style="color:var(--text-dim);font-weight:400;">(${data.scriptLabel})</span></h4><p class="answer-script">${data.script}</p></div>
         </div>
-        <div class="answer-block">
-          <h4>Oracle Response</h4>
-          <p>${data.meaning}</p>
-        </div>
-        <div class="answer-block">
-          <h4>Scholarly Note</h4>
-          <p>${data.extra}</p>
-        </div>
+        <div class="answer-block"><h4>Oracle Response</h4><p>${data.meaning}</p></div>
+        <div class="answer-block"><h4>Scholarly Note</h4><p>${data.extra}</p></div>
       `;
+      finishRender(key);
+    }
 
+    function renderLive(payload) {
+      const citations = (payload.citations || [])
+        .map(
+          (c) =>
+            `<li><a href="${escapeText(c.url)}"${String(c.url).startsWith('http') ? ' target="_blank" rel="noopener"' : ''}>${escapeText(c.label)}</a></li>`
+        )
+        .join('');
+      const followUps = (payload.followUps || [])
+        .map((f) => `<button class="demo-query demo-followup" type="button">${escapeText(f)}</button>`)
+        .join('');
+      answerContainer.innerHTML = `
+        <div class="answer-meta">
+          <span class="answer-pill safety">Live Oracle</span>
+          <span class="answer-pill tier-1">Citation-backed</span>
+        </div>
+        <div class="answer-block oracle-live-answer">${payload.answer}</div>
+        ${citations ? `<div class="answer-block"><h4>Sources &amp; Temples</h4><ul class="oracle-demo-citations">${citations}</ul></div>` : ''}
+        ${followUps ? `<div class="answer-block"><h4>Ask next</h4><div class="demo-queries">${followUps}</div></div>` : ''}
+      `;
+      answerContainer.querySelectorAll('.demo-followup').forEach((btn) => {
+        btn.addEventListener('click', () => askLive(btn.textContent, null));
+      });
+    }
+
+    function finishRender(key) {
       if (placeholder) placeholder.style.display = 'none';
       answerContainer.classList.add('active');
       answerContainer.style.animation = 'none';
       // Force reflow to restart animation
       void answerContainer.offsetWidth;
       answerContainer.style.animation = '';
+      if (key) queryButtons.forEach((btn) => btn.classList.toggle('active', btn.dataset.query === key));
+    }
 
-      queryButtons.forEach((btn) => btn.classList.toggle('active', btn.dataset.query === key));
+    async function askLive(question, key) {
+      if (activeRequest) activeRequest.abort();
+      const controller = new AbortController();
+      activeRequest = controller;
+      answerContainer.setAttribute('aria-busy', 'true');
+      answerContainer.innerHTML =
+        '<div class="answer-block"><p class="oracle-loading">The Oracle is consulting the lexicon…</p></div>';
+      if (placeholder) placeholder.style.display = 'none';
+      try {
+        const res = await fetch(`/api/oracle/?q=${encodeURIComponent(question)}&quick=true`, {
+          signal: controller.signal,
+          headers: { Accept: 'application/json' },
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const payload = await res.json();
+        if (controller.signal.aborted) return;
+        if (!payload || typeof payload.answer !== 'string' || !payload.answer.trim()) {
+          throw new Error('empty answer');
+        }
+        renderLive(payload);
+        finishRender(key);
+      } catch (err) {
+        if (controller.signal.aborted) return;
+        if (key && demoData[key]) {
+          renderCanned(key); // offline resilience: curated fallback
+        } else {
+          answerContainer.innerHTML =
+            '<div class="answer-block"><p>The Oracle is unreachable right now — please try again in a moment.</p></div>';
+          finishRender(key);
+        }
+      } finally {
+        answerContainer.removeAttribute('aria-busy');
+        if (activeRequest === controller) activeRequest = null;
+      }
+    }
+
+    function renderAnswer(key) {
+      const question = DEMO_QUESTIONS[key];
+      if (question) {
+        askLive(question, key);
+      } else {
+        renderCanned(key);
+      }
     }
 
     queryButtons.forEach((btn) => {

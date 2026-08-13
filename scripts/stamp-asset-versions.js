@@ -31,6 +31,7 @@ const ASSETS = [
   '/js/archetypes-v2.js',
   '/js/original-script-lookup.js',
   '/js/owned-entries.js',
+  '/js/oracle.js',
 ];
 
 // Historical reports are snapshots, not pages — never rewrite them.

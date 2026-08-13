@@ -64,14 +64,20 @@ test('page links required stylesheets', () => {
     .map((_, el) => $(el).attr('href'))
     .get();
   assert.ok(styles.includes('/css/design-system.css'), 'expected design-system.css');
-  assert.ok(styles.includes('/css/oracle.css'), 'expected oracle.css');
+  assert.ok(
+    styles.some((s) => s.startsWith('/css/oracle.css')),
+    'expected oracle.css (any ?v= pin)'
+  );
 });
 
 test('page links oracle.js', () => {
   const scripts = $('script[src]')
     .map((_, el) => $(el).attr('src'))
     .get();
-  assert.ok(scripts.includes('/js/oracle.js'), 'expected /js/oracle.js');
+  assert.ok(
+    scripts.some((s) => s.startsWith('/js/oracle.js')),
+    'expected /js/oracle.js (any ?v= pin)'
+  );
 });
 
 test('main nav exists with expected links', () => {

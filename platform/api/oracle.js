@@ -1027,7 +1027,7 @@ function formatVariants(variants) {
 
 // Punycode conversion lives in node:url's IDNA implementation — the same one
 // names-service uses for the public API.
-const { domainToASCII } = require('node:url');
+const { domainToASCII, domainToUnicode } = require('node:url');
 
 function punycodeLabel(name) {
   if (!name) return null;
@@ -1485,6 +1485,26 @@ async function askOracle(q, history = [], { quick = false } = {}) {
   if (cached && !quick) return cached;
 
   const intent = detectIntent(resolvedQ);
+
+  // Punycode-domain questions ("What is xn--zes-9na.com?"): the DNS label
+  // matches nothing in the lexicon — decode it to its Unicode name first and
+  // resolve that, so the answer identifies the domain's owner.
+  const punyMatch = resolvedQ.match(/xn--[a-z0-9-]+(?:\.[a-z]{2,})?/i);
+  if (punyMatch) {
+    try {
+      const decoded = domainToUnicode(punyMatch[0]).replace(/\.[a-z]{2,}$/i, '');
+      const hit = decoded ? lookupEntryDirectly(decoded) : null;
+      if (hit) {
+        const result = quick
+          ? synthesizeQuickAnswer(hit, 'punycode')
+          : synthesizeAnswer(resolvedQ, [hit], [], [], 'punycode', history);
+        if (!quick) setCachedOracle(cacheKey, result);
+        return result;
+      }
+    } catch {
+      // undecodable label — fall through to normal retrieval
+    }
+  }
 
   // Fast path: direct name match → skip expensive retrieval
   const direct = lookupEntryDirectly(resolvedQ);

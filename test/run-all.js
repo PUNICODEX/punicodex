@@ -264,6 +264,7 @@ const SUITES = [
   },
   { name: 'Transport Posture Tests', cmd: 'node test/security-headers.test.js' },
   { name: 'Asset Version Tests', cmd: 'node test/asset-versions.test.js' },
+  { name: 'Hero Stats Tests', cmd: 'node test/hero-stats.test.js' },
   { name: 'Sponsorship Flow Tests', cmd: 'node test/sponsorship-flow.test.js', timeout: 120000 },
   { name: 'Vendored Libs Tests', cmd: 'node test/vendored-libs.test.js' },
   { name: 'Flagship Mobile Nav Tests', cmd: 'node test/flagship-mobile-nav.test.js' },
@@ -444,6 +445,8 @@ const SERIAL_SUITES = new Set([
   'Security Telemetry Tests',
   // Stamps ?v= pins across tracked HTML (tree-writer).
   'Asset Version Tests',
+  // Writes index.html stats when they drift (tree-writer).
+  'Hero Stats Tests',
   // 36 oracle Q&A calls against the golden DB; keep out of the parallel phase.
   'Oracle Eval Battery',
 ]);

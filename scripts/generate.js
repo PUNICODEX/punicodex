@@ -86,6 +86,8 @@ const scripts = [
   'scripts/sync-scholars-portal.js',
   // Content-addressed ?v= pins for data-driven JS (self-busting cache).
   'scripts/stamp-asset-versions.js',
+  // Home-page fleet stats from canonical sources (never hand-maintained).
+  'scripts/sync-hero-stats.js',
   'scripts/gen-sitemap.js',
   'scripts/inject-analytics.js',
   'scripts/inject-university-collaborators.js',

@@ -41,6 +41,28 @@ test('askOracle returns an answer for a known deity', async () => {
   );
 });
 
+test('askOracle decodes punycode-domain questions to their Unicode owner', async () => {
+  const result = await askOracle('What is xn--zes-9na.com?');
+  assert.strictEqual(result.primaryId, 'zeus', 'decodes xn--zes-9na.com to Zeús');
+  assert.ok(result.answer.includes('xn--zes-9na.com'), 'answer shows the punycode form');
+  assert.ok(result.answer.includes('zeús.com'), 'answer shows the Unicode form');
+});
+
+test('askOracle answers punycode-intent questions with the xn-- form', async () => {
+  const result = await askOracle('What is the punycode for Apóllōn?');
+  assert.strictEqual(result.primaryId, 'apollon');
+  assert.ok(result.answer.includes('xn--aplln-1ta64d.com'), 'answer carries the punycode domain');
+});
+
+test('askOracle declines out-of-scope questions instead of fabricating', async () => {
+  const result = await askOracle('What is the capital of France?');
+  assert.strictEqual(result.primaryId, null, 'no fabricated primary');
+  assert.ok(
+    result.answer.includes('does not yet cover'),
+    'declines honestly rather than bluffing an unrelated entry'
+  );
+});
+
 test('askOracle handles empty query gracefully', async () => {
   const result = await askOracle('');
   assert.ok(result.answer);
