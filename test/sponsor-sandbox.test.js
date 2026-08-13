@@ -74,7 +74,9 @@ async function makeLiveBooking(slotId, email) {
   const db = new Database(getTestDbPath(__filename));
   // goLive refuses to publish an empty placement, so the fixture attaches a
   // creative (same direct-SQL idiom as the status flip below).
-  db.prepare("UPDATE bookings SET status = 'approved', creative_path = '/uploads/test/sandbox-creative.png' WHERE id = ?").run(id);
+  db.prepare(
+    "UPDATE bookings SET status = 'approved', creative_path = '/uploads/test/sandbox-creative.png' WHERE id = ?"
+  ).run(id);
   db.close();
   await goLive(id);
   return { id, publicId };
