@@ -43,7 +43,13 @@ const SUITES = [
   { name: 'Scholars Load Tests', cmd: 'node platform/scholars/load.test.js' },
   { name: 'Scholars Concurrency Tests', cmd: 'node platform/scholars/concurrency.test.js' },
   { name: 'Oracle Tests', cmd: 'node test/oracle.test.js' },
+  {
+    name: 'Oracle Eval Battery',
+    cmd: 'node test/oracle-eval.test.js',
+    timeout: 60000,
+  },
   { name: 'Oracle Page Tests', cmd: 'node test/oracle-page.test.js' },
+  { name: 'LLM Client Tests', cmd: 'node test/llm-client.test.js' },
   { name: 'Search v2 Tests', cmd: 'node test/search-v2.test.js' },
   { name: 'Browser Shell Tests', cmd: 'node test/browser-shell.test.js' },
   { name: 'Workspace Tests', cmd: 'node test/workspaces.test.js' },
@@ -364,6 +370,7 @@ const SUITES = [
   { name: 'Android SDK Contract Tests', cmd: 'node sdk/android/app/src/test/contract.test.js' },
   { name: 'Codex Export Tests', cmd: 'node test/codex-export.test.js' },
   { name: 'Model Corpus Tests', cmd: 'node test/model-corpus.test.js' },
+  { name: 'Teacher Corpus Tests', cmd: 'node test/teacher-corpus.test.js' },
   { name: 'Safety Corpus Tests', cmd: 'node test/safety-corpus.test.js' },
   { name: 'AI Corpus Phases Tests', cmd: 'node test/ai-corpus-phases.test.js' },
   { name: 'Lighthouse Thresholds', cmd: 'node --test test/lighthouse.test.js' },
@@ -403,6 +410,7 @@ console.log(`${C.bold}╚══════════════════�
 const PARALLELISM = Number(process.env.PUNICODEX_TEST_PARALLELISM || 3);
 const SERIAL_SUITES = new Set([
   'Divergence Gate', // runs npm run generate twice
+  'Teacher Corpus Tests', // writes teacher staging files under data/authoritative/staging/
   'Generator Idempotency Tests', // runs generators that write artifacts
   'Blog Index Tests', // runs generate-blog-index.js (writes blog/index.html)
   'Herald Beacon Tests', // runs the beacon injector against the tree
@@ -436,6 +444,8 @@ const SERIAL_SUITES = new Set([
   'Security Telemetry Tests',
   // Stamps ?v= pins across tracked HTML (tree-writer).
   'Asset Version Tests',
+  // 36 oracle Q&A calls against the golden DB; keep out of the parallel phase.
+  'Oracle Eval Battery',
 ]);
 
 function runSuiteCmd(suite) {

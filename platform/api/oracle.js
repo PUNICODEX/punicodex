@@ -8,7 +8,8 @@
 const Database = require('better-sqlite3');
 const { getDbPath } = require('../db/db');
 const { searchKeywords } = require('./keyword-extractor');
-const { getEntryContext } = require('./oracle-context');
+const { getEntryContext, loadLoreCatalog } = require('./oracle-context');
+const { chat: llmChat } = require('./llm');
 const { embedText } = require('./embeddings');
 
 let db;
@@ -263,6 +264,113 @@ function _tokenize(q) {
     .filter((w) => w.length >= 3 && !STOP_WORDS.has(w));
 }
 
+// Mythology-generic words say nothing about WHICH entry — they appear in
+// hundreds of domain/meaning fields, so they never count as evidence that a
+// particular entry matches the question.
+const MYTH_GENERIC = new Set([
+  'god',
+  'goddess',
+  'gods',
+  'goddesses',
+  'deity',
+  'deities',
+  'divine',
+  'myth',
+  'mythology',
+  'mythological',
+  'pantheon',
+]);
+
+// Question-frame words — present in the ask, not in the answer. They match
+// lore prose at random ('about' appears everywhere) and must never feed
+// retrieval evidence either.
+const QUERY_NOISE = new Set([
+  'tell',
+  'show',
+  'explain',
+  'describe',
+  'about',
+  'who',
+  'whom',
+  'what',
+  'which',
+  'how',
+  'why',
+  'know',
+  'say',
+  'speak',
+  'talk',
+  'give',
+  'name',
+  'please',
+  'mean',
+  'meaning',
+]);
+
+/**
+ * Evidence strength that `entry` actually answers `qRaw`:
+ *  - strong: a direct name/id token hit, or the normalized query names it.
+ *  - medium: a content token (not a stopword, not myth-generic) appears in
+ *    the entry's canonical domain line ("god of the sea" → poseidon "Sea…").
+ *  - weak: only LIKE noise / tier-boosted proximity — NOT enough to answer.
+ */
+function entryMatchStrength(qRaw, entry, tokenIds) {
+  if (!entry) return 'weak';
+  // A signature card match from the concept channel ("The Golden Apple" →
+  // eris) is direct evidence the entry is the answer.
+  if (entry._signature) return 'strong';
+  const qNorm = normalizeQuery(qRaw).replace(/[^a-z0-9]/g, '');
+  const qTokenSet = new Set(
+    normalizeQuery(qRaw)
+      .replace(/[^a-z0-9\s]/g, ' ')
+      .split(/\s+/)
+      .filter(Boolean)
+  );
+  const ascii = normalizeQuery(entry.ascii || '');
+  const unicode = normalizeQuery(entry.unicode || '');
+  if (
+    tokenIds.has(entry.id) ||
+    (qNorm &&
+      (qNorm === ascii ||
+        qNorm === unicode ||
+        qNorm === entry.id ||
+        (ascii && qTokenSet.has(ascii)) ||
+        (unicode && qTokenSet.has(unicode))))
+  ) {
+    return 'strong';
+  }
+  const domain = String(entry.domain || '').toLowerCase();
+  if (domain) {
+    const contentTokens = _tokenize(qRaw).filter((t) => !MYTH_GENERIC.has(t));
+    if (contentTokens.some((t) => domain.includes(t))) return 'medium';
+  }
+  return 'weak';
+}
+
+/**
+ * Proper-noun veto: "What is the capital of France?" only matches Kyoto via
+ * the word "capital" — medium noise. When the query carries a capitalized
+ * content word that hits NO entry's id/name/domain, the question is almost
+ * certainly not about the lexicon; only a strong match may proceed.
+ */
+function hasUnmatchedProperNoun(qRaw) {
+  const words = String(qRaw).split(/\s+/);
+  const candidates = words
+    .slice(1) // skip sentence-initial capitalization
+    .map((w) => w.replace(/^[^A-Za-zÀ-ž]+|[^A-Za-zÀ-ž]+$/g, ''))
+    .filter((w) => w.length >= 3 && /^[A-ZÀ-ž]/.test(w));
+  if (!candidates.length) return false;
+  const database = getDb();
+  const stmt = database.prepare(
+    'SELECT 1 AS hit FROM entries WHERE LOWER(id) = ? OR LOWER(ascii) = ? OR LOWER(unicode) = ? OR LOWER(domain) LIKE ? LIMIT 1'
+  );
+  return candidates.every((w) => {
+    const n = normalizeQuery(w);
+    if (STOP_WORDS.has(n) || MYTH_GENERIC.has(n)) return false;
+    return !stmt.get(n, n, n, `%${n}%`);
+  });
+}
+
 function stripHtml(html) {
   if (!html) return '';
   return String(html)
@@ -284,6 +392,7 @@ function safeJsonParse(str) {
 function detectIntent(q) {
   const lower = normalizeQuery(q);
 
+  if (/\b(punycode|xn--|idn|unicode domain)\b/.test(lower)) return 'punycode';
   if (/\b(who is|who was|who are|whom is|whom was|tell me about)\b/.test(lower)) return 'who';
   if (/\b(what is the etymology of|what was the etymology of|etymology of)\b/.test(lower))
     return 'etymology';
@@ -479,9 +588,40 @@ function retrieveEntriesFTS(q, limit = 10) {
     .all(ftsQuery, limit);
 }
 
+// Cached full-lexicon snapshot for concept retrieval (the table is ~900
+// rows; rebuilt per cold start, which is exactly when content redeploys).
+let ALL_ENTRIES = null;
+function getAllEntries() {
+  if (!ALL_ENTRIES) {
+    ALL_ENTRIES = getDb()
+      .prepare(
+        'SELECT id, ascii, unicode, greek, pantheon, tier, domain, meaning, confidence_score, has_flagship FROM entries'
+      )
+      .all();
+  }
+  return ALL_ENTRIES;
+}
+
+// The canonical lexicon's own ordering is the curated prominence signal
+// (apollon, hades, hekate, nike, zeus open the book): when retrieval evidence
+// ties, the earlier lexicon seat is the more central figure. poseidon(13) ≺
+// njordr(74); artemis(32) ≺ ochosi(496); hades(1) ≺ yanluo(910).
+let LEXICON_ORDER = null;
+function lexiconOrder() {
+  if (!LEXICON_ORDER) {
+    const LEX = require('../../type/js/lexicon.js');
+    const list = LEX.LEXICON || LEX;
+    LEXICON_ORDER = new Map(list.map((e, i) => [e.id, i]));
+  }
+  return LEXICON_ORDER;
+}
+function prominence(id) {
+  const order = lexiconOrder();
+  return order.has(id) ? order.get(id) : 100000;
+}
+
 function retrieveEntriesByConcept(q, limit = 5) {
-  const database = getDb();
-  const tokens = _tokenize(q);
+  const tokens = _tokenize(q).filter((t) => !MYTH_GENERIC.has(t) && !QUERY_NOISE.has(t));
   const conceptTerms = new Set(tokens);
 
   // Expand with synonym map
@@ -496,22 +636,77 @@ function retrieveEntriesByConcept(q, limit = 5) {
 
   if (conceptTerms.size === 0) return [];
 
-  const likes = Array.from(conceptTerms).map((t) => `%${t}%`);
-  const domainConditions = likes.map(() => 'LOWER(e.domain) LIKE ?').join(' OR ');
-  const meaningConditions = likes.map(() => 'LOWER(e.meaning) LIKE ?').join(' OR ');
-
-  const rows = database
-    .prepare(
-      `
-      SELECT e.*, 1 as concept_match FROM entries e
-      WHERE (${domainConditions}) OR (${meaningConditions})
-      ORDER BY e.tier = 'dual' DESC, e.tier = '1' DESC, e.confidence_score DESC, e.has_flagship DESC
-      LIMIT ?
-    `
-    )
-    .all(...likes, ...likes, limit);
-
-  return rows;
+  // Score the whole lexicon in JS (895 rows — trivial): the SQL LIKE pool
+  // cannot rank, and entries whose match lives only in the lore catalog
+  // (eris's golden apple is in mythology, not entries.meaning) are invisible
+  // to it. Ranking: most concept terms matched; a match in the entry's
+  // PRIMARY (first-listed) domain outranks a secondary one (artemis "Hunt,
+  // Wilderness, Moon" beats diana "Moon, Hunt, …" for "goddess of the hunt");
+  // tier/confidence only break ties.
+  const queryTerms = tokens; // the query's own words, before synonym expansion
+  const loreMap = loadLoreCatalog();
+  const pool = getAllEntries();
+  const scored = [];
+  for (const row of pool) {
+    const domain = String(row.domain || '').toLowerCase();
+    const lore = loreMap.get(row.id);
+    const cards = lore?.domains?.cards || [];
+    const loreText = lore
+      ? [
+          lore.domains?.lead,
+          lore.mythology?.lead,
+          lore.mythology?.myths && JSON.stringify(lore.mythology.myths),
+          ...cards.flatMap((c) => [c.name, c.desc]),
+        ]
+          .filter(Boolean)
+          .join(' ')
+          .toLowerCase()
+      : '';
+    const hay = `${domain} ${String(row.meaning || '').toLowerCase()} ${loreText}`;
+    // Exact matches on the query's OWN words outrank synonym-expansion hits:
+    // a deity whose primary domain IS the queried concept answers "god of X".
+    let exactCount = 0;
+    for (const t of queryTerms) {
+      if (hay.includes(t)) exactCount++;
+    }
+    if (exactCount === 0) continue;
+    const firstDomain = domain.split(/[,;]/)[0].trim();
+    const exactPrimary = queryTerms.includes(firstDomain) ? 1 : 0;
+    // Signature match: the query's content phrase names one of the entry's
+    // canonical attribute cards (eris's "The Golden Apple") — the strongest
+    // evidence a vague question can give.
+    const signature =
+      queryTerms.length >= 2 &&
+      cards.some((c) => {
+        const cardName = String(c.name || '').toLowerCase();
+        return queryTerms.filter((t) => cardName.includes(t)).length >= 2;
+      })
+        ? 1
+        : 0;
+    scored.push({ row, exactCount, exactPrimary, signature });
+  }
+  scored.sort((a, b) => {
+    if (b.signature !== a.signature) return b.signature - a.signature;
+    if (b.exactPrimary !== a.exactPrimary) return b.exactPrimary - a.exactPrimary;
+    if (b.exactCount !== a.exactCount) return b.exactCount - a.exactCount;
+    if (prominence(a.row.id) !== prominence(b.row.id)) {
+      return prominence(a.row.id) - prominence(b.row.id);
+    }
+    const aTier = a.row.tier === 'dual' ? 3 : a.row.tier === '1' ? 2 : 1;
+    const bTier = b.row.tier === 'dual' ? 3 : b.row.tier === '1' ? 2 : 1;
+    if (aTier !== bTier) return bTier - aTier;
+    if ((b.row.has_flagship || 0) !== (a.row.has_flagship || 0)) {
+      return (b.row.has_flagship || 0) - (a.row.has_flagship || 0);
+    }
+    return (b.row.confidence_score || 0) - (a.row.confidence_score || 0);
+  });
+  return scored.slice(0, limit).map((s) => ({
+    ...s.row,
+    concept_match: 1,
+    _signature: s.signature,
+    _primaryDomain: s.exactPrimary,
+    _exactCount: s.exactCount,
+  }));
 }
 
 async function retrieveEntriesSemantic(q, limit = 10) {
@@ -576,38 +771,57 @@ async function retrieveEntries(q, limit = 5, quick = false) {
   }
 
   const normalized = normalizeQuery(q).replace(/[^a-z0-9]/g, '');
+  // Word-token exactness — substring checks let two-letter names ('ea', 'ma',
+  // 'he') "match" every query containing those letters ('sea', 'tell').
+  const qTokenSet = new Set(
+    normalizeQuery(q)
+      .replace(/[^a-z0-9\s]/g, ' ')
+      .split(/\s+/)
+      .filter(Boolean)
+  );
+  const isExactName = (e) => {
+    const a = normalizeQuery(e.ascii || '');
+    const u = normalizeQuery(e.unicode || '');
+    return (
+      normalized === a ||
+      normalized === u ||
+      normalized === e.id ||
+      qTokenSet.has(a) ||
+      qTokenSet.has(u) ||
+      qTokenSet.has(e.id)
+    );
+  };
   combined.sort((a, b) => {
     const aToken = tokenIds.has(a.id);
     const bToken = tokenIds.has(b.id);
     if (aToken && !bToken) return -1;
     if (bToken && !aToken) return 1;
 
-    const aNormAscii = normalizeQuery(a.ascii);
-    const aNormUnicode = normalizeQuery(a.unicode);
-    const bNormAscii = normalizeQuery(b.ascii);
-    const bNormUnicode = normalizeQuery(b.unicode);
-
-    const aExact =
-      normalized === aNormAscii ||
-      normalized === aNormUnicode ||
-      normalized === a.id ||
-      normalized.includes(aNormAscii) ||
-      normalized.includes(aNormUnicode) ||
-      normalized.includes(a.id);
-    const bExact =
-      normalized === bNormAscii ||
-      normalized === bNormUnicode ||
-      normalized === b.id ||
-      normalized.includes(bNormAscii) ||
-      normalized.includes(bNormUnicode) ||
-      normalized.includes(b.id);
+    const aExact = isExactName(a);
+    const bExact = isExactName(b);
 
     if (aExact && !bExact) return -1;
     if (bExact && !aExact) return 1;
 
+    // Concept-channel relevance outranks tier: a deity whose primary domain
+    // IS the queried concept beats a tier-higher name that merely mentions it.
+    const aSig = (a._signature || 0) - (b._signature || 0);
+    if (aSig !== 0) return -aSig;
+    const aPd = (a._primaryDomain || 0) - (b._primaryDomain || 0);
+    if (aPd !== 0) return -aPd;
+    const aCount = (a._exactCount || 0) - (b._exactCount || 0);
+    if (aCount !== 0) return -aCount;
+
+    // Canonical prominence (lexicon seat order) outranks tier for answer
+    // relevance — tier measures the name's diacritic richness, not how
+    // central the figure is to the question.
+    if (prominence(a.id) !== prominence(b.id)) return prominence(a.id) - prominence(b.id);
+
     const aTier = a.tier === 'dual' ? 3 : a.tier === '1' ? 2 : 1;
     const bTier = b.tier === 'dual' ? 3 : b.tier === '1' ? 2 : 1;
     if (aTier !== bTier) return bTier - aTier;
+
+    if (prominence(a.id) !== prominence(b.id)) return prominence(a.id) - prominence(b.id);
 
     return (b.confidence_score || 0) - (a.confidence_score || 0);
   });
@@ -809,6 +1023,50 @@ function formatVariants(variants) {
     .join('');
   if (!items) return '';
   return `<div class="oracle-section"><h4>Name variations</h4><ul>${items}</ul></div>`;
+}
+
+// Punycode conversion lives in node:url's IDNA implementation — the same one
+// names-service uses for the public API.
+const { domainToASCII } = require('node:url');
+
+function punycodeLabel(name) {
+  if (!name) return null;
+  try {
+    const ascii = domainToASCII(String(name).toLowerCase());
+    return ascii?.startsWith('xn--') ? ascii : null;
+  } catch (_e) {
+    return null;
+  }
+}
+
+function formatPunycode(entry) {
+  // entries.domain is the SEMANTIC domain ("Light, Music, Prophecy") — the
+  // punycode label derives from the Unicode NAME (apóllōn → xn--aplln-1ta64d).
+  const unicodeName = entry.unicode || entry.ascii;
+  const label = punycodeLabel(unicodeName);
+  if (!label) return '';
+  const display = escapeHtml(`${String(unicodeName).toLowerCase()}.com`);
+  return `<div class="oracle-section"><h4>Punycode</h4><p>The Unicode form <strong>${display}</strong> is encoded for the DNS as <strong>${escapeHtml(label)}.com</strong> — browsers and registrars translate between the two automatically.</p></div>`;
+}
+
+/**
+ * Intent sections and the always-on enrichments can emit the same block
+ * ("Original script" twice, "Name variations" twice). Sections are keyed by
+ * their <h4> title; first emission wins.
+ */
+function dedupeSections(answer) {
+  const parts = String(answer).split('<div class="oracle-section">');
+  if (parts.length <= 2) return answer;
+  const seen = new Set();
+  const out = [parts[0]];
+  for (let i = 1; i < parts.length; i++) {
+    const m = parts[i].match(/^\s*<h4>([^<]+)<\/h4>/);
+    const key = m ? m[1].trim().toLowerCase() : null;
+    if (key && seen.has(key)) continue;
+    if (key) seen.add(key);
+    out.push(parts[i]);
+  }
+  return out.join('<div class="oracle-section">');
 }
 
 function formatCulturalLegacy(legacy) {
@@ -1030,6 +1288,11 @@ function synthesizeAnswer(q, entries, sites, related, intent, _history = []) {
     answer += formatVariants(ctx?.variants);
   }
 
+  if (intent === 'punycode') {
+    answer += formatPunycode(primary);
+    answer += formatVariants(ctx?.variants);
+  }
+
   if (intent === 'variants') {
     answer += formatVariants(ctx?.variants);
     answer += formatOriginalScript(ctx);
@@ -1090,42 +1353,35 @@ function synthesizeAnswer(q, entries, sites, related, intent, _history = []) {
   const citations = buildCitations(entries, sites, lore.sources);
   const followUps = generateFollowUps(intent, primary, related, sites);
 
+  // Intent branches and the default enrichments above can emit the same
+  // section twice — collapse by section title before returning.
+  answer = dedupeSections(answer);
+
   return { answer, citations, context, followUps, primaryId: primary.id };
 }
 
 async function callLlmIfConfigured(prompt) {
+  // Provider-agnostic: any OpenAI-compatible endpoint (OpenAI, OpenRouter,
+  // Together, vLLM, or the self-hosted student model) via ORACLE_LLM_BASE_URL.
   const apiKey = process.env.ORACLE_LLM_API_KEY;
   const model = process.env.ORACLE_LLM_MODEL;
   if (!apiKey || !model) return null;
 
-  try {
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${apiKey}`,
+  return llmChat({
+    apiKey,
+    model,
+    baseUrl: process.env.ORACLE_LLM_BASE_URL || undefined,
+    messages: [
+      {
+        role: 'system',
+        content:
+          'You are the PUNICODEX Oracle. Synthesize the provided context into a scholarly, dense, citation-aware paragraph. Do not add facts absent from the context. Use HTML: <strong> for emphasis, <p> for paragraphs. Keep under 250 words.',
       },
-      body: JSON.stringify({
-        model,
-        messages: [
-          {
-            role: 'system',
-            content:
-              'You are the PUNICODEX Oracle. Synthesize the provided context into a scholarly, dense, citation-aware paragraph. Do not add facts absent from the context. Use HTML: <strong> for emphasis, <p> for paragraphs. Keep under 250 words.',
-          },
-          { role: 'user', content: prompt },
-        ],
-        temperature: 0.2,
-        max_tokens: 512,
-      }),
-    });
-
-    if (!response.ok) return null;
-    const data = await response.json();
-    return data.choices?.[0]?.message?.content || null;
-  } catch (_e) {
-    return null;
-  }
+      { role: 'user', content: prompt },
+    ],
+    temperature: 0.2,
+    maxTokens: 512,
+  });
 }
 
 function buildLlmPrompt(q, contexts, intent) {
@@ -1182,6 +1438,9 @@ function synthesizeQuickAnswer(entry, intent) {
   if (intent === 'pronunciation') {
     answer += formatPronunciation(lore.pronunciation);
   }
+  if (intent === 'punycode') {
+    answer += formatPunycode(entry);
+  }
 
   // Always add the most useful single-sentence enrichments
   if (lore.mythology?.lead && intent !== 'mythology') {
@@ -1193,6 +1452,8 @@ function synthesizeQuickAnswer(entry, intent) {
   if (ctx?.originalScript && ctx.originalScript !== '—') {
     answer += formatOriginalScript(ctx);
   }
+
+  answer = dedupeSections(answer);
 
   const citations = buildCitations([entry], []);
   const followUps = generateFollowUps(intent, entry);
@@ -1251,7 +1512,35 @@ async function askOracle(q, history = [], { quick = false } = {}) {
     }
   }
 
-  const primary = entries[0];
+  let primary = entries[0];
+  // Confidence gate — retrieval always returns *something* (LIKE noise from
+  // the concept/FTS channels), and composing a confident answer around a
+  // noise match is fabrication. Score EVERY candidate, promote the best
+  // (a domain-evidenced medium beats a tier-boosted weak), and decline only
+  // when the best available evidence is weak. An unmatched proper noun
+  // vetoes a merely-medium best (the question is about something the
+  // lexicon does not cover).
+  if (primary) {
+    const tokenIds = new Set(retrieveEntriesByToken(resolvedQ, 5).map((e) => e.id));
+    const RANK = { strong: 3, medium: 2, weak: 1 };
+    const scored = entries.map((entry, idx) => ({
+      entry,
+      idx,
+      strength: entryMatchStrength(resolvedQ, entry, tokenIds),
+    }));
+    scored.sort((a, b) => RANK[b.strength] - RANK[a.strength] || a.idx - b.idx);
+    const best = scored[0];
+    if (
+      best.strength === 'weak' ||
+      (best.strength === 'medium' && hasUnmatchedProperNoun(resolvedQ))
+    ) {
+      entries = [];
+      primary = undefined;
+    } else {
+      entries = scored.map((s) => s.entry);
+      primary = best.entry;
+    }
+  }
   const sites = await retrieveSites(resolvedQ);
   const related = primary ? retrieveRelated(primary) : [];
 

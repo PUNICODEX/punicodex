@@ -1,0 +1,312 @@
+{
+  "version": "1.0.0",
+  "description": "Golden evaluation set for the PuniCodex Oracle (platform/api/oracle.js). 36 hand-written scholarly questions across 6 intent groups. Every expectation was verified against the live oracle in quick mode on 2026-08-13; cases the oracle currently fails encode the unambiguously-correct expectation (per the lexicon) and carry a note — they are known oracle defects, not wrong expectations.",
+  "thresholds": {
+    "hitRateMin": 0.8,
+    "citationRateMin": 0.9,
+    "cleanRateMin": 1.0
+  },
+  "groups": {
+    "greek-headliners": "Direct who/tell-me questions for the six most prominent Greek temples",
+    "non-greek-flagships": "Direct questions for non-Greek flagship temples across five pantheons",
+    "base-entries": "Direct questions for non-flagship (base temple) lexicon entries",
+    "intent-variety": "Specific information intents: punycode, pronunciation, etymology, tier, original script, symbols",
+    "vague-adversarial": "Indirect descriptions that must be resolved to the right deity",
+    "out-of-scope": "Non-mythology questions the oracle must decline gracefully (expectPrimary null)"
+  },
+  "cases": [
+    {
+      "q": "Who is Zeus?",
+      "group": "greek-headliners",
+      "expectPrimary": "zeus",
+      "expectCitationsMin": 1,
+      "mustMention": ["Zeús", "thunder"],
+      "forbidden": []
+    },
+    {
+      "q": "Who is Athena?",
+      "group": "greek-headliners",
+      "expectPrimary": "athena",
+      "expectCitationsMin": 1,
+      "mustMention": ["Athēnâ", "wisdom"],
+      "forbidden": []
+    },
+    {
+      "q": "Tell me about Apollon",
+      "group": "greek-headliners",
+      "expectPrimary": "apollon",
+      "expectCitationsMin": 1,
+      "mustMention": ["Apóllōn", "prophecy"],
+      "forbidden": []
+    },
+    {
+      "q": "Who is Poseidon?",
+      "group": "greek-headliners",
+      "expectPrimary": "poseidon",
+      "expectCitationsMin": 1,
+      "mustMention": ["Poseidôn", "sea"],
+      "forbidden": []
+    },
+    {
+      "q": "Tell me about Hermes",
+      "group": "greek-headliners",
+      "expectPrimary": "hermes",
+      "expectCitationsMin": 1,
+      "mustMention": ["Hermês", "messenger"],
+      "forbidden": []
+    },
+    {
+      "q": "Who is Aphrodite?",
+      "group": "greek-headliners",
+      "expectPrimary": "aphrodite",
+      "expectCitationsMin": 1,
+      "mustMention": ["Aphrodítē", "love"],
+      "forbidden": []
+    },
+    {
+      "q": "Who is Quetzalcoatl?",
+      "group": "non-greek-flagships",
+      "expectPrimary": "quetzalcoatl",
+      "expectCitationsMin": 1,
+      "mustMention": ["Quetzalcōātl", "wind"],
+      "forbidden": []
+    },
+    {
+      "q": "Tell me about Okuninushi",
+      "group": "non-greek-flagships",
+      "expectPrimary": "okuninushi",
+      "expectCitationsMin": 1,
+      "mustMention": ["Ōkuninushi", "nation-building"],
+      "forbidden": []
+    },
+    {
+      "q": "Who is Thor?",
+      "group": "non-greek-flagships",
+      "expectPrimary": "thor",
+      "expectCitationsMin": 1,
+      "mustMention": ["Þórr", "thunder"],
+      "forbidden": []
+    },
+    {
+      "q": "Tell me about Ra",
+      "group": "non-greek-flagships",
+      "expectPrimary": "ra",
+      "expectCitationsMin": 1,
+      "mustMention": ["Rꜥ", "sun"],
+      "forbidden": []
+    },
+    {
+      "q": "Who is Vishnu?",
+      "group": "non-greek-flagships",
+      "expectPrimary": "vishnu",
+      "expectCitationsMin": 1,
+      "mustMention": ["Viṣṇu", "preservation"],
+      "forbidden": []
+    },
+    {
+      "q": "Tell me about Ganesha",
+      "group": "non-greek-flagships",
+      "expectPrimary": "ganesha",
+      "expectCitationsMin": 1,
+      "mustMention": ["Gaṇeśa", "beginnings"],
+      "forbidden": []
+    },
+    {
+      "q": "Who is Themis?",
+      "group": "base-entries",
+      "expectPrimary": "themis",
+      "expectCitationsMin": 1,
+      "mustMention": ["Themis", "divine law"],
+      "forbidden": []
+    },
+    {
+      "q": "Tell me about Baldr",
+      "group": "base-entries",
+      "expectPrimary": "baldr",
+      "expectCitationsMin": 1,
+      "mustMention": ["Baldr", "light"],
+      "forbidden": []
+    },
+    {
+      "q": "Who is Osiris?",
+      "group": "base-entries",
+      "expectPrimary": "osiris",
+      "expectCitationsMin": 1,
+      "mustMention": ["Wsjr", "afterlife"],
+      "forbidden": []
+    },
+    {
+      "q": "Tell me about Krishna",
+      "group": "base-entries",
+      "expectPrimary": "krishna",
+      "expectCitationsMin": 1,
+      "mustMention": ["Kṛṣṇa", "vishnu"],
+      "forbidden": []
+    },
+    {
+      "q": "Who is Amaterasu?",
+      "group": "base-entries",
+      "expectPrimary": "amaterasu",
+      "expectCitationsMin": 1,
+      "mustMention": ["Amaterasu", "sun"],
+      "forbidden": []
+    },
+    {
+      "q": "Tell me about Marduk",
+      "group": "base-entries",
+      "expectPrimary": "marduk",
+      "expectCitationsMin": 1,
+      "mustMention": ["Marduk", "babylon"],
+      "forbidden": []
+    },
+    {
+      "q": "What is the punycode for Apóllōn?",
+      "group": "intent-variety",
+      "expectPrimary": "apollon",
+      "expectCitationsMin": 1,
+      "mustMention": ["xn--"],
+      "forbidden": [],
+      "note": "KNOWN GAP: the oracle centers on apollon but never surfaces the punycode form (xn--aplln-1ta64d.com) in the answer text — the mention check fails by design until the oracle learns to answer punycode intents."
+    },
+    {
+      "q": "How do you pronounce Nike?",
+      "group": "intent-variety",
+      "expectPrimary": "nike",
+      "expectCitationsMin": 1,
+      "mustMention": ["IPA", "NEE-kay"],
+      "forbidden": []
+    },
+    {
+      "q": "What is the etymology of Aphrodite?",
+      "group": "intent-variety",
+      "expectPrimary": "aphrodite",
+      "expectCitationsMin": 1,
+      "mustMention": ["foam"],
+      "forbidden": []
+    },
+    {
+      "q": "What tier is Hekate?",
+      "group": "intent-variety",
+      "expectPrimary": "hekate",
+      "expectCitationsMin": 1,
+      "mustMention": ["Dual-Tier"],
+      "forbidden": []
+    },
+    {
+      "q": "What is the original script of Thoth?",
+      "group": "intent-variety",
+      "expectPrimary": "thoth",
+      "expectCitationsMin": 1,
+      "mustMention": ["𓅜𓏏"],
+      "forbidden": []
+    },
+    {
+      "q": "What are the symbols of Zeus?",
+      "group": "intent-variety",
+      "expectPrimary": "zeus",
+      "expectCitationsMin": 1,
+      "mustMention": ["thunderbolt", "eagle"],
+      "forbidden": []
+    },
+    {
+      "q": "Who is the goddess of victory?",
+      "group": "vague-adversarial",
+      "expectPrimary": "nike",
+      "expectCitationsMin": 1,
+      "mustMention": ["victory"],
+      "forbidden": []
+    },
+    {
+      "q": "Tell me about the god of the sea",
+      "group": "vague-adversarial",
+      "expectPrimary": "poseidon",
+      "expectCitationsMin": 1,
+      "mustMention": ["sea"],
+      "forbidden": [],
+      "note": "ORACLE DEFECT (2026-08-13): answers zeus — FTS/concept retrieval ranks a high-confidence headliner above the deity whose domain (Sea, Earthquakes, Horses) matches the description."
+    },
+    {
+      "q": "who threw the golden apple",
+      "group": "vague-adversarial",
+      "expectPrimary": "eris",
+      "expectCitationsMin": 1,
+      "mustMention": ["golden apple"],
+      "forbidden": [],
+      "note": "ORACLE DEFECT (2026-08-13): answers iason (Golden Fleece) — the retriever confuses the golden-apple myth of Éris with the Golden Fleece of Iásōn."
+    },
+    {
+      "q": "Who is the goddess of the hunt?",
+      "group": "vague-adversarial",
+      "expectPrimary": "artemis",
+      "expectCitationsMin": 1,
+      "mustMention": ["hunt"],
+      "forbidden": [],
+      "note": "ORACLE DEFECT (2026-08-13): answers durga — Ártemis (domain: Hunt, Wilderness, Moon) is the unambiguous match per the lexicon."
+    },
+    {
+      "q": "god of the underworld",
+      "group": "vague-adversarial",
+      "expectPrimary": "hades",
+      "expectCitationsMin": 1,
+      "mustMention": ["underworld"],
+      "forbidden": []
+    },
+    {
+      "q": "goddess of love and beauty",
+      "group": "vague-adversarial",
+      "expectPrimary": "aphrodite",
+      "expectCitationsMin": 1,
+      "mustMention": ["love"],
+      "forbidden": []
+    },
+    {
+      "q": "What is the capital of France?",
+      "group": "out-of-scope",
+      "expectPrimary": null,
+      "expectCitationsMin": 0,
+      "mustMention": [],
+      "forbidden": [],
+      "note": "ORACLE DEFECT (2026-08-13): fabricates a confident answer about kyoto (domain: Imperial Capital, Kansai) instead of declining — the token 'capital' matches Kyōto's domain text."
+    },
+    {
+      "q": "How do I bake sourdough bread?",
+      "group": "out-of-scope",
+      "expectPrimary": null,
+      "expectCitationsMin": 0,
+      "mustMention": ["does not yet cover"],
+      "forbidden": []
+    },
+    {
+      "q": "Explain quantum entanglement",
+      "group": "out-of-scope",
+      "expectPrimary": null,
+      "expectCitationsMin": 0,
+      "mustMention": ["does not yet cover"],
+      "forbidden": []
+    },
+    {
+      "q": "Who wrote Romeo and Juliet?",
+      "group": "out-of-scope",
+      "expectPrimary": null,
+      "expectCitationsMin": 0,
+      "mustMention": ["does not yet cover"],
+      "forbidden": []
+    },
+    {
+      "q": "Who painted the Mona Lisa?",
+      "group": "out-of-scope",
+      "expectPrimary": null,
+      "expectCitationsMin": 0,
+      "mustMention": ["does not yet cover"],
+      "forbidden": []
+    },
+    {
+      "q": "What is photosynthesis?",
+      "group": "out-of-scope",
+      "expectPrimary": null,
+      "expectCitationsMin": 0,
+      "mustMention": ["does not yet cover"],
+      "forbidden": []
+    }
+  ]
+}
