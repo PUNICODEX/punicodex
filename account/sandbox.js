@@ -228,6 +228,28 @@
       .join('');
   }
 
+  // ── Shared empty state ─────────────────────────────────────
+
+  /**
+   * The one elegant state for an account with nothing linked yet — a single
+   * card with the temple glyph and pointers at the support links. Used by the
+   * Overview and Bookings pages so an empty account never renders as a wall
+   * of empty boxes.
+   */
+  function emptyHero() {
+    return (
+      '<div class="sb-empty-hero">' +
+      '<picture><source srcset="/assets/brand/01-logos/punicodex-emblem-glyph-gold.webp" type="image/webp">' +
+      '<img class="sb-empty-glyph" src="/assets/brand/01-logos/punicodex-emblem-glyph-gold.png" alt="" width="72" height="72"></picture>' +
+      '<h2>Your placements will appear here</h2>' +
+      '<p>Once your first booking or patron spot is linked to this account, it shows up here. ' +
+      'Anything unclear in the meantime — ' +
+      '<a href="/contact/">contact us</a> or ' +
+      '<a href="mailto:support@punicodex.com?subject=Advertiser%20panel%20—%20bug%20report">report a bug</a>.</p>' +
+      '</div>'
+    );
+  }
+
   // ── Shell ────────────────────────────────────────────────
 
   function mountShell(active, email) {
@@ -310,6 +332,7 @@
     sparkline: sparkline,
     drawBars: drawBars,
     barRows: barRows,
+    emptyHero: emptyHero,
     mountShell: mountShell,
     logout: logout,
     requireAccount: requireAccount,

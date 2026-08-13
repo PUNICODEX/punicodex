@@ -531,7 +531,9 @@ async function runTests() {
       'utf8'
     );
     for (const status of ['approved', 'pending_approval', 'trialing', 'live']) {
-      const block = html.match(new RegExp(`status === '${status}'[\\s\\S]{0,600}`));
+      // The approved branch widened when Go Live gained its creative gate —
+      // window is sized so End must still be found inside the branch.
+      const block = html.match(new RegExp(`status === '${status}'[\\s\\S]{0,1600}`));
       assert.ok(block, `status branch for ${status}`);
       assert.ok(block[0].includes(`data-action="end"`), `${status} offers End`);
     }

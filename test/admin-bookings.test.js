@@ -84,6 +84,14 @@ async function runTests() {
   });
 
   await test('POST /api/admin/bookings/:id/golive', async () => {
+    // Go Live requires a creative (2026-08 gate): attach one first.
+    const Database = require('better-sqlite3');
+    const { getTestDbPath } = require('./helpers/test-db.js');
+    const wdb = new Database(getTestDbPath(__filename));
+    wdb
+      .prepare("UPDATE bookings SET creative_path = '/uploads/test/admin-golive-creative.png' WHERE id = ?")
+      .run(createdId);
+    wdb.close();
     const handler = require('../platform/api-handlers/admin/bookings/[id]/golive/index.js');
     const res = await invoke(handler, 'POST', `/api/admin/bookings/${createdId}/golive`, {
       headers: adminHeader(adminToken),

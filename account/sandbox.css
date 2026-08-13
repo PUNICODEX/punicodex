@@ -722,20 +722,123 @@ a.sb-panel-link:hover > h3 {
   object-fit: contain;
 }
 
-/* ── Patron strip ─────────────────────────────────────────── */
+/* ── First-upload hint (Brand page) ───────────────────────── */
 
-.sb-patron-strip {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-}
-
-.sb-honesty {
+.sb-first-upload {
   font-size: 0.74rem;
   color: var(--sb-text-muted);
   border-left: 2px solid var(--sb-gold-line);
   padding-left: 0.6rem;
-  margin: 0.6rem 0 0;
+  margin: -0.35rem 0 0.85rem;
+}
+
+/* ── Action banner ────────────────────────────────────────── */
+
+.sb-action-banner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.2rem;
+  background:
+    linear-gradient(135deg, rgba(212, 175, 55, 0.09), rgba(212, 175, 55, 0.03) 55%),
+    var(--sb-panel);
+  border: 1px solid var(--sb-gold-line);
+  border-radius: var(--sb-radius);
+  box-shadow:
+    0 0 28px rgba(212, 175, 55, 0.1),
+    inset 0 1px 0 rgba(240, 216, 120, 0.08);
+}
+
+.sb-action-banner h2 {
+  font-family: var(--sb-font-display);
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.3rem;
+  color: var(--sb-gold);
+}
+
+.sb-action-banner p {
+  margin: 0;
+  font-size: 0.84rem;
+  color: var(--sb-text-muted);
+}
+
+.sb-action-banner p strong {
+  color: var(--sb-text);
+  font-weight: 600;
+}
+
+.sb-action-glyph {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  color: var(--sb-gold);
+}
+
+.sb-action-glyph svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.sb-action-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.sb-action-banner .sb-btn {
+  flex-shrink: 0;
+}
+
+/* Calmer review-state note: same rhythm, no gold alarm. */
+.sb-action-banner.info {
+  background: var(--sb-panel);
+  border-color: var(--sb-border-strong);
+  box-shadow: none;
+}
+
+.sb-action-banner.info h2 {
+  color: var(--sb-text);
+  font-size: 0.92rem;
+}
+
+.sb-action-banner.info .sb-action-glyph {
+  color: var(--sb-info);
+}
+
+/* ── Empty-account hero ───────────────────────────────────── */
+
+.sb-empty-hero {
+  margin-top: 2rem;
+  padding: 3rem 1.5rem 2.6rem;
+  text-align: center;
+  background:
+    radial-gradient(420px 160px at 50% 0%, rgba(212, 175, 55, 0.07), transparent 70%),
+    var(--sb-panel);
+  border: 1px solid var(--sb-gold-dim);
+  border-radius: var(--sb-radius);
+}
+
+.sb-empty-glyph {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+}
+
+.sb-empty-hero h2 {
+  font-family: var(--sb-font-display);
+  font-size: 1.12rem;
+  letter-spacing: 0.06em;
+  margin: 1rem 0 0.45rem;
+  color: var(--sb-gold);
+}
+
+.sb-empty-hero p {
+  max-width: 46ch;
+  margin: 0 auto;
+  font-size: 0.86rem;
+  color: var(--sb-text-muted);
 }
 
 /* ── States ───────────────────────────────────────────────── */
@@ -796,5 +899,21 @@ a.sb-panel-link:hover > h3 {
 
   .sb-page-head h1 {
     font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .sb-action-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .sb-action-banner .sb-btn {
+    width: 100%;
+  }
+
+  .sb-empty-hero {
+    padding: 2.2rem 1.1rem 2rem;
   }
 }

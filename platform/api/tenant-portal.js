@@ -139,7 +139,7 @@ async function linkTenantAccount(email) {
               s.name AS slot_name, s.slug AS slot_slug, s.width, s.height, s.is_bundle
          FROM bookings b
          JOIN ad_slots s ON b.slot_id = s.id
-        WHERE b.email = $1
+        WHERE LOWER(b.email) = $1
         ORDER BY b.created_at DESC`,
       [normalized]
     ),
@@ -147,7 +147,7 @@ async function linkTenantAccount(email) {
       `SELECT id, temple_id, email, display_name, title, message, amount_cents,
               social_platform, social_url, status, started_at, ends_at, created_at
          FROM patrons
-        WHERE email = $1
+        WHERE LOWER(email) = $1
         ORDER BY created_at DESC`,
       [normalized]
     ),
@@ -425,6 +425,20 @@ async function forgot({ email }) {
 
 async function getMe(account) {
   const { bookings, patrons } = await linkTenantAccount(account.email);
+  // Self-heal the sponsor/patron flags from the live linkage: accounts
+  // provisioned while the email match was case-broken (or before a booking
+  // existed) otherwise keep stale zero flags forever.
+  const isSponsor = bookings.length > 0;
+  const isPatron = patrons.length > 0;
+  if (isSponsor !== account.isSponsor || isPatron !== account.isPatron) {
+    await run(
+      `UPDATE tenant_accounts
+          SET is_sponsor = $1, is_patron = $2, updated_at = CURRENT_TIMESTAMP
+        WHERE id = $3`,
+      [isSponsor ? 1 : 0, isPatron ? 1 : 0, account.id]
+    );
+    account = { ...account, isSponsor, isPatron };
+  }
   return {
     account,
     resources: {

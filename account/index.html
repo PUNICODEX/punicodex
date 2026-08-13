@@ -9,10 +9,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex,nofollow">
   <title>Overview — Sponsor Sandbox · PuniCodex</title>
-  <meta name="description" content="Sponsor Sandbox overview: your temples, placement performance, and patron spots on PuniCodex.">
+  <meta name="description" content="Sponsor Sandbox overview: your temples and placement performance on PuniCodex.">
   <link rel="canonical" href="https://punicodex.com/account/">
   <link rel="stylesheet" href="/assets/fonts/fonts.css">
-  <link rel="stylesheet" href="/account/sandbox.css">
+  <link rel="stylesheet" href="/account/sandbox.css?v=2">
   <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
@@ -30,8 +30,11 @@
       </div>
     </div>
 
+    <!-- ── Action needed (creative uploads / review state) ── -->
+    <div id="overview-actions"></div>
+
     <!-- ── My temples ─────────────────────────────────────── -->
-    <section class="sb-section" aria-labelledby="temples-heading">
+    <section class="sb-section" id="temples-section" aria-labelledby="temples-heading">
       <div class="sb-section-head">
         <h2 id="temples-heading">My Temples</h2>
         <p class="sb-section-note">Traffic across all visitors, last 30 days</p>
@@ -42,7 +45,7 @@
     </section>
 
     <!-- ── My placements ──────────────────────────────────── -->
-    <section class="sb-section" aria-labelledby="placements-heading">
+    <section class="sb-section" id="placements-section" aria-labelledby="placements-heading">
       <div class="sb-section-head">
         <h2 id="placements-heading">My Placements</h2>
         <p class="sb-section-note">Event-tracked, last 30 days · click a row for the full breakdown</p>
@@ -52,15 +55,8 @@
       </div>
     </section>
 
-    <!-- ── Patron spots ───────────────────────────────────── -->
-    <section class="sb-section" aria-labelledby="patrons-heading">
-      <div class="sb-section-head">
-        <h2 id="patrons-heading">Patron Spots</h2>
-      </div>
-      <div class="sb-patron-strip" id="patrons-strip">
-        <div class="sb-state">Loading patron spots…</div>
-      </div>
-    </section>
+    <!-- ── Empty account: one elegant state, not four boxes ── -->
+    <div id="overview-empty" hidden></div>
 
     <!-- ── Support ────────────────────────────────────────── -->
     <section class="sb-section" aria-labelledby="support-heading">
@@ -77,10 +73,6 @@
           <h3>Report a bug →</h3>
           <p class="sb-panel-sub">Something looks wrong? Tell us what you saw and where.</p>
         </a>
-        <a class="sb-panel sb-panel-link" href="/account/brand/">
-          <h3>Brand &amp; creatives →</h3>
-          <p class="sb-panel-sub">Replace a creative or update your social links, pending review.</p>
-        </a>
       </div>
     </section>
   </main>
@@ -89,7 +81,7 @@
     <p>© 2026 PuniCodex · <a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a> · <a href="/contact/">Contact</a></p>
   </footer>
 
-  <script src="/account/sandbox.js"></script>
-  <script src="/account/index.js"></script>
+  <script src="/account/sandbox.js?v=2"></script>
+  <script src="/account/index.js?v=2"></script>
 </body>
 </html>

@@ -366,6 +366,20 @@ async function goLive(bookingId) {
     throw new BookingConflictError('Booking must be approved before going live');
   }
 
+  // Never publish an empty placement: the booking's own creative or at least
+  // one bundle-slot creative must exist before a temple frame goes live.
+  if (!booking.creative_path) {
+    const slotCreative = await get(
+      `SELECT id FROM slot_creatives WHERE booking_id = $1 AND creative_path IS NOT NULL LIMIT 1`,
+      [bookingId]
+    );
+    if (!slotCreative) {
+      throw new BookingConflictError(
+        'A creative is required before going live — the sponsor has not uploaded one yet'
+      );
+    }
+  }
+
   const slot = await getSlotById(booking.slot_id);
   if (!slot) throw Object.assign(new Error('Slot not found'), { status: 404 });
   if (slot.status === 'live' && slot.current_booking_id !== bookingId) {

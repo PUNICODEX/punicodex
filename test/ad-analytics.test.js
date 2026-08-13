@@ -77,7 +77,9 @@ async function makeLiveBooking(email = 'adtest@example.com') {
     siteSlug: 'nike',
   });
   const db = new Database(getTestDbPath(__filename));
-  db.prepare("UPDATE bookings SET status = 'approved' WHERE id = ?").run(id);
+  db.prepare(
+    "UPDATE bookings SET status = 'approved', creative_path = '/uploads/test/ad-analytics-creative.png' WHERE id = ?"
+  ).run(id);
   db.close();
   await goLive(id);
   return { id, token, publicId };

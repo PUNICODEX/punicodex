@@ -229,6 +229,7 @@ const SUITES = [
   { name: 'Analytics E2E Tests', cmd: 'node test/analytics-e2e.test.js' },
   { name: 'Vercelignore Guard', cmd: 'node test/vercelignore-guard.test.js' },
   { name: 'Secrets Guard', cmd: 'node test/secrets-guard.test.js' },
+  { name: 'Sponsorship Flow Tests', cmd: 'node test/sponsorship-flow.test.js', timeout: 120000 },
   { name: 'Vendored Libs Tests', cmd: 'node test/vendored-libs.test.js' },
   { name: 'Flagship Mobile Nav Tests', cmd: 'node test/flagship-mobile-nav.test.js' },
   { name: 'Realms Page Tests', cmd: 'node test/realms-page.test.js' },

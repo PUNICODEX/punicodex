@@ -2,9 +2,10 @@
  * Sponsor Sandbox — Brand page.
  *
  * The change-request flows from the original portal, restyled:
- *   - Creative swap per changeable booking: client-side type/size checks,
- *     staged upload preview, slot dimension hint (the server re-validates
- *     dimensions against the slot before queueing).
+ *   - Creative upload per changeable booking — "Upload creative" for the
+ *     first image (no creative yet), "Replace creative" afterwards. Client-
+ *     side type/size checks, staged upload preview, slot dimension hint (the
+ *     server re-validates dimensions against the slot before queueing).
  *   - Patron social-link changes (set or request removal).
  *   - Request history with review-status badges.
  * Endpoints are unchanged: GET/POST /api/account/requests/.
@@ -37,10 +38,14 @@
     (me.resources.bookings || []).forEach(function (b) {
       if (IMAGE_CHANGEABLE_STATUSES.indexOf(b.status) === -1) return;
       var dims = b.width && b.height ? b.width + ' × ' + b.height + ' px' : 'the slot dimensions';
+      var firstUpload = !b.creativePath;
       cards.push(
         '<div class="sb-panel">' +
-          '<h3>Replace creative — ' + S.esc(b.slotName) + '</h3>' +
+          '<h3>' + (firstUpload ? 'Upload creative — ' : 'Replace creative — ') + S.esc(b.slotName) + '</h3>' +
           '<p class="sb-panel-sub">' + S.esc(b.siteSlug) + ' · any size photo — we frame it to ' + S.esc(dims) + ' · goes live after review</p>' +
+          (firstUpload
+            ? '<p class="sb-first-upload">First upload — this is the image your placement launches with.</p>'
+            : '') +
           (b.creativePath ? '<img class="sb-creative-preview" src="' + S.esc(b.creativePath) + '" alt="Current creative">' : '') +
           '<form data-booking-id="' + S.esc(b.id) + '" data-width="' + S.esc(b.width || '') + '" data-height="' + S.esc(b.height || '') + '" class="image-request-form">' +
           '<div class="sb-field"><label>New image</label>' +

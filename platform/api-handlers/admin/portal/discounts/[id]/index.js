@@ -1,5 +1,7 @@
 /**
- * PATCH  /api/admin/portal/discounts/:id — toggle { active } (leasing role).
+ * PATCH  /api/admin/portal/discounts/:id — { active } toggle, term edits
+ *         ({ maxUses, expiresAt, note }), or { resetUses: true } to rewind the
+ *         redemption counter (leasing role).
  * DELETE /api/admin/portal/discounts/:id — delete a code that has no
  *         redemptions yet (used_count = 0 enforced in the service).
  */
@@ -27,9 +29,19 @@ module.exports = async (req, res) => {
     if (id == null) return res.status(400).json({ error: 'Invalid discount code id' });
 
     if (req.method === 'PATCH') {
-      const { active } = req.body || {};
+      const body = req.body || {};
+      if (body.resetUses === true) {
+        return res.json(await discountService.resetCodeUses(id, auth));
+      }
+      const hasEdits = ['maxUses', 'expiresAt', 'note'].some((k) => k in body);
+      if (hasEdits) {
+        return res.json(await discountService.updateCode(id, body, auth));
+      }
+      const { active } = body;
       if (typeof active !== 'boolean') {
-        return res.status(400).json({ error: 'active (boolean) is required' });
+        return res.status(400).json({
+          error: 'active (boolean), term edits, or resetUses (true) is required',
+        });
       }
       return res.json(await discountService.setCodeActive(id, active, auth));
     }

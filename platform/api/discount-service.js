@@ -474,6 +474,87 @@ async function deleteCode(id, actor) {
   return { deleted: true, id };
 }
 
+/**
+ * Edit a code's operational terms (usage cap, expiry, internal note). Kind,
+ * percent/fixed value, temple and slot scoping are immutable after creation
+ * because past redemptions were priced by them; changing them retroactively
+ * would rewrite history. `maxUses` accepts null (unlimited) or an integer
+ * >= the current used_count. `expiresAt` accepts null (no expiry) or an
+ * ISO date/datetime string.
+ */
+async function updateCode(id, { maxUses, expiresAt, note }, actor) {
+  await ensureSchema();
+  const existing = await getCodeById(id);
+  if (!existing) throw discountError(404, 'Discount code not found');
+
+  const sets = [];
+  const params = [];
+  const changes = {};
+
+  if (maxUses !== undefined) {
+    const n = maxUses === null ? null : Number(maxUses);
+    if (n !== null && (!Number.isInteger(n) || n < 1)) {
+      throw discountError(400, 'maxUses must be null (unlimited) or a positive integer');
+    }
+    if (n !== null && n < existing.used_count) {
+      throw discountError(409, `maxUses cannot be below the current used_count (${existing.used_count})`);
+    }
+    sets.push(`max_uses = $${params.length + 1}`);
+    params.push(n);
+    changes.maxUses = { from: existing.max_uses, to: n };
+  }
+
+  if (expiresAt !== undefined) {
+    let iso = null;
+    if (expiresAt !== null) {
+      const d = new Date(expiresAt);
+      if (Number.isNaN(d.getTime())) throw discountError(400, 'expiresAt must be a valid date');
+      iso = d.toISOString();
+    }
+    sets.push(`expires_at = $${params.length + 1}`);
+    params.push(iso);
+    changes.expiresAt = { from: existing.expires_at, to: iso };
+  }
+
+  if (note !== undefined) {
+    const clean = note === null ? null : String(note).slice(0, 500);
+    sets.push(`note = $${params.length + 1}`);
+    params.push(clean);
+    changes.note = { from: existing.note, to: clean };
+  }
+
+  if (sets.length === 0) throw discountError(400, 'Nothing to update');
+  params.push(id);
+  await run(`UPDATE discount_codes SET ${sets.join(', ')} WHERE id = $${params.length}`, params);
+  await logAction({
+    adminUserId: actor?.user?.id ?? null,
+    action: 'portal.discount.update',
+    target: `discount_code:${id}`,
+    meta: { code: existing.code, changes, by: actor?.user?.email ?? null },
+  });
+  return getCodeById(id);
+}
+
+/**
+ * Reset a code's redemption counter to zero. The redemption rows themselves
+ * are kept (audit trail); only the usage counter that gates future
+ * redemptions is rewound, so an exhausted founders code can be re-offered
+ * without deleting history or violating the code-name UNIQUE constraint.
+ */
+async function resetCodeUses(id, actor) {
+  await ensureSchema();
+  const existing = await getCodeById(id);
+  if (!existing) throw discountError(404, 'Discount code not found');
+  await run('UPDATE discount_codes SET used_count = 0 WHERE id = $1', [id]);
+  await logAction({
+    adminUserId: actor?.user?.id ?? null,
+    action: 'portal.discount.reset-uses',
+    target: `discount_code:${id}`,
+    meta: { code: existing.code, previousUsedCount: existing.used_count, by: actor?.user?.email ?? null },
+  });
+  return getCodeById(id);
+}
+
 async function redemptions({ codeId, limit = 100, offset = 0 } = {}) {
   await ensureSchema();
   const code = await getCodeById(codeId);
@@ -544,6 +625,8 @@ module.exports = {
   slotsForCode,
   setCodeActive,
   deleteCode,
+  updateCode,
+  resetCodeUses,
   redemptions,
   redeem,
   sanitizeCode,

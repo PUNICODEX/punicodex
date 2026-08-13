@@ -24,7 +24,8 @@
   function renderBookings(bookings) {
     var wrap = document.getElementById('bookings-list');
     if (!bookings.length) {
-      wrap.innerHTML = '<div class="sb-state">No ad-space bookings on this account yet.</div>';
+      // No rows → the whole section disappears (never an empty table).
+      document.getElementById('adspace-section').hidden = true;
       return;
     }
     var rows = bookings
@@ -63,7 +64,8 @@
   function renderPatrons(patrons) {
     var wrap = document.getElementById('patrons-list');
     if (!patrons.length) {
-      wrap.innerHTML = '<div class="sb-state">No patron spots on this account.</div>';
+      // No patron spots → the whole section disappears (no empty table).
+      document.getElementById('patrons-section').hidden = true;
       return;
     }
     var rows = patrons
@@ -118,11 +120,20 @@
     var me = await S.requireAccount();
     if (!me) return;
     S.mountShell('bookings', me.account.email);
-    renderBookings(me.resources.bookings || []);
-    renderPatrons(me.resources.patrons || []);
+    var bookings = me.resources.bookings || [];
+    var patrons = me.resources.patrons || [];
+    renderBookings(bookings);
+    renderPatrons(patrons);
+    // Both rosters empty → one shared elegant state instead of two empty tables.
+    if (!bookings.length && !patrons.length) {
+      var emptyWrap = document.getElementById('bookings-empty');
+      emptyWrap.innerHTML = S.emptyHero();
+      emptyWrap.hidden = false;
+    }
   }
 
   init().catch(function (err) {
+    document.getElementById('adspace-section').hidden = false;
     document.getElementById('bookings-list').innerHTML =
       '<div class="sb-state error">' + S.esc(err.message) + '</div>';
   });

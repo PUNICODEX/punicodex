@@ -72,7 +72,9 @@ async function makeLiveBooking(slotId, email) {
     siteSlug: 'nike',
   });
   const db = new Database(getTestDbPath(__filename));
-  db.prepare("UPDATE bookings SET status = 'approved' WHERE id = ?").run(id);
+  // goLive refuses to publish an empty placement, so the fixture attaches a
+  // creative (same direct-SQL idiom as the status flip below).
+  db.prepare("UPDATE bookings SET status = 'approved', creative_path = '/uploads/test/sandbox-creative.png' WHERE id = ?").run(id);
   db.close();
   await goLive(id);
   return { id, publicId };
@@ -343,7 +345,10 @@ const PAGES = [
       'id="sandbox-topbar"',
       'id="temple-cards"',
       'id="placements-list"',
-      'id="patrons-strip"',
+      // The standalone Patron Spots section was removed from the Overview
+      // (the Bookings page owns patron management) — no patrons-strip hook.
+      'id="overview-actions"',
+      'id="overview-empty"',
     ],
   },
   {

@@ -1,13 +1,18 @@
 /**
  * Sponsor Sandbox — Overview page.
  *
- * Three panels, all scoped to the authenticated tenant:
+ * Scoped to the authenticated tenant:
+ *   0. Action banner — a booking in a creative-changeable status with no
+ *      creative yet is the sponsor's #1 job; a pending_approval booking with
+ *      a creative is calmly reported as under review.
  *   1. My Temples    — one card per temple the account owns placements on
  *                      (traffic + attention + top countries from the guarded
- *                      temple enrichment).
+ *                      temple enrichment). Hidden entirely when there are none.
  *   2. My Placements — one row per booking (impressions, viewability, clicks,
  *                      CTR, 30d sparkline); a row opens the placement detail.
- *   3. Patron Spots  — patron walls honestly report tracking: 'none'.
+ *                      Hidden entirely when there are none.
+ *   An account with nothing at all gets ONE elegant empty state instead of a
+ *   wall of empty boxes. Patron spots are managed on the Bookings page.
  * Legacy one-time setup links arrive at /account/?token=… and are forwarded
  * to the login page, which owns the set-password flow.
  */
@@ -15,6 +20,60 @@
   'use strict';
 
   var S = window.Sandbox;
+  var IMAGE_CHANGEABLE_STATUSES = ['pending_upload', 'rejected', 'approved', 'live', 'pending_approval'];
+
+  function slotList(bookings) {
+    return bookings
+      .map(function (b) {
+        return '<strong>' + S.esc(b.slotName) + '</strong>';
+      })
+      .join(', ');
+  }
+
+  /**
+   * The top-of-page action area: gold banner when a creative is missing
+   * (the sponsor's next move), calm info note while a creative is in review.
+   */
+  function renderActions(bookings) {
+    var wrap = document.getElementById('overview-actions');
+    var awaiting = bookings.filter(function (b) {
+      return IMAGE_CHANGEABLE_STATUSES.indexOf(b.status) !== -1 && !b.creativePath;
+    });
+    var inReview = bookings.filter(function (b) {
+      return b.status === 'pending_approval' && b.creativePath;
+    });
+    var html = '';
+    if (awaiting.length) {
+      html +=
+        '<div class="sb-action-banner" role="alert">' +
+        '<span class="sb-action-glyph" aria-hidden="true">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' +
+        '<path d="M12 16V4"></path><path d="m6 10 6-6 6 6"></path><path d="M4 20h16"></path>' +
+        '</svg></span>' +
+        '<div class="sb-action-body">' +
+        '<h2>Action needed — upload your creative</h2>' +
+        '<p>' + slotList(awaiting) + (awaiting.length === 1 ? ' is' : ' are') +
+        ' approved but ha' + (awaiting.length === 1 ? 's' : 've') +
+        ' no creative yet — the placement can’t go live until you upload one.</p>' +
+        '</div>' +
+        '<a class="sb-btn sb-btn-primary" href="/account/brand/">Upload creative</a>' +
+        '</div>';
+    }
+    if (inReview.length) {
+      html +=
+        '<div class="sb-action-banner info" role="status">' +
+        '<span class="sb-action-glyph" aria-hidden="true">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' +
+        '<circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path>' +
+        '</svg></span>' +
+        '<div class="sb-action-body">' +
+        '<h2>Creative under review by the PuniCodex team</h2>' +
+        '<p>' + slotList(inReview) + ' — it goes live once approved. No action needed from you.</p>' +
+        '</div>' +
+        '</div>';
+    }
+    wrap.innerHTML = html;
+  }
 
   function sumLastDays(byDay, key, days) {
     var series = (byDay || []).slice(-days);
@@ -54,7 +113,8 @@
   function renderPlacements(slots) {
     var wrap = document.getElementById('placements-list');
     if (!slots.length) {
-      wrap.innerHTML = '<div class="sb-state">No ad placements are linked to this account yet.</div>';
+      // No rows → the whole section disappears (never an empty box).
+      document.getElementById('placements-section').hidden = true;
       return;
     }
     var rows = slots
@@ -92,25 +152,6 @@
     });
   }
 
-  function renderPatrons(patrons) {
-    var wrap = document.getElementById('patrons-strip');
-    if (!patrons.length) {
-      wrap.innerHTML = '<div class="sb-state">No patron spots on this account.</div>';
-      return;
-    }
-    wrap.innerHTML = patrons
-      .map(function (p) {
-        return (
-          '<div class="sb-panel">' +
-          '<h3>Patron — ' + S.esc(p.templeId) + '</h3>' +
-          '<p class="sb-panel-sub">' + S.esc(p.displayName) + ' · ' + S.esc(String(p.status || '').replace(/_/g, ' ')) + '</p>' +
-          '<p class="sb-honesty">Per-spot event tracking is not available for patron walls — see the temple card above for page traffic.</p>' +
-          '</div>'
-        );
-      })
-      .join('');
-  }
-
   async function init() {
     // Forward one-time setup/reset links to the login page, which owns that
     // flow (activation emails point at /account/?token=…).
@@ -130,6 +171,9 @@
     document.getElementById('overview-sub').textContent =
       me.account.email + (kinds.length ? ' · ' + kinds.join(' & ') : '');
 
+    // The sponsor's next move comes first: missing creatives, then review state.
+    renderActions(me.resources.bookings || []);
+
     // Temple cards: per owned temple, with per-card failure isolation.
     var templeIds = [];
     var placementCounts = {};
@@ -144,7 +188,8 @@
 
     var templeWrap = document.getElementById('temple-cards');
     if (!templeIds.length) {
-      templeWrap.innerHTML = '<div class="sb-state">No temples linked to this account yet.</div>';
+      // No rows → the whole section disappears (never an empty box).
+      document.getElementById('temples-section').hidden = true;
     } else {
       var cards = await Promise.all(
         templeIds.map(async function (id) {
@@ -164,16 +209,21 @@
       templeWrap.innerHTML = cards.join('');
     }
 
-    // Placements + patrons share the space analytics payload.
+    // Placements come from the shared space analytics payload.
     try {
       var space = await S.api('/api/account/analytics/space/');
       renderPlacements(space.slots || []);
-      renderPatrons(space.patrons || []);
     } catch (err) {
       document.getElementById('placements-list').innerHTML =
         '<div class="sb-state error">' + S.esc(err.message) + '</div>';
-      document.getElementById('patrons-strip').innerHTML =
-        '<div class="sb-state error">' + S.esc(err.message) + '</div>';
+    }
+
+    // Nothing at all → one elegant empty state instead of empty sections.
+    var hasNothing = !(me.resources.bookings || []).length && !(me.resources.patrons || []).length;
+    if (hasNothing) {
+      var emptyWrap = document.getElementById('overview-empty');
+      emptyWrap.innerHTML = S.emptyHero();
+      emptyWrap.hidden = false;
     }
   }
 

@@ -12,7 +12,7 @@
   <meta name="description" content="Your full PuniCodex booking roster: statuses, lease countdowns, and advertiser dashboard links.">
   <link rel="canonical" href="https://punicodex.com/account/bookings/">
   <link rel="stylesheet" href="/assets/fonts/fonts.css">
-  <link rel="stylesheet" href="/account/sandbox.css">
+  <link rel="stylesheet" href="/account/sandbox.css?v=2">
   <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
@@ -30,7 +30,7 @@
       </div>
     </div>
 
-    <section class="sb-section" aria-labelledby="bookings-heading" style="margin-top:0;">
+    <section class="sb-section" id="adspace-section" aria-labelledby="bookings-heading" style="margin-top:0;">
       <div class="sb-section-head">
         <h2 id="bookings-heading">Ad Space</h2>
         <p class="sb-section-note">Dashboard links open the advertiser dashboard on the temple</p>
@@ -40,7 +40,7 @@
       </div>
     </section>
 
-    <section class="sb-section" aria-labelledby="patrons-heading">
+    <section class="sb-section" id="patrons-section" aria-labelledby="patrons-heading">
       <div class="sb-section-head">
         <h2 id="patrons-heading">Patron Spots</h2>
       </div>
@@ -48,13 +48,16 @@
         <div class="sb-state">Loading patron spots…</div>
       </div>
     </section>
+
+    <!-- Both rosters empty → one shared state, not two empty tables -->
+    <div id="bookings-empty" hidden></div>
   </main>
 
   <footer class="sb-footer">
     <p>© 2026 PuniCodex · <a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a> · <a href="/contact/">Contact</a></p>
   </footer>
 
-  <script src="/account/sandbox.js"></script>
-  <script src="/account/bookings/bookings.js"></script>
+  <script src="/account/sandbox.js?v=2"></script>
+  <script src="/account/bookings/bookings.js?v=2"></script>
 </body>
 </html>

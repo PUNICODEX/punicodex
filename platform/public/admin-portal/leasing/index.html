@@ -352,7 +352,18 @@
                 // Awaiting the creative — nothing to approve yet.
                 btns.push('<button type="button" class="btn btn-sm btn-danger" data-action="end" data-id="' + id + '">End</button>');
             } else if (b.status === 'approved') {
-                btns.push('<button type="button" class="btn btn-sm btn-success" data-action="golive" data-id="' + id + '">Go Live</button>');
+                // The server rejects Go Live without a creative; pre-empt that
+                // where the roster row itself proves one is missing. Bundles
+                // stay enabled — frame creatives live on slot_creatives rows
+                // the roster doesn't carry, so the server is the final
+                // authority there.
+                if (!b.creative_path && !b.is_bundle) {
+                    btns.push('<button type="button" class="btn btn-sm btn-success" data-action="golive" data-id="' + id + '" disabled title="Waiting for sponsor creative" style="opacity:0.45;cursor:not-allowed;">Go Live</button>');
+                } else if (!b.creative_path) {
+                    btns.push('<button type="button" class="btn btn-sm btn-success" data-action="golive" data-id="' + id + '" title="Bundle: at least one frame creative is required — the server will confirm">Go Live</button>');
+                } else {
+                    btns.push('<button type="button" class="btn btn-sm btn-success" data-action="golive" data-id="' + id + '">Go Live</button>');
+                }
                 btns.push('<button type="button" class="btn btn-sm btn-danger" data-action="end" data-id="' + id + '">End</button>');
             } else if (b.status === 'pending_approval') {
                 // Creative under review: approve it (→ approved) or send it back (→ rejected).
@@ -401,6 +412,7 @@
                 '<h2 style="margin-top:0;">' + Portal.escapeHtml(b.company_name || 'Booking') + ' ' + Portal.statusBadge(b.status) + '</h2>' +
                 '<div class="cell-sub">' + Portal.escapeHtml(b.email || '') + '</div>' +
                 creative +
+                '<div id="booking-pending-creatives"></div>' +
                 '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0.8rem;margin:0.8rem 0;">' +
                 factRow('Link', link) +
                 factRow('Heading', Portal.escapeHtml(b.custom_heading || '—')) +
@@ -411,11 +423,84 @@
                 'Booking detail'
             );
             overlay.addEventListener('click', function (e) {
+                var img = e.target.closest('img[data-preview-src]');
+                if (img) {
+                    showImagePreview(img.getAttribute('data-preview-src'), img.getAttribute('data-preview-name'));
+                    return;
+                }
                 var btn = e.target.closest('button[data-action]');
                 if (!btn) return;
                 Portal.closeModal();
                 bookingAction(btn.getAttribute('data-id'), btn.getAttribute('data-action'));
             });
+            loadPendingCreativeChanges(overlay.querySelector('#booking-pending-creatives'), b.id);
+        }
+
+        // Full-view zoom for a staged creative (same pattern as the requests page).
+        function showImagePreview(src, name) {
+            var overlay = Portal.openModal(
+                '<h2 style="margin-top:0;word-break:break-all;">' + Portal.escapeHtml(name || 'Staged creative') + '</h2>' +
+                '<img src="' + Portal.escapeHtml(src) + '" alt="Staged creative full preview" style="max-width:100%;height:auto;border-radius:6px;">' +
+                '<div class="cell-actions" style="margin-top:1rem;">' +
+                '<a class="btn btn-secondary btn-sm" href="' + Portal.escapeHtml(src) + '" target="_blank" rel="noopener">Open Original</a>' +
+                '<button type="button" class="btn btn-primary btn-sm" id="preview-close">Close</button>' +
+                '</div>',
+                'Staged creative preview'
+            );
+            overlay.querySelector('#preview-close').addEventListener('click', function () {
+                Portal.closeModal();
+            });
+        }
+
+        // Pending creative swaps the sponsor staged for this booking, pulled
+        // from the tenant-requests queue. Advisory only: an empty or
+        // unreachable queue renders nothing and never breaks the modal.
+        function renderPendingCreativeChanges(container, bookingId, items) {
+            var staged = [];
+            for (var i = 0; i < items.length; i++) {
+                var item = items[i];
+                var targetId = item.target && typeof item.target === 'object' ? item.target.id : item.target;
+                if (item.type !== 'image' || String(targetId) !== String(bookingId)) continue;
+                staged.push(item);
+            }
+            if (!staged.length) return;
+            container.innerHTML =
+                '<div style="margin:0.8rem 0;">' +
+                '<div class="cell-sub" style="text-transform:uppercase;letter-spacing:0.06em;font-weight:700;margin-bottom:0.45rem;">Pending creative changes</div>' +
+                staged
+                    .map(function (item) {
+                        var p = item.payload || {};
+                        var path = typeof p.creativePath === 'string' ? p.creativePath : '';
+                        var name = p.originalName || path || 'staged creative';
+                        var thumb = /^\/[^"]+\.(png|jpe?g|webp|gif|avif|svg)$/i.test(path)
+                            ? '<img src="' + Portal.escapeHtml(path) + '" alt="Staged creative preview" loading="lazy" ' +
+                              'style="max-width:120px;max-height:80px;border-radius:4px;cursor:zoom-in;display:block;margin-top:0.25rem;" ' +
+                              'data-preview-src="' + Portal.escapeHtml(path) + '" data-preview-name="' + Portal.escapeHtml(name) + '">'
+                            : '';
+                        return (
+                            '<div style="display:flex;gap:0.9rem;align-items:flex-start;margin-bottom:0.6rem;">' +
+                            '<div>' + thumb + '</div>' +
+                            '<div>' +
+                            '<div class="cell-title">' + Portal.escapeHtml(name) + '</div>' +
+                            '<div class="cell-sub">submitted ' + Portal.escapeHtml(Portal.fmtDateTime(item.createdAt || item.created_at)) + '</div>' +
+                            '<a class="btn btn-ghost btn-sm" style="margin-top:0.3rem;" href="/admin-portal/requests/">Review in Requests →</a>' +
+                            '</div>' +
+                            '</div>'
+                        );
+                    })
+                    .join('') +
+                '</div>';
+        }
+
+        function loadPendingCreativeChanges(container, bookingId) {
+            if (!container) return;
+            Portal.api('/api/admin/portal/tenant-requests/?status=pending&limit=50&offset=0')
+                .then(function (data) {
+                    renderPendingCreativeChanges(container, bookingId, (data && data.items) || []);
+                })
+                .catch(function () {
+                    // Silent: the section stays hidden when the queue errors.
+                });
         }
 
         function renderBookingStats(data) {
@@ -447,13 +532,17 @@
                             b.status === 'live' && b.billing_status === 'trialing'
                                 ? '<div class="cell-sub">trialing</div>'
                                 : '';
+                        var noCreative =
+                            b.status === 'approved' && !b.creative_path
+                                ? '<div class="cell-sub" style="margin-top:0.2rem;"><span class="badge badge--pending">no creative</span></div>'
+                                : '';
                         return (
                             '<tr>' +
                             '<td><span class="badge badge--gold">' + Portal.escapeHtml(b.site_slug || '—') + '</span></td>' +
                             '<td><div class="cell-title">' + Portal.escapeHtml(b.slot_name || '—') + '</div></td>' +
                             '<td><div class="cell-title">' + Portal.escapeHtml(b.company_name || '—') + '</div>' +
                             '<div class="cell-sub">' + Portal.escapeHtml(b.email || '') + '</div></td>' +
-                            '<td>' + Portal.statusBadge(b.status) + billing + '</td>' +
+                            '<td>' + Portal.statusBadge(b.status) + billing + noCreative + '</td>' +
                             '<td>' + Portal.escapeHtml(Portal.fmtDate(b.created_at)) + '</td>' +
                             '<td>' + Portal.escapeHtml(Portal.fmtDate(b.ends_at)) + '</td>' +
                             '<td><div class="cell-actions">' + bookingActions(b) + '</div></td>' +
@@ -779,6 +868,18 @@
             return d.max_uses == null ? d.used_count + ' / ∞' : d.used_count + ' / ' + d.max_uses;
         }
 
+        // Computed chip: inactive → grey; exhausted/expired → amber; else green.
+        function discountStatusChip(d) {
+            if (!d.active) return '<span class="badge">inactive</span>';
+            if (d.max_uses != null && Number(d.used_count) >= Number(d.max_uses)) {
+                return '<span class="badge badge--pending">exhausted</span>';
+            }
+            if (d.expires_at && new Date(d.expires_at).getTime() < Date.now()) {
+                return '<span class="badge badge--pending">expired</span>';
+            }
+            return '<span class="badge badge--active">active</span>';
+        }
+
         function renderDiscountStats(s) {
             document.getElementById('discount-stats').innerHTML =
                 statCard(Portal.fmtNumber(s.activeCodes), 'Active Codes', '') +
@@ -794,10 +895,18 @@
             if (!Portal.can('leasing')) return '<span class="cell-sub">—</span>';
             var btns = [];
             btns.push(
+                '<button type="button" class="btn btn-sm btn-secondary" data-dc-action="edit" data-id="' + d.id + '">Edit</button>'
+            );
+            btns.push(
                 '<button type="button" class="btn btn-sm btn-secondary" data-dc-action="toggle" data-id="' + d.id + '">' +
                 (d.active ? 'Deactivate' : 'Activate') +
                 '</button>'
             );
+            if (d.used_count > 0) {
+                btns.push(
+                    '<button type="button" class="btn btn-sm btn-secondary" data-dc-action="reset-uses" data-id="' + d.id + '">Reset uses</button>'
+                );
+            }
             btns.push(
                 '<button type="button" class="btn btn-sm btn-ghost" data-dc-action="redemptions" data-id="' + d.id + '">Redemptions</button>'
             );
@@ -822,9 +931,7 @@
                         var expiry = d.expires_at
                             ? Portal.escapeHtml(Portal.fmtDate(d.expires_at))
                             : '<span class="cell-sub">never</span>';
-                        var status = d.active
-                            ? '<span class="badge badge--gold">active</span>'
-                            : '<span class="badge">inactive</span>';
+                        var status = discountStatusChip(d);
                         return (
                             '<tr>' +
                             '<td><div class="cell-title">' + Portal.escapeHtml(d.code) + '</div>' +
@@ -1040,9 +1147,87 @@
             }
         }
 
+        function findDiscount(id) {
+            for (var i = 0; i < dcItems.length; i++) {
+                if (String(dcItems[i].id) === String(id)) return dcItems[i];
+            }
+            return null;
+        }
+
+        function showDiscountEditModal(id) {
+            var d = findDiscount(id);
+            if (!d) return;
+            var expiresValue = '';
+            if (d.expires_at) {
+                var dt = new Date(d.expires_at);
+                if (!Number.isNaN(dt.getTime())) {
+                    // Date inputs want yyyy-mm-dd; slice the ISO form (UTC, no day-shift).
+                    expiresValue = dt.toISOString().slice(0, 10);
+                }
+            }
+            var overlay = Portal.openModal(
+                '<h2 style="margin-top:0;">Edit code ' + Portal.escapeHtml(d.code) + '</h2>' +
+                '<div class="field"><label for="dce-max-uses">Max uses (empty = unlimited)</label>' +
+                '<input type="number" id="dce-max-uses" min="1" step="1" placeholder="unlimited" value="' + Portal.escapeHtml(d.max_uses != null ? String(d.max_uses) : '') + '"></div>' +
+                '<div class="field"><label for="dce-expires">Expiry (empty = none)</label>' +
+                '<input type="date" id="dce-expires" value="' + Portal.escapeHtml(expiresValue) + '"></div>' +
+                '<div class="field"><label for="dce-note">Note</label>' +
+                '<input type="text" id="dce-note" maxlength="500" placeholder="Internal note" value="' + Portal.escapeHtml(d.note || '') + '"></div>' +
+                '<div class="cell-actions">' +
+                '<button type="button" class="btn btn-primary btn-sm" id="dce-save">Save</button>' +
+                '<button type="button" class="btn btn-secondary btn-sm" id="dce-cancel">Cancel</button>' +
+                '</div>',
+                'Edit discount code'
+            );
+            overlay.querySelector('#dce-cancel').addEventListener('click', function () {
+                Portal.closeModal();
+            });
+            overlay.querySelector('#dce-save').addEventListener('click', async function () {
+                var maxUsesRaw = overlay.querySelector('#dce-max-uses').value.trim();
+                var maxUses = maxUsesRaw === '' ? null : parseInt(maxUsesRaw, 10);
+                if (maxUsesRaw !== '' && (!Number.isFinite(maxUses) || maxUses <= 0)) {
+                    Portal.toast('Max uses must be a positive whole number, or empty for unlimited', 'error');
+                    return;
+                }
+                var expiresRaw = overlay.querySelector('#dce-expires').value;
+                var note = overlay.querySelector('#dce-note').value.trim();
+                var body = {
+                    maxUses: maxUses,
+                    expiresAt: expiresRaw ? new Date(expiresRaw + 'T00:00:00Z').toISOString() : null,
+                    note: note || null,
+                };
+                try {
+                    await Portal.api('/api/admin/portal/discounts/' + id + '/', { method: 'PATCH', body: body });
+                    Portal.closeModal();
+                    Portal.toast('Discount code updated', 'success');
+                    loadDiscounts();
+                } catch (err) {
+                    Portal.toast('Update failed: ' + err.message, 'error');
+                }
+            });
+        }
+
         async function discountAction(id, action) {
             if (action === 'redemptions') {
                 toggleRedemptions(id);
+                return;
+            }
+            if (action === 'edit') {
+                showDiscountEditModal(id);
+                return;
+            }
+            if (action === 'reset-uses') {
+                if (!window.confirm('Reset the use counter for this code? Redemption history is kept — only the counter rewinds to zero.')) return;
+                try {
+                    await Portal.api('/api/admin/portal/discounts/' + id + '/', {
+                        method: 'PATCH',
+                        body: { resetUses: true },
+                    });
+                    Portal.toast('Use counter reset', 'success');
+                    loadDiscounts();
+                } catch (err) {
+                    Portal.toast('Reset failed: ' + err.message, 'error');
+                }
                 return;
             }
             if (action === 'toggle') {
