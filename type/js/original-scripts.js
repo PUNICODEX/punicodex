@@ -2496,6 +2496,10 @@ function getSigns(entry) {
   }
   const specimen = getOriginalScript(entry);
   if (!specimen || specimen === '—') return [];
+  // Latin-alphabet specimens (Roman epigraphic capitals like IVPPITER) have no
+  // per-letter story — every "sign" would just be the English letter. Skip
+  // synthesis so the Signs grid carries real scripts only.
+  if (/^[ -~()]+$/.test(specimen)) return [];
   // Fallback: one card per Unicode scalar. This is intentionally naive; curated
   // sign arrays should be provided for logographic/abjad scripts.
   return Array.from(specimen).map((sign) => ({

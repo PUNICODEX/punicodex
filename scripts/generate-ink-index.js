@@ -51,7 +51,9 @@ function buildSignIndex(entries) {
   const junk = (n) => !n || /^(same|—|-)$/i.test(String(n).trim());
   for (const e of entries) {
     for (const s of e.signs) {
-      if (!s.sign) continue;
+      // Letters/signs only — synthesis can surface spaces or parentheses
+      // from mixed displays like "단군 (檀君)".
+      if (!s.sign || !/[a-zA-Z\u0080-\u{10FFFF}]/u.test(s.sign)) continue;
       const reg = SIGN_NOTES[s.sign] || null;
       const provenanceNote = junk(s.note) ? null : s.note;
       const rec = byGlyph.get(s.sign) || {

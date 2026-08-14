@@ -3704,7 +3704,7 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptLabel": "Original Script"
   },
   "yanluo": {
-    "originalScript": "閻羅",
+    "originalScript": "閻羅王",
     "scriptName": "Chinese characters",
     "scriptLabel": "Original Script"
   },
