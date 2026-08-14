@@ -938,6 +938,11 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptName": "Avestan",
     "scriptLabel": "Original Script"
   },
+  "ahriman": {
+    "originalScript": "𐬀𐬢𐬭𐬀 𐬨𐬀𐬌𐬥𐬌𐬌𐬎",
+    "scriptName": "Avestan",
+    "scriptLabel": "Original Script"
+  },
   "perseus": {
     "originalScript": "Περσεύς",
     "scriptName": "Greek",
@@ -1633,6 +1638,11 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptName": "Younger Futhark",
     "scriptLabel": "Original Script"
   },
+  "wyrd": {
+    "originalScript": "ᚹᚣᚱᛞ",
+    "scriptName": "Anglo-Saxon Futhorc",
+    "scriptLabel": "Original Script"
+  },
   "min": {
     "originalScript": "𓀽",
     "scriptName": "Hieroglyphs",
@@ -1750,6 +1760,11 @@ const ORIGINAL_SCRIPT_LOOKUP = {
   },
   "enkidu": {
     "originalScript": "𒂗𒆠𒄭",
+    "scriptName": "Cuneiform",
+    "scriptLabel": "Original Script"
+  },
+  "pazuzu": {
+    "originalScript": "𒀭𒉺𒍪𒍪",
     "scriptName": "Cuneiform",
     "scriptLabel": "Original Script"
   },
@@ -2618,6 +2633,21 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptName": "Japanese characters",
     "scriptLabel": "Original Script"
   },
+  "kingu": {
+    "originalScript": "𒀭𒆥𒄖",
+    "scriptName": "Cuneiform",
+    "scriptLabel": "Original Script"
+  },
+  "lahmu": {
+    "originalScript": "𒀭𒌓𒈬",
+    "scriptName": "Cuneiform",
+    "scriptLabel": "Original Script"
+  },
+  "lahamu": {
+    "originalScript": "𒀭𒆷𒄩𒈬",
+    "scriptName": "Cuneiform",
+    "scriptLabel": "Original Script"
+  },
   "anshar": {
     "originalScript": "𒀭𒊚𒊏",
     "scriptName": "Cuneiform",
@@ -2868,6 +2898,61 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptName": "Chinese characters",
     "scriptLabel": "Original Script"
   },
+  "hananim": {
+    "originalScript": "하나님",
+    "scriptName": "Hangul",
+    "scriptLabel": "Original Script"
+  },
+  "dangun": {
+    "originalScript": "단군 (檀君)",
+    "scriptName": "Hangul + Hanja",
+    "scriptLabel": "Original Script"
+  },
+  "hwanung": {
+    "originalScript": "환웅 (桓雄)",
+    "scriptName": "Hangul + Hanja",
+    "scriptLabel": "Original Script"
+  },
+  "samshin": {
+    "originalScript": "삼신 (三神)",
+    "scriptName": "Hangul + Hanja",
+    "scriptLabel": "Original Script"
+  },
+  "halmoni": {
+    "originalScript": "할머니",
+    "scriptName": "Hangul",
+    "scriptLabel": "Original Script"
+  },
+  "jowangshin": {
+    "originalScript": "조왕신 (竈王神)",
+    "scriptName": "Hangul + Hanja",
+    "scriptLabel": "Original Script"
+  },
+  "seonangshin": {
+    "originalScript": "서낭신 (城隍神)",
+    "scriptName": "Hangul + Hanja",
+    "scriptLabel": "Original Script"
+  },
+  "yongwang": {
+    "originalScript": "용왕 (龍王)",
+    "scriptName": "Hangul + Hanja",
+    "scriptLabel": "Original Script"
+  },
+  "mago": {
+    "originalScript": "마고 (麻姑)",
+    "scriptName": "Hangul + Hanja",
+    "scriptLabel": "Original Script"
+  },
+  "chilsong": {
+    "originalScript": "칠성 (七星)",
+    "scriptName": "Hangul + Hanja",
+    "scriptLabel": "Original Script"
+  },
+  "baekdusan": {
+    "originalScript": "백두산 (白頭山)",
+    "scriptName": "Hangul + Hanja",
+    "scriptLabel": "Original Script"
+  },
   "baal": {
     "originalScript": "𐎁𐎓𐎍",
     "scriptName": "Ugaritic",
@@ -2916,6 +3001,41 @@ const ORIGINAL_SCRIPT_LOOKUP = {
   "astartu": {
     "originalScript": "𐤀𐤔𐤕𐤓𐤕",
     "scriptName": "Phoenician",
+    "scriptLabel": "Original Script"
+  },
+  "tarhunash": {
+    "originalScript": "𒀭𒌓",
+    "scriptName": "Cuneiform (Hittite, logographic)",
+    "scriptLabel": "Original Script"
+  },
+  "arinniti": {
+    "originalScript": "𒀭𒌓 𒌷𒀀𒊑𒅔𒈾",
+    "scriptName": "Cuneiform (Hittite, mixed logographic-syllabic)",
+    "scriptLabel": "Original Script"
+  },
+  "telipinu": {
+    "originalScript": "𒀭𒋼𒂊𒇷𒁉𒉡𒌑",
+    "scriptName": "Cuneiform (Hittite)",
+    "scriptLabel": "Original Script"
+  },
+  "inaras": {
+    "originalScript": "𒀭𒄿𒈾𒊏",
+    "scriptName": "Cuneiform (Hittite)",
+    "scriptLabel": "Original Script"
+  },
+  "hannahannas": {
+    "originalScript": "𒀭𒄩𒀭𒈾𒄩𒀭𒈾",
+    "scriptName": "Cuneiform (Hittite)",
+    "scriptLabel": "Original Script"
+  },
+  "kumarbis": {
+    "originalScript": "𒀭𒆪𒈥𒁉",
+    "scriptName": "Cuneiform (Hittite/Hurrian cycle)",
+    "scriptLabel": "Original Script"
+  },
+  "alalu": {
+    "originalScript": "𒀭𒀀𒆷𒇻",
+    "scriptName": "Cuneiform (Hittite/Hurrian cycle)",
     "scriptLabel": "Original Script"
   },
   "confucius": {
@@ -3158,6 +3278,21 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptName": "Hieroglyphs",
     "scriptLabel": "Original Script"
   },
+  "serapis": {
+    "originalScript": "𓊨𓁹𓀭𓎛𓐑𓊪𓃒",
+    "scriptName": "Egyptian hieroglyphs",
+    "scriptLabel": "Original Script"
+  },
+  "harpokrates": {
+    "originalScript": "𓅃𓏤𓊪𓄡𓂋𓂧𓀔",
+    "scriptName": "Egyptian hieroglyphs",
+    "scriptLabel": "Original Script"
+  },
+  "onuris": {
+    "originalScript": "𓏎𓈖𓁷𓂋𓏏𓈐𓅆",
+    "scriptName": "Egyptian hieroglyphs",
+    "scriptLabel": "Original Script"
+  },
   "sokar": {
     "originalScript": "𓋴𓎡𓂋𓅃",
     "scriptName": "Hieroglyphs",
@@ -3388,6 +3523,11 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptName": "Chinese characters",
     "scriptLabel": "Original Script"
   },
+  "yam": {
+    "originalScript": "𐎊𐎎",
+    "scriptName": "Ugaritic cuneiform alphabet",
+    "scriptLabel": "Original Script"
+  },
   "adamas": {
     "originalScript": "ἀδάμας",
     "scriptName": "Greek",
@@ -3488,6 +3628,36 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptName": "Greek",
     "scriptLabel": "Original Script"
   },
+  "diana": {
+    "originalScript": "DIANA",
+    "scriptName": "Latin (epigraphic capitals)",
+    "scriptLabel": "Original Script"
+  },
+  "ianus": {
+    "originalScript": "IANVS",
+    "scriptName": "Latin (epigraphic capitals)",
+    "scriptLabel": "Original Script"
+  },
+  "iuno": {
+    "originalScript": "IVNO",
+    "scriptName": "Latin (epigraphic capitals)",
+    "scriptLabel": "Original Script"
+  },
+  "iuppiter": {
+    "originalScript": "IVPPITER",
+    "scriptName": "Latin (epigraphic capitals)",
+    "scriptLabel": "Original Script"
+  },
+  "neptunus": {
+    "originalScript": "NEPTVNVS",
+    "scriptName": "Latin (epigraphic capitals)",
+    "scriptLabel": "Original Script"
+  },
+  "vulcanus": {
+    "originalScript": "VVLCANVS",
+    "scriptName": "Latin (epigraphic capitals)",
+    "scriptLabel": "Original Script"
+  },
   "steh": {
     "originalScript": "𓋴𓏏𓐍",
     "scriptName": "Hieroglyphs",
@@ -3523,6 +3693,31 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptName": "Devanagari",
     "scriptLabel": "Original Script"
   },
+  "mengpo": {
+    "originalScript": "孟婆",
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
+  },
+  "pangu": {
+    "originalScript": "盤古",
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
+  },
+  "yanluo": {
+    "originalScript": "閻羅",
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
+  },
+  "honshu": {
+    "originalScript": "本州",
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
+  },
+  "kyushu": {
+    "originalScript": "九州",
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
+  },
   "guandi": {
     "originalScript": "關帝",
     "scriptName": "Chinese characters",
@@ -3538,9 +3733,24 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptName": "Devanagari",
     "scriptLabel": "Original Script"
   },
+  "pluto": {
+    "originalScript": "PLVTO",
+    "scriptName": "Latin (epigraphic capitals)",
+    "scriptLabel": "Original Script"
+  },
+  "ceres": {
+    "originalScript": "CERES",
+    "scriptName": "Latin (epigraphic capitals)",
+    "scriptLabel": "Original Script"
+  },
   "oba": {
     "originalScript": "Ọbà",
     "scriptName": "Yoruba (modern Latin orthography)",
+    "scriptLabel": "Original Script"
+  },
+  "ashavahista": {
+    "originalScript": "𐬀𐬴𐬀 𐬬𐬀𐬵𐬌𐬱𐬙𐬀",
+    "scriptName": "Avestan",
     "scriptLabel": "Original Script"
   }
 };

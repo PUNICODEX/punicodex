@@ -9,6 +9,7 @@ const path = require('node:path');
 const {
   getOriginalScript,
   getProvenance,
+  getScriptName,
   containsGreekOrCjk,
   isPlaceholder,
 } = require('./original-scripts.js');
@@ -146,6 +147,8 @@ LEXICON.forEach((entry, i) => {
         '\\u{1F00}-\\u{1FFF}' + // Greek Extended
         '\\u{0900}-\\u{097F}' + // Devanagari
         '\\u{4E00}-\\u{9FFF}\\u{3040}-\\u{309F}\\u{30A0}-\\u{30FF}' + // CJK
+        '\\u{1100}-\\u{11FF}\\u{3130}-\\u{318F}' + // Hangul Jamo
+        '\\u{AC00}-\\u{D7AF}' + // Hangul syllables
         '\\u{12000}-\\u{123FF}\\u{12400}-\\u{1247F}' + // Cuneiform
         '\\u{13000}-\\u{1342F}' + // Egyptian hieroglyphs
         '\\u{10380}-\\u{1039F}' + // Ugaritic
@@ -162,8 +165,13 @@ LEXICON.forEach((entry, i) => {
         ']',
       'u'
     );
+    // Roman epigraphic capitals (DIANA, IVPPITER) are plain ASCII uppercase —
+    // they pass only when the curated mapping declares epigraphic Latin, so a
+    // bare ASCII form can never masquerade as an original script.
+    const epigraphicLatin =
+      /^[A-Z\s]+$/.test(resolvedOriginal) && /epigraphic/i.test(getScriptName(entry) || '');
     assert(
-      ORIGINAL_SCRIPT_REGEX.test(resolvedOriginal),
+      ORIGINAL_SCRIPT_REGEX.test(resolvedOriginal) || epigraphicLatin,
       `[${label}] resolved original script "${resolvedOriginal}" is not in a recognized script block`
     );
 
