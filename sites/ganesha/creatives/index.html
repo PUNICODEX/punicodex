@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css?v=3">
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
 <script src="/js/university-collaborators.js?v=3" defer></script>
 <!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
@@ -15,6 +16,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gaṇeśa Creatives — Student Work | PUNICODEX</title>
     <meta name="description" content="Student creative work inspired by Gaṇeśa (Wisdom, Beginnings, Obstacle-Removal). Myth-inspired artwork, patterns, and design studies from university creatives.">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="canonical" href="https://punicodex.com/sites/ganesha/creatives/">
     <meta property="og:title" content="Gaṇeśa Creatives — Student Work | PUNICODEX">
     <meta property="og:description" content="Student creative work inspired by Gaṇeśa (Wisdom, Beginnings, Obstacle-Removal), from university creatives.">
@@ -29,6 +32,15 @@
     <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
     <link rel="stylesheet" href="../styles.css?v=perf20">
     <link rel="stylesheet" href="creatives.css?v=1">
+    <style>
+        .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+        .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+        .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+        .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+        .temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+        .temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+        .temple-breadcrumb-list [aria-current] { color: var(--primary, #d4af37); }
+    </style>
     <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
@@ -70,11 +82,13 @@
 }
     </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
-<link rel="stylesheet" href="/css/herald-beacon.css?v=1">
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
 <script src="/js/herald-beacon.js?v=1" defer></script>
 <!-- PUNICODEX-HERALD-BEACON-END -->
 <!-- PUNICODEX-COOKIE-CONSENT-START -->
-<link rel="stylesheet" href="/css/cookie-consent.css?v=1">
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
 <script src="/js/cookie-consent.js?v=1" defer></script>
 <!-- PUNICODEX-COOKIE-CONSENT-END -->
 </head>
@@ -118,6 +132,16 @@
         </div>
     </nav>
 
+        <!-- Visible breadcrumb (mirrors the BreadcrumbList JSON-LD) -->
+    <nav class="temple-breadcrumb" aria-label="breadcrumb">
+        <ol class="temple-breadcrumb-list">
+                <li><a href="https://punicodex.com/">Home</a></li>
+                <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
+                <li><a href="https://punicodex.com/sites/ganesha/">Gaṇeśa</a></li>
+                <li><span aria-current="page">Creatives</span></li>
+        </ol>
+    </nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
         <a href="../" class="nav-link">Home</a>
@@ -135,7 +159,8 @@
         <section class="section">
             <div class="container">
                 <p class="section-eyebrow" id="creatives-eyebrow">PUNICODEX University Program</p>
-                <h1 class="section-title" id="creatives-title">Student Work Inspired by This Archetype</h1>
+                <h1 class="section-title" id="creatives-title">Student Work Inspired by Gaṇeśa</h1>
+                <p class="section-lead">Gaṇeśa is arguably the most universally recognized Hindu deity in the world.</p>
                 <p class="section-lead">
                     These myth-inspired assets were created by university students and are available for licensing
                     through the <a href="/creatives/index.html">Student Creative Marketplace</a>.

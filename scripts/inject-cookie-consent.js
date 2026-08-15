@@ -39,8 +39,12 @@ const EXCLUDE = [
   /^type\/test\.html$/,
 ];
 
+// The banner is JS-built and hidden until the deferred script mounts it, so
+// the stylesheet is safe to load non-blocking (print-media swap + noscript
+// fallback); a late banner simply slides in once both are ready.
 const INJECT = `${START}
-<link rel="stylesheet" href="/css/cookie-consent.css?v=1">
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
 <script src="/js/cookie-consent.js?v=1" defer></script>
 ${END}`;
 

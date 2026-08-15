@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{UNICODE}} — Gallery | {{DOMAIN}} | PUNICODEX</title>
     <meta name="description" content="A curated gallery of {{UNICODE}}, {{DOMAIN}}, through history.">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
     <link rel="stylesheet" href="../styles.css?v=perf20">
@@ -18,6 +20,8 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="PUNICODEX">
     <meta property="og:image" content="https://punicodex.com/assets/og/{{TEMPLE_ID}}.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://punicodex.com/assets/og/{{TEMPLE_ID}}.jpg">
@@ -105,6 +109,13 @@
         font-size: 2rem;
     }
 }
+.temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+.temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+.temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+.temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+.temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+.temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+.temple-breadcrumb-list [aria-current] { color: var(--primary, #d4af37); }
   </style>
     <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
@@ -158,6 +169,8 @@
             </button>
         </div>
     </nav>
+
+    {{BREADCRUMB_NAV}}
 
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>

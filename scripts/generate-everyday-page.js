@@ -150,6 +150,9 @@ function main() {
     <meta property="og:site_name" content="PUNICODEX">
     <meta property="og:image" content="https://punicodex.com/assets/og/everyday.jpg">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Gods You Speak Every Day | PUNICODEX">
+    <meta name="twitter:description" content="${total} ordinary words that descend from gods — with the stories and citations behind each.">
+    <meta name="twitter:image" content="https://punicodex.com/assets/og/everyday.jpg">
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
     <link rel="stylesheet" href="/css/main.css?v=perf23">
     <link rel="stylesheet" href="/css/nav-more.css?v=4">

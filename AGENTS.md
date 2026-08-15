@@ -339,6 +339,14 @@ mismatches it reports.
     `test/menu-consistency.test.js`. The blog index generator
     (`generate-blog-index.js`) consumes the same canonical builders —
     never fork the item list.
+23b. Temple index sync (`sync-temple-index.js`, runs after the footer
+    sync) — bakes a marker-delimited, collapsed `<details>` index of static
+    `/sites/{id}/` anchors into the hub pages (`lexicon/` = every entry;
+    `pantheon/`, `pronunciation/`, `tiers/` = built flagships) because the
+    JS-rendered grids are invisible to non-rendering crawlers. Strip-then-
+    inject, idempotent, derived only from the canonical lexicon/archetypes
+    (deterministic for the divergence gate). Never fork the block format —
+    `test/seo-regression.test.js` guards anchor counts.
 24. POD catalog (`generate-pod-products.js`) — builds `store/products.json`
     from the archetypes (13 product types per temple + house line,
     preserving synced `printful*` fields).

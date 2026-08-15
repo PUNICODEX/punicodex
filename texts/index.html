@@ -201,7 +201,7 @@
       "name": "How are the texts connected to the temples?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Deeply. Deity names are cross-linked inside the text itself: a god named in the Theogony links to that god’s temple, and each temple links back to the texts that mention it. First-mention line numbers are recorded, so every name is citable to the line."
+        "text": "Deeply. Deity names are cross-linked inside the text itself: a god named in the Theogony links straight to that god’s temple, and first-mention line numbers are recorded, so every name is citable to the line. The links run from the texts to the temples — temple pages do not currently link back."
       }
     },
     {
@@ -334,11 +334,13 @@
         @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .tx-flash { animation: none; } .tx-toast, .tx-card, .tx-m-card { transition: none; } }
     </style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
-<link rel="stylesheet" href="/css/herald-beacon.css?v=1">
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
 <script src="/js/herald-beacon.js?v=1" defer></script>
 <!-- PUNICODEX-HERALD-BEACON-END -->
 <!-- PUNICODEX-COOKIE-CONSENT-START -->
-<link rel="stylesheet" href="/css/cookie-consent.css?v=1">
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
 <script src="/js/cookie-consent.js?v=1" defer></script>
 <!-- PUNICODEX-COOKIE-CONSENT-END -->
 </head>
@@ -680,6 +682,18 @@
         </div>
     </section>
 
+    <!-- FAQ (visible mirror of the FAQPage JSON-LD in the head) -->
+    <section class="tx-colophon">
+        <div class="tx-colophon-box">
+            <h2>Frequently Asked Questions</h2>
+            <p><strong>Which sacred texts does the PuniCodex Library hold?</strong><br>The Library holds 21 sacred texts and manuscripts: the Theogony and Homeric Hymns, the Eddas, the Book of the Dead, Enūma Eliš, the Epic of Gilgamesh, the Avesta, the Rig Veda, the Ramayana, the Lotus Sutra, the Sukhāvatīvyūha Sūtras, the Kojiki and Nihon Shoki, the Kumulipo, Grey&#39;s Polynesian Mythology, the Tao Te Ching, and more — the primary sources of every pantheon in the lexicon.</p>
+            <p><strong>Can I read the texts in the original language or in translation?</strong><br>Both. Every reading page offers the native script and the translation side by side — Greek with Evelyn-White’s 1914 English for Hesiod, original and rendered forms for each tradition — with the ability to switch or run them in parallel.</p>
+            <p><strong>How are the texts connected to the temples?</strong><br>Deeply. Deity names are cross-linked inside the text itself: a god named in the Theogony links straight to that god’s temple, and first-mention line numbers are recorded, so every name is citable to the line. The links run from the texts to the temples — temple pages do not currently link back.</p>
+            <p><strong>What translations and sources does the Library use?</strong><br>Public-domain and openly licensed scholarly editions: the Perseus TEI for the Greek texts, the Evelyn-White 1914 translation of Hesiod, and each tradition’s standard public-domain translation. Every page states its source and license precisely.</p>
+            <p><strong>Are the texts free to read and cite?</strong><br>Yes — the Library is free to read and the underlying texts are public domain. Cite them as you would any scholarly edition: title, translator, and the line number, which every block of the Library displays.</p>
+        </div>
+    </section>
+
     <!-- Footer (canonical — built by scripts/sync-footer.js) -->
     <footer class="site-footer">
         <div class="container">
@@ -701,6 +715,7 @@
                     <a href="/tiers/">Tier System</a>
                     <a href="/rulebook/">Rulebook</a>
                     <a href="/type/">Type</a>
+                    <a href="/game/">Game</a>
                     <a href="/search/">Search</a>
                 </div>
                 <div class="footer-column">
@@ -714,6 +729,8 @@
                     <a href="/api/v1/docs/">API</a>
                     <a href="/appraise/">Appraise</a>
                     <a href="/authenticity/">Authenticity</a>
+                    <a href="/pronunciation/">Pronunciation</a>
+                    <a href="/store/">Store</a>
                     <a href="/oracle/">Oracle</a>
                     <a href="/arbitrage/">Arbitrage</a>
                 </div>
@@ -721,7 +738,9 @@
                     <h2 class="footer-heading">Connect</h2>
                     <a href="/about/">About</a>
                     <a href="/about/founder/">Founder</a>
+                    <a href="/art/">Art</a>
                     <a href="/careers/">Careers</a>
+                    <a href="/university-sponsorship/">Universities</a>
                     <a href="/contact/">Contact</a>
                     <a href="/privacy/">Privacy</a>
                     <a href="/terms/">Terms</a>

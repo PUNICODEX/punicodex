@@ -5,7 +5,9 @@
     <meta name="google" content="notranslate">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{UNICODE}} — {{DOMAIN}} | Lore | PUNICODEX</title>
-    <meta name="description" content="Scholarly profile of {{UNICODE}}, the {{DOMAIN}}. Explore Unicode orthography, reconstructed pronunciation, and mythology.">
+    <meta name="description" content="{{META_DESCRIPTION}}">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
     <link rel="stylesheet" href="../styles.css?v=perf20">
@@ -19,6 +21,13 @@
         .pantheon-mascot { display: flex; justify-content: center; align-items: center; }
         .pantheon-mascot-img { max-width: 300px; width: 100%; height: auto; filter: brightness(1.5) contrast(1.1) saturate(1.05); }
         @media (max-width: 900px) { .pantheon-content { grid-template-columns: 1fr; text-align: center; } .pantheon-mascot { order: -1; } }
+        .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+        .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+        .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+        .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+        .temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+        .temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+        .temple-breadcrumb-list [aria-current] { color: var(--primary, #d4af37); }
     </style>
 
     <!-- Schema.org -->
@@ -27,7 +36,7 @@
     "@context": "https://schema.org",
     "@type": "WebPage",
     "name": "{{UNICODE}} — {{DOMAIN}} | Lore",
-    "description": "Scholarly profile of {{UNICODE}}, the {{DOMAIN}}. Explore Unicode orthography, reconstructed pronunciation, and mythology.",
+    "description": "{{META_DESCRIPTION}}",
     "url": "https://punicodex.com/sites/{{TEMPLE_ID}}/lore/",
     "about": {
         "@type": "Thing",
@@ -51,17 +60,19 @@
 
     <!-- Open Graph -->
     <meta property="og:title" content="{{UNICODE}} — {{DOMAIN}} | Lore | PUNICODEX">
-    <meta property="og:description" content="Scholarly profile of {{UNICODE}}, the {{DOMAIN}}. Explore Unicode orthography, reconstructed pronunciation, and mythology.">
+    <meta property="og:description" content="{{META_DESCRIPTION}}">
     <meta property="og:url" content="https://punicodex.com/sites/{{TEMPLE_ID}}/lore/">
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="article">
     <meta property="og:site_name" content="PUNICODEX">
     <meta property="og:image" content="https://punicodex.com/assets/og/{{TEMPLE_ID}}.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://punicodex.com/assets/og/{{TEMPLE_ID}}.jpg">
     <meta name="twitter:title" content="{{UNICODE}} — {{DOMAIN}} | Lore | PUNICODEX">
-    <meta name="twitter:description" content="Scholarly profile of {{UNICODE}}, the {{DOMAIN}}. Explore Unicode orthography, reconstructed pronunciation, and mythology.">
+    <meta name="twitter:description" content="{{META_DESCRIPTION}}">
     <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
@@ -114,6 +125,8 @@
             </button>
         </div>
     </nav>
+
+    {{BREADCRUMB_NAV}}
 
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
@@ -224,6 +237,9 @@
     <!-- Original Script Provenance -->
     {{ORIGINAL_SCRIPT_PROVENANCE_SECTION}}
 
+    <!-- Name Variations -->
+    {{NAME_VARIATIONS}}
+
     <!-- Pronunciation -->
     {{PRONUNCIATION}}
 
@@ -235,6 +251,9 @@
 
     <!-- Related Names -->
     {{RELATED_NAMES}}
+
+    <!-- In the Texts & Everyday Words -->
+    {{CROSS_LINK_BAND}}
 
     <!-- Extended Lore CTA -->
     {{EXTENDED_LORE_CTA}}

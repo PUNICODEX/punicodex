@@ -342,15 +342,38 @@ function buildSeriesLink(id) {
   return asides.join('\n');
 }
 
+// Series pages shorten their masthead in the <title> and drop the brand
+// tail — the brand is already in the domain and the og:site_name markup.
+// Founding posts keep their per-temple suffix and the PUNICODEX tail.
+const SERIES_SUFFIX = new Map([
+  ['The Restoration Files', 'Restoration Files'],
+  ['The Resonance Files', 'Resonance Files'],
+  ['The Canonical Register', 'Canonical Register'],
+]);
+
 // SERP-disciplined <title>: full title when it fits, word-boundary ellipsis
-// when the composed title would exceed 60 characters.
+// when the composed title would exceed 60 characters. The leading token —
+// usually the deity's name — is never cut in half, the ellipsis is only
+// appended when the headline was actually truncated, and trailing
+// conjunctions/stopwords are dropped so the title never dangles ("… — and…").
+const TRAILING_DROP = /[\s—–-]+(and|or|the|a|an|of|to|in|on|for|with|that|this|is|are|was|were|its|his|her|their|our|your|my|at|by|as|but|not|so|yet|from|into|over|under|after|before)$/i;
+
 function serpTitle(postTitle, suffix) {
-  const full = `${postTitle} | ${suffix} | PUNICODEX`;
+  const tail = SERIES_SUFFIX.has(suffix)
+    ? ` | ${SERIES_SUFFIX.get(suffix)}`
+    : ` | ${suffix} | PUNICODEX`;
+  const full = `${postTitle}${tail}`;
   if (full.length <= 60) return full;
-  const overhead = ` | ${suffix} | PUNICODEX`.length;
-  const budget = Math.max(20, 57 - overhead);
-  const cut = postTitle.slice(0, budget);
-  return `${cut.slice(0, cut.lastIndexOf(' ')).trim()}… | ${suffix} | PUNICODEX`;
+  const budget = Math.max(20, 59 - tail.length); // one column reserved for '…'
+  if (postTitle.length <= budget) return full;
+  let cut = postTitle.slice(0, budget);
+  const lastSpace = cut.lastIndexOf(' ');
+  if (lastSpace > 0) cut = cut.slice(0, lastSpace);
+  const firstSpace = postTitle.indexOf(' ');
+  if (firstSpace > 0 && cut.length < firstSpace) cut = postTitle.slice(0, firstSpace);
+  cut = cut.trim().replace(/[\s—–-]+$/u, '');
+  while (TRAILING_DROP.test(cut)) cut = cut.replace(TRAILING_DROP, '').trim().replace(/[\s—–-]+$/u, '');
+  return `${cut}…${tail}`;
 }
 
 module.exports = {

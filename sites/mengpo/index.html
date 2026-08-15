@@ -1,6 +1,7 @@
 <!DOCTYPE html><html lang="en"><head>
 <!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css?v=3">
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
 <script src="/js/university-collaborators.js?v=3" defer></script>
 <!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
@@ -12,13 +13,15 @@
     <meta name="google" content="notranslate">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mèngpó — Forgetting · Restored Chinese Temple | PUNICODEX</title>
-    <meta name="description" content="'Mèngpó's soup' (孟婆汤) is a living idiom for oblivion — offered ruefully at partings and breakups across the Chinese internet.">
+    <meta name="description" content="Mèngpó — the restored Chinese name of Forgetting: original script, reconstructed pronunciation, and mythology. Sponsor its spaces or shop the Reliquary.">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
     <link rel="stylesheet" href="styles.css?v=perf20">
     <link rel="canonical" href="https://punicodex.com/sites/mengpo/">
     <meta property="og:title" content="Mèngpó — Forgetting, Passage, Tea | PUNICODEX">
-    <meta property="og:description" content="'Mèngpó's soup' (孟婆汤) is a living idiom for oblivion — offered ruefully at partings and breakups across the Chinese internet.">
+    <meta property="og:description" content="Mèngpó — the restored Chinese name of Forgetting: original script, reconstructed pronunciation, and mythology. Sponsor its spaces or shop the Reliquary.">
     <meta property="og:url" content="https://punicodex.com/sites/mengpo/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="PUNICODEX">
@@ -28,13 +31,13 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://punicodex.com/assets/og/mengpo.jpg">
     <meta name="twitter:title" content="Mèngpó — Forgetting, Passage, Tea | PUNICODEX">
-    <meta name="twitter:description" content="'Mèngpó's soup' (孟婆汤) is a living idiom for oblivion — offered ruefully at partings and breakups across the Chinese internet.">
+    <meta name="twitter:description" content="Mèngpó — the restored Chinese name of Forgetting: original script, reconstructed pronunciation, and mythology. Sponsor its spaces or shop the Reliquary.">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "WebPage",
         "name": "Mèngpó — Forgetting, Passage, Tea | PUNICODEX",
-        "description": "'Mèngpó's soup' (孟婆汤) is a living idiom for oblivion — offered ruefully at partings and breakups across the Chinese internet.",
+        "description": "Mèngpó — the restored Chinese name of Forgetting: original script, reconstructed pronunciation, and mythology. Sponsor its spaces or shop the Reliquary.",
         "url": "https://punicodex.com/sites/mengpo/",
         "isPartOf": [
             {
@@ -50,10 +53,10 @@
         ],
         "about": {
             "@type": "Thing",
-            "name": "孟婆",
+            "name": "mengpo",
             "alternateName": [
-                "mengpo",
-                "Mèngpó"
+                "Mèngpó",
+                "孟婆"
             ],
             "description": "Forgetting, Passage, Tea"
         },
@@ -71,6 +74,19 @@
     <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
     <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
     <meta name="theme-color" content="#0A0A0C">
+    <style>
+        .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+        .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+        .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+        .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+        .temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+        .temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+        .temple-breadcrumb-list [aria-current] { color: var(--primary, #d4af37); }
+        .pronunciation-title { font-family: var(--font-display); font-size: clamp(1.3rem, 2.5vw, 1.8rem); font-weight: 400; color: var(--white, #f5f5f5); letter-spacing: 0.05em; margin: 0 0 1.1rem; }
+        .pronunciation-standard { margin: 1rem 0 0; font-size: 0.8rem; color: var(--white-dim, #a0a0a0); }
+        .pronunciation-standard a { color: var(--primary, #d4af37); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.4); }
+        .pronunciation-standard a:hover { color: var(--primary-bright, #f0d878); }
+    </style>
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -98,11 +114,13 @@
 }
     </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
-<link rel="stylesheet" href="/css/herald-beacon.css?v=1">
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
 <script src="/js/herald-beacon.js?v=1" defer></script>
 <!-- PUNICODEX-HERALD-BEACON-END -->
 <!-- PUNICODEX-COOKIE-CONSENT-START -->
-<link rel="stylesheet" href="/css/cookie-consent.css?v=1">
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
 <script src="/js/cookie-consent.js?v=1" defer></script>
 <!-- PUNICODEX-COOKIE-CONSENT-END -->
 </head>
@@ -148,6 +166,15 @@
                 <span></span><span></span><span></span>
             </button>
         </div>
+    </nav>
+
+        <!-- Visible breadcrumb (mirrors the BreadcrumbList JSON-LD) -->
+    <nav class="temple-breadcrumb" aria-label="breadcrumb">
+        <ol class="temple-breadcrumb-list">
+                <li><a href="https://punicodex.com/">Home</a></li>
+                <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
+                <li><span aria-current="page">Mèngpó</span></li>
+        </ol>
     </nav>
 
     <!-- Mobile Menu -->
@@ -673,16 +700,19 @@
     </div>
 
     <!-- Versioned asset refs: /js is immutable-cached for a year — bump ?v= when these files change. -->
-    <script src="/js/flagship-canvas.js?v=1"></script>
+    <!-- All deferred: no inline script below calls these libs at parse time;
+         script.js only reads window.PUNICODEX_API_BASE (set above) and touches
+         CreativeNormalize inside a typeof-guarded async upload handler. -->
+    <script src="/js/flagship-canvas.js?v=1" defer=""></script>
     <script src="/js/pc-fx-core.js?v=1" defer=""></script>
     <script src="/js/pc-fx-halo.js?v=1" defer=""></script>
-    
+
 
 <script>window.PUNICODEX_API_BASE = "";</script>
-    <script src="/js/px-core.js?v=perf21"></script>
-    <script src="/js/temple-base.js?v=perf20"></script>
-    <script src="/js/creative-normalize.js?v=1"></script>
-    <script src="script.js?v=perf21"></script>
+    <script src="/js/px-core.js?v=perf21" defer=""></script>
+    <script src="/js/temple-base.js?v=perf20" defer=""></script>
+    <script src="/js/creative-normalize.js?v=1" defer=""></script>
+    <script src="script.js?v=perf21" defer=""></script>
 
 <script>
 (function(){
@@ -729,6 +759,10 @@
                     <div class="footer-block">
                         <span class="footer-label">Original Script</span>
                         <span class="footer-value">孟婆</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Explore</span>
+                        <span class="footer-value"><a href="https://punicodex.com/pantheon/" style="color:inherit;text-decoration:none;">Pantheon</a> · <a href="https://punicodex.com/lexicon/" style="color:inherit;text-decoration:none;">Lexicon</a> · <a href="https://punicodex.com/texts/" style="color:inherit;text-decoration:none;">Texts</a> · <a href="https://punicodex.com/everyday/" style="color:inherit;text-decoration:none;">Words</a> · <a href="https://punicodex.com/ink/" style="color:inherit;text-decoration:none;">Ink</a> · <a href="https://punicodex.com/pronunciation/" style="color:inherit;text-decoration:none;">Pronunciation</a> · <a href="https://punicodex.com/blog/" style="color:inherit;text-decoration:none;">Blog</a> · <a href="https://punicodex.com/store/mengpo/" style="color:inherit;text-decoration:none;">Reliquary</a></span>
                     </div>
                 </div>
             </div>

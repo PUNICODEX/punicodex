@@ -1,6 +1,7 @@
 <!DOCTYPE html><html lang="en"><head>
 <!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css?v=3">
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
 <script src="/js/university-collaborators.js?v=3" defer></script>
 <!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
@@ -13,6 +14,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Śiva — Gallery | Destruction, Transformation, Dance | PUNICODEX</title>
     <meta name="description" content="A curated gallery of Śiva, Destruction, Transformation, Dance, through history.">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
     <link rel="stylesheet" href="../styles.css?v=perf20">
@@ -25,6 +28,8 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="PUNICODEX">
     <meta property="og:image" content="https://punicodex.com/assets/og/shiva.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://punicodex.com/assets/og/shiva.jpg">
@@ -112,6 +117,13 @@
         font-size: 2rem;
     }
 }
+.temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+.temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+.temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+.temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+.temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+.temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+.temple-breadcrumb-list [aria-current] { color: var(--primary, #d4af37); }
   </style>
     <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
@@ -154,11 +166,13 @@
 }
     </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
-<link rel="stylesheet" href="/css/herald-beacon.css?v=1">
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
 <script src="/js/herald-beacon.js?v=1" defer></script>
 <!-- PUNICODEX-HERALD-BEACON-END -->
 <!-- PUNICODEX-COOKIE-CONSENT-START -->
-<link rel="stylesheet" href="/css/cookie-consent.css?v=1">
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
 <script src="/js/cookie-consent.js?v=1" defer></script>
 <!-- PUNICODEX-COOKIE-CONSENT-END -->
 </head>
@@ -203,6 +217,16 @@
                 <span></span><span></span><span></span>
             </button>
         </div>
+    </nav>
+
+        <!-- Visible breadcrumb (mirrors the BreadcrumbList JSON-LD) -->
+    <nav class="temple-breadcrumb" aria-label="breadcrumb">
+        <ol class="temple-breadcrumb-list">
+                <li><a href="https://punicodex.com/">Home</a></li>
+                <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
+                <li><a href="https://punicodex.com/sites/shiva/">Śiva</a></li>
+                <li><span aria-current="page">Gallery</span></li>
+        </ol>
     </nav>
 
     <!-- Mobile Menu -->
@@ -328,6 +352,10 @@
                     <div class="footer-block">
                         <span class="footer-label">Original Script</span>
                         <span class="footer-value">शिव</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Explore</span>
+                        <span class="footer-value"><a href="https://punicodex.com/pantheon/" style="color:inherit;text-decoration:none;">Pantheon</a> · <a href="https://punicodex.com/lexicon/" style="color:inherit;text-decoration:none;">Lexicon</a> · <a href="https://punicodex.com/texts/" style="color:inherit;text-decoration:none;">Texts</a> · <a href="https://punicodex.com/everyday/" style="color:inherit;text-decoration:none;">Words</a> · <a href="https://punicodex.com/ink/" style="color:inherit;text-decoration:none;">Ink</a> · <a href="https://punicodex.com/pronunciation/" style="color:inherit;text-decoration:none;">Pronunciation</a> · <a href="https://punicodex.com/blog/" style="color:inherit;text-decoration:none;">Blog</a> · <a href="https://punicodex.com/store/shiva/" style="color:inherit;text-decoration:none;">Reliquary</a></span>
                     </div>
                 </div>
             </div>

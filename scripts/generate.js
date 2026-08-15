@@ -100,6 +100,9 @@ const scripts = [
   'scripts/sync-desktop-nav.js',
   'scripts/sync-mobile-menu.js',
   'scripts/sync-footer.js',
+  // Static crawlable temple index on the hub pages (lexicon/pantheon grids
+  // are JS-rendered; without this the long tail has no static inbounds).
+  'scripts/sync-temple-index.js',
   'scripts/generate-pod-products.js',
   // Store pages (collections/collection/product) consume products.json and
   // must run after it; the injectors then re-run (idempotent) so the fresh

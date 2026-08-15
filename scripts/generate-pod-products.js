@@ -65,7 +65,7 @@ const LINES = [
     category: 'apparel',
     name: (a) => `${a.name} Temple Tee`,
     price: 38.0,
-    blurb: 'Heavyweight organic cotton — the deity across the chest, the lockup riding the shoulders.',
+    blurb: (a) => `${a.name} across the chest, the ${a.name} lockup riding the shoulders. Heavyweight organic cotton.`,
     design: {
       placements: [
         { area: 'front', asset: 'mascot', note: 'full mascot, centre chest' },
@@ -78,7 +78,7 @@ const LINES = [
     category: 'apparel',
     name: (a) => `${a.name} Temple Hoodie`,
     price: 58.0,
-    blurb: 'Pullover fleece — seal over the heart, the deity across the back.',
+    blurb: (a) => `The ${a.name} seal over the heart, ${a.name} in full across the back. Pullover fleece.`,
     design: {
       placements: [
         { area: 'front', asset: 'logomark', note: 'left-chest seal' },
@@ -91,7 +91,7 @@ const LINES = [
     category: 'apparel',
     name: (a) => `${a.name} Temple Crewneck`,
     price: 52.0,
-    blurb: 'Garment-dyed crewneck carrying the full name lockup.',
+    blurb: (a) => `The full ${a.name} name lockup, centre chest. Garment-dyed crewneck.`,
     design: {
       placements: [{ area: 'front', asset: 'logolockup', note: 'lockup, centre chest' }],
     },
@@ -101,7 +101,7 @@ const LINES = [
     category: 'art-prints',
     name: (a) => `${a.name} Mascot Art Print`,
     price: 29.0,
-    blurb: 'Museum-grade matte poster, 30×40 cm, ready to frame.',
+    blurb: (a) => `${a.name} in full bleed — a museum-grade matte poster, 30×40 cm, ready to frame.`,
     design: {
       placements: [{ area: 'front', asset: 'mascot', note: 'full-bleed mascot' }],
     },
@@ -111,7 +111,7 @@ const LINES = [
     category: 'art-prints',
     name: (a) => `${a.name} Mascot Canvas`,
     price: 49.0,
-    blurb: 'Gallery-wrapped canvas, 45×60 cm — the deity, sealed in the corner.',
+    blurb: (a) => `${a.name} gallery-wrapped on 45×60 cm canvas, the temple seal in the corner.`,
     design: {
       placements: [
         { area: 'front', asset: 'compCanvas', note: 'full-bleed mascot with corner seal (composite)' },
@@ -123,7 +123,7 @@ const LINES = [
     category: 'relics',
     name: (a) => `${a.name} Seal Sticker Set`,
     price: 9.0,
-    blurb: 'Three weatherproof vinyl seals — the deity, the mark, and the lockup.',
+    blurb: (a) => `${a.name}, the temple mark, and the name lockup — three weatherproof vinyl die-cuts on one sheet.`,
     design: {
       placements: [
         { area: 'front', asset: 'compSticker', note: 'deity + seal + lockup die-cuts on one sheet (composite)' },
@@ -135,7 +135,7 @@ const LINES = [
     category: 'relics',
     name: (a) => `${a.name} Seal Enamel Pin`,
     price: 12.0,
-    blurb: 'Hard enamel pin of the temple mark, gold on obsidian.',
+    blurb: (a) => `The ${a.name} temple mark as a hard enamel pin, gold on obsidian — reads at 25 mm.`,
     design: {
       placements: [{ area: 'front', asset: 'logomark', note: 'seal only — reads at 25 mm' }],
     },
@@ -145,7 +145,7 @@ const LINES = [
     category: 'drinkware',
     name: (a) => `${a.name} Temple Mug`,
     price: 22.0,
-    blurb: '325 ml ceramic — the seal at your thumb, the deity facing the room.',
+    blurb: (a) => `The ${a.name} seal at your thumb, ${a.name} facing the room. 325 ml ceramic.`,
     design: {
       placements: [
         { area: 'front', asset: 'compMug', note: 'wrap: seal at handle, deity outward (composite)' },
@@ -157,7 +157,7 @@ const LINES = [
     category: 'drinkware',
     name: (a) => `${a.name} Temple Tumbler`,
     price: 32.0,
-    blurb: 'Insulated 590 ml steel — the lockup wrapped vertical in gold.',
+    blurb: (a) => `The ${a.name} lockup wrapped vertical in gold. Insulated 590 ml steel.`,
     design: {
       placements: [{ area: 'front', asset: 'logolockup', note: 'vertical lockup wrap' }],
     },
@@ -167,7 +167,7 @@ const LINES = [
     category: 'accessories',
     name: (a) => `${a.name} Temple Tote`,
     price: 26.0,
-    blurb: 'Heavy canvas carry-all — the lockup large, the deity tagged below.',
+    blurb: (a) => `The ${a.name} lockup large, the deity tagged below. Heavy canvas carry-all.`,
     design: {
       placements: [
         { area: 'front', asset: 'compTote', note: 'lockup large with mascot tag (composite)' },
@@ -179,7 +179,7 @@ const LINES = [
     category: 'accessories',
     name: (a) => `${a.name} Mascot Phone Case`,
     price: 24.0,
-    blurb: 'Slim impact case — the deity, edge to edge.',
+    blurb: (a) => `${a.name}, edge to edge, on a slim impact case.`,
     design: {
       placements: [{ area: 'front', asset: 'mascot', note: 'edge-to-edge mascot' }],
     },
@@ -189,7 +189,7 @@ const LINES = [
     category: 'accessories',
     name: (a) => `${a.name} Temple Cap`,
     price: 28.0,
-    blurb: 'Six-panel dad cap, the temple mark embroidered in gold.',
+    blurb: (a) => `The ${a.name} temple mark embroidered in gold on a six-panel dad cap.`,
     design: {
       placements: [{ area: 'front', asset: 'logomark', note: 'embroidered seal' }],
     },
@@ -199,7 +199,7 @@ const LINES = [
     category: 'accessories',
     name: (a) => `${a.name} Temple Notebook`,
     price: 18.0,
-    blurb: 'A5 dotted journal — lockup on the cover, the seal on the spine.',
+    blurb: (a) => `The ${a.name} lockup on the cover, the seal at the spine. A5 dotted journal.`,
     design: {
       placements: [
         { area: 'front', asset: 'compNotebook', note: 'cover lockup with seal footer (composite)' },
@@ -336,7 +336,7 @@ function main() {
         name: line.name(a),
         category: line.category,
         price: line.price,
-        blurb: line.blurb,
+        blurb: line.blurb(a),
         image: cardImage(assets, line.design),
         assets,
         templeUrl: `/sites/${a.id}/`,

@@ -436,22 +436,30 @@ function makeTitle(entry, arch) {
   return V.pick(entry.id, 91, pools[arch]);
 }
 
-// SERP window: descriptions land in 120–160 chars, padded or trimmed at word
-// boundaries with the series number appended when padding.
+// SERP window: descriptions land in 120–160 chars, padded with the series
+// number when short. Over-long copy ends on the last complete sentence that
+// fits the window whole (a sentence mark only counts followed by an uppercase
+// letter or the end, so abbreviations like "No." are not boundaries); copy
+// without a usable sentence boundary falls back to a word-boundary ellipsis.
 function serpDescription(desc, seriesName, no, total) {
-  if (desc.length > 160) {
-    const cut = desc.slice(0, 157);
-    return `${cut.slice(0, cut.lastIndexOf(' ')).trim()}…`;
-  }
   if (desc.length < 120) {
-    desc = `${desc} ${seriesName}, No. ${no} of ${total} — from the canonical record of the temple.`;
+    // Adaptive pad: the full closer wins when it fits the window; a bare
+    // series citation is the fallback so short copy never collapses back to
+    // its pre-pad length via the sentence cut below.
+    const full = `${desc} ${seriesName}, No. ${no} of ${total} — from the canonical record of the temple.`;
+    const short = `${desc} ${seriesName}, No. ${no} of ${total}.`;
+    desc = full.length <= 160 ? full : short;
     if (desc.length < 120) desc = `${desc} Every claim cited, every form weighed.`;
-    if (desc.length > 160) {
-      const cut = desc.slice(0, 157);
-      return `${cut.slice(0, cut.lastIndexOf(' ')).trim()}…`;
-    }
   }
-  return desc;
+  if (desc.length <= 160) return desc;
+  let sentenceEnd = -1;
+  for (const m of desc.matchAll(/[.!?](?=\s+[A-Z]|$)/g)) {
+    if (m.index + 1 > 155) break;
+    sentenceEnd = m.index + 1;
+  }
+  if (sentenceEnd >= 100) return desc.slice(0, sentenceEnd);
+  const cut = desc.slice(0, 157);
+  return `${cut.slice(0, cut.lastIndexOf(' ')).trim()}…`;
 }
 
 function makeDescription(entry, arch) {

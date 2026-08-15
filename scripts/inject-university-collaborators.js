@@ -22,7 +22,10 @@ const CSS_PATH = '/css/university-collaborators.css?v=3';
 const JS_PATH = '/js/university-collaborators.js?v=3';
 
 function buildHeadSnippet() {
-  return `\n${HEAD_MARKER_START}\n<link rel="stylesheet" href="${CSS_PATH}">\n<script src="${JS_PATH}" defer></script>\n${HEAD_MARKER_END}\n`;
+  // The strip mounts pre-footer (below the fold) and is rendered by the
+  // deferred script into an empty placeholder, so the stylesheet is safe to
+  // load non-blocking (print-media swap + noscript fallback).
+  return `\n${HEAD_MARKER_START}\n<link rel="stylesheet" href="${CSS_PATH}" media="print" onload="this.media='all'">\n<noscript><link rel="stylesheet" href="${CSS_PATH}"></noscript>\n<script src="${JS_PATH}" defer></script>\n${HEAD_MARKER_END}\n`;
 }
 
 function buildBodySnippet() {
@@ -92,11 +95,13 @@ function injectIntoFile(filePath, headSnippet, bodySnippet) {
   const html = withRetry(() => fs.readFileSync(filePath, 'utf8'));
 
   // Already present and consistent (same marker block AND current versioned
-  // asset URLs) — nothing to do. Older snippet versions are re-injected below.
+  // asset URLs in the current non-blocking form) — nothing to do. Older
+  // snippet versions (including the pre-defer blocking stylesheet link) fail
+  // the media="print" signature and are re-injected below.
   if (
     html.includes(HEAD_MARKER_START) &&
     html.includes(BODY_MARKER_START) &&
-    html.includes(`href="${CSS_PATH}"`) &&
+    html.includes(`<link rel="stylesheet" href="${CSS_PATH}" media="print"`) &&
     html.includes(`src="${JS_PATH}"`)
   ) {
     return true;

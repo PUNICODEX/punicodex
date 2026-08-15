@@ -68,7 +68,7 @@ const mainPages = [
   { loc: '/game/', priority: '0.6', changefreq: 'monthly' },
   { loc: '/connections/', priority: '0.6', changefreq: 'monthly' },
   { loc: '/creatives/', priority: '0.6', changefreq: 'monthly' },
-  { loc: '/about/authenticity.html', priority: '0.6', changefreq: 'monthly' },
+  { loc: '/about/authenticity/', priority: '0.6', changefreq: 'monthly' },
   { loc: '/codex/anatomy-of-a-punycode-domain/', priority: '0.6', changefreq: 'monthly' },
   { loc: '/codex/building-the-temple/', priority: '0.6', changefreq: 'monthly' },
   { loc: '/codex/why-greek-accents-matter/', priority: '0.6', changefreq: 'monthly' },
@@ -77,8 +77,7 @@ const mainPages = [
   { loc: '/scholars/analytics/', priority: '0.6', changefreq: 'monthly' },
   { loc: '/scholars/creatives/', priority: '0.6', changefreq: 'monthly' },
   { loc: '/oracle/', priority: '0.6', changefreq: 'monthly' },
-  { loc: '/search-v2/', priority: '0.7', changefreq: 'weekly' },
-  { loc: '/lexicon/cognates.html', priority: '0.6', changefreq: 'monthly' },
+  { loc: '/lexicon/cognates/', priority: '0.6', changefreq: 'monthly' },
   { loc: '/terms/data-use/', priority: '0.4', changefreq: 'yearly' },
   { loc: '/terms/store/', priority: '0.4', changefreq: 'yearly' },
   { loc: '/terms/creatives/', priority: '0.4', changefreq: 'yearly' },
@@ -112,12 +111,17 @@ function escapeXml(str) {
     .replace(/'/g, '&apos;');
 }
 
-function urlEntry(loc, priority, changefreq) {
-  return `  <url>\n    <loc>${escapeXml(BASE_URL + loc)}</loc>\n    <priority>${priority}</priority>\n    <changefreq>${changefreq}</changefreq>\n  </url>\n`;
+function urlEntry(loc, priority, changefreq, extra = {}) {
+  const lastmod = extra.lastmod ? `    <lastmod>${escapeXml(extra.lastmod)}</lastmod>\n` : '';
+  const image = extra.image
+    ? `    <image:image>\n      <image:loc>${escapeXml(extra.image)}</image:loc>\n    </image:image>\n`
+    : '';
+  return `  <url>\n    <loc>${escapeXml(BASE_URL + loc)}</loc>\n${lastmod}    <priority>${priority}</priority>\n    <changefreq>${changefreq}</changefreq>\n${image}  </url>\n`;
 }
 
 let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
-xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+xml +=
+  '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n';
 
 // Main pages
 for (const p of mainPages) {
@@ -132,20 +136,44 @@ for (const t of TEXT_REGISTRY.texts) {
   xml += urlEntry(`/texts/${t.id}/`, '0.6', 'monthly');
 }
 
+// Blog <lastmod> dates come from the committed post JSONs alone — never from
+// git, the clock, or data-version.json: CI re-runs this generator on a
+// shallow clone and the sitemap bytes must not move. A URL whose post JSON
+// cannot be resolved simply gets no <lastmod>.
+function blogLastmod(...parts) {
+  try {
+    const post = JSON.parse(fs.readFileSync(path.join(ROOT, ...parts), 'utf8'));
+    const date = typeof post.publishedAt === 'string' ? post.publishedAt.slice(0, 10) : '';
+    return /^\d{4}-\d{2}-\d{2}$/.test(date) ? date : null;
+  } catch {
+    return null;
+  }
+}
+
 // Temple pages
 for (const entry of LEXICON) {
   const isFlagship = flagshipIds.has(entry.id);
   const priority = isFlagship ? '0.8' : '0.6';
-  xml += urlEntry(`/sites/${entry.id}/`, priority, 'monthly');
+  xml += urlEntry(`/sites/${entry.id}/`, priority, 'monthly', {
+    image: isFlagship ? `${BASE_URL}/assets/og/${entry.id}.jpg` : null,
+  });
 
   if (isFlagship) {
     xml += urlEntry(`/sites/${entry.id}/lore/`, '0.7', 'monthly');
     xml += urlEntry(`/sites/${entry.id}/lore/extended/`, '0.6', 'monthly');
     xml += urlEntry(`/sites/${entry.id}/gallery/`, '0.5', 'monthly');
-    xml += urlEntry(`/sites/${entry.id}/blog/`, '0.6', 'monthly');
-    xml += urlEntry(`/sites/${entry.id}/blog/restoration/`, '0.6', 'monthly');
-    xml += urlEntry(`/sites/${entry.id}/blog/resonance/`, '0.6', 'monthly');
-    xml += urlEntry(`/sites/${entry.id}/blog/canonical/`, '0.7', 'monthly');
+    xml += urlEntry(`/sites/${entry.id}/blog/`, '0.6', 'monthly', {
+      lastmod: blogLastmod('platform', 'blog', 'content', `${entry.id}.json`),
+    });
+    xml += urlEntry(`/sites/${entry.id}/blog/restoration/`, '0.6', 'monthly', {
+      lastmod: blogLastmod('platform', 'blog', 'series', 'restoration', `${entry.id}.json`),
+    });
+    xml += urlEntry(`/sites/${entry.id}/blog/resonance/`, '0.6', 'monthly', {
+      lastmod: blogLastmod('platform', 'blog', 'series', 'resonance', `${entry.id}.json`),
+    });
+    xml += urlEntry(`/sites/${entry.id}/blog/canonical/`, '0.7', 'monthly', {
+      lastmod: blogLastmod('platform', 'blog', 'series', 'canonical', `${entry.id}.json`),
+    });
     xml += urlEntry(`/sites/${entry.id}/patterns/`, '0.5', 'monthly');
     xml += urlEntry(`/sites/${entry.id}/scholars/`, '0.7', 'monthly');
     xml += urlEntry(`/sites/${entry.id}/creatives/`, '0.5', 'monthly');
@@ -169,11 +197,13 @@ xml += '</urlset>\n';
 
 writeFileWithRetry(path.join(ROOT, 'sitemap.xml'), xml, 'utf8');
 
+// 11 secondary URLs per flagship: lore, extended lore, gallery, the four
+// blog dispatches, patterns, scholars, creatives, patron.
 const urlCount =
   mainPages.length +
   TEXT_REGISTRY.texts.length +
   LEXICON.length +
-  flagshipIds.size * 8 +
+  flagshipIds.size * 11 +
   storeCollectionIds.size +
   POD.count;
 console.log(`Sitemap generated: ${urlCount} URLs`);

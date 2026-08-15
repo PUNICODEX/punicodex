@@ -533,6 +533,30 @@ function main() {
       parts.push(`Write back when you have checked the sources; they are better company than I am.\n\n*— The Register*`);
     }
 
+    // A per-entry evidence docket closes every ruling, so no two verdicts
+    // share a tail: the counts and forms below come from this entry's file.
+    const docketBits = [
+      falseForms.length > 0
+        ? `${falseForms.length} false ${falseForms.length === 1 ? 'form' : 'forms'} ruled against, *${falseForms[0].form}* first on the docket`
+        : 'no false forms on the docket',
+    ];
+    if (marks.length > 0) {
+      docketBits.push(
+        `${marks.length} preserved ${marks.length === 1 ? 'mark' : 'marks'} verified: ${marks.map((m) => `**${m.char} → ${m.to}**`).join(', ')}`
+      );
+    }
+    docketBits.push(
+      variants.length > 0
+        ? `${variants.length} contested ${variants.length === 1 ? 'form' : 'forms'} recorded with ${variants.length === 1 ? 'its' : 'their'} support`
+        : 'no contested forms attested'
+    );
+    const docketSources = (lore?.sources || []).map((s) => s.name).filter(Boolean);
+    const evidenceDocket = `The docket for this ruling: ${docketBits.join('; ')}${
+      docketSources.length > 0
+        ? `; the attestation rests on ${docketSources.length} cited ${docketSources.length === 1 ? 'source' : 'sources'} — ${docketSources.slice(0, 3).join(', ')}`
+        : ''
+    }.`;
+
     // The verdict (all architectures, four voices).
     parts.push(V.pick(id, 341, [
       `## The Verdict
@@ -563,7 +587,7 @@ Case closed on **${u}**: canonical, cited, and defended. ${
 So the register finds: **${u}**, canonical; *${ascii}*, ${
         asciiIsCanonical ? 'equally canonical' : 'a sanctioned fallback'
       }; the contested forms, recorded with their support; the false forms, ruled against with their violations named. Every line of that finding cites its evidence, and the evidence is open to any reader — the register asks to be checked, not trusted. The temple keeps the canonical form at [/sites/${id}/](/sites/${id}/).`,
-    ]));
+    ]) + `\n\n${evidenceDocket}`);
 
     parts.push(closeBlock(entry));
 

@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css?v=3">
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
 <script src="/js/university-collaborators.js?v=3" defer></script>
 <!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
@@ -26,10 +27,25 @@
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://punicodex.com/assets/og/enlil.jpg">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
     <link rel="stylesheet" href="../styles.css?v=perf20">
     <link rel="stylesheet" href="patterns.css?v=1">
+    <style>
+        .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+        .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+        .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+        .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+        .temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+        .temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+        .temple-breadcrumb-list [aria-current] { color: var(--primary, #d4af37); }
+        /* Static sister-temple anchors (pre-rendered for crawlers; patterns.js re-renders on boot) */
+        .patterns-index-card-links { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.6rem; }
+        .patterns-index-card-links a { font-size: 0.78rem; color: var(--primary, #d4af37); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .patterns-index-card-links a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: currentColor; }
+    </style>
     <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
@@ -71,11 +87,13 @@
 }
     </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
-<link rel="stylesheet" href="/css/herald-beacon.css?v=1">
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
 <script src="/js/herald-beacon.js?v=1" defer></script>
 <!-- PUNICODEX-HERALD-BEACON-END -->
 <!-- PUNICODEX-COOKIE-CONSENT-START -->
-<link rel="stylesheet" href="/css/cookie-consent.css?v=1">
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
 <script src="/js/cookie-consent.js?v=1" defer></script>
 <!-- PUNICODEX-COOKIE-CONSENT-END -->
 </head>
@@ -117,6 +135,16 @@
                 <span></span><span></span><span></span>
             </button>
         </div>
+    </nav>
+
+        <!-- Visible breadcrumb (mirrors the BreadcrumbList JSON-LD) -->
+    <nav class="temple-breadcrumb" aria-label="breadcrumb">
+        <ol class="temple-breadcrumb-list">
+                <li><a href="https://punicodex.com/">Home</a></li>
+                <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
+                <li><a href="https://punicodex.com/sites/enlil/">Enlīl</a></li>
+                <li><span aria-current="page">Patterns</span></li>
+        </ol>
     </nav>
 
     <!-- Mobile Menu -->
@@ -162,7 +190,7 @@
                         <div class="patterns-sector-legend" id="patterns-sector-legend"></div>
                     </div>
                     <div class="patterns-detail-col">
-                        <div class="patterns-detail-panel" id="patterns-detail-panel" aria-live="polite"></div>
+                        <div class="patterns-detail-panel" id="patterns-detail-panel" aria-live="polite"><div class="patterns-detail-sector"><span class="patterns-sector-dot" style="background:#e8b34b"></span>Energy &amp; Natural World</div><h3 class="patterns-detail-title">Meteorology &amp; Weather Intelligence</h3><p class="patterns-detail-tagline">Forecasting, storm tracking, and climate analytics.</p><span class="patterns-detail-weight primary">Primary alignment for Enlīl</span><p class="patterns-detail-why"><strong>Why Enlīl aligns:</strong> The seven destructive storms at his command; the weather front as a royal decree.</p><h4 class="patterns-aligned-title">14 aligned temples share this pattern</h4><div class="patterns-aligned-list"><a class="patterns-aligned-item" href="/sites/baal/patterns/"><span class="patterns-aligned-unicode">Baꜥal</span><span class="patterns-aligned-pantheon">Canaanite</span><span class="patterns-aligned-weight primary">Primary</span></a><a class="patterns-aligned-item" href="/sites/oya/patterns/"><span class="patterns-aligned-unicode">Ọya</span><span class="patterns-aligned-pantheon">Yoruba</span><span class="patterns-aligned-weight primary">Primary</span></a><a class="patterns-aligned-item" href="/sites/perkunas/patterns/"><span class="patterns-aligned-unicode">Perkūnas</span><span class="patterns-aligned-pantheon">Baltic</span><span class="patterns-aligned-weight primary">Primary</span></a><a class="patterns-aligned-item" href="/sites/shango/patterns/"><span class="patterns-aligned-unicode">Ṣàngó</span><span class="patterns-aligned-pantheon">Yoruba</span><span class="patterns-aligned-weight primary">Primary</span></a><a class="patterns-aligned-item" href="/sites/thor/patterns/"><span class="patterns-aligned-unicode">Þórr</span><span class="patterns-aligned-pantheon">Norse</span><span class="patterns-aligned-weight primary">Primary</span></a><a class="patterns-aligned-item" href="/sites/trengtreng/patterns/"><span class="patterns-aligned-unicode">Trengtreng</span><span class="patterns-aligned-pantheon">mapuche</span><span class="patterns-aligned-weight primary">Primary</span></a><a class="patterns-aligned-item" href="/sites/typhon/patterns/"><span class="patterns-aligned-unicode">Typhōn</span><span class="patterns-aligned-pantheon">Greek</span><span class="patterns-aligned-weight primary">Primary</span></a><a class="patterns-aligned-item" href="/sites/zeus/patterns/"><span class="patterns-aligned-unicode">Zeús</span><span class="patterns-aligned-pantheon">Greek</span><span class="patterns-aligned-weight primary">Primary</span></a><a class="patterns-aligned-item" href="/sites/aer/patterns/"><span class="patterns-aligned-unicode">Aḗr</span><span class="patterns-aligned-pantheon">Greek</span><span class="patterns-aligned-weight resonant">Resonant</span></a><a class="patterns-aligned-item" href="/sites/fujin/patterns/"><span class="patterns-aligned-unicode">Fūjin</span><span class="patterns-aligned-pantheon">Japanese</span><span class="patterns-aligned-weight resonant">Resonant</span></a><a class="patterns-aligned-item" href="/sites/ouranos/patterns/"><span class="patterns-aligned-unicode">Ouranós</span><span class="patterns-aligned-pantheon">Greek</span><span class="patterns-aligned-weight resonant">Resonant</span></a><a class="patterns-aligned-item" href="/sites/steh/patterns/"><span class="patterns-aligned-unicode">Stḫ</span><span class="patterns-aligned-pantheon">Egyptian</span><span class="patterns-aligned-weight resonant">Resonant</span></a><a class="patterns-aligned-item" href="/sites/tlaloc/patterns/"><span class="patterns-aligned-unicode">Tlāloc</span><span class="patterns-aligned-pantheon">Nahuatl</span><span class="patterns-aligned-weight resonant">Resonant</span></a><a class="patterns-aligned-item" href="/sites/vajrapani/patterns/"><span class="patterns-aligned-unicode">Vajrapāṇi</span><span class="patterns-aligned-pantheon">Buddhist</span><span class="patterns-aligned-weight resonant">Resonant</span></a></div></div>
                     </div>
                 </div>
             </div>
@@ -176,7 +204,10 @@
                     <h2 class="section-title">Every Aligned Industry</h2>
                     <p class="section-subtitle">The complete pattern register for this temple</p>
                 </div>
-                <div class="patterns-index-grid" id="patterns-index-grid"></div>
+                <div class="patterns-index-grid" id="patterns-index-grid"><div class="patterns-index-card" tabindex="0" role="button" aria-label="Show Meteorology &amp; Weather Intelligence in the pattern wheel"><div class="patterns-index-card-bar" style="background:#e8b34b"></div><div class="patterns-index-card-body"><div class="patterns-index-card-sector">Energy &amp; Natural World</div><h3 class="patterns-index-card-name">Meteorology &amp; Weather Intelligence</h3><p class="patterns-index-card-tagline">Forecasting, storm tracking, and climate analytics.</p><div class="patterns-index-card-meta"><span>15 temples</span><span class="weight">Primary</span></div><div class="patterns-index-card-links"><a href="/sites/baal/patterns/" title="Baꜥal — Canaanite">Baꜥal</a><a href="/sites/oya/patterns/" title="Ọya — Yoruba">Ọya</a><a href="/sites/perkunas/patterns/" title="Perkūnas — Baltic">Perkūnas</a><a href="/sites/shango/patterns/" title="Ṣàngó — Yoruba">Ṣàngó</a><a href="/sites/thor/patterns/" title="Þórr — Norse">Þórr</a><a href="/sites/trengtreng/patterns/" title="Trengtreng — mapuche">Trengtreng</a><a href="/sites/typhon/patterns/" title="Typhōn — Greek">Typhōn</a><a href="/sites/zeus/patterns/" title="Zeús — Greek">Zeús</a><a href="/sites/aer/patterns/" title="Aḗr — Greek">Aḗr</a><a href="/sites/fujin/patterns/" title="Fūjin — Japanese">Fūjin</a><a href="/sites/ouranos/patterns/" title="Ouranós — Greek">Ouranós</a><a href="/sites/steh/patterns/" title="Stḫ — Egyptian">Stḫ</a><a href="/sites/tlaloc/patterns/" title="Tlāloc — Nahuatl">Tlāloc</a><a href="/sites/vajrapani/patterns/" title="Vajrapāṇi — Buddhist">Vajrapāṇi</a></div></div></div>
+                <div class="patterns-index-card" tabindex="0" role="button" aria-label="Show Wind &amp; Atmospheric Energy in the pattern wheel"><div class="patterns-index-card-bar" style="background:#e8b34b"></div><div class="patterns-index-card-body"><div class="patterns-index-card-sector">Energy &amp; Natural World</div><h3 class="patterns-index-card-name">Wind &amp; Atmospheric Energy</h3><p class="patterns-index-card-tagline">Wind farms, turbines, and atmospheric resource management.</p><div class="patterns-index-card-meta"><span>10 temples</span><span class="weight">Primary</span></div><div class="patterns-index-card-links"><a href="/sites/fujin/patterns/" title="Fūjin — Japanese">Fūjin</a><a href="/sites/oya/patterns/" title="Ọya — Yoruba">Ọya</a><a href="/sites/shu/patterns/" title="Šw — Egyptian">Šw</a><a href="/sites/zephyros/patterns/" title="Zéphyros — Greek">Zéphyros</a><a href="/sites/aer/patterns/" title="Aḗr — Greek">Aḗr</a><a href="/sites/amun/patterns/" title="Ꜣmun — Egyptian">Ꜣmun</a><a href="/sites/baal/patterns/" title="Baꜥal — Canaanite">Baꜥal</a><a href="/sites/njordr/patterns/" title="Njǫrðr — Norse">Njǫrðr</a><a href="/sites/quetzalcoatl/patterns/" title="Quetzalcōātl — Nahuatl">Quetzalcōātl</a></div></div></div>
+                <div class="patterns-index-card" tabindex="0" role="button" aria-label="Show Leadership, Governance &amp; Public Administration in the pattern wheel"><div class="patterns-index-card-bar" style="background:#bc8cff"></div><div class="patterns-index-card-body"><div class="patterns-index-card-sector">Commerce &amp; Governance</div><h3 class="patterns-index-card-name">Leadership, Governance &amp; Public Administration</h3><p class="patterns-index-card-tagline">Government, executive leadership, and statecraft.</p><div class="patterns-index-card-meta"><span>36 temples</span><span class="weight">Resonant</span></div><div class="patterns-index-card-links"><a href="/sites/amun/patterns/" title="Ꜣmun — Egyptian">Ꜣmun</a><a href="/sites/anu/patterns/" title="Anû — Mesopotamian">Anû</a><a href="/sites/ashur/patterns/" title="Aššur — Mesopotamian">Aššur</a><a href="/sites/david/patterns/" title="Dāwîḏ — Canaanite">Dāwîḏ</a><a href="/sites/el/patterns/" title="Ēl — Canaanite">Ēl</a><a href="/sites/guandi/patterns/" title="Guāndì — Chinese">Guāndì</a><a href="/sites/horus/patterns/" title="Ḥr — Egyptian">Ḥr</a><a href="/sites/isis/patterns/" title="Ꜣst — Egyptian">Ꜣst</a><a href="/sites/iuppiter/patterns/" title="Iūpiter — roman">Iūpiter</a><a href="/sites/ra/patterns/" title="Rꜥ — Egyptian">Rꜥ</a><a href="/sites/rama/patterns/" title="Rāma — Sanskrit">Rāma</a><a href="/sites/solomon/patterns/" title="Šəlōmōh — Canaanite">Šəlōmōh</a><a href="/sites/tian/patterns/" title="Tiān — Chinese">Tiān</a><a href="/sites/zeus/patterns/" title="Zeús — Greek">Zeús</a><a href="/sites/athenai/patterns/" title="Athēnai — Greek Location">Athēnai</a><a href="/sites/chiron/patterns/" title="Chíron — Greek">Chíron</a><a href="/sites/daksa/patterns/" title="Dakṣa — Sanskrit">Dakṣa</a><a href="/sites/hera/patterns/" title="Hēra — Greek">Hēra</a><a href="/sites/honshu/patterns/" title="Honshū — Japanese">Honshū</a><a href="/sites/iason/patterns/" title="Iásōn — Greek">Iásōn</a><a href="/sites/kronos/patterns/" title="Krónos — Greek">Krónos</a><a href="/sites/long/patterns/" title="Lóng — Chinese">Lóng</a><a href="/sites/mazu/patterns/" title="Māzǔ — Chinese">Māzǔ</a><a href="/sites/modi/patterns/" title="Móði — Norse">Móði</a><a href="/sites/moses/patterns/" title="Mōšeh — Canaanite">Mōšeh</a><a href="/sites/nht/patterns/" title="Nḫt — Egyptian">Nḫt</a><a href="/sites/olodumare/patterns/" title="Olódùmarè — Yoruba">Olódùmarè</a><a href="/sites/olympos/patterns/" title="Ólympos — Greek Location">Ólympos</a><a href="/sites/prajapati/patterns/" title="Prajāpati — Sanskrit">Prajāpati</a><a href="/sites/shango/patterns/" title="Ṣàngó — Yoruba">Ṣàngó</a><a href="/sites/sparte/patterns/" title="Spártē — Greek Location">Spártē</a><a href="/sites/taishang/patterns/" title="Tàishàng — Chinese">Tàishàng</a><a href="/sites/tyr/patterns/" title="Týr — Norse">Týr</a><a href="/sites/vishnu/patterns/" title="Viṣṇu — Sanskrit">Viṣṇu</a><a href="/sites/wadjet/patterns/" title="Wꜣḏyt — Egyptian">Wꜣḏyt</a></div></div></div>
+                <div class="patterns-index-card" tabindex="0" role="button" aria-label="Show Philosophy, Ethics &amp; Standards in the pattern wheel"><div class="patterns-index-card-bar" style="background:#79c0ff"></div><div class="patterns-index-card-body"><div class="patterns-index-card-sector">Society &amp; Spirit</div><h3 class="patterns-index-card-name">Philosophy, Ethics &amp; Standards</h3><p class="patterns-index-card-tagline">Philosophy, ethics boards, and standards bodies.</p><div class="patterns-index-card-meta"><span>30 temples</span><span class="weight">Resonant</span></div><div class="patterns-index-card-links"><a href="/sites/ananke/patterns/" title="Anánkē — Greek">Anánkē</a><a href="/sites/arche/patterns/" title="Archḗ — Greek">Archḗ</a><a href="/sites/ashavahista/patterns/" title="Ašavahišta — Zoroastrian">Ašavahišta</a><a href="/sites/dhatr/patterns/" title="Dhātṛ — Sanskrit">Dhātṛ</a><a href="/sites/hen/patterns/" title="Hén — Greek">Hén</a><a href="/sites/phanes/patterns/" title="Phánēs — Greek">Phánēs</a><a href="/sites/tiandi/patterns/" title="Tiāndì — Chinese">Tiāndì</a><a href="/sites/wuji/patterns/" title="Wújí — Taoist">Wújí</a><a href="/sites/ab/patterns/" title="Ꜣb — Egyptian">Ꜣb</a><a href="/sites/asa/patterns/" title="Aša — Zoroastrian">Aša</a><a href="/sites/athenai/patterns/" title="Athēnai — Greek Location">Athēnai</a><a href="/sites/bagua/patterns/" title="Bāguà — Chinese">Bāguà</a><a href="/sites/chaos/patterns/" title="Cháos — Greek">Cháos</a><a href="/sites/he/patterns/" title="Hē — Greek">Hē</a><a href="/sites/laozi/patterns/" title="Lǎozǐ — Taoist">Lǎozǐ</a><a href="/sites/leviathan/patterns/" title="Liwyāṯān — Canaanite">Liwyāṯān</a><a href="/sites/maat/patterns/" title="Mꜣꜥt — Egyptian">Mꜣꜥt</a><a href="/sites/olodumare/patterns/" title="Olódùmarè — Yoruba">Olódùmarè</a><a href="/sites/orpheus/patterns/" title="Orpheús — Greek">Orpheús</a><a href="/sites/orun/patterns/" title="Ọrun — Yoruba">Ọrun</a><a href="/sites/rta/patterns/" title="Ṛta — Sanskrit">Ṛta</a><a href="/sites/styx/patterns/" title="Stýx — Greek">Stýx</a><a href="/sites/taichi/patterns/" title="Tàijí — Chinese">Tàijí</a><a href="/sites/tian/patterns/" title="Tiān — Chinese">Tiān</a><a href="/sites/vac/patterns/" title="Vāc — Sanskrit">Vāc</a><a href="/sites/vairocana/patterns/" title="Mahāvairocana — Buddhist">Mahāvairocana</a><a href="/sites/vishnu/patterns/" title="Viṣṇu — Sanskrit">Viṣṇu</a><a href="/sites/wuxing/patterns/" title="Wǔxíng — Chinese">Wǔxíng</a><a href="/sites/yinyang/patterns/" title="Yīnyáng — Taoist">Yīnyáng</a></div></div></div></div>
             </div>
         </section>
 
@@ -223,6 +254,10 @@
                     <div class="footer-block">
                         <span class="footer-label">Original Script</span>
                         <span class="footer-value">𒀭𒂗𒆤</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Explore</span>
+                        <span class="footer-value"><a href="https://punicodex.com/pantheon/" style="color:inherit;text-decoration:none;">Pantheon</a> · <a href="https://punicodex.com/lexicon/" style="color:inherit;text-decoration:none;">Lexicon</a> · <a href="https://punicodex.com/texts/" style="color:inherit;text-decoration:none;">Texts</a> · <a href="https://punicodex.com/everyday/" style="color:inherit;text-decoration:none;">Words</a> · <a href="https://punicodex.com/ink/" style="color:inherit;text-decoration:none;">Ink</a> · <a href="https://punicodex.com/pronunciation/" style="color:inherit;text-decoration:none;">Pronunciation</a> · <a href="https://punicodex.com/blog/" style="color:inherit;text-decoration:none;">Blog</a> · <a href="https://punicodex.com/store/enlil/" style="color:inherit;text-decoration:none;">Reliquary</a></span>
                     </div>
                 </div>
             </div>

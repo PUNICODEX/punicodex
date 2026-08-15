@@ -106,10 +106,15 @@ function main() {
     pass('create-flagship.js references buildRichProvenanceSection');
   }
 
-  if (!/const sectionOffset = 1;/.test(createFlagship)) {
-    fail('create-flagship.js sectionOffset is not hard-coded to 1');
+  // The lore page's section sequence is: 01 overview, 02 provenance
+  // (hard-coded in buildRichProvenanceSection), 03 Name Variations, then the
+  // remaining sections at 04+ via the offset. Guard the whole contract.
+  if (!/const sectionOffset = 2;/.test(createFlagship)) {
+    fail('create-flagship.js sectionOffset is not hard-coded to 2');
+  } else if (!/NAME_VARIATIONS = buildNameVariationsSection\(entry, 3\)/.test(createFlagship)) {
+    fail('create-flagship.js Name Variations section is not hard-coded to 03');
   } else {
-    pass('create-flagship.js hard-codes sectionOffset = 1 (provenance always section 02)');
+    pass('create-flagship.js hard-codes sectionOffset = 2 (provenance 02, name variations 03)');
   }
 
   // 2. CSS checks

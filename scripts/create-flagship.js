@@ -18,7 +18,7 @@ const cheerio = require('cheerio');
 const url = require('node:url');
 const { unicodeName } = require('unicode-name');
 const { autoLink } = require('./lib/crosslink.js');
-const { templeBreadcrumb } = require('./lib/breadcrumb.js');
+const { templeBreadcrumb, templeBreadcrumbNav } = require('./lib/breadcrumb.js');
 const { wikidataUrlFor } = require('./lib/wikidata-links.js');
 const { PANTHEON_META } = require('../type/js/pantheon-meta.js');
 const { derivePronunciation } = require('../type/js/pronunciation-rules.js');
@@ -1281,6 +1281,7 @@ function buildPronunciationPanel(entry) {
                     <p class="section-eyebrow">Say it right</p>
                     ${conventionalBadge}
                 </div>
+                <h2 class="pronunciation-title">How to pronounce ${escapeHtml(entry.unicode)}</h2>
                 <p class="pronunciation-respelling">${escapeHtml(derived.respelling)}</p>
                 <p class="pronunciation-ipa"><span class="pronunciation-ipa-value">${escapeHtml(derived.ipa)}</span> <span class="pronunciation-ipa-label">${escapeHtml(derived.ipaLabel)}</span></p>
                 <div class="pronunciation-rhythm">
@@ -1294,6 +1295,7 @@ function buildPronunciationPanel(entry) {
                         ${notes}
                 </ul>
                 <p class="pronunciation-rule">${escapeHtml(rule)}</p>
+                <p class="pronunciation-standard">Derived by the PuniCodex pronunciation engine — method at <a href="https://punicodex.com/pronunciation/">The Pronunciation Standard</a>.</p>
             </div>
         </div>
     </section>`;
@@ -1616,6 +1618,23 @@ function buildZeusFooter(entry, assetPrefix) {
     entry.tier === 'dual'
       ? 'Dual‑Tier Pair (Tier‑1 & Tier‑2)'
       : entry.tierLabel || `Tier ${entry.tier}`;
+  // Sitewide footer link block: crawlers get the important collections from
+  // every temple, plus this temple's own Reliquary collection.
+  const exploreLinks = [
+    ['Pantheon', 'https://punicodex.com/pantheon/'],
+    ['Lexicon', 'https://punicodex.com/lexicon/'],
+    ['Texts', 'https://punicodex.com/texts/'],
+    ['Words', 'https://punicodex.com/everyday/'],
+    ['Ink', 'https://punicodex.com/ink/'],
+    ['Pronunciation', 'https://punicodex.com/pronunciation/'],
+    ['Blog', 'https://punicodex.com/blog/'],
+    ['Reliquary', `https://punicodex.com/store/${entry.id}/`],
+  ]
+    .map(
+      ([label, href]) =>
+        `<a href="${href}" style="color:inherit;text-decoration:none;">${label}</a>`
+    )
+    .join(' \u00b7 ');
   return `    <footer class="main-footer">
         <div class="container">
             <div class="footer-grid">
@@ -1635,6 +1654,10 @@ function buildZeusFooter(entry, assetPrefix) {
                     <div class="footer-block">
                         <span class="footer-label">${getOriginalScriptLabel(entry)}</span>
                         <span class="footer-value">${hasOriginal ? greek : entry.unicode}</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Explore</span>
+                        <span class="footer-value">${exploreLinks}</span>
                     </div>
                 </div>
             </div>
@@ -2404,13 +2427,254 @@ function buildMetaDescription(entry, catalogEntry) {
   return desc.replace(/"/g, "'");
 }
 
+function buildHomeMetaDescription(entry) {
+  // Sponsorship-layout description for the temple root: names the restored
+  // form, the pantheon, the scholarly payload (original script, pronunciation,
+  // mythology) and the commercial nature of the page (sponsorship spaces +
+  // the Reliquary). Same SERP discipline as buildMetaDescription; tries
+  // progressively shorter phrasings before resorting to truncation.
+  const label = PANTHEON_META[entry.pantheon]?.label || entry.pantheon;
+  const firstClause = (entry.domain || '').split(',')[0].trim() || entry.domain;
+  const bases = [
+    `${entry.unicode} — the restored ${label} name of ${firstClause}: `,
+    `${entry.unicode} — restored ${label} name: ${firstClause}. `,
+  ];
+  const payloads = [
+    'original script, reconstructed pronunciation, and mythology.',
+    'original script, pronunciation, and mythology.',
+  ];
+  const closers = [
+    " Sponsor this temple's spaces or shop its Reliquary.",
+    ' Sponsor its spaces or shop the Reliquary.',
+    ' Sponsor its spaces; shop its Reliquary.',
+  ];
+  let desc = '';
+  for (const base of bases) {
+    for (const payload of payloads) {
+      const text = base.endsWith('. ')
+        ? payload.charAt(0).toUpperCase() + payload.slice(1)
+        : payload;
+      for (const closer of closers) {
+        const candidate = `${base}${text}${closer}`;
+        if (candidate.length <= 157) {
+          desc = candidate;
+          break;
+        }
+      }
+      if (desc) break;
+    }
+    if (desc) break;
+  }
+  if (!desc) {
+    desc = `${bases[1]}${payloads[1]}${closers[2]}`;
+    desc = desc.slice(0, 157);
+    desc = `${desc.slice(0, desc.lastIndexOf(' ')).trim()}…`;
+  }
+  return desc.replace(/"/g, "'");
+}
+
+function loreLeadSentence(catalogEntry) {
+  // One lore-grade lead sentence for thin tab intros (creatives / patron).
+  // Prefers the cultural-legacy opening; falls back to the mythology lead.
+  const sources = [catalogEntry?.culturalLegacy, catalogEntry?.mythology?.lead];
+  for (const src of sources) {
+    if (!src) continue;
+    const plain = src
+      .replace(/<[^>]+>/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+    const m = plain.match(/[^.!?]+[.!?]/);
+    let sentence = (m ? m[0] : plain).trim();
+    if (!sentence) continue;
+    if (sentence.length > 220) {
+      sentence = sentence.slice(0, 220);
+      sentence = `${sentence.slice(0, sentence.lastIndexOf(' ')).trim()}…`;
+    }
+    return sentence;
+  }
+  return '';
+}
+
+// ---------------------------------------------------------------------------
+// Name Variations section (lore page) — owned / ideal / ASCII forms, per the
+// Multi-Form System doctrine in AGENTS.md. Degrades to owned vs ASCII when an
+// entry carries no scholarly variants.
+// ---------------------------------------------------------------------------
+
+function buildNameVariationsSection(entry, sectionNumber) {
+  const source = getOriginalScript(entry);
+  const variants = Array.isArray(entry.variants) ? entry.variants : [];
+  const byType = (t) => variants.filter((v) => v && v.type === t && v.unicode);
+  const ownedForms = getOwnedForms(entry);
+  const isOwnedForm = (form) => OWNED_DOMAINS_SET.has(`${form}.com`.toLowerCase().normalize('NFC'));
+  const restores = source ? `Restores <strong>${escapeHtml(source)}</strong>. ` : '';
+
+  const cards = [];
+  const seen = new Set();
+  const pushCard = (badge, form, why) => {
+    const key = form.toLowerCase().normalize('NFC');
+    if (seen.has(key)) return;
+    seen.add(key);
+    cards.push(`                <div class="name-card reveal-up">
+                    <h3 class="card-title">${badge}</h3>
+                    <p class="card-unicode">${escapeHtml(form)}</p>
+                    <p class="card-body">${why}</p>
+                </div>`);
+  };
+
+  ownedForms.forEach((form, i) => {
+    const domain = `${form.toLowerCase()}.com`;
+    const why =
+      i === 0
+        ? `${restores}The live temple domain — <strong>${escapeHtml(domain)}</strong>.`
+        : `${restores}A second live spelling — <strong>${escapeHtml(domain)}</strong>.`;
+    pushCard(i === 0 ? 'Owned · Primary' : 'Owned', form, why);
+  });
+  if (!ownedForms.length) {
+    pushCard(
+      'Canonical Restoration',
+      entry.unicode,
+      `${restores}The full Unicode restoration. This domain is not in the PuniCodex collection.`
+    );
+  }
+  for (const v of byType('ideal')) {
+    const status = isOwnedForm(v.unicode)
+      ? ' Live in the collection.'
+      : ' Not in the PuniCodex collection.';
+    const note = v.note ? `${escapeHtml(v.note)}.` : 'The philologically ideal form.';
+    pushCard('Ideal Form', v.unicode, `${restores}${note}${status}`);
+  }
+  for (const v of byType('macron-only')) {
+    const note = v.note ? `${escapeHtml(v.note)}.` : 'Standard academic convention.';
+    pushCard('Scholarly Convention', v.unicode, `${restores}${note}`);
+  }
+  if (!seen.has((entry.ascii || '').toLowerCase().normalize('NFC'))) {
+    const flattens = source ? `Flattens <strong>${escapeHtml(source)}</strong>. ` : '';
+    pushCard(
+      'ASCII Form',
+      entry.ascii,
+      `${flattens}The plain ASCII fallback — what DNS and legacy systems see.`
+    );
+  }
+
+  return `<section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">${String(sectionNumber).padStart(2, '0')}</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of ${escapeHtml(entry.unicode)}</p>
+        </div>
+        <div class="name-grid">
+${cards.join('\n')}
+        </div>
+    </div>
+</section>`;
+}
+
+// ---------------------------------------------------------------------------
+// Cross-link band (lore page) — /texts/ and /everyday/ link to temples; this
+// band closes the loop back. Maps are inverted at generation time from the
+// canonical xref corpora and the everyday-word registry. Silent omission when
+// a temple has no matches.
+// ---------------------------------------------------------------------------
+
+const TEXTS_XREF_MAP = (() => {
+  // templeId → [{ id, title }] of sacred texts mentioning it
+  try {
+    const registry = require(path.join(ROOT, 'platform', 'texts', 'registry.json'));
+    const map = new Map();
+    for (const text of registry.texts || []) {
+      const xrefPath = path.join(ROOT, 'platform', 'texts', text.id, 'xref.json');
+      if (!fs.existsSync(xrefPath)) continue; // poem-structure texts carry no xref
+      const xref = JSON.parse(fs.readFileSync(xrefPath, 'utf8'));
+      for (const link of xref.links || []) {
+        if (!link.temple) continue;
+        if (!map.has(link.temple)) map.set(link.temple, []);
+        map.get(link.temple).push({ id: text.id, title: text.title });
+      }
+    }
+    return map;
+  } catch {
+    return new Map();
+  }
+})();
+
+const EVERYDAY_WORDS_MAP = (() => {
+  // entryId → [{ word, gloss, anchor }] of everyday words descended from it
+  try {
+    const { EVERYDAY_WORDS } = require(path.join(ROOT, 'type', 'js', 'everyday-words.js'));
+    const map = new Map();
+    for (const card of EVERYDAY_WORDS || []) {
+      if (!card.entry || !card.word) continue;
+      if (!map.has(card.entry)) map.set(card.entry, []);
+      map.get(card.entry).push({
+        word: card.word,
+        gloss: card.gloss || '',
+        anchor: card.word.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+      });
+    }
+    return map;
+  } catch {
+    return new Map();
+  }
+})();
+
+function buildCrossLinkBand(entry, sectionNumber) {
+  const texts = TEXTS_XREF_MAP.get(entry.id) || [];
+  const words = EVERYDAY_WORDS_MAP.get(entry.id) || [];
+  if (!texts.length && !words.length) return '';
+
+  const groups = [];
+  if (texts.length) {
+    const links = texts
+      .map(
+        (t) =>
+          `                    <a href="https://punicodex.com/texts/${t.id}/" class="source-badge">${escapeHtml(t.title)}</a>`
+      )
+      .join('\n');
+    groups.push(`            <div class="reveal-up">
+                <h3 class="symbols-title">In the Texts</h3>
+                <div class="sources-list">
+${links}
+                </div>
+            </div>`);
+  }
+  if (words.length) {
+    const links = words
+      .map(
+        (w) =>
+          `                    <a href="https://punicodex.com/everyday/#${w.anchor}" class="source-badge" title="${escapeHtml(w.gloss)}">${escapeHtml(w.word)}</a>`
+      )
+      .join('\n');
+    groups.push(`            <div class="reveal-up">
+                <h3 class="symbols-title">Words Descended from This Name</h3>
+                <div class="sources-list">
+${links}
+                </div>
+            </div>`);
+  }
+
+  return `<section class="section section-related" id="texts-and-words">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">${String(sectionNumber).padStart(2, '0')}</span>
+            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
+            <p class="section-subtitle">Where ${escapeHtml(entry.unicode)} lives in the sacred library and in the words you still speak</p>
+        </div>
+        <div class="sources-section">
+${groups.join('\n')}
+        </div>
+    </div>
+</section>`;
+}
+
 function generateHomePage(
   entry,
   palette,
   slotNames,
   templateDir,
   rentalTier = 'B',
-  catalogEntry = null
+  _catalogEntry = null
 ) {
   let html = fs.readFileSync(path.join(templateDir, 'index.html'), 'utf8');
   const templeId = entry.id;
@@ -2422,8 +2686,9 @@ function generateHomePage(
     MEANING: entry.meaning || '',
     TAGLINE: entry.tagline || '',
     BREADCRUMB_JSONLD: templeBreadcrumb(entry),
+    BREADCRUMB_NAV: templeBreadcrumbNav(entry),
     PRONUNCIATION_PANEL: buildPronunciationPanel(entry),
-    DESCRIPTION: buildMetaDescription(entry, catalogEntry),
+    DESCRIPTION: buildHomeMetaDescription(entry),
     TITLE_TAG: (() => {
       const label = PANTHEON_META[entry.pantheon]?.label || entry.pantheon;
       const firstClause = (entry.domain || '').split(',')[0].trim() || entry.domain;
@@ -2447,9 +2712,23 @@ function generateHomePage(
         ? best
         : best.replace(' | PUNICODEX', ' · Restored Temple | PUNICODEX');
     })(),
-    SAME_AS_JSON: (() => {
-      const url = wikidataUrlFor(entry.id);
-      return url ? `,\n            "sameAs": ["${url}"]` : '';
+    ABOUT_JSON: (() => {
+      // name is the ASCII form; the Unicode restoration and the original
+      // script (when one exists) are alternates. Wikidata sameAs preserved.
+      const original = getOriginalScript(entry);
+      const alternateName = [entry.unicode];
+      if (original && original !== entry.unicode && original !== entry.ascii) {
+        alternateName.push(original);
+      }
+      const about = {
+        '@type': 'Thing',
+        name: entry.ascii,
+        alternateName,
+        description: entry.domain,
+      };
+      const wiki = wikidataUrlFor(entry.id);
+      if (wiki) about.sameAs = [wiki];
+      return JSON.stringify(about, null, 4).split('\n').join('\n        ');
     })(),
     PANTHEON_LABEL: PANTHEON_META[entry.pantheon]?.label || entry.pantheon,
     TIER_LABEL: entry.tierLabel || `Tier ${entry.tier}`,
@@ -2552,11 +2831,11 @@ function buildPronunciationContent(entry, catalogEntry) {
         </div>
         <div class="pronunciation-sidebar reveal-up" data-delay="150">
           <div class="sidebar-card">
-            <h4 class="sidebar-title">Modern Approximation</h4>
+            <h3 class="sidebar-title">Modern Approximation</h3>
             <p class="sidebar-text">${p.approximation || ''}</p>
-            ${kin ? `<div class="sidebar-divider"></div><h4 class="sidebar-title">Etymological Kin</h4><ul class="kin-list">${kin}</ul>` : ''}
+            ${kin ? `<div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list">${kin}</ul>` : ''}
           </div>
-          ${p.note ? `<div class="sidebar-card accent-card"><h4 class="sidebar-title">The Accent / Script Rule</h4><p class="sidebar-text">${p.note}</p></div>` : ''}
+          ${p.note ? `<div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">${p.note}</p></div>` : ''}
         </div>
       </div>`;
   }
@@ -2648,10 +2927,13 @@ function generateLorePage(entry, palette, loreSections, templateDir, catalog) {
   let html = fs.readFileSync(path.join(templateDir, 'lore', 'index.html'), 'utf8');
   const templeId = entry.id;
   const nameProse = buildNameProse(entry);
-  // The rich provenance builder always emits section 02 (placeholder or curated).
-  const sectionOffset = 1;
+  // The rich provenance builder always emits section 02 (placeholder or
+  // curated); Name Variations takes 03 and the remaining sections follow.
+  const sectionOffset = 2;
   const vars = {
     BREADCRUMB_JSONLD: templeBreadcrumb(entry, { name: 'Lore', path: 'lore/' }),
+    BREADCRUMB_NAV: templeBreadcrumbNav(entry, { name: 'Lore', path: 'lore/' }),
+    META_DESCRIPTION: buildMetaDescription(entry, catalogEntry),
     UNICODE: entry.unicode,
     ASCII: entry.ascii,
     GREEK: getOriginalScript(entry) || '—',
@@ -2728,6 +3010,8 @@ function generateLorePage(entry, palette, loreSections, templateDir, catalog) {
     4 + sectionOffset
   );
   vars.RELATED_NAMES = buildRelatedNamesSection(entry, 5 + sectionOffset);
+  vars.NAME_VARIATIONS = buildNameVariationsSection(entry, 3);
+  vars.CROSS_LINK_BAND = buildCrossLinkBand(entry, 6 + sectionOffset);
   vars.EXTENDED_LORE_CTA = buildExtendedLoreCTA(entry, catalogEntry);
   vars.FOOTER = buildZeusFooter(entry, '../');
   vars.EXTENDED_TAB = buildExtendedTab('lore', entry.id);
@@ -2804,6 +3088,7 @@ function generateGalleryPage(entry, palette, templateDir) {
   const templeId = entry.id;
   const vars = {
     BREADCRUMB_JSONLD: templeBreadcrumb(entry, { name: 'Gallery', path: 'gallery/' }),
+    BREADCRUMB_NAV: templeBreadcrumbNav(entry, { name: 'Gallery', path: 'gallery/' }),
     UNICODE: entry.unicode,
     ASCII: entry.ascii,
     GREEK: getOriginalScript(entry) || '—',
@@ -2902,13 +3187,18 @@ function substituteTempleVars(content, entry, tab = null) {
     .split('{{DOMAIN}}')
     .join(entry.domain || '')
     .split('{{BREADCRUMB_JSONLD}}')
-    .join(templeBreadcrumb(entry, tab));
+    .join(templeBreadcrumb(entry, tab))
+    .split('{{BREADCRUMB_NAV}}')
+    .join(templeBreadcrumbNav(entry, tab));
 }
 
-function copyCreativesTemplate(siteDir, templateDir, entry) {
+function copyCreativesTemplate(siteDir, templateDir, entry, catalogEntry = null) {
   const srcDir = path.join(templateDir, 'creatives');
   const destDir = path.join(siteDir, 'creatives');
   if (!fs.existsSync(srcDir)) return;
+  // Lore-grade lead sentence under the H1 (omitted when the catalog has none).
+  const lead = loreLeadSentence(catalogEntry);
+  const intro = lead ? `<p class="section-lead">${escapeHtml(lead)}</p>` : '';
   fs.mkdirSync(destDir, { recursive: true });
   for (const file of fs.readdirSync(srcDir, { withFileTypes: true })) {
     if (!file.isFile()) continue;
@@ -2917,7 +3207,9 @@ function copyCreativesTemplate(siteDir, templateDir, entry) {
       const content = fs.readFileSync(path.join(srcDir, file.name), 'utf8');
       safeWriteFileSync(
         dest,
-        substituteTempleVars(content, entry, { name: 'Creatives', path: 'creatives/' }),
+        substituteTempleVars(content, entry, { name: 'Creatives', path: 'creatives/' })
+          .split('{{CREATIVES_INTRO}}')
+          .join(intro),
         'utf8'
       );
     } else {
@@ -2926,10 +3218,13 @@ function copyCreativesTemplate(siteDir, templateDir, entry) {
   }
 }
 
-function copyPatronTemplate(siteDir, templateDir, entry) {
+function copyPatronTemplate(siteDir, templateDir, entry, catalogEntry = null) {
   const srcDir = path.join(templateDir, 'patron');
   const destDir = path.join(siteDir, 'patron');
   if (!fs.existsSync(srcDir)) return;
+  // Lore-grade lead sentence under the H1 (omitted when the catalog has none).
+  const lead = loreLeadSentence(catalogEntry);
+  const intro = lead ? `<p class="patron-hero-lead">${escapeHtml(lead)}</p>` : '';
   fs.mkdirSync(destDir, { recursive: true });
   for (const file of fs.readdirSync(srcDir, { withFileTypes: true })) {
     if (!file.isFile()) continue;
@@ -2938,7 +3233,9 @@ function copyPatronTemplate(siteDir, templateDir, entry) {
       const content = fs.readFileSync(path.join(srcDir, file.name), 'utf8');
       safeWriteFileSync(
         dest,
-        substituteTempleVars(content, entry, { name: 'Patron', path: 'patron/' }),
+        substituteTempleVars(content, entry, { name: 'Patron', path: 'patron/' })
+          .split('{{PATRON_INTRO}}')
+          .join(intro),
         'utf8'
       );
     } else {
@@ -3001,16 +3298,102 @@ function buildPatternsPayload(entry) {
   };
 }
 
+// --- Static pre-render for crawlers (SEO wave) ----------------------------
+// patterns.js replaces both panels on boot; the static copies below exist so
+// crawlers see the sister-temple anchors without executing JavaScript. Markup
+// mirrors the patterns.js renderers class-for-class.
+
+function patternWeightLabel(w) {
+  return w === 2 ? 'Primary' : 'Resonant';
+}
+
+function patternWeightClass(w) {
+  return w === 2 ? 'primary' : 'resonant';
+}
+
+function patternTempleHref(member) {
+  return member.hasFlagship ? `/sites/${member.id}/patterns/` : `/sites/${member.id}/`;
+}
+
+function patternSector(payload, sectorId) {
+  return (payload.sectors || []).find((s) => s && s.id === sectorId) || null;
+}
+
+function buildPatternsDetailStatic(payload) {
+  const ind = (payload.industries || [])[0];
+  if (!ind) return '';
+  const sector = patternSector(payload, ind.sector);
+  const sectorName = sector ? sector.name : ind.sector;
+  const sectorColor = sector ? sector.color : '#d4af37';
+  const others = ind.members.filter((m) => m.id !== payload.id);
+  const self = ind.members.find((m) => m.id === payload.id);
+
+  let html = '';
+  html += `<div class="patterns-detail-sector"><span class="patterns-sector-dot" style="background:${sectorColor}"></span>${escapeHtml(sectorName)}</div>`;
+  html += `<h3 class="patterns-detail-title">${escapeHtml(ind.name)}</h3>`;
+  html += `<p class="patterns-detail-tagline">${escapeHtml(ind.tagline)}</p>`;
+  html += `<span class="patterns-detail-weight ${patternWeightClass(ind.weight)}">${patternWeightLabel(ind.weight)} alignment for ${escapeHtml(payload.unicode)}</span>`;
+  html += `<p class="patterns-detail-why"><strong>Why ${escapeHtml(payload.unicode)} aligns:</strong> ${escapeHtml(self ? self.why : ind.note)}</p>`;
+  if (others.length) {
+    html += `<h4 class="patterns-aligned-title">${others.length} aligned temple${others.length === 1 ? '' : 's'} share this pattern</h4>`;
+    html += '<div class="patterns-aligned-list">';
+    for (const m of others) {
+      html += `<a class="patterns-aligned-item" href="${patternTempleHref(m)}"><span class="patterns-aligned-unicode">${escapeHtml(m.unicode)}</span><span class="patterns-aligned-pantheon">${escapeHtml(m.pantheonLabel || m.pantheon)}</span><span class="patterns-aligned-weight ${patternWeightClass(m.weight)}">${patternWeightLabel(m.weight)}</span></a>`;
+    }
+    html += '</div>';
+  } else {
+    html += '<h4 class="patterns-aligned-title">This pattern stands alone</h4>';
+    html += `<div class="patterns-aligned-self">No other temple in the collection carries the ${escapeHtml(ind.name)} pattern — ${escapeHtml(payload.unicode)} holds it uniquely.</div>`;
+  }
+  return html;
+}
+
+function buildPatternsIndexStatic(payload) {
+  const industries = payload.industries || [];
+  if (!industries.length) return '';
+  return industries
+    .map((ind) => {
+      const sector = patternSector(payload, ind.sector);
+      const sectorName = sector ? sector.name : ind.sector;
+      const sectorColor = sector ? sector.color : '#d4af37';
+      const others = ind.members.filter((m) => m.id !== payload.id);
+      const links = others.length
+        ? `<div class="patterns-index-card-links">${others
+            .map(
+              (m) =>
+                `<a href="${patternTempleHref(m)}" title="${escapeHtml(m.unicode)} — ${escapeHtml(m.pantheonLabel || m.pantheon)}">${escapeHtml(m.unicode)}</a>`
+            )
+            .join('')}</div>`
+        : '';
+      return (
+        `<div class="patterns-index-card" tabindex="0" role="button" aria-label="Show ${escapeHtml(ind.name)} in the pattern wheel">` +
+        `<div class="patterns-index-card-bar" style="background:${sectorColor}"></div>` +
+        `<div class="patterns-index-card-body">` +
+        `<div class="patterns-index-card-sector">${escapeHtml(sectorName)}</div>` +
+        `<h3 class="patterns-index-card-name">${escapeHtml(ind.name)}</h3>` +
+        `<p class="patterns-index-card-tagline">${escapeHtml(ind.tagline)}</p>` +
+        `<div class="patterns-index-card-meta"><span>${ind.members.length}${ind.members.length === 1 ? ' temple' : ' temples'}</span>` +
+        `<span class="weight">${patternWeightLabel(ind.weight)}</span></div>` +
+        links +
+        `</div></div>`
+      );
+    })
+    .join('\n                ');
+}
+
 function generatePatternsPage(entry, _palette, templateDir) {
   const html0 = fs.readFileSync(path.join(templateDir, 'patterns', 'index.html'), 'utf8');
   const payload = buildPatternsPayload(entry);
   const vars = {
     BREADCRUMB_JSONLD: templeBreadcrumb(entry, { name: 'Patterns', path: 'patterns/' }),
+    BREADCRUMB_NAV: templeBreadcrumbNav(entry, { name: 'Patterns', path: 'patterns/' }),
     UNICODE: entry.unicode,
     ASCII: entry.ascii,
     TEMPLE_ID: entry.id,
     DOMAIN: entry.domain || '',
     PATTERNS_JSON: JSON.stringify(payload).replace(/<\//g, '<\\/'),
+    PATTERNS_DETAIL_STATIC: buildPatternsDetailStatic(payload),
+    PATTERNS_INDEX_STATIC: buildPatternsIndexStatic(payload),
     FOOTER: buildZeusFooter(entry, '../'),
   };
   return replacePlaceholders(html0, vars);
@@ -3265,8 +3648,8 @@ function createFlagship(templeId, options = {}) {
     safeRenameSync(tmpPath, outPath);
   }
 
-  copyCreativesTemplate(siteDir, TEMPLATE_DIR, entry);
-  copyPatronTemplate(siteDir, TEMPLATE_DIR, entry);
+  copyCreativesTemplate(siteDir, TEMPLATE_DIR, entry, catalog[entry.id] || null);
+  copyPatronTemplate(siteDir, TEMPLATE_DIR, entry, catalog[entry.id] || null);
   copyPatternsAssets(siteDir, TEMPLATE_DIR);
 
   console.log(`✓ ${templeId}: wrote ${Object.keys(outputs).length} files (backup: ${backupDir})`);

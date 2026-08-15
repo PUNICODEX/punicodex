@@ -85,11 +85,13 @@ const FAVICON_CLUSTER = `<link rel="icon" type="image/svg+xml" href="/assets/bra
 <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">`;
 
 const MARKER_BLOCKS = `<!-- PUNICODEX-HERALD-BEACON-START -->
-<link rel="stylesheet" href="/css/herald-beacon.css?v=1">
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
 <script src="/js/herald-beacon.js?v=1" defer></script>
 <!-- PUNICODEX-HERALD-BEACON-END -->
 <!-- PUNICODEX-COOKIE-CONSENT-START -->
-<link rel="stylesheet" href="/css/cookie-consent.css?v=1">
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
 <script src="/js/cookie-consent.js?v=1" defer></script>
 <!-- PUNICODEX-COOKIE-CONSENT-END -->`;
 
@@ -163,6 +165,11 @@ const ATLAS_CSS = `
 .pa-method h2{font-family:'Cinzel',serif;color:#d4af37;font-size:1.4rem;margin:0 0 .7rem}
 .pa-method p{color:#9a948a;max-width:58ch;margin:0 auto 1.2rem}
 .pa-method-link{display:inline-block;color:#0a0a0c;background:#d4af37;border-radius:999px;padding:.55rem 1.6rem;text-decoration:none;font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.pa-faq{max-width:760px;margin:3rem auto 0}
+.pa-faq-item{background:#121216;border:1px solid rgba(212,175,55,.16);border-radius:12px;padding:1rem 1.25rem;margin-bottom:.6rem}
+.pa-faq-item summary{cursor:pointer;color:#e8e4dc;font-size:.95rem}
+.pa-faq-item summary::marker{color:#d4af37}
+.pa-faq-item p{color:#9a948a;font-size:.85rem;line-height:1.6;margin:.7rem 0 0}
 @media(max-width:1100px){.pa-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:700px){.pa-grid{grid-template-columns:1fr}.pa-stats{grid-template-columns:repeat(2,1fr)}.pa-hero{padding-top:4rem}.pa-hero h1{font-size:1.9rem}}
 @media(prefers-reduced-motion:reduce){.pt-card,.pfp-input{transition:none!important}}
@@ -205,55 +212,59 @@ ${list}
     .join('\n');
 }
 
+// The atlas FAQ, defined once so the FAQPage JSON-LD and the visible section
+// on the page can never drift apart (structured data must match content).
+function atlasFaqData(m) {
+  return [
+    {
+      q: 'What is the PuniCodex pattern atlas?',
+      a: `The pattern atlas maps all ${m.entryCount} flagship temples to the modern world: ${m.industryCount} industries across ${m.sectorCount} sectors, with primary and resonant temple seats. Each temple takes seats in the industries its archetype genuinely resonates with — prophecy to forecasting, forge-gods to manufacturing, psychopomps to logistics — and every seat carries its reasoning.`,
+    },
+    {
+      q: 'How are temples matched to industries?',
+      a: "Mechanically and openly. Every match is argued from the deity's documented domains, myths, and functions — weighted, published, and open to challenge. No match is made for marketing value alone, and the full method is published on the methodology page so any reader can audit or contest a seat.",
+    },
+    {
+      q: 'How do I find which temples match my industry or profession?',
+      a: `Use the Find My Pattern bar: type your trade as you would say it — plumber, poet, founder, winemaker, dentist, pastor — and the atlas resolves it through a curated vocabulary of ${m.aliasCount} aliases to the larger industry categories, then shows the temples that hold seats there. You never need to know the taxonomy; the atlas speaks your language first.`,
+    },
+    {
+      q: 'Can a pattern match be challenged or corrected?',
+      a: 'Yes — that is the point of publishing the method. Every seat in the atlas is falsifiable: the methodology page states how matches are derived and how to challenge one. A match that cannot be argued aloud does not survive review; the atlas is a scholarly claim, not an advertisement.',
+    },
+    {
+      q: 'Why do some industries have more temples than others?',
+      a: 'The atlas was built outward from mythology, not inward from advertising markets. Traditions rich in sea-gods produce deep maritime coverage; traditions rich in craft-gods produce deep manufacturing coverage. That asymmetry is what defends the whole system: the patterns describe the archetypes as they are, and the counts are published openly for scrutiny.',
+    },
+  ];
+}
+
 function buildAtlasFaq(graph) {
-  const m = graph.meta;
   const faq = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'What is the PuniCodex pattern atlas?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: `The pattern atlas maps all ${m.entryCount} flagship temples to the modern world: ${m.industryCount} industries across ${m.sectorCount} sectors, with primary and resonant temple seats. Each temple takes seats in the industries its archetype genuinely resonates with — prophecy to forecasting, forge-gods to manufacturing, psychopomps to logistics — and every seat carries its reasoning.`,
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'How are temples matched to industries?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: "Mechanically and openly. Every match is argued from the deity's documented domains, myths, and functions — weighted, published, and open to challenge. No match is made for marketing value alone, and the full method is published on the methodology page so any reader can audit or contest a seat.",
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'How do I find which temples match my industry or profession?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: `Use the Find My Pattern bar: type your trade as you would say it — plumber, poet, founder, winemaker, dentist, pastor — and the atlas resolves it through a curated vocabulary of ${m.aliasCount} aliases to the larger industry categories, then shows the temples that hold seats there. You never need to know the taxonomy; the atlas speaks your language first.`,
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Can a pattern match be challenged or corrected?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Yes — that is the point of publishing the method. Every seat in the atlas is falsifiable: the methodology page states how matches are derived and how to challenge one. A match that cannot be argued aloud does not survive review; the atlas is a scholarly claim, not an advertisement.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Why do some industries have more temples than others?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'The atlas was built outward from mythology, not inward from advertising markets. Traditions rich in sea-gods produce deep maritime coverage; traditions rich in craft-gods produce deep manufacturing coverage. That asymmetry is what defends the whole system: the patterns describe the archetypes as they are, and the counts are published openly for scrutiny.',
-        },
-      },
-    ],
+    mainEntity: atlasFaqData(graph.meta).map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
   };
   return `<script type="application/ld+json">\n${JSON.stringify(faq, null, 4).replace(/</g, '\\u003c')}\n</script>`;
+}
+
+function atlasFaqHtml(graph) {
+  const items = atlasFaqData(graph.meta)
+    .map(
+      (f) => `    <details class="pa-faq-item">
+      <summary>${esc(f.q)}</summary>
+      <p>${esc(f.a)}</p>
+    </details>`
+    )
+    .join('\n');
+  return `  <section class="pa-faq">
+    <h2 class="pa-section-title">Questions, Answered</h2>
+${items}
+  </section>`;
 }
 
 function renderAtlas(graph, registry) {
@@ -324,6 +335,8 @@ ${MARKER_BLOCKS}
   <div class="pa-grid">
 ${atlasSectorsHtml(graph)}
   </div>
+
+${atlasFaqHtml(graph)}
 
   <section class="pa-method">
     <h2>Scrutiny, in Public</h2>

@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{TITLE_TAG}}</title>
     <meta name="description" content="{{DESCRIPTION}}">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
     <link rel="stylesheet" href="styles.css?v=perf20">
@@ -41,15 +43,7 @@
                 "url": "https://punicodex.com/pantheon/"
             }
         ],
-        "about": {
-            "@type": "Thing",
-            "name": "{{GREEK}}",
-            "alternateName": [
-                "{{ASCII}}",
-                "{{UNICODE}}"
-            ],
-            "description": "{{DOMAIN}}"{{SAME_AS_JSON}}
-        },
+        "about": {{ABOUT_JSON}},
         "primaryImageOfPage": {
             "@type": "ImageObject",
             "url": "https://punicodex.com/assets/og/{{TEMPLE_ID}}.jpg"
@@ -64,6 +58,19 @@
     <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
     <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
     <meta name="theme-color" content="#0A0A0C">
+    <style>
+        .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+        .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+        .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+        .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+        .temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+        .temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+        .temple-breadcrumb-list [aria-current] { color: var(--primary, #d4af37); }
+        .pronunciation-title { font-family: var(--font-display); font-size: clamp(1.3rem, 2.5vw, 1.8rem); font-weight: 400; color: var(--white, #f5f5f5); letter-spacing: 0.05em; margin: 0 0 1.1rem; }
+        .pronunciation-standard { margin: 1rem 0 0; font-size: 0.8rem; color: var(--white-dim, #a0a0a0); }
+        .pronunciation-standard a { color: var(--primary, #d4af37); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.4); }
+        .pronunciation-standard a:hover { color: var(--primary-bright, #f0d878); }
+    </style>
     {{BREADCRUMB_JSONLD}}
 </head>
 <body>
@@ -109,6 +116,8 @@
             </button>
         </div>
     </nav>
+
+    {{BREADCRUMB_NAV}}
 
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
@@ -631,16 +640,19 @@
     </div>
 
     <!-- Versioned asset refs: /js is immutable-cached for a year — bump ?v= when these files change. -->
-    <script src="/js/flagship-canvas.js?v=1"></script>
+    <!-- All deferred: no inline script below calls these libs at parse time;
+         script.js only reads window.PUNICODEX_API_BASE (set above) and touches
+         CreativeNormalize inside a typeof-guarded async upload handler. -->
+    <script src="/js/flagship-canvas.js?v=1" defer></script>
     <script src="/js/pc-fx-core.js?v=1" defer></script>
     <script src="/js/pc-fx-halo.js?v=1" defer></script>
-    
+
 
 <script>window.PUNICODEX_API_BASE = "";</script>
-    <script src="/js/px-core.js?v=perf21"></script>
-    <script src="/js/temple-base.js?v=perf20"></script>
-    <script src="/js/creative-normalize.js?v=1"></script>
-    <script src="script.js?v=perf21"></script>
+    <script src="/js/px-core.js?v=perf21" defer></script>
+    <script src="/js/temple-base.js?v=perf20" defer></script>
+    <script src="/js/creative-normalize.js?v=1" defer></script>
+    <script src="script.js?v=perf21" defer></script>
 
 <script>
 (function(){

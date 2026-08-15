@@ -42,7 +42,15 @@ function urlToFile(url) {
   if (pathname.startsWith('/api/')) return null;
   // /foo/ -> foo/index.html, /foo.html -> foo.html, / -> index.html
   if (pathname.endsWith('.html')) return pathname.slice(1);
-  return path.join(pathname, 'index.html').replace(/^[\\/]/, '');
+  const dirIndex = path.join(pathname, 'index.html').replace(/^[\\/]/, '');
+  // vercel.json sets cleanUrls + trailingSlash, so a committed foo.html is
+  // also served at /foo/ (the .html URL 308s there): accept the sibling file
+  // as the backing page when no directory index exists.
+  if (!fs.existsSync(path.join(ROOT, dirIndex))) {
+    const sibling = `${pathname.replace(/\/$/, '')}.html`.replace(/^\//, '');
+    if (fs.existsSync(path.join(ROOT, sibling))) return sibling;
+  }
+  return dirIndex;
 }
 
 const EXCLUDE_PATTERNS = [
@@ -66,6 +74,9 @@ const EXCLUDE_PATTERNS = [
   /^entry\.html$/,
   /^submit\.html$/,
   /^claim\.html$/,
+  // Canonical-consolidated into /search/ — kept on disk but no longer a
+  // sitemap entry.
+  /^search-v2\//,
   /^account\//,
   /scholars\/(login|apply|dashboard|review|admin|institution|dept-admin)\//,
   /creatives\/creator\.html$/,
@@ -126,7 +137,13 @@ function run() {
     const orphans = [];
     for (const file of htmlFiles) {
       if (!isIndexablePage(file)) continue;
-      if (!urlSet.has(pageUrl(file))) orphans.push(file);
+      // A committed foo.html is served at /foo.html and — via cleanUrls +
+      // trailingSlash — at /foo/; the sitemap may list either form.
+      const candidates = [pageUrl(file)];
+      if (file.endsWith('.html') && !file.endsWith('/index.html')) {
+        candidates.push(`https://punicodex.com/${file.slice(0, -'.html'.length)}/`);
+      }
+      if (!candidates.some((u) => urlSet.has(u))) orphans.push(file);
     }
     assert.deepStrictEqual(orphans.slice(0, 10), [], `${orphans.length} orphaned pages`);
   });

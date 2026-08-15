@@ -32,6 +32,7 @@ const EXPLORE = [
   ['/tiers/', 'Tier System'],
   ['/rulebook/', 'Rulebook'],
   ['/type/', 'Type'],
+  ['/game/', 'Game'],
   ['/search/', 'Search'],
 ];
 const RESOURCES = [
@@ -44,13 +45,17 @@ const RESOURCES = [
   ['/api/v1/docs/', 'API'],
   ['/appraise/', 'Appraise'],
   ['/authenticity/', 'Authenticity'],
+  ['/pronunciation/', 'Pronunciation'],
+  ['/store/', 'Store'],
   ['/oracle/', 'Oracle'],
   ['/arbitrage/', 'Arbitrage'],
 ];
 const CONNECT = [
   ['/about/', 'About'],
   ['/about/founder/', 'Founder'],
+  ['/art/', 'Art'],
   ['/careers/', 'Careers'],
+  ['/university-sponsorship/', 'Universities'],
   ['/contact/', 'Contact'],
   ['/privacy/', 'Privacy'],
   ['/terms/', 'Terms'],

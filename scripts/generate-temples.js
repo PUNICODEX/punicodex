@@ -7,6 +7,7 @@
  */
 
 const fs = require('node:fs');
+const { writeFileWithRetry } = require('./write-file-retry.js');
 const path = require('node:path');
 const { domainToASCII } = require('node:url');
 
@@ -23,6 +24,7 @@ const {
   getProvenance,
   getNoScriptNote,
 } = require('../type/js/original-scripts.js');
+const { derivePronunciation } = require('../type/js/pronunciation-rules.js');
 // Stacked diacritics are no longer rendered inline in base temples;
 // they remain available via the Type Tool and flagship temples.
 
@@ -354,6 +356,7 @@ function sleep(ms) {
 
 async function safeWriteFile(targetPath, data, retries = 5) {
   const tmpPath = `${targetPath}.tmp`;
+  writeFileWithRetry(tmpPath, data, 'utf8');
   fs.writeFileSync(tmpPath, data, 'utf8');
   let lastError;
   for (let attempt = 0; attempt < retries; attempt++) {
@@ -400,9 +403,22 @@ function getBreakdownTypeLabel(type) {
 }
 
 function getRelatedEntries(entry, allEntries, limit = 6) {
-  return allEntries
-    .filter((e) => e.id !== entry.id && e.pantheon === entry.pantheon)
-    .slice(0, limit);
+  const pantheonEntries = allEntries.filter(
+    (e) => e.id !== entry.id && e.pantheon === entry.pantheon
+  );
+  if (pantheonEntries.length <= limit) return pantheonEntries;
+  // Deterministic rotated window: a plain char-code checksum of the entry id
+  // anchors each temple at a different offset of its pantheon, so the grid
+  // varies per temple and every entry collects inbound links. Must stay pure —
+  // the CI divergence gate re-runs generation and diffs bytes.
+  let hash = 0;
+  for (let i = 0; i < entry.id.length; i++) hash += entry.id.charCodeAt(i);
+  const start = hash % pantheonEntries.length;
+  const related = [];
+  for (let i = 0; i < limit; i++) {
+    related.push(pantheonEntries[(start + i) % pantheonEntries.length]);
+  }
+  return related;
 }
 
 function escapeHtml(str) {
@@ -494,16 +510,50 @@ function generateTempleHTML(entry, related) {
   const domainStatus = getDomainStatus(entry);
   const asciiBanner = getAsciiBanner(entry, domainStatus);
 
-  // Meta — SERP discipline: titles 45–60, descriptions 120–160 characters.
+  // Meta — SERP discipline: titles ≤60, descriptions 120–155 characters.
   const truncate = (s, max) => {
     if (s.length <= max) return s;
     const cut = s.slice(0, max);
     return `${cut.slice(0, cut.lastIndexOf(' ')).trim()}…`;
   };
-  const shortMeaning = truncate(entry.meaning || entry.domain, 48);
-  const pageTitle = domainStatus.isOwned
-    ? `${hasOriginal ? `${originalScript} — ` : ''}${entry.unicode} | ${entry.domain} | PUNICODEX`
-    : `${entry.unicode} — ${shortMeaning} | PUNICODEX`;
+  // Description truncation: end on a sentence boundary once the unique
+  // payload is through; fall back to a word boundary, never mid-clause.
+  const truncateDesc = (s, max) => {
+    if (s.length <= max) return s;
+    const sentenceEnd = s.lastIndexOf('. ', max - 1);
+    if (sentenceEnd >= 100) return s.slice(0, sentenceEnd + 1);
+    return truncate(s, max);
+  };
+  // Users search the ASCII form ("aaru"), so the title carries it as an
+  // alias whenever the Unicode restoration differs from it.
+  const asciiAlias =
+    entry.ascii && entry.unicode.toLowerCase() !== entry.ascii.toLowerCase()
+      ? entry.ascii.charAt(0).toUpperCase() + entry.ascii.slice(1)
+      : null;
+  const namePart = asciiAlias ? `${entry.unicode} (${asciiAlias})` : entry.unicode;
+  // The name is never truncated — the meaning budget absorbs the squeeze,
+  // then the boilerplate suffix drops if the name alone is long.
+  const titleSuffix = ' | PUNICODEX';
+  let meaningBudget = 60 - namePart.length - 3 - titleSuffix.length;
+  let suffix = titleSuffix;
+  if (meaningBudget < 16) {
+    suffix = '';
+    meaningBudget = 60 - namePart.length - 3;
+  }
+  const shortMeaning = truncate(entry.meaning || entry.domain, Math.max(meaningBudget, 12));
+  let pageTitle;
+  if (domainStatus.isOwned) {
+    const lead = `${hasOriginal ? `${originalScript} — ` : ''}${namePart}`;
+    let domBudget = 60 - lead.length - 3 - titleSuffix.length;
+    let ownedSuffix = titleSuffix;
+    if (domBudget < 12) {
+      ownedSuffix = '';
+      domBudget = 60 - lead.length - 3;
+    }
+    pageTitle = `${lead} | ${truncate(entry.domain, Math.max(domBudget, 8))}${ownedSuffix}`;
+  } else {
+    pageTitle = `${namePart} — ${shortMeaning}${suffix}`;
+  }
   const hasStressForDesc = entry.breakdown.some((b) => b.type === 'stress');
   const hasLengthForDesc = entry.breakdown.some((b) => b.type === 'length');
   const distinctiveClause =
@@ -514,19 +564,59 @@ function generateTempleHTML(entry, related) {
         : hasLengthForDesc
           ? 'The restoration records the vowel length the ASCII form drops.'
           : '';
-  const pageDesc = truncate(
-    (domainStatus.isOwned
-      ? `Discover ${entry.unicode}.com — the authentic Unicode domain for ${hasOriginal ? `${originalScript}, ` : ''}${entry.domain}. ${distinctiveClause} Scholarly orthography, Punycode encoding, and sources: ${entry.sources.join(', ')}.`
-      : `Scholarly profile of ${entry.unicode} — ${entry.meaning || entry.domain}. ${distinctiveClause} PUNICODEX documents the authentic Unicode orthography. Sources: ${entry.sources.join(', ')}.`
-    ).replace(/\s{2,}/g, ' '),
-    156
+  // Front-load the meaning and differentiating facts (pantheon, original
+  // script, proto-form); the shared tail is the first thing truncation drops.
+  const descSentences = domainStatus.isOwned
+    ? [
+        `Discover ${entry.unicode.toLowerCase()}.com — the authentic Unicode domain for ${hasOriginal ? `${originalScript}, ` : ''}${entry.domain}.`,
+        distinctiveClause,
+        `Sources: ${entry.sources.join(', ')}.`,
+      ]
+    : [
+        `${namePart} — ${entry.meaning || entry.domain}.`,
+        `Attested ${pantheonLabel} name${hasOriginal ? `; original ${getScriptName(entry)}: ${originalScript}` : ''}.`,
+        hasEtymology && entry.etymology.protoForm
+          ? `From ${protoLabel} ${entry.etymology.protoForm}${entry.etymology.protoGloss ? ` ("${entry.etymology.protoGloss}")` : ''}.`
+          : '',
+        distinctiveClause,
+        `Sources: ${entry.sources.join(', ')}.`,
+      ];
+  let pageDesc = truncateDesc(
+    descSentences
+      .filter(Boolean)
+      .join(' ')
+      .replace(/\s{2,}/g, ' '),
+    155
   );
+  // Short descriptions get the boilerplate closer only when it fits whole —
+  // it is never truncated mid-sentence.
+  const descCloser = 'PUNICODEX documents the authentic Unicode orthography.';
+  if (pageDesc.endsWith('.') && pageDesc.length + 1 + descCloser.length <= 155) {
+    pageDesc += ` ${descCloser}`;
+  }
   const canonicalUrl = `https://punicodex.com/sites/${entry.id}/`;
 
   // Tier feature cards
   const hasStress = entry.breakdown.some((b) => b.type === 'stress');
   const hasLength = entry.breakdown.some((b) => b.type === 'length');
   const hasBoth = hasStress && hasLength;
+
+  // "Saying it" — rules-derived pronunciation (respelling + IPA). Rendered
+  // only where a rule set exists for the pantheon; fallback traditions are
+  // silently omitted. Reuses the punycode-explainer markup idiom.
+  const derivedPron = derivePronunciation(entry);
+  const sayingLine = [derivedPron.respelling, derivedPron.ipa].filter(Boolean).join(' · ');
+  const pronunciationBlock =
+    derivedPron.derived && derivedPron.timing && sayingLine
+      ? `
+            <div class="punycode-explainer reveal-up" style="margin-top:2rem;">
+                <div class="explainer-label">Saying It</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">${escapeHtml(sayingLine)}</code>
+                    <p class="explainer-note">${escapeHtml(derivedPron.ipaLabel)}.</p>
+                </div>
+            </div>`
+      : '';
 
   return `<!-- PUNICODEX Base Temple — Auto-Generated by scripts/generate-temples.js -->
 <!-- Do not edit by hand. Regenerate with: node scripts/generate-temples.js -->
@@ -537,7 +627,6 @@ function generateTempleHTML(entry, related) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${escapeHtml(pageTitle)}</title>
     <meta name="description" content="${escapeHtml(pageDesc)}">
-    <meta name="keywords" content="${entry.unicode}, ${entry.ascii}, Punycode, Unicode domain, ${entry.pantheon}, ${entry.domain}">
     <link rel="canonical" href="${canonicalUrl}">
     
     <!-- Open Graph -->
@@ -567,10 +656,33 @@ ${JSON.stringify(
     url: canonicalUrl,
     about: {
       '@type': 'Thing',
-      name: hasOriginal ? originalScript : entry.unicode,
-      alternateName: [entry.ascii, entry.unicode],
+      name: entry.ascii,
+      alternateName: hasOriginal ? [entry.unicode, originalScript] : [entry.unicode],
       description: entry.meaning,
       ...(wikidataUrlFor(entry.id) ? { sameAs: [wikidataUrlFor(entry.id)] } : {}),
+    },
+    breadcrumb: {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://punicodex.com/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: META[entry.pantheon]?.label || entry.pantheon,
+          item: 'https://punicodex.com/pantheon/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: entry.unicode,
+          item: canonicalUrl,
+        },
+      ],
     },
     isPartOf: [
       {
@@ -594,7 +706,10 @@ ${JSON.stringify(
 )}
     </script>
     
+    <link rel="preconnect" href="https://punicodex.com">
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="preload" href="/assets/fonts/cormorant-garamond-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/montserrat-300-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="https://punicodex.com/css/temple-base.css">
     <style>
         :root {
@@ -620,7 +735,7 @@ ${JSON.stringify(
     <!-- Global Strip -->
     <div class="global-strip">
         <div class="global-strip-inner">
-            <a href="https://punicodex.com/" class="global-brand"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="130" height="14"></a>
+            <a href="https://punicodex.com/" class="global-brand"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="560" height="58"></a>
             <div class="global-links">
                 <a href="https://punicodex.com/pantheon/">Pantheon</a>
                 <a href="https://punicodex.com/lexicon/">Lexicon</a>
@@ -696,6 +811,7 @@ ${JSON.stringify(
                     <span class="title-divider"></span>
                     <span class="title-trans">${escapeHtml(entry.unicode)}</span>
                 </h1>
+                ${asciiAlias ? `<p class="hero-alias reveal-up" style="font-family:var(--font-mono);font-size:0.95rem;letter-spacing:0.1em;color:var(--white-dim);margin:0 0 0.5rem;">also written <strong style="color:var(--primary);">${escapeHtml(asciiAlias)}</strong></p>` : ''}
                 <p class="hero-subtitle reveal-up">${entry.meaning ? escapeHtml(entry.meaning) : escapeHtml(entry.domain)}${domainStatus.isOwned ? ` · ${escapeHtml(entry.domain)}` : ''}</p>
                 <div class="hero-meta reveal-up">
                     ${
@@ -748,7 +864,7 @@ ${JSON.stringify(
         <div class="container">
             <div class="section-header reveal-up">
                 <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
+                <h2 class="section-title">The Authentic Name of ${escapeHtml(entry.unicode)}</h2>
                 <p class="section-subtitle">${domainStatus.isOwned ? `Why <em>${entry.unicode.toLowerCase()}.com</em> is the correct form` : `Scholarly reference for <em>${entry.unicode}</em>`}</p>
             </div>
 
@@ -823,6 +939,8 @@ ${JSON.stringify(
                     <p class="explainer-note">${isAsciiOnlyUnicode(entry) ? `Because <strong>${escapeHtml(entry.unicode)}</strong> uses only ASCII characters, no Punycode encoding is required. The browser displays the name as-is.` : `The non-ASCII characters in <strong>${escapeHtml(entry.unicode)}</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>${escapeHtml(entry.unicode)}</em>.`}${domainStatus.status === 'registered' || domainStatus.status === 'live' ? ` This domain is currently registered by another party.` : !domainStatus.isOwned ? ` PUNICODEX does not claim this domain is available; always verify status with a registrar.` : ''}</p>
                 </div>
             </div>
+
+            ${pronunciationBlock}
         </div>
     </section>
 
@@ -834,7 +952,7 @@ ${JSON.stringify(
         <div class="container">
             <div class="section-header reveal-up">
                 <span class="section-number">02</span>
-                <h2 class="section-title">Etymology</h2>
+                <h2 class="section-title">Etymology of ${escapeHtml(entry.unicode)}</h2>
                 <p class="section-subtitle">The deep ancestry of <em>${escapeHtml(entry.unicode)}</em></p>
             </div>
 
@@ -884,7 +1002,7 @@ ${JSON.stringify(
         <div class="container">
             <div class="section-header reveal-up">
                 <span class="section-number">03</span>
-                <h2 class="section-title">Character Breakdown</h2>
+                <h2 class="section-title">Character Breakdown of ${escapeHtml(entry.unicode)}</h2>
                 <p class="section-subtitle">How <em>${entry.ascii}</em> becomes <em>${escapeHtml(entry.unicode)}</em></p>
             </div>
 
@@ -984,7 +1102,7 @@ ${JSON.stringify(
         <div class="container">
             <div class="section-header reveal-up">
                 <span class="section-number">06</span>
-                <h2 class="section-title">Related Names</h2>
+                <h2 class="section-title">Names Related to ${escapeHtml(entry.unicode)}</h2>
                 <p class="section-subtitle">More from the ${pantheonLabel} pantheon</p>
             </div>
 
@@ -1059,7 +1177,7 @@ ${JSON.stringify(
     <section class="section section-type-cta" id="type-cta">
         <div class="container">
             <div class="type-cta-content reveal-up">
-                <h2 class="type-cta-title">Experience the Name</h2>
+                <h2 class="type-cta-title">Experience ${escapeHtml(entry.unicode)}</h2>
                 <p class="type-cta-body">See how ${escapeHtml(entry.unicode)} behaves in the PUNICODEX Type Tool — with predictive autocomplete, character-by-character breakdown, and scholarly constraint validation.</p>
                 <div class="type-cta-input">
                     <code>${entry.ascii}</code>
@@ -1083,6 +1201,16 @@ ${JSON.stringify(
                 <div class="footer-brand">
                     <a href="https://punicodex.com/" class="footer-logo">PUNICODEX</a>
                     <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
+                    <p class="footer-tagline">
+                        <a href="https://punicodex.com/pantheon/" style="color:var(--primary);">Pantheon</a> &middot;
+                        <a href="https://punicodex.com/lexicon/" style="color:var(--primary);">Lexicon</a> &middot;
+                        <a href="https://punicodex.com/everyday/" style="color:var(--primary);">Words</a> &middot;
+                        <a href="https://punicodex.com/ink/" style="color:var(--primary);">Ink</a> &middot;
+                        <a href="https://punicodex.com/texts/" style="color:var(--primary);">Texts</a> &middot;
+                        <a href="https://punicodex.com/pronunciation/" style="color:var(--primary);">Pronunciation</a> &middot;
+                        <a href="https://punicodex.com/blog/" style="color:var(--primary);">Blog</a> &middot;
+                        <a href="https://punicodex.com/store/" style="color:var(--primary);">Store</a>
+                    </p>
                 </div>
                 <div class="footer-info">
                     <div class="footer-block">
@@ -1105,8 +1233,8 @@ ${JSON.stringify(
         </div>
     </footer>
 
-    <script src="https://punicodex.com/js/px-core.js"></script>
-    <script src="https://punicodex.com/js/temple-base.js"></script>
+    <script src="https://punicodex.com/js/px-core.js" defer></script>
+    <script src="https://punicodex.com/js/temple-base.js" defer></script>
 </body>
 </html>`;
 }

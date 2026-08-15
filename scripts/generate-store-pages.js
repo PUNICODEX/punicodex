@@ -13,6 +13,8 @@
  */
 const fs = require('node:fs');
 const path = require('node:path');
+const { imageSize } = require('image-size');
+const { writeFileWithRetry } = require('./write-file-retry.js');
 
 const ROOT = path.join(__dirname, '..');
 const CATALOG = require(path.join(ROOT, 'store', 'products.json'));
@@ -47,6 +49,52 @@ const esc = (s) =>
     .replace(/"/g, '&quot;');
 
 const money = (n) => `$${Number(n).toFixed(2)}`;
+
+const SITE_ORIGIN = 'https://punicodex.com';
+const MASTERS_ORIGIN = 'https://punycodex-masters.vercel.app';
+const DEFAULT_OG_IMAGE = `${SITE_ORIGIN}/assets/brand/05-social/punicodex-og-image-1200x630.png`;
+
+// Schema.org and OG image URLs must be absolute; card imagery may be
+// root-relative.
+const absUrl = (src) => new URL(src, `${SITE_ORIGIN}/`).href;
+
+// Intrinsic dims for stage/OG imagery. The mockup batch is uniformly
+// 1000×1000 (measured across all 3,531 .masters/mockups files, which are not
+// committed); committed local assets are measured at build time so a
+// re-rendered master can never skew the baked ratio.
+function imageDims(src) {
+  if (src.startsWith(`${MASTERS_ORIGIN}/mockups/`)) return [1000, 1000];
+  try {
+    const d = imageSize(fs.readFileSync(path.join(ROOT, src.replace(/^\//, ''))));
+    return [d.width, d.height];
+  } catch {
+    return [1024, 1536]; // mascot master standard
+  }
+}
+
+// Meta descriptions stay inside SERP limits; clamp at a word boundary.
+function clampDescription(s, max = 155) {
+  if (s.length <= max) return s;
+  const cut = s.slice(0, max - 1);
+  const at = cut.lastIndexOf(' ');
+  return `${at > 0 ? cut.slice(0, at) : cut}…`;
+}
+
+// The visible breadcrumbs get a matching BreadcrumbList (absolute URLs);
+// emitted after the page's primary JSON-LD block.
+function breadcrumbScript(items) {
+  const ld = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map(([name, url], i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name,
+      item: url,
+    })),
+  };
+  return `<script type="application/ld+json">${JSON.stringify(ld)}</script>`;
+}
 
 function collections() {
   const byTemple = new Map();
@@ -235,7 +283,21 @@ a:hover{color:var(--gold-bright)}
 }
 `;
 
-function head({ title, description, path: pagePath, css = '', collaborators = false }) {
+function head({
+  title,
+  description,
+  path: pagePath,
+  css = '',
+  collaborators = false,
+  type = 'website',
+  image = null,
+  imageWidth = 0,
+  imageHeight = 0,
+}) {
+  const pageUrl = `${SITE_ORIGIN}${pagePath}`;
+  const ogImage = image || DEFAULT_OG_IMAGE;
+  const ogW = image ? imageWidth : 1200;
+  const ogH = image ? imageHeight : 630;
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -246,7 +308,8 @@ ${
   collaborators
     ? `
 <!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css?v=3">
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
 <script src="/js/university-collaborators.js?v=3" defer></script>
 <!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
@@ -258,21 +321,38 @@ ${
 <meta name="google" content="notranslate">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
-<link rel="canonical" href="https://punicodex.com${pagePath}">
+<link rel="canonical" href="${pageUrl}">
+<meta property="og:title" content="${esc(title)}">
+<meta property="og:description" content="${esc(description)}">
+<meta property="og:url" content="${pageUrl}">
+<meta property="og:type" content="${type}">
+<meta property="og:site_name" content="PUNICODEX">
+<meta property="og:image" content="${esc(ogImage)}">
+<meta property="og:image:width" content="${ogW}">
+<meta property="og:image:height" content="${ogH}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${esc(title)}">
+<meta name="twitter:description" content="${esc(description)}">
+<meta name="twitter:image" content="${esc(ogImage)}">
+<link rel="preconnect" href="${MASTERS_ORIGIN}">
 <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
 <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
 <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
 <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
 <link rel="stylesheet" href="/assets/fonts/fonts.css">
+<link rel="preload" href="/assets/fonts/cormorant-garamond-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/montserrat-300-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/main.css?v=perf23">
 <style>${BASE_CSS}${css}</style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
-<link rel="stylesheet" href="/css/herald-beacon.css?v=1">
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
 <script src="/js/herald-beacon.js?v=1" defer></script>
 <!-- PUNICODEX-HERALD-BEACON-END -->
 <!-- PUNICODEX-COOKIE-CONSENT-START -->
-<link rel="stylesheet" href="/css/cookie-consent.css?v=1">
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
 <script src="/js/cookie-consent.js?v=1" defer></script>
 <!-- PUNICODEX-COOKIE-CONSENT-END -->
 </head>
@@ -291,7 +371,7 @@ function renderStoreIndex(colls) {
       const sorted = products.slice().sort((a, b) => KIND_ORDER.indexOf(a.id.split('-').pop()) - KIND_ORDER.indexOf(b.id.split('-').pop()));
       const img = cardImage(sorted[0], meta);
       return `<a class="card" href="/store/${id}/" data-pantheon="${esc(meta.pantheon)}" data-name="${esc(meta.name.toLowerCase())}">
-  <div class="imgbox">${imgTag(img, `${meta.name} collection`)}</div>
+  <div class="imgbox">${imgTag(img, `${meta.name} Reliquary collection — restored ${meta.pantheon} merchandise`)}</div>
   <div class="body">
     <div class="sub">${esc(meta.pantheon)}${meta.rentalTier ? ` · Tier ${meta.rentalTier}` : ''}</div>
     <h3>${esc(meta.name)}</h3>
@@ -303,6 +383,22 @@ function renderStoreIndex(colls) {
 
   const pantheons = [...new Set([...colls.values()].map((_, i) => i))];
   const pills = ['All', ...new Set([...colls.keys()].map((id) => templeMeta(id).pantheon).filter(Boolean))].sort();
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'The Reliquary — Temple Collections & Prints',
+    url: `${SITE_ORIGIN}/store/`,
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: [...colls.keys()].map((id, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: templeMeta(id).name,
+        url: `${SITE_ORIGIN}/store/${id}/`,
+      })),
+    },
+  };
 
   return `${head({
     title: 'The Reliquary — Temple Collections & Prints | PUNICODEX',
@@ -358,6 +454,7 @@ ${cards}
 <!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
 <div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
 <!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
 ${footerHtml()}
 </body></html>
 `;
@@ -422,15 +519,23 @@ ${g.members.map(cardHtml).join('\n')}
     })),
   };
 
+  const heroImg = meta.mascotPath || cardImage(sorted[0], meta);
+  const heroDims = imageDims(heroImg);
+
   return `${head({
     title: `${meta.name} Collection | PUNICODEX Reliquary`,
-    description: `The complete ${meta.name} line — ${products.length} print-on-demand pieces: ${esc(meta.tagline)}`,
+    description: clampDescription(
+      `The complete ${meta.name} line — ${products.length} print-on-demand pieces: ${meta.tagline}`
+    ),
     path: `/store/${id}/`,
+    image: absUrl(heroImg),
+    imageWidth: heroDims[0],
+    imageHeight: heroDims[1],
   })}
 <div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <span style="color:var(--gold)">${esc(meta.name)}</span></div>
 <div class="wrap">
   <div class="hero">
-    <img src="${esc(meta.mascotPath || cardImage(sorted[0], meta))}" alt="${esc(meta.name)} mascot">
+    <img src="${esc(heroImg)}" alt="${esc(`${meta.name} — restored temple mascot artwork`)}" width="${heroDims[0]}" height="${heroDims[1]}">
     <div>
       <span class="pill">${esc(meta.pantheon)}</span>${meta.greek ? ` <span class="pill">${esc(meta.greek)}</span>` : ''}
       <h1>${esc(meta.name)}</h1>
@@ -475,6 +580,11 @@ ${groupsHtml}
 })();
 </script>
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
+${breadcrumbScript([
+  ['Home', `${SITE_ORIGIN}/`],
+  ['The Reliquary', `${SITE_ORIGIN}/store/`],
+  [meta.name, `${SITE_ORIGIN}/store/${id}/`],
+])}
     ${footerHtml()}
 </body></html>
 `;
@@ -508,17 +618,27 @@ function renderProduct(id, kind, product) {
     })
     .join('\n');
 
+  const stageImg = cardImage(product, meta);
+  const stageDims = imageDims(stageImg);
+  const pageUrl = `${SITE_ORIGIN}/store/${id}/${kind}/`;
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: product.name,
-    image: cardImage(product, meta),
+    image: absUrl(stageImg),
     description: product.blurb,
+    url: pageUrl,
+    sku: String(product.printfulProductId || product.id),
     brand: { '@type': 'Brand', name: 'PuniCodex' },
     offers: {
       '@type': 'Offer',
+      url: pageUrl,
       price: product.price.toFixed(2),
       priceCurrency: 'USD',
+      // Rolling validity: Dec 31 of the year after the build year.
+      priceValidUntil: `${new Date().getFullYear() + 1}-12-31`,
+      itemCondition: 'https://schema.org/NewCondition',
       availability: 'https://schema.org/InStock',
     },
   };
@@ -559,10 +679,15 @@ function renderProduct(id, kind, product) {
     title: `${product.name} | PUNICODEX Reliquary`,
     description: `${product.blurb} — ${product.name}, printed on demand. ${priceRange([product])} USD.`,
     path: `/store/${id}/${kind}/`,
+    type: 'product',
+    image: absUrl(stageImg),
+    imageWidth: stageDims[0],
+    imageHeight: stageDims[1],
+    css: `.pdp .stage{aspect-ratio:${stageDims[0]} / ${stageDims[1]}}`,
   })}
 <div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <a href="/store/${id}/">${esc(meta.name)}</a> · <span style="color:var(--gold)">${esc(kindLabel(kind))}</span></div>
 <div class="wrap pdp">
-  <div><div class="stage"><img id="stage-img" src="${esc(cardImage(product, meta))}" alt="${esc(product.name)}"></div>${colourNote}</div>
+  <div><div class="stage"><img id="stage-img" src="${esc(stageImg)}" alt="${esc(product.name)}" width="${stageDims[0]}" height="${stageDims[1]}" fetchpriority="high" decoding="async"></div>${colourNote}</div>
   <div>
     <span class="pill">${esc(kindLabel(kind))}</span> <span class="pill">${esc(meta.name)}</span>
     <h1>${esc(product.name)}</h1>
@@ -585,6 +710,12 @@ ${placements}
   </div>
 </div>
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
+${breadcrumbScript([
+  ['Home', `${SITE_ORIGIN}/`],
+  ['The Reliquary', `${SITE_ORIGIN}/store/`],
+  [meta.name, `${SITE_ORIGIN}/store/${id}/`],
+  [product.name, pageUrl],
+])}
 <script>
 (function(){
   var colors = Array.prototype.slice.call(document.querySelectorAll('#opts-color .opt'));
@@ -643,7 +774,7 @@ ${placements}
 function writeIfChanged(file, content) {
   if (fs.existsSync(file) && fs.readFileSync(file, 'utf8') === content) return false;
   fs.mkdirSync(path.dirname(file), { recursive: true });
-  fs.writeFileSync(file, content);
+  writeFileWithRetry(file, content);
   return true;
 }
 

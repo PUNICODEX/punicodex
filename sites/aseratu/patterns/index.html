@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css?v=3">
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
 <script src="/js/university-collaborators.js?v=3" defer></script>
 <!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
 
@@ -26,10 +27,25 @@
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://punicodex.com/assets/og/aseratu.jpg">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
     <link rel="stylesheet" href="../styles.css?v=perf20">
     <link rel="stylesheet" href="patterns.css?v=1">
+    <style>
+        .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+        .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+        .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+        .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+        .temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+        .temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+        .temple-breadcrumb-list [aria-current] { color: var(--primary, #d4af37); }
+        /* Static sister-temple anchors (pre-rendered for crawlers; patterns.js re-renders on boot) */
+        .patterns-index-card-links { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.6rem; }
+        .patterns-index-card-links a { font-size: 0.78rem; color: var(--primary, #d4af37); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .patterns-index-card-links a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: currentColor; }
+    </style>
     <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
@@ -71,11 +87,13 @@
 }
     </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
-<link rel="stylesheet" href="/css/herald-beacon.css?v=1">
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
 <script src="/js/herald-beacon.js?v=1" defer></script>
 <!-- PUNICODEX-HERALD-BEACON-END -->
 <!-- PUNICODEX-COOKIE-CONSENT-START -->
-<link rel="stylesheet" href="/css/cookie-consent.css?v=1">
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
 <script src="/js/cookie-consent.js?v=1" defer></script>
 <!-- PUNICODEX-COOKIE-CONSENT-END -->
 </head>
@@ -117,6 +135,16 @@
                 <span></span><span></span><span></span>
             </button>
         </div>
+    </nav>
+
+        <!-- Visible breadcrumb (mirrors the BreadcrumbList JSON-LD) -->
+    <nav class="temple-breadcrumb" aria-label="breadcrumb">
+        <ol class="temple-breadcrumb-list">
+                <li><a href="https://punicodex.com/">Home</a></li>
+                <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
+                <li><a href="https://punicodex.com/sites/aseratu/">Ašeratu</a></li>
+                <li><span aria-current="page">Patterns</span></li>
+        </ol>
     </nav>
 
     <!-- Mobile Menu -->
@@ -162,7 +190,7 @@
                         <div class="patterns-sector-legend" id="patterns-sector-legend"></div>
                     </div>
                     <div class="patterns-detail-col">
-                        <div class="patterns-detail-panel" id="patterns-detail-panel" aria-live="polite"></div>
+                        <div class="patterns-detail-panel" id="patterns-detail-panel" aria-live="polite"><div class="patterns-detail-sector"><span class="patterns-sector-dot" style="background:#e8b34b"></span>Energy &amp; Natural World</div><h3 class="patterns-detail-title">Maritime, Shipping &amp; Ocean Industries</h3><p class="patterns-detail-tagline">Shipping, ports, fishing, and ocean exploration.</p><span class="patterns-detail-weight primary">Primary alignment for Ašeratu</span><p class="patterns-detail-why"><strong>Why Ašeratu aligns:</strong> She who treads on the sea — the maritime goddess of Phoenician sailors.</p><h4 class="patterns-aligned-title">20 aligned temples share this pattern</h4><div class="patterns-aligned-list"><a class="patterns-aligned-item" href="/sites/athiratu/patterns/"><span class="patterns-aligned-unicode">ʾAṯiratu</span><span class="patterns-aligned-pantheon">Canaanite</span><span class="patterns-aligned-weight primary">Primary</span></a><a class="patterns-aligned-item" href="/sites/kanaloa/patterns/"><span class="patterns-aligned-unicode">Kanaloa</span><span class="patterns-aligned-pantheon">Polynesian</span><span class="patterns-aligned-weight primary">Primary</span></a><a class="patterns-aligned-item" href="/sites/manannan/patterns/"><span class="patterns-aligned-unicode">Manannán</span><span class="patterns-aligned-pantheon">Celtic</span><span class="patterns-aligned-weight primary">Primary</span></a><a class="patterns-aligned-item" href="/sites/neptunus/patterns/"><span class="patterns-aligned-unicode">Neptūnus</span><span class="patterns-aligned-pantheon">roman</span><span class="patterns-aligned-weight primary">Primary</span></a><a class="patterns-aligned-item" href="/sites/njordr/patterns/"><span class="patterns-aligned-unicode">Njǫrðr</span><span class="patterns-aligned-pantheon">Norse</span><span class="patterns-aligned-weight primary">Primary</span></a><a class="patterns-aligned-item" href="/sites/odysseus/patterns/"><span class="patterns-aligned-unicode">Odysseús</span><span class="patterns-aligned-pantheon">Greek</span><span class="patterns-aligned-weight primary">Primary</span></a><a class="patterns-aligned-item" href="/sites/okeanos/patterns/"><span class="patterns-aligned-unicode">Ōkeanós</span><span class="patterns-aligned-pantheon">Greek</span><span class="patterns-aligned-weight primary">Primary</span></a><a class="patterns-aligned-item" href="/sites/pontos/patterns/"><span class="patterns-aligned-unicode">Póntos</span><span class="patterns-aligned-pantheon">Greek</span><span class="patterns-aligned-weight primary">Primary</span></a><a class="patterns-aligned-item" href="/sites/poseidon/patterns/"><span class="patterns-aligned-unicode">Poseidôn</span><span class="patterns-aligned-pantheon">Greek</span><span class="patterns-aligned-weight primary">Primary</span></a><a class="patterns-aligned-item" href="/sites/yam/patterns/"><span class="patterns-aligned-unicode">Yām</span><span class="patterns-aligned-pantheon">Canaanite</span><span class="patterns-aligned-weight primary">Primary</span></a><a class="patterns-aligned-item" href="/sites/asherah/patterns/"><span class="patterns-aligned-unicode">ꜥAsherah</span><span class="patterns-aligned-pantheon">Canaanite</span><span class="patterns-aligned-weight resonant">Resonant</span></a><a class="patterns-aligned-item" href="/sites/atlantis/patterns/"><span class="patterns-aligned-unicode">Atlantís</span><span class="patterns-aligned-pantheon">Greek Location</span><span class="patterns-aligned-weight resonant">Resonant</span></a><a class="patterns-aligned-item" href="/sites/delos/patterns/"><span class="patterns-aligned-unicode">Dêlos</span><span class="patterns-aligned-pantheon">Greek Location</span><span class="patterns-aligned-weight resonant">Resonant</span></a><a class="patterns-aligned-item" href="/sites/europe/patterns/"><span class="patterns-aligned-unicode">Eurṓpē</span><span class="patterns-aligned-pantheon">Greek Location</span><span class="patterns-aligned-weight resonant">Resonant</span></a><a class="patterns-aligned-item" href="/sites/iason/patterns/"><span class="patterns-aligned-unicode">Iásōn</span><span class="patterns-aligned-pantheon">Greek</span><span class="patterns-aligned-weight resonant">Resonant</span></a><a class="patterns-aligned-item" href="/sites/jormungandr/patterns/"><span class="patterns-aligned-unicode">Jǫrmungandr</span><span class="patterns-aligned-pantheon">Norse</span><span class="patterns-aligned-weight resonant">Resonant</span></a><a class="patterns-aligned-item" href="/sites/kobe/patterns/"><span class="patterns-aligned-unicode">Kōbe</span><span class="patterns-aligned-pantheon">Japanese</span><span class="patterns-aligned-weight resonant">Resonant</span></a><a class="patterns-aligned-item" href="/sites/leviathan/patterns/"><span class="patterns-aligned-unicode">Liwyāṯān</span><span class="patterns-aligned-pantheon">Canaanite</span><span class="patterns-aligned-weight resonant">Resonant</span></a><a class="patterns-aligned-item" href="/sites/tiamat/patterns/"><span class="patterns-aligned-unicode">Tiāmat</span><span class="patterns-aligned-pantheon">Mesopotamian</span><span class="patterns-aligned-weight resonant">Resonant</span></a><a class="patterns-aligned-item" href="/sites/varuna/patterns/"><span class="patterns-aligned-unicode">Varuṇa</span><span class="patterns-aligned-pantheon">Sanskrit</span><span class="patterns-aligned-weight resonant">Resonant</span></a></div></div>
                     </div>
                 </div>
             </div>
@@ -176,7 +204,10 @@
                     <h2 class="section-title">Every Aligned Industry</h2>
                     <p class="section-subtitle">The complete pattern register for this temple</p>
                 </div>
-                <div class="patterns-index-grid" id="patterns-index-grid"></div>
+                <div class="patterns-index-grid" id="patterns-index-grid"><div class="patterns-index-card" tabindex="0" role="button" aria-label="Show Maritime, Shipping &amp; Ocean Industries in the pattern wheel"><div class="patterns-index-card-bar" style="background:#e8b34b"></div><div class="patterns-index-card-body"><div class="patterns-index-card-sector">Energy &amp; Natural World</div><h3 class="patterns-index-card-name">Maritime, Shipping &amp; Ocean Industries</h3><p class="patterns-index-card-tagline">Shipping, ports, fishing, and ocean exploration.</p><div class="patterns-index-card-meta"><span>21 temples</span><span class="weight">Primary</span></div><div class="patterns-index-card-links"><a href="/sites/athiratu/patterns/" title="ʾAṯiratu — Canaanite">ʾAṯiratu</a><a href="/sites/kanaloa/patterns/" title="Kanaloa — Polynesian">Kanaloa</a><a href="/sites/manannan/patterns/" title="Manannán — Celtic">Manannán</a><a href="/sites/neptunus/patterns/" title="Neptūnus — roman">Neptūnus</a><a href="/sites/njordr/patterns/" title="Njǫrðr — Norse">Njǫrðr</a><a href="/sites/odysseus/patterns/" title="Odysseús — Greek">Odysseús</a><a href="/sites/okeanos/patterns/" title="Ōkeanós — Greek">Ōkeanós</a><a href="/sites/pontos/patterns/" title="Póntos — Greek">Póntos</a><a href="/sites/poseidon/patterns/" title="Poseidôn — Greek">Poseidôn</a><a href="/sites/yam/patterns/" title="Yām — Canaanite">Yām</a><a href="/sites/asherah/patterns/" title="ꜥAsherah — Canaanite">ꜥAsherah</a><a href="/sites/atlantis/patterns/" title="Atlantís — Greek Location">Atlantís</a><a href="/sites/delos/patterns/" title="Dêlos — Greek Location">Dêlos</a><a href="/sites/europe/patterns/" title="Eurṓpē — Greek Location">Eurṓpē</a><a href="/sites/iason/patterns/" title="Iásōn — Greek">Iásōn</a><a href="/sites/jormungandr/patterns/" title="Jǫrmungandr — Norse">Jǫrmungandr</a><a href="/sites/kobe/patterns/" title="Kōbe — Japanese">Kōbe</a><a href="/sites/leviathan/patterns/" title="Liwyāṯān — Canaanite">Liwyāṯān</a><a href="/sites/tiamat/patterns/" title="Tiāmat — Mesopotamian">Tiāmat</a><a href="/sites/varuna/patterns/" title="Varuṇa — Sanskrit">Varuṇa</a></div></div></div>
+                <div class="patterns-index-card" tabindex="0" role="button" aria-label="Show Women&#39;s Health &amp; Femtech in the pattern wheel"><div class="patterns-index-card-bar" style="background:#3fb950"></div><div class="patterns-index-card-body"><div class="patterns-index-card-sector">Health &amp; Wellbeing</div><h3 class="patterns-index-card-name">Women&#39;s Health &amp; Femtech</h3><p class="patterns-index-card-tagline">Women&#39;s health, wellness, and femtech platforms.</p><div class="patterns-index-card-meta"><span>14 temples</span><span class="weight">Resonant</span></div><div class="patterns-index-card-links"><a href="/sites/cihuacoatl/patterns/" title="Cihuacōātl — Nahuatl">Cihuacōātl</a><a href="/sites/he/patterns/" title="Hē — Greek">Hē</a><a href="/sites/iuno/patterns/" title="Iūnō — roman">Iūnō</a><a href="/sites/asherah/patterns/" title="ꜥAsherah — Canaanite">ꜥAsherah</a><a href="/sites/diana/patterns/" title="Diāna — roman">Diāna</a><a href="/sites/gauri/patterns/" title="Gaurī — Sanskrit">Gaurī</a><a href="/sites/hera/patterns/" title="Hēra — Greek">Hēra</a><a href="/sites/isis/patterns/" title="Ꜣst — Egyptian">Ꜣst</a><a href="/sites/itzpapalotl/patterns/" title="Ītzpāpālōtl — Nahuatl">Ītzpāpālōtl</a><a href="/sites/oshun/patterns/" title="Ọṣun — Yoruba">Ọṣun</a><a href="/sites/parvati/patterns/" title="Pārvatī — Sanskrit">Pārvatī</a><a href="/sites/selene/patterns/" title="Selēnē — Greek">Selēnē</a><a href="/sites/tiamat/patterns/" title="Tiāmat — Mesopotamian">Tiāmat</a></div></div></div>
+                <div class="patterns-index-card" tabindex="0" role="button" aria-label="Show Textiles, Weaving &amp; Networks in the pattern wheel"><div class="patterns-index-card-bar" style="background:#ffa657"></div><div class="patterns-index-card-body"><div class="patterns-index-card-sector">Home &amp; Lifestyle</div><h3 class="patterns-index-card-name">Textiles, Weaving &amp; Networks</h3><p class="patterns-index-card-tagline">Fabric, fashion textiles, and woven structure.</p><div class="patterns-index-card-meta"><span>9 temples</span><span class="weight">Resonant</span></div><div class="patterns-index-card-links"><a href="/sites/arachne/patterns/" title="Arachnē — Greek">Arachnē</a><a href="/sites/athena/patterns/" title="Athēnâ — Greek">Athēnâ</a><a href="/sites/ananke/patterns/" title="Anánkē — Greek">Anánkē</a><a href="/sites/asherah/patterns/" title="ꜥAsherah — Canaanite">ꜥAsherah</a><a href="/sites/asia/patterns/" title="Asía — Greek Location">Asía</a><a href="/sites/athenai/patterns/" title="Athēnai — Greek Location">Athēnai</a><a href="/sites/athiratu/patterns/" title="ʾAṯiratu — Canaanite">ʾAṯiratu</a><a href="/sites/kyoto/patterns/" title="Kyōto — Japanese">Kyōto</a></div></div></div>
+                <div class="patterns-index-card" tabindex="0" role="button" aria-label="Show Wedding, Family &amp; Maternity in the pattern wheel"><div class="patterns-index-card-bar" style="background:#ffa657"></div><div class="patterns-index-card-body"><div class="patterns-index-card-sector">Home &amp; Lifestyle</div><h3 class="patterns-index-card-name">Wedding, Family &amp; Maternity</h3><p class="patterns-index-card-tagline">Weddings, childcare, and family services.</p><div class="patterns-index-card-meta"><span>22 temples</span><span class="weight">Resonant</span></div><div class="patterns-index-card-links"><a href="/sites/asherah/patterns/" title="ꜥAsherah — Canaanite">ꜥAsherah</a><a href="/sites/cihuacoatl/patterns/" title="Cihuacōātl — Nahuatl">Cihuacōātl</a><a href="/sites/coatlicue/patterns/" title="Cōātlīcue — Nahuatl">Cōātlīcue</a><a href="/sites/gauri/patterns/" title="Gaurī — Sanskrit">Gaurī</a><a href="/sites/hera/patterns/" title="Hēra — Greek">Hēra</a><a href="/sites/iuno/patterns/" title="Iūnō — roman">Iūnō</a><a href="/sites/jizo/patterns/" title="Jizō — Japanese">Jizō</a><a href="/sites/leto/patterns/" title="Lētō — Greek">Lētō</a><a href="/sites/parvati/patterns/" title="Pārvatī — Sanskrit">Pārvatī</a><a href="/sites/rhea/patterns/" title="Rhéā — Greek">Rhéā</a><a href="/sites/sati/patterns/" title="Satī — Sanskrit">Satī</a><a href="/sites/sita/patterns/" title="Sītā — Sanskrit">Sītā</a><a href="/sites/ganesha/patterns/" title="Gaṇeśa — Sanskrit">Gaṇeśa</a><a href="/sites/he/patterns/" title="Hē — Greek">Hē</a><a href="/sites/hestia/patterns/" title="Hestía — Greek">Hestía</a><a href="/sites/isis/patterns/" title="Ꜣst — Egyptian">Ꜣst</a><a href="/sites/ksitigarbha/patterns/" title="Kṣitigarbha — Buddhist">Kṣitigarbha</a><a href="/sites/okuninushi/patterns/" title="Ōkuninushi — Japanese">Ōkuninushi</a><a href="/sites/persephone/patterns/" title="Persephonē — Greek">Persephonē</a><a href="/sites/prajapati/patterns/" title="Prajāpati — Sanskrit">Prajāpati</a><a href="/sites/radha/patterns/" title="Rādhā — Sanskrit">Rādhā</a></div></div></div></div>
             </div>
         </section>
 
@@ -223,6 +254,10 @@
                     <div class="footer-block">
                         <span class="footer-label">Original Script</span>
                         <span class="footer-value">𐤀𐤔𐤓𐤕</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Explore</span>
+                        <span class="footer-value"><a href="https://punicodex.com/pantheon/" style="color:inherit;text-decoration:none;">Pantheon</a> · <a href="https://punicodex.com/lexicon/" style="color:inherit;text-decoration:none;">Lexicon</a> · <a href="https://punicodex.com/texts/" style="color:inherit;text-decoration:none;">Texts</a> · <a href="https://punicodex.com/everyday/" style="color:inherit;text-decoration:none;">Words</a> · <a href="https://punicodex.com/ink/" style="color:inherit;text-decoration:none;">Ink</a> · <a href="https://punicodex.com/pronunciation/" style="color:inherit;text-decoration:none;">Pronunciation</a> · <a href="https://punicodex.com/blog/" style="color:inherit;text-decoration:none;">Blog</a> · <a href="https://punicodex.com/store/aseratu/" style="color:inherit;text-decoration:none;">Reliquary</a></span>
                     </div>
                 </div>
             </div>

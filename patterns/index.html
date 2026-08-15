@@ -89,6 +89,11 @@
 .pa-method h2{font-family:'Cinzel',serif;color:#d4af37;font-size:1.4rem;margin:0 0 .7rem}
 .pa-method p{color:#9a948a;max-width:58ch;margin:0 auto 1.2rem}
 .pa-method-link{display:inline-block;color:#0a0a0c;background:#d4af37;border-radius:999px;padding:.55rem 1.6rem;text-decoration:none;font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.pa-faq{max-width:760px;margin:3rem auto 0}
+.pa-faq-item{background:#121216;border:1px solid rgba(212,175,55,.16);border-radius:12px;padding:1rem 1.25rem;margin-bottom:.6rem}
+.pa-faq-item summary{cursor:pointer;color:#e8e4dc;font-size:.95rem}
+.pa-faq-item summary::marker{color:#d4af37}
+.pa-faq-item p{color:#9a948a;font-size:.85rem;line-height:1.6;margin:.7rem 0 0}
 @media(max-width:1100px){.pa-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:700px){.pa-grid{grid-template-columns:1fr}.pa-stats{grid-template-columns:repeat(2,1fr)}.pa-hero{padding-top:4rem}.pa-hero h1{font-size:1.9rem}}
 @media(prefers-reduced-motion:reduce){.pt-card,.pfp-input{transition:none!important}}
@@ -142,11 +147,13 @@
 }
 </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
-<link rel="stylesheet" href="/css/herald-beacon.css?v=1">
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
 <script src="/js/herald-beacon.js?v=1" defer></script>
 <!-- PUNICODEX-HERALD-BEACON-END -->
 <!-- PUNICODEX-COOKIE-CONSENT-START -->
-<link rel="stylesheet" href="/css/cookie-consent.css?v=1">
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
 <script src="/js/cookie-consent.js?v=1" defer></script>
 <!-- PUNICODEX-COOKIE-CONSENT-END -->
 </head>
@@ -816,6 +823,30 @@
     </section>
   </div>
 
+  <section class="pa-faq">
+    <h2 class="pa-section-title">Questions, Answered</h2>
+    <details class="pa-faq-item">
+      <summary>What is the PuniCodex pattern atlas?</summary>
+      <p>The pattern atlas maps all 286 flagship temples to the modern world: 58 industries across 7 sectors, with primary and resonant temple seats. Each temple takes seats in the industries its archetype genuinely resonates with — prophecy to forecasting, forge-gods to manufacturing, psychopomps to logistics — and every seat carries its reasoning.</p>
+    </details>
+    <details class="pa-faq-item">
+      <summary>How are temples matched to industries?</summary>
+      <p>Mechanically and openly. Every match is argued from the deity's documented domains, myths, and functions — weighted, published, and open to challenge. No match is made for marketing value alone, and the full method is published on the methodology page so any reader can audit or contest a seat.</p>
+    </details>
+    <details class="pa-faq-item">
+      <summary>How do I find which temples match my industry or profession?</summary>
+      <p>Use the Find My Pattern bar: type your trade as you would say it — plumber, poet, founder, winemaker, dentist, pastor — and the atlas resolves it through a curated vocabulary of 1389 aliases to the larger industry categories, then shows the temples that hold seats there. You never need to know the taxonomy; the atlas speaks your language first.</p>
+    </details>
+    <details class="pa-faq-item">
+      <summary>Can a pattern match be challenged or corrected?</summary>
+      <p>Yes — that is the point of publishing the method. Every seat in the atlas is falsifiable: the methodology page states how matches are derived and how to challenge one. A match that cannot be argued aloud does not survive review; the atlas is a scholarly claim, not an advertisement.</p>
+    </details>
+    <details class="pa-faq-item">
+      <summary>Why do some industries have more temples than others?</summary>
+      <p>The atlas was built outward from mythology, not inward from advertising markets. Traditions rich in sea-gods produce deep maritime coverage; traditions rich in craft-gods produce deep manufacturing coverage. That asymmetry is what defends the whole system: the patterns describe the archetypes as they are, and the counts are published openly for scrutiny.</p>
+    </details>
+  </section>
+
   <section class="pa-method">
     <h2>Scrutiny, in Public</h2>
     <p>Every pairing on this page is argued line by line from canonical sources — weights, why-lines, and a curated alias vocabulary. The full method, including how to challenge a match, is published.</p>
@@ -844,6 +875,7 @@
                     <a href="/tiers/">Tier System</a>
                     <a href="/rulebook/">Rulebook</a>
                     <a href="/type/">Type</a>
+                    <a href="/game/">Game</a>
                     <a href="/search/">Search</a>
                 </div>
                 <div class="footer-column">
@@ -857,6 +889,8 @@
                     <a href="/api/v1/docs/">API</a>
                     <a href="/appraise/">Appraise</a>
                     <a href="/authenticity/">Authenticity</a>
+                    <a href="/pronunciation/">Pronunciation</a>
+                    <a href="/store/">Store</a>
                     <a href="/oracle/">Oracle</a>
                     <a href="/arbitrage/">Arbitrage</a>
                 </div>
@@ -864,7 +898,9 @@
                     <h2 class="footer-heading">Connect</h2>
                     <a href="/about/">About</a>
                     <a href="/about/founder/">Founder</a>
+                    <a href="/art/">Art</a>
                     <a href="/careers/">Careers</a>
+                    <a href="/university-sponsorship/">Universities</a>
                     <a href="/contact/">Contact</a>
                     <a href="/privacy/">Privacy</a>
                     <a href="/terms/">Terms</a>

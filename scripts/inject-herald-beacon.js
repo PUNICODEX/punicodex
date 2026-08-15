@@ -40,8 +40,11 @@ const EXCLUDE = [
   /^type\/test\.html$/,
 ];
 
+// The seal/card are JS-built on DOMContentLoaded, so the stylesheet is safe
+// to load non-blocking (print-media swap + noscript fallback).
 const INJECT = `${START}
-<link rel="stylesheet" href="/css/herald-beacon.css?v=1">
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
 <script src="/js/herald-beacon.js?v=1" defer></script>
 ${END}`;
 

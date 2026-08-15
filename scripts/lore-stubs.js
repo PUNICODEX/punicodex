@@ -710,11 +710,11 @@ function buildPronunciationContent(entry) {
       </div>
       <div class="pronunciation-sidebar reveal-up" data-delay="150">
         <div class="sidebar-card">
-          <h4 class="sidebar-title">Modern Approximation</h4>
+          <h3 class="sidebar-title">Modern Approximation</h4>
           <p class="sidebar-text">${p.approximation}</p>
-          ${kin ? `<div class="sidebar-divider"></div><h4 class="sidebar-title">Etymological Kin</h4><ul class="kin-list">${kin}</ul>` : ''}
+          ${kin ? `<div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h4><ul class="kin-list">${kin}</ul>` : ''}
         </div>
-        ${p.note ? `<div class="sidebar-card accent-card"><h4 class="sidebar-title">The Accent / Script Rule</h4><p class="sidebar-text">${p.note}</p></div>` : ''}
+        ${p.note ? `<div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h4><p class="sidebar-text">${p.note}</p></div>` : ''}
       </div>
     </div>`;
 }
