@@ -699,7 +699,7 @@ if (!fs.existsSync(sitemapPath)) {
   addUrl('/tiers/');
   addUrl('/realms/');
   addUrl('/codex/');
-  addUrl('/search.html');
+  addUrl('/search/');
   addUrl('/about/');
   addUrl('/contact/');
   addUrl('/store/');
