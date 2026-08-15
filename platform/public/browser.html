@@ -189,7 +189,7 @@
       let pane = document.getElementById(`pane-${tabId}`);
       pane.innerHTML = '';
 
-      if (resolved === 'about:newtab' || resolved.startsWith('search-v2.html') || resolved.startsWith('/search.html')) {
+      if (resolved === 'about:newtab' || resolved.startsWith('search-v2.html') || resolved.startsWith('/search/')) {
         pane.appendChild(buildNewTabPage(resolved));
       } else if (resolved.startsWith('http')) {
         const iframe = document.createElement('iframe');

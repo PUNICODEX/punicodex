@@ -32,7 +32,7 @@ const EXPLORE = [
   ['/tiers/', 'Tier System'],
   ['/rulebook/', 'Rulebook'],
   ['/type/', 'Type'],
-  ['/search.html', 'Search'],
+  ['/search/', 'Search'],
 ];
 const RESOURCES = [
   ['/codex/', 'Codex'],
@@ -44,7 +44,7 @@ const RESOURCES = [
   ['/api/v1/docs/', 'API'],
   ['/appraise/', 'Appraise'],
   ['/authenticity/', 'Authenticity'],
-  ['/oracle.html', 'Oracle'],
+  ['/oracle/', 'Oracle'],
   ['/arbitrage/', 'Arbitrage'],
 ];
 const CONNECT = [
@@ -60,9 +60,9 @@ const CONNECT = [
 const TARGETS = [
   'index.html',
   '404.html',
-  'oracle.html',
-  'search.html',
-  'search-v2.html',
+  path.join('oracle', 'index.html'),
+  path.join('search', 'index.html'),
+  path.join('search-v2', 'index.html'),
   path.join('about', 'index.html'),
   path.join('about', 'authenticity.html'),
   path.join('appraise', 'index.html'),

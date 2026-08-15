@@ -250,7 +250,7 @@ function getDomainStatus(entry) {
         punycode,
         label: 'Registered',
         cta: 'View on PUNICODEX search',
-        href: `https://punicodex.com/search.html?q=${encodeURIComponent(asciiDomain)}`,
+        href: `https://punicodex.com/search/?q=${encodeURIComponent(asciiDomain)}`,
         isOwned: false,
       };
     }
@@ -264,7 +264,7 @@ function getDomainStatus(entry) {
     punycode,
     label: 'Domain Reference',
     cta: 'Check availability',
-    href: `https://punicodex.com/search.html?q=${encodeURIComponent(asciiDomain)}`,
+    href: `https://punicodex.com/search/?q=${encodeURIComponent(asciiDomain)}`,
     isOwned: false,
   };
 }
@@ -626,9 +626,9 @@ ${JSON.stringify(
                 <a href="https://punicodex.com/lexicon/">Lexicon</a>
                 <a href="https://punicodex.com/connections/">Connections</a>
                 <a href="https://punicodex.com/type/">Type</a>
-                <a href="https://punicodex.com/search.html">Search</a>
+                <a href="https://punicodex.com/search/">Search</a>
                 <a href="https://punicodex.com/tiers/">Tiers</a>
-                <a href="https://punicodex.com/oracle.html">Oracle</a>
+                <a href="https://punicodex.com/oracle/">Oracle</a>
                 <a href="https://punicodex.com/about/">About</a>
             </div>
         </div>
@@ -665,9 +665,9 @@ ${JSON.stringify(
             <span class="mobile-menu-title">Tools</span>
             <div class="mobile-menu-group">
                 <a href="https://punicodex.com/type/#${entry.id}">Type</a>
-                <a href="https://punicodex.com/search.html">Search</a>
+                <a href="https://punicodex.com/search/">Search</a>
                 <a href="https://punicodex.com/tiers/">Tiers</a>
-                <a href="https://punicodex.com/oracle.html">Oracle</a>
+                <a href="https://punicodex.com/oracle/">Oracle</a>
             </div>
         </div>
         <div class="mobile-menu-section">

@@ -451,7 +451,7 @@
   <header class="px-utility-header">
     <div class="px-utility-header-inner">
       <a href="/" class="px-utility-wordmark">PUNICODEX</a>
-      <a href="search.html" class="px-utility-back">← Back to Search</a>
+      <a href="/search/" class="px-utility-back">← Back to Search</a>
     </div>
   </header>
 
@@ -499,7 +499,7 @@
       const tierClass = entry.tier === 'dual' ? 'tier-dual' : entry.tier === '1' ? 'tier-1' : 'tier-2';
       const tierLabel = entry.tier === 'dual' ? 'Dual-Tier' : `Tier ${entry.tier}`;
 
-      let html = `<a href="search.html" class="back-link">← Back to Search</a>`;
+      let html = `<a href="/search/" class="back-link">← Back to Search</a>`;
 
       // Hero
       html += `
@@ -604,7 +604,7 @@
               <a href="https://www.godaddy.com/domainsearch/find?domainToCheck=${encodeURIComponent(puny)}" target="_blank" rel="noopener" class="registrar-link">GoDaddy</a>
               <a href="https://www.namecheap.com/domains/registration/results/?domain=${encodeURIComponent(puny)}" target="_blank" rel="noopener" class="registrar-link">Namecheap</a>
               <a href="https://porkbun.com/checkout/search?q=${encodeURIComponent(puny)}" target="_blank" rel="noopener" class="registrar-link">Porkbun</a>
-              <a href="https://www.dynadot.com/domain/search.html?domain=${encodeURIComponent(puny)}" target="_blank" rel="noopener" class="registrar-link">Dynadot</a>
+              <a href="https://www.dynadot.com/domain/search/?domain=${encodeURIComponent(puny)}" target="_blank" rel="noopener" class="registrar-link">Dynadot</a>
             </div>
           </div>
         `;

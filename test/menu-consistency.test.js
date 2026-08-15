@@ -136,7 +136,7 @@ test('no target page still carries retired variant link sets', () => {
   // canonical set must be a superset present on EVERY page now.
   for (const { page } of TARGETS) {
     const html = read(page);
-    for (const href of ['/connections/', '/oracle.html', '/appraise/']) {
+    for (const href of ['/connections/', '/oracle/', '/appraise/']) {
       assert.ok(html.includes(`<a href="${href}" class="nav-link`), `${page}: missing ${href}`);
     }
   }

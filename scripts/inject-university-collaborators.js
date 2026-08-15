@@ -137,8 +137,8 @@ const EXCLUDED_PAGES = new Set([path.join('university-sponsorship', 'index.html'
 // browser shell, the game, the entry point, and the mobile PWA. Any marked
 // blocks found in these files are stripped instead of injected.
 const EXCLUDED_APP_PAGES = new Set([
-  'search.html',
-  'search-v2.html',
+  'search/index.html',
+  'search-v2/index.html',
   'browser.html',
   'entry.html',
 ]);
@@ -213,9 +213,9 @@ function main() {
 
   const rootPages = [
     'index.html',
-    'search.html',
-    'search-v2.html',
-    'oracle.html',
+    'search/index.html',
+    'search-v2/index.html',
+    'oracle/index.html',
     'browser.html',
     'entry.html',
     'admin.html',

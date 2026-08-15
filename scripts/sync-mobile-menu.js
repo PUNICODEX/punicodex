@@ -49,14 +49,14 @@ const CANONICAL_MENU = `<div class="mobile-menu" id="mobile-menu">
             <span class="mobile-menu-title">Tools</span>
             <div class="mobile-menu-group">
                 <a href="/type/">Type</a>
-                <a href="/search.html">Search</a>
+                <a href="/search/">Search</a>
                 <a href="/tiers/">Tier System</a>
                 <a href="/rulebook/">Rulebook</a>
                 <a href="/pronunciation/">Pronunciation</a>
                 <a href="/everyday/">Words</a>
                 <a href="/ink/">Ink</a>
                 <a href="/cards/">Cards</a>
-                <a href="/oracle.html">Oracle</a>
+                <a href="/oracle/">Oracle</a>
                 <a href="/extension/">Extension</a>
                 <a href="/app/">App</a>
             </div>
@@ -92,7 +92,7 @@ const MENU_OPEN = '<div class="mobile-menu" id="mobile-menu">';
 const TARGETS = [
   { page: '404.html', active: null },
   { page: 'index.html', active: null },
-  { page: 'oracle.html', active: '/oracle.html' },
+  { page: path.join('oracle', 'index.html'), active: '/oracle/' },
   { page: path.join('about', 'index.html'), active: '/about/' },
   { page: path.join('about', 'authenticity.html'), active: null },
   { page: path.join('appraise', 'index.html'), active: '/appraise/' },

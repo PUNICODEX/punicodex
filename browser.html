@@ -201,7 +201,7 @@
       let pane = document.getElementById(`pane-${tabId}`);
       pane.innerHTML = '';
 
-      if (resolved === 'about:newtab' || resolved.startsWith('search-v2.html') || resolved.startsWith('/search.html')) {
+      if (resolved === 'about:newtab' || resolved.startsWith('search-v2.html') || resolved.startsWith('/search/')) {
         pane.appendChild(buildNewTabPage(resolved));
       } else if (resolved.startsWith('http')) {
         const iframe = document.createElement('iframe');
@@ -247,7 +247,7 @@
           <input type="text" placeholder="Search the Unicode web…" value="${escapeHtml(q)}" id="ntpInput" autocomplete="off">
         </div>
         <div class="cn-ntp-shortcuts">
-          <a class="cn-ntp-shortcut" href="search-v2.html" target="_self"><span class="icon">⌕</span>Search</a>
+          <a class="cn-ntp-shortcut" href="/search-v2/" target="_self"><span class="icon">⌕</span>Search</a>
           <a class="cn-ntp-shortcut" href="/pantheon/" target="_self"><span class="icon">🏛</span>Pantheon</a>
           <a class="cn-ntp-shortcut" href="/lexicon/" target="_self"><span class="icon">📖</span>Lexicon</a>
           <a class="cn-ntp-shortcut" href="/type/" target="_self"><span class="icon">⌨</span>Type</a>

@@ -297,8 +297,8 @@ function main() {
   const htmlDirs = [path.join(ROOT, 'templates', 'flagship'), path.join(ROOT, 'sites')];
   const rootHtmlFiles = [
     'index.html',
-    'search.html',
-    'oracle.html',
+    'search/index.html',
+    'oracle/index.html',
     'about/index.html',
     'appraise/index.html',
     'authenticity/index.html',

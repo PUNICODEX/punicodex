@@ -13,7 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PUNICODEX — Universal Unicode Search</title>
   <meta name="description" content="Search the Unicode web across sites, domains, lore, images, and scholarly sources.">
-  <link rel="canonical" href="https://punicodex.com/search-v2.html">
+  <link rel="canonical" href="https://punicodex.com/search-v2/">
   <link rel="stylesheet" href="/assets/fonts/fonts.css">
   <link rel="stylesheet" href="/css/search-system.css?v=search12">
   <style>
@@ -1109,7 +1109,7 @@
 
     function renderHistory(r) {
       return `<article class="cn-card cn-history-card">
-        <a href="/search-v2.html?q=${encodeURIComponent(r.query)}" class="cn-result-link">
+        <a href="/search-v2/?q=${encodeURIComponent(r.query)}" class="cn-result-link">
           <div class="cn-result-title">${escapeHtml(r.query)}</div>
           <div class="cn-result-snippet">${escapeHtml(r.mode || '')} · ${escapeHtml(r.timestamp || '')}</div>
         </a>

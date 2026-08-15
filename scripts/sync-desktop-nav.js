@@ -34,7 +34,7 @@ const PRIMARY = [
   ['/lexicon/', 'Lexicon'],
   ['/connections/', 'Connections'],
   ['/type/', 'Type'],
-  ['/search.html', 'Search'],
+  ['/search/', 'Search'],
 ];
 const MORE = [
   ['/patterns/', 'Patterns'],
@@ -44,7 +44,7 @@ const MORE = [
   ['/everyday/', 'Words'],
   ['/ink/', 'Ink'],
   ['/cards/', 'Cards'],
-  ['/oracle.html', 'Oracle'],
+  ['/oracle/', 'Oracle'],
   ['/extension/', 'Extension'],
   ['/app/', 'App'],
   ['/texts/', 'Texts'],
@@ -65,9 +65,9 @@ const MORE = [
 const TARGETS = [
   { page: 'index.html', active: null },
   { page: '404.html', active: null },
-  { page: 'oracle.html', active: '/oracle.html' },
-  { page: 'search.html', active: '/search.html', chrome: 'search' },
-  { page: 'search-v2.html', active: '/search.html', chrome: 'search' },
+  { page: path.join('oracle', 'index.html'), active: '/oracle/' },
+  { page: path.join('search', 'index.html'), active: '/search/', chrome: 'search' },
+  { page: path.join('search-v2', 'index.html'), active: '/search/', chrome: 'search' },
   { page: path.join('about', 'index.html'), active: '/about/' },
   { page: path.join('about', 'authenticity.html'), active: null, replaceNav: true },
   { page: path.join('appraise', 'index.html'), active: '/appraise/' },

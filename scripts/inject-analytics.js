@@ -68,8 +68,8 @@ walk(path.join(ROOT, 'platform', 'public'), (p) => targets.push(p));
 
 const rootPages = [
   'index.html',
-  'search.html',
-  'oracle.html',
+  path.join('search', 'index.html'),
+  path.join('oracle', 'index.html'),
   path.join('about', 'index.html'),
   path.join('contact', 'index.html'),
   path.join('codex', 'index.html'),
@@ -113,7 +113,7 @@ const rootPages = [
   path.join('pronunciation', 'index.html'),
   path.join('everyday', 'index.html'),
   path.join('ink', 'index.html'),
-  'search-v2.html',
+  path.join('search-v2', 'index.html'),
 ];
 for (const p of rootPages) {
   const full = path.join(ROOT, p);
