@@ -11,6 +11,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const Database = require('better-sqlite3');
 
 const GOLDEN_DB = path.join(__dirname, '..', '..', 'platform', 'db', 'punicodex.db');
 const TEST_TMP = path.join(__dirname, '..', 'tmp');
@@ -62,6 +63,30 @@ function prepareTestDb(suiteName) {
       copyWithRetry(src, dst);
     } else if (fs.existsSync(dst)) {
       fs.unlinkSync(dst);
+    }
+  }
+
+  // Torn-copy guard: a copy taken while another process held the golden DB
+  // can carry garbage pages ("database disk image is malformed" on open).
+  // Verify the copy actually answers a query; retry the whole copy on junk.
+  for (let attempt = 0; attempt < 6; attempt++) {
+    try {
+      const probe = new Database(testDb, { readonly: true });
+      probe.prepare('SELECT 1').get();
+      probe.close();
+      break;
+    } catch {
+      if (attempt === 5)
+        throw new Error(`prepareTestDb: golden copy unreadable after retries (${testDb})`);
+      const start = Date.now();
+      while (Date.now() - start < 400) {}
+      copyWithRetry(GOLDEN_DB, testDb);
+      for (const ext of ['-wal', '-shm']) {
+        const src = `${GOLDEN_DB}${ext}`;
+        const dst = `${testDb}${ext}`;
+        if (fs.existsSync(src)) copyWithRetry(src, dst);
+        else if (fs.existsSync(dst)) fs.unlinkSync(dst);
+      }
     }
   }
 

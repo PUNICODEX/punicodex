@@ -511,7 +511,12 @@ test('inject-analytics.js is idempotent and injects the beacon exactly once', ()
   };
   walk(path.join(ROOT, 'sites'));
   walk(path.join(ROOT, 'platform', 'public'));
-  for (const p of ['index.html', 'search/index.html', 'pantheon/index.html', 'lexicon/index.html']) {
+  for (const p of [
+    'index.html',
+    'search/index.html',
+    'pantheon/index.html',
+    'lexicon/index.html',
+  ]) {
     const full = path.join(ROOT, p);
     if (fs.existsSync(full)) targets.push(full);
   }

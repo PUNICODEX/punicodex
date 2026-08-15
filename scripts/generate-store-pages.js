@@ -88,6 +88,15 @@ function cardImage(p, meta) {
   return p.mockupImage || meta.mascotPath || p.image;
 }
 
+// Masters-host JPEG/PNG imagery ships with a webp sibling; emit the enriched
+// <picture> form so a regeneration never strips it (the 2026-08 idempotency
+// failure: a rewritten store page silently lost its webp <source>).
+function imgTag(src, alt) {
+  const webp = /\.(jpe?g|png)$/i.test(src) ? src.replace(/\.(jpe?g|png)$/i, '.webp') : null;
+  const inner = `<img src="${esc(src)}" alt="${esc(alt)}" loading="lazy">`;
+  return webp ? `<picture><source srcset="${esc(webp)}" type="image/webp">${inner}</picture>` : inner;
+}
+
 function priceRange(products) {
   const prices = products.map((p) => p.price);
   const lo = Math.min(...prices);
@@ -282,7 +291,7 @@ function renderStoreIndex(colls) {
       const sorted = products.slice().sort((a, b) => KIND_ORDER.indexOf(a.id.split('-').pop()) - KIND_ORDER.indexOf(b.id.split('-').pop()));
       const img = cardImage(sorted[0], meta);
       return `<a class="card" href="/store/${id}/" data-pantheon="${esc(meta.pantheon)}" data-name="${esc(meta.name.toLowerCase())}">
-  <div class="imgbox"><img src="${esc(img)}" alt="${esc(meta.name)} collection" loading="lazy"></div>
+  <div class="imgbox">${imgTag(img, `${meta.name} collection`)}</div>
   <div class="body">
     <div class="sub">${esc(meta.pantheon)}${meta.rentalTier ? ` · Tier ${meta.rentalTier}` : ''}</div>
     <h3>${esc(meta.name)}</h3>
@@ -372,7 +381,7 @@ function renderCollection(id, products) {
   const cardHtml = (p) => {
     const kind = p.id.split('-').pop();
     return `<a class="card" href="/store/${id}/${kind}/">
-  <div class="imgbox"><img src="${esc(cardImage(p, meta))}" alt="${esc(p.name)}" loading="lazy"></div>
+  <div class="imgbox">${imgTag(cardImage(p, meta), p.name)}</div>
   <div class="body">
     <div class="sub">${esc(kindLabel(kind))}</div>
     <h3>${esc(p.name)}</h3>
