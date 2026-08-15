@@ -118,7 +118,14 @@ const TARGETS = [
   { page: path.join('university-sponsorship', 'index.html'), active: null },
 ];
 
-const WORDMARK = `<a href="/" class="nav-wordmark"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-ivory.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-ivory.png" alt="PuniCodex — The Unicode Pantheon" width="680" height="119"></picture></a>`;
+// Wordmark dims are the TRUE intrinsic size of punicodex-wordmark-ivory.png
+// (3600x374). They must match reality: with CSS `height:24px;width:auto` the
+// attribute ratio drives the pre-load layout box, so a wrong ratio (the old
+// 680x119 was copied from the camel-gold footer mark) caused a nav CLS shift.
+// Hardcoding the real dims also keeps `npm run generate` byte-deterministic on
+// every platform — the nav syncer runs AFTER convert-images-to-webp, so a
+// PIL-measured value must never be what a fresh generate depends on.
+const WORDMARK = `<a href="/" class="nav-wordmark"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-ivory.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-ivory.png" alt="PuniCodex — The Unicode Pantheon" width="3600" height="374"></picture></a>`;
 const CTA = `<a href="/pantheon/" class="nav-cta"><span>Enter</span></a>`;
 const TOGGLE = `<button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-controls="mobile-menu">
                 <span></span>
