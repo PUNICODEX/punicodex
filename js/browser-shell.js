@@ -18,7 +18,7 @@
     if (/^(https?:\/\/|xn--)/i.test(trimmed)) return trimmed;
     if (/^[a-z0-9][\w\-\.]*\.[a-z]{2,}$/i.test(trimmed)) return `https://${trimmed}`;
     if (trimmed.startsWith('/')) return trimmed;
-    return `/search-v2.html?q=${encodeURIComponent(trimmed)}`;
+    return `/search-v2/?q=${encodeURIComponent(trimmed)}`;
   }
 
   function loadHistory() {

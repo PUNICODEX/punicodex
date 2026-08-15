@@ -76,7 +76,7 @@ test('connections page has data/flywheel section', () => {
   assert.ok(html.includes('id="download-graph"'), 'must have download graph button');
   assert.ok(html.includes('id="graph-meta"'), 'must have graph meta line');
   assert.ok(html.includes('/api/v1/docs/'), 'must link to API docs');
-  assert.ok(html.includes('/oracle.html'), 'must link to Oracle');
+  assert.ok(html.includes('/oracle/'), 'must link to Oracle');
 });
 
 test('connections page links to global nav', () => {

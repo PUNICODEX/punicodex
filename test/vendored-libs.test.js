@@ -96,7 +96,7 @@ const CONSUMERS = [
     'platform/api-handlers/v1/docs/index.js',
     ['/vendor/swagger-ui/swagger-ui.css', '/vendor/swagger-ui/swagger-ui-bundle.js'],
   ],
-  ['oracle.html', ['/vendor/three/three.module.js', '/vendor/three/addons/']],
+  ['oracle/index.html', ['/vendor/three/three.module.js', '/vendor/three/addons/']],
 ];
 
 test('every referencing page loads the vendored asset via /vendor/...', () => {

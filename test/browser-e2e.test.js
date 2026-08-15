@@ -216,7 +216,7 @@ async function run() {
     });
 
     await test('search page: labeled query input and submit control exist', async () => {
-      await page.goto(`${base}/search.html`, { waitUntil: 'domcontentloaded' });
+      await page.goto(`${base}/search/`, { waitUntil: 'domcontentloaded' });
       const input = page.locator('#searchInput').first();
       if (!(await input.count())) throw new Error('search input not found');
       const label = await input.getAttribute('aria-label');

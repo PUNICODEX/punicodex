@@ -111,7 +111,7 @@
       { id: 'new-tab', title: 'New Tab', action: () => addTab() },
       { id: 'close-tab', title: 'Close Tab', action: () => closeTab(activeTabId) },
       { id: 'reload', title: 'Reload', action: () => reloadTab() },
-      { id: 'home', title: 'Go Home', action: () => navigateTab('search-v2.html') },
+      { id: 'home', title: 'Go Home', action: () => navigateTab('/search-v2/') },
       { id: 'toggle-sidebar', title: 'Toggle Scriptorium', action: toggleSidebar },
       { id: 'show-shortcuts', title: 'Keyboard Shortcuts', action: toggleHelp },
       { id: 'save-workspace', title: 'Save Workspace', action: saveWorkspace },
@@ -119,7 +119,7 @@
     ];
 
     function init() {
-      if (tabs.length === 0) addTab('search-v2.html');
+      if (tabs.length === 0) addTab('/search-v2/');
       renderTabs();
       renderSidebar();
       setupKeyboard();
@@ -171,7 +171,7 @@
         if (next) setActiveTab(next.id);
       }
       renderTabs();
-      if (tabs.length === 0) addTab('search-v2.html');
+      if (tabs.length === 0) addTab('/search-v2/');
     }
 
     function renderTabs() {
@@ -201,7 +201,7 @@
       let pane = document.getElementById(`pane-${tabId}`);
       pane.innerHTML = '';
 
-      if (resolved === 'about:newtab' || resolved.startsWith('search-v2.html') || resolved.startsWith('/search/')) {
+      if (resolved === 'about:newtab' || resolved.startsWith('/search-v2/') || resolved.startsWith('/search/')) {
         pane.appendChild(buildNewTabPage(resolved));
       } else if (resolved.startsWith('http')) {
         const iframe = document.createElement('iframe');
@@ -233,7 +233,7 @@
       if (/^(https?:\/\/|xn--)/i.test(trimmed)) return trimmed;
       if (/^[a-z0-9][\w\-\.]*\.[a-z]{2,}$/i.test(trimmed)) return `https://${trimmed}`;
       if (trimmed.startsWith('/')) return trimmed;
-      return `search-v2.html?q=${encodeURIComponent(trimmed)}`;
+      return `/search-v2/?q=${encodeURIComponent(trimmed)}`;
     }
 
     function buildNewTabPage(url) {
@@ -273,7 +273,7 @@
 
     function renderSidebar() {
       let html = '';
-      html += `<div class="cn-browser-sidebar-item active" onclick="navigateTab('search-v2.html')"><span>⌕</span> Universal Search</div>`;
+      html += `<div class="cn-browser-sidebar-item active" onclick="navigateTab('/search-v2/')"><span>⌕</span> Universal Search</div>`;
       html += `<div class="cn-browser-sidebar-item" onclick="navigateTab('/pantheon/')"><span>🏛</span> Pantheon</div>`;
       html += `<div class="cn-browser-sidebar-item" onclick="navigateTab('/lexicon/')"><span>📖</span> Lexicon</div>`;
       html += `<div class="cn-browser-sidebar-item" onclick="navigateTab('/type/')"><span>⌨</span> Type Tool</div>`;
@@ -375,7 +375,7 @@
     document.getElementById('backBtn').addEventListener('click', () => history.back());
     document.getElementById('forwardBtn').addEventListener('click', () => history.forward());
     document.getElementById('reloadBtn').addEventListener('click', reloadTab);
-    document.getElementById('homeBtn').addEventListener('click', () => navigateTab('search-v2.html'));
+    document.getElementById('homeBtn').addEventListener('click', () => navigateTab('/search-v2/'));
     document.getElementById('newTabBtn').addEventListener('click', () => addTab());
     document.getElementById('sidebarBtn').addEventListener('click', toggleSidebar);
     document.getElementById('paletteBtn').addEventListener('click', openPalette);

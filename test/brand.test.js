@@ -102,9 +102,9 @@ function read(rel) {
 const ROOT_PAGES = [
   'index.html',
   '404.html',
-  'oracle.html',
-  'search.html',
-  'search-v2.html',
+  'oracle/index.html',
+  'search/index.html',
+  'search-v2/index.html',
   'about/index.html',
   'appraise/index.html',
   'art/index.html',
@@ -210,7 +210,7 @@ const FAVICON_PAGES = ROOT_PAGES.filter((rel) =>
     'codex/why-greek-accents-matter/index.html',
     'connections/index.html',
     'contact/index.html',
-    'oracle.html',
+    'oracle/index.html',
     'pantheon/index.html',
     'privacy/index.html',
     'store/index.html',
@@ -385,8 +385,8 @@ const BODY_CLUSTER_PAGES = [
   'art/index.html',
   'authenticity/index.html',
   'university-sponsorship/index.html',
-  'search.html',
-  'search-v2.html',
+  'search/index.html',
+  'search-v2/index.html',
   'realms/index.html',
   'lexicon/index.html',
   'terms/index.html',
@@ -441,9 +441,9 @@ test('(g) js/pantheon.js and js/home.js reference the empty-portrait fallback', 
 const BODY_WAVE_FILES = [
   'index.html',
   '404.html',
-  'oracle.html',
-  'search.html',
-  'search-v2.html',
+  'oracle/index.html',
+  'search/index.html',
+  'search-v2/index.html',
   'about/index.html',
   'appraise/index.html',
   'art/index.html',
@@ -637,7 +637,7 @@ test('(m) terms and privacy pages reference the sealed tablet and kit card glyph
 // ---- (n) search.html badge/filter-row emoji purge ---------------------------------
 
 test('(n) no emoji remain in search.html badge/filter rows', () => {
-  const search = read('search.html');
+  const search = read('search/index.html');
   // The enumerated badge/filter-row emoji removed in the polish wave.
   const REMOVED = [
     '⚙️ Refine', // filter toggle
@@ -794,7 +794,7 @@ test('(t) pantheon filter pills are styled with passing colors and touch targets
 // ---- (u) search.html select labels + logo accessible name --------------------------
 
 test('(u) search filter selects have explicit labels; logo name matches contents', () => {
-  const html = read('search.html');
+  const html = read('search/index.html');
   assert.ok(
     html.includes('for="pantheonFilter">Pantheon</label>'),
     '#pantheonFilter needs an explicit label'

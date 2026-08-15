@@ -13,7 +13,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const root = path.join(__dirname, '..');
-const html = fs.readFileSync(path.join(root, 'search.html'), 'utf8');
+const html = fs.readFileSync(path.join(root, 'search/index.html'), 'utf8');
 
 let passed = 0;
 let failed = 0;

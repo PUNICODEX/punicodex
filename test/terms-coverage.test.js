@@ -33,7 +33,7 @@ const FEATURE_LINKS = [
   ['appraise/index.html', '/terms/appraise/'],
   ['game/index.html', '/terms/game/'],
   ['authenticity/index.html', '/terms/authenticity/'],
-  ['oracle.html', '/terms/oracle/'],
+  ['oracle/index.html', '/terms/oracle/'],
 ];
 
 test('every sensitive feature has a dedicated terms page with the mandatory clauses', () => {

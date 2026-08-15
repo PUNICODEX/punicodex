@@ -63,7 +63,7 @@ test('tiers page exists and references tier data', () => {
 });
 
 test('public search page exists and references search scripts', () => {
-  const html = readHtml('search.html');
+  const html = readHtml('search/index.html');
   assert.ok(html.includes('<title>'));
   assert.ok(html.includes('search'));
 });

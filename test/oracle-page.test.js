@@ -1,6 +1,6 @@
 /**
  * PuniCodex — Oracle page smoke tests
- * Verifies that /oracle.html has the required structure, nav, sections,
+ * Verifies that /oracle/ has the required structure, nav, sections,
  * interactive demo wiring, and footer expected by the global layout.
  */
 
@@ -9,7 +9,7 @@ const path = require('node:path');
 const cheerio = require('cheerio');
 const assert = require('node:assert');
 
-const filePath = path.join(__dirname, '..', 'oracle.html');
+const filePath = path.join(__dirname, '..', 'oracle/index.html');
 
 function test(name, fn) {
   try {
@@ -43,7 +43,7 @@ test('page has exactly one <title>', () => {
 
 test('page has canonical URL', () => {
   const canonical = $('link[rel="canonical"]').attr('href');
-  assert.strictEqual(canonical, 'https://punicodex.com/oracle.html');
+  assert.strictEqual(canonical, 'https://punicodex.com/oracle/');
 });
 
 test('page has meta description', () => {
@@ -85,13 +85,13 @@ test('main nav exists with expected links', () => {
   const links = $('#main-nav .nav-links a')
     .map((_, el) => $(el).attr('href'))
     .get();
-  assert.ok(links.includes('/oracle.html'), 'expected Oracle link in nav');
+  assert.ok(links.includes('/oracle/'), 'expected Oracle link in nav');
   assert.ok(links.includes('/pantheon/'), 'expected Pantheon link in nav');
   assert.ok(links.includes('/lexicon/'), 'expected Lexicon link in nav');
 });
 
 test('Oracle nav link is marked active', () => {
-  const oracleLink = $('#main-nav .nav-links a[href="/oracle.html"]');
+  const oracleLink = $('#main-nav .nav-links a[href="/oracle/"]');
   assert.strictEqual(oracleLink.length, 1);
   assert.ok(oracleLink.hasClass('active'), 'expected Oracle nav link to be active');
 });
@@ -104,7 +104,7 @@ test('mobile menu toggle exists and is wired', () => {
 });
 
 test('mobile menu contains Oracle link', () => {
-  const link = $('#mobile-menu a[href="/oracle.html"]');
+  const link = $('#mobile-menu a[href="/oracle/"]');
   assert.strictEqual(link.length, 1);
   assert.ok(link.hasClass('active'), 'expected Oracle mobile link active');
 });
@@ -149,7 +149,7 @@ test('footer exists with site columns', () => {
 });
 
 test('footer includes Oracle link', () => {
-  const oracleFooterLink = $('.site-footer a[href="/oracle.html"]');
+  const oracleFooterLink = $('.site-footer a[href="/oracle/"]');
   assert.strictEqual(oracleFooterLink.length, 1, 'expected Oracle link in footer');
 });
 

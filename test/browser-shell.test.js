@@ -48,8 +48,8 @@ test('PunyBrowser resolves URLs and search queries', () => {
   const ctx = runInBrowser('js/browser-shell.js');
   assert.strictEqual(ctx.PunyBrowser.resolveInput('https://example.com'), 'https://example.com');
   assert.strictEqual(ctx.PunyBrowser.resolveInput('example.com'), 'https://example.com');
-  assert.strictEqual(ctx.PunyBrowser.resolveInput('/search-v2.html'), '/search-v2.html');
-  assert.ok(ctx.PunyBrowser.resolveInput('zeus').startsWith('/search-v2.html?q='));
+  assert.strictEqual(ctx.PunyBrowser.resolveInput('/search-v2/'), '/search-v2/');
+  assert.ok(ctx.PunyBrowser.resolveInput('zeus').startsWith('/search-v2/?q='));
 });
 
 test('PunyWorkspaces save and restore tab groups', () => {
