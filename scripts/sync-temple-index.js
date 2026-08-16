@@ -100,15 +100,20 @@ function syncPage(target) {
     return false;
   }
   let html = fs.readFileSync(abs, 'utf8');
-  const stripRe = new RegExp(`\\n?\\s*${START.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}[\\s\\S]*?${END.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`, 'g');
+  // Strip the old block plus the whitespace run before it; then normalize the
+  // gap before <footer> wholesale. Both steps are a fixed point — run-to-run
+  // byte-identical — which the CI divergence gate verifies on fresh regen.
+  const stripRe = new RegExp(
+    `\\s*${START.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}[\\s\\S]*?${END.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`,
+    'g'
+  );
   html = html.replace(stripRe, '');
-  const footerMatch = html.match(/\n(\s*)<footer class="site-footer">/);
-  if (!footerMatch) {
+  if (!html.includes('<footer class="site-footer">')) {
     console.error(`  ✗ ${target.page}: no <footer class="site-footer"> anchor — skipping`);
     return false;
   }
   const block = buildBlock(target);
-  html = html.replace(footerMatch[0], `\n\n    ${block}\n${footerMatch[0]}`);
+  html = html.replace(/\s*(<footer class="site-footer">)/, `\n\n    ${block}\n\n$1`);
   writeFileWithRetry(abs, html);
   return true;
 }
