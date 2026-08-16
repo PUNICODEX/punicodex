@@ -206,16 +206,19 @@ async function run() {
         payload = JSON.parse(route.request().postData());
         return route.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":true}' });
       });
-      await page.goto(`${base}/pantheon/`, { waitUntil: 'domcontentloaded' });
+      // networkidle: deferred scripts wait for pending stylesheets (the
+      // deferred media="print" CSS included), so domcontentloaded alone can
+      // race the beacon mount on slow CI runners.
+      await page.goto(`${base}/pantheon/`, { waitUntil: 'networkidle' });
       await page.locator('.herald-beacon__seal').click();
       await page.locator('input[name="email"]').fill('herald.fan@example.com');
       await page.locator('input[name="phone"]').fill('+61 400 111 222');
       const requestPromise = page.waitForRequest('**/api/newsletter/subscribe/**', {
-        timeout: 10000,
+        timeout: 30000,
       });
       await page.locator('.herald-beacon__submit').click();
       await requestPromise;
-      await page.locator('.herald-beacon__success').first().waitFor({ timeout: 10000 });
+      await page.locator('.herald-beacon__success').first().waitFor({ timeout: 30000 });
       assert.ok(payload, 'request fired');
       assert.strictEqual(payload.email, 'herald.fan@example.com');
       assert.strictEqual(payload.phone, '+61 400 111 222');
