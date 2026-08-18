@@ -234,14 +234,18 @@ async function run() {
     assert.ok(updated.creative_path.endsWith('.png'));
   });
 
-  await test('5. admin approval publishes the creative on the public slot listing', async () => {
+  await test('5. admin approval readies the creative in the slot payload without publishing the frame', async () => {
     const { get } = require('../platform/db/operational');
     const result = await approveBooking(booking.id, 'Looks great', 'test-admin-token');
     assert.strictEqual(result.status, 'approved');
     const slots = await getSlots('nike');
     const slot = slots.find((s) => s.id === slotState.slot.id);
     assert.ok(slot, 'slot present in listing');
-    assert.ok(slot.creative_path, 'creative path public');
+    // Approval ≠ publish: the creative is already resolved into the payload
+    // the temple will consume, but the frame does not serve until goLive.
+    assert.strictEqual(slot.booking_status, 'approved', 'booking approved');
+    assert.strictEqual(slot.status, 'reserved', 'frame stays reserved — approval is not publish');
+    assert.ok(slot.creative_path, 'creative path resolved into the payload');
     assert.ok(
       slot.creative_webp_path?.endsWith('.webp'),
       'webp rendition advertised to the display layer'

@@ -14,6 +14,15 @@ function getCharLimits(width) {
 
 function validateMeta(width, customHeading, customSubtitle) {
   const limits = getCharLimits(width);
+  // Type guard before the length checks: a non-string truthy value (42, {})
+  // has no meaningful .length and would otherwise sail through validation to
+  // be stored (or explode the DB bind) as ad copy.
+  if (customHeading != null && typeof customHeading !== 'string') {
+    return 'customHeading must be a string';
+  }
+  if (customSubtitle != null && typeof customSubtitle !== 'string') {
+    return 'customSubtitle must be a string';
+  }
   if (customHeading && customHeading.length > limits.heading) {
     return `Heading exceeds ${limits.heading} character limit for this slot size`;
   }

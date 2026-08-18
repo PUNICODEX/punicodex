@@ -409,6 +409,16 @@ async function approveApplication(id, adminToken) {
 async function approveBooking(id, note, adminToken) {
   const booking = await getBookingById(id);
   if (!booking) throw new AdminBookingError(404, 'Booking not found');
+  // Approval is the creative-review gate: only a booking awaiting review may
+  // be approved. Without this guard an admin could approve an ended/rejected
+  // booking (resurrecting a dead lease with its slots already released) or
+  // re-approve an approved/live one (duplicate sponsor notification, audit
+  // noise). pending_upload stays approvable: admin-created trial leases are
+  // approved before the first creative arrives (the upload then re-enters
+  // review as pending_approval).
+  if (!['pending_upload', 'pending_approval'].includes(booking.status)) {
+    throw new AdminBookingError(400, `Cannot approve a booking in status: ${booking.status}`);
+  }
   await setBookingStatus(id, 'approved', note || null);
   await logAction({
     ...auditActor(adminToken),
