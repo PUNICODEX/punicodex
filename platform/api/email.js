@@ -217,6 +217,9 @@ async function notifyApplicationApproved({ email, slotName, companyName, stripeU
 
 async function notifyApproved({ email, slotName, companyName, bookingToken, siteSlug }) {
   const siteName = getSiteDisplayName(siteSlug);
+  // Approval no longer publishes — the sponsor flips the switch from their
+  // panel (POST /api/account/bookings/:id/publish/), so say so explicitly.
+  const panelUrl = `${PLATFORM_URL}/account/`;
   return sendEmail({
     to: email,
     subject: `Your ad for ${slotName} is approved`,
@@ -224,10 +227,12 @@ async function notifyApproved({ email, slotName, companyName, bookingToken, site
       <div style="font-family:system-ui,sans-serif;max-width:480px;margin:0 auto;color:#111;">
         <h2 style="color:#d4af37;">${escapeHtml(siteName)} — Creative Approved</h2>
         <p>Hi ${escapeHtml(companyName || 'there')},</p>
-        <p>Your creative for <strong>${escapeHtml(slotName)}</strong> has been approved and is going live shortly.</p>
+        <p>Your creative for <strong>${escapeHtml(slotName)}</strong> has been approved.</p>
+        <p>Nothing appears on the temple until you publish — sign in to <a href="${escapeHtml(panelUrl)}" style="color:#d4af37;font-weight:600;text-decoration:none;">your advertiser panel</a> and press <strong>Publish</strong> when you're ready.</p>
         <p><a href="${escapeHtml(getDashboardUrl(bookingToken, siteSlug))}" style="display:inline-block;background:#d4af37;color:#000;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600;">View Dashboard</a></p>
       </div>
     `,
+    text: `Your creative for ${slotName} has been approved. Nothing appears on the temple until you publish — sign in to your advertiser panel and press Publish when you're ready: ${panelUrl}`,
   });
 }
 

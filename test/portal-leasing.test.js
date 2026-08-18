@@ -471,6 +471,20 @@ async function runTests() {
       );
       assert.ok(!payload.html.includes('/sites/nike/'), 'no nike link leaked');
       assert.ok(payload.html.includes('Zeús — Creative Approved'), 'temple branding in body');
+
+      // Approval no longer publishes: both bodies must point the sponsor at
+      // the panel's Publish switch instead of implying the ad is going live.
+      assert.match(payload.html, /until you publish/i, 'html explains nothing shows until publish');
+      assert.ok(
+        payload.html.includes('https://punicodex.com/account/'),
+        'html links the advertiser panel'
+      );
+      assert.match(payload.text, /press Publish/i, 'text body names the Publish switch');
+      assert.ok(
+        payload.text.includes('https://punicodex.com/account/'),
+        'text body carries the panel URL'
+      );
+      assert.ok(!/going live shortly/i.test(payload.html), 'no stale auto-live promise');
     } finally {
       globalThis.fetch = originalFetch;
       if (hadKey) process.env.RESEND_API_KEY = priorKey;
