@@ -391,6 +391,11 @@ async function goLive(bookingId) {
   const resuming = Boolean(booking.started_at);
   const now = new Date();
   const nowIso = now.toISOString();
+  // …but a paused lease whose window has already elapsed must not be
+  // republished into the past: the placement has to be re-booked.
+  if (resuming && booking.ends_at && new Date(booking.ends_at) <= now) {
+    throw new BookingConflictError('This lease has expired — the placement must be re-booked');
+  }
   const months = booking.lease_months || 1;
   const trialMonths = booking.trial_months || 0;
   const trialEnds = trialMonths > 0 ? addMonths(now, trialMonths) : now;

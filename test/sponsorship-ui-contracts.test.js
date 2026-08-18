@@ -149,7 +149,7 @@ test('every account page pins the same sandbox.js version (currently v=4)', () =
 
 test('changed page scripts carry their bumped pins', () => {
   assert.match(read('account/index.html'), /\/account\/index\.js\?v=4/);
-  assert.match(read('account/brand/index.html'), /\/account\/brand\/brand\.js\?v=4/);
+  assert.match(read('account/brand/index.html'), /\/account\/brand\/brand\.js\?v=5/);
 });
 
 // ── Friendly errors, loading & empty states ──────────────────

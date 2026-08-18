@@ -12,6 +12,10 @@
  * - goLive() after a pause preserves the original started_at/ends_at lease
  *   window — resuming must never extend a lease.
  * - goLive() first-time still stamps started_at/ends_at as before.
+ * - goLive() refuses to resume a paused booking whose ends_at already elapsed
+ *   (BookingConflictError — the placement must be re-booked).
+ * - The lease-expiry sweep ends expired paused bookings and frees their
+ *   frames, while leaving freshly-approved (ends_at NULL) bookings alone.
  *
  * DB bootstrap mirrors test/sponsorship-flow.test.js: an isolated copy of the
  * golden SQLite DB via prepareTestDb(__filename).
@@ -26,6 +30,7 @@ const { prepareTestDb, getTestDbPath } = require('./helpers/test-db.js');
 prepareTestDb(__filename);
 
 const { createBooking, goLive, pause, getBookingById } = require('../platform/api/bookings.js');
+const { runLeaseExpiry } = require('../platform/scripts/lease-expiry.js');
 const { getIndividualSlotIds, getBundleSlotId } = require('./helpers/slots.js');
 
 function db() {
@@ -145,6 +150,76 @@ test('goLive() after a pause preserves the original started_at/ends_at lease win
   assert.strictEqual(resumed.status, 'live');
   assert.strictEqual(resumed.started_at, firstLive.started_at, 'resume must not reset started_at');
   assert.strictEqual(resumed.ends_at, firstLive.ends_at, 'resume must not extend ends_at');
+});
+
+test('goLive() refuses to resume a paused booking whose lease window already elapsed', async () => {
+  const id = await makeLiveBooking('pause-expired-resume@example.com');
+  await pause(id);
+
+  const d = db();
+  d.prepare("UPDATE bookings SET ends_at = '2020-01-01T00:00:00.000Z' WHERE id = ?").run(id);
+  d.close();
+
+  await assert.rejects(
+    () => goLive(id),
+    (err) => {
+      assert.strictEqual(err.isBookingConflict, true);
+      assert.match(err.message, /lease has expired/i);
+      return true;
+    }
+  );
+
+  const after = await getBookingById(id);
+  assert.strictEqual(after.status, 'approved', 'rejected resume must not move the booking');
+  assert.strictEqual(
+    after.ends_at,
+    '2020-01-01T00:00:00.000Z',
+    'rejected resume must not rewrite the lease window'
+  );
+});
+
+test('lease-expiry sweep ends an expired paused booking and frees its frames', async () => {
+  const id = await makeLiveBooking('pause-expired-sweep@example.com');
+  const before = await getBookingById(id);
+  await pause(id);
+
+  const d = db();
+  d.prepare("UPDATE bookings SET ends_at = '2020-01-01T00:00:00.000Z' WHERE id = ?").run(id);
+  d.close();
+
+  const result = await runLeaseExpiry();
+  assert.ok(result.ended >= 1, 'sweep ended at least the expired paused booking');
+
+  const after = await getBookingById(id);
+  assert.strictEqual(after.status, 'ended', 'expired paused booking is ended by the sweep');
+
+  const d2 = db();
+  const slot = d2
+    .prepare('SELECT status, current_booking_id FROM ad_slots WHERE id = ?')
+    .get(before.slot_id);
+  d2.close();
+  assert.strictEqual(slot.status, 'available', 'frame is freed');
+  assert.strictEqual(slot.current_booking_id, null, 'frame no longer held for the sponsor');
+});
+
+test('lease-expiry sweep leaves a freshly-approved (ends_at NULL) booking untouched', async () => {
+  const { id } = await createBooking({
+    slotId: slotIds[slotCursor++],
+    email: 'fresh-approved@example.com',
+    companyName: 'Pause Test Co',
+    leaseMonths: 1,
+    trialMonths: 0,
+    siteSlug: 'nike',
+  });
+  const d = db();
+  d.prepare("UPDATE bookings SET status = 'approved' WHERE id = ?").run(id);
+  d.close();
+
+  await runLeaseExpiry();
+
+  const after = await getBookingById(id);
+  assert.strictEqual(after.status, 'approved', 'freshly approved booking is never swept');
+  assert.strictEqual(after.ends_at, null, 'no lease window stamped');
 });
 
 test('goLive() first-time still stamps started_at/ends_at for the full lease', async () => {

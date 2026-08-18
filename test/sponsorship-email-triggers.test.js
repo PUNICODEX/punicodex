@@ -10,7 +10,7 @@
  * Covered transitions:
  *   approveApplication   → payment-link mail with the Stripe checkout URL
  *   approveBooking       → publish-hint mail (approval ≠ publish)
- *   approveAndGoLive     → approve mail THEN live mail, in that order
+ *   approveAndGoLive     → exactly ONE mail: the live/trial notice
  *   rejectBooking        → rejection mail carrying the admin's reason
  *   goLiveBooking        → notifyLive, or notifyTrialStarted when trialing
  *   publishOwnBooking    → notifyLive (sponsor's own publish switch)
@@ -210,14 +210,24 @@ test('goLiveBooking on a trialing lease sends notifyTrialStarted instead', async
   assert.ok(!/now live on/i.test(lastMail().subject), 'trial go-live never sends the paid mail');
 });
 
-test('approveAndGoLive sends the approve mail THEN the live mail, in order', async () => {
-  const { id } = await makeBooking({ creative: true });
+test('approveAndGoLive sends exactly ONE mail — the live notice, not the publish hint', async () => {
+  const { id, email } = await makeBooking({ creative: true });
   sent.length = 0;
   const result = await approveAndGoLive(id, 'Reviewed in the queue', 'test-admin-token');
   assert.strictEqual(result.status, 'live');
-  assert.strictEqual(sent.length, 2, 'approve + live, exactly two mails');
-  assert.match(sent[0].subject, /is approved/i);
-  assert.match(sent[1].subject, /now live on/i);
+  assert.strictEqual(sent.length, 1, 'the composite must send exactly one mail');
+  assert.strictEqual(lastMail().to[0], email);
+  assert.match(lastMail().subject, /now live on/i, 'the single mail is the go-live notice');
+  assert.ok(!/is approved/i.test(lastMail().subject), 'no contradictory publish-hint mail');
+});
+
+test('approveBooking standalone still sends the publish-hint mail', async () => {
+  const { id } = await makeBooking({ creative: true });
+  sent.length = 0;
+  await approveBooking(id, null, 'test-admin-token');
+  assert.strictEqual(sent.length, 1);
+  assert.match(lastMail().subject, /is approved/i);
+  assert.match(lastMail().html, /until you publish/i, 'html explains nothing shows until publish');
 });
 
 test('sponsor publish (publishOwnBooking) sends notifyLive', async () => {

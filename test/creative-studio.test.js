@@ -37,8 +37,16 @@ test('staged upload previews inside the frame (what you see is what runs)', () =
 test('studio styles exist and page versions bumped', () => {
   assert.match(sandboxCss, /\.sb-dropzone/);
   assert.match(sandboxCss, /\.sb-steps/);
-  assert.match(brandHtml, /brand\.js\?v=4/);
+  assert.match(brandHtml, /brand\.js\?v=5/);
   assert.match(brandHtml, /Creative Studio/);
+});
+
+test('bundle copy-save posts only the destination URL (never wipes team-managed copy)', () => {
+  // The bundle form renders no heading/subtitle inputs; the save body is built
+  // conditionally so a takeover save never sends customHeading: '' — that
+  // would write NULL over the booking-level copy the team set.
+  assert.match(brandJs, /var body = \{ websiteUrl/);
+  assert.match(brandJs, /if \(headingInput\) \{\s*body\.customHeading/);
 });
 
 test('frame preview hidden toggles are honored by the CSS', () => {

@@ -406,7 +406,7 @@ async function approveApplication(id, adminToken) {
   };
 }
 
-async function approveBooking(id, note, adminToken) {
+async function approveBooking(id, note, adminToken, { notify = true } = {}) {
   const booking = await getBookingById(id);
   if (!booking) throw new AdminBookingError(404, 'Booking not found');
   // Approval is the creative-review gate: only a booking awaiting review may
@@ -426,13 +426,18 @@ async function approveBooking(id, note, adminToken) {
     bookingId: booking.id,
     payload: { note: note || null },
   });
-  notifyApproved({
-    email: booking.email,
-    slotName: booking.slot_name,
-    companyName: booking.company_name,
-    bookingToken: booking.analytics_token,
-    siteSlug: booking.site_slug,
-  }).catch(() => {});
+  // notify=false suppresses the publish-hint mail: approveAndGoLive publishes
+  // immediately, so the sponsor must hear only the go-live notice (audit
+  // logging above is unconditional).
+  if (notify) {
+    notifyApproved({
+      email: booking.email,
+      slotName: booking.slot_name,
+      companyName: booking.company_name,
+      bookingToken: booking.analytics_token,
+      siteSlug: booking.site_slug,
+    }).catch(() => {});
+  }
   return { success: true, status: 'approved' };
 }
 
@@ -513,10 +518,12 @@ async function goLiveBooking(id, adminToken) {
 
 /**
  * One-step creative approval + publication for reviewers who have already
- * judged the creative: approveBooking's audit + email, then goLive's.
+ * judged the creative: approveBooking's audit, then goLive's. Exactly ONE
+ * sponsor mail goes out — the live/trial notice from goLiveBooking; the
+ * publish-hint mail would contradict it seconds earlier.
  */
 async function approveAndGoLive(id, note, adminToken) {
-  await approveBooking(id, note, adminToken);
+  await approveBooking(id, note, adminToken, { notify: false });
   return goLiveBooking(id, adminToken);
 }
 

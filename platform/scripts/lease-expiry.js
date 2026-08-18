@@ -2,15 +2,22 @@ const { all } = require('../db/operational');
 const { endBooking, sweepStaleReservations } = require('../api/bookings');
 const { runCreativePurge } = require('../api/creative-purge');
 
+// Live leases past their window, plus paused ones (status 'approved' with a
+// stamped lease window) whose ends_at elapsed while off the air — otherwise a
+// paused-past-expiry booking would hold its frames reserved forever. Freshly
+// approved bookings carry ends_at NULL and are never matched.
 async function getLiveExpiredBookings() {
   return all(
     `
       SELECT b.*, s.name as slot_name
       FROM bookings b
       JOIN ad_slots s ON b.slot_id = s.id
-      WHERE b.status = 'live'
-        AND b.ends_at IS NOT NULL
+      WHERE b.ends_at IS NOT NULL
         AND b.ends_at <= CURRENT_TIMESTAMP
+        AND (
+          b.status = 'live'
+          OR b.status = 'approved'
+        )
     `
   );
 }

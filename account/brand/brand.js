@@ -425,13 +425,17 @@
       var btn = copyForm.querySelector('button[type="submit"]');
       btn.disabled = true;
       try {
+        // Bundle (takeover) forms render only the destination URL — headline
+        // and subtitle are team-managed, so the save must not post empty
+        // strings that would wipe the booking-level copy with NULLs.
+        var body = { websiteUrl: urlInput ? urlInput.value.trim() : '' };
+        if (headingInput) {
+          body.customHeading = headingInput.value.trim();
+          body.customSubtitle = subtitleInput ? subtitleInput.value.trim() : '';
+        }
         await S.api('/api/account/bookings/' + encodeURIComponent(bookingId) + '/meta/', {
           method: 'POST',
-          body: {
-            customHeading: headingInput ? headingInput.value.trim() : '',
-            customSubtitle: subtitleInput ? subtitleInput.value.trim() : '',
-            websiteUrl: urlInput ? urlInput.value.trim() : '',
-          },
+          body: body,
         });
         var text =
           status === 'live' || status === 'approved'

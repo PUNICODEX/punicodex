@@ -88,6 +88,23 @@ test('leasing page carries the Creative Review tab with side-by-side compare', (
   assert.match(leasing, /approve-live/);
 });
 
+test('review cards guard sponsor destination links behind an https:// scheme check', () => {
+  // website_url is sponsor-controlled: only https:// URLs may render as a
+  // clickable href in the admin origin; anything else renders as inert text.
+  assert.match(leasing, /function safeUrlLink\(/);
+  assert.match(leasing, /\^https:\\\/\\\//i);
+  const uses = leasing.match(/safeUrlLink\(b\.website_url\)/g) || [];
+  assert.strictEqual(
+    uses.length,
+    2,
+    'booking detail + creative review card both go through the guard'
+  );
+  assert.ok(
+    !leasing.includes('href=\'" + Portal.escapeHtml(b.website_url)'),
+    'no raw website_url href remains'
+  );
+});
+
 test('approveAndGoLive approves then publishes: live status, two audit rows', async () => {
   const { approveAndGoLive } = require('../platform/api/admin-booking-service.js');
   const { createBooking, saveCreative, getBookingById } = require('../platform/api/bookings.js');

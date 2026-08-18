@@ -411,6 +411,15 @@
             return '<div><div class="cell-sub">' + label + '</div><div>' + value + '</div></div>';
         }
 
+        // Sponsor-controlled destination: only https:// URLs become clickable
+        // links in the admin origin; anything else renders as inert text.
+        function safeUrlLink(url) {
+            var text = Portal.escapeHtml(url);
+            return /^https:\/\//i.test(url)
+                ? '<a href="' + text + '" target="_blank" rel="noopener">' + text + '</a>'
+                : text;
+        }
+
         function openBookingDetail(b) {
             var creative = b.creative_path
                 ? '<div style="margin:0.6rem 0;"><img src="' + Portal.escapeHtml(b.creative_path) + '" alt="Sponsor creative" style="max-width:100%;max-height:280px;border-radius:8px;border:1px solid rgba(212,175,55,0.25);display:block;" onerror="this.outerHTML=\'<div class=&quot;state-block&quot;>Creative failed to load.</div>\'">' +
@@ -418,7 +427,7 @@
                   '</div>'
                 : '<div class="state-block">No creative uploaded yet.</div>';
             var link = b.website_url
-                ? '<a href="' + Portal.escapeHtml(b.website_url) + '" target="_blank" rel="noopener">' + Portal.escapeHtml(b.website_url) + '</a>'
+                ? safeUrlLink(b.website_url)
                 : '—';
             var facts =
                 '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:0.8rem;margin:1rem 0;">' +
@@ -713,7 +722,7 @@
                 ? crImage(b.creative_path, b.creative_original_name || b.company_name || 'creative')
                 : '<div class="state-block">No creative uploaded yet.</div>';
             var link = b.website_url
-                ? '<a href="' + Portal.escapeHtml(b.website_url) + '" target="_blank" rel="noopener">' + Portal.escapeHtml(b.website_url) + '</a>'
+                ? safeUrlLink(b.website_url)
                 : '—';
             var actions = '<span class="cell-sub">—</span>';
             if (Portal.can('leasing')) {
