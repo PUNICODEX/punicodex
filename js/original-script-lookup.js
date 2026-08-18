@@ -2193,6 +2193,16 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptName": "Chinese characters",
     "scriptLabel": "Original Script"
   },
+  "change": {
+    "originalScript": "嫦娥",
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
+  },
+  "houyi": {
+    "originalScript": "后羿",
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
+  },
   "sunwukong": {
     "originalScript": "孫悟空",
     "scriptName": "Chinese characters",

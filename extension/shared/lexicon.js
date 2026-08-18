@@ -4,7 +4,7 @@
 //
 /*
  * PUNICODEX Lexicon
- * 894 validated entries across multiple pantheons
+ * 926 validated entries across multiple pantheons
  */
 
 const LEXICON = [
@@ -34251,6 +34251,106 @@ const LEXICON = [
         "to": "ā",
         "type": "length",
         "note": "Long vowel"
+      }
+    ]
+  },
+  {
+    "id": "change",
+    "ascii": "change",
+    "unicode": "Cháng'é",
+    "greek": "嫦娥",
+    "pantheon": "chinese",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Moon, Immortality, Mid-Autumn",
+    "meaning": "The Moon goddess who drank the elixir of immortality",
+    "sources": [
+      "Huainanzi",
+      "Chinese folklore"
+    ],
+    "breakdown": [
+      {
+        "char": "c",
+        "to": "C",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "h",
+        "to": "h",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "á",
+        "type": "stress",
+        "note": "Stress on a"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "g",
+        "to": "g'",
+        "type": "special",
+        "note": "G + apostrophe: pinyin syllable separator"
+      },
+      {
+        "char": "e",
+        "to": "é",
+        "type": "stress",
+        "note": "Stress on e"
+      }
+    ]
+  },
+  {
+    "id": "houyi",
+    "ascii": "houyi",
+    "unicode": "Hòuyì",
+    "greek": "后羿",
+    "pantheon": "chinese",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Archery, Suns, Heroism",
+    "meaning": "The divine archer who shot down nine suns",
+    "sources": [
+      "Shan Hai Jing",
+      "Huainanzi"
+    ],
+    "breakdown": [
+      {
+        "char": "h",
+        "to": "H",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "o",
+        "to": "ò",
+        "type": "stress",
+        "note": "Stress on o"
+      },
+      {
+        "char": "u",
+        "to": "u",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "y",
+        "to": "y",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "i",
+        "to": "ì",
+        "type": "stress",
+        "note": "Stress on i"
       }
     ]
   },

@@ -10,22 +10,22 @@
     ],
     "spec": "docs/card-game-spec.md",
     "counts": {
-      "total": 1746,
-      "standard": 1488,
-      "originalScript": 258,
-      "flagship": 846,
+      "total": 1763,
+      "standard": 1500,
+      "originalScript": 263,
+      "flagship": 861,
       "byEdition": {
-        "common": 282,
-        "holo": 282,
-        "full-art": 282,
-        "secret": 258,
-        "archive": 642
+        "common": 287,
+        "holo": 287,
+        "full-art": 287,
+        "secret": 263,
+        "archive": 639
       },
       "byRarity": {
-        "common": 486,
-        "rare": 621,
-        "legendary": 282,
-        "mythic": 258,
+        "common": 491,
+        "rare": 623,
+        "legendary": 287,
+        "mythic": 263,
         "uncommon": 99
       }
     }
@@ -4979,7 +4979,7 @@
       "domain": "Strength, Labours, Heroism",
       "rarity": "common",
       "rarityOrder": 1,
-      "cost": 1,
+      "cost": 2,
       "power": 71,
       "health": 61,
       "speed": 7,
@@ -5028,7 +5028,7 @@
       "domain": "Strength, Labours, Heroism",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 1,
+      "cost": 2,
       "power": 83,
       "health": 73,
       "speed": 7,
@@ -5078,7 +5078,7 @@
       "domain": "Strength, Labours, Heroism",
       "rarity": "legendary",
       "rarityOrder": 5,
-      "cost": 1,
+      "cost": 2,
       "power": 83,
       "health": 73,
       "speed": 7,
@@ -8927,7 +8927,7 @@
       "domain": "City of Priam",
       "rarity": "common",
       "rarityOrder": 1,
-      "cost": 5,
+      "cost": 4,
       "power": 82,
       "health": 62,
       "speed": 7,
@@ -8976,7 +8976,7 @@
       "domain": "City of Priam",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 5,
+      "cost": 4,
       "power": 94,
       "health": 74,
       "speed": 7,
@@ -9026,7 +9026,7 @@
       "domain": "City of Priam",
       "rarity": "legendary",
       "rarityOrder": 5,
-      "cost": 5,
+      "cost": 4,
       "power": 94,
       "health": 74,
       "speed": 7,
@@ -13601,7 +13601,7 @@
       "domain": "Writing, Wisdom, Moon",
       "rarity": "common",
       "rarityOrder": 1,
-      "cost": 4,
+      "cost": 3,
       "power": 70,
       "health": 70,
       "speed": 4,
@@ -13650,7 +13650,7 @@
       "domain": "Writing, Wisdom, Moon",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 4,
+      "cost": 3,
       "power": 82,
       "health": 82,
       "speed": 4,
@@ -13700,7 +13700,7 @@
       "domain": "Writing, Wisdom, Moon",
       "rarity": "legendary",
       "rarityOrder": 5,
-      "cost": 4,
+      "cost": 3,
       "power": 82,
       "health": 82,
       "speed": 4,
@@ -24569,7 +24569,7 @@
       "domain": "Chaos, Darkness, Serpent",
       "rarity": "mythic",
       "rarityOrder": 6,
-      "cost": 7,
+      "cost": 6,
       "power": 95,
       "health": 82,
       "speed": 3,
@@ -29228,7 +29228,7 @@
       "domain": "Monster, Strait of Messina",
       "rarity": "common",
       "rarityOrder": 1,
-      "cost": 2,
+      "cost": 3,
       "power": 47,
       "health": 74,
       "speed": 7,
@@ -29702,7 +29702,7 @@
       "domain": "Trickster, Eternal Boulder",
       "rarity": "common",
       "rarityOrder": 1,
-      "cost": 1,
+      "cost": 2,
       "power": 45,
       "health": 68,
       "speed": 8,
@@ -31013,7 +31013,7 @@
       "domain": "Titaness of Sight",
       "rarity": "mythic",
       "rarityOrder": 6,
-      "cost": 1,
+      "cost": 2,
       "power": 86,
       "health": 68,
       "speed": 8,
@@ -51154,7 +51154,7 @@
       "domain": "Luck, Abundance",
       "rarity": "common",
       "rarityOrder": 1,
-      "cost": 4,
+      "cost": 5,
       "power": 65,
       "health": 71,
       "speed": 5,
@@ -53535,10 +53535,60 @@
       }
     },
     {
-      "id": "longwang-standard",
+      "id": "longwang-common",
       "entryId": "longwang",
-      "baseCardId": "longwang-standard",
-      "edition": "archive",
+      "baseCardId": "longwang-common",
+      "edition": "common",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Lóngwáng",
+      "ascii": "longwang",
+      "original": "龍王",
+      "pantheon": "chinese",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Dragons, Rain, Rivers",
+      "rarity": "common",
+      "rarityOrder": 1,
+      "cost": 5,
+      "power": 82,
+      "health": 64,
+      "speed": 4,
+      "ability": {
+        "id": "ability-longwang",
+        "entryId": "longwang",
+        "name": "Kings of the Four Seas",
+        "description": "Deal 2 damage to all enemy cards.",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "damage",
+          "target": "enemy-board",
+          "amount": 2
+        }
+      },
+      "flavor": "The Dragon Kings stand at the crossing of two Chinas: the literary China of the great Ming novels, where they are foils, creditors, and comic bureaucrats, and the living China of the village temple, where they were the a",
+      "flagship": true,
+      "ownedDomain": "lóngwáng.com",
+      "art": {
+        "mascot": "/sites/longwang/assets/longwang_mascot.webp",
+        "logomark": "/sites/longwang/assets/longwang_logomark.webp",
+        "fullArt": null,
+        "colors": {
+          "primary": "#DC143C",
+          "secondary": "#FFD700",
+          "glow": "rgba(220,20,60,0.3)"
+        },
+        "artist": null
+      }
+    },
+    {
+      "id": "longwang-holo",
+      "entryId": "longwang",
+      "baseCardId": "longwang-common",
+      "edition": "holo",
       "variant": "standard",
       "setId": "first-restoration",
       "name": "Lóngwáng",
@@ -53553,14 +53603,14 @@
       "domain": "Dragons, Rain, Rivers",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 6,
-      "power": 82,
-      "health": 64,
+      "cost": 5,
+      "power": 94,
+      "health": 76,
       "speed": 4,
       "ability": {
         "id": "ability-longwang",
         "entryId": "longwang",
-        "name": "Undertow of the Celestial Court",
+        "name": "Kings of the Four Seas",
         "description": "Deal 2 damage to all enemy cards.",
         "trigger": "on_play",
         "effect": {
@@ -53569,16 +53619,142 @@
           "amount": 2
         }
       },
-      "flavor": "water deity in Chinese mythology",
-      "flagship": false,
-      "ownedDomain": null,
+      "flavor": "The Dragon Kings stand at the crossing of two Chinas: the literary China of the great Ming novels, where they are foils, creditors, and comic bureaucrats, and the living China of the village temple, where they were the a",
+      "flagship": true,
+      "ownedDomain": "lóngwáng.com",
       "art": {
-        "mascot": null,
-        "logomark": null,
+        "mascot": "/sites/longwang/assets/longwang_mascot.webp",
+        "logomark": "/sites/longwang/assets/longwang_logomark.webp",
         "fullArt": null,
-        "colors": null,
+        "colors": {
+          "primary": "#DC143C",
+          "secondary": "#FFD700",
+          "glow": "rgba(220,20,60,0.3)"
+        },
+        "artist": null
+      },
+      "patternFoil": true
+    },
+    {
+      "id": "longwang-full-art",
+      "entryId": "longwang",
+      "baseCardId": "longwang-common",
+      "edition": "full-art",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Lóngwáng",
+      "ascii": "longwang",
+      "original": "龍王",
+      "pantheon": "chinese",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Dragons, Rain, Rivers",
+      "rarity": "legendary",
+      "rarityOrder": 5,
+      "cost": 5,
+      "power": 94,
+      "health": 76,
+      "speed": 4,
+      "ability": {
+        "id": "ability-longwang",
+        "entryId": "longwang",
+        "name": "Kings of the Four Seas",
+        "description": "Deal 2 damage to all enemy cards. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "damage",
+              "target": "enemy-board",
+              "amount": 2
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "The Dragon Kings stand at the crossing of two Chinas: the literary China of the great Ming novels, where they are foils, creditors, and comic bureaucrats, and the living China of the village temple, where they were the a",
+      "flagship": true,
+      "ownedDomain": "lóngwáng.com",
+      "art": {
+        "mascot": "/sites/longwang/assets/longwang_mascot.webp",
+        "logomark": "/sites/longwang/assets/longwang_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/longwang_comp-canvas.png",
+        "colors": {
+          "primary": "#DC143C",
+          "secondary": "#FFD700",
+          "glow": "rgba(220,20,60,0.3)"
+        },
         "artist": null
       }
+    },
+    {
+      "id": "longwang-secret",
+      "entryId": "longwang",
+      "baseCardId": "longwang-common",
+      "edition": "secret",
+      "variant": "original-script",
+      "setId": "first-restoration",
+      "name": "Lóngwáng",
+      "ascii": "longwang",
+      "original": "龍王",
+      "pantheon": "chinese",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Dragons, Rain, Rivers",
+      "rarity": "mythic",
+      "rarityOrder": 6,
+      "cost": 5,
+      "power": 94,
+      "health": 76,
+      "speed": 4,
+      "ability": {
+        "id": "ability-longwang",
+        "entryId": "longwang",
+        "name": "Kings of the Four Seas",
+        "description": "Deal 2 damage to all enemy cards. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "damage",
+              "target": "enemy-board",
+              "amount": 2
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "The Dragon Kings stand at the crossing of two Chinas: the literary China of the great Ming novels, where they are foils, creditors, and comic bureaucrats, and the living China of the village temple, where they were the a",
+      "flagship": true,
+      "ownedDomain": "lóngwáng.com",
+      "art": {
+        "mascot": "/sites/longwang/assets/longwang_mascot.webp",
+        "logomark": "/sites/longwang/assets/longwang_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/longwang_comp-canvas.png",
+        "colors": {
+          "primary": "#DC143C",
+          "secondary": "#FFD700",
+          "glow": "rgba(220,20,60,0.3)"
+        },
+        "artist": null
+      },
+      "foil": true
     },
     {
       "id": "yamen-standard",
@@ -55451,10 +55627,60 @@
       }
     },
     {
-      "id": "nezha-standard",
+      "id": "nezha-common",
       "entryId": "nezha",
-      "baseCardId": "nezha-standard",
-      "edition": "archive",
+      "baseCardId": "nezha-common",
+      "edition": "common",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Nézhā",
+      "ascii": "nezha",
+      "original": "哪吒",
+      "pantheon": "chinese",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Youth, War, Rebellion",
+      "rarity": "common",
+      "rarityOrder": 1,
+      "cost": 7,
+      "power": 70,
+      "health": 85,
+      "speed": 4,
+      "ability": {
+        "id": "ability-nezha",
+        "entryId": "nezha",
+        "name": "The Lotus-Born Rebel",
+        "description": "Your allies gain +1 power.",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "buff-allies",
+          "power": 1,
+          "health": 0
+        }
+      },
+      "flavor": "The Nézhā cycle is the great Chinese myth of the filial rebel — a story in which the most radical act of disobedience and the most extreme act of filial piety turn out to be the same act.",
+      "flagship": true,
+      "ownedDomain": "nézhā.com",
+      "art": {
+        "mascot": "/sites/nezha/assets/nezha_mascot.webp",
+        "logomark": "/sites/nezha/assets/nezha_logomark.webp",
+        "fullArt": null,
+        "colors": {
+          "primary": "#DC143C",
+          "secondary": "#FFD700",
+          "glow": "rgba(220,20,60,0.3)"
+        },
+        "artist": null
+      }
+    },
+    {
+      "id": "nezha-holo",
+      "entryId": "nezha",
+      "baseCardId": "nezha-common",
+      "edition": "holo",
       "variant": "standard",
       "setId": "first-restoration",
       "name": "Nézhā",
@@ -55469,14 +55695,14 @@
       "domain": "Youth, War, Rebellion",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 8,
-      "power": 70,
-      "health": 85,
+      "cost": 7,
+      "power": 82,
+      "health": 97,
       "speed": 4,
       "ability": {
         "id": "ability-nezha",
         "entryId": "nezha",
-        "name": "War Cry of the Celestial Court",
+        "name": "The Lotus-Born Rebel",
         "description": "Your allies gain +1 power.",
         "trigger": "on_play",
         "effect": {
@@ -55485,16 +55711,558 @@
           "health": 0
         }
       },
-      "flavor": "Nezha (from Sanskrit Nalakuvara)",
-      "flagship": false,
-      "ownedDomain": null,
+      "flavor": "The Nézhā cycle is the great Chinese myth of the filial rebel — a story in which the most radical act of disobedience and the most extreme act of filial piety turn out to be the same act.",
+      "flagship": true,
+      "ownedDomain": "nézhā.com",
       "art": {
-        "mascot": null,
-        "logomark": null,
+        "mascot": "/sites/nezha/assets/nezha_mascot.webp",
+        "logomark": "/sites/nezha/assets/nezha_logomark.webp",
         "fullArt": null,
-        "colors": null,
+        "colors": {
+          "primary": "#DC143C",
+          "secondary": "#FFD700",
+          "glow": "rgba(220,20,60,0.3)"
+        },
+        "artist": null
+      },
+      "patternFoil": true
+    },
+    {
+      "id": "nezha-full-art",
+      "entryId": "nezha",
+      "baseCardId": "nezha-common",
+      "edition": "full-art",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Nézhā",
+      "ascii": "nezha",
+      "original": "哪吒",
+      "pantheon": "chinese",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Youth, War, Rebellion",
+      "rarity": "legendary",
+      "rarityOrder": 5,
+      "cost": 7,
+      "power": 82,
+      "health": 97,
+      "speed": 4,
+      "ability": {
+        "id": "ability-nezha",
+        "entryId": "nezha",
+        "name": "The Lotus-Born Rebel",
+        "description": "Your allies gain +1 power. +2 power (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "buff-allies",
+          "power": 3,
+          "health": 0
+        }
+      },
+      "flavor": "The Nézhā cycle is the great Chinese myth of the filial rebel — a story in which the most radical act of disobedience and the most extreme act of filial piety turn out to be the same act.",
+      "flagship": true,
+      "ownedDomain": "nézhā.com",
+      "art": {
+        "mascot": "/sites/nezha/assets/nezha_mascot.webp",
+        "logomark": "/sites/nezha/assets/nezha_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/nezha_comp-canvas.png",
+        "colors": {
+          "primary": "#DC143C",
+          "secondary": "#FFD700",
+          "glow": "rgba(220,20,60,0.3)"
+        },
         "artist": null
       }
+    },
+    {
+      "id": "nezha-secret",
+      "entryId": "nezha",
+      "baseCardId": "nezha-common",
+      "edition": "secret",
+      "variant": "original-script",
+      "setId": "first-restoration",
+      "name": "Nézhā",
+      "ascii": "nezha",
+      "original": "哪吒",
+      "pantheon": "chinese",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Youth, War, Rebellion",
+      "rarity": "mythic",
+      "rarityOrder": 6,
+      "cost": 7,
+      "power": 82,
+      "health": 97,
+      "speed": 4,
+      "ability": {
+        "id": "ability-nezha",
+        "entryId": "nezha",
+        "name": "The Lotus-Born Rebel",
+        "description": "Your allies gain +1 power. +2 power (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "buff-allies",
+          "power": 3,
+          "health": 0
+        }
+      },
+      "flavor": "The Nézhā cycle is the great Chinese myth of the filial rebel — a story in which the most radical act of disobedience and the most extreme act of filial piety turn out to be the same act.",
+      "flagship": true,
+      "ownedDomain": "nézhā.com",
+      "art": {
+        "mascot": "/sites/nezha/assets/nezha_mascot.webp",
+        "logomark": "/sites/nezha/assets/nezha_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/nezha_comp-canvas.png",
+        "colors": {
+          "primary": "#DC143C",
+          "secondary": "#FFD700",
+          "glow": "rgba(220,20,60,0.3)"
+        },
+        "artist": null
+      },
+      "foil": true
+    },
+    {
+      "id": "change-common",
+      "entryId": "change",
+      "baseCardId": "change-common",
+      "edition": "common",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Cháng'é",
+      "ascii": "change",
+      "original": "嫦娥",
+      "pantheon": "chinese",
+      "category": "celestial",
+      "categoryLabel": "Celestial",
+      "categoryIcon": "☉",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Moon, Immortality, Mid-Autumn",
+      "rarity": "common",
+      "rarityOrder": 1,
+      "cost": 6,
+      "power": 81,
+      "health": 71,
+      "speed": 6,
+      "ability": {
+        "id": "ability-change",
+        "entryId": "change",
+        "name": "Goddess of the Cold Moon",
+        "description": "An ally gains a 3 shield.",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "shield-ally",
+          "amount": 3
+        }
+      },
+      "flavor": "Cháng'é's story is short and inexhaustible: one ascent, endlessly retold.",
+      "flagship": true,
+      "ownedDomain": "chángé.com",
+      "art": {
+        "mascot": "/sites/change/assets/change_mascot.webp",
+        "logomark": "/sites/change/assets/change_logomark.webp",
+        "fullArt": null,
+        "colors": {
+          "primary": "#DC143C",
+          "secondary": "#FFD700",
+          "glow": "rgba(220,20,60,0.3)"
+        },
+        "artist": null
+      }
+    },
+    {
+      "id": "change-holo",
+      "entryId": "change",
+      "baseCardId": "change-common",
+      "edition": "holo",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Cháng'é",
+      "ascii": "change",
+      "original": "嫦娥",
+      "pantheon": "chinese",
+      "category": "celestial",
+      "categoryLabel": "Celestial",
+      "categoryIcon": "☉",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Moon, Immortality, Mid-Autumn",
+      "rarity": "rare",
+      "rarityOrder": 3,
+      "cost": 6,
+      "power": 93,
+      "health": 83,
+      "speed": 6,
+      "ability": {
+        "id": "ability-change",
+        "entryId": "change",
+        "name": "Goddess of the Cold Moon",
+        "description": "An ally gains a 3 shield.",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "shield-ally",
+          "amount": 3
+        }
+      },
+      "flavor": "Cháng'é's story is short and inexhaustible: one ascent, endlessly retold.",
+      "flagship": true,
+      "ownedDomain": "chángé.com",
+      "art": {
+        "mascot": "/sites/change/assets/change_mascot.webp",
+        "logomark": "/sites/change/assets/change_logomark.webp",
+        "fullArt": null,
+        "colors": {
+          "primary": "#DC143C",
+          "secondary": "#FFD700",
+          "glow": "rgba(220,20,60,0.3)"
+        },
+        "artist": null
+      },
+      "patternFoil": true
+    },
+    {
+      "id": "change-full-art",
+      "entryId": "change",
+      "baseCardId": "change-common",
+      "edition": "full-art",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Cháng'é",
+      "ascii": "change",
+      "original": "嫦娥",
+      "pantheon": "chinese",
+      "category": "celestial",
+      "categoryLabel": "Celestial",
+      "categoryIcon": "☉",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Moon, Immortality, Mid-Autumn",
+      "rarity": "legendary",
+      "rarityOrder": 5,
+      "cost": 6,
+      "power": 93,
+      "health": 83,
+      "speed": 6,
+      "ability": {
+        "id": "ability-change",
+        "entryId": "change",
+        "name": "Goddess of the Cold Moon",
+        "description": "An ally gains a 3 shield. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "shield-ally",
+              "amount": 3
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "Cháng'é's story is short and inexhaustible: one ascent, endlessly retold.",
+      "flagship": true,
+      "ownedDomain": "chángé.com",
+      "art": {
+        "mascot": "/sites/change/assets/change_mascot.webp",
+        "logomark": "/sites/change/assets/change_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/change_comp-canvas.png",
+        "colors": {
+          "primary": "#DC143C",
+          "secondary": "#FFD700",
+          "glow": "rgba(220,20,60,0.3)"
+        },
+        "artist": null
+      }
+    },
+    {
+      "id": "change-secret",
+      "entryId": "change",
+      "baseCardId": "change-common",
+      "edition": "secret",
+      "variant": "original-script",
+      "setId": "first-restoration",
+      "name": "Cháng'é",
+      "ascii": "change",
+      "original": "嫦娥",
+      "pantheon": "chinese",
+      "category": "celestial",
+      "categoryLabel": "Celestial",
+      "categoryIcon": "☉",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Moon, Immortality, Mid-Autumn",
+      "rarity": "mythic",
+      "rarityOrder": 6,
+      "cost": 6,
+      "power": 93,
+      "health": 83,
+      "speed": 6,
+      "ability": {
+        "id": "ability-change",
+        "entryId": "change",
+        "name": "Goddess of the Cold Moon",
+        "description": "An ally gains a 3 shield. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "shield-ally",
+              "amount": 3
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "Cháng'é's story is short and inexhaustible: one ascent, endlessly retold.",
+      "flagship": true,
+      "ownedDomain": "chángé.com",
+      "art": {
+        "mascot": "/sites/change/assets/change_mascot.webp",
+        "logomark": "/sites/change/assets/change_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/change_comp-canvas.png",
+        "colors": {
+          "primary": "#DC143C",
+          "secondary": "#FFD700",
+          "glow": "rgba(220,20,60,0.3)"
+        },
+        "artist": null
+      },
+      "foil": true
+    },
+    {
+      "id": "houyi-common",
+      "entryId": "houyi",
+      "baseCardId": "houyi-common",
+      "edition": "common",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Hòuyì",
+      "ascii": "houyi",
+      "original": "后羿",
+      "pantheon": "chinese",
+      "category": "celestial",
+      "categoryLabel": "Celestial",
+      "categoryIcon": "☉",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Archery, Suns, Heroism",
+      "rarity": "common",
+      "rarityOrder": 1,
+      "cost": 7,
+      "power": 84,
+      "health": 70,
+      "speed": 6,
+      "ability": {
+        "id": "ability-houyi",
+        "entryId": "houyi",
+        "name": "Archer of the Nine Fallen Suns",
+        "description": "Halve an enemy card’s speed.",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "slow-enemy",
+          "target": "enemy-minion"
+        }
+      },
+      "flavor": "The cycle of Hòuyì is the great Chinese myth of cosmic correction: a heaven that gives too much, an earth that suffers for it, and one archer whose arrows restore the mean.",
+      "flagship": true,
+      "ownedDomain": "hòuyì.com",
+      "art": {
+        "mascot": "/sites/houyi/assets/houyi_mascot.webp",
+        "logomark": "/sites/houyi/assets/houyi_logomark.webp",
+        "fullArt": null,
+        "colors": {
+          "primary": "#DC143C",
+          "secondary": "#FFD700",
+          "glow": "rgba(220,20,60,0.3)"
+        },
+        "artist": null
+      }
+    },
+    {
+      "id": "houyi-holo",
+      "entryId": "houyi",
+      "baseCardId": "houyi-common",
+      "edition": "holo",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Hòuyì",
+      "ascii": "houyi",
+      "original": "后羿",
+      "pantheon": "chinese",
+      "category": "celestial",
+      "categoryLabel": "Celestial",
+      "categoryIcon": "☉",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Archery, Suns, Heroism",
+      "rarity": "rare",
+      "rarityOrder": 3,
+      "cost": 7,
+      "power": 96,
+      "health": 82,
+      "speed": 6,
+      "ability": {
+        "id": "ability-houyi",
+        "entryId": "houyi",
+        "name": "Archer of the Nine Fallen Suns",
+        "description": "Halve an enemy card’s speed.",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "slow-enemy",
+          "target": "enemy-minion"
+        }
+      },
+      "flavor": "The cycle of Hòuyì is the great Chinese myth of cosmic correction: a heaven that gives too much, an earth that suffers for it, and one archer whose arrows restore the mean.",
+      "flagship": true,
+      "ownedDomain": "hòuyì.com",
+      "art": {
+        "mascot": "/sites/houyi/assets/houyi_mascot.webp",
+        "logomark": "/sites/houyi/assets/houyi_logomark.webp",
+        "fullArt": null,
+        "colors": {
+          "primary": "#DC143C",
+          "secondary": "#FFD700",
+          "glow": "rgba(220,20,60,0.3)"
+        },
+        "artist": null
+      },
+      "patternFoil": true
+    },
+    {
+      "id": "houyi-full-art",
+      "entryId": "houyi",
+      "baseCardId": "houyi-common",
+      "edition": "full-art",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Hòuyì",
+      "ascii": "houyi",
+      "original": "后羿",
+      "pantheon": "chinese",
+      "category": "celestial",
+      "categoryLabel": "Celestial",
+      "categoryIcon": "☉",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Archery, Suns, Heroism",
+      "rarity": "legendary",
+      "rarityOrder": 5,
+      "cost": 7,
+      "power": 96,
+      "health": 82,
+      "speed": 6,
+      "ability": {
+        "id": "ability-houyi",
+        "entryId": "houyi",
+        "name": "Archer of the Nine Fallen Suns",
+        "description": "Halve an enemy card’s speed. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "slow-enemy",
+              "target": "enemy-minion"
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "The cycle of Hòuyì is the great Chinese myth of cosmic correction: a heaven that gives too much, an earth that suffers for it, and one archer whose arrows restore the mean.",
+      "flagship": true,
+      "ownedDomain": "hòuyì.com",
+      "art": {
+        "mascot": "/sites/houyi/assets/houyi_mascot.webp",
+        "logomark": "/sites/houyi/assets/houyi_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/houyi_comp-canvas.png",
+        "colors": {
+          "primary": "#DC143C",
+          "secondary": "#FFD700",
+          "glow": "rgba(220,20,60,0.3)"
+        },
+        "artist": null
+      }
+    },
+    {
+      "id": "houyi-secret",
+      "entryId": "houyi",
+      "baseCardId": "houyi-common",
+      "edition": "secret",
+      "variant": "original-script",
+      "setId": "first-restoration",
+      "name": "Hòuyì",
+      "ascii": "houyi",
+      "original": "后羿",
+      "pantheon": "chinese",
+      "category": "celestial",
+      "categoryLabel": "Celestial",
+      "categoryIcon": "☉",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Archery, Suns, Heroism",
+      "rarity": "mythic",
+      "rarityOrder": 6,
+      "cost": 7,
+      "power": 96,
+      "health": 82,
+      "speed": 6,
+      "ability": {
+        "id": "ability-houyi",
+        "entryId": "houyi",
+        "name": "Archer of the Nine Fallen Suns",
+        "description": "Halve an enemy card’s speed. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "slow-enemy",
+              "target": "enemy-minion"
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "The cycle of Hòuyì is the great Chinese myth of cosmic correction: a heaven that gives too much, an earth that suffers for it, and one archer whose arrows restore the mean.",
+      "flagship": true,
+      "ownedDomain": "hòuyì.com",
+      "art": {
+        "mascot": "/sites/houyi/assets/houyi_mascot.webp",
+        "logomark": "/sites/houyi/assets/houyi_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/houyi_comp-canvas.png",
+        "colors": {
+          "primary": "#DC143C",
+          "secondary": "#FFD700",
+          "glow": "rgba(220,20,60,0.3)"
+        },
+        "artist": null
+      },
+      "foil": true
     },
     {
       "id": "sunwukong-standard",
@@ -64771,7 +65539,7 @@
       "domain": "Founder of Daoism, Sage",
       "rarity": "mythic",
       "rarityOrder": 6,
-      "cost": 4,
+      "cost": 3,
       "power": 86,
       "health": 78,
       "speed": 6,
@@ -65037,10 +65805,60 @@
       }
     },
     {
-      "id": "xiwangmu-standard",
+      "id": "xiwangmu-common",
       "entryId": "xiwangmu",
-      "baseCardId": "xiwangmu-standard",
-      "edition": "archive",
+      "baseCardId": "xiwangmu-common",
+      "edition": "common",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Xīwángmǔ",
+      "ascii": "xiwangmu",
+      "original": "西王母",
+      "pantheon": "taoist",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Queen Mother of the West",
+      "rarity": "common",
+      "rarityOrder": 1,
+      "cost": 1,
+      "power": 71,
+      "health": 57,
+      "speed": 7,
+      "ability": {
+        "id": "ability-xiwangmu",
+        "entryId": "xiwangmu",
+        "name": "The Western Paradise",
+        "description": "Your allies gain +1 power.",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "buff-allies",
+          "power": 1,
+          "health": 0
+        }
+      },
+      "flavor": "Xīwángmǔ's myths trace an arc no other Chinese deity matches: from wilderness terror to the most gracious sovereign of the Taoist heavens.",
+      "flagship": true,
+      "ownedDomain": "xīwángmǔ.com",
+      "art": {
+        "mascot": "/sites/xiwangmu/assets/xiwangmu_mascot.webp",
+        "logomark": "/sites/xiwangmu/assets/xiwangmu_logomark.webp",
+        "fullArt": null,
+        "colors": {
+          "primary": "#1A1A1A",
+          "secondary": "#DC143C",
+          "glow": "rgba(26,26,26,0.3)"
+        },
+        "artist": null
+      }
+    },
+    {
+      "id": "xiwangmu-holo",
+      "entryId": "xiwangmu",
+      "baseCardId": "xiwangmu-common",
+      "edition": "holo",
       "variant": "standard",
       "setId": "first-restoration",
       "name": "Xīwángmǔ",
@@ -65055,14 +65873,14 @@
       "domain": "Queen Mother of the West",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 3,
-      "power": 71,
-      "health": 57,
+      "cost": 1,
+      "power": 83,
+      "health": 69,
       "speed": 7,
       "ability": {
         "id": "ability-xiwangmu",
         "entryId": "xiwangmu",
-        "name": "Royal Mandate of the Tao",
+        "name": "The Western Paradise",
         "description": "Your allies gain +1 power.",
         "trigger": "on_play",
         "effect": {
@@ -65071,16 +65889,122 @@
           "health": 0
         }
       },
-      "flavor": "Western queen mother",
-      "flagship": false,
-      "ownedDomain": null,
+      "flavor": "Xīwángmǔ's myths trace an arc no other Chinese deity matches: from wilderness terror to the most gracious sovereign of the Taoist heavens.",
+      "flagship": true,
+      "ownedDomain": "xīwángmǔ.com",
       "art": {
-        "mascot": null,
-        "logomark": null,
+        "mascot": "/sites/xiwangmu/assets/xiwangmu_mascot.webp",
+        "logomark": "/sites/xiwangmu/assets/xiwangmu_logomark.webp",
         "fullArt": null,
-        "colors": null,
+        "colors": {
+          "primary": "#1A1A1A",
+          "secondary": "#DC143C",
+          "glow": "rgba(26,26,26,0.3)"
+        },
+        "artist": null
+      },
+      "patternFoil": true
+    },
+    {
+      "id": "xiwangmu-full-art",
+      "entryId": "xiwangmu",
+      "baseCardId": "xiwangmu-common",
+      "edition": "full-art",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Xīwángmǔ",
+      "ascii": "xiwangmu",
+      "original": "西王母",
+      "pantheon": "taoist",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Queen Mother of the West",
+      "rarity": "legendary",
+      "rarityOrder": 5,
+      "cost": 1,
+      "power": 83,
+      "health": 69,
+      "speed": 7,
+      "ability": {
+        "id": "ability-xiwangmu",
+        "entryId": "xiwangmu",
+        "name": "The Western Paradise",
+        "description": "Your allies gain +1 power. +2 power (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "buff-allies",
+          "power": 3,
+          "health": 0
+        }
+      },
+      "flavor": "Xīwángmǔ's myths trace an arc no other Chinese deity matches: from wilderness terror to the most gracious sovereign of the Taoist heavens.",
+      "flagship": true,
+      "ownedDomain": "xīwángmǔ.com",
+      "art": {
+        "mascot": "/sites/xiwangmu/assets/xiwangmu_mascot.webp",
+        "logomark": "/sites/xiwangmu/assets/xiwangmu_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/xiwangmu_comp-canvas.png",
+        "colors": {
+          "primary": "#1A1A1A",
+          "secondary": "#DC143C",
+          "glow": "rgba(26,26,26,0.3)"
+        },
         "artist": null
       }
+    },
+    {
+      "id": "xiwangmu-secret",
+      "entryId": "xiwangmu",
+      "baseCardId": "xiwangmu-common",
+      "edition": "secret",
+      "variant": "original-script",
+      "setId": "first-restoration",
+      "name": "Xīwángmǔ",
+      "ascii": "xiwangmu",
+      "original": "西王母",
+      "pantheon": "taoist",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Queen Mother of the West",
+      "rarity": "mythic",
+      "rarityOrder": 6,
+      "cost": 1,
+      "power": 83,
+      "health": 69,
+      "speed": 7,
+      "ability": {
+        "id": "ability-xiwangmu",
+        "entryId": "xiwangmu",
+        "name": "The Western Paradise",
+        "description": "Your allies gain +1 power. +2 power (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "buff-allies",
+          "power": 3,
+          "health": 0
+        }
+      },
+      "flavor": "Xīwángmǔ's myths trace an arc no other Chinese deity matches: from wilderness terror to the most gracious sovereign of the Taoist heavens.",
+      "flagship": true,
+      "ownedDomain": "xīwángmǔ.com",
+      "art": {
+        "mascot": "/sites/xiwangmu/assets/xiwangmu_mascot.webp",
+        "logomark": "/sites/xiwangmu/assets/xiwangmu_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/xiwangmu_comp-canvas.png",
+        "colors": {
+          "primary": "#1A1A1A",
+          "secondary": "#DC143C",
+          "glow": "rgba(26,26,26,0.3)"
+        },
+        "artist": null
+      },
+      "foil": true
     },
     {
       "id": "dongwanggong-standard",
@@ -66405,7 +67329,7 @@
       "domain": "Sea, Mother Goddess",
       "rarity": "common",
       "rarityOrder": 1,
-      "cost": 7,
+      "cost": 6,
       "power": 73,
       "health": 81,
       "speed": 5,
@@ -66455,7 +67379,7 @@
       "domain": "Sea, Mother Goddess",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 7,
+      "cost": 6,
       "power": 85,
       "health": 93,
       "speed": 5,
@@ -66506,7 +67430,7 @@
       "domain": "Sea, Mother Goddess",
       "rarity": "legendary",
       "rarityOrder": 5,
-      "cost": 7,
+      "cost": 6,
       "power": 85,
       "health": 93,
       "speed": 5,
@@ -68871,7 +69795,7 @@
       "domain": "Sacred City, Alternative name",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 5,
+      "cost": 6,
       "power": 80,
       "health": 61,
       "speed": 6,
@@ -77754,7 +78678,7 @@
       "domain": "Dragon",
       "rarity": "mythic",
       "rarityOrder": 6,
-      "cost": 5,
+      "cost": 4,
       "power": 94,
       "health": 74,
       "speed": 5,
@@ -82202,7 +83126,7 @@
       "domain": "Fortune, Chance, Turning",
       "rarity": "mythic",
       "rarityOrder": 6,
-      "cost": 6,
+      "cost": 5,
       "power": 86,
       "health": 85,
       "speed": 6,
@@ -86261,7 +87185,7 @@
       "domain": "War, Loyalty, Protection",
       "rarity": "common",
       "rarityOrder": 1,
-      "cost": 6,
+      "cost": 5,
       "power": 76,
       "health": 72,
       "speed": 7,
@@ -86311,7 +87235,7 @@
       "domain": "War, Loyalty, Protection",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 6,
+      "cost": 5,
       "power": 88,
       "health": 84,
       "speed": 7,
@@ -86362,7 +87286,7 @@
       "domain": "War, Loyalty, Protection",
       "rarity": "legendary",
       "rarityOrder": 5,
-      "cost": 6,
+      "cost": 5,
       "power": 88,
       "health": 84,
       "speed": 7,
