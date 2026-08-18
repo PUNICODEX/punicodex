@@ -386,6 +386,9 @@ async function goLive(bookingId) {
     throw new BookingConflictError('Slot is already live with another booking');
   }
 
+  // Resume-safe: a booking coming back from a pause keeps its original lease
+  // window — pausing must never extend a lease.
+  const resuming = Boolean(booking.started_at);
   const now = new Date();
   const nowIso = now.toISOString();
   const months = booking.lease_months || 1;
@@ -396,18 +399,23 @@ async function goLive(bookingId) {
   const ends = addMonths(now, months);
   const endsIso = ends.toISOString();
 
-  const billingStatus = trialMonths > 0 ? 'trialing' : 'active';
+  const billingStatus = booking.billing_status || (trialMonths > 0 ? 'trialing' : 'active');
 
   const liveBooking = await withSlotLock(booking.slot_id, async () => {
     await transaction(async ({ all, run }) => {
-      const bookingUpdate = await run(
-        `
-            UPDATE bookings
-            SET status = 'live', started_at = $1, ends_at = $2, trial_ends_at = $3, billing_starts_at = $4, billing_status = $5, updated_at = CURRENT_TIMESTAMP
-            WHERE id = $6 AND status = 'approved'
-          `,
-        [nowIso, endsIso, trialEndsIso, billingStartsIso, billingStatus, bookingId]
-      );
+      const bookingUpdate = resuming
+        ? await run(
+            `UPDATE bookings
+             SET status = 'live', updated_at = CURRENT_TIMESTAMP
+             WHERE id = $1 AND status = 'approved'`,
+            [bookingId]
+          )
+        : await run(
+            `UPDATE bookings
+             SET status = 'live', started_at = $1, ends_at = $2, trial_ends_at = $3, billing_starts_at = $4, billing_status = $5, updated_at = CURRENT_TIMESTAMP
+             WHERE id = $6 AND status = 'approved'`,
+            [nowIso, endsIso, trialEndsIso, billingStartsIso, billingStatus, bookingId]
+          );
       if (bookingUpdate.changes === 0) {
         throw new BookingConflictError('Booking is no longer approved');
       }
@@ -479,6 +487,53 @@ async function goLive(bookingId) {
   }
 
   return liveBooking;
+}
+
+/**
+ * Advertiser-initiated pause: live → approved, frames flip back to RESERVED
+ * but keep current_booking_id, so the placement stays held for this sponsor
+ * and goLive() can resume it without touching the lease dates.
+ */
+async function pause(bookingId) {
+  const booking = await getBookingById(bookingId);
+  if (!booking) throw Object.assign(new Error('Booking not found'), { status: 404 });
+  if (booking.status !== 'live') {
+    throw new BookingConflictError('Only a live booking can be paused');
+  }
+  const slot = await getSlotById(booking.slot_id);
+  if (!slot) throw Object.assign(new Error('Slot not found'), { status: 404 });
+
+  await withSlotLock(booking.slot_id, async () => {
+    await transaction(async ({ all, run }) => {
+      const bookingUpdate = await run(
+        `UPDATE bookings SET status = 'approved', updated_at = CURRENT_TIMESTAMP
+         WHERE id = $1 AND status = 'live'`,
+        [bookingId]
+      );
+      if (bookingUpdate.changes === 0) {
+        throw new BookingConflictError('Booking is no longer live');
+      }
+      await run(
+        `UPDATE ad_slots SET status = 'reserved', updated_at = CURRENT_TIMESTAMP
+         WHERE id = $1 AND current_booking_id = $2`,
+        [booking.slot_id, bookingId]
+      );
+      if (slot.is_bundle === 1) {
+        const memberRows = await all(
+          'SELECT member_slot_id FROM bundle_members WHERE bundle_slot_id = $1',
+          [booking.slot_id]
+        );
+        for (const member of memberRows) {
+          await run(
+            `UPDATE ad_slots SET status = 'reserved', updated_at = CURRENT_TIMESTAMP
+             WHERE id = $1 AND current_booking_id = $2`,
+            [member.member_slot_id, bookingId]
+          );
+        }
+      }
+    });
+  });
+  return getBookingById(bookingId);
 }
 
 async function setBillingStatus(bookingId, status) {
@@ -833,6 +888,7 @@ module.exports = {
   saveCreative,
   setBookingStatus,
   goLive,
+  pause,
   endBooking,
   getBookingsByEmail,
   recordEvent,
