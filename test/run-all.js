@@ -153,9 +153,21 @@ const SUITES = [
     cmd: 'node test/admin-analytics-authority.test.js',
     timeout: 60000,
   },
+  {
+    name: 'Admin Creative Review Tests',
+    cmd: 'node --test test/admin-creative-review.test.js',
+  },
+  {
+    name: 'Admin Command Notifications Tests',
+    cmd: 'node --test test/admin-command-notifications.test.js',
+  },
   { name: 'Patrons API Tests', cmd: 'node test/patrons-api.test.js', timeout: 60000 },
   { name: 'Stripe Webhook Tests', cmd: 'node test/stripe-webhook.test.js' },
   { name: 'Ad Analytics Tests', cmd: 'node test/ad-analytics.test.js' },
+  {
+    name: 'Analytics Schema Drift Tests',
+    cmd: 'node --test test/analytics-schema-drift.test.js',
+  },
   {
     name: 'Site Analytics Tests',
     cmd: 'node test/site-analytics.test.js',
@@ -163,6 +175,16 @@ const SUITES = [
   },
   { name: 'Booking Service Tests', cmd: 'node test/booking-service.test.js' },
   { name: 'Booking Validation Tests', cmd: 'node test/booking-validation.test.js' },
+  { name: 'Flagship Slots Tests', cmd: 'node --test test/flagship-slots.test.js' },
+  {
+    name: 'Booking Publish/Pause Tests',
+    cmd: 'node --test test/booking-publish-pause.test.js',
+  },
+  {
+    name: 'Account Booking Controls Tests',
+    cmd: 'node --test test/account-booking-controls.test.js',
+  },
+  { name: 'Account Overview Tests', cmd: 'node --test test/account-overview.test.js' },
   {
     name: 'Sponsor Content Safety',
     cmd: 'node test/sponsor-content-safety.test.js',
@@ -195,6 +217,7 @@ const SUITES = [
     cmd: 'node test/creative-upload.test.js',
     timeout: 60000,
   },
+  { name: 'Creative Studio Tests', cmd: 'node --test test/creative-studio.test.js' },
   { name: 'Type Tool Forms Tests', cmd: 'node test/type-tool-forms.test.js', timeout: 60000 },
   { name: 'Reservation Expiry Tests', cmd: 'node test/reservation-expiry.test.js', timeout: 60000 },
   {
@@ -440,6 +463,10 @@ const SERIAL_SUITES = new Set([
   // load the copy can hit EBUSY/readonly races on Windows. Always green alone.
   'Admin Booking Routes',
   'Sponsorship Flow Tests',
+  // Same prepareTestDb golden-copy race as the suites above (Windows).
+  'Booking Publish/Pause Tests',
+  'Account Booking Controls Tests',
+  'Admin Creative Review Tests',
   // Same prepareTestDb golden-copy race (plus login writes admin_sessions).
   'Security Tab Tests',
   'Attack Simulation Tests',
