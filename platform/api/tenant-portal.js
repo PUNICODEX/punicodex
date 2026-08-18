@@ -34,6 +34,9 @@ const { getDb } = require('../db/connection');
 const { migrate: migrateTenantPortal } = require('../db/migrate-tenant-portal');
 const { migrate: migrateAnalyticsSlot } = require('../db/migrate-analytics-slot');
 const { hashToken } = require('./admin');
+const { goLive, pause } = require('./bookings');
+const { validateMeta } = require('./booking-validation');
+const { notifyLive } = require('./email');
 const { getTempleTraffic, getOverview } = require('./site-analytics');
 const { logAction } = require('./admin-actions');
 const { writeWebpSibling } = require('./image-webp');
@@ -135,8 +138,13 @@ async function linkTenantAccount(email) {
   const [bookings, patrons] = await Promise.all([
     all(
       `SELECT b.id, b.slot_id, b.email, b.company_name, b.website_url, b.status, b.site_slug,
-              b.creative_path, b.started_at, b.ends_at, b.created_at, b.analytics_token,
-              s.name AS slot_name, s.slug AS slot_slug, s.width, s.height, s.is_bundle
+              b.creative_path, b.custom_heading, b.custom_subtitle,
+              b.started_at, b.ends_at, b.created_at, b.analytics_token,
+              s.name AS slot_name, s.slug AS slot_slug, s.width, s.height, s.is_bundle,
+              (b.creative_path IS NOT NULL OR EXISTS (
+                 SELECT 1 FROM slot_creatives sc
+                  WHERE sc.booking_id = b.id AND sc.creative_path IS NOT NULL
+               )) AS has_creative
          FROM bookings b
          JOIN ad_slots s ON b.slot_id = s.id
         WHERE LOWER(b.email) = $1
@@ -444,6 +452,12 @@ async function forgot({ email }) {
 
 async function getMe(account) {
   const { bookings, patrons } = await linkTenantAccount(account.email);
+  const pendingImageRows = await all(
+    `SELECT target_id FROM tenant_change_requests
+      WHERE account_id = $1 AND type = 'image' AND status = 'pending'`,
+    [account.id]
+  );
+  const pendingImageTargets = new Set(pendingImageRows.map((r) => r.target_id));
   // Self-heal the sponsor/patron flags from the live linkage: accounts
   // provisioned while the email match was case-broken (or before a booking
   // existed) otherwise keep stale zero flags forever.
@@ -470,6 +484,10 @@ async function getMe(account) {
         templeSlug: b.site_slug,
         status: b.status,
         creativePath: b.creative_path,
+        hasCreative: Boolean(b.has_creative),
+        pendingImageRequest: pendingImageTargets.has(b.id),
+        customHeading: b.custom_heading || '',
+        customSubtitle: b.custom_subtitle || '',
         companyName: b.company_name,
         websiteUrl: b.website_url,
         width: b.width,
@@ -763,6 +781,116 @@ async function getSlotAnalytics(account, bookingId) {
     ...stats,
     temple,
   };
+}
+
+// ─────────────────────────────────────────────────────────────
+// Advertiser self-service controls (ownership-scoped)
+// ─────────────────────────────────────────────────────────────
+
+async function getOwnedBooking(account, bookingId) {
+  ensureSchema();
+  const id = Number.parseInt(bookingId, 10);
+  if (Number.isNaN(id)) throw portalError(400, 'booking id must be numeric');
+  const booking = await get(
+    `SELECT b.*, s.name AS slot_name, s.width, s.height, s.is_bundle
+       FROM bookings b JOIN ad_slots s ON b.slot_id = s.id
+      WHERE b.id = $1`,
+    [id]
+  );
+  if (!booking) throw portalError(404, 'Booking not found');
+  if (normalizeEmail(booking.email) !== account.email) {
+    throw portalError(403, 'You do not own this booking', 'not_owner');
+  }
+  return booking;
+}
+
+/**
+ * Sponsor publishes their own approved placement. Approval is the team's
+ * gate; going live is the sponsor's switch.
+ */
+async function publishOwnBooking(account, bookingId) {
+  const booking = await getOwnedBooking(account, bookingId);
+  if (booking.status !== 'approved') {
+    throw portalError(409, `Cannot publish a booking in status: ${booking.status}`);
+  }
+  await goLive(booking.id);
+  notifyLive({
+    email: booking.email,
+    slotName: booking.slot_name,
+    companyName: booking.company_name,
+    bookingToken: booking.analytics_token,
+    leaseMonths: booking.lease_months,
+    siteSlug: booking.site_slug,
+  }).catch(() => {});
+  return { success: true, status: 'live' };
+}
+
+async function pauseOwnBooking(account, bookingId) {
+  const booking = await getOwnedBooking(account, bookingId);
+  await pause(booking.id); // throws conflict unless live
+  return { success: true, status: 'approved' };
+}
+
+const WEBSITE_URL_PATTERN = /^https:\/\/[^\s]+$/;
+
+/**
+ * Edit ad copy / destination from the panel. Same rule as the token
+ * dashboard meta endpoint: touching a live or approved booking sends it
+ * back through review (pending_approval). Bundle (takeover) bookings edit
+ * booking-level fields only — per-frame copy is not exposed here.
+ */
+async function updateOwnBookingMeta(
+  account,
+  bookingId,
+  { customHeading, customSubtitle, websiteUrl } = {}
+) {
+  const booking = await getOwnedBooking(account, bookingId);
+  // Same gate as creative swaps: the copy is editable in exactly the statuses
+  // in which the creative is changeable.
+  if (!IMAGE_CHANGEABLE_STATUSES.includes(booking.status)) {
+    throw portalError(400, `Cannot edit ad copy in status: ${booking.status}`);
+  }
+  const metaError = validateMeta(booking.width, customHeading, customSubtitle);
+  if (metaError) throw portalError(400, metaError);
+  if (websiteUrl !== undefined && websiteUrl && !WEBSITE_URL_PATTERN.test(websiteUrl)) {
+    throw portalError(400, 'Destination link must be a full https:// URL');
+  }
+
+  const sets = [];
+  const params = [];
+  if (customHeading !== undefined) {
+    sets.push(`custom_heading = $${params.length + 1}`);
+    params.push(customHeading || null);
+  }
+  if (customSubtitle !== undefined) {
+    sets.push(`custom_subtitle = $${params.length + 1}`);
+    params.push(customSubtitle || null);
+  }
+  if (websiteUrl !== undefined) {
+    sets.push(`website_url = $${params.length + 1}`);
+    params.push(websiteUrl || null);
+  }
+  if (['live', 'approved'].includes(booking.status)) {
+    sets.push(`status = $${params.length + 1}`);
+    params.push('pending_approval');
+  }
+  if (sets.length === 0) return { success: true };
+  params.push(booking.id);
+  await run(
+    `UPDATE bookings SET ${sets.join(', ')}, updated_at = CURRENT_TIMESTAMP WHERE id = $${params.length}`,
+    params
+  );
+  // If the booking was live, the frames must stop serving until re-approval:
+  // flip the slot(s) back to reserved (same shape as pause(), inline here to
+  // keep the re-review transition atomic with the copy change).
+  if (booking.status === 'live') {
+    await run(
+      `UPDATE ad_slots SET status = 'reserved', updated_at = CURRENT_TIMESTAMP
+       WHERE current_booking_id = $1`,
+      [booking.id]
+    );
+  }
+  return { success: true };
 }
 
 /**
@@ -1174,6 +1302,9 @@ module.exports = {
   getTempleAnalytics,
   getSlotAnalytics,
   getSiteAnalytics,
+  publishOwnBooking,
+  pauseOwnBooking,
+  updateOwnBookingMeta,
   createChangeRequest,
   listChangeRequests,
   adminListChangeRequests,

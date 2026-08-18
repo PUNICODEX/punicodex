@@ -16,6 +16,9 @@
  *   GET  /api/account/analytics/site      — site-wide public-level aggregates
  *   GET  /api/account/requests            — own change requests with statuses
  *   POST /api/account/requests            — create a change request (ownership-checked)
+ *   POST /api/account/bookings/:id/publish — publish own approved placement (goes live)
+ *   POST /api/account/bookings/:id/pause   — pause own live placement (back to approved)
+ *   POST /api/account/bookings/:id/meta    — edit own ad copy / destination link
  *   POST /api/account/patrons/:id/cancel  — cancel own patron membership (ownership-checked)
  *
  * The tenant portal migration is idempotent and runs on every cold start
@@ -127,6 +130,29 @@ module.exports = async (req, res) => {
         const { type, target, payload } = body;
         const request = await tenantPortal.createChangeRequest(account, { type, target, payload });
         return res.status(201).json({ request });
+      }
+    }
+
+    // ── Booking controls (publish / pause / ad copy) ──────────
+    if (slugParts[0] === 'bookings' && slugParts.length === 3 && req.method === 'POST') {
+      const account = await tenantPortal.requireAccount(req, res);
+      if (!account) return;
+      const bookingId = slugParts[1];
+      if (slugParts[2] === 'publish') {
+        return res.json(await tenantPortal.publishOwnBooking(account, bookingId));
+      }
+      if (slugParts[2] === 'pause') {
+        return res.json(await tenantPortal.pauseOwnBooking(account, bookingId));
+      }
+      if (slugParts[2] === 'meta') {
+        const { customHeading, customSubtitle, websiteUrl } = body;
+        return res.json(
+          await tenantPortal.updateOwnBookingMeta(account, bookingId, {
+            customHeading,
+            customSubtitle,
+            websiteUrl,
+          })
+        );
       }
     }
 
