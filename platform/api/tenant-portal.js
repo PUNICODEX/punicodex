@@ -870,26 +870,33 @@ async function updateOwnBookingMeta(
     sets.push(`website_url = $${params.length + 1}`);
     params.push(websiteUrl || null);
   }
+  // A no-fields request is a true no-op: no writes at all. Checking before
+  // the status flip matters — otherwise an empty edit on a live/approved
+  // booking would pull the ad off the air for nothing.
+  if (sets.length === 0) return { success: true };
   if (['live', 'approved'].includes(booking.status)) {
     sets.push(`status = $${params.length + 1}`);
     params.push('pending_approval');
   }
-  if (sets.length === 0) return { success: true };
   params.push(booking.id);
-  await run(
-    `UPDATE bookings SET ${sets.join(', ')}, updated_at = CURRENT_TIMESTAMP WHERE id = $${params.length}`,
-    params
-  );
-  // If the booking was live, the frames must stop serving until re-approval:
-  // flip the slot(s) back to reserved (same shape as pause(), inline here to
-  // keep the re-review transition atomic with the copy change).
-  if (booking.status === 'live') {
-    await run(
-      `UPDATE ad_slots SET status = 'reserved', updated_at = CURRENT_TIMESTAMP
-       WHERE current_booking_id = $1`,
-      [booking.id]
+  // Both writes in one transaction: the booking flip to pending_approval and
+  // the frame reservation must succeed or fail together, so a crash can never
+  // leave frames serving copy that is back in review.
+  await transaction(async ({ run: tRun }) => {
+    await tRun(
+      `UPDATE bookings SET ${sets.join(', ')}, updated_at = CURRENT_TIMESTAMP WHERE id = $${params.length}`,
+      params
     );
-  }
+    // If the booking was live, the frames must stop serving until
+    // re-approval: flip the slot(s) back to reserved (same shape as pause()).
+    if (booking.status === 'live') {
+      await tRun(
+        `UPDATE ad_slots SET status = 'reserved', updated_at = CURRENT_TIMESTAMP
+         WHERE current_booking_id = $1`,
+        [booking.id]
+      );
+    }
+  });
   return { success: true };
 }
 

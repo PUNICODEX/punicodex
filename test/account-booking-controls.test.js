@@ -191,6 +191,21 @@ test('updateOwnBookingMeta: editing a live booking flips it to pending_approval 
   assert.strictEqual(slot.current_booking_id, id, 'frame stays held for this sponsor');
 });
 
+// 5b. updateOwnBookingMeta: a call with no fields on a live booking is a true
+//     no-op — the booking stays live and its frames keep serving.
+test('updateOwnBookingMeta: a no-fields call on a live booking changes nothing', async () => {
+  const account = await makeAccount('meta-noop@controls.test');
+  const id = await makeLiveBooking(account.email);
+
+  const result = await tenantPortal.updateOwnBookingMeta(account, id, {});
+  assert.deepStrictEqual(result, { success: true });
+
+  const booking = await getBookingById(id);
+  assert.strictEqual(booking.status, 'live', 'no-op edit must not send the booking to review');
+  const slot = getSlotRow(booking.slot_id);
+  assert.strictEqual(slot.status, 'live', 'no-op edit must not pull frames off the air');
+});
+
 // 6. updateOwnBookingMeta: heading over the slot's char limit (validateMeta) → 400.
 test("updateOwnBookingMeta: a heading over the slot's char limit is a 400", async () => {
   const account = await makeAccount('meta-long-heading@controls.test');
