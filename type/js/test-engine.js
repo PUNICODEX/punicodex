@@ -349,7 +349,7 @@ test('Correct pantheon counts', () => {
   assert.strictEqual(counts.slavic, 21, 'Slavic count');
   assert.strictEqual(counts.zoroastrian, 19, 'Zoroastrian count');
   assert.strictEqual(counts.incan, 11, 'Incan count');
-  assert.strictEqual(counts.chinese, 47, 'Chinese count');
+  assert.strictEqual(counts.chinese, 49, 'Chinese count');
   assert.strictEqual(counts.buddhist, 23, 'Buddhist count');
   assert.strictEqual(counts.taoist, 12, 'Taoist count');
   assert.strictEqual(counts.korean, 12, 'Korean count');
