@@ -1230,12 +1230,21 @@ async function reviewChangeRequest(id, action, { note = null, reviewer = null } 
   } else {
     const payload = JSON.parse(row.payload);
     await transaction(async ({ get: tGet, run: tRun }) => {
-      // Defense in depth: the target must still exist and still belong to
-      // the requesting account at approval time.
+      // Defense in depth: the target must still exist, still belong to the
+      // requesting account, and still accept creative changes at approval
+      // time.
       if (row.target_kind === 'booking') {
-        const booking = await tGet('SELECT id, email FROM bookings WHERE id = $1', [row.target_id]);
+        const booking = await tGet('SELECT id, email, status FROM bookings WHERE id = $1', [
+          row.target_id,
+        ]);
         if (!booking || normalizeEmail(booking.email) !== row.account_email) {
           throw portalError(409, 'Booking is no longer owned by this account', 'target_moved');
+        }
+        // The booking may have ended since the request was staged — never
+        // apply a creative to a dead booking. Throwing rolls the transaction
+        // back, so the request stays pending for an explicit reject.
+        if (!IMAGE_CHANGEABLE_STATUSES.includes(booking.status)) {
+          throw portalError(409, 'Booking is no longer accepting creative changes', 'target_moved');
         }
         await tRun(
           `UPDATE bookings

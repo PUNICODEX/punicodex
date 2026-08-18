@@ -8,9 +8,10 @@
  * - Approval applies atomically: the booking gets the staged creative AND the
  *   request flips to approved in the same transaction; the swap is visible in
  *   the public getSlots payload.
- * - Approval re-validates ownership at review time: a booking that changed
- *   hands since the request fails with 409 target_moved, the request stays
- *   pending, and the booking keeps its creative.
+ * - Approval re-validates the target at review time: a booking that changed
+ *   hands or left the creative-changeable statuses since the request fails
+ *   with 409 target_moved, the request stays pending, and the booking keeps
+ *   its creative.
  * - Re-request after reject works; requests on ended/cancelled/unpaid
  *   bookings are refused; requests on another account's booking are refused.
  *
@@ -198,6 +199,40 @@ test('approve: a booking that changed hands since the request fails with target_
 
   const booking = await getBookingById(id);
   assert.strictEqual(booking.creative_path, null, 'no creative applied to a moved target');
+});
+
+test('approve: a booking that ended since the request fails with target_moved and nothing applies', async () => {
+  const account = await makeAccount(nextEmail('ended'));
+  const { id } = await makeBooking(account.email, 'approved');
+  const request = await tenantPortal.createChangeRequest(account, {
+    type: 'image',
+    target: id,
+    payload: { image: PNG_1X1, filename: 'ended-swap.png' },
+  });
+
+  // The booking ends after the request was staged.
+  const d = db();
+  d.prepare("UPDATE bookings SET status = 'ended' WHERE id = ?").run(id);
+  d.close();
+
+  await expectPortalError(
+    tenantPortal.reviewChangeRequest(request.id, 'approve', {
+      reviewer: { user: { id: 1, email: 'admin@punicodex.com' } },
+    }),
+    409,
+    { code: 'target_moved', match: /no longer accepting creative changes/ }
+  );
+
+  const row = requestRow(request.id);
+  assert.strictEqual(
+    row.status,
+    'pending',
+    'failed approval must roll back — request stays pending'
+  );
+
+  const booking = await getBookingById(id);
+  assert.strictEqual(booking.status, 'ended');
+  assert.strictEqual(booking.creative_path, null, 'no creative applied to a dead booking');
 });
 
 test('reject: leaves the booking untouched and a re-request after reject succeeds', async () => {
