@@ -69,7 +69,12 @@
       data = null;
     }
     if (!res.ok) {
-      var err = new Error((data && data.error) || 'Request failed (' + res.status + ')');
+      // The server error body carries a human-readable message; the bare
+      // fallback must too — pages render err.message verbatim to sponsors.
+      var err = new Error(
+        (data && data.error) ||
+          'Something went wrong on our side (error ' + res.status + '). Please try again.'
+      );
       err.status = res.status;
       err.code = data && data.code;
       throw err;

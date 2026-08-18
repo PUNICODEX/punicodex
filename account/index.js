@@ -19,8 +19,34 @@
 (function () {
   'use strict';
 
-  var S = window.Sandbox;
+  // Dual-exported for node tests (the js/ink.js pattern): window access is
+  // guarded so requiring this file outside a browser never throws.
+  var S = (typeof window !== 'undefined' && window.Sandbox) || null;
   var IMAGE_CHANGEABLE_STATUSES = ['pending_upload', 'rejected', 'approved', 'live', 'pending_approval'];
+
+  function bookingHasCreative(b) {
+    return Boolean(b.hasCreative || b.creativePath);
+  }
+
+  /**
+   * The banner decision table as a pure function (dual-exported below so the
+   * node suite drives the exact logic the UI runs). Exactly one of four
+   * states per booking:
+   *   'upload'  — a creative is genuinely missing            → gold action banner
+   *   'review'  — a creative is staged in the review queue   → calm "under review" note
+   *   'publish' — approved with a creative but not live yet  → publish call-to-action
+   *   'none'    — live and quiet, or a status the banner ignores
+   * A pending image change request always wins: the reviewer must see the
+   * latest upload before the sponsor is asked to publish anything.
+   */
+  function decideBannerState(b) {
+    var hasCreative = bookingHasCreative(b);
+    if (b.pendingImageRequest) return 'review';
+    if (IMAGE_CHANGEABLE_STATUSES.indexOf(b.status) !== -1 && !hasCreative) return 'upload';
+    if (b.status === 'pending_approval' && hasCreative) return 'review';
+    if (b.status === 'approved' && hasCreative) return 'publish';
+    return 'none';
+  }
 
   function slotList(bookings) {
     return bookings
@@ -31,29 +57,21 @@
   }
 
   /**
-   * The top-of-page action area. Four honest states, driven by the enriched
-   * /me payload (hasCreative, pendingImageRequest):
-   *   - a creative is genuinely missing            → gold action banner
-   *   - a creative is staged in the review queue   → calm "under review" note
-   *   - approved with a creative but not live yet  → publish call-to-action
-   *   - live                                        → no banner
+   * The top-of-page action area. Four honest states per booking, decided by
+   * decideBannerState above from the enriched /me payload (hasCreative,
+   * pendingImageRequest). Multiple banners can stack (one per state) when
+   * different placements sit in different states.
    */
   function renderActions(bookings) {
     var wrap = document.getElementById('overview-actions');
-    var hasCreative = function (b) {
-      return b.hasCreative || !!b.creativePath;
-    };
     var awaiting = bookings.filter(function (b) {
-      return IMAGE_CHANGEABLE_STATUSES.indexOf(b.status) !== -1 && !hasCreative(b) && !b.pendingImageRequest;
+      return decideBannerState(b) === 'upload';
     });
     var inReview = bookings.filter(function (b) {
-      return (
-        b.pendingImageRequest ||
-        (b.status === 'pending_approval' && hasCreative(b))
-      );
+      return decideBannerState(b) === 'review';
     });
     var publishable = bookings.filter(function (b) {
-      return b.status === 'approved' && hasCreative(b) && !b.pendingImageRequest;
+      return decideBannerState(b) === 'publish';
     });
     var html = '';
     if (awaiting.length) {
@@ -65,8 +83,7 @@
         '</svg></span>' +
         '<div class="sb-action-body">' +
         '<h2>Action needed — upload your creative</h2>' +
-        '<p>' + slotList(awaiting) + (awaiting.length === 1 ? ' is' : ' are') +
-        ' approved but ha' + (awaiting.length === 1 ? 's' : 've') +
+        '<p>' + slotList(awaiting) + (awaiting.length === 1 ? ' has' : ' have') +
         ' no creative yet — the placement can’t go live until you upload one.</p>' +
         '</div>' +
         '<a class="sb-btn sb-btn-primary" href="/account/brand/">Upload creative</a>' +
@@ -273,8 +290,15 @@
     }
   }
 
-  init().catch(function (err) {
-    document.getElementById('temple-cards').innerHTML =
-      '<div class="sb-state error">' + S.esc(err.message) + '</div>';
-  });
+  if (typeof document !== 'undefined') {
+    init().catch(function (err) {
+      document.getElementById('temple-cards').innerHTML =
+        '<div class="sb-state error">' + S.esc(err.message) + '</div>';
+    });
+  }
+
+  // Dual export for the node banner-decision suite (js/ink.js pattern).
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { decideBannerState: decideBannerState };
+  }
 })();

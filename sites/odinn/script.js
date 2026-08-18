@@ -364,6 +364,7 @@ const modal = document.getElementById('booking-modal');
 const modalClose = document.getElementById('booking-modal-close');
 const steps = {
   1: document.getElementById('booking-step-1'),
+  apply: document.getElementById('booking-step-apply'),
   verify: document.getElementById('booking-step-verify'),
   2: document.getElementById('booking-step-2'),
   3: document.getElementById('booking-step-3'),
@@ -666,6 +667,31 @@ function clearBookingError() {
   }
 }
 
+// The takeover application step has its own error box — writing to step 1's
+// #booking-error while the apply step is showing makes failures invisible.
+function showApplyError(msg) {
+  if (els.applyError) {
+    els.applyError.textContent = msg;
+    els.applyError.style.display = 'block';
+  }
+}
+
+// Step 3 is shared by several terminal states (under review, application
+// received, renewal complete) whose callers rewrite its title, subtitle, and
+// Change Creative button. Restore the defaults every time the modal opens so
+// stale copy from a previous flow never leaks into the next one.
+function resetStatusStep() {
+  const titleEl = document.querySelector('#booking-step-3 .booking-modal-title');
+  if (titleEl) titleEl.textContent = 'Under Review';
+  const subtitleEl = document.querySelector('#booking-step-3 .booking-modal-subtitle');
+  if (subtitleEl) {
+    subtitleEl.textContent =
+      "Your creative has been submitted. You'll receive an email once it's approved.";
+  }
+  const changeBtn = document.getElementById('booking-change-creative');
+  if (changeBtn) changeBtn.style.display = '';
+}
+
 function getCharLimits(width) {
   // New marketplace layout has two slot shapes:
   // - Banners: 1200 × 400 px
@@ -744,6 +770,7 @@ function openModal(slotOrId) {
     }
 
     clearBookingError();
+    resetStatusStep();
     showStep('1');
     modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
@@ -1031,15 +1058,27 @@ els.submitApplication.addEventListener('click', async () => {
     const data = await res.json();
     if (data.status === 'pending_application') {
       showStep('3');
+      // An application is not a creative submission: say what was actually
+      // sent, and hide Change Creative — uploads unlock once the application
+      // is approved (the upload endpoint rejects pending_application).
+      const titleEl = document.querySelector('#booking-step-3 .booking-modal-title');
+      if (titleEl) titleEl.textContent = 'Application Received';
+      const subtitleEl = document.querySelector('#booking-step-3 .booking-modal-subtitle');
+      if (subtitleEl) {
+        subtitleEl.textContent =
+          'Your application is with the team — applications are typically reviewed within 24–48 hours. Once approved, you\'ll get an email with your payment link, and the creative upload opens after that.';
+      }
+      const changeBtn = document.getElementById('booking-change-creative');
+      if (changeBtn) changeBtn.style.display = 'none';
       if (els.dashboardLink) {
         els.dashboardLink.href = `${API_BASE}/sites/odinn/dashboard/?token=${data.token}`;
       }
     } else {
-      showBookingError(data.error || 'Application failed');
+      showApplyError(data.error || 'Application failed');
       showStep('apply');
     }
   } catch (err) {
-    showBookingError('Network error. Please try again.');
+    showApplyError('Network error. Please try again.');
     showStep('apply');
   }
 });
@@ -1078,6 +1117,7 @@ els.verifyBtn.addEventListener('click', async () => {
     if (isBundleApplication) {
       const slot = slotsData.find((s) => s.id === currentSlotId) || {};
       if (els.applySlotName) els.applySlotName.textContent = slot.name || 'Full Page Takeover';
+      if (els.applyError) els.applyError.style.display = 'none';
       showStep('apply');
       return;
     }

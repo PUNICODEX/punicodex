@@ -289,6 +289,42 @@ const SUITES = [
   { name: 'Asset Version Tests', cmd: 'node test/asset-versions.test.js' },
   { name: 'Hero Stats Tests', cmd: 'node test/hero-stats.test.js' },
   { name: 'Sponsorship Flow Tests', cmd: 'node test/sponsorship-flow.test.js', timeout: 120000 },
+  {
+    name: 'Sponsorship State Machine Tests',
+    cmd: 'node test/sponsorship-state-machine.test.js',
+    timeout: 60000,
+  },
+  {
+    name: 'Sponsorship Slot Invariant Tests',
+    cmd: 'node test/sponsorship-slot-invariants.test.js',
+    timeout: 60000,
+  },
+  {
+    name: 'Account Endpoint Contract Tests',
+    cmd: 'node test/account-endpoint-contracts.test.js',
+    timeout: 60000,
+  },
+  {
+    name: 'Change-Request Pipeline Tests',
+    cmd: 'node test/change-request-pipeline.test.js',
+    timeout: 60000,
+  },
+  {
+    name: 'Slots Payload Contract Tests',
+    cmd: 'node test/slots-payload-contract.test.js',
+    timeout: 60000,
+  },
+  {
+    name: 'Sponsorship Email Trigger Tests',
+    cmd: 'node test/sponsorship-email-triggers.test.js',
+    timeout: 60000,
+  },
+  { name: 'Banner State Decision Tests', cmd: 'node test/banner-state.test.js', timeout: 30000 },
+  {
+    name: 'Sponsorship UI Contract Tests',
+    cmd: 'node test/sponsorship-ui-contracts.test.js',
+    timeout: 30000,
+  },
   { name: 'Vendored Libs Tests', cmd: 'node test/vendored-libs.test.js' },
   { name: 'Flagship Mobile Nav Tests', cmd: 'node test/flagship-mobile-nav.test.js' },
   { name: 'Realms Page Tests', cmd: 'node test/realms-page.test.js' },
@@ -467,6 +503,13 @@ const SERIAL_SUITES = new Set([
   'Booking Publish/Pause Tests',
   'Account Booking Controls Tests',
   'Admin Creative Review Tests',
+  // The sponsorship test wall — same prepareTestDb golden-copy race.
+  'Sponsorship State Machine Tests',
+  'Sponsorship Slot Invariant Tests',
+  'Account Endpoint Contract Tests',
+  'Change-Request Pipeline Tests',
+  'Slots Payload Contract Tests',
+  'Sponsorship Email Trigger Tests',
   // Same prepareTestDb golden-copy race (plus login writes admin_sessions).
   'Security Tab Tests',
   'Attack Simulation Tests',

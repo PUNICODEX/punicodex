@@ -20,7 +20,11 @@ test('approved + creative placements get a publish call-to-action', () => {
 });
 
 test('publishable excludes placements with a replacement under review', () => {
-  assert.match(indexJs, /b\.status === 'approved' && hasCreative\(b\) && !b\.pendingImageRequest/);
+  // The decision lives in the dual-exported decideBannerState (covered
+  // behaviorally by test/banner-state.test.js); pin the wiring here.
+  assert.match(indexJs, /if \(b\.pendingImageRequest\) return 'review';/);
+  assert.match(indexJs, /b\.status === 'approved' && hasCreative/);
+  assert.match(indexJs, /decideBannerState\(b\) === 'publish'/);
 });
 
 test('no raw mailto: bug-report links (dead without a mail client)', () => {
