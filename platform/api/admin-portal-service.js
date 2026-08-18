@@ -113,6 +113,10 @@ async function getDashboard() {
     pendingCareersRow,
     pendingArbitrageRow,
     pendingChangeRequestsRow,
+    pendingCreativeApprovalsRow,
+    pendingPatronsRow,
+    failedStoreOrdersRow,
+    pendingMerchRow,
     todayViews,
     slowEndpoints,
     trending,
@@ -147,6 +151,29 @@ async function getDashboard() {
     orFallback(
       'pendingChangeRequests',
       get("SELECT COUNT(*) as c FROM tenant_change_requests WHERE status = 'pending'"),
+      null
+    ),
+    orFallback(
+      'pendingCreativeApprovals',
+      get("SELECT COUNT(*) as c FROM bookings WHERE status = 'pending_approval'"),
+      null
+    ),
+    orFallback(
+      'pendingPatrons',
+      get("SELECT COUNT(*) as c FROM patrons WHERE status = 'pending_payment'"),
+      null
+    ),
+    orFallback(
+      'failedStoreOrders',
+      get("SELECT COUNT(*) as c FROM store_orders WHERE status = 'fulfillment_failed'"),
+      null
+    ),
+    // Mirrors the creator-merch oversight count
+    // (getCreatorMerchOverview's productCounts.pending): creator_products
+    // rows awaiting admin review.
+    orFallback(
+      'pendingMerch',
+      get("SELECT COUNT(*) as c FROM creator_products WHERE status = 'pending'"),
       null
     ),
     // Site-wide human views for the current UTC day, from the beacon
@@ -218,6 +245,10 @@ async function getDashboard() {
     pendingCareers: pendingCareersRow?.c || 0,
     pendingArbitrage: pendingArbitrageRow?.c || 0,
     pendingChangeRequests: pendingChangeRequestsRow?.c || 0,
+    pendingCreativeApprovals: pendingCreativeApprovalsRow?.c || 0,
+    pendingPatrons: pendingPatronsRow?.c || 0,
+    failedStoreOrders: failedStoreOrdersRow?.c || 0,
+    pendingMerch: pendingMerchRow?.c || 0,
     trending,
   };
   dashboardCache = { payload, cachedAt: Date.now() };

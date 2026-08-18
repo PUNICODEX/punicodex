@@ -305,6 +305,44 @@ a {
   border-color: var(--pz-gold);
 }
 
+/* Pending-decisions bell: gold counter badge, absolute on the glyph; the
+   `hidden` attribute keeps it out of layout when the queues are clear. */
+.pz-notif {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  color: var(--pz-text-muted);
+  transition: color 0.15s;
+}
+
+.pz-notif:hover {
+  color: var(--pz-gold);
+}
+
+.pz-notif-badge {
+  position: absolute;
+  top: -4px;
+  right: -6px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 8px;
+  background: var(--pz-gold);
+  color: #14110a;
+  font-size: 0.62rem;
+  font-weight: 700;
+  line-height: 16px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+}
+
+.pz-notif-badge[hidden] {
+  display: none;
+}
+
 .pz-backdrop {
   position: fixed;
   inset: 0;
@@ -912,6 +950,7 @@ th.pz-sortable[aria-sort='descending']::after {
 .quick-link:focus-visible,
 .pz-drawer-toggle:focus-visible,
 .pz-topbar-refresh:focus-visible,
+.pz-notif:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible,

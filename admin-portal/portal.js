@@ -304,6 +304,12 @@
       '</nav>' +
       '<div class="pz-topbar-right">' +
       '<span class="pz-topbar-time" id="pz-topbar-time"></span>' +
+      `<a class="pz-notif" href="${PREFIX}" id="pz-notif" title="Pending decisions" aria-label="Pending decisions">` +
+      '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+      '<path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"></path>' +
+      '<path d="M13.73 21a2 2 0 0 1-3.46 0"></path>' +
+      '</svg>' +
+      '<span class="pz-notif-badge" id="pz-notif-badge" hidden></span></a>' +
       '<button type="button" class="pz-topbar-refresh" id="pz-topbar-refresh">Refresh</button>' +
       '</div>' +
       '</div>' +
@@ -325,6 +331,39 @@
         logoutBtn.disabled = true;
         logout();
       });
+    }
+
+    refreshNotifBadge();
+    setInterval(refreshNotifBadge, NOTIF_POLL_MS);
+  }
+
+  // Pending-decisions badge: one memoized dashboard fetch per minute,
+  // shared by every portal page through the shell. renderShell only runs
+  // post-auth (initShell resolves /me first), so no session guard is needed
+  // here; a 401 from the poller routes through api()'s login redirect.
+  const NOTIF_POLL_MS = 60 * 1000;
+  async function refreshNotifBadge() {
+    const badge = document.getElementById('pz-notif-badge');
+    if (!badge) return;
+    try {
+      const d = await api('/api/admin/portal/dashboard/');
+      const queues = [
+        d.applications && d.applications.businessPending,
+        d.applications && d.applications.universityPending,
+        d.pendingCreativeApprovals,
+        d.pendingCareers,
+        d.pendingArbitrage,
+        d.pendingChangeRequests,
+        d.scholars && d.scholars.pendingEdits,
+        d.pendingPatrons,
+        d.failedStoreOrders,
+        d.pendingMerch,
+      ];
+      const total = queues.reduce((sum, n) => sum + (Number(n) || 0), 0);
+      badge.hidden = total === 0;
+      badge.textContent = total > 99 ? '99+' : String(total);
+    } catch {
+      /* badge stays stale; next tick retries */
     }
   }
 

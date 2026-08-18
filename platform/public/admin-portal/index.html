@@ -203,6 +203,10 @@
             var queues = [
                 { label: 'Sponsorship applications', desc: 'Business lease applications awaiting review', count: applications.businessPending, href: 'applications/', permission: 'read' },
                 { label: 'University applications', desc: 'Scholarly Edition sponsorship requests', count: applications.universityPending, href: 'applications/?kind=university', permission: 'read' },
+                { label: 'Creative reviews', desc: 'New and replacement ad creatives awaiting approval', count: d.pendingCreativeApprovals, href: 'leasing/?tab=creative-review', permission: 'leasing' },
+                { label: 'Pending patrons', desc: 'Patron checkouts started but not completed', count: d.pendingPatrons, href: 'leasing/?tab=patrons', permission: 'leasing' },
+                { label: 'Store fulfillment failures', desc: 'Paid store orders that failed Printful fulfillment', count: d.failedStoreOrders, href: 'leasing/?tab=orders', permission: 'leasing' },
+                { label: 'Creator merch pending', desc: 'Creator products awaiting admin review', count: d.pendingMerch, href: 'merch/', permission: 'ops' },
                 { label: 'Careers applications', desc: 'Open-role submissions from the careers page', count: d.pendingCareers, href: 'applications/?kind=careers', permission: 'read' },
                 { label: 'Arbitrage requests', desc: 'Domain acquisition applications awaiting contact', count: d.pendingArbitrage, href: 'applications/?kind=arbitrage', permission: 'read' },
                 { label: 'Scholars edits', desc: 'Scholarly edits awaiting review (' + Portal.fmtNumber(scholars.pendingMedia) + ' media uploads pending)', count: scholars.pendingEdits, href: 'scholars/', permission: 'read' },
@@ -431,6 +435,17 @@
                 document.getElementById('cmd-crawler').innerHTML =
                     '<p class="field-hint">Crawler telemetry requires the ops role.</p>';
             }
+
+            // The Command page re-pulls the (45s-memoized) dashboard every minute
+            // so queue counts and KPIs never require a manual reload.
+            setInterval(async function () {
+                try {
+                    var fresh = await Portal.api('/api/admin/portal/dashboard/');
+                    renderQueues(fresh);
+                } catch (e) {
+                    /* keep last good render */
+                }
+            }, 60 * 1000);
         }
 
         init();
