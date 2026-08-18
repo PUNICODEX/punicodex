@@ -19,6 +19,10 @@ test('approved + creative placements get a publish call-to-action', () => {
   assert.match(indexJs, /\/api\/account\/bookings\/' \+ publishable\[i\]\.id \+ '\/publish\//);
 });
 
+test('publishable excludes placements with a replacement under review', () => {
+  assert.match(indexJs, /b\.status === 'approved' && hasCreative\(b\) && !b\.pendingImageRequest/);
+});
+
 test('no raw mailto: bug-report links (dead without a mail client)', () => {
   assert.ok(!indexHtml.includes('mailto:'), 'account/index.html still has a mailto link');
   assert.ok(!sandboxJs.includes('mailto:'), 'account/sandbox.js still has a mailto link');

@@ -53,7 +53,7 @@
       );
     });
     var publishable = bookings.filter(function (b) {
-      return b.status === 'approved' && hasCreative(b);
+      return b.status === 'approved' && hasCreative(b) && !b.pendingImageRequest;
     });
     var html = '';
     if (awaiting.length) {
