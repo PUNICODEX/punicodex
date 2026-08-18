@@ -917,3 +917,264 @@ a.sb-panel-link:hover > h3 {
     padding: 2.2rem 1.1rem 2rem;
   }
 }
+
+/* ── Creative Studio (brand page) ─────────────────────────── */
+
+.sb-studio-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+/* Status timeline: Applied → Paid → Creative → Approved → Live */
+.sb-steps {
+  display: flex;
+  list-style: none;
+  margin: 0.6rem 0 1.1rem;
+  padding: 0;
+}
+
+.sb-steps li {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  text-align: center;
+}
+
+/* Connecting line between steps */
+.sb-steps li::before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: -50%;
+  width: 100%;
+  height: 1px;
+  background: var(--sb-border-strong);
+}
+
+.sb-steps li:first-child::before {
+  display: none;
+}
+
+.sb-steps li.done::before,
+.sb-steps li.current::before {
+  background: var(--sb-gold-line);
+}
+
+.sb-step-dot {
+  position: relative;
+  z-index: 1;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: 1px solid var(--sb-border-strong);
+  background: var(--sb-panel-2);
+}
+
+.sb-steps li.done .sb-step-dot {
+  background: var(--sb-gold);
+  border-color: var(--sb-gold);
+}
+
+.sb-steps li.current .sb-step-dot {
+  background: var(--sb-gold-bright);
+  border-color: var(--sb-gold-bright);
+  animation: sb-step-pulse 1.8s ease-in-out infinite;
+}
+
+.sb-steps li.current.rejected .sb-step-dot {
+  background: var(--sb-danger);
+  border-color: var(--sb-danger);
+  animation: none;
+}
+
+.sb-step-label {
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sb-text-muted);
+}
+
+.sb-steps li.done .sb-step-label,
+.sb-steps li.current .sb-step-label {
+  color: var(--sb-gold);
+}
+
+.sb-steps li.current.rejected .sb-step-label {
+  color: var(--sb-danger);
+}
+
+.sb-steps li.todo .sb-step-dot,
+.sb-steps li.todo .sb-step-label {
+  opacity: 0.55;
+}
+
+@keyframes sb-step-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 var(--sb-gold-dim);
+  }
+  50% {
+    box-shadow: 0 0 0 6px transparent;
+  }
+}
+
+/* Studio grid: frame preview left, controls right */
+.sb-studio-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .sb-studio-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* In-frame preview — the creative framed exactly as the temple frames it */
+.sb-frame-link {
+  display: block;
+}
+
+.sb-frame-preview {
+  position: relative;
+  width: 100%;
+  background: var(--sb-inset);
+  border: 1px solid var(--sb-gold-line);
+  border-radius: var(--sb-radius);
+  overflow: hidden;
+}
+
+.sb-frame-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.sb-frame-empty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  padding: 1rem;
+  color: var(--sb-text-muted);
+  font-size: 0.82rem;
+  text-align: center;
+}
+
+.sb-frame-empty-dims {
+  font-family: var(--sb-font-mono);
+  font-size: 0.7rem;
+}
+
+/* Overlay caption bar — the temple's .space-meta equivalent */
+.sb-frame-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding: 1.2rem 0.8rem 0.55rem;
+  background: linear-gradient(transparent, rgba(10, 10, 12, 0.85));
+}
+
+.sb-frame-heading {
+  font-family: var(--sb-font-display);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--sb-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sb-frame-subtitle {
+  font-family: var(--sb-font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  color: var(--sb-text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sb-frame-live-note {
+  margin: 0.5rem 0 0;
+  font-size: 0.78rem;
+}
+
+/* One unified upload zone per placement */
+.sb-dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 1.1rem 0.9rem;
+  margin-bottom: 0.6rem;
+  background: var(--sb-inset);
+  border: 1px dashed var(--sb-gold-line);
+  border-radius: var(--sb-radius);
+  text-align: center;
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+
+.sb-dropzone:hover,
+.sb-dropzone:focus-visible,
+.sb-dropzone.dragover {
+  border-color: var(--sb-gold);
+  background: var(--sb-gold-dim);
+  outline: none;
+}
+
+.sb-dropzone-label {
+  font-weight: 600;
+  font-size: 0.86rem;
+  color: var(--sb-gold);
+}
+
+.sb-dropzone-hint {
+  font-size: 0.74rem;
+  color: var(--sb-text-muted);
+}
+
+/* Live character counters (same rhythm as the field label/hint styles) */
+.sb-char-count {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.72rem;
+  color: var(--sb-text-muted);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.sb-studio-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.85rem;
+}
+
+.sb-studio-note {
+  margin: 0.85rem 0 0;
+  font-size: 0.8rem;
+  color: var(--sb-text-muted);
+  border-left: 2px solid var(--sb-gold-line);
+  padding-left: 0.6rem;
+}
