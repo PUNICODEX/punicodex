@@ -588,7 +588,23 @@ async function getSpaceAnalytics(account) {
   const { bookings, patrons } = await linkTenantAccount(account.email);
   const slots = [];
   for (const b of bookings) {
-    const stats = await getBookingEventStats(b.id);
+    // Per-booking isolation: a schema/DB fault on one placement must not take
+    // the sponsor's whole panel down — that placement reports zeros.
+    let stats;
+    try {
+      stats = await getBookingEventStats(b.id);
+    } catch (err) {
+      console.warn(`[tenant-portal] stats degraded for booking ${b.id}: ${err.message}`);
+      stats = {
+        impressions: 0,
+        clicks: 0,
+        ctr: '0.00',
+        viewableImpressions: 0,
+        viewabilityPct: '0.0',
+        bySlot: [],
+        daily: [],
+      };
+    }
     slots.push({
       bookingId: b.id,
       slotName: b.slot_name,

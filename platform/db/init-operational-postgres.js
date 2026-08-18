@@ -204,6 +204,13 @@ async function main() {
     { table: 'admin_actions', column: 'target', definition: 'TEXT' },
     { table: 'admin_actions', column: 'meta', definition: 'TEXT' },
     { table: 'bookings', column: 'public_id', definition: 'TEXT' },
+    // analytics_events columns added by SQLite-only migrations
+    // (migrate-analytics-slot.js, migrate-booking-v4.js) — without these,
+    // tenant analytics queries throw on Neon ("column does not exist") and
+    // the advertiser panel's My Placements section 500s.
+    { table: 'analytics_events', column: 'slot_slug', definition: 'TEXT' },
+    { table: 'analytics_events', column: 'visible_seconds', definition: 'REAL' },
+    { table: 'analytics_events', column: 'visible_percent', definition: 'REAL' },
   ];
   for (const { table, column, definition } of COLUMN_DRIFT) {
     await sql.query(`ALTER TABLE ${table} ADD COLUMN IF NOT EXISTS ${column} ${definition}`);
