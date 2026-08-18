@@ -1375,3 +1375,40 @@ git commit -m "chore: regenerate derived artifacts for sponsorship flow overhaul
 - Spec coverage: D1→Tasks 3,4,5(publish CTA),7(approve-live),9 · D2→Task 2 · D3→Task 7 · D4→Task 8 · D5→Tasks 4(getMe),5 · D6→Task 1 · D7→Tasks 4,5,6 + report-a-bug in Task 5.
 - Type consistency: `publishOwnBooking/pauseOwnBooking/updateOwnBookingMeta` names identical across Tasks 4,5,6; `approveAndGoLive` across Task 7; dashboard keys identical across Task 8 steps.
 - Deliberately out of scope (YAGNI): WebSocket/push notifications, bulk approve, per-frame bundle copy editing in the panel, advertiser-initiated cancellation (exists via token flow), merch queue if no countable source exists.
+
+---
+
+### Task 11: Sponsorship pipeline test wall + visual polish audit
+
+**Files:**
+- Create: `test/sponsorship-pipeline/` suite directory with focused files per stage (or flat files matching repo convention — check how `test/` names suites; follow it)
+- Modify: `test/run-all.js` (register all new suites)
+- Touch only where a test exposes a real defect: any pipeline file
+
+**Goal:** the sponsorship pipeline is the revenue spine of the product — every state transition, endpoint contract, email trigger, and UI state gets real behavioral coverage, and every user-facing step of the flow is visually coherent.
+
+**Part A — test wall.** Write behavioral tests (real modules, real test DB, the `test/helpers/test-db.js` + `test/helpers/slots.js` idiom established by `test/booking-publish-pause.test.js`) covering, at minimum:
+
+1. **State machine matrix** (`platform/api/bookings.js` + `admin-booking-service.js`): every legal transition (apply → approve-application → paid → upload → approve → publish → pause → republish → end; reject at each stage; end at each stage) and every illegal one (publish before approval, pause when not live, goLive without creative, double-publish, double-approve, approve after end). One test per transition pair — this alone is ~40 tests.
+2. **Slot consistency invariants**: after every transition, `ad_slots.status` and `current_booking_id` agree with the booking status (reserved holds, live frames, bundle member cascades, release-on-reject/end). ~20 tests including bundle/takeover variants.
+3. **Account endpoint contracts** (`tenant-portal.js`): ownership enforcement (wrong account → 403, unknown id → 404), input validation (bad URLs, over-limit copy, wrong types), `getMe` enrichment correctness across creative-in-booking / creative-in-slot_creatives / pending-request states. ~25 tests.
+4. **Change-request pipeline**: image request → staged (booking untouched) → approve applies atomically → visible in `getSlots` payload shape; reject leaves booking untouched; re-request after reject; request on ended booking rejected. ~15 tests.
+5. **Slots payload contract** (what the temple consumes): `creative_path` resolution (relative vs absolute URL), `has_slot_creative` per member, COALESCE behavior, `public_id` present and `analytics_token` NEVER leaked in the payload. ~10 tests.
+6. **Email triggers**: each transition fires exactly the right notification (approved→publish hint, live→notifyLive, rejected→reason included, paused→no email). Stub the transport the way existing email tests do. ~10 tests.
+7. **Banner-state logic**: the renderActions decision table — every (status × hasCreative × pendingImageRequest) combination maps to exactly one of the four banner states. Extract the decision into a pure helper in `account/index.js` if needed to make it node-testable (dual-export pattern like `js/ink.js`); 16 combinations ≈ 16 tests.
+8. **UI source contracts** (the repo's established idiom): temple modal gate, studio controls present, review-queue actions wired, dashboard keys, version-bump coherence (every changed asset reference carries a bumped `?v=`). ~15 tests.
+
+Target: **150+ new assertions** across the pipeline. Suites must be fast (<30s each) and registered in `test/run-all.js`.
+
+**Part B — visual polish audit.** Walk every step of the flow as a user and fix visual/UX incoherence:
+- Temple booking modal steps (select → apply → verify → pay → upload → done): consistent step indicator, honest status copy at each step.
+- Advertiser panel: studio card timeline matches real status; empty states elegant; loading states present; no raw error strings.
+- Admin review: consistent card geometry, image aspect preserved, keyboard-escapable zoom.
+Fix only what is visibly broken or incoherent — no redesign beyond the plan.
+
+- [ ] **Step 1:** Part A sections 1-3 (state machine + slots + account endpoints)
+- [ ] **Step 2:** Part A sections 4-6 (change requests + slots payload + emails)
+- [ ] **Step 3:** Part A sections 7-8 (banner logic + UI contracts)
+- [ ] **Step 4:** Part B audit + fixes, each fix covered by an assertion where mechanical
+- [ ] **Step 5:** Register everything in `test/run-all.js`; run the full new wall green
+- [ ] **Step 6: Commit** — `test(sponsorship): pipeline test wall (150+ assertions) + visual polish audit`
