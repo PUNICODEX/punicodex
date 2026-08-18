@@ -568,10 +568,7 @@ async function runTests() {
       'utf8'
     );
     const review = html.match(/status === 'pending_approval'[\s\S]{0,500}/);
-    assert.ok(
-      review && review[0].includes('data-action="approve"'),
-      'pending_approval offers Approve'
-    );
+    assert.ok(review?.[0].includes('data-action="approve"'), 'pending_approval offers Approve');
     assert.ok(review[0].includes('data-action="reject"'), 'pending_approval offers Reject');
     const awaiting = html.match(/status === 'pending_upload'[\s\S]{0,300}/);
     assert.ok(

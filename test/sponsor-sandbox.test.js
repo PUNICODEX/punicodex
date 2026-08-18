@@ -335,6 +335,7 @@ const REAL_ENDPOINTS = [
   '/api/account/analytics/space/',
   '/api/account/analytics/temple/',
   '/api/account/analytics/slot/',
+  '/api/account/bookings/',
   '/api/account/requests/',
   '/api/account/patrons/',
 ];

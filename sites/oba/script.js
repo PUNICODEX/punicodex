@@ -139,6 +139,7 @@ let isBundleApplication = false;
 let currentDiscount = null;
 let discountTimer = null;
 let currentUploadSlot = null;
+let slotsLoadFailed = false;
 
 // Fetch slots and update UI
 async function loadSlots() {
@@ -146,8 +147,10 @@ async function loadSlots() {
     const res = await fetch(`${API_BASE}/api/slots/?site=oba`);
     const data = await res.json();
     slotsData = data.slots || [];
+    slotsLoadFailed = false;
     updateSlotUI();
   } catch (err) {
+    slotsLoadFailed = true;
     console.error('[PUNICODEX] loadSlots failed:', err);
   }
 }
@@ -232,7 +235,12 @@ function updateSlotUI() {
     // Bundle members need a per-slot creative; the bundle slot itself uses main creative
     const bundleSlot = slotsData.find(s => s.is_bundle === 1);
     const isBundleMember = bundleSlot && slot.id !== bundleSlot.id && slot.booking_id && bundleSlot.current_booking_id === slot.booking_id;
-    const hasOwnCreative = isBundleMember ? slot.has_slot_creative : !!slot.creative_path;
+    // Bundle members prefer their per-slot creative but fall back to the
+    // booking-level creative (the slots payload COALESCEs it into creative_path),
+    // so an approved takeover creative always renders in every member frame.
+    const hasOwnCreative = isBundleMember
+      ? slot.has_slot_creative || !!slot.creative_path
+      : !!slot.creative_path;
 
     if (slot.status === 'live' && hasOwnCreative) {
       // LIVE: render actual creative with click tracking. slot.public_id is a
@@ -603,24 +611,25 @@ function resetUpload() {
   if (warn) warn.remove();
 }
 
-function buildSlotFromDom(slotEl) {
-  const nameEl = slotEl.querySelector('.space-name');
-  const dimsEl = slotEl.querySelector('.space-dims');
-  const dimsMatch = dimsEl ? dimsEl.textContent.match(/(\d+)\s*×\s*(\d+)/) : null;
-  const isBundle = slotEl.dataset.bundle === '1';
-  const sortOrder = parseInt(slotEl.dataset.space, 10) || 0;
-  return {
-    id: isBundle ? 'bundle' : sortOrder,
-    name: nameEl ? nameEl.textContent.trim() : 'Ad Space',
-    width: dimsMatch ? parseInt(dimsMatch[1], 10) : 0,
-    height: dimsMatch ? parseInt(dimsMatch[2], 10) : 0,
-    price_cents: parseInt(slotEl.dataset.priceCents, 10) || 0,
-    is_bundle: isBundle ? 1 : 0,
-    sort_order: sortOrder,
-  };
+// Brief, self-clearing notice for the rare case the slots API is unreachable.
+let slotToastTimer = null;
+function showSlotToast(message) {
+  let toast = document.querySelector('.slot-toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.className = 'slot-toast';
+    toast.setAttribute('role', 'status');
+    document.body.appendChild(toast);
+  }
+  toast.textContent = message;
+  toast.classList.add('visible');
+  if (slotToastTimer) clearTimeout(slotToastTimer);
+  slotToastTimer = setTimeout(() => toast.classList.remove('visible'), 4000);
 }
 
-// Event: Click anywhere on an available frame to open booking
+// Event: click an AVAILABLE frame to open booking. Reserved and live slots
+// never open the modal — a live slot's creative is a real link out to the
+// sponsor, and a reserved slot is simply inert.
 document.addEventListener('click', (e) => {
   const slotEl = e.target.closest('.space-slot');
   if (!slotEl) return;
@@ -636,10 +645,16 @@ document.addEventListener('click', (e) => {
     slot = slotsData.find(s => s.sort_order === sortOrder);
   }
 
-  // Fallback to DOM data when API slots are not loaded/available.
   if (!slot) {
-    slot = buildSlotFromDom(slotEl);
+    // The slots API is the only source of truth for availability. When it
+    // failed (or the slot is absent), never open the modal on DOM guesses —
+    // the booking would fail at the server after the sponsor did all the work.
+    if (slotsLoadFailed) {
+      showSlotToast('Bookings are temporarily unavailable — please try again shortly.');
+    }
+    return;
   }
+  if (slot.status !== 'available') return;
 
   openModal(slot);
 });

@@ -348,13 +348,13 @@
     try {
       const d = await api('/api/admin/portal/dashboard/');
       const queues = [
-        d.applications && d.applications.businessPending,
-        d.applications && d.applications.universityPending,
+        d.applications?.businessPending,
+        d.applications?.universityPending,
         d.pendingCreativeApprovals,
         d.pendingCareers,
         d.pendingArbitrage,
         d.pendingChangeRequests,
-        d.scholars && d.scholars.pendingEdits,
+        d.scholars?.pendingEdits,
         d.pendingPatrons,
         d.failedStoreOrders,
         d.pendingMerch,

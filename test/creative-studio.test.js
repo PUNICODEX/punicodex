@@ -6,7 +6,10 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const brandJs = fs.readFileSync(path.join(__dirname, '..', 'account', 'brand', 'brand.js'), 'utf8');
-const brandHtml = fs.readFileSync(path.join(__dirname, '..', 'account', 'brand', 'index.html'), 'utf8');
+const brandHtml = fs.readFileSync(
+  path.join(__dirname, '..', 'account', 'brand', 'index.html'),
+  'utf8'
+);
 const sandboxCss = fs.readFileSync(path.join(__dirname, '..', 'account', 'sandbox.css'), 'utf8');
 
 test('single unified upload zone per placement (no separate replace section)', () => {
