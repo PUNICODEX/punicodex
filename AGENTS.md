@@ -838,19 +838,37 @@ always be replaced (the reviewer sees the latest). Base64 payloads cap at
 is **read-only analytics** — KPIs, 30-day chart, placement summary, creative
 preview, bundle grid, and an advertiser-panel CTA; no editing lives there.
 The **advertiser panel** (`/account/`, login via one-time provisioned link)
-is the management surface: Brand page (creative replacement through the
-review queue, also client-normalized), placements analytics, patron spots,
-and a Support section (contact / report a bug). The booking-confirmation
-email frames both links by role; the modal's success step names both.
+is the management surface: the **Creative Studio** (`/account/brand/`) shows
+each placement in its real frame (aspect-correct preview with the ad copy
+overlaid as the temple renders it), one unified drag&drop upload zone whose
+staged image previews in-frame before submission (client-normalized, review
+queue), an ad-copy editor (heading/subtitle/destination URL via
+`POST /api/account/bookings/:id/meta/` — editing a live/approved placement
+sends it back through `pending_approval`), and self-service
+**Publish/Pause** (`…/publish/` requires `approved` + creative and reuses
+`goLive()`; `…/pause/` flips `live → approved`, frames back to `reserved`
+holding `current_booking_id`; re-publish is resume-safe — lease dates are
+preserved, and resuming into an expired lease is refused). The Overview
+banner is driven by `getMe`'s `hasCreative`/`pendingImageRequest` fields and
+always shows the single honest state (upload / under review / publish CTA /
+none). Report-a-bug/support links point at `/contact/` (never raw mailto).
+The booking-confirmation email frames both links by role; the modal's
+success step names both.
 
 **Admin review matrix (leasing tab):** `pending_application` → Approve
 Application / Reject; `pending_payment` → Reject / End; `pending_upload` →
-End (no creative to review yet); `pending_approval` → **Approve / Reject /
-End** (the creative review — Approve lands at `approved`, then Go Live
-publishes); `approved`/`trialing`/`live` → Go Live / End (+ Send Report for
-live). End cancels billing, frees the slot, and emails the sponsor a
-revocation notice; sponsors receive a panel-ready email with the permanent
-login URL after setting their password.
+End (no creative to review yet); `pending_approval` → **Approve / Approve &
+Go Live / Reject / End** — the dedicated **Creative Review** tab shows the
+creative large, side-by-side current-vs-new for staged replacements, and the
+ad copy + destination link as they will run; Approve lands at `approved`
+(sponsor publishes from their panel — the approval email says so), Approve &
+Go Live publishes in one step (single email); `approved`/`trialing`/`live` →
+Go Live / End (+ Send Report for live). End cancels billing, frees the slot,
+and emails the sponsor a revocation notice; sponsors receive a panel-ready
+email with the permanent login URL after setting their password. The Command
+dashboard counts every decision queue (incl. creative reviews, pending
+patrons, failed store fulfillments) and the shell carries a pending-decisions
+badge, both refreshed on a 60s poll.
 
 ### Original Script Display
 
