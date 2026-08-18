@@ -50,6 +50,27 @@ const leasing = fs.readFileSync(
   path.join(__dirname, '..', 'platform', 'public', 'admin-portal', 'leasing', 'index.html'),
   'utf8'
 );
+const router = fs.readFileSync(
+  path.join(__dirname, '..', 'api', 'admin', '[[...slug]].js'),
+  'utf8'
+);
+
+test('admin router registers approve-live with the same shape as golive', () => {
+  assert.match(router, /approve-live/);
+  const golive = router.match(/segments: \['portal', 'bookings', '\[id\]', 'golive'\]/g) || [];
+  const approveLive =
+    router.match(/segments: \['portal', 'bookings', '\[id\]', 'approve-live'\]/g) || [];
+  assert.strictEqual(golive.length, 1, 'golive registered exactly once');
+  assert.strictEqual(
+    approveLive.length,
+    golive.length,
+    'approve-live must be registered in the admin router like golive'
+  );
+  const goliveHandler = router.match(/portal\/bookings\/\[id\]\/golive\/index\.js/g) || [];
+  const approveLiveHandler =
+    router.match(/portal\/bookings\/\[id\]\/approve-live\/index\.js/g) || [];
+  assert.strictEqual(approveLiveHandler.length, goliveHandler.length);
+});
 
 test('approve-and-go-live service + handler exist', () => {
   assert.match(service, /async function approveAndGoLive\(/);

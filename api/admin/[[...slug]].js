@@ -144,6 +144,11 @@ const ROUTES = [
     load: () => require('../../platform/api-handlers/admin/portal/bookings/[id]/golive/index.js'),
   },
   {
+    segments: ['portal', 'bookings', '[id]', 'approve-live'],
+    load: () =>
+      require('../../platform/api-handlers/admin/portal/bookings/[id]/approve-live/index.js'),
+  },
+  {
     segments: ['portal', 'bookings', '[id]', 'reject'],
     load: () => require('../../platform/api-handlers/admin/portal/bookings/[id]/reject/index.js'),
   },

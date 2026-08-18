@@ -31,6 +31,7 @@
 
         <div class="portal-form-row" role="tablist" aria-label="Leasing sections" style="margin-bottom:1rem;">
             <button type="button" class="btn btn-primary btn-sm" role="tab" id="tabbtn-bookings" data-tab="bookings" aria-selected="true" aria-controls="tab-bookings">Bookings</button>
+            <button type="button" class="btn btn-secondary btn-sm" role="tab" id="tabbtn-creative-review" data-tab="creative-review" aria-selected="false" aria-controls="tab-creative-review">Creative Review</button>
             <button type="button" class="btn btn-secondary btn-sm" role="tab" id="tabbtn-tenants" data-tab="tenants" aria-selected="false" aria-controls="tab-tenants">Tenants</button>
             <button type="button" class="btn btn-secondary btn-sm" role="tab" id="tabbtn-patrons" data-tab="patrons" aria-selected="false" aria-controls="tab-patrons">Patrons</button>
             <button type="button" class="btn btn-secondary btn-sm" role="tab" id="tabbtn-discounts" data-tab="discounts" aria-selected="false" aria-controls="tab-discounts">Discounts</button>
@@ -54,6 +55,7 @@
                             <option value="pending_application">Pending application</option>
                             <option value="pending_payment">Pending payment</option>
                             <option value="pending_upload">Pending upload</option>
+                            <option value="pending_approval">Creative review</option>
                             <option value="approved">Approved</option>
                             <option value="live">Live</option>
                             <option value="trialing">Trialing</option>
@@ -86,6 +88,31 @@
                     <button type="button" class="btn btn-secondary btn-sm" id="booking-prev">← Previous</button>
                     <span class="field-hint" id="booking-page-label"></span>
                     <button type="button" class="btn btn-secondary btn-sm" id="booking-next">Next →</button>
+                </div>
+            </section>
+        </div>
+
+        <!-- ═══ Creative Review ═══ -->
+        <div id="tab-creative-review" role="tabpanel" aria-labelledby="tabbtn-creative-review" hidden>
+            <section class="panel" aria-label="New creatives on bookings">
+                <div class="panel-head">
+                    <h2 class="panel-title">New Creatives</h2>
+                    <span class="field-hint" id="cr-bookings-total"></span>
+                </div>
+                <p class="field-hint">First creatives awaiting review (bookings in creative review). Approve moves to approved; Approve &amp; Go Live approves and publishes in one step.</p>
+                <div id="cr-bookings">
+                    <div class="state-block">Loading creative review…</div>
+                </div>
+            </section>
+
+            <section class="panel" aria-label="Staged replacements from the panel">
+                <div class="panel-head">
+                    <h2 class="panel-title">Staged Replacements</h2>
+                    <span class="field-hint" id="cr-requests-total"></span>
+                </div>
+                <p class="field-hint">Creative swaps sponsors staged from their panel — reviewed as a current-vs-new diff. Approving applies the new creative immediately.</p>
+                <div id="cr-requests">
+                    <div class="state-block">Loading staged replacements…</div>
                 </div>
             </section>
         </div>
@@ -515,6 +542,7 @@
                 statCard(Portal.fmtNumber(by.pending_application), 'Pending Application', '') +
                 statCard(Portal.fmtNumber(by.pending_payment), 'Pending Payment', '') +
                 statCard(Portal.fmtNumber(by.pending_upload), 'Pending Upload', '') +
+                statCard(Portal.fmtNumber(by.pending_approval), 'Creative Review', '') +
                 statCard(Portal.fmtNumber(by.approved), 'Approved', '');
         }
 
@@ -623,6 +651,7 @@
                     Portal.closeModal();
                     Portal.toast('Booking rejected', 'success');
                     loadBookings();
+                    if (creativeReviewLoaded) loadCreativeReview();
                 } catch (err) {
                     Portal.toast('Reject failed: ' + err.message, 'error');
                 }
@@ -637,6 +666,7 @@
             var labels = {
                 'approve-application': 'Approve this application and create a Stripe checkout session?',
                 approve: 'Approve the creative for booking #' + id + '? (Go Live publishes it next.)',
+                'approve-live': 'Approve the creative and publish booking #' + id + ' live in one step?',
                 golive: 'Publish booking #' + id + ' live on the temple?',
                 end: 'End booking #' + id + '? This cancels billing, frees the slot, and emails the sponsor a revocation notice.',
                 report: 'Email the analytics report for booking #' + id + ' to the advertiser?',
@@ -654,6 +684,165 @@
                 } else {
                     Portal.toast('Booking ' + (result.status || action), 'success');
                 }
+                loadBookings();
+                if (creativeReviewLoaded) loadCreativeReview();
+            } catch (err) {
+                Portal.toast(action + ' failed: ' + err.message, 'error');
+            }
+        }
+
+        // ── Creative Review ───────────────────────────────
+
+        var creativeReviewLoaded = false;
+
+        // Click-to-zoom preview (blob CDN URLs and /uploads/ paths render
+        // verbatim — both shapes are already resolvable).
+        function crImage(src, name) {
+            return (
+                '<img src="' + Portal.escapeHtml(src) + '" alt="Creative preview" loading="lazy" ' +
+                'style="max-width:100%;max-height:220px;border-radius:6px;border:1px solid rgba(212,175,55,0.25);display:block;cursor:zoom-in;" ' +
+                'data-preview-src="' + Portal.escapeHtml(src) + '" data-preview-name="' + Portal.escapeHtml(name || 'Creative') + '" ' +
+                'onerror="this.outerHTML=\'<div class=&quot;state-block&quot;>Creative failed to load.</div>\'">'
+            );
+        }
+
+        // Group 1 — the ad as it will appear: creative + copy + destination +
+        // placement facts + the booking review actions.
+        function crBookingCard(b) {
+            var creative = b.creative_path
+                ? crImage(b.creative_path, b.creative_original_name || b.company_name || 'creative')
+                : '<div class="state-block">No creative uploaded yet.</div>';
+            var link = b.website_url
+                ? '<a href="' + Portal.escapeHtml(b.website_url) + '" target="_blank" rel="noopener">' + Portal.escapeHtml(b.website_url) + '</a>'
+                : '—';
+            var actions = '<span class="cell-sub">—</span>';
+            if (Portal.can('leasing')) {
+                actions =
+                    '<button type="button" class="btn btn-sm btn-primary" data-action="approve" data-id="' + b.id + '">Approve</button>' +
+                    '<button type="button" class="btn btn-sm btn-success" data-action="approve-live" data-id="' + b.id + '">Approve &amp; Go Live</button>' +
+                    '<button type="button" class="btn btn-sm btn-danger" data-action="reject" data-id="' + b.id + '">Reject</button>' +
+                    '<button type="button" class="btn btn-sm btn-danger" data-action="end" data-id="' + b.id + '">End</button>';
+            }
+            return (
+                '<div class="panel" style="margin-bottom:1rem;">' +
+                '<div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:flex-start;">' +
+                '<div style="flex:0 1 320px;min-width:0;">' + creative + '</div>' +
+                '<div style="flex:1 1 320px;min-width:0;">' +
+                '<div class="cell-title">' + Portal.escapeHtml(b.company_name || '—') + ' ' + Portal.statusBadge(b.status) + '</div>' +
+                '<div class="cell-sub">' + Portal.escapeHtml(b.email || '') + '</div>' +
+                '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:0.8rem;margin:0.8rem 0;">' +
+                factRow('Heading', Portal.escapeHtml(b.custom_heading || '—')) +
+                factRow('Subheading', Portal.escapeHtml(b.custom_subtitle || '—')) +
+                factRow('Link', link) +
+                factRow('Temple', Portal.escapeHtml(b.site_slug || '')) +
+                factRow('Slot', Portal.escapeHtml(b.slot_name || '')) +
+                factRow('Amount paid', b.amount_paid_cents != null ? Portal.fmtDollars(b.amount_paid_cents) : '') +
+                '</div>' +
+                '<div class="cell-actions">' + actions + '</div>' +
+                '</div></div></div>'
+            );
+        }
+
+        // Group 2 — a staged replacement reviewed as a current-vs-new diff.
+        function crRequestCard(item) {
+            var p = item.payload || {};
+            var newPath = typeof p.creativePath === 'string' ? p.creativePath : '';
+            var newName = p.originalName || newPath || 'staged creative';
+            var target = item.target && typeof item.target === 'object' ? item.target : {};
+            var currentPath = typeof target.creative_path === 'string' ? target.creative_path : '';
+            var current = currentPath
+                ? crImage(currentPath, 'current creative')
+                : '<div class="state-block">No live creative.</div>';
+            var staged = newPath
+                ? crImage(newPath, newName)
+                : '<div class="state-block">Staged creative missing.</div>';
+            var actions = '<span class="cell-sub">—</span>';
+            if (Portal.can('ops')) {
+                actions =
+                    '<button type="button" class="btn btn-sm btn-primary" data-cr-req-action="approve" data-id="' + item.id + '">Approve</button>' +
+                    '<button type="button" class="btn btn-sm btn-danger" data-cr-req-action="reject" data-id="' + item.id + '">Reject</button>';
+            }
+            return (
+                '<div class="panel" style="margin-bottom:1rem;">' +
+                '<div class="cell-title">' + Portal.escapeHtml(target.slot_name || 'Booking #' + (target.id || item.targetId)) +
+                ' <span class="badge badge--gold">' + Portal.escapeHtml(target.site_slug || '') + '</span></div>' +
+                '<div class="cell-sub">' + Portal.escapeHtml(item.accountEmail || '') + ' · submitted ' + Portal.escapeHtml(Portal.fmtDateTime(item.createdAt)) + '</div>' +
+                '<div style="display:flex;gap:1rem;flex-wrap:wrap;margin:0.8rem 0;">' +
+                '<div style="flex:1 1 240px;min-width:0;"><div class="cell-sub" style="text-transform:uppercase;letter-spacing:0.06em;font-weight:700;margin-bottom:0.35rem;">Current</div>' + current + '</div>' +
+                '<div style="flex:1 1 240px;min-width:0;"><div class="cell-sub" style="text-transform:uppercase;letter-spacing:0.06em;font-weight:700;margin-bottom:0.35rem;">New</div>' + staged + '</div>' +
+                '</div>' +
+                '<div class="cell-actions">' + actions + '</div>' +
+                '</div>'
+            );
+        }
+
+        function renderCreativeReview(bookingsData, requestsData) {
+            var bookings = (bookingsData && bookingsData.items) || [];
+            var requests = ((requestsData && requestsData.items) || []).filter(function (item) {
+                return item.type === 'image';
+            });
+            document.getElementById('cr-bookings-total').textContent =
+                Portal.fmtNumber(bookingsData && bookingsData.total != null ? bookingsData.total : bookings.length) + ' awaiting review';
+            document.getElementById('cr-requests-total').textContent =
+                Portal.fmtNumber(requestsData && requestsData.total != null ? requestsData.total : requests.length) + ' staged';
+            var bookingsWrap = document.getElementById('cr-bookings');
+            var requestsWrap = document.getElementById('cr-requests');
+            if (!bookings.length && !requests.length) {
+                bookingsWrap.innerHTML = '<div class="state-block">✦ The review queue is clear.</div>';
+                requestsWrap.innerHTML = '';
+                return;
+            }
+            bookingsWrap.innerHTML = bookings.length
+                ? bookings.map(crBookingCard).join('')
+                : '<div class="state-block">No new creatives awaiting review.</div>';
+            requestsWrap.innerHTML = requests.length
+                ? requests.map(crRequestCard).join('')
+                : '<div class="state-block">No staged replacements.</div>';
+        }
+
+        async function loadCreativeReview() {
+            document.getElementById('cr-bookings').innerHTML = '<div class="state-block">Loading creative review…</div>';
+            document.getElementById('cr-requests').innerHTML = '<div class="state-block">Loading staged replacements…</div>';
+            try {
+                var results = await Promise.all([
+                    Portal.api('/api/admin/portal/bookings/?status=pending_approval&limit=50&offset=0'),
+                    Portal.api('/api/admin/portal/tenant-requests/?status=pending&limit=50&offset=0'),
+                ]);
+                renderCreativeReview(results[0], results[1]);
+            } catch (err) {
+                document.getElementById('cr-bookings').innerHTML =
+                    '<div class="state-block error">' + Portal.escapeHtml(err.message) + '</div>';
+                document.getElementById('cr-requests').innerHTML = '';
+            }
+        }
+
+        // Staged-replacement review posts to the tenant-requests queue. Reject
+        // always carries a reason; approve confirms before applying the swap.
+        async function crRequestAction(id, action) {
+            var note;
+            if (action === 'reject') {
+                note = window.prompt('Reject staged replacement #' + id + ' — reason (required):', '');
+                if (note === null) return;
+                note = note.trim();
+                if (!note) {
+                    Portal.toast('A reject reason is required', 'error');
+                    return;
+                }
+            } else if (
+                !window.confirm('Approve staged replacement #' + id + '? The staged creative replaces the live one immediately.')
+            ) {
+                return;
+            }
+            try {
+                await Portal.api('/api/admin/portal/tenant-requests/' + id + '/' + action + '/', {
+                    method: 'POST',
+                    body: { note: note || undefined },
+                });
+                Portal.toast(
+                    'Replacement ' + (action === 'approve' ? 'approved — new creative applied' : 'rejected'),
+                    'success'
+                );
+                loadCreativeReview();
                 loadBookings();
             } catch (err) {
                 Portal.toast(action + ' failed: ' + err.message, 'error');
@@ -1420,7 +1609,7 @@
 
         // ── Tabs ──────────────────────────────────────────────
 
-        var TABS = ['bookings', 'tenants', 'patrons', 'discounts', 'orders'];
+        var TABS = ['bookings', 'creative-review', 'tenants', 'patrons', 'discounts', 'orders'];
 
         function showTab(name) {
             if (TABS.indexOf(name) === -1) name = 'bookings';
@@ -1438,6 +1627,10 @@
                 else url.searchParams.set('tab', name);
                 window.history.replaceState(null, '', url.toString());
             } catch (e) { /* URL API unavailable — tab state is cosmetic */ }
+            if (name === 'creative-review' && !creativeReviewLoaded) {
+                creativeReviewLoaded = true;
+                loadCreativeReview();
+            }
             if (name === 'tenants' && !tenantsLoaded) {
                 tenantsLoaded = true;
                 loadTenants();
@@ -1520,6 +1713,22 @@
                 if (viewBtn) {
                     var b = bkItems[Number(viewBtn.getAttribute('data-view'))];
                     if (b) openBookingDetail(b);
+                    return;
+                }
+                var btn = e.target.closest('button[data-action]');
+                if (!btn) return;
+                bookingAction(btn.getAttribute('data-id'), btn.getAttribute('data-action'));
+            });
+
+            document.getElementById('tab-creative-review').addEventListener('click', function (e) {
+                var img = e.target.closest('img[data-preview-src]');
+                if (img) {
+                    showImagePreview(img.getAttribute('data-preview-src'), img.getAttribute('data-preview-name'));
+                    return;
+                }
+                var reqBtn = e.target.closest('button[data-cr-req-action]');
+                if (reqBtn) {
+                    crRequestAction(reqBtn.getAttribute('data-id'), reqBtn.getAttribute('data-cr-req-action'));
                     return;
                 }
                 var btn = e.target.closest('button[data-action]');

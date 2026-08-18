@@ -782,9 +782,9 @@
                 return item.type === 'image';
             });
             document.getElementById('cr-bookings-total').textContent =
-                Portal.fmtNumber(bookings.length) + ' awaiting review';
+                Portal.fmtNumber(bookingsData && bookingsData.total != null ? bookingsData.total : bookings.length) + ' awaiting review';
             document.getElementById('cr-requests-total').textContent =
-                Portal.fmtNumber(requests.length) + ' staged';
+                Portal.fmtNumber(requestsData && requestsData.total != null ? requestsData.total : requests.length) + ' staged';
             var bookingsWrap = document.getElementById('cr-bookings');
             var requestsWrap = document.getElementById('cr-requests');
             if (!bookings.length && !requests.length) {
