@@ -73,6 +73,7 @@ const INDUSTRY_GROUPS = [
       { id: 'amun', weight: 1, why: 'As Amun-Ra he steers the sun through the hours of night; the hidden engine of the solar circuit.' },
       { id: 'ahuramazda', weight: 1, why: 'Wisdom and Light are his canonical domain; the sun and the sacred radiance are the visible signs of the Wise Lord.' },
       { id: 'hemera', weight: 1, why: 'Daylight is the industry\'s working capital, and the day is her entire person.' },
+      { id: 'houyi', weight: 1, why: 'He shot down nine of the ten suns when they rose together — the sky\'s solar surplus answered by one archer.' },
     ],
   },
   {
@@ -138,6 +139,7 @@ const INDUSTRY_GROUPS = [
       { id: 'aer', weight: 1, why: 'Weather is his element in motion; every forecast samples the moving air.' },
       { id: 'enlil', weight: 2, why: 'The seven destructive storms at his command; the weather front as a royal decree.' },
       { id: 'fujin', weight: 1, why: 'Typhoons and seasonal winds are still spoken of in his name; the gale is his dataset.' },
+      { id: 'longwang', weight: 1, why: 'Rain decrees are his paperwork — the Journey to the West\'s Jìng River king was executed for falsifying one forecast.' },
     ],
   },
   {
@@ -168,6 +170,7 @@ const INDUSTRY_GROUPS = [
       { id: 'odysseus', weight: 2, why: 'The sea-crossing hero; the archetype of the long voyage home.' },
       { id: 'iason', weight: 1, why: 'The Argo\'s captain; the expedition as a maritime brand.' },
       { id: 'europe', weight: 1, why: 'The bull-crossing from Tyre to Crete; a continent named for a sea voyage.' },
+      { id: 'longwang', weight: 2, why: 'The four seas are his family\'s jurisdiction; every hull in Chinese waters sailed under the Dragon Kings\' toll.' },
     ],
   },
   {
@@ -198,6 +201,7 @@ const INDUSTRY_GROUPS = [
       { id: 'drakon', weight: 1, why: 'The dragon at the spring is myth\'s watermark; he guards the source every utility taps.' },
       { id: 'el', weight: 1, why: 'His tent stands at the source of the two rivers, where every spring and stream begins.' },
       { id: 'herakles', weight: 1, why: 'He cleansed the Augean stables by diverting two rivers; hydraulic engineering\'s first case study.' },
+      { id: 'longwang', weight: 2, why: 'Rain, rivers, and wells are the office — drought-stricken counties petitioned his temple as the water ministry of last resort.' },
     ],
   },
   {
@@ -264,6 +268,7 @@ const INDUSTRY_GROUPS = [
       { id: 'hera', weight: 1, why: 'The galaxy is named for gala — the milk she spilled; the Milky Way is her legend written overhead.' },
       { id: 'tartaros', weight: 1, why: 'Astronomers nicknamed the hellish exoplanet HD 80606 b \'Tartarus\' for its infernal orbit.' },
       { id: 'eros', weight: 1, why: '433 Eros was the first near-Earth asteroid discovered and the first a spacecraft ever touched.' },
+      { id: 'change', weight: 2, why: 'China\'s lunar exploration program flies her name — the Chang\'e orbiters and sample-return landers are the moon goddess made mission architecture.' },
     ],
   },
   {
@@ -309,6 +314,7 @@ const INDUSTRY_GROUPS = [
       { id: 'valholl', weight: 1, why: 'The einherjar drill daily for the last war; readiness as an eternal institution.' },
       { id: 'ker', weight: 1, why: 'The kēres hover over every Iliadic battlefield, dragging off the fallen; war\'s death-toll personified.' },
       { id: 'nike', weight: 1, why: 'Project Nike armed America\'s air defense with missiles bearing her name.' },
+      { id: 'nezha', weight: 1, why: 'Marshal of the celestial vanguard — heaven\'s youngest enforcer, armed with spear, sash, and wind-fire wheels.' },
     ],
   },
   {
@@ -493,6 +499,7 @@ const INDUSTRY_GROUPS = [
       { id: 'njordr', weight: 1, why: 'Fish and net: the skill that turns water into food.' },
       { id: 'eggther', weight: 1, why: 'A hirðir — the herdsman on the howe; the pastoral watch kept to the end of the world.' },
       { id: 'buri', weight: 1, why: 'Auðumla, the primeval cow whose licking revealed him — dairy at the dawn of the gods.' },
+      { id: 'longwang', weight: 1, why: 'The rain-prayer was farming China\'s oldest agtech; his temple stood where the irrigation district now sits.' },
     ],
   },
   {
@@ -777,6 +784,7 @@ const INDUSTRY_GROUPS = [
       { id: 'anat', weight: 1, why: 'Reclaimed as an icon of untamed female power; the fierce current of modern goddess practice.' },
       { id: 'vac', weight: 1, why: 'The mantra that protects, heals, and creates flows from her; sacred sound is the oldest sound therapy.' },
       { id: 'hemera', weight: 1, why: 'Modern devotional practice greets her with morning intentions; clarity and the sacred ordinary.' },
+      { id: 'xiwangmu', weight: 1, why: 'Her peaches ripen once in three thousand years and confer immortality — the original longevity retreat, waiting list included.' },
     ],
   },
   {
@@ -801,6 +809,7 @@ const INDUSTRY_GROUPS = [
       { id: 'arachne', weight: 1, why: 'The spider she became spins a silk that biomaterials labs still struggle to replicate.' },
       { id: 'thanatos', weight: 1, why: 'The longevity industry exists to postpone him; he is its unnamed competitor.' },
       { id: 'herakles', weight: 1, why: 'The mortal who earned immortality by labour; longevity\'s founding success story.' },
+      { id: 'xiwangmu', weight: 2, why: 'She holds the elixir of immortality itself — the drug Hòuyì won and Cháng\'é carried to the moon; life extension\'s founding myth.' },
     ],
   },
   {
@@ -889,6 +898,9 @@ const INDUSTRY_GROUPS = [
       { id: 'dionysos', weight: 1, why: 'His Bacchic mysteries swept the Roman world; the Senate outlawed them and failed.' },
       { id: 'tartaros', weight: 1, why: 'Second Peter casts the sinning angels into Tartarus; the abyss entered Christian scripture.' },
       { id: 'hen', weight: 1, why: 'Henosis — union with the One — is the contemplative goal Plotinus bequeathed to later mysticism.' },
+      { id: 'nezha', weight: 1, why: 'Taiwan\'s Third Prince possesses mediums and leads temple processions — the most electric living cult in the Chinese world.' },
+      { id: 'change', weight: 1, why: 'The Mid-Autumn moon altar is still set for her each year — mooncakes, incense, and the goddess in the full moon.' },
+      { id: 'xiwangmu', weight: 1, why: 'The Book of Han records her millenarian movement of 3 BCE; temples across the Chinese world still enthrone the Queen Mother.' },
     ],
   },
   {
@@ -1004,6 +1016,8 @@ const INDUSTRY_GROUPS = [
       { id: 'fujin', weight: 1, why: 'Manga, anime, and games cast him as overwhelming natural force; the wind-bag is a global shorthand.' },
       { id: 'ares', weight: 1, why: 'God of War built a franchise on his title and made him its first final boss.' },
       { id: 'ker', weight: 1, why: 'Fantasy and role-playing games adopted the kēres wholesale as winged death-spirits.' },
+      { id: 'nezha', weight: 2, why: 'Ne Zha 2 (2025) is the highest-grossing animated film ever made; the lotus rebel is global entertainment\'s biggest mythic IP.' },
+      { id: 'houyi', weight: 1, why: 'A playable god from Smite to Honor of Kings — the sun-shooting archer is a standing character class.' },
     ],
   },
   {
@@ -1037,6 +1051,7 @@ const INDUSTRY_GROUPS = [
       { id: 'atlas', weight: 1, why: 'The Atlas stones are strongman\'s signature lift; the cosmic burden made sport.' },
       { id: 'hermes', weight: 1, why: 'Patron of the palaestra — the gymnasium was his precinct; herms stood at every training ground.' },
       { id: 'artemis', weight: 1, why: 'The huntress; archery and the chase as sacred discipline.' },
+      { id: 'houyi', weight: 2, why: 'The divine archer himself — nine suns, nine hits; the bow is his whole mythology.' },
     ],
   },
   {
@@ -1488,6 +1503,7 @@ const INDUSTRY_GROUPS = [
       { id: 'vishnu', weight: 1, why: 'As Matsya he carried Manu through the flood; the avatāra doctrine is divine crisis response.' },
       { id: 'poseidon', weight: 1, why: 'Ennosigaios, the Earth-Shaker; earthquake and tsunami risk was his remit before it was an industry.' },
       { id: 'typhon', weight: 1, why: 'Whirlwind and volcano in one body; the composite catastrophe the resilience sector plans against.' },
+      { id: 'houyi', weight: 1, why: 'When ten suns rose together and the world burned, he ended the catastrophe with a bow — cosmic correction as emergency response.' },
     ],
   },
   {
@@ -1652,6 +1668,7 @@ const INDUSTRY_GROUPS = [
       { id: 'ra', weight: 1, why: 'The solar barque crossing heaven by day and the underworld by night — the vessel as archetype of travel.' },
       { id: 'odysseus', weight: 1, why: 'The archetypal journey home; every road trip and long haul is his.' },
       { id: 'hermes', weight: 1, why: 'God of roads and wayfarers; the traveller’s patron, the journey made safe.' },
+      { id: 'nezha', weight: 1, why: 'He rides the Wind Fire Wheels — myth\'s first personal mobility device; the Neta marque sells electric cars under his name.' },
     ],
   },
   {
@@ -1678,6 +1695,8 @@ const INDUSTRY_GROUPS = [
       { id: 'demeter', weight: 2, why: 'The grain-giver — bread itself, the foundation of every table.' },
       { id: 'ceres', weight: 1, why: 'The Roman grain mother; the cereal on every menu.' },
       { id: 'dionysos', weight: 1, why: 'The feast as sacred event — dining as celebration, not just sustenance.' },
+      { id: 'change', weight: 1, why: 'The mooncake is her festival\'s edible icon — an entire pastry economy rises with her moon each autumn.' },
+      { id: 'xiwangmu', weight: 1, why: 'The Peach Banquet she hosts for the assembled immortals is the feast as institution — hospitality\'s most exclusive table.' },
     ],
   },
   {
