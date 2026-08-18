@@ -31,16 +31,29 @@
   }
 
   /**
-   * The top-of-page action area: gold banner when a creative is missing
-   * (the sponsor's next move), calm info note while a creative is in review.
+   * The top-of-page action area. Four honest states, driven by the enriched
+   * /me payload (hasCreative, pendingImageRequest):
+   *   - a creative is genuinely missing            → gold action banner
+   *   - a creative is staged in the review queue   → calm "under review" note
+   *   - approved with a creative but not live yet  → publish call-to-action
+   *   - live                                        → no banner
    */
   function renderActions(bookings) {
     var wrap = document.getElementById('overview-actions');
+    var hasCreative = function (b) {
+      return b.hasCreative || !!b.creativePath;
+    };
     var awaiting = bookings.filter(function (b) {
-      return IMAGE_CHANGEABLE_STATUSES.indexOf(b.status) !== -1 && !b.creativePath;
+      return IMAGE_CHANGEABLE_STATUSES.indexOf(b.status) !== -1 && !hasCreative(b) && !b.pendingImageRequest;
     });
     var inReview = bookings.filter(function (b) {
-      return b.status === 'pending_approval' && b.creativePath;
+      return (
+        b.pendingImageRequest ||
+        (b.status === 'pending_approval' && hasCreative(b))
+      );
+    });
+    var publishable = bookings.filter(function (b) {
+      return b.status === 'approved' && hasCreative(b);
     });
     var html = '';
     if (awaiting.length) {
@@ -59,6 +72,21 @@
         '<a class="sb-btn sb-btn-primary" href="/account/brand/">Upload creative</a>' +
         '</div>';
     }
+    if (publishable.length) {
+      html +=
+        '<div class="sb-action-banner" role="alert">' +
+        '<span class="sb-action-glyph" aria-hidden="true">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' +
+        '<polygon points="6 3 20 12 6 21 6 3"></polygon>' +
+        '</svg></span>' +
+        '<div class="sb-action-body">' +
+        '<h2>Approved — publish when you’re ready</h2>' +
+        '<p>' + slotList(publishable) + (publishable.length === 1 ? ' has' : ' have') +
+        ' an approved creative. Nothing appears on the temple until you publish.</p>' +
+        '</div>' +
+        '<button type="button" class="sb-btn sb-btn-primary" id="sb-publish-all">Publish now</button>' +
+        '</div>';
+    }
     if (inReview.length) {
       html +=
         '<div class="sb-action-banner info" role="status">' +
@@ -68,11 +96,29 @@
         '</svg></span>' +
         '<div class="sb-action-body">' +
         '<h2>Creative under review by the PuniCodex team</h2>' +
-        '<p>' + slotList(inReview) + ' — it goes live once approved. No action needed from you.</p>' +
+        '<p>' + slotList(inReview) + ' — we’ll email you the moment it’s approved. No action needed from you.</p>' +
         '</div>' +
         '</div>';
     }
     wrap.innerHTML = html;
+
+    var publishBtn = document.getElementById('sb-publish-all');
+    if (publishBtn) {
+      publishBtn.addEventListener('click', async function () {
+        publishBtn.disabled = true;
+        publishBtn.textContent = 'Publishing…';
+        try {
+          for (var i = 0; i < publishable.length; i++) {
+            await S.api('/api/account/bookings/' + publishable[i].id + '/publish/', { method: 'POST', body: {} });
+          }
+          window.location.reload();
+        } catch (err) {
+          publishBtn.disabled = false;
+          publishBtn.textContent = 'Publish now';
+          alert(err.message || 'Could not publish — please try again.');
+        }
+      });
+    }
   }
 
   function sumLastDays(byDay, key, days) {

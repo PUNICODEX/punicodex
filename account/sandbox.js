@@ -245,7 +245,7 @@
       '<p>Once your first booking or patron spot is linked to this account, it shows up here. ' +
       'Anything unclear in the meantime — ' +
       '<a href="/contact/">contact us</a> or ' +
-      '<a href="mailto:support@punicodex.com?subject=Advertiser%20panel%20—%20bug%20report">report a bug</a>.</p>' +
+      '<a href="/contact/">report a bug</a>.</p>' +
       '</div>'
     );
   }
