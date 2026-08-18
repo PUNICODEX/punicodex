@@ -4,8 +4,8 @@
  * Leasing permission (superadmin/ops/leasing).
  *
  * GET  — paged booking roster for the Leasing section. Query:
- *        ?status=pending_application|pending_payment|pending_upload|approved|
- *               live|trialing|ended|cancelled|rejected
+ *        ?status=pending_application|pending_payment|pending_upload|
+ *               pending_approval|approved|live|trialing|ended|cancelled|rejected
  *        &temple=<site_slug>&search=<email/company>&limit=&offset=
  *        → { items, total, stats, revenue, limit, offset }.
  * POST — admin-create a booking (pass-through to the admin booking service;
@@ -25,6 +25,7 @@ const BOOKING_STATUSES = new Set([
   'pending_application',
   'pending_payment',
   'pending_upload',
+  'pending_approval',
   'approved',
   'live',
   'trialing',

@@ -501,6 +501,15 @@ async function goLiveBooking(id, adminToken) {
   return { success: true, status: 'live', trial: isTrial };
 }
 
+/**
+ * One-step creative approval + publication for reviewers who have already
+ * judged the creative: approveBooking's audit + email, then goLive's.
+ */
+async function approveAndGoLive(id, note, adminToken) {
+  await approveBooking(id, note, adminToken);
+  return goLiveBooking(id, adminToken);
+}
+
 async function endBookingAdmin(id, adminToken) {
   const booking = await getBookingById(id);
   if (!booking) throw new AdminBookingError(404, 'Booking not found');
@@ -589,6 +598,7 @@ module.exports = {
   approveBooking,
   rejectBooking,
   goLiveBooking,
+  approveAndGoLive,
   endBookingAdmin,
   sendBookingReport,
   runTrialRemindersAdmin,
