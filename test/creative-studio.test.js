@@ -37,3 +37,8 @@ test('studio styles exist and page versions bumped', () => {
   assert.match(brandHtml, /brand\.js\?v=4/);
   assert.match(brandHtml, /Creative Studio/);
 });
+
+test('frame preview hidden toggles are honored by the CSS', () => {
+  assert.match(sandboxCss, /\.sb-frame-img\[hidden\]/);
+  assert.match(sandboxCss, /\.sb-frame-empty\[hidden\]/);
+});

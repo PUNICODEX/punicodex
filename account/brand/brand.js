@@ -322,6 +322,9 @@
         submitBtn.disabled = true;
         note.hidden = true;
         msg.textContent = err.message || 'Could not read this image.';
+        // Reset the input so re-selecting the same corrupt file fires change
+        // again (shared by the drop path — stageFile is one funnel).
+        fileInput.value = '';
       }
     }
 
@@ -341,7 +344,12 @@
       e.preventDefault();
       dropzone.classList.add('dragover');
     });
-    dropzone.addEventListener('dragleave', function () {
+    dropzone.addEventListener('dragleave', function (e) {
+      // Only clear when the pointer truly leaves the zone — crossing a child
+      // span fires dragleave with a relatedTarget still inside it.
+      if (e.relatedTarget && dropzone.contains(e.relatedTarget)) {
+        return;
+      }
       dropzone.classList.remove('dragover');
     });
     dropzone.addEventListener('drop', function (e) {

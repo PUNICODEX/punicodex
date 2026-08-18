@@ -712,16 +712,6 @@ a.sb-panel-link:hover > h3 {
   color: var(--sb-gold, #c9b584);
 }
 
-.sb-upload-preview {
-  max-width: 100%;
-  max-height: 140px;
-  border-radius: 8px;
-  border: 1px dashed var(--sb-gold-line);
-  margin-top: 0.6rem;
-  display: block;
-  object-fit: contain;
-}
-
 /* ── First-upload hint (Brand page) ───────────────────────── */
 
 .sb-first-upload {
@@ -1072,6 +1062,12 @@ a.sb-panel-link:hover > h3 {
   color: var(--sb-text-muted);
   font-size: 0.82rem;
   text-align: center;
+}
+
+/* The img/empty display rules above beat the UA [hidden] rule — restore it. */
+.sb-frame-img[hidden],
+.sb-frame-empty[hidden] {
+  display: none;
 }
 
 .sb-frame-empty-dims {
