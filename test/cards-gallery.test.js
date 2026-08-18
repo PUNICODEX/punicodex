@@ -49,7 +49,7 @@ test('the FR1 set honors the spec rarity classes and card frame fields', () => {
     assert.ok(Number.isInteger(card.cost) && Number.isInteger(card.power), `${card.id}: stats`);
   }
   const legendaries = SET.cards.filter((c) => c.rarity === 'legendary');
-  assert.strictEqual(legendaries.length, 282, 'the flagship fleet is exactly 282 legendaries');
+  assert.strictEqual(legendaries.length, 287, 'the flagship fleet is exactly 287 legendaries');
   const foils = SET.cards.filter((c) => c.variant === 'original-script');
   assert.ok(foils.length > 200, 'chase foils present');
   assert.ok(
@@ -70,17 +70,17 @@ test('the renderer honors every rarity and variant in the set', () => {
   assert.ok(js.includes('/sites/'), 'temple cross-link present');
 });
 
-test('the gallery is server-rendered: 1,698 static frames + payload, no empty shell', () => {
+test('the gallery is server-rendered: 1,763 static frames + payload, no empty shell', () => {
   const html = read('cards/index.html');
   const frames = html.match(/class="mcard[ "]/g) || [];
-  assert.strictEqual(frames.length, 1746, 'every card has a static frame in the raw HTML');
+  assert.strictEqual(frames.length, 1763, 'every card has a static frame in the raw HTML');
   assert.ok(!html.includes('Restoring the set…'), 'no client-only loading shell remains');
   assert.ok(html.includes('CARDS-GRID-START'), 'grid markers present for regeneration');
   const m = html.match(/window\.__CARDS_PAYLOAD = (\[[\s\S]*?\]);/);
   assert.ok(m, 'payload baked into the page');
   const payload = JSON.parse(m[1].replace(/\\u003c/g, '<'));
-  assert.strictEqual(payload.length, 1746, 'payload carries the full set');
-  assert.ok(html.includes('id="stat-total">1,746'), 'stat count server-filled');
+  assert.strictEqual(payload.length, 1763, 'payload carries the full set');
+  assert.ok(html.includes('id="stat-total">1,763'), 'stat count server-filled');
   assert.ok(!html.includes('id="stat-total">—'), 'no placeholder dash in stats');
   const js = read('cards/cards.js');
   assert.ok(js.includes('window.__CARDS_PAYLOAD'), 'renderer uses the baked payload first');
