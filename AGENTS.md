@@ -1038,6 +1038,9 @@ phonemes but the right rhythm (Greek pitch accent and vowel quantity,
 Norse quantity, Nahuatl penult weight, Japanese flat contour, …).
 Egyptian names are explicitly labelled **Conventional reading** (the
 vocalization is a scholarly convention, not attested pronunciation).
+Chinese/taoist names are covered by a Modern Standard Mandarin module
+(tone-marked pinyin → IPA with Chao tone letters; per-syllable tone
+contours level/rise/fall-rise/fall/neutral, no lexical stress).
 
 **Contracts and consumers:**
 

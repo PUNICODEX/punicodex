@@ -162,6 +162,99 @@ test('engine: fallback pantheon returns derived:false and timing:null', () => {
   assert.ok(d.notes.some((n) => n.includes('No pronunciation rule set')));
 });
 
+// --- Chinese (Modern Standard Mandarin, tone-marked pinyin) ---
+
+test('engine: nezha derives mandarin syllables with tone contours', () => {
+  const d = derivePronunciation(byId.get('nezha'));
+  assert.strictEqual(d.derived, true);
+  assert.strictEqual(d.conventional, false);
+  assert.strictEqual(d.stressIndex, null); // lexical tone, no stress
+  assert.deepStrictEqual(d.syllables, ['nɤ˧˥', 'ʈʂa˥']);
+  assert.strictEqual(d.ipa, '/nɤ˧˥.ʈʂa˥/');
+  assert.ok(d.timing, 'timing present');
+  assert.deepStrictEqual(d.timing.morae, [1, 1]);
+  assert.deepStrictEqual(
+    d.timing.perSyllable.map((s) => s.contour),
+    ['rise', 'level']
+  );
+  assert.strictEqual(d.timing.contour, 'rise level');
+  assert.strictEqual(d.timing.moraMs, 250);
+  assert.strictEqual(d.timing.durationMs, 500);
+  assert.strictEqual(d.respelling, 'nuh-jah');
+});
+
+test('engine: change apostrophe splits cháng + é', () => {
+  const d = derivePronunciation(byId.get('change'));
+  assert.deepStrictEqual(d.syllables, ['ʈʂʰa˧˥ŋ', 'ɤ˧˥']);
+  assert.strictEqual(d.ipa, '/ʈʂʰa˧˥ŋ.ɤ˧˥/');
+  assert.deepStrictEqual(
+    d.timing.perSyllable.map((s) => s.contour),
+    ['rise', 'rise']
+  );
+  assert.deepStrictEqual(d.timing.morae, [2, 1]); // coda nasal adds half a mora
+});
+
+test('engine: xiwangmu derives three syllables including third tone', () => {
+  const d = derivePronunciation(byId.get('xiwangmu'));
+  assert.deepStrictEqual(d.syllables, ['ɕi˥', 'ua˧˥ŋ', 'mu˨˩˦']);
+  assert.deepStrictEqual(
+    d.timing.perSyllable.map((s) => s.contour),
+    ['level', 'rise', 'fall-rise']
+  );
+});
+
+test('engine: houyi and longwang carry falling and rising tone pairs', () => {
+  const houyi = derivePronunciation(byId.get('houyi'));
+  assert.deepStrictEqual(houyi.syllables, ['xou̯˥˩', 'i˥˩']);
+  assert.deepStrictEqual(
+    houyi.timing.perSyllable.map((s) => s.contour),
+    ['fall', 'fall']
+  );
+  const longwang = derivePronunciation(byId.get('longwang'));
+  assert.deepStrictEqual(longwang.syllables, ['lʊ˧˥ŋ', 'ua˧˥ŋ']);
+  assert.deepStrictEqual(
+    longwang.timing.perSyllable.map((s) => s.contour),
+    ['rise', 'rise']
+  );
+});
+
+test('engine: sunwukong camelCase splits three syllables', () => {
+  const d = derivePronunciation(byId.get('sunwukong'));
+  assert.deepStrictEqual(d.syllables, ['suə˥n', 'u˥˩', 'kʰʊ˥ŋ']);
+  assert.strictEqual(d.stressIndex, null);
+});
+
+test('engine: nuwa derives the ü vowel (ü names keep [y])', () => {
+  const d = derivePronunciation(byId.get('nuwa'));
+  assert.deepStrictEqual(d.syllables, ['ny˨˩˦', 'ua˥']);
+  assert.strictEqual(d.respelling, 'new-wah'); // ü → 'ew' (rounded), not 'ee'
+  assert.ok(
+    d.notes.some((n) => n.includes('ü')),
+    'ü note present'
+  );
+});
+
+test('engine: yamen unmarked second syllable is neutral tone', () => {
+  const d = derivePronunciation(byId.get('yamen')); // Yámen — men carries no mark
+  assert.deepStrictEqual(
+    d.timing.perSyllable.map((s) => s.contour),
+    ['rise', 'neutral']
+  );
+});
+
+test('engine: every chinese/taoist lexicon entry derives without throwing', () => {
+  const zh = LEXICON.filter((e) => e.pantheon === 'chinese' || e.pantheon === 'taoist');
+  assert.ok(zh.length > 50, 'chinese/taoist coverage present in the lexicon');
+  for (const entry of zh) {
+    const d = derivePronunciation(entry);
+    assert.strictEqual(d.derived, true, `${entry.id} derived`);
+    assert.ok(d.ipa && d.ipa !== '//', `${entry.id} non-empty ipa`);
+    assert.ok(d.timing, `${entry.id} timing present`);
+    assert.strictEqual(d.stressIndex, null, `${entry.id} has no lexical stress`);
+    assert.ok(d.syllables.length > 0, `${entry.id} syllables present`);
+  }
+});
+
 test('engine: deriveRespelling timed mode marks length naturally', () => {
   const { deriveRespelling } = require('../type/js/pronunciation-rules.js');
   assert.strictEqual(deriveRespelling(['a', 'rɔːk', 'nɛː'], 1), 'ah-RAWK-nay');
@@ -313,5 +406,13 @@ test('panel: egyptian flagship is labelled Conventional reading', () => {
 test('panel: fallback pantheon flagship omits the panel', () => {
   const html = fs.readFileSync(path.join(ROOT, 'sites', 'ishtar', 'index.html'), 'utf8');
   assert.ok(!html.includes('id="say-it-right"'), 'panel omitted for mesopotamian (fallback)');
+  assert.ok(!/\{\{[^}]+\}\}/.test(html), 'no raw placeholders left');
+});
+
+test('panel: chinese flagship carries tone-contour chips and respelling', () => {
+  const html = fs.readFileSync(path.join(ROOT, 'sites', 'nezha', 'index.html'), 'utf8');
+  assert.ok(html.includes('id="say-it-right"'), 'panel present for chinese temple');
+  assert.ok(html.includes('nuh-jah'), 'nezha respelling rendered');
+  assert.ok(html.includes('rise'), 'tone contour rendered in chips');
   assert.ok(!/\{\{[^}]+\}\}/.test(html), 'no raw placeholders left');
 });

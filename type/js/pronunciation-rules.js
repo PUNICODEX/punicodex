@@ -23,6 +23,9 @@
  *   egyptian               → Egyptological conventional reading (conventional:
  *                            hieroglyphs write no vowels, so any vocalization
  *                            is a scholarly convention, flagged accordingly)
+ *   chinese / taoist       → Modern Standard Mandarin (tone-marked pinyin;
+ *                            the restoration's tone marks become Chao tone
+ *                            letters on each syllable's nucleus)
  *   everything else        → fallback orthographic passthrough (derived: false)
  *
  * Stress policy per language:
@@ -36,6 +39,7 @@
  *   norse    — first syllable.
  *   japanese — no lexical stress (stressIndex null).
  *   egyptian — no recoverable stress (conventional).
+ *   chinese/taoist — no lexical stress (tone language; stressIndex null).
  */
 
 'use strict';
@@ -730,6 +734,257 @@ function tokenizeEgyptian(form) {
 }
 
 // ---------------------------------------------------------------------------
+// Chinese (Modern Standard Mandarin, tone-marked pinyin)
+//
+// The restorations are standard pinyin with tone marks (Cháng'é, SūnWùkōng).
+// Tone lives on the nucleus vowel's combining mark: macron = T1, acute = T2,
+// caron = T3, grave = T4, no mark = neutral. The tone is rendered as Chao
+// tone letters appended to the nucleus token's `p` (so renderIpa carries it)
+// and mirrored into the token's `accent` field for the contour layer.
+// ---------------------------------------------------------------------------
+
+const CHINESE_INITIALS = {
+  b: 'p',
+  p: 'pʰ',
+  m: 'm',
+  f: 'f',
+  d: 't',
+  t: 'tʰ',
+  n: 'n',
+  l: 'l',
+  g: 'k',
+  k: 'kʰ',
+  h: 'x',
+  j: 'tɕ',
+  q: 'tɕʰ',
+  x: 'ɕ',
+  zh: 'ʈʂ',
+  ch: 'ʈʂʰ',
+  sh: 'ʂ',
+  r: 'ɻ',
+  z: 'ts',
+  c: 'tsʰ',
+  s: 's',
+};
+
+// Written final → [nucleus IPA, coda]. The coda nasals are separate tokens so
+// the mora layer counts them through the standard coda-weight mechanism. The
+// standalone null-initial spellings (yi, wa, yu, …) are tabled as aliases of
+// their canonical finals — pinyin writes the i/u/ü glide as y/w word-initially,
+// and contracts iu/ui/un to you/wei/wen in the same position.
+const CHINESE_FINALS = {
+  a: ['a', null],
+  o: ['wo', null],
+  e: ['ɤ', null],
+  er: ['ɚ', null],
+  ai: ['ai̯', null],
+  ei: ['ei̯', null],
+  ao: ['au̯', null],
+  ou: ['ou̯', null],
+  an: ['a', 'n'],
+  en: ['ə', 'n'],
+  ang: ['a', 'ŋ'],
+  eng: ['ə', 'ŋ'],
+  ong: ['ʊ', 'ŋ'],
+  i: ['i', null],
+  ia: ['ia', null],
+  ie: ['iɛ', null],
+  iao: ['iau̯', null],
+  iu: ['iou̯', null],
+  ian: ['iɛ', 'n'],
+  in: ['i', 'n'],
+  iang: ['ia', 'ŋ'],
+  ing: ['i', 'ŋ'],
+  iong: ['iʊ', 'ŋ'],
+  u: ['u', null],
+  ua: ['ua', null],
+  uo: ['uo', null],
+  uai: ['uai̯', null],
+  ui: ['uei̯', null],
+  uan: ['ua', 'n'],
+  un: ['uə', 'n'],
+  uang: ['ua', 'ŋ'],
+  ueng: ['uə', 'ŋ'],
+  ü: ['y', null],
+  üe: ['yɛ', null],
+  üan: ['yɛ', 'n'],
+  ün: ['y', 'n'],
+  // Null-initial standalone spellings (y/w forms, incl. the contractions).
+  yi: ['i', null],
+  ya: ['ia', null],
+  ye: ['iɛ', null],
+  yao: ['iau̯', null],
+  you: ['iou̯', null],
+  yan: ['iɛ', 'n'],
+  yin: ['i', 'n'],
+  yang: ['ia', 'ŋ'],
+  ying: ['i', 'ŋ'],
+  yong: ['iʊ', 'ŋ'],
+  yu: ['y', null],
+  yue: ['yɛ', null],
+  yuan: ['yɛ', 'n'],
+  yun: ['y', 'n'],
+  wu: ['u', null],
+  wa: ['ua', null],
+  wo: ['uo', null],
+  wai: ['uai̯', null],
+  wei: ['uei̯', null],
+  wan: ['ua', 'n'],
+  wen: ['uə', 'n'],
+  wang: ['ua', 'ŋ'],
+  weng: ['uə', 'ŋ'],
+};
+
+const CHINESE_FINAL_KEYS = Object.keys(CHINESE_FINALS).sort((a, b) => b.length - a.length);
+
+// Combining mark → [Chao tone letters, accent for the contour layer].
+const CHINESE_TONES = [
+  { mark: MARK.MACRON, sup: '˥', accent: 'macron' },
+  { mark: MARK.ACUTE, sup: '˧˥', accent: 'acute' },
+  { mark: MARK.CARON, sup: '˨˩˦', accent: 'caron' },
+  { mark: MARK.GRAVE, sup: '˥˩', accent: 'grave' },
+];
+
+// Base vowel symbols used in the finals table (glide w and the non-syllabic
+// mark excluded) — a nucleus with 2+ of these is bimoraic.
+const CHINESE_VOWEL_CHARS = new Set([
+  'a',
+  'e',
+  'i',
+  'o',
+  'u',
+  'y',
+  'ɤ',
+  'ə',
+  'ʊ',
+  'ɛ',
+  'ɚ',
+  'ʅ',
+  'ɿ',
+]);
+
+function chineseIsLong(vowelIpa) {
+  let n = 0;
+  for (const ch of vowelIpa) {
+    if (CHINESE_VOWEL_CHARS.has(ch)) n += 1;
+  }
+  return n >= 2;
+}
+
+// Split a display form into pinyin chunks on the explicit syllable marks the
+// restorations carry: apostrophes (Cháng'é) and camelCase (SūnWùkōng).
+function chineseChunks(form) {
+  const s = String(form).normalize('NFC');
+  const chunks = [];
+  let current = '';
+  let prevLower = false;
+  for (const ch of s) {
+    if ("'’- ".includes(ch)) {
+      if (current) chunks.push(current);
+      current = '';
+      prevLower = false;
+      continue;
+    }
+    const isLetter = /[a-zü]/i.test(ch);
+    const isUpper = isLetter && ch === ch.toUpperCase() && ch !== ch.toLowerCase();
+    if (isUpper && prevLower && current) {
+      chunks.push(current);
+      current = '';
+    }
+    current += ch;
+    prevLower = isLetter && ch === ch.toLowerCase();
+  }
+  if (current) chunks.push(current);
+  return chunks;
+}
+
+// Longest written-final match at position j, or null.
+function matchChineseFinal(letters, j) {
+  for (const key of CHINESE_FINAL_KEYS) {
+    let ok = true;
+    for (let k = 0; k < key.length; k++) {
+      if (letters[j + k] !== key[k]) {
+        ok = false;
+        break;
+      }
+    }
+    if (ok) return { key, len: key.length };
+  }
+  return null;
+}
+
+function tokenizeChineseChunk(chunk, tokens) {
+  const gs = graphemes(chunk);
+  if (gs.length === 0) return;
+  // ü is written u + diaeresis in NFD; give it its own letter for matching.
+  const letters = gs.map((g) =>
+    g.base === 'u' && g.marks.includes(MARK.DIAERESIS) ? 'ü' : g.base
+  );
+  let i = 0;
+  while (i < letters.length) {
+    const two = letters[i] + (letters[i + 1] || '');
+    let initial = null;
+    let j = i;
+    if ((two === 'zh' || two === 'ch' || two === 'sh') && matchChineseFinal(letters, i + 2)) {
+      initial = CHINESE_INITIALS[two];
+      j = i + 2;
+    } else if (CHINESE_INITIALS[letters[i]] && matchChineseFinal(letters, i + 1)) {
+      initial = CHINESE_INITIALS[letters[i]];
+      j = i + 1;
+    }
+    // After j/q/x the written u is always ü (qu → [tɕʰy], jue → [tɕyɛ]).
+    if ((initial === 'tɕ' || initial === 'tɕʰ' || initial === 'ɕ') && letters[j] === 'u') {
+      letters[j] = 'ü';
+    }
+    const match = matchChineseFinal(letters, j);
+    if (!match) {
+      // Stray letter (e.g. the unmarked romanization "Bodhidharma"): keep the
+      // plain consonant value so the letter is not silently dropped.
+      if (CHINESE_INITIALS[letters[i]]) tokens.push(C(CHINESE_INITIALS[letters[i]]));
+      i += 1;
+      continue;
+    }
+    let [vowelIpa, coda] = CHINESE_FINALS[match.key];
+    // Apical vowels: -i after zh/ch/sh/r is [ʅ], after z/c/s it is [ɿ].
+    if (match.key === 'i' && initial) {
+      if (initial === 'ʈʂ' || initial === 'ʈʂʰ' || initial === 'ʂ' || initial === 'ɻ') {
+        vowelIpa = 'ʅ';
+      } else if (initial === 'ts' || initial === 'tsʰ' || initial === 's') {
+        vowelIpa = 'ɿ';
+      }
+    }
+    let tone = null;
+    for (let g = i; g < j + match.len && !tone; g++) {
+      for (const t of CHINESE_TONES) {
+        if (gs[g].marks.includes(t.mark)) {
+          tone = t;
+          break;
+        }
+      }
+    }
+    if (initial) tokens.push(C(initial));
+    tokens.push(
+      V(
+        vowelIpa + (tone ? tone.sup : ''),
+        chineseIsLong(vowelIpa),
+        false,
+        tone ? tone.accent : null
+      )
+    );
+    if (coda) tokens.push(C(coda));
+    i = j + match.len;
+  }
+}
+
+function tokenizeChinese(form) {
+  const tokens = [];
+  for (const chunk of chineseChunks(form)) {
+    tokenizeChineseChunk(chunk, tokens);
+  }
+  return tokens;
+}
+
+// ---------------------------------------------------------------------------
 // Fallback (no rule set): orthographic passthrough
 // ---------------------------------------------------------------------------
 
@@ -765,7 +1020,7 @@ function isHeavy(syllable) {
   return !!last && !last.vowel;
 }
 
-function syllabify(tokens, onsetSet) {
+function syllabify(tokens, onsetSet, codaOnly) {
   const nuclei = [];
   tokens.forEach((t, idx) => {
     if (t.vowel) nuclei.push(idx);
@@ -781,7 +1036,9 @@ function syllabify(tokens, onsetSet) {
     const between = tokens.slice(a + 1, b);
     let onsetSize = 0;
     if (between.length === 1) {
-      onsetSize = 1;
+      // A language may declare coda-only consonants (pinyin n / ŋ): a lone
+      // intervocalic one closes the left syllable instead of migrating right.
+      onsetSize = codaOnly?.has(between[0].p) ? 0 : 1;
     } else if (between.length >= 2) {
       const lastTwo = between
         .slice(-2)
@@ -817,7 +1074,15 @@ function weightRuleStress(syllables) {
 }
 
 function assignStress(language, syllables, entry) {
-  if (language === 'japanese' || language === 'egyptian' || language === 'fallback') return null;
+  if (
+    language === 'japanese' ||
+    language === 'egyptian' ||
+    language === 'chinese' ||
+    language === 'taoist' ||
+    language === 'fallback'
+  ) {
+    return null;
+  }
   if (syllables.length === 0) return null;
   const explicit = explicitStress(syllables);
   if (explicit !== null) return explicit;
@@ -924,13 +1189,32 @@ const PROSODY = {
     conventional: true,
     model: 'conventional rhythm (hieroglyphs write no vowels)',
   },
+  chinese: {
+    moraMs: 250,
+    geminate: false,
+    codaWeight: 0.5,
+    codaNasalMora: false,
+    conventional: false,
+    model: 'syllable-timed (one beat per syllable; lexical tone contour per syllable)',
+  },
 };
 
 function prosodyFor(language) {
-  return PROSODY[language === 'greek-location' ? 'greek' : language];
+  if (language === 'greek-location') return PROSODY.greek;
+  if (language === 'taoist') return PROSODY.chinese;
+  return PROSODY[language];
 }
 
-function syllableContour(syllable, stressed) {
+function syllableContour(syllable, stressed, language) {
+  if (language === 'chinese' || language === 'taoist') {
+    // Lexical tone, not stress: every syllable carries its own contour.
+    const nucleus = syllable.find((t) => t.vowel);
+    if (nucleus?.accent === 'macron') return 'level';
+    if (nucleus?.accent === 'acute') return 'rise';
+    if (nucleus?.accent === 'caron') return 'fall-rise';
+    if (nucleus?.accent === 'grave') return 'fall';
+    return 'neutral';
+  }
   if (!stressed) return 'flat';
   const nucleus = syllable.find((t) => t.vowel);
   if (nucleus?.accent === 'acute') return 'rise';
@@ -1015,6 +1299,25 @@ const RHYTHM_VOWEL = {
   au̯: 'au',
   eu̯: 'eu',
   ey̯: 'ey',
+  ai̯: 'ai',
+  ei̯: 'ei',
+  ou̯: 'ou',
+  iau̯: 'yao',
+  iou̯: 'you',
+  uai̯: 'wai',
+  uei̯: 'wei',
+  wo: 'wo',
+  ia: 'ya',
+  iɛ: 'ye',
+  ua: 'wa',
+  uo: 'wo',
+  uə: 'we',
+  yɛ: 'ywe',
+  iʊ: 'yu',
+  ɤ: 'uh',
+  ɚ: 'er',
+  ʅ: 'ir',
+  ɿ: 'i',
 };
 
 const RHYTHM_CONS = {
@@ -1089,13 +1392,20 @@ const RHYTHM_CONS = {
   bʲ: 'by',
   ɡʲ: 'gy',
   hʲ: 'hy',
+  ʈʂ: 'j',
+  ʈʂʰ: 'ch',
+  tɕ: 'j',
+  tɕʰ: 'ch',
+  ɻ: 'r',
+  ts: 'ts',
+  tsʰ: 'ts',
 };
 
 function rhythmSyllable(syllable) {
   return syllable
     .map((t) => {
       if (t.vowel) {
-        const key = t.p.replace(/ː/g, '');
+        const key = t.p.replace(/ː/g, '').replace(/[˥˦˧˨˩]/g, '');
         const base = RHYTHM_VOWEL[key] || '';
         // Diphthongs are inherently bimoraic — only plain vowels double.
         const isDiphthong = key.length > 1 && 'aeiouy'.includes(key[0]);
@@ -1123,15 +1433,20 @@ function computeTiming(language, syllableTokens, stressIndex) {
       syllable: syll.map((t) => t.p).join(''),
       morae: morae[i],
       stressed,
-      contour: syllableContour(syll, stressed),
+      contour: syllableContour(syll, stressed, language),
       ms: Math.round(morae[i] * prosody.moraMs),
     };
   });
   const stressed = perSyllable.find((s) => s.stressed);
+  const tonal = language === 'chinese' || language === 'taoist';
   return {
     morae,
     totalMorae,
-    contour: stressed ? stressed.contour : 'flat',
+    contour: stressed
+      ? stressed.contour
+      : tonal
+        ? perSyllable.map((s) => s.contour).join(' ')
+        : 'flat',
     beats: morae.map(beatSymbol).join(' '),
     rhythm: perSyllable
       .map((s, i) => {
@@ -1150,9 +1465,16 @@ function computeTiming(language, syllableTokens, stressIndex) {
 // English-analogy respelling, longest IPA keys first. Deliberately lossy:
 // this is a voiceover aid, not a transcription.
 const RESPELL = {
+  iau̯: 'yow',
+  iou̯: 'yoh',
+  uai̯: 'why',
+  uei̯: 'way',
   au̯: 'ow',
   eu̯: 'ew',
   ey̯: 'ay',
+  ai̯: 'eye',
+  ei̯: 'ay',
+  ou̯: 'oh',
   aj: 'eye',
   ej: 'ay',
   oj: 'oy',
@@ -1165,6 +1487,25 @@ const RESPELL = {
   d͡ʑ: 'j',
   t͡ɕʰ: 'ch',
   d͡ʑʱ: 'j',
+  ʈʂʰ: 'chr',
+  ʈʂ: 'j',
+  tɕʰ: 'ch',
+  tɕ: 'j',
+  tsʰ: 'ts',
+  ts: 'ts',
+  iɛ: 'yeh',
+  yɛ: 'yweh',
+  iʊ: 'yoo',
+  ia: 'yah',
+  ua: 'wah',
+  uo: 'waw',
+  wo: 'waw',
+  uə: 'wuh',
+  ɤ: 'uh',
+  ɚ: 'ur',
+  ʅ: 'ir',
+  ɿ: 'ih',
+  ɻ: 'r',
   aː: 'ah',
   ɛː: 'ay',
   eː: 'ay',
@@ -1298,14 +1639,14 @@ const TIMED_RESPELL = {
   ʉ: 'u',
 };
 
-function respellSyllable(ipaSyllable, timed) {
+function respellSyllable(ipaSyllable, timed, overrides) {
   let s = ipaSyllable.replace(/^ˈ/, '');
   let out = '';
   while (s.length > 0) {
     let matched = false;
     for (const key of RESPELL_KEYS) {
       if (s.startsWith(key)) {
-        out += timed && TIMED_RESPELL[key] ? TIMED_RESPELL[key] : RESPELL[key];
+        out += overrides?.[key] || (timed && TIMED_RESPELL[key]) || RESPELL[key];
         s = s.slice(key.length);
         matched = true;
         break;
@@ -1332,12 +1673,16 @@ function respellSyllable(ipaSyllable, timed) {
  * never produced). Blind doubling is avoided on purpose: the default
  * analogies already imply length, and the doubled-letter rhythm notation
  * lives separately in timing.rhythm.
+ * Optional fourth argument `overrides` (a map of IPA key → analogy) lets a
+ * language module re-voice a global analogy that collides with another
+ * tradition's reading (Mandarin ü [y] is 'ew', not the Greek/Norse 'ee';
+ * Mandarin sh [ʂ] is 'shr', not the Sanskrit 'sh').
  */
-function deriveRespelling(phonemes, stressIdx, timing) {
+function deriveRespelling(phonemes, stressIdx, timing, overrides) {
   const timed = !!timing;
   return phonemes
     .map((syll, i) => {
-      const r = respellSyllable(syll, timed);
+      const r = respellSyllable(syll, timed, overrides);
       return i === stressIdx ? r.toUpperCase() : r;
     })
     .join('-');
@@ -1370,8 +1715,19 @@ const NOTES = {
   ʔ: "ʔ — glottal stop: the catch in the middle of 'uh-oh'",
   q: "q — 'k' made at the very back of the throat",
   ɾ: "ɾ — tapped 'r', as in Spanish 'pero'",
-  ɕ: "ɕ — soft 'sh', as in Japanese 'shio'",
+  ɕ: "ɕ — soft 'sh' (Japanese 'sh', pinyin 'x'): tongue flat behind the lower teeth",
   ʂ: "ʂ — retroflex 'sh', tongue tip curled back",
+  ʈʂ: "ʈʂ — pinyin 'zh': like 'j' in 'jump', tongue tip curled back",
+  ʈʂʰ: "ʈʂʰ — pinyin 'ch': like 'ch' in 'church', tongue tip curled back",
+  tɕ: "tɕ — pinyin 'j': like 'j' in 'jeep', tongue flat behind the lower teeth",
+  tɕʰ: "tɕʰ — pinyin 'q': like 'ch' in 'cheese', tongue flat behind the lower teeth",
+  ɻ: "ɻ — pinyin 'r': a curled-back 'r', between English 'r' and the 's' in 'measure'",
+  ts: "ts — pinyin 'z': 'ds' as in 'beds', one sound, no puff of air",
+  tsʰ: "tsʰ — pinyin 'c': 'ts' as in 'cats', one sound with a strong puff of air",
+  ɤ: "ɤ — pinyin 'e': a back, unrounded 'uh' — like 'err' without the 'r'",
+  ɚ: "ɚ — pinyin 'er': like 'err' in 'error', tongue curled back",
+  ʅ: "ʅ — pinyin '-i' after zh/ch/sh/r: keep the curled tongue of the initial and buzz",
+  ɿ: "ɿ — pinyin '-i' after z/c/s: keep the tongue of the 's' and buzz",
   ʈ: "ʈ — retroflex 't', tongue tip curled back",
   ɖ: "ɖ — retroflex 'd', tongue tip curled back",
   ɳ: "ɳ — retroflex 'n', tongue tip curled back",
@@ -1398,7 +1754,9 @@ function collectNotes(tokens, extra) {
   const seen = new Set();
   const notes = [];
   for (const t of tokens) {
-    const key = t.p.replace(/^ˈ/, '');
+    // Strip the stress mark and any Chao tone letters (Mandarin nuclei carry
+    // their tone contour in `p`); notes key on the bare phone.
+    const key = t.p.replace(/^ˈ/, '').replace(/[˥˦˧˨˩]/g, '');
     if (NOTES[key] && !seen.has(key)) {
       seen.add(key);
       notes.push(NOTES[key]);
@@ -1416,6 +1774,16 @@ const GREEK_SPEC = {
   tokenize: tokenizeGreek,
   onsets: GREEK_ONSETS,
   label: 'Derived from restored orthography (classical Attic values)',
+};
+
+const CHINESE_SPEC = {
+  tokenize: tokenizeChinese,
+  onsets: new Set(),
+  // A lone intervocalic n / ŋ is a coda of the left syllable, never an onset.
+  codaOnly: new Set(['n', 'ŋ']),
+  // ü [y] reads 'ew' (rounded), not the Greek/Norse 'ee'; sh [ʂ] is 'shr'.
+  respell: { y: 'ew', ʂ: 'shr' },
+  label: 'Derived from restored orthography (Modern Standard Mandarin, pinyin tone values)',
 };
 
 const LANGUAGES = {
@@ -1462,6 +1830,8 @@ const LANGUAGES = {
     onsets: new Set(),
     label: 'Conventional Egyptological reading — hieroglyphs write no vowels',
   },
+  chinese: CHINESE_SPEC,
+  taoist: CHINESE_SPEC,
 };
 
 const FALLBACK_LABEL = 'Orthographic passthrough — no pronunciation rule set for this tradition';
@@ -1471,11 +1841,16 @@ function derivePronunciation(entry) {
   const spec = LANGUAGES[language];
   const form = String(entry.unicode || entry.ascii || entry.id || '');
   const tokens = spec ? spec.tokenize(form) : tokenizeFallback(form);
-  const syllableTokens = syllabify(tokens, spec ? spec.onsets : new Set());
+  const syllableTokens = syllabify(
+    tokens,
+    spec ? spec.onsets : new Set(),
+    spec ? spec.codaOnly : null
+  );
   const stressIndex = spec ? assignStress(language, syllableTokens, entry) : null;
   const syllables = syllableTokens.map((syll) => syll.map((t) => t.p).join(''));
   const ipa = renderIpa(syllableTokens, stressIndex);
-  const respelling = syllables.length > 0 ? deriveRespelling(syllables, stressIndex) : '';
+  const respelling =
+    syllables.length > 0 ? deriveRespelling(syllables, stressIndex, null, spec?.respell) : '';
   // The mora timing layer reads the same token/syllable structures; fallback
   // entries honestly carry no timing.
   const timing = spec ? computeTiming(language, syllableTokens, stressIndex) : null;

@@ -1247,6 +1247,10 @@ const PRONUNCIATION_RULE_LINES = {
   sanskrit: 'Aspirates are single consonants — bh, dh, gh are one breathy sound each.',
   japanese: 'Japanese is mora-timed — every beat takes the same time, long vowels count two.',
   egyptian: 'Hieroglyphs write no vowels — any vocalization is a scholarly convention.',
+  chinese:
+    'Mandarin is tonal — the mark over each vowel is the pitch pattern: ā level, á rising, ǎ dipping, à falling.',
+  taoist:
+    'Mandarin is tonal — the mark over each vowel is the pitch pattern: ā level, á rising, ǎ dipping, à falling.',
 };
 
 function buildPronunciationPanel(entry) {
