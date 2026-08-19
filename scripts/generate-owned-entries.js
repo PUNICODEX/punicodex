@@ -20,6 +20,13 @@ function normalizeLabel(label) {
   return label.normalize('NFC').toLowerCase().trim();
 }
 
+// Domains cannot carry apostrophes/hyphens/spaces, so a display label like
+// "Cháng'é" never literally equals its domain label "chángé". Compare a
+// punctuation-free form alongside the exact one.
+function squashLabel(label) {
+  return normalizeLabel(label).replace(/['’\-.\s]/g, '');
+}
+
 function stripTldAndWww(domain) {
   let label = domain;
   // Remove trailing TLD
@@ -39,7 +46,10 @@ function ownedDomainLabels(ownedDomains) {
     try {
       const unicodeDomain = domainToUnicode(raw);
       const label = stripTldAndWww(unicodeDomain);
-      if (label) labels.add(normalizeLabel(label));
+      if (label) {
+        labels.add(normalizeLabel(label));
+        labels.add(squashLabel(label));
+      }
     } catch {
       // Malformed domain; skip
     }
@@ -49,12 +59,16 @@ function ownedDomainLabels(ownedDomains) {
 
 function entryLabels(entry) {
   const labels = new Set();
-  for (const key of ['unicode', 'ascii']) {
-    if (entry[key]) labels.add(normalizeLabel(entry[key]));
-  }
+  const add = (value) => {
+    if (value) {
+      labels.add(normalizeLabel(value));
+      labels.add(squashLabel(value));
+    }
+  };
+  for (const key of ['unicode', 'ascii']) add(entry[key]);
   if (Array.isArray(entry.variants)) {
     for (const variant of entry.variants) {
-      if (variant && variant.unicode) labels.add(normalizeLabel(variant.unicode));
+      if (variant && variant.unicode) add(variant.unicode);
     }
   }
   return labels;
