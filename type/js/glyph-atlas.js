@@ -124,7 +124,7 @@ const GLYPH_ATLAS = {
     "codePoints": [
       "U+1F08",
       "U+03B8",
-      "U+03AE",
+      "U+03B7",
       "U+03BD",
       "U+1FB6"
     ],
@@ -1522,17 +1522,6 @@ const GLYPH_ATLAS = {
     "timePeriod": "c. 3200 BCE – 394 CE",
     "region": "Nile Valley"
   },
-  "steh": {
-    "scriptName": "Hieroglyphs",
-    "codePoints": [
-      "U+130EB"
-    ],
-    "specimen": "𓃫",
-    "family": "Egyptian hieroglyphs",
-    "writingDirection": "LTR / boustrophedon historically",
-    "timePeriod": "c. 3200 BCE – 394 CE",
-    "region": "Nile Valley"
-  },
   "rama": {
     "scriptName": "Devanagari",
     "codePoints": [
@@ -1751,14 +1740,41 @@ const GLYPH_ATLAS = {
       "U+0928",
       "U+0941",
       "U+092E",
-      "U+0924",
+      "U+093E",
+      "U+0928",
       "U+094D"
     ],
-    "specimen": "हनुमत्",
+    "specimen": "हनुमान्",
     "family": "Brahmic",
     "writingDirection": "LTR",
     "timePeriod": "c. 7th c. CE – present",
     "region": "South Asia"
+  },
+  "manannan": {
+    "scriptName": "Medieval Irish (Latin script)",
+    "codePoints": [
+      "U+004D",
+      "U+0061",
+      "U+006E",
+      "U+0061",
+      "U+006E",
+      "U+006E",
+      "U+00E1",
+      "U+006E",
+      "U+0020",
+      "U+006D",
+      "U+0061",
+      "U+0063",
+      "U+0020",
+      "U+004C",
+      "U+0069",
+      "U+0072"
+    ],
+    "specimen": "Manannán mac Lir",
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "celtic"
   },
   "ishtar": {
     "scriptName": "Cuneiform",
@@ -2024,20 +2040,89 @@ const GLYPH_ATLAS = {
     "timePeriod": "c. 800 CE – present",
     "region": "Japan"
   },
-  "jason": {
-    "scriptName": "Greek",
+  "quetzalcoatl": {
+    "scriptName": "Colonial Nahuatl (Latin script)",
     "codePoints": [
-      "U+1F38",
-      "U+03AC",
-      "U+03C3",
-      "U+03C9",
-      "U+03BD"
+      "U+0051",
+      "U+0075",
+      "U+0065",
+      "U+0074",
+      "U+007A",
+      "U+0061",
+      "U+006C",
+      "U+0063",
+      "U+014D",
+      "U+0101",
+      "U+0074",
+      "U+006C"
     ],
-    "specimen": "Ἰάσων",
-    "family": "Greek",
+    "specimen": "Quetzalcōātl",
+    "family": "Latin transcription",
     "writingDirection": "LTR",
-    "timePeriod": "c. 800 BCE – present",
-    "region": "Greece, Mediterranean, Byzantine world"
+    "timePeriod": "modern scholarly convention",
+    "region": "nahuatl"
+  },
+  "oshun": {
+    "scriptName": "Yoruba (modern Latin orthography)",
+    "codePoints": [
+      "U+1ECC",
+      "U+0300",
+      "U+1E63",
+      "U+0075",
+      "U+006E"
+    ],
+    "specimen": "Ọ̀ṣun",
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "yoruba"
+  },
+  "eshu": {
+    "scriptName": "Yoruba (modern Latin orthography)",
+    "codePoints": [
+      "U+1EB8",
+      "U+0300",
+      "U+1E63",
+      "U+00F9"
+    ],
+    "specimen": "Ẹ̀ṣù",
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "yoruba"
+  },
+  "obatala": {
+    "scriptName": "Yoruba (modern Latin orthography)",
+    "codePoints": [
+      "U+1ECC",
+      "U+0062",
+      "U+00E0",
+      "U+0074",
+      "U+00E1",
+      "U+006C",
+      "U+00E1"
+    ],
+    "specimen": "Ọbàtálá",
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "yoruba"
+  },
+  "dazhbog": {
+    "scriptName": "Church Slavonic / East Slavic Cyrillic",
+    "codePoints": [
+      "U+0414",
+      "U+0430",
+      "U+0436",
+      "U+0431",
+      "U+043E",
+      "U+0433"
+    ],
+    "specimen": "Дажбог",
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "slavic"
   },
   "peleus": {
     "scriptName": "Greek",
@@ -2768,6 +2853,28 @@ const GLYPH_ATLAS = {
     "timePeriod": "c. 1000 BCE – present (manuscript tradition later)",
     "region": "Iran, Zoroastrian communities"
   },
+  "ahriman": {
+    "scriptName": "Avestan",
+    "codePoints": [
+      "U+10B00",
+      "U+10B22",
+      "U+10B2D",
+      "U+10B00",
+      "U+0020",
+      "U+10B28",
+      "U+10B00",
+      "U+10B0C",
+      "U+10B25",
+      "U+10B0C",
+      "U+10B0C",
+      "U+10B0E"
+    ],
+    "specimen": "𐬀𐬢𐬭𐬀 𐬨𐬀𐬌𐬥𐬌𐬌𐬎",
+    "family": "Avestan",
+    "writingDirection": "RTL",
+    "timePeriod": "c. 1000 BCE – present (manuscript tradition later)",
+    "region": "Iran, Zoroastrian communities"
+  },
   "perseus": {
     "scriptName": "Greek",
     "codePoints": [
@@ -3168,22 +3275,6 @@ const GLYPH_ATLAS = {
       "U+03B7"
     ],
     "specimen": "Ἀριάδνη",
-    "family": "Greek",
-    "writingDirection": "LTR",
-    "timePeriod": "c. 800 BCE – present",
-    "region": "Greece, Mediterranean, Byzantine world"
-  },
-  "europa": {
-    "scriptName": "Greek",
-    "codePoints": [
-      "U+0395",
-      "U+1F50",
-      "U+03C1",
-      "U+03CE",
-      "U+03C0",
-      "U+03B7"
-    ],
-    "specimen": "Εὐρώπη",
     "family": "Greek",
     "writingDirection": "LTR",
     "timePeriod": "c. 800 BCE – present",
@@ -3633,24 +3724,6 @@ const GLYPH_ATLAS = {
     "timePeriod": "c. 800 BCE – present",
     "region": "Greece, Mediterranean, Byzantine world"
   },
-  "achilles": {
-    "scriptName": "Greek",
-    "codePoints": [
-      "U+1F08",
-      "U+03C7",
-      "U+03B9",
-      "U+03BB",
-      "U+03BB",
-      "U+03B5",
-      "U+03CD",
-      "U+03C2"
-    ],
-    "specimen": "Ἀχιλλεύς",
-    "family": "Greek",
-    "writingDirection": "LTR",
-    "timePeriod": "c. 800 BCE – present",
-    "region": "Greece, Mediterranean, Byzantine world"
-  },
   "odysseus": {
     "scriptName": "Greek",
     "codePoints": [
@@ -3664,6 +3737,51 @@ const GLYPH_ATLAS = {
       "U+03C2"
     ],
     "specimen": "Ὀδυσσεύς",
+    "family": "Greek",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 800 BCE – present",
+    "region": "Greece, Mediterranean, Byzantine world"
+  },
+  "iason": {
+    "scriptName": "Greek",
+    "codePoints": [
+      "U+1F38",
+      "U+03AC",
+      "U+03C3",
+      "U+03C9",
+      "U+03BD"
+    ],
+    "specimen": "Ἰάσων",
+    "family": "Greek",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 800 BCE – present",
+    "region": "Greece, Mediterranean, Byzantine world"
+  },
+  "argos": {
+    "scriptName": "Greek",
+    "codePoints": [
+      "U+1F0C",
+      "U+03C1",
+      "U+03B3",
+      "U+03BF",
+      "U+03C2"
+    ],
+    "specimen": "Ἄργος",
+    "family": "Greek",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 800 BCE – present",
+    "region": "Greece, Mediterranean, Byzantine world"
+  },
+  "midas": {
+    "scriptName": "Greek",
+    "codePoints": [
+      "U+039C",
+      "U+03AF",
+      "U+03B4",
+      "U+03B1",
+      "U+03C2"
+    ],
+    "specimen": "Μίδας",
     "family": "Greek",
     "writingDirection": "LTR",
     "timePeriod": "c. 800 BCE – present",
@@ -4255,23 +4373,6 @@ const GLYPH_ATLAS = {
       "U+03BE"
     ],
     "specimen": "Σφίγξ",
-    "family": "Greek",
-    "writingDirection": "LTR",
-    "timePeriod": "c. 800 BCE – present",
-    "region": "Greece, Mediterranean, Byzantine world"
-  },
-  "pegasus": {
-    "scriptName": "Greek",
-    "codePoints": [
-      "U+03A0",
-      "U+03AE",
-      "U+03B3",
-      "U+03B1",
-      "U+03C3",
-      "U+03BF",
-      "U+03C2"
-    ],
-    "specimen": "Πήγασος",
     "family": "Greek",
     "writingDirection": "LTR",
     "timePeriod": "c. 800 BCE – present",
@@ -5039,6 +5140,20 @@ const GLYPH_ATLAS = {
     "timePeriod": "c. 800 – 1100 CE",
     "region": "Scandinavia, North Atlantic"
   },
+  "wyrd": {
+    "scriptName": "Anglo-Saxon Futhorc",
+    "codePoints": [
+      "U+16B9",
+      "U+16A3",
+      "U+16B1",
+      "U+16DE"
+    ],
+    "specimen": "ᚹᚣᚱᛞ",
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "norse"
+  },
   "min": {
     "scriptName": "Hieroglyphs",
     "codePoints": [
@@ -5364,6 +5479,20 @@ const GLYPH_ATLAS = {
     "timePeriod": "c. 3200 BCE – 100 CE",
     "region": "Mesopotamia, Anatolia, Elam"
   },
+  "pazuzu": {
+    "scriptName": "Cuneiform",
+    "codePoints": [
+      "U+1202D",
+      "U+1227A",
+      "U+1236A",
+      "U+1236A"
+    ],
+    "specimen": "𒀭𒉺𒍪𒍪",
+    "family": "Cuneiform",
+    "writingDirection": "LTR historically",
+    "timePeriod": "c. 3200 BCE – 100 CE",
+    "region": "Mesopotamia, Anatolia, Elam"
+  },
   "ninurta": {
     "scriptName": "Cuneiform",
     "codePoints": [
@@ -5400,12 +5529,14 @@ const GLYPH_ATLAS = {
       "U+0930",
       "U+094D",
       "U+0924",
+      "U+094D",
+      "U+0924",
       "U+093F",
       "U+0915",
       "U+0947",
       "U+092F"
     ],
-    "specimen": "कार्तिकेय",
+    "specimen": "कार्त्तिकेय",
     "family": "Brahmic",
     "writingDirection": "LTR",
     "timePeriod": "c. 7th c. CE – present",
@@ -5839,16 +5970,16 @@ const GLYPH_ATLAS = {
     "region": "Japan"
   },
   "jizo": {
-    "scriptName": "Japanese characters",
+    "scriptName": "Japanese Kanji (Jinmeiyō)",
     "codePoints": [
       "U+5730",
       "U+8535"
     ],
     "specimen": "地蔵",
-    "family": "CJK (Japanese)",
-    "writingDirection": "LTR historically top-to-bottom",
-    "timePeriod": "c. 800 CE – present",
-    "region": "Japan"
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "japanese"
   },
   "amida": {
     "scriptName": "Japanese characters",
@@ -5963,6 +6094,44 @@ const GLYPH_ATLAS = {
     "writingDirection": "LTR historically top-to-bottom",
     "timePeriod": "c. 800 CE – present",
     "region": "Japan"
+  },
+  "orunmila": {
+    "scriptName": "Yoruba (modern Latin orthography)",
+    "codePoints": [
+      "U+1ECC",
+      "U+0300",
+      "U+0072",
+      "U+00FA",
+      "U+006E",
+      "U+006D",
+      "U+00EC",
+      "U+006C",
+      "U+00E0"
+    ],
+    "specimen": "Ọ̀rúnmìlà",
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "yoruba"
+  },
+  "ochosi": {
+    "scriptName": "Yoruba (modern Latin orthography)",
+    "codePoints": [
+      "U+1ECC",
+      "U+0300",
+      "U+1E63",
+      "U+1ECD",
+      "U+0301",
+      "U+1ECD",
+      "U+0300",
+      "U+0073",
+      "U+00EC"
+    ],
+    "specimen": "Ọ̀ṣọ́ọ̀sì",
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "yoruba"
   },
   "spentamainyu": {
     "scriptName": "Avestan",
@@ -6567,6 +6736,30 @@ const GLYPH_ATLAS = {
     "timePeriod": "c. 1200 BCE – present",
     "region": "East Asia"
   },
+  "change": {
+    "scriptName": "Chinese characters",
+    "codePoints": [
+      "U+5AE6",
+      "U+5A25"
+    ],
+    "specimen": "嫦娥",
+    "family": "CJK (Chinese)",
+    "writingDirection": "LTR historically top-to-bottom",
+    "timePeriod": "c. 1200 BCE – present",
+    "region": "East Asia"
+  },
+  "houyi": {
+    "scriptName": "Chinese characters",
+    "codePoints": [
+      "U+540E",
+      "U+7FBF"
+    ],
+    "specimen": "后羿",
+    "family": "CJK (Chinese)",
+    "writingDirection": "LTR historically top-to-bottom",
+    "timePeriod": "c. 1200 BCE – present",
+    "region": "East Asia"
+  },
   "sunwukong": {
     "scriptName": "Chinese characters",
     "codePoints": [
@@ -6604,25 +6797,6 @@ const GLYPH_ATLAS = {
     "writingDirection": "LTR historically top-to-bottom",
     "timePeriod": "c. 1200 BCE – present",
     "region": "East Asia"
-  },
-  "asclepius": {
-    "scriptName": "Greek",
-    "codePoints": [
-      "U+1F08",
-      "U+03C3",
-      "U+03BA",
-      "U+03BB",
-      "U+03B7",
-      "U+03C0",
-      "U+03B9",
-      "U+03CC",
-      "U+03C2"
-    ],
-    "specimen": "Ἀσκληπιός",
-    "family": "Greek",
-    "writingDirection": "LTR",
-    "timePeriod": "c. 800 BCE – present",
-    "region": "Greece, Mediterranean, Byzantine world"
   },
   "eileithyia": {
     "scriptName": "Greek",
@@ -7428,38 +7602,6 @@ const GLYPH_ATLAS = {
     "timePeriod": "c. 7th c. CE – present",
     "region": "South Asia"
   },
-  "tvashtri": {
-    "scriptName": "Devanagari",
-    "codePoints": [
-      "U+0924",
-      "U+094D",
-      "U+0935",
-      "U+0937",
-      "U+094D",
-      "U+091F",
-      "U+0943"
-    ],
-    "specimen": "त्वष्टृ",
-    "family": "Brahmic",
-    "writingDirection": "LTR",
-    "timePeriod": "c. 7th c. CE – present",
-    "region": "South Asia"
-  },
-  "pushan": {
-    "scriptName": "Devanagari",
-    "codePoints": [
-      "U+092A",
-      "U+0942",
-      "U+0937",
-      "U+0928",
-      "U+094D"
-    ],
-    "specimen": "पूषन्",
-    "family": "Brahmic",
-    "writingDirection": "LTR",
-    "timePeriod": "c. 7th c. CE – present",
-    "region": "South Asia"
-  },
   "vishvakarman": {
     "scriptName": "Devanagari",
     "codePoints": [
@@ -7476,20 +7618,6 @@ const GLYPH_ATLAS = {
       "U+094D"
     ],
     "specimen": "विश्वकर्मन्",
-    "family": "Brahmic",
-    "writingDirection": "LTR",
-    "timePeriod": "c. 7th c. CE – present",
-    "region": "South Asia"
-  },
-  "daksha": {
-    "scriptName": "Devanagari",
-    "codePoints": [
-      "U+0926",
-      "U+0915",
-      "U+094D",
-      "U+0937"
-    ],
-    "specimen": "दक्ष",
     "family": "Brahmic",
     "writingDirection": "LTR",
     "timePeriod": "c. 7th c. CE – present",
@@ -7678,9 +7806,10 @@ const GLYPH_ATLAS = {
       "U+16B1",
       "U+16D8",
       "U+16A2",
-      "U+16CF"
+      "U+16A6",
+      "U+16B1"
     ],
-    "specimen": "ᚼᛁᚱᛘᚢᛏ",
+    "specimen": "ᚼᛁᚱᛘᚢᚦᚱ",
     "family": "Runic",
     "writingDirection": "LTR",
     "timePeriod": "c. 800 – 1100 CE",
@@ -7850,21 +7979,6 @@ const GLYPH_ATLAS = {
       "U+13152"
     ],
     "specimen": "𓇑𓃀𓏌𓏏𓅒",
-    "family": "Egyptian hieroglyphs",
-    "writingDirection": "LTR / boustrophedon historically",
-    "timePeriod": "c. 3200 BCE – 394 CE",
-    "region": "Nile Valley"
-  },
-  "hp": {
-    "scriptName": "Hieroglyphs",
-    "codePoints": [
-      "U+1339B",
-      "U+1309D",
-      "U+132AA",
-      "U+133ED",
-      "U+13218"
-    ],
-    "specimen": "𓎛𓂝𓊪𓏭𓈘",
     "family": "Egyptian hieroglyphs",
     "writingDirection": "LTR / boustrophedon historically",
     "timePeriod": "c. 3200 BCE – 394 CE",
@@ -8077,6 +8191,46 @@ const GLYPH_ATLAS = {
     "writingDirection": "LTR historically top-to-bottom",
     "timePeriod": "c. 800 CE – present",
     "region": "Japan"
+  },
+  "kingu": {
+    "scriptName": "Cuneiform",
+    "codePoints": [
+      "U+1202D",
+      "U+121A5",
+      "U+12116"
+    ],
+    "specimen": "𒀭𒆥𒄖",
+    "family": "Cuneiform",
+    "writingDirection": "LTR historically",
+    "timePeriod": "c. 3200 BCE – 100 CE",
+    "region": "Mesopotamia, Anatolia, Elam"
+  },
+  "lahmu": {
+    "scriptName": "Cuneiform",
+    "codePoints": [
+      "U+1202D",
+      "U+12313",
+      "U+1222C"
+    ],
+    "specimen": "𒀭𒌓𒈬",
+    "family": "Cuneiform",
+    "writingDirection": "LTR historically",
+    "timePeriod": "c. 3200 BCE – 100 CE",
+    "region": "Mesopotamia, Anatolia, Elam"
+  },
+  "lahamu": {
+    "scriptName": "Cuneiform",
+    "codePoints": [
+      "U+1202D",
+      "U+121B7",
+      "U+12129",
+      "U+1222C"
+    ],
+    "specimen": "𒀭𒆷𒄩𒈬",
+    "family": "Cuneiform",
+    "writingDirection": "LTR historically",
+    "timePeriod": "c. 3200 BCE – 100 CE",
+    "region": "Mesopotamia, Anatolia, Elam"
   },
   "anshar": {
     "scriptName": "Cuneiform",
@@ -8385,6 +8539,9 @@ const GLYPH_ATLAS = {
   "vairocana": {
     "scriptName": "Devanagari",
     "codePoints": [
+      "U+092E",
+      "U+0939",
+      "U+093E",
       "U+0935",
       "U+0948",
       "U+0930",
@@ -8392,7 +8549,7 @@ const GLYPH_ATLAS = {
       "U+091A",
       "U+0928"
     ],
-    "specimen": "वैरोचन",
+    "specimen": "महावैरोचन",
     "family": "Brahmic",
     "writingDirection": "LTR",
     "timePeriod": "c. 7th c. CE – present",
@@ -8699,6 +8856,38 @@ const GLYPH_ATLAS = {
     "timePeriod": "c. 7th c. CE – present",
     "region": "South Asia"
   },
+  "shakyamuni": {
+    "scriptName": "Devanagari",
+    "codePoints": [
+      "U+0936",
+      "U+093E",
+      "U+0915",
+      "U+094D",
+      "U+092F",
+      "U+092E",
+      "U+0941",
+      "U+0928",
+      "U+093F"
+    ],
+    "specimen": "शाक्यमुनि",
+    "family": "Brahmic",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 7th c. CE – present",
+    "region": "South Asia"
+  },
+  "mara": {
+    "scriptName": "Devanagari",
+    "codePoints": [
+      "U+092E",
+      "U+093E",
+      "U+0930"
+    ],
+    "specimen": "मार",
+    "family": "Brahmic",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 7th c. CE – present",
+    "region": "South Asia"
+  },
   "laozi": {
     "scriptName": "Chinese characters",
     "codePoints": [
@@ -8824,6 +9013,191 @@ const GLYPH_ATLAS = {
     "writingDirection": "LTR historically top-to-bottom",
     "timePeriod": "c. 1200 BCE – present",
     "region": "East Asia"
+  },
+  "hananim": {
+    "scriptName": "Hangul",
+    "codePoints": [
+      "U+D558",
+      "U+B098",
+      "U+B2D8"
+    ],
+    "specimen": "하나님",
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "korean"
+  },
+  "dangun": {
+    "scriptName": "Hangul + Hanja",
+    "codePoints": [
+      "U+B2E8",
+      "U+AD70",
+      "U+0020",
+      "U+0028",
+      "U+6A80",
+      "U+541B",
+      "U+0029"
+    ],
+    "specimen": "단군 (檀君)",
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "korean"
+  },
+  "hwanung": {
+    "scriptName": "Hangul + Hanja",
+    "codePoints": [
+      "U+D658",
+      "U+C6C5",
+      "U+0020",
+      "U+0028",
+      "U+6853",
+      "U+96C4",
+      "U+0029"
+    ],
+    "specimen": "환웅 (桓雄)",
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "korean"
+  },
+  "samshin": {
+    "scriptName": "Hangul + Hanja",
+    "codePoints": [
+      "U+C0BC",
+      "U+C2E0",
+      "U+0020",
+      "U+0028",
+      "U+4E09",
+      "U+795E",
+      "U+0029"
+    ],
+    "specimen": "삼신 (三神)",
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "korean"
+  },
+  "halmoni": {
+    "scriptName": "Hangul",
+    "codePoints": [
+      "U+D560",
+      "U+BA38",
+      "U+B2C8"
+    ],
+    "specimen": "할머니",
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "korean"
+  },
+  "jowangshin": {
+    "scriptName": "Hangul + Hanja",
+    "codePoints": [
+      "U+C870",
+      "U+C655",
+      "U+C2E0",
+      "U+0020",
+      "U+0028",
+      "U+7AC8",
+      "U+738B",
+      "U+795E",
+      "U+0029"
+    ],
+    "specimen": "조왕신 (竈王神)",
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "korean"
+  },
+  "seonangshin": {
+    "scriptName": "Hangul + Hanja",
+    "codePoints": [
+      "U+C11C",
+      "U+B0AD",
+      "U+C2E0",
+      "U+0020",
+      "U+0028",
+      "U+57CE",
+      "U+968D",
+      "U+795E",
+      "U+0029"
+    ],
+    "specimen": "서낭신 (城隍神)",
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "korean"
+  },
+  "yongwang": {
+    "scriptName": "Hangul + Hanja",
+    "codePoints": [
+      "U+C6A9",
+      "U+C655",
+      "U+0020",
+      "U+0028",
+      "U+9F8D",
+      "U+738B",
+      "U+0029"
+    ],
+    "specimen": "용왕 (龍王)",
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "korean"
+  },
+  "mago": {
+    "scriptName": "Hangul + Hanja",
+    "codePoints": [
+      "U+B9C8",
+      "U+ACE0",
+      "U+0020",
+      "U+0028",
+      "U+9EBB",
+      "U+59D1",
+      "U+0029"
+    ],
+    "specimen": "마고 (麻姑)",
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "korean"
+  },
+  "chilsong": {
+    "scriptName": "Hangul + Hanja",
+    "codePoints": [
+      "U+CE60",
+      "U+C131",
+      "U+0020",
+      "U+0028",
+      "U+4E03",
+      "U+661F",
+      "U+0029"
+    ],
+    "specimen": "칠성 (七星)",
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "korean"
+  },
+  "baekdusan": {
+    "scriptName": "Hangul + Hanja",
+    "codePoints": [
+      "U+BC31",
+      "U+B450",
+      "U+C0B0",
+      "U+0020",
+      "U+0028",
+      "U+767D",
+      "U+982D",
+      "U+5C71",
+      "U+0029"
+    ],
+    "specimen": "백두산 (白頭山)",
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "korean"
   },
   "baal": {
     "scriptName": "Ugaritic",
@@ -8954,6 +9328,112 @@ const GLYPH_ATLAS = {
     "writingDirection": "RTL",
     "timePeriod": "c. 1200 – 800 BCE",
     "region": "Levant, Mediterranean"
+  },
+  "tarhunash": {
+    "scriptName": "Cuneiform (Hittite, logographic)",
+    "codePoints": [
+      "U+1202D",
+      "U+12313"
+    ],
+    "specimen": "𒀭𒌓",
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "hittite"
+  },
+  "arinniti": {
+    "scriptName": "Cuneiform (Hittite, mixed logographic-syllabic)",
+    "codePoints": [
+      "U+1202D",
+      "U+12313",
+      "U+0020",
+      "U+12337",
+      "U+12000",
+      "U+12291",
+      "U+12154",
+      "U+1223E"
+    ],
+    "specimen": "𒀭𒌓 𒌷𒀀𒊑𒅔𒈾",
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "hittite"
+  },
+  "telipinu": {
+    "scriptName": "Cuneiform (Hittite)",
+    "codePoints": [
+      "U+1202D",
+      "U+122FC",
+      "U+1208A",
+      "U+121F7",
+      "U+12049",
+      "U+12261",
+      "U+12311"
+    ],
+    "specimen": "𒀭𒋼𒂊𒇷𒁉𒉡𒌑",
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "hittite"
+  },
+  "inaras": {
+    "scriptName": "Cuneiform (Hittite)",
+    "codePoints": [
+      "U+1202D",
+      "U+1213F",
+      "U+1223E",
+      "U+1228F"
+    ],
+    "specimen": "𒀭𒄿𒈾𒊏",
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "hittite"
+  },
+  "hannahannas": {
+    "scriptName": "Cuneiform (Hittite)",
+    "codePoints": [
+      "U+1202D",
+      "U+12129",
+      "U+1202D",
+      "U+1223E",
+      "U+12129",
+      "U+1202D",
+      "U+1223E"
+    ],
+    "specimen": "𒀭𒄩𒀭𒈾𒄩𒀭𒈾",
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "hittite"
+  },
+  "kumarbis": {
+    "scriptName": "Cuneiform (Hittite/Hurrian cycle)",
+    "codePoints": [
+      "U+1202D",
+      "U+121AA",
+      "U+12225",
+      "U+12049"
+    ],
+    "specimen": "𒀭𒆪𒈥𒁉",
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "hittite"
+  },
+  "alalu": {
+    "scriptName": "Cuneiform (Hittite/Hurrian cycle)",
+    "codePoints": [
+      "U+1202D",
+      "U+12000",
+      "U+121B7",
+      "U+121FB"
+    ],
+    "specimen": "𒀭𒀀𒆷𒇻",
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "hittite"
   },
   "confucius": {
     "scriptName": "Chinese characters",
@@ -9136,22 +9616,6 @@ const GLYPH_ATLAS = {
     "writingDirection": "LTR historically top-to-bottom",
     "timePeriod": "c. 1200 BCE – present",
     "region": "East Asia"
-  },
-  "delphi": {
-    "scriptName": "Greek",
-    "codePoints": [
-      "U+0394",
-      "U+03B5",
-      "U+03BB",
-      "U+03C6",
-      "U+03BF",
-      "U+03AF"
-    ],
-    "specimen": "Δελφοί",
-    "family": "Greek",
-    "writingDirection": "LTR",
-    "timePeriod": "c. 800 BCE – present",
-    "region": "Greece, Mediterranean, Byzantine world"
   },
   "olympia": {
     "scriptName": "Greek",
@@ -9681,6 +10145,57 @@ const GLYPH_ATLAS = {
     "timePeriod": "c. 3200 BCE – 394 CE",
     "region": "Nile Valley"
   },
+  "serapis": {
+    "scriptName": "Egyptian hieroglyphs",
+    "codePoints": [
+      "U+132A8",
+      "U+13079",
+      "U+1302D",
+      "U+1339B",
+      "U+13411",
+      "U+132AA",
+      "U+130D2"
+    ],
+    "specimen": "𓊨𓁹𓀭𓎛𓐑𓊪𓃒",
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "egyptian"
+  },
+  "harpokrates": {
+    "scriptName": "Egyptian hieroglyphs",
+    "codePoints": [
+      "U+13143",
+      "U+133E4",
+      "U+132AA",
+      "U+13121",
+      "U+1308B",
+      "U+130A7",
+      "U+13014"
+    ],
+    "specimen": "𓅃𓏤𓊪𓄡𓂋𓂧𓀔",
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "egyptian"
+  },
+  "onuris": {
+    "scriptName": "Egyptian hieroglyphs",
+    "codePoints": [
+      "U+133CE",
+      "U+13216",
+      "U+13077",
+      "U+1308B",
+      "U+133CF",
+      "U+13210",
+      "U+13146"
+    ],
+    "specimen": "𓏎𓈖𓁷𓂋𓏏𓈐𓅆",
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "egyptian"
+  },
   "sokar": {
     "scriptName": "Hieroglyphs",
     "codePoints": [
@@ -10012,17 +10527,31 @@ const GLYPH_ATLAS = {
   "astart": {
     "scriptName": "Phoenician",
     "codePoints": [
-      "U+10900",
+      "U+1090F",
       "U+10914",
       "U+10915",
       "U+10913",
       "U+10915"
     ],
-    "specimen": "𐤀𐤔𐤕𐤓𐤕",
+    "specimen": "𐤏𐤔𐤕𐤓𐤕",
     "family": "Phoenician",
     "writingDirection": "RTL",
     "timePeriod": "c. 1200 – 800 BCE",
     "region": "Levant, Mediterranean"
+  },
+  "athiratu": {
+    "scriptName": "Ugaritic cuneiform alphabet",
+    "codePoints": [
+      "U+10380",
+      "U+10398",
+      "U+10397",
+      "U+1039A"
+    ],
+    "specimen": "𐎀𐎘𐎗𐎚",
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "canaanite"
   },
   "asherah": {
     "scriptName": "Ugaritic",
@@ -10283,6 +10812,738 @@ const GLYPH_ATLAS = {
     "writingDirection": "LTR historically top-to-bottom",
     "timePeriod": "c. 1200 BCE – present",
     "region": "East Asia"
+  },
+  "hygieia": {
+    "scriptName": "Greek",
+    "codePoints": [
+      "U+1F59",
+      "U+03B3",
+      "U+03AF",
+      "U+03B5",
+      "U+03B9",
+      "U+03B1"
+    ],
+    "specimen": "Ὑγίεια",
+    "family": "Greek",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 800 BCE – present",
+    "region": "Greece, Mediterranean, Byzantine world"
+  },
+  "tiandi": {
+    "scriptName": "Chinese characters",
+    "codePoints": [
+      "U+5929",
+      "U+5730"
+    ],
+    "specimen": "天地",
+    "family": "CJK (Chinese)",
+    "writingDirection": "LTR historically top-to-bottom",
+    "timePeriod": "c. 1200 BCE – present",
+    "region": "East Asia"
+  },
+  "yam": {
+    "scriptName": "Ugaritic cuneiform alphabet",
+    "codePoints": [
+      "U+1038A",
+      "U+1038E"
+    ],
+    "specimen": "𐎊𐎎",
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "canaanite"
+  },
+  "adamas": {
+    "scriptName": "Greek",
+    "codePoints": [
+      "U+1F00",
+      "U+03B4",
+      "U+03AC",
+      "U+03BC",
+      "U+03B1",
+      "U+03C2"
+    ],
+    "specimen": "ἀδάμας",
+    "family": "Greek",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 800 BCE – present",
+    "region": "Greece, Mediterranean, Byzantine world"
+  },
+  "narke": {
+    "scriptName": "Greek",
+    "codePoints": [
+      "U+039D",
+      "U+03AC",
+      "U+03C1",
+      "U+03BA",
+      "U+03B7"
+    ],
+    "specimen": "Νάρκη",
+    "family": "Greek",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 800 BCE – present",
+    "region": "Greece, Mediterranean, Byzantine world"
+  },
+  "eirene": {
+    "scriptName": "Greek",
+    "codePoints": [
+      "U+0395",
+      "U+1F30",
+      "U+03C1",
+      "U+03AE",
+      "U+03BD",
+      "U+03B7"
+    ],
+    "specimen": "Εἰρήνη",
+    "family": "Greek",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 800 BCE – present",
+    "region": "Greece, Mediterranean, Byzantine world"
+  },
+  "atlantis": {
+    "scriptName": "Greek",
+    "codePoints": [
+      "U+1F08",
+      "U+03C4",
+      "U+03BB",
+      "U+03B1",
+      "U+03BD",
+      "U+03C4",
+      "U+03AF",
+      "U+03C2"
+    ],
+    "specimen": "Ἀτλαντίς",
+    "family": "Greek",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 800 BCE – present",
+    "region": "Greece, Mediterranean, Byzantine world"
+  },
+  "elysion": {
+    "scriptName": "Greek",
+    "codePoints": [
+      "U+1F28",
+      "U+03BB",
+      "U+03CD",
+      "U+03C3",
+      "U+03B9",
+      "U+03BF",
+      "U+03BD"
+    ],
+    "specimen": "Ἠλύσιον",
+    "family": "Greek",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 800 BCE – present",
+    "region": "Greece, Mediterranean, Byzantine world"
+  },
+  "hyperborea": {
+    "scriptName": "Greek",
+    "codePoints": [
+      "U+1F59",
+      "U+03C0",
+      "U+03B5",
+      "U+03C1",
+      "U+03B2",
+      "U+03CC",
+      "U+03C1",
+      "U+03B5",
+      "U+03B1"
+    ],
+    "specimen": "Ὑπερβόρεα",
+    "family": "Greek",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 800 BCE – present",
+    "region": "Greece, Mediterranean, Byzantine world"
+  },
+  "phaethon": {
+    "scriptName": "Greek",
+    "codePoints": [
+      "U+03A6",
+      "U+03B1",
+      "U+03AD",
+      "U+03B8",
+      "U+03C9",
+      "U+03BD"
+    ],
+    "specimen": "Φαέθων",
+    "family": "Greek",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 800 BCE – present",
+    "region": "Greece, Mediterranean, Byzantine world"
+  },
+  "smaragdos": {
+    "scriptName": "Greek",
+    "codePoints": [
+      "U+03A3",
+      "U+03BC",
+      "U+03AC",
+      "U+03C1",
+      "U+03B1",
+      "U+03B3",
+      "U+03B4",
+      "U+03BF",
+      "U+03C2"
+    ],
+    "specimen": "Σμάραγδος",
+    "family": "Greek",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 800 BCE – present",
+    "region": "Greece, Mediterranean, Byzantine world"
+  },
+  "hyakinthos": {
+    "scriptName": "Greek",
+    "codePoints": [
+      "U+1F59",
+      "U+03AC",
+      "U+03BA",
+      "U+03B9",
+      "U+03BD",
+      "U+03B8",
+      "U+03BF",
+      "U+03C2"
+    ],
+    "specimen": "Ὑάκινθος",
+    "family": "Greek",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 800 BCE – present",
+    "region": "Greece, Mediterranean, Byzantine world"
+  },
+  "amethystos": {
+    "scriptName": "Greek",
+    "codePoints": [
+      "U+1F08",
+      "U+03BC",
+      "U+03AD",
+      "U+03B8",
+      "U+03C5",
+      "U+03C3",
+      "U+03C4",
+      "U+03BF",
+      "U+03C2"
+    ],
+    "specimen": "Ἀμέθυστος",
+    "family": "Greek",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 800 BCE – present",
+    "region": "Greece, Mediterranean, Byzantine world"
+  },
+  "thalassa": {
+    "scriptName": "Greek",
+    "codePoints": [
+      "U+0398",
+      "U+03AC",
+      "U+03BB",
+      "U+03B1",
+      "U+03C3",
+      "U+03C3",
+      "U+03B1"
+    ],
+    "specimen": "Θάλασσα",
+    "family": "Greek",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 800 BCE – present",
+    "region": "Greece, Mediterranean, Byzantine world"
+  },
+  "he": {
+    "scriptName": "Greek",
+    "codePoints": [
+      "U+1F21"
+    ],
+    "specimen": "ἡ",
+    "family": "Greek",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 800 BCE – present",
+    "region": "Greece, Mediterranean, Byzantine world"
+  },
+  "buri": {
+    "scriptName": "Younger Futhark",
+    "codePoints": [
+      "U+16D2",
+      "U+16A2",
+      "U+16B1",
+      "U+16C1"
+    ],
+    "specimen": "ᛒᚢᚱᛁ",
+    "family": "Runic",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 800 – 1100 CE",
+    "region": "Scandinavia, North Atlantic"
+  },
+  "tian": {
+    "scriptName": "Chinese characters",
+    "codePoints": [
+      "U+5929"
+    ],
+    "specimen": "天",
+    "family": "CJK (Chinese)",
+    "writingDirection": "LTR historically top-to-bottom",
+    "timePeriod": "c. 1200 BCE – present",
+    "region": "East Asia"
+  },
+  "achilleus": {
+    "scriptName": "Greek",
+    "codePoints": [
+      "U+1F08",
+      "U+03C7",
+      "U+03B9",
+      "U+03BB",
+      "U+03BB",
+      "U+03B5",
+      "U+03CD",
+      "U+03C2"
+    ],
+    "specimen": "Ἀχιλλεύς",
+    "family": "Greek",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 800 BCE – present",
+    "region": "Greece, Mediterranean, Byzantine world"
+  },
+  "asklepios": {
+    "scriptName": "Greek",
+    "codePoints": [
+      "U+1F08",
+      "U+03C3",
+      "U+03BA",
+      "U+03BB",
+      "U+03B7",
+      "U+03C0",
+      "U+03B9",
+      "U+03CC",
+      "U+03C2"
+    ],
+    "specimen": "Ἀσκληπιός",
+    "family": "Greek",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 800 BCE – present",
+    "region": "Greece, Mediterranean, Byzantine world"
+  },
+  "drakon": {
+    "scriptName": "Greek",
+    "codePoints": [
+      "U+0394",
+      "U+03C1",
+      "U+03AC",
+      "U+03BA",
+      "U+03C9",
+      "U+03BD"
+    ],
+    "specimen": "Δράκων",
+    "family": "Greek",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 800 BCE – present",
+    "region": "Greece, Mediterranean, Byzantine world"
+  },
+  "monokeros": {
+    "scriptName": "Greek",
+    "codePoints": [
+      "U+039C",
+      "U+03BF",
+      "U+03BD",
+      "U+03CC",
+      "U+03BA",
+      "U+03B5",
+      "U+03C1",
+      "U+03C9",
+      "U+03C2"
+    ],
+    "specimen": "Μονόκερως",
+    "family": "Greek",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 800 BCE – present",
+    "region": "Greece, Mediterranean, Byzantine world"
+  },
+  "pegasos": {
+    "scriptName": "Greek",
+    "codePoints": [
+      "U+03A0",
+      "U+03AE",
+      "U+03B3",
+      "U+03B1",
+      "U+03C3",
+      "U+03BF",
+      "U+03C2"
+    ],
+    "specimen": "Πήγασος",
+    "family": "Greek",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 800 BCE – present",
+    "region": "Greece, Mediterranean, Byzantine world"
+  },
+  "tyche": {
+    "scriptName": "Greek",
+    "codePoints": [
+      "U+03A4",
+      "U+03CD",
+      "U+03C7",
+      "U+03B7"
+    ],
+    "specimen": "Τύχη",
+    "family": "Greek",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 800 BCE – present",
+    "region": "Greece, Mediterranean, Byzantine world"
+  },
+  "diana": {
+    "scriptName": "Latin (epigraphic capitals)",
+    "codePoints": [
+      "U+0044",
+      "U+0049",
+      "U+0041",
+      "U+004E",
+      "U+0041"
+    ],
+    "specimen": "DIANA",
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "roman"
+  },
+  "ianus": {
+    "scriptName": "Latin (epigraphic capitals)",
+    "codePoints": [
+      "U+0049",
+      "U+0041",
+      "U+004E",
+      "U+0056",
+      "U+0053"
+    ],
+    "specimen": "IANVS",
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "roman"
+  },
+  "iuno": {
+    "scriptName": "Latin (epigraphic capitals)",
+    "codePoints": [
+      "U+0049",
+      "U+0056",
+      "U+004E",
+      "U+004F"
+    ],
+    "specimen": "IVNO",
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "roman"
+  },
+  "iuppiter": {
+    "scriptName": "Latin (epigraphic capitals)",
+    "codePoints": [
+      "U+0049",
+      "U+0056",
+      "U+0050",
+      "U+0050",
+      "U+0049",
+      "U+0054",
+      "U+0045",
+      "U+0052"
+    ],
+    "specimen": "IVPPITER",
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "roman"
+  },
+  "neptunus": {
+    "scriptName": "Latin (epigraphic capitals)",
+    "codePoints": [
+      "U+004E",
+      "U+0045",
+      "U+0050",
+      "U+0054",
+      "U+0056",
+      "U+004E",
+      "U+0056",
+      "U+0053"
+    ],
+    "specimen": "NEPTVNVS",
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "roman"
+  },
+  "vulcanus": {
+    "scriptName": "Latin (epigraphic capitals)",
+    "codePoints": [
+      "U+0056",
+      "U+0056",
+      "U+004C",
+      "U+0043",
+      "U+0041",
+      "U+004E",
+      "U+0056",
+      "U+0053"
+    ],
+    "specimen": "VVLCANVS",
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "roman"
+  },
+  "steh": {
+    "scriptName": "Hieroglyphs",
+    "codePoints": [
+      "U+132F4",
+      "U+133CF",
+      "U+1340D"
+    ],
+    "specimen": "𓋴𓏏𓐍",
+    "family": "Egyptian hieroglyphs",
+    "writingDirection": "LTR / boustrophedon historically",
+    "timePeriod": "c. 3200 BCE – 394 CE",
+    "region": "Nile Valley"
+  },
+  "hp": {
+    "scriptName": "Hieroglyphs",
+    "codePoints": [
+      "U+1339B",
+      "U+1309D",
+      "U+132AA",
+      "U+133ED",
+      "U+13218"
+    ],
+    "specimen": "𓎛𓂝𓊪𓏭𓈘",
+    "family": "Egyptian hieroglyphs",
+    "writingDirection": "LTR / boustrophedon historically",
+    "timePeriod": "c. 3200 BCE – 394 CE",
+    "region": "Nile Valley"
+  },
+  "amsa": {
+    "scriptName": "Devanagari",
+    "codePoints": [
+      "U+0905",
+      "U+0902",
+      "U+0936"
+    ],
+    "specimen": "अंश",
+    "family": "Brahmic",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 7th c. CE – present",
+    "region": "South Asia"
+  },
+  "daksa": {
+    "scriptName": "Devanagari",
+    "codePoints": [
+      "U+0926",
+      "U+0915",
+      "U+094D",
+      "U+0937"
+    ],
+    "specimen": "दक्ष",
+    "family": "Brahmic",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 7th c. CE – present",
+    "region": "South Asia"
+  },
+  "dhatr": {
+    "scriptName": "Devanagari",
+    "codePoints": [
+      "U+0927",
+      "U+093E",
+      "U+0924",
+      "U+0943"
+    ],
+    "specimen": "धातृ",
+    "family": "Brahmic",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 7th c. CE – present",
+    "region": "South Asia"
+  },
+  "pusan": {
+    "scriptName": "Devanagari",
+    "codePoints": [
+      "U+092A",
+      "U+0942",
+      "U+0937",
+      "U+0928",
+      "U+094D"
+    ],
+    "specimen": "पूषन्",
+    "family": "Brahmic",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 7th c. CE – present",
+    "region": "South Asia"
+  },
+  "tvastr": {
+    "scriptName": "Devanagari",
+    "codePoints": [
+      "U+0924",
+      "U+094D",
+      "U+0935",
+      "U+0937",
+      "U+094D",
+      "U+091F",
+      "U+0943"
+    ],
+    "specimen": "त्वष्टृ",
+    "family": "Brahmic",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 7th c. CE – present",
+    "region": "South Asia"
+  },
+  "mengpo": {
+    "scriptName": "Chinese characters",
+    "codePoints": [
+      "U+5B5F",
+      "U+5A46"
+    ],
+    "specimen": "孟婆",
+    "family": "CJK (Chinese)",
+    "writingDirection": "LTR historically top-to-bottom",
+    "timePeriod": "c. 1200 BCE – present",
+    "region": "East Asia"
+  },
+  "pangu": {
+    "scriptName": "Chinese characters",
+    "codePoints": [
+      "U+76E4",
+      "U+53E4"
+    ],
+    "specimen": "盤古",
+    "family": "CJK (Chinese)",
+    "writingDirection": "LTR historically top-to-bottom",
+    "timePeriod": "c. 1200 BCE – present",
+    "region": "East Asia"
+  },
+  "yanluo": {
+    "scriptName": "Chinese characters",
+    "codePoints": [
+      "U+95BB",
+      "U+7F85",
+      "U+738B"
+    ],
+    "specimen": "閻羅王",
+    "family": "CJK (Chinese)",
+    "writingDirection": "LTR historically top-to-bottom",
+    "timePeriod": "c. 1200 BCE – present",
+    "region": "East Asia"
+  },
+  "honshu": {
+    "scriptName": "Japanese characters",
+    "codePoints": [
+      "U+672C",
+      "U+5DDE"
+    ],
+    "specimen": "本州",
+    "family": "CJK (Japanese)",
+    "writingDirection": "LTR historically top-to-bottom",
+    "timePeriod": "c. 800 CE – present",
+    "region": "Japan"
+  },
+  "kyushu": {
+    "scriptName": "Japanese characters",
+    "codePoints": [
+      "U+4E5D",
+      "U+5DDE"
+    ],
+    "specimen": "九州",
+    "family": "CJK (Japanese)",
+    "writingDirection": "LTR historically top-to-bottom",
+    "timePeriod": "c. 800 CE – present",
+    "region": "Japan"
+  },
+  "guandi": {
+    "scriptName": "Chinese characters",
+    "codePoints": [
+      "U+95DC",
+      "U+5E1D"
+    ],
+    "specimen": "關帝",
+    "family": "CJK (Chinese)",
+    "writingDirection": "LTR historically top-to-bottom",
+    "timePeriod": "c. 1200 BCE – present",
+    "region": "East Asia"
+  },
+  "gauri": {
+    "scriptName": "Devanagari",
+    "codePoints": [
+      "U+0917",
+      "U+094C",
+      "U+0930",
+      "U+0940"
+    ],
+    "specimen": "गौरी",
+    "family": "Brahmic",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 7th c. CE – present",
+    "region": "South Asia"
+  },
+  "sani": {
+    "scriptName": "Devanagari",
+    "codePoints": [
+      "U+0936",
+      "U+0928",
+      "U+093F"
+    ],
+    "specimen": "शनि",
+    "family": "Brahmic",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 7th c. CE – present",
+    "region": "South Asia"
+  },
+  "pluto": {
+    "scriptName": "Latin (epigraphic capitals)",
+    "codePoints": [
+      "U+0050",
+      "U+004C",
+      "U+0056",
+      "U+0054",
+      "U+004F"
+    ],
+    "specimen": "PLVTO",
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "roman"
+  },
+  "ceres": {
+    "scriptName": "Latin (epigraphic capitals)",
+    "codePoints": [
+      "U+0043",
+      "U+0045",
+      "U+0052",
+      "U+0045",
+      "U+0053"
+    ],
+    "specimen": "CERES",
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "roman"
+  },
+  "oba": {
+    "scriptName": "Yoruba (modern Latin orthography)",
+    "codePoints": [
+      "U+1ECC",
+      "U+0062",
+      "U+00E0"
+    ],
+    "specimen": "Ọbà",
+    "family": "Latin transcription",
+    "writingDirection": "LTR",
+    "timePeriod": "modern scholarly convention",
+    "region": "yoruba"
+  },
+  "ashavahista": {
+    "scriptName": "Avestan",
+    "codePoints": [
+      "U+10B00",
+      "U+10B34",
+      "U+10B00",
+      "U+0020",
+      "U+10B2C",
+      "U+10B00",
+      "U+10B35",
+      "U+10B0C",
+      "U+10B31",
+      "U+10B19",
+      "U+10B00"
+    ],
+    "specimen": "𐬀𐬴𐬀 𐬬𐬀𐬵𐬌𐬱𐬙𐬀",
+    "family": "Avestan",
+    "writingDirection": "RTL",
+    "timePeriod": "c. 1000 BCE – present (manuscript tradition later)",
+    "region": "Iran, Zoroastrian communities"
   }
 };;
 

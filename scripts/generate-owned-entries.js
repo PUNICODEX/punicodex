@@ -78,10 +78,32 @@ function main() {
   const ownedDomains = JSON.parse(fs.readFileSync(OWNED_DOMAINS_PATH, 'utf8'));
   const { LEXICON } = require(LEXICON_PATH);
 
-  const ownedLabels = ownedDomainLabels(ownedDomains);
   const ownedIds = new Set();
 
+  // Pass 1 (authoritative): the archetype list binds owned domains to entry
+  // ids directly (primary + alt sets). Alternate restorations that no label
+  // match can reach (aphrodītē.com vs Aphrodítē, the cuneiform 𒀭𒂍.com,
+  // glottal-letter variants like aṯiratu.com) are attributed here.
+  const archetypesPath = path.join(ROOT, 'js', 'archetypes-v2.js');
+  const archetypeSrc = fs
+    .readFileSync(archetypesPath, 'utf8')
+    .replace('const ARCHETYPES', 'var ARCHETYPES');
+  const ARCHETYPES = new Function(`${archetypeSrc}; return ARCHETYPES;`)();
+  const ownedSet = new Set(
+    ownedDomains.map((d) => normalizeLabel(domainToUnicode(d)))
+  );
+  for (const archetype of ARCHETYPES) {
+    const domains = [archetype.domainUnicode, ...(archetype.domainAlt || [])].filter(Boolean);
+    if (domains.some((d) => ownedSet.has(normalizeLabel(d)))) {
+      ownedIds.add(archetype.id);
+    }
+  }
+
+  // Pass 2 (label matching): owned domains for entries without an archetype
+  // (owned but not yet promoted to flagship).
+  const ownedLabels = ownedDomainLabels(ownedDomains);
   for (const entry of LEXICON) {
+    if (ownedIds.has(entry.id)) continue;
     const labels = entryLabels(entry);
     for (const label of labels) {
       if (ownedLabels.has(label)) {

@@ -1,11 +1,12 @@
 {
   "meta": {
-    "nodeCount": 230,
-    "edgeCount": 1875,
+    "nodeCount": 236,
+    "edgeCount": 1923,
     "relationships": [
       "Chaos / monster",
       "Chaos / primordial / world serpent",
       "Creator / cosmogonic",
+      "Culture hero / monster-slayer",
       "Dawn / morning",
       "Death / rebirth",
       "Divine father / son",
@@ -24,14 +25,19 @@
       "Messenger / travel / commerce",
       "Messenger / travel / wisdom",
       "Moon / lunar",
+      "Moon personified",
       "Psychopomp",
       "Psychopomp / soul guide",
+      "Rebel against heaven",
       "Rebirth / vegetation",
+      "Same figure, two traditions",
       "Same goddess, two traditions",
       "Sea / cosmic water",
       "Sea / water",
       "Sky father / sovereign",
       "Sun / light",
+      "The elixir cycle",
+      "The elixir grant",
       "Thunder / storm sovereignty",
       "Thunder sovereignty",
       "Trickster / mischief",
@@ -347,6 +353,14 @@
       "pantheon": "sanskrit",
       "pantheonLabel": "Sanskrit",
       "domain": "Moon, Night, Soma"
+    },
+    {
+      "id": "change",
+      "ascii": "change",
+      "unicode": "Cháng'é",
+      "pantheon": "chinese",
+      "pantheonLabel": "Chinese",
+      "domain": "Moon, Immortality, Mid-Autumn"
     },
     {
       "id": "chaos",
@@ -693,6 +707,14 @@
       "domain": "Fertility, Childbirth"
     },
     {
+      "id": "herakles",
+      "ascii": "herakles",
+      "unicode": "Hēraklēs",
+      "pantheon": "greek",
+      "pantheonLabel": "Greek",
+      "domain": "Strength, Labours, Heroism"
+    },
+    {
       "id": "hermes",
       "ascii": "hermes",
       "unicode": "Hermês",
@@ -723,6 +745,14 @@
       "pantheon": "japanese",
       "pantheonLabel": "Japanese",
       "domain": "Agriculture, Hunter"
+    },
+    {
+      "id": "houyi",
+      "ascii": "houyi",
+      "unicode": "Hòuyì",
+      "pantheon": "chinese",
+      "pantheonLabel": "Chinese",
+      "domain": "Archery, Suns, Heroism"
     },
     {
       "id": "hp",
@@ -949,6 +979,14 @@
       "domain": "Trickery, Chaos, Shape-shifter"
     },
     {
+      "id": "longwang",
+      "ascii": "longwang",
+      "unicode": "Lóngwáng",
+      "pantheon": "chinese",
+      "pantheonLabel": "Chinese",
+      "domain": "Dragons, Rain, Rivers"
+    },
+    {
       "id": "maat",
       "ascii": "maat",
       "unicode": "Mꜣꜥt",
@@ -1139,6 +1177,14 @@
       "pantheon": "mesopotamian",
       "pantheonLabel": "Mesopotamian",
       "domain": "Underworld, War, Plague"
+    },
+    {
+      "id": "nezha",
+      "ascii": "nezha",
+      "unicode": "Nézhā",
+      "pantheon": "chinese",
+      "pantheonLabel": "Chinese",
+      "domain": "Youth, War, Rebellion"
     },
     {
       "id": "nidhogg",
@@ -1829,6 +1875,14 @@
       "domain": "Creator, Sky, Sea Foam"
     },
     {
+      "id": "xiwangmu",
+      "ascii": "xiwangmu",
+      "unicode": "Xīwángmǔ",
+      "pantheon": "taoist",
+      "pantheonLabel": "Taoist",
+      "domain": "Queen Mother of the West"
+    },
+    {
       "id": "xochiquetzal",
       "ascii": "xochiquetzal",
       "unicode": "Xōchiquetzal",
@@ -2445,6 +2499,15 @@
     },
     {
       "source": "anat",
+      "target": "nezha",
+      "relationship": "War / battle",
+      "category": "function",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Deities of war, battle fury, military strategy, and martial power."
+    },
+    {
+      "source": "anat",
       "target": "onuris",
       "relationship": "Hunt / wild",
       "category": "function",
@@ -2877,6 +2940,15 @@
     },
     {
       "source": "ares",
+      "target": "nezha",
+      "relationship": "War / battle",
+      "category": "function",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Deities of war, battle fury, military strategy, and martial power."
+    },
+    {
+      "source": "ares",
       "target": "odinn",
       "relationship": "War / battle",
       "category": "function",
@@ -2986,6 +3058,15 @@
     {
       "source": "artemis",
       "target": "chandra",
+      "relationship": "Moon / lunar",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Lunar deities, moon watchers, and nocturnal celestial bodies."
+    },
+    {
+      "source": "artemis",
+      "target": "change",
       "relationship": "Moon / lunar",
       "category": "phenomenon",
       "strength": 2,
@@ -3174,6 +3255,15 @@
     },
     {
       "source": "aseratu",
+      "target": "longwang",
+      "relationship": "Sea / water",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Ocean, sea, river, and freshwater deities; rulers of the aquatic realm."
+    },
+    {
+      "source": "aseratu",
       "target": "varuna",
       "relationship": "Sea / water",
       "category": "phenomenon",
@@ -3229,6 +3319,15 @@
     {
       "source": "ashur",
       "target": "huitzilopochtli",
+      "relationship": "War / battle",
+      "category": "function",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Deities of war, battle fury, military strategy, and martial power."
+    },
+    {
+      "source": "ashur",
+      "target": "nezha",
       "relationship": "War / battle",
       "category": "function",
       "strength": 2,
@@ -3522,6 +3621,15 @@
       "strength": 2,
       "bidirectional": true,
       "note": "Deities of wisdom, writing, magic, learning, and esoteric knowledge."
+    },
+    {
+      "source": "athena",
+      "target": "nezha",
+      "relationship": "War / battle",
+      "category": "function",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Deities of war, battle fury, military strategy, and martial power."
     },
     {
       "source": "athena",
@@ -3864,6 +3972,15 @@
       "strength": 2,
       "bidirectional": true,
       "note": "Earth mothers, fertility deities, agrarian powers, and land spirits."
+    },
+    {
+      "source": "babaluaye",
+      "target": "longwang",
+      "relationship": "Sea / water",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Ocean, sea, river, and freshwater deities; rulers of the aquatic realm."
     },
     {
       "source": "babaluaye",
@@ -4632,6 +4749,15 @@
     },
     {
       "source": "chandra",
+      "target": "change",
+      "relationship": "Moon / lunar",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Lunar deities, moon watchers, and nocturnal celestial bodies."
+    },
+    {
+      "source": "chandra",
       "target": "hati",
       "relationship": "Moon / lunar",
       "category": "phenomenon",
@@ -4656,6 +4782,24 @@
       "strength": 2,
       "bidirectional": true,
       "note": "Lunar deities, moon watchers, and nocturnal celestial bodies."
+    },
+    {
+      "source": "change",
+      "target": "houyi",
+      "relationship": "The elixir cycle",
+      "category": "narrative-role",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Husband and wife of the moon-ascension myth — the elixir of immortality passes between them."
+    },
+    {
+      "source": "change",
+      "target": "selene",
+      "relationship": "Moon personified",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Greek and Chinese personifications of the moon itself — not merely lunar deities but the moon made goddess."
     },
     {
       "source": "chaos",
@@ -5038,6 +5182,15 @@
     {
       "source": "coyolxauhqui",
       "target": "chandra",
+      "relationship": "Moon / lunar",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Lunar deities, moon watchers, and nocturnal celestial bodies."
+    },
+    {
+      "source": "coyolxauhqui",
+      "target": "change",
       "relationship": "Moon / lunar",
       "category": "phenomenon",
       "strength": 2,
@@ -5451,6 +5604,15 @@
     },
     {
       "source": "durga",
+      "target": "nezha",
+      "relationship": "War / battle",
+      "category": "function",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Deities of war, battle fury, military strategy, and martial power."
+    },
+    {
+      "source": "durga",
       "target": "ogun",
       "relationship": "War / battle",
       "category": "function",
@@ -5466,6 +5628,15 @@
       "strength": 2,
       "bidirectional": true,
       "note": "Deities of war, battle fury, military strategy, and martial power."
+    },
+    {
+      "source": "ea",
+      "target": "longwang",
+      "relationship": "Sea / water",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Ocean, sea, river, and freshwater deities; rulers of the aquatic realm."
     },
     {
       "source": "ecne",
@@ -7287,6 +7458,15 @@
     },
     {
       "source": "hachiman",
+      "target": "nezha",
+      "relationship": "War / battle",
+      "category": "function",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Deities of war, battle fury, military strategy, and martial power."
+    },
+    {
+      "source": "hachiman",
       "target": "ogun",
       "relationship": "War / battle",
       "category": "function",
@@ -7746,6 +7926,15 @@
     },
     {
       "source": "hati",
+      "target": "change",
+      "relationship": "Moon / lunar",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Lunar deities, moon watchers, and nocturnal celestial bodies."
+    },
+    {
+      "source": "hati",
       "target": "sin",
       "relationship": "Moon / lunar",
       "category": "phenomenon",
@@ -7774,6 +7963,15 @@
     {
       "source": "hekate",
       "target": "chandra",
+      "relationship": "Moon / lunar",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Lunar deities, moon watchers, and nocturnal celestial bodies."
+    },
+    {
+      "source": "hekate",
+      "target": "change",
       "relationship": "Moon / lunar",
       "category": "phenomenon",
       "strength": 2,
@@ -8429,6 +8627,15 @@
       "note": "Deities of the hunt, wilderness, wild animals, and untamed nature."
     },
     {
+      "source": "houyi",
+      "target": "herakles",
+      "relationship": "Culture hero / monster-slayer",
+      "category": "narrative-role",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Greek and Chinese bow-heroes who rid the world of ravaging monsters at the dawn of order."
+    },
+    {
       "source": "hp",
       "target": "dagan",
       "relationship": "Earth / mother / fertility",
@@ -8440,6 +8647,15 @@
     {
       "source": "huitzilopochtli",
       "target": "anat",
+      "relationship": "War / battle",
+      "category": "function",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Deities of war, battle fury, military strategy, and martial power."
+    },
+    {
+      "source": "huitzilopochtli",
+      "target": "nezha",
       "relationship": "War / battle",
       "category": "function",
       "strength": 2,
@@ -9150,6 +9366,15 @@
     },
     {
       "source": "ishtar",
+      "target": "nezha",
+      "relationship": "War / battle",
+      "category": "function",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Deities of war, battle fury, military strategy, and martial power."
+    },
+    {
+      "source": "ishtar",
       "target": "ogun",
       "relationship": "War / battle",
       "category": "function",
@@ -9780,6 +10005,15 @@
     },
     {
       "source": "khonsu",
+      "target": "change",
+      "relationship": "Moon / lunar",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Lunar deities, moon watchers, and nocturnal celestial bodies."
+    },
+    {
+      "source": "khonsu",
       "target": "coyolxauhqui",
       "relationship": "Moon / lunar",
       "category": "phenomenon",
@@ -10301,6 +10535,15 @@
       "note": "Forces of chaos, primordial oceans, world-encircling serpents, and cosmic disorder."
     },
     {
+      "source": "longwang",
+      "target": "yongwang",
+      "relationship": "Same figure, two traditions",
+      "category": "identity",
+      "strength": 3,
+      "bidirectional": true,
+      "note": "The Chinese Lóngwáng and the Korean Yongwang — the Dragon King of the seas under his Chinese and Korean names."
+    },
+    {
       "source": "maat",
       "target": "erlang",
       "relationship": "Justice / law / truth",
@@ -10446,6 +10689,15 @@
     },
     {
       "source": "mamaqucha",
+      "target": "longwang",
+      "relationship": "Sea / water",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Ocean, sea, river, and freshwater deities; rulers of the aquatic realm."
+    },
+    {
+      "source": "mamaqucha",
       "target": "manawydan",
       "relationship": "Sea / water",
       "category": "phenomenon",
@@ -10518,6 +10770,15 @@
     },
     {
       "source": "mamaquilla",
+      "target": "change",
+      "relationship": "Moon / lunar",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Lunar deities, moon watchers, and nocturnal celestial bodies."
+    },
+    {
+      "source": "mamaquilla",
       "target": "hati",
       "relationship": "Moon / lunar",
       "category": "phenomenon",
@@ -10555,6 +10816,15 @@
     {
       "source": "manannan",
       "target": "ea",
+      "relationship": "Sea / water",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Ocean, sea, river, and freshwater deities; rulers of the aquatic realm."
+    },
+    {
+      "source": "manannan",
+      "target": "longwang",
       "relationship": "Sea / water",
       "category": "phenomenon",
       "strength": 2,
@@ -10672,6 +10942,15 @@
     {
       "source": "manawydan",
       "target": "ea",
+      "relationship": "Sea / water",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Ocean, sea, river, and freshwater deities; rulers of the aquatic realm."
+    },
+    {
+      "source": "manawydan",
+      "target": "longwang",
       "relationship": "Sea / water",
       "category": "phenomenon",
       "strength": 2,
@@ -11148,6 +11427,15 @@
     },
     {
       "source": "mazu",
+      "target": "longwang",
+      "relationship": "Sea / water",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Ocean, sea, river, and freshwater deities; rulers of the aquatic realm."
+    },
+    {
+      "source": "mazu",
       "target": "manawydan",
       "relationship": "Sea / water",
       "category": "phenomenon",
@@ -11274,6 +11562,15 @@
     },
     {
       "source": "metztli",
+      "target": "change",
+      "relationship": "Moon / lunar",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Lunar deities, moon watchers, and nocturnal celestial bodies."
+    },
+    {
+      "source": "metztli",
       "target": "hati",
       "relationship": "Moon / lunar",
       "category": "phenomenon",
@@ -11392,6 +11689,15 @@
     {
       "source": "morrigan",
       "target": "ishtar",
+      "relationship": "War / battle",
+      "category": "function",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Deities of war, battle fury, military strategy, and martial power."
+    },
+    {
+      "source": "morrigan",
+      "target": "nezha",
       "relationship": "War / battle",
       "category": "function",
       "strength": 2,
@@ -11669,6 +11975,15 @@
       "note": "Rulers, guides, and guardians of the dead and the underworld."
     },
     {
+      "source": "nezha",
+      "target": "sunwukong",
+      "relationship": "Rebel against heaven",
+      "category": "narrative-role",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Chinese rebel heroes who defy the celestial bureaucracy — and meet in battle in Journey to the West."
+    },
+    {
       "source": "nidhogg",
       "target": "angramainyu",
       "relationship": "Chaos / primordial / world serpent",
@@ -11779,6 +12094,15 @@
     {
       "source": "njordr",
       "target": "ea",
+      "relationship": "Sea / water",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Ocean, sea, river, and freshwater deities; rulers of the aquatic realm."
+    },
+    {
+      "source": "njordr",
+      "target": "longwang",
       "relationship": "Sea / water",
       "category": "phenomenon",
       "strength": 2,
@@ -12093,6 +12417,15 @@
     },
     {
       "source": "odinn",
+      "target": "nezha",
+      "relationship": "War / battle",
+      "category": "function",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Deities of war, battle fury, military strategy, and martial power."
+    },
+    {
+      "source": "odinn",
       "target": "ogun",
       "relationship": "War / battle",
       "category": "function",
@@ -12166,6 +12499,15 @@
     {
       "source": "ogun",
       "target": "anat",
+      "relationship": "War / battle",
+      "category": "function",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Deities of war, battle fury, military strategy, and martial power."
+    },
+    {
+      "source": "ogun",
+      "target": "nezha",
       "relationship": "War / battle",
       "category": "function",
       "strength": 2,
@@ -13299,6 +13641,15 @@
     },
     {
       "source": "pontos",
+      "target": "longwang",
+      "relationship": "Sea / water",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Ocean, sea, river, and freshwater deities; rulers of the aquatic realm."
+    },
+    {
+      "source": "pontos",
       "target": "mamaqucha",
       "relationship": "Sea / water",
       "category": "phenomenon",
@@ -13489,6 +13840,15 @@
     {
       "source": "poseidon",
       "target": "ea",
+      "relationship": "Sea / water",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Ocean, sea, river, and freshwater deities; rulers of the aquatic realm."
+    },
+    {
+      "source": "poseidon",
+      "target": "longwang",
       "relationship": "Sea / water",
       "category": "phenomenon",
       "strength": 2,
@@ -14793,6 +15153,15 @@
     },
     {
       "source": "sekhmet",
+      "target": "nezha",
+      "relationship": "War / battle",
+      "category": "function",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Deities of war, battle fury, military strategy, and martial power."
+    },
+    {
+      "source": "sekhmet",
       "target": "ogun",
       "relationship": "War / battle",
       "category": "function",
@@ -15465,6 +15834,15 @@
       "strength": 2,
       "bidirectional": true,
       "note": "Guardian figures, boundary protectors, and monstrous sentinels."
+    },
+    {
+      "source": "sin",
+      "target": "change",
+      "relationship": "Moon / lunar",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Lunar deities, moon watchers, and nocturnal celestial bodies."
     },
     {
       "source": "sinon",
@@ -16332,6 +16710,15 @@
     },
     {
       "source": "tangaroa",
+      "target": "longwang",
+      "relationship": "Sea / water",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Ocean, sea, river, and freshwater deities; rulers of the aquatic realm."
+    },
+    {
+      "source": "tangaroa",
       "target": "mamaqucha",
       "relationship": "Sea / water",
       "category": "phenomenon",
@@ -16665,6 +17052,15 @@
     },
     {
       "source": "thoth",
+      "target": "change",
+      "relationship": "Moon / lunar",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Lunar deities, moon watchers, and nocturnal celestial bodies."
+    },
+    {
+      "source": "thoth",
       "target": "coyolxauhqui",
       "relationship": "Moon / lunar",
       "category": "phenomenon",
@@ -16918,6 +17314,15 @@
     {
       "source": "tianhou",
       "target": "ea",
+      "relationship": "Sea / water",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Ocean, sea, river, and freshwater deities; rulers of the aquatic realm."
+    },
+    {
+      "source": "tianhou",
+      "target": "longwang",
       "relationship": "Sea / water",
       "category": "phenomenon",
       "strength": 2,
@@ -17250,6 +17655,15 @@
     },
     {
       "source": "toyotama",
+      "target": "longwang",
+      "relationship": "Sea / water",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Ocean, sea, river, and freshwater deities; rulers of the aquatic realm."
+    },
+    {
+      "source": "toyotama",
       "target": "varuna",
       "relationship": "Sea / water",
       "category": "phenomenon",
@@ -17394,6 +17808,15 @@
     },
     {
       "source": "tsukuyomi",
+      "target": "change",
+      "relationship": "Moon / lunar",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Lunar deities, moon watchers, and nocturnal celestial bodies."
+    },
+    {
+      "source": "tsukuyomi",
       "target": "coyolxauhqui",
       "relationship": "Moon / lunar",
       "category": "phenomenon",
@@ -17458,6 +17881,15 @@
     {
       "source": "tu",
       "target": "huitzilopochtli",
+      "relationship": "War / battle",
+      "category": "function",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Deities of war, battle fury, military strategy, and martial power."
+    },
+    {
+      "source": "tu",
+      "target": "nezha",
       "relationship": "War / battle",
       "category": "function",
       "strength": 2,
@@ -17629,6 +18061,15 @@
     {
       "source": "tyr",
       "target": "morrigan",
+      "relationship": "War / battle",
+      "category": "function",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Deities of war, battle fury, military strategy, and martial power."
+    },
+    {
+      "source": "tyr",
+      "target": "nezha",
       "relationship": "War / battle",
       "category": "function",
       "strength": 2,
@@ -17825,6 +18266,15 @@
       "note": "Ocean, sea, river, and freshwater deities; rulers of the aquatic realm."
     },
     {
+      "source": "varuna",
+      "target": "longwang",
+      "relationship": "Sea / water",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Ocean, sea, river, and freshwater deities; rulers of the aquatic realm."
+    },
+    {
       "source": "veles",
       "target": "anubis",
       "relationship": "Underworld / death",
@@ -17988,6 +18438,15 @@
     },
     {
       "source": "viracocha",
+      "target": "longwang",
+      "relationship": "Sea / water",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Ocean, sea, river, and freshwater deities; rulers of the aquatic realm."
+    },
+    {
+      "source": "viracocha",
       "target": "makemake",
       "relationship": "Creator / cosmogonic",
       "category": "narrative-role",
@@ -18086,6 +18545,15 @@
       "note": "Ocean, sea, river, and freshwater deities; rulers of the aquatic realm."
     },
     {
+      "source": "xiwangmu",
+      "target": "houyi",
+      "relationship": "The elixir grant",
+      "category": "narrative-role",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "The Queen Mother of the West grants Hòuyì the elixir of immortality — the gift that becomes Cháng’é’s ascension."
+    },
+    {
       "source": "xochiquetzal",
       "target": "aengus",
       "relationship": "Love / beauty / desire",
@@ -18142,6 +18610,15 @@
     {
       "source": "yam",
       "target": "ea",
+      "relationship": "Sea / water",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Ocean, sea, river, and freshwater deities; rulers of the aquatic realm."
+    },
+    {
+      "source": "yam",
+      "target": "longwang",
       "relationship": "Sea / water",
       "category": "phenomenon",
       "strength": 2,
@@ -18381,6 +18858,15 @@
       "strength": 2,
       "bidirectional": true,
       "note": "Forces of chaos, primordial oceans, world-encircling serpents, and cosmic disorder."
+    },
+    {
+      "source": "yammu",
+      "target": "longwang",
+      "relationship": "Sea / water",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Ocean, sea, river, and freshwater deities; rulers of the aquatic realm."
     },
     {
       "source": "yammu",

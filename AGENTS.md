@@ -148,7 +148,7 @@ uses **canonical sources** and **generated outputs**.
   `type/js/original-scripts-extra.json`).
 - `type/js/source-catalog.js` — Rich citation metadata for scholarly reference
   works (211 entries).
-- `type/js/pronunciation-atlas.js` — Pronunciation data (903 entries).
+- `type/js/pronunciation-atlas.js` — Pronunciation data (926 entries).
 - `type/js/pronunciation-rules.js` — Pronunciation rules engine: per-pantheon
   phoneme inventories, orthography→phoneme mappings, stress/quantity rules,
   and mora-based timing (beats, morae, pitch contour, segment durations).
@@ -165,7 +165,7 @@ uses **canonical sources** and **generated outputs**.
   poem-attested rune names). The ink-index generator consults it as a
   fallback whenever per-sign provenance lacks a note; the Everyday + Ink
   suite fails if any sign shows a bare dash.
-- `type/js/glyph-atlas.js` — Glyph render data (672 entries).
+- `type/js/glyph-atlas.js` — Glyph render data (752 entries).
 - `js/archetypes-v2.js` — Hand-built flagship archetypes (287), including
   domain ownership and canvas assignments.
 - `platform/db/owned-domains.json` — The complete list of 206 owned Unicode
@@ -467,8 +467,8 @@ The manifest includes:
 - `canonicalSources` — map of canonical source roles to file paths
 - `canonicalHashes` — SHA-256 hashes of each canonical source
 - `counts` — entries (926), pantheons (25), flagships (287), original scripts
-  (117), source-catalog entries (211), pronunciation atlas (903), glyph atlas
-  (672)
+  (117), source-catalog entries (211), pronunciation atlas (926), glyph atlas
+  (752)
 - `schema` — numeric major/minor/patch
 - `license` — SPDX id + URL
 

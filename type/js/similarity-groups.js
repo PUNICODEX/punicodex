@@ -52,7 +52,7 @@ const FUNCTION_GROUPS = [
     note: 'Lunar deities, moon watchers, and nocturnal celestial bodies.',
     ids: [
       'selene', 'artemis', 'hekate', 'thoth', 'khonsu', 'tsukuyomi', 'coyolxauhqui',
-      'metztli', 'chandra', 'mamaquilla', 'hati', 'sin',
+      'metztli', 'chandra', 'mamaquilla', 'hati', 'sin', 'change',
     ],
   },
   {
@@ -63,7 +63,7 @@ const FUNCTION_GROUPS = [
     ids: [
       'poseidon', 'pontos', 'njordr', 'manannan', 'tangaroa', 'viracocha', 'babaluaye',
       'mamaqucha', 'tianhou', 'mazu', 'manawydan', 'toyotama', 'yongwang', 'aseratu',
-      'yammu', 'yam', 'varuna', 'ea',
+      'yammu', 'yam', 'varuna', 'ea', 'longwang',
     ],
   },
   {
@@ -84,7 +84,7 @@ const FUNCTION_GROUPS = [
     note: 'Deities of war, battle fury, military strategy, and martial power.',
     ids: [
       'ares', 'athena', 'tyr', 'odinn', 'sekhmet', 'durga', 'morrigan', 'ishtar',
-      'ashur', 'tu', 'hachiman', 'huitzilopochtli', 'ogun', 'anat',
+      'ashur', 'tu', 'hachiman', 'huitzilopochtli', 'ogun', 'anat', 'nezha',
     ],
   },
   {
@@ -274,6 +274,12 @@ const CURATED_PAIRS = [
   { sourceId: 'typhon', targetId: 'tiamat', relationship: 'Chaos / monster', category: 'narrative-role', strength: 3, bidirectional: true, note: 'Greek and Babylonian dragon/serpent antagonists of cosmic order.' },
   { sourceId: 'gaia', targetId: 'pachamama', relationship: 'Earth mother', category: 'function', strength: 3, bidirectional: true, note: 'Greek and Incan personifications of the living Earth.' },
   { sourceId: 'asherah', targetId: 'athiratu', relationship: 'Same goddess, two traditions', category: 'identity', strength: 3, bidirectional: true, note: 'The Ugaritic ʾAṯiratu and the biblical Asherah — one great mother of the gods under two names.' },
+  { sourceId: 'longwang', targetId: 'yongwang', relationship: 'Same figure, two traditions', category: 'identity', strength: 3, bidirectional: true, note: 'The Chinese Lóngwáng and the Korean Yongwang — the Dragon King of the seas under his Chinese and Korean names.' },
+  { sourceId: 'change', targetId: 'selene', relationship: 'Moon personified', category: 'phenomenon', strength: 2, bidirectional: true, note: 'Greek and Chinese personifications of the moon itself — not merely lunar deities but the moon made goddess.' },
+  { sourceId: 'houyi', targetId: 'herakles', relationship: 'Culture hero / monster-slayer', category: 'narrative-role', strength: 2, bidirectional: true, note: 'Greek and Chinese bow-heroes who rid the world of ravaging monsters at the dawn of order.' },
+  { sourceId: 'nezha', targetId: 'sunwukong', relationship: 'Rebel against heaven', category: 'narrative-role', strength: 2, bidirectional: true, note: 'Chinese rebel heroes who defy the celestial bureaucracy — and meet in battle in Journey to the West.' },
+  { sourceId: 'change', targetId: 'houyi', relationship: 'The elixir cycle', category: 'narrative-role', strength: 2, bidirectional: true, note: 'Husband and wife of the moon-ascension myth — the elixir of immortality passes between them.' },
+  { sourceId: 'xiwangmu', targetId: 'houyi', relationship: 'The elixir grant', category: 'narrative-role', strength: 2, bidirectional: true, note: 'The Queen Mother of the West grants Hòuyì the elixir of immortality — the gift that becomes Cháng’é’s ascension.' },
   { sourceId: 'anubis', targetId: 'hermes', relationship: 'Psychopomp', category: 'narrative-role', strength: 3, bidirectional: true, note: 'Egyptian and Greek guides of souls to the afterlife.' },
   { sourceId: 'brigid', targetId: 'agni', relationship: 'Fire / poetry / inspiration', category: 'function', strength: 3, bidirectional: true, note: 'Celtic and Vedic fire-linked deities of inspiration, hearth, and sacred flame.' },
 ];

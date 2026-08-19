@@ -15,132 +15,6 @@
 'use strict';
 
 const PRONUNCIATION_ATLAS = {
-  "achilleus": {
-    "ipa": "/a.kʰil.leús/",
-    "ipaLabel": "Scholarly reconstruction",
-    "approximation": "the Wrath and the Heel."
-  },
-  "asklepios": {
-    "ipa": "/a.skliː.pi.ós/",
-    "ipaLabel": "Scholarly reconstruction",
-    "approximation": "the Physician of the Gods."
-  },
-  "drakon": {
-    "ipa": "/drá.kɔːn/",
-    "ipaLabel": "Scholarly reconstruction",
-    "approximation": "the Sleepless Watcher."
-  },
-  "monokeros": {
-    "ipa": "/mo.nó.kɛː.rɔːs/",
-    "ipaLabel": "Scholarly reconstruction",
-    "approximation": "the Single Horn."
-  },
-  "pegasos": {
-    "ipa": "/pɛ̌ː.ɡa.sos/",
-    "ipaLabel": "Scholarly reconstruction",
-    "approximation": "the Winged Horse."
-  },
-  "tyche": {
-    "ipa": "/tý.kʰɛː/",
-    "ipaLabel": "Scholarly reconstruction",
-    "approximation": "the Turning of the Wheel."
-  },
-  "diana": {
-    "ipa": "/diˈaː.na/",
-    "ipaLabel": "Scholarly reconstruction",
-    "approximation": "the Huntress of the Moon."
-  },
-  "ianus": {
-    "ipa": "/ˈjaː.nus/",
-    "ipaLabel": "Scholarly reconstruction",
-    "approximation": "the God of Two Faces."
-  },
-  "iuno": {
-    "ipa": "/ˈjuː.noː/",
-    "ipaLabel": "Scholarly reconstruction",
-    "approximation": "the Queen of Heaven."
-  },
-  "iuppiter": {
-    "ipa": "/ˈjuːp.pi.ter/",
-    "ipaLabel": "Scholarly reconstruction",
-    "approximation": "the Father of the Sky."
-  },
-  "neptunus": {
-    "ipa": "/nepˈtuː.nus/",
-    "ipaLabel": "Scholarly reconstruction",
-    "approximation": "the Lord of Waters."
-  },
-  "vulcanus": {
-    "ipa": "/vulˈkaː.nus/",
-    "ipaLabel": "Scholarly reconstruction",
-    "approximation": "the Smith of the Gods."
-  },
-  "steh": {
-    "ipa": "/ˈsɛː.tɛx/",
-    "ipaLabel": "Scholarly reconstruction",
-    "approximation": "the Lord of the Red Land."
-  },
-  "hp": {
-    "ipa": "/ˈħaː.pi/",
-    "ipaLabel": "Scholarly reconstruction",
-    "approximation": "the Bringer of the Flood."
-  },
-  "amsa": {
-    "ipa": "/ɐmˈɕɐ/",
-    "ipaLabel": "Scholarly reconstruction",
-    "approximation": "the Portion of the Sun."
-  },
-  "daksa": {
-    "ipa": "/ˈd̪ɐk.ʂɐ/",
-    "ipaLabel": "Scholarly reconstruction",
-    "approximation": "the Father of Order."
-  },
-  "dhatr": {
-    "ipa": "/d̪ʱɑːˈt̪r̩/",
-    "ipaLabel": "Scholarly reconstruction",
-    "approximation": "the One Who Sets the World."
-  },
-  "pusan": {
-    "ipa": "/ˈpuː.ʂɐn/",
-    "ipaLabel": "Scholarly reconstruction",
-    "approximation": "the Guide of All Roads."
-  },
-  "tvastr": {
-    "ipa": "/ˈt̪ʋɐʂ.ʈr̩/",
-    "ipaLabel": "Scholarly reconstruction",
-    "approximation": "the Architect of the Gods."
-  },
-  "mengpo": {
-    "ipa": "/məŋ˥˩ pʰwo˧˥/",
-    "ipaLabel": "Scholarly reconstruction",
-    "approximation": "the Tea at the Bridge."
-  },
-  "pangu": {
-    "ipa": "/pʰa˧˥ ku˨˩˦/",
-    "ipaLabel": "Scholarly reconstruction",
-    "approximation": "the Giant Between Heaven and Earth."
-  },
-  "yanluo": {
-    "ipa": "/jɛn˧˥ lwo˧˥/",
-    "ipaLabel": "Scholarly reconstruction",
-    "approximation": "the Judge Below."
-  },
-  "honshu": {
-    "ipa": "/hon.ɕuː/",
-    "ipaLabel": "Scholarly reconstruction",
-    "approximation": "the Heart of the Islands."
-  },
-  "kyushu": {
-    "ipa": "/kjɯː.ɕɯː/",
-    "ipaLabel": "Scholarly reconstruction",
-    "approximation": "the Nine Provinces."
-  },
-  "tumatauenga": {
-    "ipa": "/tuː.ma.taʊ.ˈe.ŋa/",
-    "ipaLabel": "Scholarly reconstruction",
-    "approximation": "the Face of Battle."
-  },
-
   "apollon": {
     "ipa": "/a.pól.lɔːn/",
     "ipaLabel": "Attic Greek Reconstruction",
@@ -319,7 +193,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Athénā is Tier 1 because the Greek Ἀθήνᾶ contains both stress (acute on the long η) and length (η plus long alpha with iota subscript). The restoration Athénā preserves the acute stress; Athēnā is the macron-only variant. The form Athēnē changes the final letter and is therefore used only when the domain requires it."
+    "note": "Athénā is Tier 1 because the Greek Ἀθηνᾶ contains both stress (acute on the long η) and length (η plus long alpha with iota subscript). The restoration Athénā preserves the acute stress; Athēnā is the macron-only variant. The form Athēnē changes the final letter and is therefore used only when the domain requires it."
   },
   "demeter": {
     "ipa": "/dɛ.mɛ́.tɛr/",
@@ -361,10 +235,10 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Hēra is Tier 1 because the Greek Ἥρᾱ contains both stress (acute on the first epsilon) and length (long alpha with iota subscript). The Attic form Ἥρα loses the iota subscript in spelling but retains the long alpha in pronunciation."
+    "note": "Hēra is Tier 1 because the Greek Ἥρᾱ contains both stress (acute on the initial η) and length (long final alpha)."
   },
   "hermes": {
-    "ipa": "/her.mɛːs/",
+    "ipa": "/her.ˈmɛːs/",
     "ipaLabel": "Attic Greek Reconstruction",
     "phonemes": [
       {
@@ -376,19 +250,19 @@ const PRONUNCIATION_ATLAS = {
         "desc": "Mu plus long eta and sigma — the long vowel gives the name its final clarity."
       }
     ],
-    "approximation": "'HER-mace' — the first syllable is quick and breathy; the second is long and level.",
+    "approximation": "'her-MACE' — the first syllable is quick and breathy; the second is long, level, and carries the accent.",
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Hermês is Tier 1 because the Greek Ἑρμῆς contains both stress (circumflex on the long η, realized as acute in our restoration) and length (η). The circumflex form Hermês is the ideal; Hermēs is the macron-only LSJ convention. The name's boundary-marker etymology suits the god of thresholds."
+    "note": "Hermês is Tier 1 because the Greek Ἑρμῆς contains both stress (circumflex on the long η) and length (η). The circumflex form Hermês is the ideal; Hermēs is the macron-only LSJ convention. The name's boundary-marker etymology suits the god of thresholds."
   },
   "hephaistos": {
-    "ipa": "/hɛ.pʰaɪ.stós/",
+    "ipa": "/ˈhɛː.pʰaɪ.stos/",
     "ipaLabel": "Attic Greek Reconstruction",
     "phonemes": [
       {
-        "symbol": "He-",
-        "desc": "Short epsilon with rough breathing — the name begins with a forge-breath."
+        "symbol": "Hē-",
+        "desc": "Long eta with rough breathing, carrying the acute pitch — the name begins with a forge-breath."
       },
       {
         "symbol": "-phai-",
@@ -399,14 +273,14 @@ const PRONUNCIATION_ATLAS = {
         "desc": "Sigma-tau-omicron-sigma, the hissing final syllable of metal cooling."
       }
     ],
-    "approximation": "'heh-FYE-stoss' — the middle syllable has a breathy 'ph' and a bright diphthong; the final syllable is crisp.",
+    "approximation": "'HEH-fye-stoss' — the first syllable carries the accent; the middle has a breathy 'ph' and a bright diphthong; the final syllable is crisp.",
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Hēphaistos is Tier 1 because the Greek Ἥφαιστος contains both stress (acute on the short ο) and length (αι diphthong, which counts as long for accentual purposes). His name has no secure Greek etymology, reflecting his archaic, possibly non-Greek origins."
+    "note": "Hēphaistos is Tier 1 because the Greek Ἥφαιστος contains both stress (acute on the long η of the first syllable) and length (η and the αι diphthong, which counts as long for accentual purposes). His name has no secure Greek etymology, reflecting his archaic, possibly non-Greek origins."
   },
   "hestia": {
-    "ipa": "/hɛs.tí.aː/",
+    "ipa": "/hɛs.tí.a/",
     "ipaLabel": "Attic Greek Reconstruction",
     "phonemes": [
       {
@@ -419,14 +293,14 @@ const PRONUNCIATION_ATLAS = {
       },
       {
         "symbol": "-a",
-        "desc": "Long alpha — the final vowel opens into the space of the home."
+        "desc": "Short alpha — the final vowel opens into the space of the home."
       }
     ],
-    "approximation": "'hess-TEE-ah' — the middle syllable carries the pitch, and the final 'ah' is long and open.",
+    "approximation": "'hess-TEE-ah' — the middle syllable carries the pitch, and the final 'ah' is short and open.",
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Hestía is Tier 1 because the Greek Ἑστία contains both stress (acute on the short ι) and length (long α in the final syllable). The name is built on the PIE root *h₂wes-, 'to dwell,' making her literally the goddess of the dwelling-place."
+    "note": "Hestía is Tier 2 because the original Ἑστία bears the acute stress only; the final alpha is short, so a single feature is preserved. The name is built on the PIE root *h₂wes-, 'to dwell,' making her literally the goddess of the dwelling-place."
   },
   "poseidon": {
     "ipa": "/po.sei.dɔ́ːn/",
@@ -449,7 +323,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Poseidôn is Tier 1 because the Greek Ποσειδῶν contains both stress (circumflex on the long ω, realized as acute in our restoration) and length (ει diphthong and long ω). The circumflex form Poseidôn is the ideal; Poseidōn is the macron-only LSJ convention."
+    "note": "Poseidôn is Tier 1 because the Greek Ποσειδῶν contains both stress (circumflex on the long ω) and length (ει diphthong and long ω). The circumflex form Poseidôn is the ideal; Poseidōn is the macron-only LSJ convention."
   },
   "persephone": {
     "ipa": "/per.se.pʰó.nɛː/",
@@ -479,7 +353,7 @@ const PRONUNCIATION_ATLAS = {
     "note": "Persephonē is Tier 1 because the Greek Περσεφόνη contains both stress (acute on the short ό) and length (long η in the final syllable). The name's etymology is uncertain, which suits a goddess who moves between the known and hidden worlds."
   },
   "prometheus": {
-    "ipa": "/pro.mɛː.tʰeu̯s/",
+    "ipa": "/pro.mɛː.ˈtʰeu̯s/",
     "ipaLabel": "Attic Greek Reconstruction",
     "phonemes": [
       {
@@ -495,7 +369,7 @@ const PRONUNCIATION_ATLAS = {
         "desc": "Aspirated theta plus diphthong ευ plus sigma — the sound of forethought and divine knowledge."
       }
     ],
-    "approximation": "'pro-MAY-thyoos' — the middle syllable is long, and the final diphthong glides like the foresight the name denotes.",
+    "approximation": "'pro-meh-THEFS' — the middle syllable is long, and the final diphthong, which carries the accent, glides like the foresight the name denotes.",
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
@@ -518,7 +392,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Gaia is Tier 2 because the Greek Γαῖα preserves only the αι diphthong (a long vowel for accentual purposes) without an acute or circumflex stress mark in the standard nominative form. She is primordial: older than the Olympians, older than the Titans, the first power to arise after Chaos."
+    "note": "Gaia is Tier 1 because the Greek Γαῖα bears a circumflex on the αι diphthong, which marks both stress and vowel length in a single sign. She is primordial: older than the Olympians, older than the Titans, the first power to arise after Chaos."
   },
   "chaos": {
     "ipa": "/kʰá.os/",
@@ -596,24 +470,58 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Tēthys."
   },
   "hyperion": {
-    "ipa": "/hyperiˈoːn/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/hy.pe.rí.ɔːn/",
+    "ipaLabel": "Attic Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Hy-",
+        "desc": "Rough breathing plus upsilon: a breathy /h/ before the close front rounded vowel /y/ — a sound English lacks, nearest to French 'tu' or German 'über'."
+      },
+      {
+        "symbol": "-pe-",
+        "desc": "Unaspirated /p/ followed by a short, open /e/; light and quick, carrying no stress."
+      },
+      {
+        "symbol": "-rí",
+        "desc": "A trilled /r/ closing on short iota, which bears the acute accent — the high pitch of the word falls here."
+      },
+      {
+        "symbol": "-ōn",
+        "desc": "Long omega (ω), held roughly twice the length of a short vowel, closed by the final nasal; the length is part of the name, not an ornament."
+      }
+    ],
+    "approximation": "'hü-peh-REE-ohn' — round the lips for Hy- (the ü of German 'über'), strike the accent hard on -rí-, and let the final -ōn ring long.",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Hyperiōn."
+    "note": "Tier-1: the Greek original Ὑπερίων carries both a stress mark (the acute on the iota) and a long vowel (ω), and the restoration Hyperíōn preserves both — the í keeps the accent where Hesiod's auditors heard it, and the ō keeps the quantity of the omega. Both features survive in the Unicode form; the ASCII 'Hyperion' loses them."
   },
   "leto": {
-    "ipa": "/letˈoː/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/leː.tɔ̌ː/",
+    "ipaLabel": "Ancient Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "L-",
+        "desc": "Voiced alveolar lateral approximant [l]."
+      },
+      {
+        "symbol": "-ē-",
+        "desc": "Long close-mid front vowel [eː], written eta."
+      },
+      {
+        "symbol": "-t-",
+        "desc": "Voiceless alveolar stop [t]."
+      },
+      {
+        "symbol": "-ō",
+        "desc": "Long open-mid back rounded vowel [ɔː], with circumflex marking length and falling pitch."
+      }
+    ],
+    "approximation": "'LAY-toh' — hold the first vowel long like 'lay' without the off-glide, and let the final 'oh' carry a gentle rise-and-fall pitch.",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Letō."
+    "note": "Lētō is Tier 1: the Greek original contains both length (ē and ō) and the circumflex pitch contour. The English 'Leto' preserves neither."
   },
   "epimetheus": {
     "ipa": "/epimˈeːtʰeus/",
@@ -624,75 +532,6 @@ const PRONUNCIATION_ATLAS = {
     "confidence": "reconstructed",
     "audioPath": null,
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Epimētheus."
-  },
-  "iason": {
-    "ipa": "/i.áː.sɔːn/",
-    "ipaLabel": "Attic Greek Reconstruction",
-    "phonemes": [
-      {
-        "symbol": "I-",
-        "desc": "Short iota with smooth breathing — the name opens light and quick, without roughness."
-      },
-      {
-        "symbol": "-á-",
-        "desc": "Long alpha with acute pitch [áː] — the stressed peak of the name; the Ionic form Ἰήσων, with long eta, proves the vowel's length."
-      },
-      {
-        "symbol": "-sōn",
-        "desc": "Sigma followed by long omega [sɔːn] — the drawn-out final syllable that marks the name as long-voweled."
-      }
-    ],
-    "approximation": "'ih-AH-sone' — the second syllable is pitched higher and held; the final 'ō' is long and closed, nothing like the English 'sun'.",
-    "dialect": null,
-    "confidence": "canonical",
-    "audioPath": null,
-    "note": "Iásōn is Tier 1 because the Greek Ἰάσων contains both stress (acute on the long alpha) and length (the long ᾱ and the final ω). The restoration keeps both: the acute on á and the macron on ō. The name derives from ἰάομαι, 'to heal' — the healer's name of the Argonaut captain. Reconstruction follows Allen, Vox Graeca; LSJ; and Beekes, Etymological Dictionary of Greek."
-  },
-  "argos": {
-    "ipa": "/ár.gos/",
-    "ipaLabel": "Attic Greek Reconstruction",
-    "phonemes": [
-      {
-        "symbol": "Á-",
-        "desc": "Alpha with acute pitch [á] — a bright, open attack; the whole name flashes on its first syllable."
-      },
-      {
-        "symbol": "-r-",
-        "desc": "Rolled alveolar rho [r] — the quick turn at the name's center."
-      },
-      {
-        "symbol": "-gos",
-        "desc": "Voiced velar gamma with short omicron and final sigma [gos] — clipped, unlenited, watchful."
-      }
-    ],
-    "approximation": "'AR-goss' — two short syllables, stress forward, like a light snapping on.",
-    "dialect": null,
-    "confidence": "canonical",
-    "audioPath": null,
-    "note": "Árgos is Tier 2 because the Greek Ἄργος carries only the acute stress; both vowels are short, so a single feature separates the restoration from ASCII. The entry is the giant Argos Panoptes, Hera's hundred-eyed watcher — from ἀργός, 'shining, swift'. Reconstruction follows Allen, Vox Graeca; LSJ; and Beekes, Etymological Dictionary of Greek."
-  },
-  "midas": {
-    "ipa": "/mí.das/",
-    "ipaLabel": "Attic Greek Reconstruction",
-    "phonemes": [
-      {
-        "symbol": "Mí-",
-        "desc": "Bilabial nasal opening into acute-pitched iota [mí] — the name's single mark, pitched high."
-      },
-      {
-        "symbol": "-d-",
-        "desc": "Voiced dental stop [d] — plain and firm."
-      },
-      {
-        "symbol": "-as",
-        "desc": "Short alpha and final sigma [as] — the common ending of Anatolian royal names."
-      }
-    ],
-    "approximation": "'MEE-dass' — stress forward, the first syllable bright and the second clipped; the English 'MY-das' flattens both.",
-    "dialect": null,
-    "confidence": "canonical",
-    "audioPath": null,
-    "note": "Mídas is Tier 2 because the Greek Μίδας carries only the acute stress; the vowels are short and no long vowel or diphthong is preserved. Behind the Greek form stands a genuine Phrygian royal name — Assyrian records know the same king as Mitâ of Muški. Reconstruction follows Allen, Vox Graeca; LSJ; and Beekes, Etymological Dictionary of Greek."
   },
   "herakles": {
     "ipa": "/hɛː.ra.klɛ̂ːs/",
@@ -718,7 +557,7 @@ const PRONUNCIATION_ATLAS = {
     "note": "Hēraklēs is Tier 1 because Classical Attic Ἡρακλῆς contains both length (long η in the first and final syllables) and stress (circumflex on the final -klēs). The registrable form Hēraklēs preserves length with macrons; the acute/circumflex is omitted because fully accented Greek letters are often untypeable and are not reliably registrable as IDN labels. Reconstruction follows Allen, Vox Graeca: The Pronunciation of Classical Greek, 3rd ed. (Cambridge, 1987); LSJ; and Beekes, Etymological Dictionary of Greek (Brill, 2010)."
   },
   "eros": {
-    "ipa": "/eˈrɔːs/",
+    "ipa": "/ˈe.rɔːs/",
     "ipaLabel": "Attic Greek Reconstruction",
     "phonemes": [
       {
@@ -734,7 +573,7 @@ const PRONUNCIATION_ATLAS = {
         "desc": "Long omega [ɔː], the sustained note at the end — desire prolonged."
       }
     ],
-    "approximation": "\"eh-ROSS\" — with the second syllable held longer than English allows; the o is deep and sustained.",
+    "approximation": "\"EH-ross\" — the accent falls on the first syllable; the o of the second is held longer than English allows, deep and sustained.",
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
@@ -761,7 +600,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Hēlios is Tier 2 because the Greek Ἥλιος preserves stress (acute on the first epsilon) but no long vowel. The name is built on the same root as English 'sun' and Latin 'sol,' one of the most ancient theonyms in the Indo-European family."
+    "note": "Hēlios is Tier 1 because the Greek Ἥλιος carries both stress (the acute on the first syllable) and a long vowel (the initial η). The name is built on the same root as English 'sun' and Latin 'sol,' one of the most ancient theonyms in the Indo-European family."
   },
   "selene": {
     "ipa": "/se.lɛ́.nɛː/",
@@ -784,17 +623,26 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Selḗnē is Tier 1 because the Greek Σελήνη contains both stress (acute on the short έ) and length (long η in the final syllable). The name shares a root with 'shine' and 'lunar' across Indo-European languages."
+    "note": "Selḗnē is Tier 1 because the Greek Σελήνη contains both stress (acute on the short έ) and length (long η in the final syllable). The name shares a root with 'shine' across Indo-European languages."
   },
   "eos": {
-    "ipa": "/ˈeːoːs/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/ɛː.ɔ̌ːs/",
+    "ipaLabel": "Homeric/Attic Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Ē-",
+        "desc": "Long eta [ɛː], the first syllable drawn out like the first pale light."
+      },
+      {
+        "symbol": "-ōs",
+        "desc": "Long omega with acute or circumflex [ɔ̌ːs], the pitch peak and the root meaning 'dawn'."
+      }
+    ],
+    "approximation": "'AY-ohss' — two long syllables, the first level, the second pitched and sustained like the rising sun.",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Ēōs."
+    "note": "Ēōs is Tier 1 because the Greek Ἠώς contains two long syllables, the second carrying the acute/circumflex. The name is one of the most securely reconstructed Indo-European divine names."
   },
   "bellerophon": {
     "ipa": "/belleropʰˈoːn/",
@@ -817,14 +665,35 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Thēseus."
   },
   "mnemosyne": {
-    "ipa": "/mnˈeːmosyneː/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/mnɛː.mosý.nɛː/",
+    "ipaLabel": "Ancient Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Mn-",
+        "desc": "Voiced alveolar nasal [m] plus voiceless alveolar nasal [n], the difficult initial cluster."
+      },
+      {
+        "symbol": "-ē-",
+        "desc": "Long close-mid front vowel [eː], written eta."
+      },
+      {
+        "symbol": "-mo-",
+        "desc": "Voiced bilabial nasal [m] followed by short [o]."
+      },
+      {
+        "symbol": "-sý-",
+        "desc": "Voiceless alveolar sibilant [s] plus close front [y] with acute stress."
+      },
+      {
+        "symbol": "-nē",
+        "desc": "Long close-mid front vowel [eː] ending the name."
+      }
+    ],
+    "approximation": "'mneh-MOH-see-nee' — the first syllable is like 'mneh', the stress falls on the third syllable, and both long vowels are held.",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Mnēmosynē."
+    "note": "Mnēmosýnē is Tier 1: the Greek original contains both length (ē) and acute stress (ý), making it the fullest scholarly restoration. The English 'Mnemosyne' flattens the vowels."
   },
   "artemis": {
     "ipa": "/ár.te.mis/",
@@ -896,7 +765,7 @@ const PRONUNCIATION_ATLAS = {
     "note": "Diónysos is Tier 2 because the Greek Διόνυσος preserves only stress (acute on the first omicron), not length. The upsilon remains short, and no macron appears in the standard restoration. The acute on ó marks the pitch peak of a name whose second element may come from beyond Greek itself."
   },
   "medousa": {
-    "ipa": "/me.dú.saː/",
+    "ipa": "/ˈme.doː.sa/",
     "ipaLabel": "Attic Greek Reconstruction",
     "phonemes": [
       {
@@ -912,11 +781,11 @@ const PRONUNCIATION_ATLAS = {
         "desc": "Sigma plus short alpha — the final hiss that ends the name like a snake's warning."
       }
     ],
-    "approximation": "'meh-DOO-sah' — the middle syllable is long and hissing; the name sounds like a warning.",
+    "approximation": "'MEH-doh-sah' — stress the first syllable, as the Greek acute marks; the middle ου is a long closed 'o' [oː] (a spurious diphthong), not 'oo'.",
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Médousa is Tier 2 because the Greek Μέδουσα preserves stress (acute on the short υ) but no long vowel. The name means 'Guardian' or 'Queen,' an ironic title for a figure whose gaze turns men to stone."
+    "note": "Médousa is Tier 1 because the Greek Μέδουσα carries both stress (the acute on the first syllable) and a long vowel (the diphthong ου). The name means 'Guardian' or 'Queen,' an ironic title for a figure whose gaze turns men to stone."
   },
   "kronos": {
     "ipa": "/kró.nos/",
@@ -942,14 +811,27 @@ const PRONUNCIATION_ATLAS = {
     "note": "Krónos is Tier 2 because the Greek Κρόνος preserves only stress (acute on the first omicron), not length. The name's etymology is disputed; the acute marks the pitch peak, while the short vowels keep the name compact and hard, fitting a god whose story is one of cutting and devouring."
   },
   "rhea": {
-    "ipa": "/rhea/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/rʰé.aː/",
+    "ipaLabel": "Attic Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Rh-",
+        "desc": "Aspirated rho [rʰ], the breathy initial consonant preserved in the rough breathing."
+      },
+      {
+        "symbol": "-é-",
+        "desc": "Short epsilon with acute [é], the pitch peak of the name."
+      },
+      {
+        "symbol": "-a",
+        "desc": "Long alpha [aː], the feminine ending that gives the name its dignity."
+      }
+    ],
+    "approximation": "'RHAY-ah' — begin with a breathy 'r', stress the middle syllable, and draw out the final 'ah'.",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Rhea."
+    "note": "Rhéā is Tier 2 because the Greek Ῥέα preserves the acute stress on the second syllable and length on the final alpha, but the stress and length fall on different syllables. She is the great mother of the Olympian generation."
   },
   "themis": {
     "ipa": "/tʰemis/",
@@ -972,14 +854,27 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Hebe."
   },
   "pan": {
-    "ipa": "/pˈaːn/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/pán/",
+    "ipaLabel": "Attic Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Π-",
+        "desc": "unaspirated voiceless bilabial stop [p], like the p of English 'spin' — Attic π carried no burst of breath"
+      },
+      {
+        "symbol": "-ά-",
+        "desc": "short open [a] bearing the acute accent — a rising pitch, not an English stress-beat; the Arcadian by-form Πάων lengthens this vowel to ā"
+      },
+      {
+        "symbol": "-ν",
+        "desc": "dental nasal [n], tongue on the teeth, closing the single syllable"
+      }
+    ],
+    "approximation": "'PAHN' — one clean syllable; let the pitch lift on the á rather than hammering it, and keep the vowel open and pure.",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Pān."
+    "note": "Tier 2 — a single preserved feature. The Attic name Πάν carries only an acute accent on a short alpha (stress without length); the long ā belongs to the Arcadian by-form Πάων, 'shepherd', which the restoration Pān honors instead. Either way the name keeps one distinctive mark, never both, which is exactly what Tier 2 certifies."
   },
   "moirai": {
     "ipa": "/moirai/",
@@ -992,23 +887,27 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Moirai."
   },
   "olympos": {
-    "ipa": "/olympos/",
-    "ipaLabel": "Scholarly Reconstruction",
+    "ipa": "/ˈo.lyn.pos/",
+    "ipaLabel": "Ancient Greek Reconstruction",
     "phonemes": [
       {
-        "symbol": "Ó",
-        "desc": "Initial sound of Ólympos, as attested in the greek-location tradition."
+        "symbol": "O-",
+        "desc": "Short close-mid back [o], the Greek omicron; the acute marks stress on this first syllable"
       },
       {
-        "symbol": "...",
-        "desc": "Subsequent syllables preserve the name's inherited shape."
+        "symbol": "-ly-",
+        "desc": "Voiced alveolar lateral [l] plus front rounded [y], the Greek upsilon sound"
+      },
+      {
+        "symbol": "-mpos",
+        "desc": "Bilabial nasal [m] plus voiceless stop [p] and voiceless fricative [s]; the final cluster is -mps"
       }
     ],
-    "approximation": "'olympos' — the conventional spoken form.",
+    "approximation": "'OH-lu-poss' — the first syllable is short and stressed, the 'y' is rounded like French u, and the name ends in a crisp 'poss'.",
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Ólympos is Tier 2 because its Unicode restoration preserves the orthographic signature appropriate to the greek-location tradition."
+    "note": "Ólympos is accent-preserving Tier 2: the acute on the first omicron marks stress, but the word contains no long vowel. The name may be pre-Greek; its etymology from *ol-um- 'luminous' is speculative, so the pronunciation follows the attested Greek form rather than a reconstructed prototype."
   },
   "athenai": {
     "ipa": "/atʰɛ́ːnai/",
@@ -1016,7 +915,7 @@ const PRONUNCIATION_ATLAS = {
     "phonemes": [
       {
         "symbol": "A-",
-        "desc": "Short alpha [a] with rough breathing [h], the open first syllable of the city's name."
+        "desc": "Short alpha [a] with smooth breathing, the open first syllable of the city's name."
       },
       {
         "symbol": "-thē-",
@@ -1031,45 +930,49 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Athēnai is Tier 1 because the Greek Ἀθῆναι preserves both stress (acute on the long eta) and length. The rough breathing on the initial alpha is implied by the spiritus asper in the original script."
+    "note": "Athēnai is Tier 1 because the Greek Ἀθῆναι preserves both stress (acute on the long eta) and length."
   },
   "sparte": {
-    "ipa": "/sparte/",
-    "ipaLabel": "Scholarly Reconstruction",
+    "ipa": "/ˈspar.tɛː/",
+    "ipaLabel": "Ancient Greek Reconstruction",
     "phonemes": [
       {
-        "symbol": "S",
-        "desc": "Initial sound of Spártē, as attested in the greek-location tradition."
+        "symbol": "Spar-",
+        "desc": "Voiceless alveolar fricative [s], bilabial stop [p], and trilled or tapped [r]; the cluster sp- is characteristic of Greek"
       },
       {
-        "symbol": "...",
-        "desc": "Subsequent syllables preserve the name's inherited shape."
+        "symbol": "-tē",
+        "desc": "Voiceless alveolar stop [t] plus long close-mid front [ɛː], the Greek eta; the macron marks length, giving Tier-1 status"
       }
     ],
-    "approximation": "'sparte' — the conventional spoken form.",
+    "approximation": "'SPAR-tay' — roll the 'r', stress the first syllable, and hold the final 'tay' long.",
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Spártē is Tier 1 because its Unicode restoration preserves the orthographic signature appropriate to the greek-location tradition."
+    "note": "Spártē is Tier 1 because the final eta is long. The traditional etymology connects the name with σπείρω 'to sow', though some scholars suspect a pre-Greek origin. The acute on the first alpha marks stress; the eta carries length but no stress."
   },
   "delphoi": {
-    "ipa": "/delphoi/",
-    "ipaLabel": "Scholarly Reconstruction",
+    "ipa": "/del.pʰoˈi/",
+    "ipaLabel": "Ancient Greek Reconstruction",
     "phonemes": [
       {
-        "symbol": "D",
-        "desc": "Initial sound of Delphoí, as attested in the greek-location tradition."
+        "symbol": "Del-",
+        "desc": "Voiced alveolar stop [d], short [e], and aspirated voiceless bilabial stop [pʰ]; the phi is aspirated"
       },
       {
-        "symbol": "...",
-        "desc": "Subsequent syllables preserve the name's inherited shape."
+        "symbol": "-phoi",
+        "desc": "Aspirated [pʰ] plus diphthong [oi̯] — a rising glide from mid-back [o] to close [i]"
+      },
+      {
+        "symbol": "-í",
+        "desc": "The final iota carries the acute, marking stress on the ultima in the plural place-name"
       }
     ],
-    "approximation": "'delphoi' — the conventional spoken form.",
+    "approximation": "'del-PHOY-ee' — the middle syllable has a puffed 'p' and a diphthong like 'boy'; the final syllable is lightly stressed.",
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Delphoí is Tier 2 because its Unicode restoration preserves the orthographic signature appropriate to the greek-location tradition."
+    "note": "Delphoí is Tier 1: the acute on the final syllable marks stress, and the -οι diphthong it falls on is long, so the original Δελφοί carries both stress and vowel length. The aspirated [pʰ] is essential to the name; English 'Delphi' often loses the aspiration and the final diphthong quality."
   },
   "korinthos": {
     "ipa": "/kˈorintʰos/",
@@ -1082,14 +985,14 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Kórinthos."
   },
   "troia": {
-    "ipa": "/troˈia/",
-    "ipaLabel": "Reconstructed Attic Greek",
+    "ipa": "/troí.aː/",
+    "ipaLabel": "Attic Greek",
     "phonemes": [],
-    "approximation": null,
+    "approximation": "TROY-ah, with the stress on the final syllable and a long ā.",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Troía."
+    "note": "Greek Τροία bears the stress on the final syllable with a long diphthongal ending — Troíā — and Latin Troia keeps both the vowels and the fame. The form was already a place-name before it was a story: Hittite records call the land Wilusa, which most scholars now connect to (W)ilios, Troy's other Greek name."
   },
   "thebai": {
     "ipa": "/tʰeːbaˈi/",
@@ -1132,14 +1035,14 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Mykēnai."
   },
   "delos": {
-    "ipa": "/dˈeːlos/",
-    "ipaLabel": "Reconstructed Attic Greek",
+    "ipa": "/dɛ̂ː.los/",
+    "ipaLabel": "Attic Greek",
     "phonemes": [],
-    "approximation": null,
+    "approximation": "DAY-los, with the circumflexed long e of Δῆλος.",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Dēlos."
+    "note": "Greek Δῆλος scans with a long eta — Dêlos with the circumflex marks the stressed long vowel of the nominative exactly as ancient grammarians wrote it. The macron-only form Dēlos is the standard academic fallback (LSJ convention); both are defensible, and the circumflex form is the owned primary. Modern Greek says Dhilos with a fricative; the ancient quantity, not the modern sound, is what the restoration records."
   },
   "boiotia": {
     "ipa": "/boiˈoːtia/",
@@ -1212,167 +1115,246 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Ásgarðr; review recommended before promotion to canonical."
   },
   "valholl": {
-    "ipa": "/valholl/",
-    "ipaLabel": "Reconstructed Old Norse",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/ˈwal.hɔlː/",
+    "ipaLabel": "Old Norse Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "V-",
+        "desc": "Voiced labiodental fricative [v], from earlier Proto-Germanic *w in initial position."
+      },
+      {
+        "symbol": "-al-",
+        "desc": "Short open front [a] followed by alveolar lateral [l]; the first syllable is stressed."
+      },
+      {
+        "symbol": "-hǫll",
+        "desc": "Voiceless glottal [h], short open-mid back rounded [ɔ], and geminated lateral [lː] written double."
+      }
+    ],
+    "approximation": "'VAHL-holl' — stress the first syllable, pronounce the 'a' as in 'father', and hold the final 'l' slightly longer than English usually allows.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Valhǫll; review recommended before promotion to canonical."
+    "note": "Valhǫll is Tier 1: the ǫ (o with ogonek) preserves the distinctive short rounded back vowel of Old Norse — a distinctive feature the ASCII form loses. Modern editions often print Valhalla from the medieval Latinized form; Valhǫll restores the native Norse vowel."
   },
   "ragnarok": {
-    "ipa": "/ragnarok/",
-    "ipaLabel": "Scholarly Reconstruction",
+    "ipa": "/ˈraɣ.naˌrɔk/",
+    "ipaLabel": "Old Norse Reconstruction",
     "phonemes": [
       {
-        "symbol": "R",
-        "desc": "Initial sound of Ragnarǫk, as attested in the norse tradition."
+        "symbol": "Rag-",
+        "desc": "Voiced velar or uvular fricative [ɣ] after the vowel in ragna, the genitive plural of regin 'gods, powers'"
       },
       {
-        "symbol": "...",
-        "desc": "Subsequent syllables preserve the name's inherited shape."
+        "symbol": "-na-",
+        "desc": "Short [a] plus alveolar nasal [n], the genitive plural ending"
+      },
+      {
+        "symbol": "-rǫk",
+        "desc": "Short [ɔ] with o-hook (ǫ), the Old Norse rounded vowel; rǫk means 'fate, doom' — the familiar 'twilight' gloss belongs to the variant ragnarøkkr (røkkr, 'darkness', attested in Lokasenna 39)"
       }
     ],
-    "approximation": "'ragnarok' — the conventional spoken form.",
+    "approximation": "'RAGH-na-rok' — the middle consonant is a throaty 'gh', and the final vowel is a short, rounded 'o' like 'hot'.",
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Ragnarǫk is Tier 2 because its Unicode restoration preserves the orthographic signature appropriate to the norse tradition."
+    "note": "Ragnarǫk is Tier 1: the o-hook (ǫ) preserves a distinct Old Norse rounded vowel — a distinctive feature the ASCII form loses. The popular modern form Ragnarök normalises the ǫ to ö; both are registrable, but ǫ is the more conservative medieval spelling."
   },
   "midgardr": {
-    "ipa": "/miðgarðr/",
-    "ipaLabel": "Scholarly Reconstruction",
+    "ipa": "/ˈmiðˌɡarðr/",
+    "ipaLabel": "Old Norse Reconstruction",
     "phonemes": [
       {
-        "symbol": "M",
-        "desc": "Initial sound of Miðgarðr, as attested in the norse tradition."
+        "symbol": "Mi-",
+        "desc": "Short close front [i] with initial stress; mið means 'middle'"
       },
       {
-        "symbol": "...",
-        "desc": "Subsequent syllables preserve the name's inherited shape."
+        "symbol": "-ð-",
+        "desc": "Voiced dental fricative [ð], the eth in mið; it is the soft 'th' of 'this', not the hard 'th' of 'thin'"
+      },
+      {
+        "symbol": "-garð-",
+        "desc": "Voiced velar stop [ɡ], short [a], and voiced dental fricative [ð] in garðr 'enclosure, yard'"
+      },
+      {
+        "symbol": "-r",
+        "desc": "Tapped or trilled alveolar [r], the masculine nominative ending"
       }
     ],
-    "approximation": "'midgardr' — the conventional spoken form.",
+    "approximation": "'MITH-garther' — the first 'th' is voiced like 'this', and the second 'th' in 'garth' is the same; roll the final r lightly.",
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Miðgarðr is Tier 2 because its Unicode restoration preserves the orthographic signature appropriate to the norse tradition."
+    "note": "Miðgarðr is Tier 1: it preserves the voiced dental fricative ð (eth), a sound English lost in most positions — a distinctive letter the ASCII form loses. The compound is transparent: mið 'middle' + garðr 'enclosure'."
   },
   "alfheimr": {
-    "ipa": "/alfheimr/",
-    "ipaLabel": "Scholarly Reconstruction",
+    "ipa": "/ˈɑːlvˌhɛi̯mr/",
+    "ipaLabel": "Old Norse Reconstruction",
     "phonemes": [
       {
-        "symbol": "Á",
-        "desc": "Initial sound of Álfheimr, as attested in the norse tradition."
+        "symbol": "Ál-",
+        "desc": "Long stressed [ɑː] plus voiced alveolar lateral [l] and voiceless labiodental [f]; álfr means 'elf'"
       },
       {
-        "symbol": "...",
-        "desc": "Subsequent syllables preserve the name's inherited shape."
+        "symbol": "-fhei-",
+        "desc": "Diphthong [ɛi̯] — a rising glide from open-mid to close front, the standard Old Norse ei sound"
+      },
+      {
+        "symbol": "-mr",
+        "desc": "Bilabial nasal [m] plus tapped or trilled [r]; final -r is the masculine nominative ending"
       }
     ],
-    "approximation": "'alfheimr' — the conventional spoken form.",
+    "approximation": "'AHLV-haymr' — stress the first syllable like 'owl' without the w, then a quick 'lv-haymer' with a rolled final r.",
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Álfheimr is Tier 2 because its Unicode restoration preserves the orthographic signature appropriate to the norse tradition."
+    "note": "Old Norse á is a long back vowel, and ei is a diphthong; the acute accent on Á marks stress and length together. The form Álfheimr is Tier 1 because it preserves the acute accent on Á — a distinctive diacritic the ASCII form loses."
   },
   "jotunheimr": {
-    "ipa": "/jotunheimr/",
-    "ipaLabel": "Scholarly Reconstruction",
+    "ipa": "/ˈjɔː.tunˌhɛi̯mr/",
+    "ipaLabel": "Old Norse Reconstruction",
     "phonemes": [
       {
-        "symbol": "J",
-        "desc": "Initial sound of Jötunheimr, as attested in the norse tradition."
+        "symbol": "Jö-",
+        "desc": "Palatal approximant [j] plus long front rounded [øː] or [œː]; the ö arose by u-breaking of Proto-Germanic short *e before a following *u (*etunaz > jötunn)"
       },
       {
-        "symbol": "...",
-        "desc": "Subsequent syllables preserve the name's inherited shape."
+        "symbol": "-tun-",
+        "desc": "Voiceless alveolar stop [t] plus short close back [u] and alveolar nasal [n]"
+      },
+      {
+        "symbol": "-heimr",
+        "desc": "Diphthong [ɛi̯] in heimr, 'home, world', with bilabial nasal [m] and tapped [r]"
       }
     ],
-    "approximation": "'jotunheimr' — the conventional spoken form.",
+    "approximation": "'YUR-tun-haymr' — start with a 'y' plus a tight, rounded 'ur', then 'tun' and 'haymer'.",
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Jötunheimr is Tier 2 because its Unicode restoration preserves the orthographic signature appropriate to the norse tradition."
+    "note": "Jötunheimr is Tier 1: the ö preserves the broken vowel, a distinct Old Norse vowel — a distinctive feature the ASCII form loses. The Proto-Germanic ancestor is *etunaz with short *e; in the attested Norse compound the vowel quality (front rounded) matters more than length for recognition."
   },
   "helheimr": {
-    "ipa": "/helheimr/",
-    "ipaLabel": "Scholarly Reconstruction",
+    "ipa": "/ˈhɛlˌhɛi̯mr/",
+    "ipaLabel": "Old Norse Reconstruction",
     "phonemes": [
       {
-        "symbol": "H",
-        "desc": "Initial sound of Helheimr, as attested in the norse tradition."
+        "symbol": "Hel-",
+        "desc": "Voiceless glottal fricative [h], short [ɛ], and alveolar lateral [l]; Hel is the hidden goddess of death"
       },
       {
-        "symbol": "...",
-        "desc": "Subsequent syllables preserve the name's inherited shape."
+        "symbol": "-hei-",
+        "desc": "Diphthong [ɛi̯] — the same rising glide as in heimr, meaning 'home, world'"
+      },
+      {
+        "symbol": "-mr",
+        "desc": "Bilabial nasal [m] plus tapped [r]; the compound shortens heimr to heim- before the final r"
       }
     ],
-    "approximation": "'helheimr' — the conventional spoken form.",
+    "approximation": "'HEL-haymr' — a crisp initial h, then 'hell' and 'haymer' run together, with a light rolled r.",
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Helheimr is Tier 2 because its Unicode restoration preserves the orthographic signature appropriate to the norse tradition."
+    "note": "Helheimr is a transparent Old Norse compound of Hel + heimr. It is Tier 2 because no vowel is marked long or stressed; the name relies on everyday Old Norse phonology. Modern English 'hell' descends from the same Germanic root but has lost the diphthong."
   },
   "jormungandr": {
-    "ipa": "/jormuŋgandr/",
-    "ipaLabel": "Reconstructed Old Norse",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/ˈjɔrˌmun.ɡan.dr/",
+    "ipaLabel": "Old Norse Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "J-",
+        "desc": "Palatal approximant [j], the y-glide as in English 'yes'."
+      },
+      {
+        "symbol": "-ǫr-",
+        "desc": "Short open-mid back rounded [ɔ] plus trilled [r], the first syllable carrying stress."
+      },
+      {
+        "symbol": "-mun-",
+        "desc": "Bilabial nasal [m], close back rounded [u], and alveolar nasal [n]."
+      },
+      {
+        "symbol": "-gandr",
+        "desc": "Voiced velar [ɡ], open front [a], alveolar nasal [n], and trilled [r]."
+      }
+    ],
+    "approximation": "'YOR-mun-gand-r' — stress the first syllable, pronounce the 'or' like the 'o' in 'hot' with an r-color, and keep the final r light and trilled.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Jǫrmungandr; review recommended before promotion to canonical."
+    "note": "Jǫrmungandr is Tier 1: the ǫ preserves the distinctive Old Norse rounded back vowel — a distinctive feature the ASCII form loses. The first element is related to words for 'great' or 'universal'; gandr can mean monster, wand, or wolf, making the compound a 'mighty monster' or 'vast beast'."
   },
   "tyr": {
-    "ipa": "/tˈyr/",
-    "ipaLabel": "Reconstructed Old Norse",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/tyːr/",
+    "ipaLabel": "Old Norse Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "T-",
+        "desc": "Voiceless alveolar stop [t], the same crisp t as in English 'stop'."
+      },
+      {
+        "symbol": "-ý-",
+        "desc": "Long close front rounded vowel [yː], marked by the acute accent; pronounced like French 'tu' but held long and stressed."
+      },
+      {
+        "symbol": "-r",
+        "desc": "Trilled or tapped alveolar [r], lighter than the geminated rr of Þórr."
+      }
+    ],
+    "approximation": "'TEWR' — start with a crisp 't', say the rounded 'ew' of 'few' while pursing the lips, hold it long, and finish with a light trilled r.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Týr; review recommended before promotion to canonical."
+    "note": "Týr is Tier 1: the acute on ý marks stress on a distinctive long front rounded vowel — a diacritic the ASCII form loses. The registrable form preserves the Old Norse vowel quality and the god's name as recorded in the Eddas and skaldic verse."
   },
   "thor": {
-    "ipa": "/þorr/",
-    "ipaLabel": "Scholarly Reconstruction",
+    "ipa": "/ˈθɔːrː/",
+    "ipaLabel": "Old Norse Reconstruction",
     "phonemes": [
       {
         "symbol": "Þ",
-        "desc": "Initial sound of Þórr, as attested in the norse tradition."
+        "desc": "Voiceless dental fricative [θ], the thorn; it is the hard 'th' of 'thin', not the voiced 'th' of 'this'"
       },
       {
-        "symbol": "...",
-        "desc": "Subsequent syllables preserve the name's inherited shape."
+        "symbol": "ó",
+        "desc": "Long open-mid back [ɔː] with acute marking stress and length"
+      },
+      {
+        "symbol": "rr",
+        "desc": "Long or geminated alveolar trill [rː], written double in Old Norse to show length"
       }
     ],
-    "approximation": "'thor' — the conventional spoken form.",
+    "approximation": "'THORR' — begin with the breathy 'th' of 'thin', hold the 'o' long like 'awe', and trill the final r slightly longer than usual.",
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Þórr is Tier 2 because its Unicode restoration preserves the orthographic signature appropriate to the norse tradition."
+    "note": "Þórr is Tier 1: the acute on ó marks stress and length on the first syllable, and the thorn Þ is a distinctive letter — features the ASCII form loses — while the geminate rr preserves the Old Norse long consonant. The English name Thor has lost both the thorn sound and the long rolled r."
   },
   "odinn": {
-    "ipa": "/oðinn/",
-    "ipaLabel": "Scholarly Reconstruction",
+    "ipa": "/ˈɔːðinː/",
+    "ipaLabel": "Old Norse Reconstruction",
     "phonemes": [
       {
-        "symbol": "Ó",
-        "desc": "Initial sound of Óðinn, as attested in the norse tradition."
+        "symbol": "Ó-",
+        "desc": "Long open-mid back [ɔː] with acute marking stress and length; the name derives from *Wōđanaz, 'the furious'"
       },
       {
-        "symbol": "...",
-        "desc": "Subsequent syllables preserve the name's inherited shape."
+        "symbol": "-ð-",
+        "desc": "Voiced dental fricative [ð], the eth; it replaced Proto-Germanic *đ and gives the name its Norse colour"
+      },
+      {
+        "symbol": "-in-",
+        "desc": "Short close front [i] and alveolar nasal [n]; the participial/derivative suffix"
+      },
+      {
+        "symbol": "-n",
+        "desc": "Final alveolar nasal [n], geminated in Old Norse orthography as nn"
       }
     ],
-    "approximation": "'odinn' — the conventional spoken form.",
+    "approximation": "'OH-thin' — hold the first vowel long like 'awe', then a soft 'th' as in 'this', and a crisp 'nin'.",
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Óðinn is Tier 2 because its Unicode restoration preserves the orthographic signature appropriate to the norse tradition."
+    "note": "Óðinn is Tier 1: the acute on Ó marks stress and length on the first syllable, and together with the distinctive letter ð these are features the ASCII form loses. The name descends from *Wōđanaz; the initial w- was lost in West Norse, giving Óðinn rather than *Wóðinn."
   },
   "baldr": {
     "ipa": "/baldr/",
@@ -1435,7 +1417,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Njǫrðr is Tier 2 because the Unicode restoration preserves the distinctive Norse vowel ǫ and the voiced dental fricative ð, but no length mark or written stress accent. Old Norse stress is initial and strong, yet it is not encoded by an acute; the registrable form Njǫrðr therefore records a single prosodic-orthographic feature. Reconstruction follows Cleasby & Vigfusson, An Icelandic-English Dictionary (1874); Zoëga, A Concise Dictionary of Old Icelandic (1910); and Ranke & Hofmann, Altnordisches Elementarbuch, 5th ed. (de Gruyter, 1988)."
+    "note": "Njǫrðr is Tier 1 because the Unicode restoration preserves the distinctive Norse vowel ǫ and the voiced dental fricative ð — distinctive letters the ASCII form loses. Old Norse stress is initial and strong, yet it is not encoded by an acute; the registrable form Njǫrðr records the name's characteristic Norse orthography. Reconstruction follows Cleasby & Vigfusson, An Icelandic-English Dictionary (1874); Zoëga, A Concise Dictionary of Old Icelandic (1910); and Ranke & Hofmann, Altnordisches Elementarbuch, 5th ed. (de Gruyter, 1988)."
   },
   "skadi": {
     "ipa": "/skai/",
@@ -1518,23 +1500,27 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Fenrir; review recommended before promotion to canonical."
   },
   "ra": {
-    "ipa": "/rꜥ/",
-    "ipaLabel": "Scholarly Reconstruction",
+    "ipa": "/raʕ/",
+    "ipaLabel": "Egyptological Reconstruction",
     "phonemes": [
       {
-        "symbol": "R",
-        "desc": "Initial sound of Rꜥ, as attested in the egyptian tradition."
+        "symbol": "r",
+        "desc": "Alveolar trill or tap [r], the first consonant of the solar god's name"
       },
       {
-        "symbol": "...",
-        "desc": "Subsequent syllables preserve the name's inherited shape."
+        "symbol": "ꜥ",
+        "desc": "Voiced pharyngeal fricative [ʕ], the ayin that closes the Egyptian root rꜥ"
+      },
+      {
+        "symbol": "a",
+        "desc": "Short open vowel [a], supplied by convention; Egyptian writing gave only rꜥ"
       }
     ],
-    "approximation": "'ra' — the conventional spoken form.",
+    "approximation": "'rah-ʿA' — a rolled or tapped 'r', then a deep throaty 'ah' like the Arabic ع.",
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Rꜥ is Tier 2 because its Unicode restoration preserves the orthographic signature appropriate to the egyptian tradition."
+    "note": "Rꜥ is a Tier-1 restoration. Egyptologists vocalise the name as Ra or Rꜥa, but the hieroglyphs record only rꜥ. The ayin (ꜥ) is the defining non-English sound — a distinctive letter the ASCII form loses; the acute variant Rá is a modern stress marker, not an ancient vowel sign."
   },
   "osiris": {
     "ipa": "/wsjr/",
@@ -1547,14 +1533,14 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Wsjr; review recommended before promotion to canonical."
   },
   "anubis": {
-    "ipa": "/jnpw/",
-    "ipaLabel": "Egyptological reconstruction",
+    "ipa": "/jaːˈnaː.paw/",
+    "ipaLabel": "Egyptological (from ꜣnpw)",
     "phonemes": [],
-    "approximation": null,
+    "approximation": "The name is a consonant skeleton: ꜣ-n-p-w; the Greeks vocalized it as Anubis.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Jnpw; review recommended before promotion to canonical."
+    "note": "Egyptian ꜣnpw is conventionally vocalized \"Anupu\" or \"Anup\"; the Greek rendering Anoubis gives English \"Anubis.\" The initial ꜣ (aleph, Gardiner G1) is a glottal consonant Egyptology once ignored and now transcribes — the restoration ꜣnpw keeps the ancient consonantal skeleton exactly as the hieroglyphs write it."
   },
   "horus": {
     "ipa": "/ˈħaːru/",
@@ -1581,7 +1567,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Horus is Tier 2 because the Egyptian Ḥr preserves length in the first syllable but no stress accent in the Greek sense. The name is onomatopoeically apt: the throaty ḥ and the final u suggest a cry from far above. The Greek borrowing Hōros adds an omega, but the original Egyptian root is simply ḥr."
+    "note": "Horus is Tier 1 because the Egyptian Ḥr preserves the underdotted ḥ — a distinctive letter the ASCII form loses. The name is onomatopoeically apt: the throaty ḥ and the final u suggest a cry from far above. The Greek borrowing Hōros adds an omega, but the original Egyptian root is simply ḥr."
   },
   "isis": {
     "ipa": "/ˈʔaːsət/",
@@ -1608,37 +1594,84 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "This entry is the Egyptian goddess ꜣst (Aset/Iset), not the later Greek name Isis. Hieroglyphs record only ꜣ-s-t; the vowel evolution is reconstructed as Rūsat > Rūsaʾ > ʾŪsaʾ > ʾĒsə, whence Coptic ⲎⲤⲈ and Greek Ἶσις. The ꜣ is a glottal stop, and the final -t is a feminine marker often silent in speech. PUNICODEX uses the registrable alef ꜣ (U+A723) to signal the historic consonant; this is a Tier 2 restoration. Sources: Allen, Middle Egyptian (2014); Faulkner, A Concise Dictionary of Middle Egyptian, s.v. ꜣst; Wörterbuch der ägyptischen Sprache I, s.v. ꜣst; Hoch, Semitic Words in Egyptian Texts (1994), on the representation of Egyptian alef in Semitic transcriptions."
+    "note": "This entry is the Egyptian goddess ꜣst (Aset/Iset), not the later Greek name Isis. Hieroglyphs record only ꜣ-s-t; the vowel evolution is reconstructed as Rūsat > Rūsaʾ > ʾŪsaʾ > ʾĒsə, whence Coptic ⲎⲤⲈ and Greek Ἶσις. The ꜣ is a glottal stop, and the final -t is a feminine marker often silent in speech. PUNICODEX uses the registrable alef ꜣ (U+A723) to signal the historic consonant; this is a Tier 1 restoration, the alef being a distinctive letter the ASCII form loses. Sources: Allen, Middle Egyptian (2014); Faulkner, A Concise Dictionary of Middle Egyptian, s.v. ꜣst; Wörterbuch der ägyptischen Sprache I, s.v. ꜣst; Hoch, Semitic Words in Egyptian Texts (1994), on the representation of Egyptian alef in Semitic transcriptions."
   },
   "thoth": {
-    "ipa": "/dhwty/",
-    "ipaLabel": "Egyptological reconstruction",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/tɨˈχuːtiː/",
+    "ipaLabel": "Egyptological Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Ḏ",
+        "desc": "Palatalized voiced alveolar stop [ɟ] or affricate, written with d-dot-below; the first consonant of Ḏḥwty"
+      },
+      {
+        "symbol": "ḥ",
+        "desc": "Voiceless pharyngeal fricative [ħ], the dotted h that follows the palatal d"
+      },
+      {
+        "symbol": "w",
+        "desc": "Bilabial glide [w], represented in writing by the quail-chick sign"
+      },
+      {
+        "symbol": "ty",
+        "desc": "Final consonants t-y, with the y indicating a palatalization or the Greek ending -is"
+      }
+    ],
+    "approximation": "tji-HOO-tee — the first consonant is like a 'dj' made against the hard palate, and the middle h is a dry throat-fricative.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Ḏḥwty; review recommended before promotion to canonical."
+    "note": "Ḏḥwty is Tier-1: the underdotted ḏ and ḥ are distinctive letters the ASCII form loses. Egyptian writing records only the consonants ḏ-ḥ-w-ty; the vowels are reconstructed from Coptic and Greek sources. The initial palatal ḏ and the pharyngeal ḥ are both non-English sounds preserved in the Unicode form."
   },
   "amun": {
-    "ipa": "/mun/",
-    "ipaLabel": "Egyptological reconstruction",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/ʔaˈmuːn/",
+    "ipaLabel": "Egyptological Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Ꜣ",
+        "desc": "Egyptological alef or reed-leaf, representing a glottal stop [ʔ] or a weak consonantal onset; the initial sound of the name jmn"
+      },
+      {
+        "symbol": "m",
+        "desc": "Bilabial nasal [m]"
+      },
+      {
+        "symbol": "u",
+        "desc": "Close back rounded vowel [u], supplied from Coptic Ⲁⲙⲟⲩⲛ and Greek Ἄμμων"
+      },
+      {
+        "symbol": "n",
+        "desc": "Alveolar nasal [n], closing the root"
+      }
+    ],
+    "approximation": "ah-MOON — begin with a soft glottal catch, then a long 'moon' without the final glide.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Ꜣmun; review recommended before promotion to canonical."
+    "note": "Ꜣmun is Tier-1: the initial Egyptological alef (Ꜣ) is a distinctive letter the ASCII form loses. The alef marks the consonant that Coptic and Greek sources vocalize as 'A'. Egyptian hieroglyphs record only j-m-n; the vowels are reconstructed from later witnesses."
   },
   "ptah": {
-    "ipa": "/ptʰ/",
-    "ipaLabel": "Egyptological reconstruction",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/pəˈtaːħ/",
+    "ipaLabel": "Egyptological Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "p",
+        "desc": "Voiceless bilabial plosive [p], unaspirated as in Egyptian"
+      },
+      {
+        "symbol": "t",
+        "desc": "Voiceless alveolar plosive [t], unaspirated"
+      },
+      {
+        "symbol": "ḥ",
+        "desc": "Voiceless pharyngeal fricative [ħ], the dotted h that gives the name its throaty close"
+      }
+    ],
+    "approximation": "puh-TAHKH — the final consonant is a dry, breathy 'kh' made in the back of the throat, not the soft 'h' of English.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Ptḥ; review recommended before promotion to canonical."
+    "note": "Ptḥ is Tier-1: the pharyngeal ḥ preserved in the Unicode form is a distinctive letter the ASCII form loses. The vowels are supplied by convention from Coptic and Greek transcriptions; Egyptian writing records only p-t-ḥ."
   },
   "sekhmet": {
     "ipa": "/saxˈmaːt/",
@@ -1673,7 +1706,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "The name is the feminine form of the root sḫm, 'to be powerful'. Hieroglyphs record S-ḫ-m-t; the vowels are reconstructed from Coptic Ⲥⲁⲭⲙⲓ and from Egyptian feminine-participle patterns. The ḫ is a voiceless velar fricative, not English 'k'. In PUNICODEX the Sḫmt spelling preserves the historic ḫ (U+1E2B) as a Tier 2 restoration; the ASCII fallback is 'sekhm(t)'. Sources: Allen, Middle Egyptian (2014); Faulkner, A Concise Dictionary of Middle Egyptian, s.v. sḫm; Wörterbuch der ägyptischen Sprache IV, s.v. sḫm; Hoch, Semitic Words in Egyptian Texts (1994), on Egyptian ḫ in Semitic orthography."
+    "note": "The name is the feminine form of the root sḫm, 'to be powerful'. Hieroglyphs record S-ḫ-m-t; the vowels are reconstructed from Coptic Ⲥⲁⲭⲙⲓ and from Egyptian feminine-participle patterns. The ḫ is a voiceless velar fricative, not English 'k'. In PUNICODEX the Sḫmt spelling preserves the historic ḫ (U+1E2B) as a Tier 1 restoration — a distinctive letter the ASCII form loses; the ASCII fallback is 'sekhm(t)'. Sources: Allen, Middle Egyptian (2014); Faulkner, A Concise Dictionary of Middle Egyptian, s.v. sḫm; Wörterbuch der ägyptischen Sprache IV, s.v. sḫm; Hoch, Semitic Words in Egyptian Texts (1994), on Egyptian ḫ in Semitic orthography."
   },
   "bastet": {
     "ipa": "/buˈʔistit/",
@@ -1708,7 +1741,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Allen (The Ancient Egyptian Language: A Historical Study, 2013, p. 74) reconstructs the earliest form as buʔístit or buʔístiat; by the first millennium the name had become *Ubaste and then Coptic ⲟⲩⲃⲁⲥⲧⲉ (Oubaste) /ʔuˈβastə/. The meaning of the name remains uncertain; the lexicon glosses it 'She of the ointment jar'. The final -t is a feminine marker often silent in speech, and the ꜣ represents a glottal stop. PUNICODEX uses the registrable alef ꜣ (U+A723); the double -tt- is orthographic. This is a Tier 2 restoration. Sources: Allen 2013, p. 74; Faulkner, A Concise Dictionary of Middle Egyptian, s.v. bꜣstt; Wörterbuch der ägyptischen Sprache III, s.v. bꜣstt; Hoch, Semitic Words in Egyptian Texts (1994), for the phonological background of Egyptian alef and feminine -t."
+    "note": "Allen (The Ancient Egyptian Language: A Historical Study, 2013, p. 74) reconstructs the earliest form as buʔístit or buʔístiat; by the first millennium the name had become *Ubaste and then Coptic ⲟⲩⲃⲁⲥⲧⲉ (Oubaste) /ʔuˈβastə/. The meaning of the name remains uncertain; the lexicon glosses it 'She of the ointment jar'. The final -t is a feminine marker often silent in speech, and the ꜣ represents a glottal stop. PUNICODEX uses the registrable alef ꜣ (U+A723); the double -tt- is orthographic. This is a Tier 1 restoration — the alef is a distinctive letter the ASCII form loses. Sources: Allen 2013, p. 74; Faulkner, A Concise Dictionary of Middle Egyptian, s.v. bꜣstt; Wörterbuch der ägyptischen Sprache III, s.v. bꜣstt; Hoch, Semitic Words in Egyptian Texts (1994), for the phonological background of Egyptian alef and feminine -t."
   },
   "hathor": {
     "ipa": "/hwthr/",
@@ -1741,23 +1774,31 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Gb; review recommended before promotion to canonical."
   },
   "maat": {
-    "ipa": "/mꜣꜥt/",
-    "ipaLabel": "Scholarly Reconstruction",
+    "ipa": "/maʔ.ʕaːt/",
+    "ipaLabel": "Egyptological Reconstruction",
     "phonemes": [
       {
-        "symbol": "M",
-        "desc": "Initial sound of Mꜣꜥt, as attested in the egyptian tradition."
+        "symbol": "m",
+        "desc": "Bilabial nasal [m], the first consonant of the word mꜣꜥt"
       },
       {
-        "symbol": "...",
-        "desc": "Subsequent syllables preserve the name's inherited shape."
+        "symbol": "ꜣ",
+        "desc": "Glottal stop [ʔ], Egyptological alef; some scholars vocalise this as a light 'a' glide"
+      },
+      {
+        "symbol": "ꜥ",
+        "desc": "Voiced pharyngeal fricative [ʕ], the ayin that gives the root its throaty core"
+      },
+      {
+        "symbol": "-t",
+        "desc": "Voiceless alveolar stop [t], the feminine ending that turns the verbal root into the abstract noun 'truth'"
       }
     ],
-    "approximation": "'maat' — the conventional spoken form.",
+    "approximation": "'mah-ʿAHT' — a soft 'm', a deep throaty 'ah' in the middle, and a crisp final 't'.",
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Mꜣꜥt is Tier 2 because its Unicode restoration preserves the orthographic signature appropriate to the egyptian tradition."
+    "note": "Mꜣꜥt is a Tier-1 restoration of a consonantal Egyptian word. The Egyptological alef (ꜣ) and ayin (ꜥ) are both preserved, marking two different throat sounds that English lacks — distinctive letters the ASCII form loses. The final -t is the feminine abstract ending; the word literally means 'straightness' or 'rightness'."
   },
   "khonsu": {
     "ipa": "/hnsw/",
@@ -1779,54 +1820,62 @@ const PRONUNCIATION_ATLAS = {
     "audioPath": null,
     "note": "Broad IPA generated from the Unicode restoration Sbk; review recommended before promotion to canonical."
   },
-  "steh": {
-    "ipa": "/stʰ/",
-    "ipaLabel": "Egyptological reconstruction",
-    "phonemes": [],
-    "approximation": null,
-    "dialect": null,
-    "confidence": "generated",
-    "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Stḫ; review recommended before promotion to canonical."
-  },
   "rama": {
-    "ipa": "/rˈaːma/",
-    "ipaLabel": "Reconstructed Sanskrit",
-    "phonemes": [],
-    "approximation": null,
-    "dialect": null,
-    "confidence": "generated",
-    "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Rāma; review recommended before promotion to canonical."
-  },
-  "durga": {
-    "ipa": "/durgˈaː/",
-    "ipaLabel": "Reconstructed Sanskrit",
-    "phonemes": [],
-    "approximation": null,
-    "dialect": null,
-    "confidence": "generated",
-    "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Durgā; review recommended before promotion to canonical."
-  },
-  "shiva": {
-    "ipa": "/siva/",
-    "ipaLabel": "Scholarly Reconstruction",
+    "ipa": "/ˈraː.mə/",
+    "ipaLabel": "Sanskrit Reconstruction",
     "phonemes": [
       {
-        "symbol": "Ś",
-        "desc": "Initial sound of Śiva, as attested in the sanskrit tradition."
+        "symbol": "Rā-",
+        "desc": "Voiced alveolar tap or trill [r] plus long open [aː]; the macron marks length, giving Tier-1 status"
       },
       {
-        "symbol": "...",
-        "desc": "Subsequent syllables preserve the name's inherited shape."
+        "symbol": "-ma",
+        "desc": "Voiced bilabial nasal [m] plus short open [a]; the second syllable is light and unstressed"
       }
     ],
-    "approximation": "'shiva' — the conventional spoken form.",
+    "approximation": "'RAH-muh' — roll or tap the 'r', hold the first syllable long, and let the second syllable relax.",
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Śiva is Tier 2 because its Unicode restoration preserves the orthographic signature appropriate to the sanskrit tradition."
+    "note": "Rāma is Tier 1 because the initial ā is long. The name is shared by several figures in Sanskrit literature, most famously the hero of the Rāmāyaṇa, but the Vedic Rāmas and Paraśurāma are distinct characters."
+  },
+  "durga": {
+    "ipa": "/ˈd̪ʊr.ɡaː/",
+    "ipaLabel": "Sanskrit Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Dur-",
+        "desc": "Voiced dental stop [d̪] plus short close back rounded [ʊ], followed by voiced velar stop [ɡ]; the prefix dur- means 'difficult, hard to approach'"
+      },
+      {
+        "symbol": "-gā",
+        "desc": "Voiced velar stop [ɡ] plus long open [aː]; the macron marks length, giving Tier-1 status"
+      }
+    ],
+    "approximation": "'DOOR-gah' — the first vowel is short and rounded like 'u' in 'put'; hold the final 'gah' long.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Durgā is Tier 1 because the final ā is long. The name means 'she who is difficult to approach' or 'fortress,' a fitting title for the goddess who destroys demons and protects her devotees."
+  },
+  "shiva": {
+    "ipa": "/ˈɕi.ʋə/",
+    "ipaLabel": "Sanskrit Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Śi-",
+        "desc": "Voiceless palatal fricative [ɕ], like an extra-hissing 'sh', plus short close front [i]; Śiva means 'the auspicious one'"
+      },
+      {
+        "symbol": "-va",
+        "desc": "Voiced labiodental approximant [ʋ] — softer than English 'v' — plus short open [a]"
+      }
+    ],
+    "approximation": "'SHEE-vuh' — the first consonant is a sharp, high 'sh' made with the tongue near the hard palate, and the 'v' is light, almost like a 'w'.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Śiva is Tier 1: the acute on Ś marks the palatal sibilant [ɕ], a sound distinct from both English 'sh' and Sanskrit retrophalatal ṣ — a distinctive diacritic the ASCII form loses. Sanskrit stress is pitch-accent based and not marked here; the acute is used to flag the palatal character of the initial sibilant."
   },
   "vishnu": {
     "ipa": "/ʋɪʂ.ɳʊ/",
@@ -1858,7 +1907,7 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Kṛṣṇa; review recommended before promotion to canonical."
   },
   "ganesha": {
-    "ipa": "/ɡɐ.ɳeː.ʂɐ/",
+    "ipa": "/ɡɐ.ɳeː.ɕɐ/",
     "ipaLabel": "Sanskrit/Vedic Reconstruction",
     "phonemes": [
       {
@@ -1871,7 +1920,7 @@ const PRONUNCIATION_ATLAS = {
       },
       {
         "symbol": "-śa",
-        "desc": "Palatal sibilant [ʂ] (or [ɕ] in some traditions) plus short [ɐ] — the śakti of sound and auspiciousness."
+        "desc": "Palatal sibilant [ɕ] (not retroflex [ʂ]) plus short [ɐ] — the śakti of sound and auspiciousness."
       }
     ],
     "approximation": "'guh-NAH-shuh' — say the second syllable with a bright, held 'ay' sound and a soft, tongue-tip n.",
@@ -1881,24 +1930,33 @@ const PRONUNCIATION_ATLAS = {
     "note": "The IAST form Gaṇeśa marks the retroflex ṇ and the palatal ś. The acute-looking mark above the e is a macron in scholarly usage, indicating the long vowel ē that Sanskrit inherits from the diphthong ai. Devanagari गणेश is the everyday script of worship."
   },
   "lakshmi": {
-    "ipa": "/laksmˈiː/",
-    "ipaLabel": "Reconstructed Sanskrit",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/lək.ʂmiː/",
+    "ipaLabel": "Sanskrit Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Lak-",
+        "desc": "Light lateral [l], short [ə] (the reduced Sanskrit 'a'), and retroflex fricative [ʂ] — a 'sh' sound made with the tongue curled back"
+      },
+      {
+        "symbol": "-ṣmī",
+        "desc": "Voiced bilabial nasal [m] followed by long close front [iː]; the macron marks length, giving the name its Tier-1 status"
+      }
+    ],
+    "approximation": "'LUKH-shmee' — the middle consonant is a curled-tongue 'sh', and the final vowel is held long like 'ee' in 'see'.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Lakṣmī; review recommended before promotion to canonical."
+    "note": "Lakṣmī is Tier 1 because the final ī is long. The retroflex ṣ in the middle of the name is a distinct Sanskrit sound; English 'Lakshmi' with plain 'sh' loses this phonetic information."
   },
   "saraswati": {
     "ipa": "/sarasvatˈiː/",
     "ipaLabel": "Reconstructed Sanskrit",
     "phonemes": [],
-    "approximation": null,
+    "approximation": "sah-RAH-swah-tee — the final ī long, the v soft as in verse.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Sarasvatī; review recommended before promotion to canonical."
+    "note": "Sanskrit sarasvatī carries exactly one long vowel, the final ī; the restoration Sarasvatī keeps its single macron. The v of IAST is the labiodental व, which Hindi pronunciation softens toward w — hence the double life of the name as \"Saraswati\" in speech and \"Sarasvatī\" in scholarship. The IAST form is the owned one: the standard of the libraries she governs."
   },
   "brahma": {
     "ipa": "/brahmˈaː/",
@@ -1911,14 +1969,23 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Brahmā; review recommended before promotion to canonical."
   },
   "surya": {
-    "ipa": "/sˈuːrya/",
-    "ipaLabel": "Reconstructed Sanskrit",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/ˈsuːr.jə/",
+    "ipaLabel": "Sanskrit Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Sū-",
+        "desc": "Voiceless alveolar sibilant [s] plus long close back rounded [uː]; the macron marks length, giving Tier-1 status"
+      },
+      {
+        "symbol": "-rya",
+        "desc": "Alveolar tap or trill [r] followed by palatal approximant [j] and short [a]; the -ya forms a light final syllable"
+      }
+    ],
+    "approximation": "'SOO-ryuh' — hold the first syllable long and bright, as in 'sue' stretched out; the final 'yuh' is quick.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Sūrya; review recommended before promotion to canonical."
+    "note": "Sūrya is Tier 1 because the initial ū is long. In Vedic usage, Sūrya is the visible disk of the sun, while Savitṛ is the sun as the power that impels sacrifice and life."
   },
   "indra": {
     "ipa": "/indra/",
@@ -1961,14 +2028,14 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Kubera; review recommended before promotion to canonical."
   },
   "hanuman": {
-    "ipa": "/hanumat/",
+    "ipa": "/ɦɐ.nʊ.maːn/",
     "ipaLabel": "Reconstructed Sanskrit",
     "phonemes": [],
-    "approximation": null,
+    "approximation": "huh-noo-MAHN — the final syllable long.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Hanumat; review recommended before promotion to canonical."
+    "note": "Sanskrit hanumān carries the long final ā of the name meaning \"the big-jawed one\" (hanu, jaw). The restoration Hanumān keeps the macron; the older stem-form Hanumat is his grammatical nominative in the classical texts, but Hanumān is the name the world prays in."
   },
   "lugh": {
     "ipa": "/lˈug/",
@@ -1991,14 +2058,31 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Morrígan; review recommended before promotion to canonical."
   },
   "manannan": {
-    "ipa": "/manannˈan/",
-    "ipaLabel": "Reconstructed from Unicode restoration",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/maˈnanˠən/",
+    "ipaLabel": "Old Irish Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "M-",
+        "desc": "Voiced bilabial nasal [m], as in English 'man'."
+      },
+      {
+        "symbol": "-a-",
+        "desc": "Short open front [a], the first unstressed syllable."
+      },
+      {
+        "symbol": "-nan-",
+        "desc": "Alveolar nasal [n], short open front [a], and another [n]; the second syllable carries stress."
+      },
+      {
+        "symbol": "-án",
+        "desc": "Long open front [aː] marked by acute, ending in alveolar nasal [n]."
+      }
+    ],
+    "approximation": "'muh-NAH-nawn' — stress the middle syllable, keep the first 'a' short, and lengthen the stressed 'ah' before the final 'n'. The double n hints at a slender or velarized quality in medieval Irish.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Manannán; review recommended before promotion to canonical."
+    "note": "Manannán is Tier 1: the acute on á is a distinctive feature the ASCII form loses. The double n reflects the Old Irish spelling; the name is traditionally explained as 'son of the sea' (mac Lir)."
   },
   "cernunnos": {
     "ipa": "/kernunnos/",
@@ -2031,7 +2115,7 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Dagda; review recommended before promotion to canonical."
   },
   "ishtar": {
-    "ipa": "/ˈiʃ.taːr/",
+    "ipa": "/ˈiʃ.tar/",
     "ipaLabel": "Akkadian Reconstruction",
     "phonemes": [
       {
@@ -2047,7 +2131,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Ištar is Tier 2 because the Akkadian conventional transcription preserves no Greek-style stress and no reliably contrastive long vowel in the standard scholarly form. The macron form Ištār is sometimes used to mark an optional or dialectal length, but the primary cuneiform evidence supports /ˈiʃtar/; the Unicode form Ištar is therefore the transparent, historically defensible spelling, with the caron š marking the Akkadian sibilant."
+    "note": "Ištar is Tier 1 because the caron on š marks the Akkadian sibilant — a distinctive feature the ASCII form loses. The macron form Ištār is sometimes used to mark an optional or dialectal length, but the primary cuneiform evidence supports /ˈiʃtar/; the Unicode form Ištar is therefore the transparent, historically defensible spelling, with the caron š marking the Akkadian sibilant."
   },
   "ashur": {
     "ipa": "/aʃˈʃuːr/",
@@ -2085,7 +2169,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Akkadian Šamaš continues the common Semitic root *šamš- 'sun.' The cuneiform writing 𒀭𒌓 joins the divine determinative (dingir) to the sun-sign, and syllabic spellings give ša-am-šu-um. The PUNICODEX form preserves the Akkadian sibilant š and the two short a-vowels. Tier 2: the caron on š marks a distinctive Akkadian phoneme, but the name has no Greek-style stress or reliably contrastive long vowel in the standard scholarly form. Sources: Chicago Assyrian Dictionary (CAD), George House Most High, Black & Green Gods, Demons and Symbols of Ancient Mesopotamia."
+    "note": "Akkadian Šamaš continues the common Semitic root *šamš- 'sun.' The cuneiform writing 𒀭𒌓 joins the divine determinative (dingir) to the sun-sign, and syllabic spellings give ša-am-šu-um. The PUNICODEX form preserves the Akkadian sibilant š and the two short a-vowels. Tier 1: the caron on š marks a distinctive Akkadian phoneme — a distinctive diacritic the ASCII form loses. Sources: Chicago Assyrian Dictionary (CAD), George House Most High, Black & Green Gods, Demons and Symbols of Ancient Mesopotamia."
   },
   "marduk": {
     "ipa": "/marduk/",
@@ -2114,36 +2198,45 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Enlīl is Tier 2 in the PUNICODEX system because the Sumerian conventional transcription records length (the long /iː/ in líl) but not a Greek-style stress accent. The macron on the second i preserves the scholarly reading of the name as containing a long vowel, a single distinctive prosodic feature that distinguishes the cosmic wind from the ordinary word for 'wind.'"
+    "note": "Enlīl is Tier 1: the macron on the second i is a diacritic the ASCII form loses. It is a pedagogical mark: a visible question that invites discussion about how the name was pronounced in Sumerian and Akkadian. Standard Assyriology writes Enlil; the Unicode form Enlīl belongs to PuniCodex's phonological reconstruction hub."
   },
   "ea": {
-    "ipa": "/ˈen.ki/",
-    "ipaLabel": "Sumerian Reconstruction",
+    "ipa": "/ˈeː.a/",
+    "ipaLabel": "Akkadian Reconstruction (discussable)",
     "phonemes": [
       {
-        "symbol": "En-",
-        "desc": "Short open [e] followed by nasal [n] — the Sumerian word for 'lord,' the title borne by every great deity."
+        "symbol": "Ē-",
+        "desc": "Long or tense [eː] — the macron marks a reconstructed vowel length that Assyriologists debate; the sign 𒂍 does not itself encode length."
       },
       {
-        "symbol": "-ki",
-        "desc": "Voiceless velar [k] and close front [i] — the Sumerian word for 'earth' or 'land,' here evoking the firm ground above the waters."
+        "symbol": "-a",
+        "desc": "Open central [a] — the second element of the divine name, written with the sign 𒀀."
       }
     ],
-    "approximation": "'EN-kee' — two short, level syllables, with the crisp stop of the k between them.",
+    "approximation": "'EH-ah' — two level syllables, with the first vowel held slightly longer to signal the open question of length.",
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Enki is Tier 2 because the Sumerian name preserves neither stress in the Greek sense nor a contrastive long vowel in its conventional romanisation. The scholarly rendering with macron, Enkī, is sometimes used to mark an alleged length, but the cuneiform evidence points to a bisyllabic /ˈen.ki/; the Unicode form Enki is therefore the transparent, historically defensible primary spelling."
+    "note": "Ēa is Tier 1: the macron is a diacritic the ASCII form loses. It is a pedagogical mark: a visible question that invites discussion about how the name was pronounced in Akkadian. The standard Assyriological spelling is Ea; the Unicode form Ēa belongs to PuniCodex's phonological reconstruction hub."
   },
   "tane": {
-    "ipa": "/tˈaːne/",
-    "ipaLabel": "Reconstructed from Unicode restoration",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/ˈtaː.ne/",
+    "ipaLabel": "Māori/Proto-Polynesian Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Tā-",
+        "desc": "Voiceless alveolar plosive [t] plus long open front [aː]; Māori t is unaspirated, and the macron marks vowel length."
+      },
+      {
+        "symbol": "-ne",
+        "desc": "Alveolar nasal [n] plus close-mid front [e], a short final syllable."
+      }
+    ],
+    "approximation": "'TAH-neh' — hold the first vowel long, keep the t soft and unaspirated, and pronounce the final e as a clear 'eh.'",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Tāne; review recommended before promotion to canonical."
+    "note": "Tāne is one of the simplest and oldest theonyms in the corpus: a Proto-Polynesian common noun for 'man' or 'male' elevated to divine status. The macron on ā marks the long vowel that distinguishes the name in Māori. Tier 1: the single long vowel is the distinctive prosodic feature preserved in the Unicode restoration."
   },
   "tu": {
     "ipa": "/tˈuː/",
@@ -2267,24 +2360,33 @@ const PRONUNCIATION_ATLAS = {
     "note": "Kōbe is Tier 1 because the Hepburn restoration preserves the long vowel ō of the first mora. Japanese pitch accent is not marked here; the macron is the single distinctive prosodic feature preserved in the registrable form."
   },
   "nikko": {
-    "ipa": "/nikkˈoː/",
-    "ipaLabel": "Modern Japanese reading",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/ɲi.kːoː/",
+    "ipaLabel": "Modern Standard Japanese (Hepburn)",
+    "phonemes": [
+      {
+        "symbol": "Ni-",
+        "desc": "Voiced palatal nasal [ɲ] plus short close front [i]; the 'n' before 'k' is pronounced with the tongue near the hard palate"
+      },
+      {
+        "symbol": "-kkō",
+        "desc": "Long close back rounded [oː], preceded by a geminate (double) [kː]; the macron marks length, giving Tier-1 status"
+      }
+    ],
+    "approximation": "'NEE-koh' — the first syllable is quick with a soft 'ny' color; hold the final 'koh' long, as if pronouncing two k's in a row.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Nikkō; review recommended before promotion to canonical."
+    "note": "Nikkō is Tier 1 because the final ō is long. In Japanese, the double k (kk) is a geminate consonant that creates a brief pause before the long vowel. The name refers both to the town in Tochigi Prefecture and to the sacred mountain complex that made it famous."
   },
   "hokkaido": {
-    "ipa": "/hokkaidˈoː/",
-    "ipaLabel": "Modern Japanese reading",
+    "ipa": "/hok.kai.doː/",
+    "ipaLabel": "Japanese (Hepburn)",
     "phonemes": [],
-    "approximation": null,
+    "approximation": "hok-KAI-doh, with the long final ō.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Hokkaidō; review recommended before promotion to canonical."
+    "note": "Hokkaidō 北海道 — \"North Sea Road\" — carries a long final ō, the doubled vowel the macron preserves. The name dates only from 1869, when the explorer Matsuura Takeshirō proposed it for the island the Ainu long called Ainu Mosir, \"the quiet land of humans.\" The long ō of dō is a doubled vowel in kana (どう); the macron is the romanization of that extra beat."
   },
   "shikoku": {
     "ipa": "/shikoku/",
@@ -2404,34 +2506,64 @@ const PRONUNCIATION_ATLAS = {
     "note": "Classical Nahuatl had no /u/; qu before e/i is /k/ and cu is /kw/. The long vowels ō and ā are preserved in the PUNICODEX restoration, and the final -tl is a lateral affricate [t͡ɬ], not English 'tuhl.' The [w] glide between ō and ā is common in natural speech but optional. Tier 1: the two macrons preserve reconstructed vowel length. Sources: Andrews Introduction to Classical Nahuatl, Karttunen An Analytical Dictionary of Nahuatl, Wiktionary Nahuatl."
   },
   "tezcatlipoca": {
-    "ipa": "/tezkatlipˈoːka/",
-    "ipaLabel": "Reconstructed from Unicode restoration",
+    "ipa": "/teːs.kat.liː.ˈpoː.ka/",
+    "ipaLabel": "Classical Nahuatl",
     "phonemes": [],
-    "approximation": null,
+    "approximation": "tehs-kaht-lee-POH-kah — hold the first e and the lee long, with long ō on the stressed penult.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Tezcatlipōca; review recommended before promotion to canonical."
+    "note": "Tēzcatlīpōca is Nahuatl for \"Smoking Mirror\": tēzcatl (mirror) + -tlī- + pōca (smoking). The ē and ī are long per Karttunen and Andrews, and the final ō of pōca is long — the macrons the restoration preserves — and the name belongs to the god of night, sorcery, rulership, and strife, whose obsidian mirror shows men themselves."
   },
   "tlaloc": {
-    "ipa": "/tlˈaːlok/",
-    "ipaLabel": "Reconstructed from Unicode restoration",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/ˈtɬaː.lok/",
+    "ipaLabel": "Classical Nahuatl Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "tl-",
+        "desc": "Voiceless lateral affricate [tɬ], a single Nahuatl sound: 'tl' released with the tongue at the side teeth."
+      },
+      {
+        "symbol": "-ā-",
+        "desc": "Long [aː], macron marking reconstructed vowel length."
+      },
+      {
+        "symbol": "-loc",
+        "desc": "[lok], final syllable; the name has been glossed as 'he who is made of earth' or 'he who is the embodiment of the earth'."
+      }
+    ],
+    "approximation": "'TLAH-lok' — start with the Nahuatl lateral affricate 'tl', hold the first 'a' long, and end with a firm 'ok'.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Tlāloc; review recommended before promotion to canonical."
+    "note": "Tlāloc is Tier 1: the macron on ā preserves reconstructed Classical Nahuatl vowel length, and the initial tl- is a single distinctive phoneme impossible in English."
   },
   "coatlicue": {
-    "ipa": "/kˈoːaːtliːkue/",
-    "ipaLabel": "Reconstructed from Unicode restoration",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/koː.aːˈtɬiː.kwe/",
+    "ipaLabel": "Classical Nahuatl Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Cō-",
+        "desc": "Voiceless velar stop [k] followed by long open-mid [oː]. In Classical Nahuatl, c before back vowels is /k/; the macron marks vowel length."
+      },
+      {
+        "symbol": "-ā-",
+        "desc": "Long open front [aː], a held vowel that distinguishes the first element of the compound."
+      },
+      {
+        "symbol": "-tlī-",
+        "desc": "Lateral affricate [tɬ] plus long close front [iː]; the -tl is a single Nahuatl sound, not English t + l."
+      },
+      {
+        "symbol": "-cue",
+        "desc": "Voiceless velar stop [k] plus rounded [we], the Nahuatl labiovelar sequence."
+      }
+    ],
+    "approximation": "'koh-AH-tlee-kweh' — the 'tl' is one crisp sound, and the macrons stretch the o, a, and i into long vowels.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Cōātlīcue; review recommended before promotion to canonical."
+    "note": "Classical Nahuatl vowel length is the key prosodic feature preserved here. The name is transparently composed of cōātl ('snake, serpent') and īcue ('her skirt'), a possessive form of cueitl 'skirt.' The final labiovelar [kwe] is not a diphthong in English terms but a velar stop followed by a labial glide. Tier 1: the three macrons preserve reconstructed long vowels in the first, second, and fourth syllables."
   },
   "chicomecoatl": {
     "ipa": "/kʰikˈoːmekoːaːtl/",
@@ -2464,14 +2596,31 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Coyolxāuhqui; review recommended before promotion to canonical."
   },
   "huitzilopochtli": {
-    "ipa": "/huitzilopokʰtli/",
-    "ipaLabel": "Reconstructed from Unicode restoration",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/wiː.t͡si.loːˈpoːt͡ʃ.tɬi/",
+    "ipaLabel": "Classical Nahuatl Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Huitz-",
+        "desc": "Rounded [w] plus long close front [iː], then alveolar affricate [t͡s] — the beginning of huītzilin, the Nahuatl word for 'hummingbird.'"
+      },
+      {
+        "symbol": "-ilo-",
+        "desc": "Close front [i], alveolar lateral [l], and short [o]: the -il- tail of huītzilin plus the ligature -o- that joins it to ōpōchtli in the compound."
+      },
+      {
+        "symbol": "-pōch-",
+        "desc": "Voiceless bilabial stop [p] plus long back rounded [oː] plus voiceless postalveolar affricate [t͡ʃ]; ōpōchtli means 'left-handed,' also associated with the south."
+      },
+      {
+        "symbol": "-tli",
+        "desc": "Lateral affricate [tɬ] plus close front [i], the absolute suffix closing the noun."
+      }
+    ],
+    "approximation": "'weet-see-loh-POCH-tlee' — the 'tz' is 'ts,' the 'ch' is as in 'church,' and the final -tli is one released sound.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Huitzilopochtli; review recommended before promotion to canonical."
+    "note": "The etymology is debated. The most widely accepted analysis takes huītzilin 'hummingbird' + ōpōchtli 'left/south,' joined by the ligature -o-, with a possible interpretation of the hummingbird as the soul of the warrior returning from death. Tier 1: the three macrons preserve the long vowels of huītzilin and ōpōchtli (per Karttunen), distinctive features the ASCII form loses."
   },
   "xipe": {
     "ipa": "/ksipe/",
@@ -2494,34 +2643,65 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Metztli; review recommended before promotion to canonical."
   },
   "shango": {
-    "ipa": "/saŋgo/",
-    "ipaLabel": "Reconstructed from Unicode restoration",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/ʃà.ŋɡó/",
+    "ipaLabel": "Yoruba Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Ṣ-",
+        "desc": "Voiceless postalveolar fricative [ʃ] with a dot below in Yoruba orthography; the dot below marks the phoneme /ʃ/, distinct from /s/."
+      },
+      {
+        "symbol": "-à-",
+        "desc": "Open central vowel [a] with low tone."
+      },
+      {
+        "symbol": "-ŋgó",
+        "desc": "Velar nasal [ŋ] followed by voiced velar stop [g] and close back rounded vowel [o] with high tone; the syllable is nasalised."
+      }
+    ],
+    "approximation": "SHAH-ngoh — low 'sha', then a sharp high 'ngoh' with the final syllable slightly nasal.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Ṣango; review recommended before promotion to canonical."
+    "note": "Ṣàngó is Tier 1: the dot below ṣ and the acute accent on ó are distinctive features the ASCII form loses, the acute preserving the high tone of the final syllable. The dot below ṣ marks the historical/orthographic distinction of the Yoruba 's' series."
   },
   "oya": {
-    "ipa": "/oya/",
-    "ipaLabel": "Reconstructed from Unicode restoration",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/ɔ̀.já/",
+    "ipaLabel": "Yoruba Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Ọ-",
+        "desc": "Open-mid back rounded vowel [ɔ] with low tone, written with a dot below in standard Yoruba orthography."
+      },
+      {
+        "symbol": "-ya",
+        "desc": "Palatal approximant [j] followed by open [a] with high tone; the name means 'she tore'."
+      }
+    ],
+    "approximation": "'aw-YAH' — begin low in the chest on 'aw', then rise sharply to 'YAH'.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Ọya; review recommended before promotion to canonical."
+    "note": "Ọya is Tier 1: the dot below marks a phonemic vowel distinction (open o versus close o) — a diacritic the ASCII form loses. Tonal variation, though crucial to Yoruba meaning, is not registrable in the DNS root zone."
   },
   "oshun": {
-    "ipa": "/osun/",
-    "ipaLabel": "Reconstructed from Unicode restoration",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/ɔ̀.ʃṹ/",
+    "ipaLabel": "Yoruba Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Ọ-",
+        "desc": "Open-mid back rounded vowel [ɔ] with low tone, written with a dot below."
+      },
+      {
+        "symbol": "-ṣun",
+        "desc": "Voiceless postalveolar fricative [ʃ] with dot below, close back rounded vowel [u], and high tone; the syllable is nasalised in many pronunciations."
+      }
+    ],
+    "approximation": "aw-SHOON — start low on 'aw', then rise to a bright, slightly nasal 'SHOON'.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Ọṣun; review recommended before promotion to canonical."
+    "note": "Ọṣun is Tier 1: the dots below ọ and ṣ are distinctive features the ASCII form loses. The dot below ọ marks the open [ɔ] vowel."
   },
   "yemoja": {
     "ipa": "/yemoja/",
@@ -2534,54 +2714,118 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Yemọja; review recommended before promotion to canonical."
   },
   "eshu": {
-    "ipa": "/esu/",
-    "ipaLabel": "Reconstructed from Unicode restoration",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/ɛ̀.ʃṹ/",
+    "ipaLabel": "Yoruba Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Ẹ-",
+        "desc": "Open-mid front unrounded vowel [ɛ] with low tone, written with a dot below in standard Yoruba orthography."
+      },
+      {
+        "symbol": "-ṣu",
+        "desc": "Voiceless postalveolar fricative [ʃ] with dot below, followed by close back rounded vowel [u] with high tone; nasalised in many dialects."
+      }
+    ],
+    "approximation": "eh-SHOON — start low on 'eh', rise to a bright, slightly nasal 'SHOON'.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Ẹṣu; review recommended before promotion to canonical."
+    "note": "Ẹṣu is Tier 1: the dots below ẹ and ṣ are distinctive features the ASCII form loses, the dot below ẹ marking the open [ɛ] vowel. The name is often wrongly conflated with the Christian devil; in Yoruba religion he is a necessary divine functionary, not an evil being. Tone conventions for the name vary between dictionaries (Èṣù / Èṣú); written Yoruba routinely omits tones."
   },
   "ogun": {
-    "ipa": "/ogun/",
-    "ipaLabel": "Reconstructed from Unicode restoration",
+    "ipa": "/ò.gṹ/",
+    "ipaLabel": "Yoruba",
     "phonemes": [],
-    "approximation": null,
+    "approximation": "aw-GOON, low tone on the first syllable, high on the last.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Ogun; review recommended before promotion to canonical."
+    "note": "Ògún carries Yoruba's tonal low-high melody: ò with the grave (low tone), gún with the acute (high) — the tones are phonemic, and the restoration keeps both exactly as the language requires. The name is bound to the word for iron (irin) in his praise-names: \"Ogun, master of iron, the one who clears the road.\""
   },
   "obatala": {
-    "ipa": "/obatala/",
-    "ipaLabel": "Reconstructed from Unicode restoration",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/ɔ̀.bà.tá.lá/",
+    "ipaLabel": "Yoruba Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Ọ-",
+        "desc": "Open-mid back rounded vowel [ɔ] with low tone, written with a dot below in standard Yoruba orthography."
+      },
+      {
+        "symbol": "-bà-",
+        "desc": "Voiced bilabial stop [b] followed by open [a] with low tone."
+      },
+      {
+        "symbol": "-tá-",
+        "desc": "Voiceless alveolar stop [t] followed by open [a] with high tone."
+      },
+      {
+        "symbol": "-lá",
+        "desc": "Voiced alveolar lateral approximant [l] followed by open [a] with high tone."
+      }
+    ],
+    "approximation": "aw-bah-TAH-LAH — low on 'aw-bah', then high on 'TAH-LAH'.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Obatala; review recommended before promotion to canonical."
+    "note": "Ọbatálá is Tier 1: the dot below ọ and the acute accents on the final two syllables are distinctive features the ASCII form loses, the acutes preserving high tones. The dot below ọ marks the open [ɔ] vowel, a phonemic distinction essential to Yoruba."
   },
   "olodumare": {
-    "ipa": "/olodumare/",
-    "ipaLabel": "Reconstructed from Unicode restoration",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/o.ló.dù.ma.rè/",
+    "ipaLabel": "Yoruba Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "O-",
+        "desc": "Open-mid back rounded vowel [ɔ] with low tone; the initial vowel is written without dot below in the lexical form."
+      },
+      {
+        "symbol": "-ló-",
+        "desc": "Voiced alveolar lateral approximant [l] followed by close-mid back rounded vowel [o] with high tone."
+      },
+      {
+        "symbol": "-dù-",
+        "desc": "Voiced alveolar stop [d] followed by close back rounded vowel [u] with low tone."
+      },
+      {
+        "symbol": "-má-",
+        "desc": "Voiced bilabial nasal [m] followed by open [a] with high tone."
+      },
+      {
+        "symbol": "-rè",
+        "desc": "Voiced alveolar tap or trill [r] followed by mid front vowel [e] with low tone."
+      }
+    ],
+    "approximation": "aw-loh-doo-MAH-reh — low 'aw', high 'loh', low 'doo', high 'MAH', low 'reh'.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Olodumare; review recommended before promotion to canonical."
+    "note": "Olódùmarè is Tier 1: the acute accent on ó preserves a high tone and the grave accents on ù and è preserve low tones, distinctive features the ASCII form loses. Tonal distinctions are crucial to Yoruba meaning."
   },
   "dazhbog": {
-    "ipa": "/dazbog/",
-    "ipaLabel": "Reconstructed from Unicode restoration",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/ˈdaʒ.boɡ/",
+    "ipaLabel": "Common Slavic / East Slavic Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "D-",
+        "desc": "Voiced alveolar stop [d], as in English 'day'."
+      },
+      {
+        "symbol": "-a-",
+        "desc": "Short open front [a], the first unstressed syllable in the compound."
+      },
+      {
+        "symbol": "-ž-",
+        "desc": "Voiced postalveolar fricative [ʒ], the Slavic 'zh' sound written with a caron."
+      },
+      {
+        "symbol": "-bog",
+        "desc": "Voiced bilabial stop [b], open-mid back rounded [ɔ], and voiced velar [ɡ]; means 'god'."
+      }
+    ],
+    "approximation": "'DAHZH-bog' — crisp 'dah', then the 'zh' sound of 'measure', and end with 'bog' as in 'god' (which is what the word means).",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Dažbog; review recommended before promotion to canonical."
+    "note": "Dažbog is Tier 1: the caron on ž preserves the distinctive Common Slavic fricative, a feature the ASCII form loses. The h in the lexicon's ASCII form is silent, reflecting an older East Slavic spelling convention (Daždbog / Dadzbog) that was later simplified. We do not invent an etymology beyond the attested compound 'giving god'."
   },
   "chernobog": {
     "ipa": "/kernobog/",
@@ -2632,16 +2876,6 @@ const PRONUNCIATION_ATLAS = {
     "confidence": "generated",
     "audioPath": null,
     "note": "Broad IPA generated from the Unicode restoration Radagast; review recommended before promotion to canonical."
-  },
-  "jason": {
-    "ipa": "/iˈaːsoːn/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
-    "dialect": null,
-    "confidence": "reconstructed",
-    "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Iāsōn."
   },
   "peleus": {
     "ipa": "/pˈeːleus/",
@@ -2824,14 +3058,27 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Nt; review recommended before promotion to canonical."
   },
   "apep": {
-    "ipa": "/pp/",
-    "ipaLabel": "Egyptological reconstruction",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/ʔaˈpeːp/",
+    "ipaLabel": "Egyptological Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Ꜥ",
+        "desc": "Egyptological ayin, a voiced pharyngeal fricative [ʕ] or glottal stop; the initial consonant of Ꜥpp"
+      },
+      {
+        "symbol": "p",
+        "desc": "Voiceless bilabial plosive [p], doubled in the root Ꜥpp"
+      },
+      {
+        "symbol": "p",
+        "desc": "The doubled final p reinforces the serpent's coiling, repeated attack"
+      }
+    ],
+    "approximation": "ah-PAYP — start with a slight throaty catch, then a sharp double-p closure like the pop of a striking snake.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Ꜥpp; review recommended before promotion to canonical."
+    "note": "Ꜥpp is Tier-1: the initial Ꜥ is a distinctive letter the ASCII form loses. The doubled p is written but the vowels are supplied by convention; the Greek form Apophis preserves the final -is suffix but the Egyptian root is simply Ꜥpp. The initial Ꜥ marks a pharyngeal or glottal onset now lost."
   },
   "tefnut": {
     "ipa": "/tfnt/",
@@ -2844,23 +3091,27 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Tfnt; review recommended before promotion to canonical."
   },
   "sia": {
-    "ipa": "/sꜥ/",
-    "ipaLabel": "Scholarly Reconstruction",
+    "ipa": "/saʕ/",
+    "ipaLabel": "Egyptological Reconstruction",
     "phonemes": [
       {
         "symbol": "s",
-        "desc": "Initial sound of sꜥ, as attested in the egyptian tradition."
+        "desc": "Voiceless alveolar fricative [s], the first consonant of sꜥ 'perception, intellect'"
       },
       {
-        "symbol": "...",
-        "desc": "Subsequent syllables preserve the name's inherited shape."
+        "symbol": "ꜥ",
+        "desc": "Voiced pharyngeal fricative [ʕ], the ayin that gives the word its throaty closure"
+      },
+      {
+        "symbol": "a",
+        "desc": "Short open vowel [a], supplied by convention; the hieroglyphic spelling records only s-ꜥ"
       }
     ],
-    "approximation": "'sia' — the conventional spoken form.",
+    "approximation": "'sah-ʿA' — a hissing 's', then a deep, tightening 'ah' in the throat.",
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "sꜥ is Tier 2 because its Unicode restoration preserves the orthographic signature appropriate to the egyptian tradition."
+    "note": "sꜥ is a Tier-1 restoration. The sibilant s and pharyngeal ꜥ are both preserved — the ꜥ is a distinctive letter the ASCII form loses — making the Unicode form more phonetically informative than plain 'sia'. As with other Egyptian divine names, the vowel is a modern vocalisation convention."
   },
   "shu": {
     "ipa": "/ʃuː/",
@@ -2879,7 +3130,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Shu is Tier 2 because the Egyptian Šw preserves vowel length (the long u) without an accent in the Greek sense. The name is an onomatopoeic masterpiece: šw sounds like the rush of air it names. Egyptologists debate whether the primary meaning is 'dryness', 'emptiness', or 'he who rises up'; the god contains all three."
+    "note": "Shu is Tier 1 because the Egyptian Šw preserves the caron-marked š — a distinctive letter the ASCII form loses. The name is an onomatopoeic masterpiece: šw sounds like the rush of air it names. Egyptologists debate whether the primary meaning is 'dryness', 'emptiness', or 'he who rises up'; the god contains all three."
   },
   "khnum": {
     "ipa": "/hnmw/",
@@ -2932,14 +3183,27 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Surtr; review recommended before promotion to canonical."
   },
   "eggther": {
-    "ipa": "/eggˈer/",
-    "ipaLabel": "Reconstructed Old Norse",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/ˈeɡˌθɛːr/",
+    "ipaLabel": "Old Norse Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "E-",
+        "desc": "Short open-mid front unrounded vowel [ɛ], the stressed first syllable."
+      },
+      {
+        "symbol": "-gg-",
+        "desc": "Long or geminated voiced velar stop [ɡː], written double in Old Norse."
+      },
+      {
+        "symbol": "-þér",
+        "desc": "Voiceless dental fricative [θ] (thorn) plus long close-mid front [eː] with acute stress, ending in trilled [r]."
+      }
+    ],
+    "approximation": "'EGG-thair' — crisp 'egg' with a held g, then the breathy 'th' of 'thin' and a long, stressed 'air' ending in a light r.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Eggþér; review recommended before promotion to canonical."
+    "note": "Eggþér is Tier 1: the acute on é marks both stress and length on the final syllable, while the geminate gg preserves consonant length. As a minor mythic figure, Eggþér has limited attestations; the reconstruction is based on normalized Old Norse phonology and the Eddic verse context."
   },
   "logi": {
     "ipa": "/logi/",
@@ -3022,27 +3286,40 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Varuṇa is Tier 2 because the registrable form Varuṇa preserves the retroflex ṇ (a phonemic distinction central to Sanskrit) but carries no stress or length mark. The name is traditionally derived from the root vṛ- 'to cover, encompass,' fitting a god who covers the waters, the night sky, and the hidden deeds of humankind."
+    "note": "Varuṇa is Tier 1 because the registrable form Varuṇa preserves the retroflex ṇ (a phonemic distinction central to Sanskrit) — a diacritic the ASCII form loses. The name is traditionally derived from the root vṛ- 'to cover, encompass,' fitting a god who covers the waters, the night sky, and the hidden deeds of humankind."
   },
   "ganga": {
-    "ipa": "/gangˈaː/",
+    "ipa": "/ɡɐ́ŋ.ɡaː/",
     "ipaLabel": "Reconstructed Sanskrit",
     "phonemes": [],
-    "approximation": null,
+    "approximation": "GUNG-gah — velar nasal, long final vowel.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Gaṅgā; review recommended before promotion to canonical."
+    "note": "Sanskrit gaṅgā carries the velar nasal ṅ of IAST — the nasal of the velum, /ŋ/, written with the dot above. The restoration Gaṅgā keeps both: the velar nasal and the long final ā. Hindi speech says \"Ganga\"; the scholarly form is hers. The ṅ is the velum's own nasal — the sound of ng in song — which plain English softens to n."
   },
   "parvati": {
-    "ipa": "/pˈaːrvatiː/",
-    "ipaLabel": "Reconstructed Sanskrit",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/ˈpaːr.ʋə.tiː/",
+    "ipaLabel": "Sanskrit Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Pār-",
+        "desc": "Voiceless bilabial stop [p] plus long open [aː], followed by voiced labiodental approximant [ʋ] — softer than English 'v'"
+      },
+      {
+        "symbol": "-va-",
+        "desc": "Short open [a], the second syllable is light and unstressed"
+      },
+      {
+        "symbol": "-tī",
+        "desc": "Voiceless alveolar stop [t] plus long close front [iː]; the macron marks length, giving Tier-1 status"
+      }
+    ],
+    "approximation": "'PAHR-vuh-tee' — hold the first 'pahr' and final 'tee' long; the 'v' is light, almost like a 'w'.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Pārvatī; review recommended before promotion to canonical."
+    "note": "Pārvatī is Tier 1 because both the initial ā and final ī are long. The name is a transparent feminine derivative of parvata, 'mountain,' specifically the Himalaya."
   },
   "kali": {
     "ipa": "/kaː.liː/",
@@ -3067,11 +3344,11 @@ const PRONUNCIATION_ATLAS = {
     "ipa": "/sˈiːtaː/",
     "ipaLabel": "Reconstructed Sanskrit",
     "phonemes": [],
-    "approximation": null,
+    "approximation": "SEE-taa — both vowels long, even and open.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Sītā; review recommended before promotion to canonical."
+    "note": "Sanskrit sītā carries two long vowels; the restoration Sītā keeps both macrons. Her name means \"furrow\" — the plough-line of the field from which she rose — making hers the rare theonym that is a farm word before it is a goddess, and the two macrons are the whole of its written dignity."
   },
   "arjuna": {
     "ipa": "/arjuna/",
@@ -3114,14 +3391,31 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Karṇa; review recommended before promotion to canonical."
   },
   "ahuramazda": {
-    "ipa": "/ahuramazdˈaː/",
-    "ipaLabel": "Avestan reconstruction",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/aːˈhuːɾə ˈmazdaː/",
+    "ipaLabel": "Avestan Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Ahu-",
+        "desc": "Long [aː] plus voiceless glottal fricative [h] and close back rounded vowel [uː]; the first element means 'lord, master'"
+      },
+      {
+        "symbol": "-ra",
+        "desc": "Rhotic [ɾ], the final consonant of Ahura"
+      },
+      {
+        "symbol": "Maz-",
+        "desc": "Voiced bilabial nasal [m] plus open central vowel [a] and voiced alveolar fricative [z]; from Avestan maz- 'great'"
+      },
+      {
+        "symbol": "-dā",
+        "desc": "Long [aː], the final vowel of 'wisdom' (Avestan dā- 'to know, place')"
+      }
+    ],
+    "approximation": "ah-HOO-ruh MAHZ-dah — the first 'a' is long, the 'u' is long and rounded, and the final 'dah' is drawn out.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration AhuraMazdā; review recommended before promotion to canonical."
+    "note": "AhuraMazdā is a Tier-1 restoration: the macron on the final ā of Mazdā preserves the long vowel the ASCII form loses. The compound is written as a single word in the PUNICODEX domain to keep the name registrable as one Unicode string, following the project's convention for the Zoroastrian supreme being."
   },
   "angramainyu": {
     "ipa": "/aramainyu/",
@@ -3194,14 +3488,14 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Perseus."
   },
   "orpheus": {
-    "ipa": "/orpʰeus/",
-    "ipaLabel": "Reconstructed Attic Greek",
+    "ipa": "/or.pʰeús/",
+    "ipaLabel": "Attic Greek Reconstruction",
     "phonemes": [],
-    "approximation": null,
+    "approximation": "or-FEWS — the stress lands on the last syllable.",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Orpheus."
+    "note": "Greek Ὀρφεύς stresses the final syllable — Orpheús — and the restoration keeps the acute where the tradition puts it. The etymology is debated (perhaps from a root for \"orphan\" or the \"darkness\" of his descent); the name is older than its explanations, which is exactly right for the singer who is all voice."
   },
   "atalanta": {
     "ipa": "/atalantˈeː/",
@@ -3344,7 +3638,7 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Eurydikē."
   },
   "typhon": {
-    "ipa": "/tyːˈpʰɔːn/",
+    "ipa": "/tyˈpʰɔːn/",
     "ipaLabel": "Attic Greek Reconstruction",
     "phonemes": [
       {
@@ -3363,14 +3657,31 @@ const PRONUNCIATION_ATLAS = {
     "note": "Typhōn is Tier 1 because the Greek Τυφῶν contains both stress and length: the circumflex over the omega marks a long vowel that also carries the pitch peak. The single character ῶ encodes both features, and the macron form Typhōn preserves the long vowel while implying the original stress position. The name sounds like what it describes: a long, smoky exhalation."
   },
   "python": {
-    "ipa": "/pytʰˈoːn/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/pý.tʰɔːn/",
+    "ipaLabel": "Ancient Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "P-",
+        "desc": "Voiceless unaspirated bilabial stop [p]; the rough breathing is absent in the Greek spelling."
+      },
+      {
+        "symbol": "-ý-",
+        "desc": "Close front vowel [y], like French 'tu', with acute stress."
+      },
+      {
+        "symbol": "-th-",
+        "desc": "Aspirated voiceless dental stop [tʰ], distinct from English 'th'."
+      },
+      {
+        "symbol": "-ō-",
+        "desc": "Long open-mid back rounded vowel [ɔː], marked by the macron/circumflex."
+      }
+    ],
+    "approximation": "'PYOO-thohn' — round the lips for 'pyoo', then aspirate the 'th' as in 'top-hon', and hold the final vowel long.",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Pythōn."
+    "note": "Pýthōn is Tier 1: the Greek original carries both acute stress and a long vowel (ō). The English 'Python' flattens both features."
   },
   "calypso": {
     "ipa": "/kalypsˈoː/",
@@ -3383,14 +3694,23 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Kalypsō."
   },
   "circe": {
-    "ipa": "/kˈirkeː/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/kír.kɛː/",
+    "ipaLabel": "Attic Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Kí-",
+        "desc": "Kappa with a short iota under the acute — the pitch springs high, then the rolled rho snaps it shut, like a falcon turning on the wind."
+      },
+      {
+        "symbol": "-kē",
+        "desc": "A second kappa released into the long open eta [ɛː] — the name ends wide and held, never the English 'see'."
+      }
+    ],
+    "approximation": "'KEER-keh' — high pitch on the first syllable, a trilled rho, and a long open final vowel; English 'SUR-see' has wandered far from the falcon's name.",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Kírkē."
+    "note": "Kírkē is the boundary case of the Greek list. The Greek Κίρκη carries both features the mechanical tier rule watches for — the acute pitch of the first syllable and the long final eta — and the restoration Kírkē preserves both against the Latinized 'Circe,' which shed them. This entry follows the catalog's Tier-2 assignment; a strict reading of the rule would promote her to the first rank, and her double signature is recorded here so the classification never hardens into doctrine."
   },
   "thetis": {
     "ipa": "/tʰˈetis/",
@@ -3432,16 +3752,6 @@ const PRONUNCIATION_ATLAS = {
     "audioPath": null,
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Ariadnē."
   },
-  "europa": {
-    "ipa": "/eurˈoːpeː/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
-    "dialect": null,
-    "confidence": "reconstructed",
-    "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Eurōpē."
-  },
   "ganymede": {
     "ipa": "/ganymˈeːdeːs/",
     "ipaLabel": "Reconstructed Attic Greek",
@@ -3453,14 +3763,27 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Ganymēdēs."
   },
   "arachne": {
-    "ipa": "/arakʰnˈeː/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/a.rákʰ.nɛː/",
+    "ipaLabel": "Attic Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "a-",
+        "desc": "Short alpha [a], unstressed opening syllable."
+      },
+      {
+        "symbol": "-rá-",
+        "desc": "Aspirated rho plus acute on short alpha [rákʰ] — the pitch peak and the root of 'spider'."
+      },
+      {
+        "symbol": "-knē",
+        "desc": "Kappa-nu-eta [knɛː]; the -χνη ending is the same root seen in ἀράχνης, 'spider'."
+      }
+    ],
+    "approximation": "'ah-RAH-knay' — the middle syllable is stressed and higher-pitched; the final -ē is long.",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Arachnē."
+    "note": "Arachnē is Tier 1 because the Greek ἀράχνη contains both stress (acute on the short alpha of the second syllable, associated with long-final pattern) and length (final η). The aspirated rho is preserved in the classical spelling."
   },
   "narcissus": {
     "ipa": "/nˈarkissos/",
@@ -3553,14 +3876,31 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Danaē."
   },
   "andromeda": {
-    "ipa": "/andromedˈeː/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/an.dro.mé.dɛː/",
+    "ipaLabel": "Attic Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "An-",
+        "desc": "Short alpha followed by nu; the name opens with a clear, unaspirated 'an'."
+      },
+      {
+        "symbol": "-dro-",
+        "desc": "Delta-rho-omicron; the root ἀνδρ- means 'man, husband, warrior'."
+      },
+      {
+        "symbol": "-mé-",
+        "desc": "Long epsilon (eta) with acute [méː] — the pitch peak and a ruler's domain."
+      },
+      {
+        "symbol": "-dē",
+        "desc": "Delta-eta, long final syllable; the name ends in the feminine agent suffix."
+      }
+    ],
+    "approximation": "'ahn-dro-MAY-day' — the third syllable is pitched and drawn out; the final -ē is long.",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Andromedē."
+    "note": "Andromédē is Tier 1 because the Greek Ἀνδρομέδη contains both stress (acute on the long η) and length (η). The compound is transparently Greek, though the princess herself is said to dwell in Ethiopia."
   },
   "cassiopeia": {
     "ipa": "/kassiˈopeia/",
@@ -3583,7 +3923,7 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Kēpheus."
   },
   "ker": {
-    "ipa": "/kɛ́r/",
+    "ipa": "/kɛː́r/",
     "ipaLabel": "Attic Greek Reconstruction",
     "phonemes": [
       {
@@ -3595,17 +3935,30 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Kēr is Tier 2 because the Greek Κήρ preserves stress (acute on the short ε) but no long vowel. The name is as short and final as the death it represents. In Homer, the plural kēres are the personified spirits of violent or untimely death."
+    "note": "Kēr is Tier 1 because the Greek Κήρ carries both stress (the acute) and a long vowel (η). The name is as short and final as the death it represents. In Homer, the plural kēres are the personified spirits of violent or untimely death."
   },
   "coeus": {
-    "ipa": "/koˈios/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/kói̯os/",
+    "ipaLabel": "Ancient Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "K-",
+        "desc": "Voiceless unaspirated velar stop [k]."
+      },
+      {
+        "symbol": "-oi-",
+        "desc": "Diphthong [oi̯], a glide from close-mid [o] to close front [i]."
+      },
+      {
+        "symbol": "-os",
+        "desc": "Short [os], the standard masculine nominative ending."
+      }
+    ],
+    "approximation": "'KOY-oss' — pronounce the 'oy' as in 'boy', and keep the final syllable short.",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Koîos."
+    "note": "Koîos is Tier 1: the Greek form carries the circumflex on the diphthong, marking a long vowel with falling pitch. The Latinised 'Coeus' flattens this into plain vowels."
   },
   "kreios": {
     "ipa": "/kreˈios/",
@@ -3628,24 +3981,46 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Iapetós."
   },
   "theia": {
-    "ipa": "/tʰeˈia/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/tʰeː.ía/",
+    "ipaLabel": "Attic Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Th-",
+        "desc": "Aspirated theta [tʰ], the breathy initial consonant."
+      },
+      {
+        "symbol": "-ē-",
+        "desc": "Long eta [ɛː], the first syllable's length."
+      },
+      {
+        "symbol": "-ía",
+        "desc": "Short iota with acute plus alpha — the pitch peak on the second syllable."
+      }
+    ],
+    "approximation": "'thay-EE-ah' — the first syllable is long and level, the second pitched high and bright.",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Theía."
+    "note": "Theía is Tier 1 because the Greek Θεία contains both length (η in the first syllable) and stress (acute on the ι of the second). She is the Titaness whose children are the celestial lights."
   },
   "phoebe": {
-    "ipa": "/pʰoˈibeː/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/pʰóɪ.bɛː/",
+    "ipaLabel": "Attic Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Phoi-",
+        "desc": "aspirated pʰ — a 'p' released with breath, not an English 'f' — plus the diphthong oi as in οἶκος; the acute accent means the voice rises across this syllable"
+      },
+      {
+        "symbol": "-bē",
+        "desc": "voiced b followed by long eta (η), an open 'eh' held twice the length of a short vowel — never the English 'ee' the modern name has drifted to"
+      }
+    ],
+    "approximation": "'FOY-beh' — the first syllable rhymes with 'boy' and carries the rising pitch; the second is a long, open 'eh', not 'bee'.",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Phoíbē."
+    "note": "Tier-1: the Greek Φοίβη carries both an accent (the acute on the diphthong οί) and a long vowel (η), so the restoration Phoíbē preserves stress and quantity together — two facts of the name that plain ASCII 'Phoebe' silently erases."
   },
   "nyx": {
     "ipa": "/nˈyks/",
@@ -3723,54 +4098,152 @@ const PRONUNCIATION_ATLAS = {
     "note": "Aithḗr is Tier 1 because the Greek Αἰθήρ contains both stress (acute on the long η) and length (η). The acute on a long vowel is the ideal Attic form; Aithēr is the macron-only LSJ convention. The name means the bright, fiery upper air, distinct from the lower, moist aēr."
   },
   "ouranos": {
-    "ipa": "/ouranˈos/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/oː.ra.nós/",
+    "ipaLabel": "Attic Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Ou-",
+        "desc": "Diphthong [oː], a long rounded opening syllable."
+      },
+      {
+        "symbol": "-ra-",
+        "desc": "Rho plus short alpha, the middle syllable unstressed."
+      },
+      {
+        "symbol": "-nós",
+        "desc": "Nu-omicron-sigma with acute [nós] — the pitch peak and a common masculine ending."
+      }
+    ],
+    "approximation": "'oo-rah-NOSS' — the first syllable is long and rounded, the final syllable pitched high.",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Ouranós."
+    "note": "Ouranós is Tier 1 because the Greek Οὐρανός contains both length (the diphthong ου in the first syllable) and stress (acute on the final ό). The name is the standard Greek word for sky or heaven."
   },
   "ananke": {
-    "ipa": "/anˈaŋkeː/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/a.nán.kɛː/",
+    "ipaLabel": "Attic Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "a-",
+        "desc": "Short alpha, unstressed opening syllable."
+      },
+      {
+        "symbol": "-nán-",
+        "desc": "Nu-alpha-nu with acute on the alpha [nán], the pitch peak of the name."
+      },
+      {
+        "symbol": "-kē",
+        "desc": "Kappa-eta [kɛː], a long final syllable giving the name its weight."
+      }
+    ],
+    "approximation": "'ah-NAHN-kay' — stress the middle syllable and draw out the final 'kay'.",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Anánkē."
+    "note": "Anánkē is Tier 1 because the Greek Ἀνάγκη contains both stress (acute on ά) and length (η). In Orphic cosmogony she is a primal power who governs even the gods."
   },
   "phanes": {
-    "ipa": "/pʰˈaneːs/",
-    "ipaLabel": "Reconstructed Attic Greek",
+    "ipa": "/pʰá.nɛːs/",
+    "ipaLabel": "Attic Greek",
     "phonemes": [],
-    "approximation": null,
+    "approximation": "FAH-nace, stress on the first syllable with a long ē.",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Phánēs."
-  },
-  "achilles": {
-    "ipa": "/akʰillˈeːs/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
-    "dialect": null,
-    "confidence": "reconstructed",
-    "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Achillēs."
+    "note": "Phánēs takes his name from the verb φαίνω, \"to bring to light, to reveal\" — the same root as \"phenomenon\" and \"epiphany.\" The accent is recessive on the first syllable; the long ē of the second syllable is what the macron preserves in the restoration. The Orphic hymns scan the name as two syllables, stress on the first; the Latin poets wrote it Phanes unchanged."
   },
   "odysseus": {
-    "ipa": "/odysseˈus/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/o.dys.seús/",
+    "ipaLabel": "Attic Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "O-",
+        "desc": "Short omicron with smooth breathing — the name begins low and unforced."
+      },
+      {
+        "symbol": "-dys-",
+        "desc": "Delta and short upsilon with sigma [dys] — the compact middle the poets linked to ὀδύσσομαι, 'to hate'."
+      },
+      {
+        "symbol": "-seús",
+        "desc": "Sigma plus the diphthong ευ under acute pitch [seús] — the rising, long final syllable of the agentive -εύς names."
+      }
+    ],
+    "approximation": "'oh-dyss-SEWS' — three quick syllables gathering into a long, high final surge, like a wave cresting at the name's end.",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Odysseús."
+    "note": "Odysseús is Tier 1 because the Greek Ὀδυσσεύς contains both stress (the acute on the final syllable) and length (the diphthong ευ). The restoration keeps the acute on ú; the diphthong itself survives in the standard transliteration eu. English 'Odysseus' flattens the pitch that Greek put on the name's last syllable."
+  },
+  "iason": {
+    "ipa": "/i.áː.sɔːn/",
+    "ipaLabel": "Attic Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "I-",
+        "desc": "Short iota with smooth breathing — the name opens light and quick, without roughness."
+      },
+      {
+        "symbol": "-á-",
+        "desc": "Long alpha with acute pitch [áː] — the stressed peak of the name; the Ionic form Ἰήσων, with long eta, proves the vowel's length."
+      },
+      {
+        "symbol": "-sōn",
+        "desc": "Sigma followed by long omega [sɔːn] — the drawn-out final syllable that marks the name as long-voweled."
+      }
+    ],
+    "approximation": "'ih-AH-sone' — the second syllable is pitched higher and held; the final 'ō' is long and closed, nothing like the English 'sun'.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Iásōn is Tier 1 because the Greek Ἰάσων contains both stress (acute on the long alpha) and length (the long ᾱ and the final ω). The restoration keeps both: the acute on á and the macron on ō. The name means 'healer' — a fact the quest story tends to forget."
+  },
+  "argos": {
+    "ipa": "/ár.gos/",
+    "ipaLabel": "Attic Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Á-",
+        "desc": "Alpha with acute pitch [á] — a bright, open attack; the whole name flashes on its first syllable."
+      },
+      {
+        "symbol": "-r-",
+        "desc": "Rolled alveolar rho [r] — the quick turn at the name's center."
+      },
+      {
+        "symbol": "-gos",
+        "desc": "Voiced velar gamma with short omicron and final sigma [gos] — clipped, unlenited, watchful."
+      }
+    ],
+    "approximation": "'AR-goss' — two short syllables, stress forward, like a light snapping on.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Árgos is Tier 2 because the Greek Ἄργος carries only the acute stress; both vowels are short, so a single feature separates the restoration from ASCII. The name belongs to the giant Argos Panoptes, Hera's watcher — not to the city of the Argolid, though the two share the shining root."
+  },
+  "midas": {
+    "ipa": "/mí.das/",
+    "ipaLabel": "Attic Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Mí-",
+        "desc": "Bilabial nasal opening into acute-pitched iota [mí] — the name's single mark, pitched high."
+      },
+      {
+        "symbol": "-d-",
+        "desc": "Voiced dental stop [d] — plain and firm."
+      },
+      {
+        "symbol": "-as",
+        "desc": "Short alpha and final sigma [as] — the common ending of Anatolian royal names."
+      }
+    ],
+    "approximation": "'MEE-dass' — stress forward, the first syllable bright and the second clipped; the English 'MY-das' flattens both.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Mídas is Tier 2 because the Greek Μίδας carries only the acute stress; the vowels are short and no long vowel or diphthong is preserved. Behind the Greek form stands a genuine Phrygian royal name — the legend has a historical king inside it."
   },
   "menelaus": {
     "ipa": "/menˈelaos/",
@@ -3873,24 +4346,50 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Kalliopē."
   },
   "kleio": {
-    "ipa": "/kleiˈo/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/kleː.ɔ́ː/",
+    "ipaLabel": "Attic Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Kl-",
+        "desc": "[kl], a voiceless velar stop released straight into a clear lateral — a sharp, liquid onset."
+      },
+      {
+        "symbol": "-ei-",
+        "desc": "The digraph ει, by the classical period a close long [eː], held steady and bright."
+      },
+      {
+        "symbol": "-ṓ",
+        "desc": "Long omega [ɔ́ː] bearing the acute accent: the voice rises on the final syllable and holds it long."
+      }
+    ],
+    "approximation": "'kleh-OH' — two syllables; keep the first short and bright, then rise and linger on the long final ō. Not the modern 'KLY-oh'.",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Kleió."
+    "note": "Kleiṓ is Tier 1: the Greek original Κλειώ carries both acute stress and the long vowel ω. The restoration preserves both features — the macron marking the long ō and the acute marking the accented syllable — which the ASCII form 'Kleio' loses."
   },
   "thaleia": {
-    "ipa": "/tʰˈaleia/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/ˈtʰa.leː.a/",
+    "ipaLabel": "Attic Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Thá-",
+        "desc": "Theta was an aspirated t [tʰ] in classical Attic — a t with a puff of breath, never the English 'th' fricative; the acute marks the stress on this first syllable."
+      },
+      {
+        "symbol": "-lei-",
+        "desc": "The digraph ει, a long closing diphthong shading toward [eː] — the sound the ASCII form 'Thalia' flattens into a bare 'ia'."
+      },
+      {
+        "symbol": "-a",
+        "desc": "Final short alpha, light and open, a breath rather than a beat."
+      }
+    ],
+    "approximation": "'TAH-lay-ah' — begin with a breathy t as in 'top', lean on the first syllable, and let the 'ei' glide long; the English 'th' of Thalia has no place in the Greek.",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Tháleia."
+    "note": "Tháleia is Tier 1 because the Greek Θάλεια carries both stress (the acute on the initial alpha) and length (the long diphthong ει). The restoration preserves both: the acute on the á marks the accent, and the digraph -ei- keeps the long diphthong that plain ASCII Thalia erases."
   },
   "euterpe": {
     "ipa": "/eutˈerpeː/",
@@ -3943,14 +4442,31 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Melpoménē."
   },
   "ourania": {
-    "ipa": "/ouranˈia/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/u.ra.ní.aː/",
+    "ipaLabel": "Ancient Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Ou-",
+        "desc": "[u], a smooth rounded close back vowel; the initial digraph simply marks the sound [u]."
+      },
+      {
+        "symbol": "-ra-",
+        "desc": "Tapped or trilled [r] followed by open [a]."
+      },
+      {
+        "symbol": "-ní-",
+        "desc": "Acute stress on the antepenult; the i is short and sharp."
+      },
+      {
+        "symbol": "-a",
+        "desc": "Final long [aː], giving the name its feminine nominative ending."
+      }
+    ],
+    "approximation": "'oo-rah-NEE-ah' — stress the third syllable and let the final 'ah' lengthen slightly.",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Ouranía."
+    "note": "Ouranía is Tier 1: the Greek original has both acute stress and a long final vowel. The Roman spelling Urania drops the distinctive breathing and accent, making the PUNICODEX form the fuller restoration."
   },
   "clotho": {
     "ipa": "/kloːtʰˈoː/",
@@ -3973,14 +4489,14 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Láchesis."
   },
   "atropos": {
-    "ipa": "/ˈatropos/",
-    "ipaLabel": "Reconstructed Attic Greek",
+    "ipa": "/á.tro.pos/",
+    "ipaLabel": "Attic Greek",
     "phonemes": [],
-    "approximation": null,
+    "approximation": "AH-tro-pos, stress on the first syllable; both o vowels short.",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Átropos."
+    "note": "Greek Ἄτροπος carries the recessive accent of a feminine agent-noun on the first syllable — Átropos — from ἀ- (\"not\") plus τρέπω (\"to turn\"): the one who cannot be turned. The Latin form Atropos keeps the same stress, which is why the English \"atropos\" and the goddess sound alike. Latin kept both the word and the weight: Seneca's Atropos stresses the same first syllable as the Greek."
   },
   "nemesis": {
     "ipa": "/nˈemˈesis/",
@@ -3993,44 +4509,88 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Némésis."
   },
   "iris": {
-    "ipa": "/ˈiris/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/ǐː.ris/",
+    "ipaLabel": "Attic Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Î-",
+        "desc": "Long iota with acute or circumflex [ǐː], the pitch peak of the name."
+      },
+      {
+        "symbol": "-ris",
+        "desc": "Rho-iota-sigma; the name is short and bright, like the rainbow it names."
+      }
+    ],
+    "approximation": "'EE-ris' — a long, high-pitched first syllable and a quick second syllable, like the arc of a rainbow.",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Íris."
+    "note": "Íris is Tier 1 because the Greek Ἶρις bears the circumflex, which marks both stress and the long vowel (iota) in a single accent — both features the ASCII form loses. She is the only Olympian messenger in the Iliad, older than Hermes in epic convention."
   },
   "eris": {
-    "ipa": "/ˈeris/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/é.ris/",
+    "ipaLabel": "Attic Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "É-",
+        "desc": "the stressed opening syllable: short e bearing the acute accent — in the living accent system, a raised musical pitch rather than a heavy stress"
+      },
+      {
+        "symbol": "-ris",
+        "desc": "trilled or tapped rhōtic r, short i, final voiceless s"
+      }
+    ],
+    "approximation": "'EH-riss' — two quick syllables with the high note forward; nothing like the English slurring of 'heiress' or 'Eris' rhymed with 'ferrous'",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Éris."
+    "note": "Tier 2, accent-preserving. Ἔρις carries the acute accent on a short initial vowel but no long vowel (η/ω) and no circumflex; the restoration Éris preserves exactly one feature the ASCII 'Eris' loses — the stress — and so the temple stands at Tier 2."
   },
   "hypnos": {
-    "ipa": "/hˈypnos/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/hýp.nos/",
+    "ipaLabel": "Attic Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Hýp-",
+        "desc": "Rough breathing on upsilon with acute [hýp], the pitch peak of the name."
+      },
+      {
+        "symbol": "-nos",
+        "desc": "Nu-omicron-sigma; the second-declension nominative ending."
+      }
+    ],
+    "approximation": "'HOOP-nohs' — the first syllable is pitched high and begins with a rough 'h'; the second is short and level.",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Hýpnos."
+    "note": "Hýpnos is Tier 2 because the Greek Ὕπνος preserves the acute stress on the first syllable but has no long vowel. He and his twin Thánatos are children of Night (Nyx) and live near the sunset."
   },
   "thanatos": {
-    "ipa": "/tʰˈanatos/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/tʰá.na.tos/",
+    "ipaLabel": "Ancient Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Th-",
+        "desc": "Aspirated voiceless dental stop [tʰ], not the English fricative 'th'."
+      },
+      {
+        "symbol": "-á-",
+        "desc": "Open [a] with acute stress on the first syllable."
+      },
+      {
+        "symbol": "-na-",
+        "desc": "Voiced alveolar nasal [n] followed by open [a]."
+      },
+      {
+        "symbol": "-tos",
+        "desc": "Voiceless alveolar stop [t] plus short [os], the neuter noun ending."
+      }
+    ],
+    "approximation": "'THAH-nah-tos' — aspirate the first 'th' as in 'top-hat', stress the first syllable, and keep the final 'os' short.",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Thánatos."
+    "note": "Thánatos is Tier 2: the Greek original carries acute stress but no long vowel. The restoration preserves the stress mark, distinguishing it from the flattened English 'Thanatos'."
   },
   "phobos": {
     "ipa": "/pʰˈobos/",
@@ -4084,36 +4644,32 @@ const PRONUNCIATION_ATLAS = {
   },
   "cerberus": {
     "ipa": "/ˈker.be.ros/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [
-      {
-        "symbol": "Κ",
-        "desc": "Unaspirated voiceless velar stop [k]; Greek kappa, which Latin spelling renders as C."
-      },
-      {
-        "symbol": "έ",
-        "desc": "Short open [e] carrying the recessive accent; classical pitch on the first syllable, modern stress."
-      },
-      {
-        "symbol": "-ος",
-        "desc": "The Greek nominative ending -os, which Latin rewrites as -us (Cerberus)."
-      }
-    ],
-    "approximation": "KER-be-ros — three short syllables with the stress on the first; both 'r's lightly trilled, as in modern Greek.",
+    "ipaLabel": "Attic Greek Reconstruction",
+    "phonemes": [],
+    "approximation": "KAIR-beh-ros — the acute falls on the first syllable; sound the final -ros with a light trill.",
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Κέρβερος is reconstructed [ˈker.be.ros] with the recessive accent on the first syllable. Beekes (EDG s.v.) treats the name as Pre-Greek substrate, which explains the ancient variants (Κέρβελος alongside Κέρβερος); Hesiod, Theogony 310–312, is the earliest attestation. The restoration Kérberos keeps the Greek kappa as K and places the acute where the manuscripts accent it; the Latinized Cerberus hides both."
+    "note": "Greek Κέρβερος is proparoxytone — the accent rests on the first syllable, exactly as LSJ prints it. The restoration Kérberos keeps that acute; the ASCII \"Cerberus\" is the Latinized form that lost it. The etymology is genuinely dark: the old comparison with Sanskrit śárvara (\"spotted,\" one of Yama's two hounds) is famous but unproven, and Beekes (EDG) treats the word as likely Pre-Greek. Tier-2 by rule: the single feature preserved is the accent."
   },
   "hydra": {
-    "ipa": "/hˈydra/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/hý.dra/",
+    "ipaLabel": "Attic Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Hý-",
+        "desc": "Rough breathing on upsilon with acute [hý] — the name begins with a breathy, high-pitched syllable."
+      },
+      {
+        "symbol": "-dra",
+        "desc": "Delta-rho-alpha; the root ὕδωρ, 'water,' is visible, though the creature is a water-serpent in form and habitat."
+      }
+    ],
+    "approximation": "'HOO-drah' — the first syllable is pitched high and begins with a rough 'h'; the final -a is short.",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Hýdra."
+    "note": "Hýdra is Tier 2 because the Greek Ὕδρα preserves the acute stress on the first syllable but has no long vowel. The rough breathing on the upsilon is essential to the name's sound and identity."
   },
   "minotauros": {
     "ipa": "/minˈoːtauros/",
@@ -4126,44 +4682,64 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Minṓtauros."
   },
   "chimaira": {
-    "ipa": "/kʰˈimaira/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/kʰí.mai.ra/",
+    "ipaLabel": "Attic Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Chí-",
+        "desc": "Aspirated velar /kʰ/ plus short stressed iota — a hard k punched through a puff of breath, pitched high at the acute; the classical chi is an aspirate stop, not yet the modern fricative."
+      },
+      {
+        "symbol": "-mai-",
+        "desc": "The long diphthong αι, gliding from open a to i — the metrically heavy heart of the name, the syllable Latin later froze into the 'ae' of Chimaera."
+      },
+      {
+        "symbol": "-ra",
+        "desc": "Tapped rho plus short open alpha, the feminine ending: the grammar itself insists the monster is a she."
+      }
+    ],
+    "approximation": "'KHEE-mye-rah' — begin with a k followed by a sharp breath, let the middle glide like 'eye', and end on a quick tapped r.",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Chímaira."
+    "note": "Chímaira is Tier 1 because the Greek Χίμαιρα contains both stress (the acute on the iota) and length (the diphthong αι, metrically long). The restoration preserves both; the ASCII 'chimaira' and the English 'chimera' flatten the accent and melt the diphthong into a bare e."
   },
   "sphinx": {
-    "ipa": "/spʰˈiŋks/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/spʰíŋks/",
+    "ipaLabel": "Ancient Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Sph-",
+        "desc": "Aspirated cluster [spʰ]: voiceless sibilant plus aspirated stop."
+      },
+      {
+        "symbol": "-i-",
+        "desc": "Short close front vowel [i], stressed in the Greek form."
+      },
+      {
+        "symbol": "-ng-",
+        "desc": "Velar nasal [ŋ] before the final stop."
+      },
+      {
+        "symbol": "-ks",
+        "desc": "Voiceless velar stop [k] plus voiceless sibilant [s], the standard ending."
+      }
+    ],
+    "approximation": "'SFINGKS' — aspirate the 'p' as you release it, stress the first syllable, and end with a sharp 'ks'.",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Sphínx."
-  },
-  "pegasus": {
-    "ipa": "/pˈegasos/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
-    "dialect": null,
-    "confidence": "reconstructed",
-    "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Pégasos."
+    "note": "The PUNICODEX form Sphigx restores the Greek consonant cluster γξ as gx, matching the scholarly transliteration of Σφίγξ. The more common English spelling 'Sphinx' flattens the gamma to n; the Sphigx form keeps the etymological strangling cluster visible."
   },
   "seiren": {
-    "ipa": "/seirˈeːn/",
-    "ipaLabel": "Reconstructed Attic Greek",
+    "ipa": "/sɛː.rɛ̌ːn/",
+    "ipaLabel": "Attic Greek",
     "phonemes": [],
-    "approximation": null,
+    "approximation": "say-RAIN, stacked macron+acute on the final ē.",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Seirḗn."
+    "note": "Greek Σειρήν carries the accent on the final syllable — Seirḗn — and the etymology is contested: folk tradition heard σεῖρα, \"cord,\" for the binding song, while modern scholarship looks to Semitic or pre-Greek roots. The macron on the eta preserves the long vowel of the nominative."
   },
   "harpyia": {
     "ipa": "/hˈarpyia/",
@@ -4176,14 +4752,27 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Hárpyia."
   },
   "phoenix": {
-    "ipa": "/pʰoˈiniks/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/pʰói̯.niks/",
+    "ipaLabel": "Attic Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Ph-",
+        "desc": "Aspirated phi [pʰ], the breathy initial consonant."
+      },
+      {
+        "symbol": "-oi-",
+        "desc": "Diphthong [oi], a rising sound that gives the name its bright color."
+      },
+      {
+        "symbol": "-nix",
+        "desc": "Nu-iota-kappa-sigma; the same suffix appears in Greek ethnic names like Phoinix/Phoenician."
+      }
+    ],
+    "approximation": "'FHOY-niks' — begin with a breathy 'ph', glide through the diphthong, and end with a crisp '-nix'.",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Phoînix."
+    "note": "Phoînix is Tier 1 because the Greek Φοῖνιξ contains both stress (circumflex on the diphong οι) and length (the diphthong counts as long). The circumflex combines pitch and length in a single character."
   },
   "griffin": {
     "ipa": "/grˈyps/",
@@ -4256,14 +4845,23 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Pneûma."
   },
   "arche": {
-    "ipa": "/arkʰˈeː/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/ar.kʰɛ̌ː/",
+    "ipaLabel": "Attic Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Ar-",
+        "desc": "Alpha-rho, the unstressed opening of the word."
+      },
+      {
+        "symbol": "-khḗ",
+        "desc": "Aspirated kappa with long eta and acute/circumflex [kʰɛ̌ː], the pitch peak and the core meaning 'beginning, rule, first principle'."
+      }
+    ],
+    "approximation": "'ar-KHAY' — the second syllable is long, pitched high, and begins with a breathy 'kh'.",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Archḗ."
+    "note": "Archḗ is Tier 1 because the Greek ἀρχή contains both length (η) and stress (acute/circumflex) on the same syllable. The word is foundational for Greek philosophy, political theory, and theology."
   },
   "telos": {
     "ipa": "/tˈelos/",
@@ -4586,23 +5184,27 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Niflheimr; review recommended before promotion to canonical."
   },
   "muspellheimr": {
-    "ipa": "/muspellheimr/",
-    "ipaLabel": "Scholarly Reconstruction",
+    "ipa": "/ˈmus.pelˌhɛi̯mr/",
+    "ipaLabel": "Old Norse Reconstruction",
     "phonemes": [
       {
-        "symbol": "M",
-        "desc": "Initial sound of Muspellheimr, as attested in the norse tradition."
+        "symbol": "Mus-",
+        "desc": "Short [u] between voiced [m] and voiceless [s]; the first element Muspell- is of uncertain origin"
       },
       {
-        "symbol": "...",
-        "desc": "Subsequent syllables preserve the name's inherited shape."
+        "symbol": "-pell-",
+        "desc": "Voiceless bilabial [p] plus short [ɛ] and alveolar lateral [l]"
+      },
+      {
+        "symbol": "-heimr",
+        "desc": "Diphthong [ɛi̯] in heimr, 'home, world', with bilabial [m] and tapped [r]"
       }
     ],
-    "approximation": "'muspellheimr' — the conventional spoken form.",
+    "approximation": "'MOOS-pel-haymr' — stress the first syllable, keep the vowels short, and glide through the final 'haymer'.",
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Muspellheimr is Tier 2 because its Unicode restoration preserves the orthographic signature appropriate to the norse tradition."
+    "note": "Muspellheimr is Tier 2: no vowel is marked long or stressed. The first element Muspell is not a native transparent compound; its prehistory is debated, which is why the pronunciation stays conservative and the etymology is not invented."
   },
   "vanaheimr": {
     "ipa": "/vanaheimr/",
@@ -4699,7 +5301,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Heka is Tier 2 because the restoration preserves the long vowel conventionally understood in the final syllable (the ꜣ alef), without a stress accent in the Greek sense. The ḥ marks a consonant English lacks; it is not 'h' as in 'house' but a voiceless fricative produced at the back of the throat, giving the name its hissing, authoritative sound."
+    "note": "Heka is Tier 1 because the restoration preserves the Egyptological alef ꜣ and the underdotted ḥ — distinctive letters the ASCII form loses. The ḥ marks a consonant English lacks; it is not 'h' as in 'house' but a voiceless fricative produced at the back of the throat, giving the name its hissing, authoritative sound."
   },
   "nephthys": {
     "ipa": "/nbtʰwt/",
@@ -4842,7 +5444,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Anû is Tier 2: the circumflex over the final u marks vowel length in the Sumerian/Akkadian romanization, not Greek-style stress. The long vowel is the single distinctive feature preserved in the Unicode domain."
+    "note": "Anû is Tier 1 because the circumflex over the final u is a distinctive diacritic the ASCII form loses. It is a pedagogical mark: a visible question that invites discussion about how the name was pronounced in Sumerian and Akkadian. Standard Assyriology writes Anu; the Unicode form Anû belongs to PuniCodex's phonological reconstruction hub."
   },
   "inanna": {
     "ipa": "/inanna/",
@@ -4896,13 +5498,26 @@ const PRONUNCIATION_ATLAS = {
   },
   "tiamat": {
     "ipa": "/tiˈaːmat/",
-    "ipaLabel": "Assyriological reconstruction",
-    "phonemes": [],
-    "approximation": null,
+    "ipaLabel": "Akkadian Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Ti-",
+        "desc": "Voiceless alveolar stop [t] followed by close front vowel [i]; the first syllable is light and leads into the long vowel."
+      },
+      {
+        "symbol": "-ā-",
+        "desc": "Long open front vowel [aː] — the macron marks a reconstructed vowel length that Assyriologists infer from Akkadian phonology and cognates; the cuneiform signs do not encode length directly."
+      },
+      {
+        "symbol": "-mat",
+        "desc": "Bilabial nasal [m], open vowel [a], and voiceless alveolar stop [t]; the final -t is the feminine ending of Akkadian tiāmtu, 'sea'."
+      }
+    ],
+    "approximation": "'tee-AH-maht' — stress the long second syllable and let it open like a calm sea before the final consonants close it.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Tiāmat; review recommended before promotion to canonical."
+    "note": "Tiāmat is Tier 1 because the macron on the first a marks a reconstructed vowel length — a distinctive diacritic the ASCII form loses. It is a pedagogical mark: a visible question that invites discussion about how the name was pronounced in Akkadian. Standard Assyriology writes Tiamat or Tiāmat; the Unicode form Tiāmat belongs to PuniCodex's phonological reconstruction hub."
   },
   "apsu": {
     "ipa": "/apˈsuː/",
@@ -4921,7 +5536,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Apsû is Tier 2 because the restoration preserves vowel length (macron/circumflex on û) without a Greek-style pitch accent. Sumerian and Akkadian are not Greek, but the circumflex convention signals the long final vowel to readers."
+    "note": "Apsû is Tier 1: the circumflex on the final u is a diacritic the ASCII form loses. It is a pedagogical mark: a visible question that invites discussion about how the name was pronounced in Sumerian and Akkadian. Standard Assyriology writes Apsu or Abzu; the Unicode form Apsû belongs to PuniCodex's phonological reconstruction hub."
   },
   "dumuzid": {
     "ipa": "/dumuzid/",
@@ -4934,14 +5549,27 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Dumuzid; review recommended before promotion to canonical."
   },
   "gilgamesh": {
-    "ipa": "/gilgames/",
-    "ipaLabel": "Assyriological reconstruction",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/ɡil.ɡa.mɛʃ/",
+    "ipaLabel": "Assyriological Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Gil-",
+        "desc": "Voiced velar stop with close front vowel [ɡil] — firm, like the name of a builder."
+      },
+      {
+        "symbol": "-ga-",
+        "desc": "The second velar with open [a] — the name's hinge."
+      },
+      {
+        "symbol": "-meš",
+        "desc": "Final [mɛʃ] — the hushing sibilant š, 'sh' as in 'ship', the sound the ASCII spelling loses."
+      }
+    ],
+    "approximation": "'gil-ga-MESH' — three even, heavy syllables; the final 'sh' is soft, like sand through fingers.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Gilgameš; review recommended before promotion to canonical."
+    "note": "Gilgameš is Tier 1 by the non-Greek rule: the restoration preserves the caron š, a distinctive letter the ASCII 'Gilgamesh' loses along with its redundant h. The name is Sumerian at root; the Akkadian epic made it the most famous royal name of Mesopotamia."
   },
   "enkidu": {
     "ipa": "/eŋkidu/",
@@ -4984,43 +5612,51 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Ḫumbaba; review recommended before promotion to canonical."
   },
   "kartikeya": {
-    "ipa": "/kˈaːrtikeya/",
+    "ipa": "/kaːr.t̪i.keː.jɐ/",
     "ipaLabel": "Reconstructed Sanskrit",
     "phonemes": [],
-    "approximation": null,
-    "dialect": null,
-    "confidence": "generated",
-    "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Kārtikeya; review recommended before promotion to canonical."
-  },
-  "radha": {
-    "ipa": "/ˈɾaː.dʱaː/",
-    "ipaLabel": "Reconstructed Sanskrit",
-    "phonemes": [
-      {
-        "symbol": "ā",
-        "desc": "Long open central vowel [aː], twice; the macrons mark length in both syllables."
-      },
-      {
-        "symbol": "dh",
-        "desc": "Voiced aspirated dental stop [dʱ]; a single breathy consonant, not d followed by h."
-      }
-    ],
-    "approximation": "RAH-dhah — both vowels long; the 'dh' is one breathy consonant, as in 'adhere' spoken quickly.",
+    "approximation": "KAHR-tih-kay-yah — the first vowel long, e always long in Sanskrit.",
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "राधा (Rādhā) has two long ā vowels and the voiced aspirate dh [dʱ]. Monier-Williams s.v. rādhā — from √rādh 'to succeed, prosper', also the name of the nakṣatra Viśākhā. The restoration Rādhā marks both long vowels; the ASCII form Radha flattens the length and leaves the aspiration of dh unexplained."
+    "note": "Sanskrit kārttikeya — IAST, with the long ā and the e unmarked (e and o are inherently long in Sanskrit and IAST never macrons them). The restoration Kārttikeya is the correct IAST form; Kārttikēya is a hypercorrection that mistakes the ISO 15919 convention for IAST."
+  },
+  "radha": {
+    "ipa": "/ˈrɑː.d̪ʱɑː/",
+    "ipaLabel": "Sanskrit Reconstruction",
+    "phonemes": [],
+    "approximation": "RAH-dhah — both a's are long; the dh is a single aspirated sound, not two letters.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Sanskrit Rādhā derives from √rādh, \"to prosper, accomplish, propitiate\" — Monier-Williams glosses the word as prosperity and success, and records her celestial namesake: the nakshatra Viśākhā is also called Rādhā. The restoration Rādhā keeps both long vowels exactly where the Sanskrit puts them; the ASCII \"Radha\" flattens the two syllables the tradition holds long. Tier-1 by rule: two macrons preserved."
   },
   "sati": {
-    "ipa": "/satˈiː/",
-    "ipaLabel": "Reconstructed Sanskrit",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/sɐ.tiː/",
+    "ipaLabel": "Sanskrit Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "S-",
+        "desc": "Voiceless dental sibilant [s]; the initial of the participle sat."
+      },
+      {
+        "symbol": "-a-",
+        "desc": "Short open central vowel [ɐ]."
+      },
+      {
+        "symbol": "-t-",
+        "desc": "Voiceless unaspirated dental stop [t̪]; Sanskrit t is pronounced with the tongue at the teeth, and the retroflex series is a separate set (ṭ, ṭh, ḍ, ḍh, ṇ)."
+      },
+      {
+        "symbol": "-ī",
+        "desc": "Long close front vowel [iː], marked by the macron/dīrgha sign."
+      }
+    ],
+    "approximation": "'Suh-TEE' — keep the first vowel short and crisp, and lengthen the final 'ee'. In careful Sanskrit the t is dental, the tongue touching the teeth.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Satī; review recommended before promotion to canonical."
+    "note": "Satī is Tier 1: the macron on ī marks the long vowel of the Sanskrit feminine. The name is not merely a title but the proper name of Śiva's first wife and a goddess in her own right."
   },
   "ushas": {
     "ipa": "/usˈas/",
@@ -5173,14 +5809,23 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Tantra; review recommended before promotion to canonical."
   },
   "om": {
-    "ipa": "/om/",
-    "ipaLabel": "Reconstructed Sanskrit",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/oːm/",
+    "ipaLabel": "Sanskrit Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "o",
+        "desc": "Long rounded back vowel [oː], pronounced with the lips rounded and the tongue raised at the back; in Vedic recitation this is a sustained, resonant tone."
+      },
+      {
+        "symbol": "ṃ",
+        "desc": "Anusvāra [◌̃], a nasal resonance that closes the syllable by allowing air to flow through the nose; not a separate 'm' consonant but a full nasalization of the preceding vowel."
+      }
+    ],
+    "approximation": "'OHM' — hold the open 'o' long, then let the sound dissolve into a hum that vibrates in the nose and skull.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Oṃ; review recommended before promotion to canonical."
+    "note": "Oṃ is Tier 1: the dot-under m (ṃ) preserves the anusvāra, a distinctive feature the ASCII form loses. The syllable is traditionally analyzed as containing the three sounds a, u, and m, representing the triads of waking-dream-sleep, creation-preservation-dissolution, and Brahma-Viṣṇu-Śiva."
   },
   "vyasa": {
     "ipa": "/vyˈaːsa/",
@@ -5473,14 +6118,23 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Raijin; review recommended before promotion to canonical."
   },
   "fujin": {
-    "ipa": "/fˈuːjin/",
-    "ipaLabel": "Modern Japanese reading",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/ɸɯː.dʑiɴ/",
+    "ipaLabel": "Modern Standard Japanese (Hepburn)",
+    "phonemes": [
+      {
+        "symbol": "Fū-",
+        "desc": "Voiceless bilabial fricative [ɸ] (like a soft 'f' made with both lips) plus long close back rounded [ɯː]; the macron marks length, giving Tier-1 status"
+      },
+      {
+        "symbol": "-jin",
+        "desc": "Voiced alveolo-palatal affricate [dʑ] plus close front [i] and moraic nasal [ɴ]; the final -n is a uvular nasal"
+      }
+    ],
+    "approximation": "'FOO-jin' — the first syllable is long and breezy, with lips almost touching for the 'f'; the final 'jin' is quick with a soft 'j'.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Fūjin; review recommended before promotion to canonical."
+    "note": "Fūjin is Tier 1 because the initial ū is long. The name is a straightforward Sino-Japanese compound: 風 (fū, 'wind') + 神 (jin, 'god/spirit'). He is typically paired with Raijin, the thunder god, in Japanese temple and popular art."
   },
   "kannon": {
     "ipa": "/kannon/",
@@ -5493,14 +6147,27 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Kannon; review recommended before promotion to canonical."
   },
   "jizo": {
-    "ipa": "/jizˈoː/",
-    "ipaLabel": "Modern Japanese reading",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/dʑi.zoː/",
+    "ipaLabel": "Japanese / Sanskrit Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "J-",
+        "desc": "Voiced palatal affricate [dʑ], like English 'j' but with the tongue closer to the hard palate."
+      },
+      {
+        "symbol": "-i-",
+        "desc": "Short close front vowel [i]."
+      },
+      {
+        "symbol": "-zō-",
+        "desc": "Voiced alveolar fricative [z] plus long [oː], marked by the macron."
+      }
+    ],
+    "approximation": "'JEE-zoh' — the first syllable is like 'jee', the second is a long, drawn 'zoh'.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Jizō; review recommended before promotion to canonical."
+    "note": "Jizō is Tier 1: the macron on ō marks the long vowel of the Japanese reading. The full Sanskrit name would require retroflex and aspirated consonants not registrable in the DNS root zone."
   },
   "amida": {
     "ipa": "/amida/",
@@ -5563,14 +6230,27 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Ebisu; review recommended before promotion to canonical."
   },
   "okuninushi": {
-    "ipa": "/ˈoːkuninushi/",
-    "ipaLabel": "Modern Japanese reading",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/oːkɯnʲiɲɯɕi/",
+    "ipaLabel": "Japanese Reconstruction (Old Japanese Opo-kuni-nusi)",
+    "phonemes": [
+      {
+        "symbol": "Ō-",
+        "desc": "from Old Japanese opo-, 'great, large' — the coalesced long vowel the macron preserves"
+      },
+      {
+        "symbol": "-kuni-",
+        "desc": "'land, province, realm' — written 国 in the chronicles, phonetic 久邇 in older spellings"
+      },
+      {
+        "symbol": "-nushi",
+        "desc": "主, 'lord, master, owner' — a standing title in divine names (cf. Kotoshironushi)"
+      }
+    ],
+    "approximation": "'OH-koo-nee-NOO-shee' — five even morae; the long Ō is a doubled plain O, never an English diphthong; 'shi' is the soft Japanese shibilant.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Ōkuninushi; review recommended before promotion to canonical."
+    "note": "Tier-1: the restoration Ōkuninushi preserves the long vowel (macron Ō) that the ASCII Okuninushi erases — the very feature that marks Ō- 'great' as distinct from a plain o-. One preserved feature, mechanically verifiable: a single-tier Tier-1 name."
   },
   "sarutahiko": {
     "ipa": "/sarutahiko/",
@@ -5603,14 +6283,31 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Kāne; review recommended before promotion to canonical."
   },
   "kanaloa": {
-    "ipa": "/kˈaːnaːloa/",
-    "ipaLabel": "Reconstructed from Unicode restoration",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/kaːˈnaːloa/",
+    "ipaLabel": "Hawaiian Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "K-",
+        "desc": "Voiceless velar stop [k], without aspiration."
+      },
+      {
+        "symbol": "-ā-",
+        "desc": "Long open back unrounded vowel [aː], macron marking length."
+      },
+      {
+        "symbol": "-na-",
+        "desc": "Alveolar nasal [n] followed by long [aː]."
+      },
+      {
+        "symbol": "-loa",
+        "desc": "[loa], 'vast' or 'far'; the name evokes the broad ocean."
+      }
+    ],
+    "approximation": "'kah-NAH-loh-ah' — both 'a' vowels are long, and the name flows like a slow wave.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Kānāloa; review recommended before promotion to canonical."
+    "note": "Kānāloa is Tier 1: the Hawaiian macrons on both ā's mark long vowels, the distinctive prosodic feature of the language. Without them the name collapses into a different rhythmic shape."
   },
   "lono": {
     "ipa": "/lono/",
@@ -5963,14 +6660,14 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Centeōtl; review recommended before promotion to canonical."
   },
   "xolotl": {
-    "ipa": "/ksˈoːloːtl/",
-    "ipaLabel": "Reconstructed from Unicode restoration",
+    "ipa": "/ˈʃoː.loːtɬ/",
+    "ipaLabel": "Classical Nahuatl",
     "phonemes": [],
-    "approximation": null,
+    "approximation": "SHOH-lotl, long ō on both syllables.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Xōlōtl; review recommended before promotion to canonical."
+    "note": "Xōlōtl carries two long ō vowels, both preserved in the restoration; the final -tl is Nahuatl's signature consonant cluster, released laterally — the sound every visitor learns on the name of the water-monster, the axolotl, that shares his name and, in myth, his skin. The final -tl is Nahuatl's lateral affricate, released to the side of the tongue — the sound that ends axolotl too."
   },
   "mictlantecuhtli": {
     "ipa": "/miktlˈaːnteːkuhtli/",
@@ -6003,14 +6700,31 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Ehēcatl; review recommended before promotion to canonical."
   },
   "itzpapalotl": {
-    "ipa": "/itzpapˈaːloːtl/",
-    "ipaLabel": "Reconstructed from Unicode restoration",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/its.pa.ˈpaː.loːtɬ/",
+    "ipaLabel": "Classical Nahuatl Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "itz-",
+        "desc": "[its], from ītztli, 'obsidian'; the blade that cuts and mirrors."
+      },
+      {
+        "symbol": "-pap-",
+        "desc": "[pap], reduplicated syllable imitating the flutter of wings."
+      },
+      {
+        "symbol": "-ā-",
+        "desc": "Long [aː], the stressed vowel of papālōtl, 'butterfly'."
+      },
+      {
+        "symbol": "-lōtl",
+        "desc": "[ˈloːtɬ], 'butterfly'; final -tl is the Nahuatl lateral affricate."
+      }
+    ],
+    "approximation": "'eets-pah-PAHL-ohtl' — the name crackles like obsidian breaking; hold the second 'a' and the final 'o' long.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Itzpapālōtl; review recommended before promotion to canonical."
+    "note": "The macrons on ā and ō mark reconstructed long vowels, making the restoration Tier 1. The name is onomatopoeic and lethal: a butterfly made of razor-sharp obsidian."
   },
   "ometeotl": {
     "ipa": "/ˈoːmeteoːtl/",
@@ -6033,47 +6747,64 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Citlālicue; review recommended before promotion to canonical."
   },
   "tlaltecuhtli": {
-    "ipa": "/tlˈaːlteːkuhtli/",
-    "ipaLabel": "Reconstructed from Unicode restoration",
-    "phonemes": [],
-    "approximation": null,
-    "dialect": null,
-    "confidence": "generated",
-    "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Tlāltēcuhtli; review recommended before promotion to canonical."
-  },
-  "orunmila": {
-    "ipa": "/orˈunmila/",
-    "ipaLabel": "Reconstructed from Unicode restoration",
-    "phonemes": [],
-    "approximation": null,
-    "dialect": null,
-    "confidence": "generated",
-    "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Ọrúnmìlà; review recommended before promotion to canonical."
-  },
-  "ochosi": {
-    "ipa": "/ɔ̀.ʃɔ́.ɔ̀.sì/",
-    "ipaLabel": "Standard Yoruba",
+    "ipa": "/tɬaːɬˈteː.kʷet͡ɬi/",
+    "ipaLabel": "Classical Nahuatl Reconstruction",
     "phonemes": [
       {
-        "symbol": "Ọ",
-        "desc": "Open-mid back rounded vowel [ɔ]; the dot below marks the open vowel against close [o]."
+        "symbol": "Tlāl-",
+        "desc": "Lateral affricate [tɬ] plus long open [aː]; tl- is a single Nahuatl initial, and ā marks vowel length."
       },
       {
-        "symbol": "ṣ",
-        "desc": "Voiceless postalveolar fricative [ʃ]; Yoruba ṣ, heard as 'ch' in the Cuban form Ochosi."
+        "symbol": "-tē-",
+        "desc": "Voiceless alveolar stop [t] plus long close-mid [eː], the honorific or lordly element."
       },
       {
-        "symbol": "ì",
-        "desc": "Final [i] with low tone; the grave accent marks the low register of the last syllable."
+        "symbol": "-cuhtli",
+        "desc": "Voiceless velar stop [k] plus rounded [we], then lateral affricate [tɬ] plus close front [i]; -cuhtli is the reverential suffix meaning 'lord.'"
       }
     ],
-    "approximation": "aw-shAW-aw-see — four open syllables on low-high-low-low tones; only the second syllable rises.",
+    "approximation": "'TLAH-lteh-KWEH-tlee' — begin with the single 'tl' sound, hold the first and second vowels long, and treat the final -tl as one release.",
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Standard Yoruba orthography Ọ̀ṣọ́ọ̀sì carries the tones low-high-low-low on four open syllables, all with the open vowel [ɔ]. R.C. Abraham, Dictionary of Modern Yoruba s.v. The restoration Ọṣọọsì keeps the three dotted vowels and ṣ, marking the final low tone explicitly; the Cuban Ochosi and Brazilian Oxóssi record the same name through Spanish and Portuguese ears."
+    "note": "The name is a straightforward compound of tlālli ('earth') and tēcuhtli ('lord'). The honorific suffix is not gender-exclusive in Nahuatl; Tlāltēcuhtli is depicted as both male and female, and sometimes as a toad-like being. Tier 1: the macrons on ā and ē preserve reconstructed vowel length."
+  },
+  "orunmila": {
+    "ipa": "/ɔ̀.rúɱ.mì.là/",
+    "ipaLabel": "Yoruba Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Ọ-",
+        "desc": "Open-mid back rounded vowel [ɔ] with low tone, written with a dot below."
+      },
+      {
+        "symbol": "-rú-",
+        "desc": "Voiced alveolar tap or trill [r] plus close back rounded vowel [u] with high tone."
+      },
+      {
+        "symbol": "-ɱì-",
+        "desc": "Voiced labiodental nasal [ɱ] before [m], with close front vowel [i] in low tone."
+      },
+      {
+        "symbol": "-là",
+        "desc": "Voiced alveolar lateral approximant [l] followed by open [a] with low tone."
+      }
+    ],
+    "approximation": "aw-ROON-mee-LAH — low 'aw', high 'ROON', then low 'mee-LAH'.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Ọrúnmìlà is Tier 1: the dot below ọ and the acute and grave accents that preserve Yoruba tones are distinctive features the ASCII form loses. The dot below ọ marks the open [ɔ] vowel."
+  },
+  "ochosi": {
+    "ipa": "/ɔ̀.ʃɔ́.ɔ̀.sì/",
+    "ipaLabel": "Yoruba (Standard Orthography)",
+    "phonemes": [],
+    "approximation": "aw-shaw-AW-sih — the dotted ọ is the open 'aw' of 'law'; ṣ is 'sh'; the tones run low-high-low-low.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "The name in standard Yoruba orthography is Ọ̀ṣọ́ọ̀sì, fully tone-marked; the owned form Ọṣọọsì keeps the underdotted vowels (ọ, the open o) and the long double-o while following the diaspora convention that leaves tone marks implicit — the spelling carried across the Santería and Candomblé worlds. Abraham's Dictionary of Modern Yoruba lists him as the god of hunters; the etymology is debated, though the ọ̀ṣọ́ element suggests swiftness. Tier-1 by rule: the underdots and the ṣ are distinctive letters the ASCII \"Ochosi\" cannot carry."
   },
   "osanyin": {
     "ipa": "/osanyin/",
@@ -6096,24 +6827,58 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Olókun; review recommended before promotion to canonical."
   },
   "aganju": {
-    "ipa": "/aganjˈu/",
-    "ipaLabel": "Reconstructed from Unicode restoration",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/à.gà.ɲú/",
+    "ipaLabel": "Yoruba Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "À-",
+        "desc": "Open central vowel [a] with low tone, written without dot below in the lexical form but historically linked to the agánbára ('force') root."
+      },
+      {
+        "symbol": "-gà-",
+        "desc": "Voiced velar stop [g] followed by open [a] with low tone."
+      },
+      {
+        "symbol": "-ɲú",
+        "desc": "Palatal nasal [ɲ] — like Spanish ñ — plus close back rounded vowel [u] with high tone."
+      }
+    ],
+    "approximation": "ah-gah-NYOO — start low on 'ah', stay low on 'gah', then rise sharply to 'NYOO'.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Aganjú; review recommended before promotion to canonical."
+    "note": "Aganjú is Tier 1: the acute accent on ú preserves the high tone of the final syllable, a distinctive feature the ASCII form loses. The dot below is absent from the lexical form because the stem vowel is plain /a/, not open /ɔ/ or /ɛ/."
   },
   "babaluaye": {
-    "ipa": "/babalˈuayˈe/",
-    "ipaLabel": "Reconstructed from Unicode restoration",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/ɔ̀.bà.lú.à.jé/",
+    "ipaLabel": "Yoruba Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Ọ-",
+        "desc": "Open-mid back rounded vowel [ɔ] with low tone, written with a dot below."
+      },
+      {
+        "symbol": "-bà-",
+        "desc": "Voiced bilabial stop [b] followed by open [a] with low tone."
+      },
+      {
+        "symbol": "-lú-",
+        "desc": "Voiced alveolar lateral approximant [l] followed by close back rounded vowel [u] with high tone."
+      },
+      {
+        "symbol": "-à-",
+        "desc": "Open central vowel [a] with low tone."
+      },
+      {
+        "symbol": "-yé",
+        "desc": "Palatal approximant [j] followed by close-mid front vowel [e] with high tone; the name means 'father whose scourge is the world'."
+      }
+    ],
+    "approximation": "aw-bah-loo-ah-YEH — low on the first three syllables, then high on 'YEH'.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Babalúayé; review recommended before promotion to canonical."
+    "note": "Ọbalúayé is Tier 1: the dot below ọ and the acute accents on ú and é are distinctive features the ASCII form loses, the acutes preserving high tones, while grave accents would mark low tones. The dot below ọ distinguishes open [ɔ] from close [o]."
   },
   "osumare": {
     "ipa": "/osumare/",
@@ -6326,24 +7091,58 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration SpəntaĀrmaiti; review recommended before promotion to canonical."
   },
   "haurvatat": {
-    "ipa": "/haurvatˈaːt/",
-    "ipaLabel": "Avestan reconstruction",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/haʊɾ.vəˈtaːt/",
+    "ipaLabel": "Avestan Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "hau-",
+        "desc": "Voiceless glottal fricative [h] plus diphthong [aʊ], the opening syllable meaning 'every, whole'"
+      },
+      {
+        "symbol": "-r-",
+        "desc": "Alveolar tap or trill [ɾ], linking the two halves of the name"
+      },
+      {
+        "symbol": "-v-",
+        "desc": "Voiced labiodental fricative [v], a glide in the Avestan form"
+      },
+      {
+        "symbol": "-tāt",
+        "desc": "Long [aː] plus alveolar stop [t], the abstract noun ending '-ness'"
+      }
+    ],
+    "approximation": "how-vuh-TAHT — begin with 'how' as in 'house,' glide through a light 'v,' and end with a long, emphatic 'tah.'",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Haurvatāt; review recommended before promotion to canonical."
+    "note": "Haurvatāt is Tier-1: the macron on the long final ā is a distinctive feature the ASCII form loses. As an Amesha Spenta, her name is an abstract noun meaning 'wholeness' or 'health,' personified as a divine being."
   },
   "ameretat": {
-    "ipa": "/amrtˈaːt/",
-    "ipaLabel": "Avestan reconstruction",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/a.məɾ.əˈtaːt/",
+    "ipaLabel": "Avestan Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "a-",
+        "desc": "Short open vowel [a], the privative prefix meaning 'not, without'"
+      },
+      {
+        "symbol": "-mər-",
+        "desc": "Schwa [ə] plus alveolar trill or tap [ɾ], from the root mar- 'to die'"
+      },
+      {
+        "symbol": "-ə-",
+        "desc": "Reduced vowel [ə], a linking syllable in the Avestan form"
+      },
+      {
+        "symbol": "-tāt",
+        "desc": "Long [aː] plus alveolar stop [t], the abstract noun ending '-ness, -ity'"
+      }
+    ],
+    "approximation": "ah-muh-ruh-TAHT — the middle syllables are light and quick, while the final 'tah' is long and emphatic.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Amərətāt; review recommended before promotion to canonical."
+    "note": "Amərətāt is Tier-1: the macron on the long final ā is a distinctive feature the ASCII form loses. As one of the Amesha Spentas, her name is an abstract noun meaning 'immortality' personified."
   },
   "sraosha": {
     "ipa": "/sraosa/",
@@ -6556,14 +7355,19 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Clementia."
   },
   "pyr": {
-    "ipa": "/pˈyr/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/pŷːr/",
+    "ipaLabel": "Attic Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Pŷr",
+        "desc": "Unaspirated voiceless bilabial stop [p] plus long upsilon with acute/circumflex [ŷː], followed by rho. The whole word is one long, high-pitched syllable."
+      }
+    ],
+    "approximation": "'PYOOR' — one long, high-pitched syllable, like the sound of a flame catching.",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Pŷr."
+    "note": "Pŷr is Tier 1 because the Greek πῦρ contains both length (υ) and stress (acute/circumflex) on the same syllable. It is one of the oldest and most culturally charged words in Greek."
   },
   "hydor": {
     "ipa": "/hˈydoːr/",
@@ -6576,34 +7380,48 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Hýdōr."
   },
   "ge": {
-    "ipa": "/gˈeː/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/gɛː/",
+    "ipaLabel": "Attic Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Gē",
+        "desc": "Voiced velar stop [g] plus long eta [ɛː]. The name is a single long syllable, the earth named as one continuous thing."
+      }
+    ],
+    "approximation": "'GAY' — one long, level syllable, like the sustained note of a deep drum.",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Gē."
+    "note": "Gē is Tier 1 because the Greek Γῆ bears the circumflex, which marks both stress and the long vowel (eta) in a single accent — both features the ASCII form loses. It is the older cultic form of the earth goddess, later often called Gaîa in poetry."
   },
   "aer": {
-    "ipa": "/air/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/a.ɛ́ːr/",
+    "ipaLabel": "Attic Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "A-",
+        "desc": "Short alpha with smooth breathing, the simple opening of the word."
+      },
+      {
+        "symbol": "-ḗr",
+        "desc": "Long eta with acute plus rho [ɛ̌ːr] — the pitch peak and the core meaning 'air, mist'."
+      }
+    ],
+    "approximation": "'ah-HAYR' — the second syllable is long, pitched high, and ends with a rolled or tapped r.",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Aḗr."
+    "note": "Aḗr is Tier 1 because the Greek ἀήρ contains both length (η) and stress (acute) on the same syllable. It is one of the elemental words of Greek philosophy and science."
   },
   "styx": {
-    "ipa": "/stˈyks/",
-    "ipaLabel": "Reconstructed Attic Greek",
+    "ipa": "/stýks/",
+    "ipaLabel": "Attic Greek Reconstruction",
     "phonemes": [],
-    "approximation": null,
+    "approximation": "STEEX — one syllable, acute on the only vowel there is.",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Stýx."
+    "note": "Greek Στύξ is monosyllabic — and Greek monosyllables carry the acute on their vowel in modern editions (as Πῦρ carries its circumflex, and φῶς its own). The restoration Stýx keeps that acute: the stress of the single syllable, the only mark the name can bear, exactly where the tradition places it."
   },
   "lethe": {
     "ipa": "/lˈeːtʰeː/",
@@ -6616,14 +7434,27 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Lḗthē."
   },
   "acheron": {
-    "ipa": "/akʰˈeroːn/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/a.kʰé.rɔːn/",
+    "ipaLabel": "Attic Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "A-",
+        "desc": "Short alpha with smooth breathing, unstressed opening."
+      },
+      {
+        "symbol": "-khé-",
+        "desc": "Aspirated kappa with acute on short epsilon [kʰé], the pitch peak."
+      },
+      {
+        "symbol": "-rōn",
+        "desc": "Rho-omega-nu, a long second syllable giving the name its weight and length."
+      }
+    ],
+    "approximation": "'ah-KHAY-rohn' — the middle syllable is pitched high; the final -ōn is long and sonorous.",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Achérōn."
+    "note": "Achérōn is Tier 1 because the Greek Ἀχέρων contains both stress (acute on έ) and length (ω). The name is at once a real river in Epirus and the mythic boundary of Hades."
   },
   "cocytus": {
     "ipa": "/koːkytˈos/",
@@ -6656,14 +7487,14 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Yùhuáng; review recommended before promotion to canonical."
   },
   "guanyin": {
-    "ipa": "/guˈaːnyiːn/",
-    "ipaLabel": "Modern Standard Chinese reading",
+    "ipa": "/kwan˥ ɥin˥/",
+    "ipaLabel": "Mandarin (Hanyu Pinyin with tones)",
     "phonemes": [],
-    "approximation": null,
+    "approximation": "gwahn-yin, high level tone on both syllables.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Guānyīn; review recommended before promotion to canonical."
+    "note": "Guānyīn 观音 means \"Perceiver of Sounds\" — the one who hears the cries of the world, a rendering of Avalokiteśvara's name as the Chinese translators analyzed it. The level tone on guān and the falling-level yīn are among the most recognized syllables in East Asian devotion."
   },
   "lanling": {
     "ipa": "/lˈanlˈiŋg/",
@@ -6676,14 +7507,23 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Lánlíng; review recommended before promotion to canonical."
   },
   "taishang": {
-    "ipa": "/taishaŋg/",
-    "ipaLabel": "Modern Standard Chinese reading",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/tʰaɪ̯˥˩ ʂɑŋ˥˩/",
+    "ipaLabel": "Modern Standard Mandarin (Pinyin)",
+    "phonemes": [
+      {
+        "symbol": "tài",
+        "desc": "Aspirated alveolar stop [tʰ], diphthong [aɪ̯], and Tone 4 (falling, ˥˩). Pinyin 't' before front vowels is aspirated [tʰ]."
+      },
+      {
+        "symbol": "shàng",
+        "desc": "Voiceless retroflex fricative [ʂ], close back unrounded vowel [ɨ] in the syllable rhyme, and Tone 4 (falling). Mandarin 'sh' is never English 'sh'."
+      }
+    ],
+    "approximation": "TIE-SHUHNG — 'tai' like 'tie' with a sharp falling tone, 'shang' with a retroflex 'sh' and a falling tone.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Tàishàng; review recommended before promotion to canonical."
+    "note": "太上 means 'Supreme, Most Exalted.' In Daoist theology it is the title of the deified Laozi as Tàishàng Lǎojūn, one of the Sānqīng (Three Pure Ones). The Pinyin restoration Tàishàng preserves both citation tones."
   },
   "tianhou": {
     "ipa": "/tiˈaːnhou/",
@@ -6696,14 +7536,23 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Tiānhòu; review recommended before promotion to canonical."
   },
   "longwang": {
-    "ipa": "/lˈoŋgwˈaŋg/",
-    "ipaLabel": "Modern Standard Chinese reading",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/lʊŋ˧˥ waŋ˧˥/",
+    "ipaLabel": "Modern Standard Mandarin (Pinyin)",
+    "phonemes": [
+      {
+        "symbol": "lóng",
+        "desc": "First syllable with voiced alveolar lateral approximant [l], final [ʊŋ] (close-mid back rounded vowel + velar nasal), and Tone 2 (rising, ˧˥). Pinyin 'o' before 'ng' corresponds to IPA [ʊ]."
+      },
+      {
+        "symbol": "wáng",
+        "desc": "Second syllable with labial-velar glide [w], open vowel [a], velar nasal coda [ŋ], and Tone 2 (rising, ˧˥)."
+      }
+    ],
+    "approximation": "LUHNG-WAHNG — two even syllables, each rising from mid to high pitch; the 'o' of the first is like the 'oo' in 'book', the 'a' of the second like the 'a' in 'father'.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Lóngwáng; review recommended before promotion to canonical."
+    "note": "龍王 denotes the Dragon King, the crowned ruler of the waters in Chinese religion and literature. The Modern Standard Mandarin reading is Lóngwáng — both syllables in Tone 2 (rising, ˧˥) — as recorded in the Unihan Database (Unicode Consortium, kMandarin) for 龍 and 王, and in standard Mandarin dictionaries. Baxter & Sagart (2014) reconstruct the Old Chinese forms as *[m]-roŋ (龍, GSR 1193a) and *[ɢ]ʷaŋ (王). The tone-marked Pinyin restoration Lóngwáng preserves the citation rising tones of both syllables; in connected speech the contours may be compressed, but the lexical tones remain Tone 2 throughout."
   },
   "yamen": {
     "ipa": "/yˈamen/",
@@ -6793,24 +7642,24 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Dào; review recommended before promotion to canonical."
   },
   "fuxi": {
-    "ipa": "/fˈuksiː/",
-    "ipaLabel": "Modern Standard Chinese reading",
+    "ipa": "/fu˧˥ ɕi˥/",
+    "ipaLabel": "Mandarin (Hanyu Pinyin with tones)",
     "phonemes": [],
-    "approximation": null,
+    "approximation": "foo-shee, rising tone on fu, high level on xi.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Fúxī; review recommended before promotion to canonical."
+    "note": "Fúxī 伏羲 carries the rising tone on fú and the high level tone on xī in Mandarin; older romanizations write Fu-hsi. The first graph 伏 suggests \"to subdue, to prostrate,\" the second 羲 a sacrificial term — a name older than its etymologies, borne by the first of the Three August Ones. The older romanization Fu-hsi records the same syllables; pinyin's x is the alveolo-palatal fricative of modern Mandarin."
   },
   "nuwa": {
-    "ipa": "/nuwˈaː/",
-    "ipaLabel": "Modern Standard Chinese reading",
+    "ipa": "/ny˨˩˦ wa˥/",
+    "ipaLabel": "Mandarin (Hanyu Pinyin with tones)",
     "phonemes": [],
-    "approximation": null,
+    "approximation": "nyoo-wah, low-dipping tone on Nǚ, high level on Wā.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Nǚwā; review recommended before promotion to canonical."
+    "note": "Nǚwā 女娲 bears the third tone on nǚ — the vowel ü written with its two dots, which the restoration keeps and plain ASCII drops. Wā is the level-toned archaic graph for this goddess alone: a character invented for her name, used for nothing else in the language. The ü is the front rounded vowel — the sound French writes u — which plain ASCII loses to plain u."
   },
   "shennong": {
     "ipa": "/shˈennˈoŋg/",
@@ -6853,24 +7702,29 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Gōnggōng; review recommended before promotion to canonical."
   },
   "xian": {
-    "ipa": "/ksiˈaːn/",
-    "ipaLabel": "Modern Standard Chinese reading",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/ɕjɛn˥˥/",
+    "ipaLabel": "Modern Standard Mandarin (Pinyin)",
+    "phonemes": [
+      {
+        "symbol": "xiān",
+        "desc": "Voiceless alveolo-palatal fricative [ɕ], palatal approximant [j], open-mid front vowel [ɛ], and Tone 1 (high level, ˥˥). Pinyin 'x' before front vowels is [ɕ], never English 'ks' or 'z'."
+      }
+    ],
+    "approximation": "SHYEHN — a high, level tone held steady, with a light 'sh' that touches the palate.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Xiān; review recommended before promotion to canonical."
+    "note": "仙 denotes a transcendent being in Daoism, distinct from ordinary gods (shén) and from Buddhist arhats or bodhisattvas. The character combines 人 (person) with 山 (mountain), suggesting one who withdraws to the heights. The Pinyin restoration Xiān preserves the high level tone."
   },
   "mazu": {
-    "ipa": "/mˈaːzu/",
-    "ipaLabel": "Modern Standard Chinese reading",
+    "ipa": "/ma˥ tsu˨˩˦/",
+    "ipaLabel": "Standard Mandarin",
     "phonemes": [],
-    "approximation": null,
+    "approximation": "MAH-tsoo — level tone, then a dip-and-rise.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Māzǔ; review recommended before promotion to canonical."
+    "note": "Māzǔ 媽祖 — \"Maternal Ancestor\" — carries the first tone on mā and the dipping third tone on zǔ; the restoration keeps both tone marks. Her personal name was Lín Mòniáng (\"Silent Maiden\"), but the world prays to the title: Grandmother of the sea. The third tone on zǔ dips and rises — the small valley in the name that Mandarin speakers sing without noticing."
   },
   "erlang": {
     "ipa": "/erlˈaŋg/",
@@ -6883,14 +7737,61 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Èrláng; review recommended before promotion to canonical."
   },
   "nezha": {
-    "ipa": "/nˈezhaː/",
-    "ipaLabel": "Modern Standard Chinese reading",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/nɤ˧˥ ʈʂa˥/",
+    "ipaLabel": "Modern Standard Mandarin (Pinyin)",
+    "phonemes": [
+      {
+        "symbol": "Né-",
+        "desc": "Voiced alveolar nasal [n] plus the unrounded close-mid back vowel [ɤ], with Tone 2 (rising, ˧˥). 哪 carries this reading only in the theophoric name; its ordinary interrogative reading is nǎ (Tone 3)."
+      },
+      {
+        "symbol": "-zhā",
+        "desc": "Voiceless unaspirated retroflex affricate [ʈʂ] plus open central vowel [a], with Tone 1 (high level, ˥). Pinyin 'zh' denotes the retroflex series, not the English 'zh' of 'measure'."
+      }
+    ],
+    "approximation": "NUH-jah — the first syllable rises like a question, the second stays high and level; keep the 'zh' retroflex, tongue curled back, closer to 'dr' than to 'j'.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Nézhā; review recommended before promotion to canonical."
+    "note": "哪吒 is the settled transcription of a name that entered Chinese through Buddhist transmission from Sanskrit Nalakūvara, son of the guardian king Vaiśravaṇa. The Modern Standard Mandarin reading is Nézhā: 吒 zhā (Tone 1) is the value recorded in the Unihan Database (Unicode Consortium, kMandarin) and standard dictionaries, while 哪 carries here its special proper-name reading né (Tone 2), preserved only in this name and recorded as such in the standard dictionaries (Xiandai Hanyu Cidian, Hanyu Da Cidian); its ordinary interrogative reading is nǎ (Tone 3), the value given under kMandarin in the Unihan Database. Because the name is a medieval transcription of a foreign theonym rather than a native Chinese word, Old Chinese reconstruction does not apply."
+  },
+  "change": {
+    "ipa": "/ʈʂʰaŋ˧˥ ɤ˧˥/",
+    "ipaLabel": "Modern Standard Mandarin (Pinyin)",
+    "phonemes": [
+      {
+        "symbol": "cháng",
+        "desc": "Syllable with aspirated retroflex affricate [ʈʂʰ] (tongue curled back, strongly aspirated), final [aŋ] (open central vowel + velar nasal), and Tone 2 (rising, ˧˥)."
+      },
+      {
+        "symbol": "é",
+        "desc": "Open syllable with close-mid back unrounded vowel [ɤ] and Tone 2 (rising, ˧˥). Pinyin 'e' in isolation corresponds to IPA [ɤ]."
+      }
+    ],
+    "approximation": "CHAHNG-UH — both syllables rise in tone, as in a questioning intonation; 'ch' is an aspirated retroflex with the tongue curled back, and 'é' is close to the vowel of 'her' with the r removed.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "嫦娥 denotes the Chinese goddess of the moon. The Modern Standard Mandarin reading is Cháng'é — cháng (Tone 2) and é (Tone 2) — as recorded in the Unihan Database (Unicode Consortium, kMandarin) and standard Mandarin dictionaries. The goddess's earlier name was 姮娥 Héng'é; under the Han it was altered to Cháng'é to observe the naming taboo on the personal name of Emperor Wen (Liú Héng 劉恆), the graph 常 cháng ('constant') replacing the tabooed homophone 姮 héng. The tone-marked Pinyin restoration Cháng'é preserves the citation rising tone on both syllables; in connected speech the contour may be compressed, but the lexical tones remain Tone 2."
+  },
+  "houyi": {
+    "ipa": "/xoʊ̯˥˩.i˥˩/",
+    "ipaLabel": "Modern Standard Mandarin (Pinyin)",
+    "phonemes": [
+      {
+        "symbol": "hòu",
+        "desc": "Syllable with voiceless velar fricative [x] (Pinyin 'h'), diphthongal final [oʊ̯] (Pinyin 'ou'), and Tone 4 (falling, ˥˩)."
+      },
+      {
+        "symbol": "yì",
+        "desc": "Syllable with high front unrounded vowel [i] (Pinyin 'yi' writes a bare [i] with a glide onset), and Tone 4 (falling, ˥˩)."
+      }
+    ],
+    "approximation": "HOH-yee — two crisp syllables, each spoken with a sharp falling tone, like a decisive command: 'HOE! YEE!'",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "后羿 names the divine archer: 后 is an archaic title meaning 'lord, sovereign' (not the later sense 'empress', for which 皇后 is used), and 羿 is the archer's given name. The Modern Standard Mandarin reading is Hòuyì (both syllables Tone 4), as recorded in the Unihan Database (Unicode Consortium, kMandarin) and standard Mandarin dictionaries. Baxter & Sagart (2014) reconstruct the Old Chinese reading of 羿 as *N-ŋ(r)ik-s. The tone-marked Pinyin restoration Hòuyì preserves the citation falling tone of both syllables; in connected speech the contour may be compressed, but the lexical tones remain Tone 4."
   },
   "sunwukong": {
     "ipa": "/sˈuːnwukoːŋg/",
@@ -6921,16 +7822,6 @@ const PRONUNCIATION_ATLAS = {
     "confidence": "generated",
     "audioPath": null,
     "note": "Broad IPA generated from the Unicode restoration Kūnlún; review recommended before promotion to canonical."
-  },
-  "asclepius": {
-    "ipa": "/askleːpiˈos/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
-    "dialect": null,
-    "confidence": "reconstructed",
-    "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Asklēpiós."
   },
   "eileithyia": {
     "ipa": "/eileˈitʰyia/",
@@ -7253,14 +8144,27 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Aítēs."
   },
   "chiron": {
-    "ipa": "/kʰˈiron/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/kʰéː.rɔːn/",
+    "ipaLabel": "Attic Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Kh-",
+        "desc": "aspirated k (χ), a hard stop released with a strong breath — not the fricative of modern Greek"
+      },
+      {
+        "symbol": "-eí-",
+        "desc": "long close ē (ει), carrying the high pitch of the acute accent"
+      },
+      {
+        "symbol": "-rōn",
+        "desc": "long open ō (ω) with final n"
+      }
+    ],
+    "approximation": "'KHEH-rōn' — long ē, long ō, the pitch rising on the first syllable",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Chíron."
+    "note": "Tier 1: the Greek original Χείρων carries both stress (the acute on ει) and long vowels (ει and ω). The restored form Cheírōn preserves both marks — the accent and the macron — that plain ASCII 'Cheiron' erases."
   },
   "ladon": {
     "ipa": "/lˈadoːn/",
@@ -7405,26 +8309,6 @@ const PRONUNCIATION_ATLAS = {
     "audioPath": null,
     "note": "Broad IPA generated from the Unicode restoration Sāvitrī; review recommended before promotion to canonical."
   },
-  "tvashtri": {
-    "ipa": "/tvastr/",
-    "ipaLabel": "Reconstructed Sanskrit",
-    "phonemes": [],
-    "approximation": null,
-    "dialect": null,
-    "confidence": "generated",
-    "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Tvaṣṭṛ; review recommended before promotion to canonical."
-  },
-  "pushan": {
-    "ipa": "/pˈuːsan/",
-    "ipaLabel": "Reconstructed Sanskrit",
-    "phonemes": [],
-    "approximation": null,
-    "dialect": null,
-    "confidence": "generated",
-    "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Pūṣan; review recommended before promotion to canonical."
-  },
   "vishvakarman": {
     "ipa": "/visvakarman/",
     "ipaLabel": "Reconstructed Sanskrit",
@@ -7434,16 +8318,6 @@ const PRONUNCIATION_ATLAS = {
     "confidence": "generated",
     "audioPath": null,
     "note": "Broad IPA generated from the Unicode restoration Viśvakarman; review recommended before promotion to canonical."
-  },
-  "daksha": {
-    "ipa": "/daksa/",
-    "ipaLabel": "Reconstructed Sanskrit",
-    "phonemes": [],
-    "approximation": null,
-    "dialect": null,
-    "confidence": "generated",
-    "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Dakṣa; review recommended before promotion to canonical."
   },
   "bhrigu": {
     "ipa": "/bhrgu/",
@@ -7536,14 +8410,27 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Höðr; review recommended before promotion to canonical."
   },
   "vali": {
-    "ipa": "/vˈali/",
-    "ipaLabel": "Reconstructed Old Norse",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/ˈwɑːli/",
+    "ipaLabel": "Old Norse Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "V-",
+        "desc": "Voiced labial-velar approximant [w], the Proto-Germanic sound preserved in Old Norse initial position."
+      },
+      {
+        "symbol": "-á-",
+        "desc": "Long open back unrounded vowel [aː], marked by the acute accent in Old Norse."
+      },
+      {
+        "symbol": "-li",
+        "desc": "Voiced alveolar lateral [l] plus short close front [i]."
+      }
+    ],
+    "approximation": "'WAH-lee' — begin with a 'w' as in 'water', hold the 'ah' long, and end with a light 'lee'.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Váli; review recommended before promotion to canonical."
+    "note": "Váli is Tier 1: the acute accent on á marks stress and length — a distinctive diacritic the ASCII form loses. Old Norse tone accent is not registrable in the DNS root zone."
   },
   "rig": {
     "ipa": "/rˈig/",
@@ -7565,51 +8452,15 @@ const PRONUNCIATION_ATLAS = {
     "audioPath": null,
     "note": "Broad IPA generated from the Unicode restoration Sága; review recommended before promotion to canonical."
   },
-  "athiratu": {
-    "ipa": "/ʔaθ.i.ˈraː.tu/",
-    "ipaLabel": "Ugaritological normalization (KTU)",
-    "phonemes": [
-      {
-        "symbol": "ʾ",
-        "desc": "Glottal stop [ʔ], the ʾalep onset of the name; unwritten in Latin conventions."
-      },
-      {
-        "symbol": "ṯ",
-        "desc": "Voiceless interdental fricative [θ], as in English 'thin'; the Phoenician reflex shifts it to š (Ašeratu)."
-      },
-      {
-        "symbol": "ā",
-        "desc": "Long open back vowel [aː] in the stressed penultimate syllable."
-      }
-    ],
-    "approximation": "ah-thi-RAH-too — a soft glottal catch at the start, the 'th' of 'thin' in the middle, and a long, stressed 'RAH' before the final 'too'.",
-    "dialect": null,
-    "confidence": "canonical",
-    "audioPath": null,
-    "note": "ʾAṯiratu is normalized [ʔaθ.i.ˈraː.tu]: glottal ʾalep, interdental ṯ (Greek theta), stress on the long penultimate ā, final short -u. The shorter form ʾAṯirat drops the final vowel. From ʾaṯr 'place, sanctuary'; her sea-epithet rbt ʾaṯrt ym, 'the Great Lady who walks on the Sea', underlies the Greek-era reading as a sea-goddess (Philo's Ἀσερά). The interdental is the letter the domain keeps: ṯ survives into Phoenician only as š, which is why Ašeratu is the Phoenician form."
-  },
   "hermod": {
-    "ipa": "/ˈhɛrˌmoːðr̩/",
-    "ipaLabel": "Reconstructed Old Norse",
-    "phonemes": [
-      {
-        "symbol": "ó",
-        "desc": "Long close-mid back rounded vowel [oː]; the acute marks vowel length, not stress."
-      },
-      {
-        "symbol": "ð",
-        "desc": "Voiced dental fricative [ð], as in English 'this'; the medial reflex of Proto-Germanic *d."
-      },
-      {
-        "symbol": "-r",
-        "desc": "Syllabic final [r̩], the Old Norse nominative ending of strong masculine nouns."
-      }
-    ],
-    "approximation": "HAIR-moth-ur — stress the first syllable; the 'ó' is a long 'o' as in 'oar', the 'ð' is the soft 'th' of 'this', and the final '-r' is a quick syllabic trill.",
+    "ipa": "/ˈher.moːðr/",
+    "ipaLabel": "Old Norse Reconstruction",
+    "phonemes": [],
+    "approximation": "HAIR-mohthr — the ó is long; the ð is the soft 'th' of 'this'; the final -r is the nominative ending, lightly sounded.",
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Hermóðr is reconstructed [ˈhɛrˌmoːðr̩]: initial stress, long ó, medial ð (the spirant of Proto-Germanic *d), and a syllabic nominative -r. The name compounds her- 'war, army' with móðr 'mind, spirit, courage' — 'war-spirit'. Cleasby-Vigfusson s.v. Hermóðr; de Vries, Altnordisches etymologisches Wörterbuch s.v. The Younger Futhark attestation ᚼᛁᚱᛘᚢᚦᚱ keeps the medial -uð- the restoration Hermóðr renders as óð."
+    "note": "Old Norse Hermóðr is a transparent compound: herr (\"host, army\") + móðr (\"spirit, mood, courage\" — the same word as English \"mood\" and German \"Mut\"), whence the standard rendering \"war-spirit.\" The restoration Hermóðr keeps the two things the ASCII form \"Hermod\" erases: the long ó and the letter ð (eth), the voiced dental fricative Old Norse wrote with its own character. Tier-1 by rule: two distinctive features preserved."
   },
   "magni": {
     "ipa": "/magni/",
@@ -7622,14 +8473,27 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Magni; review recommended before promotion to canonical."
   },
   "modi": {
-    "ipa": "/mˈoi/",
-    "ipaLabel": "Reconstructed Old Norse",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/ˈmoːði/",
+    "ipaLabel": "Old Norse Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "M-",
+        "desc": "Voiced bilabial nasal [m], the same as English 'm'."
+      },
+      {
+        "symbol": "-ó-",
+        "desc": "Long open-mid back rounded vowel [oː], marked by the acute accent for stress and length."
+      },
+      {
+        "symbol": "-ði",
+        "desc": "Voiced dental fricative [ð] (eth) followed by short close front [i]."
+      }
+    ],
+    "approximation": "'MOH-thi' — hold the 'o' long like 'mow' without the glide, then say the voiced 'th' of 'father' and end with a short 'ee'.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Móði; review recommended before promotion to canonical."
+    "note": "Móði is Tier 1: the acute on ó and the eth (ð) are distinctive features the ASCII form loses, the eth preserving the Old Norse voiced dental fricative. The name is also the common noun for 'wrath' or 'courage', making the god an embodiment of the quality itself."
   },
   "thrud": {
     "ipa": "/tʰrˈud/",
@@ -7730,7 +8594,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "The name Wꜣḏyt derives from the Egyptian word for 'green/blue' (wꜣḏ), recorded in Wörterbuch der ägyptischen Sprache I, 263–268. Hieroglyphs write only the consonants w-ꜣ-ḏ-y-t; the vowels are uncertain. The ꜣ functions as a vowel carrier or glottal onset, and the ḏ (palatal/ejective in earlier Egyptian, later merging toward /t/) is represented in PUNICODEX by the registrable d-with-line-below (U+1E0F). Because DNS registries vary in their acceptance of combining marks, the practical fallback is 'wadjet'. This is a Tier 2 restoration. Sources: Allen, Middle Egyptian (2014); Faulkner, A Concise Dictionary of Middle Egyptian, s.v. wꜣḏ; Wörterbuch der ägyptischen Sprache I, s.v. wꜣḏ; Hoch, Semitic Words in Egyptian Texts (1994), on Egyptian ḏ in Semitic transcriptions."
+    "note": "The name Wꜣḏyt derives from the Egyptian word for 'green/blue' (wꜣḏ), recorded in Wörterbuch der ägyptischen Sprache I, 263–268. Hieroglyphs write only the consonants w-ꜣ-ḏ-y-t; the vowels are uncertain. The ꜣ functions as a vowel carrier or glottal onset, and the ḏ (palatal/ejective in earlier Egyptian, later merging toward /t/) is represented in PUNICODEX by the registrable d-with-line-below (U+1E0F). Because DNS registries vary in their acceptance of combining marks, the practical fallback is 'wadjet'. This is a Tier 1 restoration — the ꜣ and ḏ are distinctive letters the ASCII form loses. Sources: Allen, Middle Egyptian (2014); Faulkner, A Concise Dictionary of Middle Egyptian, s.v. wꜣḏ; Wörterbuch der ägyptischen Sprache I, s.v. wꜣḏ; Hoch, Semitic Words in Egyptian Texts (1994), on Egyptian ḏ in Semitic transcriptions."
   },
   "nekhbet": {
     "ipa": "/nhbt/",
@@ -7742,25 +8606,15 @@ const PRONUNCIATION_ATLAS = {
     "audioPath": null,
     "note": "Broad IPA generated from the Unicode restoration Nḫbt; review recommended before promotion to canonical."
   },
-  "hapy": {
-    "ipa": "/hpy/",
-    "ipaLabel": "Egyptological reconstruction",
-    "phonemes": [],
-    "approximation": null,
-    "dialect": null,
-    "confidence": "generated",
-    "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Ḥꜥpy; review recommended before promotion to canonical."
-  },
   "seshat": {
-    "ipa": "/ssht/",
-    "ipaLabel": "Egyptological reconstruction",
+    "ipa": "/ˈsɛː.ʃat/",
+    "ipaLabel": "Egyptological (from Sšꜣt)",
     "phonemes": [],
-    "approximation": null,
+    "approximation": "SEH-shaht; the middle consonant is the aleph (ꜣ), not the ayin.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Ssḥt; review recommended before promotion to canonical."
+    "note": "Sšꜣt is conventionally vocalized \"Seshat\"; the doubled s of older \"Sesheta\" spellings and the final t mark her as the female counterpart of Thoth in both function and grammar. The ꜣ (Gardiner G1, the vulture) is the glottal stop the restoration keeps, where older books printed a plain \"a.\""
   },
   "mafdet": {
     "ipa": "/mfdt/",
@@ -8253,56 +9107,51 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Yoni; review recommended before promotion to canonical."
   },
   "amitabha": {
-    "ipa": "/amitˈaːbha/",
-    "ipaLabel": "Reconstructed Sanskrit",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/ə.ˈmɪ.taː.bʱə/",
+    "ipaLabel": "Sanskrit Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "A-",
+        "desc": "Short open vowel [ə], the Sanskrit prefix a- meaning 'without, un-'"
+      },
+      {
+        "symbol": "-mi-",
+        "desc": "Short close front [ɪ] plus voiced bilabial nasal [m]; part of the root mā, 'to measure'"
+      },
+      {
+        "symbol": "-tā-",
+        "desc": "Long open [aː], the feminine noun-forming suffix; the macron marks length"
+      },
+      {
+        "symbol": "-bha",
+        "desc": "Voiced aspirated bilabial stop [bʰ] plus short [ə]; bha means 'light, splendor'"
+      }
+    ],
+    "approximation": "'uh-MEE-tah-bhuh' — the 'bh' is aspirated like 'b-huh' in one sound; the 'tā' is held long.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Amitābha; review recommended before promotion to canonical."
+    "note": "Amitābha is Tier 1 because the medial ā is long. The name is a standard Sanskrit bahuvrīhi compound: a-mita ('unmeasured') + ābha ('light, splendor'). In East Asian Buddhism he is also known as Amitāyus, 'Infinite Life,' the two names emphasizing light and longevity."
   },
   "vairocana": {
-    "ipa": "/mə.ɦaː.ʋəi̯.ɾoː.tʃə.nə/",
-    "ipaLabel": "Reconstructed Sanskrit",
-    "phonemes": [
-      {
-        "symbol": "mahā",
-        "desc": "'Great': the long [aː] marked by the macron."
-      },
-      {
-        "symbol": "v",
-        "desc": "Labiodental approximant [ʋ], between English v and w."
-      },
-      {
-        "symbol": "c",
-        "desc": "Voiceless palatal affricate [tʃ]; Sanskrit c is always 'ch' as in 'church'."
-      }
-    ],
-    "approximation": "muh-hah-VAI-roh-chuh-nuh — 'vai' rhymes with 'eye'; the 'c' is 'ch' as in 'church'; the 'ro' is long.",
+    "ipa": "/mɐ.ɦaː.ʋɛː.ˈroː.tɕɐ.nɐ/",
+    "ipaLabel": "Sanskrit Reconstruction",
+    "phonemes": [],
+    "approximation": "mah-hah vai-ROH-chuh-nuh — mahā is \"great\"; the c is the soft 'ch' of 'church.'",
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "महावैरोचन (Mahāvairocana), 'the Great Illuminator': mahā 'great' + vairocana 'shining forth', from vi-√ruc 'to shine'. Monier-Williams s.v. He is the central Buddha of the Avataṃsaka Sūtra and of Shingon, where Japanese Dainichi — 'Great Sun' — translates the name's sense. The restoration keeps the long ā of mahā; the short-form variant Vairocana is the scholarly commonplace."
+    "note": "The lexicon takes the full canonical form, Mahāvairocana: mahā, \"great,\" + vairocana, \"the Shining One,\" from vi-√ruc, \"to shine forth\" (Monier-Williams) — \"the Great Illuminator.\" The Avataṃsaka tradition also knows the short form Vairocana, which the lexicon preserves as the plain variant; the esoteric schools prefer the full name. Monier-Williams records the word's older life as a solar epithet — and even as the name of a Dānava king, the father of Bali — before Buddhism made it the name of the cosmic Buddha. Tier-1 by rule: the macron and the long vowels are distinctive features the ASCII form loses."
   },
   "akshobhya": {
-    "ipa": "/əkˈʂoː.bʱjə/",
-    "ipaLabel": "Reconstructed Sanskrit",
-    "phonemes": [
-      {
-        "symbol": "kṣ",
-        "desc": "The conjunct kṣa: [k] released into the voiceless retroflex sibilant [ʂ]."
-      },
-      {
-        "symbol": "bh",
-        "desc": "Voiced aspirated bilabial stop [bʱ]; one breathy consonant, not b followed by h."
-      }
-    ],
-    "approximation": "uk-SHOH-byuh — the 'ṣ' is a retroflex 'sh' with the tongue curled back; stress falls on the long 'ō'.",
+    "ipa": "/ɐk.ˈʂoː.bʱjɐ/",
+    "ipaLabel": "Sanskrit Reconstruction",
+    "phonemes": [],
+    "approximation": "uk-SHOH-bhyuh — the kṣ is a single conjunct sound (k + retroflex ṣ); the bh is aspirated.",
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "अक्षोभ्य (Akṣobhya), 'the Immovable': a- 'not' + √kṣubh 'to shake' + -ya. The kṣ ligature combines k with the retroflex ṣ, the feature ASCII dissolves into 'ksh'. Monier-Williams s.v. In Vajrayana he is the Buddha of the eastern pure land Abhirati and of mirror-like wisdom; the restoration keeps the ṣ that carries the root."
+    "note": "Akṣobhya is a-privative plus kṣobhya, \"to be shaken\" — from √kṣubh, \"to shake, agitate\" (Monier-Williams): \"the Unshakable, the Immovable.\" The name states his defining vow: never to give way to anger. The restoration keeps the kṣ conjunct with its retroflex ṣ exactly as the Sanskrit writes it; the ASCII \"Akshobhya\" transliterates the letter but loses its shape. Tier-1 by rule: the retroflex ṣ is a distinctive letter."
   },
   "ratnasambhava": {
     "ipa": "/ratnasambhava/",
@@ -8335,27 +9184,14 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Maitreya; review recommended before promotion to canonical."
   },
   "manjushri": {
-    "ipa": "/məɲ.dʑu.ˈɕɾiː/",
-    "ipaLabel": "Reconstructed Sanskrit",
-    "phonemes": [
-      {
-        "symbol": "ñ",
-        "desc": "Palatal nasal [ɲ], the 'ny' of 'canyon'; the tilde is its IAST sign."
-      },
-      {
-        "symbol": "ś",
-        "desc": "Voiceless alveolo-palatal sibilant [ɕ], a soft 'sh'."
-      },
-      {
-        "symbol": "ī",
-        "desc": "Long close front vowel [iː]; the macron marks the final length."
-      }
-    ],
-    "approximation": "mun-joo-SHREE — the 'ñ' is the 'ny' of 'canyon'; stress the final long 'ī'.",
+    "ipa": "/mɐɲ.ˈdʑu.ɕriː/",
+    "ipaLabel": "Sanskrit Reconstruction",
+    "phonemes": [],
+    "approximation": "mun-joo-SHREE — the ñ is the nasal of 'canyon'; śrī is one syllable, the 'sh' softened.",
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "मञ्जुश्री (Mañjuśrī), 'Gentle Glory': mañju 'gentle, beautiful' + śrī 'glory, auspiciousness'. Monier-Williams s.v. The palatal ñ and palatal ś are exactly the sounds the ASCII 'nj' and 'sh' gesture at without marking; the final ī is long. He is the bodhisattva of transcendent wisdom (prajñā)."
+    "note": "Mañjuśrī is a compound: mañju, \"gentle, sweet, lovely,\" + śrī, \"glory, splendor\" (Monier-Williams) — \"the Gentle Glory.\" His other names are a litany of the same music: Mañjughoṣa, \"Gentle Voice\"; Vāgīśvara, \"Lord of Speech.\" The restoration keeps the palatal ñ, the ś, and the long ī; the ASCII \"Manjushri\" loses all three. Tier-1 by rule: three distinctive letters preserved."
   },
   "samantabhadra": {
     "ipa": "/samantabhadra/",
@@ -8368,80 +9204,24 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Samantabhadra; review recommended before promotion to canonical."
   },
   "ksitigarbha": {
-    "ipa": "/kʂi.ti.ˈɡəɾ.bʱə/",
-    "ipaLabel": "Reconstructed Sanskrit",
-    "phonemes": [
-      {
-        "symbol": "kṣ",
-        "desc": "The conjunct kṣa: [k] released into the voiceless retroflex sibilant [ʂ]."
-      },
-      {
-        "symbol": "bh",
-        "desc": "Voiced aspirated bilabial stop [bʱ]; one breathy consonant, not b followed by h."
-      }
-    ],
-    "approximation": "kshi-ti-GUR-bhuh — the opening 'kṣi' is a single cluster; 'bh' is one breathy consonant.",
+    "ipa": "/kʂi.ti.ˈgɐr.bʱɐ/",
+    "ipaLabel": "Sanskrit Reconstruction",
+    "phonemes": [],
+    "approximation": "kshih-tih-GUR-bhuh — the kṣ is one conjunct sound; the bh is aspirated.",
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "क्षितिगर्भ (Kṣitigarbha), 'Earth-store' or 'Earth-womb': kṣiti 'earth' + garbha 'womb, interior'. Monier-Williams s.v. The bodhisattva who vowed to remain until the hells are empty — Chinese Dìzàng, Japanese Jizō. The restoration keeps the kṣ ligature that ASCII spells out as 'ksh'."
+    "note": "Kṣitigarbha is kṣiti, \"earth\" (from √kṣi, \"to dwell, abide\" — Monier-Williams), + garbha, \"womb, inner chamber, treasury\": \"the Earth-Womb,\" the earth as the storehouse that holds and hides all treasure. East Asia translated rather than transliterated: Chinese Dìzàng, \"Earth-Store,\" Japanese Jizō. The restoration's whole distinctiveness is carried by one letter — the retroflex ṣ inside the kṣ conjunct — which the ASCII \"Ksitigarbha\" writes but cannot show. Tier-1 by rule."
   },
   "vajrapani": {
-    "ipa": "/ʋədʑ.ɾə.ˈpaː.ɳi/",
-    "ipaLabel": "Reconstructed Sanskrit",
-    "phonemes": [
-      {
-        "symbol": "v",
-        "desc": "Labiodental approximant [ʋ], between English v and w."
-      },
-      {
-        "symbol": "ā",
-        "desc": "Long open central vowel [aː]; the macron marks the stressed length of pāṇi."
-      },
-      {
-        "symbol": "ṇ",
-        "desc": "Retroflex nasal [ɳ]; the dot below curls the tongue back."
-      }
-    ],
-    "approximation": "vuj-ruh-PAH-ni — the 'v' sits between v and w; the 'ṇ' is a retroflex n with the tongue curled back.",
+    "ipa": "/ʋɐdʒ.rɐ.ˈpaː.ɳi/",
+    "ipaLabel": "Sanskrit Reconstruction",
+    "phonemes": [],
+    "approximation": "vuj-ruh-PAH-nih — the j is as in 'jam'; the ṇ is the retroflex n; the ā of pāṇi is long.",
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "वज्रपाणि (Vajrapāṇi), 'vajra in hand': vajra 'thunderbolt, diamond' + pāṇi 'hand'. Monier-Williams s.v. — the name is first an epithet of Indra in the Brāhmaṇas and Mahābhārata before Buddhism made it the protector of the Dharma. The retroflex ṇ of pāṇi and the long ā are the features ASCII loses."
-  },
-  "shakyamuni": {
-    "ipa": "/ˈɕaː.kjə.mu.ni/",
-    "ipaLabel": "Reconstructed Sanskrit",
-    "phonemes": [
-      {
-        "symbol": "Ś",
-        "desc": "Voiceless alveolo-palatal sibilant [ɕ], a soft 'sh'; the acute is its IAST sign."
-      },
-      {
-        "symbol": "ā",
-        "desc": "Long open central vowel [aː]; the macron marks the length of the first syllable."
-      }
-    ],
-    "approximation": "SHAH-kyuh-moo-ni — the 'Ś' is a soft 'sh', the first 'a' is long, and the four syllables stay even.",
-    "dialect": null,
-    "confidence": "canonical",
-    "audioPath": null,
-    "note": "शाक्यमुनि (Śākyamuni), 'sage of the Śākya clan': śākya 'of the Śākyas', the Buddha's natal clan, + muni 'sage'. Monier-Williams s.v. The initial ś is the palatal sibilant the ASCII digraph 'sh' approximates, and the macron marks the long ā; the epithet is the standard Sanskrit title of the historical Buddha."
-  },
-  "mara": {
-    "ipa": "/ˈmaː.ɾə/",
-    "ipaLabel": "Reconstructed Sanskrit",
-    "phonemes": [
-      {
-        "symbol": "ā",
-        "desc": "Long open central vowel [aː]; the macron doubles the length of the first syllable."
-      }
-    ],
-    "approximation": "MAH-ruh — the first 'a' is held twice as long as the second.",
-    "dialect": null,
-    "confidence": "canonical",
-    "audioPath": null,
-    "note": "मार (Māra), 'death, the killer', from √mṛ 'to die'; the personification of death and desire who assailed the Buddha under the Bodhi tree. Monier-Williams s.v.; Pāli Māra is the same word. The macron on ā is the whole restoration — and the difference between the tempter and a common given name."
+    "note": "Vajrapāṇi is a bahuvrīhi: vajra, \"thunderbolt, diamond,\" + pāṇi, \"hand\" (Monier-Williams) — \"the one with the vajra in hand.\" The name is older than Buddhism: Monier-Williams lists it first as an epithet of Indra, the thunderbolt-wielder, and the lexicon preserves that gloss. Buddhism transferred the weapon and the title to the Buddha's own protector. The restoration keeps the long ā and the retroflex ṇ; the ASCII \"Vajrapani\" flattens both. Tier-1 by rule."
   },
   "tara": {
     "ipa": "/tˈaːraː/",
@@ -8533,15 +9313,44 @@ const PRONUNCIATION_ATLAS = {
     "audioPath": null,
     "note": "Broad IPA generated from the Unicode restoration Nirvāṇa; review recommended before promotion to canonical."
   },
-  "laozi": {
-    "ipa": "/laozi/",
-    "ipaLabel": "Modern Standard Chinese reading",
+  "shakyamuni": {
+    "ipa": "/ˈɕaː.kjɐ.mu.ni/",
+    "ipaLabel": "Sanskrit Reconstruction",
     "phonemes": [],
-    "approximation": null,
+    "approximation": "SHAH-kyuh-moo-nih — ś is the soft palatal 'sh'; the ā of Śākya is long.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Lǎozǐ; review recommended before promotion to canonical."
+    "note": "Śākyamuni is a title, not a personal name: śākya, of the Śākya clan of Kapilavastu, + muni, \"sage, silent one\" (Monier-Williams) — \"the sage of the Śākyas.\" His personal name was Siddhārtha (Pāli Siddhattha), his clan name Gautama (Pāli Gotama); the tradition itself connects Śākya with the śāka (teak) tree of the clan's founding legend. The restoration keeps the palatal ś and the long ā that the ASCII \"Shakyamuni\" only approximates. Tier-1 by rule."
+  },
+  "mara": {
+    "ipa": "/ˈmɑː.rɐ/",
+    "ipaLabel": "Sanskrit Reconstruction",
+    "phonemes": [],
+    "approximation": "MAH-ruh — the ā is long; two syllables, no ornament.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Māra derives from √mṛ, \"to die\" (Monier-Williams): \"death, the killer\" — the personification of everything that kills the spiritual life, from desire to death itself. The Pāli canon also knows him as Namuci (an old Vedic name), Pāpimā, \"the Evil One,\" and Kaṇha, \"the Dark One.\" The restoration's whole content is the long ā: the difference between \"Mara\" and Māra is the difference between a name and the word for death. Tier-1 by rule."
+  },
+  "laozi": {
+    "ipa": "/laʊ̯˨˩ tsi˨˩/",
+    "ipaLabel": "Modern Standard Mandarin (Pinyin)",
+    "phonemes": [
+      {
+        "symbol": "Lǎo",
+        "desc": "Syllable with lateral approximant [l], diphthong [aʊ̯] (like 'ow' in 'cow'), and Tone 3 (falling-rising, ˨˩). The character 老 means 'old'."
+      },
+      {
+        "symbol": "zǐ",
+        "desc": "Syllable with unaspirated alveolo-palatal affricate [ts], high front vowel [i], and Tone 3 (falling-rising). The character 子 is an honorific 'master' or 'venerable'."
+      }
+    ],
+    "approximation": "'LAOW-dzuh' — 'lao' like 'loud' without the final 'd', with a dipping tone (down then up); 'zi' like 'dzuh' with the same dipping tone.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Lǎozǐ is Tier 1: the tone marks on both syllables preserve the Mandarin citation tones — diacritics the ASCII form loses. The name means 'Old Master,' an honorific rather than a personal name. Whether Lǎozǐ was a historical figure, a composite, or a symbolic founder remains debated among scholars."
   },
   "zhuangzi": {
     "ipa": "/zhuˈaːŋgzi/",
@@ -8594,14 +9403,27 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration HéXiāngū; review recommended before promotion to canonical."
   },
   "xiwangmu": {
-    "ipa": "/ksiːwˈaŋgmu/",
-    "ipaLabel": "Modern Standard Chinese reading",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/ɕi˥ waŋ˧˥ mu˨˩˦/",
+    "ipaLabel": "Modern Standard Mandarin (Pinyin)",
+    "phonemes": [
+      {
+        "symbol": "xī",
+        "desc": "Voiceless alveolo-palatal fricative [ɕ] followed by high front vowel [i], Tone 1 (high level, ˥). Pinyin 'x' has no English equivalent; it is the 'sh' of 'she' pushed forward toward the teeth."
+      },
+      {
+        "symbol": "wáng",
+        "desc": "Labial-velar approximant [w] with the final [aŋ] (open central vowel + velar nasal), Tone 2 (rising, ˧˥)."
+      },
+      {
+        "symbol": "mǔ",
+        "desc": "Bilabial nasal [m] with high back rounded vowel [u], Tone 3 (dipping, ˨˩˦) — the low, dipping contour that falls before it rises."
+      }
+    ],
+    "approximation": "shee-WAHNG-moo — Xī held high and level like a sustained note, wáng rising from mid to high as in a question, mǔ dipping low and turning up again.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Xīwángmǔ; review recommended before promotion to canonical."
+    "note": "西王母 means 'Queen Mother of the West' — xī (west), wáng (king, sovereign), mǔ (mother). The Modern Standard Mandarin reading is Xīwángmǔ (Tones 1-2-3), as recorded in the Unihan Database (Unicode Consortium, kMandarin) and standard Mandarin dictionaries. The tone-marked Pinyin restoration Xīwángmǔ preserves the citation tones of all three syllables; in connected speech the third tone on mǔ is often realized as a low half-third tone, but the lexical tone remains Tone 3."
   },
   "dongwanggong": {
     "ipa": "/doːŋgwˈaŋggoːŋg/",
@@ -8770,7 +9592,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Baꜥal is technically a title ('Lord') that became a name. The ideal form includes Semitic ʿayin, which is blocked at the DNS root; the Egyptological Ain (ꜥ) is the registrable compromise. The name is Tier 2 because it preserves the ʿayin as a distinctive phoneme but carries no stress or length mark. In texts he is often 'Baꜥlu-Haddu' or simply the 'Rider on the Clouds.'"
+    "note": "Baꜥal is technically a title ('Lord') that became a name. The ideal form includes Semitic ʿayin, which is blocked at the DNS root; the Egyptological Ain (ꜥ) is the registrable compromise. The name is Tier 1 because it preserves the ʿayin as a distinctive phoneme — a distinctive letter the ASCII form loses. In texts he is often 'Baꜥlu-Haddu' or simply the 'Rider on the Clouds.'"
   },
   "el": {
     "ipa": "/ʔeːl/",
@@ -8789,7 +9611,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Ēl is both a proper name and the common Semitic word for 'god.' The macron marks the long vowel inferred from Hebrew אֵל and Ugaritic spellings. As a Tier-2 name it preserves length (macron) but not stress/accent, fitting the project's convention for registering a single distinctive prosodic feature."
+    "note": "Ēl is both a proper name and the common Semitic word for 'god.' The macron marks the long vowel inferred from Hebrew אֵל and Ugaritic spellings. As a Tier-1 name it preserves length (macron) — a distinctive feature the ASCII form loses."
   },
   "anat": {
     "ipa": "/ʕa.nat/",
@@ -8808,7 +9630,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "The ideal spelling would use Semitic ʿayin (ʿ), but that character is rejected by the DNS root zone. We therefore render the pharyngeal with the Egyptological Ain (ꜥ, U+A724), the only registrable Unicode workaround that signals the original consonant. The name is Tier 2: it preserves the ʿayin (a distinctive phoneme) but lacks the long-vowel mark that would make it Tier 1."
+    "note": "The ideal spelling would use Semitic ʿayin (ʿ), but that character is rejected by the DNS root zone. We therefore render the pharyngeal with the Egyptological Ain (ꜥ, U+A724), the only registrable Unicode workaround that signals the original consonant. The name is Tier 1: it preserves the ʿayin (a distinctive phoneme) — a distinctive letter the ASCII form loses."
   },
   "aseratu": {
     "ipa": "/ʔa.ʃe.ˈra.tu/",
@@ -8835,7 +9657,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Reconstruction follows the Phoenician/Ugaritic nominative form ʾAšeratu. The initial consonant is a glottal stop (aleph), not a pharyngeal, so the PUNICODEX form uses plain A rather than Egyptological Ain. The medial š marks the Canaanite/Phoenician reflex of Proto-Semitic *ṯ, while Ugaritic retains the older ṯ (probably [θ]); the final -u is the case vowel, dropped in Hebrew Asherah. Tier 2: the caron on š preserves a distinctive Semitic phoneme, but there is no long-vowel or Greek-style stress feature. Sources: KTU, CIS/KAI, Smith The Ugaritic Baal Cycle, Day Yahweh and the Gods and Goddesses of Canaan."
+    "note": "Reconstruction follows the Phoenician/Ugaritic nominative form ʾAšeratu. The initial consonant is a glottal stop (aleph), not a pharyngeal, so the PUNICODEX form uses plain A rather than Egyptological Ain. The medial š marks the Canaanite/Phoenician reflex of Proto-Semitic *ṯ, while Ugaritic retains the older ṯ (probably [θ]); the final -u is the case vowel, dropped in Hebrew Asherah. Tier 1: the caron on š preserves a distinctive Semitic phoneme — a distinctive diacritic the ASCII form loses. Sources: KTU, CIS/KAI, Smith The Ugaritic Baal Cycle, Day Yahweh and the Gods and Goddesses of Canaan."
   },
   "mot": {
     "ipa": "/moːt/",
@@ -8871,14 +9693,35 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Yammu; review recommended before promotion to canonical."
   },
   "shapash": {
-    "ipa": "/sˈaːpsu/",
-    "ipaLabel": "Reconstructed from Unicode restoration",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/ʃaːpˈʃuː/",
+    "ipaLabel": "Ugaritic/Phoenician Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Š",
+        "desc": "Voiceless postalveolar fricative [ʃ], like English 'sh'"
+      },
+      {
+        "symbol": "ā",
+        "desc": "Long open vowel [aː] in the first syllable, marked with macron"
+      },
+      {
+        "symbol": "p",
+        "desc": "Voiceless bilabial plosive [p]"
+      },
+      {
+        "symbol": "š",
+        "desc": "Second voiceless postalveolar fricative [ʃ], forming the reduplicated element of the name"
+      },
+      {
+        "symbol": "u",
+        "desc": "Close back rounded vowel [u], the final syllable in the nominative form Šāpšu"
+      }
+    ],
+    "approximation": "SHAHPSHOO — the first syllable is long, and the name ends in a bright, rounded 'oo' like 'shoe.'",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Šāpšu; review recommended before promotion to canonical."
+    "note": "Šāpšu is Tier-1: the caron on š and the macron on ā are distinctive features the ASCII form loses. The Ugaritic name is conventionally vocalized Šapšu or Šāpšu; the final u reflects the nominative case ending common in scholarly transliteration."
   },
   "kothar": {
     "ipa": "/kˈotaru/",
@@ -8891,14 +9734,35 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Kôṯaru; review recommended before promotion to canonical."
   },
   "dagan": {
-    "ipa": "/dˈaːgan/",
-    "ipaLabel": "Reconstructed from Unicode restoration",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/daːˈɡaːn/",
+    "ipaLabel": "Ugaritic/Phoenician Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "d",
+        "desc": "Voiced alveolar plosive [d], as in English 'dog'"
+      },
+      {
+        "symbol": "ā",
+        "desc": "Long open front vowel [aː], marked with macron; the first syllable is long"
+      },
+      {
+        "symbol": "g",
+        "desc": "Voiced velar plosive [ɡ], as in English 'go'"
+      },
+      {
+        "symbol": "a",
+        "desc": "Short open vowel [a], the unstressed final syllable"
+      },
+      {
+        "symbol": "n",
+        "desc": "Alveolar nasal [n], closing the name"
+      }
+    ],
+    "approximation": "DAH-ghan — both the first 'a' is long like 'father,' and the second 'a' is short; stress falls on the long first syllable.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Dāgan; review recommended before promotion to canonical."
+    "note": "Dāgan is a Tier-1 restoration because the long vowel ā is preserved. The name is common Semitic but its precise etymology is uncertain; it has been connected with 'grain' (Hebrew dāgān) and with 'fish' (Hebrew dāḡ), though the former is more widely accepted for the Northwest Semitic grain god."
   },
   "astartu": {
     "ipa": "/astartu/",
@@ -9140,16 +10004,6 @@ const PRONUNCIATION_ATLAS = {
     "audioPath": null,
     "note": "Broad IPA generated from the Unicode restoration Wénshū; review recommended before promotion to canonical."
   },
-  "delphi": {
-    "ipa": "/delpʰˈi/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
-    "dialect": null,
-    "confidence": "reconstructed",
-    "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Delphí."
-  },
   "olympia": {
     "ipa": "/olympˈia/",
     "ipaLabel": "Reconstructed Attic Greek",
@@ -9251,14 +10105,14 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Benarés; review recommended before promotion to canonical."
   },
   "yamuna": {
-    "ipa": "/yamunˈaː/",
+    "ipa": "/jɐ.mʊ.naː/",
     "ipaLabel": "Reconstructed Sanskrit",
     "phonemes": [],
-    "approximation": null,
+    "approximation": "yuh-moo-NAH — even syllables, long ending.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Yamunā; review recommended before promotion to canonical."
+    "note": "Sanskrit yamunā carries the long final ā; the restoration Yamunā keeps it. Her name shares the root of \"twin\" (yama) — she is the sister of Yama, the lord of death, and the river that twins the Gaṅgā at the sangam. The name shares yama, \"twin\": she is the twin of death's lord, and the twin of Gaṅgā at the sangam — the name tells both stories."
   },
   "sarnath": {
     "ipa": "/sarnatʰ/",
@@ -9321,14 +10175,27 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Eûros."
   },
   "zephyros": {
-    "ipa": "/zˈepʰyros/",
-    "ipaLabel": "Reconstructed Attic Greek",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/ˈzdɛ.pʰy.ros/",
+    "ipaLabel": "Attic Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Zé-",
+        "desc": "stressed first syllable; classical zeta was a true 'zd' cluster, as in English 'wisdom', not a modern 'z'"
+      },
+      {
+        "symbol": "-phy-",
+        "desc": "phi was an aspirated p (p + breath), not an f; upsilon was a rounded French-like 'u' [y]"
+      },
+      {
+        "symbol": "-ros",
+        "desc": "short final -os; the r lightly trilled"
+      }
+    ],
+    "approximation": "'ZDEH-phee-ros' — stress the first syllable; begin with the 'zd' of 'wisdom', and let the phi puff air like an English 'up-hill', not an 'f'",
     "dialect": null,
-    "confidence": "reconstructed",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Zéphyros."
+    "note": "Tier-2 — Accent-Preserving. The restoration Zéphyros preserves the acute stress of Ζέφυρος on the first syllable, a feature plain ASCII loses; it carries no long-vowel mark, so a single preserved feature places the name in Tier 2."
   },
   "momos": {
     "ipa": "/mˈomos/",
@@ -9711,71 +10578,92 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Vərəθraγna; review recommended before promotion to canonical."
   },
   "ma": {
-    "ipa": "/m/",
-    "ipaLabel": "Egyptological reconstruction",
-    "phonemes": [],
-    "approximation": null,
-    "dialect": null,
-    "confidence": "generated",
-    "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Mꜣ; review recommended before promotion to canonical."
-  },
-  "maa": {
-    "ipa": "/mꜥ/",
-    "ipaLabel": "Scholarly Reconstruction",
+    "ipa": "/maːʕ/",
+    "ipaLabel": "Egyptological Reconstruction",
     "phonemes": [
       {
-        "symbol": "M",
-        "desc": "Initial sound of Mꜥ, as attested in the egyptian tradition."
+        "symbol": "m",
+        "desc": "Bilabial nasal [m], the first consonant of the root for truth, straightness, and measure"
       },
       {
-        "symbol": "...",
-        "desc": "Subsequent syllables preserve the name's inherited shape."
+        "symbol": "ꜣ",
+        "desc": "Egyptological alef, a glottal stop or voiced pharyngeal placeholder; the exact value is debated, but it closes the root mꜣ"
+      },
+      {
+        "symbol": "a",
+        "desc": "Long open vowel [aː], supplied by convention; the hieroglyphs record only m-ꜣ"
       }
     ],
-    "approximation": "'maa' — the conventional spoken form.",
+    "approximation": "MAH-ʿA — a prolonged 'ma' followed by a slight catch in the throat where the alef sits.",
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Mꜥ is Tier 2 because its Unicode restoration preserves the orthographic signature appropriate to the egyptian tradition."
+    "note": "Mꜣ is the monosyllabic root from which the goddess Mꜣꜥt ('Maat') is derived. The Unicode form preserves the Egyptological alef (ꜣ) as the registrable stand-in for the final consonant. It is Tier 1: the Egyptological alef (ꜣ) is a distinctive letter the ASCII form loses."
+  },
+  "maa": {
+    "ipa": "/maʕ/",
+    "ipaLabel": "Egyptological Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "m",
+        "desc": "Bilabial nasal [m], the first consonant of the root mꜣʿ 'to see, to be straight'"
+      },
+      {
+        "symbol": "ꜥ",
+        "desc": "Voiced pharyngeal fricative [ʕ], a deep tightening in the throat; the Egyptological ayin (ꜥ) marks this sound"
+      },
+      {
+        "symbol": "a",
+        "desc": "Short open vowel [a], supplied by convention; hieroglyphs record only m-ꜥ"
+      }
+    ],
+    "approximation": "'mah-ʿA' — a gentle 'm', then a deep throaty 'ah' like the Arabic ع; the final vowel is very light.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Egyptian Mꜥ is consonantal; the vowel is a modern Egyptological convenience. The Tier-1 form preserves the ayin (ꜥ), a distinctive Afro-Asiatic phoneme absent from English — a distinctive letter the ASCII form loses. The root mꜣʿ also yields Maat, the goddess of cosmic order."
   },
   "akh": {
-    "ipa": "/ꜣh/",
-    "ipaLabel": "Scholarly Reconstruction",
+    "ipa": "/ʔaːx/",
+    "ipaLabel": "Egyptological Reconstruction",
     "phonemes": [
       {
         "symbol": "Ꜣ",
-        "desc": "Initial sound of Ꜣḫ, as attested in the egyptian tradition."
+        "desc": "Glottal stop [ʔ] or voiced pharyngeal [ʕ] — the first consonant is disputed; Egyptologists write it as Ꜣ (alef)"
       },
       {
-        "symbol": "...",
-        "desc": "Subsequent syllables preserve the name's inherited shape."
+        "symbol": "a",
+        "desc": "Unstressed open vowel [a], supplied by modern vocalisation; hieroglyphs did not write vowels"
+      },
+      {
+        "symbol": "ḫ",
+        "desc": "Voiceless velar fricative [x], like the 'ch' in Scottish 'loch'; distinct from the palatal ḫ (ḫ) and the glottal h (ḥ)"
       }
     ],
-    "approximation": "'akh' — the conventional spoken form.",
+    "approximation": "'AHKH' — start with a slight catch in the throat, then a short 'ah', and end with the raspy 'ch' of 'Bach'.",
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Ꜣḫ is Tier 2 because its Unicode restoration preserves the orthographic signature appropriate to the egyptian tradition."
+    "note": "Egyptian writing recorded only consonants; the vowels in 'akh' are a modern convention. The Tier-1 Unicode form Ꜣḫ preserves two distinctive Egyptological consonants — alef and velar ḫ, distinctive letters the ASCII form loses — but does not claim to reproduce the spoken vowels of Pharaonic Egyptian."
   },
   "ab": {
-    "ipa": "/ʕaːb/",
+    "ipa": "/ʔaːb/",
     "ipaLabel": "Egyptological Reconstruction",
     "phonemes": [
       {
         "symbol": "Ꜣ-",
-        "desc": "Voiced pharyngeal fricative [ʕ] or glottal catch, followed by long open [aː]; the Egyptological ayin marks the throat-sound that opens the name."
+        "desc": "Glottal stop [ʔ], the Egyptological alef, followed by long open [aː]; a catch in the throat that opens the name."
       },
       {
         "symbol": "-b",
         "desc": "Voiced bilabial stop [b], closing the word like a heartbeat."
       }
     ],
-    "approximation": "'AHB' — begin deep in the throat, as for Arabic ع, then close firmly on b.",
+    "approximation": "'AHB' — begin with a catch deep in the throat, then close firmly on b.",
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "The Ꜣb is Tier 2 because the restoration preserves the Egyptological ayin/aleph (Ꜣ) as a distinctive consonant, without a stress accent in the Greek sense. Egyptian vowels are reconstructed from Coptic and comparative evidence."
+    "note": "The Ꜣb is Tier 1 because the restoration preserves the Egyptological aleph (Ꜣ), a glottal stop, as a distinctive consonant — a distinctive letter the ASCII form loses. Egyptian vowels are reconstructed from Coptic and comparative evidence."
   },
   "sa": {
     "ipa": "/s/",
@@ -9818,80 +10706,96 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Njord; review recommended before promotion to canonical."
   },
   "libye": {
-    "ipa": "/libye/",
-    "ipaLabel": "Scholarly Reconstruction",
+    "ipa": "/li.ˈbýː.ɛː/",
+    "ipaLabel": "Ancient Greek Reconstruction",
     "phonemes": [
       {
-        "symbol": "L",
-        "desc": "Initial sound of Libyē, as attested in the greek-location tradition."
+        "symbol": "Li-",
+        "desc": "Voiced alveolar lateral [l] plus short close front [i]; the first syllable is unstressed"
       },
       {
-        "symbol": "...",
-        "desc": "Subsequent syllables preserve the name's inherited shape."
+        "symbol": "-by-",
+        "desc": "Voiced bilabial stop [b] plus front rounded [y], the Greek upsilon sound before a front vowel"
+      },
+      {
+        "symbol": "-ē",
+        "desc": "Long close-mid front [ɛː], the Greek eta; the macron marks length, giving the word its Tier-1 status"
       }
     ],
-    "approximation": "'libye' — the conventional spoken form.",
+    "approximation": "'lee-BOO-ay' — the middle vowel is tight and rounded like French u, and the final 'ay' is held long.",
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Libyē is Tier 1 because its Unicode restoration preserves the orthographic signature appropriate to the greek-location tradition."
+    "note": "Libyē is Tier 1 because the final eta is long. Greek had no acute on this form in our restoration, but the length mark is the scholarly feature being preserved. The name originally designated North Africa west of Egypt and only later narrowed to the modern state."
   },
   "aigyptos": {
-    "ipa": "/aigyptos/",
-    "ipaLabel": "Scholarly Reconstruction",
+    "ipa": "/aɪ̯ˈɡyp.tos/",
+    "ipaLabel": "Ancient Greek Reconstruction",
     "phonemes": [
       {
-        "symbol": "A",
-        "desc": "Initial sound of Aígyptos, as attested in the greek-location tradition."
+        "symbol": "ai-",
+        "desc": "Diphthong [aɪ̯] — a bright glide from open [a] to close [i], as in Greek αἴγ- (goat)"
       },
       {
-        "symbol": "...",
-        "desc": "Subsequent syllables preserve the name's inherited shape."
+        "symbol": "-gyp-",
+        "desc": "Voiced velar stop [ɡ] followed by front rounded [y] (like French u) and voiceless stop [p]"
+      },
+      {
+        "symbol": "-tos",
+        "desc": "Voiceless [t] plus short [o] and voiceless fricative [s]; the final -s is the Greek nominative ending"
       }
     ],
-    "approximation": "'aigyptos' — the conventional spoken form.",
+    "approximation": "'eye-GOO-ptoss' — the first syllable glides like 'eye', the second keeps a tight, rounded 'oo' before the crisp 'ptoss'.",
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Aígyptos is Tier 1 because its Unicode restoration preserves the orthographic signature appropriate to the greek-location tradition."
+    "note": "Greek Aígyptos is a Tier-1 restoration: the acute on the first syllable marks stress, and the αι diphthong it falls on is long, so the original Αἴγυπτος carries both stress and vowel length. The original Egyptian name was consonantal and had no Greek-style accent; the acute records only how Greek speakers pronounced the loan."
   },
   "asia": {
-    "ipa": "/asia/",
-    "ipaLabel": "Scholarly Reconstruction",
+    "ipa": "/aˈsi.a/",
+    "ipaLabel": "Ancient Greek Reconstruction",
     "phonemes": [
       {
-        "symbol": "A",
-        "desc": "Initial sound of Asía, as attested in the greek-location tradition."
+        "symbol": "A-",
+        "desc": "Short open [a], the Greek alpha at the beginning of a three-syllable word"
       },
       {
-        "symbol": "...",
-        "desc": "Subsequent syllables preserve the name's inherited shape."
+        "symbol": "-si-",
+        "desc": "Voiceless alveolar fricative [s] plus short close front [i]; the acute falls on this syllable in the restored form"
+      },
+      {
+        "symbol": "-a",
+        "desc": "Short final [a], the Greek feminine ending; in some dialects this could be slightly longer"
       }
     ],
-    "approximation": "'asia' — the conventional spoken form.",
+    "approximation": "'ah-SEE-ah' — three light syllables with the lift on the second, the penult, where the Greek acute falls.",
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Asía is Tier 1 because its Unicode restoration preserves the orthographic signature appropriate to the greek-location tradition."
+    "note": "Asía is a Tier-1 Greek restoration: the acute on the iota marks stress, and the word's quantitative pattern fits classical recessive accent. The etymology is disputed — Hittite Assuwa, Lydian, and Akkadian connections have all been proposed — so the pronunciation note stays close to the Greek form."
   },
   "europe": {
-    "ipa": "/europe/",
-    "ipaLabel": "Scholarly Reconstruction",
+    "ipa": "/eu̯.ˈrɔː.pɛː/",
+    "ipaLabel": "Ancient Greek Reconstruction",
     "phonemes": [
       {
-        "symbol": "E",
-        "desc": "Initial sound of Eurṓpē, as attested in the greek-location tradition."
+        "symbol": "Eu-",
+        "desc": "Diphthong [eu̯] — a rounded glide from mid-close [e] to close [u], the standard Greek εὐ"
       },
       {
-        "symbol": "...",
-        "desc": "Subsequent syllables preserve the name's inherited shape."
+        "symbol": "-rō-",
+        "desc": "Long open-mid back [ɔː] with acute and length mark; omega is a long o, not the modern English 'oh'"
+      },
+      {
+        "symbol": "-pē",
+        "desc": "Voiceless bilabial stop [p] plus long close-mid front [ɛː], the Greek eta ē"
       }
     ],
-    "approximation": "'europe' — the conventional spoken form.",
+    "approximation": "'ehv-ROH-pay' — begin with a quick 'eh-oo' glide, hold the 'roh' long, and finish with a stretched 'pay'.",
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Eurṓpē is Tier 1 because its Unicode restoration preserves the orthographic signature appropriate to the greek-location tradition."
+    "note": "Eurṓpē is a full Tier-1 Greek restoration: both the omega (length + stress) and the eta are long vowels, and the acute marks recessive stress. The traditional 'wide-faced' etymology is Greek folk-etymology; the true pre-Greek origin remains uncertain."
   },
   "rta": {
     "ipa": "/r̩.tɐ/",
@@ -9933,7 +10837,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Egyptian is written without vowels. The transliteration Bꜣ uses Gardiner's ꜣ (reversed glottal stop / alef) for the final guttural. The dot under ḥ in other entries marks a voiceless pharyngeal fricative; here the ꜣ marks a voiced counterpart or a glottal catch. The ba is Tier 2 in the PUNICODEX system because the restoration preserves one primary prosodic feature — the long vowel conventionally marked by the macron-less but historically long final syllable."
+    "note": "Egyptian is written without vowels. The transliteration Bꜣ uses Gardiner's ꜣ (reversed glottal stop / alef) for the final guttural. The dot under ḥ in other entries marks a voiceless pharyngeal fricative; here the ꜣ marks a voiced counterpart or a glottal catch. The ba is Tier 1 in the PUNICODEX system because the restoration preserves the Egyptological alef ꜣ — a distinctive letter the ASCII form loses."
   },
   "ka": {
     "ipa": "/kaːʔ/",
@@ -9956,7 +10860,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "The ka is Tier 2 because the restoration preserves the long vowel and final Egyptological aleph (ꜣ) as distinctive features, without a Greek-style stress mark. Egyptian vowels are not written in hieroglyphs and must be reconstructed."
+    "note": "The ka is Tier 1 because the restoration preserves the final Egyptological aleph (ꜣ) — a distinctive letter the ASCII form loses. Egyptian vowels are not written in hieroglyphs and must be reconstructed."
   },
   "astart": {
     "ipa": "/ʔaʃ.taːrt/",
@@ -9979,10 +10883,20 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Aštart is a Tier-2 name: it preserves the distinctive š (postalveolar fricative) via a caron, but lacks stress or length marks on every syllable. The long ā in the second syllable is marked by macron in scholarly transcription; the name's Greek-influenced doublet, Astartē, is not used as the primary form because the project owns Aštart."
+    "note": "Aštart is a Tier-1 name: it preserves the distinctive š (postalveolar fricative) via a caron — a distinctive feature the ASCII form loses. The long ā in the second syllable is marked by macron in scholarly transcription; the name's Greek-influenced doublet, Astartē, is not used as the primary form because the project owns Aštart."
+  },
+  "athiratu": {
+    "ipa": "/ʔaθ.i.ˈraː.tu/",
+    "ipaLabel": "Ugaritic Reconstruction",
+    "phonemes": [],
+    "approximation": "ah-thi-RAH-too — the th is the soft interdental of English 'thin'; the stress and the long ā fall together on the third syllable.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Ugaritic writes the name 𐎀𐎘𐎗𐎚 — four signs, a-ṯ-r-t, in alphabetic cuneiform. The second consonant is the letter ṯ: a voiceless interdental fricative /θ/, the 'thin' sound English keeps and most later Semitic languages lost. In Phoenician and Hebrew the sound shifted to š, which is why the same goddess appears as Ašeratu in Phoenician and ʾĂšērāh in the Hebrew Bible. The restoration ʾAṯiratu keeps the Ugaritic consonant exactly where the tablets put it, marks the glottal onset ʾalep, and carries the nominative case-vowel -u; the scholarly Latin convention 'Athirat' inserts an h that no Ugaritic sign writes."
   },
   "asherah": {
-    "ipa": "/ʔa.ʃeː.ra/",
+    "ipa": "/ʔaθeːra/",
     "ipaLabel": "Ugaritic/Phoenician Reconstruction",
     "phonemes": [
       {
@@ -9990,15 +10904,15 @@ const PRONUNCIATION_ATLAS = {
         "desc": "Glottal stop [ʔ] followed by open [a]; in some reconstructions the initial consonant is a pharyngeal ʿ rather than a glottal stop. The Egyptological Ain (ꜥ) marks this debated point."
       },
       {
-        "symbol": "-šē-",
-        "desc": "Voiceless postalveolar fricative [ʃ] plus long [eː], marked by macron; the length is inferred from Hebrew and Aramaic reflexes."
+        "symbol": "-ṯē-",
+        "desc": "Voiceless interdental fricative [θ] — Ugaritic ṯ, as in English 'thin' (cf. ṯlṯ, 'three') — plus long [eː], marked by macron; the length is inferred from Hebrew and Aramaic reflexes."
       },
       {
         "symbol": "-ra",
         "desc": "Tapped or trilled [r] plus final [a], a feminine ending."
       }
     ],
-    "approximation": "'ah-SHAY-rah' — start with a slight catch in the throat, then a long 'shay' and a soft 'rah'.",
+    "approximation": "'ah-THAY-rah' — start with a slight catch in the throat, then a long 'thay' (the 'th' of 'thin') and a soft 'rah'.",
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
@@ -10029,7 +10943,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Ōkeanos is Tier 2 because the Greek Ὠκεανός preserves stress (acute on the short ό) but no long vowel in our registrable restoration. The initial omega is long, but the acute falls on the final omicron. The ideal form Ōkeanós is difficult to register; Okeanos is the standard form used here."
+    "note": "Ōkeanós is Tier 1 because the Greek Ὠκεανός carries both stress (acute on the final ό) and a long vowel (the initial omega). The ideal form Ōkeanós is difficult to register; Okeanos is the standard form used here."
   },
   "trengtreng": {
     "ipa": "/tɾeŋˈtɾeŋ/",
@@ -10075,7 +10989,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Aša is Tier 2 because the registrable form Aša preserves the postalveolar š (caron) but carries no stress or length mark. The Avestan original was likely pronounced with a level or slightly rising pitch on an open [a], but standard scholarly transliteration does not encode Avestan accent. The š is not decorative: it distinguishes the name from ordinary \"asa\" and points back to the Avestan letter 𐬴 (še)."
+    "note": "Aša is Tier 1 because the registrable form Aša preserves the postalveolar š (caron) — a distinctive feature the ASCII form loses. The Avestan original was likely pronounced with a level or slightly rising pitch on an open [a], but standard scholarly transliteration does not encode Avestan accent. The š is not decorative: it distinguishes the name from ordinary \"asa\" and points back to the Avestan letter 𐬴 (še)."
   },
   "vac": {
     "ipa": "/ʋaːtʃ/",
@@ -10098,7 +11012,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Vāc is Tier 2 because the registrable form Vāc preserves the long ā (macron) but carries no stress mark. Vedic Sanskrit was pitch-accented, but the position of the accent in Vāc is not normally encoded in transliteration. The virāma on the Devanagari च् indicates the consonant is final, making the name a single closed syllable: vāc."
+    "note": "Vāc is Tier 1 because the registrable form Vāc preserves the long ā (macron) — a distinctive feature the ASCII form loses. Vedic Sanskrit was pitch-accented, but the position of the accent in Vāc is not normally encoded in transliteration. The virāma on the Devanagari च् indicates the consonant is final, making the name a single closed syllable: vāc."
   },
   "hen": {
     "ipa": "/hɛ́n/",
@@ -10124,14 +11038,27 @@ const PRONUNCIATION_ATLAS = {
     "note": "Hén is Tier 2: the Greek ἕν preserves only the acute pitch stress on the first syllable and has no long vowel. It is an Accent-Preserving Tier-2 name."
   },
   "nirmata": {
-    "ipa": "/nirmˈaːtaː/",
-    "ipaLabel": "Reconstructed Sanskrit",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/nɪr.ˈmaː.taː/",
+    "ipaLabel": "Sanskrit Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "nir-",
+        "desc": "Voiceless alveolar nasal [n] plus short close front [ɪ] and retroflex tap [r]; the prefix nir- carries the sense of 'out, forth, away'"
+      },
+      {
+        "symbol": "-mā-",
+        "desc": "Long open [aː], the root mā meaning 'to measure, build, fashion'"
+      },
+      {
+        "symbol": "-tā",
+        "desc": "Voiceless alveolar stop [t] plus long open [aː]; the agent suffix -tṛ/-tā means 'one who makes'"
+      }
+    ],
+    "approximation": "'neer-MAH-tah' — stress the long middle syllable, roll the 'r' lightly, and hold both final vowels long.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Nirmātā; review recommended before promotion to canonical."
+    "note": "Nirmātā is Tier 1 because both ā vowels are long. The name is a transparent Sanskrit agent noun, not a personal divine name in classical Hinduism, but it captures the abstract principle of the divine maker."
   },
   "leviathan": {
     "ipa": "/liwjaːˈθaːn/",
@@ -10166,7 +11093,7 @@ const PRONUNCIATION_ATLAS = {
     "phonemes": [
       {
         "symbol": "Ꜥ-",
-        "desc": "Voiced pharyngeal fricative [ʕ], the Egyptological Ain (U+A724) used as a registrable stand-in for the original guttural; deeper than English 'a' and pronounced far back in the throat."
+        "desc": "Voiced pharyngeal fricative [ʕ], the Egyptological Ain (U+A725, small letter; U+A724 is the capital Ꜥ) used as a registrable stand-in for the original guttural; deeper than English 'a' and pronounced far back in the throat."
       },
       {
         "symbol": "-aː-",
@@ -10185,7 +11112,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Hieroglyphic writing records only the consonants Ꜥ-n-ḫ; the vowels are reconstructed from Coptic ⲱⲛϩ and from comparative Semitic evidence. The Ꜥ is a voiced pharyngeal fricative and the ḫ is a voiceless velar fricative, neither of which English possesses. In the PUNICODEX system the Egyptological Ain ꜥ (U+A724) serves as the only registrable DNS stand-in for the pharyngeal; this is a Tier 2 restoration that preserves a distinctive consonant but cannot encode vowel length or stress. Sources: Allen, Middle Egyptian (2014), pp. 18–19, 30; Faulkner, A Concise Dictionary of Middle Egyptian, s.v. ꜥnḫ; Wörterbuch der ägyptischen Sprache I, 170–171; Hoch, Semitic Words in Egyptian Texts (1994), on Egyptian–Semitic velar and pharyngeal correspondences."
+    "note": "Hieroglyphic writing records only the consonants Ꜥ-n-ḫ; the vowels are reconstructed from Coptic ⲱⲛϩ and from comparative Semitic evidence. The Ꜥ is a voiced pharyngeal fricative and the ḫ is a voiceless velar fricative, neither of which English possesses. In the PUNICODEX system the Egyptological Ain ꜥ (U+A725, small letter; U+A724 is the capital Ꜥ) serves as the only registrable DNS stand-in for the pharyngeal; this is a Tier 1 restoration that preserves a distinctive consonant the ASCII form loses. Sources: Allen, Middle Egyptian (2014), pp. 18–19, 30; Faulkner, A Concise Dictionary of Middle Egyptian, s.v. ꜥnḫ; Wörterbuch der ägyptischen Sprache I, 170–171; Hoch, Semitic Words in Egyptian Texts (1994), on Egyptian–Semitic velar and pharyngeal correspondences."
   },
   "nht": {
     "ipa": "/ˈnaxt/",
@@ -10212,7 +11139,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "The Egyptian root nḫt means 'strong, mighty, victorious'. Hieroglyphs record only N-ḫ-t; the vowel is reconstructed from Coptic ⲛⲟϭ and from the pattern of Egyptian triliteral nouns. The ḫ is a voiceless velar fricative. In PUNICODEX the Nḫt spelling uses the registrable h-breve (U+1E2B) as a Tier 2 restoration; the ASCII fallback is 'nakht'. Sources: Allen, Middle Egyptian (2014); Faulkner, A Concise Dictionary of Middle Egyptian, s.v. nḫt; Wörterbuch der ägyptischen Sprache II, s.v. nḫt; Hoch, Semitic Words in Egyptian Texts (1994), on Egyptian ḫ in Semitic orthography."
+    "note": "The Egyptian root nḫt means 'strong, mighty, victorious'. Hieroglyphs record only N-ḫ-t; the vowel is reconstructed from Coptic ⲛⲟϭ and from the pattern of Egyptian triliteral nouns. The ḫ is a voiceless velar fricative. In PUNICODEX the Nḫt spelling uses the registrable h-breve (U+1E2B) as a Tier 1 restoration — a distinctive letter the ASCII form loses; the ASCII fallback is 'nakht'. Sources: Allen, Middle Egyptian (2014); Faulkner, A Concise Dictionary of Middle Egyptian, s.v. nḫt; Wörterbuch der ägyptischen Sprache II, s.v. nḫt; Hoch, Semitic Words in Egyptian Texts (1994), on Egyptian ḫ in Semitic orthography."
   },
   "moses": {
     "ipa": "/moːˈʃɛh/",
@@ -10388,6 +11315,746 @@ const PRONUNCIATION_ATLAS = {
     "confidence": "canonical",
     "audioPath": null,
     "note": "陰陽 (Yīnyáng) denotes the complementary cosmic dualities—dark/passive/female and bright/active/male—central to Daoist cosmology, traditional Chinese medicine, and the Yijing. The Modern Standard Mandarin reading is yīn (Tone 1) + yáng (Tone 2), as given in the Unihan Database (kMandarin). For historical context, Baxter & Sagart (2014) reconstruct 陰 as *q(r)um (GSR 0651y, 'dark') and 陽 as *laŋ (GSR 0720e, 'bright'). The tone-marked Pinyin restoration Yīnyáng accurately preserves the citation tones."
+  },
+  "hygieia": {
+    "ipa": "/hy.gí.eː.a/",
+    "ipaLabel": "Attic Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Hy-",
+        "desc": "Rough breathing on upsilon [hy], the standard opening of ὑγιής, 'healthy'."
+      },
+      {
+        "symbol": "-gí-",
+        "desc": "Gamma plus acute on short iota [gí] — the pitch peak of the word."
+      },
+      {
+        "symbol": "-ei-",
+        "desc": "Long epsilon-iota diphthong [eː], the classical spelling of the stem."
+      },
+      {
+        "symbol": "-a",
+        "desc": "Short alpha, the feminine nominative singular ending."
+      }
+    ],
+    "approximation": "'hoo-GHEE-ay-ah' — the second syllable is pitched high; the -eia is drawn out like 'ay-ah'.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Hygíeia is Tier 1 because the Greek Ὑγίεια preserves both the acute stress on the second syllable and the long diphthong ει — both features the ASCII form loses. The name gave English 'hygiene' and remains central to medical vocabulary."
+  },
+  "papatuanuku": {
+    "ipa": "/ˈpa.pa.tuːˈaː.nu.ku/",
+    "ipaLabel": "Māori Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Pa-",
+        "desc": "Voiceless bilabial plosive [p] plus open front [a]; Māori p is unaspirated and crisp."
+      },
+      {
+        "symbol": "-pa-",
+        "desc": "Repeated syllable meaning 'earth, rock, foundation,' a reduplication common to Polynesian earth names."
+      },
+      {
+        "symbol": "-tū-",
+        "desc": "Voiceless alveolar plosive [t] plus long close back rounded [uː]; tū means 'to stand.'"
+      },
+      {
+        "symbol": "-ā-",
+        "desc": "Long open central [aː], an emphatic particle in the compound."
+      },
+      {
+        "symbol": "-nuku",
+        "desc": "Alveolar nasal [n] plus close back rounded [u], then voiceless velar stop [k] plus close back rounded [u]; nuku means 'extended, far-reaching.'"
+      }
+    ],
+    "approximation": "'PAH-pah-too-AH-noo-koo' — keep the p's gentle and unaspirated, hold the ū and ā long, and give each vowel its own syllable.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "The name is a transparent Māori compound. Papa means 'earth, rock, foundation' and is found across Polynesia; tū means 'to stand'; ā is an emphatic particle; nuku means 'extended, far-reaching.' The macrons on ū and ā mark long vowels, distinctive features the ASCII form loses, and they place the name in Tier 1. Some dialects and orthographies write the short form Papa."
+  },
+  "tiandi": {
+    "ipa": "/tʰjɛn˥˥ ti˥˩/",
+    "ipaLabel": "Modern Standard Mandarin (Pinyin)",
+    "phonemes": [
+      {
+        "symbol": "tiān",
+        "desc": "Aspirated alveolar stop [tʰ], palatal approximant [j], open-mid front vowel [ɛ], and Tone 1 (high level, ˥˥). Pinyin 'ian' corresponds to [jɛn] in standard Mandarin."
+      },
+      {
+        "symbol": "dì",
+        "desc": "Unaspirated alveolar stop [t], close front vowel [i], and Tone 4 (falling, ˥˩)."
+      }
+    ],
+    "approximation": "TYEHN-DEE — 'tian' high and level, like a held note; 'di' sharp and falling, like a command.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Tiāndì literally means 'Heaven and Earth.' It is not a personal god but the cosmological pair that grounds Chinese natural philosophy, state ritual, and ethics. The Pinyin restoration preserves the citation tones: first tone on tiān, fourth tone on dì."
+  },
+  "yam": {
+    "ipa": "/jaːm/",
+    "ipaLabel": "Ugaritic/Canaanite Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "y",
+        "desc": "Palatal approximant [j], the semivowel that opens the name"
+      },
+      {
+        "symbol": "ā",
+        "desc": "Long open front vowel [aː], marked with macron to preserve the length inferred from Proto-Semitic *yamm-"
+      },
+      {
+        "symbol": "m",
+        "desc": "Bilabial nasal [m], closing the syllable"
+      }
+    ],
+    "approximation": "YAHM — a long, open 'ah' like 'father,' preceded by a smooth y-glide and closed by a humming m.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Yām is Tier-1: the macron on the long ā is a distinctive feature the ASCII form loses. The name is common Semitic for 'sea,' personified in Ugaritic myth as a chaotic divine antagonist."
+  },
+  "adamas": {
+    "ipa": "/a.dá.mas/",
+    "ipaLabel": "Attic Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "a-",
+        "desc": "Short alpha [a], unstressed first syllable in the adjective ἀδάμας."
+      },
+      {
+        "symbol": "-dá-",
+        "desc": "Delta plus acute on short alpha [da] — the pitch peak of the word."
+      },
+      {
+        "symbol": "-mas",
+        "desc": "Mu-alpha-sigma; the -ας ending marks a third-declension noun/adjective stem."
+      }
+    ],
+    "approximation": "'ah-DAH-mahs' — stress falls on the middle syllable, with a crisp final -s.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Adámas is Tier 2 because the Greek ἀδάμας preserves the acute stress on the second syllable but lacks a long vowel. The word is not a deity but a material concept that became a philosophical emblem of invincibility."
+  },
+  "narke": {
+    "ipa": "/nˈarkeː/",
+    "ipaLabel": "Reconstructed Attic Greek",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "reconstructed",
+    "audioPath": null,
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Nárkē."
+  },
+  "eirene": {
+    "ipa": "/eirˈeːneː/",
+    "ipaLabel": "Reconstructed Attic Greek",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "reconstructed",
+    "audioPath": null,
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Eirḗnē."
+  },
+  "atlantis": {
+    "ipa": "/at.lan.tís/",
+    "ipaLabel": "Attic Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "At-",
+        "desc": "Short alpha plus tau, the unstressed opening of the name."
+      },
+      {
+        "symbol": "-lan-",
+        "desc": "Lambda-alpha-nu, the middle syllable carrying the root 'Atlas'."
+      },
+      {
+        "symbol": "-tis",
+        "desc": "Tau-iota-sigma with an acute on the iota [tís], the feminine patronymic ending meaning 'daughter of Atlas'."
+      }
+    ],
+    "approximation": "'at-lahn-TEES' — the final syllable carries the acute, marking the stress.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Atlantís is Tier 2 because the Greek Ἀτλαντίς preserves the acute stress on the final syllable but has no long vowel in the standard domain restoration. The name is a patronymic adjective, 'of Atlas,' turned into a place name."
+  },
+  "elysion": {
+    "ipa": "/ˈeːlysion/",
+    "ipaLabel": "Reconstructed Attic Greek",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "reconstructed",
+    "audioPath": null,
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Ēlysion."
+  },
+  "hyperborea": {
+    "ipa": "/hyperbˈorea/",
+    "ipaLabel": "Reconstructed Attic Greek",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "reconstructed",
+    "audioPath": null,
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Hyperbórea."
+  },
+  "phaethon": {
+    "ipa": "/pʰaitʰˈoːn/",
+    "ipaLabel": "Reconstructed Attic Greek",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "reconstructed",
+    "audioPath": null,
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Phaethōn."
+  },
+  "smaragdos": {
+    "ipa": "/smˈaragdos/",
+    "ipaLabel": "Reconstructed Attic Greek",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "reconstructed",
+    "audioPath": null,
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Smáragdos."
+  },
+  "hyakinthos": {
+    "ipa": "/hˈyakintʰos/",
+    "ipaLabel": "Reconstructed Attic Greek",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "reconstructed",
+    "audioPath": null,
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Hýakinthos."
+  },
+  "amethystos": {
+    "ipa": "/ˈametʰystos/",
+    "ipaLabel": "Reconstructed Attic Greek",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "reconstructed",
+    "audioPath": null,
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Ámethystos."
+  },
+  "thalassa": {
+    "ipa": "/tʰˈalassa/",
+    "ipaLabel": "Reconstructed Attic Greek",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "reconstructed",
+    "audioPath": null,
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Thálassa."
+  },
+  "he": {
+    "ipa": "/hɛː/",
+    "ipaLabel": "Attic Greek Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Hē",
+        "desc": "Rough breathing on long eta [hɛː]. The word is a single syllable, the feminine nominative singular article."
+      }
+    ],
+    "approximation": "'HAY' — one long syllable, beginning with a soft 'h' and drawn out like a breath.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Hē is Tier 2 because the Greek ἡ preserves the long vowel (eta) but is a grammatical particle, not a stressed lexical word in ordinary syntax. Its theological reinterpretation comes from later Platonism, which treated the article as a metaphysical principle."
+  },
+  "perkunas": {
+    "ipa": "/pʲɛrˈkuːnɐs/",
+    "ipaLabel": "Lithuanian/Baltic Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "P",
+        "desc": "Voiceless bilabial plosive [p], slightly palatalized before the front vowel"
+      },
+      {
+        "symbol": "e",
+        "desc": "Open-mid front unrounded vowel [ɛ], like English 'bet'"
+      },
+      {
+        "symbol": "r",
+        "desc": "Alveolar trill or tap [r], rolled more distinctly than in most English dialects"
+      },
+      {
+        "symbol": "kū",
+        "desc": "Voiceless velar plosive [k] plus long close back rounded vowel [uː], the thunder-syllable"
+      },
+      {
+        "symbol": "nas",
+        "desc": "Alveolar nasal [n] plus reduced vowel [ɐ] and alveolar fricative [s], the old masculine nominative ending"
+      }
+    ],
+    "approximation": "pyair-KOO-nuss — roll the 'r,' make the 'oo' long, and give the final syllable a light hiss.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Perkūnas is Tier-1: the macron on the long ū is a distinctive feature the ASCII form loses. The name descends from Proto-Baltic *Perkūnas and is cognate with Slavic Perun, reflecting a common Indo-European thunder deity."
+  },
+  "buri": {
+    "ipa": "/ˈbuːri/",
+    "ipaLabel": "Old Norse Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "B-",
+        "desc": "Voiced bilabial stop [b], the same as English 'b'."
+      },
+      {
+        "symbol": "-ú-",
+        "desc": "Long close back rounded vowel [uː], marked by the acute accent for stress and length."
+      },
+      {
+        "symbol": "-ri",
+        "desc": "Trilled alveolar [r] plus short close front [i]."
+      }
+    ],
+    "approximation": "'BOO-ree' — hold the 'oo' long and stress it, then finish with a quick trilled r and short 'ee'.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Búri is Tier 1: the acute on ú is a distinctive feature the ASCII form loses. The etymology is uncertain; the lexicon records a speculative connection to a root meaning 'to be, become' and the Old Norse verb búa. We describe attested cosmogony rather than claiming a settled word-origin."
+  },
+  "tian": {
+    "ipa": "/tʰjɛn˥/",
+    "ipaLabel": "Modern Standard Chinese / Old Chinese Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "tʰ-",
+        "desc": "Aspirated voiceless alveolar stop, like English 't' with a puff of air."
+      },
+      {
+        "symbol": "-j-",
+        "desc": "Palatal glide; the tongue rises toward the hard palate after the initial."
+      },
+      {
+        "symbol": "-ɛ-",
+        "desc": "Open-mid front vowel, close to 'eh' in 'bed'."
+      },
+      {
+        "symbol": "-n",
+        "desc": "Alveolar nasal, soft 'n' closing the syllable."
+      },
+      {
+        "symbol": "˥",
+        "desc": "High level tone (Mandarin first tone), rendered here by the macron over the vowel."
+      }
+    ],
+    "approximation": "'tyehn' — say 't-yeh-n' in one crisp syllable, on a high, level pitch like a sustained musical note.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Tiān is Tier 1: the macron preserves Mandarin first tone, a distinctive diacritic the ASCII form loses. The registrable form uses the standard Pinyin macron."
+  },
+  "mictlantecutli": {
+    "ipa": "/mik.tlaːn.ˈteː.kutɬi/",
+    "ipaLabel": "Classical Nahuatl Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "mic-",
+        "desc": "Voiceless alveolar stop [mik], the root of mictli, 'death'."
+      },
+      {
+        "symbol": "-tlān-",
+        "desc": "Long [aː] followed by lateral [l] and locative suffix -ān: 'place of the dead'."
+      },
+      {
+        "symbol": "-tē-",
+        "desc": "Long [eː], honorific/intensive vowel in the word for 'lord'."
+      },
+      {
+        "symbol": "-cutli",
+        "desc": "[ˈkutɬi], 'lord'; final -tl is the lateral affricate [tɬ], a single Nahuatl sound."
+      }
+    ],
+    "approximation": "'meek-TLAHN-tay-KOOT-lee' — keep the first 'a' and 'e' long, and release the final -tl as one tongue-flip.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "The macrons on ā and ē mark reconstructed Classical Nahuatl vowel length, the feature that makes the restoration Tier 1. Final -tl is never pronounced as separate English 't' and 'l'."
+  },
+  "cihuacoatl": {
+    "ipa": "/si.waːˈkoː.aːtɬ/",
+    "ipaLabel": "Classical Nahuatl Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Cih-",
+        "desc": "Voiceless alveolar fricative [s] plus close front [i], a hissing opening that identifies the 'woman' element."
+      },
+      {
+        "symbol": "-ua-",
+        "desc": "Rounded [w] plus open [a], the glide linking cihua- 'woman' to the snake element."
+      },
+      {
+        "symbol": "-cō-",
+        "desc": "Voiceless velar stop [k] plus long back rounded [oː]; c before back vowels is /k/ in Classical Nahuatl."
+      },
+      {
+        "symbol": "-ātl",
+        "desc": "Long open [aː] plus lateral affricate [tɬ]; final -tl is a single released sound."
+      }
+    ],
+    "approximation": "'see-wah-KOH-ahtl' — the first vowel is short, the 'c' is a hard 'k,' and the final -tl is one crisp tongue-stop.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "The name is a transparent compound of cihuātl ('woman') and cōātl ('snake'). The first vowel (i) is short; the long vowel the written compound leaves unmarked is the ā of cihuātl, shortened in the compound (compound-shortening). The same word was used as a political title, the Cihuacōātl or 'Woman-Snake,' a high official of the Mexica state. In religion, Cihuacōātl is a powerful goddess of childbirth, maternity, and the dangers that attend both. Tier 1: the macrons preserve vowel length, a distinctive feature the ASCII form loses."
+  },
+  "achilleus": {
+    "ipa": "/a.kʰil.leús/",
+    "ipaLabel": "Attic Greek",
+    "phonemes": [],
+    "approximation": "ah-khil-LEWS, stress on the final syllable.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Homeric Greek Ἀχιλλεύς scans with a short i and a stressed final syllable; the geminate λλ is attested in the best manuscripts beside the single-λ variant Ἀχιλεύς. The restoration Achilleús keeps the acute on the final syllable exactly where the Greek puts it. In the epic hexameter the name scans ⏑ – —: a short first alpha followed by two long syllables, and that short first syllable is precisely why the single-λ variant Ἀχιλεύς exists."
+  },
+  "asklepios": {
+    "ipa": "/a.skliː.pi.ós/",
+    "ipaLabel": "Attic Greek",
+    "phonemes": [],
+    "approximation": "ah-SKLAY-pee-OSS, with the stress on the ultima and a long ē.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Attic Ἀσκληπιός places the acute on the final syllable; the η is unambiguously long, so the stacked macron-acute of the ideal form ḗ is philologically defensible. The owned form Asklēpiós follows the house rule against stacked marks while preserving both features across two characters."
+  },
+  "drakon": {
+    "ipa": "/drá.kɔːn/",
+    "ipaLabel": "Attic Greek",
+    "phonemes": [],
+    "approximation": "DRAH-kone, stress on the first syllable with a long final ō.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Greek δράκων derives from the aorist root of δέρκομαι, \"to see clearly\" — the dragon is etymologically \"the sharp-sighted one,\" the watcher. The circumflex in Drákōn marks the long ō of the -ων stem; the macron-only Drakōn is the scholarly fallback. The long ō belongs to the nominative singular alone; the oblique stem (drakontos) carries a short o — the macron preserves the nominative's lengthened vowel."
+  },
+  "monokeros": {
+    "ipa": "/mo.nó.kɛː.rɔːs/",
+    "ipaLabel": "Attic Greek",
+    "phonemes": [],
+    "approximation": "mo-NO-keh-ross, stress on the antepenult with a long final ō.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Greek μονόκερως is a compound: mónos (\"single\") plus kéras (\"horn\"), stressed on the first element. Greek authors used it of real and reported animals alike — the rhinoceros included — centuries before Latin monoceros and the medieval unicorn softened it into legend."
+  },
+  "pegasos": {
+    "ipa": "/pɛ̌ː.ɡa.sos/",
+    "ipaLabel": "Attic Greek",
+    "phonemes": [],
+    "approximation": "PAY-ga-sos, with the stacked macron+acute on the first ē.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Pḗgasos bears a name that is probably not Greek at all: scholars connect it to the Luwian storm god pihassas, carried into Greek myth through Anatolian contact. The folk etymology from πηγή, \"spring,\" was already popular in antiquity — the horse who stamps springs from the rock. Attic inscriptions spell the name with the long ē of the first syllable — the quantity the restoration keeps."
+  },
+  "tyche": {
+    "ipa": "/tý.kʰɛː/",
+    "ipaLabel": "Attic Greek",
+    "phonemes": [],
+    "approximation": "TU-khee, stress on the first syllable with a long ē.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Greek Τύχη bears the acute on the first syllable — Týchē — from τυγχάνω, \"to happen, to hit the mark.\" The long eta of the second syllable is the standard macron; Stoic philosophers made her name the technical term for chance, and the word still means \"outcome\" in modern Greek. Modern Greek tychi keeps the meaning of outcome; the ancient accent on the first syllable is what the restoration marks."
+  },
+  "diana": {
+    "ipa": "/diˈaː.na/",
+    "ipaLabel": "Classical Latin",
+    "phonemes": [],
+    "approximation": "dee-AH-nah, with the long ā on the stressed second syllable.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Latin Dĭāna scans with a short i, a long penultimate ā, and a short final -a; the owned restoration Diāna marks the long ā exactly where the classical quantity puts it. Roman grammarians connected the name to the shining of the moon (from the same root as Iūpiter's Dyēus, \"the bright sky\"), making her the feminine face of celestial light."
+  },
+  "ianus": {
+    "ipa": "/ˈjaː.nus/",
+    "ipaLabel": "Classical Latin",
+    "phonemes": [],
+    "approximation": "YAH-nus, long ā on the first syllable.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Latin Iānus begins with a consonantal i ([j]); the ā is long and the final -us short. Varro connected the name to ire, \"to go,\" and Cicero to ianua, \"door\" — both folk etymologies of a genuinely old Italic god. The restoration Iānus keeps the long ā, the form dictionaries print; the temple calendars abbreviate him simply KAL, the Kalends he owns."
+  },
+  "iuno": {
+    "ipa": "/ˈjuː.noː/",
+    "ipaLabel": "Classical Latin",
+    "phonemes": [],
+    "approximation": "YOO-noh, long ū and long ō.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Latin Iūnō carries two long vowels, and both are preserved in the restoration; the macrons follow Lewis & Short. Her name shares the deep root of iuvenis, \"young\" — the goddess of the vital force in its prime — which is why her festival, the Kalends, belonged to women at the height of their powers. Old Latin inscriptions write the name IVNO — the V is the vowel ū itself; the one letter served for both the vowel u and the semivowel w."
+  },
+  "iuppiter": {
+    "ipa": "/ˈjuː.pi.ter/",
+    "ipaLabel": "Classical Latin",
+    "phonemes": [],
+    "approximation": "YOO-pi-ter, with a long ū.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Iūpiter compounds the vocative of the sky-father's ancient name — Dyēu-pəter, \"O Father Sky\" — the same formula that gives Greek Zeús and Vedic Dyaus-pitā. The single-p spelling is the standard dictionary form; the doubled pp of IVPPITER is the unmarked epigraphic spelling. The macron on ū is certain, and the name is Latin's oldest continuous theonym."
+  },
+  "neptunus": {
+    "ipa": "/nepˈtuː.nus/",
+    "ipaLabel": "Classical Latin",
+    "phonemes": [],
+    "approximation": "nep-TOO-nus, long ū on the stressed second syllable.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "The etymology of Neptūnus is genuinely uncertain: the Etruscan sea god Nethuns stands behind him, and linguists have proposed a pre-Indo-European Mediterranean origin, with Pokorny suggesting a root for \"damp, wet.\" The long ū of the second syllable is the secure classical quantity — the macron marks it in the restoration."
+  },
+  "vulcanus": {
+    "ipa": "/vulˈkaː.nus/",
+    "ipaLabel": "Classical Latin",
+    "phonemes": [],
+    "approximation": "vul-KAH-nus, long ā on the stressed second syllable.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Latin Vulcānus — also Volcānus in inscriptions — scans with a long ā; its origin is pre-Roman and possibly Cretan (Velchanos, ϝελχάνος, has been proposed), making him one of the oldest names in the Roman pantheon. The macron marks the quantity on which the classical poets agree."
+  },
+  "steh": {
+    "ipa": "/ˈsɛː.tɛx/",
+    "ipaLabel": "Egyptological (from stḫ)",
+    "phonemes": [],
+    "approximation": "The name ends in the cheth (ḫ), a strong h-sound; Greeks rendered him as Σήθ (Seth).",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "The consonantal skeleton stḫ (also stš) is conventionally vocalized \"Setekh\" or \"Setesh\"; the Greek Seth and Coptic Sēt preserve the shell. The underdotted ḥ is the voiceless pharyngeal fricative — the restoration keeps the Egyptological transliteration rather than the familiar but softened \"Seth.\""
+  },
+  "hp": {
+    "ipa": "/ˈħaː.pi/",
+    "ipaLabel": "Egyptological (from ḥp/ḥꜥpj)",
+    "phonemes": [],
+    "approximation": "HAH-pee; the ḥ is a strong breath, not a plain h.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "ḥp is conventionally vocalized \"Hapi\"; the ḥ (Gardiner Aa1) is the pharyngeal fricative heard at the start of the name. He must not be confused with Ḥpy the baboon-headed son of Horus — same sound, different god: the restoration keeps the underdot that marks the river-lord's true name."
+  },
+  "amsa": {
+    "ipa": "/ɐmˈɕɐ/",
+    "ipaLabel": "Sanskrit (IAST)",
+    "phonemes": [],
+    "approximation": "UM-shah; the ṃ is a nasal hum, the ś a soft sh.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Sanskrit aṃśa carries the anusvāra (ṃ) — a nasalization of the preceding vowel before the sibilant — written with the single dot of the Devanagari अंश. The word means \"portion, share,\" and the restoration Aṃśa keeps the nasal exactly where the phonology and the scripture put it. The anusvāra nasalizes before the sibilant: aṃśa, never amsa — the dot is a sound, not an ornament."
+  },
+  "daksa": {
+    "ipa": "/ˈd̪ɐk.ʂɐ/",
+    "ipaLabel": "Sanskrit (IAST)",
+    "phonemes": [],
+    "approximation": "DUCK-shah; the ṣ is the retroflex sh.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Sanskrit dakṣa — \"able, skilled, dexterous\" — carries the kṣa cluster written with the conjunct क्ष, a single glyph for k plus ṣ. Indo-Europeanists connect the word to the root *deks-, \"right hand, skill\": Latin dexter is its cousin, and \"dexterity\" its English echo. The kṣa conjunct is a single articulation — k releasing directly into the retroflex ṣ — which romanization splits in two."
+  },
+  "dhatr": {
+    "ipa": "/d̪ʱɑːˈt̪r̩/",
+    "ipaLabel": "Sanskrit (IAST)",
+    "phonemes": [],
+    "approximation": "dhah-TRUH; the ṛ is a rolled vocalic r.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Sanskrit dhātṛ is an agent noun from the root dhā, \"to set, place, establish,\" with the syllabic ṛ of the nominative — the vowel that is also a consonant, written ऋ. The restoration Dhātṛ keeps both the long ā and the vocalic ṛ that dictionaries print. The syllabic ṛ is a vowel made of the consonant itself: dhātṛ, two syllables, the final one vocalized r."
+  },
+  "pusan": {
+    "ipa": "/ˈpuː.ʂɐn/",
+    "ipaLabel": "Sanskrit (IAST)",
+    "phonemes": [],
+    "approximation": "POO-shan, long ū on the first syllable.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Sanskrit pūṣan carries the long ū of the root puṣ, \"to thrive, nourish,\" with the retroflex ṣ that English tongues must learn — written पूषन् with the dot beneath the sibilant. The restoration Pūṣan marks both: the length on the root, the retroflex on the close. The retroflex ṣ curls the tongue back — the sound romanization renders sh, though no English sh truly matches it."
+  },
+  "tvastr": {
+    "ipa": "/ˈt̪ʋɐʂ.Ɉr̩/",
+    "ipaLabel": "Sanskrit (IAST)",
+    "phonemes": [],
+    "approximation": "TVASH-tuh; the ṭṛ is a rolled vocalic retroflex r.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Sanskrit tvaṣṭṛ carries two retroflexes — the ṣ and the final syllabic ṛ — written त्वष्टृ in Devanagari. The name derives from the root tvakṣ, \"to fashion, form,\" making him literally \"the Fashioner\": the oldest artisan theonym in the Indo-European record. Both sibilants are retroflex: tvaṣṭṛ, with the tongue curled on ṣ and the vocalic ṛ closing the name."
+  },
+  "mengpo": {
+    "ipa": "/məŋ˥˩ pʰwo˧˥/",
+    "ipaLabel": "Mandarin (Hanyu Pinyin with tones)",
+    "phonemes": [],
+    "approximation": "mung-pwoh, falling tone on Meng, rising on Po.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Mèngpó 孟婆 means \"Old Lady Meng\": mèng in the falling tone, a surname suggesting seniority; pó, \"grandmother, old woman,\" in the rising tone. The name belongs to folk religion rather than scripture — which is why its spelling never needed the scholar's precision the goddess herself so carefully erases."
+  },
+  "pangu": {
+    "ipa": "/pʰa˧˥ ku˨˩˦/",
+    "ipaLabel": "Mandarin (Hanyu Pinyin with tones)",
+    "phonemes": [],
+    "approximation": "pahng-goo, rising tone on Pang, low-dipping on Gu.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Pángǔ 盘古 carries the rising tone on páng and the dipping third tone on gǔ (\"antiquity\"); the name pairs \"coiling\" with \"ancient\" — the coiled one of the primordial egg. Written 盤古 in traditional characters, it is Chinese myth's youngest great name: the giant is attested only from the 3rd century CE."
+  },
+  "yanluo": {
+    "ipa": "/jɛn˧˥ lwo˧˥/",
+    "ipaLabel": "Mandarin (Hanyu Pinyin with tones)",
+    "phonemes": [],
+    "approximation": "yen-lwoh, rising tone on both syllables.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Yánluó 阎罗 abbreviates Yánluówáng 阎罗王, \"King Yama\" — the Sanskrit Yamarāja worn down by two millennia of Chinese speech. The second tone on yán and the rising luó are fixed by tradition; the full Sanskrit form survives in Buddhist ritual language beside the everyday king."
+  },
+  "honshu": {
+    "ipa": "/hon.ɕuː/",
+    "ipaLabel": "Japanese (Hepburn)",
+    "phonemes": [],
+    "approximation": "HON-shoo, with a long final ū.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Honshū 本州 — \"Main Province\" — closes with the long ū of shū, preserved in the macron. The name is descriptive geography elevated to a proper name: the largest of Japan's islands, holding Tokyo, Kyōto, Ōsaka, and some three-quarters of the nation. Both syllables carry long vowels in kana (ほんしゅう); the macron on the final ū marks the doubled u."
+  },
+  "kyushu": {
+    "ipa": "/kjɯː.ɕɯː/",
+    "ipaLabel": "Japanese (Hepburn)",
+    "phonemes": [],
+    "approximation": "KYOO-shoo, with the compressed ky- onset and long vowels.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Kyūshū 九州 — \"Nine Provinces\" — carries the long ū in both syllables, both preserved in the restoration. The name remembers the island's ancient division into nine provinces; its older name, Tsukushi, appears in the earliest chronicles as the gateway of the gods' descent. Both syllables are long in kana (きゅうしゅう); the two macrons of the restoration are the two doubled vowels."
+  },
+  "tumatauenga": {
+    "ipa": "/tuː.ma.taʊ.ˈe.ŋa/",
+    "ipaLabel": "Māori",
+    "phonemes": [],
+    "approximation": "TOO-mah-tow-ENG-ah, long ū on the first syllable.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Tūmatauenga is pronounced with the long ū of the first syllable — the macron the restoration keeps — and the name means \"Tū of the angry face\": tū (to stand, and the god's name) plus mata (face) plus anga (the -ing of appearance). He is the Māori war-god, and his name is a face set for war."
+  },
+  "guandi": {
+    "ipa": "/kwán.tî/",
+    "ipaLabel": "Standard Mandarin",
+    "phonemes": [],
+    "approximation": "gwahn-DEE — level tone, then a firm falling tone.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Guāndì 關帝 — \"Emperor Guan\" — carries the first tone on guān and the falling fourth on dì. The name is a title, not a personal name: the deified Guān Yǔ of the Three Kingdoms, raised by eight centuries of imperial investitures to the rank of Emperor. The restoration keeps the macron that marks his tone."
+  },
+  "gauri": {
+    "ipa": "/ɡɐʊ̯.riː/",
+    "ipaLabel": "Reconstructed Sanskrit",
+    "phonemes": [],
+    "approximation": "GOW-ree — the diphthong of \"cow,\" then a long ee.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Sanskrit gaurī — \"the golden, the radiant\" — carries the long ī of the feminine epithet, which the restoration keeps. The same word is the adjective \"golden-complexioned\": her name is her skin, the color of turmeric, ripe wheat, and morning light. The diphthong au is inherent and unmarked in IAST, like e and o — her name needs no further marks to be read exactly."
+  },
+  "sani": {
+    "ipa": "/ɕɐ.ni/",
+    "ipaLabel": "Reconstructed Sanskrit",
+    "phonemes": [],
+    "approximation": "SHUH-nee — soft palatal sh, short and even.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Sanskrit śani — \"the slow one\" — begins with the palatal ś (IAST's acute-accented s) and the short a and i. The restoration keeps the ś that English writes \"sh\": Śani, the slow planet, whose very name is a warning about haste. The ś is the palatal sibilant, made at the roof of the mouth farther forward than sh — the sound English approximates but never quite keeps."
+  },
+  "orun": {
+    "ipa": "/ɔ̀.rún/",
+    "ipaLabel": "Standard Yoruba",
+    "phonemes": [],
+    "approximation": "aw-ROON — open o (dot-below), low-high melody.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Ọrun is Yoruba for \"heaven\": the precomposed dot-below Ọ is the domain-maximal form — the full tone marks (Ọ̀run, low-high) cannot be registered as a domain, so the temple preserves the tone in text while the address bar carries what the DNS allows. The dot-below is the open-mid vowel — the open aw of law — distinct from the close o; the tone is low-high, rising from the grave to the acute."
+  },
+  "xiuhtecuhtli": {
+    "ipa": "/ʃiw.teː.ˈkʷ.tɬi/",
+    "ipaLabel": "Classical Nahuatl",
+    "phonemes": [],
+    "approximation": "shee-oo-TEH-kwtlee — the kʷtɬ cluster released as one, no extra vowel; the final -tl sideways.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Xiuhtēcuhtli — \"Fire Lord\" — takes the long ē of tēcuhtli (lord) in Nahuatl; the domain keeps the plain ASCII form xiuhtecuhtli.com, which the temple explains: the canonical form bears the macron, the address bar carries what the registrar allows."
+  },
+  "pluto": {
+    "ipa": "/ˈpluː.toː/",
+    "ipaLabel": "Classical Latin",
+    "phonemes": [],
+    "approximation": "PLOO-toh — both vowels long.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Latin Plūtō carries two long vowels, both marked by the restoration. His name is Rome's calque of the Greek Πλούτων — \"the Rich One\" — the underworld god whose buried wealth made death and riches share a single name. Both vowels are long in the classical scansion; Lewis & Short print the macrons that the restoration keeps."
+  },
+  "ceres": {
+    "ipa": "/ˈke.reːs/",
+    "ipaLabel": "Classical Latin",
+    "phonemes": [],
+    "approximation": "KEH-rehs — hard c, long second vowel.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Latin Cerēs carries the long ē of the second syllable — Cĕ-rēs — the same root that gives \"create\" and \"grow\" (crescere): the goddess named for growth itself. Her name is the ancestor of the word \"cereal,\" which is why her temple's bread is etymological. The hard c of the classical period later softened in Italian mouths; the temple keeps the older, harder reading."
+  },
+  "mixcoatl": {
+    "ipa": "/miʃ.ˈkoː.aː.tɬ/",
+    "ipaLabel": "Classical Nahuatl",
+    "phonemes": [],
+    "approximation": "meesh-KOH-ahtl — long o, lateral finish.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Mixcōātl is Nahuatl for \"cloud serpent\" (mixtli + cōātl); the macron on the ō marks the long vowel of the serpent-word, the same one in Quetzalcōātl and Xōlōtl. The restoration keeps it — the serpent is always long. The x of Nahuatl is the sh-sound, not ks: meesh, not mix — the single most misread letter in the language."
+  },
+  "oba": {
+    "ipa": "/ɔ̀.bà/",
+    "ipaLabel": "Standard Yoruba",
+    "phonemes": [],
+    "approximation": "aw-bah — open o, low-low melody.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Ọba names the river orisha of the Ọba River; the precomposed dot-below Ọ is the domain-maximal form (tone marks cannot be registered), and the fuller tone-marked Ọ̀bà is preserved in the temple's display text. The dot-below marks the open-mid vowel."
+  },
+  "ashavahista": {
+    "ipa": "/a.ʃaː.va.hiʃ.taː/",
+    "ipaLabel": "Avestan Reconstruction",
+    "phonemes": [],
+    "approximation": "ah-shah-vah-HISH-tah — two sharp š sibilants, even vowels.",
+    "dialect": null,
+    "confidence": "canonical",
+    "audioPath": null,
+    "note": "Avestan aša vahišta — \"Best Truth/Righteousness\" — is written in the scholarly transliteration with the palatal š of the Avestan alphabet, twice: Ašavahišta. The restoration keeps both sibilants exactly where the Gathas put them; English \"Asha Vahishta\" softens what the Avesta writes sharp."
   }
 };;
 
