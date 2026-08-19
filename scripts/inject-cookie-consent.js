@@ -75,7 +75,13 @@ function withRetry(fn, attempts = 5, delayMs = 100) {
   throw lastErr;
 }
 
-const files = execSync('git ls-files "*.html"', { encoding: 'utf8', cwd: ROOT })
+// --others --exclude-standard: newly generated pages (e.g. fresh flagship
+// temples) are untracked until the post-generate commit, and they must still
+// receive the block in the same run. Gitignored junk stays excluded.
+const files = execSync('git ls-files --cached --others --exclude-standard "*.html"', {
+  encoding: 'utf8',
+  cwd: ROOT,
+})
   .split('\n')
   .filter(Boolean)
   .filter((f) => !EXCLUDE.some((re) => re.test(f)));
