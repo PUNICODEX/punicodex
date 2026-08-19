@@ -262,6 +262,14 @@ test('engine: deriveRespelling timed mode marks length naturally', () => {
   assert.ok(!deriveRespelling(['a', 'rɔːk', 'nɛː'], 1, true).includes('naaay'));
 });
 
+// The Chinese module's respell overrides are scoped to CHINESE_SPEC — pin the
+// values it must never move: y→'ee' in Greek/Norse and the Sanskrit table.
+test('engine: chinese respell overrides never leak into other languages', () => {
+  assert.strictEqual(derivePronunciation(byId.get('tethys')).respelling, 'tay-TEES');
+  assert.strictEqual(derivePronunciation(byId.get('ymir')).respelling, 'EE-meer');
+  assert.strictEqual(derivePronunciation(byId.get('ganesha')).respelling, 'gah-NAY-shah');
+});
+
 // ---------------------------------------------------------------------------
 // 2. Route resolution (drives the real v1 catch-all router)
 // ---------------------------------------------------------------------------
