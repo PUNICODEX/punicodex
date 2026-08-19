@@ -2343,6 +2343,143 @@ const ORIGINAL_SCRIPTS = {
       ],
     },
   },
+  zarathushtra: {
+    originalScript: '𐬰𐬀𐬭𐬀𐬚𐬎𐬱𐬙𐬭𐬀',
+    scriptName: 'Avestan',
+    scriptFamily: 'Iranian religious alphabet',
+    writingDirection: 'right-to-left',
+    timePeriod: 'Avestan, c. 1000 BCE – 400 CE (manuscripts later)',
+    region: 'Iran / Central Asia',
+    provenance: {
+      original: '𐬰𐬀𐬭𐬀𐬚𐬎𐬱𐬙𐬭𐬀',
+      transliteration: 'Zaraθuštra',
+      transliterationScheme: 'Avestan scholarly transliteration',
+      normalizedReading: '/ˈza.ra.θuːʃ.tra/',
+      phoneticReconstruction: '/ˈza.ra.θuːʃ.tra/',
+      signs: [
+        {
+          sign: '𐬰',
+          name: 'z',
+          value: 'z',
+          function: 'letter',
+          note: 'Voiced alveolar fricative /z/.'
+        },
+        {
+          sign: '𐬀',
+          name: 'a',
+          value: 'a',
+          function: 'letter',
+          note: 'Short open vowel /a/.'
+        },
+        {
+          sign: '𐬭',
+          name: 'r',
+          value: 'r',
+          function: 'letter',
+          note: 'Alveolar trill /r/.'
+        },
+        {
+          sign: '𐬀',
+          name: 'a',
+          value: 'a',
+          function: 'letter',
+          note: 'Short open vowel /a/.'
+        },
+        {
+          sign: '𐬚',
+          name: 'θ',
+          value: 'θ',
+          function: 'letter',
+          note: 'Voiceless dental fricative /θ/.'
+        },
+        {
+          sign: '𐬎',
+          name: 'u',
+          value: 'u',
+          function: 'letter',
+          note: 'Short close back vowel /u/.'
+        },
+        {
+          sign: '𐬱',
+          name: 'š',
+          value: 'š',
+          function: 'letter',
+          note: 'Voiceless postalveolar fricative /ʃ/.'
+        },
+        {
+          sign: '𐬙',
+          name: 't',
+          value: 't',
+          function: 'letter',
+          note: 'Voiceless dental stop /t/.'
+        },
+        {
+          sign: '𐬭',
+          name: 'r',
+          value: 'r',
+          function: 'letter',
+          note: 'Alveolar trill /r/.'
+        },
+        {
+          sign: '𐬀',
+          name: 'a',
+          value: 'a',
+          function: 'letter',
+          note: 'Short open vowel /a/.'
+        },
+      ],
+      steps: [
+        'The Avestan form 𐬰𐬀𐬭𐬀𐬚𐬎𐬱𐬙𐬭𐬀 writes the prophet\'s name phonetically.',
+        'The dental fricative θ (𐬚) and the postalveolar š (𐬱) have distinct Avestan letters.',
+        'The Unicode restoration Zaraθuštra preserves θ and š in a registrable Latin form.',
+        'The Unicode restoration Zaraθuštra is registrable in .com; the Avestan script is not in the .com IDN table.'
+      ],
+      etymology: 'Avestan zaraθuštra-; the second element is securely uštra- \'camel\', while the first element is debated: the traditional analysis reads *zarat- \'old\' ("he who has old camels"), with more recent proposals connecting it to roots meaning "moving/driving camels" or "desiring camels"; the question remains open in the literature (see AirWb s.v. zaraθuštra-).',
+      semantics: 'Prophet of Ahura Mazdā, traditional composer of the Gathas',
+      variants: [
+        {
+          form: '𐬰𐬀𐬭𐬀𐬚𐬎𐬱𐬙𐬭𐬀',
+          context: 'Original script'
+        },
+        {
+          form: 'Zaraθuštra',
+          context: 'Unicode restoration'
+        },
+        {
+          form: 'zarathushtra',
+          context: 'ASCII fallback'
+        }
+      ],
+      attestations: [
+        {
+          text: 'Gathas',
+          date: 'c. 1000 BCE',
+          location: 'Eastern Iran/Central Asia',
+          reference: 'Yasna 28–34, 43–46, 47–50, 51'
+        },
+        {
+          text: 'Avesta (Later Avesta)',
+          date: 'c. 600–200 BCE',
+          location: 'Iranian plateau',
+          reference: 'Yashts (e.g. Yasht 13, 17, 19)'
+        }
+      ],
+      uncertainties: [
+        'Avestan manuscript tradition is medieval; the original phonology is reconstructed.',
+        'The quantity of the u in zaraθuštra- is debated; the letter 𐬎 writes short u, while some reconstructions read a long ū.',
+        'The etymology of the first element is unresolved: the traditional *zarat- \'old\' competes with more recent proposals (AirWb s.v. zaraθuštra-).',
+        'Old Iranian phonology is reconstructed partly through comparison with Vedic Sanskrit and Old Persian.'
+      ],
+      dnsNotes: 'The Unicode restoration Zaraθuštra uses registrable Latin diacritics; the Avestan script form is not registrable in .com.',
+      sources: [
+        'Avesta',
+        'Gathas',
+        'AirWb',
+        'Bartholomae'
+      ],
+      reviewStatus: 'canonical',
+    },
+  },
 };
 
 // ═════════════════════════════════════════════════════════════════════════════
