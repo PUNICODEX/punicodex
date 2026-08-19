@@ -11544,6 +11544,421 @@ const GLYPH_ATLAS = {
     "writingDirection": "RTL",
     "timePeriod": "c. 1000 BCE – present (manuscript tradition later)",
     "region": "Iran, Zoroastrian communities"
+  },
+  "adonis": {
+    "scriptName": "Greek",
+    "codePoints": [
+      "U+1F0C",
+      "U+03B4",
+      "U+03C9",
+      "U+03BD",
+      "U+03B9",
+      "U+03C2"
+    ],
+    "specimen": "Ἄδωνις",
+    "family": "Greek",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 800 BCE – present",
+    "region": "Greece, Mediterranean, Byzantine world"
+  },
+  "amphitrite": {
+    "scriptName": "Greek",
+    "codePoints": [
+      "U+1F08",
+      "U+03BC",
+      "U+03C6",
+      "U+03B9",
+      "U+03C4",
+      "U+03C1",
+      "U+03AF",
+      "U+03C4",
+      "U+03B7"
+    ],
+    "specimen": "Ἀμφιτρίτη",
+    "family": "Greek",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 800 BCE – present",
+    "region": "Greece, Mediterranean, Byzantine world"
+  },
+  "avalokiteshvara": {
+    "scriptName": "Devanagari",
+    "codePoints": [
+      "U+0905",
+      "U+0935",
+      "U+0932",
+      "U+094B",
+      "U+0915",
+      "U+093F",
+      "U+0924",
+      "U+0947",
+      "U+0936",
+      "U+094D",
+      "U+0935",
+      "U+0930"
+    ],
+    "specimen": "अवलोकितेश्वर",
+    "family": "Brahmic",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 7th c. CE – present",
+    "region": "South Asia"
+  },
+  "bhaisajyaguru": {
+    "scriptName": "Devanagari",
+    "codePoints": [
+      "U+092D",
+      "U+0948",
+      "U+0937",
+      "U+091C",
+      "U+094D",
+      "U+092F",
+      "U+0917",
+      "U+0941",
+      "U+0930",
+      "U+0941"
+    ],
+    "specimen": "भैषज्यगुरु",
+    "family": "Brahmic",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 7th c. CE – present",
+    "region": "South Asia"
+  },
+  "budai": {
+    "scriptName": "Devanagari",
+    "codePoints": [
+      "U+092C",
+      "U+094D",
+      "U+00F9",
+      "U+0926",
+      "U+094D",
+      "U+00E0",
+      "U+0907"
+    ],
+    "specimen": "ब्ùद्àइ",
+    "family": "Brahmic",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 7th c. CE – present",
+    "region": "South Asia"
+  },
+  "caishen": {
+    "scriptName": "Chinese characters",
+    "codePoints": [
+      "U+8CA1",
+      "U+795E"
+    ],
+    "specimen": "財神",
+    "family": "CJK (Chinese)",
+    "writingDirection": "LTR historically top-to-bottom",
+    "timePeriod": "c. 1200 BCE – present",
+    "region": "East Asia"
+  },
+  "duryodhana": {
+    "scriptName": "Devanagari",
+    "codePoints": [
+      "U+0926",
+      "U+0941",
+      "U+0930",
+      "U+094D",
+      "U+092F",
+      "U+094B",
+      "U+0927",
+      "U+0928"
+    ],
+    "specimen": "दुर्योधन",
+    "family": "Brahmic",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 7th c. CE – present",
+    "region": "South Asia"
+  },
+  "helene": {
+    "scriptName": "Greek",
+    "codePoints": [
+      "U+1F19",
+      "U+03BB",
+      "U+03AD",
+      "U+03BD",
+      "U+03B7"
+    ],
+    "specimen": "Ἑλένη",
+    "family": "Greek",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 800 BCE – present",
+    "region": "Greece, Mediterranean, Byzantine world"
+  },
+  "iphigeneia": {
+    "scriptName": "Greek",
+    "codePoints": [
+      "U+1F38",
+      "U+03C6",
+      "U+03B9",
+      "U+03B3",
+      "U+03AD",
+      "U+03BD",
+      "U+03B5",
+      "U+03B9",
+      "U+03B1"
+    ],
+    "specimen": "Ἰφιγένεια",
+    "family": "Greek",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 800 BCE – present",
+    "region": "Greece, Mediterranean, Byzantine world"
+  },
+  "kalki": {
+    "scriptName": "Devanagari",
+    "codePoints": [
+      "U+0915",
+      "U+0932",
+      "U+094D",
+      "U+0915",
+      "U+093F"
+    ],
+    "specimen": "कल्कि",
+    "family": "Brahmic",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 7th c. CE – present",
+    "region": "South Asia"
+  },
+  "klytaimnestra": {
+    "scriptName": "Greek",
+    "codePoints": [
+      "U+039A",
+      "U+03BB",
+      "U+03C5",
+      "U+03C4",
+      "U+03B1",
+      "U+03B9",
+      "U+03BC",
+      "U+03BD",
+      "U+03AE",
+      "U+03C3",
+      "U+03C4",
+      "U+03C1",
+      "U+03B1"
+    ],
+    "specimen": "Κλυταιμνήστρα",
+    "family": "Greek",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 800 BCE – present",
+    "region": "Greece, Mediterranean, Byzantine world"
+  },
+  "kuafu": {
+    "scriptName": "Chinese characters",
+    "codePoints": [
+      "U+5938",
+      "U+7236"
+    ],
+    "specimen": "夸父",
+    "family": "CJK (Chinese)",
+    "writingDirection": "LTR historically top-to-bottom",
+    "timePeriod": "c. 1200 BCE – present",
+    "region": "East Asia"
+  },
+  "kurma": {
+    "scriptName": "Devanagari",
+    "codePoints": [
+      "U+0915",
+      "U+0942",
+      "U+0930",
+      "U+094D",
+      "U+092E"
+    ],
+    "specimen": "कूर्म",
+    "family": "Brahmic",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 7th c. CE – present",
+    "region": "South Asia"
+  },
+  "padmasambhava": {
+    "scriptName": "Devanagari",
+    "codePoints": [
+      "U+092A",
+      "U+0926",
+      "U+094D",
+      "U+092E",
+      "U+0938",
+      "U+092E",
+      "U+094D",
+      "U+092D",
+      "U+0935"
+    ],
+    "specimen": "पद्मसम्भव",
+    "family": "Brahmic",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 7th c. CE – present",
+    "region": "South Asia"
+  },
+  "parashurama": {
+    "scriptName": "Devanagari",
+    "codePoints": [
+      "U+092A",
+      "U+0930",
+      "U+0936",
+      "U+0941",
+      "U+0930",
+      "U+093E",
+      "U+092E"
+    ],
+    "specimen": "परशुराम",
+    "family": "Brahmic",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 7th c. CE – present",
+    "region": "South Asia"
+  },
+  "rahu": {
+    "scriptName": "Devanagari",
+    "codePoints": [
+      "U+0930",
+      "U+093E",
+      "U+0939",
+      "U+0941"
+    ],
+    "specimen": "राहु",
+    "family": "Brahmic",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 7th c. CE – present",
+    "region": "South Asia"
+  },
+  "triton": {
+    "scriptName": "Greek",
+    "codePoints": [
+      "U+03A4",
+      "U+03C1",
+      "U+03AF",
+      "U+03C4",
+      "U+03C9",
+      "U+03BD"
+    ],
+    "specimen": "Τρίτων",
+    "family": "Greek",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 800 BCE – present",
+    "region": "Greece, Mediterranean, Byzantine world"
+  },
+  "tudigong": {
+    "scriptName": "Chinese characters",
+    "codePoints": [
+      "U+571F",
+      "U+5730",
+      "U+516C"
+    ],
+    "specimen": "土地公",
+    "family": "CJK (Chinese)",
+    "writingDirection": "LTR historically top-to-bottom",
+    "timePeriod": "c. 1200 BCE – present",
+    "region": "East Asia"
+  },
+  "varaha": {
+    "scriptName": "Devanagari",
+    "codePoints": [
+      "U+0935",
+      "U+0930",
+      "U+093E",
+      "U+0939"
+    ],
+    "specimen": "वराह",
+    "family": "Brahmic",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 7th c. CE – present",
+    "region": "South Asia"
+  },
+  "yandi": {
+    "scriptName": "Chinese characters",
+    "codePoints": [
+      "U+708E",
+      "U+5E1D"
+    ],
+    "specimen": "炎帝",
+    "family": "CJK (Chinese)",
+    "writingDirection": "LTR historically top-to-bottom",
+    "timePeriod": "c. 1200 BCE – present",
+    "region": "East Asia"
+  },
+  "yu": {
+    "scriptName": "Chinese characters",
+    "codePoints": [
+      "U+5927",
+      "U+79B9"
+    ],
+    "specimen": "大禹",
+    "family": "CJK (Chinese)",
+    "writingDirection": "LTR historically top-to-bottom",
+    "timePeriod": "c. 1200 BCE – present",
+    "region": "East Asia"
+  },
+  "yudhisthira": {
+    "scriptName": "Devanagari",
+    "codePoints": [
+      "U+092F",
+      "U+0941",
+      "U+0927",
+      "U+093F",
+      "U+0937",
+      "U+094D",
+      "U+0920",
+      "U+093F",
+      "U+0930"
+    ],
+    "specimen": "युधिष्ठिर",
+    "family": "Brahmic",
+    "writingDirection": "LTR",
+    "timePeriod": "c. 7th c. CE – present",
+    "region": "South Asia"
+  },
+  "zaojun": {
+    "scriptName": "Chinese characters",
+    "codePoints": [
+      "U+7076",
+      "U+541B"
+    ],
+    "specimen": "灶君",
+    "family": "CJK (Chinese)",
+    "writingDirection": "LTR historically top-to-bottom",
+    "timePeriod": "c. 1200 BCE – present",
+    "region": "East Asia"
+  },
+  "zarathushtra": {
+    "scriptName": "Avestan",
+    "codePoints": [
+      "U+10B30",
+      "U+10B00",
+      "U+10B2D",
+      "U+10B00",
+      "U+10B1A",
+      "U+10B0E",
+      "U+10B31",
+      "U+10B19",
+      "U+10B2D",
+      "U+10B00"
+    ],
+    "specimen": "𐬰𐬀𐬭𐬀𐬚𐬎𐬱𐬙𐬭𐬀",
+    "family": "Avestan",
+    "writingDirection": "RTL",
+    "timePeriod": "c. 1000 BCE – present (manuscript tradition later)",
+    "region": "Iran, Zoroastrian communities"
+  },
+  "zhinu": {
+    "scriptName": "Chinese characters",
+    "codePoints": [
+      "U+7E54",
+      "U+5973"
+    ],
+    "specimen": "織女",
+    "family": "CJK (Chinese)",
+    "writingDirection": "LTR historically top-to-bottom",
+    "timePeriod": "c. 1200 BCE – present",
+    "region": "East Asia"
+  },
+  "zhongkui": {
+    "scriptName": "Chinese characters",
+    "codePoints": [
+      "U+937E",
+      "U+9997"
+    ],
+    "specimen": "鍾馗",
+    "family": "CJK (Chinese)",
+    "writingDirection": "LTR historically top-to-bottom",
+    "timePeriod": "c. 1200 BCE – present",
+    "region": "East Asia"
   }
 };;
 

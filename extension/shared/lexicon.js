@@ -54618,9 +54618,2418 @@ const LEXICON = [
     "domainUnicode": "ašavahišta.com",
     "domainPunycode": "xn--aavahita-5wbf.com",
     "hasAdSite": true
+  },  {
+    "id": "adonis",
+    "ascii": "adonis",
+    "unicode": "Adōnis",
+    "greek": "Ἄδωνις",
+    "pantheon": "greek",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Beauty, Desire, Renewal",
+    "meaning": "Lord (from Semitic ʾādōn)",
+    "sources": [
+      "Apollodorus",
+      "Ovid",
+      "LSJ",
+      "Pape-Benseler",
+      "Beekes"
+    ],
+    "breakdown": [
+      {
+        "char": "a",
+        "to": "A",
+        "type": "same",
+        "note": "Alpha"
+      },
+      {
+        "char": "d",
+        "to": "d",
+        "type": "same",
+        "note": "Delta"
+      },
+      {
+        "char": "o",
+        "to": "ō",
+        "type": "length",
+        "note": "Omega: long omicron"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Nu"
+      },
+      {
+        "char": "i",
+        "to": "i",
+        "type": "same",
+        "note": "Iota"
+      },
+      {
+        "char": "s",
+        "to": "s",
+        "type": "same",
+        "note": "Sigma"
+      }
+    ]
+  },
+  {
+    "id": "aegir",
+    "ascii": "aegir",
+    "unicode": "Ægir",
+    "greek": "—",
+    "pantheon": "norse",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Sea, Brewing, Feasting",
+    "meaning": "Sea (the sea giant who brews ale for the gods)",
+    "sources": [
+      "Poetic Edda",
+      "Prose Edda",
+      "Cleasby-Vigfusson",
+      "Zoëga"
+    ],
+    "breakdown": [
+      {
+        "char": "a",
+        "to": "Æ",
+        "type": "special",
+        "note": "Ash: ae ligature, capitalized"
+      },
+      {
+        "char": "e",
+        "to": "",
+        "type": "drop",
+        "note": "Dropped: merged with a into ash"
+      },
+      {
+        "char": "g",
+        "to": "g",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "i",
+        "to": "i",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "Same"
+      }
+    ]
+  },
+  {
+    "id": "amphitrite",
+    "ascii": "amphitrite",
+    "unicode": "Amphitrítē",
+    "greek": "Ἀμφιτρίτη",
+    "pantheon": "greek",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Sea, Queenship, Waves",
+    "meaning": "Likely a pre-Greek sea name",
+    "sources": [
+      "Hesiod, Theogony",
+      "Apollodorus",
+      "LSJ",
+      "Pape-Benseler"
+    ],
+    "breakdown": [
+      {
+        "char": "a",
+        "to": "A",
+        "type": "same",
+        "note": "Alpha"
+      },
+      {
+        "char": "m",
+        "to": "m",
+        "type": "same",
+        "note": "Mu"
+      },
+      {
+        "char": "p",
+        "to": "p",
+        "type": "same",
+        "note": "Pi"
+      },
+      {
+        "char": "h",
+        "to": "h",
+        "type": "same",
+        "note": "Aspiration of phi"
+      },
+      {
+        "char": "i",
+        "to": "i",
+        "type": "same",
+        "note": "Iota"
+      },
+      {
+        "char": "t",
+        "to": "t",
+        "type": "same",
+        "note": "Tau"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "Rho"
+      },
+      {
+        "char": "i",
+        "to": "í",
+        "type": "stress",
+        "note": "Acute on iota"
+      },
+      {
+        "char": "t",
+        "to": "t",
+        "type": "same",
+        "note": "Tau"
+      },
+      {
+        "char": "e",
+        "to": "ē",
+        "type": "length",
+        "note": "Eta: long epsilon"
+      }
+    ]
+  },
+  {
+    "id": "avalokiteshvara",
+    "ascii": "avalokiteshvara",
+    "unicode": "Avalokiteśvara",
+    "greek": "अवलोकितेश्वर",
+    "pantheon": "buddhist",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Compassion, Mercy, Bodhisattva",
+    "meaning": "'Lord who looks down in compassion' (avalokita 'beheld, looked down upon' + īśvara 'lord'), the bodhisattva of compassion, source-form of Guānyīn and Kannon.",
+    "sources": [
+      "Lotus Sutra",
+      "Mahayana texts"
+    ],
+    "breakdown": [
+      {
+        "char": "a",
+        "to": "A",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "v",
+        "to": "v",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "l",
+        "to": "l",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "o",
+        "to": "o",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "k",
+        "to": "k",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "i",
+        "to": "i",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "t",
+        "to": "t",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "e",
+        "to": "e",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "s",
+        "to": "ś",
+        "type": "special",
+        "note": "Ś: palatal sibilant, atomic letter (IAST ś)"
+      },
+      {
+        "char": "h",
+        "to": "",
+        "type": "drop",
+        "note": "Not written: sh digraph realized as single letter ś"
+      },
+      {
+        "char": "v",
+        "to": "v",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Same"
+      }
+    ]
+  },
+  {
+    "id": "balor",
+    "ascii": "balor",
+    "unicode": "Balor",
+    "greek": "—",
+    "pantheon": "celtic",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Destruction, Evil Eye, Fomorians",
+    "meaning": "Fomorian king whose destructive eye blasts armies when its lid is raised, slain by his grandson Lúg with a sling-stone at Cath Maige Tuired.",
+    "sources": [
+      "Irish folklore",
+      "Lebor Gabála"
+    ],
+    "breakdown": [
+      {
+        "char": "b",
+        "to": "B",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "l",
+        "to": "l",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "o",
+        "to": "o",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "Same"
+      }
+    ]
+  },
+  {
+    "id": "bhaisajyaguru",
+    "ascii": "bhaisajyaguru",
+    "unicode": "Bhaiṣajyaguru",
+    "greek": "भैषज्यगुरु",
+    "pantheon": "buddhist",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Healing, Medicine, Lapis-Lazuli Light",
+    "meaning": "'Medicine master' (bhaiṣajya 'healing, remedy' + guru 'teacher'), the Medicine Buddha of lapis-lazuli radiance who vows to cure the sick.",
+    "sources": [
+      "Mahayana texts",
+      "Buddhist texts"
+    ],
+    "breakdown": [
+      {
+        "char": "b",
+        "to": "B",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "h",
+        "to": "h",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "i",
+        "to": "i",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "s",
+        "to": "ṣ",
+        "type": "special",
+        "note": "Ṣ: retroflex sibilant, underdot (IAST ṣ)"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "j",
+        "to": "j",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "y",
+        "to": "y",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "g",
+        "to": "g",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "u",
+        "to": "u",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "u",
+        "to": "u",
+        "type": "same",
+        "note": "Same"
+      }
+    ]
+  },
+  {
+    "id": "bifrost",
+    "ascii": "bifrost",
+    "unicode": "Bifrǫst",
+    "greek": "—",
+    "pantheon": "norse",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Rainbow Bridge, Passage, Heimdallr's Watch",
+    "meaning": "Trembling pathway (from bifa, to shake, + rǫst, league)",
+    "sources": [
+      "Poetic Edda",
+      "Prose Edda",
+      "Cleasby-Vigfusson"
+    ],
+    "breakdown": [
+      {
+        "char": "b",
+        "to": "B",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "i",
+        "to": "i",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "f",
+        "to": "f",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "o",
+        "to": "ǫ",
+        "type": "special",
+        "note": "O-hook: short /ɔ/ vowel"
+      },
+      {
+        "char": "s",
+        "to": "s",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "t",
+        "to": "t",
+        "type": "same",
+        "note": "Same"
+      }
+    ]
+  },
+  {
+    "id": "budai",
+    "ascii": "budai",
+    "unicode": "Bùdài",
+    "greek": "布袋",
+    "pantheon": "chinese",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Contentment, Abundance, Joy",
+    "meaning": "'Cloth sack' (bù 'cloth' + dài 'sack'), the laughing, sack-carrying monk of the Chinese Buddhist tradition, identified as an incarnation of Maitreya.",
+    "sources": [
+      "Chinese Buddhist canon",
+      "Chinese Buddhist texts"
+    ],
+    "breakdown": [
+      {
+        "char": "b",
+        "to": "B",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "u",
+        "to": "ù",
+        "type": "stress",
+        "note": "Stress on u: grave, falling tone"
+      },
+      {
+        "char": "d",
+        "to": "d",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "à",
+        "type": "stress",
+        "note": "Stress on a: grave, falling tone"
+      },
+      {
+        "char": "i",
+        "to": "i",
+        "type": "same",
+        "note": "Same"
+      }
+    ]
+  },
+  {
+    "id": "caishen",
+    "ascii": "caishen",
+    "unicode": "Cáishén",
+    "greek": "財神",
+    "pantheon": "chinese",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Wealth, Prosperity, New Year",
+    "meaning": "God of wealth",
+    "sources": [
+      "Chinese folk religion",
+      "Chinese folklore",
+      "Fengshen Yanyi"
+    ],
+    "breakdown": [
+      {
+        "char": "c",
+        "to": "C",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "a",
+        "to": "á",
+        "type": "stress",
+        "note": "Stress on a"
+      },
+      {
+        "char": "i",
+        "to": "i",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "s",
+        "to": "s",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "h",
+        "to": "h",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "e",
+        "to": "é",
+        "type": "stress",
+        "note": "Stress on e"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Same"
+      }
+    ]
+  },
+  {
+    "id": "cupid",
+    "ascii": "cupido",
+    "unicode": "Cupīdō",
+    "greek": "—",
+    "pantheon": "roman",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Desire, Love, Longing",
+    "meaning": "The Roman god of desire, son of Venus; from cupīdō, 'desire, longing, passion' (epigraphic CVPIDO)",
+    "sources": [
+      "Ovid",
+      "Virgil",
+      "Lewis & Short"
+    ],
+    "breakdown": [
+      {
+        "char": "c",
+        "to": "C",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "u",
+        "to": "u",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "p",
+        "to": "p",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "i",
+        "to": "ī",
+        "type": "length",
+        "note": "Long vowel"
+      },
+      {
+        "char": "d",
+        "to": "d",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "o",
+        "to": "ō",
+        "type": "length",
+        "note": "Long vowel"
+      }
+    ]
+  },
+  {
+    "id": "duryodhana",
+    "ascii": "duryodhana",
+    "unicode": "Duryodhana",
+    "greek": "दुर्योधन",
+    "pantheon": "sanskrit",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Ambition, Rivalry, War",
+    "meaning": "'Hard to Conquer in Battle' (dur- 'hard' + yodhana 'fighting') — the eldest Kaurava, rival of the Pāṇḍavas whose refusal to yield their share of the kingdom brings about the Kurukṣetra war",
+    "sources": [
+      "Mahabharata",
+      "MW"
+    ],
+    "breakdown": [
+      {
+        "char": "d",
+        "to": "D",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "u",
+        "to": "u",
+        "type": "same",
+        "note": "Short /u/"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "y",
+        "to": "y",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "o",
+        "to": "o",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "d",
+        "to": "d",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "h",
+        "to": "h",
+        "type": "same",
+        "note": "Same: aspirate /dʱ/"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Short /a/"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Short /a/"
+      }
+    ]
+  },
+  {
+    "id": "helene",
+    "ascii": "helene",
+    "unicode": "Helénē",
+    "greek": "Ἑλένη",
+    "pantheon": "greek",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Beauty, Sparta, Troy",
+    "meaning": "Probably pre-Greek; folk-linked to ἑλένη \"torch\"",
+    "sources": [
+      "Iliad",
+      "Euripides",
+      "LSJ",
+      "Pape-Benseler",
+      "Beekes"
+    ],
+    "breakdown": [
+      {
+        "char": "h",
+        "to": "H",
+        "type": "same",
+        "note": "Rough breathing"
+      },
+      {
+        "char": "e",
+        "to": "e",
+        "type": "same",
+        "note": "Short epsilon"
+      },
+      {
+        "char": "l",
+        "to": "l",
+        "type": "same",
+        "note": "Lambda"
+      },
+      {
+        "char": "e",
+        "to": "é",
+        "type": "stress",
+        "note": "Acute on epsilon"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Nu"
+      },
+      {
+        "char": "e",
+        "to": "ē",
+        "type": "length",
+        "note": "Eta: long epsilon"
+      }
+    ]
+  },
+
+  {
+    "id": "iphigeneia",
+    "ascii": "iphigeneia",
+    "unicode": "Iphigeneia",
+    "greek": "Ἰφιγένεια",
+    "pantheon": "greek",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Sacrifice, Winds, Aulis",
+    "meaning": "Mighty-born (ἶφι \"by might\" + γένος \"birth\")",
+    "sources": [
+      "Euripides",
+      "Aeschylus",
+      "LSJ",
+      "Pape-Benseler"
+    ],
+    "breakdown": [
+      {
+        "char": "i",
+        "to": "I",
+        "type": "same",
+        "note": "Smooth breathing"
+      },
+      {
+        "char": "p",
+        "to": "p",
+        "type": "same",
+        "note": "Pi"
+      },
+      {
+        "char": "h",
+        "to": "h",
+        "type": "same",
+        "note": "Aspiration of phi"
+      },
+      {
+        "char": "i",
+        "to": "i",
+        "type": "same",
+        "note": "Iota"
+      },
+      {
+        "char": "g",
+        "to": "g",
+        "type": "same",
+        "note": "Gamma"
+      },
+      {
+        "char": "e",
+        "to": "e",
+        "type": "same",
+        "note": "Epsilon"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Nu"
+      },
+      {
+        "char": "e",
+        "to": "e",
+        "type": "same",
+        "note": "Diphthong ei"
+      },
+      {
+        "char": "i",
+        "to": "i",
+        "type": "same",
+        "note": "Diphthong ei"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Alpha"
+      }
+    ]
+  },
+  {
+    "id": "kalki",
+    "ascii": "kalki",
+    "unicode": "Kalki",
+    "greek": "कल्कि",
+    "pantheon": "sanskrit",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Prophecy, Renewal, Avatar of Vishnu",
+    "meaning": "The avatāra yet to come — the tenth and final avatāra of Viṣṇu, who appears at the end of the Kali Yuga riding a white horse to destroy unrighteousness and restore the age of truth",
+    "sources": [
+      "Mahabharata",
+      "Puranas",
+      "Bhagavata",
+      "MW"
+    ],
+    "breakdown": [
+      {
+        "char": "k",
+        "to": "K",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Short /a/"
+      },
+      {
+        "char": "l",
+        "to": "l",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "k",
+        "to": "k",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "i",
+        "to": "i",
+        "type": "same",
+        "note": "Short /i/"
+      }
+    ]
+  },
+  {
+    "id": "klytaimnestra",
+    "ascii": "klytaimnestra",
+    "unicode": "Klytaimnéstra",
+    "greek": "Κλυταιμνήστρα",
+    "pantheon": "greek",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Revenge, Marriage, Mycenae",
+    "meaning": "Famed wooer (κλυτός + μνήστωρ)",
+    "sources": [
+      "Aeschylus",
+      "Iliad",
+      "LSJ",
+      "Pape-Benseler",
+      "Beekes"
+    ],
+    "breakdown": [
+      {
+        "char": "k",
+        "to": "K",
+        "type": "same",
+        "note": "Kappa"
+      },
+      {
+        "char": "l",
+        "to": "l",
+        "type": "same",
+        "note": "Lambda"
+      },
+      {
+        "char": "y",
+        "to": "y",
+        "type": "same",
+        "note": "Upsilon"
+      },
+      {
+        "char": "t",
+        "to": "t",
+        "type": "same",
+        "note": "Tau"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Alpha"
+      },
+      {
+        "char": "i",
+        "to": "i",
+        "type": "same",
+        "note": "Iota"
+      },
+      {
+        "char": "m",
+        "to": "m",
+        "type": "same",
+        "note": "Mu"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Nu"
+      },
+      {
+        "char": "e",
+        "to": "é",
+        "type": "stress",
+        "note": "Acute on eta"
+      },
+      {
+        "char": "s",
+        "to": "s",
+        "type": "same",
+        "note": "Sigma"
+      },
+      {
+        "char": "t",
+        "to": "t",
+        "type": "same",
+        "note": "Tau"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "Rho"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Alpha"
+      }
+    ]
+  },
+  {
+    "id": "kuafu",
+    "ascii": "kuafu",
+    "unicode": "Kuāfù",
+    "greek": "夸父",
+    "pantheon": "chinese",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Sun, Perseverance",
+    "meaning": "Giant who chased the sun",
+    "sources": [
+      "Shan Hai Jing",
+      "Chinese classics"
+    ],
+    "breakdown": [
+      {
+        "char": "k",
+        "to": "K",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "u",
+        "to": "u",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "ā",
+        "type": "length",
+        "note": "Long vowel"
+      },
+      {
+        "char": "f",
+        "to": "f",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "u",
+        "to": "ù",
+        "type": "stress",
+        "note": "Stress on u"
+      }
+    ]
+  },
+  {
+    "id": "kurma",
+    "ascii": "kurma",
+    "unicode": "Kūrma",
+    "greek": "कूर्म",
+    "pantheon": "sanskrit",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Support, Ocean, Avatar of Vishnu",
+    "meaning": "The Tortoise — second avatāra of Viṣṇu, who bears Mount Mandara on his back as the pivot during the churning of the ocean of milk",
+    "sources": [
+      "Mahabharata",
+      "Puranas",
+      "MW"
+    ],
+    "breakdown": [
+      {
+        "char": "k",
+        "to": "K",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "u",
+        "to": "ū",
+        "type": "length",
+        "note": "Macron: long /uː/"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "m",
+        "to": "m",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Short /a/"
+      }
+    ]
+  },
+  {
+    "id": "mani",
+    "ascii": "mani",
+    "unicode": "Máni",
+    "greek": "—",
+    "pantheon": "norse",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Moon, Night, Time",
+    "meaning": "Moon (the personified moon, brother of Sól)",
+    "sources": [
+      "Poetic Edda",
+      "Prose Edda",
+      "Cleasby-Vigfusson",
+      "Zoëga"
+    ],
+    "breakdown": [
+      {
+        "char": "m",
+        "to": "M",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "a",
+        "to": "á",
+        "type": "stress",
+        "note": "Acute on a"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "i",
+        "to": "i",
+        "type": "same",
+        "note": "Same"
+      }
+    ]
+  },
+  {
+    "id": "mars",
+    "ascii": "mars",
+    "unicode": "Mārs",
+    "greek": "—",
+    "pantheon": "roman",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "War, Agriculture, Sovereignty",
+    "meaning": "The Roman god of war and guardian of agriculture, father of Rōmulus and Rēmus; namesake of the planet Mars and the month of March (epigraphic MARS)",
+    "sources": [
+      "Lewis & Short",
+      "Virgil",
+      "Ovid"
+    ],
+    "breakdown": [
+      {
+        "char": "m",
+        "to": "M",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "a",
+        "to": "ā",
+        "type": "length",
+        "note": "Long vowel"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "s",
+        "to": "s",
+        "type": "same",
+        "note": "Same"
+      }
+    ]
+  },
+  {
+    "id": "medb",
+    "ascii": "medb",
+    "unicode": "Medb",
+    "greek": "—",
+    "pantheon": "celtic",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Sovereignty, War, Intoxication",
+    "meaning": "'The intoxicating one' (Old Irish medb, cognate with 'mead'), Queen of Connacht who drives the cattle raid of the Táin Bó Cúailnge.",
+    "sources": [
+      "Táin Bó Cúailnge",
+      "Irish folklore"
+    ],
+    "breakdown": [
+      {
+        "char": "m",
+        "to": "M",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "e",
+        "to": "e",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "d",
+        "to": "d",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "b",
+        "to": "b",
+        "type": "same",
+        "note": "Same"
+      }
+    ]
+  },
+  {
+    "id": "mimir",
+    "ascii": "mimir",
+    "unicode": "Mímir",
+    "greek": "—",
+    "pantheon": "norse",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Wisdom, Memory, Counsel",
+    "meaning": "The rememberer (etymology disputed; keeper of the well of wisdom)",
+    "sources": [
+      "Poetic Edda",
+      "Prose Edda",
+      "Cleasby-Vigfusson",
+      "Zoëga"
+    ],
+    "breakdown": [
+      {
+        "char": "m",
+        "to": "M",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "i",
+        "to": "í",
+        "type": "stress",
+        "note": "Acute on i"
+      },
+      {
+        "char": "m",
+        "to": "m",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "i",
+        "to": "i",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "Same"
+      }
+    ]
+  },
+  {
+    "id": "padmasambhava",
+    "ascii": "padmasambhava",
+    "unicode": "Padmasambhava",
+    "greek": "पद्मसम्भव",
+    "pantheon": "buddhist",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Lotus-Born, Vajrayana, Tibet",
+    "meaning": "'Lotus-born' (padma 'lotus' + sambhava 'born, arisen'), 'Guru Rinpoche', the tantric master revered as the founder-figure of Tibetan Buddhism.",
+    "sources": [
+      "Vajrayana texts",
+      "Tantric texts"
+    ],
+    "breakdown": [
+      {
+        "char": "p",
+        "to": "P",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "d",
+        "to": "d",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "m",
+        "to": "m",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "s",
+        "to": "s",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "m",
+        "to": "m",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "b",
+        "to": "b",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "h",
+        "to": "h",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "v",
+        "to": "v",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Same"
+      }
+    ]
+  },
+  {
+    "id": "parashurama",
+    "ascii": "parashurama",
+    "unicode": "Paraśurāma",
+    "greek": "परशुराम",
+    "pantheon": "sanskrit",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "War, Vengeance, Avatar of Vishnu",
+    "meaning": "'Rāma with the Axe' (paraśu 'axe') — the sixth avatāra of Viṣṇu, the Brahmin warrior who exterminates the kṣatriyas, counted among the immortal Cirañjīvī",
+    "sources": [
+      "Mahabharata",
+      "Puranas",
+      "MW"
+    ],
+    "breakdown": [
+      {
+        "char": "p",
+        "to": "P",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Short /a/"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Short /a/"
+      },
+      {
+        "char": "s",
+        "to": "ś",
+        "type": "special",
+        "note": "S-acute: palatal /ɕ/"
+      },
+      {
+        "char": "h",
+        "to": "",
+        "type": "drop",
+        "note": "Dropped: digraph simplified"
+      },
+      {
+        "char": "u",
+        "to": "u",
+        "type": "same",
+        "note": "Short /u/"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "ā",
+        "type": "length",
+        "note": "Macron: long /aː/"
+      },
+      {
+        "char": "m",
+        "to": "m",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Short /a/"
+      }
+    ]
+  },
+  {
+    "id": "rahu",
+    "ascii": "rahu",
+    "unicode": "Rāhu",
+    "greek": "राहु",
+    "pantheon": "sanskrit",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Eclipse, Shadow, Deception",
+    "meaning": "The Seizer — the asura whose severed head, having drunk the amṛta, swallows the sun and moon to cause eclipses; reckoned among the nine grahas",
+    "sources": [
+      "Mahabharata",
+      "Puranas",
+      "MW"
+    ],
+    "breakdown": [
+      {
+        "char": "r",
+        "to": "R",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "ā",
+        "type": "length",
+        "note": "Macron: long /aː/"
+      },
+      {
+        "char": "h",
+        "to": "h",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "u",
+        "to": "u",
+        "type": "same",
+        "note": "Short /u/"
+      }
+    ]
+  },
+  {
+    "id": "ran",
+    "ascii": "ran",
+    "unicode": "Rán",
+    "greek": "—",
+    "pantheon": "norse",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Sea, Drowning, Death",
+    "meaning": "Theft, plunder (she who nets the drowned, wife of Ægir)",
+    "sources": [
+      "Poetic Edda",
+      "Prose Edda",
+      "Cleasby-Vigfusson",
+      "Zoëga"
+    ],
+    "breakdown": [
+      {
+        "char": "r",
+        "to": "R",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "a",
+        "to": "á",
+        "type": "stress",
+        "note": "Acute on a"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Same"
+      }
+    ]
+  },
+  {
+    "id": "ranginui",
+    "ascii": "ranginui",
+    "unicode": "Ranginui",
+    "greek": "—",
+    "pantheon": "polynesian",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Sky, Fatherhood, Creation",
+    "meaning": "'Great heaven' (Māori rangi 'sky, heavens' + nui 'great'), the sky father prised apart from the earth mother Papatūānuku by their children.",
+    "sources": [
+      "Grey, Polynesian Mythology",
+      "Tregear"
+    ],
+    "breakdown": [
+      {
+        "char": "r",
+        "to": "R",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "g",
+        "to": "g",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "i",
+        "to": "i",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "u",
+        "to": "u",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "i",
+        "to": "i",
+        "type": "same",
+        "note": "Same"
+      }
+    ]
+  },
+  {
+    "id": "sigurd",
+    "ascii": "sigurd",
+    "unicode": "Sigurðr",
+    "greek": "—",
+    "pantheon": "norse",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Victory, Dragon-Slaying, Heroism",
+    "meaning": "Victory-guardian (from sigr, victory, + vǫrðr, guardian)",
+    "sources": [
+      "Poetic Edda",
+      "Prose Edda",
+      "Cleasby-Vigfusson"
+    ],
+    "breakdown": [
+      {
+        "char": "s",
+        "to": "S",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "i",
+        "to": "i",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "g",
+        "to": "g",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "u",
+        "to": "u",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "d",
+        "to": "ðr",
+        "type": "merge",
+        "note": "Eth ð (voiced dental fricative) + nominative -r of Sigurðr"
+      }
+    ]
+  },
+  {
+    "id": "sleipnir",
+    "ascii": "sleipnir",
+    "unicode": "Sleipnir",
+    "greek": "—",
+    "pantheon": "norse",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Eight-Legged Steed, Journey, Offspring of Loki",
+    "meaning": "Gliding one (from sleipr, slippery)",
+    "sources": [
+      "Poetic Edda",
+      "Prose Edda",
+      "Cleasby-Vigfusson"
+    ],
+    "breakdown": [
+      {
+        "char": "s",
+        "to": "S",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "l",
+        "to": "l",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "e",
+        "to": "e",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "i",
+        "to": "i",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "p",
+        "to": "p",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "i",
+        "to": "i",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "Same"
+      }
+    ]
+  },
+  {
+    "id": "sol",
+    "ascii": "sol",
+    "unicode": "Sól",
+    "greek": "—",
+    "pantheon": "norse",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Sun, Light, Day",
+    "meaning": "Sun (the personified sun, sister of Máni)",
+    "sources": [
+      "Poetic Edda",
+      "Prose Edda",
+      "Cleasby-Vigfusson",
+      "Zoëga"
+    ],
+    "breakdown": [
+      {
+        "char": "s",
+        "to": "S",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "o",
+        "to": "ó",
+        "type": "stress",
+        "note": "Acute on o"
+      },
+      {
+        "char": "l",
+        "to": "l",
+        "type": "same",
+        "note": "Same"
+      }
+    ]
+  },
+  {
+    "id": "triton",
+    "ascii": "triton",
+    "unicode": "Tritōn",
+    "greek": "Τρίτων",
+    "pantheon": "greek",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Sea, Conch, Waves",
+    "meaning": "Sea-god's name, likely pre-Greek",
+    "sources": [
+      "Hesiod, Theogony",
+      "Apollodorus",
+      "Pausanias",
+      "LSJ",
+      "Pape-Benseler"
+    ],
+    "breakdown": [
+      {
+        "char": "t",
+        "to": "T",
+        "type": "same",
+        "note": "Tau"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "Rho"
+      },
+      {
+        "char": "i",
+        "to": "i",
+        "type": "same",
+        "note": "Iota"
+      },
+      {
+        "char": "t",
+        "to": "t",
+        "type": "same",
+        "note": "Tau"
+      },
+      {
+        "char": "o",
+        "to": "ō",
+        "type": "length",
+        "note": "Omega: long omicron"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Nu"
+      }
+    ]
+  },
+  {
+    "id": "tudigong",
+    "ascii": "tudigong",
+    "unicode": "Tǔdìgōng",
+    "greek": "土地公",
+    "pantheon": "chinese",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Earth, Locality, Village",
+    "meaning": "Local earth god",
+    "sources": [
+      "Chinese folk religion",
+      "Chinese folklore"
+    ],
+    "breakdown": [
+      {
+        "char": "t",
+        "to": "T",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "u",
+        "to": "ǔ",
+        "type": "special",
+        "note": "Special character"
+      },
+      {
+        "char": "d",
+        "to": "d",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "i",
+        "to": "ì",
+        "type": "stress",
+        "note": "Stress on i"
+      },
+      {
+        "char": "g",
+        "to": "g",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "o",
+        "to": "ō",
+        "type": "length",
+        "note": "Long vowel"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "g",
+        "to": "g",
+        "type": "same",
+        "note": "Same"
+      }
+    ]
+  },
+  {
+    "id": "varaha",
+    "ascii": "varaha",
+    "unicode": "Varāha",
+    "greek": "वराह",
+    "pantheon": "sanskrit",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Rescue, Earth, Avatar of Vishnu",
+    "meaning": "The Boar — third avatāra of Viṣṇu, who dives into the cosmic waters and raises the sunken Earth (Bhūdevī) on his tusks",
+    "sources": [
+      "Puranas",
+      "MW"
+    ],
+    "breakdown": [
+      {
+        "char": "v",
+        "to": "V",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Short /a/"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "ā",
+        "type": "length",
+        "note": "Macron: long /aː/"
+      },
+      {
+        "char": "h",
+        "to": "h",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Short /a/"
+      }
+    ]
+  },
+  {
+    "id": "venus",
+    "ascii": "venus",
+    "unicode": "Venus",
+    "greek": "—",
+    "pantheon": "roman",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Love, Beauty, Desire",
+    "meaning": "The Roman goddess of love and beauty, mother of Aenēās; namesake of the planet Venus (epigraphic VENVS; all vowels short, so the standard form carries no diacritics)",
+    "sources": [
+      "Ovid",
+      "Virgil",
+      "Lewis & Short"
+    ],
+    "breakdown": [
+      {
+        "char": "v",
+        "to": "V",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "e",
+        "to": "e",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "u",
+        "to": "u",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "s",
+        "to": "s",
+        "type": "same",
+        "note": "Same"
+      }
+    ]
+  },
+  {
+    "id": "yandi",
+    "ascii": "yandi",
+    "unicode": "Yándì",
+    "greek": "炎帝",
+    "pantheon": "chinese",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Flame, Agriculture, Sovereignty",
+    "meaning": "Flame emperor",
+    "sources": [
+      "Shiji",
+      "Chinese classics"
+    ],
+    "breakdown": [
+      {
+        "char": "y",
+        "to": "Y",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "a",
+        "to": "á",
+        "type": "stress",
+        "note": "Stress on a"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "d",
+        "to": "d",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "i",
+        "to": "ì",
+        "type": "stress",
+        "note": "Stress on i"
+      }
+    ]
+  },
+  {
+    "id": "yu",
+    "ascii": "dayu",
+    "unicode": "Dà Yǔ",
+    "greek": "大禹",
+    "pantheon": "chinese",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Flood, Kingship, Order",
+    "meaning": "Great Yu",
+    "sources": [
+      "Shiji",
+      "Chinese classics"
+    ],
+    "breakdown": [
+      {
+        "char": "d",
+        "to": "D",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "a",
+        "to": "à",
+        "type": "stress",
+        "note": "Stress on a"
+      },
+      {
+        "char": "y",
+        "to": "Y",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "u",
+        "to": "ǔ",
+        "type": "special",
+        "note": "Special character"
+      }
+    ]
+  },
+  {
+    "id": "yudhisthira",
+    "ascii": "yudhisthira",
+    "unicode": "Yudhiṣṭhira",
+    "greek": "युधिष्ठिर",
+    "pantheon": "sanskrit",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Justice, Kingship, Truth",
+    "meaning": "'Steadfast in Battle' (yudhi 'in battle' + sthira 'firm') — the eldest Pāṇḍava, son of the god Dharma, famed for truthfulness and crowned king at Hāstinapura after the Kurukṣetra war",
+    "sources": [
+      "Mahabharata",
+      "MW"
+    ],
+    "breakdown": [
+      {
+        "char": "y",
+        "to": "Y",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "u",
+        "to": "u",
+        "type": "same",
+        "note": "Short /u/"
+      },
+      {
+        "char": "d",
+        "to": "d",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "h",
+        "to": "h",
+        "type": "same",
+        "note": "Same: aspirate /dʱ/"
+      },
+      {
+        "char": "i",
+        "to": "i",
+        "type": "same",
+        "note": "Short /i/"
+      },
+      {
+        "char": "s",
+        "to": "ṣ",
+        "type": "special",
+        "note": "S-dot-under: retroflex /ʂ/"
+      },
+      {
+        "char": "t",
+        "to": "ṭ",
+        "type": "special",
+        "note": "T-dot-under: retroflex /ʈ/"
+      },
+      {
+        "char": "h",
+        "to": "h",
+        "type": "same",
+        "note": "Same: aspirate /ʈʱ/"
+      },
+      {
+        "char": "i",
+        "to": "i",
+        "type": "same",
+        "note": "Short /i/"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Short /a/"
+      }
+    ]
+  },
+  {
+    "id": "zaojun",
+    "ascii": "zaojun",
+    "unicode": "Zàojūn",
+    "greek": "灶君",
+    "pantheon": "chinese",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Hearth, Kitchen, Household",
+    "meaning": "Lord of the hearth",
+    "sources": [
+      "Chinese folk religion",
+      "Chinese folklore"
+    ],
+    "breakdown": [
+      {
+        "char": "z",
+        "to": "Z",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "a",
+        "to": "à",
+        "type": "stress",
+        "note": "Stress on a"
+      },
+      {
+        "char": "o",
+        "to": "o",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "j",
+        "to": "j",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "u",
+        "to": "ū",
+        "type": "length",
+        "note": "Long vowel"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Same"
+      }
+    ]
+  },
+  {
+    "id": "zarathushtra",
+    "ascii": "zarathushtra",
+    "unicode": "Zaraθuštra",
+    "greek": "—",
+    "pantheon": "zoroastrian",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Prophecy, Truth, Fire",
+    "meaning": "Avestan name of Zarathustra (second element uštra 'camel'), the prophet of Ahura Mazdā and traditional composer of the Gāthās.",
+    "sources": [
+      "Gathas",
+      "Avesta",
+      "AirWb"
+    ],
+    "breakdown": [
+      {
+        "char": "z",
+        "to": "Z",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "t",
+        "to": "θ",
+        "type": "special",
+        "note": "Theta: Avestan voiceless dental fricative, atomic letter"
+      },
+      {
+        "char": "h",
+        "to": "",
+        "type": "drop",
+        "note": "Not written"
+      },
+      {
+        "char": "u",
+        "to": "u",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "s",
+        "to": "š",
+        "type": "special",
+        "note": "Š: s-caron, Avestan voiceless palato-alveolar fricative, atomic letter"
+      },
+      {
+        "char": "h",
+        "to": "",
+        "type": "drop",
+        "note": "Not written"
+      },
+      {
+        "char": "t",
+        "to": "t",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Same"
+      }
+    ]
+  },
+  {
+    "id": "zhinu",
+    "ascii": "zhinu",
+    "unicode": "Zhīnǚ",
+    "greek": "織女",
+    "pantheon": "chinese",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Weaving, Love, Stars",
+    "meaning": "Weaver girl",
+    "sources": [
+      "Chinese classics",
+      "Chinese folklore"
+    ],
+    "breakdown": [
+      {
+        "char": "z",
+        "to": "Z",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "h",
+        "to": "h",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "i",
+        "to": "ī",
+        "type": "length",
+        "note": "Long vowel"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "u",
+        "to": "ǚ",
+        "type": "stress",
+        "note": "Stress on u"
+      }
+    ]
+  },
+  {
+    "id": "zhongkui",
+    "ascii": "zhongkui",
+    "unicode": "Zhōngkuí",
+    "greek": "鍾馗",
+    "pantheon": "chinese",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Demons, Exorcism, Protection",
+    "meaning": "Queller of demons",
+    "sources": [
+      "Chinese folklore"
+    ],
+    "breakdown": [
+      {
+        "char": "z",
+        "to": "Z",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "h",
+        "to": "h",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "o",
+        "to": "ō",
+        "type": "length",
+        "note": "Long vowel"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "g",
+        "to": "g",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "k",
+        "to": "k",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "u",
+        "to": "u",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "i",
+        "to": "í",
+        "type": "stress",
+        "note": "Stress on i"
+      }
+    ]
   }
 ];
-
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { LEXICON };
 }

@@ -12055,6 +12055,406 @@ const PRONUNCIATION_ATLAS = {
     "confidence": "canonical",
     "audioPath": null,
     "note": "Avestan aša vahišta — \"Best Truth/Righteousness\" — is written in the scholarly transliteration with the palatal š of the Avestan alphabet, twice: Ašavahišta. The restoration keeps both sibilants exactly where the Gathas put them; English \"Asha Vahishta\" softens what the Avesta writes sharp."
+  },
+  "adonis": {
+    "ipa": "/adˈoːnis/",
+    "ipaLabel": "Reconstructed Attic Greek",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "reconstructed",
+    "audioPath": null,
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Adōnis."
+  },
+  "aegir": {
+    "ipa": "/gir/",
+    "ipaLabel": "Reconstructed Old Norse",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "generated",
+    "audioPath": null,
+    "note": "Broad IPA generated from the Unicode restoration Ægir; review recommended before promotion to canonical."
+  },
+  "amphitrite": {
+    "ipa": "/ampʰitrˈiteː/",
+    "ipaLabel": "Reconstructed Attic Greek",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "reconstructed",
+    "audioPath": null,
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Amphitrítē."
+  },
+  "avalokiteshvara": {
+    "ipa": "/avalokitesvara/",
+    "ipaLabel": "Reconstructed Sanskrit",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "generated",
+    "audioPath": null,
+    "note": "Broad IPA generated from the Unicode restoration Avalokiteśvara; review recommended before promotion to canonical."
+  },
+  "balor": {
+    "ipa": "/balor/",
+    "ipaLabel": "Reconstructed from Unicode restoration",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "generated",
+    "audioPath": null,
+    "note": "Broad IPA generated from the Unicode restoration Balor; review recommended before promotion to canonical."
+  },
+  "bhaisajyaguru": {
+    "ipa": "/bhaisajyaguru/",
+    "ipaLabel": "Reconstructed Sanskrit",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "generated",
+    "audioPath": null,
+    "note": "Broad IPA generated from the Unicode restoration Bhaiṣajyaguru; review recommended before promotion to canonical."
+  },
+  "bifrost": {
+    "ipa": "/bifrost/",
+    "ipaLabel": "Reconstructed Old Norse",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "generated",
+    "audioPath": null,
+    "note": "Broad IPA generated from the Unicode restoration Bifrǫst; review recommended before promotion to canonical."
+  },
+  "budai": {
+    "ipa": "/budai/",
+    "ipaLabel": "Modern Standard Chinese reading",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "generated",
+    "audioPath": null,
+    "note": "Broad IPA generated from the Unicode restoration Bùdài; review recommended before promotion to canonical."
+  },
+  "caishen": {
+    "ipa": "/kˈaishˈen/",
+    "ipaLabel": "Modern Standard Chinese reading",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "generated",
+    "audioPath": null,
+    "note": "Broad IPA generated from the Unicode restoration Cáishén; review recommended before promotion to canonical."
+  },
+  "cupid": {
+    "ipa": "/kupˈiːdoː/",
+    "ipaLabel": "Reconstructed from Unicode restoration",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "generated",
+    "audioPath": null,
+    "note": "Broad IPA generated from the Unicode restoration Cupīdō; review recommended before promotion to canonical."
+  },
+  "duryodhana": {
+    "ipa": "/duryodhana/",
+    "ipaLabel": "Reconstructed Sanskrit",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "generated",
+    "audioPath": null,
+    "note": "Broad IPA generated from the Unicode restoration Duryodhana; review recommended before promotion to canonical."
+  },
+  "helene": {
+    "ipa": "/helˈeneː/",
+    "ipaLabel": "Reconstructed Attic Greek",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "reconstructed",
+    "audioPath": null,
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Helénē."
+  },
+  "iphigeneia": {
+    "ipa": "/ipʰigeneia/",
+    "ipaLabel": "Reconstructed Attic Greek",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "reconstructed",
+    "audioPath": null,
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Iphigeneia."
+  },
+  "kalki": {
+    "ipa": "/kalki/",
+    "ipaLabel": "Reconstructed Sanskrit",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "generated",
+    "audioPath": null,
+    "note": "Broad IPA generated from the Unicode restoration Kalki; review recommended before promotion to canonical."
+  },
+  "klytaimnestra": {
+    "ipa": "/klytaimnˈestra/",
+    "ipaLabel": "Reconstructed Attic Greek",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "reconstructed",
+    "audioPath": null,
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Klytaimnéstra."
+  },
+  "kuafu": {
+    "ipa": "/kuˈaːfu/",
+    "ipaLabel": "Modern Standard Chinese reading",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "generated",
+    "audioPath": null,
+    "note": "Broad IPA generated from the Unicode restoration Kuāfù; review recommended before promotion to canonical."
+  },
+  "kurma": {
+    "ipa": "/kˈuːrma/",
+    "ipaLabel": "Reconstructed Sanskrit",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "generated",
+    "audioPath": null,
+    "note": "Broad IPA generated from the Unicode restoration Kūrma; review recommended before promotion to canonical."
+  },
+  "mani": {
+    "ipa": "/mˈani/",
+    "ipaLabel": "Reconstructed Old Norse",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "generated",
+    "audioPath": null,
+    "note": "Broad IPA generated from the Unicode restoration Máni; review recommended before promotion to canonical."
+  },
+  "mars": {
+    "ipa": "/mˈaːrs/",
+    "ipaLabel": "Reconstructed from Unicode restoration",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "generated",
+    "audioPath": null,
+    "note": "Broad IPA generated from the Unicode restoration Mārs; review recommended before promotion to canonical."
+  },
+  "medb": {
+    "ipa": "/medb/",
+    "ipaLabel": "Reconstructed from Unicode restoration",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "generated",
+    "audioPath": null,
+    "note": "Broad IPA generated from the Unicode restoration Medb; review recommended before promotion to canonical."
+  },
+  "mimir": {
+    "ipa": "/mˈimir/",
+    "ipaLabel": "Reconstructed Old Norse",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "generated",
+    "audioPath": null,
+    "note": "Broad IPA generated from the Unicode restoration Mímir; review recommended before promotion to canonical."
+  },
+  "padmasambhava": {
+    "ipa": "/padmasambhava/",
+    "ipaLabel": "Reconstructed Sanskrit",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "generated",
+    "audioPath": null,
+    "note": "Broad IPA generated from the Unicode restoration Padmasambhava; review recommended before promotion to canonical."
+  },
+  "parashurama": {
+    "ipa": "/parasurˈaːma/",
+    "ipaLabel": "Reconstructed Sanskrit",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "generated",
+    "audioPath": null,
+    "note": "Broad IPA generated from the Unicode restoration Paraśurāma; review recommended before promotion to canonical."
+  },
+  "rahu": {
+    "ipa": "/rˈaːhu/",
+    "ipaLabel": "Reconstructed Sanskrit",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "generated",
+    "audioPath": null,
+    "note": "Broad IPA generated from the Unicode restoration Rāhu; review recommended before promotion to canonical."
+  },
+  "ran": {
+    "ipa": "/rˈan/",
+    "ipaLabel": "Reconstructed Old Norse",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "generated",
+    "audioPath": null,
+    "note": "Broad IPA generated from the Unicode restoration Rán; review recommended before promotion to canonical."
+  },
+  "ranginui": {
+    "ipa": "/raŋginui/",
+    "ipaLabel": "Reconstructed from Unicode restoration",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "generated",
+    "audioPath": null,
+    "note": "Broad IPA generated from the Unicode restoration Ranginui; review recommended before promotion to canonical."
+  },
+  "sigurd": {
+    "ipa": "/sigurr/",
+    "ipaLabel": "Reconstructed Old Norse",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "generated",
+    "audioPath": null,
+    "note": "Broad IPA generated from the Unicode restoration Sigurðr; review recommended before promotion to canonical."
+  },
+  "sleipnir": {
+    "ipa": "/sleipnir/",
+    "ipaLabel": "Reconstructed Old Norse",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "generated",
+    "audioPath": null,
+    "note": "Broad IPA generated from the Unicode restoration Sleipnir; review recommended before promotion to canonical."
+  },
+  "sol": {
+    "ipa": "/sˈol/",
+    "ipaLabel": "Reconstructed Old Norse",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "generated",
+    "audioPath": null,
+    "note": "Broad IPA generated from the Unicode restoration Sól; review recommended before promotion to canonical."
+  },
+  "triton": {
+    "ipa": "/tritˈoːn/",
+    "ipaLabel": "Reconstructed Attic Greek",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "reconstructed",
+    "audioPath": null,
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Tritōn."
+  },
+  "tudigong": {
+    "ipa": "/tudigˈoːŋg/",
+    "ipaLabel": "Modern Standard Chinese reading",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "generated",
+    "audioPath": null,
+    "note": "Broad IPA generated from the Unicode restoration Tǔdìgōng; review recommended before promotion to canonical."
+  },
+  "varaha": {
+    "ipa": "/varˈaːha/",
+    "ipaLabel": "Reconstructed Sanskrit",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "generated",
+    "audioPath": null,
+    "note": "Broad IPA generated from the Unicode restoration Varāha; review recommended before promotion to canonical."
+  },
+  "venus": {
+    "ipa": "/venus/",
+    "ipaLabel": "Reconstructed from Unicode restoration",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "generated",
+    "audioPath": null,
+    "note": "Broad IPA generated from the Unicode restoration Venus; review recommended before promotion to canonical."
+  },
+  "yandi": {
+    "ipa": "/yˈandi/",
+    "ipaLabel": "Modern Standard Chinese reading",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "generated",
+    "audioPath": null,
+    "note": "Broad IPA generated from the Unicode restoration Yándì; review recommended before promotion to canonical."
+  },
+  "yu": {
+    "ipa": "/dayu/",
+    "ipaLabel": "Modern Standard Chinese reading",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "generated",
+    "audioPath": null,
+    "note": "Broad IPA generated from the Unicode restoration Dà Yǔ; review recommended before promotion to canonical."
+  },
+  "yudhisthira": {
+    "ipa": "/yudhisthira/",
+    "ipaLabel": "Reconstructed Sanskrit",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "generated",
+    "audioPath": null,
+    "note": "Broad IPA generated from the Unicode restoration Yudhiṣṭhira; review recommended before promotion to canonical."
+  },
+  "zaojun": {
+    "ipa": "/zaojˈuːn/",
+    "ipaLabel": "Modern Standard Chinese reading",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "generated",
+    "audioPath": null,
+    "note": "Broad IPA generated from the Unicode restoration Zàojūn; review recommended before promotion to canonical."
+  },
+  "zarathushtra": {
+    "ipa": "/zaraustra/",
+    "ipaLabel": "Avestan reconstruction",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "generated",
+    "audioPath": null,
+    "note": "Broad IPA generated from the Unicode restoration Zaraθuštra; review recommended before promotion to canonical."
+  },
+  "zhinu": {
+    "ipa": "/zhˈiːnu/",
+    "ipaLabel": "Modern Standard Chinese reading",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "generated",
+    "audioPath": null,
+    "note": "Broad IPA generated from the Unicode restoration Zhīnǚ; review recommended before promotion to canonical."
+  },
+  "zhongkui": {
+    "ipa": "/zhoːŋgkuˈi/",
+    "ipaLabel": "Modern Standard Chinese reading",
+    "phonemes": [],
+    "approximation": null,
+    "dialect": null,
+    "confidence": "generated",
+    "audioPath": null,
+    "note": "Broad IPA generated from the Unicode restoration Zhōngkuí; review recommended before promotion to canonical."
   }
 };;
 

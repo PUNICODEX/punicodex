@@ -3762,6 +3762,136 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "originalScript": "𐬀𐬴𐬀 𐬬𐬀𐬵𐬌𐬱𐬙𐬀",
     "scriptName": "Avestan",
     "scriptLabel": "Original Script"
+  },
+  "adonis": {
+    "originalScript": "Ἄδωνις",
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
+  },
+  "amphitrite": {
+    "originalScript": "Ἀμφιτρίτη",
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
+  },
+  "avalokiteshvara": {
+    "originalScript": "अवलोकितेश्वर",
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
+  },
+  "bhaisajyaguru": {
+    "originalScript": "भैषज्यगुरु",
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
+  },
+  "budai": {
+    "originalScript": "布袋",
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
+  },
+  "caishen": {
+    "originalScript": "財神",
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
+  },
+  "duryodhana": {
+    "originalScript": "दुर्योधन",
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
+  },
+  "helene": {
+    "originalScript": "Ἑλένη",
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
+  },
+  "iphigeneia": {
+    "originalScript": "Ἰφιγένεια",
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
+  },
+  "kalki": {
+    "originalScript": "कल्कि",
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
+  },
+  "klytaimnestra": {
+    "originalScript": "Κλυταιμνήστρα",
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
+  },
+  "kuafu": {
+    "originalScript": "夸父",
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
+  },
+  "kurma": {
+    "originalScript": "कूर्म",
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
+  },
+  "padmasambhava": {
+    "originalScript": "पद्मसम्भव",
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
+  },
+  "parashurama": {
+    "originalScript": "परशुराम",
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
+  },
+  "rahu": {
+    "originalScript": "राहु",
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
+  },
+  "triton": {
+    "originalScript": "Τρίτων",
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
+  },
+  "tudigong": {
+    "originalScript": "土地公",
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
+  },
+  "varaha": {
+    "originalScript": "वराह",
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
+  },
+  "yandi": {
+    "originalScript": "炎帝",
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
+  },
+  "yu": {
+    "originalScript": "大禹",
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
+  },
+  "yudhisthira": {
+    "originalScript": "युधिष्ठिर",
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
+  },
+  "zaojun": {
+    "originalScript": "灶君",
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
+  },
+  "zarathushtra": {
+    "originalScript": "𐬰𐬀𐬭𐬀𐬚𐬎𐬱𐬙𐬭𐬀",
+    "scriptName": "Avestan",
+    "scriptLabel": "Original Script"
+  },
+  "zhinu": {
+    "originalScript": "織女",
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
+  },
+  "zhongkui": {
+    "originalScript": "鍾馗",
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
   }
 };
 
