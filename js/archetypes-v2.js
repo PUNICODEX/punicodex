@@ -2866,9 +2866,9 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "egyptian",
         folder: "thoth",
-        domainUnicode: "ḏḥwty.com",
+        domainUnicode: "ḏḥwtj.com",
         domainPunycode: "xn--wty-2yy4e.com",
-        domainAlt: ["ḏḥwtj.com"],
+        domainAlt: [],
         colors: { primary: "#D4AF37", secondary: "#1E3A5F", glow: "rgba(212,175,55,0.3)" },
         mascotPath: "/sites/thoth/assets/thoth_mascot.webp",
         mascotFallback: "/sites/thoth/assets/thoth_mascot.webp",
@@ -3543,7 +3543,7 @@ const ARCHETYPES = [
         folder: "itzpapalotl",
         domainUnicode: "ītzpāpālōtl.com",
         domainPunycode: "xn--tzppltl-u3ab82bvm.com",
-        domainAlt: ["itzpapālōtl.com"],
+        domainAlt: [],
         colors: { primary: "#50C878", secondary: "#2F2F2F", glow: "rgba(80,200,120,0.3)" },
         mascotPath: "/sites/itzpapalotl/assets/itzpapalotl_mascot.webp",
         mascotFallback: "/sites/itzpapalotl/assets/itzpapalotl_mascot.webp",
@@ -3796,7 +3796,7 @@ const ARCHETYPES = [
         folder: "obatala",
         domainUnicode: "ọbàtálá.com",
         domainPunycode: "xn--btl-9kagb8274c.com",
-        domainAlt: ["ọbatálá.com"],
+        domainAlt: [],
         colors: { primary: "#D4AF37", secondary: "#4B0082", glow: "rgba(212,175,55,0.3)" },
         mascotPath: "/sites/obatala/assets/obatala_mascot.webp",
         mascotFallback: "/sites/obatala/assets/obatala_mascot.webp",
@@ -3818,7 +3818,7 @@ const ARCHETYPES = [
         folder: "orunmila",
         domainUnicode: "ọrúnmìlà.com",
         domainPunycode: "xn--rnml-3na4exes761a.com",
-        domainAlt: ["ọrunmila.com"],
+        domainAlt: [],
         colors: { primary: "#D4AF37", secondary: "#4B0082", glow: "rgba(212,175,55,0.3)" },
         mascotPath: "/sites/orunmila/assets/orunmila_mascot.webp",
         mascotFallback: "/sites/orunmila/assets/orunmila_mascot.webp",
@@ -4092,7 +4092,7 @@ const ARCHETYPES = [
         folder: "huitzilopochtli",
         domainUnicode: "huītzilōpōchtli.com",
         domainPunycode: "xn--hutzilpchtli-u2b49bb.com",
-        domainAlt: ["huitzilopōchtli.com"],
+        domainAlt: [],
         colors: { primary: "#50C878", secondary: "#2F2F2F", glow: "rgba(80,200,120,0.3)" },
         mascotPath: "/sites/huitzilopochtli/assets/huitzilopochtli_mascot.webp",
         mascotFallback: "/sites/huitzilopochtli/assets/huitzilopochtli_mascot.webp",
@@ -4135,7 +4135,7 @@ const ARCHETYPES = [
         folder: "eshu",
         domainUnicode: "ẹṣù.com",
         domainPunycode: "xn--qda371mmha.com",
-        domainAlt: ["ẹṣu.com"],
+        domainAlt: [],
         colors: { primary: "#D4AF37", secondary: "#4B0082", glow: "rgba(212,175,55,0.3)" },
         mascotPath: "/sites/eshu/assets/eshu_mascot.webp",
         mascotFallback: "/sites/eshu/assets/eshu_mascot.webp",
@@ -5365,7 +5365,7 @@ const ARCHETYPES = [
         folder: "oba",
         domainUnicode: "ọbà.com",
         domainPunycode: "xn--b-sfa590u.com",
-        domainAlt: ["ọba.com"],
+        domainAlt: [],
         colors: { primary: "#1F4A5C", secondary: "#7FA8B8", glow: "rgba(31, 74, 92, 0.35)" },
         mascotPath: "/sites/oba/assets/oba_mascot.webp",
         mascotFallback: "/sites/oba/assets/oba_mascot.webp",
@@ -6162,9 +6162,7 @@ const ARCHETYPES = [
         built: true,
         hasAdSite: true,
         darkPunchline: false
-    },
-
-];
+    } ];
 
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = { ARCHETYPES };
