@@ -12,10 +12,12 @@
  *   - store: single-escaped metas, absolute JSON-LD images, BreadcrumbList,
  *     OG/Twitter, stage-image CWV attributes
  *   - sitemap/robots: no .html locs, no /search-v2/, blog lastmod present,
- *     image extension, no glob disallows
+ *     image extension, no glob disallows, /api/ + /auth/ + search disallowed
+ *     with an /api/v1/docs/ exception
+ *   - scholars portal: app surfaces noindex, public pages canonical
  *   - hand pages: oracle live title, creatives canonical, homepage
  *     WebSite+Organization JSON-LD, search-v2 consolidation, mobile noindex
- *   - temple index syncer: static /sites/ anchors on the four hub pages
+ *   - temple index syncer: static temple anchors on the four hub pages
  *
  * Plain-script runner (node test/seo-regression.test.js), repo idiom.
  */
@@ -49,6 +51,7 @@ function test(name, fn) {
 const read = (rel) => fs.readFileSync(path.join(root, rel), 'utf8');
 const exists = (rel) => fs.existsSync(path.join(root, rel));
 const titleOf = (html) => (html.match(/<title>([^<]*)<\/title>/) || [])[1] || '';
+const LEXICON_IDS = new Set(LEXICON.map((e) => e.id));
 
 /* ------------------------------ blog titles ------------------------------ */
 
@@ -125,10 +128,12 @@ test('base temple related grids rotate (no first-6 bias, no identical grids)', (
     if (!html.includes('PUNICODEX Base Temple')) continue;
     const m = html.match(/Names Related to[\s\S]*?<\/section>/);
     if (!m) continue;
-    // Base temples serve on deity domains too, so links are absolute.
-    const links = [
-      ...m[0].matchAll(/href="(?:https:\/\/punicodex\.com)?\/sites\/([a-z0-9-]+)\//g),
-    ].map((x) => x[1]);
+    // Base temples serve on deity domains too, so links are absolute. Temple
+    // links use the clean /{id}/ form; filter to real lexicon ids so hub
+    // links (e.g. /lexicon/) in the same section are not miscounted.
+    const links = [...m[0].matchAll(/href="(?:https:\/\/punicodex\.com)?\/([a-z0-9-]+)\//g)]
+      .map((x) => x[1])
+      .filter((id) => LEXICON_IDS.has(id));
     if (!grids.has(entry.pantheon)) grids.set(entry.pantheon, new Map());
     grids.get(entry.pantheon).set(entry.id, links.join(','));
     checked++;
@@ -299,6 +304,122 @@ test('robots.txt: explicit admin disallow, no stale 404 disallows, sitemap line'
   );
 });
 
+/* ------------------------- clean-URL consolidation ------------------------ */
+
+test('temple canonicals + og:url use the clean /{id}/ form (never /sites/)', () => {
+  // Base temples.
+  for (const id of ['aaru', 'hathor', 'adad', 'agave']) {
+    const rel = `sites/${id}/index.html`;
+    if (!exists(rel)) continue;
+    const html = read(rel);
+    if (!html.includes('PUNICODEX Base Temple')) continue;
+    assert.ok(
+      html.includes(`<link rel="canonical" href="https://punicodex.com/${id}/">`),
+      `${id}: canonical is not the clean /${id}/ form`
+    );
+    assert.ok(
+      html.includes(`<meta property="og:url" content="https://punicodex.com/${id}/">`),
+      `${id}: og:url is not the clean /${id}/ form`
+    );
+    assert.ok(
+      !html.includes(`punicodex.com/sites/${id}`),
+      `${id}: still references the /sites/ URL form`
+    );
+  }
+  // Flagship root + tab pages.
+  for (const [id, tab] of [
+    ['zeus', ''],
+    ['zeus', 'lore/'],
+    ['athena', ''],
+    ['athena', 'gallery/'],
+  ]) {
+    const rel = `sites/${id}/${tab}index.html`;
+    if (!exists(rel)) continue;
+    const html = read(rel);
+    assert.ok(
+      html.includes(`<link rel="canonical" href="https://punicodex.com/${id}/${tab}">`),
+      `${id}/${tab}: canonical is not the clean /${id}/${tab} form`
+    );
+    assert.ok(
+      html.includes(`<meta property="og:url" content="https://punicodex.com/${id}/${tab}">`),
+      `${id}/${tab}: og:url is not the clean /${id}/${tab} form`
+    );
+  }
+});
+
+test('sitemap lists temples at clean /{id}/ locs, never /sites/', () => {
+  const xml = read('sitemap.xml');
+  assert.ok(!xml.includes('/sites/'), 'sitemap still lists /sites/ URLs');
+  assert.ok(
+    xml.includes('<loc>https://punicodex.com/zeus/</loc>'),
+    'missing clean-form flagship loc'
+  );
+  assert.ok(
+    xml.includes('<loc>https://punicodex.com/zeus/lore/</loc>'),
+    'missing clean-form flagship tab loc'
+  );
+  assert.ok(
+    xml.includes('<loc>https://punicodex.com/marduk/</loc>'),
+    'missing clean-form base-temple loc'
+  );
+});
+
+test('base temple /search/?q= links are rel="nofollow" (crawl budget)', () => {
+  let checked = 0;
+  for (const entry of LEXICON) {
+    const rel = `sites/${entry.id}/index.html`;
+    if (!exists(rel)) continue;
+    const html = read(rel);
+    if (!html.includes('PUNICODEX Base Temple')) continue;
+    const searchLinks =
+      html.match(/<a href="https:\/\/punicodex\.com\/search\/\?q=[^"]*"[^>]*>/g) || [];
+    for (const link of searchLinks) {
+      assert.ok(
+        link.includes('rel="nofollow"'),
+        `${entry.id}: /search/?q= link missing rel="nofollow": ${link}`
+      );
+    }
+    if (searchLinks.length) checked++;
+  }
+  assert.ok(checked > 500, `only ${checked} base temples with /search/?q= links found`);
+});
+
+test('robots.txt: /api/ disallowed with a docs exception, /auth/ + search disallowed', () => {
+  const robots = read('robots.txt');
+  assert.ok(/^Disallow: \/api\/$/m.test(robots), 'missing Disallow: /api/');
+  // The Swagger UI is a public docs surface — it must stay crawlable.
+  assert.ok(/^Allow: \/api\/v1\/docs\/$/m.test(robots), 'missing Allow: /api/v1/docs/');
+  assert.ok(/^Disallow: \/auth\/$/m.test(robots), 'missing Disallow: /auth/');
+  assert.ok(/^Disallow: \/search\/$/m.test(robots), 'missing Disallow: /search/');
+  assert.ok(/^Disallow: \/search-v2\/$/m.test(robots), 'missing Disallow: /search-v2/');
+});
+
+test('scholars portal: app surfaces noindex, public pages carry canonicals', () => {
+  const SRC_DIR = 'platform/public/scholars'; // canonical source; scholars/ is generated
+  for (const p of [
+    'login',
+    'dashboard',
+    'review',
+    'admin',
+    'institution',
+    'dept-admin',
+    'analytics',
+  ]) {
+    const html = read(`${SRC_DIR}/${p}/index.html`);
+    assert.ok(
+      html.includes('name="robots" content="noindex,nofollow"'),
+      `scholars/${p}: missing noindex,nofollow`
+    );
+  }
+  for (const p of ['apply', 'search', 'creatives']) {
+    const html = read(`${SRC_DIR}/${p}/index.html`);
+    assert.ok(
+      html.includes(`rel="canonical" href="https://punicodex.com/scholars/${p}/"`),
+      `scholars/${p}: missing canonical`
+    );
+  }
+});
+
 /* ------------------------------- hand pages ------------------------------ */
 
 test('oracle page presents a live product (no Coming Soon)', () => {
@@ -374,13 +495,15 @@ test('careers page JobPosting schema is present and parseable', () => {
 
 /* ----------------------------- temple index ------------------------------ */
 
-test('hub pages carry the static temple index (crawlable /sites/ anchors)', () => {
+test('hub pages carry the static temple index (crawlable temple anchors)', () => {
   const { TARGETS } = require('../scripts/sync-temple-index.js');
   for (const t of TARGETS) {
     const html = read(t.page);
     const block = html.match(/PUNICODEX-TEMPLE-INDEX:START[\s\S]*?PUNICODEX-TEMPLE-INDEX:END/);
     assert.ok(block, `${t.page}: temple index block missing`);
-    const anchors = (block[0].match(/href="\/sites\/[a-z0-9-]+\/"/g) || []).length;
+    // URL consolidation: anchors may use the canonical clean /{id}/ form or
+    // the legacy /sites/{id}/ form (which 301s at the edge) — both count.
+    const anchors = (block[0].match(/href="\/(?:sites\/)?[a-z0-9-]+\/"/g) || []).length;
     const { ARCHETYPES } = require('../js/archetypes-v2.js');
     const flagshipCount = (ARCHETYPES || []).filter((a) => a.built).length;
     const expected = t.set === 'all' ? LEXICON.length : flagshipCount;

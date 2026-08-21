@@ -102,6 +102,19 @@ function run() {
     assert.strictEqual(config.trailingSlash, true, 'trailingSlash must stay true');
   });
 
+  // middleware.js exempts /sites/{id}/assets/* from the /sites/ → /{id}/ 301
+  // canonicalization precisely because this proxy rewrite serves those paths.
+  test('static-media proxy rewrite for /sites/*/assets/ stays in place', () => {
+    const found = (config.rewrites || []).some(
+      (rw) =>
+        rw.source.includes('/sites/') && rw.source.includes('/assets/') && isStaticAssetProxy(rw)
+    );
+    assert.ok(
+      found,
+      'missing /sites/:path*/assets/ media-proxy rewrite (middleware depends on it)'
+    );
+  });
+
   // Vercel forwards a rewrite capture under the NAME used in the source
   // pattern: ":slug*" arrives as ?slug=..., ":path*" as ?path=.... A
   // [[...slug]] router reads req.query.slug, so a ":path*" capture leaves it

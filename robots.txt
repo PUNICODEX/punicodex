@@ -1,6 +1,14 @@
 User-agent: *
 Allow: /
-Disallow: /api/admin/
+Disallow: /api/
+# The Swagger UI is a public docs surface — keep it crawlable (longest-match
+# Allow wins over the /api/ Disallow for crawlers that honor Allow).
+Allow: /api/v1/docs/
+Disallow: /auth/
+# Search result pages render client-side from ?q= — crawl the canon, not
+# parameterized result URLs.
+Disallow: /search/
+Disallow: /search-v2/
 Disallow: /admin.html
 Disallow: /platform/
 # /account/ and /admin-portal/ are intentionally NOT disallowed: both carry

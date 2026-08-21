@@ -130,6 +130,97 @@ async function run() {
     assert.ok(res.__fetched.includes('/sites/zeus/gallery/'), res.__fetched);
   });
 
+  await test('base-temple clean URLs rewrite internally to /sites/{id}', async () => {
+    // marduk/korinthos are lexicon entries WITHOUT an archetype/owned domain —
+    // historically these 404ed at the clean URL.
+    for (const id of ['marduk', 'korinthos']) {
+      const res = await middleware(req(`https://punicodex.com/${id}/`));
+      assert.ok(res.__fetched, `${id}: must be a fetch pass-through`);
+      assert.ok(res.__fetched.includes(`/sites/${id}/`), res.__fetched);
+    }
+  });
+
+  await test('LEXICON_IDS in the generated block covers the whole lexicon', async () => {
+    const src = fs.readFileSync(SRC, 'utf8');
+    const m = src.match(/const LEXICON_IDS = new Set\(\[([\s\S]*?)\]\);/);
+    assert.ok(m, 'LEXICON_IDS block missing from middleware.js');
+    const ids = new Set([...m[1].matchAll(/'([^']+)'/g)].map((x) => x[1]));
+    const { LEXICON } = require('../type/js/lexicon.js');
+    assert.strictEqual(ids.size, LEXICON.length, 'LEXICON_IDS size != lexicon size');
+    const missing = LEXICON.filter((e) => !ids.has(e.id)).map((e) => e.id);
+    assert.deepStrictEqual(missing.slice(0, 10), [], `${missing.length} lexicon ids not routed`);
+  });
+
+  await test('every lexicon id has a clean-URL rewrite (exhaustive)', async () => {
+    const { LEXICON } = require('../type/js/lexicon.js');
+    const failures = [];
+    for (const entry of LEXICON) {
+      const res = await middleware(req(`https://punicodex.com/${entry.id}/`));
+      if (!res.__fetched?.includes(`/sites/${entry.id}/`)) {
+        failures.push(entry.id);
+      }
+    }
+    assert.deepStrictEqual(failures.slice(0, 10), [], `${failures.length} ids without a rewrite`);
+  });
+
+  await test('/sites/{id}/ page requests 301 to the clean /{id}/ form', async () => {
+    for (const id of ['marduk', 'zeus']) {
+      for (const suffix of ['', '/', '/index.html']) {
+        const res = await middleware(req(`https://punicodex.com/sites/${id}${suffix}`));
+        assert.strictEqual(res.status, 301, `/sites/${id}${suffix}: status ${res.status}`);
+        assert.strictEqual(
+          res.headers.get('Location'),
+          `https://punicodex.com/${id}/`,
+          `/sites/${id}${suffix}`
+        );
+      }
+    }
+  });
+
+  await test('/sites/{id}/ subpaths 301 with subpath, slash, and query intact', async () => {
+    const res = await middleware(req('https://punicodex.com/sites/zeus/lore/?utm=x'));
+    assert.strictEqual(res.status, 301);
+    assert.strictEqual(res.headers.get('Location'), 'https://punicodex.com/zeus/lore/?utm=x');
+    // A trailing index.html collapses to the slash form in the SAME hop.
+    const deep = await middleware(req('https://punicodex.com/sites/zeus/lore/index.html'));
+    assert.strictEqual(deep.status, 301);
+    assert.strictEqual(deep.headers.get('Location'), 'https://punicodex.com/zeus/lore/');
+  });
+
+  await test('/sites/{id}/assets/* passes through untouched (media proxy)', async () => {
+    const res = await middleware(req('https://punicodex.com/sites/zeus/assets/mascot.png'));
+    assert.ok(res.__fetched, 'assets must not redirect');
+    assert.ok(res.__fetched.includes('/sites/zeus/assets/mascot.png'), res.__fetched);
+  });
+
+  await test('legacy stale dirs 301 to their current temple ids', async () => {
+    const stale = {
+      achilles: 'achilleus',
+      delphi: 'delphoi',
+      europa: 'europe',
+      hercules: 'herakles',
+      jason: 'iason',
+      khaos: 'chaos',
+      pegasus: 'pegasos',
+    };
+    for (const [legacy, current] of Object.entries(stale)) {
+      const res = await middleware(req(`https://punicodex.com/${legacy}/lore/`));
+      assert.strictEqual(res.status, 301, `/${legacy}/: status ${res.status}`);
+      assert.ok(
+        res.headers.get('Location').includes(`/${current}/lore/`),
+        `/${legacy}/ -> ${res.headers.get('Location')}`
+      );
+      // The /sites/{legacy}/ form resolves to the same target in one hop.
+      const viaSites = await middleware(req(`https://punicodex.com/sites/${legacy}/`));
+      assert.strictEqual(viaSites.status, 301, `/sites/${legacy}/: status ${viaSites.status}`);
+      assert.strictEqual(
+        viaSites.headers.get('Location'),
+        `https://punicodex.com/${current}/`,
+        `/sites/${legacy}/`
+      );
+    }
+  });
+
   await test('API calls without trailing slash are shimmed internally (no 308)', async () => {
     const res = await middleware(req('https://punicodex.com/api/v1/names'));
     assert.ok(res.__fetched, 'must be a fetch pass-through');

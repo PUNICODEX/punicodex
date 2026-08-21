@@ -20,6 +20,12 @@ const C = {
 const ROOT = path.resolve(__dirname, '..');
 const HTML_FILES = [];
 
+// Clean-URL temples: /{id}/... is served by middleware from sites/{id}/...
+// (see scripts/sync-middleware-domains.js), so the link checker resolves
+// root-level lexicon-id paths against sites/.
+const { LEXICON } = require('../type/js/lexicon.js');
+const LEXICON_IDS = new Set(LEXICON.map((e) => e.id));
+
 function collectHtml(dir) {
   const entries = fs.readdirSync(dir, { withFileTypes: true });
   for (const entry of entries) {
@@ -102,7 +108,23 @@ function resolveLink(fromFile, href) {
   }
   const isPublicRoute = cleanHref.startsWith('/') && fs.existsSync(publicFileTarget);
 
-  const exists = isApiRoute || isPublicRoute || fs.existsSync(target);
+  // Middleware serves /{id}/... from sites/{id}/... for every lexicon entry.
+  let templeTarget = null;
+  if (cleanHref.startsWith('/')) {
+    const firstSeg = cleanHref.slice(1).split('/')[0];
+    if (LEXICON_IDS.has(firstSeg)) {
+      templeTarget = path.join(ROOT, 'sites', cleanHref.slice(1));
+      if (!path.extname(templeTarget) || templeTarget.endsWith('/')) {
+        templeTarget = path.join(templeTarget, 'index.html');
+      }
+    }
+  }
+
+  const exists =
+    isApiRoute ||
+    isPublicRoute ||
+    fs.existsSync(target) ||
+    (templeTarget !== null && fs.existsSync(templeTarget));
   return { internal: true, exists, target };
 }
 
