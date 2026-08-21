@@ -108,9 +108,9 @@ async function run() {
         .prepare('SELECT DISTINCT url FROM temple_content WHERE temple_id = ?')
         .all(templeId)
         .map((r) => r.url);
-      assert.ok(urls.includes(`/sites/${templeId}/lore/`), `${templeId}: lore url wrong`);
-      assert.ok(urls.includes(`/sites/${templeId}/blog/`), `${templeId}: blog url wrong`);
-      assert.ok(urls.includes(`/sites/${templeId}/patterns/`), `${templeId}: patterns url wrong`);
+      assert.ok(urls.includes(`/${templeId}/lore/`), `${templeId}: lore url wrong`);
+      assert.ok(urls.includes(`/${templeId}/blog/`), `${templeId}: blog url wrong`);
+      assert.ok(urls.includes(`/${templeId}/patterns/`), `${templeId}: patterns url wrong`);
     }
     // FTS index is in sync via triggers.
     const content = db.prepare('SELECT COUNT(*) AS c FROM temple_content').get().c;
@@ -164,7 +164,7 @@ async function run() {
         FIXTURE_TEMPLES.includes(r.templeId),
         `unexpected temple ${r.templeId} (fixture leak)`
       );
-      assert.match(r.url, new RegExp(`^/sites/${r.templeId}/(lore|blog|patterns)/$`));
+      assert.match(r.url, new RegExp(`^/${r.templeId}/(lore|blog|patterns)/$`));
       assert.strictEqual(
         r.sectionLabel,
         SECTION_LABELS[r.section],

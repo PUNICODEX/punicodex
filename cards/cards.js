@@ -262,7 +262,7 @@
             '</div>'
           : '') +
         '<div class="card-modal-links">' +
-          '<a class="card-modal-link" href="/sites/' + esc(card.entryId) + '/">Enter the ' + esc(card.name) + ' temple →</a>' +
+          '<a class="card-modal-link" href="/' + esc(card.entryId) + '/">Enter the ' + esc(card.name) + ' temple →</a>' +
           '<a class="card-modal-link card-modal-link--ghost" href="/game/">Battle in Mythic Duel</a>' +
         '</div>' +
       '</div>';

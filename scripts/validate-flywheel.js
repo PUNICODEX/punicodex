@@ -709,11 +709,11 @@ if (!fs.existsSync(sitemapPath)) {
   addUrl('/privacy/');
   // Note: /404.html is intentionally NOT in the sitemap (error pages must not be indexed).
   for (const entry of lexicon) {
-    addUrl(`/sites/${entry.id}/`);
+    addUrl(`/${entry.id}/`);
     if (flagshipIds.has(entry.id)) {
-      addUrl(`/sites/${entry.id}/lore/`);
-      addUrl(`/sites/${entry.id}/lore/extended/`);
-      addUrl(`/sites/${entry.id}/gallery/`);
+      addUrl(`/${entry.id}/lore/`);
+      addUrl(`/${entry.id}/lore/extended/`);
+      addUrl(`/${entry.id}/gallery/`);
     }
   }
 

@@ -491,7 +491,7 @@
           <p class="detail-domain">${escapeHtml(node.domain || entry?.domain || '')}</p>
         </div>
         <div class="detail-actions">
-          <a href="/sites/${node.id}/" class="btn btn-primary btn-sm">Enter Temple</a>
+          <a href="/${node.id}/" class="btn btn-primary btn-sm">Enter Temple</a>
           <a href="/type/#${node.id}" class="btn btn-outline btn-sm">Type Tool</a>
           <a href="/api/v1/names/${node.id}" class="btn btn-outline btn-sm">API Record</a>
         </div>
@@ -504,7 +504,7 @@
               <span class="detail-explore-icon">&#x25C8;</span>
               <span>Ask the Oracle</span>
             </a>
-            <a href="/sites/${node.id}/scholars/" class="detail-explore-link">
+            <a href="/${node.id}/scholars/" class="detail-explore-link">
               <span class="detail-explore-icon">&#x270E;</span>
               <span>Scholarly Edition</span>
             </a>

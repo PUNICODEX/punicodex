@@ -227,9 +227,9 @@ test('theogony page carries the scholarly anchors (incipit, closing, deep links,
   );
   assert.ok(html.includes('id="L213"'), 'line anchor #L213 missing');
   assert.ok(html.includes('data-anchor="L213"'), 'permalink for #L213 missing');
-  assert.ok(html.includes('href="/sites/zeus/"'), 'Zeus cross-link missing');
-  assert.ok(html.includes('href="/sites/gaia/"'), 'Gaia cross-link missing');
-  assert.ok(html.includes('href="/sites/hekate/"'), 'Hekate cross-link missing');
+  assert.ok(html.includes('href="/zeus/"'), 'Zeus cross-link missing');
+  assert.ok(html.includes('href="/gaia/"'), 'Gaia cross-link missing');
+  assert.ok(html.includes('href="/hekate/"'), 'Hekate cross-link missing');
   assert.ok(html.includes('Mentioned in this text'), 'temple index heading missing');
   assert.ok(
     html.includes('data-mode="grc"') && html.includes('data-mode="par"'),
@@ -376,9 +376,17 @@ test('greek text renders byte-faithfully (tag-stripped output equals the corpus)
   assert.strictEqual(count, 1022, `expected 1,022 rendered lines, found ${count}`);
 });
 
-test('every /sites/ link on the reading page resolves to an existing temple', () => {
+test('every temple link on the reading page resolves to an existing temple', () => {
   const html = read(path.join('texts', 'theogony', 'index.html'));
-  const ids = new Set([...html.matchAll(/href="\/sites\/([a-z0-9-]+)\/"/g)].map((m) => m[1]));
+  // Clean /{id}/ is the canonical form; /sites/{id}/ matches only until the
+  // pages are regenerated. Single-segment hrefs that are not lexicon ids are
+  // hub links (nav/footer), not temple links.
+  const lexiconIds = new Set(LEXICON.map((e) => e.id));
+  const ids = new Set(
+    [...html.matchAll(/href="\/(?:sites\/)?([a-z0-9-]+)\/"/g)]
+      .map((m) => m[1])
+      .filter((id) => lexiconIds.has(id))
+  );
   assert.ok(ids.size >= 80, `expected 80+ linked temples, found ${ids.size}`);
   for (const id of ids) {
     assert.ok(

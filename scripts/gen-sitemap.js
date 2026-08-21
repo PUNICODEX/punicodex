@@ -150,34 +150,34 @@ function blogLastmod(...parts) {
   }
 }
 
-// Temple pages
+// Temple pages — canonical clean form /{id}/ (middleware serves /sites/{id}).
 for (const entry of LEXICON) {
   const isFlagship = flagshipIds.has(entry.id);
   const priority = isFlagship ? '0.8' : '0.6';
-  xml += urlEntry(`/sites/${entry.id}/`, priority, 'monthly', {
+  xml += urlEntry(`/${entry.id}/`, priority, 'monthly', {
     image: isFlagship ? `${BASE_URL}/assets/og/${entry.id}.jpg` : null,
   });
 
   if (isFlagship) {
-    xml += urlEntry(`/sites/${entry.id}/lore/`, '0.7', 'monthly');
-    xml += urlEntry(`/sites/${entry.id}/lore/extended/`, '0.6', 'monthly');
-    xml += urlEntry(`/sites/${entry.id}/gallery/`, '0.5', 'monthly');
-    xml += urlEntry(`/sites/${entry.id}/blog/`, '0.6', 'monthly', {
+    xml += urlEntry(`/${entry.id}/lore/`, '0.7', 'monthly');
+    xml += urlEntry(`/${entry.id}/lore/extended/`, '0.6', 'monthly');
+    xml += urlEntry(`/${entry.id}/gallery/`, '0.5', 'monthly');
+    xml += urlEntry(`/${entry.id}/blog/`, '0.6', 'monthly', {
       lastmod: blogLastmod('platform', 'blog', 'content', `${entry.id}.json`),
     });
-    xml += urlEntry(`/sites/${entry.id}/blog/restoration/`, '0.6', 'monthly', {
+    xml += urlEntry(`/${entry.id}/blog/restoration/`, '0.6', 'monthly', {
       lastmod: blogLastmod('platform', 'blog', 'series', 'restoration', `${entry.id}.json`),
     });
-    xml += urlEntry(`/sites/${entry.id}/blog/resonance/`, '0.6', 'monthly', {
+    xml += urlEntry(`/${entry.id}/blog/resonance/`, '0.6', 'monthly', {
       lastmod: blogLastmod('platform', 'blog', 'series', 'resonance', `${entry.id}.json`),
     });
-    xml += urlEntry(`/sites/${entry.id}/blog/canonical/`, '0.7', 'monthly', {
+    xml += urlEntry(`/${entry.id}/blog/canonical/`, '0.7', 'monthly', {
       lastmod: blogLastmod('platform', 'blog', 'series', 'canonical', `${entry.id}.json`),
     });
-    xml += urlEntry(`/sites/${entry.id}/patterns/`, '0.5', 'monthly');
-    xml += urlEntry(`/sites/${entry.id}/scholars/`, '0.7', 'monthly');
-    xml += urlEntry(`/sites/${entry.id}/creatives/`, '0.5', 'monthly');
-    xml += urlEntry(`/sites/${entry.id}/patron/`, '0.5', 'monthly');
+    xml += urlEntry(`/${entry.id}/patterns/`, '0.5', 'monthly');
+    xml += urlEntry(`/${entry.id}/scholars/`, '0.7', 'monthly');
+    xml += urlEntry(`/${entry.id}/creatives/`, '0.5', 'monthly');
+    xml += urlEntry(`/${entry.id}/patron/`, '0.5', 'monthly');
   }
 }
 

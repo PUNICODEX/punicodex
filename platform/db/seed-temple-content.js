@@ -71,7 +71,7 @@ function buildLoreRows(templeId) {
   const lore = LORE_CATALOG[templeId];
   if (!lore) return [];
   const rows = [];
-  const url = `/sites/${templeId}/lore/`;
+  const url = `/${templeId}/lore/`;
   const push = (title, rawBody) => {
     const body = cap(plain(rawBody), MAX_LORE_BODY);
     if (body) rows.push({ temple_id: templeId, section: 'lore', title, body, url });
@@ -129,7 +129,7 @@ function buildBlogRow(templeId) {
     section: 'blog',
     title: post.title || 'Temple Blog',
     body,
-    url: `/sites/${templeId}/blog/`,
+    url: `/${templeId}/blog/`,
   };
 }
 
@@ -146,7 +146,7 @@ function buildPatternsRow(templeId) {
     section: 'patterns',
     title: 'Industry Patterns',
     body,
-    url: `/sites/${templeId}/patterns/`,
+    url: `/${templeId}/patterns/`,
   };
 }
 

@@ -253,6 +253,9 @@ function getDomainStatus(entry) {
         label: 'Registered',
         cta: 'View on PUNICODEX search',
         href: `https://punicodex.com/search/?q=${encodeURIComponent(asciiDomain)}`,
+        // Parameterized /search/?q= URLs consolidate to /search/ via canonical;
+        // nofollow keeps them from burning crawl budget.
+        rel: 'nofollow',
         isOwned: false,
       };
     }
@@ -267,6 +270,7 @@ function getDomainStatus(entry) {
     label: 'Domain Reference',
     cta: 'Check availability',
     href: `https://punicodex.com/search/?q=${encodeURIComponent(asciiDomain)}`,
+    rel: 'nofollow',
     isOwned: false,
   };
 }
@@ -494,7 +498,7 @@ function generateTempleHTML(entry, related) {
             const isInternal = LEXICON.some((e) => e.id === c.id);
             const tag = isInternal ? 'a' : 'span';
             const href = isInternal
-              ? ` href="https://punicodex.com/sites/${c.id}${BUILT_ARCHETYPE_IDS.has(c.id) ? '/lore/' : '/'}"`
+              ? ` href="https://punicodex.com/${c.id}${BUILT_ARCHETYPE_IDS.has(c.id) ? '/lore/' : '/'}"`
               : '';
             return `<${tag}${href} class="cognate-card reveal-up">
                 <span class="cognate-lang">${escapeHtml(c.language)}</span>
@@ -594,7 +598,7 @@ function generateTempleHTML(entry, related) {
   if (pageDesc.endsWith('.') && pageDesc.length + 1 + descCloser.length <= 155) {
     pageDesc += ` ${descCloser}`;
   }
-  const canonicalUrl = `https://punicodex.com/sites/${entry.id}/`;
+  const canonicalUrl = `https://punicodex.com/${entry.id}/`;
 
   // Tier feature cards
   const hasStress = entry.breakdown.some((b) => b.type === 'stress');
@@ -832,7 +836,7 @@ ${JSON.stringify(
                     }
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="${domainStatus.href}" class="btn-primary${domainStatus.isOwned ? '' : ' btn-ghost'}">
+                    <a href="${domainStatus.href}"${domainStatus.rel ? ` rel="${domainStatus.rel}"` : ''} class="btn-primary${domainStatus.isOwned ? '' : ' btn-ghost'}">
                         <span>${domainStatus.cta}</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"/>
@@ -1120,7 +1124,7 @@ ${JSON.stringify(
                     if (cognateEntry) {
                       const cSubtype = getTierSubtype(cognateEntry);
                       return `
-                <a href="https://punicodex.com/sites/${cognateEntry.id}${cognateEntry.hasAdSite ? '/lore/' : '/'}" class="related-card reveal-up">
+                <a href="https://punicodex.com/${cognateEntry.id}${cognateEntry.hasAdSite ? '/lore/' : '/'}" class="related-card reveal-up">
                     <span class="related-name">${escapeHtml(cognateEntry.unicode)}</span>
                     <span class="related-greek">${cognateEntry.greek && cognateEntry.greek !== '—' ? escapeHtml(cognateEntry.greek) : ''}</span>
                     <span class="related-domain">${escapeHtml(cognateEntry.domain)}</span>
@@ -1154,7 +1158,7 @@ ${JSON.stringify(
                   .map((r) => {
                     const rSubtype = getTierSubtype(r);
                     return `
-                <a href="https://punicodex.com/sites/${r.id}${r.hasAdSite ? '/lore/' : '/'}" class="related-card reveal-up">
+                <a href="https://punicodex.com/${r.id}${r.hasAdSite ? '/lore/' : '/'}" class="related-card reveal-up">
                     <span class="related-name">${escapeHtml(r.unicode)}</span>
                     <span class="related-greek">${r.greek && r.greek !== '—' ? escapeHtml(r.greek) : ''}</span>
                     <span class="related-domain">${escapeHtml(r.domain)}</span>

@@ -322,7 +322,7 @@ function tierSentence(tier, entry) {
 
 function templeUrl(archetype) {
   if (archetype.domainPunycode) return `https://${archetype.domainPunycode}`;
-  return `https://punicodex.com/sites/${archetype.id}/`;
+  return `https://punicodex.com/${archetype.id}/`;
 }
 
 function buildContext(archetype) {

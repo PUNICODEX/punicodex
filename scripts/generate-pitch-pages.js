@@ -312,14 +312,14 @@ Twelve months of complimentary placement inside the Temple of ${unicode}. No pay
         <table role="presentation" cellpadding="0" cellspacing="0" border="0">
           <tr>
             <td align="center" bgcolor="#8a6d2f" style="border:1px solid #c9a227;">
-              <a href="https://punicodex.com/sites/${entry.id}/" target="_blank" style="display:inline-block; padding:14px 30px; font-family:Georgia, 'Times New Roman', serif; font-size:13px; letter-spacing:3px; color:#0b0a08; text-decoration:none; font-weight:bold;">ENTER THE TEMPLE OF ${unicode.toUpperCase()}</a>
+              <a href="https://punicodex.com/${entry.id}/" target="_blank" style="display:inline-block; padding:14px 30px; font-family:Georgia, 'Times New Roman', serif; font-size:13px; letter-spacing:3px; color:#0b0a08; text-decoration:none; font-weight:bold;">ENTER THE TEMPLE OF ${unicode.toUpperCase()}</a>
             </td>
           </tr>
         </table>
         <table role="presentation" cellpadding="0" cellspacing="0" border="0">
           <tr>
             <td align="center" style="padding-top:12px;">
-              <a href="https://punicodex.com/sites/${entry.id}/patterns/" target="_blank" style="font-family:Georgia, 'Times New Roman', serif; font-size:12px; letter-spacing:2px; color:#c9b584; text-decoration:underline;">VIEW THE ${unicode.toUpperCase()} INDUSTRY PATTERN →</a>
+              <a href="https://punicodex.com/${entry.id}/patterns/" target="_blank" style="font-family:Georgia, 'Times New Roman', serif; font-size:12px; letter-spacing:2px; color:#c9b584; text-decoration:underline;">VIEW THE ${unicode.toUpperCase()} INDUSTRY PATTERN →</a>
             </td>
           </tr>
         </table>

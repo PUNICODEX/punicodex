@@ -125,8 +125,8 @@ function buildPitchEmail({
   const sentence = escapeHtml(offerSentence(codeRow, frameRef));
   const scope = escapeHtml(slotLine(codeRow));
   const tier = escapeHtml(temple.tierLabel || '');
-  const templeUrl = `https://punicodex.com/sites/${temple.slug}/`;
-  const patternsUrl = `https://punicodex.com/sites/${temple.slug}/patterns/`;
+  const templeUrl = `https://punicodex.com/${temple.slug}/`;
+  const patternsUrl = `https://punicodex.com/${temple.slug}/patterns/`;
 
   const bullets = (patterns || [])
     .slice(0, 3)

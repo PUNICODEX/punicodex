@@ -68,7 +68,7 @@ test('everyday page: static cards for all words, ItemList JSON-LD, temple links'
   assert.strictEqual(ld.numberOfItems, EVERYDAY_WORDS.length);
   // Temple doors resolve to real temples, with respellings shown.
   for (const card of EVERYDAY_WORDS.slice(0, 12)) {
-    assert.ok(html.includes(`/sites/${card.entry}/`), `missing temple link for ${card.entry}`);
+    assert.ok(html.includes(`/${card.entry}/`), `missing temple link for ${card.entry}`);
   }
   assert.ok(html.includes('Say it:'), 'respellings rendered');
   assert.ok(!/\{\{[^}]+\}\}/.test(html), 'no raw placeholders');

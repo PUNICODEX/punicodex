@@ -86,7 +86,7 @@ const SKIP_CLASS = /related|sister|chip|crosslink|toc|nav|footer|badge/i;
  * Explicit markers: [[entry-id|Label]] → <a class="crosslink">. Unknown ids
  * degrade to the label text alone (never a broken link).
  */
-function transformWikilinks(html, { hrefFor = (id) => `/sites/${id}/` } = {}) {
+function transformWikilinks(html, { hrefFor = (id) => `/${id}/` } = {}) {
   return html.replace(/\[\[([a-z0-9-]+)\|([^\]]+)\]\]/g, (m, id, label) => {
     if (BY_ID.has(id)) {
       return `<a href="${hrefFor(id)}" class="crosslink" data-crosslink="${id}">${label}</a>`;
@@ -99,10 +99,10 @@ function transformWikilinks(html, { hrefFor = (id) => `/sites/${id}/` } = {}) {
  * First-mention auto-linking over HTML text nodes. Returns new HTML.
  * Options:
  *   selfId   — the page's own entry (never self-linked)
- *   hrefFor  — href builder (default /sites/{id}/)
+ *   hrefFor  — href builder (default /{id}/)
  *   maxPerEntry — links per entry per page (default 1)
  */
-function autoLink(html, { selfId, hrefFor = (id) => `/sites/${id}/`, maxPerEntry = 1 } = {}) {
+function autoLink(html, { selfId, hrefFor = (id) => `/${id}/`, maxPerEntry = 1 } = {}) {
   const linkedCount = new Map();
   // Document mode for full pages (doctype/head intact), fragment mode for
   // partial HTML (section bodies). Templates may start with comments before

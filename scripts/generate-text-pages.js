@@ -316,7 +316,7 @@ function analyzeGreekLine(text) {
     if (id) {
       if (!ids.includes(id)) ids.push(id);
       parts.push(
-        `${escapeHtml(pre)}<a class="tx-x" href="/sites/${id}/">${escapeHtml(stripped)}</a>${escapeHtml(post)}`
+        `${escapeHtml(pre)}<a class="tx-x" href="/${id}/">${escapeHtml(stripped)}</a>${escapeHtml(post)}`
       );
     } else {
       parts.push(escapeHtml(raw));
@@ -510,7 +510,7 @@ function chipsHtml(ids) {
   const chips = ids
     .map((id) => {
       const e = LEXICON_BY_ID.get(id);
-      return `<a class="tx-chip" href="/sites/${id}/">${escapeHtml(e.unicode || e.ascii || id)}</a>`;
+      return `<a class="tx-chip" href="/${id}/">${escapeHtml(e.unicode || e.ascii || id)}</a>`;
     })
     .join('');
   return `<p class="tx-chips"><span class="tx-chips-label">Mentioned temples</span>${chips}</p>`;
@@ -615,7 +615,7 @@ function mentionedHtml(computed) {
     .map((id) => {
       const e = LEXICON_BY_ID.get(id);
       const badge = BUILT_IDS.has(id) ? '<span class="tx-m-badge">Flagship</span>' : '';
-      return `            <a class="tx-m-card" href="/sites/${id}/">
+      return `            <a class="tx-m-card" href="/${id}/">
                 <span class="tx-m-name">${escapeHtml(e.unicode || e.ascii || id)}${badge}</span>
                 <span class="tx-m-greek" lang="grc">${escapeHtml(e.greek || '')}</span>
                 <span class="tx-m-gloss">${escapeHtml(e.domain || '')}</span>
@@ -1006,7 +1006,7 @@ function chaptersMentionedHtml(text, computed) {
     .map((id) => {
       const e = LEXICON_BY_ID.get(id) || {};
       const sec = computed.sections[computed.firstSection.get(id)];
-      return `            <a class="tx-m-card" href="/sites/${id}/">
+      return `            <a class="tx-m-card" href="/${id}/">
                 <span class="tx-m-name">${escapeHtml(e.unicode || e.ascii || id)}<span class="tx-m-badge">Flagship</span></span>
                 <span class="tx-m-greek" lang="grc">${escapeHtml(e.greek || '')}</span>
                 <span class="tx-m-gloss">${escapeHtml(e.domain || '')}</span>

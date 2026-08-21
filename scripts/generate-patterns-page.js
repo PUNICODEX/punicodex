@@ -355,7 +355,7 @@ ${atlasFaqHtml(graph)}
 window.PATTERN_GRAPH = ${graphJson};
 window.PATTERN_TEMPLES = ${registryJson};
 </script>
-<script src="/js/patterns-atlas.js?v=1" defer></script>
+<script src="/js/patterns-atlas.js?v=2" defer></script>
 </body>
 </html>
 `;
@@ -427,14 +427,14 @@ ${MARKER_BLOCKS}
 
             <h2>The Discipline</h2>
             <p>The canonical source of the pattern graph is a single file, <code>type/js/industry-patterns.js</code>, which declares ${meta.sectorCount} sectors and ${meta.industryCount} industries. Each industry assigns temples one of two weights. A <strong>primary</strong> pairing (weight 2) means the industry is a direct expression of the entry's core canonical domain. A <strong>resonant</strong> pairing (weight 1) means a strong secondary association — a namesake the modern industry has adopted, or a domain the entry shares without owning it.</p>
-            <p>The difference is easiest to see in the data's own words. Under <em>Solar &amp; Renewable Energy</em>, <a href="/sites/helios/">Hēlios</a> sits primary: “${esc(helios.why)}” Under <em>Freshwater &amp; Hydrology</em>, <a href="/sites/ganga/">Gaṅgā</a> sits primary: “${esc(ganga.why)}” A pairing that cannot be justified from canonical data is excluded outright.</p>
+            <p>The difference is easiest to see in the data's own words. Under <em>Solar &amp; Renewable Energy</em>, <a href="/helios/">Hēlios</a> sits primary: “${esc(helios.why)}” Under <em>Freshwater &amp; Hydrology</em>, <a href="/ganga/">Gaṅgā</a> sits primary: “${esc(ganga.why)}” A pairing that cannot be justified from canonical data is excluded outright.</p>
             <p>The current graph holds ${meta.primaryCount} primary and ${meta.resonantCount} resonant seats across all ${meta.entryCount} built flagships — every flagship answers to at least three industries, and no temple may hold more than three primary seats in the whole map.</p>
             <p>Two honest scope notes. First: the Atlas maps the ${meta.entryCount} built flagships — the temples with owned domains and full editions. The wider lexicon (several hundred further restorations) gains pattern seats only as those entries are promoted to flagships; the sellable inventory and the mapped inventory are deliberately the same set. Second: <em>Faith &amp; Spiritual Organizations</em> is the deepest industry by design. There is no cap on its membership — its size simply records the fact that cult and worship are the one domain nearly every deity genuinely shares. If faith looks over-weighted next to finance or beauty, that is the canon talking, not a sales pitch: the map is built outward from mythology, and it stays honest about where myth actually concentrates.</p>
 
             <h2>The Alias Layer</h2>
             <p>Industries are categories; sponsors think in trades. The bridge between the two is a second canonical file, <code>type/js/industry-aliases.js</code>: ${meta.aliasCount} curated terms — professions, shop names, and search fragments — each assigned to exactly one industry with its own direct/adjacent weight. This is the vocabulary behind the Find Your Pattern bar and the <code>/api/v1/industry-patterns/match</code> endpoint.</p>
             <p>The doctrine is precision over recall. A plumber is water infrastructure, so <code>plumber</code> resolves to Freshwater &amp; Hydrology, whose why-lines already speak of sanitation and hydraulic works. A term with no honest home — <code>electrician</code>, today — is deliberately absent rather than force-fitted into an energy category that means generation, not wiring.</p>
-            <p>When someone types <code>church</code>, the query resolves to <em>Faith &amp; Spiritual Organizations</em> — and the temples that answer are living ones: <a href="/sites/mazu/">Māzǔ</a>, “${esc(mazu.why)}”, and <a href="/sites/moses/">Mōšeh</a>, “${esc(moses.why)}”</p>
+            <p>When someone types <code>church</code>, the query resolves to <em>Faith &amp; Spiritual Organizations</em> — and the temples that answer are living ones: <a href="/mazu/">Māzǔ</a>, “${esc(mazu.why)}”, and <a href="/moses/">Mōšeh</a>, “${esc(moses.why)}”</p>
 
             <h2>The Editorial Rules</h2>
             <p>The map is defended by contract tests that run in CI on every change, so the rules below are enforced, not aspirational:</p>

@@ -48,7 +48,7 @@
       const entryId = id.trim();
       if (!ENTRY_ID_RE.test(entryId)) return match;
       const text = label ? label.trim() : entryId;
-      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+      return `<a class="scholars-xlink" href="/${entryId}/">${text}</a>`;
     });
 
     // External links: [text](https://example.com). Only http/https allowed.

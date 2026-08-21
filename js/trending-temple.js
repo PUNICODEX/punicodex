@@ -60,7 +60,7 @@
       ? '<img class="tt-mascot" src="' + escapeHtml(meta.mascot) + '" alt="" onerror="this.style.visibility=\'hidden\'">'
       : '') +
     '<div><h1>' + escapeHtml(meta.unicode) + '</h1>' +
-    '<p class="tt-sub">' + escapeHtml(meta.pantheon) + ' · temple analytics · <a href="/sites/' +
+    '<p class="tt-sub">' + escapeHtml(meta.pantheon) + ' · temple analytics · <a href="/' +
     encodeURIComponent(templeId) + '/">enter the temple &rarr;</a></p></div>';
 
   var cards = document.getElementById('tt-cards');

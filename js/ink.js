@@ -148,7 +148,7 @@
       <div class="ik-gcard-actions">
         <a href="/assets/ink/${esc(e.id)}.png" download>PNG card</a>
         <a href="/assets/ink/${esc(e.id)}.svg" download>SVG</a>
-        <a href="/sites/${esc(e.id)}/">Temple →</a>
+        <a href="/${esc(e.id)}/">Temple →</a>
       </div>
     </div>`;
   }
@@ -226,7 +226,7 @@
           <div class="ik-sign-name">${esc(s.name || '—')}</div>
           <div class="ik-sign-value">${esc(s.value || '')}</div>
           <div class="ik-sign-script">${esc(s.script || '')}</div>
-          ${first ? `<div class="ik-sign-entries">seen in <a href="/sites/${esc(first)}/">${esc(first)}</a>${s.entries.length > 1 ? ` +${s.entries.length - 1}` : ''}</div>` : ''}
+          ${first ? `<div class="ik-sign-entries">seen in <a href="/${esc(first)}/">${esc(first)}</a>${s.entries.length > 1 ? ` +${s.entries.length - 1}` : ''}</div>` : ''}
         </div>`;
       })
       .join('');
@@ -280,7 +280,7 @@
       <div class="ik-actions">
         <button class="ik-btn" data-copy="${esc(e.script)}" type="button">Copy the attested form</button>
         <a class="ik-btn" href="/assets/ink/${esc(e.id)}.png" download>Download the artist card (PNG)</a>
-        <a class="ik-btn" href="/sites/${esc(e.id)}/">Enter the temple of ${esc(e.u)} →</a>
+        <a class="ik-btn" href="/${esc(e.id)}/">Enter the temple of ${esc(e.u)} →</a>
       </div>
     </div>`;
   }
@@ -349,7 +349,7 @@
               <h3>${esc(m.title)}</h3>
               <p class="ik-myth-claim">“${esc(m.claim)}”</p>
               <p>${esc(m.verdict)}</p>
-              <p class="ik-myth-do">${esc(m.correct)}${m.entry ? ` <a href="/sites/${esc(m.entry)}/">See the temple →</a>` : ''}</p>
+              <p class="ik-myth-do">${esc(m.correct)}${m.entry ? ` <a href="/${esc(m.entry)}/">See the temple →</a>` : ''}</p>
             </div>`
           )
           .join('');

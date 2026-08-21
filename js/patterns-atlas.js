@@ -28,7 +28,7 @@
     var badge = m.weight === 2
       ? '<span class="pt-badge primary">Primary</span>'
       : '<span class="pt-badge resonant">Resonant</span>';
-    return '<a class="pt-card" href="/sites/' + esc(m.id) + '/patterns/">'
+    return '<a class="pt-card" href="/' + esc(m.id) + '/patterns/">'
       + '<img class="pt-mascot" src="' + esc(mascot) + '" alt="" loading="lazy" width="56" height="56">'
       + '<span class="pt-body"><span class="pt-line"><span class="pt-name">' + esc(m.unicode) + '</span>' + badge + '</span>'
       + '<span class="pt-pantheon">' + esc(m.pantheonLabel || m.pantheon || '') + (m.domain ? ' · ' + esc(m.domain) : '') + '</span>'

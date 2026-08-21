@@ -82,7 +82,7 @@ function cardHtml(card) {
   const entry = byId.get(card.entry);
   if (!entry) throw new Error(`everyday-words: unknown lexicon entry "${card.entry}" (word "${card.word}")`);
   const pron = derivePronunciation(entry) || {};
-  const temple = `/sites/${entry.id}/`;
+  const temple = `/${entry.id}/`;
   const ff = card.kind === 'false-friend';
   return `
         <article class="ed-card${ff ? ' ed-card--false' : ''}" id="${esc(card.word.toLowerCase().replace(/[^a-z0-9]+/g, '-'))}" data-word="${esc(card.word.toLowerCase())}">

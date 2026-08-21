@@ -29,10 +29,10 @@ function templeBreadcrumb(entry, tab) {
   const items = [
     { name: 'Home', url: 'https://punicodex.com/' },
     { name: 'Pantheon', url: 'https://punicodex.com/pantheon/' },
-    { name: entry.unicode, url: `https://punicodex.com/sites/${entry.id}/` },
+    { name: entry.unicode, url: `https://punicodex.com/${entry.id}/` },
   ];
   if (tab) {
-    items.push({ name: tab.name, url: `https://punicodex.com/sites/${entry.id}/${tab.path}` });
+    items.push({ name: tab.name, url: `https://punicodex.com/${entry.id}/${tab.path}` });
   }
   return breadcrumbJsonLd(items);
 }
@@ -52,7 +52,7 @@ function templeBreadcrumbNav(entry, tab) {
     { name: 'Pantheon', url: 'https://punicodex.com/pantheon/' },
   ];
   if (tab) {
-    trail.push({ name: entry.unicode, url: `https://punicodex.com/sites/${entry.id}/` });
+    trail.push({ name: entry.unicode, url: `https://punicodex.com/${entry.id}/` });
     trail.push({ name: tab.name, url: null });
   } else {
     trail.push({ name: entry.unicode, url: null });

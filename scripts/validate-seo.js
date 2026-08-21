@@ -49,14 +49,13 @@ function checkPage(entry) {
     errors.push({ id: entry.id, issue: 'Missing meta description' });
   }
 
-  // Check canonical
+  // Check canonical — the clean /{id}/ form is the only accepted canonical
   const canonMatch = html.match(/<link rel="canonical" href="([^"]*)">/);
   if (!canonMatch) {
     errors.push({ id: entry.id, issue: 'Missing canonical URL' });
   } else {
-    const expectedRoot = `https://punicodex.com/${entry.id}/`;
-    const expectedSites = `https://punicodex.com/sites/${entry.id}/`;
-    if (canonMatch[1] !== expectedRoot && canonMatch[1] !== expectedSites) {
+    const expected = `https://punicodex.com/${entry.id}/`;
+    if (canonMatch[1] !== expected) {
       errors.push({ id: entry.id, issue: `Wrong canonical: ${canonMatch[1]}` });
     }
   }

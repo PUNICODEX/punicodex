@@ -96,7 +96,7 @@ function run() {
       ['Eurōpē', 'europe'],
     ]) {
       assert.ok(
-        out.includes(`href="/sites/${id}/"`) && out.includes(`>${form}</a>`),
+        out.includes(`href="/${id}/"`) && out.includes(`>${form}</a>`),
         `${form} must link to ${id}`
       );
     }

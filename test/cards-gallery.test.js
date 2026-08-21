@@ -67,7 +67,7 @@ test('the renderer honors every rarity and variant in the set', () => {
   assert.ok(js.includes('/game/cards.json'), 'renderer loads the canonical set');
   assert.ok(js.includes('applyFilters'), 'filter pipeline present');
   assert.ok(js.includes('openModal'), 'detail modal present');
-  assert.ok(js.includes('/sites/'), 'temple cross-link present');
+  assert.ok(js.includes('card-modal-link'), 'temple cross-link present');
 });
 
 test('the gallery is server-rendered: 1,803 static frames + payload, no empty shell', () => {

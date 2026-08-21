@@ -126,15 +126,47 @@ for (const id of BUILT_IDS) {
       'Related Names and Sources must be the final two sections'
     );
 
-    // Internal links resolve to real lexicon ids
-    const linkRe = /href="\/sites\/([^/]+)\//g;
+    // Internal temple links resolve to real lexicon ids. Clean /{id}/ is the
+    // canonical form; /sites/{id}/ appears only until pages are regenerated.
+    // Single-segment non-temple prefixes (asset dirs, hub pages) are skipped.
+    const NON_TEMPLE_SEGMENTS = new Set([
+      'about',
+      'api',
+      'appraise',
+      'assets',
+      'blog',
+      'cards',
+      'codex',
+      'connections',
+      'contact',
+      'creatives',
+      'css',
+      'data',
+      'everyday',
+      'game',
+      'ink',
+      'js',
+      'lexicon',
+      'oracle',
+      'pantheon',
+      'patterns',
+      'pronunciation',
+      'realms',
+      'scholars',
+      'search',
+      'sites',
+      'store',
+      'texts',
+      'tiers',
+      'trending',
+      'type',
+    ]);
+    const linkRe = /href="\/(?:sites\/)?([a-z0-9-]+)\//g;
     let match;
     while ((match = linkRe.exec(html)) !== null) {
       const targetId = match[1];
-      assert.ok(
-        lexiconIds.has(targetId),
-        `internal link target /sites/${targetId}/ not in lexicon`
-      );
+      if (NON_TEMPLE_SEGMENTS.has(targetId)) continue;
+      assert.ok(lexiconIds.has(targetId), `internal link target /${targetId}/ not in lexicon`);
     }
 
     // SEO lengths from canonical content

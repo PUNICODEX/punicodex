@@ -126,7 +126,7 @@ function templeMeta(id) {
     pantheon: a ? a.pantheon : '',
     greek: a ? a.greek : '',
     mascotPath: a ? a.mascotPath : '',
-    url: `/sites/${id}/`,
+    url: `/${id}/`,
     rentalTier: a ? a.rentalTier : null,
     meditation: lore ? lore.extendedMeditation : null,
   };

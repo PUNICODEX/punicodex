@@ -41,7 +41,7 @@
         });
 
         grid.innerHTML = sorted.map((a, index) => {
-            const url = a.hasAdSite ? `/sites/${a.id}/lore/` : `/sites/${a.id}/`;
+            const url = a.hasAdSite ? `/${a.id}/lore/` : `/${a.id}/`;
             const tag = 'a';
             const hrefAttr = `href="${url}"`;
             const unbuiltClass = !a.built ? 'unbuilt' : '';

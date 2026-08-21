@@ -29,7 +29,7 @@ function itemListBlock(entries) {
       '@type': 'ListItem',
       position: i + 1,
       name: e.unicode,
-      url: `https://punicodex.com/sites/${e.id}/`,
+      url: `https://punicodex.com/${e.id}/`,
     })),
   };
   return `${START}\n<script type="application/ld+json">\n${JSON.stringify(json, null, 2)}\n</script>\n${END}`;

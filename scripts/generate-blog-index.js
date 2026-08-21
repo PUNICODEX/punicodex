@@ -86,7 +86,7 @@ for (const id of BUILT_IDS) {
     readingTime: post.readingTime || '',
     readMin: readMinutes(post.readingTime),
     publishedAt: post.publishedAt || '',
-    url: `/sites/${id}/blog/`,
+    url: `/${id}/blog/`,
     badge: entry.tierLabel || `Tier ${entry.tier || '2'}`,
     series: false,
     uid: id,
@@ -96,9 +96,9 @@ for (const id of BUILT_IDS) {
 // The Restoration Files + The Resonance Files: the second and third
 // dispatches from every temple.
 const SERIES = [
-  { id: 'restoration', dir: path.join(ROOT, 'platform', 'blog', 'series', 'restoration'), url: (id) => `/sites/${id}/blog/restoration/`, badge: 'Restoration Files', alias: 'the restoration files' },
-  { id: 'resonance', dir: path.join(ROOT, 'platform', 'blog', 'series', 'resonance'), url: (id) => `/sites/${id}/blog/resonance/`, badge: 'Resonance Files', alias: 'the resonance files patterns industries' },
-  { id: 'canonical', dir: path.join(ROOT, 'platform', 'blog', 'series', 'canonical'), url: (id) => `/sites/${id}/blog/canonical/`, badge: 'Canonical Register', alias: 'the canonical register false transliteration' },
+  { id: 'restoration', dir: path.join(ROOT, 'platform', 'blog', 'series', 'restoration'), url: (id) => `/${id}/blog/restoration/`, badge: 'Restoration Files', alias: 'the restoration files' },
+  { id: 'resonance', dir: path.join(ROOT, 'platform', 'blog', 'series', 'resonance'), url: (id) => `/${id}/blog/resonance/`, badge: 'Resonance Files', alias: 'the resonance files patterns industries' },
+  { id: 'canonical', dir: path.join(ROOT, 'platform', 'blog', 'series', 'canonical'), url: (id) => `/${id}/blog/canonical/`, badge: 'Canonical Register', alias: 'the canonical register false transliteration' },
 ];
 for (const series of SERIES) {
   for (const id of BUILT_IDS) {
@@ -153,7 +153,7 @@ const cardsHtml = posts
       .join('');
     return `                <article class="blogi-card${p.series ? ' blogi-card-series' : ''}" data-id="${escapeHtml(p.uid)}" data-pantheon="${escapeHtml(p.pantheon)}" data-tier="${escapeHtml(p.tier)}" data-read="${p.readMin}">
                     <div class="blogi-card-head">
-                        <a class="blogi-card-unicode" href="/sites/${escapeHtml(p.id)}/">${escapeHtml(p.unicode)}</a>
+                        <a class="blogi-card-unicode" href="/${escapeHtml(p.id)}/">${escapeHtml(p.unicode)}</a>
                         <span class="blogi-card-badge">${escapeHtml(p.badge)}</span>
                     </div>
                     <p class="blogi-card-pantheon">${escapeHtml(p.pantheonDisplay)}</p>

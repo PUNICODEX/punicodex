@@ -63,7 +63,7 @@ function builtFlagships() {
 }
 
 function entryAnchor(entry) {
-  return `<li><a href="/sites/${entry.id}/">${esc(entry.unicode)}</a></li>`;
+  return `<li><a href="/${entry.id}/">${esc(entry.unicode)}</a></li>`;
 }
 
 function buildBlock(target) {

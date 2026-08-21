@@ -420,11 +420,11 @@ test('every crosslink resolves to a lexicon entry with a real temple route', () 
           failures.push(`${id}:${key}: crosslink target ${target} not in lexicon`);
           continue;
         }
-        // The renderer links to /sites/{id}/ — every lexicon entry has a
-        // canonical landing page there (base or flagship temple), so the
-        // hard requirement is that the route exists on disk. (The spec's
-        // "built archetype" clause was relaxed: 68 links target base
-        // temples such as freyr/loki/ymir, which ARE real routes.)
+        // The renderer links to /{id}/ (the clean canonical form) — every
+        // lexicon entry has a canonical landing page (base or flagship
+        // temple), so the hard requirement is that the route exists on disk.
+        // (The spec's "built archetype" clause was relaxed: 68 links target
+        // base temples such as freyr/loki/ymir, which ARE real routes.)
         if (!fs.existsSync(path.join(ROOT, 'sites', target, 'index.html'))) {
           failures.push(
             `${id}:${key}: crosslink target ${target} has no sites/${target}/index.html`
@@ -606,12 +606,12 @@ test('markdown renderer produces expected tags for fixtures', () => {
   expect(
     'crosslink with label',
     renderMarkdown('see [[zeus|Zeus]]'),
-    '<a class="scholars-xlink" href="/sites/zeus/">Zeus</a>'
+    '<a class="scholars-xlink" href="/zeus/">Zeus</a>'
   );
   expect(
     'crosslink without label',
     renderMarkdown('see [[zeus]]'),
-    '<a class="scholars-xlink" href="/sites/zeus/">zeus</a>'
+    '<a class="scholars-xlink" href="/zeus/">zeus</a>'
   );
   expect(
     'external link',

@@ -36,7 +36,7 @@ function run() {
   // ─── Engine units ───
   test('wikilink markers convert; unknown ids degrade to label', () => {
     const out = transformWikilinks('see [[demeter|Dēmḗtēr]] and [[nope|Nobody]]');
-    assert.ok(out.includes('href="/sites/demeter/"'));
+    assert.ok(out.includes('href="/demeter/"'));
     assert.ok(out.includes('>Dēmḗtēr</a>'));
     assert.ok(out.includes('Nobody'));
     assert.ok(!out.includes('[['));
@@ -69,7 +69,7 @@ function run() {
       { selfId: null }
     );
     assert.ok(doc.includes('<title>Óðinn</title>'));
-    assert.ok(doc.includes('<p><a href="/sites/odinn/"'));
+    assert.ok(doc.includes('<p><a href="/odinn/"'));
   });
 
   test('never links inside <script> (JSON-LD) or <style> blocks', () => {
@@ -79,7 +79,7 @@ function run() {
     );
     assert.ok(out.includes('"saving Zeus made"'), 'JSON-LD text must stay untouched');
     assert.ok(out.includes('.zeus{color:red}'), 'CSS must stay untouched');
-    assert.ok(out.includes('<p><a href="/sites/zeus/"'), 'prose still links');
+    assert.ok(out.includes('<p><a href="/zeus/"'), 'prose still links');
   });
 
   test('fragments are not wrapped in html/head/body', () => {
@@ -101,7 +101,13 @@ function run() {
         const f = path.join(ROOT, 'sites', id, sub);
         if (!fs.existsSync(f)) continue;
         const html = fs.readFileSync(f, 'utf8');
-        if (html.includes(`href="/sites/${id}/" class="crosslink"`)) bad.push(`${id}/${sub}`);
+        // Self-links in either URL form (clean /{id}/ canonical, legacy
+        // /sites/{id}/ in not-yet-regenerated pages).
+        if (
+          html.includes(`href="/${id}/" class="crosslink"`) ||
+          html.includes(`href="/sites/${id}/" class="crosslink"`)
+        )
+          bad.push(`${id}/${sub}`);
       }
     }
     assert.deepStrictEqual(bad.slice(0, 8), [], `${bad.length} self-links`);

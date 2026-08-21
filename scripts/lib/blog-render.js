@@ -183,10 +183,10 @@ function mdToHtml(md) {
     return `<a href="${url}">${label}</a>`;
   });
 
-  // Wikilinks [[entry-id|Label]] → <a href="/sites/{id}/">Label</a>.
+  // Wikilinks [[entry-id|Label]] → <a href="/{id}/">Label</a>.
   // Unknown ids degrade to the label text alone (no broken links).
   html = html.replace(/\[\[([a-z0-9-]+)\|([^\]]+)\]\]/g, (m, id, label) => {
-    if (LEXICON_BY_ID.has(id)) return `<a href="/sites/${id}/">${label}</a>`;
+    if (LEXICON_BY_ID.has(id)) return `<a href="/${id}/">${label}</a>`;
     return label;
   });
   html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');

@@ -643,8 +643,8 @@ So the register finds: **${u}**, canonical; *${ascii}*, ${
       conventions: conventions.map((v) => ({ form: v.unicode, note: v.note || null })),
       contested: variants.map((v) => ({ form: v.unicode, note: v.note || null, sources: v.sources || [] })),
       precedent: precedent ? precedent.title : null,
-      blog: `/sites/${id}/blog/canonical/`,
-      temple: `/sites/${id}/`,
+      blog: `/${id}/blog/canonical/`,
+      temple: `/${id}/`,
     };
 
     written++;

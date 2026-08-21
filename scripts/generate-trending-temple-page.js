@@ -171,7 +171,7 @@ function render() {
 <script>
 window.TRENDING_REGISTRY = ${registryJson};
 </script>
-<script src="/js/trending-temple.js?v=1" defer></script>
+<script src="/js/trending-temple.js?v=2" defer></script>
 </body>
 </html>
 `;

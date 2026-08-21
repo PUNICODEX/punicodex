@@ -1546,7 +1546,7 @@ function buildRelatedNamesSection(entry, sectionNumber) {
       const greek = e.greek && e.greek !== '—' ? e.greek : '';
       const tier = e.tierLabel || `Tier ${e.tier}`;
       return `
-    <a href="../../${e.id}/" class="related-card reveal-up">
+    <a href="/${e.id}/" class="related-card reveal-up">
       <span class="related-name">${e.unicode}</span>
       ${greek ? `<span class="related-greek">${greek}</span>` : ''}
       <span class="related-domain">${e.domain}</span>
@@ -3316,7 +3316,7 @@ function patternWeightClass(w) {
 }
 
 function patternTempleHref(member) {
-  return member.hasFlagship ? `/sites/${member.id}/patterns/` : `/sites/${member.id}/`;
+  return member.hasFlagship ? `/${member.id}/patterns/` : `/${member.id}/`;
 }
 
 function patternSector(payload, sectorId) {

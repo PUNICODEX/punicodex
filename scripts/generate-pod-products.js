@@ -339,7 +339,7 @@ function main() {
         blurb: line.blurb(a),
         image: cardImage(assets, line.design),
         assets,
-        templeUrl: `/sites/${a.id}/`,
+        templeUrl: `/${a.id}/`,
         design: line.design,
         // Phase 1: no live checkout yet — the Printful storefront is wired in
         // phase 2 (see docs/pod-integration.md). Keep the field for the API.

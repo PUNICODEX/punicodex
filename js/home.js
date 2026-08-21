@@ -17,9 +17,9 @@
 
   function getArchetypeUrl(archetype) {
     if (archetype.hasAdSite) {
-      return `/sites/${archetype.id}/lore/`;
+      return `/${archetype.id}/lore/`;
     }
-    return archetype.built ? `/sites/${archetype.id}/` : null;
+    return archetype.built ? `/${archetype.id}/` : null;
   }
 
   function escapeHtml(str) {

@@ -72,11 +72,11 @@ test('series pages render with correct canonical, OG, Article schema, and no pla
     const html = fs.readFileSync(p, 'utf8');
     assert.ok(!html.includes('{{'), `${id}: leftover template placeholder`);
     assert.ok(
-      html.includes(`rel="canonical" href="https://punicodex.com/sites/${id}/blog/restoration/"`),
+      html.includes(`rel="canonical" href="https://punicodex.com/${id}/blog/restoration/"`),
       `${id}: wrong canonical`
     );
     assert.ok(
-      html.includes(`"url": "https://punicodex.com/sites/${id}/blog/restoration/"`),
+      html.includes(`"url": "https://punicodex.com/${id}/blog/restoration/"`),
       `${id}: Article schema url wrong`
     );
     assert.ok(html.includes('"@type": "BlogPosting"'), `${id}: BlogPosting schema missing`);
@@ -134,10 +134,7 @@ test('blog index merges founding + series dispatches with no id collisions', () 
 test('sitemap covers the series; generators are registered in the flywheel', () => {
   const sitemap = fs.readFileSync(path.join(ROOT, 'sitemap.xml'), 'utf8');
   for (const id of BUILT_IDS.slice(0, 40)) {
-    assert.ok(
-      sitemap.includes(`/sites/${id}/blog/restoration/`),
-      `sitemap missing ${id} series URL`
-    );
+    assert.ok(sitemap.includes(`/${id}/blog/restoration/`), `sitemap missing ${id} series URL`);
   }
   const gen = fs.readFileSync(path.join(ROOT, 'scripts', 'generate.js'), 'utf8');
   assert.ok(
@@ -192,7 +189,7 @@ test('resonance pages render with correct canonical and series chain', () => {
     const html = fs.readFileSync(p, 'utf8');
     assert.ok(!html.includes('{{'), `${id}: leftover template placeholder`);
     assert.ok(
-      html.includes(`rel="canonical" href="https://punicodex.com/sites/${id}/blog/resonance/"`),
+      html.includes(`rel="canonical" href="https://punicodex.com/${id}/blog/resonance/"`),
       `${id}: wrong canonical`
     );
     assert.ok(html.includes('"@type": "BlogPosting"'), `${id}: BlogPosting schema missing`);
@@ -268,7 +265,7 @@ test('canonical pages render with correct canonical URL and series chain; API en
     const html = fs.readFileSync(p, 'utf8');
     assert.ok(!html.includes('{{'), `${id}: leftover placeholder`);
     assert.ok(
-      html.includes(`rel="canonical" href="https://punicodex.com/sites/${id}/blog/canonical/"`),
+      html.includes(`rel="canonical" href="https://punicodex.com/${id}/blog/canonical/"`),
       `${id}: wrong canonical URL`
     );
     assert.ok(html.includes('"@type": "BlogPosting"'), `${id}: BlogPosting schema missing`);
@@ -300,10 +297,7 @@ test('canonical pages render with correct canonical URL and series chain; API en
   );
   const sitemap = fs.readFileSync(path.join(ROOT, 'sitemap.xml'), 'utf8');
   for (const id of BUILT_IDS.slice(0, 40)) {
-    assert.ok(
-      sitemap.includes(`/sites/${id}/blog/canonical/`),
-      `sitemap missing ${id} canonical URL`
-    );
+    assert.ok(sitemap.includes(`/${id}/blog/canonical/`), `sitemap missing ${id} canonical URL`);
   }
 });
 
