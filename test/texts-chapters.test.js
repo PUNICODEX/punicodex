@@ -37,9 +37,9 @@ const chapterTexts = registry.texts.filter((t) => t.structure === 'chapters');
 const read = (rel) => fs.readFileSync(path.join(ROOT, rel), 'utf8');
 const exists = (rel) => fs.existsSync(path.join(ROOT, rel));
 
-test('registry: 21 texts total — the Theogony plus 20 chaptered texts', () => {
-  assert.strictEqual(registry.texts.length, 21);
-  assert.strictEqual(chapterTexts.length, 20);
+test('registry: 22 texts total — the Theogony plus 21 chaptered texts', () => {
+  assert.strictEqual(registry.texts.length, 22);
+  assert.strictEqual(chapterTexts.length, 21);
   assert.strictEqual(registry.texts[0].id, 'theogony');
   for (const t of chapterTexts) {
     for (const field of [
@@ -140,12 +140,12 @@ test('every temple chip on every reading page resolves to an existing temple', (
   }
 });
 
-test('library index lists all 21 texts with working links and per-text stats', () => {
+test('library index lists all 22 texts with working links and per-text stats', () => {
   const html = read('texts/index.html');
   for (const t of registry.texts) {
     assert.ok(html.includes(`href="/texts/${t.id}/"`), `index missing link to ${t.id}`);
   }
-  assert.ok(html.includes('21'), 'index hero should carry the text count');
+  assert.ok(html.includes('22'), 'index hero should carry the text count');
   assert.ok(!/undefined/.test(html), 'index renders an undefined value');
 });
 
