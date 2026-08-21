@@ -180,7 +180,7 @@
     "name": "Xiuhtēcuhtli — Scholarly Edition",
     "headline": "Xiuhtēcuhtli — Scholarly Edition",
     "description": "University-curated scholarly reference for Xiuhtēcuhtli (Fire, Time, Hearth).",
-    "url": "https://punicodex.com/sites/xiuhtecuhtli/scholars/",
+    "url": "https://punicodex.com/xiuhtecuhtli/scholars/",
     "about": {
         "@type": "Thing",
         "name": "Xiuhtēcuhtli",
@@ -199,11 +199,11 @@
 }
     </script>
 
-    <link rel="canonical" href="https://punicodex.com/sites/xiuhtecuhtli/scholars/">
+    <link rel="canonical" href="https://punicodex.com/xiuhtecuhtli/scholars/">
 
     <meta property="og:title" content="Xiuhtēcuhtli — Scholarly Edition | PUNICODEX">
     <meta property="og:description" content="University-curated scholarly reference for Xiuhtēcuhtli (Fire, Time, Hearth).">
-    <meta property="og:url" content="https://punicodex.com/sites/xiuhtecuhtli/scholars/">
+    <meta property="og:url" content="https://punicodex.com/xiuhtecuhtli/scholars/">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="PUNICODEX">
     <meta property="og:image" content="https://punicodex.com/assets/og/xiuhtecuhtli.jpg">
@@ -243,13 +243,13 @@
       "@type": "ListItem",
       "position": 3,
       "name": "Xiuhtēcuhtli",
-      "item": "https://punicodex.com/sites/xiuhtecuhtli/"
+      "item": "https://punicodex.com/xiuhtecuhtli/"
     },
     {
       "@type": "ListItem",
       "position": 4,
       "name": "Scholars",
-      "item": "https://punicodex.com/sites/xiuhtecuhtli/scholars/"
+      "item": "https://punicodex.com/xiuhtecuhtli/scholars/"
     }
   ]
 }
@@ -313,7 +313,7 @@
         <ol class="temple-breadcrumb-list">
             <li><a href="https://punicodex.com/">Home</a></li>
             <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
-            <li><a href="https://punicodex.com/sites/xiuhtecuhtli/">Xiuhtēcuhtli</a></li>
+            <li><a href="https://punicodex.com/xiuhtecuhtli/">Xiuhtēcuhtli</a></li>
             <li><span aria-current="page">Scholars</span></li>
         </ol>
     </nav>
@@ -486,8 +486,8 @@
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <p>The friars saw him as the devil's furnace — and the people quietly kept lighting the hearth: the vigil-candle of Mexican folk Catholicism and the copal-smoke of Day of the Dead altars are his continuing liturgy. The <a href="/sites/maya/" class="crosslink" data-crosslink="maya">Maya</a> fire-lords and the Zapotec coquihani are his southern cousins; the New Fire concept — the cosmos rekindled by human hands — has no closer parallel than the Vedic agni-liturgies on the other side of the world.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
-<p>Within the Nahuatl tradition, closely related names in the corpus include <a class="scholars-xlink" href="/sites/cihuacoatl/">Cihuacōātl</a>, <a class="scholars-xlink" href="/sites/coatlicue/">Cōātlīcue</a>, <a class="scholars-xlink" href="/sites/huitzilopochtli/">Huitzilopōchtli</a>, <a class="scholars-xlink" href="/sites/itzpapalotl/">Itzpapālōtl</a>, <a class="scholars-xlink" href="/sites/mictlantecutli/">Mictlāntēcutli</a>, and <a class="scholars-xlink" href="/sites/mixcoatl/">Mixcōātl</a>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Florentine Codex (General History of the Things of New Spain), Bernardino de Sahagún; School of American Research, 1577. <a class="scholars-ext" href="https://www.wdl.org/en/item/10098/" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
+        <p>The friars saw him as the devil's furnace — and the people quietly kept lighting the hearth: the vigil-candle of Mexican folk Catholicism and the copal-smoke of Day of the Dead altars are his continuing liturgy. The <a href="/maya/" class="crosslink" data-crosslink="maya">Maya</a> fire-lords and the Zapotec coquihani are his southern cousins; the New Fire concept — the cosmos rekindled by human hands — has no closer parallel than the Vedic agni-liturgies on the other side of the world.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Within the Nahuatl tradition, closely related names in the corpus include <a class="scholars-xlink" href="/cihuacoatl/">Cihuacōātl</a>, <a class="scholars-xlink" href="/coatlicue/">Cōātlīcue</a>, <a class="scholars-xlink" href="/huitzilopochtli/">Huitzilopōchtli</a>, <a class="scholars-xlink" href="/itzpapalotl/">Itzpapālōtl</a>, <a class="scholars-xlink" href="/mictlantecutli/">Mictlāntēcutli</a>, and <a class="scholars-xlink" href="/mixcoatl/">Mixcōātl</a>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Florentine Codex (General History of the Things of New Spain), Bernardino de Sahagún; School of American Research, 1577. <a class="scholars-ext" href="https://www.wdl.org/en/item/10098/" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -693,7 +693,7 @@
       const entryId = id.trim();
       if (!ENTRY_ID_RE.test(entryId)) return match;
       const text = label ? label.trim() : entryId;
-      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+      return `<a class="scholars-xlink" href="/${entryId}/">${text}</a>`;
     });
 
     // External links: [text](https://example.com). Only http/https allowed.

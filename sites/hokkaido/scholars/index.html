@@ -180,7 +180,7 @@
     "name": "Hokkaidō — Scholarly Edition",
     "headline": "Hokkaidō — Scholarly Edition",
     "description": "University-curated scholarly reference for Hokkaidō (North, Snow, Frontier).",
-    "url": "https://punicodex.com/sites/hokkaido/scholars/",
+    "url": "https://punicodex.com/hokkaido/scholars/",
     "about": {
         "@type": "Thing",
         "name": "北海道",
@@ -199,11 +199,11 @@
 }
     </script>
 
-    <link rel="canonical" href="https://punicodex.com/sites/hokkaido/scholars/">
+    <link rel="canonical" href="https://punicodex.com/hokkaido/scholars/">
 
     <meta property="og:title" content="Hokkaidō — Scholarly Edition | PUNICODEX">
     <meta property="og:description" content="University-curated scholarly reference for Hokkaidō (North, Snow, Frontier).">
-    <meta property="og:url" content="https://punicodex.com/sites/hokkaido/scholars/">
+    <meta property="og:url" content="https://punicodex.com/hokkaido/scholars/">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="PUNICODEX">
     <meta property="og:image" content="https://punicodex.com/assets/og/hokkaido.jpg">
@@ -243,13 +243,13 @@
       "@type": "ListItem",
       "position": 3,
       "name": "Hokkaidō",
-      "item": "https://punicodex.com/sites/hokkaido/"
+      "item": "https://punicodex.com/hokkaido/"
     },
     {
       "@type": "ListItem",
       "position": 4,
       "name": "Scholars",
-      "item": "https://punicodex.com/sites/hokkaido/scholars/"
+      "item": "https://punicodex.com/hokkaido/scholars/"
     }
   ]
 }
@@ -313,7 +313,7 @@
         <ol class="temple-breadcrumb-list">
             <li><a href="https://punicodex.com/">Home</a></li>
             <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
-            <li><a href="https://punicodex.com/sites/hokkaido/">Hokkaidō</a></li>
+            <li><a href="https://punicodex.com/hokkaido/">Hokkaidō</a></li>
             <li><span aria-current="page">Scholars</span></li>
         </ol>
     </nav>
@@ -487,7 +487,7 @@
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
         <p>Ainu religion absorbed and resisted Japanese and Russian pressure in equal measure: Orthodox missions among the Kuril Ainu, Buddhist temples on the coasts, and the yukar epics — sung in an isolate language with no close relatives — keeping the older world intact in verse. The twentieth century added a third strand: the Ainu cultural revival, led by figures like the poet and legislator Kayano Shigeru, made the island's first culture a national conversation.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
-<p>Within the Japanese tradition, closely related names in the corpus include <a class="scholars-xlink" href="/sites/fujin/">Fūjin</a>, <a class="scholars-xlink" href="/sites/honshu/">Honshū</a>, <a class="scholars-xlink" href="/sites/jizo/">Jizō</a>, <a class="scholars-xlink" href="/sites/kobe/">Kōbe</a>, <a class="scholars-xlink" href="/sites/kyoto/">Kyōto</a>, and <a class="scholars-xlink" href="/sites/kyushu/">Kyūshū</a>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Kojiki (Records of Ancient Matters), Translated by Basil Hall Chamberlain, 712. <a class="scholars-ext" href="https://sacred-texts.com/shi/kj/index.htm" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
+<p>Within the Japanese tradition, closely related names in the corpus include <a class="scholars-xlink" href="/fujin/">Fūjin</a>, <a class="scholars-xlink" href="/honshu/">Honshū</a>, <a class="scholars-xlink" href="/jizo/">Jizō</a>, <a class="scholars-xlink" href="/kobe/">Kōbe</a>, <a class="scholars-xlink" href="/kyoto/">Kyōto</a>, and <a class="scholars-xlink" href="/kyushu/">Kyūshū</a>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Kojiki (Records of Ancient Matters), Translated by Basil Hall Chamberlain, 712. <a class="scholars-ext" href="https://sacred-texts.com/shi/kj/index.htm" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -694,7 +694,7 @@
       const entryId = id.trim();
       if (!ENTRY_ID_RE.test(entryId)) return match;
       const text = label ? label.trim() : entryId;
-      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+      return `<a class="scholars-xlink" href="/${entryId}/">${text}</a>`;
     });
 
     // External links: [text](https://example.com). Only http/https allowed.

@@ -834,7 +834,7 @@ els.submitApplication.addEventListener('click', async () => {
       const changeBtn = document.getElementById('booking-change-creative');
       if (changeBtn) changeBtn.style.display = 'none';
       if (els.dashboardLink) {
-        els.dashboardLink.href = `${API_BASE}/sites/ameretat/dashboard/?token=${data.token}`;
+        els.dashboardLink.href = `${API_BASE}/ameretat/dashboard/?token=${data.token}`;
       }
     } else {
       showApplyError(data.error || 'Application failed');
@@ -958,7 +958,7 @@ async function handleReturnFromStripe() {
       if (titleEl) titleEl.textContent = 'Renewal Complete';
       const subtitleEl = document.querySelector('#booking-step-3 .booking-modal-subtitle');
       if (subtitleEl) subtitleEl.textContent = 'Your lease has been extended. Thank you for continuing with us.';
-      els.dashboardLink.href = `${API_BASE}/sites/ameretat/dashboard/?token=${token}`;
+      els.dashboardLink.href = `${API_BASE}/ameretat/dashboard/?token=${token}`;
       await loadSlots();
       return;
     }
@@ -969,23 +969,23 @@ async function handleReturnFromStripe() {
         setupUploadStep(slot);
         showStep('2');
         const dashLink2 = document.getElementById('booking-dash-link-2');
-        if (dashLink2) dashLink2.href = `${API_BASE}/sites/ameretat/dashboard/?token=${token}`;
+        if (dashLink2) dashLink2.href = `${API_BASE}/ameretat/dashboard/?token=${token}`;
       } else {
         showStep('3');
-        els.dashboardLink.href = `${API_BASE}/sites/ameretat/dashboard/?token=${token}`;
+        els.dashboardLink.href = `${API_BASE}/ameretat/dashboard/?token=${token}`;
       }
       await loadSlots(); // refresh UI so button disappears
     } else if (booking.status === 'pending_approval') {
       openModal(slot);
       showStep('3');
-      els.dashboardLink.href = `${API_BASE}/sites/ameretat/dashboard/?token=${token}`;
+      els.dashboardLink.href = `${API_BASE}/ameretat/dashboard/?token=${token}`;
     } else if (booking.status === 'rejected') {
       openModal(slot);
       showRejected(booking);
     } else if (booking.status === 'live') {
       openModal(slot);
       showStep('3');
-      els.dashboardLink.href = `${API_BASE}/sites/ameretat/dashboard/?token=${token}`;
+      els.dashboardLink.href = `${API_BASE}/ameretat/dashboard/?token=${token}`;
     } else if (booking.status === 'pending_payment') {
       showBookingError('Payment is still processing. Please refresh in a moment.');
     }
@@ -1117,7 +1117,7 @@ els.submitUpload.addEventListener('click', async () => {
     const data = await res.json();
     if (data.success) {
       showStep('3');
-      els.dashboardLink.href = `${API_BASE}/sites/ameretat/dashboard/?token=${currentBooking.analytics_token}`;
+      els.dashboardLink.href = `${API_BASE}/ameretat/dashboard/?token=${currentBooking.analytics_token}`;
     } else {
       showBookingError(data.error || 'Upload failed');
       showStep('2');

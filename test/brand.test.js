@@ -505,7 +505,12 @@ test('(h) every /assets/brand/ reference in body-wave files exists on disk', () 
     const content = read(rel);
     for (const re of refPatterns) {
       for (const match of content.matchAll(re)) {
-        refs.add(match[1]);
+        // srcset packs candidates as "url width, url width" — split and keep
+        // each candidate's URL; plain src/href/poster values pass through.
+        for (const candidate of match[1].split(',')) {
+          const url = candidate.trim().split(/\s+/)[0];
+          if (url) refs.add(url);
+        }
       }
     }
   }

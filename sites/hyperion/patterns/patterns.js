@@ -145,7 +145,7 @@
   // --- Detail panel --------------------------------------------------------
 
   function templeHref(member) {
-    return member.hasFlagship ? '/sites/' + member.id + '/patterns/' : '/sites/' + member.id + '/';
+    return member.hasFlagship ? '/' + member.id + '/patterns/' : '/' + member.id + '/';
   }
 
   function renderDetail(ind) {

@@ -109,7 +109,7 @@
 
   function setPageTitle() {
     if (!templeId) return;
-    if (els.eyebrow) els.eyebrow.textContent = `PUNICODEX Patronage — /sites/${templeId}`;
+    if (els.eyebrow) els.eyebrow.textContent = `PUNICODEX Patronage — /${templeId}`;
     if (els.title) els.title.textContent = `Honor This Temple`;
   }
 

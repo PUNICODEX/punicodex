@@ -180,7 +180,7 @@
     "name": "Phoînix — Scholarly Edition",
     "headline": "Phoînix — Scholarly Edition",
     "description": "University-curated scholarly reference for Phoînix (Rebirth, Immortality).",
-    "url": "https://punicodex.com/sites/phoenix/scholars/",
+    "url": "https://punicodex.com/phoenix/scholars/",
     "about": {
         "@type": "Thing",
         "name": "Φοῖνιξ",
@@ -199,11 +199,11 @@
 }
     </script>
 
-    <link rel="canonical" href="https://punicodex.com/sites/phoenix/scholars/">
+    <link rel="canonical" href="https://punicodex.com/phoenix/scholars/">
 
     <meta property="og:title" content="Phoînix — Scholarly Edition | PUNICODEX">
     <meta property="og:description" content="University-curated scholarly reference for Phoînix (Rebirth, Immortality).">
-    <meta property="og:url" content="https://punicodex.com/sites/phoenix/scholars/">
+    <meta property="og:url" content="https://punicodex.com/phoenix/scholars/">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="PUNICODEX">
     <meta property="og:image" content="https://punicodex.com/assets/og/phoenix.jpg">
@@ -243,13 +243,13 @@
       "@type": "ListItem",
       "position": 3,
       "name": "Phoînix",
-      "item": "https://punicodex.com/sites/phoenix/"
+      "item": "https://punicodex.com/phoenix/"
     },
     {
       "@type": "ListItem",
       "position": 4,
       "name": "Scholars",
-      "item": "https://punicodex.com/sites/phoenix/scholars/"
+      "item": "https://punicodex.com/phoenix/scholars/"
     }
   ]
 }
@@ -313,7 +313,7 @@
         <ol class="temple-breadcrumb-list">
             <li><a href="https://punicodex.com/">Home</a></li>
             <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
-            <li><a href="https://punicodex.com/sites/phoenix/">Phoînix</a></li>
+            <li><a href="https://punicodex.com/phoenix/">Phoînix</a></li>
             <li><span aria-current="page">Scholars</span></li>
         </ol>
     </nav>
@@ -711,7 +711,7 @@
       const entryId = id.trim();
       if (!ENTRY_ID_RE.test(entryId)) return match;
       const text = label ? label.trim() : entryId;
-      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+      return `<a class="scholars-xlink" href="/${entryId}/">${text}</a>`;
     });
 
     // External links: [text](https://example.com). Only http/https allowed.

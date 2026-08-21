@@ -180,7 +180,7 @@
     "name": "Monókerōs — Scholarly Edition",
     "headline": "Monókerōs — Scholarly Edition",
     "description": "University-curated scholarly reference for Monókerōs (Rarity, Ferocity, Wonder).",
-    "url": "https://punicodex.com/sites/monokeros/scholars/",
+    "url": "https://punicodex.com/monokeros/scholars/",
     "about": {
         "@type": "Thing",
         "name": "Μονόκερως",
@@ -199,11 +199,11 @@
 }
     </script>
 
-    <link rel="canonical" href="https://punicodex.com/sites/monokeros/scholars/">
+    <link rel="canonical" href="https://punicodex.com/monokeros/scholars/">
 
     <meta property="og:title" content="Monókerōs — Scholarly Edition | PUNICODEX">
     <meta property="og:description" content="University-curated scholarly reference for Monókerōs (Rarity, Ferocity, Wonder).">
-    <meta property="og:url" content="https://punicodex.com/sites/monokeros/scholars/">
+    <meta property="og:url" content="https://punicodex.com/monokeros/scholars/">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="PUNICODEX">
     <meta property="og:image" content="https://punicodex.com/assets/og/monokeros.jpg">
@@ -243,13 +243,13 @@
       "@type": "ListItem",
       "position": 3,
       "name": "Monókerōs",
-      "item": "https://punicodex.com/sites/monokeros/"
+      "item": "https://punicodex.com/monokeros/"
     },
     {
       "@type": "ListItem",
       "position": 4,
       "name": "Scholars",
-      "item": "https://punicodex.com/sites/monokeros/scholars/"
+      "item": "https://punicodex.com/monokeros/scholars/"
     }
   ]
 }
@@ -313,7 +313,7 @@
         <ol class="temple-breadcrumb-list">
             <li><a href="https://punicodex.com/">Home</a></li>
             <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
-            <li><a href="https://punicodex.com/sites/monokeros/">Monókerōs</a></li>
+            <li><a href="https://punicodex.com/monokeros/">Monókerōs</a></li>
             <li><span aria-current="page">Scholars</span></li>
         </ol>
     </nav>
@@ -491,7 +491,7 @@
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
         <p>The medieval West transformed the report into allegory: the Physiologos made the unicorn catchable only by a virgin, and Christological exegesis followed — the horn the single nature, the capture the Incarnation. Heraldry crowned the transformation: the unicorn, chained because a free one is dangerous, became the royal beast of Scotland and the supporter of the British royal arms, facing the lion.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
-<p>Within the Greek tradition, closely related names in the corpus include <a class="scholars-xlink" href="/sites/acheron/">Achérōn</a>, <a class="scholars-xlink" href="/sites/achilleus/">Achilleús</a>, <a class="scholars-xlink" href="/sites/adamas/">Adámas</a>, <a class="scholars-xlink" href="/sites/aer/">Aḗr</a>, <a class="scholars-xlink" href="/sites/aither/">Aithḗr</a>, and <a class="scholars-xlink" href="/sites/ananke/">Anánkē</a>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Ctesias of Knidos, Indika, Photius, Bibliotheca epitome; ed. Bigwood, 398 BCE.</li></ol></div>
+<p>Within the Greek tradition, closely related names in the corpus include <a class="scholars-xlink" href="/acheron/">Achérōn</a>, <a class="scholars-xlink" href="/achilleus/">Achilleús</a>, <a class="scholars-xlink" href="/adamas/">Adámas</a>, <a class="scholars-xlink" href="/aer/">Aḗr</a>, <a class="scholars-xlink" href="/aither/">Aithḗr</a>, and <a class="scholars-xlink" href="/ananke/">Anánkē</a>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Ctesias of Knidos, Indika, Photius, Bibliotheca epitome; ed. Bigwood, 398 BCE.</li></ol></div>
     </div>
 </section>
 
@@ -708,7 +708,7 @@
       const entryId = id.trim();
       if (!ENTRY_ID_RE.test(entryId)) return match;
       const text = label ? label.trim() : entryId;
-      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+      return `<a class="scholars-xlink" href="/${entryId}/">${text}</a>`;
     });
 
     // External links: [text](https://example.com). Only http/https allowed.
