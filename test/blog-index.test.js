@@ -151,7 +151,7 @@ test(`JSON-LD is a CollectionPage with an ItemList of exactly ${EXPECTED_COUNT} 
     assert.equal(item.position, i + 1, 'ListItem positions must be 1-based and sequential');
     assert.ok(typeof item.name === 'string' && item.name.length > 0, 'ListItem missing name');
     const m = String(item.url).match(
-      /^https:\/\/punicodex\.com\/sites\/([^/]+)\/blog\/(?:(restoration|resonance|canonical)\/)?$/
+      /^https:\/\/punicodex\.com\/([^/]+)\/blog\/(?:(restoration|resonance|canonical)\/)?$/
     );
     assert.ok(m, `ListItem url has unexpected shape: ${item.url}`);
     assert.ok(BUILT_SET.has(m[1]), `ListItem url points at non-built id: ${m[1]}`);
@@ -162,7 +162,7 @@ test(`JSON-LD is a CollectionPage with an ItemList of exactly ${EXPECTED_COUNT} 
 
 test(`all ${EXPECTED_MAIN_COUNT} main-dispatch card hrefs resolve to built archetype blog pages on disk`, () => {
   const html = readIndex();
-  const hrefs = [...html.matchAll(/href="\/sites\/([^/]+)\/blog\/"/g)].map((m) => m[1]);
+  const hrefs = [...html.matchAll(/href="\/([^/]+)\/blog\/"/g)].map((m) => m[1]);
   assert.equal(
     hrefs.length,
     EXPECTED_MAIN_COUNT,
@@ -179,7 +179,7 @@ test(`all ${EXPECTED_MAIN_COUNT} main-dispatch card hrefs resolve to built arche
 
   // Series dispatch cards link to their own tab pages.
   const seriesHrefs = [
-    ...html.matchAll(/href="\/sites\/([^/]+)\/blog\/(restoration|resonance|canonical)\/"/g),
+    ...html.matchAll(/href="\/([^/]+)\/blog\/(restoration|resonance|canonical)\/"/g),
   ];
   assert.equal(
     seriesHrefs.length,

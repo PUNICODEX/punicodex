@@ -22,7 +22,9 @@ const BUILT = new Set(ARCHETYPES.filter((a) => a.built).map((a) => a.id));
 let assertions = 0;
 
 const html = fs.readFileSync(path.join(ROOT, 'realms', 'index.html'), 'utf8');
-const re = /href="\/sites\/([^/]+)\/" class="realm-card ([^"]*)"/g;
+// Cards link the clean /{id}/ canonical temple URL (middleware rewrites to
+// /sites/{id}/ internally).
+const re = /href="\/([^/]+)\/" class="realm-card ([^"]*)"/g;
 const cards = [];
 let m;
 while ((m = re.exec(html)) !== null) {

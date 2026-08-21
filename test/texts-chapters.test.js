@@ -119,15 +119,15 @@ test('reading pages exist with hero, TOC matching sections, and chrome', () => {
 test('every temple chip on every reading page resolves to an existing temple', () => {
   for (const t of chapterTexts) {
     const html = read(`texts/${t.id}/index.html`);
-    const hrefs = [...html.matchAll(/class="tx-chip" href="\/sites\/([a-z0-9-]+)\/"/g)].map(
-      (m) => m[1]
-    );
+    // Chips link the clean /{id}/ canonical URL; the backing file lives
+    // under sites/{id}/ via the middleware rewrite.
+    const hrefs = [...html.matchAll(/class="tx-chip" href="\/([a-z0-9-]+)\/"/g)].map((m) => m[1]);
     assert.ok(hrefs.length > 0, `${t.id}: no chips rendered`);
     for (const id of new Set(hrefs)) {
       assert.ok(exists(`sites/${id}/index.html`), `${t.id}: chip to missing temple ${id}`);
     }
     // The mentioned index carries the same contract.
-    const mentioned = [...html.matchAll(/class="tx-m-card" href="\/sites\/([a-z0-9-]+)\/"/g)].map(
+    const mentioned = [...html.matchAll(/class="tx-m-card" href="\/([a-z0-9-]+)\/"/g)].map(
       (m) => m[1]
     );
     assert.ok(mentioned.length > 0, `${t.id}: no mentioned index`);
