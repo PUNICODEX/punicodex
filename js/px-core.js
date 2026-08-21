@@ -98,13 +98,18 @@
   /* ─── Navigation ─── */
   PX.initNavigation = function () {
     const navs = document.querySelectorAll('.main-nav');
-    navs.forEach((nav) => {
+    if (navs.length) {
+      // Batch: one scrollY read, then all class writes — never interleaved,
+      // so the browser never has to recompute layout between navs.
       const onScroll = throttle(() => {
-        nav.classList.toggle('scrolled', window.scrollY > 40);
+        const scrolled = window.scrollY > 40;
+        navs.forEach((nav) => {
+          nav.classList.toggle('scrolled', scrolled);
+        });
       }, 80);
       window.addEventListener('scroll', onScroll, { passive: true });
       onScroll();
-    });
+    }
 
     document.querySelectorAll('.nav-toggle').forEach((toggle) => {
       const menuId = toggle.getAttribute('aria-controls');

@@ -18,29 +18,49 @@
   const DPR_CAP = 1.5; // crisp on hi-DPI at ~44% less fill cost than 2
 
   // ── Glyph renderability (drop .notdef boxes and blanks) ────────────────
-  let probeCanvas = null;
-  let probeCtx = null;
-  function isRenderable(ch, font) {
-    if (!probeCanvas) {
-      probeCanvas = document.createElement('canvas');
-      probeCtx = probeCanvas.getContext('2d', { willReadFrequently: true });
-    }
-    const c = probeCanvas;
-    const x = probeCtx;
-    c.width = c.height = 24;
+  // Batched: one raster strip + ONE getImageData per probe set. The old
+  // per-glyph probe forced a GPU→CPU readback stall for every character.
+  const PROBE_CELL = 24;
+  const PROBE_STRIDE = 32; // bleed headroom so wide glyphs stay in their cell
+  const probeCache = new Map(); // font|chars → Set of renderable chars
+
+  function probeSet(font, charsStr) {
+    const key = `${font}|${charsStr}`;
+    let ok = probeCache.get(key);
+    if (ok) return ok;
+    const chars = [...charsStr]; // code points, not UTF-16 units
+    const w = PROBE_STRIDE * (chars.length + 1); // final cell: U+FFFF → .notdef
+    const c = document.createElement('canvas');
+    c.width = w;
+    c.height = PROBE_CELL;
+    const x = c.getContext('2d', { willReadFrequently: true });
     x.font = `20px ${font}`;
     x.textBaseline = 'alphabetic';
-    x.clearRect(0, 0, 24, 24);
-    x.fillText(ch, 2, 18);
-    const a = x.getImageData(0, 0, 24, 24).data;
-    let ink = 0;
-    for (let i = 3; i < a.length; i += 4) ink += a[i];
-    if (ink === 0) return false;
-    x.clearRect(0, 0, 24, 24);
-    x.fillText('￿', 2, 18);
-    const b = x.getImageData(0, 0, 24, 24).data;
-    for (let i = 3; i < a.length; i += 4) if (a[i] !== b[i]) return true;
-    return false;
+    chars.forEach((ch, i) => x.fillText(ch, PROBE_STRIDE * i + 2, 18));
+    x.fillText('￿', PROBE_STRIDE * chars.length + 2, 18);
+    const data = x.getImageData(0, 0, w, PROBE_CELL).data;
+    const ref = PROBE_STRIDE * chars.length;
+    ok = new Set();
+    chars.forEach((ch, i) => {
+      const off = PROBE_STRIDE * i;
+      let ink = 0;
+      let diff = 0;
+      for (let py = 0; py < PROBE_CELL; py++) {
+        const row = py * w * 4;
+        for (let px = 0; px < PROBE_CELL; px++) {
+          const a = data[row + (off + px) * 4 + 3];
+          ink += a;
+          if (a !== data[row + (ref + px) * 4 + 3]) diff++;
+        }
+      }
+      if (ink > 0 && diff > 0) ok.add(ch); // not blank, not .notdef
+    });
+    probeCache.set(key, ok);
+    return ok;
+  }
+
+  function isRenderable(ch, font) {
+    return probeSet(font, ch).has(ch);
   }
   PCFX.isRenderable = isRenderable;
 
@@ -60,8 +80,9 @@
   function buildAtlas(sets, tints, size) {
     const glyphs = [];
     for (const set of sets) {
+      const ok = probeSet(set.font, set.chars);
       for (const ch of set.chars) {
-        if (!isRenderable(ch, set.font)) continue;
+        if (!ok.has(ch)) continue;
         glyphs.push({
           ch,
           sprites: tints.map((tint) => makeGlyphSprite(ch, set.font, tint.color, size)),

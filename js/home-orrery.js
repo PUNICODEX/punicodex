@@ -58,24 +58,49 @@
   }
 
   // Reject glyphs the platform can't draw (renders as .notdef box or blank).
-  function isRenderable(ch, font) {
-    const c = isRenderable._c || (isRenderable._c = document.createElement('canvas'));
-    const x = isRenderable._x || (isRenderable._x = c.getContext('2d', { willReadFrequently: true }));
-    c.width = c.height = 24;
-    x.font = `20px ${font}`;
+  // Batched: one raster strip + ONE getImageData per script set. The old
+  // per-glyph probe forced a GPU→CPU readback stall for every character
+  // (~400 glyphs × 2 readbacks at boot, competing with first paint).
+  const PROBE_CELL = 24;
+  const PROBE_STRIDE = 32; // bleed headroom so wide glyphs stay in their cell
+  const renderableCache = new Map(); // script set → Set of renderable chars
+
+  function probeSet(set) {
+    let ok = renderableCache.get(set);
+    if (ok) return ok;
+    const chars = codePoints(set.chars);
+    const w = PROBE_STRIDE * (chars.length + 1); // final cell: U+FFFF → .notdef
+    const c = document.createElement('canvas');
+    c.width = w;
+    c.height = PROBE_CELL;
+    const x = c.getContext('2d', { willReadFrequently: true });
+    x.font = `20px ${set.font}`;
     x.textBaseline = 'alphabetic';
-    x.clearRect(0, 0, 24, 24);
-    x.fillText(ch, 2, 18);
-    const a = x.getImageData(0, 0, 24, 24).data;
-    let ink = 0;
-    for (let i = 3; i < a.length; i += 4) ink += a[i];
-    if (ink === 0) return false; // blank
-    x.clearRect(0, 0, 24, 24);
-    x.fillText('￿', 2, 18); // U+FFFF → .notdef
-    const b = x.getImageData(0, 0, 24, 24).data;
-    let diff = 0;
-    for (let i = 3; i < a.length; i += 4) if (a[i] !== b[i]) diff++;
-    return diff > 0;
+    chars.forEach((ch, i) => x.fillText(ch, PROBE_STRIDE * i + 2, 18));
+    x.fillText('￿', PROBE_STRIDE * chars.length + 2, 18);
+    const data = x.getImageData(0, 0, w, PROBE_CELL).data;
+    const ref = PROBE_STRIDE * chars.length;
+    ok = new Set();
+    chars.forEach((ch, i) => {
+      const off = PROBE_STRIDE * i;
+      let ink = 0;
+      let diff = 0;
+      for (let py = 0; py < PROBE_CELL; py++) {
+        const row = py * w * 4;
+        for (let px = 0; px < PROBE_CELL; px++) {
+          const a = data[row + (off + px) * 4 + 3];
+          ink += a;
+          if (a !== data[row + (ref + px) * 4 + 3]) diff++;
+        }
+      }
+      if (ink > 0 && diff > 0) ok.add(ch); // not blank, not .notdef
+    });
+    renderableCache.set(set, ok);
+    return ok;
+  }
+
+  function isRenderable(ch, set) {
+    return probeSet(set).has(ch);
   }
 
   // ── Sprite atlas (three depth tints) ────────────────────────────────────
@@ -90,7 +115,7 @@
     const glyphs = [];
     for (const set of SCRIPT_SETS) {
       for (const ch of codePoints(set.chars)) {
-        if (!isRenderable(ch, set.font)) continue;
+        if (!isRenderable(ch, set)) continue;
         const sprites = TINTS.map((tint) => {
           const c = document.createElement('canvas');
           c.width = c.height = SPRITE;
@@ -159,7 +184,7 @@
     for (const ch of SIGNATURE_CHARS) {
       for (const set of SCRIPT_SETS) {
         if (!set.chars.includes(ch)) continue;
-        if (!isRenderable(ch, set.font)) break;
+        if (!isRenderable(ch, set)) break;
         const sprites = TINTS.map((tint) => {
           const c = document.createElement('canvas');
           c.width = c.height = SPRITE;
@@ -201,10 +226,9 @@
   let targetPX = 0;
   let targetPY = 0;
 
-  const glyphs = buildAtlas();
-  const particles = buildParticles(glyphs);
-  const signatures = buildSignatures();
-  const glow = makeGlowSprite();
+  let particles = [];
+  let signatures = [];
+  let glow = null;
 
   function resize() {
     const rect = canvas.parentElement.getBoundingClientRect();
@@ -372,39 +396,58 @@
   }
 
   // ── Wiring ──────────────────────────────────────────────────────────────
-  resize();
-  if (REDUCED) {
-    drawFrame(perf0());
-  } else {
-    play();
+  // Boot is deferred until the browser is idle (or 1.2s at the latest): the
+  // hero content paints first while the sprite atlas rasterizes underneath.
+  // The veil lifecycle, the scene, and the reduced-motion still frame are
+  // unchanged — only when the setup work happens moves.
+  let booted = false;
+  function boot() {
+    if (booted) return;
+    booted = true;
+
+    const glyphs = buildAtlas();
+    particles = buildParticles(glyphs);
+    signatures = buildSignatures();
+    glow = makeGlowSprite();
+    start = performance.now();
+
+    resize();
+    if (REDUCED) {
+      drawFrame(perf0());
+    } else {
+      play();
+    }
+
+    if ('ResizeObserver' in window) new ResizeObserver(resize).observe(canvas.parentElement);
+    else window.addEventListener('resize', resize);
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(
+        (entries) => {
+          visible = entries[0].isIntersecting;
+          if (visible) play();
+          else pause();
+        },
+        { threshold: 0.02 }
+      ).observe(canvas);
+    }
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) pause();
+      else play();
+    });
+
+    if (!REDUCED) {
+      window.addEventListener(
+        'pointermove',
+        (e) => {
+          targetPX = (e.clientX / window.innerWidth - 0.5) * 2;
+          targetPY = (e.clientY / window.innerHeight - 0.5) * 2;
+        },
+        { passive: true }
+      );
+    }
   }
 
-  if ('ResizeObserver' in window) new ResizeObserver(resize).observe(canvas.parentElement);
-  else window.addEventListener('resize', resize);
-
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(
-      (entries) => {
-        visible = entries[0].isIntersecting;
-        if (visible) play();
-        else pause();
-      },
-      { threshold: 0.02 }
-    ).observe(canvas);
-  }
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) pause();
-    else play();
-  });
-
-  if (!REDUCED) {
-    window.addEventListener(
-      'pointermove',
-      (e) => {
-        targetPX = (e.clientX / window.innerWidth - 0.5) * 2;
-        targetPY = (e.clientY / window.innerHeight - 0.5) * 2;
-      },
-      { passive: true }
-    );
-  }
+  if ('requestIdleCallback' in window) requestIdleCallback(boot, { timeout: 1200 });
+  else setTimeout(boot, 0);
 })();
