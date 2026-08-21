@@ -26,6 +26,7 @@
     seen = true;
   }
   if (reduced || seen || !window.PCFX) {
+    window.dispatchEvent(new Event('pc:veil-gone'));
     veil.remove();
     return;
   }
@@ -35,14 +36,22 @@
     /* non-fatal */
   }
 
-  // Register the failsafe BEFORE anything that can throw: no matter what
+  // Register the failsafe BEFORE anything that throws: no matter what
   // happens below, the veil can never strand the visitor.
+  const veilGone = () => {
+    // The orrery (and anything else under the veil) starts only once the
+    // ritual ends — its setup CPU was previously burned behind an opaque
+    // overlay nobody could see.
+    window.dispatchEvent(new Event('pc:veil-gone'));
+    veil.remove();
+  };
   const failsafeId = setTimeout(() => {
-    if (document.body.contains(veil)) veil.remove();
+    if (document.body.contains(veil)) veilGone();
   }, 5000);
 
   const canvas = veil.querySelector('canvas');
   if (!canvas || !canvas.getContext) {
+    window.dispatchEvent(new Event('pc:veil-gone'));
     veil.remove();
     clearTimeout(failsafeId);
     return;
@@ -50,6 +59,7 @@
   const PCFX = window.PCFX;
   const ctx = canvas.getContext('2d');
   if (!ctx) {
+    window.dispatchEvent(new Event('pc:veil-gone'));
     veil.remove();
     clearTimeout(failsafeId);
     return;
@@ -224,7 +234,10 @@
     if (!document.body.contains(veil)) return;
     veil.classList.add('done');
     setTimeout(() => {
-      if (document.body.contains(veil)) veil.remove();
+      if (document.body.contains(veil)) {
+        window.dispatchEvent(new Event('pc:veil-gone'));
+        veil.remove();
+      }
       clearTimeout(failsafeId);
     }, 900);
   }

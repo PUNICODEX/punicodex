@@ -24,8 +24,10 @@
 
   // Adaptive frame governor: when the device can't hold ~60fps, render
   // every 2nd (then 3rd) frame — identical scene, graceful degradation.
+  // Small viewports start at half-rate: the governor would land there anyway
+  // on low-power phones, and the load window is where the budget matters.
   let frameBudget = 19; // ms EMA target before stepping down
-  let frameSkip = 1;
+  let frameSkip = window.matchMedia('(max-width: 768px)').matches ? 2 : 1;
   let frameTick = 0;
   let emaFrame = 16;
 
@@ -400,8 +402,7 @@
   // hero content paints first while the sprite atlas rasterizes underneath.
   // The veil lifecycle, the scene, and the reduced-motion still frame are
   // unchanged — only when the setup work happens moves.
-  let booted = false;
-  function boot() {
+  let booted = false;  function boot() {
     if (booted) return;
     booted = true;
 
@@ -448,6 +449,14 @@
     }
   }
 
-  if ('requestIdleCallback' in window) requestIdleCallback(boot, { timeout: 1200 });
+  // The veil ritual covers the hero on first visits — booting the sphere
+  // behind the opaque veil burned CPU nobody could see. Wait for the veil to
+  // lift (home-boot dispatches pc:veil-gone on every removal path, including
+  // its 5s failsafe); the hard 6s fallback keeps the orrery un-strandable.
+  // No veil (returning visitor / reduced motion) → boot on idle as before.
+  if (document.getElementById('boot-veil')) {
+    window.addEventListener('pc:veil-gone', () => requestAnimationFrame(boot), { once: true });
+    setTimeout(boot, 6000);
+  } else if ('requestIdleCallback' in window) requestIdleCallback(boot, { timeout: 1200 });
   else setTimeout(boot, 0);
 })();
