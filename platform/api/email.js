@@ -110,7 +110,7 @@ function getDashboardUrl(token, siteSlug) {
     console.warn('[EMAIL] dashboard link built without a site slug — falling back to /account/');
     return `${PLATFORM_URL}/account/?token=${token}`;
   }
-  return `${PLATFORM_URL}/sites/${slug}/dashboard/?token=${token}`;
+  return `${PLATFORM_URL}/${slug}/dashboard/?token=${token}`;
 }
 
 async function notifyPaymentPending({ email, slotName, companyName, stripeUrl, siteSlug }) {
@@ -628,7 +628,7 @@ async function notifyStoreOrderShipped({ email, orderRef, productName, trackingU
 }
 
 async function notifyPatronWelcome({ email, displayName, templeId }) {
-  const templeUrl = `${PLATFORM_URL}/sites/${templeId}/`;
+  const templeUrl = `${PLATFORM_URL}/${templeId}/`;
   return sendEmail({
     to: email,
     subject: `Welcome to the ${displayName} patron circle`,
@@ -809,7 +809,7 @@ function digestPulseSection(pulse) {
       (t, i) => `
         <tr>
           <td style="padding:8px;border-bottom:1px solid #eee;color:#666;">${i + 1}.</td>
-          <td style="padding:8px;border-bottom:1px solid #eee;"><a href="${escapeHtml(`${PLATFORM_URL}/sites/${t.templeId}/`)}" style="color:#111;text-decoration:none;font-weight:600;">${escapeHtml(t.name)}</a></td>
+          <td style="padding:8px;border-bottom:1px solid #eee;"><a href="${escapeHtml(`${PLATFORM_URL}/${t.templeId}/`)}" style="color:#111;text-decoration:none;font-weight:600;">${escapeHtml(t.name)}</a></td>
           <td style="padding:8px;border-bottom:1px solid #eee;text-align:right;">${escapeHtml(Number(t.views).toLocaleString())} views</td>
         </tr>`
     )
@@ -833,7 +833,7 @@ async function notifyWeeklyDigestSponsor({
   const siteName = getSiteDisplayName(siteSlug);
   const ctaUrl = bookingToken
     ? getDashboardUrl(bookingToken, siteSlug)
-    : `${PLATFORM_URL}/sites/${escapeHtml(siteSlug || '')}/`;
+    : `${PLATFORM_URL}/${escapeHtml(siteSlug || '')}/`;
   return module.exports.sendEmail({
     to: email,
     subject: `Your week on PuniCodex — ${siteName} · ${slotName}`,
@@ -867,7 +867,7 @@ async function notifyWeeklyDigestPatron({
   pulse,
 }) {
   const siteName = getSiteDisplayName(siteSlug);
-  const templeUrl = `${PLATFORM_URL}/sites/${siteSlug}/`;
+  const templeUrl = `${PLATFORM_URL}/${siteSlug}/`;
   const portalUrl = `${PLATFORM_URL}/account/`;
   return module.exports.sendEmail({
     to: email,
@@ -888,7 +888,7 @@ async function notifyWeeklyDigestPatron({
 
 async function notifyPatronExpiryReminder({ email, displayName, siteSlug, endsAt, daysLeft }) {
   const siteName = getSiteDisplayName(siteSlug);
-  const templeUrl = `${PLATFORM_URL}/sites/${siteSlug}/`;
+  const templeUrl = `${PLATFORM_URL}/${siteSlug}/`;
   const portalUrl = `${PLATFORM_URL}/account/`;
   const endDate = endsAt
     ? new Date(endsAt).toLocaleDateString('en-US', {
@@ -915,7 +915,7 @@ async function notifyPatronExpiryReminder({ email, displayName, siteSlug, endsAt
 
 async function notifyPatronCancelled({ email, displayName, siteSlug }) {
   const siteName = getSiteDisplayName(siteSlug);
-  const templeUrl = `${PLATFORM_URL}/sites/${siteSlug}/`;
+  const templeUrl = `${PLATFORM_URL}/${siteSlug}/`;
   return module.exports.sendEmail({
     to: email,
     subject: `Your ${siteName} patron membership is cancelled`,

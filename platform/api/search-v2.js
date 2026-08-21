@@ -718,7 +718,7 @@ function buildAvailabilityAnswer(target) {
       meaning: r.meaning,
       pantheon: r.pantheon,
       tier: r.tier,
-      link: `/sites/${r.entry_id}/`,
+      link: `/${r.entry_id}/`,
     })),
   };
 }
@@ -770,7 +770,7 @@ function searchDomains(q, { limit, offset, filters }) {
       pantheon: r.pantheon,
       tier: r.tier,
       registrarLinks: parseJson(r.registrar_links, {}),
-      link: `/sites/${r.entry_id}/`,
+      link: `/${r.entry_id}/`,
     })),
     total,
     limit,
@@ -808,7 +808,7 @@ function searchLore(q, { limit, offset }) {
       etymology: r.lore.etymology,
       archaeology: r.lore.archaeology,
       sources: r.lore.sources,
-      link: `/sites/${r.id}/lore.html`,
+      link: `/${r.id}/lore/`,
     })),
     total,
     limit,

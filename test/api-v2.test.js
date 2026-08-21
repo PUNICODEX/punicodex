@@ -115,7 +115,7 @@ async function runTests() {
     assert.strictEqual(status, 200);
     assertEnvelope(body);
     assert.strictEqual(body.data.id, 'zeus');
-    assert.ok(body.data.links.temple.includes('/sites/zeus/'));
+    assert.strictEqual(body.data.links.temple, '/zeus/');
   });
 
   await test('GET /api/v2/names/zeus/variants returns variants', async () => {

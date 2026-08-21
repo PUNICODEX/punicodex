@@ -87,8 +87,8 @@ function getPatternsForEntry(rawId) {
     count: industries.length,
     industries,
     links: {
-      patternsPage: `/sites/${id}/patterns/`,
-      temple: `/sites/${id}/`,
+      patternsPage: `/${id}/patterns/`,
+      temple: `/${id}/`,
     },
   };
 }

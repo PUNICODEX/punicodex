@@ -51,7 +51,7 @@ module.exports = createApiHandler(async (req, res) => {
       links: {
         self: `/api/v1/names/${encodeURIComponent(id)}/pronunciation`,
         name: `/api/v1/names/${encodeURIComponent(id)}`,
-        temple: `/sites/${encodeURIComponent(id)}/`,
+        temple: `/${encodeURIComponent(id)}/`,
       },
     }
   );

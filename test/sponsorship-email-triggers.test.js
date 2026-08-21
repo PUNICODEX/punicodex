@@ -158,7 +158,7 @@ test('approveBooking sends the publish-hint mail (approval is not publish)', asy
     'mail points at the advertiser panel'
   );
   assert.ok(
-    lastMail().html.includes(`/sites/nike/dashboard/?token=${token}`),
+    lastMail().html.includes(`/nike/dashboard/?token=${token}`),
     'mail carries the dashboard snapshot link'
   );
   assert.ok(!/going live shortly/i.test(lastMail().html), 'no stale auto-live promise');
@@ -194,7 +194,7 @@ test('goLiveBooking on a paid lease sends notifyLive', async () => {
   assert.strictEqual(sent.length, 1);
   assert.strictEqual(lastMail().to[0], email);
   assert.match(lastMail().subject, /now live on/i);
-  assert.ok(lastMail().html.includes(`/sites/nike/dashboard/?token=${token}`));
+  assert.ok(lastMail().html.includes(`/nike/dashboard/?token=${token}`));
   assert.ok(!/free trial/i.test(lastMail().subject), 'no trial language on a paid go-live');
 });
 

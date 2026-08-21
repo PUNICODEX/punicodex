@@ -61,7 +61,7 @@ function toApiCard(card) {
     ownedDomain: card.ownedDomain || null,
     art: card.art || null,
     links: {
-      temple: `/sites/${card.entryId}/`,
+      temple: `/${card.entryId}/`,
       name: `/api/v1/names/${card.entryId}`,
     },
   };

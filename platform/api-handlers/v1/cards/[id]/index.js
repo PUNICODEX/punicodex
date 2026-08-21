@@ -32,7 +32,7 @@ module.exports = createApiHandler(async (req, res) => {
     links: {
       self: `/api/v1/cards/${entryId}`,
       collection: '/api/v1/cards',
-      temple: `/sites/${entryId}/`,
+      temple: `/${entryId}/`,
     },
   });
 });

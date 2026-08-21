@@ -116,7 +116,7 @@ function buildOriginalScriptBlock(entry) {
 function buildLinks(entryId) {
   return {
     self: `/api/v1/names/${entryId}`,
-    temple: `/sites/${entryId}/`,
+    temple: `/${entryId}/`,
     type: `/type/#${entryId}`,
   };
 }

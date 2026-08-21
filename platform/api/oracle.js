@@ -1120,7 +1120,7 @@ function buildCitations(entries, sites, loreSources = []) {
     citations.push({
       type: 'entry',
       label: e.unicode || e.ascii,
-      url: `/sites/${e.id}/`,
+      url: `/${e.id}/`,
       snippet: e.meaning,
     });
   }
@@ -1140,7 +1140,7 @@ function buildCitations(entries, sites, loreSources = []) {
       citations.push({
         type: 'source',
         label,
-        url: `/sites/${entries[0]?.id}/lore.html`,
+        url: `/${entries[0]?.id}/lore/`,
         snippet: '',
       });
     }

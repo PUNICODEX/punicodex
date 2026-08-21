@@ -134,7 +134,7 @@ test('service: getCardsForEntry returns all variants', () => {
   const fullArt = zeus.variants.find((v) => v.edition === 'full-art');
   assert.ok(fullArt, 'zeus has a full-art printing');
   assert.strictEqual(fullArt.rarity, 'legendary');
-  assert.ok(common.links.temple === '/sites/zeus/');
+  assert.ok(common.links.temple === '/zeus/');
 
   assert.strictEqual(cardsService.getCardsForEntry('definitely-not-an-entry'), null);
 });

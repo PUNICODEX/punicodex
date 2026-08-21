@@ -433,12 +433,12 @@ async function runTests() {
   await test('getDashboardUrl links to the booking temple, never silently nike', async () => {
     const email = require('../platform/api/email.js');
     const zeusUrl = email.getDashboardUrl('tok-zeus', 'zeus');
-    assert.ok(zeusUrl.includes('/sites/zeus/'), zeusUrl);
-    assert.ok(!zeusUrl.includes('/sites/nike/'), zeusUrl);
+    assert.ok(zeusUrl.includes('/zeus/dashboard/'), zeusUrl);
+    assert.ok(!zeusUrl.includes('/nike/'), zeusUrl);
     assert.ok(zeusUrl.includes('token=tok-zeus'));
   });
 
-  await test('notifyApproved for a zeus booking links /sites/zeus/ and brands the temple', async () => {
+  await test('notifyApproved for a zeus booking links /zeus/ and brands the temple', async () => {
     const emailPath = require.resolve('../platform/api/email.js');
     const originalFetch = globalThis.fetch;
     const hadKey = 'RESEND_API_KEY' in process.env;
@@ -465,11 +465,8 @@ async function runTests() {
 
       assert.strictEqual(result.success, true);
       const payload = JSON.parse(captured.options.body);
-      assert.ok(
-        payload.html.includes('/sites/zeus/dashboard/?token=tok-zeus-1'),
-        'zeus dashboard link'
-      );
-      assert.ok(!payload.html.includes('/sites/nike/'), 'no nike link leaked');
+      assert.ok(payload.html.includes('/zeus/dashboard/?token=tok-zeus-1'), 'zeus dashboard link');
+      assert.ok(!payload.html.includes('/nike/'), 'no nike link leaked');
       assert.ok(payload.html.includes('Zeús — Creative Approved'), 'temple branding in body');
 
       // Approval no longer publishes: both bodies must point the sponsor at
@@ -518,8 +515,8 @@ async function runTests() {
         ],
       });
       assert.strictEqual(sent[0].subject, 'Your PuniCodex dashboard links');
-      assert.ok(sent[0].html.includes('/sites/zeus/dashboard/?token=tok-a'), 'per-row zeus link');
-      assert.ok(sent[0].html.includes('/sites/nike/dashboard/?token=tok-b'), 'per-row nike link');
+      assert.ok(sent[0].html.includes('/zeus/dashboard/?token=tok-a'), 'per-row zeus link');
+      assert.ok(sent[0].html.includes('/nike/dashboard/?token=tok-b'), 'per-row nike link');
 
       await freshEmail.sendDashboardLinks({
         email: 'single@example.com',

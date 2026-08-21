@@ -322,7 +322,7 @@ test('methodology page exists with the five sections and real data quotes', () =
       html.includes(whyOf(industryId, memberId)),
       `missing quote ${industryId}/${memberId}`
     );
-    assert.ok(html.includes(`/sites/${memberId}/`), `missing temple link ${memberId}`);
+    assert.ok(html.includes(`/${memberId}/`), `missing temple link ${memberId}`);
   }
 });
 
