@@ -78,10 +78,14 @@ function insertArchetypeBlock(src, newBlock) {
   const exportIdx = src.indexOf('if (typeof module');
   const closeIdx = exportIdx >= 0 ? src.lastIndexOf('];', exportIdx) : src.lastIndexOf('];');
   if (closeIdx < 0) throw new Error('Could not find ARCHETYPES array close');
-  const insertAt = src.lastIndexOf('\n', closeIdx) + 1;
-  // Ensure a newline separates the new block from the original closing ];
-  const suffix = src.slice(insertAt).startsWith('];') ? '\n' + src.slice(insertAt) : src.slice(insertAt);
-  return src.slice(0, insertAt) + newBlock + '\n' + suffix;
+  // The last entry's closing brace must sit on the line(s) immediately before
+  // `];` and carry a trailing comma before we insert after it — otherwise the
+  // new block wedges inside the last entry. Normalize the tail instead of
+  // assuming its exact formatting.
+  const tailStart = src.lastIndexOf('}', closeIdx);
+  if (tailStart < 0) throw new Error('Could not find last archetype closing brace');
+  const head = src.slice(0, tailStart + 1).replace(/,?\s*$/, '');
+  return `${head},\n\n${newBlock}\n];${src.slice(closeIdx + 2)}`;
 }
 
 function jsonString(v) {

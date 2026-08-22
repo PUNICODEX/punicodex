@@ -148,6 +148,24 @@ function main() {
   saveArchetypes(newArchetypesSrc);
   console.log(`Upserted archetype for ${id}`);
 
+  // Curate the gallery BEFORE create-flagship builds the pages: without a
+  // curated entry in gallery-data.json the gallery tab silently falls back to
+  // the temple's own brand assets (mascot/logolockup) instead of
+  // art-historical depictions. Must run AFTER the archetype exists — the
+  // curator filters on the archetype list.
+  const galleryPath = path.join(__dirname, 'gallery-data.json');
+  const galleryData = JSON.parse(fs.readFileSync(galleryPath, 'utf8'));
+  if (!galleryData[id]) {
+    console.log(`No curated gallery for ${id} — running WikiCommons curation…`);
+    runCommand(`node scripts/curate-gallery-images.js --only ${id}`);
+    const after = JSON.parse(fs.readFileSync(galleryPath, 'utf8'));
+    if (!after[id]) {
+      console.warn(
+        `⚠ Curation produced no gallery for ${id} — the gallery tab will show the brand-asset fallback. Consider curating by hand.`
+      );
+    }
+  }
+
   // Generate flagship pages
   runCommand(`node scripts/create-flagship.js ${id}`);
 

@@ -3054,6 +3054,12 @@ function buildGalleryGrid(entry) {
   }
 
   // Fall back to brand assets when no curated gallery exists.
+  // Loud by design: a brand-asset gallery is a degraded temple — promotions
+  // must run scripts/curate-gallery-images.js first (promote-to-flagship.js
+  // now does this automatically).
+  console.warn(
+    `⚠ ${id}: no curated gallery in gallery-data.json — gallery tab uses the brand-asset fallback`
+  );
   const pushItem = (img, _webp, caption) => {
     const imgPath = path.join(SITES_DIR, id, 'assets', img);
     if (fs.existsSync(imgPath)) {
