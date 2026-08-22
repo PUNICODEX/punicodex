@@ -269,6 +269,7 @@ const INDUSTRY_GROUPS = [
       { id: 'tartaros', weight: 1, why: 'Astronomers nicknamed the hellish exoplanet HD 80606 b \'Tartarus\' for its infernal orbit.' },
       { id: 'eros', weight: 1, why: '433 Eros was the first near-Earth asteroid discovered and the first a spacecraft ever touched.' },
       { id: 'change', weight: 2, why: 'China\'s lunar exploration program flies her name — the Chang\'e orbiters and sample-return landers are the moon goddess made mission architecture.' },
+      { id: 'mani', weight: 2, why: 'The moon personified, driving its chariot across the night sky — the Norse moon made god, pursued nightly by Hati.' },
     ],
   },
   {
@@ -315,6 +316,7 @@ const INDUSTRY_GROUPS = [
       { id: 'ker', weight: 1, why: 'The kēres hover over every Iliadic battlefield, dragging off the fallen; war\'s death-toll personified.' },
       { id: 'nike', weight: 1, why: 'Project Nike armed America\'s air defense with missiles bearing her name.' },
       { id: 'nezha', weight: 1, why: 'Marshal of the celestial vanguard — heaven\'s youngest enforcer, armed with spear, sash, and wind-fire wheels.' },
+      { id: 'mjolnir', weight: 2, why: 'The weapon that defends Ásgarðr and Miðgarðr from the giants — the shield-wall of the worlds in a single hammer.' },
     ],
   },
   {
@@ -417,6 +419,7 @@ const INDUSTRY_GROUPS = [
       { id: 'eggther', weight: 1, why: 'The herald whose music signals the world\'s transition — the oldest broadcast.' },
       { id: 'hekate', weight: 1, why: 'Trioditis, she of the three ways; the crossroads is routing\'s oldest node.' },
       { id: 'aither', weight: 1, why: 'Metcalfe named Ethernet for the old light-bearing ether; the world\'s LANs run in his element.' },
+      { id: 'bifrost', weight: 1, why: 'The link between two worlds, watched by Heimdallr — the connection itself, with a sentry on the endpoint.' },
     ],
   },
   {
@@ -524,6 +527,7 @@ const INDUSTRY_GROUPS = [
       { id: 'jotunheimr', weight: 1, why: 'Járnviðr, the iron forest where monsters are bred — the wilderness beyond the gods\' fence.' },
       { id: 'thor', weight: 1, why: 'The lightning-struck oak is his tree; the sacred groves of Germanic folk practice.' },
       { id: 'nikko', weight: 1, why: 'Thousands of giant cryptomeria line her avenues; the approach itself is a sacred forest.' },
+      { id: 'skadi', weight: 2, why: 'The ski-borne huntress of the winter mountains — Þrymheimr\'s snowfields are her domain; the outdoor industry is her cult.' },
     ],
   },
   {
@@ -585,6 +589,7 @@ const INDUSTRY_GROUPS = [
       { id: 'adamas', weight: 1, why: 'Only divine smiths can work him; Hephaistos forged adamantine bonds to hold Prometheus.' },
       { id: 'pyr', weight: 1, why: 'Every forge, kiln, and furnace is his domestication; controlled fire is industry\'s first machine.' },
       { id: 'kyoto', weight: 1, why: 'Kiyomizu pottery and yūzen dyeing; the living museum of Japanese artisanship.' },
+      { id: 'mjolnir', weight: 1, why: 'Forged by the dwarfs Sindri and Brokkr — the masterwork of divine smithcraft, short handle and all.' },
     ],
   },
   {
@@ -654,6 +659,7 @@ const INDUSTRY_GROUPS = [
       { id: 'theia', weight: 1, why: 'Gold and clear crystal are her materials; radiance is the jeweler\'s raw stock.' },
       { id: 'aphrodite', weight: 1, why: 'Her enchanted girdle made its wearer irresistible; adornment that works is jewelry\'s founding promise.' },
       { id: 'hephaistos', weight: 1, why: 'He learned his craft forging jewelry so fine that Thetis wore it to Olympus; the first goldsmith.' },
+      { id: 'mjolnir', weight: 2, why: 'The Þórr\'s-hammer amulet is the most-worn pendant of the Viking Age; archaeology recovers it by the thousand and jewelers cast it still.' },
     ],
   },
   {
@@ -752,6 +758,7 @@ const INDUSTRY_GROUPS = [
       { id: 'hypnos', weight: 2, why: 'Sleep itself; the sleep economy is his namesake industry.' },
       { id: 'leto', weight: 1, why: 'Night and the veiled mother; rest as refuge.' },
       { id: 'selene', weight: 1, why: 'Endymion sleeps forever beneath her nightly visit; the night watch personified.' },
+      { id: 'mani', weight: 1, why: 'The night watch himself; the moon that governs every sleeping hour is his face.' },
     ],
   },
   {
@@ -932,6 +939,8 @@ const INDUSTRY_GROUPS = [
       { id: 'arachne', weight: 1, why: 'Text descends from texere, to weave; her tapestry of divine scandals is the archetypal dangerous text.' },
       { id: 'moses', weight: 1, why: 'The traditional author of the Torah; the five books behind Western publishing’s longest-running title.' },
       { id: 'ganesha', weight: 2, why: 'The scribe of the Mahābhārata; he broke his own tusk rather than let Vyāsa\'s dictation stop.' },
+      { id: 'fafnir', weight: 1, why: 'The Vǫlsunga saga and the Nibelungenlied are the heroic literature of the North — and he is their dragon.' },
+      { id: 'sigurd', weight: 2, why: 'The Vǫlsunga saga and the Nibelungenlied made him the North\'s great hero; the dragon-slayer plot is his patent.' },
     ],
   },
   {
@@ -963,6 +972,8 @@ const INDUSTRY_GROUPS = [
       { id: 'eggther', weight: 1, why: 'The harpist of the apocalypse; the calm artist amid catastrophe from Völuspá to Wagner.' },
       { id: 'fujin', weight: 1, why: 'Sōtatsu\'s Fūjin-Raijin screens are national treasures; his image is art history\'s own icon.' },
       { id: 'chaos', weight: 1, why: 'Artists and composers still invoke the fertile void — the blank page, the silence before the symphony.' },
+      { id: 'fafnir', weight: 1, why: 'Wagner casts him as the giant-turned-dragon of Siegfried; the greatest cycle in opera is partly his story.' },
+      { id: 'sigurd', weight: 1, why: 'Wagner\'s Siegfried is the hero of the Ring cycle — two of opera\'s four great nights carry his story.' },
     ],
   },
   {
@@ -1018,6 +1029,10 @@ const INDUSTRY_GROUPS = [
       { id: 'ker', weight: 1, why: 'Fantasy and role-playing games adopted the kēres wholesale as winged death-spirits.' },
       { id: 'nezha', weight: 2, why: 'Ne Zha 2 (2025) is the highest-grossing animated film ever made; the lotus rebel is global entertainment\'s biggest mythic IP.' },
       { id: 'houyi', weight: 1, why: 'A playable god from Smite to Honor of Kings — the sun-shooting archer is a standing character class.' },
+      { id: 'fafnir', weight: 2, why: 'The hoard-guarding dragon of the Vǫlsunga cycle — Wagner\'s Ring and Tolkien\'s Smaug both descend from him; every treasure-vault boss in the genre is his descendant.' },
+      { id: 'sigurd', weight: 1, why: 'The dragon-slayer of the Vǫlsunga cycle — the hero-versus-dragon encounter as a standing character archetype across games and anime.' },
+      { id: 'mjolnir', weight: 1, why: 'The most famous weapon in modern mythic IP — Marvel\'s Mjolnir and God of War made the hammer a franchise logo.' },
+      { id: 'bifrost', weight: 1, why: 'The rainbow bridge is the portal level of every Norse game, and the MCU\'s Bifröst made it franchise iconography.' },
     ],
   },
   {
@@ -1052,6 +1067,7 @@ const INDUSTRY_GROUPS = [
       { id: 'hermes', weight: 1, why: 'Patron of the palaestra — the gymnasium was his precinct; herms stood at every training ground.' },
       { id: 'artemis', weight: 1, why: 'The huntress; archery and the chase as sacred discipline.' },
       { id: 'houyi', weight: 2, why: 'The divine archer himself — nine suns, nine hits; the bow is his whole mythology.' },
+      { id: 'skadi', weight: 1, why: 'The skalds call her ǫndurdís — the ski-lady; winter sports\' patron deity, bow in hand.' },
     ],
   },
   {
@@ -1126,6 +1142,7 @@ const INDUSTRY_GROUPS = [
       { id: 'nike', weight: 1, why: 'The Winged Victory of Samothrace crowns the Louvre\'s great staircase; triumph as a destination.' },
       { id: 'erebus', weight: 1, why: 'Ross named Antarctica\'s volcano for him in 1841; expedition ships still call at the dark mountain.' },
       { id: 'herakles', weight: 1, why: 'The Pillars of Hēraklēs still mark the strait at Gibraltar; a world-boundary turned place brand.' },
+      { id: 'skadi', weight: 1, why: 'Norway\'s ski resorts and winter peaks trade on her legend; the failed mountain honeymoon of Njǫrðr\'s marriage is tourism\'s oldest complaint.' },
     ],
   },
   {
@@ -1189,6 +1206,7 @@ const INDUSTRY_GROUPS = [
       { id: 'shamash', weight: 1, why: 'Honest merchants weighed their goods before him; the scales of fair dealing.' },
       { id: 'dagan', weight: 1, why: 'The granary’s surplus was the ancient world’s first stored wealth; his name is the commodity.' },
       { id: 'ganesha', weight: 1, why: 'Remover of obstacles, invoked at every new venture; the first name in Indian commerce.' },
+      { id: 'fafnir', weight: 1, why: 'The cursed hoard of Andvari is greed made plot — the gold that buys kingdoms and kills its owners; finance\'s oldest cautionary tale wears his coils.' },
     ],
   },
   {
@@ -1560,6 +1578,7 @@ const INDUSTRY_GROUPS = [
       { id: 'coeus', weight: 1, why: 'His emblem is the celestial pole around which stars and seasons turn; the first calendar is his axis.' },
       { id: 'ananke', weight: 1, why: 'In Orphic cosmogony she entwines Chronos himself; the calendar is necessity\'s schedule.' },
       { id: 'rta', weight: 1, why: 'The seasons turn by ṛta, and ṛtu — the Sanskrit word for season — is its own child.' },
+      { id: 'mani', weight: 1, why: 'Moon and month share his name\'s root in every Germanic language; the first calendar counted by his phases.' },
     ],
   },
   {
@@ -1583,6 +1602,7 @@ const INDUSTRY_GROUPS = [
       { id: 'shapash', weight: 1, why: 'The torch of the gods whose rays penetrate every hidden corner; the all-seeing eye of the Ugaritic pantheon.' },
       { id: 'shamash', weight: 1, why: 'The hymn’s all-observing eye; the whole world lies before him like the palm of a hand.' },
       { id: 'hemera', weight: 1, why: 'Her daylight is photography\'s first light; every exposure still measures her gift.' },
+      { id: 'bifrost', weight: 1, why: 'The rainbow made architecture — the visible spectrum as a road between worlds; optics\' oldest image.' },
     ],
   },
   {
@@ -1682,6 +1702,7 @@ const INDUSTRY_GROUPS = [
       { id: 'hephaistos', weight: 2, why: 'The divine craftsman — forge, foundry, and workshop; the original engineer of the built world.' },
       { id: 'ptah', weight: 2, why: 'The creator who made the world by craft and word; Egypt’s patron of artisans and builders.' },
       { id: 'athena', weight: 1, why: 'Techne personified — the craft of making, guided by wisdom.' },
+      { id: 'bifrost', weight: 2, why: 'The bridge that spans Miðgarðr and Ásgarðr — joining two worlds is the industry\'s founding dream, guarded and load-bearing.' },
     ],
   },
   {

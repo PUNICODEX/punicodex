@@ -1,7 +1,7 @@
 {
   "meta": {
-    "nodeCount": 236,
-    "edgeCount": 1923,
+    "nodeCount": 244,
+    "edgeCount": 1953,
     "relationships": [
       "Chaos / monster",
       "Chaos / primordial / world serpent",
@@ -11,6 +11,8 @@
       "Death / rebirth",
       "Divine father / son",
       "Divine twins / fertility",
+      "Dragon-slayer and hoard-dragon",
+      "Dwarf-forged treasures of the Æsir",
       "Earth / mother / fertility",
       "Earth mother",
       "Fate / time",
@@ -26,8 +28,10 @@
       "Messenger / travel / wisdom",
       "Moon / lunar",
       "Moon personified",
+      "Norse serpents",
       "Psychopomp",
       "Psychopomp / soul guide",
+      "Rainbow between worlds",
       "Rebel against heaven",
       "Rebirth / vegetation",
       "Same figure, two traditions",
@@ -36,8 +40,12 @@
       "Sea / water",
       "Sky father / sovereign",
       "Sun / light",
+      "The Vǫlsunga cycle: brothers divided by the hoard",
+      "The Vǫlsunga cycle: foster-father and foster-son",
+      "The Vǫlsunga cycle: sworn lovers",
       "The elixir cycle",
       "The elixir grant",
+      "The watchman and the bridge",
       "Thunder / storm sovereignty",
       "Thunder sovereignty",
       "Trickster / mischief",
@@ -315,12 +323,28 @@
       "domain": "Light, Sun"
     },
     {
+      "id": "bifrost",
+      "ascii": "bifrost",
+      "unicode": "Bifrǫst",
+      "pantheon": "norse",
+      "pantheonLabel": "Norse",
+      "domain": "Rainbow Bridge, Passage, Heimdallr's Watch"
+    },
+    {
       "id": "brigid",
       "ascii": "brigid",
       "unicode": "Brigid",
       "pantheon": "celtic",
       "pantheonLabel": "Celtic",
       "domain": "Poetry, Healing, Smithcraft, Fire"
+    },
+    {
+      "id": "brynhildr",
+      "ascii": "brynhildr",
+      "unicode": "Brynhildr",
+      "pantheon": "norse",
+      "pantheonLabel": "Norse",
+      "domain": "Valkyrie, Shieldmaiden"
     },
     {
       "id": "bunjil",
@@ -427,6 +451,14 @@
       "domain": "Wine, Ecstasy, Theatre"
     },
     {
+      "id": "draupnir",
+      "ascii": "draupnir",
+      "unicode": "Draupnir",
+      "pantheon": "norse",
+      "pantheonLabel": "Norse",
+      "domain": "Odin's Ring, Wealth"
+    },
+    {
       "id": "durga",
       "ascii": "durga",
       "unicode": "Durgā",
@@ -513,6 +545,14 @@
       "pantheon": "yoruba",
       "pantheonLabel": "Yoruba",
       "domain": "Trickery, Crossroads, Messenger"
+    },
+    {
+      "id": "fafnir",
+      "ascii": "fafnir",
+      "unicode": "Fáfnir",
+      "pantheon": "norse",
+      "pantheonLabel": "Norse",
+      "domain": "Dwarf turned Dragon"
     },
     {
       "id": "fionn",
@@ -1043,6 +1083,14 @@
       "domain": "Sea, Craftsmanship"
     },
     {
+      "id": "mani",
+      "ascii": "mani",
+      "unicode": "Máni",
+      "pantheon": "norse",
+      "pantheonLabel": "Norse",
+      "domain": "Moon, Night, Time"
+    },
+    {
       "id": "manjushri",
       "ascii": "manjushri",
       "unicode": "Mañjuśrī",
@@ -1121,6 +1169,14 @@
       "pantheon": "egyptian",
       "pantheonLabel": "Egyptian",
       "domain": "Fertility, Harvest"
+    },
+    {
+      "id": "mjolnir",
+      "ascii": "mjolnir",
+      "unicode": "Mjólnir",
+      "pantheon": "norse",
+      "pantheonLabel": "Norse",
+      "domain": "Thunder Hammer"
     },
     {
       "id": "moirai",
@@ -1451,6 +1507,14 @@
       "domain": "Justice, Judgment"
     },
     {
+      "id": "reginn",
+      "ascii": "reginn",
+      "unicode": "Reginn",
+      "pantheon": "norse",
+      "pantheonLabel": "Norse",
+      "domain": "Dwarf Smith, Fafnir's Brother"
+    },
+    {
       "id": "rhea",
       "ascii": "rhea",
       "unicode": "Rhéā",
@@ -1545,6 +1609,14 @@
       "pantheon": "sanskrit",
       "pantheonLabel": "Sanskrit",
       "domain": "Destruction, Transformation, Dance"
+    },
+    {
+      "id": "sigurd",
+      "ascii": "sigurd",
+      "unicode": "Sigurðr",
+      "pantheon": "norse",
+      "pantheonLabel": "Norse",
+      "domain": "Victory, Dragon-Slaying, Heroism"
     },
     {
       "id": "simargl",
@@ -2526,6 +2598,15 @@
     },
     {
       "source": "andvari",
+      "target": "fafnir",
+      "relationship": "Guardian / protector",
+      "category": "narrative-role",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Guardian figures, boundary protectors, and monstrous sentinels."
+    },
+    {
+      "source": "andvari",
       "target": "seonangshin",
       "relationship": "Guardian / protector",
       "category": "narrative-role",
@@ -3139,6 +3220,15 @@
     {
       "source": "artemis",
       "target": "mamaquilla",
+      "relationship": "Moon / lunar",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Lunar deities, moon watchers, and nocturnal celestial bodies."
+    },
+    {
+      "source": "artemis",
+      "target": "mani",
       "relationship": "Moon / lunar",
       "category": "phenomenon",
       "strength": 2,
@@ -4334,6 +4424,24 @@
       "note": "Solar and luminous deities; chariot-borne suns, dawn-bringers, and light itself."
     },
     {
+      "source": "bifrost",
+      "target": "heimdallr",
+      "relationship": "The watchman and the bridge",
+      "category": "narrative-role",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Heimdallr keeps his watch at Himinbjǫrg where the rainbow bridge meets heaven — the sentry and the span are one institution."
+    },
+    {
+      "source": "bifrost",
+      "target": "iris",
+      "relationship": "Rainbow between worlds",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Norse and Greek rainbows as the passage between gods and mortals — the bridge that is walked and the messenger who walks it."
+    },
+    {
       "source": "brigid",
       "target": "agni",
       "relationship": "Fire / poetry / inspiration",
@@ -4530,6 +4638,15 @@
       "strength": 2,
       "bidirectional": true,
       "note": "Rulers, guides, and guardians of the dead and the underworld."
+    },
+    {
+      "source": "cerberus",
+      "target": "fafnir",
+      "relationship": "Guardian / protector",
+      "category": "narrative-role",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Guardian figures, boundary protectors, and monstrous sentinels."
     },
     {
       "source": "cerberus",
@@ -4776,6 +4893,15 @@
     },
     {
       "source": "chandra",
+      "target": "mani",
+      "relationship": "Moon / lunar",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Lunar deities, moon watchers, and nocturnal celestial bodies."
+    },
+    {
+      "source": "chandra",
       "target": "sin",
       "relationship": "Moon / lunar",
       "category": "phenomenon",
@@ -4791,6 +4917,15 @@
       "strength": 2,
       "bidirectional": true,
       "note": "Husband and wife of the moon-ascension myth — the elixir of immortality passes between them."
+    },
+    {
+      "source": "change",
+      "target": "mani",
+      "relationship": "Moon / lunar",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Lunar deities, moon watchers, and nocturnal celestial bodies."
     },
     {
       "source": "change",
@@ -5209,6 +5344,15 @@
     {
       "source": "coyolxauhqui",
       "target": "mamaquilla",
+      "relationship": "Moon / lunar",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Lunar deities, moon watchers, and nocturnal celestial bodies."
+    },
+    {
+      "source": "coyolxauhqui",
+      "target": "mani",
       "relationship": "Moon / lunar",
       "category": "phenomenon",
       "strength": 2,
@@ -6053,6 +6197,24 @@
       "note": "Divine messengers, psychopomps, travellers, and intermediaries between worlds."
     },
     {
+      "source": "fafnir",
+      "target": "jormungandr",
+      "relationship": "Norse serpents",
+      "category": "narrative-role",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "The two great serpents of Norse tradition — the hoard-dragon of the Vǫlsunga cycle and the world-serpent of Ragnarök."
+    },
+    {
+      "source": "fafnir",
+      "target": "reginn",
+      "relationship": "The Vǫlsunga cycle: brothers divided by the hoard",
+      "category": "narrative-role",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Reginn the smith plots, Fáfnir the dragon guards — the cursed gold of Andvari sets brother against brother and kills them both."
+    },
+    {
       "source": "fionn",
       "target": "anat",
       "relationship": "Hunt / wild",
@@ -6882,6 +7044,15 @@
     },
     {
       "source": "garmr",
+      "target": "fafnir",
+      "relationship": "Guardian / protector",
+      "category": "narrative-role",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Guardian figures, boundary protectors, and monstrous sentinels."
+    },
+    {
+      "source": "garmr",
       "target": "griffin",
       "relationship": "Guardian / protector",
       "category": "narrative-role",
@@ -7387,6 +7558,15 @@
     {
       "source": "griffin",
       "target": "andvari",
+      "relationship": "Guardian / protector",
+      "category": "narrative-role",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Guardian figures, boundary protectors, and monstrous sentinels."
+    },
+    {
+      "source": "griffin",
+      "target": "fafnir",
       "relationship": "Guardian / protector",
       "category": "narrative-role",
       "strength": 2,
@@ -7935,6 +8115,15 @@
     },
     {
       "source": "hati",
+      "target": "mani",
+      "relationship": "Moon / lunar",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Lunar deities, moon watchers, and nocturnal celestial bodies."
+    },
+    {
+      "source": "hati",
       "target": "sin",
       "relationship": "Moon / lunar",
       "category": "phenomenon",
@@ -8008,6 +8197,15 @@
     {
       "source": "hekate",
       "target": "mamaquilla",
+      "relationship": "Moon / lunar",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Lunar deities, moon watchers, and nocturnal celestial bodies."
+    },
+    {
+      "source": "hekate",
+      "target": "mani",
       "relationship": "Moon / lunar",
       "category": "phenomenon",
       "strength": 2,
@@ -10041,6 +10239,15 @@
     },
     {
       "source": "khonsu",
+      "target": "mani",
+      "relationship": "Moon / lunar",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Lunar deities, moon watchers, and nocturnal celestial bodies."
+    },
+    {
+      "source": "khonsu",
       "target": "metztli",
       "relationship": "Moon / lunar",
       "category": "phenomenon",
@@ -10788,6 +10995,15 @@
     },
     {
       "source": "mamaquilla",
+      "target": "mani",
+      "relationship": "Moon / lunar",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Lunar deities, moon watchers, and nocturnal celestial bodies."
+    },
+    {
+      "source": "mamaquilla",
       "target": "sin",
       "relationship": "Moon / lunar",
       "category": "phenomenon",
@@ -11001,6 +11217,24 @@
       "strength": 2,
       "bidirectional": true,
       "note": "Ocean, sea, river, and freshwater deities; rulers of the aquatic realm."
+    },
+    {
+      "source": "mani",
+      "target": "selene",
+      "relationship": "Moon personified",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Norse and Greek personifications of the moon itself — not merely lunar deities but the moon made god and goddess."
+    },
+    {
+      "source": "mani",
+      "target": "tsukuyomi",
+      "relationship": "Moon personified",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Norse and Japanese male moon deities — the rarer masculine face of the moon across world pantheons."
     },
     {
       "source": "manjushri",
@@ -11508,6 +11742,15 @@
     },
     {
       "source": "medousa",
+      "target": "fafnir",
+      "relationship": "Guardian / protector",
+      "category": "narrative-role",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Guardian figures, boundary protectors, and monstrous sentinels."
+    },
+    {
+      "source": "medousa",
       "target": "garmr",
       "relationship": "Guardian / protector",
       "category": "narrative-role",
@@ -11589,6 +11832,15 @@
     },
     {
       "source": "metztli",
+      "target": "mani",
+      "relationship": "Moon / lunar",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Lunar deities, moon watchers, and nocturnal celestial bodies."
+    },
+    {
+      "source": "metztli",
       "target": "sin",
       "relationship": "Moon / lunar",
       "category": "phenomenon",
@@ -11640,6 +11892,15 @@
       "strength": 2,
       "bidirectional": true,
       "note": "Earth mothers, fertility deities, agrarian powers, and land spirits."
+    },
+    {
+      "source": "mjolnir",
+      "target": "draupnir",
+      "relationship": "Dwarf-forged treasures of the Æsir",
+      "category": "narrative-role",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Sindri and Brokkr's masterworks, won in the same wager with Loki's head as the stake — the hammer and the self-multiplying ring."
     },
     {
       "source": "moirai",
@@ -15278,6 +15539,15 @@
       "note": "Lunar deities, moon watchers, and nocturnal celestial bodies."
     },
     {
+      "source": "seonangshin",
+      "target": "fafnir",
+      "relationship": "Guardian / protector",
+      "category": "narrative-role",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Guardian figures, boundary protectors, and monstrous sentinels."
+    },
+    {
       "source": "serapis",
       "target": "anubis",
       "relationship": "Underworld / death",
@@ -15827,6 +16097,51 @@
       "note": "Hindu destroyer-transformer and his elephant-headed son, remover of obstacles."
     },
     {
+      "source": "sigurd",
+      "target": "brynhildr",
+      "relationship": "The Vǫlsunga cycle: sworn lovers",
+      "category": "narrative-role",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "The dragon-slayer and the valkyrie — betrothed on the mountain, betrayed by the ale of forgetfulness, united only in death."
+    },
+    {
+      "source": "sigurd",
+      "target": "fafnir",
+      "relationship": "Dragon-slayer and hoard-dragon",
+      "category": "narrative-role",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "The Vǫlsunga core: Sigurðr slays Fáfnir on Reginn's counsel and takes the cursed hoard — slayer and dragon bound in one cycle."
+    },
+    {
+      "source": "sigurd",
+      "target": "herakles",
+      "relationship": "Culture hero / monster-slayer",
+      "category": "narrative-role",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Greek and Norse strong-heroes who win imperishable glory by killing monsters — the labors and the dragon-fight as the same plot."
+    },
+    {
+      "source": "sigurd",
+      "target": "reginn",
+      "relationship": "The Vǫlsunga cycle: foster-father and foster-son",
+      "category": "narrative-role",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Reginn reforges Gram and sends Sigurðr against his own brother — then plots the hero's murder and dies by the same blade."
+    },
+    {
+      "source": "simargl",
+      "target": "fafnir",
+      "relationship": "Guardian / protector",
+      "category": "narrative-role",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Guardian figures, boundary protectors, and monstrous sentinels."
+    },
+    {
       "source": "simargl",
       "target": "seonangshin",
       "relationship": "Guardian / protector",
@@ -15838,6 +16153,15 @@
     {
       "source": "sin",
       "target": "change",
+      "relationship": "Moon / lunar",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Lunar deities, moon watchers, and nocturnal celestial bodies."
+    },
+    {
+      "source": "sin",
+      "target": "mani",
       "relationship": "Moon / lunar",
       "category": "phenomenon",
       "strength": 2,
@@ -16629,6 +16953,15 @@
     },
     {
       "source": "suttungr",
+      "target": "fafnir",
+      "relationship": "Guardian / protector",
+      "category": "narrative-role",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Guardian figures, boundary protectors, and monstrous sentinels."
+    },
+    {
+      "source": "suttungr",
       "target": "griffin",
       "relationship": "Guardian / protector",
       "category": "narrative-role",
@@ -17107,6 +17440,15 @@
     {
       "source": "thoth",
       "target": "mamaquilla",
+      "relationship": "Moon / lunar",
+      "category": "phenomenon",
+      "strength": 2,
+      "bidirectional": true,
+      "note": "Lunar deities, moon watchers, and nocturnal celestial bodies."
+    },
+    {
+      "source": "thoth",
+      "target": "mani",
       "relationship": "Moon / lunar",
       "category": "phenomenon",
       "strength": 2,

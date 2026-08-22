@@ -52,7 +52,7 @@ const FUNCTION_GROUPS = [
     note: 'Lunar deities, moon watchers, and nocturnal celestial bodies.',
     ids: [
       'selene', 'artemis', 'hekate', 'thoth', 'khonsu', 'tsukuyomi', 'coyolxauhqui',
-      'metztli', 'chandra', 'mamaquilla', 'hati', 'sin', 'change',
+      'metztli', 'chandra', 'mamaquilla', 'hati', 'sin', 'change', 'mani',
     ],
   },
   {
@@ -219,7 +219,8 @@ const FUNCTION_GROUPS = [
     strength: 2,
     note: 'Guardian figures, boundary protectors, and monstrous sentinels.',
     ids: [
-      'medousa', 'garmr', 'suttungr', 'cerberus', 'griffin', 'andvari', 'simargl', 'seonangshin',
+      'medousa', 'garmr', 'suttungr', 'cerberus', 'griffin', 'andvari', 'simargl',
+      'seonangshin', 'fafnir',
     ],
   },
   {
@@ -282,6 +283,17 @@ const CURATED_PAIRS = [
   { sourceId: 'xiwangmu', targetId: 'houyi', relationship: 'The elixir grant', category: 'narrative-role', strength: 2, bidirectional: true, note: 'The Queen Mother of the West grants Hòuyì the elixir of immortality — the gift that becomes Cháng’é’s ascension.' },
   { sourceId: 'anubis', targetId: 'hermes', relationship: 'Psychopomp', category: 'narrative-role', strength: 3, bidirectional: true, note: 'Egyptian and Greek guides of souls to the afterlife.' },
   { sourceId: 'brigid', targetId: 'agni', relationship: 'Fire / poetry / inspiration', category: 'function', strength: 3, bidirectional: true, note: 'Celtic and Vedic fire-linked deities of inspiration, hearth, and sacred flame.' },
+  { sourceId: 'sigurd', targetId: 'fafnir', relationship: 'Dragon-slayer and hoard-dragon', category: 'narrative-role', strength: 2, bidirectional: true, note: 'The Vǫlsunga core: Sigurðr slays Fáfnir on Reginn\'s counsel and takes the cursed hoard — slayer and dragon bound in one cycle.' },
+  { sourceId: 'sigurd', targetId: 'brynhildr', relationship: 'The Vǫlsunga cycle: sworn lovers', category: 'narrative-role', strength: 2, bidirectional: true, note: 'The dragon-slayer and the valkyrie — betrothed on the mountain, betrayed by the ale of forgetfulness, united only in death.' },
+  { sourceId: 'fafnir', targetId: 'reginn', relationship: 'The Vǫlsunga cycle: brothers divided by the hoard', category: 'narrative-role', strength: 2, bidirectional: true, note: 'Reginn the smith plots, Fáfnir the dragon guards — the cursed gold of Andvari sets brother against brother and kills them both.' },
+  { sourceId: 'sigurd', targetId: 'reginn', relationship: 'The Vǫlsunga cycle: foster-father and foster-son', category: 'narrative-role', strength: 2, bidirectional: true, note: 'Reginn reforges Gram and sends Sigurðr against his own brother — then plots the hero\'s murder and dies by the same blade.' },
+  { sourceId: 'sigurd', targetId: 'herakles', relationship: 'Culture hero / monster-slayer', category: 'narrative-role', strength: 2, bidirectional: true, note: 'Greek and Norse strong-heroes who win imperishable glory by killing monsters — the labors and the dragon-fight as the same plot.' },
+  { sourceId: 'fafnir', targetId: 'jormungandr', relationship: 'Norse serpents', category: 'narrative-role', strength: 2, bidirectional: true, note: 'The two great serpents of Norse tradition — the hoard-dragon of the Vǫlsunga cycle and the world-serpent of Ragnarök.' },
+  { sourceId: 'mani', targetId: 'selene', relationship: 'Moon personified', category: 'phenomenon', strength: 2, bidirectional: true, note: 'Norse and Greek personifications of the moon itself — not merely lunar deities but the moon made god and goddess.' },
+  { sourceId: 'mani', targetId: 'tsukuyomi', relationship: 'Moon personified', category: 'phenomenon', strength: 2, bidirectional: true, note: 'Norse and Japanese male moon deities — the rarer masculine face of the moon across world pantheons.' },
+  { sourceId: 'bifrost', targetId: 'iris', relationship: 'Rainbow between worlds', category: 'phenomenon', strength: 2, bidirectional: true, note: 'Norse and Greek rainbows as the passage between gods and mortals — the bridge that is walked and the messenger who walks it.' },
+  { sourceId: 'bifrost', targetId: 'heimdallr', relationship: 'The watchman and the bridge', category: 'narrative-role', strength: 2, bidirectional: true, note: 'Heimdallr keeps his watch at Himinbjǫrg where the rainbow bridge meets heaven — the sentry and the span are one institution.' },
+  { sourceId: 'mjolnir', targetId: 'draupnir', relationship: 'Dwarf-forged treasures of the Æsir', category: 'narrative-role', strength: 2, bidirectional: true, note: 'Sindri and Brokkr\'s masterworks, won in the same wager with Loki\'s head as the stake — the hammer and the self-multiplying ring.' },
 ];
 
 function validateGroups(groups) {
