@@ -30,7 +30,7 @@ const GOOD_LICENSES = /^(public domain|cc0|cc by(-sa)?( \d\.\d)?|cc-by(-sa)?(-\d
 
 // Junk signals in file titles — modern, non-depiction, or off-topic material.
 const JUNK =
-  /logo|map|diagram|flag|coat of arms|seal|svg|icon|tattoo|cosplay|anime|manga|game|screenshot|poster|album|film|movie|dvd|comic|card|meme|clipart|drawing by|sketch by|render|3d model|wedding|football|soccer|basket|volley|rugby|hockey|cricket|olympics 20|miss |pageant|band |album cover|perfume|watch|car |aircraft|ship |locomotive|building in|street in|town in|village in|city in|school|university|hospital|hotel|restaurant|company|factory|bridge in|river in|mountain in|lake in|cartoon|punch|satire|caricature|thumbnail|gillam|discurso|caminhada|feira|evento|entrevista|\bship\b|\bvessel\b|rotterdam|port of|canal|offshore|crane|tugboat|\bboat\b|\btug\b|harbor|harbour|quarters|sundkaj|close-up|aritana|perfil/i;
+  /logo|map|diagram|flag|coat of arms|seal|svg|icon|tattoo|cosplay|anime|manga|\bgames?\b|screenshot|poster|album|film|movie|dvd|comic|card|meme|clipart|drawing by|sketch by|render|3d model|wedding|football|soccer|basket|volley|rugby|hockey|cricket|olympics 20|miss |pageant|band |album cover|perfume|watch|car |aircraft|ship |locomotive|building in|street in|town in|village in|city in|school|university|hospital|hotel|restaurant|company|factory|bridge in|river in|mountain in|lake in|cartoon|punch|satire|caricature|thumbnail|gillam|discurso|caminhada|feira|evento|entrevista|\bship\b|\bvessel\b|rotterdam|port of|canal|offshore|crane|tugboat|\bboat\b|\btug\b|harbor|harbour|quarters|sundkaj|close-up|aritana|perfil/i;
 
 // Depiction signals in file titles.
 const DEPICT =
@@ -50,6 +50,24 @@ const ALIASES = {
   vajrapani: ['Vajrapani'],
   ksitigarbha: ['Ksitigarbha', 'Jizo', 'Dizang'],
   mara: ['Mara daughters', 'Mara army', 'Mara demon', 'Temptation of the Buddha', 'Maravijaya', 'Versuchung des Buddha'],
+  // Short names need multi-word aliases: the topicality gate only accepts
+  // aliases of >= 4 squashed alphanumerics, so bare 'Tyr'/'Om' never match.
+  tyr: ['Tyr feeding', 'Tyr and Fenrir', 'Fenrir and Tyr', '4to Tyr', 'Tyr manuscript'],
+  eos: ['Eos and', 'Eos Aurora', 'Eos Memnon', 'Tithonos', 'Eos Kephalos'],
+  gilgamesh: ['Gilgamesh', 'Gilgamesh lion', 'Gilgamesh Huwawa'],
+  iuno: ['Juno', 'Iuno', 'Juno Regina'],
+  // Bare 'Maat' would also pass topicality for the Lisbon MAAT museum; the
+  // multi-word forms keep the gate on the goddess.
+  ma: ['goddess Maat', 'Maat goddess', 'dea Maat', 'Maat relief', 'Maat tomb'],
+  hp: ['Hapi Nile', 'Hapi god', 'Hapy'],
+  om: ['Om mani padme', 'Hari Om', 'Om symbol', 'Om calligraphy'],
+  monokeros: [
+    'Unicorn Tapestries',
+    'Hunt of the Unicorn',
+    'Lady and the Unicorn',
+    'Dame licorne',
+    'Monoceros',
+  ],
 };
 
 // Pantheon-specific query context to keep results on-topic.
@@ -204,6 +222,16 @@ const MANUAL = {
     'File:Hermodr.jpg',
     'File:Treated NKS hermodr.jpg',
     'File:Balder and Nanna with Hermod.jpg',
+  ],
+  // ʾAṯiratu = Athirat/Asherah. Search is polluted by a ship named Asherah
+  // and generic fertility figurines, so use hand-verified Judean pillar /
+  // Asherah figurine files from the Israel Museum, Penn Museum and the Met.
+  athiratu: [
+    'File:Asherah 13th century BC Israel Museum.jpg',
+    'File:Judaean female figurines - Israel Museum, Jerusalem.jpg',
+    'File:Mother of Twins Pottery Figurine of Fertility Goddess, 13th Century BC (28347811027).jpg',
+    'File:Penn Musuem Beit Shemesh Cylindrical Figurines.jpg',
+    'File:Nude female figure (Judean pillar figurine) MET DP-42289-001.jpg',
   ],
 };
 
