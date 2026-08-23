@@ -180,6 +180,55 @@ function main() {
   }
 
   console.log(`\n✓ ${id} promoted to flagship`);
+
+  // Post-promotion completeness report. The flywheel validator hard-fails on
+  // any of these missing, so surface them here, while the fix is cheap.
+  {
+    const lore = JSON.parse(
+      fs.readFileSync(path.join(__dirname, 'lore-catalog.json'), 'utf8'),
+    );
+    const galleryNow = JSON.parse(fs.readFileSync(galleryPath, 'utf8'));
+    const effects = JSON.parse(
+      fs.readFileSync(
+        path.join(__dirname, '..', 'templates', 'flagship', 'effects', 'effects.json'),
+        'utf8',
+      ),
+    );
+    const patternsSrc = fs.readFileSync(
+      path.join(__dirname, '..', 'type', 'js', 'industry-patterns.js'),
+      'utf8',
+    );
+    const scholars = fs.existsSync(
+      path.join(__dirname, '..', 'platform', 'scholars', 'content', `${id}.json`),
+    );
+    const seats = (patternsSrc.match(new RegExp(`'${id}'`, 'g')) || []).length;
+    const checks = [
+      ['lore catalog (scripts/lore-catalog.json)', lore[id] && Object.keys(lore[id]).length > 0],
+      ['rental tier (js/archetypes-v2.js)', /rentalTier:\s*"SSS|S|A|B|C"/.test(newArchetypesSrc.split(`id: "${id}"`)[1]?.slice(0, 400) || '')],
+      ['bespoke hero effect (templates/flagship/effects/)', Boolean(effects[id])],
+      [
+        'curated gallery ≥2 images (scripts/gallery-data.json, or _honestZero)',
+        ((galleryNow[id] && galleryNow[id].images) || []).length >= 2 ||
+          (galleryNow._honestZero || []).includes(id),
+      ],
+      [`industry-pattern seats ≥3 (type/js/industry-patterns.js) — has ${seats}`, seats >= 3],
+      ['scholars content (platform/scholars/content/)', scholars],
+    ];
+    console.log('\nIntegration checklist:');
+    let gaps = 0;
+    for (const [label, ok] of checks) {
+      console.log(`  ${ok ? '✓' : '⚠ MISSING'}  ${label}`);
+      if (!ok) gaps++;
+    }
+    if (gaps) {
+      console.warn(
+        `\n⚠ ${gaps} integration gap(s) — npm run validate-flywheel will fail until resolved.\n` +
+          '  Remedies: lore → scripts/lore-catalog.json; gallery → node scripts/curate-gallery-images.js --only ' +
+          id +
+          ' (never ship the brand-asset fallback silently; if Commons genuinely has no coverage, add the id to _honestZero in gallery-data.json); effect → templates/flagship/effects/; seats → type/js/industry-patterns.js; tier → rentalTier in js/archetypes-v2.js.',
+      );
+    }
+  }
 }
 
 main();

@@ -1,8 +1,8 @@
 # PuniCodex Oracle — Model Card
 
 **Model family:** PuniCodex Oracle (specialized language model)  
-**Data version:** 2.0.107  
-**Generated:** 2026-08-22T04:00:50.596Z  
+**Data version:** 2.0.108  
+**Generated:** 2026-08-23T21:46:36.639Z  
 **License:** CC BY 4.0 for dataset; ISC for software (see root LICENSE).
 
 ## Intended Use
@@ -71,7 +71,7 @@ Do not use this model to generate deceptive domains, impersonate brands, or evad
 
 Before supervised fine-tuning, domain-adapt the base model on the raw scholarly corpus:
 
-- `data/corpus/pretrain.jsonl` — 5,714 training documents (581,700 whitespace tokens).
+- `data/corpus/pretrain.jsonl` — 5,714 training documents (581,712 whitespace tokens).
 - `data/corpus/pretrain-validation.jsonl` — 290 validation documents (32,268 whitespace tokens).
 - HuggingFace-compatible splits in `data/corpus/huggingface/`.
 

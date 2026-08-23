@@ -1246,7 +1246,7 @@ handleReturnFromStripe();
   if (!modal || !grid) return;
 
   const templeId = 'theia';
-  const siteName = 'Théia';
+  const siteName = 'Theía';
   let selectedCents = 700;
 
   const els = {

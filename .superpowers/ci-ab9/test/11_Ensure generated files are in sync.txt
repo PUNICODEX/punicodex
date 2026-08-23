@@ -1,0 +1,2013 @@
+﻿2026-08-21T09:42:56.9083781Z ##[group]Run npm run generate
+2026-08-21T09:42:56.9084087Z [36;1mnpm run generate[0m
+2026-08-21T09:42:56.9084345Z [36;1mgit diff --exit-code[0m
+2026-08-21T09:42:56.9138872Z shell: /usr/bin/bash -e {0}
+2026-08-21T09:42:56.9139153Z env:
+2026-08-21T09:42:56.9139446Z   pythonLocation: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-08-21T09:42:56.9139900Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.14.7/x64/lib/pkgconfig
+2026-08-21T09:42:56.9140323Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-08-21T09:42:56.9140702Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-08-21T09:42:56.9141076Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-08-21T09:42:56.9141446Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.14.7/x64/lib
+2026-08-21T09:42:56.9141797Z ##[endgroup]
+2026-08-21T09:42:57.0153019Z 
+2026-08-21T09:42:57.0153648Z > punicodex@1.0.0 generate
+2026-08-21T09:42:57.0154179Z > node scripts/generate.js
+2026-08-21T09:42:57.0154436Z 
+2026-08-21T09:42:57.0461182Z ╔════════════════════════════════════════════════════════╗
+2026-08-21T09:42:57.0462250Z ║  PuniCodex — Generating all derived artifacts          ║
+2026-08-21T09:42:57.0463064Z ╚════════════════════════════════════════════════════════╝
+2026-08-21T09:42:57.0463854Z 
+2026-08-21T09:42:57.0464197Z ▸ platform/generate-unicode-dir-v2.js
+2026-08-21T09:42:57.1566392Z Generated mobile/shared/unicode-dir.js with 5,190 characters across 26 categories.
+2026-08-21T09:42:57.1726724Z 
+2026-08-21T09:42:57.1727576Z ▸ scripts/sync-shared-lexicon.js
+2026-08-21T09:42:57.2122014Z Synced extension/shared/lexicon.js
+2026-08-21T09:42:57.2148872Z Synced mobile/shared/lexicon.js
+2026-08-21T09:42:57.2180993Z 
+2026-08-21T09:42:57.2181684Z ▸ scripts/sync-shared-engine.js
+2026-08-21T09:42:57.2521374Z Synced extension/shared/engine.js
+2026-08-21T09:42:57.2525660Z Synced mobile/shared/engine.js
+2026-08-21T09:42:57.2527123Z Synced extension/shared/pantheon-meta.js
+2026-08-21T09:42:57.2528742Z Synced mobile/shared/pantheon-meta.js
+2026-08-21T09:42:57.2565561Z 
+2026-08-21T09:42:57.2566158Z ▸ scripts/build-android-assets.js
+2026-08-21T09:42:57.3229041Z Wrote 966 lexicon entries
+2026-08-21T09:42:57.3512757Z Wrote 1677 palette entries
+2026-08-21T09:42:57.3514442Z Wrote android/app/src/main/assets/shared/README.md
+2026-08-21T09:42:57.3515438Z Categories in palette:
+2026-08-21T09:42:57.3516213Z   latin: 500
+2026-08-21T09:42:57.3516612Z   greek: 297
+2026-08-21T09:42:57.3516990Z   cyrillic: 82
+2026-08-21T09:42:57.3517332Z   runic: 81
+2026-08-21T09:42:57.3517666Z   math: 60
+2026-08-21T09:42:57.3519153Z   enclosed: 60
+2026-08-21T09:42:57.3519532Z   symbols: 40
+2026-08-21T09:42:57.3519864Z   dingbats: 40
+2026-08-21T09:42:57.3520214Z   punctuation: 40
+2026-08-21T09:42:57.3520578Z   cuneiform: 40
+2026-08-21T09:42:57.3520946Z   roman: 32
+2026-08-21T09:42:57.3521277Z   combining: 30
+2026-08-21T09:42:57.3521592Z   arrows: 30
+2026-08-21T09:42:57.3521892Z   box: 30
+2026-08-21T09:42:57.3522187Z   shapes: 30
+2026-08-21T09:42:57.3522490Z   currency: 30
+2026-08-21T09:42:57.3522832Z   linearb: 30
+2026-08-21T09:42:57.3523159Z   braille: 30
+2026-08-21T09:42:57.3523462Z   domino: 30
+2026-08-21T09:42:57.3523770Z   letterlike: 30
+2026-08-21T09:42:57.3524527Z   gothic: 27
+2026-08-21T09:42:57.3524835Z   supsub: 25
+2026-08-21T09:42:57.3525224Z   blocks: 22
+2026-08-21T09:42:57.3525509Z   baybayin: 21
+2026-08-21T09:42:57.3525826Z   hieroglyphs: 20
+2026-08-21T09:42:57.3526211Z   alchemical: 20
+2026-08-21T09:42:57.3591086Z 
+2026-08-21T09:42:57.3591816Z ▸ scripts/export-platform-lexicon.js
+2026-08-21T09:42:57.4365744Z ✓ Exported 966 entries, 6443 breakdowns to lexicon.json
+2026-08-21T09:42:57.4422939Z 
+2026-08-21T09:42:57.4423753Z ▸ scripts/generate-similarities.js
+2026-08-21T09:42:57.5218863Z ✓ Generated similarities.json
+2026-08-21T09:42:57.5220292Z   nodes: 236
+2026-08-21T09:42:57.5220672Z   edges: 1923
+2026-08-21T09:42:57.5224511Z   relationships: 46 (Chaos / monster, Chaos / primordial / world serpent, Creator / cosmogonic, Culture hero / monster-slayer, Dawn / morning, Death / rebirth, Divine father / son, Divine twins / fertility, Earth / mother / fertility, Earth mother, Fate / time, Fire / forge / craft, Fire / poetry / inspiration, Guardian / protector, Healing / medicine, Hunt / wild, Hunt / wilderness, Justice / law / truth, Love / beauty / desire, Messenger / travel / commerce, Messenger / travel / wisdom, Moon / lunar, Moon personified, Psychopomp, Psychopomp / soul guide, Rebel against heaven, Rebirth / vegetation, Same figure, two traditions, Same goddess, two traditions, Sea / cosmic water, Sea / water, Sky father / sovereign, Sun / light, The elixir cycle, The elixir grant, Thunder / storm sovereignty, Thunder sovereignty, Trickster / mischief, Trickster / shape-shifter, Underworld / death, War / battle, War / destruction, War / protection, Wisdom / knowledge, Wisdom / psychopomp, Wisdom / writing)
+2026-08-21T09:42:57.5228702Z   categories: 4 (function, identity, narrative-role, phenomenon)
+2026-08-21T09:42:57.5272196Z 
+2026-08-21T09:42:57.5272827Z ▸ scripts/generate-industry-patterns.js
+2026-08-21T09:42:57.6130972Z ✓ platform/api/industry-patterns.json (unchanged)
+2026-08-21T09:42:57.6211779Z ✓ platform/browser/renderer/industry-patterns.json (unchanged)
+2026-08-21T09:42:57.6212591Z   industries: 58, entries: 291, primary: 422, resonant: 720, aliases: 1389
+2026-08-21T09:42:57.6269256Z 
+2026-08-21T09:42:57.6269655Z ▸ scripts/generate-owned-entries.js
+2026-08-21T09:42:57.6972439Z ✓ Generated /home/runner/work/punycodex/punycodex/js/owned-entries.js
+2026-08-21T09:42:57.6973335Z   Owned entries: 287
+2026-08-21T09:42:57.7021644Z 
+2026-08-21T09:42:57.7022052Z ▸ scripts/export-codex-data.js
+2026-08-21T09:42:57.9207378Z ✓ codex/data/codex-lexicon.json (unchanged)
+2026-08-21T09:42:57.9291892Z ✓ codex/data/original-scripts.json (unchanged)
+2026-08-21T09:42:57.9314627Z ✓ codex/data/source-catalog.json (unchanged)
+2026-08-21T09:42:57.9330838Z ✓ codex/index.html source table (unchanged)
+2026-08-21T09:42:57.9333907Z ✓ codex/data/owned-domains.json (unchanged)
+2026-08-21T09:42:57.9367580Z ✓ codex/data/availability.json (unchanged)
+2026-08-21T09:42:57.9486238Z 
+2026-08-21T09:42:57.9486809Z ▸ scripts/build-original-script-lookup.js
+2026-08-21T09:42:58.0479657Z Built original-script lookup: 778 entries → /home/runner/work/punycodex/punycodex/js/original-script-lookup.js
+2026-08-21T09:42:58.0545396Z 
+2026-08-21T09:42:58.0545967Z ▸ scripts/export-lore-catalog.js
+2026-08-21T09:42:58.1765046Z ✓ Exported 287 flagship lore entries to 4 consumers.
+2026-08-21T09:42:58.1835740Z 
+2026-08-21T09:42:58.1836259Z ▸ scripts/generate-cards.js
+2026-08-21T09:42:58.3697045Z ✓ Wrote platform/api/cards.json
+2026-08-21T09:42:58.3728852Z ✓ Wrote game/cards.json
+2026-08-21T09:42:58.3729541Z   1803 cards (1540 standard, 263 original-script foils, 861 flagship)
+2026-08-21T09:42:58.3730398Z   rarity: common=496 rare=654 legendary=287 mythic=263 uncommon=103
+2026-08-21T09:42:58.3850673Z 
+2026-08-21T09:42:58.3851327Z ▸ scripts/generate-cards-page.js
+2026-08-21T09:42:58.5911903Z Cards gallery: 1803 static frames baked (287 full-arts, 263 secret rares, 25 pantheons)
+2026-08-21T09:42:58.5995903Z 
+2026-08-21T09:42:58.5996775Z ▸ scripts/sync-middleware-domains.js
+2026-08-21T09:42:58.6869783Z ✓ middleware.js synced
+2026-08-21T09:42:58.6872399Z   Previous domains: 1294
+2026-08-21T09:42:58.6872820Z   Desired domains:  1294
+2026-08-21T09:42:58.6873664Z   Added:            0
+2026-08-21T09:42:58.6874034Z   Lexicon ids:      966
+2026-08-21T09:42:58.6874411Z   Legacy redirects: 10
+2026-08-21T09:42:58.6875291Z   Backup:           /home/runner/work/punycodex/punycodex/middleware.js.backup
+2026-08-21T09:42:58.6927630Z 
+2026-08-21T09:42:58.6928316Z ▸ scripts/sync-public-copy.js
+2026-08-21T09:42:58.7729820Z 
+2026-08-21T09:42:58.7730823Z ✓ Public copy synced for 0 file(s).
+2026-08-21T09:42:58.7784721Z 
+2026-08-21T09:42:58.7785236Z ▸ scripts/generate-temples.js
+2026-08-21T09:42:59.0267629Z 🏛️  PUNICODEX Temple Generator
+2026-08-21T09:42:59.0268463Z    Lexicon entries: 966
+2026-08-21T09:42:59.0268726Z 
+2026-08-21T09:42:59.3563849Z    ✓ Generated 50 temples...
+2026-08-21T09:42:59.5619412Z    ✓ Generated 100 temples...
+2026-08-21T09:42:59.7479959Z    ✓ Generated 150 temples...
+2026-08-21T09:42:59.9351697Z    ✓ Generated 200 temples...
+2026-08-21T09:43:00.1354542Z    ✓ Generated 250 temples...
+2026-08-21T09:43:00.3090683Z    ✓ Generated 300 temples...
+2026-08-21T09:43:00.4786056Z    ✓ Generated 350 temples...
+2026-08-21T09:43:00.6546858Z    ✓ Generated 400 temples...
+2026-08-21T09:43:00.8299235Z    ✓ Generated 450 temples...
+2026-08-21T09:43:01.0063758Z    ✓ Generated 500 temples...
+2026-08-21T09:43:01.1866342Z    ✓ Generated 550 temples...
+2026-08-21T09:43:01.3643976Z    ✓ Generated 600 temples...
+2026-08-21T09:43:01.5539673Z    ✓ Generated 650 temples...
+2026-08-21T09:43:01.6561074Z 
+2026-08-21T09:43:01.6561998Z ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+2026-08-21T09:43:01.6562426Z    Generated:  679
+2026-08-21T09:43:01.6562719Z    Skipped:    287 (flagships)
+2026-08-21T09:43:01.6563007Z    Errors:     0
+2026-08-21T09:43:01.6563344Z ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+2026-08-21T09:43:01.7040948Z 
+2026-08-21T09:43:01.7042171Z ▸ scripts/create-flagship.js --regenerate-all
+2026-08-21T09:43:02.5663749Z ✓ aigyptos: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/aigyptos/.backup/1787305382510)
+2026-08-21T09:43:02.5665676Z (node:6156) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:02.5666925Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:03.1091636Z ✓ aphrodite: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/aphrodite/.backup/1787305383051)
+2026-08-21T09:43:03.1093563Z (node:6164) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:03.1095297Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:03.6347649Z ✓ ares: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/ares/.backup/1787305383577)
+2026-08-21T09:43:03.6350370Z (node:6172) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:03.6351358Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:04.1687178Z ✓ asia: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/asia/.backup/1787305384109)
+2026-08-21T09:43:04.1689551Z (node:6180) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:04.1691043Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:04.7018669Z ✓ athena: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/athena/.backup/1787305384640)
+2026-08-21T09:43:04.7021063Z (node:6188) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:04.7028966Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:05.2469501Z ✓ athenai: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/athenai/.backup/1787305385187)
+2026-08-21T09:43:05.2471893Z (node:6196) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:05.2473097Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:05.7775684Z ✓ demeter: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/demeter/.backup/1787305385718)
+2026-08-21T09:43:05.7777249Z (node:6204) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:05.7778368Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:06.3044218Z ✓ europe: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/europe/.backup/1787305386251)
+2026-08-21T09:43:06.3046459Z (node:6212) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:06.3047545Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:06.8391317Z ✓ gaia: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/gaia/.backup/1787305386780)
+2026-08-21T09:43:06.8393145Z (node:6220) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:06.8394509Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:07.3769354Z ✓ helios: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/helios/.backup/1787305387320)
+2026-08-21T09:43:07.3771653Z (node:6228) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:07.3772987Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:07.9116671Z ✓ hephaistos: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/hephaistos/.backup/1787305387854)
+2026-08-21T09:43:07.9118691Z (node:6236) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:07.9119486Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:08.4504966Z ✓ hera: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/hera/.backup/1787305388392)
+2026-08-21T09:43:08.4506733Z (node:6244) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:08.4508119Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:08.9905963Z ✓ hermes: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/hermes/.backup/1787305388935)
+2026-08-21T09:43:08.9908527Z (node:6252) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:08.9909430Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:09.5257394Z ✓ hestia: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/hestia/.backup/1787305389472)
+2026-08-21T09:43:09.5262559Z (node:6261) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:09.5263412Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:10.0566010Z ✓ kobe: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/kobe/.backup/1787305390004)
+2026-08-21T09:43:10.0568041Z (node:6269) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:10.0569487Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:10.5754215Z ✓ kyoto: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/kyoto/.backup/1787305390521)
+2026-08-21T09:43:10.5755970Z (node:6277) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:10.5756819Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:11.0923783Z ✓ libye: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/libye/.backup/1787305391039)
+2026-08-21T09:43:11.0926058Z (node:6285) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:11.6163888Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:11.6165650Z ✓ osaka: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/osaka/.backup/1787305391561)
+2026-08-21T09:43:11.6167056Z (node:6293) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:11.6168075Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:12.1549388Z ✓ persephone: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/persephone/.backup/1787305392097)
+2026-08-21T09:43:12.1551825Z (node:6301) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:12.1552616Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:12.6836046Z ✓ poseidon: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/poseidon/.backup/1787305392625)
+2026-08-21T09:43:12.6839215Z (node:6309) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:12.6840268Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:13.2224169Z ✓ prometheus: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/prometheus/.backup/1787305393164)
+2026-08-21T09:43:13.2225938Z (node:6318) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:13.2226857Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:13.7502408Z ✓ selene: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/selene/.backup/1787305393693)
+2026-08-21T09:43:13.7504713Z (node:6327) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:13.7506006Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:14.2764188Z ✓ sparte: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/sparte/.backup/1787305394222)
+2026-08-21T09:43:14.2765870Z (node:6335) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:14.2767103Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:14.8009107Z ✓ zeus: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/zeus/.backup/1787305394747)
+2026-08-21T09:43:14.8015579Z (node:6343) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:14.8016845Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:15.3268762Z ✓ alfheimr: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/alfheimr/.backup/1787305395269)
+2026-08-21T09:43:15.3270781Z (node:6351) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:15.3272094Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:15.8596888Z ✓ artemis: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/artemis/.backup/1787305395798)
+2026-08-21T09:43:15.8599563Z (node:6359) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:15.8600795Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:16.3913611Z ✓ atlas: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/atlas/.backup/1787305396332)
+2026-08-21T09:43:16.3916397Z (node:6367) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:16.3917180Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:16.9229973Z ✓ chaos: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/chaos/.backup/1787305396870)
+2026-08-21T09:43:16.9232423Z (node:6375) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:16.9233240Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:17.4568458Z ✓ delphoi: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/delphoi/.backup/1787305397397)
+2026-08-21T09:43:17.4570527Z (node:6383) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:17.4571777Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:18.0047703Z ✓ dionysos: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/dionysos/.backup/1787305397946)
+2026-08-21T09:43:18.0050058Z (node:6391) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:18.0050889Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:18.5322591Z ✓ helheimr: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/helheimr/.backup/1787305398477)
+2026-08-21T09:43:18.5324749Z (node:6399) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:18.5325532Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:19.0715219Z ✓ jotunheimr: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/jotunheimr/.backup/1787305399011)
+2026-08-21T09:43:19.0717175Z (node:6407) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:19.0718675Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:19.6011120Z ✓ ker: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/ker/.backup/1787305399549)
+2026-08-21T09:43:19.6013305Z (node:6415) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:19.6014091Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:20.1459928Z ✓ medousa: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/medousa/.backup/1787305400090)
+2026-08-21T09:43:20.1462362Z (node:6423) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:20.1463686Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:20.6699804Z (node:6431) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:20.6701811Z ✓ midgardr: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/midgardr/.backup/1787305400614)
+2026-08-21T09:43:20.6702867Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:21.2027744Z ✓ muspellheimr: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/muspellheimr/.backup/1787305401146)
+2026-08-21T09:43:21.2030056Z (node:6439) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:21.2030880Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:21.7397278Z ✓ maat: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/maat/.backup/1787305401678)
+2026-08-21T09:43:21.7399205Z (node:6447) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:21.7400497Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:22.2625564Z ✓ maa: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/maa/.backup/1787305402210)
+2026-08-21T09:43:22.2627612Z (node:6455) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:22.2628543Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:22.7959317Z ✓ odinn: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/odinn/.backup/1787305402741)
+2026-08-21T09:43:22.7961029Z (node:6463) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:22.7961876Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:23.3332383Z ✓ olympos: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/olympos/.backup/1787305403272)
+2026-08-21T09:43:23.3334266Z (node:6471) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:23.3335438Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:23.8635708Z ✓ pontos: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/pontos/.backup/1787305403811)
+2026-08-21T09:43:23.8639431Z (node:6479) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:23.8640748Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:24.3899143Z ✓ ragnarok: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/ragnarok/.backup/1787305404336)
+2026-08-21T09:43:24.3900790Z (node:6487) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:24.3901627Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:24.9224969Z ✓ ra: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/ra/.backup/1787305404869)
+2026-08-21T09:43:24.9226771Z (node:6495) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:24.9228591Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:25.4458902Z ✓ sia: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/sia/.backup/1787305405390)
+2026-08-21T09:43:25.4460890Z (node:6503) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:25.4462000Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:25.9716686Z ✓ shiva: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/shiva/.backup/1787305405919)
+2026-08-21T09:43:25.9718764Z (node:6511) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:25.9719606Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:26.4984447Z ✓ shu: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/shu/.backup/1787305406443)
+2026-08-21T09:43:26.4986191Z (node:6519) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:26.4987125Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:27.0292280Z ✓ tartaros: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/tartaros/.backup/1787305406972)
+2026-08-21T09:43:27.0294197Z (node:6527) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:27.0295171Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:27.5554228Z ✓ thor: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/thor/.backup/1787305407503)
+2026-08-21T09:43:27.5556422Z (node:6536) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:27.5557220Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:28.0799719Z ✓ ab: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/ab/.backup/1787305408025)
+2026-08-21T09:43:28.0801531Z (node:6545) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:28.0802963Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:28.5992350Z ✓ akh: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/akh/.backup/1787305408546)
+2026-08-21T09:43:28.5994567Z (node:6553) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:28.5995777Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:29.1368578Z ✓ apollon: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/apollon/.backup/1787305409079)
+2026-08-21T09:43:29.1370711Z (node:6561) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:29.1371486Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:29.6697416Z ✓ hades: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/hades/.backup/1787305409612)
+2026-08-21T09:43:29.6699192Z (node:6569) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:29.6699991Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:30.2118351Z ✓ hekate: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/hekate/.backup/1787305410155)
+2026-08-21T09:43:30.2120168Z (node:6577) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:30.2121440Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:30.7450876Z ✓ nike: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/nike/.backup/1787305410688)
+2026-08-21T09:43:30.7452912Z (node:6585) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:30.7453877Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:31.2798893Z ✓ el: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/el/.backup/1787305411219)
+2026-08-21T09:43:31.2800643Z (node:6593) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:31.2801678Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:31.7956018Z ✓ baal: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/baal/.backup/1787305411737)
+2026-08-21T09:43:31.7957716Z (node:6601) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:31.7959112Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:32.3255719Z ✓ anat: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/anat/.backup/1787305412273)
+2026-08-21T09:43:32.3258130Z (node:6609) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:32.3259257Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:32.8499505Z (node:6617) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:32.8500925Z ✓ asherah: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/asherah/.backup/1787305412791)
+2026-08-21T09:43:32.8501687Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:33.3863899Z ✓ kronos: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/kronos/.backup/1787305413327)
+2026-08-21T09:43:33.3865795Z (node:6625) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:33.3867158Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:33.9150043Z (node:6633) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:33.9150960Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:33.9152051Z ✓ enlil: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/enlil/.backup/1787305413856)
+2026-08-21T09:43:34.4511777Z ✓ typhon: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/typhon/.backup/1787305414393)
+2026-08-21T09:43:34.4514034Z (node:6641) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:34.4514838Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:34.9906348Z ✓ ishtar: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/ishtar/.backup/1787305414933)
+2026-08-21T09:43:34.9908350Z (node:6649) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:34.9909644Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:35.5145893Z ✓ aither: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/aither/.backup/1787305415456)
+2026-08-21T09:43:35.5149070Z (node:6657) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:35.5150395Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:36.0485158Z ✓ astart: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/astart/.backup/1787305415991)
+2026-08-21T09:43:36.0486938Z (node:6665) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:36.0488434Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:36.5745290Z ✓ ba: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/ba/.backup/1787305416516)
+2026-08-21T09:43:36.5746964Z (node:6673) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:36.5748774Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:37.1099290Z ✓ ea: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/ea/.backup/1787305417054)
+2026-08-21T09:43:37.1101066Z (node:6681) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:37.1102194Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:37.6342572Z ✓ eros: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/eros/.backup/1787305417577)
+2026-08-21T09:43:37.6345255Z (node:6689) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:37.6346042Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:38.1743706Z ✓ ganesha: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/ganesha/.backup/1787305418115)
+2026-08-21T09:43:38.1745651Z (node:6697) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:38.1746592Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:38.7065569Z ✓ heka: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/heka/.backup/1787305418649)
+2026-08-21T09:43:38.7067340Z (node:6705) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:38.7068803Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:39.2320298Z ✓ horus: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/horus/.backup/1787305419177)
+2026-08-21T09:43:39.2324692Z (node:6713) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:39.2326019Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:39.7675956Z ✓ kali: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/kali/.backup/1787305419711)
+2026-08-21T09:43:39.7678357Z (node:6721) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:39.7679646Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:40.3109788Z ✓ prajapati: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/prajapati/.backup/1787305420250)
+2026-08-21T09:43:40.3111660Z (node:6729) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:40.3112517Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:40.8387482Z ✓ rta: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/rta/.backup/1787305420779)
+2026-08-21T09:43:40.8389564Z (node:6737) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:40.8390598Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:41.3737399Z ✓ vishnu: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/vishnu/.backup/1787305421319)
+2026-08-21T09:43:41.3739897Z (node:6745) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:41.3740676Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:41.9052812Z ✓ apsu: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/apsu/.backup/1787305421848)
+2026-08-21T09:43:41.9054779Z (node:6753) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:41.9055951Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:42.4377539Z ✓ okeanos: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/okeanos/.backup/1787305422379)
+2026-08-21T09:43:42.4379567Z (node:6761) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:42.4380557Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:42.9666494Z ✓ trengtreng: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/trengtreng/.backup/1787305422917)
+2026-08-21T09:43:42.9668702Z (node:6770) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:42.9669503Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:43.4912420Z ✓ varuna: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/varuna/.backup/1787305423433)
+2026-08-21T09:43:43.4914534Z (node:6778) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:43.4915784Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:44.0180046Z ✓ ka: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/ka/.backup/1787305423960)
+2026-08-21T09:43:44.0182192Z (node:6786) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:44.0183259Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:44.5553627Z ✓ asa: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/asa/.backup/1787305424495)
+2026-08-21T09:43:44.5555769Z (node:6794) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:44.5556571Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:45.0773295Z ✓ vac: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/vac/.backup/1787305425023)
+2026-08-21T09:43:45.0775389Z (node:6802) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:45.0776537Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:45.6001292Z ✓ anu: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/anu/.backup/1787305425546)
+2026-08-21T09:43:45.6004112Z (node:6810) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:45.6005441Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:46.1215956Z ✓ hen: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/hen/.backup/1787305426063)
+2026-08-21T09:43:46.1218076Z (node:6818) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:46.1219384Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:46.6432647Z ✓ om: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/om/.backup/1787305426589)
+2026-08-21T09:43:46.6434718Z (node:6826) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:46.6435805Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:47.1705152Z ✓ ahuramazda: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/ahuramazda/.backup/1787305427112)
+2026-08-21T09:43:47.1707059Z (node:6834) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:47.1708043Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:47.7044401Z ✓ lakshmi: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/lakshmi/.backup/1787305427641)
+2026-08-21T09:43:47.7046326Z (node:6842) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:47.7048057Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:48.2273930Z ✓ nikko: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/nikko/.backup/1787305428170)
+2026-08-21T09:43:48.2276178Z (node:6850) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:48.2276964Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:48.7615638Z ✓ nirmata: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/nirmata/.backup/1787305428705)
+2026-08-21T09:43:48.7617332Z (node:6858) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:48.7618513Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:49.2879218Z ✓ parvati: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/parvati/.backup/1787305429232)
+2026-08-21T09:43:49.2881055Z (node:6866) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:49.2882243Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:49.8274620Z ✓ ptah: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/ptah/.backup/1787305429767)
+2026-08-21T09:43:49.8276640Z (node:6874) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:49.8277438Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:50.3598128Z ✓ rama: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/rama/.backup/1787305430301)
+2026-08-21T09:43:50.3600317Z (node:6882) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:50.3601333Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:50.8894484Z ✓ tiamat: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/tiamat/.backup/1787305430829)
+2026-08-21T09:43:50.8896702Z (node:6890) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:50.8897491Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:51.4264684Z ✓ tyr: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/tyr/.backup/1787305431373)
+2026-08-21T09:43:51.4266733Z (node:6898) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:51.4267520Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:51.9513718Z ✓ valholl: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/valholl/.backup/1787305431893)
+2026-08-21T09:43:51.9516265Z (node:6906) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:51.9517097Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:52.4704558Z ✓ ma: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/ma/.backup/1787305432417)
+2026-08-21T09:43:52.4708348Z (node:6914) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:52.4709151Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:53.0055709Z ✓ erebus: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/erebus/.backup/1787305432951)
+2026-08-21T09:43:53.0069717Z (node:6922) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:53.0071036Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:53.5472671Z ✓ ashur: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/ashur/.backup/1787305433495)
+2026-08-21T09:43:53.5474376Z (node:6930) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:53.5475394Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:54.0766120Z ✓ shamash: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/shamash/.backup/1787305434024)
+2026-08-21T09:43:54.0768399Z (node:6938) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:54.0769607Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:54.6082355Z ✓ quetzalcoatl: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/quetzalcoatl/.backup/1787305434550)
+2026-08-21T09:43:54.6084194Z (node:6946) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:54.6085535Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:55.1369426Z ✓ mot: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/mot/.backup/1787305435082)
+2026-08-21T09:43:55.1371167Z (node:6954) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:55.1372559Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:55.6600259Z ✓ aseratu: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/aseratu/.backup/1787305435602)
+2026-08-21T09:43:55.6602010Z (node:6962) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:55.6603201Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:56.2007081Z ✓ leviathan: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/leviathan/.backup/1787305436146)
+2026-08-21T09:43:56.2009298Z (node:6970) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:56.2010925Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:56.7423504Z ✓ njordr: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/njordr/.backup/1787305436682)
+2026-08-21T09:43:56.7425396Z (node:6978) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:56.7426326Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:57.2823844Z ✓ ankh: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/ankh/.backup/1787305437220)
+2026-08-21T09:43:57.2825589Z (node:6986) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:57.2826891Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:57.8215980Z ✓ isis: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/isis/.backup/1787305437762)
+2026-08-21T09:43:57.8217678Z (node:6994) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:57.8219377Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:58.3487992Z ✓ sekhmet: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/sekhmet/.backup/1787305438293)
+2026-08-21T09:43:58.3492128Z (node:7002) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:58.3493385Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:58.8827377Z ✓ bastet: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/bastet/.backup/1787305438827)
+2026-08-21T09:43:58.8829784Z (node:7010) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:58.8830999Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:59.4219489Z ✓ wadjet: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/wadjet/.backup/1787305439366)
+2026-08-21T09:43:59.4222000Z (node:7019) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:59.4222800Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:43:59.9577387Z ✓ nht: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/nht/.backup/1787305439901)
+2026-08-21T09:43:59.9579541Z (node:7027) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:43:59.9580787Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:00.4971758Z ✓ moses: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/moses/.backup/1787305440441)
+2026-08-21T09:44:00.4973698Z (node:7035) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:00.4974509Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:01.0213116Z ✓ david: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/david/.backup/1787305440967)
+2026-08-21T09:44:01.0214924Z (node:7043) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:01.0216193Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:01.5443764Z ✓ solomon: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/solomon/.backup/1787305441484)
+2026-08-21T09:44:01.5446317Z (node:7051) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:01.5447547Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:02.0723684Z ✓ noah: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/noah/.backup/1787305442015)
+2026-08-21T09:44:02.0725724Z (node:7059) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:02.0726920Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:02.5922881Z ✓ cain: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/cain/.backup/1787305442539)
+2026-08-21T09:44:02.5929436Z (node:7067) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:02.5930746Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:03.1213625Z ✓ abel: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/abel/.backup/1787305443068)
+2026-08-21T09:44:03.1215372Z (node:7075) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:03.1216366Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:03.6479711Z ✓ hemera: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/hemera/.backup/1787305443590)
+2026-08-21T09:44:03.6481193Z (node:7083) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:03.6482195Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:04.1777474Z ✓ long: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/long/.backup/1787305444124)
+2026-08-21T09:44:04.1779287Z (node:7091) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:04.1780603Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:04.7046233Z ✓ taichi: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/taichi/.backup/1787305444649)
+2026-08-21T09:44:04.7048201Z (node:7099) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:04.7049515Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:05.2410428Z ✓ yinyang: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/yinyang/.backup/1787305445184)
+2026-08-21T09:44:05.2412575Z (node:7107) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:05.2413330Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:05.7703785Z ✓ wuji: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/wuji/.backup/1787305445718)
+2026-08-21T09:44:05.7705740Z (node:7115) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:05.7707162Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:06.3044423Z ✓ bagua: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/bagua/.backup/1787305446247)
+2026-08-21T09:44:06.3047112Z (node:7123) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:06.3048107Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:06.8411208Z ✓ wuxing: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/wuxing/.backup/1787305446781)
+2026-08-21T09:44:06.8413869Z (node:7131) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:06.8415060Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:07.3891035Z ✓ herakles: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/herakles/.backup/1787305447328)
+2026-08-21T09:44:07.3892814Z (node:7139) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:07.3894364Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:07.9170999Z ✓ adamas: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/adamas/.backup/1787305447863)
+2026-08-21T09:44:07.9172745Z (node:7147) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:07.9173719Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:08.4589187Z ✓ amitabha: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/amitabha/.backup/1787305448401)
+2026-08-21T09:44:08.4590879Z (node:7155) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:08.4591766Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:08.9907491Z ✓ amun: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/amun/.backup/1787305448932)
+2026-08-21T09:44:08.9909570Z (node:7163) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:08.9910420Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:09.5197290Z ✓ andromeda: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/andromeda/.backup/1787305449465)
+2026-08-21T09:44:09.5199178Z (node:7171) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:09.5200445Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:10.0516557Z ✓ apep: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/apep/.backup/1787305449990)
+2026-08-21T09:44:10.0518726Z (node:7180) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:10.0519746Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:10.5779777Z ✓ arachne: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/arachne/.backup/1787305450521)
+2026-08-21T09:44:10.5782077Z (node:7188) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:10.5782859Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:11.1091610Z ✓ dagan: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/dagan/.backup/1787305451051)
+2026-08-21T09:44:11.1093732Z (node:7196) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:11.1094510Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:11.6420133Z ✓ dazhbog: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/dazhbog/.backup/1787305451582)
+2026-08-21T09:44:11.6421883Z (node:7204) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:11.6423239Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:12.1612250Z ✓ thoth: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/thoth/.backup/1787305452110)
+2026-08-21T09:44:12.1613888Z (node:7213) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:12.1614912Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:12.6878230Z ✓ eggther: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/eggther/.backup/1787305452630)
+2026-08-21T09:44:12.6880102Z (node:7221) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:12.6881518Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:13.1965213Z ✓ ge: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/ge/.backup/1787305453147)
+2026-08-21T09:44:13.1967628Z (node:7229) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:13.1968711Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:13.6986336Z ✓ hydra: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/hydra/.backup/1787305453651)
+2026-08-21T09:44:13.6988509Z (node:7237) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:13.6989637Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:14.2172934Z ✓ hygieia: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/hygieia/.backup/1787305454163)
+2026-08-21T09:44:14.2175481Z (node:7245) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:14.2176289Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:14.7299595Z ✓ hypnos: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/hypnos/.backup/1787305454676)
+2026-08-21T09:44:14.7301349Z (node:7253) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:14.7302612Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:15.2382224Z ✓ iris: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/iris/.backup/1787305455186)
+2026-08-21T09:44:15.2384679Z (node:7261) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:15.2385446Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:15.7638700Z (node:7269) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:15.7640818Z ✓ jormungandr: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/jormungandr/.backup/1787305455706)
+2026-08-21T09:44:15.7642379Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:16.2830298Z ✓ laozi: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/laozi/.backup/1787305456231)
+2026-08-21T09:44:16.2832095Z (node:7277) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:16.2833433Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:16.8132758Z ✓ manannan: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/manannan/.backup/1787305456756)
+2026-08-21T09:44:16.8134564Z (node:7285) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:16.8135450Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:17.3454505Z ✓ modi: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/modi/.backup/1787305457286)
+2026-08-21T09:44:17.3456329Z (node:7293) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:17.3457701Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:17.8615216Z ✓ papatuanuku: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/papatuanuku/.backup/1787305457805)
+2026-08-21T09:44:17.8617192Z (node:7301) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:17.8618956Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:18.3734771Z ✓ phoenix: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/phoenix/.backup/1787305458323)
+2026-08-21T09:44:18.3736555Z (node:7309) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:18.3737694Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:18.8983701Z ✓ surya: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/surya/.backup/1787305458844)
+2026-08-21T09:44:18.8985482Z (node:7317) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:18.8986379Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:19.4212894Z ✓ taishang: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/taishang/.backup/1787305459364)
+2026-08-21T09:44:19.4215513Z (node:7325) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:19.4216740Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:19.9412727Z ✓ tane: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/tane/.backup/1787305459885)
+2026-08-21T09:44:19.9414602Z (node:7333) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:19.9415562Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:20.4513312Z ✓ theia: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/theia/.backup/1787305460400)
+2026-08-21T09:44:20.4520066Z (node:7341) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:20.4521347Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:20.9810654Z ✓ tiandi: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/tiandi/.backup/1787305460926)
+2026-08-21T09:44:20.9812881Z (node:7349) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:20.9813777Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:21.5022117Z ✓ yam: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/yam/.backup/1787305461445)
+2026-08-21T09:44:21.5024016Z (node:7357) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:21.5024923Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:22.0331382Z ✓ shapash: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/shapash/.backup/1787305461970)
+2026-08-21T09:44:22.0333224Z (node:7365) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:22.0334123Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:22.5436045Z ✓ he: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/he/.backup/1787305462493)
+2026-08-21T09:44:22.5438037Z (node:7373) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:22.5439062Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:23.0539145Z ✓ perkunas: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/perkunas/.backup/1787305462999)
+2026-08-21T09:44:23.0540842Z (node:7381) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:23.0541722Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:23.5816392Z ✓ buri: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/buri/.backup/1787305463525)
+2026-08-21T09:44:23.5818542Z (node:7389) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:23.5819409Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:24.1041403Z ✓ eos: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/eos/.backup/1787305464046)
+2026-08-21T09:44:24.1043248Z (node:7397) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:24.1044027Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:24.6215792Z ✓ xian: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/xian/.backup/1787305464569)
+2026-08-21T09:44:24.6217553Z (node:7405) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:24.6219128Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:25.1384303Z ✓ ouranos: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/ouranos/.backup/1787305465083)
+2026-08-21T09:44:25.1386356Z (node:7413) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:25.1387151Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:25.6612568Z ✓ tian: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/tian/.backup/1787305465603)
+2026-08-21T09:44:25.6614320Z (node:7421) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:25.6615296Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:26.1831331Z ✓ mictlantecutli: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/mictlantecutli/.backup/1787305466129)
+2026-08-21T09:44:26.1833238Z (node:7429) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:26.1834931Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:26.7034177Z ✓ python: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/python/.backup/1787305466643)
+2026-08-21T09:44:26.7035783Z (node:7437) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:26.7036980Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:27.2254456Z ✓ leto: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/leto/.backup/1787305467168)
+2026-08-21T09:44:27.2256276Z (node:7445) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:27.2257140Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:27.7392916Z ✓ sphinx: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/sphinx/.backup/1787305467684)
+2026-08-21T09:44:27.7395015Z (node:7453) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:27.7395788Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:28.2599834Z (node:7461) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:28.2601950Z ✓ mnemosyne: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/mnemosyne/.backup/1787305468202)
+2026-08-21T09:44:28.2603328Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:28.7696225Z ✓ itzpapalotl: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/itzpapalotl/.backup/1787305468718)
+2026-08-21T09:44:28.7698299Z (node:7470) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:28.7699575Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:29.2957373Z ✓ ourania: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/ourania/.backup/1787305469235)
+2026-08-21T09:44:29.2959434Z (node:7478) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:29.2960740Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:29.8106934Z ✓ oya: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/oya/.backup/1787305469757)
+2026-08-21T09:44:29.8109005Z (node:7486) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:29.8110225Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:30.3353250Z ✓ tlaloc: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/tlaloc/.backup/1787305470278)
+2026-08-21T09:44:30.3355439Z (node:7494) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:30.3356236Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:30.8529261Z ✓ thanatos: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/thanatos/.backup/1787305470798)
+2026-08-21T09:44:30.8531074Z (node:7502) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:30.8532454Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:31.3760513Z ✓ jizo: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/jizo/.backup/1787305471320)
+2026-08-21T09:44:31.3762467Z (node:7510) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:31.3763234Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:31.8959438Z ✓ kanaloa: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/kanaloa/.backup/1787305471844)
+2026-08-21T09:44:31.8961676Z (node:7518) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:31.8963031Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:32.4091695Z ✓ coeus: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/coeus/.backup/1787305472356)
+2026-08-21T09:44:32.4093410Z (node:7526) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:32.4094764Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:32.9296286Z ✓ vali: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/vali/.backup/1787305472874)
+2026-08-21T09:44:32.9298489Z (node:7534) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:32.9299567Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:33.4508750Z ✓ sati: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/sati/.backup/1787305473394)
+2026-08-21T09:44:33.4510802Z (node:7542) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:33.4512320Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:33.9566558Z ✓ aer: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/aer/.backup/1787305473904)
+2026-08-21T09:44:33.9568576Z (node:7550) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:34.4656811Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:34.4658758Z ✓ aganju: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/aganju/.backup/1787305474410)
+2026-08-21T09:44:34.4660357Z (node:7558) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:34.4661620Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:34.9892842Z ✓ obatala: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/obatala/.backup/1787305474936)
+2026-08-21T09:44:34.9895077Z (node:7566) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:34.9896017Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:35.5091208Z ✓ orunmila: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/orunmila/.backup/1787305475450)
+2026-08-21T09:44:35.5093026Z (node:7574) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:35.5094327Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:36.0247528Z ✓ shango: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/shango/.backup/1787305475974)
+2026-08-21T09:44:36.0249547Z (node:7582) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:36.0250948Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:36.5451956Z ✓ oshun: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/oshun/.backup/1787305476485)
+2026-08-21T09:44:36.5454090Z (node:7590) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:36.5454867Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:37.0613257Z ✓ olodumare: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/olodumare/.backup/1787305477013)
+2026-08-21T09:44:37.0614986Z (node:7598) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:37.0616287Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:37.5803251Z ✓ babaluaye: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/babaluaye/.backup/1787305477526)
+2026-08-21T09:44:37.5805192Z (node:7606) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:37.5806454Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:38.0990686Z ✓ acheron: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/acheron/.backup/1787305478048)
+2026-08-21T09:44:38.0992774Z (node:7614) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:38.0993556Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:38.6412100Z ✓ rhea: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/rhea/.backup/1787305478583)
+2026-08-21T09:44:38.6414258Z (node:7622) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:38.6415014Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:39.1628849Z ✓ ameretat: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/ameretat/.backup/1787305479111)
+2026-08-21T09:44:39.1630729Z (node:7630) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:39.1632011Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:39.6832583Z ✓ haurvatat: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/haurvatat/.backup/1787305479628)
+2026-08-21T09:44:39.6834372Z (node:7638) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:39.6835677Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:40.1992528Z ✓ ananke: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/ananke/.backup/1787305480149)
+2026-08-21T09:44:40.1994683Z (node:7646) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:40.1995545Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:40.7186032Z ✓ coatlicue: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/coatlicue/.backup/1787305480663)
+2026-08-21T09:44:40.7188418Z (node:7654) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:40.7189189Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:41.2399124Z ✓ tlaltecuhtli: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/tlaltecuhtli/.backup/1787305481183)
+2026-08-21T09:44:41.2401364Z (node:7662) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:41.2402629Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:41.7574279Z ✓ cihuacoatl: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/cihuacoatl/.backup/1787305481702)
+2026-08-21T09:44:41.7576563Z (node:7670) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:41.7579108Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:42.2932390Z ✓ huitzilopochtli: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/huitzilopochtli/.backup/1787305482234)
+2026-08-21T09:44:42.2934516Z (node:7678) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:42.2935288Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:42.8225388Z ✓ durga: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/durga/.backup/1787305482765)
+2026-08-21T09:44:42.8227123Z (node:7686) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:42.8228426Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:43.3388602Z ✓ eshu: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/eshu/.backup/1787305483280)
+2026-08-21T09:44:43.3391018Z (node:7694) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:43.3391961Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:43.8789226Z ✓ fujin: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/fujin/.backup/1787305483822)
+2026-08-21T09:44:43.8791377Z (node:7703) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:43.8792493Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:44.4047307Z ✓ arche: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/arche/.backup/1787305484354)
+2026-08-21T09:44:44.4049330Z (node:7711) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:44.4050613Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:44.9256344Z ✓ atlantis: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/atlantis/.backup/1787305484873)
+2026-08-21T09:44:44.9258626Z (node:7721) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:44.9260182Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:45.4491784Z ✓ pyr: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/pyr/.backup/1787305485398)
+2026-08-21T09:44:45.4493709Z (node:7729) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:45.4494829Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:45.9711840Z ✓ achilleus: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/achilleus/.backup/1787305485918)
+2026-08-21T09:44:45.9713741Z (node:7737) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:45.9714641Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:46.4915567Z ✓ asklepios: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/asklepios/.backup/1787305486439)
+2026-08-21T09:44:46.4917376Z (node:7745) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:46.4919155Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:47.0146045Z ✓ atropos: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/atropos/.backup/1787305486960)
+2026-08-21T09:44:47.0148273Z (node:7753) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:47.0149044Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:47.5248878Z ✓ delos: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/delos/.backup/1787305487474)
+2026-08-21T09:44:47.5252767Z (node:7761) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:47.5253540Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:48.0492197Z ✓ drakon: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/drakon/.backup/1787305487998)
+2026-08-21T09:44:48.0493901Z (node:7769) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:48.0494793Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:48.5783760Z ✓ monokeros: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/monokeros/.backup/1787305488522)
+2026-08-21T09:44:48.5785934Z (node:7777) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:48.5787122Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:49.1060572Z ✓ phanes: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/phanes/.backup/1787305489053)
+2026-08-21T09:44:49.1062943Z (node:7785) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:49.1063918Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:49.6327382Z ✓ pegasos: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/pegasos/.backup/1787305489579)
+2026-08-21T09:44:49.6329858Z (node:7794) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:49.6330656Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:50.1523350Z ✓ seiren: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/seiren/.backup/1787305490101)
+2026-08-21T09:44:50.1527088Z (node:7802) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:50.1528010Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:50.6842256Z ✓ troia: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/troia/.backup/1787305490631)
+2026-08-21T09:44:50.6844084Z (node:7810) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:50.6845364Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:51.1983682Z ✓ tyche: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/tyche/.backup/1787305491146)
+2026-08-21T09:44:51.1987241Z (node:7818) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:51.1988287Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:51.7197232Z ✓ diana: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/diana/.backup/1787305491665)
+2026-08-21T09:44:51.7199066Z (node:7826) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:51.7200478Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:52.2463277Z ✓ ianus: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/ianus/.backup/1787305492186)
+2026-08-21T09:44:52.2465520Z (node:7834) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:52.2467357Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:52.7782318Z ✓ iuno: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/iuno/.backup/1787305492724)
+2026-08-21T09:44:52.7784642Z (node:7842) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:52.7785533Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:53.2917264Z ✓ iuppiter: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/iuppiter/.backup/1787305493239)
+2026-08-21T09:44:53.2919255Z (node:7850) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:53.2920508Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:53.8281922Z ✓ neptunus: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/neptunus/.backup/1787305493772)
+2026-08-21T09:44:53.8284287Z (node:7858) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:53.8285556Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:54.3563539Z ✓ vulcanus: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/vulcanus/.backup/1787305494303)
+2026-08-21T09:44:54.3565386Z (node:7866) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:54.3566279Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:54.9078920Z ✓ anubis: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/anubis/.backup/1787305494850)
+2026-08-21T09:44:54.9081138Z (node:7874) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:54.9082342Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:55.4493253Z ✓ steh: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/steh/.backup/1787305495389)
+2026-08-21T09:44:55.4494970Z (node:7882) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:55.4496124Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:55.9835411Z ✓ seshat: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/seshat/.backup/1787305495927)
+2026-08-21T09:44:55.9837409Z (node:7890) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:55.9838564Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:56.5123963Z ✓ hp: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/hp/.backup/1787305496456)
+2026-08-21T09:44:56.5125591Z (node:7898) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:56.5126792Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:57.0331674Z ✓ amsa: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/amsa/.backup/1787305496975)
+2026-08-21T09:44:57.0333606Z (node:7906) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:57.0335047Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:57.5721600Z ✓ daksa: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/daksa/.backup/1787305497510)
+2026-08-21T09:44:57.5723420Z (node:7914) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:57.5725147Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:58.1027112Z ✓ dhatr: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/dhatr/.backup/1787305498042)
+2026-08-21T09:44:58.1029489Z (node:7922) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:58.1030792Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:58.6222418Z ✓ pusan: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/pusan/.backup/1787305498568)
+2026-08-21T09:44:58.6224181Z (node:7930) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:58.6225431Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:59.1532169Z ✓ tvastr: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/tvastr/.backup/1787305499094)
+2026-08-21T09:44:59.1534352Z (node:7938) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:59.1535109Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:44:59.6756775Z ✓ fuxi: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/fuxi/.backup/1787305499623)
+2026-08-21T09:44:59.6758684Z (node:7946) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:44:59.6759966Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:00.1929094Z ✓ guanyin: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/guanyin/.backup/1787305500140)
+2026-08-21T09:45:00.1930939Z (node:7954) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:00.1932882Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:00.7283623Z ✓ mengpo: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/mengpo/.backup/1787305500668)
+2026-08-21T09:45:00.7285844Z (node:7963) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:00.7286639Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:01.2476431Z ✓ nuwa: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/nuwa/.backup/1787305501192)
+2026-08-21T09:45:01.2478984Z (node:7971) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:01.2480199Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:01.7654330Z ✓ pangu: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/pangu/.backup/1787305501709)
+2026-08-21T09:45:01.7656756Z (node:7982) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:01.7658202Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:02.2809300Z ✓ yanluo: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/yanluo/.backup/1787305502228)
+2026-08-21T09:45:02.2811475Z (node:7990) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:02.2812849Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:02.7960832Z ✓ hokkaido: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/hokkaido/.backup/1787305502737)
+2026-08-21T09:45:02.7963289Z (node:7998) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:02.7964282Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:03.3132975Z ✓ honshu: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/honshu/.backup/1787305503260)
+2026-08-21T09:45:03.3135534Z (node:8006) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:03.3136602Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:03.8276849Z ✓ kyushu: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/kyushu/.backup/1787305503774)
+2026-08-21T09:45:03.8278933Z (node:8014) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:03.8280210Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:04.3548633Z ✓ tezcatlipoca: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/tezcatlipoca/.backup/1787305504295)
+2026-08-21T09:45:04.3550738Z (node:8022) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:04.3551728Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:04.8668012Z ✓ xolotl: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/xolotl/.backup/1787305504812)
+2026-08-21T09:45:04.8670262Z (node:8030) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:04.8671028Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:05.3819297Z ✓ ogun: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/ogun/.backup/1787305505329)
+2026-08-21T09:45:05.3821085Z (node:8038) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:05.3822473Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:05.8994650Z ✓ tumatauenga: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/tumatauenga/.backup/1787305505840)
+2026-08-21T09:45:05.8996661Z (node:8046) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:05.8998106Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:06.4298764Z ✓ saraswati: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/saraswati/.backup/1787305506373)
+2026-08-21T09:45:06.4300572Z (node:8054) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:06.4301837Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:07.0144971Z ✓ sita: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/sita/.backup/1787305506952)
+2026-08-21T09:45:07.0146641Z (node:8062) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:07.0147784Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:07.5339332Z ✓ guandi: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/guandi/.backup/1787305507478)
+2026-08-21T09:45:07.5341134Z (node:8070) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:07.5342904Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:08.0671440Z ✓ ganga: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/ganga/.backup/1787305508007)
+2026-08-21T09:45:08.0673056Z (node:8078) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:08.0673836Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:08.5926075Z ✓ hanuman: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/hanuman/.backup/1787305508531)
+2026-08-21T09:45:08.5927749Z (node:8086) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:08.5929169Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:09.1256119Z ✓ yamuna: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/yamuna/.backup/1787305509062)
+2026-08-21T09:45:09.1258167Z (node:8094) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:09.1259425Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:09.6485281Z ✓ gauri: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/gauri/.backup/1787305509587)
+2026-08-21T09:45:09.6487052Z (node:8102) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:09.6488103Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:10.1790560Z ✓ sani: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/sani/.backup/1787305510118)
+2026-08-21T09:45:10.1792325Z (node:8110) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:10.1793556Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:10.6976127Z ✓ orun: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/orun/.backup/1787305510644)
+2026-08-21T09:45:10.6977788Z (node:8118) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:10.6979251Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:11.2186025Z ✓ xiuhtecuhtli: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/xiuhtecuhtli/.backup/1787305511165)
+2026-08-21T09:45:11.2188636Z (node:8126) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:11.2189878Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:11.7387305Z ✓ pluto: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/pluto/.backup/1787305511681)
+2026-08-21T09:45:11.7389432Z (node:8134) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:11.7390285Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:12.2561309Z ✓ ceres: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/ceres/.backup/1787305512202)
+2026-08-21T09:45:12.2563169Z (node:8142) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:12.2564112Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:12.7752186Z ✓ orpheus: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/orpheus/.backup/1787305512722)
+2026-08-21T09:45:12.7754351Z (node:8150) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:12.7755578Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:13.2925756Z ✓ mixcoatl: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/mixcoatl/.backup/1787305513236)
+2026-08-21T09:45:13.2936348Z (node:8158) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:13.2937426Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:13.8107320Z ✓ oba: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/oba/.backup/1787305513755)
+2026-08-21T09:45:13.8110522Z (node:8166) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:13.8111794Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:14.3305148Z ✓ mazu: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/mazu/.backup/1787305514271)
+2026-08-21T09:45:14.3307401Z (node:8174) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:14.3308788Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:14.8499328Z ✓ kartikeya: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/kartikeya/.backup/1787305514792)
+2026-08-21T09:45:14.8501185Z (node:8182) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:14.8502116Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:15.3753380Z ✓ ashavahista: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/ashavahista/.backup/1787305515321)
+2026-08-21T09:45:15.3755550Z (node:8190) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:15.3756788Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:15.8945443Z ✓ styx: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/styx/.backup/1787305515840)
+2026-08-21T09:45:15.8947419Z (node:8198) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:15.8948542Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:16.4264035Z ✓ hermod: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/hermod/.backup/1787305516369)
+2026-08-21T09:45:16.4265734Z (node:8206) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:16.4266627Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:16.9466526Z ✓ cerberus: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/cerberus/.backup/1787305516889)
+2026-08-21T09:45:16.9468915Z (node:8214) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:16.9469690Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:17.4738172Z ✓ ochosi: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/ochosi/.backup/1787305517410)
+2026-08-21T09:45:17.4740050Z (node:8222) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:17.4740962Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:17.9983799Z ✓ radha: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/radha/.backup/1787305517940)
+2026-08-21T09:45:17.9985610Z (node:8230) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:17.9986738Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:18.5208613Z (node:8238) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:18.5210699Z ✓ shakyamuni: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/shakyamuni/.backup/1787305518463)
+2026-08-21T09:45:18.5212907Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:19.0388365Z ✓ akshobhya: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/akshobhya/.backup/1787305518981)
+2026-08-21T09:45:19.0390078Z (node:8246) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:19.0390919Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:19.5692816Z ✓ vairocana: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/vairocana/.backup/1787305519509)
+2026-08-21T09:45:19.5695031Z (node:8254) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:19.5696313Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:20.0980657Z ✓ manjushri: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/manjushri/.backup/1787305520034)
+2026-08-21T09:45:20.0982575Z (node:8262) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:20.0983932Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:20.6303450Z ✓ vajrapani: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/vajrapani/.backup/1787305520573)
+2026-08-21T09:45:20.6307675Z (node:8270) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:20.6308738Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:21.1595532Z ✓ ksitigarbha: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/ksitigarbha/.backup/1787305521097)
+2026-08-21T09:45:21.1598253Z (node:8278) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:21.1599488Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:21.6751936Z ✓ mara: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/mara/.backup/1787305521617)
+2026-08-21T09:45:21.6754449Z (node:8286) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:21.6755339Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:22.1975554Z ✓ athiratu: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/athiratu/.backup/1787305522142)
+2026-08-21T09:45:22.1977403Z (node:8294) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:22.1978895Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:22.7224653Z ✓ iason: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/iason/.backup/1787305522667)
+2026-08-21T09:45:22.7226537Z (node:8302) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:22.7228230Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:23.2450693Z ✓ argos: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/argos/.backup/1787305523194)
+2026-08-21T09:45:23.2452456Z (node:8310) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:23.2453645Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:23.7688899Z ✓ midas: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/midas/.backup/1787305523717)
+2026-08-21T09:45:23.7691396Z (node:8318) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:23.7692741Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:24.3043156Z ✓ odysseus: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/odysseus/.backup/1787305524248)
+2026-08-21T09:45:24.3044915Z (node:8326) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:24.3045904Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:24.8329214Z ✓ gilgamesh: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/gilgamesh/.backup/1787305524777)
+2026-08-21T09:45:24.8331385Z (node:8334) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:24.8332979Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:25.3688278Z ✓ pan: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/pan/.backup/1787305525314)
+2026-08-21T09:45:25.3690047Z (node:8342) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:25.3691033Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:25.8918805Z ✓ chimaira: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/chimaira/.backup/1787305525838)
+2026-08-21T09:45:25.8920713Z (node:8350) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:25.8922198Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:26.4162761Z ✓ hyperion: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/hyperion/.backup/1787305526360)
+2026-08-21T09:45:26.4164945Z (node:8358) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:26.4165731Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:26.9496521Z ✓ kleio: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/kleio/.backup/1787305526892)
+2026-08-21T09:45:26.9498585Z (node:8366) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:26.9499445Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:27.4701484Z ✓ circe: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/circe/.backup/1787305527414)
+2026-08-21T09:45:27.4703567Z (node:8374) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:27.4704330Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:27.9879486Z ✓ okuninushi: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/okuninushi/.backup/1787305527937)
+2026-08-21T09:45:27.9882208Z (node:8382) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:27.9883825Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:28.5271145Z ✓ phoebe: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/phoebe/.backup/1787305528469)
+2026-08-21T09:45:28.5272909Z (node:8391) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:28.5274268Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:29.0525543Z ✓ eris: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/eris/.backup/1787305528996)
+2026-08-21T09:45:29.0527213Z (node:8399) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:29.0528513Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:29.5772870Z ✓ thaleia: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/thaleia/.backup/1787305529526)
+2026-08-21T09:45:29.5774598Z (node:8407) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:29.5775502Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:30.1079118Z ✓ zephyros: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/zephyros/.backup/1787305530051)
+2026-08-21T09:45:30.1080853Z (node:8415) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:30.1082122Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:30.6287417Z ✓ chiron: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/chiron/.backup/1787305530578)
+2026-08-21T09:45:30.6289997Z (node:8423) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:30.6291392Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:31.1549931Z ✓ nezha: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/nezha/.backup/1787305531101)
+2026-08-21T09:45:31.1552833Z (node:8431) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:31.1554049Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:31.6729787Z (node:8439) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:31.6731826Z ✓ change: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/change/.backup/1787305531620)
+2026-08-21T09:45:31.6733385Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:32.1970360Z ✓ houyi: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/houyi/.backup/1787305532145)
+2026-08-21T09:45:32.1979478Z (node:8447) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:32.1980521Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:32.7189998Z (node:8455) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:32.7192096Z ✓ longwang: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/longwang/.backup/1787305532662)
+2026-08-21T09:45:32.7193346Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:33.2360417Z ✓ xiwangmu: wrote 10 files (backup: /home/runner/work/punycodex/punycodex/sites/xiwangmu/.backup/1787305533181)
+2026-08-21T09:45:33.2362148Z (node:8463) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T09:45:33.2362991Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T09:45:33.2560066Z 
+2026-08-21T09:45:33.2560745Z Regenerated 287/287 flagships.
+2026-08-21T09:45:33.2716751Z 
+2026-08-21T09:45:33.2718850Z ▸ scripts/generate-og-images.js
+2026-08-21T09:45:33.3965957Z OG cards: 0 written, 966 skipped -> assets/og/
+2026-08-21T09:45:33.4033269Z 
+2026-08-21T09:45:33.4033998Z ▸ scripts/convert-images-to-webp.js
+2026-08-21T09:45:33.4366503Z ▸ Running WebP conversion helper...
+2026-08-21T09:45:33.5816309Z   Converted 0 image(s)
+2026-08-21T09:45:33.5817181Z ▸ Updating templates + generated HTML...
+2026-08-21T09:45:39.2455583Z   Updated 3263 HTML file(s)
+2026-08-21T09:45:39.2476304Z ✓ WebP conversion and markup update complete.
+2026-08-21T09:45:39.2609859Z 
+2026-08-21T09:45:39.2955031Z ▸ scripts/generate-scholars-taxonomy.js
+2026-08-21T09:45:39.2955614Z Scholars taxonomy data already in sync.
+2026-08-21T09:45:39.2986768Z 
+2026-08-21T09:45:39.2987267Z ▸ scripts/generate-scholars-content.js
+2026-08-21T09:45:39.5703075Z Scholarly Edition content generation complete.
+2026-08-21T09:45:39.5704125Z   Files: 0 written, 287 unchanged (287 total)
+2026-08-21T09:45:39.5704871Z   Sections preserved (existing, non-empty): 4477
+2026-08-21T09:45:39.5705438Z   Sections generated this run:
+2026-08-21T09:45:39.5705976Z     overview: 0 generated (avg 1142 chars, min 813)
+2026-08-21T09:45:39.5706589Z     the-name: 0 generated (avg 1120 chars, min 675)
+2026-08-21T09:45:39.5707211Z     pronunciation: 0 generated (avg 1088 chars, min 600)
+2026-08-21T09:45:39.5708146Z     original-script: 0 generated (avg 810 chars, min 308)
+2026-08-21T09:45:39.5708776Z     domains: 0 generated (avg 875 chars, min 434)
+2026-08-21T09:45:39.5709494Z     symbols: 0 generated (avg 762 chars, min 320)
+2026-08-21T09:45:39.5710094Z     mythology: 0 generated (avg 1866 chars, min 974)
+2026-08-21T09:45:39.5711200Z     syncretism: 0 generated (avg 864 chars, min 526)
+2026-08-21T09:45:39.5711853Z     cultural-legacy: 0 generated (avg 755 chars, min 373)
+2026-08-21T09:45:39.5712464Z     archaeology: 0 generated (avg 812 chars, min 383)
+2026-08-21T09:45:39.5713050Z     scholarly-sources: 0 generated (avg 982 chars, min 527)
+2026-08-21T09:45:39.5713645Z     meditation: 0 generated (avg 805 chars, min 313)
+2026-08-21T09:45:39.5811565Z 
+2026-08-21T09:45:39.5812340Z ▸ scripts/generate-scholars-manifests.js
+2026-08-21T09:45:39.8630037Z Generated 287 Scholarly Edition manifests.
+2026-08-21T09:45:39.8631774Z Merged canonical content into 4477 published sections.
+2026-08-21T09:45:39.8632373Z Index written to: platform/scholars/manifests/all.json
+2026-08-21T09:45:39.8692561Z 
+2026-08-21T09:45:39.8693233Z ▸ scripts/generate-scholars.js
+2026-08-21T09:45:42.3809018Z Generated 287 Scholars pages.
+2026-08-21T09:45:42.4178045Z 
+2026-08-21T09:45:42.4178937Z ▸ scripts/generate-blog-content.js
+2026-08-21T09:45:42.5395614Z Blog content: 0 created, 287 preserved (total 287)
+2026-08-21T09:45:42.5464729Z 
+2026-08-21T09:45:42.5465519Z ▸ scripts/generate-blog-series-restoration.js
+2026-08-21T09:45:42.7680258Z The Restoration Files (elevated): 287 posts — {"ledger":70,"myth":77,"bench":73,"provenance":67}
+2026-08-21T09:45:42.7785754Z 
+2026-08-21T09:45:42.7786529Z ▸ scripts/generate-blog-series-resonance.js
+2026-08-21T09:45:42.9751458Z The Resonance Files (elevated): 287 posts — {"seats":70,"office":77,"cycle":73,"stress":67}
+2026-08-21T09:45:42.9885803Z 
+2026-08-21T09:45:42.9886633Z ▸ scripts/generate-blog-series-canonical.js
+2026-08-21T09:45:43.2320395Z The Canonical Register (elevated): 287 entries — {"ruling":70,"dossier":77,"trial":73,"letter":67}
+2026-08-21T09:45:43.2427999Z 
+2026-08-21T09:45:43.2428627Z ▸ scripts/generate-blog-pages.js
+2026-08-21T09:45:44.9075945Z Blog pages: 287 written (0 skipped)
+2026-08-21T09:45:44.9339299Z 
+2026-08-21T09:45:44.9340844Z ▸ scripts/generate-blog-series-pages.js
+2026-08-21T09:45:45.7878752Z The Restoration Files: 287 pages written
+2026-08-21T09:45:46.2969365Z The Resonance Files: 287 pages written
+2026-08-21T09:45:46.8219183Z The Canonical Register: 287 pages written
+2026-08-21T09:45:46.8778925Z 
+2026-08-21T09:45:46.8780032Z ▸ scripts/generate-blog-index.js
+2026-08-21T09:45:47.0474262Z Blog index: blog/index.html written (1148 posts, 21 pantheons)
+2026-08-21T09:45:47.0589797Z 
+2026-08-21T09:45:47.0590534Z ▸ scripts/generate-text-pages.js
+2026-08-21T09:45:47.1736466Z   texts/theogony/index.html written (1022 lines, 211 chunks, 110 temples cross-linked)
+2026-08-21T09:45:47.3395724Z   texts/homeric-hymns/index.html written (33 sections, 38 temples cross-linked)
+2026-08-21T09:45:47.3510388Z   texts/works-and-days/index.html written (11 sections, 20 temples cross-linked)
+2026-08-21T09:45:47.3993620Z   texts/metamorphoses/index.html written (15 sections, 8 temples cross-linked)
+2026-08-21T09:45:47.4593420Z   texts/poetic-edda/index.html written (35 sections, 15 temples cross-linked)
+2026-08-21T09:45:47.5285493Z   texts/prose-edda/index.html written (128 sections, 15 temples cross-linked)
+2026-08-21T09:45:47.6244494Z   texts/book-of-the-dead/index.html written (29 sections, 21 temples cross-linked)
+2026-08-21T09:45:47.6433627Z   texts/enuma-elish/index.html written (7 sections, 5 temples cross-linked)
+2026-08-21T09:45:47.6566610Z   texts/gilgamesh/index.html written (12 sections, 6 temples cross-linked)
+2026-08-21T09:45:47.7004487Z   texts/avesta/index.html written (22 sections, 5 temples cross-linked)
+2026-08-21T09:45:47.7620782Z   texts/rig-veda/index.html written (10 sections, 10 temples cross-linked)
+2026-08-21T09:45:47.7905712Z   texts/ramayana/index.html written (7 sections, 7 temples cross-linked)
+2026-08-21T09:45:47.8154280Z   texts/lotus-sutra/index.html written (27 sections, 6 temples cross-linked)
+2026-08-21T09:45:47.8256602Z   texts/sukhavativyuha/index.html written (2 sections, 2 temples cross-linked)
+2026-08-21T09:45:47.8478840Z   texts/kojiki/index.html written (14 sections, 3 temples cross-linked)
+2026-08-21T09:45:47.8880675Z   texts/nihon-shoki/index.html written (13 sections, 4 temples cross-linked)
+2026-08-21T09:45:47.9039236Z   texts/kumulipo/index.html written (16 sections, 4 temples cross-linked)
+2026-08-21T09:45:47.9311732Z   texts/polynesian-mythology/index.html written (22 sections, 3 temples cross-linked)
+2026-08-21T09:45:47.9394908Z   texts/tao-te-ching/index.html written (12 sections, 2 temples cross-linked)
+2026-08-21T09:45:47.9972462Z   texts/nigerian-studies/index.html written (11 sections, 12 temples cross-linked)
+2026-08-21T09:45:48.0488454Z   texts/bible-kjv/index.html written (18 sections, 6 temples cross-linked)
+2026-08-21T09:45:48.0500584Z   texts/index.html written (21 texts)
+2026-08-21T09:45:48.0501122Z Texts: 22 pages generated.
+2026-08-21T09:45:48.0655219Z 
+2026-08-21T09:45:48.0655923Z ▸ scripts/generate-trending-page.js
+2026-08-21T09:45:48.1082007Z Trending page: unchanged.
+2026-08-21T09:45:48.1120177Z 
+2026-08-21T09:45:48.1120819Z ▸ scripts/generate-trending-temple-page.js
+2026-08-21T09:45:48.1541722Z Trending temple page: unchanged.
+2026-08-21T09:45:48.1578244Z 
+2026-08-21T09:45:48.1578974Z ▸ scripts/generate-itemlist-schemas.js
+2026-08-21T09:45:48.2308154Z lexicon/index.html: ItemList baked (50 items)
+2026-08-21T09:45:48.2314286Z pantheon/index.html: ItemList baked (50 items)
+2026-08-21T09:45:48.2362597Z 
+2026-08-21T09:45:48.2363293Z ▸ scripts/generate-patterns-page.js
+2026-08-21T09:45:48.2975090Z Patterns pages: patterns/index.html unchanged.
+2026-08-21T09:45:48.2980259Z Patterns pages: patterns/methodology/index.html unchanged.
+2026-08-21T09:45:48.3024710Z 
+2026-08-21T09:45:48.3025469Z ▸ scripts/generate-everyday-page.js
+2026-08-21T09:45:48.3765850Z Everyday register: 72 words (2 false friends) → everyday/index.html
+2026-08-21T09:45:48.3821710Z 
+2026-08-21T09:45:48.3822275Z ▸ scripts/generate-ink-index.js
+2026-08-21T09:45:48.5280091Z Ink index: 778 attested forms, 5 myths → data/ink-index.json (509 KB)
+2026-08-21T09:45:48.5353015Z 
+2026-08-21T09:45:48.5353610Z ▸ scripts/generate-ink-downloads.js
+2026-08-21T09:45:48.5923081Z Ink downloads: 0 written, 778 skipped → assets/ink/
+2026-08-21T09:45:48.5971582Z 
+2026-08-21T09:45:48.5972126Z ▸ scripts/sync-scholars-portal.js
+2026-08-21T09:45:48.6391053Z ✓ Scholars portal synced to scholars/
+2026-08-21T09:45:48.6393016Z   15 files copied
+2026-08-21T09:45:48.6393421Z     admin/index.html
+2026-08-21T09:45:48.6393828Z     analytics/index.html
+2026-08-21T09:45:48.6394216Z     apply/index.html
+2026-08-21T09:45:48.6394601Z     creatives/creatives.css
+2026-08-21T09:45:48.6395012Z     creatives/creatives.js
+2026-08-21T09:45:48.6395422Z     creatives/creator.html
+2026-08-21T09:45:48.6395807Z     creatives/creator.js
+2026-08-21T09:45:48.6398312Z     creatives/index.html
+2026-08-21T09:45:48.6398750Z     dashboard/index.html
+2026-08-21T09:45:48.6399165Z     dept-admin/index.html
+2026-08-21T09:45:48.6399547Z     index.html
+2026-08-21T09:45:48.6399906Z     institution/index.html
+2026-08-21T09:45:48.6400315Z     login/index.html
+2026-08-21T09:45:48.6400708Z     review/index.html
+2026-08-21T09:45:48.6401061Z     search/index.html
+2026-08-21T09:45:48.6433341Z 
+2026-08-21T09:45:48.6434133Z ▸ scripts/stamp-asset-versions.js
+2026-08-21T09:45:50.2348998Z Asset versions: 0 file(s) stamped (4 content-addressed assets).
+2026-08-21T09:45:50.2418560Z 
+2026-08-21T09:45:50.2419168Z ▸ scripts/sync-hero-stats.js
+2026-08-21T09:45:50.3075266Z Hero stats: index.html already current (287 temples / 25 pantheons)
+2026-08-21T09:45:50.3116606Z 
+2026-08-21T09:45:50.3117174Z ▸ scripts/gen-sitemap.js
+2026-08-21T09:45:50.4873635Z Sitemap generated: 8228 URLs
+2026-08-21T09:45:50.4948895Z 
+2026-08-21T09:45:50.4949568Z ▸ scripts/inject-analytics.js
+2026-08-21T09:45:51.6383651Z Injected analytics snippet into 4512 HTML files (failed 0).
+2026-08-21T09:45:51.6500762Z 
+2026-08-21T09:45:51.6501666Z ▸ scripts/inject-university-collaborators.js
+2026-08-21T09:45:52.9095264Z Injected Academic Collaborators strip into 4466 HTML files (skipped 0, stripped 0 excluded files, failed 0).
+2026-08-21T09:45:52.9162655Z 
+2026-08-21T09:45:52.9163444Z ▸ scripts/inject-herald-beacon.js
+2026-08-21T09:45:55.0656354Z Herald beacon: injected into 8512 pages (8513 eligible, failed 0).
+2026-08-21T09:45:55.0770259Z 
+2026-08-21T09:45:55.0771293Z ▸ scripts/sync-admin-portal.js
+2026-08-21T09:45:55.1191086Z ✓ Admin portal synced to admin-portal/
+2026-08-21T09:45:55.1192837Z   17 files copied
+2026-08-21T09:45:55.1193204Z     analytics/index.html
+2026-08-21T09:45:55.1193599Z     api-keys/index.html
+2026-08-21T09:45:55.1193974Z     applications/index.html
+2026-08-21T09:45:55.1194348Z     index.html
+2026-08-21T09:45:55.1194683Z     leasing/index.html
+2026-08-21T09:45:55.1195032Z     legacy/index.html
+2026-08-21T09:45:55.1195384Z     login/index.html
+2026-08-21T09:45:55.1197147Z     merch/index.html
+2026-08-21T09:45:55.1197573Z     newsletter/index.html
+2026-08-21T09:45:55.1198069Z     patrons/index.html
+2026-08-21T09:45:55.1198429Z     portal.css
+2026-08-21T09:45:55.1198763Z     portal.js
+2026-08-21T09:45:55.1199134Z     requests/index.html
+2026-08-21T09:45:55.1199501Z     scholars/index.html
+2026-08-21T09:45:55.1199862Z     security/index.html
+2026-08-21T09:45:55.1200208Z     system/index.html
+2026-08-21T09:45:55.1200559Z     users/index.html
+2026-08-21T09:45:55.1236517Z 
+2026-08-21T09:45:55.1237070Z ▸ scripts/sync-interstitial.js
+2026-08-21T09:45:55.1545396Z ✓ Interstitial synced to interstitial.html
+2026-08-21T09:45:55.1578758Z 
+2026-08-21T09:45:55.1579151Z ▸ scripts/sync-desktop-nav.js
+2026-08-21T09:45:55.2779794Z Desktop nav sync: 53 synced, 0 already canonical, 0 errors.
+2026-08-21T09:45:55.2860416Z 
+2026-08-21T09:45:55.2861082Z ▸ scripts/sync-mobile-menu.js
+2026-08-21T09:45:55.3310293Z   ✓ everyday/index.html (inserted)
+2026-08-21T09:45:55.3443263Z Mobile menu sync: 1 updated, 39 already canonical
+2026-08-21T09:45:55.3483741Z 
+2026-08-21T09:45:55.3484392Z ▸ scripts/sync-footer.js
+2026-08-21T09:45:55.4226563Z Footer sync: 43 synced, 0 errors.
+2026-08-21T09:45:55.4276089Z 
+2026-08-21T09:45:55.4276857Z ▸ scripts/sync-temple-index.js
+2026-08-21T09:45:55.4945690Z   ✓ temple index synced: lexicon/index.html
+2026-08-21T09:45:55.4962827Z   ✓ temple index synced: pantheon/index.html
+2026-08-21T09:45:55.4976442Z   ✓ temple index synced: pronunciation/index.html
+2026-08-21T09:45:55.4992445Z   ✓ temple index synced: tiers/index.html
+2026-08-21T09:45:55.4992893Z Temple index sync: 4/4 pages.
+2026-08-21T09:45:55.5041466Z 
+2026-08-21T09:45:55.5041995Z ▸ scripts/generate-pod-products.js
+2026-08-21T09:45:55.6772953Z POD products unchanged (3739) — store/products.json left as-is
+2026-08-21T09:45:55.6875395Z 
+2026-08-21T09:45:55.6876086Z ▸ scripts/generate-store-pages.js
+2026-08-21T09:45:57.0307152Z Store pages: 4028 written (288 collections, 3739 products).
+2026-08-21T09:45:57.0450748Z 
+2026-08-21T09:45:57.0451468Z ▸ scripts/inject-analytics.js
+2026-08-21T09:45:58.1777504Z Injected analytics snippet into 4512 HTML files (failed 0).
+2026-08-21T09:45:58.1854304Z 
+2026-08-21T09:45:58.1855071Z ▸ scripts/inject-university-collaborators.js
+2026-08-21T09:45:58.7462339Z Injected Academic Collaborators strip into 4466 HTML files (skipped 0, stripped 0 excluded files, failed 0).
+2026-08-21T09:45:58.7519119Z 
+2026-08-21T09:45:58.7519844Z ▸ scripts/inject-herald-beacon.js
+2026-08-21T09:46:00.3694728Z Herald beacon: injected into 4028 pages (8513 eligible, failed 0).
+2026-08-21T09:46:00.3804595Z 
+2026-08-21T09:46:00.3805457Z ▸ scripts/inject-cookie-consent.js
+2026-08-21T09:46:02.3875389Z Cookie consent: injected into 8512 pages (8512 eligible, failed 0).
+2026-08-21T09:46:02.3985693Z 
+2026-08-21T09:46:02.3986444Z ▸ scripts/update-data-version.js
+2026-08-21T09:46:02.5078932Z data-version.json unchanged: 2.0.106
+2026-08-21T09:46:02.5134665Z 
+2026-08-21T09:46:02.5135410Z ▸ scripts/export-model-corpus.js
+2026-08-21T09:46:04.3827765Z ✓ Exported 966 entries to /home/runner/work/punycodex/punycodex/data/corpus
+2026-08-21T09:46:04.3830708Z   entries.jsonl: 4.94 MB
+2026-08-21T09:46:04.3831690Z   manifest: {
+2026-08-21T09:46:04.3832049Z   "entries": 966,
+2026-08-21T09:46:04.3832827Z   "withOriginalScript": 778,
+2026-08-21T09:46:04.3833272Z   "withPronunciation": 966,
+2026-08-21T09:46:04.3833606Z   "withLore": 287,
+2026-08-21T09:46:04.3833929Z   "withEtymology": 122,
+2026-08-21T09:46:04.3835346Z   "flagships": 287,
+2026-08-21T09:46:04.3835781Z   "owned": 275,
+2026-08-21T09:46:04.3836126Z   "instructions": 8992,
+2026-08-21T09:46:04.3836510Z   "instructionsByTask": {
+2026-08-21T09:46:04.3836893Z     "restoration": 966,
+2026-08-21T09:46:04.3837245Z     "punycode": 964,
+2026-08-21T09:46:04.3837611Z     "original_script": 778,
+2026-08-21T09:46:04.3838241Z     "pronunciation": 966,
+2026-08-21T09:46:04.3838625Z     "etymology": 122,
+2026-08-21T09:46:04.3839070Z     "meaning": 966,
+2026-08-21T09:46:04.3839398Z     "tier": 966,
+2026-08-21T09:46:04.3839729Z     "mythology": 287,
+2026-08-21T09:46:04.3841211Z     "breakdown": 966,
+2026-08-21T09:46:04.3841557Z     "variants": 81,
+2026-08-21T09:46:04.3841893Z     "sources": 966,
+2026-08-21T09:46:04.3842231Z     "homograph_safety": 964
+2026-08-21T09:46:04.3842610Z   },
+2026-08-21T09:46:04.3842933Z   "safetyExamples": 44355,
+2026-08-21T09:46:04.3843307Z   "safetyByTask": {
+2026-08-21T09:46:04.3843643Z     "safety_classify": 15039,
+2026-08-21T09:46:04.3844037Z     "safety_explain": 15037,
+2026-08-21T09:46:04.3844434Z     "safety_normalize": 6356,
+2026-08-21T09:46:04.3844817Z     "safety_punycode": 3566,
+2026-08-21T09:46:04.3845232Z     "safety_url_analysis": 2171,
+2026-08-21T09:46:04.3845683Z     "safety_detect_mixed_script": 2171,
+2026-08-21T09:46:04.3846183Z     "safety_brand_disambiguate": 15
+2026-08-21T09:46:04.3846597Z   },
+2026-08-21T09:46:04.3846911Z   "dialogueExamples": 3386,
+2026-08-21T09:46:04.3847306Z   "dialogueByTask": {
+2026-08-21T09:46:04.3847706Z     "dialogue_restoration": 966,
+2026-08-21T09:46:04.3848343Z     "dialogue_pronunciation": 966,
+2026-08-21T09:46:04.3848790Z     "dialogue_mythology": 287,
+2026-08-21T09:46:04.3849209Z     "dialogue_etymology": 122,
+2026-08-21T09:46:04.3849601Z     "dialogue_safety": 964,
+2026-08-21T09:46:04.3849979Z     "dialogue_variants": 81
+2026-08-21T09:46:04.3850327Z   },
+2026-08-21T09:46:04.3850645Z   "toolUseExamples": 4826,
+2026-08-21T09:46:04.3851022Z   "toolUseByTask": {
+2026-08-21T09:46:04.3851369Z     "tool_convert": 964,
+2026-08-21T09:46:04.3852008Z     "tool_check": 966,
+2026-08-21T09:46:04.3852351Z     "tool_search": 966,
+2026-08-21T09:46:04.3852728Z     "tool_get_entry": 966,
+2026-08-21T09:46:04.3853092Z     "tool_analyze_url": 964
+2026-08-21T09:46:04.3853437Z   },
+2026-08-21T09:46:04.3853757Z   "multimodalExamples": 2130,
+2026-08-21T09:46:04.3854148Z   "multimodalByTask": {
+2026-08-21T09:46:04.3854507Z     "multimodal_mascot": 287,
+2026-08-21T09:46:04.3854935Z     "multimodal_logomark": 287,
+2026-08-21T09:46:04.3855345Z     "multimodal_script": 778,
+2026-08-21T09:46:04.3855730Z     "multimodal_glyph": 778
+2026-08-21T09:46:04.3856088Z   },
+2026-08-21T09:46:04.3856403Z   "preferenceExamples": 3943,
+2026-08-21T09:46:04.3856792Z   "preferenceByTask": {
+2026-08-21T09:46:04.3857177Z     "preference_restoration": 966,
+2026-08-21T09:46:04.3857606Z     "preference_pronunciation": 966,
+2026-08-21T09:46:04.3878419Z     "preference_safety": 964,
+2026-08-21T09:46:04.3878848Z     "preference_sources": 966,
+2026-08-21T09:46:04.3879252Z     "preference_variants": 81
+2026-08-21T09:46:04.3879626Z   },
+2026-08-21T09:46:04.3879923Z   "reasoningExamples": 3796,
+2026-08-21T09:46:04.3880311Z   "reasoningByTask": {
+2026-08-21T09:46:04.3880724Z     "reasoning_breakdown": 966,
+2026-08-21T09:46:04.3881125Z     "reasoning_tier": 966,
+2026-08-21T09:46:04.3881538Z     "reasoning_etymology": 122,
+2026-08-21T09:46:04.3881930Z     "reasoning_safety": 964,
+2026-08-21T09:46:04.3882357Z     "reasoning_original_script": 778
+2026-08-21T09:46:04.3883447Z   },
+2026-08-21T09:46:04.3883934Z   "benchmarkExamples": 6606,
+2026-08-21T09:46:04.3884333Z   "benchmarkByTask": {
+2026-08-21T09:46:04.3884754Z     "benchmark_restoration": 966,
+2026-08-21T09:46:04.3885213Z     "benchmark_pronunciation": 966,
+2026-08-21T09:46:04.3885998Z     "benchmark_meaning": 966,
+2026-08-21T09:46:04.3886399Z     "benchmark_tier": 966,
+2026-08-21T09:46:04.3886807Z     "benchmark_punycode": 964,
+2026-08-21T09:46:04.3887291Z     "benchmark_original_script": 778,
+2026-08-21T09:46:04.3887752Z     "benchmark_safety": 1000
+2026-08-21T09:46:04.3888289Z   },
+2026-08-21T09:46:04.3888654Z   "mythologySynthesisExamples": 397,
+2026-08-21T09:46:04.3889165Z   "mythologySynthesisByTask": {
+2026-08-21T09:46:04.3889653Z     "myth_comparative_analysis": 25,
+2026-08-21T09:46:04.3890093Z     "myth_pattern_recognition": 25,
+2026-08-21T09:46:04.3890387Z     "myth_esoteric_synthesis": 25,
+2026-08-21T09:46:04.3890707Z     "myth_archetype_mapping": 25,
+2026-08-21T09:46:04.3891009Z     "myth_cross_tradition_syncretism": 25,
+2026-08-21T09:46:04.3891319Z     "myth_modern_parallel": 36,
+2026-08-21T09:46:04.3891589Z     "myth_biblical_bridge": 13,
+2026-08-21T09:46:04.3891860Z     "myth_thematic_connection": 223
+2026-08-21T09:46:04.3892118Z   },
+2026-08-21T09:46:04.3892324Z   "oracleExamples": 1956,
+2026-08-21T09:46:04.3892598Z   "oracleByTask": {
+2026-08-21T09:46:04.3892864Z     "oracle_greeting": 50,
+2026-08-21T09:46:04.3893163Z     "oracle_restoration": 200,
+2026-08-21T09:46:04.3893457Z     "oracle_pronunciation": 150,
+2026-08-21T09:46:04.3893760Z     "oracle_mythology": 287,
+2026-08-21T09:46:04.3894057Z     "oracle_pattern_weaving": 192,
+2026-08-21T09:46:04.3894374Z     "oracle_modern_bridge": 185,
+2026-08-21T09:46:04.3894674Z     "oracle_biblical_bridge": 92,
+2026-08-21T09:46:04.3894976Z     "oracle_contemplative": 200,
+2026-08-21T09:46:04.3895270Z     "oracle_translation": 150,
+2026-08-21T09:46:04.3895525Z     "oracle_safety": 200,
+2026-08-21T09:46:04.3895812Z     "oracle_domain_advice": 100,
+2026-08-21T09:46:04.3896093Z     "oracle_citation": 150
+2026-08-21T09:46:04.3896349Z   },
+2026-08-21T09:46:04.3896633Z   "symbolicCorrespondenceExamples": 1236,
+2026-08-21T09:46:04.3896993Z   "symbolicCorrespondenceByTask": {
+2026-08-21T09:46:04.3897300Z     "symbolic_lookup": 400,
+2026-08-21T09:46:04.3897588Z     "symbolic_compare": 300,
+2026-08-21T09:46:04.3898063Z     "symbolic_explain": 300,
+2026-08-21T09:46:04.3898358Z     "symbolic_synthesize": 36,
+2026-08-21T09:46:04.3898634Z     "symbolic_caution": 200
+2026-08-21T09:46:04.3899056Z   },
+2026-08-21T09:46:04.3899315Z   "scientificAnalogyExamples": 1500,
+2026-08-21T09:46:04.3899644Z   "scientificAnalogyByTask": {
+2026-08-21T09:46:04.3899947Z     "science_analogy_lookup": 400,
+2026-08-21T09:46:04.3900264Z     "science_analogy_explain": 300,
+2026-08-21T09:46:04.3900578Z     "science_analogy_compare": 300,
+2026-08-21T09:46:04.3900898Z     "science_analogy_synthesize": 200,
+2026-08-21T09:46:04.3901223Z     "science_analogy_caution": 150,
+2026-08-21T09:46:04.3901529Z     "science_pattern_bridge": 150
+2026-08-21T09:46:04.3901806Z   },
+2026-08-21T09:46:04.3902017Z   "chatTrainExamples": 61216,
+2026-08-21T09:46:04.3902296Z   "chatTrainByTask": {
+2026-08-21T09:46:04.3902561Z     "restoration": 797,
+2026-08-21T09:46:04.3902814Z     "punycode": 761,
+2026-08-21T09:46:04.3903076Z     "original_script": 624,
+2026-08-21T09:46:04.3903330Z     "pronunciation": 781,
+2026-08-21T09:46:04.3903591Z     "etymology": 95,
+2026-08-21T09:46:04.3903832Z     "meaning": 768,
+2026-08-21T09:46:04.3904056Z     "mythology": 223,
+2026-08-21T09:46:04.3904307Z     "breakdown": 781,
+2026-08-21T09:46:04.3904551Z     "variants": 67,
+2026-08-21T09:46:04.3904780Z     "sources": 754,
+2026-08-21T09:46:04.3905015Z     "homograph_safety": 785,
+2026-08-21T09:46:04.3905267Z     "tier": 777,
+2026-08-21T09:46:04.3905513Z     "safety_classify": 12044,
+2026-08-21T09:46:04.3905789Z     "safety_normalize": 5081,
+2026-08-21T09:46:04.3906055Z     "safety_explain": 12027,
+2026-08-21T09:46:04.3906315Z     "safety_punycode": 2870,
+2026-08-21T09:46:04.3906603Z     "safety_url_analysis": 1714,
+2026-08-21T09:46:04.3906913Z     "safety_detect_mixed_script": 1756,
+2026-08-21T09:46:04.3907243Z     "safety_brand_disambiguate": 13,
+2026-08-21T09:46:04.3907558Z     "dialogue_restoration": 791,
+2026-08-21T09:46:04.3908207Z     "dialogue_pronunciation": 778,
+2026-08-21T09:46:04.3908525Z     "dialogue_mythology": 235,
+2026-08-21T09:46:04.3908799Z     "dialogue_safety": 754,
+2026-08-21T09:46:04.3909046Z     "dialogue_variants": 66,
+2026-08-21T09:46:04.3909319Z     "dialogue_etymology": 95,
+2026-08-21T09:46:04.3909597Z     "tool_convert": 786,
+2026-08-21T09:46:04.3909858Z     "tool_check": 794,
+2026-08-21T09:46:04.3910116Z     "tool_search": 778,
+2026-08-21T09:46:04.3910369Z     "tool_get_entry": 764,
+2026-08-21T09:46:04.3910654Z     "tool_analyze_url": 776,
+2026-08-21T09:46:04.3910908Z     "multimodal_mascot": 238,
+2026-08-21T09:46:04.3911204Z     "multimodal_logomark": 227,
+2026-08-21T09:46:04.3911489Z     "multimodal_script": 634,
+2026-08-21T09:46:04.3911757Z     "multimodal_glyph": 628,
+2026-08-21T09:46:04.3912049Z     "preference_restoration": 773,
+2026-08-21T09:46:04.3912349Z     "preference_safety": 770,
+2026-08-21T09:46:04.3912640Z     "preference_sources": 752,
+2026-08-21T09:46:04.3912940Z     "preference_variants": 65,
+2026-08-21T09:46:04.3913259Z     "preference_pronunciation": 745,
+2026-08-21T09:46:04.3913584Z     "reasoning_breakdown": 757,
+2026-08-21T09:46:04.3913863Z     "reasoning_tier": 768,
+2026-08-21T09:46:04.3914143Z     "reasoning_etymology": 101,
+2026-08-21T09:46:04.3914416Z     "reasoning_safety": 783,
+2026-08-21T09:46:04.3914716Z     "reasoning_original_script": 621,
+2026-08-21T09:46:04.3915039Z     "myth_comparative_analysis": 22,
+2026-08-21T09:46:04.3915358Z     "myth_esoteric_synthesis": 20,
+2026-08-21T09:46:04.3915683Z     "myth_cross_tradition_syncretism": 19,
+2026-08-21T09:46:04.3916019Z     "myth_archetype_mapping": 18,
+2026-08-21T09:46:04.3916338Z     "myth_pattern_recognition": 18,
+2026-08-21T09:46:04.3916646Z     "myth_modern_parallel": 31,
+2026-08-21T09:46:04.3916934Z     "myth_biblical_bridge": 9,
+2026-08-21T09:46:04.3917236Z     "myth_thematic_connection": 172,
+2026-08-21T09:46:04.3917521Z     "oracle_greeting": 39,
+2026-08-21T09:46:04.3918185Z     "oracle_restoration": 160,
+2026-08-21T09:46:04.3918614Z     "oracle_pronunciation": 115,
+2026-08-21T09:46:04.3918900Z     "oracle_mythology": 222,
+2026-08-21T09:46:04.3919175Z     "oracle_pattern_weaving": 147,
+2026-08-21T09:46:04.3919480Z     "oracle_modern_bridge": 144,
+2026-08-21T09:46:04.3919953Z     "oracle_biblical_bridge": 69,
+2026-08-21T09:46:04.3920260Z     "oracle_contemplative": 155,
+2026-08-21T09:46:04.3920552Z     "oracle_translation": 123,
+2026-08-21T09:46:04.3920829Z     "oracle_safety": 160,
+2026-08-21T09:46:04.3921109Z     "oracle_domain_advice": 77,
+2026-08-21T09:46:04.3921379Z     "oracle_citation": 120,
+2026-08-21T09:46:04.3921630Z     "symbolic_lookup": 320,
+2026-08-21T09:46:04.3921891Z     "symbolic_compare": 237,
+2026-08-21T09:46:04.3922158Z     "symbolic_explain": 243,
+2026-08-21T09:46:04.3922447Z     "symbolic_synthesize": 26,
+2026-08-21T09:46:04.3922723Z     "symbolic_caution": 161,
+2026-08-21T09:46:04.3923019Z     "science_analogy_lookup": 315,
+2026-08-21T09:46:04.3923329Z     "science_analogy_explain": 230,
+2026-08-21T09:46:04.3923651Z     "science_analogy_compare": 240,
+2026-08-21T09:46:04.3923982Z     "science_analogy_synthesize": 162,
+2026-08-21T09:46:04.3924306Z     "science_analogy_caution": 118,
+2026-08-21T09:46:04.3924608Z     "science_pattern_bridge": 127
+2026-08-21T09:46:04.3924887Z   },
+2026-08-21T09:46:04.3925111Z   "chatEvalExamples": 15301,
+2026-08-21T09:46:04.3925370Z   "chatEvalByTask": {
+2026-08-21T09:46:04.3925620Z     "tier": 189,
+2026-08-21T09:46:04.3925862Z     "punycode": 203,
+2026-08-21T09:46:04.3926119Z     "original_script": 154,
+2026-08-21T09:46:04.3926378Z     "breakdown": 185,
+2026-08-21T09:46:04.3926607Z     "homograph_safety": 179,
+2026-08-21T09:46:04.3926884Z     "restoration": 169,
+2026-08-21T09:46:04.3927144Z     "mythology": 64,
+2026-08-21T09:46:04.3927385Z     "variants": 14,
+2026-08-21T09:46:04.3927625Z     "etymology": 27,
+2026-08-21T09:46:04.3928022Z     "meaning": 198,
+2026-08-21T09:46:04.3928265Z     "sources": 212,
+2026-08-21T09:46:04.3928505Z     "pronunciation": 185,
+2026-08-21T09:46:04.3929787Z     "safety_explain": 3010,
+2026-08-21T09:46:04.3930071Z     "safety_normalize": 1275,
+2026-08-21T09:46:04.3930357Z     "safety_classify": 2995,
+2026-08-21T09:46:04.3930624Z     "safety_punycode": 696,
+2026-08-21T09:46:04.3930917Z     "safety_url_analysis": 457,
+2026-08-21T09:46:04.3931237Z     "safety_detect_mixed_script": 415,
+2026-08-21T09:46:04.3931573Z     "safety_brand_disambiguate": 2,
+2026-08-21T09:46:04.3931852Z     "dialogue_etymology": 27,
+2026-08-21T09:46:04.3932155Z     "dialogue_pronunciation": 188,
+2026-08-21T09:46:04.3932450Z     "dialogue_mythology": 52,
+2026-08-21T09:46:04.3932718Z     "dialogue_safety": 210,
+2026-08-21T09:46:04.3933004Z     "dialogue_restoration": 175,
+2026-08-21T09:46:04.3933295Z     "dialogue_variants": 15,
+2026-08-21T09:46:04.3933560Z     "tool_analyze_url": 188,
+2026-08-21T09:46:04.3933822Z     "tool_check": 172,
+2026-08-21T09:46:04.3934077Z     "tool_get_entry": 202,
+2026-08-21T09:46:04.3934351Z     "tool_search": 188,
+2026-08-21T09:46:04.3934602Z     "tool_convert": 178,
+2026-08-21T09:46:04.3934879Z     "multimodal_mascot": 49,
+2026-08-21T09:46:04.3935159Z     "multimodal_script": 144,
+2026-08-21T09:46:04.3935464Z     "multimodal_logomark": 60,
+2026-08-21T09:46:04.3935754Z     "multimodal_glyph": 150,
+2026-08-21T09:46:04.3936070Z     "preference_pronunciation": 221,
+2026-08-21T09:46:04.3936402Z     "preference_restoration": 193,
+2026-08-21T09:46:04.3936718Z     "preference_sources": 214,
+2026-08-21T09:46:04.3937015Z     "preference_variants": 16,
+2026-08-21T09:46:04.3937292Z     "preference_safety": 194,
+2026-08-21T09:46:04.3937598Z     "reasoning_original_script": 157,
+2026-08-21T09:46:04.3947325Z     "reasoning_tier": 198,
+2026-08-21T09:46:04.3947759Z     "reasoning_breakdown": 209,
+2026-08-21T09:46:04.3948298Z     "reasoning_etymology": 21,
+2026-08-21T09:46:04.3948591Z     "reasoning_safety": 181,
+2026-08-21T09:46:04.3948909Z     "myth_pattern_recognition": 7,
+2026-08-21T09:46:04.3949259Z     "myth_archetype_mapping": 7,
+2026-08-21T09:46:04.3949588Z     "myth_cross_tradition_syncretism": 6,
+2026-08-21T09:46:04.3949956Z     "myth_esoteric_synthesis": 5,
+2026-08-21T09:46:04.3950286Z     "myth_comparative_analysis": 3,
+2026-08-21T09:46:04.3950611Z     "myth_modern_parallel": 5,
+2026-08-21T09:46:04.3951140Z     "myth_biblical_bridge": 4,
+2026-08-21T09:46:04.3951438Z     "myth_thematic_connection": 51,
+2026-08-21T09:46:04.3951741Z     "oracle_greeting": 11,
+2026-08-21T09:46:04.3952027Z     "oracle_restoration": 40,
+2026-08-21T09:46:04.3952328Z     "oracle_pronunciation": 35,
+2026-08-21T09:46:04.3952615Z     "oracle_mythology": 65,
+2026-08-21T09:46:04.3952907Z     "oracle_pattern_weaving": 45,
+2026-08-21T09:46:04.3953208Z     "oracle_modern_bridge": 41,
+2026-08-21T09:46:04.3953501Z     "oracle_biblical_bridge": 23,
+2026-08-21T09:46:04.3953801Z     "oracle_contemplative": 45,
+2026-08-21T09:46:04.3954073Z     "oracle_translation": 27,
+2026-08-21T09:46:04.3954342Z     "oracle_safety": 40,
+2026-08-21T09:46:04.3954621Z     "oracle_domain_advice": 23,
+2026-08-21T09:46:04.3954895Z     "oracle_citation": 30,
+2026-08-21T09:46:04.3955157Z     "symbolic_lookup": 80,
+2026-08-21T09:46:04.3955411Z     "symbolic_compare": 63,
+2026-08-21T09:46:04.3955662Z     "symbolic_explain": 57,
+2026-08-21T09:46:04.3955941Z     "symbolic_synthesize": 10,
+2026-08-21T09:46:04.3956227Z     "symbolic_caution": 39,
+2026-08-21T09:46:04.3956512Z     "science_analogy_lookup": 85,
+2026-08-21T09:46:04.3956826Z     "science_analogy_explain": 70,
+2026-08-21T09:46:04.3957159Z     "science_analogy_compare": 60,
+2026-08-21T09:46:04.3957472Z     "science_analogy_synthesize": 38,
+2026-08-21T09:46:04.3957955Z     "science_analogy_caution": 32,
+2026-08-21T09:46:04.3958337Z     "science_pattern_bridge": 23
+2026-08-21T09:46:04.3958612Z   },
+2026-08-21T09:46:04.3958846Z   "pretrainDocuments": 5998,
+2026-08-21T09:46:04.3959172Z   "pretrainDocumentsBySource": {
+2026-08-21T09:46:04.3959465Z     "entries.jsonl": 966,
+2026-08-21T09:46:04.3959739Z     "lore-catalog.json": 287,
+2026-08-21T09:46:04.3960019Z     "source-catalog.js": 211,
+2026-08-21T09:46:04.3960479Z     "original-scripts.js": 435,
+2026-08-21T09:46:04.3960793Z     "pronunciation-atlas.js": 966,
+2026-08-21T09:46:04.3961123Z     "mythology-synthesis.jsonl": 397,
+2026-08-21T09:46:04.3961469Z     "symbolic-correspondences.jsonl": 1236,
+2026-08-21T09:46:04.3961839Z     "scientific-analogies.jsonl": 1500
+2026-08-21T09:46:04.3962124Z   },
+2026-08-21T09:46:04.3962400Z   "pretrainValidationDocuments": 287,
+2026-08-21T09:46:04.3962711Z   "pretrainTokens": 604307
+2026-08-21T09:46:04.3962971Z }
+2026-08-21T09:46:04.4270249Z 
+2026-08-21T09:46:04.4271080Z ▸ scripts/generate-synthetic-qa.js
+2026-08-21T09:46:04.5865351Z ✓ Generated 8992 instruction examples to /home/runner/work/punycodex/punycodex/data/corpus/instructions.jsonl
+2026-08-21T09:46:04.5866191Z   by task: {
+2026-08-21T09:46:04.5866435Z   "restoration": 966,
+2026-08-21T09:46:04.5866680Z   "punycode": 964,
+2026-08-21T09:46:04.5866920Z   "original_script": 778,
+2026-08-21T09:46:04.5867186Z   "pronunciation": 966,
+2026-08-21T09:46:04.5867461Z   "etymology": 122,
+2026-08-21T09:46:04.5867686Z   "meaning": 966,
+2026-08-21T09:46:04.5868145Z   "tier": 966,
+2026-08-21T09:46:04.5868369Z   "mythology": 287,
+2026-08-21T09:46:04.5868585Z   "breakdown": 966,
+2026-08-21T09:46:04.5868810Z   "variants": 81,
+2026-08-21T09:46:04.5869020Z   "sources": 966,
+2026-08-21T09:46:04.5869240Z   "homograph_safety": 964
+2026-08-21T09:46:04.5869481Z }
+2026-08-21T09:46:04.5973113Z 
+2026-08-21T09:46:04.5973567Z ▸ scripts/generate-safety-corpus.js
+2026-08-21T09:46:05.0960042Z ✓ Generated 44355 safety examples to /home/runner/work/punycodex/punycodex/data/corpus/safety-examples.jsonl
+2026-08-21T09:46:05.0960945Z   by task: {
+2026-08-21T09:46:05.0961280Z   "safety_classify": 15039,
+2026-08-21T09:46:05.0961638Z   "safety_explain": 15037,
+2026-08-21T09:46:05.0961907Z   "safety_normalize": 6356,
+2026-08-21T09:46:05.0962163Z   "safety_punycode": 3566,
+2026-08-21T09:46:05.0962444Z   "safety_url_analysis": 2171,
+2026-08-21T09:46:05.0962744Z   "safety_detect_mixed_script": 2171,
+2026-08-21T09:46:05.0963090Z   "safety_brand_disambiguate": 15
+2026-08-21T09:46:05.0963357Z }
+2026-08-21T09:46:05.0963545Z   by family: {
+2026-08-21T09:46:05.0963776Z   "single-confusable": 7059,
+2026-08-21T09:46:05.0964040Z   "multi-confusable": 7692,
+2026-08-21T09:46:05.0964666Z   "invisible-injection": 4340,
+2026-08-21T09:46:05.0964998Z   "normalization-attack": 6024,
+2026-08-21T09:46:05.0965285Z   "etld-subdomain": 4342,
+2026-08-21T09:46:05.0965574Z   "path-query-homograph": 6513,
+2026-08-21T09:46:05.0965908Z   "mixed-script-legitimate": 4,
+2026-08-21T09:46:05.0966196Z   "mixed-script-attack": 8366,
+2026-08-21T09:46:05.0966485Z   "brand-disambiguation": 15
+2026-08-21T09:46:05.0966754Z }
+2026-08-21T09:46:05.1178054Z 
+2026-08-21T09:46:05.2433117Z ▸ scripts/generate-dialogue-corpus.js
+2026-08-21T09:46:05.2434201Z ✓ Generated 3386 dialogue examples to /home/runner/work/punycodex/punycodex/data/corpus/dialogue-examples.jsonl
+2026-08-21T09:46:05.2435067Z   by task: {
+2026-08-21T09:46:05.2435464Z   "dialogue_restoration": 966,
+2026-08-21T09:46:05.2435830Z   "dialogue_pronunciation": 966,
+2026-08-21T09:46:05.2436104Z   "dialogue_mythology": 287,
+2026-08-21T09:46:05.2436362Z   "dialogue_etymology": 122,
+2026-08-21T09:46:05.2436610Z   "dialogue_safety": 964,
+2026-08-21T09:46:05.2436869Z   "dialogue_variants": 81
+2026-08-21T09:46:05.2437101Z }
+2026-08-21T09:46:05.2519775Z 
+2026-08-21T09:46:05.2520455Z ▸ scripts/generate-tool-use-corpus.js
+2026-08-21T09:46:05.4295178Z ✓ Generated 4826 tool-use examples to /home/runner/work/punycodex/punycodex/data/corpus/tool-use-examples.jsonl
+2026-08-21T09:46:05.4296486Z   by task: {
+2026-08-21T09:46:05.4296910Z   "tool_convert": 964,
+2026-08-21T09:46:05.4297280Z   "tool_check": 966,
+2026-08-21T09:46:05.4297607Z   "tool_search": 966,
+2026-08-21T09:46:05.4298229Z   "tool_get_entry": 966,
+2026-08-21T09:46:05.4298580Z   "tool_analyze_url": 964
+2026-08-21T09:46:05.4298933Z }
+2026-08-21T09:46:05.4428609Z 
+2026-08-21T09:46:05.4429210Z ▸ scripts/generate-multimodal-corpus.js
+2026-08-21T09:46:05.5435211Z ✓ Generated 2130 multimodal examples to /home/runner/work/punycodex/punycodex/data/corpus/multimodal-examples.jsonl
+2026-08-21T09:46:05.5436168Z   by task: {
+2026-08-21T09:46:05.5436525Z   "multimodal_mascot": 287,
+2026-08-21T09:46:05.5436984Z   "multimodal_logomark": 287,
+2026-08-21T09:46:05.5437289Z   "multimodal_script": 778,
+2026-08-21T09:46:05.5437547Z   "multimodal_glyph": 778
+2026-08-21T09:46:05.5438000Z }
+2026-08-21T09:46:05.5541404Z 
+2026-08-21T09:46:05.5542208Z ▸ scripts/generate-preference-corpus.js
+2026-08-21T09:46:05.6634467Z ✓ Generated 3943 preference examples to /home/runner/work/punycodex/punycodex/data/corpus/preference-examples.jsonl
+2026-08-21T09:46:05.6635511Z   by task: {
+2026-08-21T09:46:05.6635914Z   "preference_restoration": 966,
+2026-08-21T09:46:05.6636405Z   "preference_pronunciation": 966,
+2026-08-21T09:46:05.6636810Z   "preference_safety": 964,
+2026-08-21T09:46:05.6637204Z   "preference_sources": 966,
+2026-08-21T09:46:05.6637576Z   "preference_variants": 81
+2026-08-21T09:46:05.6638191Z }
+2026-08-21T09:46:05.6718111Z 
+2026-08-21T09:46:05.6718617Z ▸ scripts/generate-reasoning-corpus.js
+2026-08-21T09:46:05.7845013Z ✓ Generated 3796 reasoning examples to /home/runner/work/punycodex/punycodex/data/corpus/reasoning-examples.jsonl
+2026-08-21T09:46:05.7846025Z   by task: {
+2026-08-21T09:46:05.7846371Z   "reasoning_breakdown": 966,
+2026-08-21T09:46:05.7846753Z   "reasoning_tier": 966,
+2026-08-21T09:46:05.7847015Z   "reasoning_etymology": 122,
+2026-08-21T09:46:05.7847273Z   "reasoning_safety": 964,
+2026-08-21T09:46:05.7847555Z   "reasoning_original_script": 778
+2026-08-21T09:46:05.7848059Z }
+2026-08-21T09:46:05.7930019Z 
+2026-08-21T09:46:05.7930635Z ▸ scripts/generate-benchmark-suite.js
+2026-08-21T09:46:07.8359885Z ✓ Generated 6606 benchmark examples to /home/runner/work/punycodex/punycodex/data/corpus/benchmark.jsonl
+2026-08-21T09:46:07.8360733Z   by task: {
+2026-08-21T09:46:07.8361126Z   "benchmark_restoration": 966,
+2026-08-21T09:46:07.8361592Z   "benchmark_pronunciation": 966,
+2026-08-21T09:46:07.8361941Z   "benchmark_meaning": 966,
+2026-08-21T09:46:07.8362201Z   "benchmark_tier": 966,
+2026-08-21T09:46:07.8362459Z   "benchmark_punycode": 964,
+2026-08-21T09:46:07.8362747Z   "benchmark_original_script": 778,
+2026-08-21T09:46:07.8363338Z   "benchmark_safety": 1000
+2026-08-21T09:46:07.8363591Z }
+2026-08-21T09:46:07.8577286Z 
+2026-08-21T09:46:07.8578358Z ▸ scripts/generate-mythology-synthesis-corpus.js
+2026-08-21T09:46:07.9819806Z ✓ Generated 397 mythology synthesis examples to /home/runner/work/punycodex/punycodex/data/corpus/mythology-synthesis.jsonl
+2026-08-21T09:46:07.9820716Z   by task: {
+2026-08-21T09:46:07.9821119Z   "myth_comparative_analysis": 25,
+2026-08-21T09:46:07.9821600Z   "myth_pattern_recognition": 25,
+2026-08-21T09:46:07.9821907Z   "myth_esoteric_synthesis": 25,
+2026-08-21T09:46:07.9822202Z   "myth_archetype_mapping": 25,
+2026-08-21T09:46:07.9822513Z   "myth_cross_tradition_syncretism": 25,
+2026-08-21T09:46:07.9822813Z   "myth_modern_parallel": 36,
+2026-08-21T09:46:07.9823107Z   "myth_biblical_bridge": 13,
+2026-08-21T09:46:07.9823382Z   "myth_thematic_connection": 223
+2026-08-21T09:46:07.9823635Z }
+2026-08-21T09:46:07.9901783Z 
+2026-08-21T09:46:07.9902478Z ▸ scripts/generate-oracle-corpus.js
+2026-08-21T09:46:08.1311805Z ✓ Generated 1956 oracle conversation examples to /home/runner/work/punycodex/punycodex/data/corpus/oracle-examples.jsonl
+2026-08-21T09:46:08.1312846Z   by task: {
+2026-08-21T09:46:08.1313210Z   "oracle_greeting": 50,
+2026-08-21T09:46:08.1313633Z   "oracle_restoration": 200,
+2026-08-21T09:46:08.1314075Z   "oracle_pronunciation": 150,
+2026-08-21T09:46:08.1314459Z   "oracle_mythology": 287,
+2026-08-21T09:46:08.1314847Z   "oracle_pattern_weaving": 192,
+2026-08-21T09:46:08.1315286Z   "oracle_modern_bridge": 185,
+2026-08-21T09:46:08.1315667Z   "oracle_biblical_bridge": 92,
+2026-08-21T09:46:08.1316089Z   "oracle_contemplative": 200,
+2026-08-21T09:46:08.1316448Z   "oracle_translation": 150,
+2026-08-21T09:46:08.1316783Z   "oracle_safety": 200,
+2026-08-21T09:46:08.1317557Z   "oracle_domain_advice": 100,
+2026-08-21T09:46:08.1318234Z   "oracle_citation": 150
+2026-08-21T09:46:08.1318581Z }
+2026-08-21T09:46:08.1396110Z 
+2026-08-21T09:46:08.1396812Z ▸ scripts/generate-symbolic-corpus.js
+2026-08-21T09:46:08.2738217Z ✓ Generated 1236 symbolic correspondence examples to /home/runner/work/punycodex/punycodex/data/corpus/symbolic-correspondences.jsonl
+2026-08-21T09:46:08.2739327Z   by task: {
+2026-08-21T09:46:08.2739672Z   "symbolic_lookup": 400,
+2026-08-21T09:46:08.2740065Z   "symbolic_compare": 300,
+2026-08-21T09:46:08.2740438Z   "symbolic_explain": 300,
+2026-08-21T09:46:08.2740811Z   "symbolic_synthesize": 36,
+2026-08-21T09:46:08.2741206Z   "symbolic_caution": 200
+2026-08-21T09:46:08.2741552Z }
+2026-08-21T09:46:08.2819802Z 
+2026-08-21T09:46:08.2820433Z ▸ scripts/generate-scientific-analogies-corpus.js
+2026-08-21T09:46:08.4829866Z ✓ Generated 1500 scientific/philosophical analogy examples to /home/runner/work/punycodex/punycodex/data/corpus/scientific-analogies.jsonl
+2026-08-21T09:46:08.4831050Z   by task: {
+2026-08-21T09:46:08.4831432Z   "science_analogy_lookup": 400,
+2026-08-21T09:46:08.4831902Z   "science_analogy_explain": 300,
+2026-08-21T09:46:08.4832355Z   "science_analogy_compare": 300,
+2026-08-21T09:46:08.4832819Z   "science_analogy_synthesize": 200,
+2026-08-21T09:46:08.4833281Z   "science_analogy_caution": 150,
+2026-08-21T09:46:08.4833759Z   "science_pattern_bridge": 150
+2026-08-21T09:46:08.4834114Z }
+2026-08-21T09:46:08.4908833Z 
+2026-08-21T09:46:08.4909392Z ▸ scripts/generate-pretrain-corpus.js
+2026-08-21T09:46:08.9199894Z ✓ Pretraining corpus generated
+2026-08-21T09:46:08.9327548Z   documents: 5,998
+2026-08-21T09:46:08.9328197Z   train:     5,711
+2026-08-21T09:46:08.9328599Z   validation:287
+2026-08-21T09:46:08.9328981Z   tokens:    604,307
+2026-08-21T09:46:08.9329370Z   sources:   8
+2026-08-21T09:46:08.9493221Z 
+2026-08-21T09:46:08.9494431Z ▸ scripts/generate-unified-corpus.js
+2026-08-21T09:46:10.5840351Z ✓ Unified corpus generated
+2026-08-21T09:46:10.5841760Z   train.jsonl: 61,216 examples
+2026-08-21T09:46:10.5842206Z   eval.jsonl:  15,301 examples
+2026-08-21T09:46:10.5842483Z   total:       76,517 examples
+2026-08-21T09:46:10.5843416Z   tasks:       75
+2026-08-21T09:46:10.5843760Z   sources:     11
+2026-08-21T09:46:10.6129338Z 
+2026-08-21T09:46:10.6130198Z ▸ scripts/generate-pronunciation-corpus.js
+2026-08-21T09:46:10.7317474Z Pronunciation corpus: 966 records (699 rules-derived, 267 atlas-only) → data/corpus/pronunciation.jsonl
+2026-08-21T09:46:10.7381049Z 
+2026-08-21T09:46:10.7381530Z ▸ scripts/generate-eval-benchmark.js
+2026-08-21T09:46:11.3877698Z ✓ Split 53347 examples from 8992 scholarly + 44355 safety:
+2026-08-21T09:46:11.4013430Z   train: 42500 (scholarly 7170, safety 35330) → /home/runner/work/punycodex/punycodex/data/corpus/instructions-train.jsonl
+2026-08-21T09:46:11.4053293Z   eval:  10847 (scholarly 1822, safety 9025) → /home/runner/work/punycodex/punycodex/data/corpus/eval.jsonl
+2026-08-21T09:46:11.4295749Z 
+2026-08-21T09:46:11.4296499Z ▸ scripts/generate-data-card.js
+2026-08-21T09:46:12.1151990Z ✓ Generated data card at /home/runner/work/punycodex/punycodex/data/corpus/DATA_CARD.md
+2026-08-21T09:46:12.1277709Z 
+2026-08-21T09:46:12.1278799Z ▸ scripts/export-model-corpus.js
+2026-08-21T09:46:14.0600641Z ✓ Exported 966 entries to /home/runner/work/punycodex/punycodex/data/corpus
+2026-08-21T09:46:14.0603505Z   entries.jsonl: 4.94 MB
+2026-08-21T09:46:14.0604169Z   manifest: {
+2026-08-21T09:46:14.0604550Z   "entries": 966,
+2026-08-21T09:46:14.0604933Z   "withOriginalScript": 778,
+2026-08-21T09:46:14.0605346Z   "withPronunciation": 966,
+2026-08-21T09:46:14.0605738Z   "withLore": 287,
+2026-08-21T09:46:14.0606153Z   "withEtymology": 122,
+2026-08-21T09:46:14.0606470Z   "flagships": 287,
+2026-08-21T09:46:14.0606696Z   "owned": 275,
+2026-08-21T09:46:14.0606916Z   "instructions": 8992,
+2026-08-21T09:46:14.0607164Z   "instructionsByTask": {
+2026-08-21T09:46:14.0607427Z     "restoration": 966,
+2026-08-21T09:46:14.0607661Z     "punycode": 964,
+2026-08-21T09:46:14.0608669Z     "original_script": 778,
+2026-08-21T09:46:14.0608936Z     "pronunciation": 966,
+2026-08-21T09:46:14.0609181Z     "etymology": 122,
+2026-08-21T09:46:14.0609413Z     "meaning": 966,
+2026-08-21T09:46:14.0609628Z     "tier": 966,
+2026-08-21T09:46:14.0609864Z     "mythology": 287,
+2026-08-21T09:46:14.0610089Z     "breakdown": 966,
+2026-08-21T09:46:14.0610309Z     "variants": 81,
+2026-08-21T09:46:14.0610520Z     "sources": 966,
+2026-08-21T09:46:14.0610737Z     "homograph_safety": 964
+2026-08-21T09:46:14.0610970Z   },
+2026-08-21T09:46:14.0611184Z   "safetyExamples": 44355,
+2026-08-21T09:46:14.0611427Z   "safetyByTask": {
+2026-08-21T09:46:14.0611656Z     "safety_classify": 15039,
+2026-08-21T09:46:14.0611934Z     "safety_explain": 15037,
+2026-08-21T09:46:14.0612196Z     "safety_normalize": 6356,
+2026-08-21T09:46:14.0612489Z     "safety_punycode": 3566,
+2026-08-21T09:46:14.0612914Z     "safety_url_analysis": 2171,
+2026-08-21T09:46:14.0613379Z     "safety_detect_mixed_script": 2171,
+2026-08-21T09:46:14.0613878Z     "safety_brand_disambiguate": 15
+2026-08-21T09:46:14.0614267Z   },
+2026-08-21T09:46:14.0614552Z   "dialogueExamples": 3386,
+2026-08-21T09:46:14.0614973Z   "dialogueByTask": {
+2026-08-21T09:46:14.0615346Z     "dialogue_restoration": 966,
+2026-08-21T09:46:14.0615774Z     "dialogue_pronunciation": 966,
+2026-08-21T09:46:14.0616212Z     "dialogue_mythology": 287,
+2026-08-21T09:46:14.0616605Z     "dialogue_etymology": 122,
+2026-08-21T09:46:14.0616974Z     "dialogue_safety": 964,
+2026-08-21T09:46:14.0617328Z     "dialogue_variants": 81
+2026-08-21T09:46:14.0617656Z   },
+2026-08-21T09:46:14.0618131Z   "toolUseExamples": 4826,
+2026-08-21T09:46:14.0618482Z   "toolUseByTask": {
+2026-08-21T09:46:14.0618799Z     "tool_convert": 964,
+2026-08-21T09:46:14.0619140Z     "tool_check": 966,
+2026-08-21T09:46:14.0619459Z     "tool_search": 966,
+2026-08-21T09:46:14.0619783Z     "tool_get_entry": 966,
+2026-08-21T09:46:14.0620125Z     "tool_analyze_url": 964
+2026-08-21T09:46:14.0620437Z   },
+2026-08-21T09:46:14.0620731Z   "multimodalExamples": 2130,
+2026-08-21T09:46:14.0621113Z   "multimodalByTask": {
+2026-08-21T09:46:14.0621443Z     "multimodal_mascot": 287,
+2026-08-21T09:46:14.0621916Z     "multimodal_logomark": 287,
+2026-08-21T09:46:14.0622308Z     "multimodal_script": 778,
+2026-08-21T09:46:14.0622908Z     "multimodal_glyph": 778
+2026-08-21T09:46:14.0623236Z   },
+2026-08-21T09:46:14.0623517Z   "preferenceExamples": 3943,
+2026-08-21T09:46:14.0623906Z   "preferenceByTask": {
+2026-08-21T09:46:14.0624285Z     "preference_restoration": 966,
+2026-08-21T09:46:14.0624717Z     "preference_pronunciation": 966,
+2026-08-21T09:46:14.0625112Z     "preference_safety": 964,
+2026-08-21T09:46:14.0625491Z     "preference_sources": 966,
+2026-08-21T09:46:14.0625850Z     "preference_variants": 81
+2026-08-21T09:46:14.0626193Z   },
+2026-08-21T09:46:14.0626483Z   "reasoningExamples": 3796,
+2026-08-21T09:46:14.0626836Z   "reasoningByTask": {
+2026-08-21T09:46:14.0627196Z     "reasoning_breakdown": 966,
+2026-08-21T09:46:14.0627552Z     "reasoning_tier": 966,
+2026-08-21T09:46:14.0628090Z     "reasoning_etymology": 122,
+2026-08-21T09:46:14.0628443Z     "reasoning_safety": 964,
+2026-08-21T09:46:14.0628832Z     "reasoning_original_script": 778
+2026-08-21T09:46:14.0629200Z   },
+2026-08-21T09:46:14.0629478Z   "benchmarkExamples": 6606,
+2026-08-21T09:46:14.0629843Z   "benchmarkByTask": {
+2026-08-21T09:46:14.0630216Z     "benchmark_restoration": 966,
+2026-08-21T09:46:14.0630640Z     "benchmark_pronunciation": 966,
+2026-08-21T09:46:14.0631049Z     "benchmark_meaning": 966,
+2026-08-21T09:46:14.0631417Z     "benchmark_tier": 966,
+2026-08-21T09:46:14.0631799Z     "benchmark_punycode": 964,
+2026-08-21T09:46:14.0632216Z     "benchmark_original_script": 778,
+2026-08-21T09:46:14.0632614Z     "benchmark_safety": 1000
+2026-08-21T09:46:14.0632946Z   },
+2026-08-21T09:46:14.0633287Z   "mythologySynthesisExamples": 397,
+2026-08-21T09:46:14.0633730Z   "mythologySynthesisByTask": {
+2026-08-21T09:46:14.0634153Z     "myth_comparative_analysis": 25,
+2026-08-21T09:46:14.0634585Z     "myth_pattern_recognition": 25,
+2026-08-21T09:46:14.0635216Z     "myth_esoteric_synthesis": 25,
+2026-08-21T09:46:14.0635633Z     "myth_archetype_mapping": 25,
+2026-08-21T09:46:14.0636073Z     "myth_cross_tradition_syncretism": 25,
+2026-08-21T09:46:14.0636516Z     "myth_modern_parallel": 36,
+2026-08-21T09:46:14.0636918Z     "myth_biblical_bridge": 13,
+2026-08-21T09:46:14.0637310Z     "myth_thematic_connection": 223
+2026-08-21T09:46:14.0637669Z   },
+2026-08-21T09:46:14.0638101Z   "oracleExamples": 1956,
+2026-08-21T09:46:14.0638456Z   "oracleByTask": {
+2026-08-21T09:46:14.0638816Z     "oracle_greeting": 50,
+2026-08-21T09:46:14.0639219Z     "oracle_restoration": 200,
+2026-08-21T09:46:14.0639630Z     "oracle_pronunciation": 150,
+2026-08-21T09:46:14.0640048Z     "oracle_mythology": 287,
+2026-08-21T09:46:14.0640468Z     "oracle_pattern_weaving": 192,
+2026-08-21T09:46:14.0640916Z     "oracle_modern_bridge": 185,
+2026-08-21T09:46:14.0641362Z     "oracle_biblical_bridge": 92,
+2026-08-21T09:46:14.0641772Z     "oracle_contemplative": 200,
+2026-08-21T09:46:14.0642184Z     "oracle_translation": 150,
+2026-08-21T09:46:14.0642547Z     "oracle_safety": 200,
+2026-08-21T09:46:14.0642926Z     "oracle_domain_advice": 100,
+2026-08-21T09:46:14.0643336Z     "oracle_citation": 150
+2026-08-21T09:46:14.0643681Z   },
+2026-08-21T09:46:14.0644062Z   "symbolicCorrespondenceExamples": 1236,
+2026-08-21T09:46:14.0644566Z   "symbolicCorrespondenceByTask": {
+2026-08-21T09:46:14.0644980Z     "symbolic_lookup": 400,
+2026-08-21T09:46:14.0645366Z     "symbolic_compare": 300,
+2026-08-21T09:46:14.0645737Z     "symbolic_explain": 300,
+2026-08-21T09:46:14.0646125Z     "symbolic_synthesize": 36,
+2026-08-21T09:46:14.0646520Z     "symbolic_caution": 200
+2026-08-21T09:46:14.0646857Z   },
+2026-08-21T09:46:14.0647194Z   "scientificAnalogyExamples": 1500,
+2026-08-21T09:46:14.0647663Z   "scientificAnalogyByTask": {
+2026-08-21T09:46:14.0648218Z     "science_analogy_lookup": 400,
+2026-08-21T09:46:14.0648661Z     "science_analogy_explain": 300,
+2026-08-21T09:46:14.0649095Z     "science_analogy_compare": 300,
+2026-08-21T09:46:14.0649528Z     "science_analogy_synthesize": 200,
+2026-08-21T09:46:14.0649956Z     "science_analogy_caution": 150,
+2026-08-21T09:46:14.0650396Z     "science_pattern_bridge": 150
+2026-08-21T09:46:14.0650987Z   },
+2026-08-21T09:46:14.0651296Z   "chatTrainExamples": 61216,
+2026-08-21T09:46:14.0651691Z   "chatTrainByTask": {
+2026-08-21T09:46:14.0652055Z     "restoration": 797,
+2026-08-21T09:46:14.0652408Z     "punycode": 761,
+2026-08-21T09:46:14.0652755Z     "original_script": 624,
+2026-08-21T09:46:14.0653124Z     "pronunciation": 781,
+2026-08-21T09:46:14.0653492Z     "etymology": 95,
+2026-08-21T09:46:14.0653820Z     "meaning": 768,
+2026-08-21T09:46:14.0654154Z     "mythology": 223,
+2026-08-21T09:46:14.0654494Z     "breakdown": 781,
+2026-08-21T09:46:14.0654829Z     "variants": 67,
+2026-08-21T09:46:14.0655148Z     "sources": 754,
+2026-08-21T09:46:14.0655483Z     "homograph_safety": 785,
+2026-08-21T09:46:14.0655864Z     "tier": 777,
+2026-08-21T09:46:14.0656198Z     "safety_classify": 12044,
+2026-08-21T09:46:14.0656599Z     "safety_normalize": 5081,
+2026-08-21T09:46:14.0656983Z     "safety_explain": 12027,
+2026-08-21T09:46:14.0657367Z     "safety_punycode": 2870,
+2026-08-21T09:46:14.0657792Z     "safety_url_analysis": 1714,
+2026-08-21T09:46:14.0658416Z     "safety_detect_mixed_script": 1756,
+2026-08-21T09:46:14.0658898Z     "safety_brand_disambiguate": 13,
+2026-08-21T09:46:14.0659355Z     "dialogue_restoration": 791,
+2026-08-21T09:46:14.0659791Z     "dialogue_pronunciation": 778,
+2026-08-21T09:46:14.0660231Z     "dialogue_mythology": 235,
+2026-08-21T09:46:14.0660625Z     "dialogue_safety": 754,
+2026-08-21T09:46:14.0661011Z     "dialogue_variants": 66,
+2026-08-21T09:46:14.0661403Z     "dialogue_etymology": 95,
+2026-08-21T09:46:14.0661790Z     "tool_convert": 786,
+2026-08-21T09:46:14.0662148Z     "tool_check": 794,
+2026-08-21T09:46:14.0662505Z     "tool_search": 778,
+2026-08-21T09:46:14.0662862Z     "tool_get_entry": 764,
+2026-08-21T09:46:14.0663238Z     "tool_analyze_url": 776,
+2026-08-21T09:46:14.0664659Z     "multimodal_mascot": 238,
+2026-08-21T09:46:14.0665078Z     "multimodal_logomark": 227,
+2026-08-21T09:46:14.0665485Z     "multimodal_script": 634,
+2026-08-21T09:46:14.0665862Z     "multimodal_glyph": 628,
+2026-08-21T09:46:14.0666294Z     "preference_restoration": 773,
+2026-08-21T09:46:14.0666709Z     "preference_safety": 770,
+2026-08-21T09:46:14.0667116Z     "preference_sources": 752,
+2026-08-21T09:46:14.0667534Z     "preference_variants": 65,
+2026-08-21T09:46:14.0668140Z     "preference_pronunciation": 745,
+2026-08-21T09:46:14.0668592Z     "reasoning_breakdown": 757,
+2026-08-21T09:46:14.0668983Z     "reasoning_tier": 768,
+2026-08-21T09:46:14.0669382Z     "reasoning_etymology": 101,
+2026-08-21T09:46:14.0669769Z     "reasoning_safety": 783,
+2026-08-21T09:46:14.0670055Z     "reasoning_original_script": 621,
+2026-08-21T09:46:14.0670356Z     "myth_comparative_analysis": 22,
+2026-08-21T09:46:14.0670643Z     "myth_esoteric_synthesis": 20,
+2026-08-21T09:46:14.0670947Z     "myth_cross_tradition_syncretism": 19,
+2026-08-21T09:46:14.0671344Z     "myth_archetype_mapping": 18,
+2026-08-21T09:46:14.0671642Z     "myth_pattern_recognition": 18,
+2026-08-21T09:46:14.0671926Z     "myth_modern_parallel": 31,
+2026-08-21T09:46:14.0672229Z     "myth_biblical_bridge": 9,
+2026-08-21T09:46:14.0672511Z     "myth_thematic_connection": 172,
+2026-08-21T09:46:14.0672808Z     "oracle_greeting": 39,
+2026-08-21T09:46:14.0673071Z     "oracle_restoration": 160,
+2026-08-21T09:46:14.0673374Z     "oracle_pronunciation": 115,
+2026-08-21T09:46:14.0673651Z     "oracle_mythology": 222,
+2026-08-21T09:46:14.0673924Z     "oracle_pattern_weaving": 147,
+2026-08-21T09:46:14.0674202Z     "oracle_modern_bridge": 144,
+2026-08-21T09:46:14.0674469Z     "oracle_biblical_bridge": 69,
+2026-08-21T09:46:14.0674768Z     "oracle_contemplative": 155,
+2026-08-21T09:46:14.0675037Z     "oracle_translation": 123,
+2026-08-21T09:46:14.0675278Z     "oracle_safety": 160,
+2026-08-21T09:46:14.0675540Z     "oracle_domain_advice": 77,
+2026-08-21T09:46:14.0675790Z     "oracle_citation": 120,
+2026-08-21T09:46:14.0676035Z     "symbolic_lookup": 320,
+2026-08-21T09:46:14.0676274Z     "symbolic_compare": 237,
+2026-08-21T09:46:14.0676516Z     "symbolic_explain": 243,
+2026-08-21T09:46:14.0676777Z     "symbolic_synthesize": 26,
+2026-08-21T09:46:14.0677234Z     "symbolic_caution": 161,
+2026-08-21T09:46:14.0677499Z     "science_analogy_lookup": 315,
+2026-08-21T09:46:14.0677790Z     "science_analogy_explain": 230,
+2026-08-21T09:46:14.0678317Z     "science_analogy_compare": 240,
+2026-08-21T09:46:14.0678618Z     "science_analogy_synthesize": 162,
+2026-08-21T09:46:14.0678913Z     "science_analogy_caution": 118,
+2026-08-21T09:46:14.0679185Z     "science_pattern_bridge": 127
+2026-08-21T09:46:14.0679434Z   },
+2026-08-21T09:46:14.0679663Z   "chatEvalExamples": 15301,
+2026-08-21T09:46:14.0679924Z   "chatEvalByTask": {
+2026-08-21T09:46:14.0680154Z     "tier": 189,
+2026-08-21T09:46:14.0680395Z     "punycode": 203,
+2026-08-21T09:46:14.0680654Z     "original_script": 154,
+2026-08-21T09:46:14.0680940Z     "breakdown": 185,
+2026-08-21T09:46:14.0681185Z     "homograph_safety": 179,
+2026-08-21T09:46:14.0681434Z     "restoration": 169,
+2026-08-21T09:46:14.0681684Z     "mythology": 64,
+2026-08-21T09:46:14.0681918Z     "variants": 14,
+2026-08-21T09:46:14.0682150Z     "etymology": 27,
+2026-08-21T09:46:14.0682384Z     "meaning": 198,
+2026-08-21T09:46:14.0682610Z     "sources": 212,
+2026-08-21T09:46:14.0682848Z     "pronunciation": 185,
+2026-08-21T09:46:14.0683092Z     "safety_explain": 3010,
+2026-08-21T09:46:14.0683360Z     "safety_normalize": 1275,
+2026-08-21T09:46:14.0683628Z     "safety_classify": 2995,
+2026-08-21T09:46:14.0683882Z     "safety_punycode": 696,
+2026-08-21T09:46:14.0684164Z     "safety_url_analysis": 457,
+2026-08-21T09:46:14.0684473Z     "safety_detect_mixed_script": 415,
+2026-08-21T09:46:14.0684796Z     "safety_brand_disambiguate": 2,
+2026-08-21T09:46:14.0685099Z     "dialogue_etymology": 27,
+2026-08-21T09:46:14.0685403Z     "dialogue_pronunciation": 188,
+2026-08-21T09:46:14.0685881Z     "dialogue_mythology": 52,
+2026-08-21T09:46:14.0686156Z     "dialogue_safety": 210,
+2026-08-21T09:46:14.0686449Z     "dialogue_restoration": 175,
+2026-08-21T09:46:14.0686735Z     "dialogue_variants": 15,
+2026-08-21T09:46:14.0687007Z     "tool_analyze_url": 188,
+2026-08-21T09:46:14.0687257Z     "tool_check": 172,
+2026-08-21T09:46:14.0687513Z     "tool_get_entry": 202,
+2026-08-21T09:46:14.0687755Z     "tool_search": 188,
+2026-08-21T09:46:14.0688193Z     "tool_convert": 178,
+2026-08-21T09:46:14.0688456Z     "multimodal_mascot": 49,
+2026-08-21T09:46:14.0688719Z     "multimodal_script": 144,
+2026-08-21T09:46:14.0689011Z     "multimodal_logomark": 60,
+2026-08-21T09:46:14.0689266Z     "multimodal_glyph": 150,
+2026-08-21T09:46:14.0689561Z     "preference_pronunciation": 221,
+2026-08-21T09:46:14.0689899Z     "preference_restoration": 193,
+2026-08-21T09:46:14.0690202Z     "preference_sources": 214,
+2026-08-21T09:46:14.0690490Z     "preference_variants": 16,
+2026-08-21T09:46:14.0690754Z     "preference_safety": 194,
+2026-08-21T09:46:14.0691045Z     "reasoning_original_script": 157,
+2026-08-21T09:46:14.0691342Z     "reasoning_tier": 198,
+2026-08-21T09:46:14.0691620Z     "reasoning_breakdown": 209,
+2026-08-21T09:46:14.0691906Z     "reasoning_etymology": 21,
+2026-08-21T09:46:14.0692179Z     "reasoning_safety": 181,
+2026-08-21T09:46:14.0692466Z     "myth_pattern_recognition": 7,
+2026-08-21T09:46:14.0692774Z     "myth_archetype_mapping": 7,
+2026-08-21T09:46:14.0693096Z     "myth_cross_tradition_syncretism": 6,
+2026-08-21T09:46:14.0693439Z     "myth_esoteric_synthesis": 5,
+2026-08-21T09:46:14.0693746Z     "myth_comparative_analysis": 3,
+2026-08-21T09:46:14.0694043Z     "myth_modern_parallel": 5,
+2026-08-21T09:46:14.0694321Z     "myth_biblical_bridge": 4,
+2026-08-21T09:46:14.0694599Z     "myth_thematic_connection": 51,
+2026-08-21T09:46:14.0694881Z     "oracle_greeting": 11,
+2026-08-21T09:46:14.0695144Z     "oracle_restoration": 40,
+2026-08-21T09:46:14.0695432Z     "oracle_pronunciation": 35,
+2026-08-21T09:46:14.0695709Z     "oracle_mythology": 65,
+2026-08-21T09:46:14.0695992Z     "oracle_pattern_weaving": 45,
+2026-08-21T09:46:14.0696284Z     "oracle_modern_bridge": 41,
+2026-08-21T09:46:14.0696569Z     "oracle_biblical_bridge": 23,
+2026-08-21T09:46:14.0697034Z     "oracle_contemplative": 45,
+2026-08-21T09:46:14.0697308Z     "oracle_translation": 27,
+2026-08-21T09:46:14.0697576Z     "oracle_safety": 40,
+2026-08-21T09:46:14.0698030Z     "oracle_domain_advice": 23,
+2026-08-21T09:46:14.0698303Z     "oracle_citation": 30,
+2026-08-21T09:46:14.0698564Z     "symbolic_lookup": 80,
+2026-08-21T09:46:14.0698825Z     "symbolic_compare": 63,
+2026-08-21T09:46:14.0699072Z     "symbolic_explain": 57,
+2026-08-21T09:46:14.0699370Z     "symbolic_synthesize": 10,
+2026-08-21T09:46:14.0699646Z     "symbolic_caution": 39,
+2026-08-21T09:46:14.0699937Z     "science_analogy_lookup": 85,
+2026-08-21T09:46:14.0700249Z     "science_analogy_explain": 70,
+2026-08-21T09:46:14.0700556Z     "science_analogy_compare": 60,
+2026-08-21T09:46:14.0700871Z     "science_analogy_synthesize": 38,
+2026-08-21T09:46:14.0701198Z     "science_analogy_caution": 32,
+2026-08-21T09:46:14.0701499Z     "science_pattern_bridge": 23
+2026-08-21T09:46:14.0701775Z   },
+2026-08-21T09:46:14.0702015Z   "pretrainDocuments": 5998,
+2026-08-21T09:46:14.0702340Z   "pretrainDocumentsBySource": {
+2026-08-21T09:46:14.0702626Z     "entries.jsonl": 966,
+2026-08-21T09:46:14.0702904Z     "lore-catalog.json": 287,
+2026-08-21T09:46:14.0703184Z     "source-catalog.js": 211,
+2026-08-21T09:46:14.0703474Z     "original-scripts.js": 435,
+2026-08-21T09:46:14.0703782Z     "pronunciation-atlas.js": 966,
+2026-08-21T09:46:14.0704112Z     "mythology-synthesis.jsonl": 397,
+2026-08-21T09:46:14.0704475Z     "symbolic-correspondences.jsonl": 1236,
+2026-08-21T09:46:14.0704838Z     "scientific-analogies.jsonl": 1500
+2026-08-21T09:46:14.0705123Z   },
+2026-08-21T09:46:14.0705376Z   "pretrainValidationDocuments": 287,
+2026-08-21T09:46:14.0705681Z   "pretrainTokens": 604307
+2026-08-21T09:46:14.0705942Z }
+2026-08-21T09:46:14.1081741Z 
+2026-08-21T09:46:14.1082728Z ✓ All generated artifacts are in sync with canonical sources.
+2026-08-21T09:46:16.2424020Z diff --git a/index.html b/index.html
+2026-08-21T09:46:16.2424728Z index 97d7b4f6..9346f156 100644
+2026-08-21T09:46:16.2425204Z --- a/index.html
+2026-08-21T09:46:16.2425550Z +++ b/index.html
+2026-08-21T09:46:16.2425911Z @@ -122,7 +122,7 @@
+2026-08-21T09:46:16.2426312Z      <!-- --- NAVIGATION --- -->
+2026-08-21T09:46:16.2426809Z      <nav class="main-nav" id="main-nav">
+2026-08-21T09:46:16.2427296Z          <div class="nav-inner">
+2026-08-21T09:46:16.2434006Z -            <a href="/" class="nav-wordmark"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-ivory-720.webp 720w, /assets/brand/01-logos/punicodex-wordmark-ivory-1080.webp 1080w, /assets/brand/01-logos/punicodex-wordmark-ivory.webp 3600w" sizes="(max-width: 640px) 173px, 231px" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-ivory.png" srcset="/assets/brand/01-logos/punicodex-wordmark-ivory-720.png 720w, /assets/brand/01-logos/punicodex-wordmark-ivory-1080.png 1080w, /assets/brand/01-logos/punicodex-wordmark-ivory.png 3600w" sizes="(max-width: 640px) 173px, 231px" alt="PuniCodex — The Unicode Pantheon" width="3600" height="374"></picture></a>
+2026-08-21T09:46:16.2440789Z +            <a href="/" class="nav-wordmark"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-ivory.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-ivory.png" alt="PuniCodex — The Unicode Pantheon" width="3600" height="374"></picture></a>
+2026-08-21T09:46:16.2442525Z              <div class="nav-links">
+2026-08-21T09:46:16.2443116Z                  <a href="/pantheon/" class="nav-link">Pantheon</a>
+2026-08-21T09:46:16.2443764Z                  <a href="/realms/" class="nav-link">Realms</a>
+2026-08-21T09:46:19.2641301Z ##[error]Process completed with exit code 1.

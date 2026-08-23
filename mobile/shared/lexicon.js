@@ -15935,7 +15935,7 @@ const LEXICON = [
   {
     "id": "theia",
     "ascii": "theia",
-    "unicode": "Théia",
+    "unicode": "Theía",
     "greek": "Θεία",
     "pantheon": "greek",
     "tier": "1",
@@ -15961,15 +15961,15 @@ const LEXICON = [
       },
       {
         "char": "e",
-        "to": "é",
-        "type": "stress",
-        "note": "Acute on the diphthong ει (Θεῖα)"
+        "to": "e",
+        "type": "same",
+        "note": "e same"
       },
       {
         "char": "i",
-        "to": "i",
-        "type": "same",
-        "note": "i same"
+        "to": "í",
+        "type": "stress",
+        "note": "Acute on í — in Θεία the accent falls on the second element of the diphthong ει"
       },
       {
         "char": "a",
@@ -38703,7 +38703,7 @@ const LEXICON = [
   {
     "id": "mjolnir",
     "ascii": "mjolnir",
-    "unicode": "Mjólnir",
+    "unicode": "Mjǫllnir",
     "greek": "—",
     "pantheon": "norse",
     "tier": "1",
@@ -38729,15 +38729,15 @@ const LEXICON = [
       },
       {
         "char": "o",
-        "to": "ó",
-        "type": "stress",
-        "note": "Stress on o"
+        "to": "ǫ",
+        "type": "special",
+        "note": "O-ogonek — the short rounded vowel [ɔ] of Old Norse"
       },
       {
         "char": "l",
-        "to": "l",
-        "type": "same",
-        "note": "Same"
+        "to": "ll",
+        "type": "merge",
+        "note": "Geminate ll of the dictionary form (Zoëga, s.v. 'Mjǫllnir')"
       },
       {
         "char": "n",

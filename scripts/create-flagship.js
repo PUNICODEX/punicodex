@@ -2431,6 +2431,18 @@ function buildMetaDescription(entry, catalogEntry) {
   return desc.replace(/"/g, "'");
 }
 
+// Auto-generated taglines are built as `${domain} · ${meaning}`, while the
+// lore hero already prints `{{DOMAIN}} · {{TAGLINE}}` — without this guard
+// the domain renders twice ("Thunder Hammer · Thunder Hammer · The grinder").
+function heroTagline(entry) {
+  const tagline = entry.tagline || '';
+  const domain = entry.domain || '';
+  if (domain && tagline.toLowerCase().startsWith(`${domain.toLowerCase()} ·`)) {
+    return tagline.slice(domain.length).replace(/^\s*·\s*/, '');
+  }
+  return tagline;
+}
+
 function buildHomeMetaDescription(entry) {
   // Sponsorship-layout description for the temple root: names the restored
   // form, the pantheon, the scholarly payload (original script, pronunciation,
@@ -2688,7 +2700,7 @@ function generateHomePage(
     GREEK: getOriginalScript(entry) || '—',
     DOMAIN: entry.domain,
     MEANING: entry.meaning || '',
-    TAGLINE: entry.tagline || '',
+    TAGLINE: heroTagline(entry),
     BREADCRUMB_JSONLD: templeBreadcrumb(entry),
     BREADCRUMB_NAV: templeBreadcrumbNav(entry),
     PRONUNCIATION_PANEL: buildPronunciationPanel(entry),
@@ -2947,7 +2959,7 @@ function generateLorePage(entry, palette, loreSections, templateDir, catalog) {
     ORIGINAL_SCRIPT_PROVENANCE_SECTION: buildOriginalScriptProvenanceSection(entry),
     DOMAIN: entry.domain,
     MEANING: entry.meaning || '',
-    TAGLINE: entry.tagline || '',
+    TAGLINE: heroTagline(entry),
     TIER_LABEL: entry.tierLabel || `Tier ${entry.tier}`,
     TIER_BADGES: tierBadgesHtml(entry),
     DOMAINS_TEXT: getDomainsText(entry),
@@ -3420,7 +3432,7 @@ function generateExtendedPage(entry, palette, templateDir, catalog) {
     GREEK: getOriginalScript(entry) || '—',
     DOMAIN: entry.domain,
     MEANING: entry.meaning || '',
-    TAGLINE: entry.tagline || '',
+    TAGLINE: heroTagline(entry),
     TIER_LABEL: entry.tierLabel || `Tier ${entry.tier}`,
     TIER_BADGES: tierBadgesHtml(entry),
     DOMAINS_TEXT: getDomainsText(entry),

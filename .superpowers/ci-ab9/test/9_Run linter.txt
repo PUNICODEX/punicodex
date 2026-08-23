@@ -1,0 +1,88 @@
+﻿2026-08-21T09:38:40.2362376Z ##[group]Run npm run lint
+2026-08-21T09:38:40.2362695Z [36;1mnpm run lint[0m
+2026-08-21T09:38:40.2403138Z shell: /usr/bin/bash -e {0}
+2026-08-21T09:38:40.2403406Z env:
+2026-08-21T09:38:40.2403686Z   pythonLocation: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-08-21T09:38:40.2404129Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.14.7/x64/lib/pkgconfig
+2026-08-21T09:38:40.2404555Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-08-21T09:38:40.2404931Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-08-21T09:38:40.2405306Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-08-21T09:38:40.2405884Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.14.7/x64/lib
+2026-08-21T09:38:40.2406211Z ##[endgroup]
+2026-08-21T09:38:40.3415031Z 
+2026-08-21T09:38:40.3415501Z > punicodex@1.0.0 lint
+2026-08-21T09:38:40.3415926Z > biome lint .
+2026-08-21T09:38:40.3416133Z 
+2026-08-21T09:38:42.3720131Z test/seo-regression.test.js:143:7 lint/correctness/noUnusedVariables  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━
+2026-08-21T09:38:42.3721031Z 
+2026-08-21T09:38:42.3721292Z   ! This variable totalPairs is unused.
+2026-08-21T09:38:42.3721765Z   
+2026-08-21T09:38:42.3722475Z     141 │   assert.ok(checked > 500, `only ${checked} base-temple grids found`);
+2026-08-21T09:38:42.3723259Z     142 │   let identicalPairs = 0;
+2026-08-21T09:38:42.3723815Z   > 143 │   let totalPairs = 0;
+2026-08-21T09:38:42.3724305Z         │       ^^^^^^^^^^
+2026-08-21T09:38:42.3724917Z     144 │   for (const perEntry of grids.values()) {
+2026-08-21T09:38:42.3725604Z     145 │     const keys = [...perEntry.values()];
+2026-08-21T09:38:42.3726119Z   
+2026-08-21T09:38:42.3726853Z   i Unused variables are often the result of typos, incomplete refactors, or other sources of bugs.
+2026-08-21T09:38:42.3727604Z   
+2026-08-21T09:38:42.3728355Z   i Unsafe fix: If this is intentional, prepend totalPairs with an underscore.
+2026-08-21T09:38:42.3728989Z   
+2026-08-21T09:38:42.3729720Z     141 141 │     assert.ok(checked > 500, `only ${checked} base-temple grids found`);
+2026-08-21T09:38:42.3730529Z     142 142 │     let identicalPairs = 0;
+2026-08-21T09:38:42.3731421Z     143     │ - ··let·totalPairs·=·0;
+2026-08-21T09:38:42.3732054Z         143 │ + ··let·_totalPairs·=·0;
+2026-08-21T09:38:42.3732725Z     144 144 │     for (const perEntry of grids.values()) {
+2026-08-21T09:38:42.3733454Z     145 145 │       const keys = [...perEntry.values()];
+2026-08-21T09:38:42.3734134Z     146 146 │       const distinct = new Set(keys);
+2026-08-21T09:38:42.3734735Z     147     │ - ····totalPairs++;
+2026-08-21T09:38:42.3735270Z         147 │ + ····_totalPairs++;
+2026-08-21T09:38:42.3736203Z     148 148 │       if (keys.length > 6 && distinct.size < Math.min(3, keys.length)) identicalPairs++;
+2026-08-21T09:38:42.3736992Z     149 149 │     }
+2026-08-21T09:38:42.3737358Z   
+2026-08-21T09:38:42.3737540Z 
+2026-08-21T09:38:42.3739035Z test/seo-regression.test.js:211:29 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━
+2026-08-21T09:38:42.3748461Z 
+2026-08-21T09:38:42.3748823Z   ! Change to an optional chain.
+2026-08-21T09:38:42.3749290Z   
+2026-08-21T09:38:42.3750052Z     210 │ test('flagship creatives/patron H1s carry the deity name', () => {
+2026-08-21T09:38:42.3751088Z   > 211 │   const unicodeOf = (id) => (LEXICON.find((e) => e.id === id) || {}).unicode;
+2026-08-21T09:38:42.3752005Z         │                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-08-21T09:38:42.3752731Z     212 │   for (const id of ['zeus', 'athena']) {
+2026-08-21T09:38:42.3753428Z     213 │     for (const tab of ['creatives', 'patron']) {
+2026-08-21T09:38:42.3753953Z   
+2026-08-21T09:38:42.3754374Z   i Unsafe fix: Change to an optional chain.
+2026-08-21T09:38:42.3754840Z   
+2026-08-21T09:38:42.3755202Z     209 209 │   
+2026-08-21T09:38:42.3755922Z     210 210 │   test('flagship creatives/patron H1s carry the deity name', () => {
+2026-08-21T09:38:42.3757036Z     211     │ - ··const·unicodeOf·=·(id)·=>·(LEXICON.find((e)·=>·e.id·===·id)·||·{}).unicode;
+2026-08-21T09:38:42.3758850Z         211 │ + ··const·unicodeOf·=·(id)·=>·LEXICON.find((e)·=>·e.id·===·id)?.unicode;
+2026-08-21T09:38:42.3759779Z     212 212 │     for (const id of ['zeus', 'athena']) {
+2026-08-21T09:38:42.3760517Z     213 213 │       for (const tab of ['creatives', 'patron']) {
+2026-08-21T09:38:42.3761055Z   
+2026-08-21T09:38:42.3761239Z 
+2026-08-21T09:38:42.3762065Z test/sponsorship-flow.test.js:321:9 lint/correctness/noUnusedVariables  FIXABLE  ━━━━━━━━━━━━━━━━━━━
+2026-08-21T09:38:42.3762717Z 
+2026-08-21T09:38:42.3762937Z   ! This variable failed is unused.
+2026-08-21T09:38:42.3763461Z   
+2026-08-21T09:38:42.3763724Z     319 │     }
+2026-08-21T09:38:42.3764003Z     320 │   }
+2026-08-21T09:38:42.3764279Z   > 321 │   const failed =
+2026-08-21T09:38:42.3764597Z         │         ^^^^^^
+2026-08-21T09:38:42.3765197Z     322 │     tests.length - (process.exitCode ? tests.length - tests.filter(() => false).length : 0);
+2026-08-21T09:38:42.3765975Z     323 │   console.log(`\nSponsorship Flow: ${process.exitCode ? 'FAILURES' : 'all passed'}`);
+2026-08-21T09:38:42.3766453Z   
+2026-08-21T09:38:42.3766929Z   i Unused variables are often the result of typos, incomplete refactors, or other sources of bugs.
+2026-08-21T09:38:42.3767414Z   
+2026-08-21T09:38:42.3767964Z   i Unsafe fix: If this is intentional, prepend failed with an underscore.
+2026-08-21T09:38:42.3768393Z   
+2026-08-21T09:38:42.3768656Z     319 319 │       }
+2026-08-21T09:38:42.3768950Z     320 320 │     }
+2026-08-21T09:38:42.3769290Z     321     │ - ··const·failed·=
+2026-08-21T09:38:42.3769660Z         321 │ + ··const·_failed·=
+2026-08-21T09:38:42.3770320Z     322 322 │       tests.length - (process.exitCode ? tests.length - tests.filter(() => false).length : 0);
+2026-08-21T09:38:42.3771104Z     323 323 │     console.log(`\nSponsorship Flow: ${process.exitCode ? 'FAILURES' : 'all passed'}`);
+2026-08-21T09:38:42.3771574Z   
+2026-08-21T09:38:42.3771859Z 
+2026-08-21T09:38:42.3772096Z Checked 823 files in 1974ms. No fixes applied.
+2026-08-21T09:38:42.3772493Z Found 3 warnings.

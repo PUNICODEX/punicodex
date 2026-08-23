@@ -734,6 +734,82 @@ if (!fs.existsSync(sitemapPath)) {
   }
 }
 
+// ── 10. Flagship completeness (promotion sequence) ─────────────────────────
+// Every built flagship must carry the full integration sequence: lore,
+// rental tier, bespoke hero effect, curated gallery (or an explicit
+// honest-zero exemption), industry-pattern seats, and a domain whose form
+// matches the canonical restoration. A promotion that skips any of these
+// ships a degraded temple — this gate makes that a hard failure.
+console.log('\n▸ Flagship Completeness (promotion sequence)');
+{
+  const loreCatalog = JSON.parse(
+    fs.readFileSync(path.join(ROOT, 'scripts', 'lore-catalog.json'), 'utf8'),
+  );
+  const galleryData = JSON.parse(
+    fs.readFileSync(path.join(ROOT, 'scripts', 'gallery-data.json'), 'utf8'),
+  );
+  const effects = JSON.parse(
+    fs.readFileSync(path.join(ROOT, 'templates', 'flagship', 'effects', 'effects.json'), 'utf8'),
+  );
+  const patternsSrc = fs.readFileSync(path.join(ROOT, 'type', 'js', 'industry-patterns.js'), 'utf8');
+  const honestZero = new Set(galleryData._honestZero || []);
+
+  // Owned domains whose base legitimately differs from the canonical
+  // restoration (DNS limits or deliberate fallback forms). Every exception
+  // must carry a reason — additions here are scholarly decisions, not leaks.
+  const DOMAIN_FORM_EXCEPTIONS = {
+    wadjet: 'domain wꜣḏ.com is the consonantal skeleton; the vocalised wꜣḏyt form is not owned',
+    thoth: 'owned canonical form is ḏḥwtj.com (j, not the y transliteration)',
+    tlaltecuhtli: 'macron form not owned; ASCII domain fallback',
+    xiuhtecuhtli: 'macron form not owned; ASCII domain fallback',
+    athiratu: 'domain drops the unregistrable glottal ʾ of ʾAṯiratu',
+    change: "DNS cannot carry the apostrophe of Cháng'é",
+  };
+
+  let incomplete = 0;
+  for (const a of archetypes.filter((x) => x.built)) {
+    const missing = [];
+    const loreEntry = loreCatalog[a.id];
+    if (!loreEntry || !Object.keys(loreEntry).length) missing.push('lore-catalog entry');
+    if (!a.rentalTier) missing.push('rentalTier');
+    if (!effects[a.id]) missing.push('bespoke hero effect');
+    const galleryImages = (galleryData[a.id] && galleryData[a.id].images) || [];
+    if (galleryImages.length < 2 && !honestZero.has(a.id)) {
+      missing.push('curated gallery (or _honestZero exemption in gallery-data.json)');
+    }
+    const seats = (patternsSrc.match(new RegExp(`'${a.id}'`, 'g')) || []).length;
+    if (seats < 3) missing.push(`industry-pattern seats (${seats}/3)`);
+
+    // The owned domain must carry the canonical restoration's exact form —
+    // a temple whose domain says mjǫllnir while the page says Mjólnir is a
+    // misspelling bug, and this is the gate that catches it.
+    if (a.domainUnicode && !DOMAIN_FORM_EXCEPTIONS[a.id]) {
+      const base = a.domainUnicode.replace(/\.com$/i, '').toLowerCase();
+      const entry = lexiconById.get(a.id);
+      const forms = [(entry?.unicode || '').toLowerCase()];
+      for (const v of entry?.variants || []) {
+        if (v.unicode) forms.push(String(v.unicode).toLowerCase());
+      }
+      if (!forms.includes(base)) {
+        missing.push(
+          `domain form (${a.domainUnicode} ≠ ${entry?.unicode}; attested variant or an entry in DOMAIN_FORM_EXCEPTIONS required)`,
+        );
+      }
+    }
+
+    if (missing.length) {
+      incomplete++;
+      fail(`${a.id}: incomplete flagship — missing ${missing.join(', ')}`);
+    }
+  }
+  if (incomplete === 0) {
+    pass(`All ${archetypes.filter((x) => x.built).length} built flagships carry the full integration sequence`);
+  }
+  if (honestZero.size) {
+    warn(`Honest-zero gallery exemptions (no Wikimedia Commons coverage): ${[...honestZero].join(', ')}`);
+  }
+}
+
 // ═════════════════════════════════════════════════════════════════════════════
 console.log('\n────────────────────────────────────────────────────────');
 if (failures === 0) {

@@ -358,112 +358,20 @@ function addEffectMapEntries() {
   log('  effectMap updated');
 }
 
-function stripHtml(html) {
-  return (html || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
-}
-
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-async function fetchJson(url, retries = 3) {
-  for (let i = 0; i < retries; i++) {
-    try {
-      const res = await fetch(url);
-      const text = await res.text();
-      try {
-        return JSON.parse(text);
-      } catch {
-        // Rate-limit or other non-JSON response.
-        if (i < retries - 1) {
-          const delay = 2000 * (i + 1);
-          log(`    rate-limited, retrying in ${delay}ms...`);
-          await sleep(delay);
-          continue;
-        }
-        throw new Error('Non-JSON response after retries');
-      }
-    } catch (err) {
-      if (i === retries - 1) throw err;
-      await sleep(1000 * (i + 1));
-    }
-  }
-  throw new Error('fetchJson failed');
-}
-
-async function fetchCommonsImages(query, limit = 6) {
-  const searchUrl =
-    'https://commons.wikimedia.org/w/api.php?action=query&list=search&srnamespace=6&format=json&origin=*&srlimit=20&srsearch=' +
-    encodeURIComponent(query);
-  const searchJson = await fetchJson(searchUrl);
-  const titles = (searchJson.query?.search || []).map((s) => s.title);
-  if (!titles.length) return [];
-
-  const infoUrl =
-    'https://commons.wikimedia.org/w/api.php?action=query&prop=imageinfo&iiprop=url|extmetadata|size&iiurlwidth=960&format=json&origin=*&titles=' +
-    titles.map(encodeURIComponent).join('|');
-  const infoJson = await fetchJson(infoUrl);
-  const pages = Object.values(infoJson.query?.pages || {});
-
-  const images = [];
-  for (const page of pages) {
-    const info = page.imageinfo?.[0];
-    if (!info || !info.thumburl) continue;
-    const meta = info.extmetadata || {};
-    const width = info.width || 0;
-    if (width < 300) continue;
-
-    const objectName = stripHtml(meta.ObjectName?.value || page.title?.replace(/^File:/, '').replace(/_/g, ' '));
-    const desc = stripHtml(meta.ImageDescription?.value || '');
-    const license = stripHtml(meta.LicenseShortName?.value || '');
-    const artist = stripHtml(meta.Artist?.value || '');
-
-    let caption = `<strong>${objectName}</strong>`;
-    if (desc) caption += ` — ${desc}`;
-    if (artist || license) {
-      const metaParts = [artist, license].filter(Boolean).join(', ');
-      caption += ` <em>(${metaParts})</em>`;
-    }
-
-    let src = info.thumburl;
-    if (src.endsWith('.jpg')) src += '.webp';
-
-    images.push({
-      src,
-      alt: objectName,
-      caption,
-    });
-    if (images.length >= limit) break;
-  }
-  return images;
-}
-
 async function addGalleryEntries() {
-  log('Fetching Wikimedia Commons gallery images...');
-  const galleryPath = path.join(ROOT, 'scripts', 'gallery-data.json');
-  delete require.cache[require.resolve(galleryPath)];
-  const gallery = require(galleryPath);
-
-  for (const e of ENTRIES) {
-    if (gallery[e.id]) {
-      log(`  ${e.id}: gallery already exists`);
-      continue;
-    }
-    try {
-      const images = await fetchCommonsImages(e.search, 6);
-      if (images.length) {
-        gallery[e.id] = { images };
-        log(`  ${e.id}: ${images.length} image(s) from Wikimedia Commons`);
-      } else {
-        log(`  ${e.id}: no Commons results, will fall back to brand assets`);
-      }
-    } catch (err) {
-      log(`  ${e.id}: error fetching gallery — ${err.message}`);
-    }
-    await sleep(2500);
-  }
-
-  fs.writeFileSync(galleryPath, JSON.stringify(gallery, null, 2) + '\n', 'utf8');
+  // Gallery curation MUST go through scripts/curate-gallery-images.js — its
+  // topicality, junk-signal, and Commons-category gates are the only path
+  // that keeps modern people/places/brands out of temple galleries. The
+  // hand-rolled unfiltered fetcher that used to live here let a "Skadi
+  // Loist Teddy Award" photo and a Fafnir ball-bearing advertisement
+  // through; do not reintroduce it.
+  log('Curating Wikimedia Commons gallery images (via curate-gallery-images.js)…');
+  const ids = ENTRIES.map((e) => e.id).join(',');
+  execSync(`node scripts/curate-gallery-images.js --only ${ids}`, { cwd: ROOT, stdio: 'inherit' });
   log('  gallery-data.json updated');
 }
 

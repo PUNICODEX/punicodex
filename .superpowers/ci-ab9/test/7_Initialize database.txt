@@ -1,0 +1,180 @@
+﻿2026-08-21T09:38:33.4392636Z ##[group]Run npm run db-init
+2026-08-21T09:38:33.4392955Z [36;1mnpm run db-init[0m
+2026-08-21T09:38:33.4435859Z shell: /usr/bin/bash -e {0}
+2026-08-21T09:38:33.4436276Z env:
+2026-08-21T09:38:33.4436683Z   pythonLocation: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-08-21T09:38:33.4437363Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.14.7/x64/lib/pkgconfig
+2026-08-21T09:38:33.4438028Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-08-21T09:38:33.4438424Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-08-21T09:38:33.4438806Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-08-21T09:38:33.4439206Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.14.7/x64/lib
+2026-08-21T09:38:33.4439534Z ##[endgroup]
+2026-08-21T09:38:33.5445498Z 
+2026-08-21T09:38:33.5446409Z > punicodex@1.0.0 db-init
+2026-08-21T09:38:33.5460225Z > node platform/db/init.js && node platform/db/migrate-crawler.js && node platform/db/migrate-booking.js && node platform/db/migrate-booking-v2.js && node platform/db/migrate-trial-columns.js && node platform/db/migrate-booking-v3.js && node platform/db/migrate-booking-v4.js && node platform/db/migrate-booking-status.js && node platform/db/migrate-booking-public-id.js && node platform/db/migrate-operational-tables.js && node platform/db/migrate-ai-columns.js && node platform/db/migrate-entity-mentions.js && node platform/db/migrate-api-keys.js && node platform/db/migrate-claims.js && node platform/db/migrate-search-v2.js && node platform/db/migrate-homograph-defense.js && node platform/db/migrate-workspaces.js && node platform/db/migrate-gamification.js && node platform/db/migrate-marketplace.js && node platform/db/migrate-agents.js && node platform/db/migrate-partners.js && node platform/db/migrate-tenant-ads.js && node platform/db/migrate-event-crawler.js && node platform/db/migrate-spam-classifier.js && node platform/db/migrate-ltr.js && node platform/db/migrate-ecosystem.js && node platform/db/migrate-identities.js && node platform/db/migrate-threat-graph.js && node platform/db/migrate-enterprise-governance.js && node platform/db/migrate-regulatory.js && node platform/db/migrate-mlops.js && node platform/db/migrate-scholars.js && node platform/db/migrate-scholars-quality.js && node platform/db/migrate-scholars-creatives.js && node platform/db/migrate-patrons.js && node platform/db/migrate-newsletter.js && node platform/db/migrate-creator-merch.js && node platform/db/migrate-tenant-portal.js && node platform/db/migrate-store-orders.js && node platform/db/migrate-analytics-slot.js && node platform/db/migrate-discount-codes.js && node platform/db/migrate-csp-reports.js
+2026-08-21T09:38:33.5471771Z 
+2026-08-21T09:38:33.7421816Z Database initialized at /home/runner/work/punycodex/punycodex/platform/db/punicodex.db
+2026-08-21T09:38:33.7423385Z Entries: 966
+2026-08-21T09:38:33.7423972Z Breakdowns: 6443
+2026-08-21T09:38:33.7425297Z Pantheons: 25
+2026-08-21T09:38:33.7430346Z 
+2026-08-21T09:38:33.7431095Z Pantheon breakdown:
+2026-08-21T09:38:33.7431701Z   greek: 271 entries (88 flagships)
+2026-08-21T09:38:33.7432455Z   sanskrit: 99 entries (30 flagships)
+2026-08-21T09:38:33.7432892Z   norse: 94 entries (17 flagships)
+2026-08-21T09:38:33.7439126Z   egyptian: 66 entries (26 flagships)
+2026-08-21T09:38:33.7439776Z   chinese: 58 entries (20 flagships)
+2026-08-21T09:38:33.7440398Z   celtic: 49 entries (1 flagships)
+2026-08-21T09:38:33.7440982Z   japanese: 45 entries (10 flagships)
+2026-08-21T09:38:33.7441587Z   mesopotamian: 30 entries (9 flagships)
+2026-08-21T09:38:33.7442185Z   nahuatl: 30 entries (12 flagships)
+2026-08-21T09:38:33.7442877Z   buddhist: 26 entries (8 flagships)
+2026-08-21T09:38:33.7443483Z   greek-location: 24 entries (11 flagships)
+2026-08-21T09:38:33.7444131Z   polynesian: 24 entries (4 flagships)
+2026-08-21T09:38:33.7444729Z   slavic: 21 entries (1 flagships)
+2026-08-21T09:38:33.7445403Z   yoruba: 20 entries (13 flagships)
+2026-08-21T09:38:33.7446019Z   zoroastrian: 20 entries (5 flagships)
+2026-08-21T09:38:33.7446551Z   canaanite: 14 entries (14 flagships)
+2026-08-21T09:38:33.7447480Z   aboriginal: 12 entries (0 flagships)
+2026-08-21T09:38:33.7448239Z   korean: 12 entries (0 flagships)
+2026-08-21T09:38:33.7448708Z   taoist: 12 entries (4 flagships)
+2026-08-21T09:38:33.7449186Z   incan: 11 entries (0 flagships)
+2026-08-21T09:38:33.7449657Z   roman: 11 entries (8 flagships)
+2026-08-21T09:38:33.7450129Z   hittite: 8 entries (0 flagships)
+2026-08-21T09:38:33.7450784Z   phoenician: 7 entries (4 flagships)
+2026-08-21T09:38:33.7451280Z   baltic: 1 entries (1 flagships)
+2026-08-21T09:38:33.7451756Z   mapuche: 1 entries (1 flagships)
+2026-08-21T09:38:33.7864695Z API keys migration complete.
+2026-08-21T09:38:33.8299857Z Patrons table ready.
+2026-08-21T09:38:33.8700813Z Admin users migration complete.
+2026-08-21T09:38:33.8759041Z Threat graph schema applied.
+2026-08-21T09:38:33.8773964Z Enterprise governance schema applied.
+2026-08-21T09:38:33.8786999Z MLOps & continuous learning schema applied.
+2026-08-21T09:38:33.9122113Z Temple content migration complete.
+2026-08-21T09:38:33.9501457Z Digest log table ready.
+2026-08-21T09:38:34.6497496Z Temple content seed complete: 2820 rows across 287 temples in 610ms.
+2026-08-21T09:38:34.6989759Z Founding codes: 1 added, 1 registered
+2026-08-21T09:38:34.7471300Z   + Added anchor_texts column
+2026-08-21T09:38:34.7479482Z   + Added sitemap_url column
+2026-08-21T09:38:34.7485857Z   + Added sitemap_entries column
+2026-08-21T09:38:34.7492345Z   + Added og_video column
+2026-08-21T09:38:34.7499305Z   + Added og_video_type column
+2026-08-21T09:38:34.7506762Z   + Added rating_value column
+2026-08-21T09:38:34.7514272Z   + Added rating_count column
+2026-08-21T09:38:34.7522224Z   + Added flesch_reading_ease column
+2026-08-21T09:38:34.7529538Z   + Added flesch_kincaid_grade column
+2026-08-21T09:38:34.7537395Z   + Added freshness_score column
+2026-08-21T09:38:34.7543370Z   + Added readability_score column
+2026-08-21T09:38:34.7548847Z   + Added simhash column
+2026-08-21T09:38:34.7582758Z   + Added pagerank column
+2026-08-21T09:38:34.7590760Z   + Added authority_score column
+2026-08-21T09:38:34.7598853Z   + Added incoming_links column
+2026-08-21T09:38:34.7605419Z Crawler migration complete:
+2026-08-21T09:38:34.7606240Z   - Created/updated indexed_sites table (with spam_score, quality_score, pagerank, authority_score)
+2026-08-21T09:38:34.7606840Z   - Created crawl_queue table
+2026-08-21T09:38:34.7607163Z   - Created discovered_domains table
+2026-08-21T09:38:34.7607529Z   - Created links table (link graph for PageRank)
+2026-08-21T09:38:34.7608078Z   - Created indexed_sites_fts (FTS5) with OG + Twitter content
+2026-08-21T09:38:34.7608715Z   - Created sync triggers
+2026-08-21T09:38:34.7609458Z   - Rebuilt FTS index from 0 existing sites
+2026-08-21T09:38:34.8448423Z 
+2026-08-21T09:38:34.8449079Z Seeded 287 flagship sites
+2026-08-21T09:38:34.8449636Z Marked 679 entries as available
+2026-08-21T09:38:34.8450097Z Total indexed sites: 287
+2026-08-21T09:38:34.8453184Z Total available: 679
+2026-08-21T09:38:34.8453575Z FTS indexed sites: 287
+2026-08-21T09:38:34.8892575Z Seeded 14 ad_slots
+2026-08-21T09:38:34.8898086Z Seeded bundle_members for Full Page Takeover
+2026-08-21T09:38:34.8898636Z Booking migration complete
+2026-08-21T09:38:34.8900850Z Slots: 14
+2026-08-21T09:38:34.8902702Z Bookings: 0
+2026-08-21T09:38:34.9293694Z Added site_slug to ad_slots
+2026-08-21T09:38:34.9304072Z Added site_slug to bookings
+2026-08-21T09:38:34.9305388Z Updated 0 existing slots to site_slug='nike'
+2026-08-21T09:38:34.9306007Z Updated 0 existing bookings to site_slug='nike'
+2026-08-21T09:38:34.9313013Z Seeded 14 Hermes ad_slots (IDs 15-28)
+2026-08-21T09:38:34.9317202Z Seeded bundle_members for Hermes Full Page Takeover (28 → 15-27)
+2026-08-21T09:38:34.9318005Z Booking v2 migration complete
+2026-08-21T09:38:34.9321781Z Total slots: 28
+2026-08-21T09:38:34.9322487Z Nike slots: 14
+2026-08-21T09:38:34.9325313Z Hermes slots: 14
+2026-08-21T09:38:34.9710544Z Added column trial_months
+2026-08-21T09:38:34.9720886Z Added column trial_ends_at
+2026-08-21T09:38:34.9728929Z Added column billing_starts_at
+2026-08-21T09:38:34.9737000Z Added column reminder_7d_sent
+2026-08-21T09:38:34.9745119Z Added column reminder_1d_sent
+2026-08-21T09:38:34.9753383Z Added column stripe_subscription_id
+2026-08-21T09:38:34.9762684Z Added column billing_status
+2026-08-21T09:38:34.9771581Z Bookings trial migration complete.
+2026-08-21T09:38:35.1785641Z Found 286 ad-enabled flagships
+2026-08-21T09:38:36.9110628Z 
+2026-08-21T09:38:36.9111625Z ─── Migration complete ───
+2026-08-21T09:38:36.9112119Z Reseeded: 284
+2026-08-21T09:38:36.9112390Z Skipped:  2
+2026-08-21T09:38:36.9845259Z Added analytics_events.visible_seconds
+2026-08-21T09:38:36.9855403Z Added analytics_events.visible_percent
+2026-08-21T09:38:36.9863805Z Added analytics_events.is_bot
+2026-08-21T09:38:36.9895846Z Recreated analytics_events table with viewable_impression support
+2026-08-21T09:38:36.9905874Z Booking v4 migration complete
+2026-08-21T09:38:37.0309253Z Recreated bookings table with pending_application status and cancel_at_end column
+2026-08-21T09:38:37.0321274Z Booking status migration complete
+2026-08-21T09:38:37.0709905Z Added public_id to bookings and backfilled existing rows
+2026-08-21T09:38:37.0720372Z Booking public-id migration complete
+2026-08-21T09:38:37.1074654Z admin_sessions.expires_at already exists
+2026-08-21T09:38:37.1085098Z Created verified_sessions table
+2026-08-21T09:38:37.1095673Z Operational tables migration complete
+2026-08-21T09:38:37.1458149Z Added column ai_summary
+2026-08-21T09:38:37.1469015Z Added column ai_symbols
+2026-08-21T09:38:37.1477422Z Added column ai_pronunciation
+2026-08-21T09:38:37.1487129Z Added column ai_etymology_narrative
+2026-08-21T09:38:37.1495964Z Added column ai_relevance_today
+2026-08-21T09:38:37.1504668Z Added column ai_enriched_at
+2026-08-21T09:38:37.1514309Z Added column ai_review_status
+2026-08-21T09:38:37.1514887Z Column confidence_score already exists
+2026-08-21T09:38:37.1524982Z Entries AI migration complete.
+2026-08-21T09:38:37.1874337Z entity_mentions.entry_id is already TEXT; no migration needed.
+2026-08-21T09:38:37.2213166Z API keys migration complete.
+2026-08-21T09:38:37.2598552Z Claims migration applied
+2026-08-21T09:38:37.2992743Z Search v2 schema migrated.
+2026-08-21T09:38:37.3748367Z   ! Could not map owned domain to canonical entry: wꜣḏ.com
+2026-08-21T09:38:37.3758294Z   ! Could not map owned domain to canonical entry: yīn-yáng.com
+2026-08-21T09:38:37.3810856Z   ! Could not map owned domain to canonical entry: ḏḥwtj.com
+2026-08-21T09:38:37.3844908Z   ! Could not map owned domain to canonical entry: ꜥpp.com
+2026-08-21T09:38:37.3873652Z   ! Could not map owned domain to canonical entry: νίκη.com
+2026-08-21T09:38:37.3877041Z   ! Could not map owned domain to canonical entry: 𒀭𒂍.com
+2026-08-21T09:38:37.3905383Z   ! Could not map owned domain to canonical entry: sꜣ.com
+2026-08-21T09:38:37.3920316Z   ! Could not map owned domain to canonical entry: tēzcatlīpohca.com
+2026-08-21T09:38:37.3951442Z   ! Could not map owned domain to canonical entry: aṯiratu.com
+2026-08-21T09:38:37.3981068Z   ! Could not map owned domain to canonical entry: cheírōn.com
+2026-08-21T09:38:37.3991293Z   + Seeded 300 owned canonical domains (10 skipped)
+2026-08-21T09:38:37.3991779Z Homograph defense migration applied.
+2026-08-21T09:38:37.4392671Z Workspace schema migrated.
+2026-08-21T09:38:37.4781754Z Gamification schema migrated.
+2026-08-21T09:38:37.5176056Z Marketplace schema migrated.
+2026-08-21T09:38:37.5552028Z Agents schema migrated.
+2026-08-21T09:38:37.5988977Z Partner schema migrated.
+2026-08-21T09:38:37.6392827Z Seeded sample tenant ad for Zeus
+2026-08-21T09:38:37.6394164Z Tenant search-ads migration complete
+2026-08-21T09:38:37.6398302Z Tenant ads: 1
+2026-08-21T09:38:37.6756204Z Event crawler migration complete
+2026-08-21T09:38:37.6761728Z Crawl events: 0
+2026-08-21T09:38:37.7150847Z Added spam_signals column
+2026-08-21T09:38:37.7152225Z Spam classifier migration complete
+2026-08-21T09:38:37.7536994Z LTR migration complete
+2026-08-21T09:38:37.7541911Z Clicks: 0
+2026-08-21T09:38:37.7926054Z Ecosystem migration complete
+2026-08-21T09:38:37.9047007Z Identity migration applied: 72 brands, 966 lexicon entries.
+2026-08-21T09:38:37.9428077Z Threat graph migration applied.
+2026-08-21T09:38:37.9793294Z Enterprise governance migration applied.
+2026-08-21T09:38:38.0194783Z Regulatory migration applied.
+2026-08-21T09:38:38.0561617Z MLOps & continuous learning migration applied.
+2026-08-21T09:38:38.0968207Z Scholarly Edition migration complete.
+2026-08-21T09:38:38.1345013Z Scholarly Edition quality migration complete.
+2026-08-21T09:38:38.1978146Z Student Creative Marketplace migration complete.
+2026-08-21T09:38:38.2341244Z Patrons table ready.
+2026-08-21T09:38:38.2982175Z Creator merch migration complete.
+2026-08-21T09:38:38.3364998Z Tenant portal migration complete.
+2026-08-21T09:38:38.3744871Z ✓ store_orders migration applied
+2026-08-21T09:38:38.4168070Z Analytics slot migration complete.
+2026-08-21T09:38:38.4562539Z Discount codes tables ready.
+2026-08-21T09:38:38.4969763Z CSP reports table ready.

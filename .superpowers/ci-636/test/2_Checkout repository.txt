@@ -1,0 +1,180 @@
+﻿2026-08-21T10:36:12.1558750Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-08-21T10:36:12.1565359Z ##[group]Run actions/checkout@v4
+2026-08-21T10:36:12.1565911Z with:
+2026-08-21T10:36:12.1566268Z   repository: PUNYCODEX/punycodex
+2026-08-21T10:36:12.1569713Z   token: ***
+2026-08-21T10:36:12.1570071Z   ssh-strict: true
+2026-08-21T10:36:12.1570422Z   ssh-user: git
+2026-08-21T10:36:12.1570774Z   persist-credentials: true
+2026-08-21T10:36:12.1571160Z   clean: true
+2026-08-21T10:36:12.1571509Z   sparse-checkout-cone-mode: true
+2026-08-21T10:36:12.1571922Z   fetch-depth: 1
+2026-08-21T10:36:12.1572270Z   fetch-tags: false
+2026-08-21T10:36:12.1572646Z   show-progress: true
+2026-08-21T10:36:12.1573002Z   lfs: false
+2026-08-21T10:36:12.1573349Z   submodules: false
+2026-08-21T10:36:12.1573737Z   set-safe-directory: true
+2026-08-21T10:36:12.1574134Z   allow-unsafe-pr-checkout: false
+2026-08-21T10:36:12.1574699Z ##[endgroup]
+2026-08-21T10:36:12.2409875Z Syncing repository: PUNYCODEX/punycodex
+2026-08-21T10:36:12.2411286Z ##[group]Getting Git version info
+2026-08-21T10:36:12.2411872Z Working directory is '/home/runner/work/punycodex/punycodex'
+2026-08-21T10:36:12.2412800Z [command]/usr/bin/git version
+2026-08-21T10:36:12.2474318Z git version 2.55.0
+2026-08-21T10:36:12.2529807Z ##[endgroup]
+2026-08-21T10:36:12.2534999Z Temporarily overriding HOME='/home/runner/work/_temp/6d01fd13-9346-476a-a846-cfa9f2578286' before making global git config changes
+2026-08-21T10:36:12.2536737Z Adding repository directory to the temporary git global config as a safe directory
+2026-08-21T10:36:12.2540008Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/punycodex/punycodex
+2026-08-21T10:36:12.2586755Z Deleting the contents of '/home/runner/work/punycodex/punycodex'
+2026-08-21T10:36:12.2594454Z ##[group]Initializing the repository
+2026-08-21T10:36:12.2597771Z [command]/usr/bin/git init /home/runner/work/punycodex/punycodex
+2026-08-21T10:36:12.2680063Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-08-21T10:36:12.2681321Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-08-21T10:36:12.2682487Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-08-21T10:36:12.2683404Z hint: call:
+2026-08-21T10:36:12.2683913Z hint:
+2026-08-21T10:36:12.2684510Z hint: 	git config --global init.defaultBranch <name>
+2026-08-21T10:36:12.2685266Z hint:
+2026-08-21T10:36:12.2685963Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-08-21T10:36:12.2687127Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-08-21T10:36:12.2688172Z hint:
+2026-08-21T10:36:12.2688691Z hint: 	git branch -m <name>
+2026-08-21T10:36:12.2689297Z hint:
+2026-08-21T10:36:12.2690093Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-08-21T10:36:12.2691656Z Initialized empty Git repository in /home/runner/work/punycodex/punycodex/.git/
+2026-08-21T10:36:12.2693736Z [command]/usr/bin/git remote add origin https://github.com/PUNYCODEX/punycodex
+2026-08-21T10:36:12.2732976Z ##[endgroup]
+2026-08-21T10:36:12.2733904Z ##[group]Disabling automatic garbage collection
+2026-08-21T10:36:12.2736529Z [command]/usr/bin/git config --local gc.auto 0
+2026-08-21T10:36:12.2762092Z ##[endgroup]
+2026-08-21T10:36:12.2762972Z ##[group]Setting up auth
+2026-08-21T10:36:12.2767366Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-08-21T10:36:12.2793757Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-08-21T10:36:12.3395207Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-08-21T10:36:12.3426366Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-08-21T10:36:12.3629315Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-08-21T10:36:12.3660790Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-08-21T10:36:12.3849752Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-08-21T10:36:12.3881717Z ##[endgroup]
+2026-08-21T10:36:12.3882677Z ##[group]Fetching the repository
+2026-08-21T10:36:12.3890230Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +636a06109c9587562bf024a8e739351b68458a68:refs/remotes/origin/master
+2026-08-21T10:38:11.8511863Z From https://github.com/PUNYCODEX/punycodex
+2026-08-21T10:38:11.8512774Z  * [new ref]           636a06109c9587562bf024a8e739351b68458a68 -> origin/master
+2026-08-21T10:38:11.8532074Z ##[endgroup]
+2026-08-21T10:38:11.8532660Z ##[group]Determining the checkout info
+2026-08-21T10:38:11.8533146Z ##[endgroup]
+2026-08-21T10:38:11.8533448Z [command]/usr/bin/git sparse-checkout disable
+2026-08-21T10:38:11.8582780Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-08-21T10:38:11.8620119Z ##[group]Checking out the ref
+2026-08-21T10:38:11.8620699Z [command]/usr/bin/git checkout --progress --force -B master refs/remotes/origin/master
+2026-08-21T10:38:12.8873356Z Updating files:  15% (3752/23452)
+2026-08-21T10:38:13.0489399Z Updating files:  16% (3753/23452)
+2026-08-21T10:38:13.4096017Z Updating files:  17% (3987/23452)
+2026-08-21T10:38:13.4686442Z Updating files:  18% (4222/23452)
+2026-08-21T10:38:13.4872285Z Updating files:  19% (4456/23452)
+2026-08-21T10:38:13.5174970Z Updating files:  20% (4691/23452)
+2026-08-21T10:38:13.5382908Z Updating files:  21% (4925/23452)
+2026-08-21T10:38:13.5507546Z Updating files:  22% (5160/23452)
+2026-08-21T10:38:13.5632829Z Updating files:  23% (5394/23452)
+2026-08-21T10:38:13.5754244Z Updating files:  24% (5629/23452)
+2026-08-21T10:38:13.5948697Z Updating files:  25% (5863/23452)
+2026-08-21T10:38:13.6041382Z Updating files:  26% (6098/23452)
+2026-08-21T10:38:13.6142246Z Updating files:  27% (6333/23452)
+2026-08-21T10:38:13.6251243Z Updating files:  28% (6567/23452)
+2026-08-21T10:38:13.6485962Z Updating files:  29% (6802/23452)
+2026-08-21T10:38:13.6766428Z Updating files:  30% (7036/23452)
+2026-08-21T10:38:13.6884016Z Updating files:  31% (7271/23452)
+2026-08-21T10:38:13.6975508Z Updating files:  32% (7505/23452)
+2026-08-21T10:38:13.8241162Z Updating files:  33% (7740/23452)
+2026-08-21T10:38:13.8951542Z Updating files:  34% (7974/23452)
+2026-08-21T10:38:13.9027808Z Updating files:  34% (8187/23452)
+2026-08-21T10:38:13.9230277Z Updating files:  35% (8209/23452)
+2026-08-21T10:38:13.9525159Z Updating files:  36% (8443/23452)
+2026-08-21T10:38:14.1304585Z Updating files:  37% (8678/23452)
+2026-08-21T10:38:14.2083126Z Updating files:  38% (8912/23452)
+2026-08-21T10:38:14.3227361Z Updating files:  39% (9147/23452)
+2026-08-21T10:38:14.4184743Z Updating files:  40% (9381/23452)
+2026-08-21T10:38:14.5706686Z Updating files:  41% (9616/23452)
+2026-08-21T10:38:14.6945830Z Updating files:  42% (9850/23452)
+2026-08-21T10:38:14.7748100Z Updating files:  43% (10085/23452)
+2026-08-21T10:38:14.8631027Z Updating files:  44% (10319/23452)
+2026-08-21T10:38:14.8865665Z Updating files:  45% (10554/23452)
+2026-08-21T10:38:14.9388354Z Updating files:  45% (10623/23452)
+2026-08-21T10:38:15.0125728Z Updating files:  46% (10788/23452)
+2026-08-21T10:38:15.1808275Z Updating files:  47% (11023/23452)
+2026-08-21T10:38:15.4243686Z Updating files:  48% (11257/23452)
+2026-08-21T10:38:15.6118572Z Updating files:  49% (11492/23452)
+2026-08-21T10:38:15.8882461Z Updating files:  50% (11726/23452)
+2026-08-21T10:38:16.4135101Z Updating files:  50% (11873/23452)
+2026-08-21T10:38:16.8864102Z Updating files:  51% (11961/23452)
+2026-08-21T10:38:16.9634829Z Updating files:  51% (12159/23452)
+2026-08-21T10:38:17.4542851Z Updating files:  52% (12196/23452)
+2026-08-21T10:38:17.8348553Z Updating files:  53% (12430/23452)
+2026-08-21T10:38:17.8985558Z Updating files:  54% (12665/23452)
+2026-08-21T10:38:18.3177347Z Updating files:  54% (12714/23452)
+2026-08-21T10:38:18.9553675Z Updating files:  55% (12899/23452)
+2026-08-21T10:38:19.1110573Z Updating files:  55% (13083/23452)
+2026-08-21T10:38:19.5183671Z Updating files:  56% (13134/23452)
+2026-08-21T10:38:19.8975024Z Updating files:  57% (13368/23452)
+2026-08-21T10:38:20.2206500Z Updating files:  57% (13469/23452)
+2026-08-21T10:38:20.8938461Z Updating files:  58% (13603/23452)
+2026-08-21T10:38:20.9174519Z Updating files:  58% (13799/23452)
+2026-08-21T10:38:21.2404579Z Updating files:  59% (13837/23452)
+2026-08-21T10:38:21.5916819Z Updating files:  60% (14072/23452)
+2026-08-21T10:38:21.8931365Z Updating files:  61% (14306/23452)
+2026-08-21T10:38:21.9760842Z Updating files:  61% (14473/23452)
+2026-08-21T10:38:22.8036407Z Updating files:  62% (14541/23452)
+2026-08-21T10:38:22.8932301Z Updating files:  63% (14775/23452)
+2026-08-21T10:38:23.2724052Z Updating files:  63% (14833/23452)
+2026-08-21T10:38:23.7913467Z Updating files:  64% (15010/23452)
+2026-08-21T10:38:23.8876582Z Updating files:  65% (15244/23452)
+2026-08-21T10:38:24.2117543Z Updating files:  65% (15292/23452)
+2026-08-21T10:38:24.8912089Z Updating files:  66% (15479/23452)
+2026-08-21T10:38:24.9344555Z Updating files:  66% (15606/23452)
+2026-08-21T10:38:25.5026599Z Updating files:  67% (15713/23452)
+2026-08-21T10:38:25.9934865Z Updating files:  68% (15948/23452)
+2026-08-21T10:38:26.0953266Z Updating files:  68% (16174/23452)
+2026-08-21T10:38:26.8054671Z Updating files:  69% (16182/23452)
+2026-08-21T10:38:26.8881430Z Updating files:  70% (16417/23452)
+2026-08-21T10:38:27.1539173Z Updating files:  70% (16481/23452)
+2026-08-21T10:38:27.4882390Z Updating files:  71% (16651/23452)
+2026-08-21T10:38:27.8884438Z Updating files:  72% (16886/23452)
+2026-08-21T10:38:27.9694641Z Updating files:  72% (17044/23452)
+2026-08-21T10:38:28.5950191Z Updating files:  73% (17120/23452)
+2026-08-21T10:38:28.8882704Z Updating files:  74% (17355/23452)
+2026-08-21T10:38:29.1222048Z Updating files:  74% (17484/23452)
+2026-08-21T10:38:29.8884913Z Updating files:  75% (17589/23452)
+2026-08-21T10:38:30.0337287Z Updating files:  75% (17764/23452)
+2026-08-21T10:38:30.6034922Z Updating files:  76% (17824/23452)
+2026-08-21T10:38:30.8965355Z Updating files:  77% (18059/23452)
+2026-08-21T10:38:30.9057776Z Updating files:  77% (18271/23452)
+2026-08-21T10:38:30.9328716Z Updating files:  78% (18293/23452)
+2026-08-21T10:38:30.9628871Z Updating files:  79% (18528/23452)
+2026-08-21T10:38:30.9933413Z Updating files:  80% (18762/23452)
+2026-08-21T10:38:31.0155150Z Updating files:  81% (18997/23452)
+2026-08-21T10:38:31.0458315Z Updating files:  82% (19231/23452)
+2026-08-21T10:38:31.0761622Z Updating files:  83% (19466/23452)
+2026-08-21T10:38:31.1065686Z Updating files:  84% (19700/23452)
+2026-08-21T10:38:31.3130717Z Updating files:  85% (19935/23452)
+2026-08-21T10:38:31.3274071Z Updating files:  86% (20169/23452)
+2026-08-21T10:38:31.3414440Z Updating files:  87% (20404/23452)
+2026-08-21T10:38:31.3554390Z Updating files:  88% (20638/23452)
+2026-08-21T10:38:31.3694481Z Updating files:  89% (20873/23452)
+2026-08-21T10:38:31.3899520Z Updating files:  90% (21107/23452)
+2026-08-21T10:38:31.4040276Z Updating files:  91% (21342/23452)
+2026-08-21T10:38:31.4187140Z Updating files:  92% (21576/23452)
+2026-08-21T10:38:31.4329596Z Updating files:  93% (21811/23452)
+2026-08-21T10:38:31.4476642Z Updating files:  94% (22045/23452)
+2026-08-21T10:38:31.4596303Z Updating files:  95% (22280/23452)
+2026-08-21T10:38:31.4733768Z Updating files:  96% (22514/23452)
+2026-08-21T10:38:31.6624394Z Updating files:  97% (22749/23452)
+2026-08-21T10:38:31.8931796Z Updating files:  98% (22983/23452)
+2026-08-21T10:38:31.9001828Z Updating files:  98% (23201/23452)
+2026-08-21T10:38:32.0953343Z Updating files:  99% (23218/23452)
+2026-08-21T10:38:32.0953928Z Updating files: 100% (23452/23452)
+2026-08-21T10:38:32.0954328Z Updating files: 100% (23452/23452), done.
+2026-08-21T10:38:32.1723734Z Reset branch 'master'
+2026-08-21T10:38:32.1724481Z branch 'master' set up to track 'origin/master'.
+2026-08-21T10:38:32.2439470Z ##[endgroup]
+2026-08-21T10:38:32.2482546Z [command]/usr/bin/git log -1 --format=%H
+2026-08-21T10:38:32.2510409Z 636a06109c9587562bf024a8e739351b68458a68

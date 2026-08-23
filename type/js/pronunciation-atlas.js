@@ -8556,14 +8556,14 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Draupnir; review recommended before promotion to canonical."
   },
   "mjolnir": {
-    "ipa": "/mjˈolnir/",
+    "ipa": "/ˈmjɔlːnir/",
     "ipaLabel": "Reconstructed Old Norse",
     "phonemes": [],
     "approximation": null,
     "dialect": null,
     "confidence": "generated",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Mjólnir; review recommended before promotion to canonical."
+    "note": "Broad IPA generated from the Unicode restoration Mjǫllnir (o-ogonek [ɔ], geminate ll); review recommended before promotion to canonical."
   },
   "wadjet": {
     "ipa": "/waˈd͡ʒiːt/",

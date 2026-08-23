@@ -94,6 +94,7 @@ const ARCHETYPES = [
     },
             {
         id: "athena",
+        rentalTier: "S",
         name: "Athēnâ",
         greek: "Ἀθηνᾶ",
         domain: "Goddess of Wisdom + War",
@@ -440,6 +441,7 @@ const ARCHETYPES = [
     },
         {
         id: "prometheus",
+        rentalTier: "S",
         name: "Promētheús",
         greek: "Προμηθεύς",
         domain: "The Fire-Bringer",
@@ -937,6 +939,7 @@ const ARCHETYPES = [
     },
             {
         id: "sia",
+        rentalTier: "B",
         name: "Sjꜣ",
         greek: "Sꜥ",
         domain: "Divine Archetype",
@@ -1024,6 +1027,7 @@ const ARCHETYPES = [
     },
         {
         id: "thor",
+        rentalTier: "S",
         name: "Þórr",
         greek: "Þórr",
         domain: "Thunder, Storms, Oak",
@@ -1242,6 +1246,7 @@ const ARCHETYPES = [
     },
             {
         id: "asherah",
+        rentalTier: "A",
         name: "ꜥAsherah",
         greek: "Ἀσερά",
         domain: "Mother Goddess, Lady of the Sea",
@@ -1659,6 +1664,7 @@ const ARCHETYPES = [
     },
         {
         id: "trengtreng",
+        rentalTier: "B",
         name: "Trengtreng",
         greek: "—",
         domain: "Flood, Land-Shaping",
@@ -2160,6 +2166,7 @@ const ARCHETYPES = [
 
         {
         id: "mot",
+        rentalTier: "A",
         name: "Mūt",
         greek: "—",
         domain: "Death, Underworld",
@@ -2578,6 +2585,7 @@ const ARCHETYPES = [
 
                     {
         id: "yinyang",
+        rentalTier: "S",
         name: "Yīnyáng",
         greek: "陰陽",
         domain: "Cosmic Duality",
@@ -2688,6 +2696,7 @@ const ARCHETYPES = [
 
                             {
         id: "adamas",
+        rentalTier: "B",
         name: "Adámas",
         greek: "ἀδάμας",
         domain: "Gem, Concept, Invincibility",
@@ -2709,6 +2718,7 @@ const ARCHETYPES = [
 
                         {
         id: "amitabha",
+        rentalTier: "S",
         name: "Amitābha",
         greek: "—",
         domain: "Infinite Light, Pure Land",
@@ -2730,6 +2740,7 @@ const ARCHETYPES = [
 
                         {
         id: "amun",
+        rentalTier: "A",
         name: "Ꜣmun",
         greek: "—",
         domain: "Wind, Kingship, Thebes",
@@ -2751,6 +2762,7 @@ const ARCHETYPES = [
 
                         {
         id: "andromeda",
+        rentalTier: "A",
         name: "Andromedē",
         greek: "Ἀνδρομέδη",
         domain: "Princess, Chained, Rescued by Perseus",
@@ -2772,6 +2784,7 @@ const ARCHETYPES = [
 
                             {
         id: "apep",
+        rentalTier: "A",
         name: "ꜥꜣpp",
         greek: "—",
         domain: "Chaos, Darkness, Serpent",
@@ -2794,6 +2807,7 @@ const ARCHETYPES = [
 
                         {
         id: "arachne",
+        rentalTier: "A",
         name: "Arachnē",
         greek: "Ἀράχνη",
         domain: "Weaver, Turned into Spider",
@@ -2815,6 +2829,7 @@ const ARCHETYPES = [
 
                         {
         id: "dagan",
+        rentalTier: "B",
         name: "Dāgān",
         greek: "—",
         domain: "Grain, Fertility",
@@ -2837,6 +2852,7 @@ const ARCHETYPES = [
 
                     {
         id: "dazhbog",
+        rentalTier: "B",
         name: "Dažbog",
         greek: "—",
         domain: "Sun, Wealth, Giving",
@@ -2858,6 +2874,7 @@ const ARCHETYPES = [
 
                         {
         id: "thoth",
+        rentalTier: "A",
         name: "Ḏḥwty",
         greek: "—",
         domain: "Writing, Wisdom, Moon",
@@ -2880,6 +2897,7 @@ const ARCHETYPES = [
 
                     {
         id: "eggther",
+        rentalTier: "B",
         name: "Eggþér",
         greek: "—",
         domain: "Watchman, Ragnarök Herald",
@@ -2901,6 +2919,7 @@ const ARCHETYPES = [
 
                     {
         id: "ge",
+        rentalTier: "A",
         name: "Gē",
         greek: "Γῆ",
         domain: "Earth",
@@ -2922,6 +2941,7 @@ const ARCHETYPES = [
 
                     {
         id: "hydra",
+        rentalTier: "S",
         name: "Hýdra",
         greek: "Ὕδρα",
         domain: "Many-Headed Serpent",
@@ -2943,6 +2963,7 @@ const ARCHETYPES = [
 
                     {
         id: "hygieia",
+        rentalTier: "A",
         name: "Hygíeia",
         greek: "Ὑγίεια",
         domain: "Health, Hygiene, Wellness",
@@ -2964,6 +2985,7 @@ const ARCHETYPES = [
 
                     {
         id: "hypnos",
+        rentalTier: "A",
         name: "Hýpnos",
         greek: "Ὕπνος",
         domain: "Sleep",
@@ -2985,6 +3007,7 @@ const ARCHETYPES = [
 
                     {
         id: "iris",
+        rentalTier: "A",
         name: "Íris",
         greek: "Ἶρις",
         domain: "Rainbow, Messenger",
@@ -3006,6 +3029,7 @@ const ARCHETYPES = [
 
                         {
         id: "jormungandr",
+        rentalTier: "A",
         name: "Jǫrmungandr",
         greek: "—",
         domain: "World Serpent",
@@ -3027,6 +3051,7 @@ const ARCHETYPES = [
 
                     {
         id: "laozi",
+        rentalTier: "S",
         name: "Lǎozǐ",
         greek: "老子",
         domain: "Founder of Daoism, Sage",
@@ -3048,6 +3073,7 @@ const ARCHETYPES = [
 
                     {
         id: "manannan",
+        rentalTier: "A",
         name: "Manannán",
         greek: "—",
         domain: "Sea, Otherworld, Mist",
@@ -3069,6 +3095,7 @@ const ARCHETYPES = [
 
                 {
         id: "modi",
+        rentalTier: "B",
         name: "Móði",
         greek: "—",
         domain: "Wrath, Son of Thor",
@@ -3090,6 +3117,7 @@ const ARCHETYPES = [
 
                 {
         id: "papatuanuku",
+        rentalTier: "B",
         name: "Papatūānuku",
         greek: "—",
         domain: "Earth, Creation, Fertility",
@@ -3111,6 +3139,7 @@ const ARCHETYPES = [
 
                 {
         id: "phoenix",
+        rentalTier: "S",
         name: "Phoînix",
         greek: "Φοῖνιξ",
         domain: "Rebirth, Immortality",
@@ -3132,6 +3161,7 @@ const ARCHETYPES = [
 
                     {
         id: "surya",
+        rentalTier: "A",
         name: "Sūrya",
         greek: "—",
         domain: "Sun, Light, Health",
@@ -3153,6 +3183,7 @@ const ARCHETYPES = [
 
                 {
         id: "taishang",
+        rentalTier: "A",
         name: "Tàishàng",
         greek: "太上",
         domain: "Supreme Lord, Dao",
@@ -3174,6 +3205,7 @@ const ARCHETYPES = [
 
                 {
         id: "tane",
+        rentalTier: "B",
         name: "Tāne",
         greek: "—",
         domain: "Forests, Birds, First Man",
@@ -3195,7 +3227,8 @@ const ARCHETYPES = [
 
                     {
         id: "theia",
-        name: "Théia",
+        rentalTier: "B",
+        name: "Theía",
         greek: "Θεία",
         domain: "Titaness of Sight",
         tagline: "The Sight that Sees the Light",
@@ -3217,6 +3250,7 @@ const ARCHETYPES = [
 
                 {
         id: "tiandi",
+        rentalTier: "B",
         name: "Tiāndì",
         greek: "天地",
         domain: "Cosmology, Heaven and Earth, Order",
@@ -3238,6 +3272,7 @@ const ARCHETYPES = [
 
                 {
         id: "yam",
+        rentalTier: "A",
         name: "Yām",
         greek: "—",
         domain: "Sea, Primordial Waters, Chaos",
@@ -3259,6 +3294,7 @@ const ARCHETYPES = [
 
         {
         id: "shapash",
+        rentalTier: "B",
         name: "Šāpšu",
         greek: "—",
         domain: "Sun",
@@ -3280,6 +3316,7 @@ const ARCHETYPES = [
 
     {
         id: "he",
+        rentalTier: "B",
         name: "Hē",
         greek: "ἡ",
         domain: "The Divine Feminine Principle, She Who Is",
@@ -3301,6 +3338,7 @@ const ARCHETYPES = [
 
     {
         id: "perkunas",
+        rentalTier: "A",
         name: "Perkūnas",
         greek: "—",
         domain: "God of Thunder, Lightning and Storms",
@@ -3322,6 +3360,7 @@ const ARCHETYPES = [
 
     {
         id: "buri",
+        rentalTier: "B",
         name: "Búri",
         greek: "—",
         domain: "First God of the Norse Pantheon, Progenitor of the Æsir",
@@ -3343,6 +3382,7 @@ const ARCHETYPES = [
 
             {
         id: "eos",
+        rentalTier: "A",
         name: "Ēōs",
         greek: "Ἠώς",
         domain: "Dawn, Morning Red",
@@ -3365,6 +3405,7 @@ const ARCHETYPES = [
 
         {
         id: "xian",
+        rentalTier: "B",
         name: "Xiān",
         greek: "仙",
         domain: "Immortal, Transcendent",
@@ -3386,6 +3427,7 @@ const ARCHETYPES = [
 
     {
         id: "ouranos",
+        rentalTier: "A",
         name: "Ouranós",
         greek: "Οὐρανός",
         domain: "Sky",
@@ -3407,6 +3449,7 @@ const ARCHETYPES = [
 
     {
         id: "tian",
+        rentalTier: "B",
         name: "Tiān",
         greek: "天",
         domain: "Heaven, Sky, Cosmic Order",
@@ -3428,6 +3471,7 @@ const ARCHETYPES = [
 
     {
         id: "mictlantecutli",
+        rentalTier: "A",
         name: "Mictlāntēcutli",
         greek: "—",
         domain: "Lord of Mictlān, Death, Underworld",
@@ -3449,6 +3493,7 @@ const ARCHETYPES = [
 
     {
         id: "python",
+        rentalTier: "B",
         name: "Pýthōn",
         greek: "Πύθων",
         domain: "Serpent, Delphi, Slain by Apollo",
@@ -3470,6 +3515,7 @@ const ARCHETYPES = [
 
     {
         id: "leto",
+        rentalTier: "B",
         name: "Lētō",
         greek: "Λητώ",
         domain: "Motherhood, Night",
@@ -3491,6 +3537,7 @@ const ARCHETYPES = [
 
         {
         id: "sphinx",
+        rentalTier: "S",
         name: "Sphínx",
         greek: "Σφίγξ",
         domain: "Riddling Monster",
@@ -3512,6 +3559,7 @@ const ARCHETYPES = [
 
     {
         id: "mnemosyne",
+        rentalTier: "B",
         name: "Mnēmosýnē",
         greek: "Μνημοσύνη",
         domain: "Memory, Muses' Mother",
@@ -3533,6 +3581,7 @@ const ARCHETYPES = [
 
         {
         id: "itzpapalotl",
+        rentalTier: "B",
         name: "Ītzpāpālōtl",
         greek: "—",
         domain: "Obsidian Butterfly, Stars",
@@ -3555,6 +3604,7 @@ const ARCHETYPES = [
 
     {
         id: "ourania",
+        rentalTier: "B",
         name: "Ouranía",
         greek: "Οὐρανία",
         domain: "Astronomy",
@@ -3576,6 +3626,7 @@ const ARCHETYPES = [
 
     {
         id: "oya",
+        rentalTier: "B",
         name: "Ọya",
         greek: "—",
         domain: "Wind, Storms, Change",
@@ -3597,6 +3648,7 @@ const ARCHETYPES = [
 
     {
         id: "tlaloc",
+        rentalTier: "A",
         name: "Tlāloc",
         greek: "—",
         domain: "Rain, Water, Lightning",
@@ -3618,6 +3670,7 @@ const ARCHETYPES = [
 
     {
         id: "thanatos",
+        rentalTier: "A",
         name: "Thánatos",
         greek: "Θάνατος",
         domain: "Death",
@@ -3639,6 +3692,7 @@ const ARCHETYPES = [
 
     {
         id: "jizo",
+        rentalTier: "A",
         name: "Jizō",
         greek: "地蔵",
         domain: "Protection of Children, Travelers",
@@ -3660,6 +3714,7 @@ const ARCHETYPES = [
 
         {
         id: "kanaloa",
+        rentalTier: "B",
         name: "Kanaloa",
         greek: "—",
         domain: "Ocean, Underworld",
@@ -3681,6 +3736,7 @@ const ARCHETYPES = [
 
     {
         id: "coeus",
+        rentalTier: "B",
         name: "Koîos",
         greek: "Κοῖος",
         domain: "Titan of Intellect",
@@ -3702,6 +3758,7 @@ const ARCHETYPES = [
 
     {
         id: "vali",
+        rentalTier: "B",
         name: "Váli",
         greek: "—",
         domain: "Vengeance, Son of Odin",
@@ -3723,6 +3780,7 @@ const ARCHETYPES = [
 
     {
         id: "sati",
+        rentalTier: "A",
         name: "Satī",
         greek: "—",
         domain: "Marital Fidelity, First Wife of Shiva",
@@ -3744,6 +3802,7 @@ const ARCHETYPES = [
 
     {
         id: "aer",
+        rentalTier: "B",
         name: "Aḗr",
         greek: "Ἀήρ",
         domain: "Air",
@@ -3765,6 +3824,7 @@ const ARCHETYPES = [
 
         {
         id: "aganju",
+        rentalTier: "B",
         name: "Aganjú",
         greek: "—",
         domain: "Wilderness, Earth, Diaspora Volcano",
@@ -3786,6 +3846,7 @@ const ARCHETYPES = [
 
         {
         id: "obatala",
+        rentalTier: "B",
         name: "Ọbàtálá",
         greek: "—",
         domain: "Creation, Purity, Peace",
@@ -3808,6 +3869,7 @@ const ARCHETYPES = [
 
         {
         id: "orunmila",
+        rentalTier: "B",
         name: "Ọrúnmìlà",
         greek: "—",
         domain: "Wisdom, Divination, Ifá",
@@ -3830,6 +3892,7 @@ const ARCHETYPES = [
 
     {
         id: "shango",
+        rentalTier: "A",
         name: "Ṣàngó",
         greek: "—",
         domain: "Thunder, Fire, Justice",
@@ -3851,6 +3914,7 @@ const ARCHETYPES = [
 
         {
         id: "oshun",
+        rentalTier: "A",
         name: "Ọṣun",
         greek: "—",
         domain: "Love, Freshwater, Fertility",
@@ -3872,6 +3936,7 @@ const ARCHETYPES = [
 
     {
         id: "olodumare",
+        rentalTier: "B",
         name: "Olódùmarè",
         greek: "—",
         domain: "Supreme Creator",
@@ -3893,6 +3958,7 @@ const ARCHETYPES = [
 
     {
         id: "babaluaye",
+        rentalTier: "B",
         name: "Ọbalúayé",
         greek: "—",
         domain: "Disease, Healing, Earth",
@@ -3914,6 +3980,7 @@ const ARCHETYPES = [
 
     {
         id: "acheron",
+        rentalTier: "A",
         name: "Achérōn",
         greek: "Ἀχέρων",
         domain: "River of Woe",
@@ -3935,6 +4002,7 @@ const ARCHETYPES = [
 
     {
         id: "rhea",
+        rentalTier: "A",
         name: "Rhéā",
         greek: "Ῥέα",
         domain: "Motherhood, Fertility, Titans",
@@ -3956,6 +4024,7 @@ const ARCHETYPES = [
 
     {
         id: "ameretat",
+        rentalTier: "B",
         name: "Amərətāt",
         greek: "—",
         domain: "Immortality, Plants",
@@ -3977,6 +4046,7 @@ const ARCHETYPES = [
 
     {
         id: "haurvatat",
+        rentalTier: "B",
         name: "Haurvatāt",
         greek: "—",
         domain: "Wholeness, Health, Water",
@@ -3998,6 +4068,7 @@ const ARCHETYPES = [
 
     {
         id: "ananke",
+        rentalTier: "B",
         name: "Anánkē",
         greek: "Ἀνάγκη",
         domain: "Necessity, Compulsion",
@@ -4019,6 +4090,7 @@ const ARCHETYPES = [
 
     {
         id: "coatlicue",
+        rentalTier: "B",
         name: "Cōātlīcue",
         greek: "—",
         domain: "Earth, Mother of Gods",
@@ -4040,6 +4112,7 @@ const ARCHETYPES = [
 
     {
         id: "tlaltecuhtli",
+        rentalTier: "B",
         name: "Tlāltēcuhtli",
         greek: "—",
         domain: "Earth",
@@ -4061,6 +4134,7 @@ const ARCHETYPES = [
 
     {
         id: "cihuacoatl",
+        rentalTier: "B",
         name: "Cihuacōātl",
         greek: "—",
         domain: "Childbirth, Motherhood, Earth",
@@ -4082,6 +4156,7 @@ const ARCHETYPES = [
 
         {
         id: "huitzilopochtli",
+        rentalTier: "A",
         name: "Huītzilōpōchtli",
         greek: "—",
         domain: "Sun, War, Hummingbird",
@@ -4104,6 +4179,7 @@ const ARCHETYPES = [
 
         {
         id: "durga",
+        rentalTier: "S",
         name: "Durgā",
         greek: "—",
         domain: "Protection, Strength, War",
@@ -4125,6 +4201,7 @@ const ARCHETYPES = [
 
         {
         id: "eshu",
+        rentalTier: "B",
         name: "Ẹṣù",
         greek: "—",
         domain: "Trickery, Crossroads, Messenger",
@@ -4147,6 +4224,7 @@ const ARCHETYPES = [
 
     {
         id: "fujin",
+        rentalTier: "A",
         name: "Fūjin",
         greek: "風神",
         domain: "Wind",
@@ -4168,6 +4246,7 @@ const ARCHETYPES = [
 
     {
         id: "arche",
+        rentalTier: "B",
         name: "Archḗ",
         greek: "Ἀρχή",
         domain: "Origin, First Principle",
@@ -4189,6 +4268,7 @@ const ARCHETYPES = [
 
     {
         id: "atlantis",
+        rentalTier: "S",
         name: "Atlantís",
         greek: "Ἀτλαντίς",
         domain: "Lost Island, Legendary Realm, Sea",
@@ -4210,6 +4290,7 @@ const ARCHETYPES = [
 
     {
         id: "pyr",
+        rentalTier: "B",
         name: "Pŷr",
         greek: "Πῦρ",
         domain: "Fire",
@@ -4336,6 +4417,7 @@ const ARCHETYPES = [
     },
         {
         id: "monokeros",
+        rentalTier: "B",
         name: "Monókerōs",
         greek: "Μονόκερως",
         domain: "Rarity, Ferocity, Wonder",
@@ -4524,6 +4606,7 @@ const ARCHETYPES = [
     },
         {
         id: "iuppiter",
+        rentalTier: "S",
         name: "Iūpiter",
         greek: "Iūppiter",
         domain: "Sky, Thunder, Sovereignty",
@@ -4649,6 +4732,7 @@ const ARCHETYPES = [
     },
         {
         id: "hp",
+        rentalTier: "B",
         name: "Ḥꜥpy",
         greek: "—",
         domain: "Nile, Inundation, Abundance",
@@ -4817,6 +4901,7 @@ const ARCHETYPES = [
     },
             {
         id: "mengpo",
+        rentalTier: "B",
         name: "Mèngpó",
         greek: "孟婆",
         domain: "Forgetting, Passage, Tea",
@@ -4963,6 +5048,7 @@ const ARCHETYPES = [
     },
         {
         id: "tezcatlipoca",
+        rentalTier: "A",
         name: "Tēzcatlīpōca",
         greek: "—",
         domain: "Night, Sorcery, Kingship",
@@ -5355,6 +5441,7 @@ const ARCHETYPES = [
 
         {
         id: "oba",
+        rentalTier: "B",
         name: "Ọbà",
         greek: "—",
         domain: "River, Devotion, Sanctuary",
@@ -5399,6 +5486,7 @@ const ARCHETYPES = [
 
         {
         id: "kartikeya",
+        rentalTier: "A",
         name: "Kārttikeya",
         greek: "—",
         domain: "War, Commander of Gods",
@@ -5420,6 +5508,7 @@ const ARCHETYPES = [
 
         {
         id: "ashavahista",
+        rentalTier: "B",
         name: "Ašavahišta",
         greek: "—",
         domain: "Truth, Righteousness, Fire",
@@ -5441,6 +5530,7 @@ const ARCHETYPES = [
 
         {
         id: "styx",
+        rentalTier: "A",
         name: "Stýx",
         greek: "Στύξ",
         domain: "River of Hate, Oaths",
@@ -5462,6 +5552,7 @@ const ARCHETYPES = [
 
         {
         id: "hermod",
+        rentalTier: "A",
         name: "Hermóðr",
         greek: "—",
         domain: "Messenger, Courage",
@@ -5483,6 +5574,7 @@ const ARCHETYPES = [
 
         {
         id: "cerberus",
+        rentalTier: "S",
         name: "Kérberos",
         greek: "Κέρβερος",
         domain: "Underworld Guardian",
@@ -5504,6 +5596,7 @@ const ARCHETYPES = [
 
         {
         id: "ochosi",
+        rentalTier: "B",
         name: "Ọṣọọsì",
         greek: "—",
         domain: "Hunting, Forest, Justice",
@@ -5525,6 +5618,7 @@ const ARCHETYPES = [
 
         {
         id: "radha",
+        rentalTier: "A",
         name: "Rādhā",
         greek: "—",
         domain: "Divine Love, Consort of Krishna",
@@ -5546,6 +5640,7 @@ const ARCHETYPES = [
 
         {
         id: "shakyamuni",
+        rentalTier: "S",
         name: "Śākyamuni",
         greek: "शाक्यमुनि",
         domain: "Enlightenment, Teaching, Historical Buddha",
@@ -5567,6 +5662,7 @@ const ARCHETYPES = [
 
         {
         id: "akshobhya",
+        rentalTier: "B",
         name: "Akṣobhya",
         greek: "—",
         domain: "Immovable, East",
@@ -5588,6 +5684,7 @@ const ARCHETYPES = [
 
         {
         id: "vairocana",
+        rentalTier: "A",
         name: "Mahāvairocana",
         greek: "महावैरोचन",
         domain: "Universal Illumination, Cosmic Buddha",
@@ -5609,6 +5706,7 @@ const ARCHETYPES = [
 
         {
         id: "manjushri",
+        rentalTier: "A",
         name: "Mañjuśrī",
         greek: "—",
         domain: "Wisdom, Intellect",
@@ -5630,6 +5728,7 @@ const ARCHETYPES = [
 
         {
         id: "vajrapani",
+        rentalTier: "B",
         name: "Vajrapāṇi",
         greek: "—",
         domain: "Thunderbolt Holder, Protection",
@@ -5651,6 +5750,7 @@ const ARCHETYPES = [
 
         {
         id: "ksitigarbha",
+        rentalTier: "A",
         name: "Kṣitigarbha",
         greek: "—",
         domain: "Earth Womb, Savior of Hell Beings",
@@ -5672,6 +5772,7 @@ const ARCHETYPES = [
 
         {
         id: "mara",
+        rentalTier: "A",
         name: "Māra",
         greek: "मार",
         domain: "Death, Temptation, Illusion",
@@ -5693,6 +5794,7 @@ const ARCHETYPES = [
 
         {
         id: "athiratu",
+        rentalTier: "A",
         name: "ʾAṯiratu",
         greek: "𐎀𐎘𐎗𐎚",
         domain: "Lady of the Sea, Mother of the Gods",
@@ -5824,6 +5926,7 @@ const ARCHETYPES = [
 
             {
         id: "pan",
+        rentalTier: "S",
         name: "Pān",
         greek: "Πάν",
         domain: "Wilderness, Shepherds, Flocks",
@@ -5845,6 +5948,7 @@ const ARCHETYPES = [
 
         {
         id: "chimaira",
+        rentalTier: "A",
         name: "Chímaira",
         greek: "Χίμαιρα",
         domain: "Fire-Breathing Monster",
@@ -5866,6 +5970,7 @@ const ARCHETYPES = [
 
         {
         id: "hyperion",
+        rentalTier: "A",
         name: "Hyperiōn",
         greek: "Ὑπερίων",
         domain: "Light, Heavenly Watch",
@@ -5887,6 +5992,7 @@ const ARCHETYPES = [
 
         {
         id: "kleio",
+        rentalTier: "B",
         name: "Kleió",
         greek: "Κλειώ",
         domain: "History",
@@ -5908,6 +6014,7 @@ const ARCHETYPES = [
 
         {
         id: "circe",
+        rentalTier: "A",
         name: "Kírkē",
         greek: "Κίρκη",
         domain: "Sorceress, Aeaea, Transformations",
@@ -5929,6 +6036,7 @@ const ARCHETYPES = [
 
         {
         id: "okuninushi",
+        rentalTier: "B",
         name: "Ōkuninushi",
         greek: "大国主",
         domain: "Nation-building, Marriage",
@@ -5950,6 +6058,7 @@ const ARCHETYPES = [
 
         {
         id: "phoebe",
+        rentalTier: "B",
         name: "Phoíbē",
         greek: "Φοίβη",
         domain: "Titaness of Prophecy",
@@ -5971,6 +6080,7 @@ const ARCHETYPES = [
 
         {
         id: "eris",
+        rentalTier: "A",
         name: "Éris",
         greek: "Ἔρις",
         domain: "Strife, Discord",
@@ -5992,6 +6102,7 @@ const ARCHETYPES = [
 
         {
         id: "thaleia",
+        rentalTier: "B",
         name: "Tháleia",
         greek: "Θάλεια",
         domain: "Comedy, Idyll",
@@ -6013,6 +6124,7 @@ const ARCHETYPES = [
 
         {
         id: "zephyros",
+        rentalTier: "B",
         name: "Zéphyros",
         greek: "Ζέφυρος",
         domain: "West Wind",
@@ -6035,6 +6147,7 @@ const ARCHETYPES = [
 
     {
         id: "chiron",
+        rentalTier: "A",
         name: "Chíron",
         greek: "Χείρων",
         domain: "Wise Centaur, Teacher",
@@ -6211,7 +6324,7 @@ const ARCHETYPES = [
     {
         id: "mjolnir",
         rentalTier: "S",
-        name: "Mjólnir",
+        name: "Mjǫllnir",
         greek: "—",
         domain: "Thunder Hammer",
         tagline: "Thunder Hammer · The grinder",

@@ -1,0 +1,20 @@
+﻿2026-08-21T10:38:55.1873237Z ##[group]Run printf '{"from":"PuniCodex CI <bookings@punicodex.com>","to":["punicodex@gmail.com"],"subject":"CI battery failed (master)","text":"Commit %s failed the CI test battery — no deploy will follow. Run: %s"}' \
+2026-08-21T10:38:55.1874306Z [36;1mprintf '{"from":"PuniCodex CI <bookings@punicodex.com>","to":["punicodex@gmail.com"],"subject":"CI battery failed (master)","text":"Commit %s failed the CI test battery — no deploy will follow. Run: %s"}' \[0m
+2026-08-21T10:38:55.1874938Z [36;1m  "636a06109c9587562bf024a8e739351b68458a68" \[0m
+2026-08-21T10:38:55.1875278Z [36;1m  "https://github.com/PUNYCODEX/punycodex/actions/runs/32473380172" \[0m
+2026-08-21T10:38:55.1875584Z [36;1m  > payload.json[0m
+2026-08-21T10:38:55.1875835Z [36;1mcurl -s -X POST https://api.resend.com/emails \[0m
+2026-08-21T10:38:55.1876413Z [36;1m  -H "Authorization: ***" \[0m
+2026-08-21T10:38:55.1876665Z [36;1m  -H 'Content-Type: application/json' \[0m
+2026-08-21T10:38:55.1876914Z [36;1m  -d @payload.json[0m
+2026-08-21T10:38:55.1910217Z shell: /usr/bin/bash -e {0}
+2026-08-21T10:38:55.1910441Z env:
+2026-08-21T10:38:55.1910668Z   pythonLocation: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-08-21T10:38:55.1911008Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.14.7/x64/lib/pkgconfig
+2026-08-21T10:38:55.1911335Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-08-21T10:38:55.1911629Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-08-21T10:38:55.1911914Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-08-21T10:38:55.1912201Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.14.7/x64/lib
+2026-08-21T10:38:55.1912540Z   RESEND_KEY: ***
+2026-08-21T10:38:55.1912713Z ##[endgroup]
+2026-08-21T10:38:55.7228760Z {"id":"71fa86a1-81b9-46d0-890e-b13cf7349556"}

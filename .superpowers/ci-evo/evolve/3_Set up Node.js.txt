@@ -1,0 +1,28 @@
+﻿2026-08-21T10:38:25.1829463Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-08-21T10:38:25.1831590Z ##[group]Run actions/setup-node@v4
+2026-08-21T10:38:25.1831863Z with:
+2026-08-21T10:38:25.1832065Z   node-version: 22
+2026-08-21T10:38:25.1832273Z   cache: npm
+2026-08-21T10:38:25.1832472Z   always-auth: false
+2026-08-21T10:38:25.1832687Z   check-latest: false
+2026-08-21T10:38:25.1835280Z   token: ***
+2026-08-21T10:38:25.1835494Z ##[endgroup]
+2026-08-21T10:38:25.7146734Z Found in cache @ /opt/hostedtoolcache/node/22.23.2/x64
+2026-08-21T10:38:25.7151642Z (node:2231) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T10:38:25.7152493Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T10:38:25.7155874Z ##[group]Environment details
+2026-08-21T10:38:28.6066231Z node: v22.23.2
+2026-08-21T10:38:28.6066653Z npm: 10.9.8
+2026-08-21T10:38:28.6066865Z yarn: 1.22.22
+2026-08-21T10:38:28.6067700Z ##[endgroup]
+2026-08-21T10:38:28.6117536Z [command]/opt/hostedtoolcache/node/22.23.2/x64/bin/npm config get cache
+2026-08-21T10:38:28.7351145Z /home/runner/.npm
+2026-08-21T10:38:29.0132948Z Cache hit for: node-cache-Linux-x64-npm-0d7568ce335e283a61a24a42facb9f3bcc7c3e8a0235707fc090cc556a03f813
+2026-08-21T10:38:29.0241446Z (node:2231) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-08-21T10:38:30.3143366Z Received 0 of 181938665 (0.0%), 0.0 MBs/sec
+2026-08-21T10:38:31.3142009Z Received 88080384 of 181938665 (48.4%), 42.0 MBs/sec
+2026-08-21T10:38:32.1836552Z Received 181938665 of 181938665 (100.0%), 60.5 MBs/sec
+2026-08-21T10:38:32.1865633Z Cache Size: ~174 MB (181938665 B)
+2026-08-21T10:38:32.1925488Z [command]/usr/bin/tar -xf /home/runner/work/_temp/2ef37362-2767-4973-acf8-99ba880d4e0f/cache.tzst -P -C /home/runner/work/punycodex/punycodex --use-compress-program unzstd
+2026-08-21T10:38:32.5115696Z Cache restored successfully
+2026-08-21T10:38:32.5203150Z Cache restored from key: node-cache-Linux-x64-npm-0d7568ce335e283a61a24a42facb9f3bcc7c3e8a0235707fc090cc556a03f813

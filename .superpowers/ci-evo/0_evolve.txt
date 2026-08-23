@@ -1,0 +1,353 @@
+﻿2026-08-21T10:36:11.7420440Z Current runner version: '2.336.0'
+2026-08-21T10:36:11.7446955Z ##[group]Runner Image Provisioner
+2026-08-21T10:36:11.7447987Z Hosted Compute Agent
+2026-08-21T10:36:11.7448596Z Version: 20260729.566
+2026-08-21T10:36:11.7449291Z Commit: cf7153fe6e25b664e8693c24944bf2b00355d109
+2026-08-21T10:36:11.7450071Z Build Date: 2026-07-29T19:17:02Z
+2026-08-21T10:36:11.7450754Z Worker ID: {7d9b170e-6cb9-4415-9717-b3ad0e4471ef}
+2026-08-21T10:36:11.7451520Z Azure Region: westus
+2026-08-21T10:36:11.7452097Z ##[endgroup]
+2026-08-21T10:36:11.7453570Z ##[group]Operating System
+2026-08-21T10:36:11.7454357Z Ubuntu
+2026-08-21T10:36:11.7454923Z 24.04.4
+2026-08-21T10:36:11.7455745Z LTS
+2026-08-21T10:36:11.7456285Z ##[endgroup]
+2026-08-21T10:36:11.7456832Z ##[group]Runner Image
+2026-08-21T10:36:11.7457545Z Image: ubuntu-24.04
+2026-08-21T10:36:11.7458117Z Version: 20260816.277.1
+2026-08-21T10:36:11.7459798Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260816.277/images/ubuntu/Ubuntu2404-Readme.md
+2026-08-21T10:36:11.7461417Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260816.277
+2026-08-21T10:36:11.7462483Z ##[endgroup]
+2026-08-21T10:36:11.7463774Z ##[group]GITHUB_TOKEN Permissions
+2026-08-21T10:36:11.7466157Z Contents: read
+2026-08-21T10:36:11.7466812Z Metadata: read
+2026-08-21T10:36:11.7467469Z Packages: read
+2026-08-21T10:36:11.7468054Z ##[endgroup]
+2026-08-21T10:36:11.7470126Z Secret source: Actions
+2026-08-21T10:36:11.7471298Z Prepare workflow directory
+2026-08-21T10:36:11.7802282Z Prepare all required actions
+2026-08-21T10:36:11.7858777Z Getting action download info
+2026-08-21T10:36:12.1554480Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-08-21T10:36:12.2840273Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-08-21T10:36:12.3692826Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-08-21T10:36:12.4483897Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-08-21T10:36:12.6694567Z Complete job name: evolve
+2026-08-21T10:36:12.7498892Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-08-21T10:36:12.7507966Z ##[group]Run actions/checkout@v4
+2026-08-21T10:36:12.7508714Z with:
+2026-08-21T10:36:12.7509175Z   repository: PUNYCODEX/punycodex
+2026-08-21T10:36:12.7512890Z   token: ***
+2026-08-21T10:36:12.7513333Z   ssh-strict: true
+2026-08-21T10:36:12.7513775Z   ssh-user: git
+2026-08-21T10:36:12.7514220Z   persist-credentials: true
+2026-08-21T10:36:12.7514707Z   clean: true
+2026-08-21T10:36:12.7515362Z   sparse-checkout-cone-mode: true
+2026-08-21T10:36:12.7515893Z   fetch-depth: 1
+2026-08-21T10:36:12.7516347Z   fetch-tags: false
+2026-08-21T10:36:12.7516791Z   show-progress: true
+2026-08-21T10:36:12.7517236Z   lfs: false
+2026-08-21T10:36:12.7517710Z   submodules: false
+2026-08-21T10:36:12.7518160Z   set-safe-directory: true
+2026-08-21T10:36:12.7518666Z   allow-unsafe-pr-checkout: false
+2026-08-21T10:36:12.7519444Z ##[endgroup]
+2026-08-21T10:36:12.8608410Z Syncing repository: PUNYCODEX/punycodex
+2026-08-21T10:36:12.8611181Z ##[group]Getting Git version info
+2026-08-21T10:36:12.8612468Z Working directory is '/home/runner/work/punycodex/punycodex'
+2026-08-21T10:36:12.8614365Z [command]/usr/bin/git version
+2026-08-21T10:36:12.8777006Z git version 2.55.0
+2026-08-21T10:36:12.8799535Z ##[endgroup]
+2026-08-21T10:36:12.8814932Z Temporarily overriding HOME='/home/runner/work/_temp/75402ae9-ac7c-42e9-902f-b44e8f620283' before making global git config changes
+2026-08-21T10:36:12.8817616Z Adding repository directory to the temporary git global config as a safe directory
+2026-08-21T10:36:12.8820588Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/punycodex/punycodex
+2026-08-21T10:36:12.8875569Z Deleting the contents of '/home/runner/work/punycodex/punycodex'
+2026-08-21T10:36:12.8879483Z ##[group]Initializing the repository
+2026-08-21T10:36:12.8884628Z [command]/usr/bin/git init /home/runner/work/punycodex/punycodex
+2026-08-21T10:36:12.9030031Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-08-21T10:36:12.9031711Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-08-21T10:36:12.9033252Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-08-21T10:36:12.9034498Z hint: call:
+2026-08-21T10:36:12.9035433Z hint:
+2026-08-21T10:36:12.9036256Z hint: 	git config --global init.defaultBranch <name>
+2026-08-21T10:36:12.9037226Z hint:
+2026-08-21T10:36:12.9038171Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-08-21T10:36:12.9039798Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-08-21T10:36:12.9041040Z hint:
+2026-08-21T10:36:12.9041741Z hint: 	git branch -m <name>
+2026-08-21T10:36:12.9042517Z hint:
+2026-08-21T10:36:12.9043582Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-08-21T10:36:12.9045595Z Initialized empty Git repository in /home/runner/work/punycodex/punycodex/.git/
+2026-08-21T10:36:12.9051758Z [command]/usr/bin/git remote add origin https://github.com/PUNYCODEX/punycodex
+2026-08-21T10:36:12.9110836Z ##[endgroup]
+2026-08-21T10:36:12.9112186Z ##[group]Disabling automatic garbage collection
+2026-08-21T10:36:12.9116667Z [command]/usr/bin/git config --local gc.auto 0
+2026-08-21T10:36:12.9156028Z ##[endgroup]
+2026-08-21T10:36:12.9157731Z ##[group]Setting up auth
+2026-08-21T10:36:12.9165853Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-08-21T10:36:12.9206074Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-08-21T10:36:12.9607244Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-08-21T10:36:12.9647129Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-08-21T10:36:12.9877494Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-08-21T10:36:12.9913578Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-08-21T10:36:13.0187821Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-08-21T10:36:13.0228765Z ##[endgroup]
+2026-08-21T10:36:13.0230153Z ##[group]Fetching the repository
+2026-08-21T10:36:13.0240518Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +636a06109c9587562bf024a8e739351b68458a68:refs/remotes/origin/master
+2026-08-21T10:38:13.0732324Z From https://github.com/PUNYCODEX/punycodex
+2026-08-21T10:38:13.0733336Z  * [new ref]           636a06109c9587562bf024a8e739351b68458a68 -> origin/master
+2026-08-21T10:38:13.0736938Z ##[endgroup]
+2026-08-21T10:38:13.0737950Z ##[group]Determining the checkout info
+2026-08-21T10:38:13.0740095Z ##[endgroup]
+2026-08-21T10:38:13.0821062Z [command]/usr/bin/git sparse-checkout disable
+2026-08-21T10:38:13.0849800Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-08-21T10:38:13.0851827Z ##[group]Checking out the ref
+2026-08-21T10:38:13.0852727Z [command]/usr/bin/git checkout --progress --force -B master refs/remotes/origin/master
+2026-08-21T10:38:14.2953313Z Updating files:  15% (3649/23452)
+2026-08-21T10:38:14.4878661Z Updating files:  16% (3753/23452)
+2026-08-21T10:38:14.9244049Z Updating files:  17% (3987/23452)
+2026-08-21T10:38:14.9960108Z Updating files:  18% (4222/23452)
+2026-08-21T10:38:15.0202904Z Updating files:  19% (4456/23452)
+2026-08-21T10:38:15.0577592Z Updating files:  20% (4691/23452)
+2026-08-21T10:38:15.0836460Z Updating files:  21% (4925/23452)
+2026-08-21T10:38:15.0996261Z Updating files:  22% (5160/23452)
+2026-08-21T10:38:15.1143013Z Updating files:  23% (5394/23452)
+2026-08-21T10:38:15.1158431Z Updating files:  23% (5605/23452)
+2026-08-21T10:38:15.1316025Z Updating files:  24% (5629/23452)
+2026-08-21T10:38:15.1549743Z Updating files:  25% (5863/23452)
+2026-08-21T10:38:15.1682214Z Updating files:  26% (6098/23452)
+2026-08-21T10:38:15.1813977Z Updating files:  27% (6333/23452)
+2026-08-21T10:38:15.1955751Z Updating files:  28% (6567/23452)
+2026-08-21T10:38:15.2249994Z Updating files:  29% (6802/23452)
+2026-08-21T10:38:15.2596677Z Updating files:  30% (7036/23452)
+2026-08-21T10:38:15.2753945Z Updating files:  31% (7271/23452)
+2026-08-21T10:38:15.2878192Z Updating files:  32% (7505/23452)
+2026-08-21T10:38:15.4371411Z Updating files:  33% (7740/23452)
+2026-08-21T10:38:15.5313011Z Updating files:  34% (7974/23452)
+2026-08-21T10:38:15.5499202Z Updating files:  35% (8209/23452)
+2026-08-21T10:38:15.5931595Z Updating files:  36% (8443/23452)
+2026-08-21T10:38:15.8047279Z Updating files:  37% (8678/23452)
+2026-08-21T10:38:15.8999406Z Updating files:  38% (8912/23452)
+2026-08-21T10:38:16.0404449Z Updating files:  39% (9147/23452)
+2026-08-21T10:38:16.1149907Z Updating files:  40% (9381/23452)
+2026-08-21T10:38:16.1623901Z Updating files:  40% (9477/23452)
+2026-08-21T10:38:16.3528402Z Updating files:  41% (9616/23452)
+2026-08-21T10:38:16.5148193Z Updating files:  42% (9850/23452)
+2026-08-21T10:38:16.6142814Z Updating files:  43% (10085/23452)
+2026-08-21T10:38:16.7240290Z Updating files:  44% (10319/23452)
+2026-08-21T10:38:16.8168431Z Updating files:  45% (10554/23452)
+2026-08-21T10:38:16.9067203Z Updating files:  46% (10788/23452)
+2026-08-21T10:38:17.3633904Z Updating files:  47% (11023/23452)
+2026-08-21T10:38:17.5043538Z Updating files:  47% (11108/23452)
+2026-08-21T10:38:17.6563041Z Updating files:  48% (11257/23452)
+2026-08-21T10:38:17.7762810Z Updating files:  49% (11492/23452)
+2026-08-21T10:38:18.0727956Z Updating files:  50% (11726/23452)
+2026-08-21T10:38:18.1146235Z Updating files:  51% (11961/23452)
+2026-08-21T10:38:18.2526991Z Updating files:  51% (12023/23452)
+2026-08-21T10:38:18.4081266Z Updating files:  52% (12196/23452)
+2026-08-21T10:38:18.5294097Z Updating files:  53% (12430/23452)
+2026-08-21T10:38:18.6788142Z Updating files:  54% (12665/23452)
+2026-08-21T10:38:18.8963967Z Updating files:  55% (12899/23452)
+2026-08-21T10:38:19.0059354Z Updating files:  56% (13134/23452)
+2026-08-21T10:38:19.1146603Z Updating files:  57% (13368/23452)
+2026-08-21T10:38:19.1732546Z Updating files:  57% (13500/23452)
+2026-08-21T10:38:19.3588525Z Updating files:  58% (13603/23452)
+2026-08-21T10:38:19.4661546Z Updating files:  59% (13837/23452)
+2026-08-21T10:38:19.6379260Z Updating files:  60% (14072/23452)
+2026-08-21T10:38:19.8373801Z Updating files:  61% (14306/23452)
+2026-08-21T10:38:20.1190601Z Updating files:  62% (14541/23452)
+2026-08-21T10:38:20.2761066Z Updating files:  62% (14660/23452)
+2026-08-21T10:38:20.6651726Z Updating files:  63% (14775/23452)
+2026-08-21T10:38:20.8461934Z Updating files:  64% (15010/23452)
+2026-08-21T10:38:21.0332615Z Updating files:  65% (15244/23452)
+2026-08-21T10:38:21.1364539Z Updating files:  66% (15479/23452)
+2026-08-21T10:38:21.3033191Z Updating files:  66% (15530/23452)
+2026-08-21T10:38:21.5693663Z Updating files:  67% (15713/23452)
+2026-08-21T10:38:21.7980826Z Updating files:  68% (15948/23452)
+2026-08-21T10:38:22.0897224Z Updating files:  69% (16182/23452)
+2026-08-21T10:38:22.1145066Z Updating files:  70% (16417/23452)
+2026-08-21T10:38:22.2529688Z Updating files:  70% (16443/23452)
+2026-08-21T10:38:22.4136630Z Updating files:  71% (16651/23452)
+2026-08-21T10:38:22.6283999Z Updating files:  72% (16886/23452)
+2026-08-21T10:38:22.9125355Z Updating files:  73% (17120/23452)
+2026-08-21T10:38:23.1179300Z Updating files:  74% (17355/23452)
+2026-08-21T10:38:23.1605301Z Updating files:  74% (17570/23452)
+2026-08-21T10:38:23.5746456Z Updating files:  75% (17589/23452)
+2026-08-21T10:38:23.8468141Z Updating files:  76% (17824/23452)
+2026-08-21T10:38:23.9868996Z Updating files:  77% (18059/23452)
+2026-08-21T10:38:24.0105416Z Updating files:  78% (18293/23452)
+2026-08-21T10:38:24.0318300Z Updating files:  79% (18528/23452)
+2026-08-21T10:38:24.0528857Z Updating files:  80% (18762/23452)
+2026-08-21T10:38:24.0722760Z Updating files:  81% (18997/23452)
+2026-08-21T10:38:24.0915228Z Updating files:  82% (19231/23452)
+2026-08-21T10:38:24.1112656Z Updating files:  83% (19466/23452)
+2026-08-21T10:38:24.1142534Z Updating files:  84% (19700/23452)
+2026-08-21T10:38:24.1301742Z Updating files:  84% (19738/23452)
+2026-08-21T10:38:24.1495589Z Updating files:  85% (19935/23452)
+2026-08-21T10:38:24.1690021Z Updating files:  86% (20169/23452)
+2026-08-21T10:38:24.1880846Z Updating files:  87% (20404/23452)
+2026-08-21T10:38:24.2106140Z Updating files:  88% (20638/23452)
+2026-08-21T10:38:24.3859607Z Updating files:  89% (20873/23452)
+2026-08-21T10:38:24.4130502Z Updating files:  90% (21107/23452)
+2026-08-21T10:38:24.4323530Z Updating files:  91% (21342/23452)
+2026-08-21T10:38:24.4518686Z Updating files:  92% (21576/23452)
+2026-08-21T10:38:24.4717450Z Updating files:  93% (21811/23452)
+2026-08-21T10:38:24.4907290Z Updating files:  94% (22045/23452)
+2026-08-21T10:38:24.5063200Z Updating files:  95% (22280/23452)
+2026-08-21T10:38:24.5243296Z Updating files:  96% (22514/23452)
+2026-08-21T10:38:24.6509411Z Updating files:  97% (22749/23452)
+2026-08-21T10:38:24.8058378Z Updating files:  98% (22983/23452)
+2026-08-21T10:38:24.8823554Z Updating files:  99% (23218/23452)
+2026-08-21T10:38:24.8824304Z Updating files: 100% (23452/23452)
+2026-08-21T10:38:24.8824735Z Updating files: 100% (23452/23452), done.
+2026-08-21T10:38:25.0624891Z Reset branch 'master'
+2026-08-21T10:38:25.0630464Z branch 'master' set up to track 'origin/master'.
+2026-08-21T10:38:25.1470810Z ##[endgroup]
+2026-08-21T10:38:25.1532988Z [command]/usr/bin/git log -1 --format=%H
+2026-08-21T10:38:25.1563521Z 636a06109c9587562bf024a8e739351b68458a68
+2026-08-21T10:38:25.1829475Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-08-21T10:38:25.1831595Z ##[group]Run actions/setup-node@v4
+2026-08-21T10:38:25.1831865Z with:
+2026-08-21T10:38:25.1832067Z   node-version: 22
+2026-08-21T10:38:25.1832276Z   cache: npm
+2026-08-21T10:38:25.1832474Z   always-auth: false
+2026-08-21T10:38:25.1832689Z   check-latest: false
+2026-08-21T10:38:25.1835284Z   token: ***
+2026-08-21T10:38:25.1835496Z ##[endgroup]
+2026-08-21T10:38:25.7146767Z Found in cache @ /opt/hostedtoolcache/node/22.23.2/x64
+2026-08-21T10:38:25.7151656Z (node:2231) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T10:38:25.7152570Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T10:38:25.7155881Z ##[group]Environment details
+2026-08-21T10:38:28.6066269Z node: v22.23.2
+2026-08-21T10:38:28.6066657Z npm: 10.9.8
+2026-08-21T10:38:28.6066868Z yarn: 1.22.22
+2026-08-21T10:38:28.6067704Z ##[endgroup]
+2026-08-21T10:38:28.6117558Z [command]/opt/hostedtoolcache/node/22.23.2/x64/bin/npm config get cache
+2026-08-21T10:38:28.7351184Z /home/runner/.npm
+2026-08-21T10:38:29.0132972Z Cache hit for: node-cache-Linux-x64-npm-0d7568ce335e283a61a24a42facb9f3bcc7c3e8a0235707fc090cc556a03f813
+2026-08-21T10:38:29.0241466Z (node:2231) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-08-21T10:38:30.3143410Z Received 0 of 181938665 (0.0%), 0.0 MBs/sec
+2026-08-21T10:38:31.3142052Z Received 88080384 of 181938665 (48.4%), 42.0 MBs/sec
+2026-08-21T10:38:32.1836627Z Received 181938665 of 181938665 (100.0%), 60.5 MBs/sec
+2026-08-21T10:38:32.1865646Z Cache Size: ~174 MB (181938665 B)
+2026-08-21T10:38:32.1925507Z [command]/usr/bin/tar -xf /home/runner/work/_temp/2ef37362-2767-4973-acf8-99ba880d4e0f/cache.tzst -P -C /home/runner/work/punycodex/punycodex --use-compress-program unzstd
+2026-08-21T10:38:32.5115735Z Cache restored successfully
+2026-08-21T10:38:32.5203175Z Cache restored from key: node-cache-Linux-x64-npm-0d7568ce335e283a61a24a42facb9f3bcc7c3e8a0235707fc090cc556a03f813
+2026-08-21T10:38:32.5406094Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-08-21T10:38:32.5407433Z ##[group]Run actions/setup-python@v5
+2026-08-21T10:38:32.5407699Z with:
+2026-08-21T10:38:32.5407912Z   python-version: 3.x
+2026-08-21T10:38:32.5408138Z   check-latest: false
+2026-08-21T10:38:32.5410551Z   token: ***
+2026-08-21T10:38:32.5410775Z   update-environment: true
+2026-08-21T10:38:32.5411025Z   allow-prereleases: false
+2026-08-21T10:38:32.5411267Z   freethreaded: false
+2026-08-21T10:38:32.5411487Z ##[endgroup]
+2026-08-21T10:38:32.6704804Z ##[group]Installed versions
+2026-08-21T10:38:32.6804764Z (node:2280) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T10:38:32.6806378Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T10:38:32.6806991Z Successfully set up CPython (3.14.7)
+2026-08-21T10:38:32.6807496Z ##[endgroup]
+2026-08-21T10:38:32.7006261Z ##[group]Run python -m pip install --upgrade pip pillow
+2026-08-21T10:38:32.7007007Z [36;1mpython -m pip install --upgrade pip pillow[0m
+2026-08-21T10:38:32.7074944Z shell: /usr/bin/bash -e {0}
+2026-08-21T10:38:32.7075673Z env:
+2026-08-21T10:38:32.7076108Z   pythonLocation: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-08-21T10:38:32.7076836Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.14.7/x64/lib/pkgconfig
+2026-08-21T10:38:32.7077545Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-08-21T10:38:32.7078182Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-08-21T10:38:32.7078884Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-08-21T10:38:32.7079526Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.14.7/x64/lib
+2026-08-21T10:38:32.7080061Z ##[endgroup]
+2026-08-21T10:38:35.1345636Z Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.14.7/x64/lib/python3.14/site-packages (26.2.1)
+2026-08-21T10:38:35.3817709Z Collecting pillow
+2026-08-21T10:38:35.4270883Z   Downloading pillow-12.3.0-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.1 kB)
+2026-08-21T10:38:35.4382674Z Downloading pillow-12.3.0-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (6.9 MB)
+2026-08-21T10:38:35.4887295Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.9/6.9 MB 254.2 MB/s  0:00:00
+2026-08-21T10:38:35.5346351Z Installing collected packages: pillow
+2026-08-21T10:38:35.9314079Z Successfully installed pillow-12.3.0
+2026-08-21T10:38:35.9868329Z ##[group]Run npm ci
+2026-08-21T10:38:35.9868602Z [36;1mnpm ci[0m
+2026-08-21T10:38:35.9908401Z shell: /usr/bin/bash -e {0}
+2026-08-21T10:38:35.9908652Z env:
+2026-08-21T10:38:35.9908916Z   pythonLocation: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-08-21T10:38:35.9909355Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.14.7/x64/lib/pkgconfig
+2026-08-21T10:38:35.9909793Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-08-21T10:38:35.9910171Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-08-21T10:38:35.9910547Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-08-21T10:38:35.9910929Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.14.7/x64/lib
+2026-08-21T10:38:35.9911442Z ##[endgroup]
+2026-08-21T10:38:39.5278885Z npm warn deprecated whatwg-encoding@3.1.1: Use @exodus/bytes instead for a more spec-conformant and faster implementation
+2026-08-21T10:38:39.6249584Z npm warn deprecated prebuild-install@7.1.3: No longer maintained. Please contact the author of the relevant native addon; alternatives are available.
+2026-08-21T10:38:40.7005782Z npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-08-21T10:38:44.8027569Z npm error code 1
+2026-08-21T10:38:44.8028484Z npm error path /home/runner/work/punycodex/punycodex/node_modules/ffmpeg-static
+2026-08-21T10:38:44.8029212Z npm error command failed
+2026-08-21T10:38:44.8029686Z npm error command sh -c node install.js
+2026-08-21T10:38:44.8030328Z npm error Error: Failed to download ffmpeg b6.1.1.
+2026-08-21T10:38:44.8031384Z npm error     at /home/runner/work/punycodex/punycodex/node_modules/ffmpeg-static/install.js:111:20
+2026-08-21T10:38:44.8032775Z npm error     at /home/runner/work/punycodex/punycodex/node_modules/@derhuerst/http-basic/lib/index.js:123:20
+2026-08-21T10:38:44.8033996Z npm error     at /home/runner/work/punycodex/punycodex/node_modules/@derhuerst/http-basic/lib/index.js:179:24
+2026-08-21T10:38:44.8036816Z npm error     at /home/runner/work/punycodex/punycodex/node_modules/@derhuerst/http-basic/lib/index.js:278:28
+2026-08-21T10:38:44.8038565Z npm error     at /home/runner/work/punycodex/punycodex/node_modules/@derhuerst/http-basic/lib/index.js:308:17
+2026-08-21T10:38:44.8040671Z npm error     at ClientRequest.<anonymous> (/home/runner/work/punycodex/punycodex/node_modules/@derhuerst/http-basic/lib/index.js:343:13)
+2026-08-21T10:38:44.8042350Z npm error     at Object.onceWrapper (node:events:634:26)
+2026-08-21T10:38:44.8043223Z npm error     at ClientRequest.emit (node:events:519:28)
+2026-08-21T10:38:44.8044439Z npm error     at HTTPParser.parserOnIncomingClient [as onIncoming] (node:_http_client:780:27)
+2026-08-21T10:38:44.8046059Z npm error     at HTTPParser.parserOnHeadersComplete (node:_http_common:125:17) {
+2026-08-21T10:38:44.8047538Z npm error   url: 'https://github.com/eugeneware/ffmpeg-static/releases/download/b6.1.1/ffmpeg-linux-x64.gz',
+2026-08-21T10:38:44.8048540Z npm error   statusCode: 504
+2026-08-21T10:38:44.8049020Z npm error }
+2026-08-21T10:38:44.8050049Z npm error A complete log of this run can be found in: /home/runner/.npm/_logs/2026-08-21T10_38_36_051Z-debug-0.log
+2026-08-21T10:38:44.8845595Z ##[error]Process completed with exit code 1.
+2026-08-21T10:38:44.8940891Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-08-21T10:38:44.8942200Z ##[group]Run actions/upload-artifact@v4
+2026-08-21T10:38:44.8942472Z with:
+2026-08-21T10:38:44.8942693Z   name: evolution-report-32473380527
+2026-08-21T10:38:44.8943097Z   path: data-version.json
+ai-curator-report.json
+platform/db/punicodex.db
+
+2026-08-21T10:38:44.8943511Z   if-no-files-found: warn
+2026-08-21T10:38:44.8943751Z   compression-level: 6
+2026-08-21T10:38:44.8943981Z   overwrite: false
+2026-08-21T10:38:44.8944201Z   include-hidden-files: false
+2026-08-21T10:38:44.8944439Z env:
+2026-08-21T10:38:44.8944691Z   pythonLocation: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-08-21T10:38:44.8945434Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.14.7/x64/lib/pkgconfig
+2026-08-21T10:38:44.8945867Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-08-21T10:38:44.8946240Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-08-21T10:38:44.8946622Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-08-21T10:38:44.8947221Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.14.7/x64/lib
+2026-08-21T10:38:44.8947555Z ##[endgroup]
+2026-08-21T10:38:45.0570036Z (node:2421) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T10:38:45.0570905Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T10:38:45.0640638Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-08-21T10:38:45.0644139Z The least common ancestor is /home/runner/work/punycodex/punycodex. This will be the root directory of the artifact
+2026-08-21T10:38:45.0646026Z With the provided path, there will be 1 file uploaded
+2026-08-21T10:38:45.0646851Z Artifact name is valid!
+2026-08-21T10:38:45.0647152Z Root directory input is valid!
+2026-08-21T10:38:45.4603966Z Beginning upload of artifact content to blob storage
+2026-08-21T10:38:45.4798383Z (node:2421) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-08-21T10:38:45.7663806Z Uploaded bytes 955
+2026-08-21T10:38:45.8469002Z Finished uploading artifact content to blob storage!
+2026-08-21T10:38:45.8470658Z SHA256 digest of uploaded artifact zip is dddde3dea9a498b8d711d3fa106177ffe018c54a3d1c0757812e744740648776
+2026-08-21T10:38:45.8472055Z Finalizing artifact upload
+2026-08-21T10:38:46.1088823Z Artifact evolution-report-32473380527.zip successfully finalized. Artifact ID 9443449740
+2026-08-21T10:38:46.1090229Z Artifact evolution-report-32473380527 has been successfully uploaded! Final size is 955 bytes. Artifact ID is 9443449740
+2026-08-21T10:38:46.1095977Z Artifact download URL: https://github.com/PUNYCODEX/punycodex/actions/runs/32473380527/artifacts/9443449740
+2026-08-21T10:38:46.1280705Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-08-21T10:38:46.1281952Z Post job cleanup.
+2026-08-21T10:38:46.2185940Z [command]/usr/bin/git version
+2026-08-21T10:38:46.2233442Z git version 2.55.0
+2026-08-21T10:38:46.2279370Z Temporarily overriding HOME='/home/runner/work/_temp/7b5b37a6-3bdd-4c7e-b095-3b9d03d254e9' before making global git config changes
+2026-08-21T10:38:46.2281096Z Adding repository directory to the temporary git global config as a safe directory
+2026-08-21T10:38:46.2285755Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/punycodex/punycodex
+2026-08-21T10:38:46.2327495Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-08-21T10:38:46.2364055Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-08-21T10:38:46.2666531Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-08-21T10:38:46.2688531Z http.https://github.com/.extraheader
+2026-08-21T10:38:46.2700244Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-08-21T10:38:46.2735539Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-08-21T10:38:46.3031008Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-08-21T10:38:46.3073039Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-08-21T10:38:46.3512822Z Cleaning up orphan processes
+2026-08-21T10:38:46.3832248Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, actions/setup-python@v5, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

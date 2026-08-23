@@ -1,0 +1,34 @@
+﻿2026-08-21T10:38:46.3860385Z ##[group]Run npm ci
+2026-08-21T10:38:46.3860608Z [36;1mnpm ci[0m
+2026-08-21T10:38:46.3895466Z shell: /usr/bin/bash -e {0}
+2026-08-21T10:38:46.3895837Z env:
+2026-08-21T10:38:46.3896068Z   pythonLocation: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-08-21T10:38:46.3896413Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.14.7/x64/lib/pkgconfig
+2026-08-21T10:38:46.3896748Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-08-21T10:38:46.3897056Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-08-21T10:38:46.3897350Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-08-21T10:38:46.3897648Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.14.7/x64/lib
+2026-08-21T10:38:46.3898015Z ##[endgroup]
+2026-08-21T10:38:51.1741252Z npm warn deprecated whatwg-encoding@3.1.1: Use @exodus/bytes instead for a more spec-conformant and faster implementation
+2026-08-21T10:38:51.2376867Z npm warn deprecated prebuild-install@7.1.3: No longer maintained. Please contact the author of the relevant native addon; alternatives are available.
+2026-08-21T10:38:51.9319175Z npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-08-21T10:38:55.1133895Z npm error code 1
+2026-08-21T10:38:55.1134662Z npm error path /home/runner/work/punycodex/punycodex/node_modules/ffmpeg-static
+2026-08-21T10:38:55.1135232Z npm error command failed
+2026-08-21T10:38:55.1135631Z npm error command sh -c node install.js
+2026-08-21T10:38:55.1136119Z npm error Error: Failed to download ffmpeg b6.1.1.
+2026-08-21T10:38:55.1136946Z npm error     at /home/runner/work/punycodex/punycodex/node_modules/ffmpeg-static/install.js:111:20
+2026-08-21T10:38:55.1138177Z npm error     at /home/runner/work/punycodex/punycodex/node_modules/@derhuerst/http-basic/lib/index.js:123:20
+2026-08-21T10:38:55.1139252Z npm error     at /home/runner/work/punycodex/punycodex/node_modules/@derhuerst/http-basic/lib/index.js:179:24
+2026-08-21T10:38:55.1140333Z npm error     at /home/runner/work/punycodex/punycodex/node_modules/@derhuerst/http-basic/lib/index.js:278:28
+2026-08-21T10:38:55.1141531Z npm error     at /home/runner/work/punycodex/punycodex/node_modules/@derhuerst/http-basic/lib/index.js:308:17
+2026-08-21T10:38:55.1142826Z npm error     at ClientRequest.<anonymous> (/home/runner/work/punycodex/punycodex/node_modules/@derhuerst/http-basic/lib/index.js:343:13)
+2026-08-21T10:38:55.1143771Z npm error     at Object.onceWrapper (node:events:634:26)
+2026-08-21T10:38:55.1144357Z npm error     at ClientRequest.emit (node:events:519:28)
+2026-08-21T10:38:55.1145024Z npm error     at HTTPParser.parserOnIncomingClient (node:_http_client:780:27)
+2026-08-21T10:38:55.1145824Z npm error     at HTTPParser.parserOnHeadersComplete (node:_http_common:125:17) {
+2026-08-21T10:38:55.1146791Z npm error   url: 'https://github.com/eugeneware/ffmpeg-static/releases/download/b6.1.1/ffmpeg-linux-x64.gz',
+2026-08-21T10:38:55.1147424Z npm error   statusCode: 504
+2026-08-21T10:38:55.1147715Z npm error }
+2026-08-21T10:38:55.1148593Z npm error A complete log of this run can be found in: /home/runner/.npm/_logs/2026-08-21T10_38_46_447Z-debug-0.log
+2026-08-21T10:38:55.1798933Z ##[error]Process completed with exit code 1.

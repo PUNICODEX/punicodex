@@ -130,7 +130,7 @@ const BATCH_DATA = [
   { id: 'skoll', ascii: 'skoll', unicode: 'Skǫll', greek: '—', pantheon: 'norse', tier: '2', tierLabel: 'Tier 2', domain: 'Sun-Chaser, Devourer', meaning: 'The one who mocks', sources: ['Poetic Edda', 'Cleasby-Vigfusson'] },
   { id: 'ratatoskr', ascii: 'ratatoskr', unicode: 'Ratatoskr', greek: '—', pantheon: 'norse', tier: '2', tierLabel: 'Tier 2', domain: 'Squirrel of Yggdrasil', meaning: 'Drill-tooth', sources: ['Poetic Edda', 'Cleasby-Vigfusson'] },
   { id: 'draupnir', ascii: 'draupnir', unicode: 'Draupnir', greek: '—', pantheon: 'norse', tier: '2', tierLabel: 'Tier 2', domain: 'Odin\'s Ring, Wealth', meaning: 'The dripper', sources: ['Poetic Edda', 'Cleasby-Vigfusson'] },
-  { id: 'mjolnir', ascii: 'mjolnir', unicode: 'Mjólnir', greek: '—', pantheon: 'norse', tier: '2', tierLabel: 'Tier 2', domain: 'Thunder Hammer', meaning: 'The grinder', sources: ['Poetic Edda', 'Cleasby-Vigfusson'] },
+  { id: 'mjolnir', ascii: 'mjolnir', unicode: 'Mjǫllnir', greek: '—', pantheon: 'norse', tier: '2', tierLabel: 'Tier 2', domain: 'Thunder Hammer', meaning: 'The grinder', sources: ['Poetic Edda', 'Cleasby-Vigfusson'] },
 
   // ==========================================
   // MORE EGYPTIAN (~10 entries)

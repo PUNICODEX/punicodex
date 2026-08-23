@@ -1477,7 +1477,7 @@ handleReturnFromStripe();
   if (!modal || !grid) return;
 
   const templeId = 'mjolnir';
-  const siteName = 'Mjólnir';
+  const siteName = 'Mjǫllnir';
   let selectedCents = 700;
 
   const els = {
