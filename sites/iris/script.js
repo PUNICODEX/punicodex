@@ -1232,7 +1232,7 @@ handleReturnFromStripe();
   if (!modal || !grid) return;
 
   const templeId = 'iris';
-  const siteName = 'Íris';
+  const siteName = 'Îris';
   let selectedCents = 700;
 
   const els = {

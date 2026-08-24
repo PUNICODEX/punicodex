@@ -1368,7 +1368,7 @@ handleReturnFromStripe();
   if (!modal || !grid) return;
 
   const templeId = 'kleio';
-  const siteName = 'Kleió';
+  const siteName = 'Kleiṓ';
   let selectedCents = 700;
 
   const els = {

@@ -72,6 +72,7 @@ const mainPages = [
   { loc: '/codex/anatomy-of-a-punycode-domain/', priority: '0.6', changefreq: 'monthly' },
   { loc: '/codex/building-the-temple/', priority: '0.6', changefreq: 'monthly' },
   { loc: '/codex/why-greek-accents-matter/', priority: '0.6', changefreq: 'monthly' },
+  { loc: '/codex/restoring-the-names/', priority: '0.6', changefreq: 'monthly' },
   { loc: '/scholars/', priority: '0.7', changefreq: 'weekly' },
   { loc: '/scholars/search/', priority: '0.6', changefreq: 'monthly' },
   { loc: '/scholars/analytics/', priority: '0.6', changefreq: 'monthly' },

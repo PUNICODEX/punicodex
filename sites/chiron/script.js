@@ -1414,7 +1414,7 @@ handleReturnFromStripe();
   if (!modal || !grid) return;
 
   const templeId = 'chiron';
-  const siteName = 'Chíron';
+  const siteName = 'Cheírōn';
   let selectedCents = 700;
 
   const els = {

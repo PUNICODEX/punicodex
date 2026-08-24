@@ -1,8 +1,8 @@
 # PuniCodex Oracle — Model Card
 
 **Model family:** PuniCodex Oracle (specialized language model)  
-**Data version:** 2.0.108  
-**Generated:** 2026-08-23T21:46:36.639Z  
+**Data version:** 2.0.110  
+**Generated:** 2026-08-24T03:23:03.136Z  
 **License:** CC BY 4.0 for dataset; ISC for software (see root LICENSE).
 
 ## Intended Use
@@ -17,17 +17,17 @@
 
 | Split | Examples | File |
 |-------|----------|------|
-| Train | 61,295 | `data/corpus/chat-train.jsonl` |
-| Evaluation | 15,252 | `data/corpus/chat-eval.jsonl` |
-| **Total** | **76,547** | — |
+| Train | 61,321 | `data/corpus/chat-train.jsonl` |
+| Evaluation | 15,247 | `data/corpus/chat-eval.jsonl` |
+| **Total** | **76,568** | — |
 
 Source corpora:
-- `instructions.jsonl`: 8,998 examples
+- `instructions.jsonl`: 9,005 examples
 - `safety-examples.jsonl`: 44,355 examples
-- `dialogue-examples.jsonl`: 3,392 examples
+- `dialogue-examples.jsonl`: 3,399 examples
 - `tool-use-examples.jsonl`: 4,826 examples
 - `multimodal-examples.jsonl`: 2,142 examples
-- `preference-examples.jsonl`: 3,943 examples
+- `preference-examples.jsonl`: 3,950 examples
 - `reasoning-examples.jsonl`: 3,796 examples
 - `mythology-synthesis.jsonl`: 397 examples
 - `oracle-examples.jsonl`: 1,962 examples
@@ -71,7 +71,7 @@ Do not use this model to generate deceptive domains, impersonate brands, or evad
 
 Before supervised fine-tuning, domain-adapt the base model on the raw scholarly corpus:
 
-- `data/corpus/pretrain.jsonl` — 5,714 training documents (581,712 whitespace tokens).
+- `data/corpus/pretrain.jsonl` — 5,714 training documents (583,719 whitespace tokens).
 - `data/corpus/pretrain-validation.jsonl` — 290 validation documents (32,268 whitespace tokens).
 - HuggingFace-compatible splits in `data/corpus/huggingface/`.
 

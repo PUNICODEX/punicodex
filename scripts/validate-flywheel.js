@@ -764,6 +764,8 @@ console.log('\n▸ Flagship Completeness (promotion sequence)');
     xiuhtecuhtli: 'macron form not owned; ASCII domain fallback',
     athiratu: 'domain drops the unregistrable glottal ʾ of ʾAṯiratu',
     change: "DNS cannot carry the apostrophe of Cháng'é",
+    iris: 'owned íris.com is the acute form; canonical is the circumflex Îris (Ἶρις) — îris.com acquisition pending',
+    rhea: 'owned rhéā.com carries a macron the Greek (Ῥέα, short final alpha) does not support; rhéa.com is registered to a third party',
   };
 
   let incomplete = 0;

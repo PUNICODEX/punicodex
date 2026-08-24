@@ -831,7 +831,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Rhéā is Tier 2 because the Greek Ῥέα preserves the acute stress on the second syllable and length on the final alpha, but the stress and length fall on different syllables. She is the great mother of the Olympian generation."
+    "note": "Rhéa is Tier 2 because the Greek Ῥέα preserves the acute stress on the second syllable, and nothing more — the final alpha is short, so no single feature-rich restoration exists. She is the great mother of the Olympian generation."
   },
   "themis": {
     "ipa": "/tʰemis/",
@@ -995,14 +995,14 @@ const PRONUNCIATION_ATLAS = {
     "note": "Greek Τροία bears the stress on the final syllable with a long diphthongal ending — Troíā — and Latin Troia keeps both the vowels and the fame. The form was already a place-name before it was a story: Hittite records call the land Wilusa, which most scholars now connect to (W)ilios, Troy's other Greek name."
   },
   "thebai": {
-    "ipa": "/tʰeːbaˈi/",
+    "ipa": "/tʰˈebai/",
     "ipaLabel": "Reconstructed Attic Greek",
     "phonemes": [],
     "approximation": null,
     "dialect": null,
     "confidence": "reconstructed",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Thēbaí."
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Thêbai."
   },
   "krete": {
     "ipa": "/krˈeːteː/",
@@ -1420,14 +1420,31 @@ const PRONUNCIATION_ATLAS = {
     "note": "Njǫrðr is Tier 1 because the Unicode restoration preserves the distinctive Norse vowel ǫ and the voiced dental fricative ð — distinctive letters the ASCII form loses. Old Norse stress is initial and strong, yet it is not encoded by an acute; the registrable form Njǫrðr records the name's characteristic Norse orthography. Reconstruction follows Cleasby & Vigfusson, An Icelandic-English Dictionary (1874); Zoëga, A Concise Dictionary of Old Icelandic (1910); and Ranke & Hofmann, Altnordisches Elementarbuch, 5th ed. (de Gruyter, 1988)."
   },
   "skadi": {
-    "ipa": "/skai/",
-    "ipaLabel": "Reconstructed Old Norse",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/ˈskɑː.ði/",
+    "ipaLabel": "Old Norse Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Sk-",
+        "desc": "Unpalatalized cluster [sk]; Old Norse keeps the hard [k] before the back vowel, untouched by the later Scandinavian palatalizations"
+      },
+      {
+        "symbol": "-á-",
+        "desc": "Long low back [ɑː]; the acute marks vowel length on the stressed first syllable"
+      },
+      {
+        "symbol": "-ð-",
+        "desc": "Voiced dental fricative [ð], the eth; the soft 'th' of 'father', never the hard 'th' of 'thin'"
+      },
+      {
+        "symbol": "-i",
+        "desc": "Short close front [i], the light nominative ending of the name"
+      }
+    ],
+    "approximation": "'SKAH-thee' — stress the long open first syllable like 'spa' held long, then a soft 'th' as in 'father' and a short 'ee'.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Skaði; review recommended before promotion to canonical."
+    "note": "Skaði is Tier 1: the acute on á marks the long vowel [ɑː], and ð is a distinctive letter — features the ASCII form Skadi loses. The name is grammatically masculine in Old Norse though it belongs to a goddess, a fossil noted by the lexicographers, and is attested throughout the Eddic corpus (Grímnismál 11, Lokasenna, Gylfaginning, Skáldskaparmál). Normalization follows Cleasby & Vigfusson, An Icelandic-English Dictionary (1874), s.v. Skaði; and Zoëga, A Concise Dictionary of Old Icelandic (1910), s.v. Skaði."
   },
   "heimdallr": {
     "ipa": "/heimdallr/",
@@ -3578,14 +3595,14 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Tēlemachos."
   },
   "megara": {
-    "ipa": "/megˈara/",
+    "ipa": "/mˈegara/",
     "ipaLabel": "Reconstructed Attic Greek",
     "phonemes": [],
     "approximation": null,
     "dialect": null,
     "confidence": "reconstructed",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Megára."
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Mégara."
   },
   "alcmene": {
     "ipa": "/alkmˈeːneː/",
@@ -4306,34 +4323,34 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Pélops."
   },
   "meleagros": {
-    "ipa": "/meleˈagros/",
+    "ipa": "/melˈeagros/",
     "ipaLabel": "Reconstructed Attic Greek",
     "phonemes": [],
     "approximation": null,
     "dialect": null,
     "confidence": "reconstructed",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Meleágros."
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Meléagros."
   },
   "atreus": {
-    "ipa": "/atrˈeus/",
+    "ipa": "/atreˈus/",
     "ipaLabel": "Reconstructed Attic Greek",
     "phonemes": [],
     "approximation": null,
     "dialect": null,
     "confidence": "reconstructed",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Atréus."
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Atreús."
   },
   "hippolytus": {
-    "ipa": "/hippˈolutos/",
+    "ipa": "/hippˈolytos/",
     "ipaLabel": "Reconstructed Attic Greek",
     "phonemes": [],
     "approximation": null,
     "dialect": null,
     "confidence": "reconstructed",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Hippólutos."
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Hippólytos."
   },
   "calliope": {
     "ipa": "/kalliopˈeː/",
@@ -4422,14 +4439,14 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Terpsichórē."
   },
   "erato": {
-    "ipa": "/erˈatoː/",
+    "ipa": "/eratˈoː/",
     "ipaLabel": "Reconstructed Attic Greek",
     "phonemes": [],
     "approximation": null,
     "dialect": null,
     "confidence": "reconstructed",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Erátō."
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Eratṓ."
   },
   "melpomene": {
     "ipa": "/melpomˈeneː/",
@@ -4525,7 +4542,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Íris is Tier 1 because the Greek Ἶρις bears the circumflex, which marks both stress and the long vowel (iota) in a single accent — both features the ASCII form loses. She is the only Olympian messenger in the Iliad, older than Hermes in epic convention."
+    "note": "Îris is Tier 1 because the Greek Ἶρις bears the circumflex, which marks both stress and the long vowel (iota) in a single accent — both features the ASCII form loses. She is the only Olympian messenger in the Iliad, older than Hermes in epic convention."
   },
   "eris": {
     "ipa": "/é.ris/",
@@ -4633,14 +4650,14 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Pónos."
   },
   "geras": {
-    "ipa": "/gˈeːras/",
+    "ipa": "/gˈeras/",
     "ipaLabel": "Reconstructed Attic Greek",
     "phonemes": [],
     "approximation": null,
     "dialect": null,
     "confidence": "reconstructed",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Gḗras."
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Gêras."
   },
   "cerberus": {
     "ipa": "/ˈker.be.ros/",
@@ -4911,7 +4928,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "reconstructed",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Éthos."
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Êthos."
   },
   "pathos": {
     "ipa": "/pˈatʰos/",
@@ -5144,14 +5161,27 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Brokkr; review recommended before promotion to canonical."
   },
   "fafnir": {
-    "ipa": "/fˈafnir/",
-    "ipaLabel": "Reconstructed Old Norse",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/ˈfɑːv.nir/",
+    "ipaLabel": "Old Norse Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "á",
+        "desc": "Long open back vowel [ɑː]; the acute marks both stress and length, like a held 'ah' in 'father'"
+      },
+      {
+        "symbol": "fn",
+        "desc": "The fricative is voiced between vowels and before n, so the -fn- cluster is realized as [vn], not the hard [f] of 'fox'"
+      },
+      {
+        "symbol": "r",
+        "desc": "Final alveolar trill [r], the nominative ending of the strong masculine noun"
+      }
+    ],
+    "approximation": "'FAHV-neer' — hold the first vowel long like 'ah', let the f soften to a 'v' before the n, and trill the final r.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Fáfnir; review recommended before promotion to canonical."
+    "note": "Fáfnir is Tier 1: the acute on á marks stress and length on the first syllable — a feature the ASCII form Fafnir loses. The form is attested throughout the Codex Regius poems (Reginsmál, Fáfnismál) and in Vǫlsunga saga; Cleasby-Vigfusson (s.v. Fáfnir) and Zoëga's Concise Dictionary of Old Icelandic record the name and connect it with the notion of 'the embracer' (cf. faðmr, 'embrace'). The medial -fn- was pronounced with a voiced fricative, [vn] — hence the approximation 'FAHV-neer'."
   },
   "reginn": {
     "ipa": "/reginn/",
@@ -7914,14 +7944,14 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Idomeneús."
   },
   "teucer": {
-    "ipa": "/teˈuker/",
+    "ipa": "/teˈukros/",
     "ipaLabel": "Reconstructed Attic Greek",
     "phonemes": [],
     "approximation": null,
     "dialect": null,
     "confidence": "reconstructed",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Teûcer."
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Teûkros."
   },
   "neoptolemus": {
     "ipa": "/neoptˈolemos/",
@@ -7934,24 +7964,24 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Neoptólemos."
   },
   "machaon": {
-    "ipa": "/makʰaˈoːn/",
+    "ipa": "/makʰˈaoːn/",
     "ipaLabel": "Reconstructed Attic Greek",
     "phonemes": [],
     "approximation": null,
     "dialect": null,
     "confidence": "reconstructed",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Machaṓn."
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Macháōn."
   },
   "podalirius": {
-    "ipa": "/podalˈirius/",
+    "ipa": "/podaleˈirios/",
     "ipaLabel": "Reconstructed Attic Greek",
     "phonemes": [],
     "approximation": null,
     "dialect": null,
     "confidence": "reconstructed",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Podalírius."
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Podaleírios."
   },
   "calchas": {
     "ipa": "/kˈalkʰas/",
@@ -8004,14 +8034,14 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Andromáchē."
   },
   "astyanax": {
-    "ipa": "/astˈyanaks/",
+    "ipa": "/astyˈanaks/",
     "ipaLabel": "Reconstructed Attic Greek",
     "phonemes": [],
     "approximation": null,
     "dialect": null,
     "confidence": "reconstructed",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Astýanax."
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Astyánax."
   },
   "polyxena": {
     "ipa": "/polyksˈeneː/",
@@ -8064,24 +8094,24 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Ismḗnē."
   },
   "oedipus": {
-    "ipa": "/oidˈipus/",
+    "ipa": "/oidˈipous/",
     "ipaLabel": "Reconstructed Attic Greek",
     "phonemes": [],
     "approximation": null,
     "dialect": null,
     "confidence": "reconstructed",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Oedípus."
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Oidípous."
   },
   "jocasta": {
-    "ipa": "/jokˈasteː/",
+    "ipa": "/iokˈasteː/",
     "ipaLabel": "Reconstructed Attic Greek",
     "phonemes": [],
     "approximation": null,
     "dialect": null,
     "confidence": "reconstructed",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Jokástē."
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Iokástē."
   },
   "pentheus": {
     "ipa": "/pentʰeˈus/",
@@ -8094,14 +8124,14 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Pentheús."
   },
   "agave": {
-    "ipa": "/agˈaueː/",
+    "ipa": "/agaˈueː/",
     "ipaLabel": "Reconstructed Attic Greek",
     "phonemes": [],
     "approximation": null,
     "dialect": null,
     "confidence": "reconstructed",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Agáuē."
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Agaúē."
   },
   "hermione": {
     "ipa": "/hermiˈoneː/",
@@ -8114,34 +8144,34 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Hermiónē."
   },
   "creusa": {
-    "ipa": "/kreˈusa/",
+    "ipa": "/krˈeusa/",
     "ipaLabel": "Reconstructed Attic Greek",
     "phonemes": [],
     "approximation": null,
     "dialect": null,
     "confidence": "reconstructed",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Creúsa."
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Kréusa."
   },
   "medea": {
-    "ipa": "/medˈea/",
+    "ipa": "/mˈeːdeia/",
     "ipaLabel": "Reconstructed Attic Greek",
     "phonemes": [],
     "approximation": null,
     "dialect": null,
     "confidence": "reconstructed",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Medéa."
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Mḗdeia."
   },
   "aetes": {
-    "ipa": "/aˈiteːs/",
+    "ipa": "/aiˈeːteːs/",
     "ipaLabel": "Reconstructed Attic Greek",
     "phonemes": [],
     "approximation": null,
     "dialect": null,
     "confidence": "reconstructed",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Aítēs."
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Aiḗtēs."
   },
   "chiron": {
     "ipa": "/kʰéː.rɔːn/",
@@ -8556,14 +8586,27 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Draupnir; review recommended before promotion to canonical."
   },
   "mjolnir": {
-    "ipa": "/ˈmjɔlːnir/",
-    "ipaLabel": "Reconstructed Old Norse",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/ˈmjɔlː.nir/",
+    "ipaLabel": "Old Norse Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "Mj",
+        "desc": "The onset cluster [mj], m followed by a palatal glide, as in English 'music'; the anglicized Mjolnir keeps the spelling but usually drops the glide"
+      },
+      {
+        "symbol": "ǫ",
+        "desc": "Short open-mid back rounded [ɔ], written o-ogonek; the rounded 'o' of 'hot', held short — distinct from both o and ó"
+      },
+      {
+        "symbol": "ll",
+        "desc": "Long or geminated alveolar lateral [lː], written double in Old Norse to show length; hold it like the ll of Italian 'bella'"
+      }
+    ],
+    "approximation": "'MYAWL-lnir' — begin with the mj of 'music', sound the vowel like the short rounded 'o' of 'hot', and hold the ll double before the final '-nir'.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Mjǫllnir (o-ogonek [ɔ], geminate ll); review recommended before promotion to canonical."
+    "note": "Mjǫllnir is Tier 1: the o-ogonek ǫ (the short rounded [ɔ] of Old Norse) and the geminate ll are features the ASCII form loses — this is the normalized dictionary form (Cleasby–Vigfusson, s.v. 'Mjöllnir'; Zoëga, s.v. 'Mjǫllnir'), with the living Icelandic Mjölnir as the attested modern variant. The etymology is genuinely disputed: proposals connect the name to Old Norse mala, 'to grind' ('the grinder'), to mjǫll, 'new snow' ('the shining one'), and to the Slavic lightning word seen in Russian mólnija, and the scholarship has settled on none of them."
   },
   "wadjet": {
     "ipa": "/waˈd͡ʒiːt/",
@@ -8957,14 +9000,14 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Sîn; review recommended before promotion to canonical."
   },
   "gnosis": {
-    "ipa": "/gnˈoːsis/",
+    "ipa": "/gnˈosis/",
     "ipaLabel": "Reconstructed Attic Greek",
     "phonemes": [],
     "approximation": null,
     "dialect": null,
     "confidence": "reconstructed",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Gnṓsis."
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Gnôsis."
   },
   "sophia": {
     "ipa": "/sopʰˈia/",
@@ -10145,14 +10188,14 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Aíolos."
   },
   "boreas": {
-    "ipa": "/boreˈas/",
+    "ipa": "/borˈeas/",
     "ipaLabel": "Reconstructed Attic Greek",
     "phonemes": [],
     "approximation": null,
     "dialect": null,
     "confidence": "reconstructed",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Boreás."
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Boréas."
   },
   "notos": {
     "ipa": "/nˈotos/",
@@ -10258,34 +10301,34 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Phthónos."
   },
   "alecto": {
-    "ipa": "/alˈektoː/",
+    "ipa": "/aleːktˈoː/",
     "ipaLabel": "Reconstructed Attic Greek",
     "phonemes": [],
     "approximation": null,
     "dialect": null,
     "confidence": "reconstructed",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Aléktō."
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Alēktṓ."
   },
   "megaera": {
-    "ipa": "/megˈaira/",
+    "ipa": "/mˈegaira/",
     "ipaLabel": "Reconstructed Attic Greek",
     "phonemes": [],
     "approximation": null,
     "dialect": null,
     "confidence": "reconstructed",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Megáira."
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Mégaira."
   },
   "tisiphone": {
-    "ipa": "/tisˈipʰoneː/",
+    "ipa": "/tisipʰˈoneː/",
     "ipaLabel": "Reconstructed Attic Greek",
     "phonemes": [],
     "approximation": null,
     "dialect": null,
     "confidence": "reconstructed",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Tisíphonē."
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Tisiphónē."
   },
   "chamunda": {
     "ipa": "/kˈaːmundaː/",
@@ -11523,24 +11566,24 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Smáragdos."
   },
   "hyakinthos": {
-    "ipa": "/hˈyakintʰos/",
+    "ipa": "/hyˈakintʰos/",
     "ipaLabel": "Reconstructed Attic Greek",
     "phonemes": [],
     "approximation": null,
     "dialect": null,
     "confidence": "reconstructed",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Hýakinthos."
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Hyákinthos."
   },
   "amethystos": {
-    "ipa": "/ˈametʰystos/",
+    "ipa": "/amˈetʰystos/",
     "ipaLabel": "Reconstructed Attic Greek",
     "phonemes": [],
     "approximation": null,
     "dialect": null,
     "confidence": "reconstructed",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Ámethystos."
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Améthystos."
   },
   "thalassa": {
     "ipa": "/tʰˈalassa/",
@@ -11834,7 +11877,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "The consonantal skeleton stḫ (also stš) is conventionally vocalized \"Setekh\" or \"Setesh\"; the Greek Seth and Coptic Sēt preserve the shell. The underdotted ḥ is the voiceless pharyngeal fricative — the restoration keeps the Egyptological transliteration rather than the familiar but softened \"Seth.\""
+    "note": "The consonantal skeleton stḫ (also written stš in earlier orthography) is conventionally vocalized \"Setekh\" or \"Setesh\"; the Greek Seth and Coptic Sēt preserve the shell. The breve-marked ḫ is the voiceless velar fricative [x] — the ch of Scottish \"loch\" — not the pharyngeal ḥ; the restoration keeps the Egyptological transliteration rather than the familiar but softened \"Seth.\""
   },
   "hp": {
     "ipa": "/ˈħaː.pi/",
@@ -12117,14 +12160,27 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Bhaiṣajyaguru; review recommended before promotion to canonical."
   },
   "bifrost": {
-    "ipa": "/bifrost/",
-    "ipaLabel": "Reconstructed Old Norse",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/ˈbif.rɔst/",
+    "ipaLabel": "Old Norse Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "f",
+        "desc": "A soft bilabial fricative [β] between vowels, made with both lips rather than the teeth; lighter and voiced compared with the English 'f'"
+      },
+      {
+        "symbol": "ǫ",
+        "desc": "Short open-mid back rounded [ɔ], the o-ogonek; it is the u-umlaut of a, written ö in Modern Icelandic, and is never the long vowel"
+      },
+      {
+        "symbol": "st",
+        "desc": "A true final cluster [st]; the r before it is a full alveolar trill and no vowel is inserted between the s and the t"
+      }
+    ],
+    "approximation": "'BIV-rost' — stress the first syllable; let the f pass as a soft breath between the lips, almost a 'v'; say the ǫ as a short, open 'aw' cut in half, not the long 'oh' of the English Bifrost.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Bifrǫst; review recommended before promotion to canonical."
+    "note": "Cleasby–Vigfusson (s.v. bifrǫst) glosses the name 'the trembling way,' from bifa 'to shake, tremble' and rǫst 'a league, a distance to be traversed'; Zoëga (s.v.) gives the same etymology and records the alternate name Ásbrú 'the Æsir-bridge.' The Eddic codex reads Bilrǫst, with bil 'moment, lapse of time,' and editors still debate which compound is original; Snorri's Bifrǫst is the form that prevailed. The o-ogonek ǫ is a distinctive atomic letter that the ASCII form loses, so the restoration is Tier 1 under the mechanical rule."
   },
   "budai": {
     "ipa": "/budai/",
@@ -12197,14 +12253,14 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Kalki; review recommended before promotion to canonical."
   },
   "klytaimnestra": {
-    "ipa": "/klytaimnˈestra/",
+    "ipa": "/klytaimnˈeːstra/",
     "ipaLabel": "Reconstructed Attic Greek",
     "phonemes": [],
     "approximation": null,
     "dialect": null,
     "confidence": "reconstructed",
     "audioPath": null,
-    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Klytaimnéstra."
+    "note": "Broad IPA reconstructed from the Latin-with-diacritics Unicode restoration Klytaimnḗstra."
   },
   "kuafu": {
     "ipa": "/kuˈaːfu/",
@@ -12227,14 +12283,27 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Kūrma; review recommended before promotion to canonical."
   },
   "mani": {
-    "ipa": "/mˈani/",
-    "ipaLabel": "Reconstructed Old Norse",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/ˈmɑːni/",
+    "ipaLabel": "Old Norse Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "M-",
+        "desc": "Bilabial nasal [m], unchanged from Proto-Germanic *m to Old Norse; the name opens with the same consonant as English 'moon'"
+      },
+      {
+        "symbol": "-á-",
+        "desc": "Long open back [ɑː] with the acute marking length; Old Norse stress falls on the first syllable by default"
+      },
+      {
+        "symbol": "-ni",
+        "desc": "Short alveolar nasal [n] and close front [i]; the light second syllable of the nominative singular"
+      }
+    ],
+    "approximation": "'MAH-nee' — hold the first vowel long and open, as in 'father', with the weight squarely on the first syllable and a quick, light '-nee' to close.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Máni; review recommended before promotion to canonical."
+    "note": "Máni is Tier 1: the acute on á marks the long vowel [ɑː], a distinctive feature the ASCII form Mani loses; Old Norse initial stress is the default and needs no further mark. The name is simply the common noun máni, 'moon', raised to a person — the same word that gives mánaðr, 'month'. Attestation and reconstruction follow Cleasby & Vigfusson, An Icelandic-English Dictionary (1874), s.v. máni; and Zoëga, A Concise Dictionary of Old Icelandic (1910), s.v. máni."
   },
   "mars": {
     "ipa": "/mˈaːrs/",
@@ -12317,14 +12386,31 @@ const PRONUNCIATION_ATLAS = {
     "note": "Broad IPA generated from the Unicode restoration Ranginui; review recommended before promotion to canonical."
   },
   "sigurd": {
-    "ipa": "/sigurr/",
-    "ipaLabel": "Reconstructed Old Norse",
-    "phonemes": [],
-    "approximation": null,
+    "ipa": "/ˈsiɣ.urðr̩/",
+    "ipaLabel": "Old Norse Reconstruction",
+    "phonemes": [
+      {
+        "symbol": "S",
+        "desc": "Voiceless alveolar sibilant [s], as in English 'sea'"
+      },
+      {
+        "symbol": "i",
+        "desc": "Short close front [i]; the first syllable carries the stress"
+      },
+      {
+        "symbol": "g",
+        "desc": "Medial voiced velar fricative [ɣ]; between vowels Old Norse g softened to a glide, closer to the Spanish g of 'lago' than a hard stop"
+      },
+      {
+        "symbol": "-urðr",
+        "desc": "Short [u], alveolar trill [r], the voiced dental fricative [ð] — the soft 'th' of 'father' — and the final nominative ending -r, syllabic after the eth"
+      }
+    ],
+    "approximation": "'SIG-urthr' — stress the first syllable, soften the middle g almost to a glide, sound the ð as the soft 'th' of 'father', and let the final -r hang as a light voiced syllable; it is the Old Norse nominative ending, not a separate vowel.",
     "dialect": null,
-    "confidence": "generated",
+    "confidence": "canonical",
     "audioPath": null,
-    "note": "Broad IPA generated from the Unicode restoration Sigurðr; review recommended before promotion to canonical."
+    "note": "Sigurðr is Tier 1: the eth ð is a distinctive letter the ASCII form loses, and the final -r preserves the Old Norse nominative ending that English drops entirely. Cleasby-Vigfusson (s.v. Sigurðr) and Zoëga (s.v. Sigurðr) record the form as the name of the Vǫlsung hero; the name compounds sigr, 'victory', with -vǫrðr, 'guardian', yielding 'victory-guardian', and answers to the continental German Siegfried."
   },
   "sleipnir": {
     "ipa": "/sleipnir/",

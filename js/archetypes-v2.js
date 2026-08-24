@@ -3008,7 +3008,7 @@ const ARCHETYPES = [
                     {
         id: "iris",
         rentalTier: "A",
-        name: "Íris",
+        name: "Îris",
         greek: "Ἶρις",
         domain: "Rainbow, Messenger",
         tagline: "The Rainbow Sent Down",
@@ -4003,7 +4003,7 @@ const ARCHETYPES = [
     {
         id: "rhea",
         rentalTier: "A",
-        name: "Rhéā",
+        name: "Rhéa",
         greek: "Ῥέα",
         domain: "Motherhood, Fertility, Titans",
         tagline: "The Mother of the Gods",
@@ -5993,7 +5993,7 @@ const ARCHETYPES = [
         {
         id: "kleio",
         rentalTier: "B",
-        name: "Kleió",
+        name: "Kleiṓ",
         greek: "Κλειώ",
         domain: "History",
         tagline: "History · Proclaimer, glorifier",
@@ -6148,7 +6148,7 @@ const ARCHETYPES = [
     {
         id: "chiron",
         rentalTier: "A",
-        name: "Chíron",
+        name: "Cheírōn",
         greek: "Χείρων",
         domain: "Wise Centaur, Teacher",
         tagline: "Wise Centaur, Teacher · Hand",
