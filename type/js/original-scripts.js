@@ -83,7 +83,7 @@ const ORIGINAL_SCRIPTS = {
       ],
     },
   },
-  steh: {
+  seth: {
     originalScript: '𓋴𓏏𓐍',
     scriptName: 'Hieroglyphs',
     provenance: {

@@ -11869,7 +11869,7 @@ const PRONUNCIATION_ATLAS = {
     "audioPath": null,
     "note": "Latin Vulcānus — also Volcānus in inscriptions — scans with a long ā; its origin is pre-Roman and possibly Cretan (Velchanos, ϝελχάνος, has been proposed), making him one of the oldest names in the Roman pantheon. The macron marks the quantity on which the classical poets agree."
   },
-  "steh": {
+  "seth": {
     "ipa": "/ˈsɛː.tɛx/",
     "ipaLabel": "Egyptological (from stḫ)",
     "phonemes": [],

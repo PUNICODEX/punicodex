@@ -25,6 +25,7 @@ const BACKUP_PATH = path.join(ROOT, 'middleware.js.backup');
 // current canonical temple id. Every target MUST exist in the lexicon —
 // verified below after the lexicon loads.
 const LEGACY_REDIRECTS = {
+  '/steh': '/seth', // renamed entry id
   '/achilles': '/achilleus',
   '/aether': '/aither',
   '/delphi': '/delphoi',

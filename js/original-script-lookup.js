@@ -3668,7 +3668,7 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptName": "Latin (epigraphic capitals)",
     "scriptLabel": "Original Script"
   },
-  "steh": {
+  "seth": {
     "originalScript": "𓋴𓏏𓐍",
     "scriptName": "Hieroglyphs",
     "scriptLabel": "Original Script"

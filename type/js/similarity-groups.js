@@ -31,7 +31,7 @@ const FUNCTION_GROUPS = [
     ids: [
       'zeus', 'thor', 'indra', 'shango', 'perun', 'perkunas', 'raijin', 'illapa',
       'trengtreng', 'adad', 'baal', 'marduk', 'enlil', 'vajrapani', 'tawhirimatea',
-      'oya', 'ninurta', 'stribog', 'steh', 'tarhunash',
+      'oya', 'ninurta', 'stribog', 'seth', 'tarhunash',
     ],
   },
   {
@@ -164,7 +164,7 @@ const FUNCTION_GROUPS = [
     note: 'Forces of chaos, primordial oceans, world-encircling serpents, and cosmic disorder.',
     ids: [
       'chaos', 'tiamat', 'ymir', 'apep', 'typhon', 'leviathan', 'jormungandr', 'nidhogg',
-      'yammu', 'angramainyu', 'steh', 'loki', 'sunwukong', 'hati', 'yam',
+      'yammu', 'angramainyu', 'seth', 'loki', 'sunwukong', 'hati', 'yam',
     ],
   },
   {

@@ -30,6 +30,7 @@ function replaceInFile(rel, from, to, { wordBoundary = true } = {}) {
     s = s.split(`"${from}"`).join(`"${to}"`); // JSON/JS quoted id
     s = s.split(`'${from}'`).join(`'${to}'`);
     s = s.split(`/${from}/`).join(`/${newId}/`); // URL paths
+    s = s.split(`\n  ${from}:`).join(`\n  ${to}:`); // unquoted JS object key
   } else {
     s = s.split(from).join(to);
   }
@@ -38,6 +39,33 @@ function replaceInFile(rel, from, to, { wordBoundary = true } = {}) {
     console.log(`  ✓ ${rel}`);
     touched++;
   }
+}
+
+// If the ascii fallback changes letter ORDER (steh → seth), the breakdown
+// array must be re-ordered to match: validator requires breakdown[i].char to
+// align positionally with ascii[i].
+function reorderBreakdown() {
+  const lexPath = path.join(ROOT, 'type', 'js', 'lexicon.js');
+  const src = fs.readFileSync(lexPath, 'utf8');
+  const arrayStart = src.indexOf('[');
+  const arrayEnd = src.indexOf('\n];', arrayStart);
+  const head = src.slice(0, arrayStart);
+  const footer = src.slice(arrayEnd + 2); // ";\n\nif (typeof module …"
+  const { LEXICON } = require(lexPath);
+  const e = LEXICON.find((x) => x.id === newId);
+  if (!e || !Array.isArray(e.breakdown)) return;
+  const letters = [...e.ascii];
+  if (e.breakdown.length !== letters.length) return;
+  if (e.breakdown.every((b, i) => b.char === letters[i])) return; // already aligned
+  const pool = e.breakdown.slice();
+  const reordered = letters.map((c) => {
+    const idx = pool.findIndex((b) => b.char === c);
+    if (idx < 0) throw new Error(`no breakdown entry for '${c}' in ${newId}`);
+    return pool.splice(idx, 1)[0];
+  });
+  e.breakdown = reordered;
+  fs.writeFileSync(lexPath, head + JSON.stringify(LEXICON, null, 2) + footer);
+  console.log('  ✓ lexicon breakdown re-ordered to match new ascii order');
 }
 
 console.log(`Renaming entry id: ${oldId} → ${newId}`);
@@ -82,7 +110,30 @@ if (fs.existsSync(oldSite)) {
   execSync(`git mv "${oldSite}" "${path.join(ROOT, 'sites', newId)}"`);
   console.log(`  ✓ sites/${oldId}/ → sites/${newId}/`);
   touched++;
+  // Asset files carry the old id prefix (masters + gitignored composites).
+  const assetsDir = path.join(ROOT, 'sites', newId, 'assets');
+  if (fs.existsSync(assetsDir)) {
+    for (const f of fs.readdirSync(assetsDir)) {
+      if (!f.startsWith(`${oldId}_`)) continue;
+      const from = path.join(assetsDir, f);
+      const to = path.join(assetsDir, `${newId}_${f.slice(oldId.length + 1)}`);
+      try {
+        execSync(`git mv "${from}" "${to}"`);
+      } catch {
+        fs.renameSync(from, to); // gitignored composites
+      }
+      console.log(`  ✓ assets/${f} → ${newId}_${f.slice(oldId.length + 1)}`);
+      touched++;
+    }
+  }
 }
+
+// If the ascii fallback itself was renamed, the breakdown order follows.
+reorderBreakdown();
+
+// store/products.json: the POD generator preserves printful* fields by product
+// id — rename temple + id prefix so preservation matches after regeneration.
+replaceInFile('store/products.json', oldId, newId, { wordBoundary: false });
 
 // Legacy redirect in the middleware sync script (hand-edited table)
 const syncPath = path.join(ROOT, 'scripts', 'sync-middleware-domains.js');

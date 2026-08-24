@@ -4689,7 +4689,7 @@ const ARCHETYPES = [
         darkPunchline: false
     },
     {
-        id: "steh",
+        id: "seth",
         rentalTier: "B",
         name: "Stḫ",
         greek: "—",
@@ -4698,13 +4698,13 @@ const ARCHETYPES = [
         tier: "tier-1",
         tierDetail: "single-tier",
         pantheon: "egyptian",
-        folder: "steh",
+        folder: "seth",
         domainUnicode: "stḫ.com",
         domainPunycode: "xn--st-cvs.com",
         colors: { primary: "#8B0000", secondary: "#D4AF37", glow: "rgba(139,0,0,0.3)" },
-        mascotPath: "/sites/steh/assets/steh_mascot.webp",
-        mascotFallback: "/sites/steh/assets/steh_mascot.webp",
-        logomarkPath: "/sites/steh/assets/steh_logomark.webp",
+        mascotPath: "/sites/seth/assets/seth_mascot.webp",
+        mascotFallback: "/sites/seth/assets/seth_mascot.webp",
+        logomarkPath: "/sites/seth/assets/seth_logomark.webp",
         built: true,
         hasAdSite: true,
         darkPunchline: false

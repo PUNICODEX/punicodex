@@ -98,6 +98,9 @@ const ALIASES = {
   papatuanuku: ['Papatūānuku', 'Papatuanuku', 'Wahine Tane', 'Papa'],
   // Ọrúnmìlà's cult imagery is filed under its priesthood.
   orunmila: ['Orunmila', 'Ọrúnmìlà', 'Babalawo', 'Ifa divination'],
+  // 'seth' collides with modern people (Seth Rogen & co.) and 'set' with
+  // every generic noun — search the mythic descriptors instead.
+  seth: ['Seth Egyptian god', 'Set animal', 'Set god Egypt', 'Sutekh', 'Set deity'],
   monokeros: [
     'Unicorn Tapestries',
     'Hunt of the Unicorn',
@@ -281,6 +284,19 @@ const MANUAL = {
     'File:Mother of Twins Pottery Figurine of Fertility Goddess, 13th Century BC (28347811027).jpg',
     'File:Penn Musuem Beit Shemesh Cylindrical Figurines.jpg',
     'File:Nude female figure (Judean pillar figurine) MET DP-42289-001.jpg',
+  ],
+  // Seth: 'seth' collides with modern people, 'set' with every noun, and the
+  // museum pieces are filed under 'Set'/'Seth' with no mythic descriptors —
+  // search never reaches them. Hand-picked: Turin softwood statue, Met
+  // serpentinite figurine, the Ramesses III crowning relief, the Apep
+  // spearing scene, the canonical line drawing.
+  seth: [
+    'File:Seth.JPG',
+    'File:Statue depicting the god Seth, softwood - Museo Egizio, Turin S 1249 p01.jpg',
+    'File:Horus and Seth crowning Ramesses III, detail of Seth.JPG',
+    'File:Figurine of Seth MET 22.1.736-AC-2.jpg',
+    'File:Set speared Apep.jpg',
+    'File:Set.svg',
   ],
   // Realms and sparse figures whose depictions never carry the entry name in
   // the file metadata — search can never find these, so they are hand-picked

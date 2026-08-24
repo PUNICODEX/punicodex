@@ -55042,9 +55042,9 @@ const LEXICON = [
     ]
   },
   {
-    "id": "steh",
+    "id": "seth",
     "hasAdSite": true,
-    "ascii": "steh",
+    "ascii": "seth",
     "unicode": "Stḫ",
     "greek": "—",
     "pantheon": "egyptian",
@@ -55066,16 +55066,16 @@ const LEXICON = [
         "note": "Same letter"
       },
       {
-        "char": "t",
+        "char": "e",
         "to": "t",
-        "type": "same",
-        "note": "Same letter"
+        "type": "special",
+        "note": "Tau of stḫ"
       },
       {
-        "char": "e",
+        "char": "t",
         "to": "ḫ",
         "type": "special",
-        "note": "Script-specific letter"
+        "note": "Chet ḫ (velar fricative)"
       },
       {
         "char": "h",

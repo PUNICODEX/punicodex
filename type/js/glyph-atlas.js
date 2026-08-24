@@ -11280,7 +11280,7 @@ const GLYPH_ATLAS = {
     "timePeriod": "modern scholarly convention",
     "region": "roman"
   },
-  "steh": {
+  "seth": {
     "scriptName": "Hieroglyphs",
     "codePoints": [
       "U+132F4",
