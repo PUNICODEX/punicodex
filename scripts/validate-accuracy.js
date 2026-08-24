@@ -287,6 +287,14 @@ LEXICON.forEach((entry) => {
       'hathor',
       'eggther',
       'viracocha',
+      'erymanthianboar',
+      'stymphalianbirds',
+      'teucer',
+      'podalirius',
+      'oedipus',
+      'creusa',
+      'medea',
+      'chiron',
     ]);
     const isException = ANGLICIZED_EXCEPTIONS.has(entry.id) || entry.pantheon !== 'greek';
 

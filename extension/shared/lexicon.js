@@ -24939,7 +24939,7 @@ const LEXICON = [
   {
     "id": "diancecht",
     "ascii": "diancecht",
-    "unicode": "DíanCécht",
+    "unicode": "Dían Cécht",
     "greek": "—",
     "pantheon": "celtic",
     "tier": "1",
@@ -27709,7 +27709,7 @@ const LEXICON = [
   {
     "id": "makemake",
     "ascii": "makemake",
-    "unicode": "MakeMake",
+    "unicode": "Makemake",
     "greek": "—",
     "pantheon": "polynesian",
     "tier": "2",
@@ -27747,7 +27747,7 @@ const LEXICON = [
       },
       {
         "char": "m",
-        "to": "M",
+        "to": "m",
         "type": "same",
         "note": "Same, capitalized"
       },
@@ -28157,7 +28157,7 @@ const LEXICON = [
   {
     "id": "matzemlya",
     "ascii": "matzemlya",
-    "unicode": "MatZemlyá",
+    "unicode": "Mat' Zemlyá",
     "greek": "—",
     "pantheon": "slavic",
     "tier": "1",
@@ -28183,9 +28183,9 @@ const LEXICON = [
       },
       {
         "char": "t",
-        "to": "t",
-        "type": "same",
-        "note": "Same"
+        "to": "t'",
+        "type": "special",
+        "note": "T + soft sign (ь)"
       },
       {
         "char": "z",
@@ -28458,7 +28458,7 @@ const LEXICON = [
   {
     "id": "babayaga",
     "ascii": "babayaga",
-    "unicode": "BabaJagá",
+    "unicode": "Baba Jagá",
     "greek": "—",
     "pantheon": "slavic",
     "tier": "1",
@@ -28588,7 +28588,7 @@ const LEXICON = [
   {
     "id": "zmeygorynych",
     "ascii": "zmeygorynych",
-    "unicode": "ZmeyGorynych",
+    "unicode": "Zmey Gorynych",
     "greek": "—",
     "pantheon": "slavic",
     "tier": "2",
@@ -31978,7 +31978,7 @@ const LEXICON = [
   {
     "id": "mamaquilla",
     "ascii": "mamaquilla",
-    "unicode": "MamaQuilla",
+    "unicode": "Mama Quilla",
     "greek": "—",
     "pantheon": "incan",
     "tier": "2",
@@ -34760,7 +34760,7 @@ const LEXICON = [
   {
     "id": "sunwukong",
     "ascii": "sunwukong",
-    "unicode": "SūnWùkōng",
+    "unicode": "Sūn Wùkōng",
     "greek": "孫悟空",
     "pantheon": "chinese",
     "tier": "1",
@@ -37160,7 +37160,7 @@ const LEXICON = [
   {
     "id": "erymanthianboar",
     "ascii": "erymanthianboar",
-    "unicode": "ErymanthianBoar",
+    "unicode": "Erymánthios Kápros",
     "greek": "Ἐρυμάνθιος Κάπρος",
     "pantheon": "greek",
     "tier": "2",
@@ -37176,98 +37176,105 @@ const LEXICON = [
         "char": "e",
         "to": "E",
         "type": "same",
-        "note": "E uppercase"
+        "note": "Same"
       },
       {
         "char": "r",
         "to": "r",
         "type": "same",
-        "note": "r same"
+        "note": "Same"
       },
       {
         "char": "y",
         "to": "y",
         "type": "same",
-        "note": "y same"
+        "note": "Same"
       },
       {
         "char": "m",
         "to": "m",
         "type": "same",
-        "note": "m same"
+        "note": "Same"
       },
       {
         "char": "a",
-        "to": "a",
-        "type": "same",
-        "note": "a same"
+        "to": "á",
+        "type": "stress",
+        "note": "Acute on alpha (Ἐρυμάνθιος)"
       },
       {
         "char": "n",
         "to": "n",
         "type": "same",
-        "note": "n same"
+        "note": "Same"
       },
       {
         "char": "t",
         "to": "t",
         "type": "same",
-        "note": "t same"
+        "note": "Same"
       },
       {
         "char": "h",
         "to": "h",
         "type": "same",
-        "note": "h same"
+        "note": "Same"
       },
       {
         "char": "i",
         "to": "i",
         "type": "same",
-        "note": "i same"
+        "note": "Same"
       },
       {
         "char": "a",
-        "to": "a",
+        "to": "o",
         "type": "same",
-        "note": "a same"
+        "note": "Omicron"
       },
       {
         "char": "n",
-        "to": "n",
+        "to": "s",
         "type": "same",
-        "note": "n same"
+        "note": "Final sigma"
       },
       {
         "char": "b",
-        "to": "B",
+        "to": "K",
         "type": "same",
-        "note": "B uppercase"
+        "note": "Kappa"
       },
       {
         "char": "o",
-        "to": "o",
-        "type": "same",
-        "note": "o same"
+        "to": "á",
+        "type": "stress",
+        "note": "Acute on alpha (Κάπρος)"
       },
       {
         "char": "a",
-        "to": "a",
+        "to": "p",
         "type": "same",
-        "note": "a same"
+        "note": "Pi"
       },
       {
         "char": "r",
-        "to": "r",
-        "type": "same",
-        "note": "r same"
+        "to": "ros",
+        "type": "special",
+        "note": "Rho + omicron + sigma"
+      }
+    ],
+    "variants": [
+      {
+        "unicode": "Erymanthian Boar",
+        "type": "ascii",
+        "note": "Standard English name (Fourth Labour)"
       }
     ]
   },
   {
     "id": "stymphalianbirds",
     "ascii": "stymphalianbirds",
-    "unicode": "StymphalianBirds",
+    "unicode": "Stymphalídes Órnithes",
     "greek": "Στυμφαλίδες Ὄρνιθες",
     "pantheon": "greek",
     "tier": "2",
@@ -37283,97 +37290,104 @@ const LEXICON = [
         "char": "s",
         "to": "S",
         "type": "same",
-        "note": "S uppercase"
+        "note": "Same"
       },
       {
         "char": "t",
         "to": "t",
         "type": "same",
-        "note": "t same"
+        "note": "Same"
       },
       {
         "char": "y",
         "to": "y",
         "type": "same",
-        "note": "y same"
+        "note": "Same"
       },
       {
         "char": "m",
         "to": "m",
         "type": "same",
-        "note": "m same"
+        "note": "Same"
       },
       {
         "char": "p",
         "to": "p",
         "type": "same",
-        "note": "p same"
+        "note": "Same"
       },
       {
         "char": "h",
         "to": "h",
         "type": "same",
-        "note": "h same"
+        "note": "Same"
       },
       {
         "char": "a",
         "to": "a",
         "type": "same",
-        "note": "a same"
+        "note": "Same"
       },
       {
         "char": "l",
         "to": "l",
         "type": "same",
-        "note": "l same"
+        "note": "Same"
       },
       {
         "char": "i",
-        "to": "i",
-        "type": "same",
-        "note": "i same"
+        "to": "í",
+        "type": "stress",
+        "note": "Acute on iota (Στυμφαλίδες)"
       },
       {
         "char": "a",
-        "to": "a",
+        "to": "d",
         "type": "same",
-        "note": "a same"
+        "note": "Delta"
       },
       {
         "char": "n",
-        "to": "n",
-        "type": "same",
-        "note": "n same"
+        "to": "es",
+        "type": "special",
+        "note": "Epsilon + sigma"
       },
       {
         "char": "b",
-        "to": "B",
+        "to": "Ó",
         "type": "same",
-        "note": "B uppercase"
+        "note": "Acute on omicron (Ὄρνιθες)"
       },
       {
         "char": "i",
-        "to": "i",
+        "to": "r",
         "type": "same",
-        "note": "i same"
+        "note": "Rho"
       },
       {
         "char": "r",
-        "to": "r",
+        "to": "n",
         "type": "same",
-        "note": "r same"
+        "note": "Nu"
       },
       {
         "char": "d",
-        "to": "d",
+        "to": "i",
         "type": "same",
-        "note": "d same"
+        "note": "Iota"
       },
       {
         "char": "s",
-        "to": "s",
-        "type": "same",
-        "note": "s same"
+        "to": "thes",
+        "type": "special",
+        "note": "Theta + epsilon + sigma"
+      }
+    ],
+    "variants": [
+      {
+        "unicode": "Stymphalian Birds",
+        "type": "ascii",
+        "note": "Standard English name (Sixth Labour)"
       }
     ]
   },
@@ -39875,7 +39889,7 @@ const LEXICON = [
   {
     "id": "gronwpebr",
     "ascii": "gronwpebr",
-    "unicode": "GronwPebr",
+    "unicode": "Gronw Pebr",
     "greek": "—",
     "pantheon": "celtic",
     "tier": "2",
@@ -43983,7 +43997,7 @@ const LEXICON = [
   {
     "id": "zhangdaoling",
     "ascii": "zhangdaoling",
-    "unicode": "ZhāngDàolíng",
+    "unicode": "Zhāng Dàolíng",
     "greek": "張道陵",
     "pantheon": "taoist",
     "tier": "1",
