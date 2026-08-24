@@ -1,7 +1,7 @@
 # Domain Acquisition Watchlist
 
-Generated: 2026-08-24T01:48:04.206Z — 408 lexicon entries have an AVAILABLE canonical Unicode domain; 265 are registered.
-Heuristic: DNS NXDOMAIN ⇒ likely unregistered. Confirm at registrar before purchase.
+Generated: 2026-08-24T01:58:14.740Z — 378 lexicon entries have an AVAILABLE canonical Unicode domain; 295 are registered.
+Status is authoritative (Verisign RDAP). Confirm price/premium status at a registrar before purchase.
 
 ## Available canonical domains
 
@@ -32,7 +32,6 @@ Heuristic: DNS NXDOMAIN ⇒ likely unregistered. Confirm at registrar before pur
 | astartu | Aštartu | phoenician | 1 | aštartu.com | xn--atartu-bkb.com |
 | atalanta | Atalantē | greek | 1 | atalantē.com | xn--atalant-27a.com |
 | athrawan | Āθrauuan | zoroastrian | 1 | āθrauuan.com | xn--rauuan-2za476c.com |
-| atman | Ātman | sanskrit | 1 | ātman.com | xn--tman-psa.com |
 | atreus | Atréus | greek | 1 | atréus.com | xn--atrus-dsa.com |
 | auctoritas | Auctōritās | greek | 1 | auctōritās.com | xn--auctrits-n7a07e.com |
 | audumla | Auðumla | norse | 1 | auðumla.com | xn--auumla-qwa.com |
@@ -49,7 +48,6 @@ Heuristic: DNS NXDOMAIN ⇒ likely unregistered. Confirm at registrar before pur
 | bhrigu | Bhṛgu | sanskrit | 1 | bhṛgu.com | xn--bhgu-6g5a.com |
 | bingjilan | Bīngjílán | chinese | 1 | bīngjílán.com | xn--bngjln-tta8g80a.com |
 | boiotia | Boiōtia | greek-location | 1 | boiōtia.com | xn--boitia-dgb.com |
-| brahma | Brahmā | sanskrit | 1 | brahmā.com | xn--brahm-jwa.com |
 | budai | Bùdài | chinese | 1 | bùdài.com | xn--bdi-bla7j.com |
 | caishen | Cáishén | chinese | 1 | cáishén.com | xn--cishn-xqa3d.com |
 | calliope | Kalliopē | greek | 1 | kalliopē.com | xn--kalliop-27a.com |
@@ -70,7 +68,6 @@ Heuristic: DNS NXDOMAIN ⇒ likely unregistered. Confirm at registrar before pur
 | creusa | Creúsa | greek | 1 | creúsa.com | xn--cresa-9ua.com |
 | cuchulainn | CúChulainn | celtic | 1 | cúchulainn.com | xn--cchulainn-58a.com |
 | cupid | Cupīdō | roman | 1 | cupīdō.com | xn--cupd-sya9r.com |
-| daedalus | Daidalos | greek | 1 | daidalos.com | daidalos.com |
 | danae | Danaē | greek | 1 | danaē.com | xn--dana-eva.com |
 | daphne | Dáphnē | greek | 1 | dáphnē.com | xn--dphn-5na71a.com |
 | deimos | Deîmos | greek | 1 | deîmos.com | xn--demos-6sa.com |
@@ -101,7 +98,6 @@ Heuristic: DNS NXDOMAIN ⇒ likely unregistered. Confirm at registrar before pur
 | erlang | Èrláng | chinese | 1 | èrláng.com | xn--rlng-6na3b.com |
 | esengraim | Esengráin | celtic | 1 | esengráin.com | xn--esengrin-eza.com |
 | etain | Étaín | celtic | 1 | étaín.com | xn--tan-9law.com |
-| ethos | Éthos | greek | 1 | éthos.com | xn--thos-9oa.com |
 | eudaimonia | Eudaimonía | greek | 1 | eudaimonía.com | xn--eudaimona-n5a.com |
 | eurus | Eûros | greek | 1 | eûros.com | xn--eros-vra.com |
 | eurydice | Eurydikē | greek | 1 | eurydikē.com | xn--eurydik-27a.com |
@@ -160,7 +156,6 @@ Heuristic: DNS NXDOMAIN ⇒ likely unregistered. Confirm at registrar before pur
 | kreios | Kreîos | greek | 1 | kreîos.com | xn--kreos-7sa.com |
 | krete | Krḗtē | greek-location | 1 | krḗtē.com | xn--krt-5qa2528a.com |
 | kripa | Kṛpa | sanskrit | 1 | kṛpa.com | xn--kpa-s7y.com |
-| ku | Kū | polynesian | 1 | kū.com | xn--k-qna.com |
 | kuafu | Kuāfù | chinese | 1 | kuāfù.com | xn--kuf-6na2b.com |
 | kumarbis | Kumarbiš | hittite | 1 | kumarbiš.com | xn--kumarbi-wqb.com |
 | kunlun | Kūnlún | chinese | 1 | kūnlún.com | xn--knln-sra98d.com |
@@ -183,7 +178,6 @@ Heuristic: DNS NXDOMAIN ⇒ likely unregistered. Confirm at registrar before pur
 | mahakala | Mahākāla | buddhist | 1 | mahākāla.com | xn--mahkla-5zab.com |
 | marici | Mārīci | buddhist | 1 | mārīci.com | xn--mrci-qsa7w.com |
 | markandeya | Mārkaṇḍeya | sanskrit | 1 | mārkaṇḍeya.com | xn--mrkaeya-s3a1408dtqa.com |
-| mars | Mārs | roman | 1 | mārs.com | xn--mrs-1oa.com |
 | matzemlya | MatZemlyá | slavic | 1 | matzemlyá.com | xn--matzemly-gza.com |
 | mayahuel | Mayāhuel | nahuatl | 1 | mayāhuel.com | xn--mayhuel-u3a.com |
 | megaera | Megáira | greek | 1 | megáira.com | xn--megira-rta.com |
@@ -212,7 +206,6 @@ Heuristic: DNS NXDOMAIN ⇒ likely unregistered. Confirm at registrar before pur
 | nestor | Nestōr | greek | 1 | nestōr.com | xn--nestr-j9a.com |
 | nidhogg | Níðhǫggr | norse | 1 | níðhǫggr.com | xn--nhggr-zsav32r.com |
 | ninhursag | Ninḫursaĝ | mesopotamian | 1 | ninḫursaĝ.com | xn--ninursa-dbb1508d.com |
-| nirvana | Nirvāṇa | buddhist | 1 | nirvāṇa.com | xn--nirva-iwa2753c.com |
 | numen | Nūmen | greek | 1 | nūmen.com | xn--nmen-v7a.com |
 | oedipus | Oedípus | greek | 1 | oedípus.com | xn--oedpus-5va.com |
 | oileus | Oïleus | greek | 1 | oïleus.com | xn--oleus-cta.com |
@@ -257,7 +250,6 @@ Heuristic: DNS NXDOMAIN ⇒ likely unregistered. Confirm at registrar before pur
 | rig | Ríg | norse | 1 | ríg.com | xn--rg-nja.com |
 | ruaumoko | Rūaumoko | polynesian | 1 | rūaumoko.com | xn--raumoko-0sb.com |
 | rusalka | Rusálka | slavic | 1 | rusálka.com | xn--ruslka-rta.com |
-| saga | Sága | norse | 1 | sága.com | xn--sga-ela.com |
 | sanzang | Sānzàng | chinese | 1 | sānzàng.com | xn--snzng-tqa2u.com |
 | sarpedon | Sarpēdōn | greek | 1 | sarpēdōn.com | xn--sarpdn-s3a97b.com |
 | savitri | Sāvitrī | sanskrit | 1 | sāvitrī.com | xn--svitr-fwa21a.com |
@@ -275,7 +267,6 @@ Heuristic: DNS NXDOMAIN ⇒ likely unregistered. Confirm at registrar before pur
 | sunwukong | SūnWùkōng | chinese | 1 | sūnwùkōng.com | xn--snwkng-kya78dji.com |
 | susano | Susanō | japanese | 1 | susanō.com | xn--susan-k9a.com |
 | svartalfaheimr | Svartálfaheimr | norse | 1 | svartálfaheimr.com | xn--svartlfaheimr-7db.com |
-| tara | Tārā | buddhist | 1 | tārā.com | xn--tr-dlab.com |
 | tarhunash | Tarḫunash | hittite | 1 | tarḫunash.com | xn--tarunash-d29c.com |
 | taweret | Tꜣwrt | egyptian | 1 | tꜣwrt.com | xn--twrt-ge8o.com |
 | tawhirimatea | Tāwhirimātea | polynesian | 1 | tāwhirimātea.com | xn--twhirimtea-ufbg.com |
@@ -310,7 +301,6 @@ Heuristic: DNS NXDOMAIN ⇒ likely unregistered. Confirm at registrar before pur
 | virtus | Virtūs | greek | 1 | virtūs.com | xn--virts-ofb.com |
 | vishvakarman | Viśvakarman | sanskrit | 1 | viśvakarman.com | xn--vivakarman-57b.com |
 | vodyanoy | Vodjanój | slavic | 1 | vodjanój.com | xn--vodjanj-q0a.com |
-| vyasa | Vyāsa | sanskrit | 1 | vyāsa.com | xn--vysa-rsa.com |
 | wenchang | Wénchāng | taoist | 1 | wénchāng.com | xn--wnchng-bva9q.com |
 | wenshu | Wénshū | chinese | 1 | wénshū.com | xn--wnsh-bpa79e.com |
 | wepwawet | Wpwꜣwt | egyptian | 1 | wpwꜣwt.com | xn--wpwwt-c72s.com |
@@ -331,13 +321,11 @@ Heuristic: DNS NXDOMAIN ⇒ likely unregistered. Confirm at registrar before pur
 | zhongliquan | ZhōnglíQuán | taoist | 1 | zhōnglíquán.com | xn--zhnglqun-fza1js1c.com |
 | zhuangzi | Zhuāngzǐ | taoist | 1 | zhuāngzǐ.com | xn--zhungz-5za37n.com |
 | zhurong | Zhùróng | chinese | 1 | zhùróng.com | xn--zhrng-2ta4b.com |
-| aengus | Aengus | celtic | 2 | aengus.com | aengus.com |
 | alexandros | Aléxandros | greek | 2 | aléxandros.com | xn--alxandros-c4a.com |
 | amethystos | Ámethystos | greek | 2 | ámethystos.com | xn--methystos-z1a.com |
 | angramainyu | AŋraMainyu | zoroastrian | 2 | aŋramainyu.com | xn--aramainyu-bxb.com |
 | antilochus | Antílochos | greek | 2 | antílochos.com | xn--antlochos-i5a.com |
 | astyanax | Astýanax | greek | 2 | astýanax.com | xn--astanax-x2a.com |
-| bes | Bs | egyptian | 2 | bs.com | bs.com |
 | blodeuwedd | Blodeuwedd | celtic | 2 | blodeuwedd.com | blodeuwedd.com |
 | boreas | Boreás | greek | 2 | boreás.com | xn--bores-0qa.com |
 | cadmus | Kádmos | greek | 2 | kádmos.com | xn--kdmos-xqa.com |
@@ -345,41 +333,28 @@ Heuristic: DNS NXDOMAIN ⇒ likely unregistered. Confirm at registrar before pur
 | cassandra | Kassándra | greek | 2 | kassándra.com | xn--kassndra-cza.com |
 | charybdis | Chárybdis | greek | 2 | chárybdis.com | xn--chrybdis-9ya.com |
 | daramulum | Daramulum | aboriginal | 2 | daramulum.com | daramulum.com |
-| deirdre | Deirdre | celtic | 2 | deirdre.com | deirdre.com |
 | doxa | Dóxa | greek | 2 | dóxa.com | xn--dxa-gna.com |
-| dumuzid | Dumuzid | mesopotamian | 2 | dumuzid.com | dumuzid.com |
-| eachuisge | Eachuisge | celtic | 2 | eachuisge.com | eachuisge.com |
 | efnysien | Efnysien | celtic | 2 | efnysien.com | efnysien.com |
 | elpis | Elpís | greek | 2 | elpís.com | xn--elps-xpa.com |
 | erymanthianboar | ErymanthianBoar | greek | 2 | erymanthianboar.com | erymanthianboar.com |
-| freyr | Freyr | norse | 2 | freyr.com | freyr.com |
-| geb | Gb | egyptian | 2 | gb.com | gb.com |
 | griffin | Grýps | greek | 2 | grýps.com | xn--grps-6ra.com |
 | gronwpebr | GronwPebr | celtic | 2 | gronwpebr.com | gronwpebr.com |
 | haumiatiketike | Haumiatiketike | polynesian | 2 | haumiatiketike.com | haumiatiketike.com |
-| hel | Hel | norse | 2 | hel.com | hel.com |
 | hippolytus | Hippólutos | greek | 2 | hippólutos.com | xn--hipplutos-86a.com |
 | hrungnir | Hrungnir | norse | 2 | hrungnir.com | hrungnir.com |
 | hubris | Hýbris | greek | 2 | hýbris.com | xn--hbris-qva.com |
-| hwanung | Hwanung | korean | 2 | hwanung.com | hwanung.com |
 | hyakinthos | Hýakinthos | greek | 2 | hýakinthos.com | xn--hakinthos-09a.com |
 | hyperborea | Hyperbórea | greek-location | 2 | hyperbórea.com | xn--hyperbrea-b7a.com |
 | iapetus | Iapetós | greek | 2 | iapetós.com | xn--iapets-fxa.com |
-| iphigeneia | Iphigeneia | greek | 2 | iphigeneia.com | iphigeneia.com |
 | jowangshin | Jowangshin | korean | 2 | jowangshin.com | jowangshin.com |
 | kebechet | Kebehet | egyptian | 2 | kebehet.com | kebehet.com |
-| kingu | Kingu | mesopotamian | 2 | kingu.com | kingu.com |
 | korinthos | Kórinthos | greek-location | 2 | kórinthos.com | xn--krinthos-v3a.com |
 | kotoshironushi | Kotoshironushi | japanese | 2 | kotoshironushi.com | kotoshironushi.com |
 | lachesis | Láchesis | greek | 2 | láchesis.com | xn--lchesis-hwa.com |
 | limos | Līmós | greek | 2 | līmós.com | xn--lms-hna2z.com |
-| logos | Lógos | greek | 2 | lógos.com | xn--lgos-qqa.com |
-| loki | Loki | norse | 2 | loki.com | loki.com |
-| macha | Macha | celtic | 2 | macha.com | macha.com |
 | mamaqucha | Mamaqucha | incan | 2 | mamaqucha.com | mamaqucha.com |
 | manawydan | Manawydan | celtic | 2 | manawydan.com | manawydan.com |
 | matholwch | Matholwch | celtic | 2 | matholwch.com | matholwch.com |
-| medb | Medb | celtic | 2 | medb.com | medb.com |
 | megara | Megára | greek | 2 | megára.com | xn--megra-zqa.com |
 | meleagros | Meleágros | greek | 2 | meleágros.com | xn--melegros-cza.com |
 | menelaus | Menélaos | greek | 2 | menélaos.com | xn--menlaos-dya.com |
@@ -387,11 +362,9 @@ Heuristic: DNS NXDOMAIN ⇒ likely unregistered. Confirm at registrar before pur
 | momos | Mómos | greek | 2 | mómos.com | xn--mmos-qqa.com |
 | narcissus | Nárkissos | greek | 2 | nárkissos.com | xn--nrkissos-8ya.com |
 | neoptolemus | Neoptólemos | greek | 2 | neoptólemos.com | xn--neoptlemos-kbb.com |
-| niamh | Niamh | celtic | 2 | niamh.com | niamh.com |
 | nishinakahime | Nishinakahime | japanese | 2 | nishinakahime.com | nishinakahime.com |
 | notos | Nótos | greek | 2 | nótos.com | xn--ntos-qqa.com |
 | olympia | Olympía | greek | 2 | olympía.com | xn--olympa-7va.com |
-| osiris | Wsjr | egyptian | 2 | wsjr.com | wsjr.com |
 | pelops | Pélops | greek | 2 | pélops.com | xn--plops-bsa.com |
 | phobos | Phóbos | greek | 2 | phóbos.com | xn--phbos-1ta.com |
 | phthonus | Phthónos | greek | 2 | phthónos.com | xn--phthnos-o0a.com |
@@ -404,7 +377,6 @@ Heuristic: DNS NXDOMAIN ⇒ likely unregistered. Confirm at registrar before pur
 | seonangshin | Seonangshin | korean | 2 | seonangshin.com | seonangshin.com |
 | sisyphus | Sísyphos | greek | 2 | sísyphos.com | xn--ssyphos-7ya.com |
 | smaragdos | Smáragdos | greek | 2 | smáragdos.com | xn--smragdos-9ya.com |
-| sobek | Sbk | egyptian | 2 | sbk.com | sbk.com |
 | stymphalianbirds | StymphalianBirds | greek | 2 | stymphalianbirds.com | stymphalianbirds.com |
 | tajikarao | Tajikarao | japanese | 2 | tajikarao.com | tajikarao.com |
 | tantalus | Tántalos | greek | 2 | tántalos.com | xn--tntalos-hwa.com |
@@ -413,275 +385,303 @@ Heuristic: DNS NXDOMAIN ⇒ likely unregistered. Confirm at registrar before pur
 | tjinimin | Tjinimin | aboriginal | 2 | tjinimin.com | tjinimin.com |
 | ugayafukiaezu | Ugayafukiaezu | japanese | 2 | ugayafukiaezu.com | ugayafukiaezu.com |
 | urcaguary | Urcaguary | incan | 2 | urcaguary.com | urcaguary.com |
-| viracocha | Wiraqucha | incan | 2 | wiraqucha.com | wiraqucha.com |
-| wamani | Wamani | incan | 2 | wamani.com | wamani.com |
 
 ## Registered (canonical form taken)
 
-| Entry | Unicode | Pantheon | Domain | Fallback availability |
-|-------|---------|----------|--------|----------------------|
-| themis | Themis | greek | themis.com |  |
-| hebe | Hebe | greek | hebe.com |  |
-| moirai | Moirai | greek | moirai.com |  |
-| asgardr | Ásgarðr | norse | ásgarðr.com | asgardr.com: registered |
-| baldr | Baldr | norse | baldr.com |  |
-| freyja | Freyja | norse | freyja.com |  |
-| frigg | Frigg | norse | frigg.com |  |
-| heimdallr | Heimdallr | norse | heimdallr.com |  |
-| ymir | Ymir | norse | ymir.com |  |
-| fenrir | Fenrir | norse | fenrir.com |  |
-| nut | Nwt | egyptian | nwt.com | nut.com: registered |
-| krishna | Kṛṣṇa | sanskrit | kṛṣṇa.com | krishna.com: registered |
-| indra | Indra | sanskrit | indra.com |  |
-| agni | Agni | sanskrit | agni.com |  |
-| yama | Yama | sanskrit | yama.com |  |
-| kubera | Kubera | sanskrit | kubera.com |  |
-| morrigan | Morrígan | celtic | morrígan.com | morrigan.com: registered |
-| cernunnos | Cernunnos | celtic | cernunnos.com |  |
-| brigid | Brigid | celtic | brigid.com |  |
-| dagda | Dagda | celtic | dagda.com |  |
-| marduk | Marduk | mesopotamian | marduk.com |  |
-| tu | Tū | polynesian | tū.com | tu.com: available |
-| maui | Māui | polynesian | māui.com | maui.com: registered |
-| rongo | Rongo | polynesian | rongo.com |  |
-| tangaroa | Tangaroa | polynesian | tangaroa.com |  |
-| pele | Pele | polynesian | pele.com |  |
-| tokyo | Tōkyō | japanese | tōkyō.com | tokyo.com: registered |
-| shikoku | Shikoku | japanese | shikoku.com |  |
-| nagoya | Nagoya | japanese | nagoya.com |  |
-| amaterasu | Amaterasu | japanese | amaterasu.com |  |
-| tsukuyomi | Tsukuyomi | japanese | tsukuyomi.com |  |
-| izanagi | Izanagi | japanese | izanagi.com |  |
-| inari | Inari | japanese | inari.com |  |
-| hachiman | Hachiman | japanese | hachiman.com |  |
-| benzaiten | Benzaiten | japanese | benzaiten.com |  |
-| xipe | Xipe | nahuatl | xipe.com |  |
-| metztli | Metztli | nahuatl | metztli.com |  |
-| yemoja | Yemọja | yoruba | yemọja.com | yemoja.com: registered |
-| belobog | Belobog | slavic | belobog.com |  |
-| perun | Perun | slavic | perun.com |  |
-| veles | Veles | slavic | veles.com |  |
-| radagast | Radagast | slavic | radagast.com |  |
-| patroclus | Patroklos | greek | patroklos.com | patroclus.com: registered |
-| ajax | Aias | greek | aias.com | ajax.com: registered |
-| montu | Mntw | egyptian | mntw.com | montu.com: registered |
-| serket | Srqt | egyptian | srqt.com | serket.com: registered |
-| neith | Nt | egyptian | nt.com | neith.com: registered |
-| tefnut | Tfnt | egyptian | tfnt.com | tefnut.com: registered |
-| eir | Eir | norse | eir.com |  |
-| garmr | Garmr | norse | garmr.com |  |
-| surtr | Surtr | norse | surtr.com |  |
-| logi | Logi | norse | logi.com |  |
-| suttungr | Suttungr | norse | suttungr.com |  |
-| chandra | Candra | sanskrit | candra.com | chandra.com: registered |
-| arjuna | Arjuna | sanskrit | arjuna.com |  |
-| ahriman | Ahriman | zoroastrian | ahriman.com |  |
-| inti | Inti | incan | inti.com |  |
-| pachamama | Pachamama | incan | pachamama.com |  |
-| perseus | Perseus | greek | perseus.com |  |
-| icarus | Íkaros | greek | íkaros.com | icarus.com: registered |
-| thetis | Thétis | greek | thétis.com | thetis.com: registered |
-| nyx | Nýx | greek | nýx.com | nyx.com: available |
-| nemesis | Némésis | greek | némésis.com | nemesis.com: available |
-| nous | Noûs | greek | noûs.com | nous.com: registered |
-| arete | Arete | greek | arete.com |  |
-| pathos | Páthos | greek | páthos.com | pathos.com: registered |
-| kairos | Kairós | greek | kairós.com | kairos.com: registered |
-| kosmos | Kósmos | greek | kósmos.com | kosmos.com: registered |
-| ullr | Ullr | norse | ullr.com |  |
-| forseti | Forseti | norse | forseti.com |  |
-| bragi | Bragi | norse | bragi.com |  |
-| iounn | Iðunn | norse | iðunn.com | iounn.com: registered |
-| gefjon | Gefjun | norse | gefjun.com | gefjon.com: registered |
-| sif | Sif | norse | sif.com |  |
-| fulla | Fulla | norse | fulla.com |  |
-| syn | Syn | norse | syn.com |  |
-| nanna | Nanna | norse | nanna.com |  |
-| brynhildr | Brynhildr | norse | brynhildr.com |  |
-| gunnr | Gunnr | norse | gunnr.com |  |
-| skuld | Skuld | norse | skuld.com |  |
-| verdandi | Verðandi | norse | verðandi.com | verdandi.com: registered |
-| hymir | Hymir | norse | hymir.com |  |
-| baugi | Baugi | norse | baugi.com |  |
-| andvari | Andvari | norse | andvari.com |  |
-| brokkr | Brokkr | norse | brokkr.com |  |
-| reginn | Reginn | norse | reginn.com |  |
-| sindri | Sindri | norse | sindri.com |  |
-| niflheimr | Niflheimr | norse | niflheimr.com |  |
-| vanaheimr | Vanaheimr | norse | vanaheimr.com |  |
-| yggdrasill | Yggdrasill | norse | yggdrasill.com |  |
-| ginnungagap | Ginnungagap | norse | ginnungagap.com |  |
-| wyrd | Wyrd | norse | wyrd.com |  |
-| min | Mnw | egyptian | mnw.com | min.com: registered |
-| nun | Nnw | egyptian | nnw.com | nun.com: registered |
-| inanna | Inanna | mesopotamian | inanna.com |  |
-| ninlil | Ninlil | mesopotamian | ninlil.com |  |
-| nergal | Nergal | mesopotamian | nergal.com |  |
-| enkidu | Enkidu | mesopotamian | enkidu.com |  |
-| pazuzu | Pazuzu | mesopotamian | pazuzu.com |  |
-| ninurta | Ninurta | mesopotamian | ninurta.com |  |
-| aditi | Aditi | sanskrit | aditi.com |  |
-| diti | Diti | sanskrit | diti.com |  |
-| dharma | Dharma | sanskrit | dharma.com |  |
-| karma | Karma | sanskrit | karma.com |  |
-| samsara | Saṃsāra | sanskrit | saṃsāra.com | samsara.com: registered |
-| brahman | Brahman | sanskrit | brahman.com |  |
-| maya | Māyā | sanskrit | māyā.com | maya.com: registered |
-| yoga | Yoga | sanskrit | yoga.com |  |
-| mantra | Mantra | sanskrit | mantra.com |  |
-| tantra | Tantra | sanskrit | tantra.com |  |
-| matsya | Matsya | sanskrit | matsya.com |  |
-| nuada | Nuada | celtic | nuada.com |  |
-| badb | Badb | celtic | badb.com |  |
-| danu | Danu | celtic | danu.com |  |
-| fionn | Fionn | celtic | fionn.com |  |
-| ogma | Ogma | celtic | ogma.com |  |
-| arawn | Arawn | celtic | arawn.com |  |
-| gwydion | Gwydion | celtic | gwydion.com |  |
-| rhiannon | Rhiannon | celtic | rhiannon.com |  |
-| pryderi | Pryderi | celtic | pryderi.com |  |
-| ceridwen | Ceridwen | celtic | ceridwen.com |  |
-| tirnanog | TírnanÓg | celtic | tírnanóg.com | tirnanog.com: registered |
-| annwn | Annwn | celtic | annwn.com |  |
-| pooka | Púca | celtic | púca.com | pooka.com: registered |
-| izanami | Izanami | japanese | izanami.com |  |
-| ninigi | Ninigi | japanese | ninigi.com |  |
-| raijin | Raijin | japanese | raijin.com |  |
-| kannon | Kannon | japanese | kannon.com |  |
-| amida | Amida | japanese | amida.com |  |
-| fuji | Fuji | japanese | fuji.com |  |
-| ise | Ise | japanese | ise.com |  |
-| takachiho | Takachiho | japanese | takachiho.com |  |
-| kumano | Kumano | japanese | kumano.com |  |
-| ebisu | Ebisu | japanese | ebisu.com |  |
-| sarutahiko | Sarutahiko | japanese | sarutahiko.com |  |
-| kagutsuchi | Kagutsuchi | japanese | kagutsuchi.com |  |
-| kane | Kāne | polynesian | kāne.com | kane.com: registered |
-| lono | Lono | polynesian | lono.com |  |
-| hiiaka | Hiiaka | polynesian | hiiaka.com |  |
-| kamapuaa | Kamapuaa | polynesian | kamapuaa.com |  |
-| poliahu | Poliahu | polynesian | poliahu.com |  |
-| whiro | Whiro | polynesian | whiro.com |  |
-| taaroa | Taaroa | polynesian | taaroa.com |  |
-| tagaloa | Tagaloa | polynesian | tagaloa.com |  |
-| nafanua | Nafanua | polynesian | nafanua.com |  |
-| makemake | MakeMake | polynesian | makemake.com |  |
-| svarog | Svarog | slavic | svarog.com |  |
-| stribog | Stribog | slavic | stribog.com |  |
-| simargl | Simargl | slavic | simargl.com |  |
-| lada | Lada | slavic | lada.com |  |
-| marzanna | Marzanna | slavic | marzanna.com |  |
-| morana | Morana | slavic | morana.com |  |
-| zmeygorynych | ZmeyGorynych | slavic | zmeygorynych.com |  |
-| aje | Ajé | yoruba | ajé.com | aje.com: registered |
-| baiame | Baiame | aboriginal | baiame.com |  |
-| bunjil | Bunjil | aboriginal | bunjil.com |  |
-| altjira | Altjira | aboriginal | altjira.com |  |
-| ngalyod | Ngalyod | aboriginal | ngalyod.com |  |
-| wandjina | Wandjina | aboriginal | wandjina.com |  |
-| wawalag | Wawalag | aboriginal | wawalag.com |  |
-| yurlungur | Yurlungur | aboriginal | yurlungur.com |  |
-| eingana | Eingana | aboriginal | eingana.com |  |
-| mamaragan | Mamaragan | aboriginal | mamaragan.com |  |
-| gnowee | Gnowee | aboriginal | gnowee.com |  |
-| vohumanah | VohuManah | zoroastrian | vohumanah.com |  |
-| ashavahishta | AšaVahišta | zoroastrian | ashavahishta.com |  |
-| mamaquilla | MamaQuilla | incan | mamaquilla.com |  |
-| illapa | Illapa | incan | illapa.com |  |
-| supay | Supay | incan | supay.com |  |
-| ekkeko | Ekkeko | incan | ekkeko.com |  |
-| anima | Anima | greek | anima.com |  |
-| animus | Animus | greek | animus.com |  |
-| gravitas | Gravitas | greek | gravitas.com |  |
-| clementia | Clementia | greek | clementia.com |  |
-| qi | Qì | chinese | qì.com | qi.com: registered |
-| dao | Dào | chinese | dào.com | dao.com: registered |
-| medea | Medéa | greek | medéa.com | medea.com: registered |
-| nemeanlion | Nemean Léon | greek | nemean léon.com | nemeanlion.com: registered |
-| skanda | Skanda | sanskrit | skanda.com |  |
-| garuda | Garuḍa | sanskrit | garuḍa.com | garuda.com: registered |
-| nakula | Nakula | sanskrit | nakula.com |  |
-| sahadeva | Sahadeva | sanskrit | sahadeva.com |  |
-| magni | Magni | norse | magni.com |  |
-| hati | Hati | norse | hati.com |  |
-| ratatoskr | Ratatoskr | norse | ratatoskr.com |  |
-| draupnir | Draupnir | norse | draupnir.com |  |
-| nisien | Nisien | celtic | nisien.com |  |
-| taliesin | Taliesin | celtic | taliesin.com |  |
-| myrddin | Myrddin | celtic | myrddin.com |  |
-| gawain | Gawain | celtic | gawain.com |  |
-| bedwyr | Bedwyr | celtic | bedwyr.com |  |
-| kai | Kai | celtic | kai.com |  |
-| don | Don | celtic | don.com |  |
-| beli | Beli | celtic | beli.com |  |
-| math | Math | celtic | math.com |  |
-| omononushi | Omononushi | japanese | omononushi.com |  |
-| sukunahikona | Sukunahikona | japanese | sukunahikona.com |  |
-| toyotama | Toyotama | japanese | toyotama.com |  |
-| hoderi | Hoderi | japanese | hoderi.com |  |
-| hoori | Hoori | japanese | hoori.com |  |
-| lahmu | Lahmu | mesopotamian | lahmu.com |  |
-| lahamu | Lahamu | mesopotamian | lahamu.com |  |
-| adad | Adad | mesopotamian | adad.com |  |
-| sin | Sîn | mesopotamian | sîn.com | sin.com: registered |
-| sophia | Sophía | greek | sophía.com | sophia.com: registered |
-| bhakti | Bhakti | sanskrit | bhakti.com |  |
-| tapas | Tapas | sanskrit | tapas.com |  |
-| yoni | Yoni | sanskrit | yoni.com |  |
-| amoghasiddhi | Amoghasiddhi | buddhist | amoghasiddhi.com |  |
-| maitreya | Maitreya | buddhist | maitreya.com |  |
-| samantabhadra | Samantabhadra | buddhist | samantabhadra.com |  |
-| asanga | Asanga | buddhist | asanga.com |  |
-| vasubandhu | Vasubandhu | buddhist | vasubandhu.com |  |
-| boddhisattva | Bodhisattva | buddhist | bodhisattva.com | boddhisattva.com: available |
-| arhat | Arhat | buddhist | arhat.com |  |
-| hananim | Hwanin | korean | hwanin.com | hananim.com: registered |
-| dangun | Dangun | korean | dangun.com |  |
-| samshin | Samshin | korean | samshin.com |  |
-| halmoni | Halmoni | korean | halmoni.com |  |
-| yongwang | Yongwang | korean | yongwang.com |  |
-| mago | Mago | korean | mago.com |  |
-| chilsong | Chilsong | korean | chilsong.com |  |
-| sosin | Sosin | korean | sosin.com |  |
-| baekdusan | Baekdusan | korean | baekdusan.com |  |
-| yammu | Yammu | phoenician | yammu.com |  |
-| arinniti | Arinna | hittite | arinna.com | arinniti.com: registered |
-| telipinu | Telipinu | hittite | telipinu.com |  |
-| inaras | Inaras | hittite | inaras.com |  |
-| alalu | Alalu | hittite | alalu.com |  |
-| bodhidharma | Bodhidharma | chinese | bodhidharma.com |  |
-| uppsala | Uppsala | norse | uppsala.com |  |
-| karnak | Karnak | egyptian | karnak.com |  |
-| luxor | Luxor | egyptian | luxor.com |  |
-| meru | Meru | sanskrit | meru.com |  |
-| sarnath | Sarnath | buddhist | sarnath.com |  |
-| sigyn | Sigyn | norse | sigyn.com |  |
-| surt | Surt | norse | surt.com |  |
-| bestla | Bestla | norse | bestla.com |  |
-| serapis | Serapis | egyptian | serapis.com |  |
-| onuris | Onuris | egyptian | onuris.com |  |
-| sokar | Skr | egyptian | skr.com | sokar.com: available |
-| ecne | Ecne | celtic | ecne.com |  |
-| midir | Midir | celtic | midir.com |  |
-| oisin | Oisín | celtic | oisín.com | oisin.com: registered |
-| marishiten | Marishiten | japanese | marishiten.com |  |
-| goshin | Goshin | japanese | goshin.com |  |
-| nabu | Nabû | mesopotamian | nabû.com | nabu.com: registered |
-| gula | Gula | mesopotamian | gula.com |  |
-| namtar | Namtar | mesopotamian | namtar.com |  |
-| haoma | Haoma | zoroastrian | haoma.com |  |
-| sa | Sꜥ | egyptian | sꜥ.com | sa.com: available |
-| njord | Njord | norse | njord.com |  |
-| thalassa | Thálassa | greek | thálassa.com | thalassa.com: registered |
-| aegir | Ægir | norse | ægir.com | aegir.com: registered |
-| balor | Balor | celtic | balor.com |  |
-| duryodhana | Duryodhana | sanskrit | duryodhana.com |  |
-| kalki | Kalki | sanskrit | kalki.com |  |
-| mimir | Mímir | norse | mímir.com | mimir.com: registered |
-| padmasambhava | Padmasambhava | buddhist | padmasambhava.com |  |
-| ran | Rán | norse | rán.com | ran.com: registered |
-| ranginui | Ranginui | polynesian | ranginui.com |  |
-| sleipnir | Sleipnir | norse | sleipnir.com |  |
-| sol | Sól | norse | sól.com | sol.com: registered |
-| venus | Venus | roman | venus.com |  |
-| yu | Dà Yǔ | chinese | dà yǔ.com | dayu.com: registered |
+| Entry | Unicode | Pantheon | Domain | Registered | Fallback availability |
+|-------|---------|----------|--------|------------|----------------------|
+| themis | Themis | greek | themis.com | 1992-05-18 |  |
+| hebe | Hebe | greek | hebe.com | 2003-08-17 |  |
+| moirai | Moirai | greek | moirai.com | 1997-11-18 |  |
+| asgardr | Ásgarðr | norse | ásgarðr.com | 2022-08-30 | asgardr.com: registered (2022-04-29) |
+| baldr | Baldr | norse | baldr.com | 2000-03-07 |  |
+| freyr | Freyr | norse | freyr.com | 2002-05-09 |  |
+| freyja | Freyja | norse | freyja.com | 1999-03-18 |  |
+| frigg | Frigg | norse | frigg.com | 1999-12-21 |  |
+| heimdallr | Heimdallr | norse | heimdallr.com | 2010-12-16 |  |
+| hel | Hel | norse | hel.com | 2001-10-08 |  |
+| ymir | Ymir | norse | ymir.com | 1999-12-25 |  |
+| fenrir | Fenrir | norse | fenrir.com | 1997-12-31 |  |
+| osiris | Wsjr | egyptian | wsjr.com | 1996-06-27 | osíris.com: available; osiris.com: registered (1995-02-09) |
+| nut | Nwt | egyptian | nwt.com | 1995-05-17 | nut.com: registered (1997-06-21) |
+| geb | Gb | egyptian | gb.com | 1998-09-16 | geb.com: registered (1996-02-20) |
+| sobek | Sbk | egyptian | sbk.com | 1995-02-14 | sobek.com: registered (1997-01-04) |
+| krishna | Kṛṣṇa | sanskrit | kṛṣṇa.com | 2014-04-25 | krishna.com: registered (1995-09-03) |
+| brahma | Brahmā | sanskrit | brahmā.com | 2026-02-21 | brahma.com: registered (2000-08-09) |
+| indra | Indra | sanskrit | indra.com | 1994-06-30 |  |
+| agni | Agni | sanskrit | agni.com | 1995-01-04 |  |
+| yama | Yama | sanskrit | yama.com | 1995-08-30 |  |
+| kubera | Kubera | sanskrit | kubera.com | 2001-07-12 |  |
+| morrigan | Morrígan | celtic | morrígan.com | 2025-09-29 | morrigan.com: registered (2026-02-17) |
+| cernunnos | Cernunnos | celtic | cernunnos.com | 2002-05-15 |  |
+| brigid | Brigid | celtic | brigid.com | 2000-08-09 |  |
+| dagda | Dagda | celtic | dagda.com | 2000-01-15 |  |
+| marduk | Marduk | mesopotamian | marduk.com | 1996-10-03 |  |
+| tu | Tū | polynesian | tū.com | 2021-10-09 | tu.com: registered (1992-09-09) |
+| maui | Māui | polynesian | māui.com | 2026-01-24 | maui.com: registered (1992-09-22) |
+| rongo | Rongo | polynesian | rongo.com | 1997-04-30 |  |
+| tangaroa | Tangaroa | polynesian | tangaroa.com | 2002-05-13 |  |
+| pele | Pele | polynesian | pele.com | 1995-04-26 |  |
+| tokyo | Tōkyō | japanese | tōkyō.com | 2004-05-01 | tokyo.com: registered (1995-02-14) |
+| shikoku | Shikoku | japanese | shikoku.com | 2002-06-07 |  |
+| nagoya | Nagoya | japanese | nagoya.com | 2001-07-26 |  |
+| amaterasu | Amaterasu | japanese | amaterasu.com | 2000-04-05 |  |
+| tsukuyomi | Tsukuyomi | japanese | tsukuyomi.com | 2000-01-04 |  |
+| izanagi | Izanagi | japanese | izanagi.com | 2004-01-12 |  |
+| inari | Inari | japanese | inari.com | 2004-02-14 |  |
+| hachiman | Hachiman | japanese | hachiman.com | 1999-09-07 |  |
+| benzaiten | Benzaiten | japanese | benzaiten.com | 1999-06-08 |  |
+| xipe | Xipe | nahuatl | xipe.com | 1998-11-15 |  |
+| metztli | Metztli | nahuatl | metztli.com | 2005-12-04 |  |
+| yemoja | Yemọja | yoruba | yemọja.com | 2022-02-06 | yemoja.com: registered (2013-05-06) |
+| belobog | Belobog | slavic | belobog.com | 2020-08-18 |  |
+| perun | Perun | slavic | perun.com | 2002-09-09 |  |
+| veles | Veles | slavic | veles.com | 2004-06-18 |  |
+| radagast | Radagast | slavic | radagast.com | 2000-12-28 |  |
+| patroclus | Patroklos | greek | patroklos.com | 2011-02-13 | patroclus.com: registered (2017-08-02) |
+| ajax | Aias | greek | aias.com | 1996-09-26 | ajax.com: registered (1997-08-07) |
+| montu | Mntw | egyptian | mntw.com | 2011-11-06 | montu.com: registered (2002-10-11) |
+| serket | Srqt | egyptian | srqt.com | 2011-11-30 | serket.com: registered (1999-07-29) |
+| neith | Nt | egyptian | nt.com | 1990-09-28 | neith.com: registered (1999-12-30) |
+| tefnut | Tfnt | egyptian | tfnt.com | 2000-04-12 | tefnut.com: registered (2011-12-25) |
+| eir | Eir | norse | eir.com | 1995-10-20 |  |
+| garmr | Garmr | norse | garmr.com | 2005-09-13 |  |
+| surtr | Surtr | norse | surtr.com | 2003-05-08 |  |
+| logi | Logi | norse | logi.com | 2004-08-24 |  |
+| suttungr | Suttungr | norse | suttungr.com | 2010-08-20 |  |
+| loki | Loki | norse | loki.com | 1992-09-16 | lóki.com: available |
+| chandra | Candra | sanskrit | candra.com | 1998-12-04 | chandra.com: registered (1996-08-26) |
+| arjuna | Arjuna | sanskrit | arjuna.com | 1996-06-26 |  |
+| ahriman | Ahriman | zoroastrian | ahriman.com | 1996-08-05 |  |
+| inti | Inti | incan | inti.com | 2000-03-02 |  |
+| viracocha | Wiraqucha | incan | wiraqucha.com | 2026-07-13 | viracocha.com: registered (1999-09-06) |
+| pachamama | Pachamama | incan | pachamama.com | 2003-03-27 |  |
+| perseus | Perseus | greek | perseus.com | 1997-08-12 |  |
+| icarus | Íkaros | greek | íkaros.com | 2026-08-14 | icarus.com: registered (1993-12-20) |
+| daedalus | Daidalos | greek | daidalos.com | 2009-07-25 | daedalus.com: registered (1993-10-25) |
+| thetis | Thétis | greek | thétis.com | 2024-05-10 | thetis.com: registered (1999-12-24) |
+| nyx | Nýx | greek | nýx.com | 2023-10-18 | nyx.com: registered (1997-04-30) |
+| nemesis | Némésis | greek | némésis.com | 2026-06-17 | nemesis.com: registered (1994-11-22) |
+| logos | Lógos | greek | lógos.com | 2024-07-10 | logos.com: registered (1992-03-10) |
+| nous | Noûs | greek | noûs.com | 2026-01-17 | nous.com: registered (1997-03-18) |
+| arete | Arete | greek | arete.com | 1991-07-25 |  |
+| ethos | Éthos | greek | éthos.com | 2026-02-01 | ethos.com: registered (1997-06-24) |
+| pathos | Páthos | greek | páthos.com | 2026-03-16 | pathos.com: registered (1998-05-26) |
+| kairos | Kairós | greek | kairós.com | 2025-01-15 | kairos.com: registered (1995-03-17) |
+| kosmos | Kósmos | greek | kósmos.com | 2025-01-25 | kosmos.com: registered (1998-04-04) |
+| ullr | Ullr | norse | ullr.com | 1997-07-11 |  |
+| forseti | Forseti | norse | forseti.com | 1997-03-07 |  |
+| bragi | Bragi | norse | bragi.com | 2003-08-22 |  |
+| iounn | Iðunn | norse | iðunn.com | 2019-01-01 | iounn.com: registered (2016-12-08) |
+| gefjon | Gefjun | norse | gefjun.com | 2016-02-21 | gefjon.com: registered (2000-08-25) |
+| sif | Sif | norse | sif.com | 1996-10-31 |  |
+| fulla | Fulla | norse | fulla.com | 2001-01-25 |  |
+| syn | Syn | norse | syn.com | 1998-08-07 |  |
+| nanna | Nanna | norse | nanna.com | 2000-03-06 |  |
+| brynhildr | Brynhildr | norse | brynhildr.com | 2005-07-19 |  |
+| gunnr | Gunnr | norse | gunnr.com | 2008-08-31 |  |
+| skuld | Skuld | norse | skuld.com | 1998-01-30 |  |
+| verdandi | Verðandi | norse | verðandi.com | 2025-01-23 | verdandi.com: registered (2000-04-18) |
+| hymir | Hymir | norse | hymir.com | 2006-05-23 |  |
+| baugi | Baugi | norse | baugi.com | 2003-12-12 |  |
+| andvari | Andvari | norse | andvari.com | 1999-03-19 |  |
+| brokkr | Brokkr | norse | brokkr.com | 2010-06-03 |  |
+| reginn | Reginn | norse | reginn.com | 2015-09-14 |  |
+| sindri | Sindri | norse | sindri.com | 2003-06-02 |  |
+| niflheimr | Niflheimr | norse | niflheimr.com | 2003-07-04 |  |
+| vanaheimr | Vanaheimr | norse | vanaheimr.com | 2011-05-25 |  |
+| yggdrasill | Yggdrasill | norse | yggdrasill.com | 2002-04-06 |  |
+| ginnungagap | Ginnungagap | norse | ginnungagap.com | 2010-11-06 |  |
+| wyrd | Wyrd | norse | wyrd.com | 1996-07-18 |  |
+| min | Mnw | egyptian | mnw.com | 1999-03-25 | min.com: registered (1995-02-21) |
+| bes | Bs | egyptian | bs.com | 1996-09-11 | bes.com: registered (1995-03-04) |
+| nun | Nnw | egyptian | nnw.com | 1999-01-11 | nun.com: registered (1996-11-26) |
+| inanna | Inanna | mesopotamian | inanna.com | 1995-08-17 |  |
+| ninlil | Ninlil | mesopotamian | ninlil.com | 2006-03-02 |  |
+| nergal | Nergal | mesopotamian | nergal.com | 2003-04-19 |  |
+| dumuzid | Dumuzid | mesopotamian | dumuzid.com | 2018-11-17 |  |
+| enkidu | Enkidu | mesopotamian | enkidu.com | 1995-05-31 |  |
+| pazuzu | Pazuzu | mesopotamian | pazuzu.com | 2002-06-20 |  |
+| ninurta | Ninurta | mesopotamian | ninurta.com | 2003-02-03 |  |
+| aditi | Aditi | sanskrit | aditi.com | 1996-03-25 |  |
+| diti | Diti | sanskrit | diti.com | 2003-08-29 |  |
+| dharma | Dharma | sanskrit | dharma.com | 1997-03-14 |  |
+| karma | Karma | sanskrit | karma.com | 1994-11-28 |  |
+| samsara | Saṃsāra | sanskrit | saṃsāra.com | 2023-11-08 | samsara.com: registered (1997-05-15) |
+| atman | Ātman | sanskrit | ātman.com | 2023-08-15 | atman.com: registered (2003-04-04) |
+| brahman | Brahman | sanskrit | brahman.com | 1996-09-10 |  |
+| maya | Māyā | sanskrit | māyā.com | 2024-07-20 | maya.com: registered (1990-04-25) |
+| yoga | Yoga | sanskrit | yoga.com | 1998-10-20 |  |
+| mantra | Mantra | sanskrit | mantra.com | 1994-04-23 |  |
+| tantra | Tantra | sanskrit | tantra.com | 1995-04-18 |  |
+| vyasa | Vyāsa | sanskrit | vyāsa.com | 2020-09-13 | vyasa.com: registered (1998-07-09) |
+| matsya | Matsya | sanskrit | matsya.com | 2004-02-11 |  |
+| nuada | Nuada | celtic | nuada.com | 2004-03-23 |  |
+| aengus | Aengus | celtic | aengus.com | 1998-05-09 |  |
+| badb | Badb | celtic | badb.com | 2000-03-23 |  |
+| macha | Macha | celtic | macha.com | 1998-06-15 |  |
+| danu | Danu | celtic | danu.com | 2002-01-02 |  |
+| fionn | Fionn | celtic | fionn.com | 2004-09-21 |  |
+| ogma | Ogma | celtic | ogma.com | 1998-05-08 |  |
+| arawn | Arawn | celtic | arawn.com | 1999-12-05 |  |
+| gwydion | Gwydion | celtic | gwydion.com | 1997-09-25 |  |
+| rhiannon | Rhiannon | celtic | rhiannon.com | 2000-09-26 |  |
+| pryderi | Pryderi | celtic | pryderi.com | 2003-05-22 |  |
+| ceridwen | Ceridwen | celtic | ceridwen.com | 1998-10-05 |  |
+| tirnanog | TírnanÓg | celtic | tírnanóg.com | 2019-10-19 | tirnanog.com: registered (1997-12-17) |
+| annwn | Annwn | celtic | annwn.com | 1998-04-04 |  |
+| pooka | Púca | celtic | púca.com | 2026-01-25 | pooka.com: registered (1995-12-26) |
+| eachuisge | Eachuisge | celtic | eachuisge.com | 2007-12-02 |  |
+| izanami | Izanami | japanese | izanami.com | 2001-11-30 |  |
+| ninigi | Ninigi | japanese | ninigi.com | 2004-07-27 |  |
+| raijin | Raijin | japanese | raijin.com | 1999-09-01 |  |
+| kannon | Kannon | japanese | kannon.com | 1996-04-03 |  |
+| amida | Amida | japanese | amida.com | 1996-08-31 |  |
+| fuji | Fuji | japanese | fuji.com | 1995-04-18 |  |
+| ise | Ise | japanese | ise.com | 1995-03-20 |  |
+| takachiho | Takachiho | japanese | takachiho.com | 2008-10-12 |  |
+| kumano | Kumano | japanese | kumano.com | 2000-10-01 |  |
+| ebisu | Ebisu | japanese | ebisu.com | 1995-11-20 |  |
+| sarutahiko | Sarutahiko | japanese | sarutahiko.com | 2012-07-07 |  |
+| kagutsuchi | Kagutsuchi | japanese | kagutsuchi.com | 2020-10-09 |  |
+| kane | Kāne | polynesian | kāne.com | 2023-08-23 | kane.com: registered (2000-09-26) |
+| lono | Lono | polynesian | lono.com | 1998-05-27 |  |
+| ku | Kū | polynesian | kū.com | 2019-02-28 | ku.com: registered (1995-02-27) |
+| hiiaka | Hiiaka | polynesian | hiiaka.com | 2012-02-19 |  |
+| kamapuaa | Kamapuaa | polynesian | kamapuaa.com | 2016-12-05 |  |
+| poliahu | Poliahu | polynesian | poliahu.com | 2011-07-23 |  |
+| whiro | Whiro | polynesian | whiro.com | 2013-07-02 |  |
+| taaroa | Taaroa | polynesian | taaroa.com | 2013-11-12 |  |
+| tagaloa | Tagaloa | polynesian | tagaloa.com | 2010-11-11 |  |
+| nafanua | Nafanua | polynesian | nafanua.com | 2002-11-01 |  |
+| makemake | MakeMake | polynesian | makemake.com | 2000-05-12 |  |
+| svarog | Svarog | slavic | svarog.com | 2000-03-31 |  |
+| stribog | Stribog | slavic | stribog.com | 2014-07-04 |  |
+| simargl | Simargl | slavic | simargl.com | 2013-02-12 |  |
+| lada | Lada | slavic | lada.com | 1997-06-25 |  |
+| marzanna | Marzanna | slavic | marzanna.com | 2001-04-26 |  |
+| morana | Morana | slavic | morana.com | 1997-09-09 |  |
+| zmeygorynych | ZmeyGorynych | slavic | zmeygorynych.com | 2024-12-17 |  |
+| aje | Ajé | yoruba | ajé.com | 2025-08-18 | aje.com: registered (1997-03-29) |
+| baiame | Baiame | aboriginal | baiame.com | 2014-12-03 |  |
+| bunjil | Bunjil | aboriginal | bunjil.com | 2009-12-04 |  |
+| altjira | Altjira | aboriginal | altjira.com | 2001-11-14 |  |
+| ngalyod | Ngalyod | aboriginal | ngalyod.com | 2021-04-27 |  |
+| wandjina | Wandjina | aboriginal | wandjina.com | 1998-07-14 |  |
+| wawalag | Wawalag | aboriginal | wawalag.com | 2011-12-09 |  |
+| yurlungur | Yurlungur | aboriginal | yurlungur.com | 2020-05-14 |  |
+| eingana | Eingana | aboriginal | eingana.com | 2011-10-18 |  |
+| mamaragan | Mamaragan | aboriginal | mamaragan.com | 2020-10-13 |  |
+| gnowee | Gnowee | aboriginal | gnowee.com | 2006-03-08 |  |
+| vohumanah | VohuManah | zoroastrian | vohumanah.com | 2011-05-12 |  |
+| ashavahishta | AšaVahišta | zoroastrian | ashavahishta.com | 2024-07-26 |  |
+| mamaquilla | MamaQuilla | incan | mamaquilla.com | 2012-05-31 |  |
+| illapa | Illapa | incan | illapa.com | 2001-12-16 |  |
+| supay | Supay | incan | supay.com | 2002-07-11 |  |
+| ekkeko | Ekkeko | incan | ekkeko.com | 2000-04-16 |  |
+| wamani | Wamani | incan | wamani.com | 2020-12-20 |  |
+| anima | Anima | greek | anima.com | 1996-10-18 |  |
+| animus | Animus | greek | animus.com | 1998-04-29 |  |
+| gravitas | Gravitas | greek | gravitas.com | 1997-03-07 |  |
+| clementia | Clementia | greek | clementia.com | 2002-03-26 |  |
+| qi | Qì | chinese | qì.com | 2010-04-21 | qi.com: registered (1995-01-18) |
+| dao | Dào | chinese | dào.com | 2026-02-14 | dao.com: registered (1996-04-10) |
+| medea | Medéa | greek | medéa.com | 2025-07-18 | medea.com: registered (1997-06-24) |
+| nemeanlion | Nemean Léon | greek | nemean léon.com | — | nemeanlion.com: registered (2007-02-07) |
+| skanda | Skanda | sanskrit | skanda.com | 2003-04-18 |  |
+| garuda | Garuḍa | sanskrit | garuḍa.com | 2024-10-04 | garuda.com: registered (1995-03-10) |
+| nakula | Nakula | sanskrit | nakula.com | 2000-05-02 |  |
+| sahadeva | Sahadeva | sanskrit | sahadeva.com | 2004-08-26 |  |
+| saga | Sága | norse | sága.com | 2019-11-24 | saga.com: registered (1997-05-30) |
+| magni | Magni | norse | magni.com | 1996-03-14 |  |
+| hati | Hati | norse | hati.com | 1998-05-07 |  |
+| ratatoskr | Ratatoskr | norse | ratatoskr.com | 2013-06-14 |  |
+| draupnir | Draupnir | norse | draupnir.com | 2009-09-22 |  |
+| nisien | Nisien | celtic | nisien.com | 2015-02-24 |  |
+| taliesin | Taliesin | celtic | taliesin.com | 1999-03-31 |  |
+| myrddin | Myrddin | celtic | myrddin.com | 1999-12-02 |  |
+| gawain | Gawain | celtic | gawain.com | 2001-03-14 |  |
+| bedwyr | Bedwyr | celtic | bedwyr.com | 2025-12-15 |  |
+| kai | Kai | celtic | kai.com | 1987-04-23 |  |
+| don | Don | celtic | don.com | 1994-08-18 |  |
+| beli | Beli | celtic | beli.com | 1997-08-09 |  |
+| math | Math | celtic | math.com | 1998-09-10 |  |
+| omononushi | Omononushi | japanese | omononushi.com | 2025-10-30 |  |
+| sukunahikona | Sukunahikona | japanese | sukunahikona.com | 2006-04-03 |  |
+| toyotama | Toyotama | japanese | toyotama.com | 2026-05-23 |  |
+| hoderi | Hoderi | japanese | hoderi.com | 2025-11-13 |  |
+| hoori | Hoori | japanese | hoori.com | 2004-08-02 |  |
+| kingu | Kingu | mesopotamian | kingu.com | 2002-05-30 |  |
+| lahmu | Lahmu | mesopotamian | lahmu.com | 2021-02-15 |  |
+| lahamu | Lahamu | mesopotamian | lahamu.com | 2021-03-09 |  |
+| adad | Adad | mesopotamian | adad.com | 1996-07-27 |  |
+| sin | Sîn | mesopotamian | sîn.com | 2020-02-21 | sin.com: registered (1994-02-15) |
+| sophia | Sophía | greek | sophía.com | 2022-02-22 | sophia.com: registered (1990-09-18) |
+| bhakti | Bhakti | sanskrit | bhakti.com | 1996-06-27 |  |
+| tapas | Tapas | sanskrit | tapas.com | 2000-03-06 |  |
+| yoni | Yoni | sanskrit | yoni.com | 1996-12-16 |  |
+| amoghasiddhi | Amoghasiddhi | buddhist | amoghasiddhi.com | 2008-07-01 |  |
+| maitreya | Maitreya | buddhist | maitreya.com | 2003-01-19 |  |
+| samantabhadra | Samantabhadra | buddhist | samantabhadra.com | 2013-02-11 |  |
+| tara | Tārā | buddhist | tārā.com | 2022-07-12 | tara.com: registered (1995-07-11) |
+| asanga | Asanga | buddhist | asanga.com | 1998-10-09 |  |
+| vasubandhu | Vasubandhu | buddhist | vasubandhu.com | 2013-03-15 |  |
+| boddhisattva | Bodhisattva | buddhist | bodhisattva.com | 1996-09-20 | boddhisattva.com: available |
+| arhat | Arhat | buddhist | arhat.com | 2004-06-09 |  |
+| nirvana | Nirvāṇa | buddhist | nirvāṇa.com | 2018-12-11 | nirvana.com: registered (1999-04-22) |
+| hananim | Hwanin | korean | hwanin.com | 2012-05-12 | hananim.com: registered (1998-08-07) |
+| dangun | Dangun | korean | dangun.com | 1997-06-13 |  |
+| hwanung | Hwanung | korean | hwanung.com | 2026-07-20 |  |
+| samshin | Samshin | korean | samshin.com | 1999-12-30 |  |
+| halmoni | Halmoni | korean | halmoni.com | 2013-02-14 |  |
+| yongwang | Yongwang | korean | yongwang.com | 2023-06-06 |  |
+| mago | Mago | korean | mago.com | 2003-11-03 |  |
+| chilsong | Chilsong | korean | chilsong.com | 2024-04-04 |  |
+| sosin | Sosin | korean | sosin.com | 1997-05-28 |  |
+| baekdusan | Baekdusan | korean | baekdusan.com | 1998-12-08 |  |
+| yammu | Yammu | phoenician | yammu.com | 2007-02-06 |  |
+| arinniti | Arinna | hittite | arinna.com | 1999-11-19 | arinniti.com: registered (2013-05-11) |
+| telipinu | Telipinu | hittite | telipinu.com | 2020-10-09 |  |
+| inaras | Inaras | hittite | inaras.com | 2024-02-29 |  |
+| alalu | Alalu | hittite | alalu.com | 2011-06-09 |  |
+| bodhidharma | Bodhidharma | chinese | bodhidharma.com | 2002-08-13 |  |
+| uppsala | Uppsala | norse | uppsala.com | 1998-03-24 |  |
+| karnak | Karnak | egyptian | karnak.com | 1998-12-14 |  |
+| luxor | Luxor | egyptian | luxor.com | 1995-03-17 |  |
+| meru | Meru | sanskrit | meru.com | 1995-09-26 |  |
+| sarnath | Sarnath | buddhist | sarnath.com | 2002-03-30 |  |
+| sigyn | Sigyn | norse | sigyn.com | 1999-08-27 |  |
+| surt | Surt | norse | surt.com | 2001-11-17 |  |
+| bestla | Bestla | norse | bestla.com | 1999-08-09 |  |
+| serapis | Serapis | egyptian | serapis.com | 2001-08-06 |  |
+| onuris | Onuris | egyptian | onuris.com | 2006-11-25 |  |
+| sokar | Skr | egyptian | skr.com | 1996-11-07 | sokar.com: registered (1999-08-17) |
+| ecne | Ecne | celtic | ecne.com | 2000-05-30 |  |
+| midir | Midir | celtic | midir.com | 2005-09-17 |  |
+| deirdre | Deirdre | celtic | deirdre.com | 1997-11-12 |  |
+| niamh | Niamh | celtic | niamh.com | 1998-05-06 |  |
+| oisin | Oisín | celtic | oisín.com | 2007-03-08 | oisin.com: registered (1995-08-22) |
+| marishiten | Marishiten | japanese | marishiten.com | 2014-10-03 |  |
+| goshin | Goshin | japanese | goshin.com | 1997-12-17 |  |
+| nabu | Nabû | mesopotamian | nabû.com | 2026-07-31 | nabu.com: registered (2000-03-06) |
+| gula | Gula | mesopotamian | gula.com | 1997-08-12 |  |
+| namtar | Namtar | mesopotamian | namtar.com | 2005-09-28 |  |
+| haoma | Haoma | zoroastrian | haoma.com | 2004-01-24 |  |
+| sa | Sꜥ | egyptian | sꜥ.com | 2026-05-29 | sa.com: registered (1998-06-25) |
+| njord | Njord | norse | njord.com | 2008-10-22 |  |
+| thalassa | Thálassa | greek | thálassa.com | 2025-08-22 | thalassa.com: registered (1996-04-21) |
+| aegir | Ægir | norse | ægir.com | 2020-12-08 | aegir.com: registered (1995-06-05) |
+| balor | Balor | celtic | balor.com | 2001-11-18 |  |
+| duryodhana | Duryodhana | sanskrit | duryodhana.com | 2017-04-06 |  |
+| iphigeneia | Iphigeneia | greek | iphigeneia.com | 2025-09-30 |  |
+| kalki | Kalki | sanskrit | kalki.com | 2001-04-12 |  |
+| mars | Mārs | roman | mārs.com | 2024-07-03 | mars.com: registered (1995-12-06) |
+| medb | Medb | celtic | medb.com | 2003-10-25 |  |
+| mimir | Mímir | norse | mímir.com | 2025-11-06 | mimir.com: registered (1995-02-28) |
+| padmasambhava | Padmasambhava | buddhist | padmasambhava.com | 2012-09-06 |  |
+| ran | Rán | norse | rán.com | 2026-08-04 | ran.com: registered (1995-02-01) |
+| ranginui | Ranginui | polynesian | ranginui.com | 2011-07-11 |  |
+| sleipnir | Sleipnir | norse | sleipnir.com | 1998-04-21 |  |
+| sol | Sól | norse | sól.com | 2025-03-15 | sol.com: registered (1997-05-20) |
+| venus | Venus | roman | venus.com | 1999-02-17 |  |
+| yu | Dà Yǔ | chinese | dà yǔ.com | — | dayu.com: registered (2000-01-21) |

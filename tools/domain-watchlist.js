@@ -4,17 +4,18 @@
  *
  * For every lexicon entry whose canonical Unicode domain is NOT already owned,
  * computes the canonical `.com` form (+ fallback-hierarchy alternates when the
- * lexicon carries variants), punycode, and DNS availability, then writes a
+ * lexicon carries variants), punycode, and REGISTRATION status, then writes a
  * ranked markdown report to .superpowers/domain-watchlist.md.
  *
- * DNS NXDOMAIN is a heuristic for "likely unregistered" — always confirm at a
- * registrar before relying on it. Re-run weekly; rán.com was registered by a
- * speculator on 2026-08-04 while we weren't watching.
+ * Status is authoritative: Verisign RDAP (404 = unregistered, 200 = taken).
+ * Do NOT regress this to a DNS lookup — parked domains like brahmā.com are
+ * registered but resolve to nothing, and a DNS check called them available.
+ * Re-run weekly; rán.com was registered by a speculator on 2026-08-04 while
+ * we weren't watching.
  *
- * Usage: node tools/domain-watchlist.js [--limit N]
+ * Usage: node tools/domain-watchlist.js
  */
 
-const dns = require('node:dns').promises;
 const fs = require('node:fs');
 const path = require('node:path');
 const { domainToASCII } = require('node:url');
@@ -23,7 +24,8 @@ const ROOT = path.resolve(__dirname, '..');
 const { LEXICON } = require(path.join(ROOT, 'type', 'js', 'lexicon.js'));
 const { loadArchetypes } = require(path.join(ROOT, 'scripts', 'flywheel-utils.js'));
 
-const CONCURRENCY = 24;
+const CONCURRENCY = 8;
+const RDAP_DELAY_MS = 120;
 
 function candidateForms(entry) {
   const forms = [];
@@ -43,12 +45,26 @@ function candidateForms(entry) {
 async function check(domain) {
   const puny = domainToASCII(domain);
   if (!puny) return { puny: '', status: 'unregistrable' };
-  try {
-    await dns.lookup(puny);
-    return { puny, status: 'registered' };
-  } catch (e) {
-    if (e.code === 'ENOTFOUND' || e.code === 'ENODATA') return { puny, status: 'available' };
-    return { puny, status: `unknown (${e.code})` };
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      const res = await fetch(`https://rdap.verisign.com/com/v1/domain/${puny}`, {
+        headers: { 'User-Agent': 'PuniCodexWatchlist/1.0 (https://punicodex.com)' },
+      });
+      if (res.status === 404) return { puny, status: 'available' };
+      if (res.status === 200) {
+        const j = await res.json();
+        const reg = (j.events || []).find((e) => e.eventAction === 'registration');
+        return { puny, status: 'registered', since: reg ? reg.eventDate.slice(0, 10) : null };
+      }
+      if (res.status === 429 || res.status >= 500) {
+        await new Promise((r) => setTimeout(r, 1000 * (attempt + 1)));
+        continue;
+      }
+      return { puny, status: `unknown (HTTP ${res.status})` };
+    } catch (e) {
+      if (attempt === 2) return { puny, status: `unknown (${e.message})` };
+      await new Promise((r) => setTimeout(r, 800));
+    }
   }
 }
 
@@ -76,7 +92,7 @@ async function main() {
     });
   }
 
-  console.log(`Checking ${rows.length} lexicon entries without owned domains…`);
+  console.log(`Checking ${rows.length} lexicon entries without owned domains (Verisign RDAP)…`);
   let done = 0;
   const queue = rows.slice();
   async function worker() {
@@ -86,6 +102,8 @@ async function main() {
         const r = await check(f.domain);
         f.puny = r.puny;
         f.status = r.status;
+        f.since = r.since || null;
+        await new Promise((r2) => setTimeout(r2, RDAP_DELAY_MS));
       }
       if (++done % 50 === 0) console.log(`  … ${done}/${rows.length}`);
     }
@@ -104,7 +122,7 @@ async function main() {
   const lines = [];
   lines.push('# Domain Acquisition Watchlist', '');
   lines.push(`Generated: ${new Date().toISOString()} — ${free.length} lexicon entries have an AVAILABLE canonical Unicode domain; ${taken.length} are registered.`);
-  lines.push('Heuristic: DNS NXDOMAIN ⇒ likely unregistered. Confirm at registrar before purchase.', '');
+  lines.push('Status is authoritative (Verisign RDAP). Confirm price/premium status at a registrar before purchase.', '');
   lines.push('## Available canonical domains', '');
   lines.push('| Entry | Unicode | Pantheon | Tier | Domain | Punycode |');
   lines.push('|-------|---------|----------|------|--------|----------|');
@@ -113,14 +131,14 @@ async function main() {
     lines.push(`| ${r.id} | ${r.unicode} | ${r.pantheon} | ${r.tier} | ${f.domain} | ${f.puny} |`);
   }
   lines.push('', '## Registered (canonical form taken)', '');
-  lines.push('| Entry | Unicode | Pantheon | Domain | Fallback availability |');
-  lines.push('|-------|---------|----------|--------|----------------------|');
+  lines.push('| Entry | Unicode | Pantheon | Domain | Registered | Fallback availability |');
+  lines.push('|-------|---------|----------|--------|------------|----------------------|');
   for (const r of taken) {
     const fallbacks = r.forms
       .slice(1)
-      .map((f) => `${f.domain}: ${f.status}`)
+      .map((f) => `${f.domain}: ${f.status}${f.since ? ` (${f.since})` : ''}`)
       .join('; ');
-    lines.push(`| ${r.id} | ${r.unicode} | ${r.pantheon} | ${r.forms[0].domain} | ${fallbacks} |`);
+    lines.push(`| ${r.id} | ${r.unicode} | ${r.pantheon} | ${r.forms[0].domain} | ${r.forms[0].since || '—'} | ${fallbacks} |`);
   }
 
   const out = path.join(ROOT, '.superpowers', 'domain-watchlist.md');
