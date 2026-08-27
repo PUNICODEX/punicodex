@@ -318,8 +318,6 @@ async function run() {
       process.exitCode = 1;
     }
   }
-  const failed =
-    tests.length - (process.exitCode ? tests.length - tests.filter(() => false).length : 0);
   console.log(`\nSponsorship Flow: ${process.exitCode ? 'FAILURES' : 'all passed'}`);
 }
 

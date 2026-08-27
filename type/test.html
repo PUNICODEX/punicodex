@@ -227,9 +227,9 @@
         });
 
         const s4 = section('Pantheon Coverage');
-        test(s4, '22 pantheons represented', () => {
+        test(s4, '25 pantheons represented', () => {
             const pantheons = new Set(LEXICON.map(e => e.pantheon));
-            assertEqual(pantheons.size, 21);
+            assertEqual(pantheons.size, 25);
         });
         test(s4, 'Greek is largest pantheon', () => {
             const counts = {};

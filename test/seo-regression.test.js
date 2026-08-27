@@ -140,11 +140,9 @@ test('base temple related grids rotate (no first-6 bias, no identical grids)', (
   }
   assert.ok(checked > 500, `only ${checked} base-temple grids found`);
   let identicalPairs = 0;
-  let totalPairs = 0;
   for (const perEntry of grids.values()) {
     const keys = [...perEntry.values()];
     const distinct = new Set(keys);
-    totalPairs++;
     if (keys.length > 6 && distinct.size < Math.min(3, keys.length)) identicalPairs++;
   }
   assert.strictEqual(
@@ -208,7 +206,7 @@ test('flagship root vs lore meta descriptions are distinct (strategy swap)', () 
 });
 
 test('flagship creatives/patron H1s carry the deity name', () => {
-  const unicodeOf = (id) => (LEXICON.find((e) => e.id === id) || {}).unicode;
+  const unicodeOf = (id) => LEXICON.find((e) => e.id === id)?.unicode;
   for (const id of ['zeus', 'athena']) {
     for (const tab of ['creatives', 'patron']) {
       const rel = `sites/${id}/${tab}/index.html`;
