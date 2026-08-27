@@ -2480,6 +2480,168 @@ const ORIGINAL_SCRIPTS = {
       reviewStatus: 'canonical',
     },
   },
+  audhumla: {
+    originalScript: 'ᛅᚢᚦᚢᛘᛚᛅ',
+    scriptName: 'Younger Futhark',
+    provenance: {
+      original: 'ᛅᚢᚦᚢᛘᛚᛅ',
+      transliteration: 'auþumla',
+      steps: [
+        'ᛅ (ár) writes /a/, /á/ and /æ/',
+        'ᚢ (úr) writes the rounded back vowels /u, o, ø, ǫ, y/ and /w/',
+        'ᚦ (þurs) writes both þ and ð',
+        'The spelling auþumla is a normalized phonetic reconstruction; both Auðumla and Auðhumla are modern editorial forms of the primeval cow in Gylfaginning',
+        'Younger Futhark does not distinguish voiced/voiceless stops or separate short and long vowels'
+      ],
+      sources: [
+        'Cleasby-Vigfusson',
+        'Poetic Edda',
+        'Prose Edda',
+        'Zoëga'
+      ],
+    },
+  },
+  epimetheus: {
+    originalScript: 'Ἐπιμηθεύς',
+    scriptName: 'Greek',
+    provenance: {
+      original: 'Ἐπιμηθεύς',
+      transliteration: 'Epimētheus',
+      steps: [
+        'Ἐπιμηθεύς is the Greek name of the Titan, brother of Promētheus',
+        'ἐπί- (epi-) means "after" and μῆτις (mētis) means "counsel, thought"',
+        'The name means "afterthought", the counterpart to Promētheus ("forethought")',
+        'The macron on ē preserves the long vowel eta (η)'
+      ],
+      sources: [
+        'Hesiod, Theogony',
+        'Hesiod, Works and Days'
+      ],
+    },
+  },
+  fjorgyn: {
+    originalScript: 'ᚠᛁᚢᚱᚴᚢᚾ',
+    scriptName: 'Younger Futhark',
+    provenance: {
+      original: 'ᚠᛁᚢᚱᚴᚢᚾ',
+      transliteration: 'fiurkun',
+      steps: [
+        'ᚠ (fé) writes both /f/ and /v/',
+        'ᛁ (ís) writes both /i/ and /e/; here it represents the /j/ glide',
+        'ᚢ (úr) writes the rounded back vowels /u, o, ø, ǫ, y/ and /w/',
+        'ᚴ (kaun) writes both /k/ and /g/ (and the ng cluster)',
+        'The spelling fiurkun is a normalized phonetic reconstruction; Younger Futhark does not distinguish voiced/voiceless stops or separate short and long vowels'
+      ],
+      sources: [
+        'Cleasby-Vigfusson',
+        'Poetic Edda',
+        'Prose Edda',
+        'Zoëga'
+      ],
+    },
+  },
+  gna: {
+    originalScript: 'ᚴᚾᛅ',
+    scriptName: 'Younger Futhark',
+    provenance: {
+      original: 'ᚴᚾᛅ',
+      transliteration: 'kna',
+      steps: [
+        'ᚴ (kaun) writes both /k/ and /g/ (and the ng cluster)',
+        'ᚾ (nauðr) writes /n/',
+        'ᛅ (ár) writes /a/, /á/ and /æ/',
+        'Gná is the swift-footed messenger goddess in the Prose Edda',
+        'The spelling kna is a normalized phonetic reconstruction; Younger Futhark does not distinguish voiced/voiceless stops or separate short and long vowels'
+      ],
+      sources: [
+        'Cleasby-Vigfusson',
+        'Poetic Edda',
+        'Prose Edda',
+        'Zoëga'
+      ],
+    },
+  },
+  oneiros: {
+    originalScript: 'Ὄνειρος',
+    scriptName: 'Greek',
+    provenance: {
+      original: 'Ὄνειρος',
+      transliteration: 'Óneiros',
+      steps: [
+        'Ὄνειρος is the Greek word and personification for "dream"',
+        'In Homer dreams appear as plural Οἴνειροι; the singular personification develops in later tradition',
+        'The acute on Ó- marks the stress position in the restored form',
+        'The word underlies English "oneiric" (dream-related)'
+      ],
+      sources: [
+        'Homer, Iliad',
+        'Homer, Odyssey'
+      ],
+    },
+  },
+  thrudr: {
+    originalScript: 'ᚦᚱᚢᚦᚱ',
+    scriptName: 'Younger Futhark',
+    provenance: {
+      original: 'ᚦᚱᚢᚦᚱ',
+      transliteration: 'þruþr',
+      steps: [
+        'ᚦ (þurs) writes both þ and ð',
+        'ᚱ (reið) writes /r/',
+        'ᚢ (úr) writes the rounded back vowels /u, o, ø, ǫ, y/ and /w/',
+        'Þrúðr is one of the Valkyries and a daughter of Thor in the Prose Edda',
+        'The spelling þruþr is a normalized phonetic reconstruction; Younger Futhark does not distinguish voiced/voiceless stops or separate short and long vowels'
+      ],
+      sources: [
+        'Cleasby-Vigfusson',
+        'Poetic Edda',
+        'Prose Edda',
+        'Zoëga'
+      ],
+    },
+  },
+  var: {
+    originalScript: 'ᚢᛅᚱ',
+    scriptName: 'Younger Futhark',
+    provenance: {
+      original: 'ᚢᛅᚱ',
+      transliteration: 'uar',
+      steps: [
+        'ᚢ (úr) writes the rounded back vowels /u, o, ø, ǫ, y/ and /w/; here it writes initial /v/',
+        'ᛅ (ár) writes /a/, /á/ and /æ/; here it writes long /á/',
+        'ᚱ (reið) writes /r/',
+        'Vár is the goddess who hears oaths and is invoked in marriage in the Prose Edda',
+        'The spelling uar is a normalized phonetic reconstruction; Younger Futhark does not distinguish voiced/voiceless stops or separate short and long vowels'
+      ],
+      sources: [
+        'Cleasby-Vigfusson',
+        'Poetic Edda',
+        'Prose Edda',
+        'Zoëga'
+      ],
+    },
+  },
+  vor: {
+    originalScript: 'ᚢᚢᚱ',
+    scriptName: 'Younger Futhark',
+    provenance: {
+      original: 'ᚢᚢᚱ',
+      transliteration: 'uur',
+      steps: [
+        'ᚢ (úr) writes the rounded back vowels /u, o, ø, ǫ, y/ and /w/',
+        'The first ᚢ writes the initial /v/; the second ᚢ writes the vowel ǫ',
+        'ᚱ (reið) writes /r/',
+        'Vǫr is the goddess from whom nothing can be concealed in the Prose Edda',
+        'The spelling uur is a normalized phonetic reconstruction; Younger Futhark does not distinguish voiced/voiceless stops or separate short and long vowels'
+      ],
+      sources: [
+        'Cleasby-Vigfusson',
+        'Poetic Edda',
+        'Prose Edda',
+        'Zoëga'
+      ],
+    },
+  },
 };
 
 // ═════════════════════════════════════════════════════════════════════════════

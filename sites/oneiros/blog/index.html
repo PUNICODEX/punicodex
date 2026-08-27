@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
+<script src="/js/university-collaborators.js?v=3" defer></script>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>From Greek to Unicode:… | Óneiros Blog | PUNICODEX</title>
+    <meta name="description" content="From Greek to Unicode: why Óneiros is more than a domain name.">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
+    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="canonical" href="https://punicodex.com/oneiros/blog/">
+    <meta property="og:title" content="From Greek to Unicode: the journey of Óneiros | Óneiros Blog | PUNICODEX">
+    <meta property="og:description" content="From Greek to Unicode: why Óneiros is more than a domain name.">
+    <meta property="og:url" content="https://punicodex.com/oneiros/blog/">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2026-08-27">
+    <meta property="article:section" content="Blog">
+    <meta property="og:site_name" content="PUNICODEX">
+    <meta property="og:image" content="https://punicodex.com/assets/og/oneiros.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punicodex.com/assets/og/oneiros.jpg">
+    <meta name="twitter:title" content="From Greek to Unicode: the journey of Óneiros | Óneiros Blog | PUNICODEX">
+    <meta name="twitter:description" content="From Greek to Unicode: why Óneiros is more than a domain name.">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "From Greek to Unicode: the journey of Óneiros",
+        "description": "From Greek to Unicode: why Óneiros is more than a domain name.",
+        "author": {
+            "@type": "Organization",
+            "name": "PuniCodex Team"
+        },
+        "datePublished": "2026-08-27",
+        "dateModified": "2026-08-27",
+        "publisher": {
+            "@type": "Organization",
+            "name": "PUNICODEX",
+            "url": "https://punicodex.com"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://punicodex.com/oneiros/blog/"
+        },
+        "articleSection": "Blog",
+        "keywords": ["Óneiros", "oneiros", "greek mythology", "Unicode domain", "original script", "PuniCodex", "IDN", "Greek restoration"],
+        "url": "https://punicodex.com/oneiros/blog/",
+        "image": "https://punicodex.com/assets/og/oneiros.jpg"
+    }
+    </script>
+    
+    <style>
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
+        .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
+        .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
+        .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
+        .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
+        .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
+        .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
+        .blog-meta-sep { opacity: 0.4; }
+        .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
+        .blog-tag { display: inline-flex; align-items: center; padding: 0.35rem 0.8rem; border-radius: 999px; border: 1px solid rgba(212,175,55,0.25); color: var(--primary, #d4af37); font-size: 0.8rem; }
+        .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
+        .blog-cta a { color: var(--primary-bright, #f0d878); }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
+        .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+        .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+        .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+        .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+        .temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+        .temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0C">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://punicodex.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Pantheon",
+      "item": "https://punicodex.com/pantheon/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Óneiros",
+      "item": "https://punicodex.com/oneiros/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Blog",
+      "item": "https://punicodex.com/oneiros/blog/"
+    }
+  ]
+}
+    </script>
+<!-- PUNICODEX-HERALD-BEACON-START -->
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
+<script src="/js/herald-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-HERALD-BEACON-END -->
+<!-- PUNICODEX-COOKIE-CONSENT-START -->
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
+<script src="/js/cookie-consent.js?v=1" defer></script>
+<!-- PUNICODEX-COOKIE-CONSENT-END -->
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punicodex.com/" class="global-brand"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-gold-solid.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="560" height="58"></picture></a>
+            <div class="global-links">
+                <a href="https://punicodex.com/pantheon/">Pantheon</a>
+                <a href="https://punicodex.com/lexicon/">Lexicon</a>
+                <a href="https://punicodex.com/connections/">Connections</a>
+                <a href="https://punicodex.com/type/">Type</a>
+                <a href="https://punicodex.com/search/">Search</a>
+                <a href="https://punicodex.com/tiers/">Tiers</a>
+                <a href="https://punicodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="oneiros-canvas" data-effect="particles" data-primary="#D4AF37" data-secondary="#4169E1" aria-hidden="true"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/oneiros_logolockup.webp" type="image/webp"><img src="../assets/oneiros_logolockup.png" alt="Óneiros" class="nav-logo-img" width="1536" height="1024"></picture>
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="../patterns/index.html" class="nav-link">Patterns</a>
+                <a href="./" class="nav-link active">Blog</a>
+                <a href="../scholars/index.html" class="nav-link">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Visible breadcrumb (Home → Pantheon → temple; the tab crumb lives in the JSON-LD trail) -->
+    <nav class="temple-breadcrumb" aria-label="breadcrumb">
+        <ol class="temple-breadcrumb-list">
+            <li><a href="https://punicodex.com/">Home</a></li>
+            <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
+            <li><a href="https://punicodex.com/oneiros/">Óneiros</a></li>
+        </ol>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="../patterns/index.html" class="nav-link">Patterns</a>
+        <a href="./" class="nav-link active">Blog</a>
+        <a href="../scholars/index.html" class="nav-link">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-eyebrow reveal-up">Óneiros — Blog</p>
+                <p class="hero-title reveal-up">From Greek to Unicode: the journey of Óneiros</p>
+                <p class="hero-subtitle reveal-up">Dreams, Dream-Visions</p>
+                <div class="hero-meta reveal-up">
+                    <span class="meta-badge">Tier 1</span>
+                    <span class="meta-domain">óneiros.com</span>
+                </div>
+            </div>
+            <div class="hero-mascot reveal-scale">
+                <picture><source srcset="../assets/oneiros_mascot.webp" type="image/webp"><img src="../assets/oneiros_mascot.webp" alt="Óneiros — Dreams, Dream-Visions" class="mascot-img" width="1024" height="1536"></picture>
+                <div class="mascot-glow"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article -->
+    <article class="blog-article">
+        <div class="blog-meta reveal-up">
+            <span>By PuniCodex Team</span>
+            <span class="blog-meta-sep">&middot;</span>
+            <time datetime="2026-08-27">2026-08-27</time>
+            <span class="blog-meta-sep">&middot;</span>
+            <span>14 min read</span>
+        </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#etymology-roots">Etymology &amp; Roots</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#epithets-cult-titles">Epithets &amp; Cult Titles</a></li>
+                <li><a href="#the-homeric-hymns">The Homeric Hymns</a></li>
+                <li><a href="#oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#the-domain-name">The Domain Name</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
+        <div class="blog-body reveal-up">
+            <h1>From Greek to Unicode: the journey of Óneiros</h1>
+<p>Long before it was a domain, this name traveled through scripts. <strong>Óneiros</strong> begins in Greek, passes through scholarly transliteration, and ends — for now — inside the punycode machinery of the global DNS. Each stage of that journey preserves some information and loses some, and the craft of restoration is knowing exactly which marks matter. This post follows the name stage by stage: the original script, the reconstructed pronunciation, the mythological record, the material evidence, and finally the Unicode form that carries all of it into the address bar. Think of it as a biography of a name, told through its spelling.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Óneiros</li>
+  <li><strong>ASCII form:</strong> oneiros</li>
+  <li><strong>Meaning:</strong> "Dream"</li>
+  <li><strong>Domain of influence:</strong> Dreams, Dream-Visions</li>
+  <li><strong>Pantheon:</strong> Greek</li>
+  <li><strong>Classification:</strong> Tier 1</li>
+  <li><strong>Original script:</strong> Ὄνειρος (Greek)</li>
+  <li><strong>Live domain:</strong> óneiros.com</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Óneiros</strong> (<em>oneiros</em>) — Dream, Dream-Visions · the Personified Dream — belongs to the Greek tradition, where he is catalogued under the domain "Dreams, Dream-Visions". The name means "Dream".</p>
+<p>In Greek cosmology, dreams are not merely mental events but messengers who travel from the gods to sleeping mortals. Óneiros is the singular personification of the dream itself, named in Homer and Hesiod and invoked throughout Greek literature whenever a vision arrives by night. He is one of the many children of Night (<a href="/nyx/">Nýx</a>) and the brother of Sleep (<a href="/hypnos/">Hýpnos</a>), Death, and a host of shadowy powers. The most famous episode is his appearance to <a href="/penelope/" class="crosslink" data-crosslink="penelope">Penelope</a> in the Odyssey, falsely reporting that <a href="/odysseus/" class="crosslink" data-crosslink="odysseus">Odysseus</a> has returned, and his mission to <a href="/agamemnon/" class="crosslink" data-crosslink="agamemnon">Agamemnon</a> in the Iliad, sent by <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a> to deceive the king with a lying dream.</p>
+<p>PuniCodex restores the name as <strong>Óneiros</strong> and serves its temple at <a href="https://punicodex.com/oneiros/">óneiros.com</a>. The restoration preserves the acute accent on the initial omicron that the ASCII form loses, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>oneiros</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Greek as <strong>Ὄνειρος</strong>. Etymologically it means "Dream". The word is common to Greek from the earliest epic onward and has no secure Indo-European etymology accepted by all scholars; Beekes treats it as likely Pre-Greek, like many Greek terms for mental and nocturnal phenomena.</p>
+<p>Cognate forms across related languages:</p>
+<ul>
+  <li><strong>ὄναρ</strong> (<em>onar</em>) — Greek 'dream' in the more prosaic, non-personified sense</li>
+  <li><strong>Somnus</strong> — the Roman personification of sleep, not identical but functionally parallel in Latin poetry</li>
+</ul>
+<p>The ASCII form <em>oneiros</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Óneiros</strong> recovers the acute accent of the original directly in the address bar. The original carries stress, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>o</strong> → <strong>Ó</strong> — Omicron with acute, capitalized</li>
+  <li><strong>n</strong> → <strong>n</strong> — Nu</li>
+  <li><strong>e</strong> → <strong>e</strong> — Epsilon</li>
+  <li><strong>i</strong> → <strong>i</strong> — Iota</li>
+  <li><strong>r</strong> → <strong>r</strong> — Rho</li>
+  <li><strong>o</strong> → <strong>o</strong> — Omicron</li>
+  <li><strong>s</strong> → <strong>s</strong> — Sigma</li>
+</ul>
+<p>The project holds the domain <strong>óneiros.com</strong> as the canonical home of this name.</p>
+<h2 id="etymology-roots">Etymology &amp; Roots</h2>
+<p>The recorded derivation reads: Greek Ὄνειρος, personification of dreams; attested in Homer and Hesiod as a daimon of dreams.</p>
+<p>The reconstructed proto-form is <em>*óneiros</em> (proto-greek), glossed as "dream".</p>
+<p>The reconstruction is classed as attested.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Greek as <strong>Ὄνειρος</strong> — Greek alphabet (Classical / Attic), attested Ancient Greek, c. 8th century BCE – present, in Greece and the Greek-speaking Mediterranean. The script is written left-to-right.</p>
+<p>The scholarly transliteration is <em>Óneiros</em> (Greek alphabet with polytonic accents), giving the normalized reading /ó.nei.ros/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The Greek form Ὄνειρος is written in the Classical Greek alphabet.</li>
+  <li>The initial omicron carries an acute accent, marking the stressed syllable.</li>
+  <li>The diphthong ει represents the long [eː] sound in Attic.</li>
+  <li>The Unicode restoration Óneiros encodes the scholarly spelling as a registrable domain name, preserving the acute accent that the ASCII form flattens.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/ó.nei.ros/</strong> — Homeric / Attic Greek Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Ó-</strong> — Initial omicron with acute pitch [ó], the stressed peak of the name</li>
+  <li><strong>-nei-</strong> — Diphthong [ei], a rising combination of epsilon and iota</li>
+  <li><strong>-ros</strong> — Short omicron [o] plus alveolar trill or tap [r] and voiceless fricative [s]</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: 'OH-neh-ros' — the first syllable is pitched higher, as the acute accent indicates.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Greek</strong> — Ὄνειρος, the personified dream; ὄναρ, the common noun</li>
+  <li><strong>Latin</strong> — no direct personification; poets use <em>somnium</em> for the dream and <em>Somnus</em> for Sleep</li>
+</ul>
+<p>Óneiros is Tier 1 because the Greek Ὄνειρος carries the acute stress that ASCII loses. The restoration keeps that pitch visible in the domain name.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Óneiros appears in Greek literature chiefly as a type: the dream-figure sent by a god to shape mortal action. His mythology is a set of famous episodes rather than a continuous biography.</p>
+<h3 id="the-lying-dream-of-agamemnon-iliad-2">The Lying Dream of Agamemnon (Iliad 2)</h3>
+<p>At the opening of Iliad 2, Zeus resolves to honor Achilles by deceiving the Greeks. He sends a dream to Agamemnon in the likeness of <a href="/nestor/" class="crosslink" data-crosslink="nestor">Nestor</a>, promising that Troy will fall if the army attacks at once. The dream speaks with Nestor's voice, and Agamemnon wakes convinced; the result is the disastrous assembly and the catalog of ships. The episode establishes that a dream from Zeus can be a weapon of misdirection as much as a source of truth.</p>
+<h3 id="the-dream-to-penelope-odyssey-19">The Dream to Penelope (Odyssey 19)</h3>
+<p>While Odysseus is still disguised in Ithaca, a dream comes to Penelope reporting that her husband is already home. She recounts the two gates of sleep — of horn and of ivory — and reflects that her dream passed through the deceptive ivory gate. The passage is one of the most discussed in the Odyssey, because Penelope seems both to believe and to doubt the vision, and because it raises the question of whether the dream is Óneiros or a more anonymous divine sending.</p>
+<h3 id="the-children-of-night-hesiod-theogony">The Children of Night (Hesiod, Theogony)</h3>
+<p>Hesiod places Óneiros among the offspring of <a href="/nyx/" class="crosslink" data-crosslink="nyx">Nýx</a>, born without a father: Moros, Ker, <a href="/thanatos/" class="crosslink" data-crosslink="thanatos">Thanatos</a>, <a href="/hypnos/" class="crosslink" data-crosslink="hypnos">Hýpnos</a>, Óneiros, and the tribe of dreams that followed. This genealogy makes the dream a force of necessity and shadow, kin to death and sleep rather than to the bright Olympians. The Latin poet Statius and later mythographers keep the family intact.</p>
+<h3 id="later-personification">Later Personification</h3>
+<p>In post-classical poetry and art, Óneiros is sometimes individualized as a youthful winged figure hovering over the sleeper. Roman sarcophagi and later Neoclassical painting use the type to represent dreams, sleep, and the approach of death.</p>
+<h3 id="the-gates-of-horn-and-ivory-homer-odyssey-19">The Gates of Horn and Ivory (Homer, Odyssey 19)</h3>
+<p>Penelope, troubled by dreams, asks a dream-visitor about their truth. The dream explains that there are two gates of dreams: one of horn, through which true dreams pass, and one of ivory, through which deceptive ones come. The image gives Greek literature one of its most enduring metaphors for the ambiguity of sleep.</p>
+<h3 id="dream-messenger-of-zeus-homer-iliad-2">Dream Messenger of Zeús (Homer, Iliad 2)</h3>
+<p>At the opening of the Iliad's second book, Zeús sends a dream to Agamemnon to lure him into battle. The dream takes the form of Nestor and stands at the king's head, speaking with a voice like the old counselor's. The scene establishes the Oneiroi as divine messengers who can wear the shape of the living.</p>
+<h3 id="the-cave-of-sleep-ovid-metamorphoses">The Cave of Sleep (Ovid, Metamorphoses)</h3>
+<p>Ovid gives the Oneiroi a Latin home in the cave of Somnus, where a thousand dreams lie waiting to be sent. Among them is Morpheus, the shape-shifter, who becomes the most famous of the dream-figures in later Western art. The Roman tradition separates and renames the dream-powers, but the Greek Óneiros remains their source.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>Óneiros is identified less by fixed attributes than by the imagery of night travel and shadowy speech:</p>
+<ul>
+  <li><strong>The winged dream</strong> — In Homer, dreams move swiftly through the air to reach the sleeper</li>
+  <li><strong>The gates of horn and ivory</strong> — In Odyssey 19, Penelope distinguishes true dreams (horn) from false (ivory); Óneiros passes through both</li>
+  <li><strong>Night's mantle</strong> — as a child of Nýx, he is cloaked in darkness</li>
+  <li><strong>The sleeping figure</strong> — the mortal body that receives the dream</li>
+  <li><strong>The dim speech of visions</strong> — dreams in Greek poetry speak with an indistinct, compelling voice</li>
+</ul>
+<p>No securely identified ancient cult statue of Óneiros is known. In vase painting, dreams are usually shown as winged figures or as small winged heads hovering above a sleeper; the inscriptions, when present, more often name Sleep (Hýpnos) or Death (Thánatos) than Óneiros specifically. Roman art and Neoclassical painting continued the winged dream-type, sometimes giving it a torch (to light the dream) or poppies (to induce sleep). The figure became a favorite allegory of the Romantic period, in which dreams carried the soul toward love, death, or the sublime.</p>
+<h2 id="epithets-cult-titles">Epithets &amp; Cult Titles</h2>
+<p>Óneiros is not a cult god and therefore lacks cult epithets. Ancient authors refer to him by descriptive phrases and by the common noun for dream:</p>
+<ul>
+  <li><strong>Ὄνειρος</strong> — the personified Dream itself</li>
+  <li><strong>Νυκτὸς παῖς</strong> — 'child of Night', his Hesiodic genealogy</li>
+  <li><strong>Ἀγγελος θεῶν</strong> — 'messenger of the gods', his function in epic</li>
+  <li><strong>Ὀνείρατα</strong> — the plural 'dreams', used when many visions attend Sleep</li>
+</ul>
+<h2 id="the-homeric-hymns">The Homeric Hymns</h2>
+<p>No Homeric Hymn is addressed to Óneiros. He appears, however, in the background of the two major Homeric epics as the divine messenger of dreams, and the Hymn to Sleep (<em>Hymn Hypnō</em>) — a brief poem of the collection — invokes the brother with whom Óneiros shares the realm of night. The absence of a major hymn is consistent with his status: a personification of experience rather than a recipient of cult.</p>
+<h2 id="oracle-sites-sanctuaries">Oracle Sites &amp; Sanctuaries</h2>
+<p>Óneiros had no oracle or sanctuary in the Greek world. Dreams, however, could be received as oracular messages in many contexts — at the great shrines of <a href="/apollon/">Apóllōn</a>, <a href="/asklepios/">Asklēpiós</a>, and <a href="/hera/">Hḗra</a>, where incubation sleep produced divine visions. The dream itself, not the personification, functioned as the medium. Óneiros is therefore the name of the messenger rather than the place; his oracles are the countless bedrooms and temple dormitories where Greeks slept in search of guidance.</p>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>No sanctuary or cult site of Óneiros is known. His attestation is entirely literary, beginning with the Homeric poems and continuing through the Hesiodic corpus, lyric poetry, drama, and later mythography. The relevant manuscripts are the medieval codices of Homer and Hesiod and the papyri that preserve early Greek epic. The visual record is sparse and indirect: Roman sarcophagi and funerary art sometimes show a winged figure approaching the sleeper, which scholars identify as a personification of Sleep or a dream rather than a specifically labeled Óneiros.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p><strong>Óneiros</strong> belongs to the Greek tradition as the personification of the dream — the nocturnal messenger who carries divine speech, deception, or prophecy into sleep. His domain is the liminal space between waking and sleeping, between mortal perception and supernatural communication.</p>
+<h3 id="the-dream-as-messenger">The Dream as Messenger</h3>
+<p>In Homer, dreams arrive with explicit instructions from gods and are received as personified visitors.</p>
+<h3 id="deception-and-false-vision">Deception and False Vision</h3>
+<p>Zeus sends a lying dream to Agamemnon in Iliad 2, reminding the Greeks that divine visions are not always truthful.</p>
+<h3 id="kinship-with-sleep-and-death">Kinship with Sleep and Death</h3>
+<p>As a child of Night, Óneiros belongs to the family of shadows that includes Hýpnos, Thanatos, and the Keres.</p>
+<h3 id="divination-and-interpretation">Divination and Interpretation</h3>
+<p>Later Greek and Roman practice developed oneirocriticism, the interpretation of dreams, whose manuals treat Óneiros as both a power and a category of experience.</p>
+<h3 id="son-of-night">Son of Night</h3>
+<p>Hesiod makes Óneiros one of the children of Nýx, born without a father in the dark before the gods.</p>
+<h3 id="messenger-through-sleep">Messenger Through Sleep</h3>
+<p>In the Odyssey, a dream takes the form of a woman to stand beside Penelope's bed and speak to her.</p>
+<h3 id="the-gate-of-dreams">The Gate of Dreams</h3>
+<p>In the Odyssey, dreams pass through gates of horn (true) and ivory (false), an image of sleep's ambiguity.</p>
+<h3 id="false-and-true-dreams">False and True Dreams</h3>
+<p>Some dreams are winged with truth, others with deception; Óneiros carries both kinds.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>The Romans had no exact counterpart to Óneiros; they personified Sleep as Somnus and used <em>somnium</em> for the dream, but the individual dream-messenger remained a Greek conception. In later European literature, Óneiros merges with the medieval figure of the dream-vision and the allegorical Dream. The gates of horn and ivory became a standard topos — used by Virgil, Dante, Chaucer, and Spenser — for distinguishing true from false revelation.</p>
+<p>Kindred figures in the PuniCodex cross-tradition index include <a href="/hypnos/">Hýpnos</a> (sleep), <a href="/nyx/">Nýx</a> (night), and <a href="/thanatos/">Thánatos</a> (death), linked through the nocturnal messengers of the Greek tradition.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>The Greek concept of Óneiros left a long afterlife in Western literature and psychology. The Homeric dream-episodes became models for literary dream-visions from antiquity through the Middle Ages and Renaissance, and the gates of horn and ivory remain a standard metaphor for the uncertain truth of dreams. In psychoanalysis, the dream as a bearer of disguised meaning echoes the Greek sense that dreams require interpretation, even if Freud's hermeneutic is wholly different from Artemidorus's. The English word 'oneiric' descends directly from the Greek, preserving the name in the vocabulary of dreamlike art and experience. Modern fantasy and games often use Oneiros as a name for the realm of dreams, drawing on the ancient personification without always knowing its source.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Óneiros given in this edition rests on the witnesses and reference works listed below. Homer and Hesiod supply the earliest and most authoritative attestations; later authors expand the personification and interpretation of dreams.</p>
+<ul>
+  <li> Homer, Iliad 2.1–47. <a href="https://www.perseus.tufts.edu/hopper/text?doc=Hom.+Il.+2">Full text</a></li>
+  <li> Homer, Odyssey 19.535–553. <a href="https://www.perseus.tufts.edu/hopper/text?doc=Hom.+Od.+19">Full text</a></li>
+  <li> Hesiod, Theogony 211–212. <a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Full text</a></li>
+  <li> Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Full text</a></li>
+  <li> Beekes, Etymological Dictionary of Greek, 2 vols., Brill, 2010.</li>
+  <li> Allen, Vox Graeca: The Pronunciation of Classical Greek, 3rd ed., Cambridge, 1987.</li>
+  <li> Artemidorus, Oneirocritica.</li>
+  <li> Lexicon Iconographicum Mythologiae Classicae (LIMC), s.v. Oneiros / Somnia.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Óneiros is the messenger who comes when the doors of perception are closed. He reminds us that the night is not empty: it is populated by voices from the gods, from the dead, and from the deeper layers of the self. In an age that treats dreams as mere brain noise, the Greek personification asks us to listen again — to recognize that some truths can only be spoken in sleep. The restoration of his name in Unicode is a small act of recognition for the ancient conviction that the dream is a visitor, not an accident.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Óneiros is classified as <strong>Tier 1</strong>: the original carries both stress and length, and only one valid Unicode restoration exists. The ASCII fallback <em>oneiros</em> still resolves everywhere, but it is the restored form that carries the name's full information. Across the 7 characters of the name, the restoration adjusts 1: 1 mark of stress (Ó). That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="the-domain-name">The Domain Name</h2>
+<p>The restored name is live as a working domain: <strong>óneiros.com</strong>, which the DNS carries in punycode form as xn--neiros-9wa.com — an ASCII-compatible encoding that lets a non-ASCII name travel the global network without breaking older infrastructure. The visitor sees Óneiros; the machines see the encoding. That duality is the engineering compromise on which the entire restoration rests, and it is why a name written the way its own tradition wrote it in Greek can now be typed into any browser on earth.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Every stage of the journey from Greek to Unicode was an act of care: the scribe who first wrote the name, the lexicographer who glossed it, the engineer who taught the DNS to carry it. The PuniCodex restoration is the latest stage, not the last word — the Scholarly Edition is revised as the evidence improves. What does not change is the principle: a name deserves to be written the way its own tradition wrote it. <strong>Óneiros</strong> in the address bar is that principle, made routable.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PuniCodex blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
+<ul>
+  <li><a href="/sites/aegeus/">Aigeús</a></li>
+  <li><a href="/sites/aetes/">Aiḗtēs</a></li>
+  <li><a href="/sites/aineias/">Aineías</a></li>
+</ul>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
+<ul>
+  <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Hom.+Il.+2">Homer, Iliad 2.1–47 (the Dream sent to Agamemnon).</a></li>
+  <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Hom.+Od.+19">Homer, Odyssey 19.535–553 (the Dream to Penelope).</a></li>
+  <li><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129">Hesiod, Theogony 211–212 (children of Night).</a></li>
+  <li><a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843.</a></li>
+  <li>Beekes, Etymological Dictionary of Greek, 2 vols., Brill, 2010.</li>
+  <li>Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843.</li>
+  <li>Allen, Vox Graeca: The Pronunciation of Classical Greek, 3rd ed., Cambridge, 1987.</li>
+  <li>Homer, Iliad 2.1–47.</li>
+  <li>Lexicon authorities for this entry: Homer, Hesiod, LSJ.</li>
+</ul>
+        </div>
+        <div class="blog-tags reveal-up" aria-label="Tags">
+            <span class="blog-tag">greek</span><span class="blog-tag">Tier 1</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>
+        </div>
+        <aside class="blog-cta reveal-up">
+            <h2 class="blog-cta-title">Go deeper</h2>
+            <p>The Scholarly Edition for Óneiros collects the sources, pronunciation, and revision history behind this restoration. <a href="../scholars/">Read the Scholarly Edition</a>.</p>
+        </aside>
+        <aside class="blog-series-nav reveal-up">
+            <h2 class="blog-cta-title">The Restoration Files</h2>
+            <p>A second dispatch from this temple, No. 275 in the series: <a href="./restoration/">How Óneiros was rebuilt, mark by mark</a> — the restoration, the temple, and the world it opens.</p>
+        </aside>
+<aside class="blog-series-nav reveal-up">
+            <h2 class="blog-cta-title">The Resonance Files</h2>
+            <p>The third dispatch, where the myths meet the markets: <a href="./resonance/">The appointments Óneiros made — and who is keeping them</a> — the archetype at work in real industries.</p>
+        </aside>
+<aside class="blog-series-nav reveal-up">
+            <h2 class="blog-cta-title">The Canonical Register</h2>
+            <p>The authoritative reference for this name: <a href="./canonical/">The register rules: Óneiros</a> — the one true spelling, and every form that fails it.</p>
+        </aside>
+    </article>
+
+    
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="https://punicodex.com/" class="footer-logo">PUNICODEX</a>
+                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-block">
+                        <span class="footer-label">Owned Domains</span>
+                        <span class="footer-value">óneiros.com</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Classification</span>
+                        <span class="footer-value">Tier 1</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Original Script</span>
+                        <span class="footer-value">Ὄνειρος</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-seal">
+                <picture><source srcset="../assets/oneiros_logomark.webp" type="image/webp"><img src="../assets/oneiros_logomark.png" alt="Óneiros logomark" class="footer-logomark"></picture>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/px-core.js?v=perf21"></script>
+    <script src="/js/temple-base.js?v=perf20"></script>
+    <script src="../script.js?v=perf20"></script>
+    <script src="/js/newsletter.js?v=1" defer></script>
+</body>
+</html>

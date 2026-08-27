@@ -478,7 +478,7 @@
                     <tbody>
                         ${rows.map(t => `
                             <tr>
-                                <td><a href="/sites/${encodeURIComponent(t.templeId)}/">${escapeHtml(t.templeId)}</a></td>
+                                <td><a href="/${encodeURIComponent(t.templeId)}/">${escapeHtml(t.templeId)}</a></td>
                                 <td class="num">${t.human.toLocaleString()}</td>
                                 <td class="num">${t.bot.toLocaleString()}</td>
                                 <td class="num">${t.uniques.toLocaleString()}</td>

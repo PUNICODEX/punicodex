@@ -476,7 +476,7 @@ const EVERYDAY_WORDS = [
     entry: 'rhea',
     gloss: 'the South American ostrich',
     story:
-      'The great flightless bird was named for Rhéa, the Titaness mother of Zeus — mother of the gods lending her name to the mother of all pampas nests.',
+      'The great flightless bird was named for Rhéā, the Titaness mother of Zeus — mother of the gods lending her name to the mother of all pampas nests.',
   },
   {
     word: 'phoebe',

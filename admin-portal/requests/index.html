@@ -70,7 +70,7 @@
             var t = item.target;
             if (!t) return '<span class="cell-sub">target missing</span>';
             if (item.targetKind === 'booking') {
-                var siteHref = t.site_slug ? '/sites/' + encodeURIComponent(t.site_slug) + '/' : null;
+                var siteHref = t.site_slug ? '/' + encodeURIComponent(t.site_slug) + '/' : null;
                 return (
                     '<div class="cell-title">' + Portal.escapeHtml(t.slot_name || ('Booking #' + t.id)) + '</div>' +
                     '<div class="cell-sub">' +
@@ -78,7 +78,7 @@
                     ' · ' + Portal.escapeHtml(t.status || '') + '</div>'
                 );
             }
-            var templeHref = t.temple_id ? '/sites/' + encodeURIComponent(t.temple_id) + '/' : null;
+            var templeHref = t.temple_id ? '/' + encodeURIComponent(t.temple_id) + '/' : null;
             return (
                 '<div class="cell-title">' + Portal.escapeHtml(t.display_name || ('Patron #' + t.id)) + '</div>' +
                 '<div class="cell-sub">' +

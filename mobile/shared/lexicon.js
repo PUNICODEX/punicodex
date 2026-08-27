@@ -1686,8 +1686,9 @@ const LEXICON = [
   },
   {
     "id": "epimetheus",
+    hasAdSite: true,
     "ascii": "epimetheus",
-    "unicode": "Epimētheus",
+    "unicode": "Epimētheús",
     "greek": "Ἐπιμηθεύς",
     "pantheon": "greek",
     "tier": "1",
@@ -1750,9 +1751,9 @@ const LEXICON = [
       },
       {
         "char": "u",
-        "to": "u",
-        "type": "same",
-        "note": "Upsilon"
+        "to": "ú",
+        "type": "stress",
+        "note": "Upsilon with acute: stress falls on final syllable"
       },
       {
         "char": "s",
@@ -2665,7 +2666,7 @@ const LEXICON = [
     "id": "rhea",
     "hasAdSite": true,
     "ascii": "rhea",
-    "unicode": "Rhéa",
+    "unicode": "Rhéā",
     "greek": "Ῥέα",
     "pantheon": "greek",
     "tier": "1",
@@ -2698,9 +2699,9 @@ const LEXICON = [
       },
       {
         "char": "a",
-        "to": "a",
-        "type": "same",
-        "note": "Short final alpha"
+        "to": "ā",
+        "type": "length",
+        "note": "Long final alpha (Ῥέᾱ)"
       }
     ]
   },
@@ -5745,7 +5746,7 @@ const LEXICON = [
     "id": "thoth",
     "hasAdSite": true,
     "ascii": "thoth",
-    "unicode": "Ḏḥwty",
+    "unicode": "Ḏḥwtj",
     "greek": "—",
     "pantheon": "egyptian",
     "tier": "1",
@@ -5783,9 +5784,9 @@ const LEXICON = [
       },
       {
         "char": "h",
-        "to": "y",
+        "to": "j",
         "type": "special",
-        "note": "Y: palatal approximant"
+        "note": "J: palatal approximant (Egyptological ḏḥwtj)"
       }
     ],
     "variants": [
@@ -17556,7 +17557,7 @@ const LEXICON = [
       {
         "char": "o",
         "to": "ṓ",
-        "type": "stress",
+        "type": "dual",
         "note": "Long omega with acute (Κλειώ)"
       }
     ],
@@ -17882,7 +17883,7 @@ const LEXICON = [
       {
         "char": "o",
         "to": "ṓ",
-        "type": "stress",
+        "type": "dual",
         "note": "Long omega with acute (Ἐρατώ)"
       }
     ]
@@ -34567,7 +34568,7 @@ const LEXICON = [
   {
     "id": "change",
     "ascii": "change",
-    "unicode": "Cháng'é",
+    "unicode": "Chángé",
     "greek": "嫦娥",
     "pantheon": "chinese",
     "tier": "1",
@@ -34605,9 +34606,9 @@ const LEXICON = [
       },
       {
         "char": "g",
-        "to": "g'",
-        "type": "special",
-        "note": "G + apostrophe: pinyin syllable separator"
+        "to": "g",
+        "type": "same",
+        "note": "Same"
       },
       {
         "char": "e",
@@ -36738,7 +36739,7 @@ const LEXICON = [
       {
         "char": "e",
         "to": "ḗ",
-        "type": "stress",
+        "type": "dual",
         "note": "Long eta with acute (Μήδεια)"
       },
       {
@@ -36792,7 +36793,7 @@ const LEXICON = [
       {
         "char": "e",
         "to": "ḗ",
-        "type": "stress",
+        "type": "dual",
         "note": "Long eta with acute"
       },
       {
@@ -38612,7 +38613,7 @@ const LEXICON = [
       {
         "char": "o",
         "to": "ó",
-        "type": "length",
+        "type": "stress",
         "note": "Long ó (ON ó = /oː/)"
       },
       {
@@ -48479,7 +48480,7 @@ const LEXICON = [
       {
         "char": "o",
         "to": "ṓ",
-        "type": "stress",
+        "type": "dual",
         "note": "Long omega with acute"
       }
     ]
@@ -57185,7 +57186,7 @@ const LEXICON = [
       {
         "char": "e",
         "to": "ḗ",
-        "type": "stress",
+        "type": "dual",
         "note": "Long eta with acute (Κλυταιμνήστρα)"
       },
       {
@@ -58944,7 +58945,7 @@ const LEXICON = [
       {
         "char": "o",
         "to": "ǒ",
-        "type": "stress",
+        "type": "tone",
         "note": "Caron tone mark"
       },
       {
@@ -58968,7 +58969,7 @@ const LEXICON = [
       {
         "char": "i",
         "to": "ǐ",
-        "type": "stress",
+        "type": "tone",
         "note": "Caron tone mark"
       }
     ],
@@ -59459,6 +59460,407 @@ const LEXICON = [
       "certainty": "attested"
     },
     "hasAdSite": true
+  },
+  {
+  "id": "audhumla",
+  "ascii": "audhumla",
+  "unicode": "Auðhumla",
+  "greek": "—",
+  "pantheon": "norse",
+  "tier": "1",
+  "tierLabel": "Tier 1",
+  "domain": "Primeval Cow, Nourisher of Creation",
+  "meaning": "Wealth-humla (primeval cow)",
+  "sources": [
+    "Prose Edda",
+    "Cleasby-Vigfusson",
+    "Zoëga"
+  ],
+  "breakdown": [
+    {
+      "char": "a",
+      "to": "A",
+      "type": "same",
+      "note": "Same, capitalized"
+    },
+    {
+      "char": "u",
+      "to": "u",
+      "type": "same",
+      "note": "Same"
+    },
+    {
+      "char": "d",
+      "to": "ð",
+      "type": "special",
+      "note": "Eth: voiced dental fricative"
+    },
+    {
+      "char": "h",
+      "to": "h",
+      "type": "same",
+      "note": "Same"
+    },
+    {
+      "char": "u",
+      "to": "u",
+      "type": "same",
+      "note": "Same"
+    },
+    {
+      "char": "m",
+      "to": "m",
+      "type": "same",
+      "note": "Same"
+    },
+    {
+      "char": "l",
+      "to": "l",
+      "type": "same",
+      "note": "Same"
+    },
+    {
+      "char": "a",
+      "to": "a",
+      "type": "same",
+      "note": "Same"
+    }
+  ],
+  "etymology": {
+    "protoForm": "",
+    "protoLanguage": "old-norse",
+    "protoGloss": "primeval cow",
+    "derivation": "Old Norse Auðhumla, the primeval cow that licked the salt blocks and revealed Búri, ancestor of the gods.",
+    "certainty": "attested"
+  },
+  "hasAdSite": true
+},
+  {
+  "id": "fjorgyn",
+  "ascii": "fjorgyn",
+  "unicode": "Fjǫrgyn",
+  "greek": "—",
+  "pantheon": "norse",
+  "tier": "1",
+  "tierLabel": "Tier 1",
+  "domain": "Earth, Mother of Thor",
+  "meaning": "Earth (Fjǫrgyn)",
+  "sources": [
+    "Poetic Edda",
+    "Prose Edda",
+    "Cleasby-Vigfusson"
+  ],
+  "breakdown": [
+    {
+      "char": "f",
+      "to": "F",
+      "type": "same",
+      "note": "Same, capitalized"
+    },
+    {
+      "char": "j",
+      "to": "j",
+      "type": "same",
+      "note": "Same"
+    },
+    {
+      "char": "o",
+      "to": "ǫ",
+      "type": "special",
+      "note": "O with ogonek: nasalized vowel"
+    },
+    {
+      "char": "r",
+      "to": "r",
+      "type": "same",
+      "note": "Same"
+    },
+    {
+      "char": "g",
+      "to": "g",
+      "type": "same",
+      "note": "Same"
+    },
+    {
+      "char": "y",
+      "to": "y",
+      "type": "same",
+      "note": "Same"
+    },
+    {
+      "char": "n",
+      "to": "n",
+      "type": "same",
+      "note": "Same"
+    }
+  ],
+  "etymology": {
+    "protoForm": "*fergunja",
+    "protoLanguage": "proto-germanic",
+    "protoGloss": "mountain, wood, earth",
+    "derivation": "Old Norse Fjǫrgyn, byname of Jǫrð and mother of Thor; related to Proto-Germanic *fergunja \"mountain, woodland\".",
+    "certainty": "attested"
+  },
+  "hasAdSite": true
+},
+  {
+  "id": "gna",
+  "ascii": "gna",
+  "unicode": "Gná",
+  "greek": "—",
+  "pantheon": "norse",
+  "tier": "1",
+  "tierLabel": "Tier 1",
+  "domain": "Messenger of Frigg",
+  "meaning": "To project, to gaze",
+  "sources": [
+    "Prose Edda",
+    "Cleasby-Vigfusson"
+  ],
+  "breakdown": [
+    {
+      "char": "g",
+      "to": "G",
+      "type": "same",
+      "note": "Same, capitalized"
+    },
+    {
+      "char": "n",
+      "to": "n",
+      "type": "same",
+      "note": "Same"
+    },
+    {
+      "char": "a",
+      "to": "á",
+      "type": "stress",
+      "note": "Acute on a"
+    }
+  ],
+  "etymology": {
+    "protoForm": "",
+    "protoLanguage": "old-norse",
+    "protoGloss": "projection, gaze",
+    "derivation": "Old Norse Gná, one of Frigg's handmaidens, whose name may relate to \"to project\" or \"to gaze afar\".",
+    "certainty": "uncertain"
+  },
+  "hasAdSite": true
+},
+  {
+  "id": "thrudr",
+  "ascii": "thrudr",
+  "unicode": "Þrúðr",
+  "greek": "—",
+  "pantheon": "norse",
+  "tier": "1",
+  "tierLabel": "Tier 1",
+  "domain": "Strength, Daughter of Thor",
+  "meaning": "Strength, power",
+  "sources": [
+    "Poetic Edda",
+    "Prose Edda",
+    "Cleasby-Vigfusson"
+  ],
+  "breakdown": [
+    {
+      "char": "t",
+      "to": "Þ",
+      "type": "special",
+      "note": "Thorn: voiceless dental fricative"
+    },
+    {
+      "char": "h",
+      "to": "",
+      "type": "drop",
+      "note": "Dropped: merged with t into thorn"
+    },
+    {
+      "char": "r",
+      "to": "r",
+      "type": "same",
+      "note": "Same"
+    },
+    {
+      "char": "u",
+      "to": "ú",
+      "type": "stress",
+      "note": "Acute on u"
+    },
+    {
+      "char": "d",
+      "to": "ð",
+      "type": "special",
+      "note": "Eth: voiced dental fricative"
+    },
+    {
+      "char": "r",
+      "to": "r",
+      "type": "same",
+      "note": "Same"
+    }
+  ],
+  "etymology": {
+    "protoForm": "*þrūþiz",
+    "protoLanguage": "proto-germanic",
+    "protoGloss": "strength",
+    "derivation": "Old Norse Þrúðr, daughter of Thor and Sif, whose name means \"strength, power\"; cognate with Old English þrýð.",
+    "certainty": "attested"
+  },
+  "hasAdSite": true
+},
+  {
+  "id": "vor",
+  "ascii": "vor",
+  "unicode": "Vǫr",
+  "greek": "—",
+  "pantheon": "norse",
+  "tier": "1",
+  "tierLabel": "Tier 1",
+  "domain": "Wisdom, Oaths, Knowledge",
+  "meaning": "The careful one, oath-goddess",
+  "sources": [
+    "Prose Edda",
+    "Cleasby-Vigfusson"
+  ],
+  "breakdown": [
+    {
+      "char": "v",
+      "to": "V",
+      "type": "same",
+      "note": "Same, capitalized"
+    },
+    {
+      "char": "o",
+      "to": "ǫ",
+      "type": "special",
+      "note": "O with ogonek: nasalized vowel"
+    },
+    {
+      "char": "r",
+      "to": "r",
+      "type": "same",
+      "note": "Same"
+    }
+  ],
+  "etymology": {
+    "protoForm": "",
+    "protoLanguage": "old-norse",
+    "protoGloss": "oath, pledge",
+    "derivation": "Old Norse Vǫr, goddess associated with wisdom and oaths; her name is related to vörðr \"pledge, vow\".",
+    "certainty": "uncertain"
+  },
+  "hasAdSite": true
+},
+  {
+  "id": "var",
+  "ascii": "var",
+  "unicode": "Vár",
+  "greek": "—",
+  "pantheon": "norse",
+  "tier": "1",
+  "tierLabel": "Tier 1",
+  "domain": "Oaths, Marriage Agreements",
+  "meaning": "Agreement, vow",
+  "sources": [
+    "Prose Edda",
+    "Cleasby-Vigfusson"
+  ],
+  "breakdown": [
+    {
+      "char": "v",
+      "to": "V",
+      "type": "same",
+      "note": "Same, capitalized"
+    },
+    {
+      "char": "a",
+      "to": "á",
+      "type": "stress",
+      "note": "Acute on a"
+    },
+    {
+      "char": "r",
+      "to": "r",
+      "type": "same",
+      "note": "Same"
+    }
+  ],
+  "etymology": {
+    "protoForm": "",
+    "protoLanguage": "old-norse",
+    "protoGloss": "agreement, vow",
+    "derivation": "Old Norse Vár, goddess who hears oaths and contracts; her name means \"agreement, vow\".",
+    "certainty": "attested"
+  },
+  "hasAdSite": true
+},
+  {
+  "id": "oneiros",
+  "ascii": "oneiros",
+  "unicode": "Óneiros",
+  "greek": "Ὄνειρος",
+  "pantheon": "greek",
+  "tier": "1",
+  "tierLabel": "Tier 1",
+  "domain": "Dreams, Dream-Visions",
+  "meaning": "Dream",
+  "sources": [
+    "Homer",
+    "Hesiod",
+    "LSJ"
+  ],
+  "breakdown": [
+    {
+      "char": "o",
+      "to": "Ó",
+      "type": "stress",
+      "note": "Same, capitalized with acute"
+    },
+    {
+      "char": "n",
+      "to": "n",
+      "type": "same",
+      "note": "Same"
+    },
+    {
+      "char": "e",
+      "to": "e",
+      "type": "same",
+      "note": "Same"
+    },
+    {
+      "char": "i",
+      "to": "i",
+      "type": "same",
+      "note": "Same"
+    },
+    {
+      "char": "r",
+      "to": "r",
+      "type": "same",
+      "note": "Same"
+    },
+    {
+      "char": "o",
+      "to": "o",
+      "type": "same",
+      "note": "Same"
+    },
+    {
+      "char": "s",
+      "to": "s",
+      "type": "same",
+      "note": "Same"
+    }
+  ],
+  "etymology": {
+    "protoForm": "*óneiros",
+    "protoLanguage": "proto-greek",
+    "protoGloss": "dream",
+    "derivation": "Greek Ὄνειρος, personification of dreams; attested in Homer and Hesiod as a daimon of dreams.",
+    "certainty": "attested"
+  },
+  "hasAdSite": true
   }];
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { LEXICON };

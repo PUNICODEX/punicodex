@@ -116,11 +116,11 @@ function closeBlock(entry, variant) {
   const prevEntry = prev && LEXICON_BY_ID.get(prev);
   const nextEntry = next && LEXICON_BY_ID.get(next);
   const nav = [];
-  if (prevEntry) nav.push(`previous file: **${prevEntry.unicode}** ([read it here](/sites/${prev}/blog/restoration/))`);
-  if (nextEntry) nav.push(`next file: **${nextEntry.unicode}** ([read it here](/sites/${next}/blog/restoration/))`);
+  if (prevEntry) nav.push(`previous file: **${prevEntry.unicode}** ([read it here](/${prev}/blog/restoration/))`);
+  if (nextEntry) nav.push(`next file: **${nextEntry.unicode}** ([read it here](/${next}/blog/restoration/))`);
   const outros = [
-    `The temple's [founding dispatch](/sites/${entry.id}/blog/) tells the name's story; its [Resonance File](/sites/${entry.id}/blog/resonance/) reads the myths into the industries; the [blog index](/blog/) holds the whole archive.`,
-    `Read the [founding dispatch](/sites/${entry.id}/blog/) for the name's full story, the [Resonance File](/sites/${entry.id}/blog/resonance/) for the archetype at work — or the [whole archive](/blog/) in one sitting.`,
+    `The temple's [founding dispatch](/${entry.id}/blog/) tells the name's story; its [Resonance File](/${entry.id}/blog/resonance/) reads the myths into the industries; the [blog index](/blog/) holds the whole archive.`,
+    `Read the [founding dispatch](/${entry.id}/blog/) for the name's full story, the [Resonance File](/${entry.id}/blog/resonance/) for the archetype at work — or the [whole archive](/blog/) in one sitting.`,
   ];
   return `## The File Continues
 
@@ -182,7 +182,7 @@ function archLedger(entry, script, lore) {
   // The temple
   parts.push(`## The Temple That Stands Now
 
-The restored name is not a plaque; it is an address. The temple of **${u}** lives at [/sites/${entry.id}/](/sites/${entry.id}/), with its mythology in the [lore halls](/sites/${entry.id}/lore/), its peer-reviewed record in the [Scholarly Edition](/sites/${entry.id}/scholars/), and its place in the pattern atlas on the [patterns floor](/sites/${entry.id}/patterns/).
+The restored name is not a plaque; it is an address. The temple of **${u}** lives at [/${entry.id}/](/${entry.id}/), with its mythology in the [lore halls](/${entry.id}/lore/), its peer-reviewed record in the [Scholarly Edition](/${entry.id}/scholars/), and its place in the pattern atlas on the [patterns floor](/${entry.id}/patterns/).
 
 ${tierSentence(entry)}`);
 
@@ -195,7 +195,7 @@ ${arch} The temple on the web is the newest of these addresses — the first one
   if (seats.length > 0) {
     parts.push(`## The Archetype at Work
 
-The [pattern atlas](/patterns/) seats this temple in **${seats.length} ${seats.length === 1 ? 'industry' : 'industries'}**, each match argued and weighted: ${seats.slice(0, 3).map((s) => `**${s.name}** (${s.why.charAt(0).toLowerCase() + s.why.slice(1)})`).join('; ')}. The [Resonance File](/sites/${entry.id}/blog/resonance/) reads those seats through the myths themselves.`);
+The [pattern atlas](/patterns/) seats this temple in **${seats.length} ${seats.length === 1 ? 'industry' : 'industries'}**, each match argued and weighted: ${seats.slice(0, 3).map((s) => `**${s.name}** (${s.why.charAt(0).toLowerCase() + s.why.slice(1)})`).join('; ')}. The [Resonance File](/${entry.id}/blog/resonance/) reads those seats through the myths themselves.`);
   }
 
   if (texts.length > 0) {
@@ -263,7 +263,7 @@ function archMythFirst(entry, script, lore) {
 
   parts.push(`## The Address It Earned
 
-The temple of **${u}** stands at [/sites/${entry.id}/](/sites/${entry.id}/) — [lore](/sites/${entry.id}/lore/), [scholars](/sites/${entry.id}/scholars/), [patterns](/sites/${entry.id}/patterns/) — because a name carrying this much story deserves more than a parking page. ${tierSentence(entry)}`);
+The temple of **${u}** stands at [/${entry.id}/](/${entry.id}/) — [lore](/${entry.id}/lore/), [scholars](/${entry.id}/scholars/), [patterns](/${entry.id}/patterns/) — because a name carrying this much story deserves more than a parking page. ${tierSentence(entry)}`);
 
   if (texts.length > 0) {
     const joined = texts.length === 1 ? texts[0] : `${texts.slice(0, -1).join(', ')}${texts.length > 2 ? ',' : ''} and ${texts[texts.length - 1]}`;
@@ -334,7 +334,7 @@ function archBench(entry, script, lore) {
   if (pron && pron.approximation) {
     setDown.push(`\nFor the voice: ${pron.approximation.charAt(0).toLowerCase() + pron.approximation.slice(1)}`);
   }
-  setDown.push(`\nThe temple stands at [/sites/${entry.id}/](/sites/${entry.id}/) — the notes above are public in its [Scholarly Edition](/sites/${entry.id}/scholars/), sources and all.`);
+  setDown.push(`\nThe temple stands at [/${entry.id}/](/${entry.id}/) — the notes above are public in its [Scholarly Edition](/${entry.id}/scholars/), sources and all.`);
   parts.push(setDown.join('\n'));
 
   parts.push(glanceBlock(entry, script, null));
@@ -381,10 +381,10 @@ function archProvenance(entry, script, lore) {
   if (arch) {
     entries.push(`**${n++}. The physical record.** ${arch}`);
   }
-  entries.push(`**${n++}. The current holding.** The temple at [/sites/${entry.id}/](/sites/${entry.id}/), classified ${entry.tierLabel || `Tier ${entry.tier || '2'}`}. ${tierSentence(entry)}`);
+  entries.push(`**${n++}. The current holding.** The temple at [/${entry.id}/](/${entry.id}/), classified ${entry.tierLabel || `Tier ${entry.tier || '2'}`}. ${tierSentence(entry)}`);
   if (seats.length > 0) {
     entries.push(
-      `**${n++}. The documented resonances.** ${seats.slice(0, 3).map((s) => `**${s.name}**`).join(', ')} — seats argued and weighted in the [pattern atlas](/patterns/), read through the myths in this temple's [Resonance File](/sites/${entry.id}/blog/resonance/).`
+      `**${n++}. The documented resonances.** ${seats.slice(0, 3).map((s) => `**${s.name}**`).join(', ')} — seats argued and weighted in the [pattern atlas](/patterns/), read through the myths in this temple's [Resonance File](/${entry.id}/blog/resonance/).`
     );
   }
   const texts = textsLinks(entry);

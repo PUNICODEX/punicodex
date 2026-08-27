@@ -67,8 +67,8 @@ function sponsorBlock(entry, seats) {
   return `## For the Ones Who Work There
 
 ${V.pick(entry.id, 202, [
-  `If you work in ${top.name.toLowerCase()}${seats[1] ? `, ${seats[1].name.toLowerCase()},` : ''} or any trade this temple holds a seat in, this is the honest version of what a placement means: your industry beside the story it has been re-telling all along — on the temple floor itself, before an audience that came specifically to read it. The [patron tier](/sites/${entry.id}/patron/) and the [advertising terms](/terms/advertising/) describe the mechanics; the resonance above describes the fit.`,
-  `For a sponsor in ${top.name.toLowerCase()}, the fit here is not adjacency — it is inheritance. Your trade already tells this story every working day; the temple simply holds the original. The [patron tier](/sites/${entry.id}/patron/) and the [advertising terms](/terms/advertising/) carry the mechanics; the myths above carry the reason.`,
+  `If you work in ${top.name.toLowerCase()}${seats[1] ? `, ${seats[1].name.toLowerCase()},` : ''} or any trade this temple holds a seat in, this is the honest version of what a placement means: your industry beside the story it has been re-telling all along — on the temple floor itself, before an audience that came specifically to read it. The [patron tier](/${entry.id}/patron/) and the [advertising terms](/terms/advertising/) describe the mechanics; the resonance above describes the fit.`,
+  `For a sponsor in ${top.name.toLowerCase()}, the fit here is not adjacency — it is inheritance. Your trade already tells this story every working day; the temple simply holds the original. The [patron tier](/${entry.id}/patron/) and the [advertising terms](/terms/advertising/) carry the mechanics; the myths above carry the reason.`,
 ])}`;
 }
 
@@ -79,13 +79,13 @@ function closeBlock(entry) {
   const prevEntry = prev && LEXICON_BY_ID.get(prev);
   const nextEntry = next && LEXICON_BY_ID.get(next);
   const nav = [];
-  if (prevEntry) nav.push(`previous: **${prevEntry.unicode}** ([read it](/sites/${prev}/blog/resonance/))`);
-  if (nextEntry) nav.push(`next: **${nextEntry.unicode}** ([read it](/sites/${next}/blog/resonance/))`);
+  if (prevEntry) nav.push(`previous: **${prevEntry.unicode}** ([read it](/${prev}/blog/resonance/))`);
+  if (nextEntry) nav.push(`next: **${nextEntry.unicode}** ([read it](/${next}/blog/resonance/))`);
   return `## The File Continues
 
 ${V.pick(entry.id, 203, [
-  `This is one of ${BUILT_IDS.length} Resonance Files — the third dispatch from every flagship temple, where the myths meet the markets. The temple's [founding dispatch](/sites/${entry.id}/blog/) tells the name's story; its [Restoration File](/sites/${entry.id}/blog/restoration/) tells the spelling's; the [blog index](/blog/) holds the whole archive.`,
-  `One of ${BUILT_IDS.length} Resonance Files — the series where the pantheon goes to work. Read the [founding dispatch](/sites/${entry.id}/blog/) for the name, the [Restoration File](/sites/${entry.id}/blog/restoration/) for the spelling, or the [whole archive](/blog/) end to end.`,
+  `This is one of ${BUILT_IDS.length} Resonance Files — the third dispatch from every flagship temple, where the myths meet the markets. The temple's [founding dispatch](/${entry.id}/blog/) tells the name's story; its [Restoration File](/${entry.id}/blog/restoration/) tells the spelling's; the [blog index](/blog/) holds the whole archive.`,
+  `One of ${BUILT_IDS.length} Resonance Files — the series where the pantheon goes to work. Read the [founding dispatch](/${entry.id}/blog/) for the name, the [Restoration File](/${entry.id}/blog/restoration/) for the spelling, or the [whole archive](/blog/) end to end.`,
 ])}
 
 ${nav.length ? `Continue the series — ${nav.join(' · ')}.` : ''}
@@ -140,7 +140,7 @@ function archSeats(entry, seats, lore) {
     });
     let extra = '';
     if (seats.length > 5) {
-      extra = `\n\nThe temple holds ${seats.length - 5} further ${seats.length - 5 === 1 ? 'seat' : 'seats'} beyond these — the full, argued list lives on its [patterns floor](/sites/${entry.id}/patterns/).`;
+      extra = `\n\nThe temple holds ${seats.length - 5} further ${seats.length - 5 === 1 ? 'seat' : 'seats'} beyond these — the full, argued list lives on its [patterns floor](/${entry.id}/patterns/).`;
     }
     parts.push(`## The Seats\n\nEach of these is argued in the atlas with a weight and a why-line. What the atlas cannot fit in one line is the whole myth — so here is each seat with its story restored.\n\n${seatBlocks.join('\n\n')}${extra}`);
   }

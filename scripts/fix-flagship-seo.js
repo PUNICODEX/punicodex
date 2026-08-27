@@ -21,7 +21,7 @@ for (const id of BUILT_TEMPLES) {
     const hasOriginal = entry.greek && entry.greek !== '—';
     const pageTitle = `${entry.greek && hasOriginal ? entry.greek + ' — ' : ''}${entry.unicode} | ${entry.domain} | PUNICODEX`;
     const pageDesc = `The authentic digital shrine to ${entry.unicode}. Explore the correct orthography, reconstructed pronunciation, and timeless mythology of ${hasOriginal ? entry.greek : entry.unicode}.`;
-    const canonicalUrl = `https://punicodex.com/sites/${id}/`;
+    const canonicalUrl = `https://punicodex.com/${id}/`;
 
     const seoBlock = `
     <link rel="canonical" href="${canonicalUrl}">

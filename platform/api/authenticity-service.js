@@ -520,6 +520,12 @@ function buildVerdict(input, options = {}) {
         const identity = exactFolded.identity;
         const hasOwnedPresence =
           Array.isArray(identity.allowedDomains) && identity.allowedDomains.length > 0;
+        // Long lexicon names (e.g. susan0→susano) are too noisy when the only
+        // deception signal is a digit 0/1; reserve digit-substitution detection
+        // for brands, explicitly high-priority lexicon, and short dense names.
+        if (identity.type === 'lexicon' && !identity.priority && candidate.length > 4) {
+          continue;
+        }
         const isHighValue =
           identity.type !== 'lexicon' || (identity.priority || 0) > 0 || hasOwnedPresence;
         // Short names (≤4 chars) are dense enough that a single digit replacement
@@ -739,12 +745,10 @@ function buildVerdict(input, options = {}) {
     const matchedIdentity =
       (identityMatches || []).find((m) => m.identity.id === canonicalMatch.id)?.identity || null;
     const targetName = String(canonicalMatch.ascii || canonicalMatch.id || '');
-    const isLowValueLexicon =
-      !matchedIdentity ||
-      ((matchedIdentity.priority || 0) === 0 &&
-        (!Array.isArray(matchedIdentity.allowedDomains) ||
-          matchedIdentity.allowedDomains.length === 0));
-    if (isLowValueLexicon && targetName.length > 4) {
+    // Only priority lexicon names are worth flagging on a digit-only fold; owned
+    // domains do not make a long lexicon name sensitive to random digit suffixes.
+    const isPriorityLexicon = matchedIdentity && (matchedIdentity.priority || 0) > 0;
+    if (!isPriorityLexicon && targetName.length > 4) {
       mapped = {
         verdict: VERDICTS.UNKNOWN,
         severity: SEVERITIES.NONE,
@@ -938,7 +942,19 @@ function classifyDomain(domain, _options = {}) {
     applyVerdictOverride(result, `punycode homograph of ${domainHomographMatch.identity.name}`);
   } else {
     const subdomainLookalike = findSubdomainIdentityLookalike(domainInfo);
-    if (subdomainLookalike) {
+    // Avoid flagging random ASCII domains whose only "deception" is a digit
+    // 0/1 substitution of a lexicon name (e.g. susan0.de vs. Susanō). Brand
+    // targets and short dense labels (≤4 chars) are still caught.
+    const digitOnlyLexiconSpoof =
+      subdomainLookalike &&
+      isAsciiOnly(subdomainLookalike.label) &&
+      subdomainLookalike.label.length > 4 &&
+      subdomainLookalike.identityMatch?.type === 'lexicon' &&
+      (() => {
+        const confusables = collectAsciiConfusables(subdomainLookalike.label);
+        return confusables.length > 0 && confusables.every((c) => c === '0' || c === '1');
+      })();
+    if (subdomainLookalike && !digitOnlyLexiconSpoof) {
       result.verdict = VERDICTS.LOOKALIKE_DOMAIN;
       result.severity = SEVERITIES.HIGH;
       result.canonicalMatch = subdomainLookalike.identityMatch;

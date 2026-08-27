@@ -45,10 +45,10 @@ SITES = {
             ('The Oracle of Ammon', 'In the desert oasis of Siwa, the oracle of Zeus-Ammon spoke to those who dared the journey. Alexander himself traveled here to hear his divine destiny.'),
         ],
         'pantheon_cards': [
-            ('Zeus', 'Ζεύς', 'King of the Gods', '/sites/zeus/'),
-            ('Ammon', 'Ἄμμων', 'Libyan Zeus', '/sites/zeus/'),
-            ('Poseidon', 'Ποσειδῶν', 'God of the Sea', '/sites/poseidon/'),
-            ('Danae', 'Δανάη', 'Ancestor of Perseus', '/sites/danae/'),
+            ('Zeus', 'Ζεύς', 'King of the Gods', '/zeus/'),
+            ('Ammon', 'Ἄμμων', 'Libyan Zeus', '/zeus/'),
+            ('Poseidon', 'Ποσειδῶν', 'God of the Sea', '/poseidon/'),
+            ('Danae', 'Δανάη', 'Ancestor of Perseus', '/danae/'),
         ],
         'variations': [
             ('Libyē', 'Full Restoration', 'Greek Λιβύη with acute and length'),
@@ -91,10 +91,10 @@ SITES = {
             ('The Wisdom of Egypt', 'The Greeks believed Egypt was the source of all knowledge. Solon, Plato, and Pythagoras were said to have studied in its temples. Herodotus traveled its length to record its marvels.'),
         ],
         'pantheon_cards': [
-            ('Ptah', 'Πταḥ', 'Creator God of Memphis', '/sites/ptah/'),
-            ('Isis', 'Ἶσις', 'Goddess of Magic', '/sites/isis/'),
-            ('Osiris', 'Ὄσιρις', 'Lord of the Dead', '/sites/osiris/'),
-            ('Ra', 'Ῥα', 'The Sun God', '/sites/ra/'),
+            ('Ptah', 'Πταḥ', 'Creator God of Memphis', '/ptah/'),
+            ('Isis', 'Ἶσις', 'Goddess of Magic', '/isis/'),
+            ('Osiris', 'Ὄσιρις', 'Lord of the Dead', '/osiris/'),
+            ('Ra', 'Ῥα', 'The Sun God', '/ra/'),
         ],
         'variations': [
             ('Aígyptos', 'Full Restoration', 'Greek Αἴγυπτος with diphthong and acute'),
@@ -137,10 +137,10 @@ SITES = {
             ('The Trojan Shore', 'On the Asian coast of the Hellespont stood Troy — the city whose fall became the founding myth of Greek literature. The Iliad is, in part, a story of Asia.'),
         ],
         'pantheon_cards': [
-            ('Prometheus', 'Προμηθεύς', 'Bringer of Fire', '/sites/prometheus/'),
-            ('Atlas', 'Ἄτλας', 'Holder of the Heavens', '/sites/atlas/'),
-            ('Oceanus', 'Ὠκεανός', 'World-Encircling River', '/sites/oceanus/'),
-            ('Tethys', 'Τηθύς', 'Mother of Rivers', '/sites/tethys/'),
+            ('Prometheus', 'Προμηθεύς', 'Bringer of Fire', '/prometheus/'),
+            ('Atlas', 'Ἄτλας', 'Holder of the Heavens', '/atlas/'),
+            ('Oceanus', 'Ὠκεανός', 'World-Encircling River', '/oceanus/'),
+            ('Tethys', 'Τηθύς', 'Mother of Rivers', '/tethys/'),
         ],
         'variations': [
             ('Asía', 'Full Restoration', 'Greek Ἀσία with acute and macron'),
@@ -183,10 +183,10 @@ SITES = {
             ('The Three Continents', 'Herodotus divided the world into three: Libyē to the south, Asía to the east, and Eurṓpē to the northwest. He wondered at their boundaries — the Nile, the Phasis, the Hellespont — and whether any man could truly say where one ended and another began.'),
         ],
         'pantheon_cards': [
-            ('Zeus', 'Ζεύς', 'King of the Gods', '/sites/zeus/'),
-            ('Poseidon', 'Ποσειδῶν', 'God of the Sea', '/sites/poseidon/'),
-            ('Danae', 'Δανάη', 'Princess of Argos', '/sites/danae/'),
-            ('Hera', 'Ἥρα', 'Queen of Heaven', '/sites/hera/'),
+            ('Zeus', 'Ζεύς', 'King of the Gods', '/zeus/'),
+            ('Poseidon', 'Ποσειδῶν', 'God of the Sea', '/poseidon/'),
+            ('Danae', 'Δανάη', 'Princess of Argos', '/danae/'),
+            ('Hera', 'Ἥρα', 'Queen of Heaven', '/hera/'),
         ],
         'variations': [
             ('Eurṓpē', 'Full Restoration', 'Greek Εὐρώπη with circumflex and macron'),
@@ -209,10 +209,10 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
     <meta name="description" content="{description}">
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
     <link rel="stylesheet" href="styles.css">
-    <link rel="canonical" href="https://punicodex.com/sites/{site_id}/">
+    <link rel="canonical" href="https://punicodex.com/{site_id}/">
     <meta property="og:title" content="{greek} — {unicode} | {tagline} | PUNICODEX">
     <meta property="og:description" content="{og_desc}">
-    <meta property="og:url" content="https://punicodex.com/sites/{site_id}/">
+    <meta property="og:url" content="https://punicodex.com/{site_id}/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="PUNICODEX">
     <meta name="twitter:card" content="summary_large_image">
@@ -514,7 +514,7 @@ def build_related_cards(site_id, related_ids):
     for rel_id in related_ids[:4]:
         rel = SITES.get(rel_id)
         if rel:
-            html += f'''                <a href="/sites/{rel_id}/" class="related-card reveal-up">
+            html += f'''                <a href="/{rel_id}/" class="related-card reveal-up">
                     <span class="related-greek">{rel["greek"]}</span>
                     <span class="related-name">{rel["unicode"]}</span>
                     <span class="related-tagline">{rel["tagline"]}</span>
@@ -528,7 +528,7 @@ def build_schema(site_id, config):
         "@type": "WebPage",
         "name": config['unicode'] + " — " + config['tagline'],
         "description": config['description'],
-        "url": f"https://punicodex.com/sites/{site_id}/",
+        "url": f"https://punicodex.com/{site_id}/",
         "about": {
             "@type": "Thing",
             "name": config['greek'],

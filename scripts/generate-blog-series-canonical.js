@@ -21,6 +21,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
+const { writeFileWithRetry } = require('./write-file-retry.js');
 
 const ROOT = path.join(__dirname, '..');
 const OUT_DIR = path.join(ROOT, 'platform', 'blog', 'series', 'canonical');
@@ -340,13 +341,13 @@ function closeBlock(entry) {
   const prevEntry = prev && LEXICON_BY_ID.get(prev);
   const nextEntry = next && LEXICON_BY_ID.get(next);
   const nav = [];
-  if (prevEntry) nav.push(`previous entry: **${prevEntry.unicode}** ([read it](/sites/${prev}/blog/canonical/))`);
-  if (nextEntry) nav.push(`next entry: **${nextEntry.unicode}** ([read it](/sites/${next}/blog/canonical/))`);
+  if (prevEntry) nav.push(`previous entry: **${prevEntry.unicode}** ([read it](/${prev}/blog/canonical/))`);
+  if (nextEntry) nav.push(`next entry: **${nextEntry.unicode}** ([read it](/${next}/blog/canonical/))`);
   const navLine = nav.length ? `Continue the register — ${nav.join(' · ')}.` : '';
   const bodies = [
-    `This is one of ${BUILT_IDS.length} entries in the Canonical Register — the authoritative reference for every flagship temple. The temple's [founding dispatch](/sites/${entry.id}/blog/) tells the name's story; its [Restoration File](/sites/${entry.id}/blog/restoration/) details the marks; its [Resonance File](/sites/${entry.id}/blog/resonance/) reads the archetype into the industries. The [blog index](/blog/) holds the whole archive, and the [Rulebook](/rulebook/) states the convention this register enforces.`,
-    `Entry ${BUILT_IDS.indexOf(entry.id) + 1} of ${BUILT_IDS.length} in the Canonical Register. Around it: the temple's [founding dispatch](/sites/${entry.id}/blog/), the [Restoration File](/sites/${entry.id}/blog/restoration/) on the marks themselves, the [Resonance File](/sites/${entry.id}/blog/resonance/) on the archetype at work, and the [Rulebook](/rulebook/) behind all of it.`,
-    `The register holds ${BUILT_IDS.length} entries like this one — each temple with its own ruling. Read the temple's [founding dispatch](/sites/${entry.id}/blog/) for the story, its [Restoration File](/sites/${entry.id}/blog/restoration/) for the philology, its [Resonance File](/sites/${entry.id}/blog/resonance/) for the industries, or the [whole archive](/blog/) end to end.`,
+    `This is one of ${BUILT_IDS.length} entries in the Canonical Register — the authoritative reference for every flagship temple. The temple's [founding dispatch](/${entry.id}/blog/) tells the name's story; its [Restoration File](/${entry.id}/blog/restoration/) details the marks; its [Resonance File](/${entry.id}/blog/resonance/) reads the archetype into the industries. The [blog index](/blog/) holds the whole archive, and the [Rulebook](/rulebook/) states the convention this register enforces.`,
+    `Entry ${BUILT_IDS.indexOf(entry.id) + 1} of ${BUILT_IDS.length} in the Canonical Register. Around it: the temple's [founding dispatch](/${entry.id}/blog/), the [Restoration File](/${entry.id}/blog/restoration/) on the marks themselves, the [Resonance File](/${entry.id}/blog/resonance/) on the archetype at work, and the [Rulebook](/rulebook/) behind all of it.`,
+    `The register holds ${BUILT_IDS.length} entries like this one — each temple with its own ruling. Read the temple's [founding dispatch](/${entry.id}/blog/) for the story, its [Restoration File](/${entry.id}/blog/restoration/) for the philology, its [Resonance File](/${entry.id}/blog/resonance/) for the industries, or the [whole archive](/blog/) end to end.`,
   ];
   return `## The Register Continues
 
@@ -567,26 +568,26 @@ function main() {
           : `The plain form *${ascii}* is sanctioned as the fallback vehicle and nothing more.`
       } The false forms above are documented so that no reader has to take the temple's word on faith — the violations are stated, the sources are named, and the register stands open to challenge on every line.
 
-The temple of **${u}** stands at [/sites/${id}/](/sites/${id}/).`,
+The temple of **${u}** stands at [/${id}/](/${id}/).`,
       `## The Verdict
 
 The register rules for **${u}**, and the ruling is checkable: every mark sourced, every violation stated, every borderline form given its honest standing. ${
         asciiIsCanonical
           ? `*${ascii}* carries the name freely — it differs only in display, and the register says so without reservation.`
           : `*${ascii}* is the sanctioned fallback for systems without marks — a vehicle, never the scholarly primary.`
-      } Anything else in circulation has its origin and its failure recorded above. That is the whole of the law on this name — and the temple at [/sites/${id}/](/sites/${id}/) enforces it.`,
+      } Anything else in circulation has its origin and its failure recorded above. That is the whole of the law on this name — and the temple at [/${id}/](/${id}/) enforces it.`,
       `## The Verdict
 
 Case closed on **${u}**: canonical, cited, and defended. ${
         asciiIsCanonical
           ? `The keyboard form *${ascii}* is the same name in another register of display — always acceptable.`
           : `The keyboard form *${ascii}* rides as the sanctioned fallback — and stays in that lane.`
-      } The register's files remain open: if a source surfaces that changes any line of this entry, the entry changes. Until then, the temple at [/sites/${id}/](/sites/${id}/) holds the canonical form.`,
+      } The register's files remain open: if a source surfaces that changes any line of this entry, the entry changes. Until then, the temple at [/${id}/](/${id}/) holds the canonical form.`,
       `## The Verdict
 
 So the register finds: **${u}**, canonical; *${ascii}*, ${
         asciiIsCanonical ? 'equally canonical' : 'a sanctioned fallback'
-      }; the contested forms, recorded with their support; the false forms, ruled against with their violations named. Every line of that finding cites its evidence, and the evidence is open to any reader — the register asks to be checked, not trusted. The temple keeps the canonical form at [/sites/${id}/](/sites/${id}/).`,
+      }; the contested forms, recorded with their support; the false forms, ruled against with their violations named. Every line of that finding cites its evidence, and the evidence is open to any reader — the register asks to be checked, not trusted. The temple keeps the canonical form at [/${id}/](/${id}/).`,
     ]) + `\n\n${evidenceDocket}`);
 
     parts.push(closeBlock(entry));
@@ -629,7 +630,7 @@ So the register finds: **${u}**, canonical; *${ascii}*, ${
       readingTime: `${readMin} min read`,
       body: fullBody,
     };
-    fs.writeFileSync(path.join(OUT_DIR, `${id}.json`), `${JSON.stringify(post, null, 2)}\n`, 'utf8');
+    writeFileWithRetry(path.join(OUT_DIR, `${id}.json`), `${JSON.stringify(post, null, 2)}\n`, 'utf8');
 
     // The machine-readable register — the API and AI layer.
     register[id] = {
@@ -650,7 +651,7 @@ So the register finds: **${u}**, canonical; *${ascii}*, ${
     written++;
   }
 
-  fs.writeFileSync(
+  writeFileWithRetry(
     path.join(ROOT, 'platform', 'api', 'canonical-register.json'),
     `${JSON.stringify(
       {

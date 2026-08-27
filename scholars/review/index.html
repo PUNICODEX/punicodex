@@ -1180,7 +1180,7 @@
                     <div class="review-card-meta">
                         <div class="review-card-author">${escapeHtml(edit.display_name || edit.email || 'Unknown author')}</div>
                         <div class="review-card-target">
-                            <a href="/sites/${escapeHtml(edit.entry_id)}/scholars/" target="_blank">${escapeHtml(edit.entry_id)}</a>
+                            <a href="/${escapeHtml(edit.entry_id)}/scholars/" target="_blank">${escapeHtml(edit.entry_id)}</a>
                         </div>
                         <div class="review-card-section">${escapeHtml(edit.section_label || edit.section_key || 'unknown section')} <span class="review-role-badge">${escapeHtml(edit.section_key || '')}</span></div>
                         <div class="review-card-institution">${escapeHtml(getInstitutionName(edit.institution_id))}</div>

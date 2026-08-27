@@ -1,5 +1,5 @@
 async function getText(site) {
-  const res = await fetch('https://punicodex.com/sites/' + site + '/');
+  const res = await fetch('https://punicodex.com/' + site + '/');
   const html = await res.text();
   const body = html.match(/<body>[\s\S]*?<\/body>/)?.[0] || '';
   const text = body

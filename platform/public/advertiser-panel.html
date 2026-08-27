@@ -560,7 +560,7 @@
             const editBtn = includeEdit && !isBundle
                 ? `<button class="placement-btn btn-primary" onclick="openEditor('${b.token}', '${escapeJs(bb.custom_heading || '')}', '${escapeJs(bb.custom_subtitle || '')}')">Edit</button>`
                 : '';
-            const analyticsBtn = `<a class="placement-btn btn-secondary" href="${API_BASE}/sites/${siteSlug}/dashboard/?token=${b.token}" target="_blank">Analytics</a>`;
+            const analyticsBtn = `<a class="placement-btn btn-secondary" href="${API_BASE}/${siteSlug}/dashboard/?token=${b.token}" target="_blank">Analytics</a>`;
             const renewBtn = canRenewStatus(b.status)
                 ? `<button class="placement-btn btn-secondary" onclick="renewBooking('${b.token}')">Renew</button>`
                 : '';

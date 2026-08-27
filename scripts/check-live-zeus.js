@@ -11,7 +11,7 @@ async function check() {
   console.log('Title:', (t1.match(/<title>([^<]+)<\/title>/) || ['', 'NO TITLE'])[1]);
 
   // Also check punicodex.com/sites/zeus/
-  const res2 = await fetch('https://punicodex.com/sites/zeus/');
+  const res2 = await fetch('https://punicodex.com/zeus/');
   const t2 = await res2.text();
   console.log('\npunicodex.com/sites/zeus/ status:', res2.status, 'url:', res2.url);
   console.log('Has spaces-section:', t2.includes('spaces-section'));

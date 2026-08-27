@@ -1266,7 +1266,7 @@ handleReturnFromStripe();
   if (!modal || !grid) return;
 
   const templeId = 'thoth';
-  const siteName = 'Ḏḥwty';
+  const siteName = 'Ḏḥwtj';
   let selectedCents = 700;
 
   const els = {

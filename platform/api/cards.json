@@ -10,22 +10,22 @@
     ],
     "spec": "docs/card-game-spec.md",
     "counts": {
-      "total": 2099,
-      "standard": 1768,
-      "originalScript": 331,
-      "flagship": 1191,
+      "total": 2133,
+      "standard": 1793,
+      "originalScript": 340,
+      "flagship": 1218,
       "byEdition": {
-        "common": 397,
-        "holo": 397,
-        "full-art": 397,
-        "secret": 331,
-        "archive": 577
+        "common": 406,
+        "holo": 406,
+        "full-art": 406,
+        "secret": 340,
+        "archive": 575
       },
       "byRarity": {
-        "common": 558,
-        "rare": 741,
-        "legendary": 397,
-        "mythic": 331,
+        "common": 567,
+        "rare": 748,
+        "legendary": 406,
+        "mythic": 340,
         "uncommon": 72
       }
     }
@@ -1788,7 +1788,7 @@
       "domain": "Wisdom, War Strategy, Crafts",
       "rarity": "mythic",
       "rarityOrder": 6,
-      "cost": 7,
+      "cost": 6,
       "power": 84,
       "health": 92,
       "speed": 6,
@@ -4716,7 +4716,7 @@
       "domain": "Motherhood, Night",
       "rarity": "common",
       "rarityOrder": 1,
-      "cost": 6,
+      "cost": 5,
       "power": 74,
       "health": 72,
       "speed": 7,
@@ -4765,7 +4765,7 @@
       "domain": "Motherhood, Night",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 6,
+      "cost": 5,
       "power": 86,
       "health": 84,
       "speed": 7,
@@ -4815,7 +4815,7 @@
       "domain": "Motherhood, Night",
       "rarity": "legendary",
       "rarityOrder": 5,
-      "cost": 6,
+      "cost": 5,
       "power": 86,
       "health": 84,
       "speed": 7,
@@ -4916,13 +4916,62 @@
       "foil": true
     },
     {
-      "id": "epimetheus-standard",
+      "id": "epimetheus-common",
       "entryId": "epimetheus",
-      "baseCardId": "epimetheus-standard",
-      "edition": "archive",
+      "baseCardId": "epimetheus-common",
+      "edition": "common",
       "variant": "standard",
       "setId": "first-restoration",
-      "name": "Epimētheus",
+      "name": "Epimētheús",
+      "ascii": "epimetheus",
+      "original": "Ἐπιμηθεύς",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Afterthought, Hindsight",
+      "rarity": "common",
+      "rarityOrder": 1,
+      "cost": 3,
+      "power": 78,
+      "health": 59,
+      "speed": 7,
+      "ability": {
+        "id": "ability-epimetheus",
+        "entryId": "epimetheus",
+        "name": "The Afterthinker",
+        "description": "Restore 3 health to your hero.",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "heal-hero",
+          "amount": 3
+        }
+      },
+      "flavor": "Epimētheus appears most fully in Hesiod's didactic poems, where he is less a hero than a caution: the type of mortal who acts first and understands later.",
+      "flagship": true,
+      "ownedDomain": "epimētheús.com",
+      "art": {
+        "mascot": "/sites/epimetheus/assets/epimetheus_mascot.webp",
+        "logomark": "/sites/epimetheus/assets/epimetheus_logomark.webp",
+        "fullArt": null,
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      }
+    },
+    {
+      "id": "epimetheus-holo",
+      "entryId": "epimetheus",
+      "baseCardId": "epimetheus-common",
+      "edition": "holo",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Epimētheús",
       "ascii": "epimetheus",
       "original": "Ἐπιμηθεύς",
       "pantheon": "greek",
@@ -4934,14 +4983,14 @@
       "domain": "Afterthought, Hindsight",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 4,
-      "power": 78,
-      "health": 59,
+      "cost": 3,
+      "power": 90,
+      "health": 71,
       "speed": 7,
       "ability": {
         "id": "ability-epimetheus",
         "entryId": "epimetheus",
-        "name": "Afterthought of Olympos",
+        "name": "The Afterthinker",
         "description": "Restore 3 health to your hero.",
         "trigger": "on_play",
         "effect": {
@@ -4949,16 +4998,140 @@
           "amount": 3
         }
       },
-      "flavor": "Afterthinker (from ἐπί + μῆτις)",
-      "flagship": false,
-      "ownedDomain": null,
+      "flavor": "Epimētheus appears most fully in Hesiod's didactic poems, where he is less a hero than a caution: the type of mortal who acts first and understands later.",
+      "flagship": true,
+      "ownedDomain": "epimētheús.com",
       "art": {
-        "mascot": null,
-        "logomark": null,
+        "mascot": "/sites/epimetheus/assets/epimetheus_mascot.webp",
+        "logomark": "/sites/epimetheus/assets/epimetheus_logomark.webp",
         "fullArt": null,
-        "colors": null,
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      },
+      "patternFoil": true
+    },
+    {
+      "id": "epimetheus-full-art",
+      "entryId": "epimetheus",
+      "baseCardId": "epimetheus-common",
+      "edition": "full-art",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Epimētheús",
+      "ascii": "epimetheus",
+      "original": "Ἐπιμηθεύς",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Afterthought, Hindsight",
+      "rarity": "legendary",
+      "rarityOrder": 5,
+      "cost": 3,
+      "power": 90,
+      "health": 71,
+      "speed": 7,
+      "ability": {
+        "id": "ability-epimetheus",
+        "entryId": "epimetheus",
+        "name": "The Afterthinker",
+        "description": "Restore 3 health to your hero. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "heal-hero",
+              "amount": 3
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "Epimētheus appears most fully in Hesiod's didactic poems, where he is less a hero than a caution: the type of mortal who acts first and understands later.",
+      "flagship": true,
+      "ownedDomain": "epimētheús.com",
+      "art": {
+        "mascot": "/sites/epimetheus/assets/epimetheus_mascot.webp",
+        "logomark": "/sites/epimetheus/assets/epimetheus_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/epimetheus_comp-canvas.png",
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
         "artist": null
       }
+    },
+    {
+      "id": "epimetheus-secret",
+      "entryId": "epimetheus",
+      "baseCardId": "epimetheus-common",
+      "edition": "secret",
+      "variant": "original-script",
+      "setId": "first-restoration",
+      "name": "Epimētheús",
+      "ascii": "epimetheus",
+      "original": "Ἐπιμηθεύς",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Afterthought, Hindsight",
+      "rarity": "mythic",
+      "rarityOrder": 6,
+      "cost": 3,
+      "power": 90,
+      "health": 71,
+      "speed": 7,
+      "ability": {
+        "id": "ability-epimetheus",
+        "entryId": "epimetheus",
+        "name": "The Afterthinker",
+        "description": "Restore 3 health to your hero. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "heal-hero",
+              "amount": 3
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "Epimētheus appears most fully in Hesiod's didactic poems, where he is less a hero than a caution: the type of mortal who acts first and understands later.",
+      "flagship": true,
+      "ownedDomain": "epimētheús.com",
+      "art": {
+        "mascot": "/sites/epimetheus/assets/epimetheus_mascot.webp",
+        "logomark": "/sites/epimetheus/assets/epimetheus_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/epimetheus_comp-canvas.png",
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      },
+      "foil": true
     },
     {
       "id": "herakles-common",
@@ -6136,7 +6309,7 @@
       },
       "flavor": "The stories of Thēseus circulate within the Greek corpus, where the figure embodies heroism, athens, labours.",
       "flagship": true,
-      "ownedDomain": "theseus.com",
+      "ownedDomain": "thēseus.com",
       "art": {
         "mascot": "/sites/theseus/assets/theseus_mascot.webp",
         "logomark": "/sites/theseus/assets/theseus_logomark.webp",
@@ -6185,7 +6358,7 @@
       },
       "flavor": "The stories of Thēseus circulate within the Greek corpus, where the figure embodies heroism, athens, labours.",
       "flagship": true,
-      "ownedDomain": "theseus.com",
+      "ownedDomain": "thēseus.com",
       "art": {
         "mascot": "/sites/theseus/assets/theseus_mascot.webp",
         "logomark": "/sites/theseus/assets/theseus_logomark.webp",
@@ -6245,7 +6418,7 @@
       },
       "flavor": "The stories of Thēseus circulate within the Greek corpus, where the figure embodies heroism, athens, labours.",
       "flagship": true,
-      "ownedDomain": "theseus.com",
+      "ownedDomain": "thēseus.com",
       "art": {
         "mascot": "/sites/theseus/assets/theseus_mascot.webp",
         "logomark": "/sites/theseus/assets/theseus_logomark.webp",
@@ -6304,7 +6477,7 @@
       },
       "flavor": "The stories of Thēseus circulate within the Greek corpus, where the figure embodies heroism, athens, labours.",
       "flagship": true,
-      "ownedDomain": "theseus.com",
+      "ownedDomain": "thēseus.com",
       "art": {
         "mascot": "/sites/theseus/assets/theseus_mascot.webp",
         "logomark": "/sites/theseus/assets/theseus_logomark.webp",
@@ -7613,7 +7786,7 @@
       "edition": "common",
       "variant": "standard",
       "setId": "first-restoration",
-      "name": "Rhéa",
+      "name": "Rhéā",
       "ascii": "rhea",
       "original": "Ῥέα",
       "pantheon": "greek",
@@ -7640,7 +7813,7 @@
           "target": "enemy-minion"
         }
       },
-      "flavor": "Rhéa's myth is the hinge between Titanic and Olympian rule.",
+      "flavor": "Rhéā's myth is the hinge between Titanic and Olympian rule.",
       "flagship": true,
       "ownedDomain": "rhéā.com",
       "art": {
@@ -7662,7 +7835,7 @@
       "edition": "holo",
       "variant": "standard",
       "setId": "first-restoration",
-      "name": "Rhéa",
+      "name": "Rhéā",
       "ascii": "rhea",
       "original": "Ῥέα",
       "pantheon": "greek",
@@ -7689,7 +7862,7 @@
           "target": "enemy-minion"
         }
       },
-      "flavor": "Rhéa's myth is the hinge between Titanic and Olympian rule.",
+      "flavor": "Rhéā's myth is the hinge between Titanic and Olympian rule.",
       "flagship": true,
       "ownedDomain": "rhéā.com",
       "art": {
@@ -7712,7 +7885,7 @@
       "edition": "full-art",
       "variant": "standard",
       "setId": "first-restoration",
-      "name": "Rhéa",
+      "name": "Rhéā",
       "ascii": "rhea",
       "original": "Ῥέα",
       "pantheon": "greek",
@@ -7749,7 +7922,7 @@
           ]
         }
       },
-      "flavor": "Rhéa's myth is the hinge between Titanic and Olympian rule.",
+      "flavor": "Rhéā's myth is the hinge between Titanic and Olympian rule.",
       "flagship": true,
       "ownedDomain": "rhéā.com",
       "art": {
@@ -7771,7 +7944,7 @@
       "edition": "secret",
       "variant": "original-script",
       "setId": "first-restoration",
-      "name": "Rhéa",
+      "name": "Rhéā",
       "ascii": "rhea",
       "original": "Ῥέα",
       "pantheon": "greek",
@@ -7808,7 +7981,7 @@
           ]
         }
       },
-      "flavor": "Rhéa's myth is the hinge between Titanic and Olympian rule.",
+      "flavor": "Rhéā's myth is the hinge between Titanic and Olympian rule.",
       "flagship": true,
       "ownedDomain": "rhéā.com",
       "art": {
@@ -15282,7 +15455,7 @@
       "edition": "common",
       "variant": "standard",
       "setId": "first-restoration",
-      "name": "Ḏḥwty",
+      "name": "Ḏḥwtj",
       "ascii": "thoth",
       "original": "𓅜𓏏",
       "pantheon": "egyptian",
@@ -15331,7 +15504,7 @@
       "edition": "holo",
       "variant": "standard",
       "setId": "first-restoration",
-      "name": "Ḏḥwty",
+      "name": "Ḏḥwtj",
       "ascii": "thoth",
       "original": "𓅜𓏏",
       "pantheon": "egyptian",
@@ -15381,7 +15554,7 @@
       "edition": "full-art",
       "variant": "standard",
       "setId": "first-restoration",
-      "name": "Ḏḥwty",
+      "name": "Ḏḥwtj",
       "ascii": "thoth",
       "original": "𓅜𓏏",
       "pantheon": "egyptian",
@@ -15440,7 +15613,7 @@
       "edition": "secret",
       "variant": "original-script",
       "setId": "first-restoration",
-      "name": "Ḏḥwty",
+      "name": "Ḏḥwtj",
       "ascii": "thoth",
       "original": "𓅜𓏏",
       "pantheon": "egyptian",
@@ -32661,7 +32834,7 @@
       },
       "flavor": "The stories of Pandōra circulate within the Greek corpus, where the figure embodies first woman, box of evils.",
       "flagship": true,
-      "ownedDomain": "pandora.com",
+      "ownedDomain": "pandōra.com",
       "art": {
         "mascot": "/sites/pandora/assets/pandora_mascot.webp",
         "logomark": "/sites/pandora/assets/pandora_logomark.webp",
@@ -32710,7 +32883,7 @@
       },
       "flavor": "The stories of Pandōra circulate within the Greek corpus, where the figure embodies first woman, box of evils.",
       "flagship": true,
-      "ownedDomain": "pandora.com",
+      "ownedDomain": "pandōra.com",
       "art": {
         "mascot": "/sites/pandora/assets/pandora_mascot.webp",
         "logomark": "/sites/pandora/assets/pandora_logomark.webp",
@@ -32770,7 +32943,7 @@
       },
       "flavor": "The stories of Pandōra circulate within the Greek corpus, where the figure embodies first woman, box of evils.",
       "flagship": true,
-      "ownedDomain": "pandora.com",
+      "ownedDomain": "pandōra.com",
       "art": {
         "mascot": "/sites/pandora/assets/pandora_mascot.webp",
         "logomark": "/sites/pandora/assets/pandora_logomark.webp",
@@ -32829,7 +33002,7 @@
       },
       "flavor": "The stories of Pandōra circulate within the Greek corpus, where the figure embodies first woman, box of evils.",
       "flagship": true,
-      "ownedDomain": "pandora.com",
+      "ownedDomain": "pandōra.com",
       "art": {
         "mascot": "/sites/pandora/assets/pandora_mascot.webp",
         "logomark": "/sites/pandora/assets/pandora_logomark.webp",
@@ -38318,7 +38491,7 @@
       },
       "flavor": "Îris is a function more than a character in early epic: she goes where she is sent.",
       "flagship": true,
-      "ownedDomain": "íris.com",
+      "ownedDomain": "îris.com",
       "art": {
         "mascot": "/sites/iris/assets/iris_mascot.webp",
         "logomark": "/sites/iris/assets/iris_logomark.webp",
@@ -38368,7 +38541,7 @@
       },
       "flavor": "Îris is a function more than a character in early epic: she goes where she is sent.",
       "flagship": true,
-      "ownedDomain": "íris.com",
+      "ownedDomain": "îris.com",
       "art": {
         "mascot": "/sites/iris/assets/iris_mascot.webp",
         "logomark": "/sites/iris/assets/iris_logomark.webp",
@@ -38429,7 +38602,7 @@
       },
       "flavor": "Îris is a function more than a character in early epic: she goes where she is sent.",
       "flagship": true,
-      "ownedDomain": "íris.com",
+      "ownedDomain": "îris.com",
       "art": {
         "mascot": "/sites/iris/assets/iris_mascot.webp",
         "logomark": "/sites/iris/assets/iris_logomark.webp",
@@ -38489,7 +38662,7 @@
       },
       "flavor": "Îris is a function more than a character in early epic: she goes where she is sent.",
       "flagship": true,
-      "ownedDomain": "íris.com",
+      "ownedDomain": "îris.com",
       "art": {
         "mascot": "/sites/iris/assets/iris_mascot.webp",
         "logomark": "/sites/iris/assets/iris_logomark.webp",
@@ -40986,7 +41159,7 @@
       },
       "flavor": "The stories of Psychḗ circulate within the Greek corpus, where the figure embodies soul, breath, life.",
       "flagship": true,
-      "ownedDomain": "psyche.com",
+      "ownedDomain": "psychḗ.com",
       "art": {
         "mascot": "/sites/psyche/assets/psyche_mascot.webp",
         "logomark": "/sites/psyche/assets/psyche_logomark.webp",
@@ -41034,7 +41207,7 @@
       },
       "flavor": "The stories of Psychḗ circulate within the Greek corpus, where the figure embodies soul, breath, life.",
       "flagship": true,
-      "ownedDomain": "psyche.com",
+      "ownedDomain": "psychḗ.com",
       "art": {
         "mascot": "/sites/psyche/assets/psyche_mascot.webp",
         "logomark": "/sites/psyche/assets/psyche_logomark.webp",
@@ -41093,7 +41266,7 @@
       },
       "flavor": "The stories of Psychḗ circulate within the Greek corpus, where the figure embodies soul, breath, life.",
       "flagship": true,
-      "ownedDomain": "psyche.com",
+      "ownedDomain": "psychḗ.com",
       "art": {
         "mascot": "/sites/psyche/assets/psyche_mascot.webp",
         "logomark": "/sites/psyche/assets/psyche_logomark.webp",
@@ -41151,7 +41324,7 @@
       },
       "flavor": "The stories of Psychḗ circulate within the Greek corpus, where the figure embodies soul, breath, life.",
       "flagship": true,
-      "ownedDomain": "psyche.com",
+      "ownedDomain": "psychḗ.com",
       "art": {
         "mascot": "/sites/psyche/assets/psyche_mascot.webp",
         "logomark": "/sites/psyche/assets/psyche_logomark.webp",
@@ -45511,7 +45684,7 @@
       "domain": "Dwarf Smith, Fafnir's Brother",
       "rarity": "mythic",
       "rarityOrder": 6,
-      "cost": 2,
+      "cost": 3,
       "power": 63,
       "health": 94,
       "speed": 7,
@@ -48363,7 +48536,7 @@
       },
       "flavor": "The stories of Ereškigal circulate within the Mesopotamian corpus, where the figure embodies queen of the underworld.",
       "flagship": true,
-      "ownedDomain": "ereshkigal.com",
+      "ownedDomain": "ereškigal.com",
       "art": {
         "mascot": "/sites/ereshkigal/assets/ereshkigal_mascot.webp",
         "logomark": "/sites/ereshkigal/assets/ereshkigal_logomark.webp",
@@ -48411,7 +48584,7 @@
       },
       "flavor": "The stories of Ereškigal circulate within the Mesopotamian corpus, where the figure embodies queen of the underworld.",
       "flagship": true,
-      "ownedDomain": "ereshkigal.com",
+      "ownedDomain": "ereškigal.com",
       "art": {
         "mascot": "/sites/ereshkigal/assets/ereshkigal_mascot.webp",
         "logomark": "/sites/ereshkigal/assets/ereshkigal_logomark.webp",
@@ -48470,7 +48643,7 @@
       },
       "flavor": "The stories of Ereškigal circulate within the Mesopotamian corpus, where the figure embodies queen of the underworld.",
       "flagship": true,
-      "ownedDomain": "ereshkigal.com",
+      "ownedDomain": "ereškigal.com",
       "art": {
         "mascot": "/sites/ereshkigal/assets/ereshkigal_mascot.webp",
         "logomark": "/sites/ereshkigal/assets/ereshkigal_logomark.webp",
@@ -48528,7 +48701,7 @@
       },
       "flavor": "The stories of Ereškigal circulate within the Mesopotamian corpus, where the figure embodies queen of the underworld.",
       "flagship": true,
-      "ownedDomain": "ereshkigal.com",
+      "ownedDomain": "ereškigal.com",
       "art": {
         "mascot": "/sites/ereshkigal/assets/ereshkigal_mascot.webp",
         "logomark": "/sites/ereshkigal/assets/ereshkigal_logomark.webp",
@@ -51196,7 +51369,7 @@
       },
       "flavor": "The stories of Narasiṃha circulate within the Sanskrit corpus, where the figure embodies man-lion avatar.",
       "flagship": true,
-      "ownedDomain": "narasimha.com",
+      "ownedDomain": "narasiṃha.com",
       "art": {
         "mascot": "/sites/narasimha/assets/narasimha_mascot.webp",
         "logomark": "/sites/narasimha/assets/narasimha_logomark.webp",
@@ -51246,7 +51419,7 @@
       },
       "flavor": "The stories of Narasiṃha circulate within the Sanskrit corpus, where the figure embodies man-lion avatar.",
       "flagship": true,
-      "ownedDomain": "narasimha.com",
+      "ownedDomain": "narasiṃha.com",
       "art": {
         "mascot": "/sites/narasimha/assets/narasimha_mascot.webp",
         "logomark": "/sites/narasimha/assets/narasimha_logomark.webp",
@@ -51297,7 +51470,7 @@
       },
       "flavor": "The stories of Narasiṃha circulate within the Sanskrit corpus, where the figure embodies man-lion avatar.",
       "flagship": true,
-      "ownedDomain": "narasimha.com",
+      "ownedDomain": "narasiṃha.com",
       "art": {
         "mascot": "/sites/narasimha/assets/narasimha_mascot.webp",
         "logomark": "/sites/narasimha/assets/narasimha_logomark.webp",
@@ -51347,7 +51520,7 @@
       },
       "flavor": "The stories of Narasiṃha circulate within the Sanskrit corpus, where the figure embodies man-lion avatar.",
       "flagship": true,
-      "ownedDomain": "narasimha.com",
+      "ownedDomain": "narasiṃha.com",
       "art": {
         "mascot": "/sites/narasimha/assets/narasimha_mascot.webp",
         "logomark": "/sites/narasimha/assets/narasimha_logomark.webp",
@@ -59671,10 +59844,60 @@
       }
     },
     {
-      "id": "anahita-standard",
+      "id": "anahita-common",
       "entryId": "anahita",
-      "baseCardId": "anahita-standard",
-      "edition": "archive",
+      "baseCardId": "anahita-common",
+      "edition": "common",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Anāhitā",
+      "ascii": "anahita",
+      "original": "𐬀𐬭𐬆𐬛𐬎𐬎𐬍 𐬯𐬏𐬭𐬁 𐬀𐬥𐬁𐬵𐬌𐬙𐬀",
+      "pantheon": "zoroastrian",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Fertility, Water, Wisdom",
+      "rarity": "common",
+      "rarityOrder": 1,
+      "cost": 4,
+      "power": 85,
+      "health": 55,
+      "speed": 4,
+      "ability": {
+        "id": "ability-anahita",
+        "entryId": "anahita",
+        "name": "The Immaculate Waters",
+        "description": "Deal 2 damage to all enemy cards.",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "damage",
+          "target": "enemy-board",
+          "amount": 2
+        }
+      },
+      "flavor": "Anāhitā's mythology is concentrated in the fifth Yasht of the Avesta, a long liturgical hymn that praises her powers and lists the kings and heroes who sacrificed to her.",
+      "flagship": true,
+      "ownedDomain": "anāhitā.com",
+      "art": {
+        "mascot": "/sites/anahita/assets/anahita_mascot.webp",
+        "logomark": "/sites/anahita/assets/anahita_logomark.webp",
+        "fullArt": null,
+        "colors": {
+          "primary": "#FF4500",
+          "secondary": "#F5F5F5",
+          "glow": "rgba(255,69,0,0.3)"
+        },
+        "artist": null
+      }
+    },
+    {
+      "id": "anahita-holo",
+      "entryId": "anahita",
+      "baseCardId": "anahita-common",
+      "edition": "holo",
       "variant": "standard",
       "setId": "first-restoration",
       "name": "Anāhitā",
@@ -59689,14 +59912,14 @@
       "domain": "Fertility, Water, Wisdom",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 5,
-      "power": 85,
-      "health": 55,
+      "cost": 4,
+      "power": 97,
+      "health": 67,
       "speed": 4,
       "ability": {
         "id": "ability-anahita",
         "entryId": "anahita",
-        "name": "Undertow of the Amesha Spenta",
+        "name": "The Immaculate Waters",
         "description": "Deal 2 damage to all enemy cards.",
         "trigger": "on_play",
         "effect": {
@@ -59705,16 +59928,142 @@
           "amount": 2
         }
       },
-      "flavor": "Immaculate, undefiled",
-      "flagship": false,
-      "ownedDomain": null,
+      "flavor": "Anāhitā's mythology is concentrated in the fifth Yasht of the Avesta, a long liturgical hymn that praises her powers and lists the kings and heroes who sacrificed to her.",
+      "flagship": true,
+      "ownedDomain": "anāhitā.com",
       "art": {
-        "mascot": null,
-        "logomark": null,
+        "mascot": "/sites/anahita/assets/anahita_mascot.webp",
+        "logomark": "/sites/anahita/assets/anahita_logomark.webp",
         "fullArt": null,
-        "colors": null,
+        "colors": {
+          "primary": "#FF4500",
+          "secondary": "#F5F5F5",
+          "glow": "rgba(255,69,0,0.3)"
+        },
+        "artist": null
+      },
+      "patternFoil": true
+    },
+    {
+      "id": "anahita-full-art",
+      "entryId": "anahita",
+      "baseCardId": "anahita-common",
+      "edition": "full-art",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Anāhitā",
+      "ascii": "anahita",
+      "original": "𐬀𐬭𐬆𐬛𐬎𐬎𐬍 𐬯𐬏𐬭𐬁 𐬀𐬥𐬁𐬵𐬌𐬙𐬀",
+      "pantheon": "zoroastrian",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Fertility, Water, Wisdom",
+      "rarity": "legendary",
+      "rarityOrder": 5,
+      "cost": 4,
+      "power": 97,
+      "health": 67,
+      "speed": 4,
+      "ability": {
+        "id": "ability-anahita",
+        "entryId": "anahita",
+        "name": "The Immaculate Waters",
+        "description": "Deal 2 damage to all enemy cards. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "damage",
+              "target": "enemy-board",
+              "amount": 2
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "Anāhitā's mythology is concentrated in the fifth Yasht of the Avesta, a long liturgical hymn that praises her powers and lists the kings and heroes who sacrificed to her.",
+      "flagship": true,
+      "ownedDomain": "anāhitā.com",
+      "art": {
+        "mascot": "/sites/anahita/assets/anahita_mascot.webp",
+        "logomark": "/sites/anahita/assets/anahita_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/anahita_comp-canvas.png",
+        "colors": {
+          "primary": "#FF4500",
+          "secondary": "#F5F5F5",
+          "glow": "rgba(255,69,0,0.3)"
+        },
         "artist": null
       }
+    },
+    {
+      "id": "anahita-secret",
+      "entryId": "anahita",
+      "baseCardId": "anahita-common",
+      "edition": "secret",
+      "variant": "original-script",
+      "setId": "first-restoration",
+      "name": "Anāhitā",
+      "ascii": "anahita",
+      "original": "𐬀𐬭𐬆𐬛𐬎𐬎𐬍 𐬯𐬏𐬭𐬁 𐬀𐬥𐬁𐬵𐬌𐬙𐬀",
+      "pantheon": "zoroastrian",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Fertility, Water, Wisdom",
+      "rarity": "mythic",
+      "rarityOrder": 6,
+      "cost": 4,
+      "power": 97,
+      "health": 67,
+      "speed": 4,
+      "ability": {
+        "id": "ability-anahita",
+        "entryId": "anahita",
+        "name": "The Immaculate Waters",
+        "description": "Deal 2 damage to all enemy cards. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "damage",
+              "target": "enemy-board",
+              "amount": 2
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "Anāhitā's mythology is concentrated in the fifth Yasht of the Avesta, a long liturgical hymn that praises her powers and lists the kings and heroes who sacrificed to her.",
+      "flagship": true,
+      "ownedDomain": "anāhitā.com",
+      "art": {
+        "mascot": "/sites/anahita/assets/anahita_mascot.webp",
+        "logomark": "/sites/anahita/assets/anahita_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/anahita_comp-canvas.png",
+        "colors": {
+          "primary": "#FF4500",
+          "secondary": "#F5F5F5",
+          "glow": "rgba(255,69,0,0.3)"
+        },
+        "artist": null
+      },
+      "foil": true
     },
     {
       "id": "mamaquilla-standard",
@@ -64642,7 +64991,7 @@
       "edition": "common",
       "variant": "standard",
       "setId": "first-restoration",
-      "name": "Cháng'é",
+      "name": "Chángé",
       "ascii": "change",
       "original": "嫦娥",
       "pantheon": "chinese",
@@ -64669,7 +65018,7 @@
           "amount": 3
         }
       },
-      "flavor": "Cháng'é's story is short and inexhaustible: one ascent, endlessly retold.",
+      "flavor": "Chángé's story is short and inexhaustible: one ascent, endlessly retold.",
       "flagship": true,
       "ownedDomain": "chángé.com",
       "art": {
@@ -64691,7 +65040,7 @@
       "edition": "holo",
       "variant": "standard",
       "setId": "first-restoration",
-      "name": "Cháng'é",
+      "name": "Chángé",
       "ascii": "change",
       "original": "嫦娥",
       "pantheon": "chinese",
@@ -64718,7 +65067,7 @@
           "amount": 3
         }
       },
-      "flavor": "Cháng'é's story is short and inexhaustible: one ascent, endlessly retold.",
+      "flavor": "Chángé's story is short and inexhaustible: one ascent, endlessly retold.",
       "flagship": true,
       "ownedDomain": "chángé.com",
       "art": {
@@ -64741,7 +65090,7 @@
       "edition": "full-art",
       "variant": "standard",
       "setId": "first-restoration",
-      "name": "Cháng'é",
+      "name": "Chángé",
       "ascii": "change",
       "original": "嫦娥",
       "pantheon": "chinese",
@@ -64778,7 +65127,7 @@
           ]
         }
       },
-      "flavor": "Cháng'é's story is short and inexhaustible: one ascent, endlessly retold.",
+      "flavor": "Chángé's story is short and inexhaustible: one ascent, endlessly retold.",
       "flagship": true,
       "ownedDomain": "chángé.com",
       "art": {
@@ -64800,7 +65149,7 @@
       "edition": "secret",
       "variant": "original-script",
       "setId": "first-restoration",
-      "name": "Cháng'é",
+      "name": "Chángé",
       "ascii": "change",
       "original": "嫦娥",
       "pantheon": "chinese",
@@ -64837,7 +65186,7 @@
           ]
         }
       },
-      "flavor": "Cháng'é's story is short and inexhaustible: one ascent, endlessly retold.",
+      "flavor": "Chángé's story is short and inexhaustible: one ascent, endlessly retold.",
       "flagship": true,
       "ownedDomain": "chángé.com",
       "art": {
@@ -65108,7 +65457,7 @@
       },
       "flavor": "The stories of Sūnwùkōng circulate within the Chinese corpus, where the figure embodies monkey king, chaos, enlightenment.",
       "flagship": true,
-      "ownedDomain": "sunwukong.com",
+      "ownedDomain": "sūnwùkōng.com",
       "art": {
         "mascot": "/sites/sunwukong/assets/sunwukong_mascot.webp",
         "logomark": "/sites/sunwukong/assets/sunwukong_logomark.webp",
@@ -65158,7 +65507,7 @@
       },
       "flavor": "The stories of Sūnwùkōng circulate within the Chinese corpus, where the figure embodies monkey king, chaos, enlightenment.",
       "flagship": true,
-      "ownedDomain": "sunwukong.com",
+      "ownedDomain": "sūnwùkōng.com",
       "art": {
         "mascot": "/sites/sunwukong/assets/sunwukong_mascot.webp",
         "logomark": "/sites/sunwukong/assets/sunwukong_logomark.webp",
@@ -65219,7 +65568,7 @@
       },
       "flavor": "The stories of Sūnwùkōng circulate within the Chinese corpus, where the figure embodies monkey king, chaos, enlightenment.",
       "flagship": true,
-      "ownedDomain": "sunwukong.com",
+      "ownedDomain": "sūnwùkōng.com",
       "art": {
         "mascot": "/sites/sunwukong/assets/sunwukong_mascot.webp",
         "logomark": "/sites/sunwukong/assets/sunwukong_logomark.webp",
@@ -65279,7 +65628,7 @@
       },
       "flavor": "The stories of Sūnwùkōng circulate within the Chinese corpus, where the figure embodies monkey king, chaos, enlightenment.",
       "flagship": true,
-      "ownedDomain": "sunwukong.com",
+      "ownedDomain": "sūnwùkōng.com",
       "art": {
         "mascot": "/sites/sunwukong/assets/sunwukong_mascot.webp",
         "logomark": "/sites/sunwukong/assets/sunwukong_logomark.webp",
@@ -66262,7 +66611,7 @@
       "domain": "Trojan Princess, Sacrifice",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 6,
+      "cost": 5,
       "power": 73,
       "health": 69,
       "speed": 7,
@@ -66625,7 +66974,7 @@
       "domain": "Daughter of Helen",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 7,
+      "cost": 6,
       "power": 76,
       "health": 72,
       "speed": 7,
@@ -67492,7 +67841,7 @@
       },
       "flavor": "The stories of Śakti circulate within the Sanskrit corpus, where the figure embodies power, energy, divine feminine.",
       "flagship": true,
-      "ownedDomain": "shakti.com",
+      "ownedDomain": "śakti.com",
       "art": {
         "mascot": "/sites/shakti/assets/shakti_mascot.webp",
         "logomark": "/sites/shakti/assets/shakti_logomark.webp",
@@ -67541,7 +67890,7 @@
       },
       "flavor": "The stories of Śakti circulate within the Sanskrit corpus, where the figure embodies power, energy, divine feminine.",
       "flagship": true,
-      "ownedDomain": "shakti.com",
+      "ownedDomain": "śakti.com",
       "art": {
         "mascot": "/sites/shakti/assets/shakti_mascot.webp",
         "logomark": "/sites/shakti/assets/shakti_logomark.webp",
@@ -67601,7 +67950,7 @@
       },
       "flavor": "The stories of Śakti circulate within the Sanskrit corpus, where the figure embodies power, energy, divine feminine.",
       "flagship": true,
-      "ownedDomain": "shakti.com",
+      "ownedDomain": "śakti.com",
       "art": {
         "mascot": "/sites/shakti/assets/shakti_mascot.webp",
         "logomark": "/sites/shakti/assets/shakti_logomark.webp",
@@ -67660,7 +68009,7 @@
       },
       "flavor": "The stories of Śakti circulate within the Sanskrit corpus, where the figure embodies power, energy, divine feminine.",
       "flagship": true,
-      "ownedDomain": "shakti.com",
+      "ownedDomain": "śakti.com",
       "art": {
         "mascot": "/sites/shakti/assets/shakti_mascot.webp",
         "logomark": "/sites/shakti/assets/shakti_logomark.webp",
@@ -69566,7 +69915,7 @@
       "domain": "Moon-Chaser, Chaos",
       "rarity": "mythic",
       "rarityOrder": 6,
-      "cost": 2,
+      "cost": 1,
       "power": 75,
       "health": 73,
       "speed": 8,
@@ -70924,7 +71273,7 @@
       "domain": "Sea, Craftsmanship",
       "rarity": "common",
       "rarityOrder": 1,
-      "cost": 3,
+      "cost": 4,
       "power": 53,
       "health": 84,
       "speed": 6,
@@ -70974,7 +71323,7 @@
       "domain": "Sea, Craftsmanship",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 3,
+      "cost": 4,
       "power": 65,
       "health": 96,
       "speed": 6,
@@ -71025,7 +71374,7 @@
       "domain": "Sea, Craftsmanship",
       "rarity": "legendary",
       "rarityOrder": 5,
-      "cost": 3,
+      "cost": 4,
       "power": 65,
       "health": 96,
       "speed": 6,
@@ -73641,7 +73990,7 @@
       "domain": "Earth, Circle of Earth",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 8,
+      "cost": 7,
       "power": 71,
       "health": 85,
       "speed": 4,
@@ -76357,7 +76706,7 @@
       "domain": "Enlightenment, Teaching, Historical Buddha",
       "rarity": "common",
       "rarityOrder": 1,
-      "cost": 7,
+      "cost": 6,
       "power": 76,
       "health": 75,
       "speed": 4,
@@ -76406,7 +76755,7 @@
       "domain": "Enlightenment, Teaching, Historical Buddha",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 7,
+      "cost": 6,
       "power": 88,
       "health": 87,
       "speed": 4,
@@ -76456,7 +76805,7 @@
       "domain": "Enlightenment, Teaching, Historical Buddha",
       "rarity": "legendary",
       "rarityOrder": 5,
-      "cost": 7,
+      "cost": 6,
       "power": 88,
       "health": 87,
       "speed": 4,
@@ -82557,7 +82906,7 @@
       },
       "flavor": "The stories of Rāvaṇa circulate within the Sanskrit corpus, where the figure embodies ten-headed king, lanka.",
       "flagship": true,
-      "ownedDomain": "ravana.com",
+      "ownedDomain": "rāvaṇa.com",
       "art": {
         "mascot": "/sites/ravana/assets/ravana_mascot.webp",
         "logomark": "/sites/ravana/assets/ravana_logomark.webp",
@@ -82607,7 +82956,7 @@
       },
       "flavor": "The stories of Rāvaṇa circulate within the Sanskrit corpus, where the figure embodies ten-headed king, lanka.",
       "flagship": true,
-      "ownedDomain": "ravana.com",
+      "ownedDomain": "rāvaṇa.com",
       "art": {
         "mascot": "/sites/ravana/assets/ravana_mascot.webp",
         "logomark": "/sites/ravana/assets/ravana_logomark.webp",
@@ -82658,7 +83007,7 @@
       },
       "flavor": "The stories of Rāvaṇa circulate within the Sanskrit corpus, where the figure embodies ten-headed king, lanka.",
       "flagship": true,
-      "ownedDomain": "ravana.com",
+      "ownedDomain": "rāvaṇa.com",
       "art": {
         "mascot": "/sites/ravana/assets/ravana_mascot.webp",
         "logomark": "/sites/ravana/assets/ravana_logomark.webp",
@@ -82708,7 +83057,7 @@
       },
       "flavor": "The stories of Rāvaṇa circulate within the Sanskrit corpus, where the figure embodies ten-headed king, lanka.",
       "flagship": true,
-      "ownedDomain": "ravana.com",
+      "ownedDomain": "rāvaṇa.com",
       "art": {
         "mascot": "/sites/ravana/assets/ravana_mascot.webp",
         "logomark": "/sites/ravana/assets/ravana_logomark.webp",
@@ -83005,7 +83354,7 @@
       },
       "flavor": "The stories of Angrboða circulate within the Norse corpus, where the figure embodies monster mother, sorcery.",
       "flagship": true,
-      "ownedDomain": "angrboda.com",
+      "ownedDomain": "angrboða.com",
       "art": {
         "mascot": "/sites/angrboda/assets/angrboda_mascot.webp",
         "logomark": "/sites/angrboda/assets/angrboda_logomark.webp",
@@ -83054,7 +83403,7 @@
       },
       "flavor": "The stories of Angrboða circulate within the Norse corpus, where the figure embodies monster mother, sorcery.",
       "flagship": true,
-      "ownedDomain": "angrboda.com",
+      "ownedDomain": "angrboða.com",
       "art": {
         "mascot": "/sites/angrboda/assets/angrboda_mascot.webp",
         "logomark": "/sites/angrboda/assets/angrboda_logomark.webp",
@@ -83114,7 +83463,7 @@
       },
       "flavor": "The stories of Angrboða circulate within the Norse corpus, where the figure embodies monster mother, sorcery.",
       "flagship": true,
-      "ownedDomain": "angrboda.com",
+      "ownedDomain": "angrboða.com",
       "art": {
         "mascot": "/sites/angrboda/assets/angrboda_mascot.webp",
         "logomark": "/sites/angrboda/assets/angrboda_logomark.webp",
@@ -83173,7 +83522,7 @@
       },
       "flavor": "The stories of Angrboða circulate within the Norse corpus, where the figure embodies monster mother, sorcery.",
       "flagship": true,
-      "ownedDomain": "angrboda.com",
+      "ownedDomain": "angrboða.com",
       "art": {
         "mascot": "/sites/angrboda/assets/angrboda_mascot.webp",
         "logomark": "/sites/angrboda/assets/angrboda_logomark.webp",
@@ -88846,7 +89195,7 @@
       "domain": "Unity, The One, Oneness",
       "rarity": "common",
       "rarityOrder": 1,
-      "cost": 2,
+      "cost": 1,
       "power": 52,
       "health": 68,
       "speed": 8,
@@ -88895,7 +89244,7 @@
       "domain": "Unity, The One, Oneness",
       "rarity": "rare",
       "rarityOrder": 3,
-      "cost": 2,
+      "cost": 1,
       "power": 64,
       "health": 80,
       "speed": 8,
@@ -88945,7 +89294,7 @@
       "domain": "Unity, The One, Oneness",
       "rarity": "legendary",
       "rarityOrder": 5,
-      "cost": 2,
+      "cost": 1,
       "power": 64,
       "health": 80,
       "speed": 8,
@@ -101968,7 +102317,7 @@
       },
       "flavor": "The stories of Avalokiteśvara circulate within the Buddhist corpus, where the figure embodies compassion, mercy, bodhisattva.",
       "flagship": true,
-      "ownedDomain": "avalokiteshvara.com",
+      "ownedDomain": "avalokiteśvara.com",
       "art": {
         "mascot": "/sites/avalokiteshvara/assets/avalokiteshvara_mascot.webp",
         "logomark": "/sites/avalokiteshvara/assets/avalokiteshvara_logomark.webp",
@@ -102017,7 +102366,7 @@
       },
       "flavor": "The stories of Avalokiteśvara circulate within the Buddhist corpus, where the figure embodies compassion, mercy, bodhisattva.",
       "flagship": true,
-      "ownedDomain": "avalokiteshvara.com",
+      "ownedDomain": "avalokiteśvara.com",
       "art": {
         "mascot": "/sites/avalokiteshvara/assets/avalokiteshvara_mascot.webp",
         "logomark": "/sites/avalokiteshvara/assets/avalokiteshvara_logomark.webp",
@@ -102077,7 +102426,7 @@
       },
       "flavor": "The stories of Avalokiteśvara circulate within the Buddhist corpus, where the figure embodies compassion, mercy, bodhisattva.",
       "flagship": true,
-      "ownedDomain": "avalokiteshvara.com",
+      "ownedDomain": "avalokiteśvara.com",
       "art": {
         "mascot": "/sites/avalokiteshvara/assets/avalokiteshvara_mascot.webp",
         "logomark": "/sites/avalokiteshvara/assets/avalokiteshvara_logomark.webp",
@@ -102136,7 +102485,7 @@
       },
       "flavor": "The stories of Avalokiteśvara circulate within the Buddhist corpus, where the figure embodies compassion, mercy, bodhisattva.",
       "flagship": true,
-      "ownedDomain": "avalokiteshvara.com",
+      "ownedDomain": "avalokiteśvara.com",
       "art": {
         "mascot": "/sites/avalokiteshvara/assets/avalokiteshvara_mascot.webp",
         "logomark": "/sites/avalokiteshvara/assets/avalokiteshvara_logomark.webp",
@@ -102345,7 +102694,7 @@
       },
       "flavor": "The stories of Bhaiṣajyaguru circulate within the Buddhist corpus, where the figure embodies healing, medicine, lapis-lazuli light.",
       "flagship": true,
-      "ownedDomain": "bhaisajyaguru.com",
+      "ownedDomain": "bhaiṣajyaguru.com",
       "art": {
         "mascot": "/sites/bhaisajyaguru/assets/bhaisajyaguru_mascot.webp",
         "logomark": "/sites/bhaisajyaguru/assets/bhaisajyaguru_logomark.webp",
@@ -102395,7 +102744,7 @@
       },
       "flavor": "The stories of Bhaiṣajyaguru circulate within the Buddhist corpus, where the figure embodies healing, medicine, lapis-lazuli light.",
       "flagship": true,
-      "ownedDomain": "bhaisajyaguru.com",
+      "ownedDomain": "bhaiṣajyaguru.com",
       "art": {
         "mascot": "/sites/bhaisajyaguru/assets/bhaisajyaguru_mascot.webp",
         "logomark": "/sites/bhaisajyaguru/assets/bhaisajyaguru_logomark.webp",
@@ -102456,7 +102805,7 @@
       },
       "flavor": "The stories of Bhaiṣajyaguru circulate within the Buddhist corpus, where the figure embodies healing, medicine, lapis-lazuli light.",
       "flagship": true,
-      "ownedDomain": "bhaisajyaguru.com",
+      "ownedDomain": "bhaiṣajyaguru.com",
       "art": {
         "mascot": "/sites/bhaisajyaguru/assets/bhaisajyaguru_mascot.webp",
         "logomark": "/sites/bhaisajyaguru/assets/bhaisajyaguru_logomark.webp",
@@ -102516,7 +102865,7 @@
       },
       "flavor": "The stories of Bhaiṣajyaguru circulate within the Buddhist corpus, where the figure embodies healing, medicine, lapis-lazuli light.",
       "flagship": true,
-      "ownedDomain": "bhaisajyaguru.com",
+      "ownedDomain": "bhaiṣajyaguru.com",
       "art": {
         "mascot": "/sites/bhaisajyaguru/assets/bhaisajyaguru_mascot.webp",
         "logomark": "/sites/bhaisajyaguru/assets/bhaisajyaguru_logomark.webp",
@@ -102771,7 +103120,7 @@
       },
       "flavor": "The stories of Cáishén circulate within the Chinese corpus, where the figure embodies wealth, prosperity, new year.",
       "flagship": true,
-      "ownedDomain": "caishen.com",
+      "ownedDomain": "cáishén.com",
       "art": {
         "mascot": "/sites/caishen/assets/caishen_mascot.webp",
         "logomark": "/sites/caishen/assets/caishen_logomark.webp",
@@ -102819,7 +103168,7 @@
       },
       "flavor": "The stories of Cáishén circulate within the Chinese corpus, where the figure embodies wealth, prosperity, new year.",
       "flagship": true,
-      "ownedDomain": "caishen.com",
+      "ownedDomain": "cáishén.com",
       "art": {
         "mascot": "/sites/caishen/assets/caishen_mascot.webp",
         "logomark": "/sites/caishen/assets/caishen_logomark.webp",
@@ -102878,7 +103227,7 @@
       },
       "flavor": "The stories of Cáishén circulate within the Chinese corpus, where the figure embodies wealth, prosperity, new year.",
       "flagship": true,
-      "ownedDomain": "caishen.com",
+      "ownedDomain": "cáishén.com",
       "art": {
         "mascot": "/sites/caishen/assets/caishen_mascot.webp",
         "logomark": "/sites/caishen/assets/caishen_logomark.webp",
@@ -102936,7 +103285,7 @@
       },
       "flavor": "The stories of Cáishén circulate within the Chinese corpus, where the figure embodies wealth, prosperity, new year.",
       "flagship": true,
-      "ownedDomain": "caishen.com",
+      "ownedDomain": "cáishén.com",
       "art": {
         "mascot": "/sites/caishen/assets/caishen_mascot.webp",
         "logomark": "/sites/caishen/assets/caishen_logomark.webp",
@@ -103077,7 +103426,7 @@
       },
       "flavor": "The stories of Helénē circulate within the Greek corpus, where the figure embodies beauty, sparta, troy.",
       "flagship": true,
-      "ownedDomain": "helene.com",
+      "ownedDomain": "helénē.com",
       "art": {
         "mascot": "/sites/helene/assets/helene_mascot.webp",
         "logomark": "/sites/helene/assets/helene_logomark.webp",
@@ -103126,7 +103475,7 @@
       },
       "flavor": "The stories of Helénē circulate within the Greek corpus, where the figure embodies beauty, sparta, troy.",
       "flagship": true,
-      "ownedDomain": "helene.com",
+      "ownedDomain": "helénē.com",
       "art": {
         "mascot": "/sites/helene/assets/helene_mascot.webp",
         "logomark": "/sites/helene/assets/helene_logomark.webp",
@@ -103186,7 +103535,7 @@
       },
       "flavor": "The stories of Helénē circulate within the Greek corpus, where the figure embodies beauty, sparta, troy.",
       "flagship": true,
-      "ownedDomain": "helene.com",
+      "ownedDomain": "helénē.com",
       "art": {
         "mascot": "/sites/helene/assets/helene_mascot.webp",
         "logomark": "/sites/helene/assets/helene_logomark.webp",
@@ -103245,7 +103594,7 @@
       },
       "flavor": "The stories of Helénē circulate within the Greek corpus, where the figure embodies beauty, sparta, troy.",
       "flagship": true,
-      "ownedDomain": "helene.com",
+      "ownedDomain": "helénē.com",
       "art": {
         "mascot": "/sites/helene/assets/helene_mascot.webp",
         "logomark": "/sites/helene/assets/helene_logomark.webp",
@@ -105217,7 +105566,7 @@
       },
       "flavor": "The stories of Keraunós circulate within the Greek corpus, where the figure embodies thunderbolt.",
       "flagship": true,
-      "ownedDomain": "keraunos.com",
+      "ownedDomain": "keraunós.com",
       "art": {
         "mascot": "/sites/keraunos/assets/keraunos_mascot.webp",
         "logomark": "/sites/keraunos/assets/keraunos_logomark.webp",
@@ -105267,7 +105616,7 @@
       },
       "flavor": "The stories of Keraunós circulate within the Greek corpus, where the figure embodies thunderbolt.",
       "flagship": true,
-      "ownedDomain": "keraunos.com",
+      "ownedDomain": "keraunós.com",
       "art": {
         "mascot": "/sites/keraunos/assets/keraunos_mascot.webp",
         "logomark": "/sites/keraunos/assets/keraunos_logomark.webp",
@@ -105328,7 +105677,7 @@
       },
       "flavor": "The stories of Keraunós circulate within the Greek corpus, where the figure embodies thunderbolt.",
       "flagship": true,
-      "ownedDomain": "keraunos.com",
+      "ownedDomain": "keraunós.com",
       "art": {
         "mascot": "/sites/keraunos/assets/keraunos_mascot.webp",
         "logomark": "/sites/keraunos/assets/keraunos_logomark.webp",
@@ -105388,7 +105737,7 @@
       },
       "flavor": "The stories of Keraunós circulate within the Greek corpus, where the figure embodies thunderbolt.",
       "flagship": true,
-      "ownedDomain": "keraunos.com",
+      "ownedDomain": "keraunós.com",
       "art": {
         "mascot": "/sites/keraunos/assets/keraunos_mascot.webp",
         "logomark": "/sites/keraunos/assets/keraunos_logomark.webp",
@@ -105439,7 +105788,7 @@
       },
       "flavor": "The stories of Susanō circulate within the Japanese corpus, where the figure embodies storms, sea, chaos.",
       "flagship": true,
-      "ownedDomain": "susanoo.com",
+      "ownedDomain": "susanō.com",
       "art": {
         "mascot": "/sites/susanoo/assets/susanoo_mascot.webp",
         "logomark": "/sites/susanoo/assets/susanoo_logomark.webp",
@@ -105489,7 +105838,7 @@
       },
       "flavor": "The stories of Susanō circulate within the Japanese corpus, where the figure embodies storms, sea, chaos.",
       "flagship": true,
-      "ownedDomain": "susanoo.com",
+      "ownedDomain": "susanō.com",
       "art": {
         "mascot": "/sites/susanoo/assets/susanoo_mascot.webp",
         "logomark": "/sites/susanoo/assets/susanoo_logomark.webp",
@@ -105550,7 +105899,7 @@
       },
       "flavor": "The stories of Susanō circulate within the Japanese corpus, where the figure embodies storms, sea, chaos.",
       "flagship": true,
-      "ownedDomain": "susanoo.com",
+      "ownedDomain": "susanō.com",
       "art": {
         "mascot": "/sites/susanoo/assets/susanoo_mascot.webp",
         "logomark": "/sites/susanoo/assets/susanoo_logomark.webp",
@@ -105610,7 +105959,7 @@
       },
       "flavor": "The stories of Susanō circulate within the Japanese corpus, where the figure embodies storms, sea, chaos.",
       "flagship": true,
-      "ownedDomain": "susanoo.com",
+      "ownedDomain": "susanō.com",
       "art": {
         "mascot": "/sites/susanoo/assets/susanoo_mascot.webp",
         "logomark": "/sites/susanoo/assets/susanoo_logomark.webp",
@@ -105659,7 +106008,7 @@
       },
       "flavor": "The stories of Oidípous circulate within the Greek corpus, where the figure embodies fate, riddles, thebes.",
       "flagship": true,
-      "ownedDomain": "oidipous.com",
+      "ownedDomain": "oidípous.com",
       "art": {
         "mascot": "/sites/oidipous/assets/oidipous_mascot.webp",
         "logomark": "/sites/oidipous/assets/oidipous_logomark.webp",
@@ -105707,7 +106056,7 @@
       },
       "flavor": "The stories of Oidípous circulate within the Greek corpus, where the figure embodies fate, riddles, thebes.",
       "flagship": true,
-      "ownedDomain": "oidipous.com",
+      "ownedDomain": "oidípous.com",
       "art": {
         "mascot": "/sites/oidipous/assets/oidipous_mascot.webp",
         "logomark": "/sites/oidipous/assets/oidipous_logomark.webp",
@@ -105766,7 +106115,7 @@
       },
       "flavor": "The stories of Oidípous circulate within the Greek corpus, where the figure embodies fate, riddles, thebes.",
       "flagship": true,
-      "ownedDomain": "oidipous.com",
+      "ownedDomain": "oidípous.com",
       "art": {
         "mascot": "/sites/oidipous/assets/oidipous_mascot.webp",
         "logomark": "/sites/oidipous/assets/oidipous_logomark.webp",
@@ -105824,7 +106173,7 @@
       },
       "flavor": "The stories of Oidípous circulate within the Greek corpus, where the figure embodies fate, riddles, thebes.",
       "flagship": true,
-      "ownedDomain": "oidipous.com",
+      "ownedDomain": "oidípous.com",
       "art": {
         "mascot": "/sites/oidipous/assets/oidipous_mascot.webp",
         "logomark": "/sites/oidipous/assets/oidipous_logomark.webp",
@@ -105874,7 +106223,7 @@
       },
       "flavor": "The stories of Kǒngzǐ circulate within the Chinese corpus, where the figure embodies confucius, moral teaching, ritual.",
       "flagship": true,
-      "ownedDomain": "kongzi.com",
+      "ownedDomain": "kǒngzǐ.com",
       "art": {
         "mascot": "/sites/kongzi/assets/kongzi_mascot.webp",
         "logomark": "/sites/kongzi/assets/kongzi_logomark.webp",
@@ -105923,7 +106272,7 @@
       },
       "flavor": "The stories of Kǒngzǐ circulate within the Chinese corpus, where the figure embodies confucius, moral teaching, ritual.",
       "flagship": true,
-      "ownedDomain": "kongzi.com",
+      "ownedDomain": "kǒngzǐ.com",
       "art": {
         "mascot": "/sites/kongzi/assets/kongzi_mascot.webp",
         "logomark": "/sites/kongzi/assets/kongzi_logomark.webp",
@@ -105983,7 +106332,7 @@
       },
       "flavor": "The stories of Kǒngzǐ circulate within the Chinese corpus, where the figure embodies confucius, moral teaching, ritual.",
       "flagship": true,
-      "ownedDomain": "kongzi.com",
+      "ownedDomain": "kǒngzǐ.com",
       "art": {
         "mascot": "/sites/kongzi/assets/kongzi_mascot.webp",
         "logomark": "/sites/kongzi/assets/kongzi_logomark.webp",
@@ -106042,7 +106391,7 @@
       },
       "flavor": "The stories of Kǒngzǐ circulate within the Chinese corpus, where the figure embodies confucius, moral teaching, ritual.",
       "flagship": true,
-      "ownedDomain": "kongzi.com",
+      "ownedDomain": "kǒngzǐ.com",
       "art": {
         "mascot": "/sites/kongzi/assets/kongzi_mascot.webp",
         "logomark": "/sites/kongzi/assets/kongzi_logomark.webp",
@@ -106093,7 +106442,7 @@
       },
       "flavor": "The stories of Yùhuáng circulate within the Chinese corpus, where the figure embodies jade emperor, heaven, sovereignty.",
       "flagship": true,
-      "ownedDomain": "yuhuang.com",
+      "ownedDomain": "yùhuáng.com",
       "art": {
         "mascot": "/sites/yuhuang/assets/yuhuang_mascot.webp",
         "logomark": "/sites/yuhuang/assets/yuhuang_logomark.webp",
@@ -106143,7 +106492,7 @@
       },
       "flavor": "The stories of Yùhuáng circulate within the Chinese corpus, where the figure embodies jade emperor, heaven, sovereignty.",
       "flagship": true,
-      "ownedDomain": "yuhuang.com",
+      "ownedDomain": "yùhuáng.com",
       "art": {
         "mascot": "/sites/yuhuang/assets/yuhuang_mascot.webp",
         "logomark": "/sites/yuhuang/assets/yuhuang_logomark.webp",
@@ -106194,7 +106543,7 @@
       },
       "flavor": "The stories of Yùhuáng circulate within the Chinese corpus, where the figure embodies jade emperor, heaven, sovereignty.",
       "flagship": true,
-      "ownedDomain": "yuhuang.com",
+      "ownedDomain": "yùhuáng.com",
       "art": {
         "mascot": "/sites/yuhuang/assets/yuhuang_mascot.webp",
         "logomark": "/sites/yuhuang/assets/yuhuang_logomark.webp",
@@ -106244,7 +106593,7 @@
       },
       "flavor": "The stories of Yùhuáng circulate within the Chinese corpus, where the figure embodies jade emperor, heaven, sovereignty.",
       "flagship": true,
-      "ownedDomain": "yuhuang.com",
+      "ownedDomain": "yùhuáng.com",
       "art": {
         "mascot": "/sites/yuhuang/assets/yuhuang_mascot.webp",
         "logomark": "/sites/yuhuang/assets/yuhuang_logomark.webp",
@@ -106295,7 +106644,7 @@
       },
       "flavor": "The stories of Krátos circulate within the Greek corpus, where the figure embodies strength, power, sovereignty.",
       "flagship": true,
-      "ownedDomain": "kratos.com",
+      "ownedDomain": "krátos.com",
       "art": {
         "mascot": "/sites/kratos/assets/kratos_mascot.webp",
         "logomark": "/sites/kratos/assets/kratos_logomark.webp",
@@ -106345,7 +106694,7 @@
       },
       "flavor": "The stories of Krátos circulate within the Greek corpus, where the figure embodies strength, power, sovereignty.",
       "flagship": true,
-      "ownedDomain": "kratos.com",
+      "ownedDomain": "krátos.com",
       "art": {
         "mascot": "/sites/kratos/assets/kratos_mascot.webp",
         "logomark": "/sites/kratos/assets/kratos_logomark.webp",
@@ -106396,7 +106745,7 @@
       },
       "flavor": "The stories of Krátos circulate within the Greek corpus, where the figure embodies strength, power, sovereignty.",
       "flagship": true,
-      "ownedDomain": "kratos.com",
+      "ownedDomain": "krátos.com",
       "art": {
         "mascot": "/sites/kratos/assets/kratos_mascot.webp",
         "logomark": "/sites/kratos/assets/kratos_logomark.webp",
@@ -106446,7 +106795,7 @@
       },
       "flavor": "The stories of Krátos circulate within the Greek corpus, where the figure embodies strength, power, sovereignty.",
       "flagship": true,
-      "ownedDomain": "kratos.com",
+      "ownedDomain": "krátos.com",
       "art": {
         "mascot": "/sites/kratos/assets/kratos_mascot.webp",
         "logomark": "/sites/kratos/assets/kratos_logomark.webp",
@@ -106496,7 +106845,7 @@
       },
       "flavor": "The stories of Tōnatiuh circulate within the Nahuatl corpus, where the figure embodies sun, heat, fifth age.",
       "flagship": true,
-      "ownedDomain": "tonatiuh.com",
+      "ownedDomain": "tōnatiuh.com",
       "art": {
         "mascot": "/sites/tonatiuh/assets/tonatiuh_mascot.webp",
         "logomark": "/sites/tonatiuh/assets/tonatiuh_logomark.webp",
@@ -106545,7 +106894,7 @@
       },
       "flavor": "The stories of Tōnatiuh circulate within the Nahuatl corpus, where the figure embodies sun, heat, fifth age.",
       "flagship": true,
-      "ownedDomain": "tonatiuh.com",
+      "ownedDomain": "tōnatiuh.com",
       "art": {
         "mascot": "/sites/tonatiuh/assets/tonatiuh_mascot.webp",
         "logomark": "/sites/tonatiuh/assets/tonatiuh_logomark.webp",
@@ -106605,7 +106954,7 @@
       },
       "flavor": "The stories of Tōnatiuh circulate within the Nahuatl corpus, where the figure embodies sun, heat, fifth age.",
       "flagship": true,
-      "ownedDomain": "tonatiuh.com",
+      "ownedDomain": "tōnatiuh.com",
       "art": {
         "mascot": "/sites/tonatiuh/assets/tonatiuh_mascot.webp",
         "logomark": "/sites/tonatiuh/assets/tonatiuh_logomark.webp",
@@ -106655,7 +107004,7 @@
       },
       "flavor": "The stories of Odùduwà circulate within the Yoruba corpus, where the figure embodies progenitor, ile-ife, first king.",
       "flagship": true,
-      "ownedDomain": "oduduwa.com",
+      "ownedDomain": "odùduwà.com",
       "art": {
         "mascot": "/sites/oduduwa/assets/oduduwa_mascot.webp",
         "logomark": "/sites/oduduwa/assets/oduduwa_logomark.webp",
@@ -106705,7 +107054,7 @@
       },
       "flavor": "The stories of Odùduwà circulate within the Yoruba corpus, where the figure embodies progenitor, ile-ife, first king.",
       "flagship": true,
-      "ownedDomain": "oduduwa.com",
+      "ownedDomain": "odùduwà.com",
       "art": {
         "mascot": "/sites/oduduwa/assets/oduduwa_mascot.webp",
         "logomark": "/sites/oduduwa/assets/oduduwa_logomark.webp",
@@ -106756,7 +107105,7 @@
       },
       "flavor": "The stories of Odùduwà circulate within the Yoruba corpus, where the figure embodies progenitor, ile-ife, first king.",
       "flagship": true,
-      "ownedDomain": "oduduwa.com",
+      "ownedDomain": "odùduwà.com",
       "art": {
         "mascot": "/sites/oduduwa/assets/oduduwa_mascot.webp",
         "logomark": "/sites/oduduwa/assets/oduduwa_logomark.webp",
@@ -106806,7 +107155,7 @@
       },
       "flavor": "The stories of Shàngdì circulate within the Chinese corpus, where the figure embodies supreme deity, heaven, sovereign.",
       "flagship": true,
-      "ownedDomain": "shangdi.com",
+      "ownedDomain": "shàngdì.com",
       "art": {
         "mascot": "/sites/shangdi/assets/shangdi_mascot.webp",
         "logomark": "/sites/shangdi/assets/shangdi_logomark.webp",
@@ -106856,7 +107205,7 @@
       },
       "flavor": "The stories of Shàngdì circulate within the Chinese corpus, where the figure embodies supreme deity, heaven, sovereign.",
       "flagship": true,
-      "ownedDomain": "shangdi.com",
+      "ownedDomain": "shàngdì.com",
       "art": {
         "mascot": "/sites/shangdi/assets/shangdi_mascot.webp",
         "logomark": "/sites/shangdi/assets/shangdi_logomark.webp",
@@ -106907,7 +107256,7 @@
       },
       "flavor": "The stories of Shàngdì circulate within the Chinese corpus, where the figure embodies supreme deity, heaven, sovereign.",
       "flagship": true,
-      "ownedDomain": "shangdi.com",
+      "ownedDomain": "shàngdì.com",
       "art": {
         "mascot": "/sites/shangdi/assets/shangdi_mascot.webp",
         "logomark": "/sites/shangdi/assets/shangdi_logomark.webp",
@@ -106957,7 +107306,7 @@
       },
       "flavor": "The stories of Shàngdì circulate within the Chinese corpus, where the figure embodies supreme deity, heaven, sovereign.",
       "flagship": true,
-      "ownedDomain": "shangdi.com",
+      "ownedDomain": "shàngdì.com",
       "art": {
         "mascot": "/sites/shangdi/assets/shangdi_mascot.webp",
         "logomark": "/sites/shangdi/assets/shangdi_logomark.webp",
@@ -107007,7 +107356,7 @@
       },
       "flavor": "The stories of Jagannātha circulate within the Sanskrit corpus, where the figure embodies lord of the world, puri, devotion.",
       "flagship": true,
-      "ownedDomain": "jagannatha.com",
+      "ownedDomain": "jagannātha.com",
       "art": {
         "mascot": "/sites/jagannatha/assets/jagannatha_mascot.webp",
         "logomark": "/sites/jagannatha/assets/jagannatha_logomark.webp",
@@ -107056,7 +107405,7 @@
       },
       "flavor": "The stories of Jagannātha circulate within the Sanskrit corpus, where the figure embodies lord of the world, puri, devotion.",
       "flagship": true,
-      "ownedDomain": "jagannatha.com",
+      "ownedDomain": "jagannātha.com",
       "art": {
         "mascot": "/sites/jagannatha/assets/jagannatha_mascot.webp",
         "logomark": "/sites/jagannatha/assets/jagannatha_logomark.webp",
@@ -107116,7 +107465,7 @@
       },
       "flavor": "The stories of Jagannātha circulate within the Sanskrit corpus, where the figure embodies lord of the world, puri, devotion.",
       "flagship": true,
-      "ownedDomain": "jagannatha.com",
+      "ownedDomain": "jagannātha.com",
       "art": {
         "mascot": "/sites/jagannatha/assets/jagannatha_mascot.webp",
         "logomark": "/sites/jagannatha/assets/jagannatha_logomark.webp",
@@ -107175,7 +107524,7 @@
       },
       "flavor": "The stories of Jagannātha circulate within the Sanskrit corpus, where the figure embodies lord of the world, puri, devotion.",
       "flagship": true,
-      "ownedDomain": "jagannatha.com",
+      "ownedDomain": "jagannātha.com",
       "art": {
         "mascot": "/sites/jagannatha/assets/jagannatha_mascot.webp",
         "logomark": "/sites/jagannatha/assets/jagannatha_logomark.webp",
@@ -107225,7 +107574,7 @@
       },
       "flavor": "The stories of Jǫrð circulate within the Norse corpus, where the figure embodies earth, mother of thor.",
       "flagship": true,
-      "ownedDomain": "jord.com",
+      "ownedDomain": "jǫrð.com",
       "art": {
         "mascot": "/sites/jord/assets/jord_mascot.webp",
         "logomark": "/sites/jord/assets/jord_logomark.webp",
@@ -107274,7 +107623,7 @@
       },
       "flavor": "The stories of Jǫrð circulate within the Norse corpus, where the figure embodies earth, mother of thor.",
       "flagship": true,
-      "ownedDomain": "jord.com",
+      "ownedDomain": "jǫrð.com",
       "art": {
         "mascot": "/sites/jord/assets/jord_mascot.webp",
         "logomark": "/sites/jord/assets/jord_logomark.webp",
@@ -107334,7 +107683,7 @@
       },
       "flavor": "The stories of Jǫrð circulate within the Norse corpus, where the figure embodies earth, mother of thor.",
       "flagship": true,
-      "ownedDomain": "jord.com",
+      "ownedDomain": "jǫrð.com",
       "art": {
         "mascot": "/sites/jord/assets/jord_mascot.webp",
         "logomark": "/sites/jord/assets/jord_logomark.webp",
@@ -107346,6 +107695,1524 @@
         },
         "artist": null
       }
+    },
+    {
+      "id": "audhumla-common",
+      "entryId": "audhumla",
+      "baseCardId": "audhumla-common",
+      "edition": "common",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Auðhumla",
+      "ascii": "audhumla",
+      "original": "ᛅᚢᚦᚢᛘᛚᛅ",
+      "pantheon": "norse",
+      "category": "primordial",
+      "categoryLabel": "Primordial",
+      "categoryIcon": "∞",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Primeval Cow, Nourisher of Creation",
+      "rarity": "common",
+      "rarityOrder": 1,
+      "cost": 2,
+      "power": 73,
+      "health": 59,
+      "speed": 7,
+      "ability": {
+        "id": "ability-audhumla",
+        "entryId": "audhumla",
+        "name": "The Primeval Cow",
+        "description": "Copy the top card of your deck into your hand.",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "copy-top-card"
+        }
+      },
+      "flavor": "Auðhumla has only one extended scene in Norse mythology, but it is the scene from which everything else follows.",
+      "flagship": true,
+      "ownedDomain": "auðhumla.com",
+      "art": {
+        "mascot": "/sites/audhumla/assets/audhumla_mascot.webp",
+        "logomark": "/sites/audhumla/assets/audhumla_logomark.webp",
+        "fullArt": null,
+        "colors": {
+          "primary": "#C0C0C0",
+          "secondary": "#5C9BD1",
+          "glow": "rgba(192,192,192,0.3)"
+        },
+        "artist": null
+      }
+    },
+    {
+      "id": "audhumla-holo",
+      "entryId": "audhumla",
+      "baseCardId": "audhumla-common",
+      "edition": "holo",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Auðhumla",
+      "ascii": "audhumla",
+      "original": "ᛅᚢᚦᚢᛘᛚᛅ",
+      "pantheon": "norse",
+      "category": "primordial",
+      "categoryLabel": "Primordial",
+      "categoryIcon": "∞",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Primeval Cow, Nourisher of Creation",
+      "rarity": "rare",
+      "rarityOrder": 3,
+      "cost": 2,
+      "power": 85,
+      "health": 71,
+      "speed": 7,
+      "ability": {
+        "id": "ability-audhumla",
+        "entryId": "audhumla",
+        "name": "The Primeval Cow",
+        "description": "Copy the top card of your deck into your hand.",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "copy-top-card"
+        }
+      },
+      "flavor": "Auðhumla has only one extended scene in Norse mythology, but it is the scene from which everything else follows.",
+      "flagship": true,
+      "ownedDomain": "auðhumla.com",
+      "art": {
+        "mascot": "/sites/audhumla/assets/audhumla_mascot.webp",
+        "logomark": "/sites/audhumla/assets/audhumla_logomark.webp",
+        "fullArt": null,
+        "colors": {
+          "primary": "#C0C0C0",
+          "secondary": "#5C9BD1",
+          "glow": "rgba(192,192,192,0.3)"
+        },
+        "artist": null
+      },
+      "patternFoil": true
+    },
+    {
+      "id": "audhumla-full-art",
+      "entryId": "audhumla",
+      "baseCardId": "audhumla-common",
+      "edition": "full-art",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Auðhumla",
+      "ascii": "audhumla",
+      "original": "ᛅᚢᚦᚢᛘᛚᛅ",
+      "pantheon": "norse",
+      "category": "primordial",
+      "categoryLabel": "Primordial",
+      "categoryIcon": "∞",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Primeval Cow, Nourisher of Creation",
+      "rarity": "legendary",
+      "rarityOrder": 5,
+      "cost": 2,
+      "power": 85,
+      "health": 71,
+      "speed": 7,
+      "ability": {
+        "id": "ability-audhumla",
+        "entryId": "audhumla",
+        "name": "The Primeval Cow",
+        "description": "Copy the top card of your deck into your hand. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "copy-top-card"
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "Auðhumla has only one extended scene in Norse mythology, but it is the scene from which everything else follows.",
+      "flagship": true,
+      "ownedDomain": "auðhumla.com",
+      "art": {
+        "mascot": "/sites/audhumla/assets/audhumla_mascot.webp",
+        "logomark": "/sites/audhumla/assets/audhumla_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/audhumla_comp-canvas.png",
+        "colors": {
+          "primary": "#C0C0C0",
+          "secondary": "#5C9BD1",
+          "glow": "rgba(192,192,192,0.3)"
+        },
+        "artist": null
+      }
+    },
+    {
+      "id": "audhumla-secret",
+      "entryId": "audhumla",
+      "baseCardId": "audhumla-common",
+      "edition": "secret",
+      "variant": "original-script",
+      "setId": "first-restoration",
+      "name": "Auðhumla",
+      "ascii": "audhumla",
+      "original": "ᛅᚢᚦᚢᛘᛚᛅ",
+      "pantheon": "norse",
+      "category": "primordial",
+      "categoryLabel": "Primordial",
+      "categoryIcon": "∞",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Primeval Cow, Nourisher of Creation",
+      "rarity": "mythic",
+      "rarityOrder": 6,
+      "cost": 2,
+      "power": 85,
+      "health": 71,
+      "speed": 7,
+      "ability": {
+        "id": "ability-audhumla",
+        "entryId": "audhumla",
+        "name": "The Primeval Cow",
+        "description": "Copy the top card of your deck into your hand. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "copy-top-card"
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "Auðhumla has only one extended scene in Norse mythology, but it is the scene from which everything else follows.",
+      "flagship": true,
+      "ownedDomain": "auðhumla.com",
+      "art": {
+        "mascot": "/sites/audhumla/assets/audhumla_mascot.webp",
+        "logomark": "/sites/audhumla/assets/audhumla_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/audhumla_comp-canvas.png",
+        "colors": {
+          "primary": "#C0C0C0",
+          "secondary": "#5C9BD1",
+          "glow": "rgba(192,192,192,0.3)"
+        },
+        "artist": null
+      },
+      "foil": true
+    },
+    {
+      "id": "fjorgyn-common",
+      "entryId": "fjorgyn",
+      "baseCardId": "fjorgyn-common",
+      "edition": "common",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Fjǫrgyn",
+      "ascii": "fjorgyn",
+      "original": "ᚠᛁᚢᚱᚴᚢᚾ",
+      "pantheon": "norse",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Earth, Mother of Thor",
+      "rarity": "common",
+      "rarityOrder": 1,
+      "cost": 8,
+      "power": 85,
+      "health": 91,
+      "speed": 8,
+      "ability": {
+        "id": "ability-fjorgyn",
+        "entryId": "fjorgyn",
+        "name": "Earth and Mother of Thor",
+        "description": "Your allies gain a 2 shield.",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "shield-allies",
+          "amount": 2
+        }
+      },
+      "flavor": "Fjǫrgyn appears briefly in the Eddas, but her appearances are weighty: she is the mother of the most popular god and the earth that hears every oath.",
+      "flagship": true,
+      "ownedDomain": "fjǫrgyn.com",
+      "art": {
+        "mascot": "/sites/fjorgyn/assets/fjorgyn_mascot.webp",
+        "logomark": "/sites/fjorgyn/assets/fjorgyn_logomark.webp",
+        "fullArt": null,
+        "colors": {
+          "primary": "#C0C0C0",
+          "secondary": "#5C9BD1",
+          "glow": "rgba(192,192,192,0.3)"
+        },
+        "artist": null
+      }
+    },
+    {
+      "id": "fjorgyn-holo",
+      "entryId": "fjorgyn",
+      "baseCardId": "fjorgyn-common",
+      "edition": "holo",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Fjǫrgyn",
+      "ascii": "fjorgyn",
+      "original": "ᚠᛁᚢᚱᚴᚢᚾ",
+      "pantheon": "norse",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Earth, Mother of Thor",
+      "rarity": "rare",
+      "rarityOrder": 3,
+      "cost": 8,
+      "power": 97,
+      "health": 103,
+      "speed": 8,
+      "ability": {
+        "id": "ability-fjorgyn",
+        "entryId": "fjorgyn",
+        "name": "Earth and Mother of Thor",
+        "description": "Your allies gain a 2 shield.",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "shield-allies",
+          "amount": 2
+        }
+      },
+      "flavor": "Fjǫrgyn appears briefly in the Eddas, but her appearances are weighty: she is the mother of the most popular god and the earth that hears every oath.",
+      "flagship": true,
+      "ownedDomain": "fjǫrgyn.com",
+      "art": {
+        "mascot": "/sites/fjorgyn/assets/fjorgyn_mascot.webp",
+        "logomark": "/sites/fjorgyn/assets/fjorgyn_logomark.webp",
+        "fullArt": null,
+        "colors": {
+          "primary": "#C0C0C0",
+          "secondary": "#5C9BD1",
+          "glow": "rgba(192,192,192,0.3)"
+        },
+        "artist": null
+      },
+      "patternFoil": true
+    },
+    {
+      "id": "fjorgyn-full-art",
+      "entryId": "fjorgyn",
+      "baseCardId": "fjorgyn-common",
+      "edition": "full-art",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Fjǫrgyn",
+      "ascii": "fjorgyn",
+      "original": "ᚠᛁᚢᚱᚴᚢᚾ",
+      "pantheon": "norse",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Earth, Mother of Thor",
+      "rarity": "legendary",
+      "rarityOrder": 5,
+      "cost": 8,
+      "power": 97,
+      "health": 103,
+      "speed": 8,
+      "ability": {
+        "id": "ability-fjorgyn",
+        "entryId": "fjorgyn",
+        "name": "Earth and Mother of Thor",
+        "description": "Your allies gain a 2 shield. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "shield-allies",
+              "amount": 2
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "Fjǫrgyn appears briefly in the Eddas, but her appearances are weighty: she is the mother of the most popular god and the earth that hears every oath.",
+      "flagship": true,
+      "ownedDomain": "fjǫrgyn.com",
+      "art": {
+        "mascot": "/sites/fjorgyn/assets/fjorgyn_mascot.webp",
+        "logomark": "/sites/fjorgyn/assets/fjorgyn_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/fjorgyn_comp-canvas.png",
+        "colors": {
+          "primary": "#C0C0C0",
+          "secondary": "#5C9BD1",
+          "glow": "rgba(192,192,192,0.3)"
+        },
+        "artist": null
+      }
+    },
+    {
+      "id": "fjorgyn-secret",
+      "entryId": "fjorgyn",
+      "baseCardId": "fjorgyn-common",
+      "edition": "secret",
+      "variant": "original-script",
+      "setId": "first-restoration",
+      "name": "Fjǫrgyn",
+      "ascii": "fjorgyn",
+      "original": "ᚠᛁᚢᚱᚴᚢᚾ",
+      "pantheon": "norse",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Earth, Mother of Thor",
+      "rarity": "mythic",
+      "rarityOrder": 6,
+      "cost": 8,
+      "power": 97,
+      "health": 103,
+      "speed": 8,
+      "ability": {
+        "id": "ability-fjorgyn",
+        "entryId": "fjorgyn",
+        "name": "Earth and Mother of Thor",
+        "description": "Your allies gain a 2 shield. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "shield-allies",
+              "amount": 2
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "Fjǫrgyn appears briefly in the Eddas, but her appearances are weighty: she is the mother of the most popular god and the earth that hears every oath.",
+      "flagship": true,
+      "ownedDomain": "fjǫrgyn.com",
+      "art": {
+        "mascot": "/sites/fjorgyn/assets/fjorgyn_mascot.webp",
+        "logomark": "/sites/fjorgyn/assets/fjorgyn_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/fjorgyn_comp-canvas.png",
+        "colors": {
+          "primary": "#C0C0C0",
+          "secondary": "#5C9BD1",
+          "glow": "rgba(192,192,192,0.3)"
+        },
+        "artist": null
+      },
+      "foil": true
+    },
+    {
+      "id": "gna-common",
+      "entryId": "gna",
+      "baseCardId": "gna-common",
+      "edition": "common",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Gná",
+      "ascii": "gna",
+      "original": "ᚴᚾᛅ",
+      "pantheon": "norse",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Messenger of Frigg",
+      "rarity": "common",
+      "rarityOrder": 1,
+      "cost": 2,
+      "power": 70,
+      "health": 56,
+      "speed": 6,
+      "ability": {
+        "id": "ability-gna",
+        "entryId": "gna",
+        "name": "Messenger of Frigg",
+        "description": "Copy the top card of your deck into your hand.",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "copy-top-card"
+        }
+      },
+      "flavor": "Gná's mythology is compact: she appears in Snorri's catalogue of the Ásynjur, where her speed and her horse are her defining traits.",
+      "flagship": true,
+      "ownedDomain": "gná.com",
+      "art": {
+        "mascot": "/sites/gna/assets/gna_mascot.webp",
+        "logomark": "/sites/gna/assets/gna_logomark.webp",
+        "fullArt": null,
+        "colors": {
+          "primary": "#C0C0C0",
+          "secondary": "#5C9BD1",
+          "glow": "rgba(192,192,192,0.3)"
+        },
+        "artist": null
+      }
+    },
+    {
+      "id": "gna-holo",
+      "entryId": "gna",
+      "baseCardId": "gna-common",
+      "edition": "holo",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Gná",
+      "ascii": "gna",
+      "original": "ᚴᚾᛅ",
+      "pantheon": "norse",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Messenger of Frigg",
+      "rarity": "rare",
+      "rarityOrder": 3,
+      "cost": 2,
+      "power": 82,
+      "health": 68,
+      "speed": 6,
+      "ability": {
+        "id": "ability-gna",
+        "entryId": "gna",
+        "name": "Messenger of Frigg",
+        "description": "Copy the top card of your deck into your hand.",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "copy-top-card"
+        }
+      },
+      "flavor": "Gná's mythology is compact: she appears in Snorri's catalogue of the Ásynjur, where her speed and her horse are her defining traits.",
+      "flagship": true,
+      "ownedDomain": "gná.com",
+      "art": {
+        "mascot": "/sites/gna/assets/gna_mascot.webp",
+        "logomark": "/sites/gna/assets/gna_logomark.webp",
+        "fullArt": null,
+        "colors": {
+          "primary": "#C0C0C0",
+          "secondary": "#5C9BD1",
+          "glow": "rgba(192,192,192,0.3)"
+        },
+        "artist": null
+      },
+      "patternFoil": true
+    },
+    {
+      "id": "gna-full-art",
+      "entryId": "gna",
+      "baseCardId": "gna-common",
+      "edition": "full-art",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Gná",
+      "ascii": "gna",
+      "original": "ᚴᚾᛅ",
+      "pantheon": "norse",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Messenger of Frigg",
+      "rarity": "legendary",
+      "rarityOrder": 5,
+      "cost": 2,
+      "power": 82,
+      "health": 68,
+      "speed": 6,
+      "ability": {
+        "id": "ability-gna",
+        "entryId": "gna",
+        "name": "Messenger of Frigg",
+        "description": "Copy the top card of your deck into your hand. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "copy-top-card"
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "Gná's mythology is compact: she appears in Snorri's catalogue of the Ásynjur, where her speed and her horse are her defining traits.",
+      "flagship": true,
+      "ownedDomain": "gná.com",
+      "art": {
+        "mascot": "/sites/gna/assets/gna_mascot.webp",
+        "logomark": "/sites/gna/assets/gna_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/gna_comp-canvas.png",
+        "colors": {
+          "primary": "#C0C0C0",
+          "secondary": "#5C9BD1",
+          "glow": "rgba(192,192,192,0.3)"
+        },
+        "artist": null
+      }
+    },
+    {
+      "id": "gna-secret",
+      "entryId": "gna",
+      "baseCardId": "gna-common",
+      "edition": "secret",
+      "variant": "original-script",
+      "setId": "first-restoration",
+      "name": "Gná",
+      "ascii": "gna",
+      "original": "ᚴᚾᛅ",
+      "pantheon": "norse",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Messenger of Frigg",
+      "rarity": "mythic",
+      "rarityOrder": 6,
+      "cost": 2,
+      "power": 82,
+      "health": 68,
+      "speed": 6,
+      "ability": {
+        "id": "ability-gna",
+        "entryId": "gna",
+        "name": "Messenger of Frigg",
+        "description": "Copy the top card of your deck into your hand. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "copy-top-card"
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "Gná's mythology is compact: she appears in Snorri's catalogue of the Ásynjur, where her speed and her horse are her defining traits.",
+      "flagship": true,
+      "ownedDomain": "gná.com",
+      "art": {
+        "mascot": "/sites/gna/assets/gna_mascot.webp",
+        "logomark": "/sites/gna/assets/gna_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/gna_comp-canvas.png",
+        "colors": {
+          "primary": "#C0C0C0",
+          "secondary": "#5C9BD1",
+          "glow": "rgba(192,192,192,0.3)"
+        },
+        "artist": null
+      },
+      "foil": true
+    },
+    {
+      "id": "thrudr-common",
+      "entryId": "thrudr",
+      "baseCardId": "thrudr-common",
+      "edition": "common",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Þrúðr",
+      "ascii": "thrudr",
+      "original": "ᚦᚱᚢᚦᚱ",
+      "pantheon": "norse",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Strength, Daughter of Thor",
+      "rarity": "common",
+      "rarityOrder": 1,
+      "cost": 7,
+      "power": 84,
+      "health": 73,
+      "speed": 6,
+      "ability": {
+        "id": "ability-thrudr",
+        "entryId": "thrudr",
+        "name": "Strength",
+        "description": "Draw a card.",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "draw",
+          "count": 1
+        }
+      },
+      "flavor": "Þrúðr's mythology is sparse but charged: every mention of her name is a mention of power.",
+      "flagship": true,
+      "ownedDomain": "þrúðr.com",
+      "art": {
+        "mascot": "/sites/thrudr/assets/thrudr_mascot.webp",
+        "logomark": "/sites/thrudr/assets/thrudr_logomark.webp",
+        "fullArt": null,
+        "colors": {
+          "primary": "#C0C0C0",
+          "secondary": "#5C9BD1",
+          "glow": "rgba(192,192,192,0.3)"
+        },
+        "artist": null
+      }
+    },
+    {
+      "id": "thrudr-holo",
+      "entryId": "thrudr",
+      "baseCardId": "thrudr-common",
+      "edition": "holo",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Þrúðr",
+      "ascii": "thrudr",
+      "original": "ᚦᚱᚢᚦᚱ",
+      "pantheon": "norse",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Strength, Daughter of Thor",
+      "rarity": "rare",
+      "rarityOrder": 3,
+      "cost": 7,
+      "power": 96,
+      "health": 85,
+      "speed": 6,
+      "ability": {
+        "id": "ability-thrudr",
+        "entryId": "thrudr",
+        "name": "Strength",
+        "description": "Draw a card.",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "draw",
+          "count": 1
+        }
+      },
+      "flavor": "Þrúðr's mythology is sparse but charged: every mention of her name is a mention of power.",
+      "flagship": true,
+      "ownedDomain": "þrúðr.com",
+      "art": {
+        "mascot": "/sites/thrudr/assets/thrudr_mascot.webp",
+        "logomark": "/sites/thrudr/assets/thrudr_logomark.webp",
+        "fullArt": null,
+        "colors": {
+          "primary": "#C0C0C0",
+          "secondary": "#5C9BD1",
+          "glow": "rgba(192,192,192,0.3)"
+        },
+        "artist": null
+      },
+      "patternFoil": true
+    },
+    {
+      "id": "thrudr-full-art",
+      "entryId": "thrudr",
+      "baseCardId": "thrudr-common",
+      "edition": "full-art",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Þrúðr",
+      "ascii": "thrudr",
+      "original": "ᚦᚱᚢᚦᚱ",
+      "pantheon": "norse",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Strength, Daughter of Thor",
+      "rarity": "legendary",
+      "rarityOrder": 5,
+      "cost": 7,
+      "power": 96,
+      "health": 85,
+      "speed": 6,
+      "ability": {
+        "id": "ability-thrudr",
+        "entryId": "thrudr",
+        "name": "Strength",
+        "description": "Draw a card. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "draw",
+              "count": 1
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "Þrúðr's mythology is sparse but charged: every mention of her name is a mention of power.",
+      "flagship": true,
+      "ownedDomain": "þrúðr.com",
+      "art": {
+        "mascot": "/sites/thrudr/assets/thrudr_mascot.webp",
+        "logomark": "/sites/thrudr/assets/thrudr_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/thrudr_comp-canvas.png",
+        "colors": {
+          "primary": "#C0C0C0",
+          "secondary": "#5C9BD1",
+          "glow": "rgba(192,192,192,0.3)"
+        },
+        "artist": null
+      }
+    },
+    {
+      "id": "thrudr-secret",
+      "entryId": "thrudr",
+      "baseCardId": "thrudr-common",
+      "edition": "secret",
+      "variant": "original-script",
+      "setId": "first-restoration",
+      "name": "Þrúðr",
+      "ascii": "thrudr",
+      "original": "ᚦᚱᚢᚦᚱ",
+      "pantheon": "norse",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Strength, Daughter of Thor",
+      "rarity": "mythic",
+      "rarityOrder": 6,
+      "cost": 7,
+      "power": 96,
+      "health": 85,
+      "speed": 6,
+      "ability": {
+        "id": "ability-thrudr",
+        "entryId": "thrudr",
+        "name": "Strength",
+        "description": "Draw a card. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "draw",
+              "count": 1
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "Þrúðr's mythology is sparse but charged: every mention of her name is a mention of power.",
+      "flagship": true,
+      "ownedDomain": "þrúðr.com",
+      "art": {
+        "mascot": "/sites/thrudr/assets/thrudr_mascot.webp",
+        "logomark": "/sites/thrudr/assets/thrudr_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/thrudr_comp-canvas.png",
+        "colors": {
+          "primary": "#C0C0C0",
+          "secondary": "#5C9BD1",
+          "glow": "rgba(192,192,192,0.3)"
+        },
+        "artist": null
+      },
+      "foil": true
+    },
+    {
+      "id": "vor-common",
+      "entryId": "vor",
+      "baseCardId": "vor-common",
+      "edition": "common",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Vǫr",
+      "ascii": "vor",
+      "original": "ᚢᚢᚱ",
+      "pantheon": "norse",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Wisdom, Oaths, Knowledge",
+      "rarity": "common",
+      "rarityOrder": 1,
+      "cost": 2,
+      "power": 71,
+      "health": 59,
+      "speed": 6,
+      "ability": {
+        "id": "ability-vor",
+        "entryId": "vor",
+        "name": "The Careful One",
+        "description": "Draw 2 cards.",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "draw",
+          "count": 2
+        }
+      },
+      "flavor": "Vǫr's mythology is limited to Snorri's catalogue of the Ásynjur, but her function is clear and important.",
+      "flagship": true,
+      "ownedDomain": "vǫr.com",
+      "art": {
+        "mascot": "/sites/vor/assets/vor_mascot.webp",
+        "logomark": "/sites/vor/assets/vor_logomark.webp",
+        "fullArt": null,
+        "colors": {
+          "primary": "#C0C0C0",
+          "secondary": "#5C9BD1",
+          "glow": "rgba(192,192,192,0.3)"
+        },
+        "artist": null
+      }
+    },
+    {
+      "id": "vor-holo",
+      "entryId": "vor",
+      "baseCardId": "vor-common",
+      "edition": "holo",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Vǫr",
+      "ascii": "vor",
+      "original": "ᚢᚢᚱ",
+      "pantheon": "norse",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Wisdom, Oaths, Knowledge",
+      "rarity": "rare",
+      "rarityOrder": 3,
+      "cost": 2,
+      "power": 83,
+      "health": 71,
+      "speed": 6,
+      "ability": {
+        "id": "ability-vor",
+        "entryId": "vor",
+        "name": "The Careful One",
+        "description": "Draw 2 cards.",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "draw",
+          "count": 2
+        }
+      },
+      "flavor": "Vǫr's mythology is limited to Snorri's catalogue of the Ásynjur, but her function is clear and important.",
+      "flagship": true,
+      "ownedDomain": "vǫr.com",
+      "art": {
+        "mascot": "/sites/vor/assets/vor_mascot.webp",
+        "logomark": "/sites/vor/assets/vor_logomark.webp",
+        "fullArt": null,
+        "colors": {
+          "primary": "#C0C0C0",
+          "secondary": "#5C9BD1",
+          "glow": "rgba(192,192,192,0.3)"
+        },
+        "artist": null
+      },
+      "patternFoil": true
+    },
+    {
+      "id": "vor-full-art",
+      "entryId": "vor",
+      "baseCardId": "vor-common",
+      "edition": "full-art",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Vǫr",
+      "ascii": "vor",
+      "original": "ᚢᚢᚱ",
+      "pantheon": "norse",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Wisdom, Oaths, Knowledge",
+      "rarity": "legendary",
+      "rarityOrder": 5,
+      "cost": 2,
+      "power": 83,
+      "health": 71,
+      "speed": 6,
+      "ability": {
+        "id": "ability-vor",
+        "entryId": "vor",
+        "name": "The Careful One",
+        "description": "Draw 2 cards. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "draw",
+              "count": 2
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "Vǫr's mythology is limited to Snorri's catalogue of the Ásynjur, but her function is clear and important.",
+      "flagship": true,
+      "ownedDomain": "vǫr.com",
+      "art": {
+        "mascot": "/sites/vor/assets/vor_mascot.webp",
+        "logomark": "/sites/vor/assets/vor_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/vor_comp-canvas.png",
+        "colors": {
+          "primary": "#C0C0C0",
+          "secondary": "#5C9BD1",
+          "glow": "rgba(192,192,192,0.3)"
+        },
+        "artist": null
+      }
+    },
+    {
+      "id": "vor-secret",
+      "entryId": "vor",
+      "baseCardId": "vor-common",
+      "edition": "secret",
+      "variant": "original-script",
+      "setId": "first-restoration",
+      "name": "Vǫr",
+      "ascii": "vor",
+      "original": "ᚢᚢᚱ",
+      "pantheon": "norse",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Wisdom, Oaths, Knowledge",
+      "rarity": "mythic",
+      "rarityOrder": 6,
+      "cost": 2,
+      "power": 83,
+      "health": 71,
+      "speed": 6,
+      "ability": {
+        "id": "ability-vor",
+        "entryId": "vor",
+        "name": "The Careful One",
+        "description": "Draw 2 cards. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "draw",
+              "count": 2
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "Vǫr's mythology is limited to Snorri's catalogue of the Ásynjur, but her function is clear and important.",
+      "flagship": true,
+      "ownedDomain": "vǫr.com",
+      "art": {
+        "mascot": "/sites/vor/assets/vor_mascot.webp",
+        "logomark": "/sites/vor/assets/vor_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/vor_comp-canvas.png",
+        "colors": {
+          "primary": "#C0C0C0",
+          "secondary": "#5C9BD1",
+          "glow": "rgba(192,192,192,0.3)"
+        },
+        "artist": null
+      },
+      "foil": true
+    },
+    {
+      "id": "var-common",
+      "entryId": "var",
+      "baseCardId": "var-common",
+      "edition": "common",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Vár",
+      "ascii": "var",
+      "original": "ᚢᛅᚱ",
+      "pantheon": "norse",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Oaths, Marriage Agreements",
+      "rarity": "common",
+      "rarityOrder": 1,
+      "cost": 6,
+      "power": 78,
+      "health": 69,
+      "speed": 6,
+      "ability": {
+        "id": "ability-var",
+        "entryId": "var",
+        "name": "The Vow",
+        "description": "Stun an enemy card.",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "stun",
+          "target": "enemy-minion"
+        }
+      },
+      "flavor": "Vár's mythology is concentrated in a single paragraph of Snorri, but her importance is social: she is the divine sanction behind marriage.",
+      "flagship": true,
+      "ownedDomain": "vár.com",
+      "art": {
+        "mascot": "/sites/var/assets/var_mascot.webp",
+        "logomark": "/sites/var/assets/var_logomark.webp",
+        "fullArt": null,
+        "colors": {
+          "primary": "#C0C0C0",
+          "secondary": "#5C9BD1",
+          "glow": "rgba(192,192,192,0.3)"
+        },
+        "artist": null
+      }
+    },
+    {
+      "id": "var-holo",
+      "entryId": "var",
+      "baseCardId": "var-common",
+      "edition": "holo",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Vár",
+      "ascii": "var",
+      "original": "ᚢᛅᚱ",
+      "pantheon": "norse",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Oaths, Marriage Agreements",
+      "rarity": "rare",
+      "rarityOrder": 3,
+      "cost": 6,
+      "power": 90,
+      "health": 81,
+      "speed": 6,
+      "ability": {
+        "id": "ability-var",
+        "entryId": "var",
+        "name": "The Vow",
+        "description": "Stun an enemy card.",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "stun",
+          "target": "enemy-minion"
+        }
+      },
+      "flavor": "Vár's mythology is concentrated in a single paragraph of Snorri, but her importance is social: she is the divine sanction behind marriage.",
+      "flagship": true,
+      "ownedDomain": "vár.com",
+      "art": {
+        "mascot": "/sites/var/assets/var_mascot.webp",
+        "logomark": "/sites/var/assets/var_logomark.webp",
+        "fullArt": null,
+        "colors": {
+          "primary": "#C0C0C0",
+          "secondary": "#5C9BD1",
+          "glow": "rgba(192,192,192,0.3)"
+        },
+        "artist": null
+      },
+      "patternFoil": true
+    },
+    {
+      "id": "var-full-art",
+      "entryId": "var",
+      "baseCardId": "var-common",
+      "edition": "full-art",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Vár",
+      "ascii": "var",
+      "original": "ᚢᛅᚱ",
+      "pantheon": "norse",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Oaths, Marriage Agreements",
+      "rarity": "legendary",
+      "rarityOrder": 5,
+      "cost": 6,
+      "power": 90,
+      "health": 81,
+      "speed": 6,
+      "ability": {
+        "id": "ability-var",
+        "entryId": "var",
+        "name": "The Vow",
+        "description": "Stun an enemy card. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "stun",
+              "target": "enemy-minion"
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "Vár's mythology is concentrated in a single paragraph of Snorri, but her importance is social: she is the divine sanction behind marriage.",
+      "flagship": true,
+      "ownedDomain": "vár.com",
+      "art": {
+        "mascot": "/sites/var/assets/var_mascot.webp",
+        "logomark": "/sites/var/assets/var_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/var_comp-canvas.png",
+        "colors": {
+          "primary": "#C0C0C0",
+          "secondary": "#5C9BD1",
+          "glow": "rgba(192,192,192,0.3)"
+        },
+        "artist": null
+      }
+    },
+    {
+      "id": "var-secret",
+      "entryId": "var",
+      "baseCardId": "var-common",
+      "edition": "secret",
+      "variant": "original-script",
+      "setId": "first-restoration",
+      "name": "Vár",
+      "ascii": "var",
+      "original": "ᚢᛅᚱ",
+      "pantheon": "norse",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Oaths, Marriage Agreements",
+      "rarity": "mythic",
+      "rarityOrder": 6,
+      "cost": 6,
+      "power": 90,
+      "health": 81,
+      "speed": 6,
+      "ability": {
+        "id": "ability-var",
+        "entryId": "var",
+        "name": "The Vow",
+        "description": "Stun an enemy card. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "stun",
+              "target": "enemy-minion"
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "Vár's mythology is concentrated in a single paragraph of Snorri, but her importance is social: she is the divine sanction behind marriage.",
+      "flagship": true,
+      "ownedDomain": "vár.com",
+      "art": {
+        "mascot": "/sites/var/assets/var_mascot.webp",
+        "logomark": "/sites/var/assets/var_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/var_comp-canvas.png",
+        "colors": {
+          "primary": "#C0C0C0",
+          "secondary": "#5C9BD1",
+          "glow": "rgba(192,192,192,0.3)"
+        },
+        "artist": null
+      },
+      "foil": true
+    },
+    {
+      "id": "oneiros-common",
+      "entryId": "oneiros",
+      "baseCardId": "oneiros-common",
+      "edition": "common",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Óneiros",
+      "ascii": "oneiros",
+      "original": "Ὄνειρος",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Dreams, Dream-Visions",
+      "rarity": "common",
+      "rarityOrder": 1,
+      "cost": 7,
+      "power": 82,
+      "health": 74,
+      "speed": 7,
+      "ability": {
+        "id": "ability-oneiros",
+        "entryId": "oneiros",
+        "name": "The Dream",
+        "description": "Confuse an enemy card.",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "confuse",
+          "target": "enemy-minion"
+        }
+      },
+      "flavor": "Óneiros moves through Greek literature as a servant of the gods, a child of Night, and the ambiguous voice that speaks to sleepers.",
+      "flagship": true,
+      "ownedDomain": "óneiros.com",
+      "art": {
+        "mascot": "/sites/oneiros/assets/oneiros_mascot.webp",
+        "logomark": "/sites/oneiros/assets/oneiros_logomark.webp",
+        "fullArt": null,
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      }
+    },
+    {
+      "id": "oneiros-holo",
+      "entryId": "oneiros",
+      "baseCardId": "oneiros-common",
+      "edition": "holo",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Óneiros",
+      "ascii": "oneiros",
+      "original": "Ὄνειρος",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Dreams, Dream-Visions",
+      "rarity": "rare",
+      "rarityOrder": 3,
+      "cost": 7,
+      "power": 94,
+      "health": 86,
+      "speed": 7,
+      "ability": {
+        "id": "ability-oneiros",
+        "entryId": "oneiros",
+        "name": "The Dream",
+        "description": "Confuse an enemy card.",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "confuse",
+          "target": "enemy-minion"
+        }
+      },
+      "flavor": "Óneiros moves through Greek literature as a servant of the gods, a child of Night, and the ambiguous voice that speaks to sleepers.",
+      "flagship": true,
+      "ownedDomain": "óneiros.com",
+      "art": {
+        "mascot": "/sites/oneiros/assets/oneiros_mascot.webp",
+        "logomark": "/sites/oneiros/assets/oneiros_logomark.webp",
+        "fullArt": null,
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      },
+      "patternFoil": true
+    },
+    {
+      "id": "oneiros-full-art",
+      "entryId": "oneiros",
+      "baseCardId": "oneiros-common",
+      "edition": "full-art",
+      "variant": "standard",
+      "setId": "first-restoration",
+      "name": "Óneiros",
+      "ascii": "oneiros",
+      "original": "Ὄνειρος",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Dreams, Dream-Visions",
+      "rarity": "legendary",
+      "rarityOrder": 5,
+      "cost": 7,
+      "power": 94,
+      "health": 86,
+      "speed": 7,
+      "ability": {
+        "id": "ability-oneiros",
+        "entryId": "oneiros",
+        "name": "The Dream",
+        "description": "Confuse an enemy card. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "confuse",
+              "target": "enemy-minion"
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "Óneiros moves through Greek literature as a servant of the gods, a child of Night, and the ambiguous voice that speaks to sleepers.",
+      "flagship": true,
+      "ownedDomain": "óneiros.com",
+      "art": {
+        "mascot": "/sites/oneiros/assets/oneiros_mascot.webp",
+        "logomark": "/sites/oneiros/assets/oneiros_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/oneiros_comp-canvas.png",
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      }
+    },
+    {
+      "id": "oneiros-secret",
+      "entryId": "oneiros",
+      "baseCardId": "oneiros-common",
+      "edition": "secret",
+      "variant": "original-script",
+      "setId": "first-restoration",
+      "name": "Óneiros",
+      "ascii": "oneiros",
+      "original": "Ὄνειρος",
+      "pantheon": "greek",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Dreams, Dream-Visions",
+      "rarity": "mythic",
+      "rarityOrder": 6,
+      "cost": 7,
+      "power": 94,
+      "health": 86,
+      "speed": 7,
+      "ability": {
+        "id": "ability-oneiros",
+        "entryId": "oneiros",
+        "name": "The Dream",
+        "description": "Confuse an enemy card. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "confuse",
+              "target": "enemy-minion"
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "Óneiros moves through Greek literature as a servant of the gods, a child of Night, and the ambiguous voice that speaks to sleepers.",
+      "flagship": true,
+      "ownedDomain": "óneiros.com",
+      "art": {
+        "mascot": "/sites/oneiros/assets/oneiros_mascot.webp",
+        "logomark": "/sites/oneiros/assets/oneiros_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/oneiros_comp-canvas.png",
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4169E1",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      },
+      "foil": true
     }
   ]
 }

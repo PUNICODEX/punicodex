@@ -1,8 +1,8 @@
 # PuniCodex Oracle — Model Card
 
 **Model family:** PuniCodex Oracle (specialized language model)  
-**Data version:** 2.0.125  
-**Generated:** 2026-08-27T02:39:44.543Z  
+**Data version:** 2.0.130  
+**Generated:** 2026-08-27T09:22:56.716Z  
 **License:** CC BY 4.0 for dataset; ISC for software (see root LICENSE).
 
 ## Intended Use
@@ -17,18 +17,18 @@
 
 | Split | Examples | File |
 |-------|----------|------|
-| Train | 62,108 | `data/corpus/chat-train.jsonl` |
-| Evaluation | 15,416 | `data/corpus/chat-eval.jsonl` |
-| **Total** | **77,524** | — |
+| Train | 62,663 | `data/corpus/chat-train.jsonl` |
+| Evaluation | 15,334 | `data/corpus/chat-eval.jsonl` |
+| **Total** | **77,997** | — |
 
 Source corpora:
-- `instructions.jsonl`: 9,178 examples
-- `safety-examples.jsonl`: 44,687 examples
-- `dialogue-examples.jsonl`: 3,536 examples
-- `tool-use-examples.jsonl`: 4,848 examples
-- `multimodal-examples.jsonl`: 2,351 examples
-- `preference-examples.jsonl`: 3,966 examples
-- `reasoning-examples.jsonl`: 3,841 examples
+- `instructions.jsonl`: 9,250 examples
+- `safety-examples.jsonl`: 44,942 examples
+- `dialogue-examples.jsonl`: 3,566 examples
+- `tool-use-examples.jsonl`: 4,883 examples
+- `multimodal-examples.jsonl`: 2,376 examples
+- `preference-examples.jsonl`: 3,987 examples
+- `reasoning-examples.jsonl`: 3,876 examples
 - `mythology-synthesis.jsonl`: 404 examples
 - `oracle-examples.jsonl`: 1,977 examples
 - `symbolic-correspondences.jsonl`: 1,236 examples
@@ -71,8 +71,8 @@ Do not use this model to generate deceptive domains, impersonate brands, or evad
 
 Before supervised fine-tuning, domain-adapt the base model on the raw scholarly corpus:
 
-- `data/corpus/pretrain.jsonl` — 5,856 training documents (725,747 whitespace tokens).
-- `data/corpus/pretrain-validation.jsonl` — 281 validation documents (38,178 whitespace tokens).
+- `data/corpus/pretrain.jsonl` — 5,865 training documents (732,682 whitespace tokens).
+- `data/corpus/pretrain-validation.jsonl` — 296 validation documents (38,903 whitespace tokens).
 - HuggingFace-compatible splits in `data/corpus/huggingface/`.
 
 Documents are drawn from structured entry records, flagship lore, original-script provenance, pronunciation notes, the source catalog, mythology synthesis, oracle reflections, symbolic correspondences, and scientific analogies. Strip HTML and normalize whitespace before tokenization. This step teaches the model the domain's scripts, diacritics, scholarly vocabulary, and canonical source style before chat-format SFT.

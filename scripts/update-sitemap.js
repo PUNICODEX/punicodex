@@ -31,13 +31,13 @@ mainPages.forEach(p => {
 
 xml += '  <!-- Flagship Temples -->\n';
 BUILT_TEMPLES.forEach(id => {
-    xml += `  <url><loc>https://punicodex.com/sites/${id}/</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>\n`;
+    xml += `  <url><loc>https://punicodex.com/${id}/</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>\n`;
 });
 
 xml += '  <!-- Base Temples -->\n';
 LEXICON.forEach(entry => {
     if (!BUILT_TEMPLES.has(entry.id)) {
-        xml += `  <url><loc>https://punicodex.com/sites/${entry.id}/</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>\n`;
+        xml += `  <url><loc>https://punicodex.com/${entry.id}/</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>\n`;
     }
 });
 

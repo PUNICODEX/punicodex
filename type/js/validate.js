@@ -266,13 +266,15 @@ LEXICON.forEach((entry, i) => {
     'proto-uto-aztecan',
     'proto-sino-tibetan',
     'proto-mayan',
+    'proto-greek',
+    'old-norse',
     'egyptian',
     'sumerian',
     'dravidian',
     'isolate',
     'unknown',
   ];
-  const ALLOWED_CERTAINTY = ['attested', 'speculative', 'disputed', 'unknown'];
+  const ALLOWED_CERTAINTY = ['attested', 'speculative', 'disputed', 'uncertain', 'unknown'];
   const ALLOWED_COGNATE_RELATIONSHIPS = ['cognate', 'loan', 'derivative', 'variant', 'uncertain'];
   if (entry.etymology !== undefined) {
     assert(
@@ -394,7 +396,9 @@ LEXICON.forEach((entry, i) => {
       assert(step.type !== undefined, `[${label}] breakdown[${j}] missing "type"`);
       assert(step.note !== undefined, `[${label}] breakdown[${j}] missing "note"`);
       assert(
-        ['stress', 'length', 'dual', 'special', 'drop', 'merge', 'same'].includes(step.type),
+        ['stress', 'length', 'dual', 'tone', 'special', 'drop', 'merge', 'same'].includes(
+          step.type
+        ),
         `[${label}] breakdown[${j}] unknown type "${step.type}"`
       );
 

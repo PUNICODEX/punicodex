@@ -851,7 +851,7 @@
         <div class="serp-utilities">
           <a href="${safeUrl(r.url)}" target="_blank" rel="noopener" class="serp-utility">Visit ↗</a>
           ${r.lexiconEntryId ? `<a href="entry.html?id=${encodeURIComponent(r.lexiconEntryId)}" class="serp-utility">Lexicon Entry</a>` : ''}
-          ${r.isFlagship && r.lexiconEntryId ? `<a href="/sites/${encodeURIComponent(r.lexiconEntryId)}/#spaces" class="serp-utility" style="color:var(--cn-gold);">Advertise here</a>` : ''}
+          ${r.isFlagship && r.lexiconEntryId ? `<a href="/${encodeURIComponent(r.lexiconEntryId)}/#spaces" class="serp-utility" style="color:var(--cn-gold);">Advertise here</a>` : ''}
           <button class="serp-utility" onclick="copyToClipboard('${escapeHtml(r.punycode)}')">Copy</button>
           ${r.lexiconEntryId ? `<button class="serp-utility" onclick="showSimilar('${escapeHtml(r.punycode)}','${escapeHtml(r.lexiconEntryId)}',this)">Similar</button>` : ''}
         </div>
@@ -1030,7 +1030,7 @@
           if (lore.mythology && lore.mythology.summary) {
             html += `<div class="kp-lore"><div class="kp-lore-title">Mythology</div>`;
             html += `<div class="kp-lore-text">${escapeHtml(lore.mythology.summary)}</div>`;
-            html += `<div class="kp-lore-cta"><a href="/sites/${e.id}/lore.html" target="_blank" rel="noopener">Read full lore →</a></div>`;
+            html += `<div class="kp-lore-cta"><a href="/${e.id}/lore/" target="_blank" rel="noopener">Read full lore →</a></div>`;
             html += `</div>`;
           }
         }
@@ -1270,7 +1270,7 @@
           items.slice(0, 6).map((s) => {
             const t = s.targetEntry || {};
             const rel = s.relationship ? `<span class="similar-rel">${escapeHtml(s.relationship)}</span>` : '';
-            return `<a class="similar-item" href="/sites/${encodeURIComponent(s.target)}/">` +
+            return `<a class="similar-item" href="/${encodeURIComponent(s.target)}/">` +
               `<span class="similar-name">${escapeHtml(t.unicode || s.target)}</span>` +
               `<span class="similar-meta">${escapeHtml(t.pantheonLabel || t.pantheon || '')}</span>${rel}</a>`;
           }).join('');

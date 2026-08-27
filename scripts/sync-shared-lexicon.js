@@ -37,6 +37,8 @@ for (const dest of destinations) {
   if (fs.existsSync(dest)) {
     fs.unlinkSync(dest);
   }
-  fs.writeFileSync(dest, content, 'utf8');
+  const tmpPath = `${dest}.tmp.${process.pid}`;
+  fs.writeFileSync(tmpPath, content, 'utf8');
+  fs.renameSync(tmpPath, dest);
   console.log(`Synced ${path.relative(root, dest)}`);
 }

@@ -174,6 +174,9 @@ const SIGN_NOTES = {
   '白': { name: 'baek (white)', value: 'baek', note: 'The character 白, “white”.' },
   '頭': { name: 'du (head)', value: 'du', note: 'The character 頭, “head” — as in Baekdusan 白頭山.' },
   '山': { name: 'san (mountain)', value: 'san', note: 'The character 山, “mountain”.' },
+
+  // ── Greek (polytonic) ───────────────────────────────────────────
+  'Ἐ': { name: 'epsilon with dasia', value: 'he', note: 'Greek capital epsilon with rough breathing (dasia) — the aspirated initial /he/ sound, as in Ἐπιμηθεύς (Epimētheús).' },
 };
 
 module.exports = { SIGN_NOTES };

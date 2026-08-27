@@ -1341,7 +1341,7 @@
                 const width = Math.max(2, Math.min(100, (count / maxTempleEdits) * 100));
                 const name = t.name || t.entry_id || 'Unknown temple';
                 const nameHtml = t.entry_id
-                    ? `<a class="top-temple-name" href="/sites/${escapeHtml(t.entry_id)}/scholars/">${escapeHtml(name)}</a>`
+                    ? `<a class="top-temple-name" href="/${escapeHtml(t.entry_id)}/scholars/">${escapeHtml(name)}</a>`
                     : `<span class="top-temple-name">${escapeHtml(name)}</span>`;
                 return `
                     <div class="top-temple-row">

@@ -334,9 +334,9 @@ test('Correct pantheon counts', () => {
   LEXICON.forEach((e) => {
     counts[e.pantheon] = (counts[e.pantheon] || 0) + 1;
   });
-  assert.strictEqual(counts.greek, 274, 'Greek count');
+  assert.strictEqual(counts.greek, 275, 'Greek count');
   assert.strictEqual(counts['greek-location'], 24, 'Greek-location count');
-  assert.strictEqual(counts.norse, 95, 'Norse count');
+  assert.strictEqual(counts.norse, 101, 'Norse count');
   assert.strictEqual(counts.egyptian, 66, 'Egyptian count');
   assert.strictEqual(counts.sanskrit, 100, 'Sanskrit count');
   assert.strictEqual(counts.celtic, 49, 'Celtic count');
@@ -412,7 +412,7 @@ test('Each breakdown char matches corresponding ascii char', () => {
 });
 
 test('All breakdown types are valid', () => {
-  const validTypes = ['stress', 'length', 'dual', 'special', 'drop', 'merge', 'same'];
+  const validTypes = ['stress', 'length', 'dual', 'tone', 'special', 'drop', 'merge', 'same'];
   LEXICON.forEach((entry) => {
     entry.breakdown.forEach((step, j) => {
       assert.ok(validTypes.includes(step.type), `${entry.id}[${j}]: invalid type "${step.type}"`);

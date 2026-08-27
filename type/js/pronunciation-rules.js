@@ -736,7 +736,7 @@ function tokenizeEgyptian(form) {
 // ---------------------------------------------------------------------------
 // Chinese (Modern Standard Mandarin, tone-marked pinyin)
 //
-// The restorations are standard pinyin with tone marks (Cháng'é, SūnWùkōng).
+// The restorations are standard pinyin with tone marks (Chángé, SūnWùkōng).
 // Tone lives on the nucleus vowel's combining mark: macron = T1, acute = T2,
 // caron = T3, grave = T4, no mark = neutral. The tone is rendered as Chao
 // tone letters appended to the nucleus token's `p` (so renderIpa carries it)
@@ -872,7 +872,7 @@ function chineseIsLong(vowelIpa) {
 }
 
 // Split a display form into pinyin chunks on the explicit syllable marks the
-// restorations carry: apostrophes (Cháng'é) and camelCase (SūnWùkōng).
+// restorations carry: apostrophes (Chángé) and camelCase (SūnWùkōng).
 function chineseChunks(form) {
   const s = String(form).normalize('NFC');
   const chunks = [];

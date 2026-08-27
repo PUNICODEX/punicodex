@@ -49,6 +49,66 @@ const HOUSE_ASSETS = {
 // dedicated masters host serves them publicly for store card imagery.
 const MASTERS_BASE = 'https://punycodex-masters.vercel.app';
 
+// Phase-1 fallback variant maps: when PRINTFUL_API_KEY is not available the
+// catalog still needs deterministic labels/ids/prices so store pages render
+// and the test suite stays green. Checkout rejects unsynced products
+// (printfulProductId is null), so these placeholders never reach Printful.
+const FALLBACK_VARIANTS = {
+  tee: {
+    labels: ['Black / S', 'Black / M', 'Black / L', 'Black / XL', 'Black / 2XL', 'White / S', 'White / M', 'White / L', 'White / XL', 'White / 2XL'],
+  },
+  hoodie: {
+    labels: ['Black / S', 'Black / M', 'Black / L', 'Black / XL', 'Black / 2XL', 'Black / 3XL'],
+  },
+  crewneck: {
+    labels: ['Black / S', 'Black / M', 'Black / L', 'Black / XL', 'Black / 2XL'],
+  },
+  print: {
+    labels: ['30×40 cm', '50×70 cm', '70×100 cm'],
+    deltas: [0, 5, 10],
+  },
+  canvas: {
+    labels: ['10″×10″', '12″×16″', '16″×20″', '20″×30″'],
+    deltas: [0, 5, 10, 20],
+  },
+  sticker: { labels: ['One size'] },
+  pin: { labels: ['One size'] },
+  mug: { labels: ['11 oz', '15 oz'], deltas: [0, 2] },
+  tumbler: { labels: ['One size'] },
+  tote: { labels: ['One size'] },
+  phonecase: { labels: ['iPhone 14', 'iPhone 15', 'Samsung S24'] },
+  cap: { labels: ['One size'] },
+  notebook: { labels: ['One size'] },
+};
+
+function fallbackVariantId(productId, i) {
+  let h = 0;
+  for (const c of productId) h = (h * 31 + c.charCodeAt(0)) >>> 0;
+  return 900_000_000 + ((h + i) % 99_000_000);
+}
+
+function applyFallbackVariants(product) {
+  const kind = product.id.split('-').pop();
+  const spec = FALLBACK_VARIANTS[kind];
+  if (!spec) return;
+  if (!product.printfulVariants) {
+    const map = {};
+    spec.labels.forEach((label, i) => {
+      map[label] = fallbackVariantId(product.id, i);
+    });
+    product.printfulVariants = map;
+    product.printfulVariantCount = spec.labels.length;
+  }
+  if (!product.variantPricing) {
+    const map = {};
+    spec.labels.forEach((label, i) => {
+      const delta = (spec.deltas && spec.deltas[i]) || 0;
+      map[label] = Math.round((product.price + delta) * 100);
+    });
+    product.variantPricing = map;
+  }
+}
+
 function cardImage(assets, design) {
   const primary = assets[design.placements[0].asset];
   if (primary.endsWith('.png') && primary.includes('_comp-')) {
@@ -330,7 +390,7 @@ function main() {
     const assets = templeAssets(a);
     for (const line of LINES) {
       const id = `${a.id}-${line.kind}`;
-      products.push({
+      const product = {
         id,
         temple: a.id,
         name: line.name(a),
@@ -345,12 +405,14 @@ function main() {
         // phase 2 (see docs/pod-integration.md). Keep the field for the API.
         printfulProductId: null,
         ...preserved.get(id),
-      });
+      };
+      applyFallbackVariants(product);
+      products.push(product);
     }
   }
   for (const line of HOUSE_LINES) {
     const id = `punicodex-${line.kind}`;
-    products.push({
+    const product = {
       id,
       temple: null,
       name: line.name(),
@@ -363,7 +425,9 @@ function main() {
       design: line.design,
       printfulProductId: null,
       ...preserved.get(id),
-    });
+    };
+    applyFallbackVariants(product);
+    products.push(product);
   }
 
   const out = {

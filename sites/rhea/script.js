@@ -1203,7 +1203,7 @@ handleReturnFromStripe();
   if (!modal || !grid) return;
 
   const templeId = 'rhea';
-  const siteName = 'Rhéa';
+  const siteName = 'Rhéā';
   let selectedCents = 700;
 
   const els = {

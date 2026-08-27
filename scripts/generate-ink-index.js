@@ -22,6 +22,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { writeFileWithRetry } = require('./write-file-retry.js');
 
 const ROOT = path.join(__dirname, '..');
 const { LEXICON } = require(path.join(ROOT, 'type', 'js', 'lexicon.js'));
@@ -120,7 +121,7 @@ function main() {
     signs: buildSignIndex(entries),
   };
 
-  fs.writeFileSync(OUT, `${JSON.stringify(index)}\n`);
+  writeFileWithRetry(OUT, `${JSON.stringify(index)}\n`);
   const kb = Math.round(fs.statSync(OUT).size / 1024);
   console.log(
     `Ink index: ${entries.length} attested forms, ${INK_MYTHS.length} myths → data/ink-index.json (${kb} KB)`

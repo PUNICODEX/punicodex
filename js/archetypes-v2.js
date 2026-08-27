@@ -2875,7 +2875,7 @@ const ARCHETYPES = [
                         {
         id: "thoth",
         rentalTier: "A",
-        name: "Ḏḥwty",
+        name: "Ḏḥwtj",
         greek: "—",
         domain: "Writing, Wisdom, Moon",
         tagline: "The Ibis of the Measured Word",
@@ -3005,7 +3005,7 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-                        {
+                            {
         id: "iris",
         rentalTier: "SSS",
         name: "Îris",
@@ -3016,8 +3016,9 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "greek",
         folder: "iris",
-        domainUnicode: "íris.com",
-        domainPunycode: "xn--ris-qma.com",
+        domainUnicode: "îris.com",
+        domainPunycode: "xn--ris-uma.com",
+        domainAlt: ["íris.com"],
         colors: { primary: "#D4AF37", secondary: "#4169E1", glow: "rgba(212,175,55,0.3)" },
         mascotPath: "/sites/iris/assets/iris_mascot.webp",
         mascotFallback: "/sites/iris/assets/iris_mascot.webp",
@@ -4003,7 +4004,7 @@ const ARCHETYPES = [
     {
         id: "rhea",
         rentalTier: "A",
-        name: "Rhéa",
+        name: "Rhéā",
         greek: "Ῥέα",
         domain: "Motherhood, Fertility, Titans",
         tagline: "The Mother of the Gods",
@@ -6192,7 +6193,7 @@ const ARCHETYPES = [
     {
         id: "change",
         rentalTier: "S",
-        name: "Cháng'é",
+        name: "Chángé",
         greek: "嫦娥",
         domain: "Moon, Immortality, Mid-Autumn",
         tagline: "Moon, Immortality, Mid-Autumn · The Moon goddess who drank the elixir of immortality",
@@ -8068,7 +8069,7 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "omphalos",
         rentalTier: "A",
         name: "Omphalós",
@@ -8090,7 +8091,7 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+            {
         id: "keraunos",
         rentalTier: "A",
         name: "Keraunós",
@@ -8101,7 +8102,8 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "greek",
         folder: "keraunos",
-        domainUnicode: "keraunos.com",
+        domainUnicode: "keraunós.com",
+        domainPunycode: "xn--kerauns-q0a.com",
         colors: { primary: "#D4AF37", secondary: "#4169E1", glow: "rgba(212,175,55,0.3)" },
         mascotPath: "/sites/keraunos/assets/keraunos_mascot.webp",
         mascotFallback: "/sites/keraunos/assets/keraunos_mascot.webp",
@@ -8111,7 +8113,7 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "sunwukong",
         rentalTier: "S",
         name: "Sūnwùkōng",
@@ -8122,7 +8124,8 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "chinese",
         folder: "sunwukong",
-        domainUnicode: "sunwukong.com",
+        domainUnicode: "sūnwùkōng.com",
+        domainPunycode: "xn--snwkng-kya78dji.com",
         colors: { primary: "#DC143C", secondary: "#FFD700", glow: "rgba(220,20,60,0.3)" },
         mascotPath: "/sites/sunwukong/assets/sunwukong_mascot.webp",
         mascotFallback: "/sites/sunwukong/assets/sunwukong_mascot.webp",
@@ -8132,7 +8135,7 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "susanoo",
         rentalTier: "S",
         name: "Susanō",
@@ -8143,7 +8146,8 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "japanese",
         folder: "susanoo",
-        domainUnicode: "susanoo.com",
+        domainUnicode: "susanō.com",
+        domainPunycode: "xn--susan-k9a.com",
         colors: { primary: "#DC143C", secondary: "#1A1A1A", glow: "rgba(220,20,60,0.3)" },
         mascotPath: "/sites/susanoo/assets/susanoo_mascot.webp",
         mascotFallback: "/sites/susanoo/assets/susanoo_mascot.webp",
@@ -8153,7 +8157,7 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "helene",
         rentalTier: "SSS",
         name: "Helénē",
@@ -8164,7 +8168,8 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "greek",
         folder: "helene",
-        domainUnicode: "helene.com",
+        domainUnicode: "helénē.com",
+        domainPunycode: "xn--heln-dpa7w.com",
         colors: { primary: "#D4AF37", secondary: "#4169E1", glow: "rgba(212,175,55,0.3)" },
         mascotPath: "/sites/helene/assets/helene_mascot.webp",
         mascotFallback: "/sites/helene/assets/helene_mascot.webp",
@@ -8174,7 +8179,7 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "psyche",
         rentalTier: "SSS",
         name: "Psychḗ",
@@ -8185,7 +8190,8 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "greek",
         folder: "psyche",
-        domainUnicode: "psyche.com",
+        domainUnicode: "psychḗ.com",
+        domainPunycode: "xn--psych-zd1b.com",
         colors: { primary: "#D4AF37", secondary: "#4169E1", glow: "rgba(212,175,55,0.3)" },
         mascotPath: "/sites/psyche/assets/psyche_mascot.webp",
         mascotFallback: "/sites/psyche/assets/psyche_mascot.webp",
@@ -8195,7 +8201,7 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "oidipous",
         rentalTier: "A",
         name: "Oidípous",
@@ -8206,7 +8212,8 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "greek",
         folder: "oidipous",
-        domainUnicode: "oidipous.com",
+        domainUnicode: "oidípous.com",
+        domainPunycode: "xn--oidpous-9ya.com",
         colors: { primary: "#D4AF37", secondary: "#4169E1", glow: "rgba(212,175,55,0.3)" },
         mascotPath: "/sites/oidipous/assets/oidipous_mascot.webp",
         mascotFallback: "/sites/oidipous/assets/oidipous_mascot.webp",
@@ -8216,7 +8223,7 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "kongzi",
         rentalTier: "A",
         name: "Kǒngzǐ",
@@ -8227,7 +8234,8 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "chinese",
         folder: "kongzi",
-        domainUnicode: "kongzi.com",
+        domainUnicode: "kǒngzǐ.com",
+        domainPunycode: "xn--kngz-enbi.com",
         colors: { primary: "#DC143C", secondary: "#FFD700", glow: "rgba(220,20,60,0.3)" },
         mascotPath: "/sites/kongzi/assets/kongzi_mascot.webp",
         mascotFallback: "/sites/kongzi/assets/kongzi_mascot.webp",
@@ -8237,7 +8245,7 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "ravana",
         rentalTier: "S",
         name: "Rāvaṇa",
@@ -8248,7 +8256,8 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "sanskrit",
         folder: "ravana",
-        domainUnicode: "ravana.com",
+        domainUnicode: "rāvaṇa.com",
+        domainPunycode: "xn--rvaa-qsa0806b.com",
         colors: { primary: "#FF9933", secondary: "#8B0000", glow: "rgba(255,153,51,0.3)" },
         mascotPath: "/sites/ravana/assets/ravana_mascot.webp",
         mascotFallback: "/sites/ravana/assets/ravana_mascot.webp",
@@ -8258,7 +8267,7 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "pandora",
         rentalTier: "SSS",
         name: "Pandōra",
@@ -8269,7 +8278,9 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "greek",
         folder: "pandora",
-        domainUnicode: "pandora.com",
+        domainUnicode: "pandōra.com",
+        domainPunycode: "xn--pandra-egb.com",
+        domainAlt: ["pandṓra.com", "xn--pandra-ew7b.com"],
         colors: { primary: "#D4AF37", secondary: "#4169E1", glow: "rgba(212,175,55,0.3)" },
         mascotPath: "/sites/pandora/assets/pandora_mascot.webp",
         mascotFallback: "/sites/pandora/assets/pandora_mascot.webp",
@@ -8279,7 +8290,7 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "yuhuang",
         rentalTier: "S",
         name: "Yùhuáng",
@@ -8290,7 +8301,8 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "chinese",
         folder: "yuhuang",
-        domainUnicode: "yuhuang.com",
+        domainUnicode: "yùhuáng.com",
+        domainPunycode: "xn--yhung-zqa9n.com",
         colors: { primary: "#DC143C", secondary: "#FFD700", glow: "rgba(220,20,60,0.3)" },
         mascotPath: "/sites/yuhuang/assets/yuhuang_mascot.webp",
         mascotFallback: "/sites/yuhuang/assets/yuhuang_mascot.webp",
@@ -8300,7 +8312,7 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "kratos",
         rentalTier: "S",
         name: "Krátos",
@@ -8311,7 +8323,8 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "greek",
         folder: "kratos",
-        domainUnicode: "kratos.com",
+        domainUnicode: "krátos.com",
+        domainPunycode: "xn--krtos-yqa.com",
         colors: { primary: "#D4AF37", secondary: "#4169E1", glow: "rgba(212,175,55,0.3)" },
         mascotPath: "/sites/kratos/assets/kratos_mascot.webp",
         mascotFallback: "/sites/kratos/assets/kratos_mascot.webp",
@@ -8321,7 +8334,7 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "tonatiuh",
         rentalTier: "S",
         name: "Tōnatiuh",
@@ -8332,7 +8345,8 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "nahuatl",
         folder: "tonatiuh",
-        domainUnicode: "tonatiuh.com",
+        domainUnicode: "tōnatiuh.com",
+        domainPunycode: "xn--tnatiuh-5lb.com",
         colors: { primary: "#50C878", secondary: "#2F2F2F", glow: "rgba(80,200,120,0.3)" },
         mascotPath: "/sites/tonatiuh/assets/tonatiuh_mascot.webp",
         mascotFallback: "/sites/tonatiuh/assets/tonatiuh_mascot.webp",
@@ -8342,7 +8356,7 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "oduduwa",
         rentalTier: "S",
         name: "Odùduwà",
@@ -8353,7 +8367,8 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "yoruba",
         folder: "oduduwa",
-        domainUnicode: "oduduwa.com",
+        domainUnicode: "odùduwà.com",
+        domainPunycode: "xn--odduw-vqa5o.com",
         colors: { primary: "#D4AF37", secondary: "#4B0082", glow: "rgba(212,175,55,0.3)" },
         mascotPath: "/sites/oduduwa/assets/oduduwa_mascot.webp",
         mascotFallback: "/sites/oduduwa/assets/oduduwa_mascot.webp",
@@ -8363,7 +8378,7 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "angrboda",
         rentalTier: "S",
         name: "Angrboða",
@@ -8374,7 +8389,8 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "norse",
         folder: "angrboda",
-        domainUnicode: "angrboda.com",
+        domainUnicode: "angrboða.com",
+        domainPunycode: "xn--angrboa-1za.com",
         colors: { primary: "#C0C0C0", secondary: "#5C9BD1", glow: "rgba(192,192,192,0.3)" },
         mascotPath: "/sites/angrboda/assets/angrboda_mascot.webp",
         mascotFallback: "/sites/angrboda/assets/angrboda_mascot.webp",
@@ -8384,7 +8400,7 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "shangdi",
         rentalTier: "S",
         name: "Shàngdì",
@@ -8395,7 +8411,8 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "chinese",
         folder: "shangdi",
-        domainUnicode: "shangdi.com",
+        domainUnicode: "shàngdì.com",
+        domainPunycode: "xn--shngd-sqa1g.com",
         colors: { primary: "#DC143C", secondary: "#FFD700", glow: "rgba(220,20,60,0.3)" },
         mascotPath: "/sites/shangdi/assets/shangdi_mascot.webp",
         mascotFallback: "/sites/shangdi/assets/shangdi_mascot.webp",
@@ -8405,7 +8422,7 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "jagannatha",
         rentalTier: "S",
         name: "Jagannātha",
@@ -8416,7 +8433,8 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "sanskrit",
         folder: "jagannatha",
-        domainUnicode: "jagannatha.com",
+        domainUnicode: "jagannātha.com",
+        domainPunycode: "xn--jaganntha-bcb.com",
         colors: { primary: "#FF9933", secondary: "#8B0000", glow: "rgba(255,153,51,0.3)" },
         mascotPath: "/sites/jagannatha/assets/jagannatha_mascot.webp",
         mascotFallback: "/sites/jagannatha/assets/jagannatha_mascot.webp",
@@ -8426,7 +8444,7 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "shakti",
         rentalTier: "S",
         name: "Śakti",
@@ -8437,7 +8455,8 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "sanskrit",
         folder: "shakti",
-        domainUnicode: "shakti.com",
+        domainUnicode: "śakti.com",
+        domainPunycode: "xn--akti-k5a.com",
         colors: { primary: "#FF9933", secondary: "#8B0000", glow: "rgba(255,153,51,0.3)" },
         mascotPath: "/sites/shakti/assets/shakti_mascot.webp",
         mascotFallback: "/sites/shakti/assets/shakti_mascot.webp",
@@ -8447,7 +8466,7 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "jord",
         rentalTier: "S",
         name: "Jǫrð",
@@ -8458,7 +8477,8 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "norse",
         folder: "jord",
-        domainUnicode: "jord.com",
+        domainUnicode: "jǫrð.com",
+        domainPunycode: "xn--jr-xja61h.com",
         colors: { primary: "#C0C0C0", secondary: "#5C9BD1", glow: "rgba(192,192,192,0.3)" },
         mascotPath: "/sites/jord/assets/jord_mascot.webp",
         mascotFallback: "/sites/jord/assets/jord_mascot.webp",
@@ -8468,7 +8488,7 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "theseus",
         rentalTier: "SSS",
         name: "Thēseus",
@@ -8479,7 +8499,8 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "greek",
         folder: "theseus",
-        domainUnicode: "theseus.com",
+        domainUnicode: "thēseus.com",
+        domainPunycode: "xn--thseus-q3a.com",
         colors: { primary: "#D4AF37", secondary: "#4169E1", glow: "rgba(212,175,55,0.3)" },
         mascotPath: "/sites/theseus/assets/theseus_mascot.webp",
         mascotFallback: "/sites/theseus/assets/theseus_mascot.webp",
@@ -8489,7 +8510,7 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "caishen",
         rentalTier: "S",
         name: "Cáishén",
@@ -8500,7 +8521,8 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "chinese",
         folder: "caishen",
-        domainUnicode: "caishen.com",
+        domainUnicode: "cáishén.com",
+        domainPunycode: "xn--cishn-xqa3d.com",
         colors: { primary: "#DC143C", secondary: "#FFD700", glow: "rgba(220,20,60,0.3)" },
         mascotPath: "/sites/caishen/assets/caishen_mascot.webp",
         mascotFallback: "/sites/caishen/assets/caishen_mascot.webp",
@@ -8510,7 +8532,7 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "narasimha",
         rentalTier: "S",
         name: "Narasiṃha",
@@ -8521,7 +8543,8 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "sanskrit",
         folder: "narasimha",
-        domainUnicode: "narasimha.com",
+        domainUnicode: "narasiṃha.com",
+        domainPunycode: "xn--narasiha-m89c.com",
         colors: { primary: "#FF9933", secondary: "#8B0000", glow: "rgba(255,153,51,0.3)" },
         mascotPath: "/sites/narasimha/assets/narasimha_mascot.webp",
         mascotFallback: "/sites/narasimha/assets/narasimha_mascot.webp",
@@ -8531,7 +8554,7 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "ereshkigal",
         rentalTier: "S",
         name: "Ereškigal",
@@ -8542,7 +8565,8 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "mesopotamian",
         folder: "ereshkigal",
-        domainUnicode: "ereshkigal.com",
+        domainUnicode: "ereškigal.com",
+        domainPunycode: "xn--erekigal-7wb.com",
         colors: { primary: "#CD7F32", secondary: "#C2B280", glow: "rgba(205,127,50,0.3)" },
         mascotPath: "/sites/ereshkigal/assets/ereshkigal_mascot.webp",
         mascotFallback: "/sites/ereshkigal/assets/ereshkigal_mascot.webp",
@@ -8552,7 +8576,7 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "avalokiteshvara",
         rentalTier: "SSS",
         name: "Avalokiteśvara",
@@ -8563,7 +8587,8 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "buddhist",
         folder: "avalokiteshvara",
-        domainUnicode: "avalokiteshvara.com",
+        domainUnicode: "avalokiteśvara.com",
+        domainPunycode: "xn--avalokitevara-4rc.com",
         colors: { primary: "#FF4500", secondary: "#F5F5F5", glow: "rgba(255,69,0,0.3)" },
         mascotPath: "/sites/avalokiteshvara/assets/avalokiteshvara_mascot.webp",
         mascotFallback: "/sites/avalokiteshvara/assets/avalokiteshvara_mascot.webp",
@@ -8573,7 +8598,7 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
-    {
+        {
         id: "bhaisajyaguru",
         rentalTier: "SSS",
         name: "Bhaiṣajyaguru",
@@ -8584,11 +8609,210 @@ const ARCHETYPES = [
         tierDetail: "single-tier",
         pantheon: "buddhist",
         folder: "bhaisajyaguru",
-        domainUnicode: "bhaisajyaguru.com",
+        domainUnicode: "bhaiṣajyaguru.com",
+        domainPunycode: "xn--bhaiajyaguru-6g5f.com",
         colors: { primary: "#FF4500", secondary: "#F5F5F5", glow: "rgba(255,69,0,0.3)" },
         mascotPath: "/sites/bhaisajyaguru/assets/bhaisajyaguru_mascot.webp",
         mascotFallback: "/sites/bhaisajyaguru/assets/bhaisajyaguru_mascot.webp",
         logomarkPath: "/sites/bhaisajyaguru/assets/bhaisajyaguru_logomark.webp",
+        built: true,
+        hasAdSite: true,
+        darkPunchline: false
+    },
+
+        {
+        id: "epimetheus",
+        rentalTier: "A",
+        name: "Epimētheús",
+        greek: "Ἐπιμηθεύς",
+        domain: "Afterthought, Hindsight",
+        tagline: "Afterthought, Hindsight · Afterthinker (from ἐπί + μῆτις)",
+        tier: "tier-1",
+        tierDetail: "single-tier",
+        pantheon: "greek",
+        folder: "epimetheus",
+        domainUnicode: "epimētheús.com",
+        domainPunycode: "xn--epimthes-u5a0w.com",
+        colors: { primary: "#D4AF37", secondary: "#4169E1", glow: "rgba(212,175,55,0.3)" },
+        mascotPath: "/sites/epimetheus/assets/epimetheus_mascot.webp",
+        mascotFallback: "/sites/epimetheus/assets/epimetheus_mascot.webp",
+        logomarkPath: "/sites/epimetheus/assets/epimetheus_logomark.webp",
+        built: true,
+        hasAdSite: true,
+        darkPunchline: false
+    },
+
+    {
+        id: "anahita",
+        rentalTier: "S",
+        name: "Anāhitā",
+        greek: "—",
+        domain: "Fertility, Water, Wisdom",
+        tagline: "Fertility, Water, Wisdom · Immaculate, undefiled",
+        tier: "tier-1",
+        tierDetail: "single-tier",
+        pantheon: "zoroastrian",
+        folder: "anahita",
+        domainUnicode: "anāhitā.com",
+        domainPunycode: "xn--anhit-gwad.com",
+        colors: { primary: "#FF4500", secondary: "#F5F5F5", glow: "rgba(255,69,0,0.3)" },
+        mascotPath: "/sites/anahita/assets/anahita_mascot.webp",
+        mascotFallback: "/sites/anahita/assets/anahita_mascot.webp",
+        logomarkPath: "/sites/anahita/assets/anahita_logomark.webp",
+        built: true,
+        hasAdSite: true,
+        darkPunchline: false
+    },
+
+    {
+        id: "audhumla",
+        rentalTier: "B",
+        name: "Auðhumla",
+        greek: "—",
+        domain: "Primeval Cow, Nourisher of Creation",
+        tagline: "Primeval Cow, Nourisher of Creation · Wealth-humla (primeval cow)",
+        tier: "tier-1",
+        tierDetail: "single-tier",
+        pantheon: "norse",
+        folder: "audhumla",
+        domainUnicode: "auðhumla.com",
+        domainPunycode: "xn--auhumla-xza.com",
+        colors: { primary: "#C0C0C0", secondary: "#5C9BD1", glow: "rgba(192,192,192,0.3)" },
+        mascotPath: "/sites/audhumla/assets/audhumla_mascot.webp",
+        mascotFallback: "/sites/audhumla/assets/audhumla_mascot.webp",
+        logomarkPath: "/sites/audhumla/assets/audhumla_logomark.webp",
+        built: true,
+        hasAdSite: true,
+        darkPunchline: false
+    },
+
+    {
+        id: "fjorgyn",
+        rentalTier: "S",
+        name: "Fjǫrgyn",
+        greek: "—",
+        domain: "Earth, Mother of Thor",
+        tagline: "Earth, Mother of Thor · Earth (Fjǫrgyn)",
+        tier: "tier-1",
+        tierDetail: "single-tier",
+        pantheon: "norse",
+        folder: "fjorgyn",
+        domainUnicode: "fjǫrgyn.com",
+        domainPunycode: "xn--fjrgyn-xcc.com",
+        colors: { primary: "#C0C0C0", secondary: "#5C9BD1", glow: "rgba(192,192,192,0.3)" },
+        mascotPath: "/sites/fjorgyn/assets/fjorgyn_mascot.webp",
+        mascotFallback: "/sites/fjorgyn/assets/fjorgyn_mascot.webp",
+        logomarkPath: "/sites/fjorgyn/assets/fjorgyn_logomark.webp",
+        built: true,
+        hasAdSite: true,
+        darkPunchline: false
+    },
+
+    {
+        id: "gna",
+        rentalTier: "B",
+        name: "Gná",
+        greek: "—",
+        domain: "Messenger of Frigg",
+        tagline: "Messenger of Frigg · To project, to gaze",
+        tier: "tier-1",
+        tierDetail: "single-tier",
+        pantheon: "norse",
+        folder: "gna",
+        domainUnicode: "gná.com",
+        domainPunycode: "xn--gn-nia.com",
+        colors: { primary: "#C0C0C0", secondary: "#5C9BD1", glow: "rgba(192,192,192,0.3)" },
+        mascotPath: "/sites/gna/assets/gna_mascot.webp",
+        mascotFallback: "/sites/gna/assets/gna_mascot.webp",
+        logomarkPath: "/sites/gna/assets/gna_logomark.webp",
+        built: true,
+        hasAdSite: true,
+        darkPunchline: false
+    },
+
+    {
+        id: "thrudr",
+        rentalTier: "A",
+        name: "Þrúðr",
+        greek: "—",
+        domain: "Strength, Daughter of Thor",
+        tagline: "Strength, Daughter of Thor · Strength, power",
+        tier: "tier-1",
+        tierDetail: "single-tier",
+        pantheon: "norse",
+        folder: "thrudr",
+        domainUnicode: "þrúðr.com",
+        domainPunycode: "xn--rr-wja3bs.com",
+        colors: { primary: "#C0C0C0", secondary: "#5C9BD1", glow: "rgba(192,192,192,0.3)" },
+        mascotPath: "/sites/thrudr/assets/thrudr_mascot.webp",
+        mascotFallback: "/sites/thrudr/assets/thrudr_mascot.webp",
+        logomarkPath: "/sites/thrudr/assets/thrudr_logomark.webp",
+        built: true,
+        hasAdSite: true,
+        darkPunchline: false
+    },
+
+    {
+        id: "vor",
+        rentalTier: "A",
+        name: "Vǫr",
+        greek: "—",
+        domain: "Wisdom, Oaths, Knowledge",
+        tagline: "Wisdom, Oaths, Knowledge · The careful one, oath-goddess",
+        tier: "tier-1",
+        tierDetail: "single-tier",
+        pantheon: "norse",
+        folder: "vor",
+        domainUnicode: "vǫr.com",
+        domainPunycode: "xn--vr-f5a.com",
+        colors: { primary: "#C0C0C0", secondary: "#5C9BD1", glow: "rgba(192,192,192,0.3)" },
+        mascotPath: "/sites/vor/assets/vor_mascot.webp",
+        mascotFallback: "/sites/vor/assets/vor_mascot.webp",
+        logomarkPath: "/sites/vor/assets/vor_logomark.webp",
+        built: true,
+        hasAdSite: true,
+        darkPunchline: false
+    },
+
+    {
+        id: "var",
+        rentalTier: "A",
+        name: "Vár",
+        greek: "—",
+        domain: "Oaths, Marriage Agreements",
+        tagline: "Oaths, Marriage Agreements · Agreement, vow",
+        tier: "tier-1",
+        tierDetail: "single-tier",
+        pantheon: "norse",
+        folder: "var",
+        domainUnicode: "vár.com",
+        domainPunycode: "xn--vr-mia.com",
+        colors: { primary: "#C0C0C0", secondary: "#5C9BD1", glow: "rgba(192,192,192,0.3)" },
+        mascotPath: "/sites/var/assets/var_mascot.webp",
+        mascotFallback: "/sites/var/assets/var_mascot.webp",
+        logomarkPath: "/sites/var/assets/var_logomark.webp",
+        built: true,
+        hasAdSite: true,
+        darkPunchline: false
+    },
+
+    {
+        id: "oneiros",
+        rentalTier: "A",
+        name: "Óneiros",
+        greek: "Ὄνειρος",
+        domain: "Dreams, Dream-Visions",
+        tagline: "Dreams, Dream-Visions · Dream",
+        tier: "tier-1",
+        tierDetail: "single-tier",
+        pantheon: "greek",
+        folder: "oneiros",
+        domainUnicode: "óneiros.com",
+        domainPunycode: "xn--neiros-9wa.com",
+        colors: { primary: "#D4AF37", secondary: "#4169E1", glow: "rgba(212,175,55,0.3)" },
+        mascotPath: "/sites/oneiros/assets/oneiros_mascot.webp",
+        mascotFallback: "/sites/oneiros/assets/oneiros_mascot.webp",
+        logomarkPath: "/sites/oneiros/assets/oneiros_logomark.webp",
         built: true,
         hasAdSite: true,
         darkPunchline: false

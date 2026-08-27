@@ -1,9 +1,10 @@
 /**
  * PUNICODEX — Fix stale canonical/OG URLs on flagship home pages
  *
- * Many flagships were generated with canonical URLs like
- * https://punicodex.com/{id}/ instead of https://punicodex.com/sites/{id}/
- * This script updates those self-references in all built flagships.
+ * Old flagships were generated with canonical URLs like
+ * https://punicodex.com/sites/{id}/ instead of the clean
+ * https://punicodex.com/{id}/ form. This script migrates any remaining
+ * /sites/ self-references to the canonical clean URL.
  */
 
 const fs = require('fs');
@@ -35,8 +36,8 @@ for (const id of builtIds) {
   }
 
   let content = fs.readFileSync(filePath, 'utf8');
-  const oldUrl = `https://punicodex.com/${id}/`;
-  const newUrl = `https://punicodex.com/sites/${id}/`;
+  const oldUrl = `https://punicodex.com/sites/${id}/`;
+  const newUrl = `https://punicodex.com/${id}/`;
 
   if (!content.includes(oldUrl)) {
     unchanged++;

@@ -20,6 +20,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { writeFileWithRetry } = require('./write-file-retry.js');
 
 const ROOT = path.join(__dirname, '..');
 const { LEXICON } = require(path.join(ROOT, 'type', 'js', 'lexicon.js'));
@@ -159,6 +160,7 @@ function main() {
     <link rel="stylesheet" href="/css/mobile-menu.css?v=1">
     <link rel="stylesheet" href="/css/footer.css?v=2">
     <script type="application/ld+json">${JSON.stringify(itemList)}</script>
+    <script src="/js/px-core.js?v=perf21" defer></script>
     <style>
       .ed-hero { padding: 9rem 1.5rem 3.5rem; text-align: center; background: radial-gradient(ellipse 70% 55% at 50% 0%, rgba(212,175,55,0.12), transparent 65%); }
       .ed-kicker { font-size: 0.72rem; letter-spacing: 0.35em; color: #8a7a52; text-transform: uppercase; margin-bottom: 1.2rem; }
@@ -198,6 +200,103 @@ function main() {
     </style>
 </head>
 <body>
+    <nav class="main-nav" id="main-nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-wordmark"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-ivory-360.webp 360w, /assets/brand/01-logos/punicodex-wordmark-ivory-720.webp 720w, /assets/brand/01-logos/punicodex-wordmark-ivory-1080.webp 1080w, /assets/brand/01-logos/punicodex-wordmark-ivory.webp 3600w" sizes="(max-width: 640px) 173px, 231px" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-ivory.png" srcset="/assets/brand/01-logos/punicodex-wordmark-ivory-360.png 360w, /assets/brand/01-logos/punicodex-wordmark-ivory-720.png 720w, /assets/brand/01-logos/punicodex-wordmark-ivory-1080.png 1080w, /assets/brand/01-logos/punicodex-wordmark-ivory.png 3600w" sizes="(max-width: 640px) 173px, 231px" alt="PuniCodex — The Unicode Pantheon" width="3600" height="374"></picture></a>
+            <div class="nav-links">
+                <a href="/pantheon/" class="nav-link">Pantheon</a>
+                <a href="/realms/" class="nav-link">Realms</a>
+                <a href="/lexicon/" class="nav-link">Lexicon</a>
+                <a href="/connections/" class="nav-link">Connections</a>
+                <a href="/type/" class="nav-link">Type</a>
+                <a href="/search/" class="nav-link">Search</a>
+                <div class="nav-more">
+                    <button class="nav-more-toggle" aria-haspopup="true" aria-expanded="false">More</button>
+                    <div class="nav-more-menu">
+                        <a href="/patterns/" class="nav-link">Patterns</a>
+                        <a href="/tiers/" class="nav-link">Tier System</a>
+                        <a href="/rulebook/" class="nav-link">Rulebook</a>
+                        <a href="/pronunciation/" class="nav-link">Pronunciation</a>
+                        <a href="/everyday/" class="nav-link active" aria-current="page">Words</a>
+                        <a href="/ink/" class="nav-link">Ink</a>
+                        <a href="/cards/" class="nav-link">Cards</a>
+                        <a href="/oracle/" class="nav-link">Oracle</a>
+                        <a href="/extension/" class="nav-link">Extension</a>
+                        <a href="/app/" class="nav-link">App</a>
+                        <a href="/texts/" class="nav-link">Texts</a>
+                        <a href="/trending/" class="nav-link">Trending</a>
+                        <a href="/codex/" class="nav-link">Codex</a>
+                        <a href="/blog/" class="nav-link">Blog</a>
+                        <a href="/creatives/" class="nav-link">Creatives</a>
+                        <a href="/scholars/" class="nav-link">Scholars</a>
+                        <a href="/api/v1/docs/" class="nav-link">API</a>
+                        <a href="/appraise/" class="nav-link">Appraise</a>
+                        <a href="/store/" class="nav-link">Store</a>
+                        <a href="/about/" class="nav-link">About</a>
+                        <a href="/contact/" class="nav-link">Contact</a>
+                    </div>
+                </div>
+            </div>
+            <a href="/pantheon/" class="nav-cta"><span>Enter</span></a>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-controls="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-section">
+            <span class="mobile-menu-title">Explore</span>
+            <div class="mobile-menu-group">
+                <a href="/pantheon/">Pantheon</a>
+                <a href="/realms/">Realms</a>
+                <a href="/lexicon/">Lexicon</a>
+                <a href="/connections/">Connections</a>
+                <a href="/patterns/">Patterns</a>
+                <a href="/trending/">Trending</a>
+            </div>
+        </div>
+        <div class="mobile-menu-section">
+            <span class="mobile-menu-title">Tools</span>
+            <div class="mobile-menu-group">
+                <a href="/type/">Type</a>
+                <a href="/search/">Search</a>
+                <a href="/tiers/">Tier System</a>
+                <a href="/rulebook/">Rulebook</a>
+                <a href="/pronunciation/">Pronunciation</a>
+                <a href="/everyday/" class="active">Words</a>
+                <a href="/ink/">Ink</a>
+                <a href="/cards/">Cards</a>
+                <a href="/oracle/">Oracle</a>
+                <a href="/extension/">Extension</a>
+                <a href="/app/">App</a>
+            </div>
+        </div>
+        <div class="mobile-menu-section">
+            <span class="mobile-menu-title">Resources</span>
+            <div class="mobile-menu-group">
+                <a href="/texts/">Texts</a>
+                <a href="/codex/">Codex</a>
+                <a href="/blog/">Blog</a>
+                <a href="/creatives/">Creatives</a>
+                <a href="/scholars/">Scholars</a>
+                <a href="/api/v1/docs/">API</a>
+                <a href="/appraise/">Appraise</a>
+                <a href="/store/">Store</a>
+            </div>
+        </div>
+        <div class="mobile-menu-section">
+            <span class="mobile-menu-title">About</span>
+            <div class="mobile-menu-group">
+                <a href="/about/">About</a>
+                <a href="/about/founder/">Founder</a>
+                <a href="/careers/">Careers</a>
+                <a href="/contact/">Contact</a>
+            </div>
+        </div>
+    </div>
     <header class="ed-hero">
       <div class="ed-kicker">Everyday Etymology</div>
       <h1>The Gods You Speak Every Day</h1>
@@ -232,7 +331,7 @@ function main() {
 `;
 
   fs.mkdirSync(path.dirname(OUT), { recursive: true });
-  fs.writeFileSync(OUT, html);
+  writeFileWithRetry(OUT, html, 'utf8');
   console.log(`Everyday register: ${total} words (${falseFriends} false friends) → everyday/index.html`);
 }
 

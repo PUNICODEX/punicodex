@@ -3917,6 +3917,41 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "originalScript": "जगन्नाथ",
     "scriptName": "Devanagari",
     "scriptLabel": "Original Script"
+  },
+  "audhumla": {
+    "originalScript": "ᛅᚢᚦᚢᛘᛚᛅ",
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
+  },
+  "fjorgyn": {
+    "originalScript": "ᚠᛁᚢᚱᚴᚢᚾ",
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
+  },
+  "gna": {
+    "originalScript": "ᚴᚾᛅ",
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
+  },
+  "thrudr": {
+    "originalScript": "ᚦᚱᚢᚦᚱ",
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
+  },
+  "vor": {
+    "originalScript": "ᚢᚢᚱ",
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
+  },
+  "var": {
+    "originalScript": "ᚢᛅᚱ",
+    "scriptName": "Younger Futhark",
+    "scriptLabel": "Original Script"
+  },
+  "oneiros": {
+    "originalScript": "Ὄνειρος",
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   }
 };
 

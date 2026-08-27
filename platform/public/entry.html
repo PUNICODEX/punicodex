@@ -674,7 +674,7 @@
           ` : ''}
           <div class="site-actions">
             <a href="https://${escapeHtml(site.punycode)}" target="_blank" rel="noopener" class="site-link primary">Visit Site ↗</a>
-            ${site.is_flagship ? `<a href="/sites/${encodeURIComponent(entryData.id)}/#spaces" class="site-link" style="color:var(--accent);">Reserve Ad Space</a>` : ''}
+            ${site.is_flagship ? `<a href="/${encodeURIComponent(entryData.id)}/#spaces" class="site-link" style="color:var(--accent);">Reserve Ad Space</a>` : ''}
             <a href="search.html?q=${encodeURIComponent(entryData.unicode)}" class="site-link">Find in Search</a>
           </div>
         </div>

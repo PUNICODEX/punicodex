@@ -1438,7 +1438,7 @@ handleReturnFromStripe();
   if (!modal || !grid) return;
 
   const templeId = 'change';
-  const siteName = 'Cháng&#39;é';
+  const siteName = 'Chángé';
   let selectedCents = 700;
 
   const els = {

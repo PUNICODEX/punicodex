@@ -831,7 +831,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Rhéa is Tier 2 because the Greek Ῥέα preserves the acute stress on the second syllable, and nothing more — the final alpha is short, so no single feature-rich restoration exists. She is the great mother of the Olympian generation."
+    "note": "Rhéā is Tier 1 because the restoration preserves both the acute stress on the second syllable and the long final alpha (Ῥέᾱ) — two distinctive features that plain ASCII 'Rhea' loses. She is the great mother of the Olympian generation."
   },
   "themis": {
     "ipa": "/tʰemis/",
@@ -1619,7 +1619,7 @@ const PRONUNCIATION_ATLAS = {
     "phonemes": [
       {
         "symbol": "Ḏ",
-        "desc": "Palatalized voiced alveolar stop [ɟ] or affricate, written with d-dot-below; the first consonant of Ḏḥwty"
+        "desc": "Palatalized voiced alveolar stop [ɟ] or affricate, written with d-dot-below; the first consonant of Ḏḥwtj"
       },
       {
         "symbol": "ḥ",
@@ -1638,7 +1638,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "Ḏḥwty is Tier-1: the underdotted ḏ and ḥ are distinctive letters the ASCII form loses. Egyptian writing records only the consonants ḏ-ḥ-w-ty; the vowels are reconstructed from Coptic and Greek sources. The initial palatal ḏ and the pharyngeal ḥ are both non-English sounds preserved in the Unicode form."
+    "note": "Ḏḥwtj is Tier-1: the underdotted ḏ and ḥ are distinctive letters the ASCII form loses. Egyptian writing records only the consonants ḏ-ḥ-w-tj; the vowels are reconstructed from Coptic and Greek sources. The initial palatal ḏ and the pharyngeal ḥ are both non-English sounds preserved in the Unicode form."
   },
   "amun": {
     "ipa": "/ʔaˈmuːn/",
@@ -7802,7 +7802,7 @@ const PRONUNCIATION_ATLAS = {
     "dialect": null,
     "confidence": "canonical",
     "audioPath": null,
-    "note": "嫦娥 denotes the Chinese goddess of the moon. The Modern Standard Mandarin reading is Cháng'é — cháng (Tone 2) and é (Tone 2) — as recorded in the Unihan Database (Unicode Consortium, kMandarin) and standard Mandarin dictionaries. The goddess's earlier name was 姮娥 Héng'é; under the Han it was altered to Cháng'é to observe the naming taboo on the personal name of Emperor Wen (Liú Héng 劉恆), the graph 常 cháng ('constant') replacing the tabooed homophone 姮 héng. The tone-marked Pinyin restoration Cháng'é preserves the citation rising tone on both syllables; in connected speech the contour may be compressed, but the lexical tones remain Tone 2."
+    "note": "嫦娥 denotes the Chinese goddess of the moon. The Modern Standard Mandarin reading is Chángé — cháng (Tone 2) and é (Tone 2) — as recorded in the Unihan Database (Unicode Consortium, kMandarin) and standard Mandarin dictionaries. The goddess's earlier name was 姮娥 Héng'é; under the Han it was altered to Chángé to observe the naming taboo on the personal name of Emperor Wen (Liú Héng 劉恆), the graph 常 cháng ('constant') replacing the tabooed homophone 姮 héng. The tone-marked Pinyin restoration Chángé preserves the citation rising tone on both syllables; in connected speech the contour may be compressed, but the lexical tones remain Tone 2."
   },
   "houyi": {
     "ipa": "/xoʊ̯˥˩.i˥˩/",

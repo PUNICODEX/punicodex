@@ -680,7 +680,7 @@ function typeBlock(data) {
 
 function sistersBlock(data, sisters) {
   if (!sisters.length) return '';
-  const names = sisters.map((l) => `[${l.label}](/sites/${l.id}/)`);
+  const names = sisters.map((l) => `[${l.label}](/${l.id}/)`);
   const list = names.length > 1 ? `${names.slice(0, -1).join(', ')}, and ${names[names.length - 1]}` : names[0];
   return `Other temples in the ${data.pantheonDisplay} pantheon include ${list} — each with its own restoration story, its own scholarly record, and its own place in the lexicon.`;
 }
@@ -718,7 +718,7 @@ function loreExtras(data) {
 // ── Closing blocks ──────────────────────────────────────────────────────────
 
 function relatedLinksMd(links) {
-  return links.map((l) => `- [${l.label}](/sites/${l.id}/)`).join('\n');
+  return links.map((l) => `- [${l.label}](/${l.id}/)`).join('\n');
 }
 
 function sourcesMd(sources, data) {

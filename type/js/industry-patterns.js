@@ -205,6 +205,7 @@ const INDUSTRY_GROUPS = [
       { id: 'el', weight: 1, why: 'His tent stands at the source of the two rivers, where every spring and stream begins.' },
       { id: 'herakles', weight: 1, why: 'He cleansed the Augean stables by diverting two rivers; hydraulic engineering\'s first case study.' },
       { id: 'longwang', weight: 2, why: 'Rain, rivers, and wells are the office — drought-stricken counties petitioned his temple as the water ministry of last resort.' },
+      { id: 'anahita', weight: 2, why: 'The Avestan waters made goddess; rivers, fertility, and the life-giving flow are her domain.' },
     ],
   },
   {
@@ -230,6 +231,7 @@ const INDUSTRY_GROUPS = [
       { id: 'atlas', weight: 1, why: 'The Atlas launch vehicles flew for six decades; the sky-bearer\'s namesake rocket.' },
       { id: 'nike', weight: 1, why: 'Winged and swift, she lent her name to NASA\'s Nike sounding rockets.' },
       { id: "sleipnir", weight: 1, why: 'He runs through air and over sea; the steed that knows no route as closed.' },
+      { id: 'gna', weight: 1, why: 'Swift messenger; her errands cross the boundaries between realms as aviation crosses the sky.' },
     ],
   },
   {
@@ -343,6 +345,7 @@ const INDUSTRY_GROUPS = [
       { id: "suttungr", weight: 2, why: 'He set his daughter as guardian of the mead — the first insider-threat arrangement.' },
       { id: "ullr", weight: 1, why: 'He is invoked in the duel and the oath — the single combatants patron.' },
       { id: "syn", weight: 1, why: 'Her name means refusal; she is the defensive No at the gate.' },
+      { id: 'thrudr', weight: 1, why: 'Strength and power; the daughter of Þórr embodies the force behind every defensive line.' },
     ],
   },
   {
@@ -400,6 +403,7 @@ const INDUSTRY_GROUPS = [
       { id: 'ma', weight: 1, why: 'Correctness and measure; the two properties every test suite is hired to prove.' },
       { id: "sindri", weight: 1, why: 'The dwarf whose craft produced three masterworks under wager is the original rapid-prototype shop.' },
       { id: "yggdrasill", weight: 1, why: 'The branching tree that holds all worlds is the original diagram of connected systems.' },
+      { id: 'epimetheus', weight: 1, why: 'The afterthinker whose name warns every release cycle: the patch that follows the bug is hindsight made deployable.' },
     ],
   },
   {
@@ -458,6 +462,7 @@ const INDUSTRY_GROUPS = [
       { id: 'bifrost', weight: 1, why: 'The link between two worlds, watched by Heimdallr — the connection itself, with a sentry on the endpoint.' },
       { id: "sleipnir", weight: 2, why: 'The eight-legged horse carries Odinn between worlds — the original all-terrain courier.' },
       { id: "yggdrasill", weight: 2, why: 'The world-ash connects every realm — the cosmic network trunk.' },
+      { id: 'gna', weight: 1, why: 'Messenger of Frigg; the swift courier who moves between worlds on her errand.' },
     ],
   },
   {
@@ -501,6 +506,7 @@ const INDUSTRY_GROUPS = [
       { id: 'jotunheimr', weight: 1, why: 'Its mountains and frozen rivers held the raw material from which the cosmos was built.' },
       { id: 'buri', weight: 1, why: 'Licked from the salty rime-stones; the first god is a mineral find.' },
       { id: "reginn", weight: 1, why: 'The cursed hoard of Andvari drove his forge; underground wealth shapes the smiths plan.' },
+      { id: 'fjorgyn', weight: 1, why: 'Earth and land; the mother of Þórr is the ground from which every ore and field is cut.' },
     ],
   },
   {
@@ -560,6 +566,9 @@ const INDUSTRY_GROUPS = [
       { id: "sif", weight: 2, why: 'The golden-haired goddess whose locks are the ripe grain — the harvest made personal.' },
       { id: "suttungr", weight: 1, why: 'The hidden vat of mead in Hnitbjorg is the oldest locked cellar.' },
       { id: "vanaheimr", weight: 2, why: 'The home of the Vanir — gods of harvest, wealth, and the fertile field.' },
+      { id: 'anahita', weight: 1, why: 'Fertility of waters and fields; the Avestan goddess blesses the growth the harvest depends on.' },
+      { id: 'audhumla', weight: 2, why: 'The primeval cow whose milk fed the first giant; dairy and nourishment at the dawn of the world.' },
+      { id: 'fjorgyn', weight: 2, why: 'Earth herself and mother of Þórr; the soil that every farm works is her body.' },
     ],
   },
   {
@@ -663,6 +672,7 @@ const INDUSTRY_GROUPS = [
       { id: 'mjolnir', weight: 1, why: 'Forged by the dwarfs Sindri and Brokkr — the masterwork of divine smithcraft, short handle and all.' },
       { id: "reginn", weight: 2, why: 'The smith who reforged Gram from Sigmundrs shards — the divine forge that armed the dragon-slayer.' },
       { id: "sindri", weight: 2, why: 'He forged Mjolnir, Draupnir, and Gullinbursti — the divine workshop that outwitted Loki.' },
+      { id: 'thrudr', weight: 1, why: 'Strength in material; the name itself is the Norse word for force and endurance.' },
     ],
   },
   {
@@ -837,6 +847,8 @@ const INDUSTRY_GROUPS = [
       { id: 'eros', weight: 1, why: 'Freud made Eros the name of the life drive; psychoanalysis runs on his energy.' },
       { id: "sigyn", weight: 1, why: 'The wife who endures the dripping venom — steadfast care under unbearable strain.' },
       { id: "wyrd", weight: 1, why: 'Accepting wyrd is the northern discipline of meeting what cannot be changed.' },
+      { id: 'epimetheus', weight: 1, why: 'Afterthought and hindsight; the brother of forethought whose name names the reflection that follows the act.' },
+      { id: 'oneiros', weight: 1, why: 'Dreams are the mind\'s own therapy session; the Oneiroi are the oldest case notes of the unconscious.' },
     ],
   },
   {
@@ -851,6 +863,7 @@ const INDUSTRY_GROUPS = [
       { id: 'leto', weight: 1, why: 'Night and the veiled mother; rest as refuge.' },
       { id: 'selene', weight: 1, why: 'Endymion sleeps forever beneath her nightly visit; the night watch personified.' },
       { id: 'mani', weight: 1, why: 'The night watch himself; the moon that governs every sleeping hour is his face.' },
+      { id: 'oneiros', weight: 2, why: 'Dream itself; the Oneiroi are the nightly visitors every sleep tracker tries to interpret.' },
     ],
   },
   {
@@ -884,6 +897,8 @@ const INDUSTRY_GROUPS = [
       { id: 'vac', weight: 1, why: 'The mantra that protects, heals, and creates flows from her; sacred sound is the oldest sound therapy.' },
       { id: 'hemera', weight: 1, why: 'Modern devotional practice greets her with morning intentions; clarity and the sacred ordinary.' },
       { id: 'xiwangmu', weight: 1, why: 'Her peaches ripen once in three thousand years and confer immortality — the original longevity retreat, waiting list included.' },
+      { id: 'anahita', weight: 1, why: 'Waters of wholeness and fertility; the Avestan goddess of life-giving flow.' },
+      { id: 'oneiros', weight: 1, why: 'Dreamwork and guided imagery; the Oneiroi are the mind\'s own nightly healing practice.' },
     ],
   },
   {
@@ -1207,6 +1222,7 @@ const INDUSTRY_GROUPS = [
       { id: 'artemis', weight: 1, why: 'The huntress; archery and the chase as sacred discipline.' },
       { id: 'houyi', weight: 2, why: 'The divine archer himself — nine suns, nine hits; the bow is his whole mythology.' },
       { id: 'skadi', weight: 1, why: 'The skalds call her ǫndurdís — the ski-lady; winter sports\' patron deity, bow in hand.' },
+      { id: 'thrudr', weight: 2, why: 'Strength personified; the daughter of Þórr whose name is the Norse word for power and force.' },
     ],
   },
   {
@@ -1264,6 +1280,7 @@ const INDUSTRY_GROUPS = [
       { id: 'aigyptos', weight: 2, why: 'The name of Egypt itself; the original destination brand.' },
       { id: 'asia', weight: 2, why: 'A continent’s name; place branding at planetary scale.' },
       { id: 'europe', weight: 2, why: 'A continent’s name with a myth attached.' },
+      { id: 'gna', weight: 1, why: 'The traveller\'s messenger; every journey between places is her errand writ large.' },
       { id: 'libye', weight: 2, why: 'The ancient name of Africa’s shore.' },
       { id: 'athenai', weight: 2, why: 'The city of wisdom; the Acropolis sells itself.' },
       { id: 'atlantis', weight: 2, why: 'The lost island; resorts already bear the name.' },
@@ -1318,6 +1335,7 @@ const INDUSTRY_GROUPS = [
       { id: "syn", weight: 1, why: "She guards the threshold of the hall; the door is her sacred charge." },
       { id: "ullr", weight: 2, why: "The ski-god and bowman of the winter waste — outdoor gear made deity." },
       { id: "vanaheimr", weight: 1, why: "The Vanir bring peace and plenty to every household; prosperity as domestic blessing." },
+      { id: 'fjorgyn', weight: 1, why: 'The earth as home; the Norse earth-goddess is the ground beneath every hearth.' },
     ],
   },
   {
@@ -1457,6 +1475,8 @@ const INDUSTRY_GROUPS = [
       { id: 'ganga', weight: 1, why: 'Declared a legal person in 2017; rights-of-nature jurisprudence carries her name.' },
       { id: 'yamuna', weight: 1, why: 'Granted legal personhood beside Gaṅgā in 2017; a river with standing in court.' },
       { id: 'ares', weight: 1, why: 'The Areopagus — his hill — judged Athenian homicide for a millennium; myth makes its first defendant Árēs himself.' },
+      { id: 'vor', weight: 2, why: 'The careful one; wisdom and oaths are the foundations of law and contractual trust.' },
+      { id: 'var', weight: 2, why: 'Goddess of oaths and marriage agreements; every contract and vow is her jurisdiction.' },
     ],
   },
   {
@@ -1602,6 +1622,7 @@ const INDUSTRY_GROUPS = [
       { id: 'tane', weight: 1, why: 'He climbed the heavens to win the three baskets of knowledge for the world; Māori discussions of education still cite his quest.' },
       { id: 'vac', weight: 1, why: 'Mother of the Vedas; the source of revealed wisdom and scholarly learning.' },
       { id: 'hen', weight: 1, why: 'From the Pythagorean monad to set theory, the One anchors every curriculum of first principles.' },
+      { id: 'vor', weight: 1, why: 'Wisdom personified; her name is the Norse word for the careful, knowing mind.' },
     ],
   },
   {
@@ -1641,6 +1662,9 @@ const INDUSTRY_GROUPS = [
       { id: 'enlil', weight: 1, why: 'He decrees fate from the Ekur; necessity enthroned above the gods themselves.' },
       { id: 'vishnu', weight: 1, why: 'The Bhagavad Gītā is his battlefield discourse on duty; the ethics syllabus begins on his chariot.' },
       { id: 'vac', weight: 1, why: '“In the beginning was the Word” is her Vedic claim first; speech as first principle.' },
+      { id: 'epimetheus', weight: 1, why: 'Afterthought as ethical concept; the wisdom that arrives after action is the original source of regret and correction.' },
+      { id: 'vor', weight: 1, why: 'Her name means "the careful one"; wisdom and the keeping of oaths are the first principles of trust.' },
+      { id: 'var', weight: 1, why: 'Marriage agreements and sworn oaths; the contract as a moral bond personified.' },
     ],
   },
   {
@@ -1675,6 +1699,7 @@ const INDUSTRY_GROUPS = [
       { id: 'prajapati', weight: 1, why: 'Lord of offspring; every lineage of gods and creatures is charted from his house.' },
       { id: 'pontos', weight: 1, why: 'Father of Nereus, Phorkys, and Keto; the sea\'s whole divine dynasty begins with him.' },
       { id: 'kronos', weight: 1, why: 'Father of six Olympians; the ruling dynasty\'s patriarch and cautionary progenitor.' },
+      { id: 'audhumla', weight: 1, why: 'The primeval nourisher; from her milk the first giant grew and the gods were licked from the ice.' },
     ],
   },
   {
@@ -1889,6 +1914,7 @@ const INDUSTRY_GROUPS = [
       { id: 'ganesha', weight: 1, why: 'No Hindu wedding begins without him; the remover of obstacles takes the first invitation of every marriage.' },
       { id: 'prajapati', weight: 1, why: 'His mantras still accompany the rites of conception, pregnancy, and childbirth.' },
       { id: 'gauri', weight: 2, why: '“Gaurī kā vivāha” is everyday Hindi for the ideal marriage; her wedding to Śiva is the Purāṇic template.' },
+      { id: 'var', weight: 2, why: 'Marriage agreements and sworn vows; the bond itself is her divine office.' },
     ],
   },
   {
@@ -1957,6 +1983,7 @@ const INDUSTRY_GROUPS = [
       { id: 'dionysos', weight: 1, why: 'The feast as sacred event — dining as celebration, not just sustenance.' },
       { id: 'change', weight: 1, why: 'The mooncake is her festival\'s edible icon — an entire pastry economy rises with her moon each autumn.' },
       { id: 'xiwangmu', weight: 1, why: 'The Peach Banquet she hosts for the assembled immortals is the feast as institution — hospitality\'s most exclusive table.' },
+      { id: 'audhumla', weight: 1, why: 'The primeval cow whose milk nourished creation; dairy and abundance at the first table.' },
     ],
   },
   {
@@ -2004,7 +2031,16 @@ const INDUSTRY_GROUPS = [
       { id: 'narasimha', weight: 2, why: 'The man-lion avatar in IAST, preserving Sanskrit diacritics.' },
       { id: 'ereshkigal', weight: 2, why: 'Queen of the Mesopotamian underworld in standard Assyriological transliteration.' },
       { id: 'avalokiteshvara', weight: 2, why: 'The bodhisattva of compassion in IAST, a name whose length marks matter.' },
-      { id: 'bhaisajyaguru', weight: 2, why: 'The medicine buddha in IAST; the ai diphthong and retroflex ṣ are part of the name.' }
+      { id: 'bhaisajyaguru', weight: 2, why: 'The medicine buddha in IAST; the ai diphthong and retroflex ṣ are part of the name.' },
+      { id: 'epimetheus', weight: 2, why: 'Afterthought personified; the brother of Promētheús whose name marks the wisdom that arrives too late.' },
+      { id: 'anahita', weight: 2, why: 'The Avestan river-goddess of waters, fertility, and wisdom; her macrons carry the Old Iranian vowel length.' },
+      { id: 'audhumla', weight: 2, why: 'The primeval cow of Norse cosmogony, licking the first god from the ice; the restored Auðhumla keeps the eth and length.' },
+      { id: 'fjorgyn', weight: 2, why: 'Old Norse earth and mother of Þórr; the ǫ and length marks distinguish her from later forms.' },
+      { id: 'gna', weight: 2, why: 'Messenger of Frigg whose name means "to project, to gaze"; the acute marks the Norse restoration.' },
+      { id: 'thrudr', weight: 2, why: 'Þrúðr, strength personified and daughter of Þórr; the thorn and acute carry the Old Norse spelling.' },
+      { id: 'vor', weight: 2, why: 'The Norse goddess of wisdom and oaths; Vǫr restores the ǫ that the normalized Vör flattens.' },
+      { id: 'var', weight: 2, why: 'Goddess of oaths and marriage agreements; the acute on Vár restores the Old Norse vowel quality.' },
+      { id: 'oneiros', weight: 2, why: 'Dream personified in Greek; the restored Óneiros carries the acute and the original omicron.' }
     ],
   },
   {
@@ -2039,7 +2075,16 @@ const INDUSTRY_GROUPS = [
       { id: 'narasimha', weight: 1, why: 'The man-lion avatar in IAST, preserving Sanskrit diacritics and fierce protection.' },
       { id: 'ereshkigal', weight: 1, why: 'Queen of the Mesopotamian underworld in standard Assyriological transliteration.' },
       { id: 'avalokiteshvara', weight: 1, why: 'The bodhisattva of compassion in IAST, a name whose length marks matter.' },
-      { id: 'bhaisajyaguru', weight: 1, why: 'The medicine buddha in IAST; the ai diphthong and retroflex ṣ are part of the name.' }
+      { id: 'bhaisajyaguru', weight: 1, why: 'The medicine buddha in IAST; the ai diphthong and retroflex ṣ are part of the name.' },
+      { id: 'epimetheus', weight: 1, why: 'The afterthinker; the acute and length mark the restored Greek form.' },
+      { id: 'anahita', weight: 1, why: 'The macrons and acute restore the Avestan vowel length of the Iranian water-goddess.' },
+      { id: 'audhumla', weight: 1, why: 'The primeval cow whose eth and length marks preserve the Old Norse form.' },
+      { id: 'fjorgyn', weight: 1, why: 'Earth personified; the ǫ and final length mark the Old Norse restoration.' },
+      { id: 'gna', weight: 1, why: 'Messenger of Frigg; the acute distinguishes the restored Norse name.' },
+      { id: 'thrudr', weight: 1, why: 'Strength and daughter of Þórr; the thorn and acute carry the Norse spelling.' },
+      { id: 'vor', weight: 1, why: 'Wisdom and oath-goddess; the ǫ restores the Old Norse vowel quality.' },
+      { id: 'var', weight: 1, why: 'Marriage-oath goddess; the acute marks the restored Norse vowel.' },
+      { id: 'oneiros', weight: 1, why: 'Dream in Greek; the acute distinguishes the restored form from Latinized Oneiros.' }
     ],
   },
   {

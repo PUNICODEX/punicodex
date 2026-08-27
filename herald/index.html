@@ -199,7 +199,7 @@
         </div>
     </footer>
 
-    <script src="/js/archetypes-v2.js?v=c714499bff" defer></script>
+    <script src="/js/archetypes-v2.js?v=c2c36b85b2" defer></script>
     <script src="/js/px-core.js?v=perf21" defer></script>
     <script>
     (function () {
@@ -212,7 +212,7 @@
                     <img src="${a.mascotPath}" alt="${a.name}" loading="lazy" width="64" height="64" onerror="this.style.display='none'">
                     <div class="temple-name">${a.name}</div>
                     <div class="slot-note">${a.tagline || a.domain || ''}</div>
-                    <a href="/sites/${a.id}/">View temple &amp; apply →</a>
+                    <a href="/${a.id}/">View temple &amp; apply →</a>
                 </div>`).join('');
         }
         if (window.ARCHETYPES || window.archetypes) init();

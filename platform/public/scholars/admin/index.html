@@ -2105,7 +2105,7 @@
                     <div class="admin-card-body">
                         ${topTemples.length
                             ? '<ul>' + topTemples.map(function(t) {
-                                return '<li><a href=\'/sites/' + escapeHtml(t.entry_id) + '/scholars/\' target="_blank">' + escapeHtml(t.name || t.entry_id) + '</a> — ' + (t.edit_count || 0) + ' edits</li>';
+                                return '<li><a href=\'/' + escapeHtml(t.entry_id) + '/scholars/\' target="_blank">' + escapeHtml(t.name || t.entry_id) + '</a> — ' + (t.edit_count || 0) + ' edits</li>';
                             }).join('') + '</ul>'
                             : '<p>No edit data for this period.</p>'}
                     </div>

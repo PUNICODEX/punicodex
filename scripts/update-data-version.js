@@ -141,5 +141,6 @@ const versionDoc = {
   },
 };
 
-fs.writeFileSync(versionPath, `${JSON.stringify(versionDoc, null, 2)}\n`);
+fs.writeFileSync(`${versionPath}.tmp`, `${JSON.stringify(versionDoc, null, 2)}\n`);
+fs.renameSync(`${versionPath}.tmp`, versionPath);
 console.log(`data-version.json updated: ${version}`);

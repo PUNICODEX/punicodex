@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google" content="notranslate">
 <title>How the Pattern Atlas Is Made — Methodology | PUNICODEX</title>
-<meta name="description" content="The public methodology of the PuniCodex Pattern Atlas: how 397 flagship temples are matched to 61 industries, how fragment professions map onto categories, and how to challenge a match.">
+<meta name="description" content="The public methodology of the PuniCodex Pattern Atlas: how 406 flagship temples are matched to 61 industries, how fragment professions map onto categories, and how to challenge a match.">
 <link rel="canonical" href="https://punicodex.com/patterns/methodology/">
 <meta property="og:title" content="How the Pattern Atlas Is Made — PuniCodex Methodology">
 <meta property="og:description" content="The discipline, the alias layer, the editorial rules, and the corrections channel behind the PuniCodex pattern graph.">
@@ -149,7 +149,7 @@
                     <span class="codex-article-readtime">9 min read</span>
                 </div>
                 <h1 class="codex-article-title display-md">How the Pattern Atlas Is Made</h1>
-                <p class="codex-article-lead body-lg">The Pattern Atlas pairs 397 flagship temples with 61 modern industries. This paper is the public account of how those pairings are argued, how a typed trade like “plumber” or “church” finds its category, and how to challenge a match.</p>
+                <p class="codex-article-lead body-lg">The Pattern Atlas pairs 406 flagship temples with 61 modern industries. This paper is the public account of how those pairings are argued, how a typed trade like “plumber” or “church” finds its category, and how to challenge a match.</p>
             </div>
         </header>
 
@@ -159,8 +159,8 @@
             <h2>The Discipline</h2>
             <p>The canonical source of the pattern graph is a single file, <code>type/js/industry-patterns.js</code>, which declares 7 sectors and 61 industries. Each industry assigns temples one of two weights. A <strong>primary</strong> pairing (weight 2) means the industry is a direct expression of the entry's core canonical domain. A <strong>resonant</strong> pairing (weight 1) means a strong secondary association — a namesake the modern industry has adopted, or a domain the entry shares without owning it.</p>
             <p>The difference is easiest to see in the data's own words. Under <em>Solar &amp; Renewable Energy</em>, <a href="/helios/">Hēlios</a> sits primary: “The sun itself, driven daily across the sky in his chariot — solar power’s oldest and most literal namesake.” Under <em>Freshwater &amp; Hydrology</em>, <a href="/ganga/">Gaṅgā</a> sits primary: “The Ganges herself, the holiest water in the world to a billion people — a river supply that is also a goddess.” A pairing that cannot be justified from canonical data is excluded outright.</p>
-            <p>The current graph holds 567 primary and 913 resonant seats across all 397 built flagships — every flagship answers to at least three industries, and no temple may hold more than three primary seats in the whole map.</p>
-            <p>Two honest scope notes. First: the Atlas maps the 397 built flagships — the temples with owned domains and full editions. The wider lexicon (several hundred further restorations) gains pattern seats only as those entries are promoted to flagships; the sellable inventory and the mapped inventory are deliberately the same set. Second: <em>Faith &amp; Spiritual Organizations</em> is the deepest industry by design. There is no cap on its membership — its size simply records the fact that cult and worship are the one domain nearly every deity genuinely shares. If faith looks over-weighted next to finance or beauty, that is the canon talking, not a sales pitch: the map is built outward from mythology, and it stays honest about where myth actually concentrates.</p>
+            <p>The current graph holds 584 primary and 941 resonant seats across all 406 built flagships — every flagship answers to at least three industries, and no temple may hold more than three primary seats in the whole map.</p>
+            <p>Two honest scope notes. First: the Atlas maps the 406 built flagships — the temples with owned domains and full editions. The wider lexicon (several hundred further restorations) gains pattern seats only as those entries are promoted to flagships; the sellable inventory and the mapped inventory are deliberately the same set. Second: <em>Faith &amp; Spiritual Organizations</em> is the deepest industry by design. There is no cap on its membership — its size simply records the fact that cult and worship are the one domain nearly every deity genuinely shares. If faith looks over-weighted next to finance or beauty, that is the canon talking, not a sales pitch: the map is built outward from mythology, and it stays honest about where myth actually concentrates.</p>
 
             <h2>The Alias Layer</h2>
             <p>Industries are categories; sponsors think in trades. The bridge between the two is a second canonical file, <code>type/js/industry-aliases.js</code>: 1419 curated terms — professions, shop names, and search fragments — each assigned to exactly one industry with its own direct/adjacent weight. This is the vocabulary behind the Find Your Pattern bar and the <code>/api/v1/industry-patterns/match</code> endpoint.</p>
